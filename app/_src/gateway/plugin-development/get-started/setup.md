@@ -23,7 +23,7 @@ In this chapter, you'll start by creating a simple {{site.base_gateway}} custom 
 create the necessary folders and files and then author a short amount of Lua code to create a 
 basic functioning plugin.
 
-### 1. Initialize a new plugin repository
+### Initialize a new plugin repository
 
 Start by opening a terminal and changing directories to a location where you store source code. 
 
@@ -59,7 +59,7 @@ touch kong/plugins/my-plugin/schema.lua
 
 You now have the base structure for a new plugin. Let's look at how to author code for these modules.
 
-### 2. Initialize the Schema module
+### Initialize the schema module
 
  The `schema.lua` file defines your plugin's configuration data model. The following is the minimum structure 
  required for a valid plugin.
@@ -89,7 +89,7 @@ You now have the base structure for a new plugin. Let's look at how to author co
  
  Next, let's add the handler code for the plugin.
 
-### 3. Initialize the Handler module
+### Initialize the handler module
 
  The `handler.lua` module contains the core logic of your new plugin.
  Start by putting the following Lua code into the `handler.lua` file:
@@ -115,7 +115,7 @@ You now have a valid plugin - which currently does nothing.
 
 Next, let's add logic to the plugin and learn how to validate it.
 
-### 4. Add handler logic
+### Add handler logic
 
 Plugin logic is defined to be executed at several key points in the lifecycle of
 HTTP requests, TCP streams, and {{site.base_gateway}} itself.

@@ -17,7 +17,7 @@ developer tool prerequisites.
 Now that you have a basic plugin project with testing, the following steps guide you through adding
 configuration capabilities to the plugin code.
 
-### 1. Add configuration fields to the schema 
+### Add configuration fields to the schema 
 
 Let's add some configuration fields to our `schema.lua` file allowing us to 
 make the plugin behavior configurable without having to redeploy or restart.
@@ -80,7 +80,7 @@ return schema
 Now the plugin can accept a configuration value, let's see how to read it from the
 plugin logic code.
 
-### 2. Read configuration values from plugin code 
+### Read configuration values from plugin code 
 
 Modify the `handler.lua` file `response` function to read the configuration value from the incoming
 `conf` parameter instead of the current hardcoded value.
@@ -96,7 +96,7 @@ end
 That's all that's required, the plugin can now be dynamically configured at runtime. Next, 
 let's validate our changes work as expected with manual and automated tests.
 
-### 3. Manually validate configuration
+### Manually validate configuration
 
 In the [previous chapter on testing](/gateway/{{page.release_version}}/plugin-development/get-started/testing#3-manually-test-plugin)
 we showed how to use Pongo to run a shell and manually validate the plugins behavior. Repeat that process here 
@@ -155,7 +155,7 @@ This time we should see our configured header in the response:
 Now that `my-plugin` is configurable and we've validate the behavior, let's look at how we can 
 build an automated approach to validate our changes.
 
-### 4. Add automated configuration testing
+### Add automated configuration testing
 
 Without changing anything we can re-run the tests we already have with `pongo run`:
 

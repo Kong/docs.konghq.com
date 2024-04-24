@@ -23,7 +23,7 @@ services using an http client and parsing JSON values. With the parsed data we w
 show you how to add values to the response data prior to returning to your
 API gateway clients.
 
-### 1. Including HTTP and JSON support
+### Including HTTP and JSON support
 
 Start by importing two new libraries to the `handler.lua` file giving us access to 
 HTTP and JSON parsing support. 
@@ -45,7 +45,7 @@ local http  = require("resty.http")
 local cjson = require("cjson.safe")
 ```
 
-### 2. Invoke 3rd party http request
+### Invoke 3rd party http request
 
 The `lua-rest-http` library provides a simple "single shot" http request
 function we can use to reach out to our 3rd party service. Here we show
@@ -69,7 +69,7 @@ successful response, what about error events?
 Errors will be provided in the `err` return value, let's see what 
 options there are for handling them.
 
-### 3. Handle response errors
+### Handle response errors
 
 The {{site.base_gateway}} 
 [Plugin Development Kit](/gateway/{{page.release_version}}/plugin-development/pdk/)
@@ -105,7 +105,7 @@ if err then
 end
 ```
 
-### 4. Process JSON data from 3rd party response
+### Process JSON data from 3rd party response
 
 This 3rd party service returns a JSON object in the
 response body. Here we are going to show how to parse and extract a 
@@ -148,7 +148,7 @@ kong.response.set_header(conf.response_header_name, body_table.url)
 We've broken down each section of the code.  The following is a full code
 listing for the `handler.lua` file.
 
-### 5. Full code listing
+### Full code listing
 
 ```lua
 local http  = require("resty.http")
@@ -192,7 +192,7 @@ end
 return MyPluginHandler
 ```
 
-### 6. Update testing code
+### Update testing code
 
 At this stage, if you re-run the `pongo run` command to execute
 the integration tests previously built, you will receive errors. The

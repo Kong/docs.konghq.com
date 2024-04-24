@@ -30,7 +30,7 @@ and sets the necessary environment directly in the image. This solution requires
 more steps in the build stage of your deployment pipeline, but simplifies the data plane deployment 
 as configuration and custom code is shipped directly in the data plane image. 
 
-### 1. Create a `Dockerfile`
+### Create a `Dockerfile`
 
 Create a new file at the root of the `my-plugin` project named `DOCKERFILE` with the
 following contents
@@ -56,7 +56,7 @@ HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD kong health
 CMD ["kong", "docker-start"]
 ```
 
-### 2. Build Docker image
+### Build Docker image
 
 When building a Docker image you will give it a tag to help identify it. We suggest
 you tag the image to include information specifying the {{site.base_gateway}} version 
@@ -67,7 +67,7 @@ labeling the `my-plugin` portion of the version as `0.0.1`:
 docker build -t kong-gateway_my-plugin:{{ page.release.tag }}-0.0.1 .
 ```
 
-### 3. Run the custom image
+### Run the custom image
 
 You can now use the {{site.base_gateway}} quickstart script to run the
 custom image and further test the plugin. The quickstart script supports
@@ -79,7 +79,7 @@ curl -Ls https://get.konghq.com/quickstart | \
   bash -s -- -r "" -i kong-gateway_my-plugin -t {{ page.release.tag }}-0.0.1
 ```
 
-### 3. Test the deployed `my-plugin` plugin
+### Test the deployed `my-plugin` plugin
 
 Once the {{site.base_gateway}} is running with the custom image, you 
 can manually test the plugin and validate the behavior.

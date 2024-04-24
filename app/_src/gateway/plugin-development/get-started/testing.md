@@ -17,7 +17,7 @@ developer tool prerequisites.
 
 Now that you have a basic plugin project, you can build testing automations for it.
 
-### 1. Install Pongo
+### Install Pongo
 
 [Pongo](https://github.com/Kong/kong-pongo) is a tool that helps you validate and 
 distribute custom plugins for {{site.base_gateway}}. Pongo uses Docker to
@@ -51,7 +51,7 @@ pongo help
 
 With Pongo installed, you can now set up a test environment for your new plugin.
 
-### 2. Initialize the test environment
+### Initialize the test environment
 
 Pongo lets you validate a plugin's behavior by giving you tools to quickly run a 
 {{site.base_gateway}} with the plugin installed and available. 
@@ -150,7 +150,7 @@ You should see a response that matches the information in the plugin's table:
 
 With the test environment initialized, you can now manually run the plugin code. 
 
-### 3. Manually test plugin
+### Manually test plugin
 
 With the plugin installed, you can now configure {{site.base_gateway}} entities to invoke and validate the plugin's behavior.
 
@@ -224,7 +224,7 @@ For quickly getting started, manually validating a plugin using the Pongo shell 
 nicely. However, you will prefer to deploy automated testing and maybe a Test-driven development 
 (TDD) methodology. Let's see how Pongo can help with this as well.
 
-### 4. Write a test
+### Write a test
 
 Pongo supports running automated tests using the 
 [Busted](https://lunarmodules.github.io/busted/) Lua test framework. In plugin
