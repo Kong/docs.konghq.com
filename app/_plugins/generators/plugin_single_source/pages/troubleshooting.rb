@@ -71,7 +71,10 @@ module PluginSingleSource
 
       def problems
         # Sort by weight, leaving items without weight at the end of the list
-        @problems ||= process_troubleshooting_files.sort_by { |p| p['weight'].nil? ? Float::INFINITY : p['weight'] }
+        @problems ||= process_troubleshooting_files
+                      .sort_by do |p|
+          [p['weight'].nil? ? Float::INFINITY : p['weight'], p['file']]
+        end
       end
 
       def process_troubleshooting_files
@@ -79,12 +82,16 @@ module PluginSingleSource
           markdown = Utils::FrontmatterParser.new(File.read(file))
           min, max, title, weight = markdown
                                     .frontmatter
-                                    .fetch_values('minimum_version', 'maximum_version', 'problem') { |_, v| v }
+                                    .fetch_values(*frontmatter_attrs) { |_, v| v }
 
           next unless Utils::Version.in_range?(@release.version, min:, max:)
 
-          { 'title' => title, 'content' => markdown.content, 'weight' => weight }
+          { 'title' => title, 'content' => markdown.content, 'weight' => weight, 'file' => File.basename(file, '.md') }
         end.compact
+      end
+
+      def frontmatter_attrs
+        %w[minimum_version maximum_version problem weight]
       end
     end
   end
