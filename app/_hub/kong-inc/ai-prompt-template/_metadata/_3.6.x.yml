@@ -1,4 +1,4 @@
-name: AI Response Transformer
+name: AI Prompt Template
 search_aliases:
   - ai
   - llm
@@ -16,5 +16,6 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: Use an LLM service to examine the upstream HTTP(S) prior to forwarding it to the client
+desc: Provide fill-in-the-blank AI prompts to users
 type: plugin
+kong_beta: true
