@@ -46,7 +46,7 @@ module PluginSingleSource
       end
 
       def icon
-        '/assets/images/icons/hub-layout/icn-changelog.svg'
+        '/assets/images/icons/hub-layout/icn-troubleshooting.svg'
       end
 
       def edit_link; end
