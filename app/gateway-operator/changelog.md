@@ -29,7 +29,7 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 ### **NOTE: Retracted**
 
 v1.2.2 was retracted due to a misplaced git tag.
-Due to [golang proxy caching modules indefinitely][goproxy] we needed to retract this version.
+Due to [Golang's proxy caching modules indefinitely][goproxy] we needed to retract this version.
 v1.2.3 contains all the changes that v1.2.2 intended to contain.
 
 [goproxy]: https://sum.golang.org/#faq-retract-version
