@@ -22,6 +22,18 @@ Changelog for supported {{ site.kgo_product_name }} versions.
   controller. This allows running KGO without `ControlPlane` CRD with its controller
   disabled.
 
+## 1.2.2
+
+**Release Date** 2024/04/23
+
+### **NOTE: Retracted**
+
+v1.2.2 was retracted due to a misplaced git tag.
+Due to [golang proxy caching modules indefinitely][goproxy] we needed to retract this version.
+v1.2.3 contains all the changes that v1.2.2 intended to contain.
+
+[goproxy]: https://sum.golang.org/#faq-retract-version
+
 ## 1.2.1
 
 **Release Date** 2024/03/20
