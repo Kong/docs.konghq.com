@@ -7,4 +7,8 @@ type: plugin
 <h2>{{ problem.title }}</h2>
 
 {{ problem.content | markdownify }}
+
+{% unless forloop.last %}<hr />{% endunless %}
 {% endfor %}
+
+<br />
