@@ -4,12 +4,12 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
     PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name: 'opentelemetry',
       vendor: 'kong-inc',
-      version: '3.2.x'
+      version: '3.2.x',
+      site:
     )
   end
   let(:example) { schema.example }
   let(:formats) { [:curl, :konnect, :yaml, :kubernetes] }
-
 
   subject { described_class.new(type:, example:, formats:) }
 

@@ -104,26 +104,24 @@ RSpec.describe PluginSingleSource::Plugin::Release do
   end
 
   describe '#configuration' do
-    let(:source_path) { "#{site.source}/_hub/kong-inc/jwt-signer/" }
-    let(:file) { "app/_src/.repos/kong-plugins/schemas/jwt-signer/#{version}.json" }
+    let(:file) { File.join(PluginSingleSource::Plugin::Schemas::Kong::SCHEMAS_PATH, "jwt-signer/#{version}.json") }
 
     it 'returns an instance of Pages::Configuration' do
       expect(PluginSingleSource::Pages::Configuration)
         .to receive(:new)
-        .with(release: subject, file: , source_path:)
+        .with(release: subject, file: , source_path: '')
 
       subject.configuration
     end
   end
 
   describe '#configuration_examples' do
-    let(:source_path) { "#{site.source}/_hub/kong-inc/jwt-signer/" }
-    let(:file) { "app/_src/.repos/kong-plugins/examples/jwt-signer/_#{version}.yaml" }
+    let(:file) { "_src/.repos/kong-plugins/examples/jwt-signer/_#{version}.yaml" }
 
     it 'returns an instance of Pages::ConfigurationExamples' do
       expect(PluginSingleSource::Pages::ConfigurationExamples)
         .to receive(:new)
-        .with(release: subject, file: , source_path:)
+        .with(release: subject, file: , source_path: '')
 
       subject.configuration_examples
     end
