@@ -232,6 +232,24 @@ components:
       schema:
         type: string
       description: The unique identifier of the filter chain to retrieve.
+    BeforeAuditLogFilter:
+      name: before_audit_log_filter
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/RequestTimestampFilterSchema'
+      description: |
+        Before filter could be used to request audit log data that was recorded before certain time (exclusive).
+        It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
+    AfterAuditLogFilter:
+      name: after_audit_log_filter
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/RequestTimestampFilterSchema'
+      description: |
+        After filter could be used to request audit log data that was recorded after certain time (inclusive).
+        It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
   schemas:
     UnauthorizedError:
       type: object
@@ -1282,6 +1300,11 @@ components:
           type: array
           items:
             type: string
+    RequestTimestampFilterSchema:
+      oneOf:
+        - type: string
+          pattern: '^(\d+|\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)$'
+        - type: integer
   responses:
     HTTP401Error:
       content:
@@ -14214,6 +14237,9 @@ paths:
   /audit/requests:
     get:
       summary: List request audit logs
+      parameters:
+        - $ref: '#/components/parameters/befpre_audit_log_filter'
+        - $ref: '#/components/parameters/after_audit_log_filter'
       tags:
         - audit-logs
       responses:
@@ -14229,6 +14255,9 @@ paths:
   /audit/objects:
     get:
       summary: List database audit logs
+      parameters:
+        - $ref: '#/components/parameters/befpre_audit_log_filter'
+        - $ref: '#/components/parameters/after_audit_log_filter'
       responses:
         '200':
           $ref: '#/components/responses/database-audit-log-response'
