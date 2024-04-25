@@ -117,6 +117,15 @@ module PluginSingleSource
       def enterprise_plugin?
         !!metadata['enterprise'] && !!!metadata['free']
       end
+
+      def missing_translation?
+        return @missing_translation if defined? @missing_translation
+
+        @missing_translation = Jekyll::GeneratorSingleSource::GeneratorConfig
+                               .new(@site)
+                               .build_docs_nav(edition: 'gateway', release: Utils::Version.to_release(@version))
+                               .missing_translation?
+      end
     end
   end
 end

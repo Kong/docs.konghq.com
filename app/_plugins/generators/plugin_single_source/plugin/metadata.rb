@@ -36,9 +36,14 @@ module PluginSingleSource
       def build_metadata
         # Use english version as source of truth,
         # pull only the description from the translations
-        source = SafeYAML.load(File.read(i18n_file.full_file_path_in_default_locale))
+        return source if @release.missing_translation?
+
         localized = SafeYAML.load(File.read(i18n_file.full_file_path_in_locale))
         source.merge('desc' => localized['desc'])
+      end
+
+      def source
+        @source ||= SafeYAML.load(File.read(i18n_file.full_file_path_in_default_locale))
       end
     end
   end
