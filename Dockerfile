@@ -13,8 +13,6 @@ RUN npm install -g npm@7.9.0
 WORKDIR /srv/jekyll
 COPY Makefile /srv/jekyll/Makefile
 
-RUN make install-prerequisites
-
 RUN chmod -R 777 /usr/lib/node_modules \
   && usermod -a -G root jekyll
 
