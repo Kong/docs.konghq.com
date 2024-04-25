@@ -4,7 +4,7 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::ThirdParty do
   let(:schema) { JSON.parse(File.read('spec/fixtures/app/_hub/acme/kong-plugin/schemas/_index.json')) }
   let(:version) { '3.1.1' }
 
-  subject { described_class.new(plugin_name:, vendor:, version:) }
+  subject { described_class.new(plugin_name:, vendor:, version:, site:) }
 
   before do
     allow(subject)
