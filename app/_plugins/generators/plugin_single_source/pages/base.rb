@@ -36,8 +36,8 @@ module PluginSingleSource
 
       def content
         @content ||= Utils::SafeFileReader.read(
-          file_name: @file,
-          source_path: @source_path
+          file_name: i18n_file.full_file_path_in_locale,
+          source_path: ''
         )
       end
 
@@ -51,10 +51,7 @@ module PluginSingleSource
       end
 
       def source_file
-        @source_file ||= File.expand_path(
-          @file,
-          @source_path
-        ).gsub("#{@site.source}/", '')
+        @source_file ||= i18n_file.relative_file_path
       end
 
       def base_url
@@ -132,15 +129,24 @@ module PluginSingleSource
 
       def frontmatter_attributes
         return {} if @file.nil?
-        return {} unless File.exist?(File.expand_path(@file, @source_path))
+        return {} unless File.exist?(i18n_file.full_file_path_in_locale)
 
         @frontmatter_attributes ||= Utils::FrontmatterParser.new(
-          File.read(File.expand_path(@file, @source_path))
+          File.read(i18n_file.full_file_path_in_locale)
         ).frontmatter
       end
 
       def i18n_attributes
         Jekyll::Pages::TranslationMissingData.new(@site).data
+      end
+
+      def i18n_file
+        @i18n_file ||= Jekyll::GeneratorSingleSource::I18nFile.new(
+          file: @file,
+          src_path: @source_path.gsub("#{@site.source}/", ''),
+          locale: @site.config['locale'],
+          site: @site
+        )
       end
     end
   end
