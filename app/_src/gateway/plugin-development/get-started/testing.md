@@ -172,7 +172,7 @@ Associate the custom plugin with the `example_service` service:
 curl -is -X POST http://localhost:8001/services/example_service/plugins \
     --data 'name=my-plugin'
 ```
-
+    
 Add a new route for sending requests through the `example_service`:
 
 ```sh
@@ -321,7 +321,7 @@ end
 
 With this test code, Pongo can help automate testing.
 
-### 5. Run the test
+### Run the test
 
 Pongo can run automated tests with the `pongo run` command. When this is executed,
 Pongo will determine if dependency containers are already running and use them
