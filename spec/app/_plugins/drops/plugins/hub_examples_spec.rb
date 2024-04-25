@@ -5,7 +5,8 @@ RSpec.describe Jekyll::Drops::Plugins::HubExamples do
     PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name:,
       vendor: 'kong-inc',
-      version: version
+      version: version,
+      site:
     )
   end
   let(:example) { schema.example }

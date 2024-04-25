@@ -4,7 +4,8 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
     PluginSingleSource::Plugin::Schemas::Base.make_for(
       name: 'opentelemetry',
       vendor: 'kong-inc',
-      version: '3.2.x'
+      version: '3.2.x',
+      site:
     )
   end
   let(:example) { schema.example }

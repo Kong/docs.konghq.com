@@ -15,24 +15,25 @@ module PluginSingleSource
 
         # Skips plugin versions older than 2.3.x for which
         # the docker image isn't working
-        def self.make_for(vendor:, name:, version:)
+        def self.make_for(vendor:, name:, version:, site:)
           if vendor == 'kong-inc'
             if Utils::Version.to_version(version) <= Utils::Version.to_version('2.3.x')
-              NullSchema.new(plugin_name: name, vendor:, version:)
+              NullSchema.new(plugin_name: name, vendor:, version:, site:)
             else
-              Kong.new(plugin_name: name, vendor:, version:)
+              Kong.new(plugin_name: name, vendor:, version:, site:)
             end
           else
-            ThirdParty.new(plugin_name: name, vendor:, version:)
+            ThirdParty.new(plugin_name: name, vendor:, version:, site:)
           end
         end
 
         attr_reader :plugin_name, :vendor, :version
 
-        def initialize(plugin_name:, vendor:, version:)
+        def initialize(plugin_name:, vendor:, version:, site:)
           @plugin_name = plugin_name
           @vendor = vendor
           @version = version
+          @site = site
         end
 
         def fields
