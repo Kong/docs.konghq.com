@@ -1,20 +1,31 @@
 ---
-title: Developer Flow
+title: Get started as a developer
 ---
 
-## Happy path
+This guide explains how developers can get started with the developer platform by registering and creating an application. 
 
-1. I somehow know I need to sign up for access to Dev Portal (internal: my manager tells me to so I can do my job, external: I'm partnering with this company and want to use their APIs for my app)
-1. I sign up for Dev Portal
-    * how do I know where to go to access the Dev Portal? Can the URL always be predicted, like `https://example.us.portal.konghq.com/`?
-1. I get approved
-1. I create my application with APIs in Dev Portal
-    * what's an application? How do they relate to services and APIs?
-1. My application is approved.
+Some explanation of Dev Portal. What does it do for me? Why would I want to register? 
 
-## Actual content below
+<details><summary>Key concepts</summary>
 
-Some explanation of Dev Portal. What does it do for me? Why would I want to register? Maybe what is an application.
+{% capture konnect_concepts %}
+[**Application:**](/gateway/latest/key-concepts/services/) An application is ... For example,...
+
+[**Application credentials:**](/gateway/latest/key-concepts/services/) Application credentials are ....
+
+[**Developer platform:**](/gateway/latest/key-concepts/routes/) The developer platform allows developers like you to locate, access, and consume APIs. Using the Dev Portal, you can browse and search API documentation, test API endpoints, and manage your own credentials. 
+{% endcapture %}
+
+{{ konnect_concepts | markdownify }}
+
+</details>
+
+1. **Register or sign in to the developer platform**
+    To create an application against APIs in the Dev Portal, you must first register an account.
+1. **Create an application against the APIs in the developer platform**
+    You can use APIs in the developer platform to create your own app and register that app with the company's developer platform.
+1. **Optional: Generate credentials for your application**
+    ? idk  what this does for you
 
 ## Flow
 
