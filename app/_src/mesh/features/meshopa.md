@@ -49,6 +49,7 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 
 {% endif_version %}
 
+
 To learn more about the information in this table, see the [matching docs](/mesh/{{page.release}}/policies/targetref).
 
 ## Configuration
@@ -457,6 +458,7 @@ The following environment variables are available:
 | KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
 | KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | nil |
 {% endif_version %}
+
 
 {% navtabs %}
 {% navtab kumactl %}

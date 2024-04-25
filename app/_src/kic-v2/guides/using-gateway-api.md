@@ -30,11 +30,11 @@ Currently, the {{site.kic_product_name}}'s implementation of the Gateway API sup
 - [TCPRoute](/kubernetes-ingress-controller/{{page.release}}/references/gateway-api-support/#tcproutes)
 - [UDPRoute](/kubernetes-ingress-controller/{{page.release}}/references/gateway-api-support/#udproutes)
 - [TLSRoute](/kubernetes-ingress-controller/{{page.release}}/references/gateway-api-support/#tlsroutes)
-{% endif_version %}
-{% if_version gte:2.4.x lte:2.6.x %}
+{% endif_version -%}
+{% if_version gte:2.4.x lte:2.6.x -%}
 - [`ReferencePolicy`](/kubernetes-ingress-controller/{{page.release}}/references/gateway-api-support/#referencepolicies)
-{% endif_version %}
-{% if_version gte:2.6.x %}
+{% endif_version -%}
+{% if_version gte:2.6.x -%}
 - [ReferenceGrant](/kubernetes-ingress-controller/{{page.release}}/references/gateway-api-support/#referencegrants)
 {% endif_version %}
 
@@ -412,24 +412,24 @@ echo-658c5ff5ff-8cvgj%
 {{site.kic_product_name}} Gateway API support is a work in progress, and not all features of
 Gateway APIs are supported. In particular:
 
-{% if_version lte: 2.3.x %}
+{% if_version lte: 2.3.x -%}
 - HTTPRoute is the only supported route type. TCPRoute, UDPRoute, and TLSRoute
   are not yet implemented.
 - HTTPRoute does not yet support multiple `backendRefs`. You cannot distribute
   requests across multiple Services.
-{% endif_version %}
+{% endif_version -%}
 - `queryParam` matches are not supported.
-{% if_version gte: 2.4.x %}
-{% if_version lte: 2.5.x %}
+{% if_version gte: 2.4.x -%}
+{% if_version lte: 2.5.x -%}
 - Gateway Listener configuration does not support `TLSConfig`. You can't
   load certificates for HTTP Routes and TLS Routes via Gateway
   configuration, and must either accept the default Kong certificate or add
   certificates and SNI resources manually via the admin API in DB-backed mode.
-{% endif_version %}
-{% endif_version %}
-{% if_version gte: 2.5.x %}
+{% endif_version -%}
+{% endif_version -%}
+{% if_version gte: 2.5.x -%}
 - Gateways [are not provisioned automatically](/kubernetes-ingress-controller/{{page.release}}/concepts/gateway-api#gateway-management).
 - Kong [only supports a single Gateway per GatewayClass](/kubernetes-ingress-controller/{{page.release}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
-{% endif_version %}
+{% endif_version -%}
 - HTTPRoutes cannot be bound to a specific port using a [ParentReference](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1beta1.ParentReference).
   Kong serves all HTTP routes on all HTTP listeners.

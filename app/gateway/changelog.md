@@ -9,6 +9,77 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.6.1.3
+**Release Date** 04/16/2024
+
+### Fixes
+
+#### Kong Manager
+* Fixed an issue where the admin account profile page returned a 404 error if the `admin_gui_path` was not a slash.
+
+#### Plugins
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Improved robustness of parsing for short trace IDs.
+
+## 3.6.1.2
+**Release Date** 04/08/2024
+
+### Features
+
+#### Plugins
+
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
+  * Added the new field `api_spec_encoded` to indicate whether the `api_spec` is URI-encoded.
+
+### Fixes
+
+#### Clustering
+
+* Adjusted clustering compatible check related to AWS Secrets Manager.
+to use `AK-SK` environment variables to grant IAM role permissions.
+
+#### Configuration
+
+* Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
+apply a change to the plugin config via the Admin API.
+
+#### Core
+
+* Updated the file permission of `kong.logrotate` to 644.
+* Vaults: 
+  * Fixed an issue where the vault used the wrong (default) workspace identifier when retrieving a vault entity by prefix.
+  * Fixed an issue where a new data plane couldn't resolve a Vault reference after the first configuration push. 
+    This was happening due to issues with license pre-loading.
+* Fixed an issue where users were not allowed to start Kong Gateway if `admin_gui_auth_conf.scope` was missing `"openid"`, 
+or if `"offline_access"` when `admin_gui_auth` was set to `openid-connect`. 
+Kong Gateway will now only print warning logs if `"openid"` is missing from `admin_gui_auth_conf.scope`.
+
+#### Kong Manager Enterprise
+
+* Fixed the display of the remaining days for the license expiration date.
+* Updated the type of RBAC token for the RBAC user to `password`.
+
+#### Plugins
+
+* [**ACME**](/hub/kong-inc/acme/) (`acme`)
+  * Fixed an issue where the certificate was not successfully renewed during ACME renewal.
+
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
+  would interfere with each other and fail to synchronize counter data to the central data store.
+
+#### Dependencies
+
+* Bumped `lua-resty-openssl` to 1.2.1
+* Bumped PCRE from the legacy `libpcre` 8.45 to `libpcre2` 10.43
+* Bumped `lua-kong-nginx-module` to 0.8.1
+* Bumped `kong-lua-resty-kafka` to 0.18
+* Bumped `lua-resty-luasocket` to 1.1.2 to fix [luasocket#427](https://github.com/lunarmodules/luasocket/issues/427)
+
+
 ## 3.6.1.1
 **Release Date** 03/05/2024
 
@@ -903,6 +974,94 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+
+## 3.4.3.7
+**Release Date** 2024/04/23
+
+### Features
+#### Plugins
+
+* [**Portal Application Registration**](/hub/kong-inc/application-registration/) (`application-registration`)
+  * Added support for accessing the service using consumer credential authentication. 
+  To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
+
+### Fixes
+#### Clustering
+* Fixed an issue where event hooks were prematurely validated in hybrid mode. 
+The fix delays the validation of event hooks to the point where event hooks are emitted.
+
+#### Core
+
+* Fixed an issue with data planes in hybrid mode, where a certificate entity configured with a vault 
+reference was occasionally not refreshed on time.
+
+#### PDK
+
+<!-- _Backported from 3.7.0.0_ -->
+* Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_port`. 
+It now correctly returns a number.
+
+### Dependencies
+
+* Bumped `lua-protobuf` to 0.5.1.
+
+## 3.4.3.6
+**Release Date** 2024/04/15
+
+### Features
+#### Kong Manager Enterprise
+
+_Backported from 3.5.0.0_
+* Added support for Microsoft Azure's KeyVault Secrets Engine. 
+
+#### Plugins
+
+_Backported from 3.6.1.2_
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
+  * Added the new field `api_spec_encoded` to indicate whether the `api_spec` is URI-encoded.
+
+### Fixes
+#### Configuration
+
+_Backported from 3.6.1.2_
+* Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
+apply a change to the plugin config via the Admin API.
+
+#### Kong Manager Enterprise
+
+* Fixed an issue where logging in failed when fields in the Developer Portal configuration 
+**Developer Meta Fields** tab contained characters outside the Latin1 range.
+
+_Backported from 3.6.1.3_
+* Fixed an issue where the admin account profile page returned a 404 error if 
+the `admin_gui_path` wasn't a slash.
+
+#### Plugins
+
+_Backported from 3.6.1.2_
+* [**ACME**](/hub/kong-inc/acme/) (`acme`)
+  * Fixed an issue where the certificate was not successfully renewed during ACME renewal.
+
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
+  would interfere with each other and fail to synchronize counter data to the central data store.
+
+_Backported from 3.6.1.3_
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
+  * Improved robustness of parsing for short trace IDs.
+
+#### Plugin
+
+### Dependencies
+
+_Backported from 3.6.1.2_
+* Bumped `lua-kong-nginx-module` to 0.8.1
+* Bumped `lua-resty-luasocket` to 1.1.2 to fix [luasocket#427](https://github.com/lunarmodules/luasocket/issues/427)
+
+
 ## 3.4.3.5
 **Release Date** 2024/03/21
 
@@ -984,7 +1143,6 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
   * Fixed an OTEL sampling mode Lua panic bug that occurred when the `http_response_header_for_traceid` option was enabled.
- <!-- asked for clarification on this description -->
   * Increased queue max batch size to 200. 
    
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
@@ -4105,6 +4263,26 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+## 2.8.4.9
+**Release Date** 2024/04/19
+
+### Fixes
+#### Core
+
+_Backported from 3.3.0.0_
+* Fixed an issue where vault configuration stayed sticky and cached even when configurations were changed.
+
+#### PDK
+
+<!-- _Backported from 3.7.0.0_ -->
+* Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_portand`. It now correctly returns a number.
+
+#### Plugins
+
+_Backported from 3.6.1.2_
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
 
 
 ## 2.8.4.8

@@ -144,6 +144,10 @@ Response:
 }
 ```
 
+Ensure to [restart](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after updating a license.
+
+
+
 ## Generate license report
 
 To generate a report, submit a `GET` request directly to `/license/report`:

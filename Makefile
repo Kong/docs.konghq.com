@@ -1,3 +1,5 @@
+SHELL := /usr/bin/env bash
+
 RUBY_VERSION := "$(shell ruby -v)"
 RUBY_VERSION_REQUIRED := "$(shell cat .ruby-version)"
 RUBY_MATCH := $(shell [[ "$(shell ruby -v)" =~ "ruby $(shell cat .ruby-version)" ]] && echo matched)
@@ -9,13 +11,13 @@ ifndef RUBY_MATCH
 endif
 
 install-prerequisites:
-	npm install -g netlify-cli
+	npm install -g netlify-cli@16.5.1
 
 # Installs npm packages and gems.
 install: ruby-version-check
+	git submodule update --init
 	npm ci
 	bundle install
-	git submodule update --init
 	@if [ ! -f .env ]; then cp .env.example .env; fi
 
 # Using local dependencies, starts a doc site instance on http://localhost:4000.
@@ -51,3 +53,6 @@ smoke:
 kill-ports:
 	@JEKYLL_PROCESS=$$(lsof -ti:4000) && kill -9 $$JEKYLL_PROCESS || true
 	@VITE_PROCESS=$$(lsof -ti:3036) && kill -9 $$VITE_PROCESS || true
+
+vale:
+	-git diff --name-only --diff-filter=d HEAD | grep '\.md$$' | xargs vale

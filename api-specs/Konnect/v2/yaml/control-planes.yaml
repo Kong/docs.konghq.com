@@ -686,6 +686,16 @@ components:
             NotFoundExample:
               $ref: '#/components/examples/NotFoundExample'
   schemas:
+    GroupMembership:
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
     CreateControlPlaneRequest:
       title: CreateControlPlaneRequest
       description: The request schema for the create control plane request.
@@ -708,6 +718,7 @@ components:
           example: CLUSTER_TYPE_CONTROL_PLANE
           enum:
             - CLUSTER_TYPE_CONTROL_PLANE
+            - CLUSTER_TYPE_HYBRID
             - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
             - CLUSTER_TYPE_CONTROL_PLANE_GROUP
         auth_type:
@@ -863,6 +874,7 @@ components:
               example: CLUSTER_TYPE_CONTROL_PLANE
               enum:
                 - CLUSTER_TYPE_CONTROL_PLANE
+                - CLUSTER_TYPE_HYBRID
                 - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
                 - CLUSTER_TYPE_CONTROL_PLANE_GROUP
               readOnly: true
@@ -1550,15 +1562,7 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              members:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
+            $ref: '#/components/schemas/GroupMembership'
           examples:
             Example 1:
               value:
@@ -1573,15 +1577,7 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              members:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
+            $ref: '#/components/schemas/GroupMembership'
           examples:
             Example 1:
               value:

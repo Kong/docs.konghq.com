@@ -16,11 +16,11 @@ end
 id1 --Kong proxy 
 configuration---> id2 & id3
 
-subgraph id2 [Self-managed on-premise node]
+subgraph id2 [Kong-managed cloud node]
 C
 end
 
-subgraph id3 [Self-managed cloud nodes]
+subgraph id3 [Self-managed local and cloud nodes]
 D
 E
 end

@@ -1,6 +1,5 @@
 {% include_relative_once _data/tables/support/gateway/packages.yml %}
 {% include_relative_once _data/tables/support/gateway/third-party.yml %}
-{% include_relative_once _data/tables/support/gateway/browsers.yml %}
 
 lts: false
 distributions:
@@ -89,9 +88,3 @@ third-party:
   s3_api:
     - *s3
     - *minio
-
-browsers:
-  - *edge
-  - *chrome
-  - *firefox
-  - *safari

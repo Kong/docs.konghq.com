@@ -19,7 +19,7 @@ using a CA root certificate and key stored in a HashiCorp Vault
 server.
 * [`acmpca`](/mesh/{{page.release}}/features/acmpca/): {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
-{% if_version gte:1.8.x %}
+{% if_version gte:1.8.x -%}
 * [`certmanager`](/mesh/{{page.release}}/features/cert-manager/): {{site.mesh_product_name}} generates data plane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
 {% endif_version %}

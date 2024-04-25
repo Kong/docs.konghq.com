@@ -9,7 +9,43 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## April 2024
+
+**New Dedicated Cloud Gateways**
+: You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
+
+: Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
+
+: Dedicated Cloud Gateways also have the following benefits:
+* SOC1 compliant out-of-the-box
+* {{site.konnect_short_name}} handles gateway upgrades for you
+* Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
+
+: For more information, see [About Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/).
+
+: ![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
+: > _**Figure 1:** Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._
+
+**Improved UI/UX for Plugins**
+: We are happy to announce that a polished UI/UX experience for plugins is now available to our customers on Konnect. Required configuration settings are now grouped together, and indicated as required on the forms, improved tooltips and default fields are present on plugin forms, and a "most popular" plugins section is now available.
+: ![Improved UI/UX for plugins](/assets/images/products/konnect/changelog/improved-plugins-ui.png)
+
+
+**Integrated Markdown Renderer**
+: You can now take advantage of an integrated markdown editor for API Products in {{site.konnect_short_name}}. This enhancement simplifies documentation updates by enabling you to edit markdown files directly within {{site.konnect_short_name}}. The {{site.konnect_short_name}} interactive markdown renderer supports: 
+* Code syntax highlighting for bash, json, go, and js
+* Rendering UML diagrams and flowcharts via Mermaid and PlantUML
+* Emojis
+
+![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
+
 ## March 2024
+
+
+**OAS 3.1 Support**
+: Konnect and Portal now support OAS 3.1 out of the box. Users can now upload a YAML/JSON version of OAS 3.1 into their API Product version and the specification will be rendered in the spec viewer on both Konnect and Portal. With OAS 3.1, we now support describing the webhooks in your OAS the same way you describe your API paths. The new version of the spec renderer also supports all available theming options as before. 
+
+: OSS Portal users can also take advantage of this component by upgrading to the latest version of `@kong-ui-public/spec-renderer@2.1.1`.
 
 **Refined user experience for Control Plane Groups**
 : We've made improvements to refine the end-to-end workflow of Control Plane Groups for our customers. Now, Control Plane Groups are more intuitive, and easier to understand.
@@ -27,7 +63,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
 : > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
-
 
 ## February 2024
 

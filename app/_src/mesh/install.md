@@ -37,7 +37,7 @@ links to cloud marketplace integrations.
   </a>
 
   <a href="/mesh/{{page.release}}/installation/docker" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/docker.png" alt="Docker" />
+    <img class="install-icon" src="/assets/images/icons/third-party/docker.svg" alt="Docker" />
     <div class="install-text">Docker</div>
   </a>
 

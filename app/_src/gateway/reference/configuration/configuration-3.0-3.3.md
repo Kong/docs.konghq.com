@@ -938,7 +938,7 @@ The following suffix can be specified for each pair:
 
 - `ssl` will require that all connections made through a particular
   address/port be made with TLS enabled.
-{% if_version gte:3.2.x %}
+{% if_version gte:3.2.x -%}
 - `http2` will allow for clients to open HTTP/2 connections to Kong's Status
 API server.
 {% endif_version %}
@@ -1515,11 +1515,11 @@ The following namespaces are supported:
   {}` block.
 - `nginx_status_<directive>`: Injects `<directive>` in Kong's Status API
   `server {}` block (only effective if `status_listen` is enabled).
-{% if_version gte:3.2.x %}
+{% if_version gte:3.2.x -%}
 - `nginx_debug_<directive>` <span class="badge enterprise"></span>: 
 Injects `<directive>` in Kong's Debug API `server {}` block (only effective 
 if `debug_listen` is enabled).
-{% endif_version %}
+{% endif_version -%}
 - `nginx_stream_<directive>`: Injects `<directive>` in Kong's stream module
   `stream {}` block (only effective if `stream_listen` is enabled).
 - `nginx_sproxy_<directive>`: Injects `<directive>` in Kong's stream module
@@ -4065,9 +4065,9 @@ The following trace types are included:
   parsing, route matching, and balance preparation
 - `access.after`: trace the postprocess of access phase, like balancer
   execution and internal variable assigning
-{% if_version lte:3.3.x %}
+{% if_version lte:3.3.x -%}
 - `cassandra_iterate`: trace Cassandra driver to paginate over results
-{% endif_version %}
+{% endif_version -%}
 - `plugin`: trace plugins phase handlers
 
 

@@ -27,7 +27,7 @@ A {{site.base_gateway}} upgrade requires two phases of work: preparing for the u
 1. Review version compatibility between your platform version and the version of {{site.kong_gateway}} that you are upgrading to:
     * [OS version](/gateway/{{page.release}}/support-policy/#supported-versions)
     * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
-    {% if_version gte:3.2.x %}
+    {% if_version gte:3.2.x -%}
     * [Database version](/gateway/{{page.release}}/support/third-party/)
     * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
     {% endif_version %}
@@ -78,7 +78,7 @@ By default, {{site.base_gateway}} has migration tests between adjacent versions 
 
 1. Between patch releases of the same major and minor version.
 2. Between adjacent minor releases of the same major version.
-3. Between LTS versions.
+3. Between LTS (Long Term Support) versions.
 
     {{site.base_gateway}} maintains LTS versions and guarantees upgrades between adjacent LTS versions.
     The current LTS in the 2.x series is 2.8, and the current LTS in the 3.x series is 3.4.
@@ -93,13 +93,13 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 | ------------------- | ------------ | ---------------------------- | ---------------- |
 | 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), then upgrade to 3.0.x, and then upgrade to 3.1.x. |
 | 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, then upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 2.x–2.7.x | DB-less | No | upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 2.8.x | Traditional | No | upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 2.8.x | Hybrid | No | upgrade to 3.0.x, and then upgrade to 3.1.1.3. |
-| 2.8.x | DB-less | No | upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 3.0.x | Traditional | Yes | upgrade to 3.1.x. |
-| 3.0.x | Hybrid | Yes | upgrade to 3.1.x. |
-| 3.0.x | DB-less | Yes | upgrade to 3.1.x. |
+| 2.x–2.7.x | DB-less | No | Upgrade to 3.0.x, and then upgrade to 3.1.x. |
+| 2.8.x | Traditional | No | Upgrade to 3.0.x, and then upgrade to 3.1.x. |
+| 2.8.x | Hybrid | No | Upgrade to 3.0.x, and then upgrade to 3.1.1.3. |
+| 2.8.x | DB-less | No | Upgrade to 3.0.x, and then upgrade to 3.1.x. |
+| 3.0.x | Traditional | Yes | Upgrade to 3.1.x. |
+| 3.0.x | Hybrid | Yes | Upgrade to 3.1.x. |
+| 3.0.x | DB-less | Yes | Upgrade to 3.1.x. |
 
 {% endif_version %}
 
@@ -109,17 +109,17 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 | ------------------- | ------------ | ---------------------------- | ---------------- |
 | 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), upgrade to 3.0.x, upgrade to 3.1.x, and then upgrade to 3.2.x. |
 | 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, upgrade to 3.0.x, upgrade to 3.1.x, and then upgrade to 3.2.x. |
-| 2.x–2.7.x | DB-less | No | upgrade to 3.0.x, upgrade to 3.1.x, and then upgrade to 3.2.x. |
+| 2.x–2.7.x | DB-less | No | Upgrade to 3.0.x, upgrade to 3.1.x, and then upgrade to 3.2.x. |
 | 2.8.x | Traditional | No | Upgrade to 3.1.1.3, and then upgrade to 3.2.x. |
 | 2.8.x | Hybrid | No | Upgrade to 3.1.1.3, and then upgrade to 3.2.x. |
 | 2.8.x | DB-less | No | Upgrade to 3.1.1.3, and then upgrade to 3.2.x. |
 | 3.0.x | Traditional | No | Upgrade to 3.1.x, and then upgrade to 3.2.x. |
 | 3.0.x | Hybrid | No | Upgrade to 3.1.x, and then upgrade to 3.2.x. |
 | 3.0.x | DB-less | No | Upgrade to 3.1.x, and then upgrade to 3.2.x. |
-| 3.1.x | Traditional | Yes | upgrade to 3.2.x. |
+| 3.1.x | Traditional | Yes | Upgrade to 3.2.x. |
 | 3.1.0.x-3.1.1.2 | Hybrid | No | Upgrade to 3.1.1.3, and then upgrade to 3.2.x. |
-| 3.1.1.3 | Hybrid | Yes | upgrade to 3.2.x. |
-| 3.1.x | DB-less | Yes | upgrade to 3.2.x. |
+| 3.1.1.3 | Hybrid | Yes | Upgrade to 3.2.x. |
+| 3.1.x | DB-less | Yes | Upgrade to 3.2.x. |
 
 {% endif_version %}
 
@@ -129,20 +129,20 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 | ------------------- | ------------ | ---------------------------- | ---------------- |
 | 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, and then upgrade to 3.3.x. |
 | 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, and then upgrade to 3.3.x. |
-| 2.x–2.7.x | DB-less | No | upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, and then upgrade to 3.3.x. |
+| 2.x–2.7.x | DB-less | No | Upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, and then upgrade to 3.3.x. |
 | 2.8.x | Traditional | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, and then upgrade to 3.3.x. |
 | 2.8.x | Hybrid | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, and then upgrade to 3.3.x. |
 | 2.8.x | DB-less | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, and then upgrade to 3.3.x. |
 | 3.0.x | Traditional | No | Upgrade to 3.1.x, upgrade to 3.2.x, and then upgrade to 3.3.x. |
 | 3.0.x | Hybrid | No | Upgrade to 3.1.x, upgrade to 3.2.x, and then upgrade to 3.3.x. |
 | 3.0.x | DB-less | No | Upgrade to 3.1.x, upgrade to 3.2.x, and then upgrade to 3.3.x. |
-| 3.1.x | Traditional | No | upgrade to 3.2.x, and then upgrade to 3.3.x. |
+| 3.1.x | Traditional | No | Upgrade to 3.2.x, and then upgrade to 3.3.x. |
 | 3.1.0.x-3.1.1.2 | Hybrid | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, and then upgrade to 3.3.x. |
-| 3.1.1.3 | Hybrid | No | upgrade to 3.2.x, and then upgrade to 3.3.x. |
-| 3.1.x | DB-less | No | upgrade to 3.2.x, and then upgrade to 3.3.x. |
-| 3.2.x | Traditional | Yes | upgrade to 3.3.x. |
-| 3.2.x | Hybrid | Yes | upgrade to 3.3.x. |
-| 3.2.x | DB-less | Yes | upgrade to 3.3.x. |
+| 3.1.1.3 | Hybrid | No | Upgrade to 3.2.x, and then upgrade to 3.3.x. |
+| 3.1.x | DB-less | No | Upgrade to 3.2.x, and then upgrade to 3.3.x. |
+| 3.2.x | Traditional | Yes | Upgrade to 3.3.x. |
+| 3.2.x | Hybrid | Yes | Upgrade to 3.3.x. |
+| 3.2.x | DB-less | Yes | Upgrade to 3.3.x. |
 
 {% endif_version %}
 
@@ -150,22 +150,22 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 2.x–2.7.x | DB-less | No | upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 2.8.x | Traditional | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 2.8.x | Hybrid | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 2.8.x | DB-less | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.0.x | Traditional | No | Upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.0.x | Hybrid | No | Upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.0.x | DB-less | No | Upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.1.x | Traditional | No | upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.1.0.x-3.1.1.2 | Hybrid | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.1.1.3 | Hybrid | No | upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.1.x | DB-less | No | upgrade to 3.2.x, upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.2.x | Traditional | No | upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.2.x | Hybrid | No | upgrade to 3.3.x, and then Upgrade to 3.4.x. |
-| 3.2.x | DB-less | No | upgrade to 3.3.x, and then Upgrade to 3.4.x. |
+| 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 2.x–2.7.x | DB-less | No | Upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 2.8.x | Traditional | Yes | [Directly upgrade to 3.4.x (LTS to LTS upgrade)](/gateway/{{page.release}}/upgrade/lts-upgrade/). |
+| 2.8.x | Hybrid | Yes | [Directly upgrade to 3.4.x (LTS to LTS upgrade)](/gateway/{{page.release}}/upgrade/lts-upgrade/) |
+| 2.8.x | DB-less | Yes | [Directly upgrade to 3.4.x (LTS to LTS upgrade)](/gateway/{{page.release}}/upgrade/lts-upgrade/) |
+| 3.0.x | Traditional | No | Upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.0.x | Hybrid | No | Upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.0.x | DB-less | No | Upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.1.x | Traditional | No | Upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.1.1.3 | Hybrid | No | Upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.1.x | DB-less | No | Upgrade to 3.2.x, upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.2.x | Traditional | No | Upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.2.x | Hybrid | No | Upgrade to 3.3.x, and then upgrade to 3.4.x. |
+| 3.2.x | DB-less | No | Upgrade to 3.3.x, and then upgrade to 3.4.x. |
 | 3.3.x | Traditional | Yes | Upgrade to 3.4.x. |
 | 3.3.x | Hybrid | Yes | Upgrade to 3.4.x. |
 | 3.3.x | DB-less | Yes | Upgrade to 3.4.x. |
@@ -179,8 +179,9 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 | 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), upgrade to 3.4.x, and then upgrade to 3.5.x. |
 | 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, upgrade to 3.4.x, and then upgrade to 3.5.x. |
 | 2.x–2.7.x | DB-less | No | Upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x upgrade to 3.4.x, and then upgrade to 3.5.x. |
-| 2.8.x | Hybrid | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
-| 2.8.x | DB-less | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 2.8.x | Traditional | No | Upgrade to 3.4.x via [LTS upgrade](/gateway/{{page.release}}/upgrade/lts-upgrade/), and then upgrade to 3.5.x. |
+| 2.8.x | Hybrid | No | Upgrade to 3.4.x via [LTS upgrade](/gateway/{{page.release}}/upgrade/lts-upgrade/), and then upgrade to 3.5.x. |
+| 2.8.x | DB-less | No | Upgrade to 3.4.x via [LTS upgrade](/gateway/{{page.release}}/upgrade/lts-upgrade/), and then upgrade to 3.5.x. |
 | 3.0.x | Traditional | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
 | 3.0.x | Hybrid | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
 | 3.0.x | DB-less | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
@@ -206,8 +207,9 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 | 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
 | 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
 | 2.x–2.7.x | DB-less | No | Upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
-| 2.8.x | Hybrid | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
-| 2.8.x | DB-less | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 2.8.x | Traditional | No | Upgrade to 3.4.x via [LTS upgrade](/gateway/{{page.release}}/upgrade/lts-upgrade/), upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 2.8.x | Hybrid | No | Upgrade to 3.4.x via [LTS upgrade](/gateway/{{page.release}}/upgrade/lts-upgrade/), upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 2.8.x | DB-less | No | Upgrade to 3.4.x via [LTS upgrade](/gateway/{{page.release}}/upgrade/lts-upgrade/), upgrade to 3.5.x, and then upgrade to 3.6.x. |
 | 3.0.x | Traditional | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
 | 3.0.x | Hybrid | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
 | 3.0.x | DB-less | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
@@ -229,6 +231,7 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 | 3.5.x | DB-less | Yes | Upgrade to 3.6.x. |
 
 {% endif_version %}
+
 
 ## Preparation: Choose a backup strategy
 
@@ -321,7 +324,7 @@ Factors may include, but are not limited to:
   * [OS version](/gateway/{{page.release}}/support-policy/#supported-versions)
   * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
   * [Hardware resources](/gateway/{{page.release}}/production/sizing-guidelines/)
-  {% if_version gte:3.2.x %}
+  {% if_version gte:3.2.x -%}
   * [Database version](/gateway/{{page.release}}/support/third-party/)
   * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
   {% endif_version %}
@@ -340,7 +343,7 @@ Factors may include, but are not limited to:
 Refer to [Nginx Directives](/gateway/{{page.release}}/reference/nginx-directives/) for a detailed customization guide.
 * If you're using {{site.ee_product_name}}, make sure to [apply the enterprise license](/gateway/{{page.release}}/licenses/deploy/) to the new Gateway cluster.
 * Always remember to take a [backup](/gateway/{{page.release}}/upgrade/backup-and-restore/).
-{% if_version gte:3.4.x %}
+{% if_version gte:3.4.x -%}
 * Cassandra DB support has been removed from {{site.base_gateway}} with 3.4.0.0.
 Migrate to PostgreSQL according to the [Cassandra to PostgreSQL Migration Guidelines](/gateway/{{page.release}}/migrate-cassandra-to-postgres/).
 {% endif_version %}
