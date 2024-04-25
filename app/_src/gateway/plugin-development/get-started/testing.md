@@ -221,8 +221,9 @@ exit
 ```
 
 For quickly getting started, manually validating a plugin using the Pongo shell works
-nicely. However, you will prefer to deploy automated testing and maybe a Test-driven development 
-(TDD) methodology. Let's see how Pongo can help with this as well.
+nicely. For production scenarios, you will likely want to deploy automated testing 
+and maybe a test-driven development (TDD) methodology. 
+Let's see how Pongo can help with this as well.
 
 ### Write a test
 
