@@ -35,10 +35,14 @@ module PluginSingleSource
       end
 
       def content
-        @content ||= Utils::SafeFileReader.read(
-          file_name: i18n_file.full_file_path_in_locale,
-          source_path: ''
-        )
+        @content ||= begin
+          file_name = if @release.missing_translation?
+                        i18n_file.full_file_path_in_default_locale
+                      else
+                        i18n_file.full_file_path_in_locale
+                      end
+          Utils::SafeFileReader.read(file_name:, source_path: '')
+        end
       end
 
       def dir
@@ -137,7 +141,13 @@ module PluginSingleSource
       end
 
       def i18n_attributes
-        Jekyll::Pages::TranslationMissingData.new(@site).data
+        return { 'locale' => I18n.default_locale.to_s } if @site.config['locale'] == I18n.default_locale.to_s
+
+        if !@release.missing_translation? && i18n_file.exists_in_locale?
+          { 'locale' => @site.config['locale'] }
+        else
+          Jekyll::Pages::TranslationMissingData.new(@site).data
+        end
       end
 
       def i18n_file
