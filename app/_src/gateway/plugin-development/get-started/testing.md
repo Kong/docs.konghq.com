@@ -324,8 +324,8 @@ With this test code, Pongo can help automate testing.
 ### Run the test
 
 Pongo can run automated tests with the `pongo run` command. When this is executed,
-Pongo will determine if dependency containers are already running and use them
-if so. The test library will handle truncating existing data in between test runs for us.
+Pongo determines if dependency containers are already running and will use them
+if they are. The test library handles truncating existing data in between test runs for us.
 
 Execute a test run:
 
