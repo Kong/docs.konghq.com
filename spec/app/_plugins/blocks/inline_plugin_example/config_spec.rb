@@ -1,6 +1,6 @@
 RSpec.describe Jekyll::InlinePluginExample::Config do
   let(:page) { { 'release' => double('value' => '3.2.x') } }
-  let(:config) do
+  let(:plugin_config) do
     SafeYAML.load(
       <<~CONFIG
         title: Opinionated Example
@@ -23,7 +23,7 @@ RSpec.describe Jekyll::InlinePluginExample::Config do
     )
   end
 
-  subject { described_class.new(config:, page:) }
+  subject { described_class.new(config: plugin_config, page:, site:) }
 
   describe '#plugin' do
     it { expect(subject.plugin).to eq('kong-inc/jwt-signer') }
@@ -46,7 +46,7 @@ RSpec.describe Jekyll::InlinePluginExample::Config do
 
   describe 'validations' do
     context 'when one of the targets is not valid' do
-      let(:config) do
+      let(:plugin_config) do
         SafeYAML.load(
           <<~CONFIG
         plugin: kong-inc/jwt-signer
@@ -69,7 +69,7 @@ RSpec.describe Jekyll::InlinePluginExample::Config do
     end
 
     context 'when one of the formats is not valid' do
-      let(:config) do
+      let(:plugin_config) do
         SafeYAML.load(
           <<~CONFIG
         plugin: kong-inc/jwt-signer
