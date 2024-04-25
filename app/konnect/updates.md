@@ -11,7 +11,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2024
 
-**
+
 
 **Dedicated Cloud Gateways**
 : You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
