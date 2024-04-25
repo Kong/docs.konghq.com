@@ -13,6 +13,7 @@ module Jekyll
       def process!
         return if @site.config['locale'] == I18n.default_locale.to_s
         return if @page.url.start_with?('/assets/')
+        return if @page.url == '/hub/'
 
         check_for_translated_version
       end

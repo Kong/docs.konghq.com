@@ -37,7 +37,7 @@ module PluginSingleSource
       end
 
       def index_file_exist?
-        File.exist?(File.expand_path('how-to/_index.md', @source_path))
+        File.exist?(File.expand_path('how-to/_index.md', @release.pages_source_path))
       end
 
       def base_section_url

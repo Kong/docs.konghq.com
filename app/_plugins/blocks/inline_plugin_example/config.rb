@@ -6,9 +6,10 @@ module Jekyll
       TARGETS = %i[service route consumer global consumer_group].freeze
       FORMATS = %i[curl konnect yaml kubernetes].freeze
 
-      def initialize(config:, page:)
+      def initialize(config:, page:, site:)
         @config = config
         @page = page
+        @site = site
 
         validate!
       end
@@ -38,7 +39,7 @@ module Jekyll
 
       def schema
         @schema ||= ::PluginSingleSource::Plugin::Schemas::Base
-                    .make_for(vendor:, name: plugin_name, version:)
+                    .make_for(vendor:, name: plugin_name, version:, site: @site)
       end
 
       def example

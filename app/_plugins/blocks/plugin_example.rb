@@ -28,10 +28,12 @@ module Jekyll
       @context = context
       contents = super
       page = context.environments.first['page']
+      site = context.registers[:site]
 
       config = Jekyll::InlinePluginExample::Config.new(
         config: SafeYAML.load(contents),
-        page:
+        page:,
+        site:
       )
 
       Liquid::Template

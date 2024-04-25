@@ -6,7 +6,8 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
     PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name: 'saml',
       vendor: 'kong-inc',
-      version: '3.2.2'
+      version: '3.2.2',
+      site:
     )
   end
 

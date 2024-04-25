@@ -25,10 +25,6 @@ module PluginSingleSource
         @dropdown_url ||= "#{base_url}VERSION/configuration/"
       end
 
-      def source_file
-        @file.gsub('app/', '')
-      end
-
       def content
         ''
       end
@@ -47,7 +43,7 @@ module PluginSingleSource
         if @release.vendor == 'kong-inc'
           kong_edit_link
         elsif @release.schema
-          "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/#{@release.schema.file_path}"
+          "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/#{source_file}"
         end
       end
 
