@@ -35,6 +35,7 @@ const {
 } = require('./src/batch_params');
 
 const projectId = process.env.PROJECT_ID;
+let jobId = process.env.JOB_ID;
 const userId = process.env.USER_IDENTIFIER;
 const userSecret = process.env.USER_SECRET;
 const locale = process.env.LOCALE || 'ja';
@@ -95,18 +96,20 @@ async function createJobAndSendFiles () {
     console.log('Sending files for the following config for translation.');
     console.log(productsConfig);
 
-    // Create job
-    const createJobParams = new CreateJobParameters()
-      .setName(`Docs Translaton job ${Date.now()}`)
-      .setDescription(`Translating files to ${locale}`);
+    if (!jobId) {
+      // Create job
+      const createJobParams = new CreateJobParameters()
+        .setName(`Docs Translaton job ${Date.now()}`)
+        .setDescription(`Translating files to ${locale}`);
 
-    console.log("Creating the job...");
-    const job = await jobsApi.createJob(projectId, createJobParams);
-    console.log(`Job created. Job ID: ${job.translationJobUid}`);
-
+      console.log("Creating the job...");
+      const job = await jobsApi.createJob(projectId, createJobParams);
+      console.log(`Job created. Job ID: ${job.translationJobUid}`);
+      jobId = job.translationJobUid;
+    }
     // Create job batch.
     const createBatchParams = new CreateBatchParameters()
-      .setTranslationJobUid(job.translationJobUid)
+      .setTranslationJobUid(jobId)
       .setAuthorize(false);
     console.log("Creating Job Batch...");
 
