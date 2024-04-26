@@ -2,9 +2,15 @@
 nav_title: Overview
 ---
 
-Validate HTTP requests and responses based on an API specification. 
-Supports both Swagger v2 and OpenAPI v3 specifications JSON request and response bodies, with support for schema definitions described using JSON Schema draft v4. 
-For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https://json-schema.org/) for details on the format and examples.
+Validate HTTP requests and responses against an OpenAPI Specification.
+
+The plugin supports both Swagger(v2) and OpenAPI(3.0.x) specifications, with the support of JSONSchema [Draft-04](https://json-schema.org/specification-links#draft-4). 
+
+{% if_plugin_version eq:3.7.x %}
+
+[OpenAPI 3.1.0](https://www.openapis.org/blog/2021/02/18/openapi-specification-3-1-released) is supported in Kong Gateway 3.7.0.0 with a new JSONSchema validator that supports Draft 2019-09.
+
+{% endif_plugin_version %}
 
 {% if_plugin_version gte:3.2.x %}
 {:.important .no-icon}
@@ -20,6 +26,20 @@ To enable the plugin, use one of the following methods:
   * Package install: Set `plugins=bundled,oas-validation` in `kong.conf` before starting Kong
   * Docker: Set `KONG_PLUGINS=bundled,oas-validation` in the environment
   * Kubernetes: Set `KONG_PLUGINS=bundled,oas-validation` using [these instructions](/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration)
+
+{% endif_plugin_version %}
+
+{% if_plugin_version eq:3.7.x %}
+
+## Supported OpenAPI 3.1.0 specification features
+
+| Category                        | Supported                      | Not supported                                                            |
+|---------------------------------|--------------------------------|--------------------------------------------------------------------------|
+| Request Body                    | application/json               | application/xml</br>multipart/form-data</br>text/plain</br>text/xml</br> |
+| Response Body                   | application/json               | -                                                                        |
+| Request Parameters              | path, query, header, cookie    | -                                                                        |
+| Schema                          | allOf</br>oneOf</br>anyOf</br> | -                                                                        |
+| Parameter Serialization         | style, explode                 | -                                                                        |
 
 {% endif_plugin_version %}
 
