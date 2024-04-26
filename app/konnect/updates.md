@@ -422,7 +422,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 : [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) is now available as an identity provider for Dynamic Client Registration (DCR).
 
 : **Known limitation:** Unlike other DCR providers, Auth0 requires specifying audience, which represents an independent token recipient. Multiple applications can be mapped to one Audience API within auth0 and share the same permissions accordingly.
-Currently, our OIDC plugin can only support single audience for this release. We will consider adding support for mutliple audiences in the future iteration.
+Currently, our OIDC plugin can only support single audience for this release. We will consider adding support for multiple audiences in the future iteration.
 
 **Simplified docker script for creating Runtime Instances**
 : {{site.konnect_short_name}} now supports a simplified docker script to create a new runtime instance as well as in the QuickStart which makes it easier to create runtime instances. Instead of downloading a script from github, customers can now use a simple docker run command. This decrease the time and effort taken by customers to launch a Kong Gateway and improves security during runtime instance creation. Runtime Manager also supports simple copy buttons inside the code block components to make it easy for users to copy!
