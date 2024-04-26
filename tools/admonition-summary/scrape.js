@@ -30,7 +30,7 @@ module.exports = function () {
       const content = el.html().trim();
       if (
         content.startsWith(
-          "You are browsing documentation for an outdated version.",
+          "You are browsing documentation for an older version.",
         )
       ) {
         return;
