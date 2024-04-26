@@ -118,9 +118,9 @@
   {% endif %}
 {% endfor %}
 
-## AI Providers
+## {% t _includes.gateway-support-third-party.ai_providers.title %}
 
-Kong AI Gateway can integrate with the following AI providers through its <a href="/hub/?category=ai">AI plugins</a>: 
+{% t _includes.gateway-support-third-party.ai_providers.description %}
 
 {% for d in include.data.third-party.ai_providers %}
 * **{{ d.name }}**
