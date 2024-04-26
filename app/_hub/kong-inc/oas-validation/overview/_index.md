@@ -4,11 +4,11 @@ nav_title: Overview
 
 Validate HTTP requests and responses against an OpenAPI Specification.
 
-The plugin supports both Swagger(v2) and OpenAPI(3.0.x) specifications, with the support of JSONSchema [Draft-04](https://json-schema.org/specification-links#draft-4). 
+The plugin supports both Swagger(v2) and OpenAPI(3.0.x) specifications, with the support of JSON Schema [Draft-04](https://json-schema.org/specification-links#draft-4). 
 
 {% if_plugin_version eq:3.7.x %}
 
-[OpenAPI 3.1.0](https://www.openapis.org/blog/2021/02/18/openapi-specification-3-1-released) is supported in Kong Gateway 3.7.0.0 with a new JSONSchema validator that supports Draft 2019-09.
+[OpenAPI 3.1.0](https://www.openapis.org/blog/2021/02/18/openapi-specification-3-1-released) is supported in Kong Gateway 3.7.0.0 with a new JSON Schema validator that supports Draft 2019-09.
 
 {% endif_plugin_version %}
 
