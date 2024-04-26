@@ -104,6 +104,10 @@ en:
       identity_providers:
         title: "Identity Providers"
         description: "Kong is expected to work with the following third party identity providers (IDP) when using the OpenID Connect (OIDC) plugin:"
+      ai_providers:
+        title: "AI Providers"
+        description: |
+          Kong AI Gateway can integrate with the following AI providers through its <a href="/hub/?category=ai">AI plugins</a>:
 
     footer:
       title: "Powering the API world"
