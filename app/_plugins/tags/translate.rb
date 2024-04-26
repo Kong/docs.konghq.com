@@ -5,11 +5,11 @@ module Jekyll
     def initialize(tag_name, markup, tokens)
       super
 
-      @translation_key, *@params = markup.strip.split(/\s+/)
+      @translation_key, *@params = markup.strip.split(/\s+(?=(?:[^"]|"[^"]*")*$)/)
       @params_hash = {}
       @params.each do |param|
         key, value = param.split('=')
-        @params_hash[key.strip.to_sym] = value.strip
+        @params_hash[key.strip.to_sym] = value
       end
     end
 
