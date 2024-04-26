@@ -138,7 +138,7 @@ Push a table of key diffs to the storage server. diffs is a table provided in th
 
 `_syntax: rows = strategy:get_counters(namespace, window_sizes, time?)_`
 
-Return an iterator for each key stored in the data store/redis for a given `namepsace` and list of window sizes. 'time' is an optional unix second- precision timestamp; if not provided, this value will be set via `ngx.time()`. It is encouraged to pass this via a previous defined timestamp, depending on the context (e.g., if previous calls in the same thread took a nontrivial amount of time to run).
+Return an iterator for each key stored in the data store/redis for a given `namespace` and list of window sizes. 'time' is an optional unix second- precision timestamp; if not provided, this value will be set via `ngx.time()`. It is encouraged to pass this via a previous defined timestamp, depending on the context (e.g., if previous calls in the same thread took a nontrivial amount of time to run).
 
 #### strategy:get_window
 

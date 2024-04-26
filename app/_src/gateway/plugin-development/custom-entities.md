@@ -464,7 +464,7 @@ Here's a non-exhaustive explanation of some of the field attributes available:
     <code>"boolean"</code>. Compound types like <code>"array"</code>, <code>"record"</code>, or <code>"set"</code> are
     also supported.<br><br>
 
-    In additon to these values, the <code>type</code> attribute can also take the special <code>"foreign"</code> value,
+    In addition to these values, the <code>type</code> attribute can also take the special <code>"foreign"</code> value,
     which denotes a foreign relationship.<br><br>
 
     Each field will need to be backed by database fields of appropriately similar types, created via migrations.<br><br>

@@ -109,7 +109,7 @@ As a final failsafe for a database-backed deployment, you can also back up the d
 ```sh
 kong config db_export /path/to/kong_backup.yaml
 ```
-This is also not recommended as a primary backup, but can be used to provide an extra level of redudancy.
+This is also not recommended as a primary backup, but can be used to provide an extra level of redundancy.
 
 {% endnavtab %}
 {% navtab DB-less mode %}
