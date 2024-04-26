@@ -243,6 +243,7 @@ glibc
 globbing
 Gluu
 gojira
+Golang
 Goroutine
 Grafana
 grpc
