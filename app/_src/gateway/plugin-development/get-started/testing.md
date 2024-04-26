@@ -73,7 +73,7 @@ Pongo provides an optional command that initializes the project directory with s
 default configuration files. You can run it to start a new project.
 
 {:.important}
-> **Important:** These commands must be run from the base `my-plugin` directory so that Pongo properly 
+> **Important:** These commands must be run inside the `my-plugin` project root directory so that Pongo properly 
 > packages and includes the plugin code in the running {{site.base_gateway}}.
 
 Initialize the project folder:
