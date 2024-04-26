@@ -27,10 +27,11 @@ en:
       contribution_guidelines: Contribution guidelines
       latest: (latest)
       switch_to: Switch to
-      browsing_versioned_documentation: You are browsing <strong> {{ page.release.label }} </strong> documentation.
+      browsing_versioned_documentation: You are browsing <strong> %{label} </strong> documentation.
       browsing_unreleased_documentation: You are browsing <strong> unreleased </strong> documentation.
       browsing_outdated_documentation: You are browsing documentation for an older version.
-      see_latest_documentation: See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+      see_latest_documentation: |
+        See the <a href="%{url}">latest documentation here</a>.
       tech_preview: |
         This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be depended upon in a production environment.
       beta: |
@@ -71,7 +72,7 @@ en:
         action_required: Action required
 
     gateway-support:
-      tab_description: Kong Gateway {{ include.version }} supports the following deployment targets until {{ include.eol }}, unless otherwise noted by an earlier OS vendor end of life (EOL) date.
+      tab_description: Kong Gateway %{version} supports the following deployment targets until %{eol}, unless otherwise noted by an earlier OS vendor end of life (EOL) date.
       thead:
         os: OS
         version: Version

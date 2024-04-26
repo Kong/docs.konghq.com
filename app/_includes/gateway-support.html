@@ -1,8 +1,8 @@
 {% capture description %}
-{% t _includes.gateway-support.tab_description %}
+{% t _includes.gateway-support.tab_description version=include.version eol=include.eol %}
 {% endcapture %}
 
-{{ description | markdownify }}
+{{ description }}
 
 <table style="display: table;" width="100%">
   <thead>
