@@ -103,13 +103,13 @@ id: documentation
                  <!-- Special case for Mesh, since Kuma uses "dev" -->
                  {% t _layouts.docs-v2.browsing_unreleased_documentation %}
                 {% else %}
-                 {% t _layouts.docs-v2.browsing_versioned_documentation %}
+                 {% t _layouts.docs-v2.browsing_versioned_documentation label=page.release.label %}
                 {% endif %}
             {% else %}
               <blockquote id="version-notice" class="important">
                 {% t _layouts.docs-v2.browsing_outdated_documentation %}
             {% endif %}
-                {% t _layouts.docs-v2.see_latest_documentation %}
+                {% t _layouts.docs-v2.see_latest_documentation url=page.canonical_url %}
               </blockquote>
           {% endunless %}
 
