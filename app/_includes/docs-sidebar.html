@@ -63,7 +63,7 @@
           {% if include.release.latest? %}
             <span>(latest)</span>
           {% endif %}
-          {% if include.release == '2.8.x' or include.release == '3.4.x' %}
+          {% if include.release.lts %}
             <span>(LTS)</span>
           {% endif %}
         </span>
@@ -73,7 +73,7 @@
         {% for option in include.releases_dropdown.options reversed %}
           <li {% if option.active? %}class="active" {% endif %} role="menuitem" tabindex="-1">
             <a href="{{ option.url }}" {% if option.active? %} class="active" {% endif %} data-version-id="{{ option.data_id }}">
-              {{ option.value }}{% if option.value == '2.8.x' or option.value == '3.4.x' %} (LTS){% endif %}
+              {{ option.value }}{% if option.lts %} (LTS){% endif %}
             </a>
           </li>
         {% endfor %}
