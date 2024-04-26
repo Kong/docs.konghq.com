@@ -215,6 +215,62 @@ async function getProductsConfigs(config, locale) {
   });
 }
 
+async function pluginsMetadataFiles(gatewayConfig) {
+  // non-kong plugins only have one version
+  // check if there's a specific file or index.md
+  let srcPath = 'app/_hub';
+  let metadataFiles = [];
+
+  let folders = await fg('**/_metadata/', { cwd: path.resolve(__dirname, '../../../', srcPath), onlyDirectories: true });
+  folders.forEach((folder) => {
+    let files = [];
+    gatewayConfig.versions.forEach((v) => {
+      let filePath = path.join(srcPath, folder, `_${v}.yml`);
+      if (fs.existsSync(filePath)) {
+        files.push(filePath);
+      }
+    });
+    if (files.length === 0) {
+      files.push(path.join(srcPath, folder, '_index.yml'));
+    }
+    metadataFiles.push(...files);
+  });
+  return metadataFiles;
+}
+
+async function pluginsOverviewFiles() {
+  // non-kong and kong plugins only have one version
+  let srcPath = 'app/_hub';
+  let overviewFiles = [];
+
+  let files = await fg('**/overview/_index.md', { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
+  overviewFiles.push(...files.map((file) => {
+    return path.join(srcPath, file);
+  }));
+
+  return overviewFiles;
+}
+
+async function pluginsSchemaFiles(gatewayConfig) {
+  // non-kong plugins only have _index.md if any
+  // kong-inc: have version specific files
+  let schemaFiles = [];
+
+  let srcPath = 'app/_hub';
+  let thirdPartySchemas = await fg('**/schemas/_index.json', { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
+  schemaFiles.push(...thirdPartySchemas.map((file) => {
+    return path.join(srcPath, file);
+  }));
+
+  let versions = gatewayConfig.versions.join(',');
+  srcPath = 'app/_src/.repos/kong-plugins/schemas/';
+  let kongSchemas = await fg(`**/{${versions}}.json`, { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
+  schemaFiles.push(...kongSchemas.map((file) => {
+    return path.join(srcPath, file);
+  }));
+  return schemaFiles;
+}
+
 module.exports = {
   PRODUCT_MAPPINGS,
   appFiles,
@@ -224,6 +280,9 @@ module.exports = {
   dfsExtractIncludeFilePaths,
   docsNavFiles,
   getProductsConfigs,
+  pluginsMetadataFiles,
+  pluginsOverviewFiles,
+  pluginsSchemaFiles,
   readIncludeFilesForProduct,
   readTranslationConfig
 }
