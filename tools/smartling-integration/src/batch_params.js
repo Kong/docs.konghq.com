@@ -95,7 +95,7 @@ async function buildBatchFileParamsForInclude(fileUri, locale) {
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
 
-// There are two special considerations:
+// TODO: There are two special considerations:
 // * categories
 // * hub-filters
 // we shouldn't translate `slug`, so we might need to edit the content when we upload the files...
@@ -110,6 +110,41 @@ async function buildBatchFileParamsForData(fileUri, locale) {
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
 
+async function buildBatchFileParamsForPluginsMetadata(fileUri, locale) {
+  // TODO: only desc
+  const batchFileParams = new UploadBatchFileParameters()
+    .setFileFromLocalFilePath(fileUri)
+    .setFileUri(fileUri)
+    .setFileType(FileType.YAML)
+    .setLocalesToApprove([locale])
+    .setDirective("whitespace_trim", "off");
+
+  return { fileUri: fileUri, batchFileParams: batchFileParams };
+}
+
+async function buildBatchFileParamsForPluginsSchema(fileUri, locale) {
+  // TODO: only descriptions
+  const batchFileParams = new UploadBatchFileParameters()
+    .setFileFromLocalFilePath(fileUri)
+    .setFileUri(fileUri)
+    .setFileType(FileType.JSON)
+    .setLocalesToApprove([locale])
+    .setDirective("whitespace_trim", "off");
+
+  return { fileUri: fileUri, batchFileParams: batchFileParams };
+}
+
+async function buildBatchFileParamsForPluginsOverview(fileUri, locale) {
+  const batchFileParams = new UploadBatchFileParameters()
+    .setFileFromLocalFilePath(fileUri)
+    .setFileUri(fileUri)
+    .setFileType(FileType.MARKDOWN)
+    .setLocalesToApprove([locale])
+    .setDirective("whitespace_trim", "off")
+    .setDirective("primary_placeholder_format_custom", "(\{\{.+?\}}|(\{\%.+?\%}))");
+
+  return { fileUri: fileUri, batchFileParams: batchFileParams };
+}
 // TODO
 // Prep files to send
 //
@@ -119,5 +154,8 @@ module.exports = {
   buildBatchFileParamsForData,
   buildBatchFileParamsForDocsNav,
   buildBatchFileParamsForInclude,
-  buildBatchFileParamsForSrc
+  buildBatchFileParamsForSrc,
+  buildBatchFileParamsForPluginsMetadata,
+  buildBatchFileParamsForPluginsOverview,
+  buildBatchFileParamsForPluginsSchema
 };

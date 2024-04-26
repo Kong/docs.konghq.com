@@ -31,7 +31,10 @@ const {
   buildBatchFileParamsForData,
   buildBatchFileParamsForDocsNav,
   buildBatchFileParamsForInclude,
-  buildBatchFileParamsForSrc
+  buildBatchFileParamsForSrc,
+  buildBatchFileParamsForPluginsMetadata,
+  buildBatchFileParamsForPluginsOverview,
+  buildBatchFileParamsForPluginsSchema
 } = require('./src/batch_params');
 
 const projectId = process.env.PROJECT_ID;
@@ -89,8 +92,8 @@ async function createJobAndSendFiles () {
   try {
     // TODO: handle access token expiration, it's not clear from the docs if the node-sdk
     // refreshes it automatically. However, the code suggests so.
-    const jobsApi = apiBuilder.build(SmartlingJobsApi);
-    const batchesApi = apiBuilder.build(SmartlingJobBatchesApi);
+    // const jobsApi = apiBuilder.build(SmartlingJobsApi);
+    // const batchesApi = apiBuilder.build(SmartlingJobBatchesApi);
 
     const productsConfig = await buildProductsConfig(locale, product, versions);
     console.log('Sending files for the following config for translation.');
@@ -107,11 +110,12 @@ async function createJobAndSendFiles () {
       console.log(`Job created. Job ID: ${job.translationJobUid}`);
       jobId = job.translationJobUid;
     }
+
     // Create job batch.
+    console.log("Creating Job Batch...");
     const createBatchParams = new CreateBatchParameters()
       .setTranslationJobUid(jobId)
       .setAuthorize(false);
-    console.log("Creating Job Batch...");
 
     const {
       appFilesUris,
@@ -119,7 +123,10 @@ async function createJobAndSendFiles () {
       configLocaleFilesUris,
       dataFilesUris,
       docsNavFilesUris,
-      includeFilesUris
+      includeFilesUris,
+      pluginsMetadataFilesUris,
+      pluginsOverviewFilesUris,
+      pluginsSchemaFilesUris
     } = await fileUris(productsConfig);
 
     const filesUris = [
@@ -140,6 +147,7 @@ async function createJobAndSendFiles () {
     console.log("Uploading files to batch...")
     for (const file of appFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForApp(file, locale);
+      console.log(batchFileParams)
       await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
     }
 
@@ -168,6 +176,20 @@ async function createJobAndSendFiles () {
       await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
     }
 
+    for (const file of pluginsMetadataFilesUris) {
+      const { fileUri, batchFileParams } = await buildBatchFileParamsForPluginsMetadata(file, locale);
+      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+    }
+
+    for (const file of pluginsOverviewFilesUris) {
+      const { fileUri, batchFileParams } = await buildBatchFileParamsForPluginsOverview(file, locale);
+      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+    }
+
+    for (const file of pluginsSchemaFilesUris) {
+      const { fileUri, batchFileParams } = await buildBatchFileParamsForPluginsSchema(file, locale);
+      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+    }
     console.log("Finished adding files to batch");
     console.log("Head to Smartling's Dashboard to authorize the job");
   } catch (e) {
