@@ -4,7 +4,10 @@ const {
   docsNavFiles,
   dataFiles,
   appFiles,
-  appSrcFiles
+  appSrcFiles,
+  pluginsMetadataFiles,
+  pluginsOverviewFiles,
+  pluginsSchemaFiles
 } = require('./file_readers');
 
 async function fileUris(productsConfig) {
@@ -12,6 +15,9 @@ async function fileUris(productsConfig) {
   const appFilesUris = [];
   const appSrcFilesUris = [];
   const docsNavFilesUris = [];
+  const pluginsMetadataFilesUris = [];
+  const pluginsOverviewFilesUris = [];
+  const pluginsSchemaFilesUris = [];
   const includeFilesUris = new Set();
   const dataFilesUris = await dataFiles();
 
@@ -31,6 +37,12 @@ async function fileUris(productsConfig) {
     for (path of includePaths) {
       includeFilesUris.add(path);
     }
+
+    if (productConfig.product === 'gateway') {
+      pluginsMetadataFilesUris.push(...await pluginsMetadataFiles(productConfig));
+      pluginsOverviewFilesUris.push(...await pluginsOverviewFiles());
+      pluginsSchemaFilesUris.push(...await pluginsSchemaFiles(productConfig));
+    }
   };
 
   return {
@@ -39,7 +51,10 @@ async function fileUris(productsConfig) {
     configLocaleFilesUris: configLocaleFilesUris,
     dataFilesUris: dataFilesUris,
     docsNavFilesUris: docsNavFilesUris,
-    includeFilesUris: Array.from(includeFilesUris)
+    includeFilesUris: Array.from(includeFilesUris),
+    pluginsMetadataFilesUris: pluginsMetadataFilesUris,
+    pluginsOverviewFilesUris: pluginsOverviewFilesUris,
+    pluginsSchemaFilesUris: pluginsSchemaFilesUris
   };
 };
 
