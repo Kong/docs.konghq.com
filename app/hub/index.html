@@ -16,9 +16,9 @@ body_id: page-hub
 <div class="page page-hub">
   <div class="page-hub--header-background"></div>
   <div class="page-hub--header">
-    <h1 id="main" tabindex="-1">Welcome to Kong Plugin Hub</h1>
-    <h2>Extend {{site.base_gateway}} and {{site.konnect_product_name}} with powerful plugins and easy integrations</h2>
-    <h3><a href="/hub/plugins/overview/">Plugin Overview</a> | <a href="/hub/plugins/compatibility/">Compatibility</a> | <a href="/hub/plugins/license-tiers/">License tiers</a></h3>
+    <h1 id="main" tabindex="-1">{% t hub.index.title %}</h1>
+    <h2>{% t hub.index.subtitle base_gateway=site.base_gateway konnect_product_name=site.konnect_product_name %}</h2>
+    <h3><a href="/hub/plugins/overview/">{% t hub.index.plugin_overview %}</a> | <a href="/hub/plugins/compatibility/">{% t hub.index.compatibility %}</a> | <a href="/hub/plugins/license-tiers/">{% t hub.index.license_tiers %}</a></h3>
   </div>
 
   <div class="container">
@@ -31,16 +31,20 @@ body_id: page-hub
             <div class="clear-search"><img src="/assets/images/icons/documentation/close.svg" alt="Clear search icon" /></div>
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-tiers">
-            {% include components/dropdown.html label='Tiers' field_name='tier' options=site.data.hub_filters.tiers %}
+            {% capture label %}{% t hub.index.labels.tiers %}{% endcapture %}
+            {% include components/dropdown.html label=label field_name='tier' options=site.data.hub_filters.tiers %}
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-categories">
-            {% include components/dropdown.html label='Functionality' field_name='category' options=categories %}
+            {% capture label %}{% t hub.index.labels.functionality %}{% endcapture %}
+            {% include components/dropdown.html label=label field_name='category' options=categories %}
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-support">
-            {% include components/dropdown.html label='Support by' field_name='support' options=site.data.hub_filters.support %}
+            {% capture label %}{% t hub.index.labels.support_by %}{% endcapture %}
+            {% include components/dropdown.html label=label field_name='support' options=site.data.hub_filters.support %}
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-compatibility">
-            {% include components/dropdown.html label='Compatibility' field_name='compatibility' options=site.data.hub_filters.compatibility %}
+            {% capture label %}{% t hub.index.labels.compatibility %}{% endcapture %}
+            {% include components/dropdown.html label=label field_name='compatibility' options=site.data.hub_filters.compatibility %}
           </div>
         </div>
 
@@ -69,7 +73,7 @@ body_id: page-hub
 
         <!-- Separate section for third-party plugins that we don't want to generate as a functionality category -->
           <div class="page-hub--category active" id="third-party">
-            <h4 class="page-hub--category-title">Contact 3rd party for support</h4>
+            <h4 class="page-hub--category-title">{% t hub.index.contact_3rd_party %}</h4>
             <div class="page-hub--category-cards">
               {% for extn in third_party_extns  %}
                 {% unless extn.techpartner %}
