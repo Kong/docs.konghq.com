@@ -41,6 +41,36 @@ en:
         description: More features, less infrastructure with Kong Konnect. 1M requests per month for free.
         try_it: Try it for Free
 
+    plugins:
+      configuration_examples:
+        title: "Basic configuration examples"
+
+      configuration:
+        title: "Configuration"
+        dbless:
+          compatible: "This plugin is <strong>compatible</strong> with DB-less mode."
+          partially_compatible: "This plugin is <strong>partially compatible</strong> with DB-less mode."
+          not_compatible: "This plugin is <strong>not compatible</strong> with DB-less mode."
+        compatible_protocols:
+          title: "Compatible protocols"
+          description: "The %{name} plugin is compatible with the following protocols:"
+        parameters:
+          title: "Parameters"
+          description: "Here's a list of all the parameters which can be used in this plugin's configuration: "
+
+      show:
+        browsing_labeled_version: "You are browsing <strong>%{label}</strong> documentation."
+        browsing_outdated_version: "You are browsing documentation for an outdated plugin version."
+        latest_documentation_here: "latest documentation here"
+        latest_documentation: |
+          See the %{latest_documentation_link}.
+        alpha: |
+          This plugin is released as a %{tech_preview_link} (alpha-quality) and should not be deployed in a production environment.
+        beta: |
+          This plugin is released as %{beta_link} and should not be deployed in a production environment.
+  # END _layouts
+
+  # START _includes
   _includes:
     nav-v2:
       skip_main: "Skip to content"
@@ -106,8 +136,9 @@ en:
         description: "Kong is expected to work with the following third party identity providers (IDP) when using the OpenID Connect (OIDC) plugin:"
       ai_providers:
         title: "AI Providers"
+        ai_plugins: "AI plugins"
         description: |
-          Kong AI Gateway can integrate with the following AI providers through its <a href="/hub/?category=ai">AI plugins</a>:
+          Kong AI Gateway can integrate with the following AI providers through its %{ai_category_link}:
 
     footer:
       title: "Powering the API world"
@@ -154,3 +185,263 @@ en:
       nav-links:
         edit_page: Edit this page
         report_an_issue: Report an issue
+
+
+    plugins:
+      about_this:
+        version_compatibility: "Version Compatibility"
+        see_all: "See all"
+
+      priority_table:
+        plugin: "Plugin"
+        priority: "Priority"
+
+      schema:
+        fields:
+          endpoint: "endpoint"
+
+          name_or_plugin:
+            description: "The name of the plugin, in this case <code>%{plugin_name}</code>."
+            children:
+              api: "If using the Kong Admin API, Konnect API, declarative configuration, or decK files, the field is <code>%{name}</code>."
+              kubernetes: "If using the KongPlugin object in Kubernetes, the field is <code>%{plugin}</code>."
+
+          instance_name:
+            description:
+              optional_custom_name: |
+                An optional custom name to identify an instance of the plugin, for example <code>%{extn_slug}_my-service</code>.
+              kong_manager: |
+                The instance name shows up in Kong Manager and in %{konnect_short_name}, so it's useful when running the same
+                plugin in multiple contexts, for example, on multiple services. You can also use it to access a specific plugin instance
+                via the Kong Admin API.
+              must_be_unique:
+                text: "An instance name must be unique within the following context:"
+                within_workspace: "Within a workspace for %{ee_product_name}"
+                within_control_plane: "Within a control plane or control plane group for %{konnect_short_name}"
+                globally: "Globally for %{ce_product_name}"
+
+
+          service_name_or_id:
+            description: |
+              The name or ID of the service the plugin targets.
+              Set one of these parameters if adding the plugin to a service through the top-level %{create_plugin_link}
+              Not required if using <code>%{services_endpoint}</code>.
+
+          route_name_or_id:
+            description: |
+              The name or ID of the route the plugin targets.
+              Set one of these parameters if adding the plugin to a route through the top-level %{create_plugin_link}
+              Not required if using <code>%{routes_endpoint}</code>.
+
+          consumer_name_or_id:
+            description: |
+              The name or ID of the consumer the plugin targets.
+              Set one of these parameters if adding the plugin to a consumer through the top-level %{create_plugin_link}
+              Not required if using <code>%{consumers_endpoint}</code>.
+
+          consumer_group_name_or_id:
+            description: |
+              The name or ID of the consumer group the plugin targets.
+              If set, the plugin will activate only for requests where the specified group has been authenticated %{create_plugin_link}
+              Not required if using <code>%{consumer_groups_endpoint}</code>.
+
+          enabled:
+            description: "Whether this plugin will be applied."
+
+          api_id:
+            description: |
+              The ID of the API the plugin targets.
+              <br><br><strong>Note:</strong> The %{api_entity_link} is deprecated in favor of Services since %{changelog_013_link} and %{changelog_032_link}.
+
+      create-consumer:
+        yaml:
+          auth_plugin_description: "As this is an auth plugin, you need to create a consumer and attach a credential to it."
+          create_a_consumer: "Create a consumer:"
+          add_the_above_to_your_config: "Add the above to your declarative config and apply it to your running Kong instance."
+          documentation: "documentation"
+          you_can_now_authenticate: |
+            You can now authenticate as <code>%{username}</code> when making your request. See the %{documentation_link} for more information.
+        terraform:
+          auth_plugin_description: "As this is an auth plugin, you need to create a consumer and attach a credential to it."
+          create_a_consumer: "Create a consumer:"
+          create_a_credential: "Create a %{plugin_name} credential attached to this consumer:"
+        kubernetes:
+          auth_plugin_description: "As this is an auth plugin, you need to create a credential for the plugin. Create a secret with the following command:"
+          create_a_consumer: "Finally, create a consumer that will use this credential:"
+          documentation: "documentation"
+          you_can_now_authenticate: |
+            You can now authenticate as <code>%{username}</code> when making your request. See the %{documentation_link} for more information.
+        konnect:
+          auth_plugin_description: "As this is an auth plugin, you need to create a consumer and attach a credential to it."
+          create_a_consumer: "Create a consumer:"
+          create_a_credential: "Create a %{plugin_name} credential attached to this consumer:"
+          documentation: "documentation"
+          you_can_now_authenticate: |
+            You can now authenticate as <code>%{username}</code> when making your request. See the %{documentation_link} for more information.
+        curl:
+          auth_plugin_description: "As this is an auth plugin, you need to create a consumer and attach a credential to it."
+          create_a_consumer: "Create a consumer:"
+          create_a_credential: "Create a %{plugin_name} credential attached to this consumer:"
+          documentation: "documentation"
+          you_can_now_authenticate: |
+            You can now authenticate as <code>%{username}</code> when making your request. See the %{documentation_link} for more information.
+
+      hub-examples:
+        terraform:
+          prerequisite: "Prerequisite:"
+          configure_your_pat: "Configure your Personal Access Token"
+          add_the_following_to_your_config: "Add the following to your Terraform configuration to create a Konnect Gateway Plugin:"
+
+        service:
+          intro_text: |
+            The following examples provide some typical configurations for enabling
+            the <code>%{plugin_name}</code> plugin on a
+            %{link}.
+          make_the_following_request: "Make the following request:"
+          replace_service_name_or_id_with: "Replace `%{service_name}` with the `%{id}` or `%{name}` of the service that this plugin configuration will target."
+          make_the_following_request_substituting: "Make the following request, substituting your own access token, region, control plane ID, and service ID:"
+          see_konnect_api_reference: |
+            See the %{link} to learn about region-specific URLs and personal access tokens.
+          create_a_kong_plugin: |
+            First, create a %{link}
+            resource:
+          apply_the_resource: |
+            Next, apply the `%{kong_plugin}` resource to an ingress by annotating the `%{service}` as follows:
+          replace_service_name_with: |
+            Replace `%{service_name}` with the name of the service that this plugin configuration will target.
+            You can see your available ingresses by running `%{command}`.
+          note: "Note:"
+          kong_plugin_resource_note: |
+            The %{kong_plugin} resource only needs to be defined once
+            and can be applied to any service, consumer, or route in the namespace. If you
+            want the plugin to be available cluster-wide, create the resource as a
+            <code>%{kong_cluster_plugin}</code> instead of <code>%{kong_plugin}</code>.
+          add_this_to_your_declarative_config_file: "Add this section to your declarative configuration file:"
+
+        route:
+          intro_text: |
+            The following examples provide some typical configurations for enabling
+            the <code>%{plugin_name}</code> plugin on a
+            %{link}.
+          make_the_following_request: "Make the following request:"
+          replace_route_name_or_id_with: "Replace `%{route_name}` with the `%{id}` or `%{name}` of the route that this plugin configuration will target."
+          make_the_following_request_substituting: "Make the following request, substituting your own access token, region, control plane ID, and route ID:"
+          see_konnect_api_reference: |
+            See the %{link} to learn about region-specific URLs and personal access tokens.
+          create_a_kong_plugin: |
+            First, create a %{link}
+            resource:
+          apply_the_resource: |
+            Next, apply the `%{kong_plugin}` resource to an ingress by annotating the `%{ingress}` as follows:
+          replace_ingress_name_with: |
+            Replace `%{ingress_name}` with the name of the ingress that this plugin configuration will target.
+            You can see your available ingresses by running `%{command}`.
+          note: "Note:"
+          kong_plugin_resource_note: |
+            The %{kong_plugin} resource only needs to be defined once
+            and can be applied to any service, consumer, or route in the namespace. If you
+            want the plugin to be available cluster-wide, create the resource as a
+            <code>%{kong_cluster_plugin}</code> instead of <code>%{kong_plugin}</code>.
+          add_this_to_your_declarative_config_file: "Add this section to your declarative configuration file:"
+
+        global:
+          cant_be_enabled_globally: "This plugin cannot be enabled globally. Please select another tab."
+          intro_text: |
+            A plugin which is not associated to any service, route, consumer, or consumer group is
+            considered _global_, and will be run on every request.
+
+          in_enterprise_applies_to_workspace: "In self-managed %{ee_product_name}, the plugin applies to every entity in a given workspace."
+          in_oss_applies_to_environment: "In self-managed %{ce_product_name}, the plugin applies to your entire environment."
+          in_konnect_applies_to: "In %{konnect_short_name}, the plugin applies to every entity in a given control plane."
+
+          plugin_reference: "Plugin Reference"
+          plugin_precedence: "Plugin Precedence"
+          read_the_plugin_reference: |
+            Read the %{plugin_reference_link} and the %{plugin_precedence_link}
+            sections for more information.
+
+          the_following_examples_provide_typical_configurations: |
+            The following examples provide some typical configurations for enabling
+            the <code>%{page_name}</code> plugin globally.
+          make_the_following_request: "Make the following request:"
+          make_the_following_request_substituting: "Make the following request, substituting your own access token, region, and control plane ID:"
+          see_konnect_api_reference: |
+            See the %{link} to learn about region-specific URLs and personal access tokens.
+          create_kong_cluster_plugin_resource: |
+            Create a %{link}
+            resource and label it as global:
+          add_plugins_to_declarative_config_file: "Add a <code>%{plugins}</code> entry in the declarative configuration file:"
+
+        consumer_groups:
+          intro_text: |
+            The following examples provide some typical configurations for enabling
+            the <code>%{plugin_name}</code> plugin on a
+            %{link}.
+          make_the_following_request: "Make the following request:"
+          replace_consumer_group_name_or_id_with: "Replace `%{consumer_group}` with the `%{id}` or `%{name}` of the consumer group that this plugin configuration will target."
+          make_the_following_request_substituting: "Make the following request, substituting your own access token, region, control plane ID, and consumer group ID:"
+          see_konnect_api_reference: |
+            See the %{link} to learn about region-specific URLs and personal access tokens.
+          create_a_kong_plugin: |
+            First, create a %{link}
+            resource:
+          apply_the_resource: |
+            Next, apply the `%{kong_plugin}` resource to an ingress by annotating the `%{kong_consumer_group}` object as follows:
+          replace_consumer_group_name_with: |
+            Replace `%{consumer_group_name}` with the name of the consumer group that this plugin configuration will target.
+            You can see your available consumer groups by running `%{command}`.
+          note: "Note:"
+          kong_plugin_resource_note: |
+            The %{kong_plugin} resource only needs to be defined once
+            and can be applied to any service, consumer, consumer group, or route in the namespace. If you
+            want the plugin to be available cluster-wide, create the resource as a
+            <code>%{kong_cluster_plugin}</code> instead of <code>%{kong_plugin}</code>.
+          add_this_to_your_declarative_config_file: "Add this section to your declarative configuration file:"
+
+        consumer:
+          intro_text: |
+            The following examples provide some typical configurations for enabling
+            the <code>%{plugin_name}</code> plugin on a
+            %{link}.
+          make_the_following_request: "Make the following request:"
+          replace_consumer_name_or_id_with: "Replace `%{consumer}` with the `%{id}` or `%{name}` of the consumer that this plugin configuration will target."
+          make_the_following_request_substituting: "Make the following request, substituting your own access token, region, control plane ID, and consumer ID:"
+          see_konnect_api_reference: |
+            See the %{link} to learn about region-specific URLs and personal access tokens.
+          create_a_kong_plugin: |
+            First, create a %{link}
+            resource:
+          apply_the_resource: |
+            Next, apply the `%{kong_plugin}` resource to an ingress by annotating the `%{kong_consumer}` object as follows:
+          replace_consumer_name_with: |
+            Replace `%{consumer_name}` with the name of the consumer that this plugin configuration will target.
+            You can see your available consumers by running `%{command}`.
+          provisioning_consumers_and_credential: "Provisioning Consumers and Credentials"
+          to_learn_more: |
+            To learn more about `%{kong_consumer}` objects, see %{link}.
+          note: "Note:"
+          kong_plugin_resource_note: |
+            The %{kong_plugin} resource only needs to be defined once
+            and can be applied to any service, consumer, or route in the namespace. If you
+            want the plugin to be available cluster-wide, create the resource as a
+            <code>%{kong_cluster_plugin}</code> instead of <code>%{kong_plugin}</code>.
+          add_this_to_your_declarative_config_file: "Add this section to your declarative configuration file:"
+
+
+  # END _includes
+
+  hub:
+    index:
+      title: Welcome to Kong Plugin Hub
+      subtitle: |
+        Extend %{base_gateway} and %{konnect_product_name} with powerful plugins and easy integrations
+      plugin_overview: Plugin Overview
+      compatibility: Compatibility
+      license_tiers: License tiers
+      contact_3rd_party: Contact 3rd party for support
+      labels:
+        tiers: Tiers
+        functionality: Functionality
+        support_by: Support by
+        compatibility: Compatibility
+

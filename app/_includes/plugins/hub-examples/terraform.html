@@ -1,5 +1,5 @@
 <details markdown="1">
-  <summary><strong>Prerequisite:</strong> Configure your Personal Access Token</summary>
+  <summary><strong>{% t _includes.plugins.hub-examples.terraform.prerequisite %}</strong> {% t _includes.plugins.hub-examples.terraform.configure_your_pat %}</summary>
 
 ```hcl
 terraform {
@@ -17,7 +17,7 @@ provider "konnect" {
 ```
 </details>
 
-Add the following to your Terraform configuration to create a Konnect Gateway Plugin:
+{% t _includes.plugins.hub-examples.terraform.add_the_following_to_your_config %}
 
 {% assign plugin_name = include.example.plugin_name | replace: "-","_" %}
 ```hcl
