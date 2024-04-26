@@ -32,7 +32,7 @@ as configuration and custom code is shipped directly in the data plane image.
 
 ### Create a `Dockerfile`
 
-Create a new file at the root of the `my-plugin` project named `DOCKERFILE` with the
+Create a new file at the root of the `my-plugin` project named `Dockerfile` with the
 following contents
 
 ```txt
@@ -146,7 +146,7 @@ to include. Following the same file structure as shown above, you can place the 
 host machine and modify the `lua_package_path` configuration value to point to this path.
 This configuration can also be modified using the `KONG_LUA_PACKAGE_PATH` environment variable. 
 
-See the custom plugin [installation documentation](/gateway/{{page.gateway_release}}/plugin-development/distribution/) 
+See the custom plugin [installation documentation](/gateway/{{page.release}}/plugin-development/distribution/) 
 for more details on this option. 
 
 This strategy can work for volume mounts on containerized systems or bare metal and virtual machine environments.
@@ -158,7 +158,7 @@ as self-contained packages called _rocks_. In order to create a _rock_ package y
 a _rockspec_ file that specifies various information about your package. Using the `luarocks` tooling,
 you build an archive from the rockspec file and deliver and extract it to your data planes. 
 
-See the [Packaging sources](/gateway/{{site.gateway_release}}/plugin-development/distribution/#packaging-sources) 
+See the [Packaging sources](/gateway/{{page.release}}/plugin-development/distribution/#packaging-sources) 
 section of the custom plugin installation page for details on this distribution option.
 
 ## What's Next
