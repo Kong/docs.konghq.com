@@ -30,8 +30,8 @@ HTTP and JSON parsing support.
 
 You are going to use the [lua-resty-http](https://github.com/ledgetech/lua-resty-http)
 library for HTTP client connectivity to the 3rd party service. The library
-provides a simple interface for single-shot requests we will use here, but see the
-documentation for all options when using the library.
+provides a simple interface to make single HTTP requests that we will use here, 
+but see the documentation for all options when using the library.
 
 For JSON support, use the [lua-cjson](https://github.com/mpx/lua-cjson) library
 which provides fast and standards compliant JSON support. lua-cjson supports
@@ -47,8 +47,8 @@ local cjson = require("cjson.safe")
 
 ### Invoke 3rd party http request
 
-The `lua-resty-http` library provides a simple "single shot" http request
-function we can use to reach out to our 3rd party service. Here we show
+The `lua-resty-http` library provides a simple HTTP request
+function (`request_uri`) we can use to reach out to our 3rd party service. Here we show
 invoking a `GET` request to the _httpbin.org/anything_ API which will 
 echo back various information in the response.
 
