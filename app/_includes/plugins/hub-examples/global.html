@@ -3,30 +3,30 @@
 
 {% if page.global == false %}
   {:.important}
-  > This plugin cannot be enabled globally. Please select another tab.
+  > {% t _includes.plugins.hub-examples.global.cant_be_enabled_globally %}
 {% else %}
 
 {% if include.render_intro_text %}
-A plugin which is not associated to any service, route, consumer, or consumer group is
-considered _global_, and will be run on every request.
+{% t _includes.plugins.hub-examples.global.intro_text %}
 
-* In self-managed {{site.ee_product_name}}, the plugin applies to every entity in a given workspace.
-* In self-managed {{site.ce_product_name}}, the plugin applies to your entire environment.
-{% unless page.konnect == false %}* In {{site.konnect_short_name}}, the plugin applies to every entity in a given control plane.
+* {% t _includes.plugins.hub-examples.global.in_enterprise_applies_to_workspace ee_product_name=site.ee_product_name %}
+* {% t _includes.plugins.hub-examples.global.in_oss_applies_to_environment ce_product_name=site.ce_product_name %}
+{% unless page.konnect == false -%}
+* {% t _includes.plugins.hub-examples.global.in_konnect_applies_to konnect_short_name=site.konnect_short_name %}
 {% endunless %}
 
-Read the
-[Plugin Reference](/gateway/api/admin-ee/latest/#/Plugins) and the [Plugin Precedence](/gateway/latest/kong-plugins/#precedence)
-sections for more information. 
+{% capture plugin_precedence_link %}<a href="/gateway/latest/kong-plugins/#precedence">{% t _includes.plugins.hub-examples.global.plugin_precedence %}</a>{% endcapture %}
+{% capture plugin_reference_link %}<a href="/gateway/api/admin-ee/latest/#/Plugins">{% t _includes.plugins.hub-examples.global.plugin_reference %}</a>{% endcapture %}
+{% t _includes.plugins.hub-examples.global.read_the_plugin_reference plugin_reference_link=plugin_reference_link plugin_precedence_link=plugin_precedence_link %}
 
-The following examples provide some typical configurations for enabling
-the <code>{{page.name}}</code> plugin globally.
+{% t _includes.plugins.hub-examples.global.the_following_examples_provide_typical_configurations page_name=page.name %}
+
 {% endif %}
   {% navtabs %}
     {% if hub_example.render_curl? %}
     {% navtab Kong Admin API %}
 
-Make the following request:
+{% t _includes.plugins.hub-examples.global.make_the_following_request %}
 
 {% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
@@ -39,11 +39,12 @@ Make the following request:
     {% if hub_example.render_konnect? %}
     {% navtab Konnect API %}
 
-Make the following request, substituting your own access token, region, and control plane ID:
+{% t _includes.plugins.hub-examples.global.make_the_following_request_substituting %}
 
 {% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
 
-See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
+{% capture link %}<a href="/konnect/api/">Konnect API reference</a>{% endcapture %}
+{% t _includes.plugins.hub-examples.global.see_konnect_api_reference link=link %}
 
 {% include_cached plugins/create-consumer/konnect.html hub_example=hub_example %}
 
@@ -55,8 +56,8 @@ See the [Konnect API reference](/konnect/api/) to learn about region-specific UR
       {% if hub_example.render_kubernetes? %}
       {% navtab Kubernetes %}
 
-Create a [KongClusterPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongclusterplugin)
-resource and label it as global:
+{% capture link %}<a href="/kubernetes-ingress-controller/latest/references/custom-resources/#kongclusterplugin">KongClusterPlugin</a>{% endcapture %}
+{% t _includes.plugins.hub-examples.global.create_kong_cluster_plugin_resource link=link %}
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
@@ -83,8 +84,7 @@ plugin: {{ hub_example.plugin_name }}
       {% if hub_example.render_yaml? %}
       {% navtab Declarative (YAML) %}
 
-Add a <code>plugins</code> entry in the declarative
-configuration file:
+{% t _includes.plugins.hub-examples.global.add_plugins_to_declarative_config_file plugins="plugins" %}
 
 {% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
 

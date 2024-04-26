@@ -38,14 +38,15 @@ type: plugin
         {% unless page.is_latest %}
             {% if page.release.label %}
               <blockquote id="version-notice" class="warning no-icon">
-                You are browsing <strong>{{page.release.label}}</strong> documentation.
+                {% t _layouts.plugins.show.browsing_labeled_version label=page.release.label %}
             {% else %}
               <blockquote id="version-notice" class="important">
-              You are browsing documentation for an outdated plugin version.
+              {% t _layouts.plugins.show.browsing_outdated_version %}
             {% endif %}
               {% capture canonical_exists %}{% page_exists {{ page.canonical_url }} %}{% endcapture %}
               {% if canonical_exists == true %}
-                See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+                {% capture latest_documentation_link %}<a href="{{ page.canonical_url }}">{% t _layouts.plugins.show.latest_documentation_here %}</a>{% endcapture %}
+                {% t _layouts.plugins.show.latest_documentation latest_documentation_link=latest_documentation_link %}
               {% endif %}
             </blockquote>
         {% endunless %}
@@ -62,14 +63,16 @@ type: plugin
       <div class="page-content">
         <div class="content show-anchor-links">
           {% if page.alpha %}
+            {% capture tech_preview_link %}<a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a>{% endcapture %}
             <blockquote class="warning no-icon">
-              This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
+              {% t _layouts.plugins.show.alpha tech_preview_link=tech_preview_link %}
             </blockquote>
           {% endif %}
 
           {% if page.beta %}
+            {% capture beta_link %}<a href="/gateway/latest/availability-stages/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a>{% endcapture %}
             <blockquote class="warning no-icon">
-              This plugin is released as <a href="/gateway/latest/availability-stages/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
+              {% t _layouts.plugins.show.beta beta_link=beta_link %}
             </blockquote>
           {% endif %}
           {{ full_content }}

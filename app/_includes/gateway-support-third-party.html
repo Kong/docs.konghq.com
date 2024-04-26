@@ -120,7 +120,8 @@
 
 ## {% t _includes.gateway-support-third-party.ai_providers.title %}
 
-{% t _includes.gateway-support-third-party.ai_providers.description %}
+{% capture ai_category_link %}<a href="/hub/?category=ai">{% t _includes.gateway-support-third-party.ai_providers.ai_plugins %}</a>{% endcapture %}
+{% t _includes.gateway-support-third-party.ai_providers.description ai_category_link=ai_category_link %}
 
 {% for d in include.data.third-party.ai_providers %}
 * **{{ d.name }}**

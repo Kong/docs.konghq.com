@@ -13,10 +13,10 @@
       {% capture plugin_name %}
         {%- if page.reference_param_name != nil -%}{{ page.reference_param_name }}{%- else -%}{{ page.extn_slug }}{%- endif -%}
       {% endcapture %}
-      <p class="field-description">The name of the plugin, in this case <code>{{ plugin_name }}</code>.
+      <p class="field-description">{% t _includes.plugins.schema.fields.name_or_plugin.description plugin_name=plugin_name %}
         <ul>
-          <li>If using the Kong Admin API, Konnect API, declarative configuration, or decK files, the field is <code>name</code>.</li>
-          <li>If using the KongPlugin object in Kubernetes, the field is <code>plugin</code>.</li>
+          <li>{% t _includes.plugins.schema.fields.name_or_plugin.children.api name="name" %}</li>
+          <li>{% t _includes.plugins.schema.fields.name_or_plugin.children.kubernetes plugin="plugin" %}</li>
         </ul>
       </p>
     </div>
@@ -32,23 +32,24 @@
       </div>
       <div class="field-description-and-children">
         <p class="field-description">
-          An optional custom name to identify an instance of the plugin, for example <code>{{ page.extn_slug }}_my-service</code>.
+          {% t _includes.plugins.schema.fields.instance_name.description.optional_custom_name extn_slug=page.extn_slug %}
         </p>
         <p class="field-description">
-          The instance name shows up in Kong Manager and in {{site.konnect_short_name}}, so it's useful when running the same 
-          plugin in multiple contexts, for example, on multiple services. You can also use it to access a specific plugin instance
-          via the Kong Admin API.
+          {% t _includes.plugins.schema.fields.instance_name.description.kong_manager konnect_short_name=site.konnect_short_name %}
         </p>
         <p class="field-description">
-          An instance name must be unique within the following context:
+          {% t _includes.plugins.schema.fields.instance_name.description.must_be_unique.text %}
           <ul>
-            <li>Within a workspace for {{site.ee_product_name}}</li>
-            <li>Within a control plane or control plane group for {{site.konnect_short_name}}</li>
-            <li>Globally for {{site.ce_product_name}}</li>
+            <li>{% t _includes.plugins.schema.fields.instance_name.description.must_be_unique.within_workspace ee_product_name=site.ee_product_name %}</li>
+            <li>{% t _includes.plugins.schema.fields.instance_name.description.must_be_unique.within_control_plane konnect_short_name=site.konnect_short_name %}</li>
+            <li>{% t _includes.plugins.schema.fields.instance_name.description.must_be_unique.globally ce_product_name=site.ce_product_name %}</li>
+          </ul>
         </p>
       </div>
     </li>
   {% endif_version %}
+
+  {% capture create_plugin_link %}<a href="/gateway/api/admin-ee/latest/#/plugins/create-plugin"><code>/plugins</code> {% t _includes.plugins.schema.fields.endpoint %}.</a>{% endcapture %}
 
   {% if schema.enable_on_service? %}
     <li class="field">
@@ -63,9 +64,7 @@
       </div>
       <div class="field-description-and-children">
         <p class="field-description">
-          The name or ID of the service the plugin targets.
-          Set one of these parameters if adding the plugin to a service through the top-level <a href="/gateway/api/admin-ee/latest/#/Plugins/create-plugin"><code>/plugins</code> endpoint.</a>
-          Not required if using <code>/services/{serviceName|Id}/plugins</code>.
+          {% t _includes.plugins.schema.fields.service_name_or_id.description services_endpoint="/services/{serviceName|Id}/plugins" create_plugin_link=create_plugin_link %}
         </p>
       </div>
     </li>
@@ -81,9 +80,7 @@
       </div>
       <div class="field-description-and-children">
         <p class="field-description">
-          The name or ID of the route the plugin targets.
-          Set one of these parameters if adding the plugin to a route through the top-level <a href="/gateway/api/admin-ee/latest/#/Plugins/create-plugin"><code>/plugins</code> endpoint.</a>
-          Not required if using <code>/routes/{routeName|Id}/plugins</code>.
+          {% t _includes.plugins.schema.fields.route_name_or_id.description routes_endpoint="/routes/{routeName|Id}/plugins" create_plugin_link=create_plugin_link %}
         </p>
       </div>
     </li>
@@ -99,9 +96,7 @@
       </div>
       <div class="field-description-and-children">
         <p class="field-description">
-          The name or ID of the consumer the plugin targets.
-          Set one of these parameters if adding the plugin to a consumer through the top-level <a href="/gateway/api/admin-ee/latest/#/Plugins/create-plugin"><code>/plugins</code> endpoint.</a>
-          Not required if using <code>/consumers/{consumerName|Id}/plugins</code>.
+          {% t _includes.plugins.schema.fields.consumer_name_or_id.description consumers_endpoint="/consumers/{consumerName|Id}/plugins" create_plugin_link=create_plugin_link %}
         </p>
       </div>
     </li>
@@ -117,9 +112,7 @@
       </div>
       <div class="field-description-and-children">
         <p class="field-description">
-          The name or ID of the consumer group the plugin targets.
-          If set, the plugin will activate only for requests where the specified group has been authenticated <a href="/gateway/api/admin-ee/latest/#/Plugins/create-plugin"><code>/plugins</code> endpoint.</a>
-          Not required if using <code>/consumer_groups/{consumerGroupName|Id}/plugins</code>.
+          {% t _includes.plugins.schema.fields.consumer_group_name_or_id.description consumer_groups_endpoint="/consumer_groups/{consumerGroupName|Id}/plugins" create_plugin_link=create_plugin_link %}
         </p>
       </div>
     </li>
@@ -134,7 +127,7 @@
       <span><strong>default: </strong><code>true</code></span>
     </div>
     <div class="field-description-and-children">
-      <p class="field-description">Whether this plugin will be applied.</p>
+      <p class="field-description">{% t _includes.plugins.schema.fields.enabled.description %}</p>
     </div>
   </li>
 
@@ -148,8 +141,10 @@
       </div>
       <div class="field-description-and-children">
         <p class="field-description">
-          The ID of the API the plugin targets.
-          <br><br><strong>Note:</strong> The <a href="{{ site.links.archive }}/gateway-oss/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/gateway/changelog/#0-32">EE 0.32</a>.
+          {% capture api_entity_link %}<a href="{{ site.links.archive }}/gateway-oss/0.13.x/admin-api/#api-object">API Entity</a>{% endcapture %}
+          {% capture changelog_013_link %}<a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a>{% endcapture %}
+          {% capture changelog_032_link %}<a href="https://docs.konghq.com/gateway/changelog/#0-32">EE 0.32</a>{% endcapture %}
+          {% t _includes.plugins.schema.fields.api_id.description api_entity_link=api_entity_link changelog_013_link=changelog_013_link changelog_032_link=changelog_032_link %}
         </p>
       </div>
     </li>
