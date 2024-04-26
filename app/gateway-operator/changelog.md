@@ -11,15 +11,15 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 ### Fixes
 
-* Fixes an issue where managed `Gateway`s controller wasn't able to reduce
-  the created `DataPlane` objects when too many have been created.
+* Fixed an issue where the managed `Gateway`s controller wasn't able to reduce
+  the created `DataPlane` objects when too many were created.
 * `Gateway` controller will no longer set `DataPlane` deployment's replicas
-  to default value when `DataPlaneOptions` in `GatewayConfiguration` define
-  scaling strategy. This effectively allows users to use `DataPlane` horizontal
-  autoscaling with `GatewayConfiguration` as the generated `DataPlane` deployment
-  will no longer be rejected.
-* Make creating a `DataPlane` index conditional based on enabling the `ControlPlane`
-  controller. This allows running KGO without `ControlPlane` CRD with its controller
+  to the default value when `DataPlaneOptions` in `GatewayConfiguration` define
+  a scaling strategy. This effectively allows users to use `DataPlane` horizontal
+  autoscaling with `GatewayConfiguration` because the generated `DataPlane` deployment
+  won't be rejected.
+* Made creating a `DataPlane` index conditional based on enabling the `ControlPlane`
+  controller. This allows KGO to run without the `ControlPlane` CRD with its controller
   disabled.
 
 ## 1.2.2
