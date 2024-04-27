@@ -9,7 +9,7 @@ title: Gateway
 ## How to retrieve it
 
 <!--
-Consider adding invocations of gwctl when that becomes stable and provides usefule information about the described objects.
+Consider adding invocations of gwctl when that becomes stable and provides useful information about the described objects.
 https://github.com/kubernetes-sigs/gateway-api/tree/main/gwctl
 -->
 

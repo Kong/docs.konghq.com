@@ -810,7 +810,7 @@ kmesh:
     # Service account name of rate limit service which will be used in
     # authentication process of communication between rate limit service and
     # control plane.
-    # The value can tak two forms:
+    # The value can take two forms:
     # - "system:serviceaccount:[namespace]:[service_account_name]" (example:
     #   system:serviceaccount:kong-mesh-system:default)
     # - "[service_account_name]" - in this form, the namespace of the service

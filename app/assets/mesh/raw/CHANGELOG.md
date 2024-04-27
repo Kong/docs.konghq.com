@@ -26,7 +26,7 @@
 * feat(MeshGlobalRateLimit): add kind: MeshGateway [#5408](https://github.com/Kong/kong-mesh/pull/5408) @michaelbeaumont
 * feat(MeshOPA): allow kind: MeshGateway [#5404](https://github.com/Kong/kong-mesh/pull/5404) @michaelbeaumont
 * feat(kuma-cp): rbac support more kuma targetRef kinds [#5615](https://github.com/Kong/kong-mesh/pull/5615) @jijiechen
-* feat(opa):  move the logic of apending persistence_directory into agentConfig from cp to dp so that we can use different tempDir based on dp settings [#5553](https://github.com/Kong/kong-mesh/pull/5553) @jijiechen
+* feat(opa):  move the logic of appending persistence_directory into agentConfig from cp to dp so that we can use different tempDir based on dp settings [#5553](https://github.com/Kong/kong-mesh/pull/5553) @jijiechen
 * feat(opa): add a default persistence_directory if not configured in agentConfig of mesh opa policies [#5480](https://github.com/Kong/kong-mesh/pull/5480) @jijiechen
 * feat(rbac): add rbac for control-plane metadata access [#5685](https://github.com/Kong/kong-mesh/pull/5685) @lahabana
 * feat(rbac): set the same permission on zone and global [#5432](https://github.com/Kong/kong-mesh/pull/5432) @lukidzi
@@ -264,7 +264,7 @@ Based on [Kuma 2.5.0](https://github.com/kumahq/kuma/releases/tag/2.5.0)
 * feat(awsiam): add ability to assume roles for cross account auth [#4344](https://github.com/Kong/kong-mesh/pull/4344) @michaelbeaumont
 * feat(awsiam): only require role name in rolesToAssumeForAccounts [#4365](https://github.com/Kong/kong-mesh/pull/4365) @michaelbeaumont
 * feat(helm): remove license text for MinK zones [#4284](https://github.com/Kong/kong-mesh/pull/4284) @johnharris85
-* feat(kuma-cp): allow to change mtls backends with skiping validation [#4419](https://github.com/Kong/kong-mesh/pull/4419) @lukidzi
+* feat(kuma-cp): allow to change mtls backends with skipping validation [#4419](https://github.com/Kong/kong-mesh/pull/4419) @lukidzi
 * feat(kuma-cp): include tenant aware unary interceptor [#4588](https://github.com/Kong/kong-mesh/pull/4588) @michaelbeaumont
 * feat(kuma-cp): introduce resource limiting capability [#4352](https://github.com/Kong/kong-mesh/pull/4352) @bartsmykla
 * feat(kuma-cp): use ReadResourceManager for RBAC [#4306](https://github.com/Kong/kong-mesh/pull/4306) @lukidzi
