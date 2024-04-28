@@ -2,6 +2,173 @@
 
 <!--vale off-->
 
+## Week 17
+
+### [Fix multiple typos under app/_src/gateway](https://github.com/Kong/docs.konghq.com/pull/7312) (2024-04-26)
+
+Fix multiple typos under app/_src/gateway
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.2.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.3.x/breaking-changes/30x
+- https://docs.konghq.com/gateway/3.4.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.5.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.6.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.7.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.6.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.7.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.6.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.7.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/mesh/2.0.x/install/
+- https://docs.konghq.com/mesh/2.1.x/install/
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.7.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.0.x/reference/rate-limiting/
+- https://docs.konghq.com/gateway/3.1.x/reference/rate-limiting/
+- https://docs.konghq.com/gateway/3.2.x/reference/rate-limiting/
+- https://docs.konghq.com/gateway/3.3.x/reference/rate-limiting/
+- https://docs.konghq.com/gateway/3.4.x/reference/rate-limiting/
+- https://docs.konghq.com/gateway/3.5.x/reference/rate-limiting/
+- https://docs.konghq.com/gateway/3.6.x/reference/rate-limiting/
+- https://docs.konghq.com/gateway/3.7.x/reference/rate-limiting/
+- https://docs.konghq.com/gateway/3.0.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.6.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.7.x/upgrade/backup-and-restore/
+
+
+### [Fix multiple typos under app/konnect directory](https://github.com/Kong/docs.konghq.com/pull/7311) (2024-04-26)
+
+Fixed multiple typos under app/konnect directory
+
+* stratgies -> strategies
+* trasparent -> transparent
+* mutliple -> multiple
+
+I think this PR might go with `review:general` label. 
+
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/azure
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/curity
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/okta
+- https://docs.konghq.com/konnect/gateway-manager/troubleshoot
+- https://docs.konghq.com/konnect/updates
+
+
+### [Add Kong 3.6.x to the list of supported versions by the Noname Security plugin.](https://github.com/Kong/docs.konghq.com/pull/7303) (2024-04-25)
+
+Added Kong 3.6.x to the list of supported versions by the Noname Security plugin.
+
+#### Modified
+
+- https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongtrafficsource/_metadata/_index.yml
+
+
+### [chore(kgo): KGO 1.2.3](https://github.com/Kong/docs.konghq.com/pull/7298) (2024-04-26)
+
+Adding KGO 1.2.3 changelog
+
+- https://github.com/Kong/gateway-operator/blob/main/CHANGELOG.md#v123
+- https://github.com/Kong/gateway-operator-enterprise/blob/main/CHANGELOG.md#v123
+
+Closes https://github.com/Kong/gateway-operator-enterprise/issues/124
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/changelog
+
+
+### [Release: Gateway 3.4.3.7](https://github.com/Kong/docs.konghq.com/pull/7287) (2024-04-23)
+
+Changelog and version bump for Gateway 3.4.3.7.
+
+Also merge https://github.com/Kong/docs.konghq.com/pull/7120 when this goes out.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: update docker logo on Mesh docs](https://github.com/Kong/docs.konghq.com/pull/7285) (2024-04-22)
+
+Fixing broken link test failure: https://github.com/Kong/docs.konghq.com/actions/runs/8768698057/job/24063340313
+
+The old docker logo was deleted but the Mesh install page is still pointing to it. Changing it to use the latest docker logo instead.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.7.x/production/deployment-topologies/hybrid-mode/setup
+
+
+### [Changed from: Any to from: All](https://github.com/Kong/docs.konghq.com/pull/7278) (2024-04-22)
+
+"Any" is not a valid value, it should be "All":
+spec.listeners[0].allowedRoutes.namespaces.from: Unsupported value: "Any": supported values: "All", "Selector", "Same", <nil>
+
+
+
+
+<!-- What did you change and why? -->
+Fixed an apparent mistake in the docs where it said "Any", but meant "All"
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.6.x/plugin-development/pdk/kong.tracing
+- https://docs.konghq.com/gateway/3.7.x/plugin-development/pdk/kong.tracing
+
 ## Week 16
 
 ### [Chore: LTS labels](https://github.com/Kong/docs.konghq.com/pull/7269) (2024-04-19)
