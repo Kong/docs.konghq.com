@@ -16,7 +16,7 @@ env:
 jobs:
   smoke-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       # Increase number of watchers to fix tests
       - run: sudo sysctl -w fs.inotify.max_user_watches=524288

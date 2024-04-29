@@ -17,6 +17,9 @@ function mutateCookieAttributes (proxy) {
 function setHostHeader (proxy) {
   const host = new URL(process.env.VITE_PORTAL_API_URL).hostname;
 
+  console.log('VITE_PORTAL_API_URL is', process.env.VITE_PORTAL_API_URL)
+  console.log('Setting host header to', host)
+
   proxy.on('proxyReq', function (proxyRes) {
     proxyRes.setHeader('host', host)
   })
