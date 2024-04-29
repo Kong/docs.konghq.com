@@ -66,14 +66,14 @@ In the previous Redis rate-limiting example, only the `redis_password` field is 
 Create a Kubernetes secret that contains a `password` field.
 
 ```bash
-echo '
+echo "
 apiVersion: v1
 kind: Secret
 metadata:
   name: rate-limit-redis
 stringData:
-  password: "PASSWORD"
-type: Opaque' | kubectl apply -f -
+  password: '\"PASSWORD\"' # The string fields require the value to be quoted in double quotation marks.
+type: Opaque" | kubectl apply -f -
 ```
 
 Define a new rate-limiting `KongPlugin` resource. The majority of the configuration is provided under the `config` key. The `redis_password` field is populated from the `password` field in the `rate-limit-redis` secret using `configPatches`.
