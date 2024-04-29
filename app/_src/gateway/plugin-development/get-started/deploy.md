@@ -4,10 +4,10 @@ book: plugin_dev_getstarted
 chapter: 6
 ---
 
-Once you have a functional custom plugin, you need to deploy it to your
-{{site.base_gateway}} data planes in order to use it. There are multiple 
+Once you have a functional custom plugin, you need to deploy it to 
+{{site.base_gateway}} in order to use it. There are multiple 
 methods for deploying custom plugins, which one you choose will largely
-depend on your particular {{site.base_gateway}} environment and technology
+depend on your particular {{site.base_gateway}} environment and other technology
 choices. This section will cover popular deployment options and provide
 a reference to further instructions.
 
@@ -139,17 +139,29 @@ X-Kong-Request-Id: 8ab8c32c4782536592994514b6dadf55
 
 Building a custom Docker image is not the only option for deploying a custom plugin. 
 
+### Kubernetes deployments
+
+Many users choose to run {{site.base_gateway}} on Kubernetes. {{ site.kic_product_name }}
+provides a Kubernetes Ingress Controller that can be used to manage {{site.base_gateway}}
+deployments including custom plugins. The [Custom Plugins page](/kubernetes-ingress-controller/latest/plugins/custom/)
+of the {{ site.kic_product_name }} documentation provides detailed instructions on deploying
+custom plugins using the [Kong Helm chart](/kubernetes-ingress-controller/latest/install/helm/) 
+or standard Kubernetes manifests.
+
 ### Overriding package path
 
-{{site.base_gateway}} supports overriding the location that the Lua VM looks for packages
-to include. Following the same file structure as shown above, you can place the source files on the 
-host machine and modify the `lua_package_path` configuration value to point to this path.
+When running {{site.base_gateway}} in bare metal or virtual machine environments, overriding the 
+location that the Lua VM looks for packages to include is a common strategy for deploying a custom plugin.
+Following the same file structure as shown above, you can distribute the source files on the 
+host machines and modify the `lua_package_path` configuration value to point to this path.
 This configuration can also be modified using the `KONG_LUA_PACKAGE_PATH` environment variable. 
 
 See the custom plugin [installation documentation](/gateway/{{page.release}}/plugin-development/distribution/) 
 for more details on this option. 
 
-This strategy can work for volume mounts on containerized systems or bare metal and virtual machine environments.
+{:.note}
+> **Note**: In addition to bare metal or virtual machine environments, this strategy can work for 
+volume mounts on containerized systems. 
 
 ### Building a LuaRocks package
 
