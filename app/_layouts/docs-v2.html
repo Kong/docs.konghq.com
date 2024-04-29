@@ -109,7 +109,8 @@ id: documentation
               <blockquote id="version-notice" class="important">
                 {% t _layouts.docs-v2.browsing_outdated_documentation %}
             {% endif %}
-                {% t _layouts.docs-v2.see_latest_documentation url=page.canonical_url %}
+                {% capture latest_documentation_link %}<a href="{{ page.canonical_url }}">{% t _layouts.docs-v2.latest_documentation_here %}</a>{% endcapture %}
+                {% t _layouts.docs-v2.see_latest_documentation latest_documentation_link=latest_documentation_link %}
               </blockquote>
           {% endunless %}
 
@@ -136,7 +137,8 @@ id: documentation
 
           {% if page.alpha %}
             <blockquote class="important">
-              {% t _layouts.docs-v2.tech_preview %}
+              {% capture tech_preview_link %}<a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a>{% endcapture %}
+              {% t _layouts.docs-v2.tech_preview tech_preview_link=tech_preview_link %}
 
               {% if page.stability_message %}
               {{ page.stability_message }}
@@ -145,7 +147,8 @@ id: documentation
           {% endif %}
           {% if page.beta %}
             <blockquote class="important">
-              {% t _layouts.docs-v2.beta %}
+              {% capture beta_link %}<a href="/gateway/latest/availability-stages/#beta">beta</a>{% endcapture %}
+              {% t _layouts.docs-v2.beta beta_link=beta_link %}
 
               {% if page.stability_message %}
               {{ page.stability_message }}
