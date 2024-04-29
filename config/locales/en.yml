@@ -24,12 +24,12 @@ en:
             quickstart: "Kong Mesh Quickstart"
             kuma: "Kuma (open-source)"
     docs-v2:
-      contribution_guidelines: Contribution guidelines
-      latest: (latest)
-      switch_to: Switch to
-      browsing_versioned_documentation: You are browsing <strong> %{label} </strong> documentation.
-      browsing_unreleased_documentation: You are browsing <strong> unreleased </strong> documentation.
-      browsing_outdated_documentation: You are browsing documentation for an older version.
+      contribution_guidelines: "Contribution guidelines"
+      latest: "(latest)"
+      switch_to: "Switch to"
+      browsing_versioned_documentation: "You are browsing <strong> %{label} </strong> documentation."
+      browsing_unreleased_documentation: "You are browsing <strong> unreleased </strong> documentation."
+      browsing_outdated_documentation: "You are browsing documentation for an older version."
       latest_documentation_here: "latest documentation here"
       see_latest_documentation: |
         See the %{latest_documentation_link}.
@@ -38,9 +38,9 @@ en:
       beta: |
         This feature is released as %{beta_link} and should not be depended upon in a production environment.
       konnect_cta_card:
-        too_much_on_your_plate: Too much on your plate?
-        description: More features, less infrastructure with Kong Konnect. 1M requests per month for free.
-        try_it: Try it for Free
+        too_much_on_your_plate: "Too much on your plate?"
+        description: "More features, less infrastructure with Kong Konnect. 1M requests per month for free."
+        try_it: "Try it for Free"
 
     plugins:
       configuration_examples:
@@ -63,7 +63,7 @@ en:
         browsing_labeled_version: "You are browsing <strong>%{label}</strong> documentation."
         browsing_outdated_version: "You are browsing documentation for an outdated plugin version."
         latest_documentation_here: "latest documentation here"
-        latest_documentation: |
+        see_latest_documentation: |
           See the %{latest_documentation_link}.
         alpha: |
           This plugin is released as a %{tech_preview_link} (alpha-quality) and should not be deployed in a production environment.
@@ -98,20 +98,20 @@ en:
 
     lts-changes:
       thead:
-        change: Change
-        category: Category
-        action_required: Action required
+        change: "Change"
+        category: "Category"
+        action_required: "Action required"
 
     gateway-support:
-      tab_description: Kong Gateway %{version} supports the following deployment targets until %{eol}, unless otherwise noted by an earlier OS vendor end of life (EOL) date.
+      tab_description: "Kong Gateway %{version} supports the following deployment targets until %{eol}, unless otherwise noted by an earlier OS vendor end of life (EOL) date."
       thead:
-        os: OS
-        version: Version
-        artifacts: Artifacts
-        arm_support: ARM support
-        fips_compliant: FIPS compliant
-        aws_graviton_support: AWS Graviton support
-        eol: EOL
+        os: "OS"
+        version: "Version"
+        artifacts: "Artifacts"
+        arm_support: "ARM support"
+        fips_compliant: "FIPS compliant"
+        aws_graviton_support: "AWS Graviton support"
+        eol: "EOL"
 
     gateway-support-third-party:
       data_stores:
@@ -173,19 +173,19 @@ en:
           hub: "Kong Konnect Plugin Hub"
 
     docs-sidebar:
-      version: Version
-      latest: (latest)
-      contribution_guidelines: Docs contribution guidelines
-      archive: Archive (pre-2.6)
+      version: "Version"
+      latest: "(latest)"
+      contribution_guidelines: "Docs contribution guidelines"
+      archive: "Archive (pre-2.6)"
 
     book:
-      previous: Previous
-      next: Next
+      previous: "Previous"
+      next: "Next"
 
     header:
       nav-links:
-        edit_page: Edit this page
-        report_an_issue: Report an issue
+        edit_page: "Edit this page"
+        report_an_issue: "Report an issue"
 
 
     plugins:
@@ -433,16 +433,16 @@ en:
 
   hub:
     index:
-      title: Welcome to Kong Plugin Hub
+      title: "Welcome to Kong Plugin Hub"
       subtitle: |
         Extend %{base_gateway} and %{konnect_product_name} with powerful plugins and easy integrations
-      plugin_overview: Plugin Overview
-      compatibility: Compatibility
-      license_tiers: License tiers
-      contact_3rd_party: Contact 3rd party for support
+      plugin_overview: "Plugin Overview"
+      compatibility: "Compatibility"
+      license_tiers: "License tiers"
+      contact_3rd_party: "Contact 3rd party for support"
       labels:
-        tiers: Tiers
-        functionality: Functionality
-        support_by: Support by
-        compatibility: Compatibility
+        tiers: "Tiers"
+        functionality: "Functionality"
+        support_by: "Support by"
+        compatibility: "Compatibility"
 
