@@ -46,7 +46,7 @@ type: plugin
               {% capture canonical_exists %}{% page_exists {{ page.canonical_url }} %}{% endcapture %}
               {% if canonical_exists == true %}
                 {% capture latest_documentation_link %}<a href="{{ page.canonical_url }}">{% t _layouts.plugins.show.latest_documentation_here %}</a>{% endcapture %}
-                {% t _layouts.plugins.show.latest_documentation latest_documentation_link=latest_documentation_link %}
+                {% t _layouts.plugins.show.see_latest_documentation latest_documentation_link=latest_documentation_link %}
               {% endif %}
             </blockquote>
         {% endunless %}
