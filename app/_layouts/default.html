@@ -130,7 +130,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
 
-    {% if page.url != '/search/' %}
+    {% if page.url != '/search/' and site.disable_search != true %}
       <script type="text/javascript">
         docsearch({
           appId: '05Y6TLHNFZ',
