@@ -63,6 +63,7 @@ Jekyll::Hooks.register :site, :after_init do |site|
     # Unfortunately, deep_merge_hashes doesn't handle arrays well,
     # so we need to add these manually.
     config['exclude'].push('BingSiteAuth.xml', 'google275fdcdba19266f5.html', 'googled7a99b1cae8a33d6.html')
+    config['exclude'].push('search.html') if config['disable_search']
 
     site.config = Jekyll.configuration(config)
 
