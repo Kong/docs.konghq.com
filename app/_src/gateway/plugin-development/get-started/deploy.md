@@ -40,7 +40,7 @@ following contents
 FROM kong/kong-gateway:latest
 {% else -%}
 FROM kong/kong-gateway:{{page.release.tag}}
-{% endif %}
+{% endif -%}
 
 # Ensure any patching steps are executed as root user
 USER root
