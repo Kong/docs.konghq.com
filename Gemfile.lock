@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/kong/jekyll-generator-single-source.git
-  revision: aa0dc3f841ba8b55fcd53b23e0ed8726e80df393
-  branch: add-lts-to-release
-  specs:
-    jekyll-generator-single-source (0.0.13)
-      jekyll (>= 4.2, < 5.0)
-
 PATH
   remote: app/_src/.repos/kuma/jekyll-kuma-plugins
   specs:
@@ -100,6 +92,8 @@ GEM
       safe_yaml (~> 1.0)
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
+    jekyll-generator-single-source (0.0.14)
+      jekyll (>= 4.2, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
     jekyll-redirect-from (0.16.0)
@@ -227,7 +221,7 @@ DEPENDENCIES
   capybara
   foreman
   jekyll
-  jekyll-generator-single-source!
+  jekyll-generator-single-source
   jekyll-include-cache
   jekyll-kuma-plugins!
   jekyll-redirect-from
