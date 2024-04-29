@@ -288,6 +288,8 @@ en:
             You can now authenticate as <code>%{username}</code> when making your request. See the %{documentation_link} for more information.
 
       hub-examples:
+        enable_on_a_resource: "Enable on a %{resource}"
+        enable_globally: "Enable globally"
         terraform:
           prerequisite: "Prerequisite:"
           configure_your_pat: "Configure your Personal Access Token"
