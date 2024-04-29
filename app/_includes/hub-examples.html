@@ -11,31 +11,36 @@
 {% if hub_examples.navtabs? %}
   {% navtabs parent %}
     {% if hub_examples.enable_on_service? %}
-      {% navtab Enable on a service %}
+      {% capture tab_name %}{% t _includes.plugins.hub-examples.enable_on_a_resource resource="service" %}{% endcapture %}
+      {% navtab tab_name %}
         {%- include plugins/hub-examples/service.html hub_example=hub_examples.service render_intro_text=include.render_intro_text -%}
       {% endnavtab %}
     {% endif %}
 
     {% if hub_examples.enable_on_route? %}
-      {% navtab Enable on a route %}
+      {% capture tab_name %}{% t _includes.plugins.hub-examples.enable_on_a_resource resource="route" %}{% endcapture %}
+      {% navtab tab_name %}
         {%- include plugins/hub-examples/route.html hub_example=hub_examples.route render_intro_text=include.render_intro_text -%}
       {% endnavtab %}
     {% endif %}
 
     {% if hub_examples.enable_on_consumer? %}
-      {% navtab Enable on a consumer %}
+      {% capture tab_name %}{% t _includes.plugins.hub-examples.enable_on_a_resource resource="consumer" %}{% endcapture %}
+      {% navtab tab_name %}
         {%- include plugins/hub-examples/consumer.html hub_example=hub_examples.consumer render_intro_text=include.render_intro_text -%}
       {% endnavtab %}
     {% endif %}
 
     {% if hub_examples.enable_on_consumer_group? %}
-      {% navtab Enable on a consumer group %}
+      {% capture tab_name %}{% t _includes.plugins.hub-examples.enable_on_a_resource resource="consumer group" %}{% endcapture %}
+      {% navtab tab_name %}
         {%- include plugins/hub-examples/consumer_groups.html hub_example=hub_examples.consumer_group render_intro_text=include.render_intro_text -%}
       {% endnavtab %}
     {% endif%}
 
     {% if hub_examples.enable_globally? %}
-      {% navtab Enable globally %}
+      {% capture tab_name %}{% t _includes.plugins.hub-examples.enable_globally %}{% endcapture %}
+      {% navtab tab_name %}
         {{ global_content | markdownify }}
       {% endnavtab %}
     {% endif %}
