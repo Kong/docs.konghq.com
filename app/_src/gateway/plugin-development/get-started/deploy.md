@@ -35,8 +35,12 @@ as configuration and custom code is shipped directly in the data plane image.
 Create a new file at the root of the `my-plugin` project named `Dockerfile` with the
 following contents
 
-```txt
-FROM kong/kong-gateway:{{ page.release.tag }}
+```dockerfile
+{% if page.release.label == "unreleased" -%}
+FROM kong/kong-gateway:latest
+{% else -%}
+FROM kong/kong-gateway:{{page.release.tag}}
+{% endif %}
 
 # Ensure any patching steps are executed as root user
 USER root
