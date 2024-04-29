@@ -156,6 +156,13 @@ end
 return MyPluginHandler
 ```
 
+{:.important}
+> **Important:** The Kong PDK provides a stable interface and set of functions for 
+> custom plugin development. It is important to avoid using modules from 
+> the {{site.base_gateway}} codebase that are *not* part of the PDK. These modules
+> are not guaranteed to provide a stable interface or behavior and using them
+> in your plugin code may lead to unexpected behavior.
+
 ## What's next?
 
 At this stage, you now have a functional plugin for {{site.base_gateway}}. 
