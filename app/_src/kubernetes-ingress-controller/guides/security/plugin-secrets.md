@@ -72,7 +72,7 @@ kind: Secret
 metadata:
   name: rate-limit-redis
 stringData:
-  password: PASSWORD
+  password: '\"PASSWORD\"' # The string fields require the value to be quoted in double quotation marks.
 type: Opaque" | kubectl apply -f -
 ```
 
@@ -90,7 +90,7 @@ config: # You can define the non-sensitive part of the config explicitly here.
   policy: redis
   redis_host: redis-master
 configPatches:
-  - path: redis_password # This is the path to the field in the plugin's configuration this patch will populate.
+  - path: /redis_password # This is the path to the field in the plugin's configuration this patch will populate.
     valueFrom:
       secretKeyRef:
         name: rate-limit-redis # This is the name of the secret.
