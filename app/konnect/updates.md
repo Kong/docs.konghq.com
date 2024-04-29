@@ -277,7 +277,7 @@ You can upload a plugin schema to Konnect and get started with custom plugins in
 ## July 2023
 
 **API Products API released**
-: A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/v2/)
+: A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/latest/)
 
 **API Products**
 : Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
@@ -293,7 +293,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 * [Set up and manage runtime groups](/konnect/gateway-manager/control-plane-groups/how-to/)
 * [Migrate configuration into a composite runtime group](/konnect/gateway-manager/control-plane-groups/migrate/)
 * [Conflicts in runtime groups](/konnect/gateway-manager/control-plane-groups/conflicts/)
-* [API documentation](/konnect/api/runtime-groups/v2/)
+* [API documentation](/konnect/api/runtime-groups/latest/)
 
 **Analytics for composite runtime groups**
 : Custom reports now support grouping and filtering by composite runtime group.
@@ -323,7 +323,7 @@ For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/cus
 
 **Portal Client API**
 : {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. 
-For more information, see the [Portal Client API spec](/konnect/api/portal/v2/).
+For more information, see the [Portal Client API spec](/konnect/api/portal/latest/).
 
 **Audit logging**
 : Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. 
@@ -470,7 +470,7 @@ with any of the following backends:
 : {{site.konnect_short_name}} users can now take advantage of the the entire plugin suite offered alongside {{site.base_gateway}} 3.1. For more information about the available plugins. review our [compatibility documentation](/konnect/compatibility/#plugin-compatibility).
 
 **Runtime Groups API**
-: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](/konnect/api/runtime-groups/v2/).
+: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](/konnect/api/runtime-groups/latest/).
 
 ## November 2022
 
@@ -511,7 +511,7 @@ The group still retains its status as the default group, and can't be deleted.
 
 **Konnect APIs for identity management**
 : Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
-[IdP API documentation](/konnect/api/identity-management/v2/)
+[IdP API documentation](/konnect/api/identity-management/latest/)
 
 ## October 2022
 

@@ -119,4 +119,4 @@ When a replay job is `running`, a request to update the job will return a `409` 
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
 * [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
-* [Audit Logs API](/konnect/api/audit-logs/v2/)
+* [Audit Logs API](/konnect/api/audit-logs/latest/)

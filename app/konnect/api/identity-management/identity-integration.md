@@ -176,5 +176,5 @@ If you were successful, you will receive a `200` response code, and the response
 
 ## More information
 
-* [IdP API documentation](/konnect/api/identity-management/v2/)
+* [IdP API documentation](/konnect/api/identity-management/latest/)
 * [Filtering Reference](/konnect/api/filtering/)
