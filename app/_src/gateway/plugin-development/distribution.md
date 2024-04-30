@@ -1,5 +1,5 @@
 ---
-title: (un)Installing your plugin
+title: Managing your custom plugin
 book: plugin_dev
 chapter: 10
 ---
