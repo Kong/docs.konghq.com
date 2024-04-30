@@ -1,11 +1,11 @@
 ---
-title: Konnect Search API
+title: Konnect Search
 content_type: reference
-description: Learn how to use the Konnect Search API to search through all Konnect entities.
+description: Learn how to use the Konnect Search to search through all Konnect entities.
 beta: true
 ---
 
-The {{site.konnect_short_name}} Search API allows you to search through all {{site.konnect_short_name}} entities. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product.
+The {{site.konnect_short_name}} Search feature allows you to perform a search across all {{site.konnect_short_name}} entities within an organization. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product. Search can be accessed via the search bar (_⌘+k_) on the top of every page or via the KSearch API.
 
 Here are a few example use cases where you can use the {{site.konnect_short_name}} Search API in your automation:
 * Find entities that are "not compliant". For example, you can use search to find all routes that don't have a path that starts with `/api`.
@@ -14,22 +14,16 @@ Here are a few example use cases where you can use the {{site.konnect_short_name
 {{site.konnect_short_name}} Search includes the following features:
 
 * **Global and regional access:** The {{site.konnect_short_name}} Search API is available in global and regional locations with regional-awareness. This ensures that returned entities are relevant to their geographical location, improving response times and conforming to data residency expectations.
-* **Comprehensive response:** The responses of the search query are uniform and contain a fixed number of standard attributes: `id`, `type`, `labels/tags` and `name`. In addition, entity-specific attributes are returned in a general attributes object.
+* **Comprehensive response:** The responses of the search query are uniform and contain a fixed number of standard attributes: `name`, `id`, `type`, `labels/tags` and `description`. In addition, entity-specific attributes are returned in the general `attributes` object.
 * **Security and accessibility:** The {{site.konnect_short_name}} Search API will only return entities that the user has permissions to access. If a user is able to retrieve the entity in the [list endpoint](/konnect/api/search/latest/), then the user will be able to see the entity in the search response.
 * **Advanced query language:** The {{site.konnect_short_name}} Search API supports an advanced query language with selectors, reserved characters, and logical operators.
 
-## Supported search entities
+## Supported entity types
+|||
+|---|---|
+|- api_product <br/> - api_product_version <br/> - application <br/> - ca_certificate <br/> - certificate <br/> - consumer <br/> - consumer_group <br/> - control_plane <br/> - control_plane <br/> - data_plane <br/> - developer <br/> - developer_team <br/> - key <br/> - key_set  <br/> - mesh | - mesh_control_plane <br/> - plugin <br/> - portal <br/> - report <br/> - route <br/> - service <br/> - sni <br/> - system_account <br/> - target <br/> - team <br/> - upstream <br/> - user <br/> - vault <br/> - zone <br/> <br/>|
 
-- API Product
-- API Product Version
-- Control Plane
-- Developer
-- Developer Team
-- User
-- Team
-- Report
-
-Additional entities will be added in future releases. You can view a list of all the supported entities by sending the following API request:
+Additional entities may be added in future releases. You can view a list of all the supported entities by sending the following API request:
 
 ```bash
 curl -X 'GET' \
@@ -37,7 +31,10 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
-## Query Syntax
+### Searchable attributes
+For each entity type, there is a list of entity specific attributes that are searchable. These attributes are returned in the attributes object in the search response while the schema of the searchable attributes can be found in the types endpoint.
+
+# Query Syntax
 
 The {{site.konnect_short_name}} Search API provides selectors, reserved characters, and logical operators that you can use to narrow your entity search. By combining these selectors, reserved characters, and logical operators, you can construct complex and precise queries to effectively use the {{site.konnect_short_name}} Search API.
 
@@ -49,11 +46,11 @@ Selectors are used to define the criteria of the search. The following table des
 |---------------------------|----------------------|---|
 | `type:{entity_type}`      | Searches for a specific entity type.  |`type:control_plane`|
 | `{value}` | Searches for a match in `{value}` on any all searchable attributes. |`foobar`|
-| `id:{value}` | Searches for an exact match for an `id`. |`id:df968c45-3f20-4b80-8980-e223b250dec5`|
-| `name:{value}` | Searches for an exact match for a `name`. |`name:default`|
-| `description:{value}` | Searches for an exact match for a `description`. |`description:temporary`|
+| `id:{value}` | Searches for a match on `id`. |`id:df968c45-3f20-4b80-8980-e223b250dec5`|
+| `name:{value}` | Searches for a match on `name`. |`name:default`|
+| `description:{value}` | Searches for a match on `description`. |`description:temporary`|
 | `labels.{label_key}:{label_value}` | Searches for an exact match for a labeled entity. |`labels.env:prod`|
-| `@{attribute_key}:{attribute_value}` | Searches for an exact match for an entity specific attribute. |`@email:admin@domain.com`|
+| `@{attribute_key}:{attribute_value}` | Searches for an exact match for an entity specific attribute. |`@email:"admin@domain.com"`|
 
 ### Reserved Characters
 
