@@ -2,10 +2,9 @@
 title: Konnect Search
 content_type: reference
 description: Learn how to use the Konnect Search to search through all Konnect entities.
-beta: true
 ---
 
-The {{site.konnect_short_name}} Search feature allows you to perform a search across all {{site.konnect_short_name}} entities within an organization. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product. Search can be accessed via the search bar (_⌘+k_) on the top of every page or via the KSearch API.
+The {{site.konnect_short_name}} Search feature allows you to perform a search across all {{site.konnect_short_name}} entities within an organization. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product. Search can be accessed via the search bar (_⌘+k_) on the top of every page or via the {{site.konnect_short_name}} Search API.
 
 Here are a few example use cases where you can use the {{site.konnect_short_name}} Search API in your automation:
 * Find entities that are "not compliant". For example, you can use search to find all routes that don't have a path that starts with `/api`.
@@ -18,10 +17,43 @@ Here are a few example use cases where you can use the {{site.konnect_short_name
 * **Security and accessibility:** The {{site.konnect_short_name}} Search API will only return entities that the user has permissions to access. If a user is able to retrieve the entity in the [list endpoint](/konnect/api/search/latest/), then the user will be able to see the entity in the search response.
 * **Advanced query language:** The {{site.konnect_short_name}} Search API supports an advanced query language with selectors, reserved characters, and logical operators.
 
-## Supported entity types
-|||
-|---|---|
-|- api_product <br/> - api_product_version <br/> - application <br/> - ca_certificate <br/> - certificate <br/> - consumer <br/> - consumer_group <br/> - control_plane <br/> - control_plane <br/> - data_plane <br/> - developer <br/> - developer_team <br/> - key <br/> - key_set  <br/> - mesh | - mesh_control_plane <br/> - plugin <br/> - portal <br/> - report <br/> - route <br/> - service <br/> - sni <br/> - system_account <br/> - target <br/> - team <br/> - upstream <br/> - user <br/> - vault <br/> - zone <br/> <br/>|
+## Query Syntax
+
+The {{site.konnect_short_name}} Search API provides selectors, reserved characters, and logical operators that you can use to narrow your entity search. By combining these selectors, reserved characters, and logical operators, you can construct complex and precise queries to effectively use the {{site.konnect_short_name}} Search API.
+
+<!--add example query syntax here-->
+
+### Supported entity types
+
+- `api_product`  
+- `api_product_version`  
+- `application`  
+- `ca_certificate`  
+- `certificate`  
+- `consumer`  
+- `consumer_group`  
+- `control_plane`  
+- `control_plane`  
+- `data_plane`  
+- `developer`  
+- `developer_team`  
+- `key`  
+- `key_set`   
+- `mesh`  
+- `mesh_control_plane`  
+- `plugin`  
+- `portal`  
+- `report`  
+- `route`  
+- `service`  
+- `sni`  
+- `system_account`  
+- `target`  
+- `team`  
+- `upstream`  
+- `user`  
+- `vault`  
+- `zone`  
 
 Additional entities may be added in future releases. You can view a list of all the supported entities by sending the following API request:
 
@@ -33,10 +65,6 @@ curl -X 'GET' \
 
 ### Searchable attributes
 For each entity type, there is a list of entity specific attributes that are searchable. These attributes are returned in the attributes object in the search response while the schema of the searchable attributes can be found in the types endpoint.
-
-# Query Syntax
-
-The {{site.konnect_short_name}} Search API provides selectors, reserved characters, and logical operators that you can use to narrow your entity search. By combining these selectors, reserved characters, and logical operators, you can construct complex and precise queries to effectively use the {{site.konnect_short_name}} Search API.
 
 ### Selectors
 
