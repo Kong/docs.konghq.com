@@ -17,34 +17,10 @@ LTS versions of {{site.kgo_product_name}} are supported for 3 years after releas
 {:.note}
 > {{site.kgo_product_name}} is a recently released product and does not currently provide an LTS version.
 
-## Supported versions
+## Version support for {{site.kgo_product_name}}
 
-{% assign latest_kgo_release = site.data.kong_latest_kgo.release %}
-{% assign latest_kgo_eol = "Sept 2024" %}
+{% support_policy kong_versions_kgo%}
 
-<table style="display:table" width="100%">
-<thead>
-<tr>
-  <th>Kubernetes Version</th>
-  <th>OpenShift Version</th>
-  <th>Upstream K8s EOL</th>
-  <th>KGO Version</th>
-  <th>KGO EOL</th>
-</tr>
-</thead>
-<tbody>
-  <tr>
-    <td>1.27</td>
-    <td>N/A</td>
-    <td>Jun 2024</td>
-    <td>{{ latest_kgo_release }}</td>
-    <td>{{ latest_kgo_eol }}</td>
-  </tr>
-</tbody>
-</table>
+> *Table 1: Version Support for {{site.kgo_product_name}}*
 
-## {{site.kgo_product_name}} versions
-
-| Version  | Released Date | End of Full Support | End of Sunset Support |
-|:--------:|:-------------:|:-------------------:|:---------------------:|
-|  1.0.x   |  2023-09-27   |     2024-09-27      |      2025-09-27       |
+{% include /md/support-policy.md %}
