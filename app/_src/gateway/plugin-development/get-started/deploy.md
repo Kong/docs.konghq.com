@@ -37,7 +37,7 @@ following contents
 
 ```dockerfile
 {% if page.release.label == "unreleased" -%}
-FROM kong/kong-gateway:latest
+FROM kong/kong-gateway-dev:latest
 {% else -%}
 FROM kong/kong-gateway:{{page.release.tag}}
 {% endif -%}
@@ -145,12 +145,15 @@ Building a custom Docker image is not the only option for deploying a custom plu
 
 ### Kubernetes deployments
 
-Many users choose to run {{site.base_gateway}} on Kubernetes. {{ site.kic_product_name }}
-provides a Kubernetes Ingress Controller that can be used to manage {{site.base_gateway}}
-deployments including custom plugins. The [Custom Plugins page](/kubernetes-ingress-controller/latest/plugins/custom/)
-of the {{ site.kic_product_name }} documentation provides detailed instructions on deploying
-custom plugins using the [Kong Helm chart](/kubernetes-ingress-controller/latest/install/helm/) 
-or standard Kubernetes manifests.
+Many users choose to run {{site.base_gateway}} on Kubernetes. {{site.base_gateway}} can 
+be deployed on Kubernetes directly or by using [{{site.kic_product_name}}](/kubernetes-ingress-controller/latest/).
+In either case, deploying custom plugins on Kubernetes is achieved by adding the custom plugin 
+code to the cluster as a Kubernetes resource and configuring {{site.base_gateway}} to load the plugin.
+
+The [Custom Plugins](/kubernetes-ingress-controller/latest/plugins/custom/) documentation
+page provides instructions on deploying custom plugins using the 
+[Kong Helm chart](/kubernetes-ingress-controller/latest/install/helm/) or directly with 
+standard Kubernetes manifests.
 
 ### Overriding package path
 
@@ -176,6 +179,17 @@ you build an archive from the rockspec file and deliver and extract it to your d
 
 See the [Packaging sources](/gateway/{{page.release}}/plugin-development/distribution/#packaging-sources) 
 section of the custom plugin installation page for details on this distribution option.
+
+## Custom Plugins on {{site.konnect_product_name}}
+
+[{{site.konnect_product_name}}](/konnect/) is Kong's unified API platform as a service. {{site.konnect_short_name}}
+supports custom plugins with some limitations. With an on-premise deployment, users manage {{site.base_gateway}}
+data planes as well as the control plane and, optionally, the backing database. In {{site.konnect_product_name}},
+the control plane and database are fully managed for you which limits support for custom data entities and 
+Admin API extensions in your plugin. 
+
+The [Manage Plugins](/konnect/gateway-manager/plugins/) section of the
+{{site.konnect_short_name}} documentation provides more information on deploying custom plugins to {{site.konnect_product_name}}.
 
 ## What's Next
 
