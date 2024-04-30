@@ -16,29 +16,53 @@ Kong captures each batch of events and translates them back into the inference f
 When streaming is disabled, requests proxy directly to the LLM look like this:
 
 {% mermaid %}
-sequenceDiagram
-    actor Client
-    participant Kong
-    Note right of Kong: AI Proxy plugin
-    Client->>+Kong: 
-    Kong->>+Cloud LLM: Sets proxy request information
-    Cloud LLM->>+Client: Sends chunk to client
+flowchart LR
+  A(client)
+  B(Kong Gateway with 
+  AI Proxy plugin)
+  C(Cloud LLM)
+
+  A --> B
+  B --sends request 
+  information--> C
+  C --> A
 {% endmermaid %}
 
 When streaming is enabled, requests proxy directly to the LLM look like this:
 
 {% mermaid %}
-sequenceDiagram
-    actor Client
-    participant Kong
-    Note right of Kong: AI Proxy plugin
-    Client->>+Kong: 
-    Kong->>+Cloud LLM: Sets proxy request information
-    Cloud LLM->>+Kong:  
-    Kong->>+Readframe: 
-    Readframe->>+Transform frame: 
-    Transform frame->>+Kong: 
-    Kong->>+Client: ngx.EXIT
+flowchart LR
+  A(client)
+  B(Kong Gateway with 
+  AI Proxy plugin)
+  C(Cloud LLM)
+  D[[transform frame]]
+  E[[read frame]]
+
+subgraph main
+direction LR
+  subgraph 1
+  A
+  end
+  subgraph 3
+  C
+  end
+  subgraph 2
+  D
+  E
+  end
+  A --> B --request--> C
+  C --response--> B
+  B --> D-->E
+  E --> B
+  B --> A
+end
+
+  linkStyle 2,3,4,5,6 stroke:#b6d7a8,color:#b6d7a8
+  style 1 color:#fff,stroke:#fff
+  style 2 color:#fff,stroke:#fff
+  style 3 color:#fff,stroke:#fff
+  style main color:#fff,stroke:#fff
 {% endmermaid %}
 
 The new streaming framework captures each event, sends the chunk back to the client, and then exits early. 
