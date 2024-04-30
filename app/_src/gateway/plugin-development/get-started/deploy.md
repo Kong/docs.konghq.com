@@ -148,7 +148,8 @@ Building a custom Docker image is not the only option for deploying a custom plu
 Many users choose to run {{site.base_gateway}} on Kubernetes. {{site.base_gateway}} can 
 be deployed on Kubernetes directly or by using [{{site.kic_product_name}}](/kubernetes-ingress-controller/latest/).
 In either case, deploying custom plugins on Kubernetes is achieved by adding the custom plugin 
-code to the cluster as a Kubernetes resource and configuring {{site.base_gateway}} to load the plugin.
+code to the cluster in a ConfigMap or Secret, which is then mounted into the {{site.base_gateway}} proxy
+pod by the Helm chart.
 
 The [Custom Plugins](/kubernetes-ingress-controller/latest/plugins/custom/) documentation
 page provides instructions on deploying custom plugins using the 
