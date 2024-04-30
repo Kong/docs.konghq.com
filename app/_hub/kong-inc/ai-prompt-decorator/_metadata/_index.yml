@@ -18,5 +18,3 @@ categories:
 publisher: Kong Inc.
 desc: Prepend or append an array of llm/v1/chat messages to a user's chat history
 type: plugin
-
-kong_beta: true

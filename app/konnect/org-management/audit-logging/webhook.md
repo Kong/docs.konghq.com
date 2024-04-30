@@ -191,4 +191,4 @@ false           | `unconfigured` | The webhook for this region has not been conf
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
-* [Audit Logs API](/konnect/api/audit-logs/v2/)
+* [Audit Logs API](/konnect/api/audit-logs/latest/)

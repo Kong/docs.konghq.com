@@ -3691,7 +3691,7 @@ any requests.
 
 By default, `smtp_admin_emails` will be the recipients.
 
-This can be overriden by `portal_smtp_admin_emails`, which can be set
+This can be overridden by `portal_smtp_admin_emails`, which can be set
 dynamically per workspace through the Admin API.
 
 The email looks like the following:

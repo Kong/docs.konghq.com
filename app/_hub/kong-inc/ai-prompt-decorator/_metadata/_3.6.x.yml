@@ -1,4 +1,4 @@
-name: AI Response Transformer
+name: AI Prompt Decorator
 search_aliases:
   - ai
   - llm
@@ -16,5 +16,7 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: Use an LLM service to examine the upstream HTTP(S) prior to forwarding it to the client
+desc: Prepend or append an array of llm/v1/chat messages to a user's chat history
 type: plugin
+
+kong_beta: true

@@ -1,4 +1,4 @@
-name: AI Response Transformer
+name: AI Prompt Guard
 search_aliases:
   - ai
   - llm
@@ -16,5 +16,7 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: Use an LLM service to examine the upstream HTTP(S) prior to forwarding it to the client
+desc: Check llm/v1/chat or llm/v1/completions requests against a list of allowed or denied expressions
+
 type: plugin
+kong_beta: true

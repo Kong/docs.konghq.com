@@ -13,6 +13,7 @@ support_url: https://success.nonamesecurity.com/
 kong_version_compatibility: 
   community_edition:
     compatible:
+      - 3.6.x
       - 3.5.x
       - 3.4.x
       - 3.3.x
@@ -25,6 +26,7 @@ kong_version_compatibility:
       - 1.0.x
   enterprise_edition:
     compatible:
+      - 3.6.x
       - 3.5.x
       - 3.4.x
       - 3.3.x
