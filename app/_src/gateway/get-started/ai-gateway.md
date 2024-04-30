@@ -1,13 +1,14 @@
 ---
-title: AI Gateway
+title: Get started with AI Gateway
 content-type: tutorial
 book: get-started
 chapter: 7
 ---
 
-The AI Gateway is built using {{site.base_gateway}}'s standard plugin model. The AI plugins are bundled 
-with {{site.base_gateway}} as of version 3.6.x. This means you can deploy the AI Gateway
-capabilities by following the documented configuration instructions for [each plugin](/hub/?category=ai). 
+The [AI Gateway](/gateway/{{page.release}}/ai-gateway/) is built using {{site.base_gateway}}'s standard plugin model. 
+The AI plugins are bundled  with {{site.base_gateway}} as of version 3.6.x. 
+This means you can deploy the AI Gateway capabilities by following the documented configuration 
+instructions for [each plugin](/hub/?category=ai). 
 
 To help you get started quickly, we have provided a script that automates the task of 
 deploying a {{site.base_gateway}} configured as an AI Gateway to a Docker container, 
@@ -86,3 +87,7 @@ files it generates, which can be used for future AI Gateway configurations.
 > **Note:**
 > By default, local models are configured on the endpoint `http://host.docker.internal:11434`,
 > which allows {{site.base_gateway}} running in Docker to connect to the host machine. 
+
+## More information
+* [Learn about AI Gateway](/gateway/{{page.release}}/ai-gateway/)
+* [AI Gateway plugins](/hub/?category=ai)

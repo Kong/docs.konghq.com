@@ -8,17 +8,17 @@ designed to help developers and organizations effectively adopt AI capabilities 
 
 ## How to get started 
 
-<div class="docs-grid-install docs-grid-install__bottom max-2">
+<div class="docs-grid-install docs-grid-install__bottom max-3">
   <a href="/gateway/{{page.release}}/get-started/ai-gateway/" class="docs-grid-install-block docs-grid-install-block__bottom">
-    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-api-plugins-color.svg" alt="">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-block-column">
       <div class="install-text">Get started</div>
       <div class="install-description">Get started in one minute with our guide</div>
     </div>
   </a>
 
-  <a href="https://konghq.com/products/kong-ai-gateway#videos" class="docs-grid-install-block docs-grid-install-block__bottom">
-    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
+  <a href="https://konghq.com/products/kong-ai-gateway#videos" class="docs-grid-install-block docs-grid-install-block__bottom no-link-icon">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
     <div class="install-block-column">
       <div class="install-text">Videos</div>
       <div class="install-description">Watch video tutorials</div>
@@ -26,17 +26,13 @@ designed to help developers and organizations effectively adopt AI capabilities 
   </a>
 
 <a href="/hub/?category=ai" class="docs-grid-install-block docs-grid-install-block__bottom">
-    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-api-plugins-color.svg" alt="">
     <div class="install-block-column">
       <div class="install-text">AI Plugins</div>
       <div class="install-description">Check out the AI plugins on the Kong Plugin Hub</div>
     </div>
   </a>
 </div>
-<!-- 
-* [Get started](/gateway/{{page.release}}/get-started/ai-gateway/) in one minute with our guide
-* [Watch video tutorials](https://konghq.com/products/kong-ai-gateway#videos) in the AI Gateway product page
-* [View the AI plugins](/hub/?category=ai) in the Kong Plugin Hub -->
 
 ## What is the Kong AI Gateway?
 

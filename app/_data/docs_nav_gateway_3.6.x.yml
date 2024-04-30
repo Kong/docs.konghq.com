@@ -87,8 +87,6 @@ items:
         url: /get-started/key-authentication
       - text: Load-Balancing
         url: /get-started/load-balancing
-      - text: AI Gateway
-        url: /get-started/ai-gateway
 
   - title: Install Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
@@ -358,7 +356,6 @@ items:
         url: /ai-gateway/
       - text: Get started with AI Gateway
         url: /get-started/ai-gateway/
-        generate: false
       - text: LLM Provider Integration Guides
         items:
           - text: OpenAI
