@@ -311,7 +311,7 @@ There are three steps to completely remove a plugin.
 Depending on the platform that Gateway is running on, there are different ways of 
 distributing custom plugins.
 
-### Via LuaRocks
+### LuaRocks
 
 One way to do so is to use [LuaRocks](https://luarocks.org/), a
 package manager for Lua modules. It calls such modules "rocks". **Your module
@@ -328,17 +328,17 @@ build type to define modules in Lua notation and their corresponding file.
 For more information about the format, see the LuaRocks
 [documentation on rockspecs][rockspec].
 
-### Via OCI Artefacts
+### OCI Artifacts
 
-Many users will have access to an OCI-compliant registry (Dockerhub, AWS ECR, etc). 
-Kong Plugins can be packaged as generic OCI artefacts and uploaded to one of these 
+Many users will have access to an OCI-compliant registry like Docker Hub or Amazon ECR.
+Kong Plugins can be packaged as generic OCI artifacts and uploaded to one of these 
 registries for versioning, storage, and distribution. 
 
-The advantage of distributing plugins as OCI artefacts is that users can make use of 
-a number of ecosystem benefits including tooling around building, pushing/pulling, and 
-signing (for secure provenance attestation) of these artefacts. The steps below 
+The advantage of distributing plugins as OCI artifacts is that users can make use of 
+a number of ecosystem benefits including tooling around building, pushing and pulling, and 
+signing (for secure provenance attestation) of these artifacts. The steps below 
 illustrate a sample flow for packaging, distributing, and verifying a Kong custom plugin 
-as an OCI artefact.
+as an OCI artifact.
 
 On the machine where the plugin is developed, or as part of an automated workflow, run the following 
 steps:
@@ -358,17 +358,17 @@ steps:
     The private key (`cosign.key`) should be kept secure and is used for signing the plugin artefact. The public key 
     (`cosign.pub`) should be distributed and used by target machines to validate the downloaded plugin later in the flow. 
 
-    There are also keyless methods for signing and verifying artefacts with Cosign. More information 
+    There are also key-less methods for signing and verifying artifacts with Cosign. More information 
     is available in their [documentation][cosign-signing].
 
-3. Login to your OCI-compliant registry. In this case we'll use Dockerhub:
+3. Login to your OCI-compliant registry. In this case we'll use Docker Hub:
 
     ```
     cat ~/foo_password.txt | docker login --username foo-user --password-stdin
     ```
 
-4. Upload the plugin artefact to the OCI registry using Cosign. This is the equivalent of running 
-a `docker push <image>` when pushing a local Docker image up to a registry.
+4. Upload the plugin artifact to the OCI registry using Cosign. This is the equivalent of running 
+`docker push <image>` when pushing a local Docker image up to a registry.
 
     ```
     cosign upload blob -f my-plugin.tar.gz docker.io/foo-user/my-plugin
