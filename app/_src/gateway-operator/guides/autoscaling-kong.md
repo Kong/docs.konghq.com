@@ -76,7 +76,7 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "1000m"
-          # Add here any Konnect related environment variables, volumes etc...
+          # Add any Konnect-related configuration here: environment variables, volumes, and so on.
 ' | kubectl apply -f -
 ```
 
