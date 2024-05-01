@@ -106,7 +106,7 @@ You can test if the autoscaling works by using a load testing tool (e.g. k6s) to
     export PROXY_IP=$(kubectl get dataplanes.gateway-operator.konghq.com -o jsonpath='{.status.addresses[0].value}' horizontal-autoscaling)
     ```
 
-1. Install [`k6s`](https://k6.io/) then create a configuration file containing the following code:
+1. Install [`k6s`](https://k6.io/), then create a configuration file containing the following code:
 
     ```javascript
     import http from "k6/http";
