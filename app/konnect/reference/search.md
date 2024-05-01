@@ -4,26 +4,38 @@ content_type: reference
 description: Learn how to use the Konnect Search to search through all Konnect entities.
 ---
 
-The {{site.konnect_short_name}} Search feature allows you to perform a search across all {{site.konnect_short_name}} entities within an organization. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product. Search can be accessed via the search bar (_⌘+k_) on the top of every page or via the {{site.konnect_short_name}} Search API.
+The {{site.konnect_short_name}} Search feature allows you to perform simple and advanced searches across all {{site.konnect_short_name}} entities within an organization. You can access search using the search bar (_command+k_) at the top of every page in {{site.konnect_short_name}} or using the [{{site.konnect_short_name}} Search API](/konnect/api/search/latest/).
 
-Here are a few example use cases where you can use the {{site.konnect_short_name}} Search API in your automation:
-* Find entities that are "not compliant". For example, you can use search to find all routes that don't have a path that starts with `/api`.
-* Select from a list of available entities. For example, if you are attaching a route to a service, you can use search to find and identify which service to attach the route to. Or when you're adding members to a team, you can search for the user.
+The {{site.konnect_short_name}} Search API is available in global and regional locations with regional-awareness, ensuring that returned entities are relevant to their geographical location. 
 
-{{site.konnect_short_name}} Search includes the following features:
+Here are a few example use cases where you can use the {{site.konnect_short_name}} Search API in your automation: <!--I'm not sure, based on the examples, how you use the API for this and not just advanced search. these don't seem like automation use cases-->
 
-* **Global and regional access:** The {{site.konnect_short_name}} Search API is available in global and regional locations with regional-awareness. This ensures that returned entities are relevant to their geographical location, improving response times and conforming to data residency expectations.
-* **Comprehensive response:** The responses of the search query are uniform and contain a fixed number of standard attributes: `name`, `id`, `type`, `labels/tags` and `description`. In addition, entity-specific attributes are returned in the general `attributes` object.
-* **Security and accessibility:** The {{site.konnect_short_name}} Search API will only return entities that the user has permissions to access. If a user is able to retrieve the entity in the [list endpoint](/konnect/api/search/latest/), then the user will be able to see the entity in the search response.
-* **Advanced query language:** The {{site.konnect_short_name}} Search API supports an advanced query language with selectors, reserved characters, and logical operators.
+| You want to... | Then use... |
+| -------------- | ----------- |
+| Find entities that are "not compliant" | You can use search to find all routes that don't have a path that starts with `/api` |
+| Select from a list of available entities | For example, if you are attaching a route to a service, you can use search to find and identify which service to attach the route to. Or when you're adding members to a team, you can search for the user. |
 
 ## Query Syntax
 
 The {{site.konnect_short_name}} Search API provides selectors, reserved characters, and logical operators that you can use to narrow your entity search. By combining these selectors, reserved characters, and logical operators, you can construct complex and precise queries to effectively use the {{site.konnect_short_name}} Search API.
 
-<!--add example query syntax here-->
+To perform a simple search, you can just search by the name of an entity, like a service, API product, or name of a team. You can also perform an advanced search using {{site.konnect_short_name}}'s query syntax to get more granular results.
 
-### Supported entity types
+The following is an example advanced search query syntax:
+
+```
+type:team AND NOT label.department:eng AND name:*_qa
+```
+The following provides more details about the different components of the query syntax:
+* Selectors: `type`, `label`, and `name`. They define what you are searching by. 
+* Entity type: `team`. These define what {{site.konnect_short_name}} entity you want to search for.
+* Logical operator: `AND NOT` and `AND`. These are used to combine multiple criteria in a query.
+* Wildcard: `*`
+* Search values: `eng` and `_qa`. These values aren't set and can vary. They determine what you search for, such as the name of an API product or service that is unique to your environment.
+
+### Entity types
+
+The following {{site.konnect_short_name}} entity types are supported: 
 
 - `api_product`  
 - `api_product_version`  
@@ -63,8 +75,8 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
-### Searchable attributes
-For each entity type, there is a list of entity specific attributes that are searchable. These attributes are returned in the attributes object in the search response while the schema of the searchable attributes can be found in the types endpoint.
+#### Searchable attributes
+For each entity type, there is a list of entity specific attributes that are searchable. These attributes are returned in the attributes object in the search response while the schema of the searchable attributes can be found in the types endpoint. <!-- I'm guessing this specifies stuff like "department" in the example, but I wasn't finding this listed by the types endpoint. Also, can you search by a certain entity? Like "user"?-->
 
 ### Selectors
 

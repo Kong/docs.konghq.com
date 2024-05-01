@@ -331,8 +331,6 @@
           absolute_url: true
           generate: false
           target_blank: true
-        - text: Konnect Search Guide
-          url: /api/ksearch/
     - text: Mesh Manager API
       items:
         - text: API Spec
@@ -394,3 +392,5 @@
       url: /reference/plugins/
     - text: Custom Domains
       url: /reference/custom-dns/
+    - text: Konnect Search
+      url: /reference/search/
