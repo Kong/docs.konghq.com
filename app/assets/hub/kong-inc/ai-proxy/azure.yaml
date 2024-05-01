@@ -1,0 +1,17 @@
+description: |
+  This configuration enables AI Proxy with Azure OpenAI Service.
+  
+  Apply this plugin to a route with `"paths[]=~/azure-chat$"` configured.
+  Replace the `<azure_ai_access_key>` with your own API key.
+
+config:
+  route_type: "llm/v1/chat"
+  auth:
+    header_name: "api-key"
+    header_value: "<azure_ai_access_key>" # add your own Azure OpenAI access key
+  model:
+    provider: "azure"
+    name: "gpt-35-turbo"
+    options:
+      azure_instance: "ai-proxy-regression"
+      azure_deployment_id: "kong-gpt-3-5"

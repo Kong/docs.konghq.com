@@ -1,0 +1,19 @@
+description: |
+  Authenticate browser clients using Okta.
+
+  Replace the issuer URL, client ID, client secret, and redirect URI
+  with your own Okta configuration values.
+
+config:
+  issuer: "https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration"
+  client_id: "YOUR_CLIENT_ID"
+  client_secret: "YOUR_CLIENT_SECRET"
+  redirect_uri: "https://example.com/api"
+  scopes_claim:
+    - scp
+  scopes:
+    - openid
+    - email
+    - profile
+  auth_methods:
+    - authorization_code

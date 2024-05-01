@@ -1,0 +1,17 @@
+description: |
+  This configuration enables AI Proxy with Mistral.
+
+  You need a running Mistral instance to use this option.
+  Apply this plugin to a route with `"paths[]=~/mistral-chat$"` configured.
+  Replace the `<MISTRAL_AI_KEY>` with your own API key.
+
+config:
+  route_type: "llm/v1/chat"
+  auth:
+    header_name: "Authorization"
+    header_value: "Bearer <MISTRAL_AI_KEY>"
+  model:
+    provider: "mistral"
+    name: "mistral-tiny"
+    mistral_format: "openai"
+    upstream_url: "https://api.mistral.ai/v1/chat/completions"
