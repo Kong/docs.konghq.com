@@ -441,7 +441,7 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 * Fixed an issue where the IAM auth token was not refreshed when the underlying AWS credential expired.
 * Redis's `timeout` warning message is only printed if the timeout is set explicitly. If it isn't set, the default timeout value is used.
 * Removed inaccurate critical level logs which appeared when starting external plugin servers.
-These logs can't be suppressed due to a limitation of OpenResty. We chose to remove the socket availibilty detection feature.
+These logs can't be suppressed due to a limitation of OpenResty. We chose to remove the socket availability detection feature.
 
 #### Kong Manager Enterprise
 
@@ -883,7 +883,7 @@ action items when certain conditions are met.
 [#11696](https://github.com/kong/kong/issues/11696)
 * Enabled the use of vault references in DB-less mode in declarative configuration files. 
 [#11845](https://github.com/kong/kong/issues/11845)
-* Vault caches now properly warm up during initalization.
+* Vault caches now properly warm up during initialization.
 [#11827](https://github.com/kong/kong/issues/11827)
 * The vault resurrect time is now respected if a vault secret is deleted from a vault.
 [#11852](https://github.com/kong/kong/issues/11852)
@@ -1474,7 +1474,7 @@ This change is in direct response to the identified vulnerability [CVE-2023-4448
 * Fixed a keyring issue where a Kong node fails to send keyring material when using cluster strategy.
 * Fixed an issue that will cause a failure to send tracing data to Datadog when the value of the `x-datadog-parent-id` header in requests is a short decimal string.
 * Fixed the way RBAC retrieves group roles with a group name whose type is a number.
-* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature. 
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availability detection feature. 
 
 
 
@@ -1915,7 +1915,7 @@ doesn't match the provided status.
 * Updated the datafile library that meant when Kong was started with systemd, the SAML plugin did not load. 
 * Fixed a bug that the anonymous report can't be silenced by setting `anonymous_reports=false`.
 * Fixed a Jenkins issue where `kong/kong-gateway:3.3.0.0-alpine` was missing `resty.dns.resolver` patch. 
-* Fixed an issue addressing occassional issues attaching a workspace with the cache's consumer well.
+* Fixed an issue addressing occasional issues attaching a workspace with the cache's consumer well.
 
 #### Plugins
 * Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
@@ -3438,7 +3438,7 @@ Review the [breaking changes and deprecations](#breaking-changes-and-deprecation
 #### Enterprise
 
 * Kong Gateway now supports [dynamic plugin ordering](/gateway/3.0.x/kong-enterprise/plugin-ordering/).
-You can change a plugin's static priority by specifing the order in which plugins run.
+You can change a plugin's static priority by specifying the order in which plugins run.
 This lets you run plugins such as `rate-limiting` before authentication plugins.
 
 * Kong Gateway now offers a FIPS package. The package replaces the primary library, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.

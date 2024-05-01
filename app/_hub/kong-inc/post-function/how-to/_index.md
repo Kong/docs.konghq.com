@@ -3,7 +3,7 @@ title: Getting started with the Post-function plugin
 nav_title: Getting started with Post-function
 ---
 
-The following guide shows you how to set up the Post-fuction plugin to adjust request header names. In this example, we'll edit two types of headers: headers set via a plugin (in this case, 
+The following guide shows you how to set up the Post-function plugin to adjust request header names. In this example, we'll edit two types of headers: headers set via a plugin (in this case, 
 [Rate Limiting](/hub/kong-inc/rate-limiting/)), and latency headers from {{site.base_gateway}}).
 
 * The Rate Limiting plugin returns headers such as `X-RateLimit-Remaining-<time>` and `X-RateLimit-Limit-<time>`, 
