@@ -4,13 +4,17 @@ nav_title: Overview
 
 Validate HTTP requests and responses against an OpenAPI Specification.
 
-The plugin supports both Swagger(v2) and OpenAPI(3.0.x) specifications, with the support of JSON Schema [Draft-04](https://json-schema.org/specification-links#draft-4). 
 
-{% if_plugin_version eq:3.7.x %}
+{% if_version lte:3.6.x %}
 
-[OpenAPI 3.1.0](https://www.openapis.org/blog/2021/02/18/openapi-specification-3-1-released) is supported in Kong Gateway 3.7.0.0 with a new JSON Schema validator that supports Draft 2019-09.
+The plugin supports both Swagger (v2) and OpenAPI (3.0.x) specifications, with the support of JSON Schema [Draft-04](https://json-schema.org/specification-links#draft-4). 
 
-{% endif_plugin_version %}
+{% endif_version %}
+{% if_version gte:3.7.x %}
+
+The plugin supports both Swagger (v2) and OpenAPI (3.0.x and 3.1.0) specifications with a JSON Schema validator that supports [Draft 2019-09](https://json-schema.org/specification-links#draft-2019-09-(formerly-known-as-draft-8)).
+
+{% endif_version %}
 
 {% if_plugin_version gte:3.2.x %}
 {:.important .no-icon}
@@ -29,19 +33,19 @@ To enable the plugin, use one of the following methods:
 
 {% endif_plugin_version %}
 
-{% if_plugin_version eq:3.7.x %}
+{% if_version gte:3.7.x %}
 
 ## Supported OpenAPI 3.1.0 specification features
 
 | Category                        | Supported                      | Not supported                                                            |
 |---------------------------------|--------------------------------|--------------------------------------------------------------------------|
-| Request Body                    | application/json               | application/xml</br>multipart/form-data</br>text/plain</br>text/xml</br> |
-| Response Body                   | application/json               | -                                                                        |
-| Request Parameters              | path, query, header, cookie    | -                                                                        |
-| Schema                          | allOf</br>oneOf</br>anyOf</br> | -                                                                        |
-| Parameter Serialization         | style, explode                 | -                                                                        |
+| Request Body                    | `application/json`               | `application/xml`<br>`multipart/form-data`<br>`text/plain`<br>`text/xml`<br> |
+| Response Body                   | `application/json`               | -                                                                        |
+| Request Parameters              | `path`, `query`, `header`, `cookie`    | -                                                                        |
+| Schema                          | `allOf`<br>`oneOf`<br>`anyOf`<br> | -                                                                        |
+| Parameter Serialization         | `style`, `explode `                | -                                                                        |
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## Tutorial
 
