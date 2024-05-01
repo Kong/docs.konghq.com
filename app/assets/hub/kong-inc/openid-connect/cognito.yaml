@@ -1,0 +1,11 @@
+description: |
+  Integrate Kong Gateway with Amazon Cognito.
+
+  Set up an Amazon Cognito User Pool and Application Definition before configuring the plugin.
+
+  Replace the issuer URL, client ID, and client secret with your own values.
+
+config:
+  issuer: "https://cognito-idp.<REGION>.amazonaws.com/<USER-POOL-ID>"
+  client_id: "YOUR_CLIENT_ID"
+  client_secret: "YOUR_CLIENT_SECRET"
