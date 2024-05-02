@@ -49,6 +49,7 @@ The following {{site.konnect_short_name}} entity types are supported:
 - `data_plane`  
 - `developer`  
 - `developer_team`  
+- `gateway_service`  
 - `key`  
 - `key_set`   
 - `mesh`  
@@ -57,7 +58,6 @@ The following {{site.konnect_short_name}} entity types are supported:
 - `portal`  
 - `report`  
 - `route`  
-- `service`  
 - `sni`  
 - `system_account`  
 - `target`  
