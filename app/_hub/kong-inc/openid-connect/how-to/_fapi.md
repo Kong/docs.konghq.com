@@ -4,7 +4,6 @@ nav_title: Financial-Grade API (FAPI)
 minimum_version: 3.7.x
 ---
 
-## Overview
 
 The OpenID Connect plugin supports various features of the FAPI standard, aimed to protect APIs that expose high-value and sensitive data.
 
