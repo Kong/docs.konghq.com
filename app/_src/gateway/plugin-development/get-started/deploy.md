@@ -13,7 +13,7 @@ a reference to further instructions.
 
 ## Prerequisites
 
-This page is the fifth chapter in the [Getting Started](/gateway/{{page.gateway_release}}/plugin-development/get-started/index) 
+This page is the fifth chapter in the [Getting Started](/gateway/{{page.release}}/plugin-development/get-started/index) 
 guide for developing custom plugins. These instructions refer to the previous chapters in the guide and require the same
 developer tool prerequisites.
 
@@ -21,7 +21,7 @@ developer tool prerequisites.
 
 A very popular choice for running {{site.base_gateway}} is using container
 runtime systems. Kong builds and verifies Docker images for use in your 
-deployments and provides [detailed instructions](/gateway/{{page.gateway_release}}/install/docker/)
+deployments and provides [detailed instructions](/gateway/{{page.release}}/install/docker/)
 on Docker deployments. Let's look at a few options for running your custom plugin 
 in a {{site.base_gateway}} container.
 

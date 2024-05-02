@@ -12,7 +12,7 @@ desire to decorate API responses from your upstream services with data from a
 
 ## Prerequisites
 
-This page is the fourth chapter in the [Getting Started](/gateway/{{page.gateway_release}}/plugin-development/get-started/index) 
+This page is the fourth chapter in the [Getting Started](/gateway/{{page.release}}/plugin-development/get-started/index) 
 guide for developing custom plugins. These instructions refer to the previous chapters in the guide and require the same
 developer tool prerequisites.
 
@@ -72,7 +72,7 @@ options there are for handling them.
 ### Handle response errors
 
 The {{site.base_gateway}} 
-[Plugin Development Kit](/gateway/{{page.release_version}}/plugin-development/pdk/)
+[Plugin Development Kit](/gateway/{{page.release}}/plugin-development/pdk/)
 provides you with various functions to help you handle error conditions.
 
 In this example you are processing responses from the upstream service

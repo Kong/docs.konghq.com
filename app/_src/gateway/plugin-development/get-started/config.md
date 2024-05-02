@@ -8,7 +8,7 @@ The following is a step by step guide for adding configuration to custom plugins
 
 ## Prerequisites
 
-This page is the third chapter in the [Getting Started](/gateway/{{page.gateway_release}}/plugin-development/get-started/index) 
+This page is the third chapter in the [Getting Started](/gateway/{{page.release}}/plugin-development/get-started/index) 
 guide for developing custom plugins. These instructions refer to the previous chapters in the guide and require the same
 developer tool prerequisites.
 
@@ -34,7 +34,7 @@ local typedefs = require "kong.db.schema.typedefs"
 ```
 
 Below is a Lua snippet showing a typical 
-[configuration field](gateway/{{site.page_version}}/plugin-development/configuration/#describing-your-configuration-schema)
+[configuration field](/gateway/{{page.release}}/plugin-development/configuration/#describing-your-configuration-schema)
 that defines a field named `response_header_name`. 
 
 Here we use the `header_name` type definition which defines the field to be a string that cannot be null and 
@@ -98,7 +98,7 @@ let's validate our changes work as expected with manual and automated tests.
 
 ### Manually validate configuration
 
-In the [previous chapter on testing](/gateway/{{page.release_version}}/plugin-development/get-started/testing#3-manually-test-plugin)
+In the [previous chapter on testing](/gateway/{{page.release}}/plugin-development/get-started/testing#3-manually-test-plugin)
 we showed how to use Pongo to run a shell and manually validate the plugins behavior. Repeat that process here 
 to validate the plugins new configurable behavior.
 
