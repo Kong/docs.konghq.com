@@ -37,12 +37,6 @@ async function fileUris(productsConfig) {
     for (path of includePaths) {
       includeFilesUris.add(path);
     }
-
-    if (productConfig.product === 'gateway') {
-      pluginsMetadataFilesUris.push(...await pluginsMetadataFiles(productConfig));
-      pluginsOverviewFilesUris.push(...await pluginsOverviewFiles());
-      pluginsSchemaFilesUris.push(...await pluginsSchemaFiles(productConfig));
-    }
   };
 
   return {
@@ -51,11 +45,21 @@ async function fileUris(productsConfig) {
     configLocaleFilesUris: configLocaleFilesUris,
     dataFilesUris: dataFilesUris,
     docsNavFilesUris: docsNavFilesUris,
-    includeFilesUris: Array.from(includeFilesUris),
+    includeFilesUris: Array.from(includeFilesUris)
+  };
+};
+
+async function pluginFileUris(gatewayConfig) {
+  // TODO: scope plugins to a list?
+  const pluginsMetadataFilesUris = await pluginsMetadataFiles(gatewayConfig);
+  const pluginsOverviewFilesUris = await pluginsOverviewFiles();
+  const pluginsSchemaFilesUris = await pluginsSchemaFiles(gatewayConfig);
+
+  return {
     pluginsMetadataFilesUris: pluginsMetadataFilesUris,
     pluginsOverviewFilesUris: pluginsOverviewFilesUris,
     pluginsSchemaFilesUris: pluginsSchemaFilesUris
   };
-};
+}
 
-module.exports = { fileUris };
+module.exports = { fileUris, pluginFileUris };
