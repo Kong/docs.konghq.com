@@ -11,15 +11,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## May 2024
 
-**{{site.konnect_short_name}} Search API**
-: You can now use the beta {{site.konnect_saas}} Search API to search {{site.konnect_short_name}} for the following entities:
-  * Users
-  * Teams
-  * System Accounts
-  * Developers
-  * Developer Teams
+**{{site.konnect_short_name}} Konnect Search Enhancements**
+: The new {{site.konnect_saas}} search enhancements now allows you to to search across 29 entities in {{site.konnect_short_name}}. The search enhancement is made up of an advanced search syntax coupled with a refreshed search bar in the UI and a [Konnect Search API](/konnect/api/search/latest/). 
 
-: The {{site.konnect_short_name}} Search API allows you to search through all supported {{site.konnect_short_name}} entities with a common search query language. For more information, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/reference/search/).
+: For more information, syntax description and use cases, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/reference/search/).
 
 ## April 2024
 
