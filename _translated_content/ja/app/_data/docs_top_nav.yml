@@ -1,0 +1,24 @@
+- name: "Kong Gateway"
+  desc: "軽量、高速、柔軟なクラウドネイティブ API ゲートウェイ"
+  url: /gateway/latest/
+- name: "Kong Konnect"
+  desc: "SaaS エンドツーエンド接続のための単一プラットフォーム"
+  url: /konnect/
+- name: "Kong Mesh"
+  desc: "Kuma と Envoy に基づくエンタープライズ サービス メッシュ"
+  url: /mesh/latest/
+- name: "decK"
+  desc: "Kong の構成を宣言的な方法で管理するのに役立ちます"
+  url: /deck/latest/
+- name: "Kong Ingress Controller"
+  desc: "Kubernetes クラスター内で動作し、トラフィックをプロキシするように Kong を構成します。"
+  url: /kubernetes-ingress-controller/latest/
+- name: "Kong Gateway Operator"
+  desc: "YAML マニフェストを使用して Kubernetes 上で Kong のデプロイメントを管理する"
+  url: /gateway-operator/latest/
+- name: "Insomnia"
+  desc: "共同API開発プラットフォーム"
+  url: https://docs.insomnia.rest/
+- name: "Kuma"
+  desc: "Envoy プロキシ統合がバンドルされたオープンソースの分散コントロール プレーン"
+  url: https://kuma.io/docs/

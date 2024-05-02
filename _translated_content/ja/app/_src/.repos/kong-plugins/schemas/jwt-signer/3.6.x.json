@@ -1,0 +1,731 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "type": "foreign",
+        "reference": "consumers",
+        "description": "null 値を許可する外部キーを表すカスタム型。",
+        "eq": null
+      }
+    },
+    {
+      "protocols": {
+        "type": "set",
+        "elements": {
+          "type": "string",
+          "one_of": [
+            "grpc",
+            "grpcs",
+            "http",
+            "https"
+          ]
+        },
+        "default": [
+          "grpc",
+          "grpcs",
+          "http",
+          "https"
+        ],
+        "required": true,
+        "description": "HTTP プロトコルを表す文字列のセット。"
+      }
+    },
+    {
+      "consumer_group": {
+        "type": "foreign",
+        "reference": "consumer_groups",
+        "description": "null 値を許可する外部キーを表すカスタム型。",
+        "eq": null
+      }
+    },
+    {
+      "config": {
+        "type": "record",
+        "fields": [
+          {
+            "realm": {
+              "type": "string",
+              "description": "認証または認可が失敗した場合、または予期しないエラーが発生した場合、プラグインは `WWW-Authenticate` ヘッダーを `realm` 属性の値とともに送信します。",
+              "required": false
+            }
+          },
+          {
+            "enable_hs_signatures": {
+              "type": "boolean",
+              "description": "デフォルトでは、`HS256`、`HS384`、または `HS512` などの HMAC アルゴリズムで署名されたトークンは受け入れられません。これらのトークンを検証する必要がある場合は、この設定を有効にします。",
+              "default": false,
+              "required": false
+            }
+          },
+          {
+            "enable_instrumentation": {
+              "type": "boolean",
+              "description": "`ngx.CRIT` (CRITICAL) レベルを使用して、いくつかの追加情報付きでログエントリを書き込みます。",
+              "default": false,
+              "required": false
+            }
+          },
+          {
+            "access_token_issuer": {
+              "type": "string",
+              "description": "署名されたアクセストークンまたは再署名されたアクセストークンの `iss` クレームは、この値に設定されます。受信したトークンの元の `iss` クレーム (おそらく内部で調査された) は、新しく署名されたアクセストークンの `original_iss` クレームに保存されます。",
+              "default": "kong",
+              "required": false
+            }
+          },
+          {
+            "access_token_keyset": {
+              "type": "string",
+              "description": "署名キーを含むキーセットの名前。",
+              "default": "kong",
+              "required": false
+            }
+          },
+          {
+            "access_token_jwks_uri": {
+              "type": "string",
+              "description": "プラグインがアクセストークンの署名を検証するために公開キー (JWKS) を取得できる URI を指定します。",
+              "required": false
+            }
+          },
+          {
+            "access_token_request_header": {
+              "type": "string",
+              "description": "このパラメーターは、アクセストークンを検索するヘッダーの名前を指定します。",
+              "default": "Authorization",
+              "required": false
+            }
+          },
+          {
+            "access_token_leeway": {
+              "type": "number",
+              "description": "トークンの発行元と Kong の間のクロックスキューを調整します。トークンの `exp` クレームの値に、Kong サーバーの現在の時刻 (秒単位) に対するトークンの有効期限の確認前に追加されます。`config.verify_access_token_expiry` を使用してアクセストークンの有効期限の検証を完全に無効にすることもできます。",
+              "default": 0,
+              "required": false
+            }
+          },
+          {
+            "access_token_scopes_required": {
+              "type": "array",
+              "description": "`config.access_token_scopes_claim` で指定されたクレームによってチェックされる必要のある値 (またはスコープ) を指定します。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "access_token_scopes_claim": {
+              "type": "array",
+              "elements": {
+                "type": "string"
+              },
+              "default": [
+                "scope"
+              ],
+              "required": false,
+              "description": "`config.access_token_scopes_required` の値と照合するアクセストークン内のクレームを指定します。"
+            }
+          },
+          {
+            "access_token_consumer_claim": {
+              "type": "array",
+              "description": "このパラメーターの値を設定すると、プラグインはアクセストークン内のこの設定パラメーターで指定された任意のクレーム (たとえば、`sub` または `username`) を Kong のコンシューマーエンティティにマッピングしようとします。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "access_token_consumer_by": {
+              "type": "array",
+              "elements": {
+                "type": "string",
+                "one_of": [
+                  "id",
+                  "username",
+                  "custom_id"
+                ]
+              },
+              "default": [
+                "username",
+                "custom_id"
+              ],
+              "required": false,
+              "description": "プラグインがアクセストークンを Kong コンシューマーマッピングに適用しようとするとき、この設定パラメーターを使用して定義されたプロパティから一致する Kong コンシューマーを見つけようとします。このパラメーターには複数の値を指定できます。有効な値は `id`、`username`、および `custom_id` です。"
+            }
+          },
+          {
+            "access_token_upstream_header": {
+              "type": "string",
+              "description": "`config.access_token_request_header` の値を読み取った後、リクエストから削除します。`config.access_token_upstream_header` を使用すると、プラグインが Kong に署名されたトークンを追加する上流ヘッダーを指定できます。値を指定しない場合、`null` または `\"\"` (空の文字列) のような値を使用すると、プラグインはトークンの署名または再署名すら試みません。",
+              "default": "Authorization:Bearer",
+              "required": false
+            }
+          },
+          {
+            "access_token_upstream_leeway": {
+              "type": "number",
+              "description": "元のアクセストークンの有効期限時間 (秒単位) を追加または減算 (負の値を使用) したい場合は、元のアクセストークンの `exp` クレームに追加される値を指定できます。",
+              "default": 0,
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_endpoint": {
+              "type": "string",
+              "description": "`opaque` アクセストークンを使用し、アクセストークンの内観を有効にする場合、この設定パラメーターで OAuth 2.0 内観エンドポイント URI を指定する必要があります。",
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_authorization": {
+              "type": "string",
+              "description": "内観エンドポイントがクライアント認証を必要とする場合 (クライアントは JWT Signer プラグインです)、この設定パラメーターで `Authorization` ヘッダーの値を指定できます。",
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_body_args": {
+              "type": "string",
+              "description": "このパラメーターを使用すると、URL エンコードされたリクエストボディ引数を渡すことができます。例: `resource=` または `a=1&b=&c`。",
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_hint": {
+              "type": "string",
+              "description": "アクセストークンを内観する際に `hint` パラメーターを指定する必要がある場合は、このパラメーターを使用して値を指定します。デフォルトでは、プラグインは `hint=access_token` を送信します。",
+              "default": "access_token",
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_jwt_claim": {
+              "type": "array",
+              "description": "内観結果 (`JSON`) 内のキー (またはクレーム) のいずれかにアクセストークンが含まれる場合。キーが見つからない場合、プラグインは `401 Unauthorized` を返します。また、キーが見つかっても JWT としてデコードできない場合も、`401 Unauthorized` を返します。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_scopes_required": {
+              "type": "array",
+              "description": "`config.access_token_introspection_scopes_claim` で指定された内観クレーム/プロパティによってチェックされる必要のある値 (またはスコープ) を指定します。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_scopes_claim": {
+              "type": "array",
+              "elements": {
+                "type": "string"
+              },
+              "default": [
+                "scope"
+              ],
+              "required": true,
+              "description": "アクセストークン内観結果 (`JSON`) のクレーム/プロパティを、`config.access_token_introspection_scopes_required` の値と照合するために指定します。このパラメーターはネストされたクレームをサポートします。例えば、Keycloak を使用する場合、`[\"realm_access\", \"roles\"]` を使用できます。これは `realm_access,roles` (フォームポスト) として指定できます。クレームがアクセストークン内観結果に見つからない場合、かつ `config.access_token_introspection_scopes_required` を指定している場合、プラグインは `403 Forbidden` を返します。"
+            }
+          },
+          {
+            "access_token_introspection_consumer_claim": {
+              "type": "array",
+              "description": "このパラメーターの値を設定すると、プラグインはアクセストークン内観結果内のこの設定パラメーターで指定された任意のクレーム (たとえば、`sub` または `username`) を Kong コンシューマーエンティティにマッピングしようとします。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_consumer_by": {
+              "type": "array",
+              "elements": {
+                "type": "string",
+                "one_of": [
+                  "id",
+                  "username",
+                  "custom_id"
+                ]
+              },
+              "default": [
+                "username",
+                "custom_id"
+              ],
+              "required": false,
+              "description": "プラグインがアクセストークン内覧結果をKongのコンシューママッピングしようとするとき、この構成パラメータを使用して定義されたプロパティから一致するKongのコンシューマを見つけようとします。 パラメータは値の配列を取ることができます。"
+            }
+          },
+          {
+            "access_token_introspection_leeway": {
+              "type": "number",
+              "description": "トークン発行者の内覧結果とKongとの時計のずれを調整します。 値は内覧結果（JSON）`exp`クレーム/プロパティに追加され、トークンの有効期限をKongサーバーの現在の時間（秒単位）と比較する前にチェックされます。 `config.verify_access_token_introspection_expiry`を使用してアクセストークンの内覧有効期限の検証を完全に無効にすることもできます。",
+              "default": 0,
+              "required": false
+            }
+          },
+          {
+            "access_token_introspection_timeout": {
+              "type": "number",
+              "description": "内覧リクエストのタイムアウト（ミリ秒単位）。 何らかの理由で最初のリクエストが失敗した場合、プラグインは2回内覧を試みます。 両方のリクエストがタイムアウトした場合、プラグインはアクセストークン内覧に`config.access_token_introspection_timeout`の2倍の時間を実行します。",
+              "required": false
+            }
+          },
+          {
+            "access_token_signing_algorithm": {
+              "type": "string",
+              "default": "RS256",
+              "required": true,
+              "description": "このプラグインが指定された`config.access_token_upstream_header`で上流ヘッダを設定し、元のアクセストークンをJWT Signerプラグインの秘密鍵を使用して再署名する場合、トークンの署名に使用されるアルゴリズムを指定します。 `config.access_token_issuer`は、Kongによって指定された署名アルゴリズムを使用して発行された新しいトークンに対する`keyset`がどれかを指定します。",
+              "one_of": [
+                "HS256",
+                "HS384",
+                "HS512",
+                "RS256",
+                "RS512",
+                "ES256",
+                "ES384",
+                "ES512",
+                "PS256",
+                "PS384",
+                "PS512",
+                "EdDSA"
+              ]
+            }
+          },
+          {
+            "access_token_optional": {
+              "type": "boolean",
+              "description": "アクセストークンが提供されない場合、または`config.access_token_request_header`が指定されていない場合、プラグインはアクセストークンを検証できません。 その場合、プラグインは通常、`401 Unauthorized`（クライアントがトークンを送信していない）または`500 Unexpected`（構成エラー）で応答します。 トークンが提供された場合、このパラメータは無効です。",
+              "default": false,
+              "required": false
+
+            }
+          },
+          {
+            "verify_access_token_signature": {
+              "type": "boolean",
+              "description": "必要に応じて、アクセストークンの署名検証を素早くオンおよびオフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "verify_access_token_expiry": {
+              "type": "boolean",
+              "description": "必要に応じて、アクセストークンの有効期限検証を素早くオンおよびオフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "verify_access_token_scopes": {
+              "type": "boolean",
+              "description": "必要に応じて、指定された`config.access_token_scopes_required`で指定されたアクセストークンの必須スコープ検証をオンおよびオフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "verify_access_token_introspection_expiry": {
+              "type": "boolean",
+              "description": "必要に応じて、アクセストークンの内覧有効期限の検証を素早くオンおよびオフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "verify_access_token_introspection_scopes": {
+              "type": "boolean",
+              "description": "必要に応じて、指定された`config.access_token_introspection_scopes_required`で指定されたアクセストークンの内覧スコープ検証をオンおよびオフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "cache_access_token_introspection": {
+              "type": "boolean",
+              "description": "アクセストークンの内覧結果をキャッシュするかどうか。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "trust_access_token_introspection": {
+              "type": "boolean",
+              "description": "新しいトークンが署名される前にペイロードに対するさらなるチェックを有効または無効にするためのパラメータです。 これを`true`に設定すると、ペイロードの有効期限またはスコープがチェックされません。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "enable_access_token_introspection": {
+              "type": "boolean",
+              "description": "不透明なアクセストークンをサポートしたくない場合は、この構成パラメータを`false`に変更して内覧を無効にします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "channel_token_issuer": {
+              "type": "string",
+              "description": "再署名されたチャネルトークンの`iss`クレームがこの値に設定されます。 デフォルトは`kong`です。 入力トークンの元の`iss`クレーム（内覧される可能性があります）は、新しく署名されたチャネルトークンの`original_iss`クレームに格納されます。",
+              "default": "kong",
+              "required": false
+            }
+          },
+          {
+            "channel_token_keyset": {
+              "type": "string",
+              "description": "署名キーを含むキーセットの名前。",
+              "default": "kong",
+              "required": false
+            }
+          },
+          {
+            "channel_token_jwks_uri": {
+              "type": "string",
+              "description": " `config.verify_channel_token_signature`を使用する場合、プラグインがチャネルトークンの署名を検証するための公開キー（JWKS）を取得できるURIを指定する必要があります。 URIを指定せずにJWTトークンをプラグインに渡す場合、プラグインは`401 Unauthorized`で応答します。",
+              "required": false
+            }
+          },
+          {
+            "channel_token_request_header": {
+              "type": "string",
+              "description": "このパラメータは、チャネルトークンを探すヘッダーの名前を指定します。 チャネルトークンを何も行いたくない場合は、これを`null`または`\"\"`（空の文字列）に設定できます。",
+              "required": false
+            }
+          },
+          {
+            "channel_token_leeway": {
+              "type": "number",
+              "description": "トークン発行者とKongとの時計のずれを調整します。 値はトークンの`exp`クレームに追加され、Kongサーバーの現在の時間（秒単位）とのトークンの有効期限が比較される前にチェックされます。 `config.verify_channel_token_expiry`でチャネルトークンの有効期限の検証を完全に無効にすることもできます。",
+              "default": 0,
+              "required": false
+            }
+          },
+          {
+            "channel_token_scopes_required": {
+              "type": "array",
+              "description": "`config.channel_token_scopes_claim`で指定されたクレームによって確認される必要な値（またはスコープ）を指定します。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "channel_token_scopes_claim": {
+              "type": "array",
+              "elements": {
+                "type": "string"
+              },
+              "default": [
+                "scope"
+              ],
+              "required": false,
+              "description": "`config.channel_token_scopes_required`の値に対して検証するチャネルトークン内のクレームを指定します。 これはネストされたクレームもサポートしています。"
+            }
+          },
+
+          {
+            "channel_token_consumer_claim": {
+              "type": "array",
+              "description": "このパラメータに値を設定すると、プラグインはこの構成パラメータで指定された任意のクレームをマップしようとします。 Kongのコンシューマには`id`、`username`、および`custom_id`があります。 このパラメータが有効にされているがマッピングに失敗した場合（存在しないKongコンシューマがある場合など）、プラグインは`403 Forbidden`で応答します。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+
+          {
+            "channel_token_consumer_by": {
+              "type": "array",
+              "description": "プラグインがチャネルトークンをKongコンシューママッピングしようとするとき、この構成パラメータで定義されたプロパティから一致するKongコンシューマを見つけようとします。 パラメータは有効な値の配列を取ることができます：`id`、`username`、および`custom_id`。",
+              "default": [
+                "username",
+                "custom_id"
+              ],
+              "elements": {
+                "type": "string",
+                "one_of": [
+                  "id",
+                  "username",
+                  "custom_id"
+                ]
+              }
+            }
+          },
+
+          {
+            "channel_token_upstream_header": {
+              "type": "string",
+              "description": "このプラグインは、値を読み取った後、リクエストから`config.channel_token_request_header`を削除します。",
+              "required": false
+            }
+          },
+          {
+            "channel_token_upstream_leeway": {
+              "type": "number",
+              "description": "元のチャネルトークンの有効期限時間を追加または（負の値を使用して）減算したい場合は、元のチャネルトークンの`exp`クレームに追加される値を指定できます。",
+              "default": 0,
+              "required": false
+            }
+          },
+          {
+            "channel_token_introspection_endpoint": {
+              "type": "string",
+              "description": "`opaque`アクセストークンを使用し、アクセストークン内覧を有効にする場合は、この構成パラメータでOAuth 2.0内覧エンドポイントURIを指定する必要があります。 それ以外の場合、プラグインは内覧を試みず、代わりに`401 Unauthorized`を返します。",
+              "required": false
+            }
+          },
+          {
+            "channel_token_introspection_authorization": {
+              "type": "string",
+              "description": "`opaque`チャネルトークンを使用し、チャネルトークン内覧を有効にする場合は、この構成パラメータでOAuth 2.0内覧エンドポイントURIを指定する必要があります。 それ以外の場合、プラグインは不透明なチャネルトークンを使用する場合に`401 Unauthorized`を返します。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "channel_token_introspection_body_args": {
+              "type": "string",
+              "description": "プラグインが不透明なチャネルトークンを内覧するときに追加のボディ引数を渡す必要がある場合は、この構成パラメータを使用してそれらを指定できます。 値をURLエンコードする必要があります。 例：`resource=`または`a=1&b=&c`。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "channel_token_introspection_hint": {
+              "type": "string",
+              "description": "チャネルトークンを内覧するときに`hint`パラメータを指定する必要がある場合は、このパラメータを使用してその値を指定できます。 デフォルトでは、チャネルトークン内覧時に`hint`は送信されません。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "channel_token_introspection_jwt_claim": {
+              "type": "array",
+              "description": "内覧エンドポイントが内覧結果（`JSON`）のキーのいずれかにチャネルトークンを返す場合、プラグインは、Kongによって発行された新しいトークンの有効期限の検証および署名に内覧結果の代わりにその値を使用できます。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+
+          {
+            "channel_token_introspection_scopes_required": {
+              "type": "array",
+              "description": "このパラメータを使用して、`config.channel_token_introspection_scopes_claim`で指定された内覧クレーム/プロパティによって検証される必要な値（またはスコープ）を指定します。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "channel_token_introspection_scopes_claim": {
+              "type": "array",
+              "elements": {
+                "type": "string"
+              },
+              "default": [
+                "scope"
+              ],
+              "required": false,
+              "description": "このパラメータを使用して、チャネルトークンの内覧結果（`JSON`）内のクレーム/プロパティを`config.channel_token_introspection_scopes_required`の値と照合するように指定します。 これはネストされたクレームをサポートしています。"
+            }
+          },
+          {
+            "channel_token_introspection_consumer_claim": {
+              "type": "array",
+              "description": "このパラメータに値を設定すると、プラグインはチャネルトークンの内覧結果で指定された任意のクレーム（`sub`や`username`など）をKongコンシューマエンティティにマッピングしようとします。",
+              "elements": {
+                "type": "string"
+              },
+              "required": false
+            }
+          },
+          {
+            "channel_token_introspection_consumer_by": {
+              "type": "array",
+              "elements": {
+                "type": "string",
+                "one_of": [
+                  "id",
+                  "username",
+                  "custom_id"
+                ]
+              },
+              "default": [
+                "username",
+                "custom_id"
+              ],
+              "required": false,
+              "description": "プラグインがチャネルトークンの内覧結果をKongコンシューママッピングしようとするとき、この構成パラメータを使用して定義されたプロパティから一致するKongコンシューマを見つけようとします。 パラメータは値の配列を取ることができます。 有効な値は`id`、`username`、および`custom_id`です。"
+            }
+          },
+          {
+            "channel_token_introspection_leeway": {
+              "type": "number",
+              "description": "このパラメータを使用して、トークン発行者とKongとの時計のずれを調整できます。 値は内覧結果（`JSON`）の`exp`クレーム/プロパティに追加され、Kongサーバーの現在の時間（秒単位）とのトークンの有効期限が比較される前にチェックされます。 `config.verify_channel_token_introspection_expiry`でチャネルトークンの内覧`expiry`検証を完全に無効にすることもできます。",
+              "default": 0,
+              "required": false
+            }
+          },
+          {
+            "channel_token_introspection_timeout": {
+              "type": "number",
+              "description": "内覧リクエストのタイムアウト（ミリ秒単位）。 最初のリクエストが何らかの理由で失敗した場合、プラグインは2回内覧を試みます。 両方のリクエストがタイムアウトした場合、プラグインはチャネルトークンの内覧に`config.access_token_introspection_timeout`の2倍を実行します。",
+              "required": false
+            }
+          },
+          {
+            "channel_token_signing_algorithm": {
+              "type": "string",
+              "default": "RS256",
+              "required": true,
+              "description": "このプラグインが`config.channel_token_upstream_header`で指定されたように上流ヘッダを設定すると、元のチャネルトークンもこのプラグインのプライベートキーを使用して再署名されます。 トークンに使用されるアルゴリズムを指定してください。",
+              "one_of": [
+                "HS256",
+                "HS384",
+                "HS512",
+                "RS256",
+                "RS512",
+                "ES256",
+                "ES384",
+                "ES512",
+                "PS256",
+                "PS384",
+                "PS512",
+                "EdDSA"
+              ]
+            }
+          },
+          {
+            "channel_token_optional": {
+              "type": "boolean",
+              "description": "チャネルトークンが提供されていないか、`config.channel_token_request_header`が指定されていない場合、プラグインはチャネルトークンを検証できません。 その場合、通常、プラグインは`401 Unauthorized`（クライアントがトークンを送信しなかった）または`500 Unexpected`（構成エラー）で応答します。 チャネルトークンがない場合でもリクエストを続行するには、このパラメータを有効にします。 チャネルトークンが提供されている場合、このパラメータは効果がありません",
+              "default": false,
+              "required": false
+            }
+          },
+          {
+            "verify_channel_token_signature": {
+              "type": "boolean",
+              "description": "チャネルトークンの署名検証を素早くオン/オフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "verify_channel_token_expiry": {
+              "type": "boolean",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "verify_channel_token_scopes": {
+              "type": "boolean",
+              "description": "`config.channel_token_scopes_required`で指定されたチャネルトークンの必須スコープ検証を素早くオン/オフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "verify_channel_token_introspection_expiry": {
+              "type": "boolean",
+              "description": "チャネルトークンの内覧有効期限検証を素早くオン/オフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "verify_channel_token_introspection_scopes": {
+              "type": "boolean",
+              "description": "`config.channel_token_introspection_scopes_required`で指定されたチャネルトークンの内覧スコープ検証を素早くオン/オフにします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "cache_channel_token_introspection": {
+              "type": "boolean",
+              "description": "チャネルトークンの内覧結果をキャッシュするかどうか。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "trust_channel_token_introspection": {
+              "type": "boolean",
+              "description": "プラグイン内覧で不透明なチャネルトークンを提供し、内覧結果の有効期限とスコープを確認すると、新しいトークンを署名する前にさらなるペイロードのチェックが不要になる場合があります。 これは、config.channel_token_introspection_jwt_claimを使用して内覧JSONでJWTトークンを使用する場合にも適用されます。 新しいトークンを署名する前に追加のペイロードチェックを管理するためにこのパラメータを使用します。 true（デフォルト）の場合、ペイロードの有効期限またはスコープはチェックされません。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "enable_channel_token_introspection": {
+              "type": "boolean",
+              "description": "不透明なチャネルトークンをサポートしない場合は、この構成パラメータを`false`に変更して内覧を無効にします。",
+              "default": true,
+              "required": false
+            }
+          },
+          {
+            "add_claims": {
+              "type": "map",
+              "keys": {
+                "type": "string"
+              },
+              "default": [
+
+              ],
+              "required": false,
+              "description": "まだ存在しない場合はカスタムクレームを追加します。",
+              "values": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "set_claims": {
+              "type": "map",
+              "keys": {
+                "type": "string"
+              },
+              "default": [
+
+              ],
+              "required": false,
+              "description": "カスタムクレームを設定します。 クレームが既に存在する場合は、上書きされます。",
+              "values": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "required": true
+      }
+    }
+  ],
+  "entity_checks": [
+
+  ]
+}

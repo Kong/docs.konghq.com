@@ -1,0 +1,42 @@
+columns:
+  - name: 公式サポート
+    key: ga
+features:
+  - name: "Docker"
+    items:
+      - name: "MacOS 上の Docker"
+        ga: true
+        icon: /assets/images/icons/third-party/macos-logo.png
+      - name: "Windows"
+        icon: /assets/images/icons/third-party/windows-logo.svg
+        ga: true
+      - name: "Linux (Docker)"
+        ga: true
+        icon: /assets/images/icons/third-party/docker.png
+      - name: "高度な Docker 構成"
+        ga: true
+        icon: /assets/images/icons/third-party/docker.png
+
+  - name: "パッケージ"
+    items:
+      - name: "Linux"
+        ga: true
+        icon: /assets/images/icons/third-party/linux-logo.svg
+
+  - name: "Kubernetes"
+    items:
+      - name: "Kubernetes (Helm)"
+        ga: true
+        icon: /assets/images/icons/third-party/helm-icon-color.svg
+
+  - name: "クラウドプロバイダー"
+    items:
+      - name: "AWS <span class=\"badge alpha\"></span>"
+        ga: false
+        icon: /assets/images/icons/third-party/aws-main.svg
+      - name: "Azure <span class=\"badge alpha\"></span>"
+        ga: false
+        icon: /assets/images/icons/third-party/azure.svg
+      - name: "Google Cloud <span class=\"badge alpha\"></span>"
+        ga: false
+        icon: /assets/images/icons/third-party/cloud-icon-color.svg

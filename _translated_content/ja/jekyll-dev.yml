@@ -1,0 +1,4 @@
+links:
+  web: http://localhost:4000
+  canonical_web: https://docs.konghq.com
+  share: https://docs.konghq.com # legacy link, must maintain for social sharing counters

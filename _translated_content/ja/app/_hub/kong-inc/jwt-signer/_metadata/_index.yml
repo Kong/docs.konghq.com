@@ -1,0 +1,15 @@
+name: Kong JWT Signer
+search_aliases:
+  - json web tokens
+  - jwt-signer
+dbless_compatible: 'yes'
+free: false
+
+enterprise: true
+konnect: false
+network_config_opts: All
+notes: --
+categories:
+  - authentication
+publisher: Kong Inc.
+desc: リクエスト内の 1 つまたは 2 つのトークンを検証して署名する

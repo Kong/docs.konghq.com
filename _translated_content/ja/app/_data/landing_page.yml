@@ -1,0 +1,108 @@
+features:
+  - title: "主な特徴"
+    items:
+      - name: "Service Hub"
+        description: "すべてのAPIを横断的に発見、利用、管理するための包括的なサービスカタログを構築します。"
+        icon: "/assets/images/landing-page/card-icons/service-hub.svg"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/konnect/servicehub/"
+
+      - name: "Dev Portal"
+        description: "開発者が自己サービスの開発者体験を提供し、公開されたサービスを発見、登録、消費できるように開発者のオンボーディングを効率化します。"
+        icon: "/assets/images/landing-page/card-icons/dev-portal.svg"
+        links:
+          - text: "概要 (クラウド)"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/konnect/dev-portal/"
+          - text: "セルフマネージメント"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/gateway/latest/kong-enterprise/dev-portal/"
+
+      - name: "Analytics"
+        description: "環境とクラスターの健全性を監視するための細かいアナリティクスを表示します。サービス、ルート、およびアプリケーションの使用状況に関する深い洞察を得ます。"
+        icon: "/assets/images/landing-page/card-icons/analytics.svg"
+        links:
+          - text: "概要 (クラウド)"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/konnect/vitals/"
+          - text: "セルフマネージメント"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/gateway/latest/kong-enterprise/analytics/"
+
+      - name: "Gateway Manager"
+        description: "環境とプラットフォームを選択して、Kong Gatewayデータプレーンとサービスをプロビジョニングおよび管理します。"
+        icon:  "/assets/images/landing-page/card-icons/runtime.svg"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/konnect/gateway-manager/"
+
+      - name: "API Products"
+        description: "API製品を介して複数のAPIをバンドルおよび管理し、アプリケーション登録を有効にし、開発者ポータルに公開して消費します。"
+        icon: "/assets/images/landing-page/card-icons/api-product.svg"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/konnect/api-products/"
+
+      - name: "Mesh Manager"
+        description: "Kong Meshサービスメッシュを管理するためのグローバルコントロールプレーンを作成します。"
+        icon: "/assets/images/landing-page/card-icons/mesh-manager.svg"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/konnect/mesh-manager/"
+
+  - title: "拡張機能とツール"
+    items:
+      - name: "decK"
+        description: "decKを使用してKong Gatewayを宣言的に管理します。 YAMLまたはJSON設定をKong Gatewayクラスター全体に同期し、実行中のクラスターに設定をプッシュし、ドリフトを検出し、バックアップを作成します。"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/deck/latest/"
+          - text: "はじめに"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/deck/latest/guides/getting-started/"
+          - text: "decKを使用したAPIOps"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/deck/latest/guides/apiops/"
+
+      - name: "Kong Gateway Operator"
+        description: "Kubernetes上で実行する際に、Kong Ingress Controller、Kong Gatewayデータプレーン、またはその両方を管理します。"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/gateway-operator/latest/"
+
+      - name: "Kong Ingress Controller"
+        description: "ゼロダウンタイムでKubernetesクラスター全体に認証、変換、およびその他の機能を実装します。"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/kubernetes-ingress-controller/latest/"
+          - text: "はじめに"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/kubernetes-ingress-controller/latest/guides/getting-started/"
+
+      - name: "Insomnia"
+        description: "ユーザーがInsomniaにすぐに入り、APIやマイクロサービスを設計、文書化、テストできるようにワークフローを合理化します。"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "https://docs.insomnia.rest"
+
+      - name: "Plugin Hub"
+        description: "プラグインを使用して高度な機能を提供し、Kong Gatewayの使用を拡張します。"
+        links:
+          - text: "概要"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/hub/plugins/overview/"
+          - text: "プラグイン開発"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/hub/plugins/overview/#developing-custom-plugins"
+          - text: "ハブ"
+            icon: "/assets/images/icons/icn-doc.svg"
+            url: "/hub/"

@@ -1,0 +1,688 @@
+product: gateway
+release: 3.4.x
+generate: true
+assume_generated: true
+items:
+  - title: イントロダクション
+    icon: /assets/images/icons/documentation/icn-flag.svg
+    items:
+      - text: Kong Gateway の概要
+        url: /gateway/3.4.x/
+        absolute_url: true
+      - text: サポート
+        items:
+          - text: バージョンサポートポリシー
+            url: /support-policy/
+            src: /gateway/support/index
+          - text: サードパーティの依存関係
+            url: /support/third-party
+          - text: ブラウザのサポート
+            url: /support/browser
+          - text: 脆弱性パッチングプロセス
+            url: /support/vulnerability-patching-process
+          - text: ソフトウェアの材料の明細書
+            url: /support/sbom
+      - text: 安定性
+        url: /stability
+      - text: リリースノート
+        url: /gateway/changelog
+        absolute_url: true
+      - text: 重大な変更	
+        items:
+          - text: Kong Gateway 3.4.x
+            url: /breaking-changes/
+            src: /gateway/breaking-changes/34x
+          - text: Kong Gateway 3.3.x
+            url: /breaking-changes/33x/
+          - text: Kong Gateway 3.2.x
+            url: /breaking-changes/32x/
+          - text: Kong Gateway 3.1.x
+            url: /breaking-changes/31x/
+          - text: Kong Gateway 3.0.x
+            url: /breaking-changes/30x/
+          - text: Kong Gateway 2.8.x またはそれ以前のバージョン
+            url: /breaking-changes/28x/
+      - text: キーコンセプト
+        items:
+          - text: サービス
+            url: /key-concepts/services
+          - text: ルート
+            url: /key-concepts/routes
+          - text: アップストリーム
+            url: /key-concepts/upstreams
+          - text: プラグイン
+            url: /key-concepts/plugins
+          - text: コンシューマグループ
+            url: /key-concepts/consumer-groups
+            src: /gateway/kong-enterprise/consumer-groups/index
+          # - text: decK で Kong Gateway を管理する
+          #   url: /key-concepts/manage-kong-with-deck
+      - text: Kong の動作原理
+        items:
+          - text: トラフィックのルーティング
+            url: /how-kong-works/routing-traffic
+          - text: ロードバランシング
+            url: /how-kong-works/load-balancing
+          - text: ヘルスチェックとサーキットブレーカー
+            url: /how-kong-works/health-checks
+          - text: Kong のパフォーマンステスト
+            url: /how-kong-works/performance-testing
+      - text: 用語集
+        url: /glossary
+
+  - title: Kong をはじめる
+    icon: /assets/images/icons/documentation/icn-learning.svg
+    items:
+      - text: Kong を入手する
+        url: /get-started/
+      - text: サービスとルート
+        url: /get-started/services-and-routes
+      - text: レート制限
+        url: /get-started/rate-limiting
+      - text: プロキシキャッシュ
+        url: /get-started/proxy-caching
+      - text: キー認証
+        url: /get-started/key-authentication
+      - text: ロードバランシング
+        url: /get-started/load-balancing
+
+  - title: Kong のインストール
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    items:
+      - text: 概要
+        url: /install/
+      - text: Kubernetes
+        items:
+          - text: 概要
+            url: /install/kubernetes/
+          - text: Kong Gateway のインストール
+            url: /install/kubernetes/proxy/
+          - text: Admin API を設定する
+            url: /install/kubernetes/admin/
+          - text: Kong Manager をインストールする
+            url: /install/kubernetes/manager/
+      - text: Docker
+        items:
+          - text: docker run を使用する
+            url: /install/docker
+          - text: 独自の Docker イメージをビルドする
+            url: /install/docker/build-custom-images/
+      - text: Linux
+        items:
+          - text: Amazon Linux
+            url: /install/linux/amazon-linux
+          - text: Debian
+            url: /install/linux/debian
+          - text: Red Hat
+            url: /install/linux/rhel
+          - text: Ubuntu
+            url: /install/linux/ubuntu
+      - text: インストール後の手順
+        items:
+          - text: データストアを設定する
+            url: /install/post-install/set-up-data-store/
+          - text: Enterprise ライセンスを適用する
+            url: /install/post-install/enterprise-license/
+            generate: false
+          - text: Kong Manager を有効化する（Enterprise）
+            url: /install/post-install/kong-manager/
+            generate: false
+          - text: Kong Manager を有効化する（OSS）
+            url: /install/post-install/kong-manager-oss/
+            generate: false
+  
+  - title: 本番での Kong
+    icon: /assets/images/icons/icn-server.svg
+    items:
+      - text: デプロイメントのトポロジ
+        items:
+          - text: 概要
+            url: /production/deployment-topologies/
+          - text: ハイブリッドモード
+            items:
+              - text: 概要
+                url: /production/deployment-topologies/hybrid-mode/
+              - text: ハイブリッドモードでの Kong Gateway のデプロイ
+                url: /production/deployment-topologies/hybrid-mode/setup
+          - text: DB-less デプロイ
+            url: /production/deployment-topologies/db-less-and-declarative-config
+          - text: 伝統的なデプロイ
+            url: /production/deployment-topologies/traditional
+      - text: Kong の実行
+        items:
+          - text: 非ルートユーザーとしての Kong の実行
+            url: /production/running-kong/kong-user
+          - text: Admin API のセキュリティ強化
+            url: /production/running-kong/secure-admin-api
+          - text: systemd の使用
+            url: /production/running-kong/systemd
+      - text: アクセス制御
+        items:
+          - text: 安全に Kong Gateway を起動する
+            url: /production/access-control/start-securely
+          - text: プログラムによる管理者の作成
+            url: /production/access-control/register-admin-api
+          - text: RBAC を有効化する
+            url: /production/access-control/enable-rbac
+      - text: ライセンス
+        items:
+          - text: 概要
+            url: /licenses/
+          - text: ライセンスをダウンロードする
+            url: /licenses/download
+          - text: Enterprise ライセンスをデプロイする
+            url: /licenses/deploy
+          - text: ライセンス API の使用
+            url: /licenses/examples
+          - text: ライセンスの使用状況を監視する
+            url: /licenses/report
+            src: /gateway/licenses/report-v2
+      - text: ネットワーキング
+        items:
+          - text: デフォルトのポート
+            url: /production/networking/default-ports
+          - text: DNS の考慮事項
+            url: /production/networking/dns-considerations
+          - text: ネットワークとファイアウォール
+            url: /production/networking/firewall
+          - text: 前方プロキシを介した CP/DP 通信
+            url: /production/networking/cp-dp-proxy
+          - text: PostgreSQL TLS
+            items:
+              - text: PostgreSQL TLS の設定
+                url: /production/networking/configure-postgres-tls
+              - text: PostgreSQL TLS のトラブルシューティング
+                url: /production/networking/troubleshoot-postgres-tls
+      - text: Kong の設定ファイル
+        url: /production/kong-conf
+      - text: 環境変数
+        url: /production/environment-variables
+      - text: Kong からのウェブサイトと API の提供
+        url: /production/website-api-serving
+      - text: モニタリング
+        items:
+          - text: 概要
+            url: /production/monitoring/
+          - text: Prometheus
+            url: /production/monitoring/prometheus
+          - text: StatsD
+            url: /production/monitoring/statsd
+          - text: Datadog
+            url: /production/monitoring/datadog
+          - text: ヘルスチェックプローブ
+            url: /production/monitoring/healthcheck-probes
+      - text: トレーシング
+        items:
+          - text: 概要
+            url: /production/tracing/
+          - text: カスタムトレースエクスポータの作成
+            url: /production/tracing/write-custom-trace-exporter
+          - text: トレーシング API リファレンス
+            url: /production/tracing/api
+      - text: リソースサイジングガイドライン
+        url: /production/sizing-guidelines
+      - text: ブルーグリーンデプロイメント
+        url: /production/blue-green
+      - text: カナリアデプロイメント
+        url: /production/canary
+      - text: クラスタリングリファレンス
+        url: /production/clustering
+      - text: パフォーマンスベンチマークを確立する
+        url: /production/benchmark
+        src: /gateway/production/performance/benchmark
+      - text: ロギング
+        items:
+          - text: ログリファレンス
+            url: /production/logging/log-reference
+          - text: ダイナミックログレベルの更新
+            url: /production/logging/update-log-level-dynamically
+          - text: Gateway ログのカスタマイズ
+            url: /production/logging/customize-gateway-logs
+          - text: デバッグリクエスト
+            url: /production/debug-request
+        url: /production/logging
+      - text: gRPC サービスの設定
+        url: /production/configuring-a-grpc-service
+      - text: Expressions ルータの使用
+        url: /key-concepts/routes/expressions
+      - text: アップグレードと移行
+        items:
+          - text: Kong Gateway 3.x.x のアップグレード
+            url: /upgrade/
+          - text: バックアップとリストア
+            url: /upgrade/backup-and-restore/
+          - text: アップグレード戦略
+            items:
+              - text: デュアルクラスターアップグレード
+                url: /upgrade/dual-cluster/
+              - text: インプレースアップグレード
+                url: /upgrade/in-place/
+              - text: ブルーグリーンアップグレード
+                url: /upgrade/blue-green/
+              - text: ローリングアップグレード
+                url: /upgrade/rolling-upgrade/
+          - text: 2.8 LTS から 3.4 LTS へのアップグレード
+            url: /upgrade/lts-upgrade/
+          - text: OSS から Enterprise への移行
+            url: /migrate-ce-to-ke/
+          - text: Cassandra から PostgreSQL への移行ガイドライン
+            url: /migrate-cassandra-to-postgres/
+          - text: 重大な変更
+            url: /production/breaking-changes/
+            generate: false
+
+  - title: Kong Gateway Enterprise
+    icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
+    items:
+      - text: 概要
+        url: /kong-enterprise/
+      - text: Kong Vitals
+        items:
+          - text: 概要
+            url: /kong-enterprise/analytics/
+          - text: メトリクス
+            url: /kong-enterprise/analytics/metrics
+          - text: InfluxDB によるアナリティクス
+            url: /kong-enterprise/analytics/influx-strategy
+          - text: Prometheus によるアナリティクス
+            url: /kong-enterprise/analytics/prometheus-strategy
+          - text: PostgreSQL でのアナリティクスストレージの見積もり
+            url: /kong-enterprise/analytics/estimates
+      - text: シークレット管理
+        items:
+          - text: 概要
+            url: /kong-enterprise/secrets-management/
+          - text: 開始方法
+            url: /kong-enterprise/secrets-management/getting-started
+          - text: シークレットのローテーション
+            url: /kong-enterprise/secrets-management/secrets-rotation
+          - text: 高度な使用法
+            url: /kong-enterprise/secrets-management/advanced-usage
+          - text: バックエンド
+            items:
+              - text: 概要
+                url: /kong-enterprise/secrets-management/backends
+              - text: 環境変数
+                url: /kong-enterprise/secrets-management/backends/env
+              - text: AWS Secrets Manager
+                url: /kong-enterprise/secrets-management/backends/aws-sm
+              - text: Azure Key Vaults
+                url: /kong-enterprise/secrets-management/backends/azure-key-vaults
+              - text: Google Secrets Manager
+                url: /kong-enterprise/secrets-management/backends/gcp-sm
+              - text: Hashicorp Vault
+                url: /kong-enterprise/secrets-management/backends/hashicorp-vault
+          - text: ハウツー
+            items:
+              - text: AWS Secrets Manager を使用してデータベースを保護する
+                url: /kong-enterprise/secrets-management/how-to/aws-secrets-manager
+          - text: 参照形式
+            url: /kong-enterprise/secrets-management/reference-format
+      - text: ダイナミックプラグインの順序付け
+        items:
+          - text: 概要
+            url: /kong-enterprise/plugin-ordering/
+          - text: ダイナミックプラグイン順序付けの開始方法
+            url: /kong-enterprise/plugin-ordering/get-started
+      - text: Dev ポータル
+        items:
+          - text: 概要
+            url: /kong-enterprise/dev-portal/
+          - text: Dev ポータルを有効化する
+            url: /kong-enterprise/dev-portal/enable
+          - text: OpenAPI スペックを公開する
+            url: /kong-enterprise/dev-portal/publish-spec
+          - text: 構造とファイルタイプ
+            url: /kong-enterprise/dev-portal/structure-and-file-types
+          - text: テーマファイル
+            url: /kong-enterprise/dev-portal/themes
+          - text: テンプレートの使用法
+            url: /kong-enterprise/dev-portal/working-with-templates
+          - text: エディタの使用
+            url: /kong-enterprise/dev-portal/using-the-editor
+          - text: 認証と承認
+            items:
+              - text: ベーシック認証
+                url: /kong-enterprise/dev-portal/authentication/basic-auth
+              - text: キー認証
+                url: /kong-enterprise/dev-portal/authentication/key-auth
+              - text: OIDC
+                url: /kong-enterprise/dev-portal/authentication/oidc
+              - text: セッション
+                url: /kong-enterprise/dev-portal/authentication/sessions
+              - text: カスタム登録フィールドの追加
+                url: /kong-enterprise/dev-portal/authentication/adding-registration-fields
+              - text: 開発者の管理
+                url: /kong-enterprise/dev-portal/authentication/managing-developers
+              - text: 開発者の役割とコンテンツの権限
+                url: /kong-enterprise/dev-portal/authentication/developer-permissions
+          - text: アプリケーションの登録
+            items:
+              - text: 認可プロバイダー戦略
+                url: /kong-enterprise/dev-portal/applications/auth-provider-strategy
+              - text: アプリケーションの登録を有効化する
+                url: /kong-enterprise/dev-portal/applications/enable-application-registration
+              - text: アプリケーション登録のためのキー認証プラグインを有効化する
+                url: /kong-enterprise/dev-portal/applications/enable-key-auth-plugin
+              - text: 外部認証の有効化
+                items:
+                  - text: 外部 OAuth2 サポート
+                    url: /kong-enterprise/dev-portal/authentication/3rd-party-oauth
+                  - text: Okta と Kong を設定して外部 OAuth を有効化する
+                    url: /kong-enterprise/dev-portal/authentication/okta-config
+                  - text: Azure AD と Kong を設定して外部認証を有効化する
+                    url: /kong-enterprise/dev-portal/authentication/azure-oidc-config
+              - text: アプリケーションの管理
+                url: /kong-enterprise/dev-portal/applications/managing-applications
+          - text: Dev ポータルのカスタマイズ
+            items:
+              - text: テーマの編集
+                url: /kong-enterprise/dev-portal/customize/theme-editing
+              - text: テンプレートをワークスペース間で移行する
+                url: /kong-enterprise/dev-portal/customize/migrating-templates
+              - text: Markdown レンダリングモジュール
+                url: /kong-enterprise/dev-portal/customize/markdown-extended
+              - text: ポータルメールのカスタマイズ
+                url: /kong-enterprise/dev-portal/customize/emails
+              - text: JavaScript アセットの追加と使用
+                url: /kong-enterprise/dev-portal/customize/adding-javascript-assets
+              - text: Dev ポータルのシングルページアプリケーション
+                url: /kong-enterprise/dev-portal/customize/single-page-app
+              - text: 別の OpenAPI レンダラー
+                url: /kong-enterprise/dev-portal/customize/alternate-openapi-renderer
+          - text: SMTP
+            url: /kong-enterprise/dev-portal/smtp
+          - text: ワークスペース
+            url: /kong-enterprise/dev-portal/workspaces
+          - text: ヘルパー CLI
+            url: /kong-enterprise/dev-portal/cli
+          - text: ポータル API ドキュメント
+            url: /dev-portal/api/v1/
+            absolute_url: true
+            generate: false
+      - text: 監査ログ
+        url: /kong-enterprise/audit-log
+      - text: キーリングとデータの暗号化
+        url: /kong-enterprise/db-encryption
+      - text: ワークスペース
+        url: /kong-enterprise/workspaces
+      - text: Consumer グループ
+        url: /kong-enterprise/consumer-groups
+      - text: イベントフック
+        url: /kong-enterprise/event-hooks
+      - text: データプレーンの耐障害性を設定する
+        url: /kong-enterprise/cp-outage-handling
+      - text: コントロールプレーンの停止管理について
+        url: /kong-enterprise/cp-outage-handling-faq
+      - text: FIPS 140-2
+        items:
+          - text: 概要
+            url: /kong-enterprise/fips-support/
+            src: /gateway/kong-enterprise/fips-support/index
+          - text: FIPS 準拠パッケージのインストール
+            url: /kong-enterprise/fips-support/install
+          - text: FIPS 140-2 準拠プラグイン
+            url: /kong-enterprise/fips-support/plugins
+      - text: Kong Gateway Amazon RDS データベースを AWS IAM で認証する
+        url: /kong-enterprise/aws-iam-auth-to-rds-database
+
+  - title: Kong Manager
+    icon: /assets/images/icons/documentation/icn-manager-color.svg
+    items:
+      - text: 概要
+        url: /kong-manager/
+      - text: Kong Manager を有効化する
+        url: /kong-manager/enable
+      - text: Kong Manager の使い方
+        items:
+          - text: サービスとルート
+            url: /kong-manager/get-started/services-and-routes
+          - text: レート制限
+            url: /kong-manager/get-started/rate-limiting
+          - text: プロキシキャッシング
+            url: /kong-manager/get-started/proxy-caching
+          - text: 消費者との認証
+            url: /kong-manager/get-started/consumers
+          - text: ロードバランシング
+            url: /kong-manager/get-started/load-balancing
+      - text: 認証と承認
+        items:
+          - text: 概要
+            url: /kong-manager/auth/
+          - text: スーパーアドミンの作成
+            url: /kong-manager/auth/super-admin
+          - text: ワークスペースとチーム
+            url: /kong-manager/auth/workspaces-and-teams
+          - text: パスワードと RBAC トークンのリセット
+            url: /kong-manager/auth/reset-password
+          - text: ベーシック認証
+            url: /kong-manager/auth/basic
+          - text: LDAP
+            items:
+              - text: LDAP の設定
+                url: /kong-manager/auth/ldap/configure
+              - text: LDAP サービスディレクトリマッピング
+                url: /kong-manager/auth/ldap/service-directory-mapping
+          - text: OIDC
+            items:
+              - text: OIDC の設定
+                url: /kong-manager/auth/oidc/configure
+              - text: OIDC 認証済みグループのマッピング
+                url: /kong-manager/auth/oidc/mapping
+          - text: セッション
+            url: /kong-manager/auth/sessions
+          - text: RBAC
+            items:
+              - text: 概要
+                url: /kong-manager/auth/rbac
+              - text: RBAC を有効化する
+                url: /kong-manager/auth/rbac/enable
+              - text: ロールと権限を追加する
+                url: /kong-manager/auth/rbac/add-role
+              - text: ユーザーを作成する
+                url: /kong-manager/auth/rbac/add-user
+              - text: 管理者を作成する
+                url: /kong-manager/auth/rbac/add-admin
+      - text: ネットワーキング設定
+        url: /kong-manager/networking
+      - text: ワークスペース
+        url: /kong-manager/workspaces
+      - text: 消費者グループを作成する
+        url: /kong-manager/consumer-groups
+      - text: メールの送信
+        url: /kong-manager/configuring-to-send-email
+  - title: Kong Manager オープンソース
+    icon: /assets/images/icons/documentation/icn-manager-oss-color.svg
+    items:
+      - text: 概要
+        url: /kong-manager-oss/
+      - text: トラブルシューティング
+        url: /kong-manager-oss/troubleshoot/
+  - title: カスタムプラグインの開発
+    icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
+    items:
+      - text: 概要
+        url: /plugin-development/
+      - text: ファイル構造
+        url: /plugin-development/file-structure
+      - text: カスタムロジックの実装
+        url: /plugin-development/custom-logic
+      - text: プラグイン構成
+        url: /plugin-development/configuration
+      - text: データストアへのアクセス
+        url: /plugin-development/access-the-datastore
+      - text: カスタムエンティティの保存
+        url: /plugin-development/custom-entities
+      - text: カスタムエンティティのキャッシュ
+        url: /plugin-development/entities-cache
+      - text: Admin API の拡張
+        url: /plugin-development/admin-api
+      - text: テストの書き方
+        url: /plugin-development/tests
+      - text: プラグインの (アン)インストール
+        url: /plugin-development/distribution
+      - text: Proxy-Wasm フィルターの作成
+        url: /plugin-development/wasm/filter-development-guide
+      - text: プラグイン開発キット
+        items:
+          - text: 概要
+            url: /plugin-development/pdk/
+          - text: kong.client
+            url: /plugin-development/pdk/kong.client
+          - text: kong.client.tls
+            url: /plugin-development/pdk/kong.client.tls
+          - text: kong.cluster
+            url: /plugin-development/pdk/kong.cluster
+          - text: kong.ctx
+            url: /plugin-development/pdk/kong.ctx
+          - text: kong.ip
+            url: /plugin-development/pdk/kong.ip
+          - text: kong.jwe
+            url: /plugin-development/pdk/kong.jwe
+          - text: kong.log
+            url: /plugin-development/pdk/kong.log
+          - text: kong.nginx
+            url: /plugin-development/pdk/kong.nginx
+          - text: kong.node
+            url: /plugin-development/pdk/kong.node
+          - text: kong.plugin
+            url: /plugin-development/pdk/kong.plugin
+          - text: kong.request
+            url: /plugin-development/pdk/kong.request
+          - text: kong.response
+            url: /plugin-development/pdk/kong.response
+          - text: kong.router
+            url: /plugin-development/pdk/kong.router
+          - text: kong.service
+            url: /plugin-development/pdk/kong.service
+          - text: kong.service.request
+            url: /plugin-development/pdk/kong.service.request
+          - text: kong.service.response
+            url: /plugin-development/pdk/kong.service.response
+          - text: kong.table
+            url: /plugin-development/pdk/kong.table
+          - text: kong.tracing
+            url: /plugin-development/pdk/kong.tracing
+          - text: kong.vault
+            url: /plugin-development/pdk/kong.vault
+          - text: kong.websocket.client
+            url: /plugin-development/pdk/kong.websocket.client
+          - text: kong.websocket.upstream
+            url: /plugin-development/pdk/kong.websocket.upstream
+      - text: 他の言語でのプラグイン
+        items:
+          - text: Go
+            url: /plugin-development/pluginserver/go
+          - text: JavaScript
+            url: /plugin-development/pluginserver/javascript
+          - text: Python
+            url: /plugin-development/pluginserver/python
+          - text: コンテナでのプラグインの実行
+            url: /plugin-development/pluginserver/plugins-kubernetes
+          - text: 外部プラグインのパフォーマンス
+            url: /plugin-development/pluginserver/performance
+  - title: Kong プラグイン
+    icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
+    items:
+      - text: 概要
+        url: /kong-plugins/
+      - text: 認証リファレンス
+        url: /kong-plugins/authentication/reference
+      - text: 複数の認証プラグインの許可
+        url: /kong-plugins/authentication/allowing-multiple-authentication-methods/
+      - text: プラグインキューイング
+        items:
+          - text: 概要
+            url: /kong-plugins/queue
+          - text: プラグインキューイングリファレンス
+            url: /kong-plugins/queue/reference
+
+  - title: Admin API
+    icon: /assets/images/icons/documentation/icn-admin-api-color.svg
+    items:
+      - text: 概要
+        url: /admin-api/
+      - text: 情報ルート
+        url: /admin-api/#information-routes
+      - text: ヘルスルート
+        url: /admin-api/#health-routes
+      - text: タグ
+        url: /admin-api/#tags
+      - text: デバッグルート
+        url: /admin-api/#debug-routes
+      - text: サービス
+        url: /admin-api/#service-object
+      - text: ルート
+        url: /admin-api/#route-object
+      - text: 消費者
+        url: /admin-api/#consumer-object
+      - text: プラグイン
+        url: /admin-api/#plugin-object
+      - text: 証明書
+        url: /admin-api/#certificate-object
+      - text: CA 証明書
+        url: /admin-api/#ca-certificate-object
+      - text: SNI
+        url: /admin-api/#sni-object
+      - text: アップストリーム
+        url: /admin-api/#upstream-object
+      - text: ターゲット
+        url: /admin-api/#target-object
+      - text: ボールト
+        url: /admin-api/#vaults-object
+      - text: キー
+        url: /admin-api/#keys-object
+      - text: フィルターチェーン
+        url: /admin-api/#filter-chain-object
+      - text: ライセンス
+        url: /admin-api/licenses/reference
+      - text: ワークスペース
+        url: /admin-api/workspaces/reference
+      - text: RBAC
+        url: /admin-api/rbac/reference
+      - text: 管理者
+        url: /admin-api/admins/reference
+      - text: 開発者
+        url: /admin-api/developers/reference
+      - text: 消費者グループ
+        url: /gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups
+        absolute_url: true
+        generate: false
+      - text: イベントフック
+        url: /admin-api/event-hooks/reference
+      - text: キーリングとデータ暗号化
+        url: /admin-api/db-encryption
+      - text: 監査ログ
+        url: /admin-api/audit-logs
+      - text: ステータス API
+        url: /gateway/api/status/v1/
+        absolute_url: true
+        generate: false
+  - title: リファレンス
+    icon: /assets/images/icons/documentation/icn-references-color.svg
+    items:
+      - text: kong.conf
+        url: /reference/configuration
+        src: /gateway/reference/configuration/configuration-3.4.x
+      - text: Nginx ディレクティブの注入
+        url: /reference/nginx-directives
+      - text: CLI
+        url: /reference/cli
+      - text: キーマネジメント
+        url: /reference/key-management
+      - text: パフォーマンステストフレームワーク
+        url: /reference/performance-testing-framework
+      - text: Expressions 言語
+        items:
+          - text: 概要
+            url: /reference/expressions-language
+          - text: 言語リファレンス
+            url: /reference/expressions-language/language-references
+          - text: パフォーマンス最適化
+            url: /reference/expressions-language/performance
+      - text: レート制限ライブラリ
+        url: /reference/rate-limiting/
+      - text: WebAssembly
+        url: /reference/wasm
+      - text: FAQ
+        url: /reference/faq
