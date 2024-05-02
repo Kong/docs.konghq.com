@@ -4,7 +4,7 @@ content_type: reference
 description: Learn how to use the Konnect Search to search through all Konnect entities.
 ---
 
-The {{site.konnect_short_name}} Search feature allows you to perform simple and advanced searches across all {{site.konnect_short_name}} entities within an organization. You can access search using the search bar (_command+k_) at the top of every page in {{site.konnect_short_name}} or using the [{{site.konnect_short_name}} Search API](/konnect/api/search/latest/).
+The {{site.konnect_short_name}} Search feature allows you to perform simple and advanced searches across all {{site.konnect_short_name}} entities within an organization. You can access search using the search bar (_Command+K_) at the top of every page in {{site.konnect_short_name}} or using the [{{site.konnect_short_name}} Search API](/konnect/api/search/latest/).
 
 The {{site.konnect_short_name}} Search API is available in global and regional locations with regional-awareness, ensuring that returned entities are relevant to their geographical location. 
 
