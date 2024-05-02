@@ -25,6 +25,10 @@ The unified queue parameter set consists of the following parameters:
 |`initial_retry_delay` | fraction | seconds | 0.01 | Initial delay before retrying after processing a failed batch. |
 |`max_retry_delay` | fraction | seconds | 60 | Maximum time to wait between retries. |
 
+Queues are not shared between workers and queueing parameters are
+scoped to one worker.  For whole-system capacity planning, the number
+of workers need to be considered when setting queue parameters.
+
 ## More information
 
 [About Plugin Queuing](/gateway/{{page.release}}/kong-plugins/queue/) - Find out how plugin queuing works.

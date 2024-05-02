@@ -17,6 +17,10 @@ The equivalence of the log server is determined by the parameters
 `http_endpoint`, `method`, `content_type`, `timeout`, and `keepalive`.
 All plugin instances that have the same values for these parameters
 share one queue.
+
+Queues are not shared between workers and queueing parameters are
+scoped to one worker.  For whole-system capacity planning, the number
+of workers need to be considered when setting queue parameters.
 {% endif_plugin_version %}
 
 ## Kong process errors
