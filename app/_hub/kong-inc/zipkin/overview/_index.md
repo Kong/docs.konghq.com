@@ -20,6 +20,10 @@ in the {{site.base_gateway}} documentation.
 
 The queue parameters all reside in a record under the key `queue` in
 the `config` parameter section of the plugin.
+
+Queues are not shared between workers and queueing parameters are
+scoped to one worker.  For whole-system capacity planning, the number
+of workers need to be considered when setting queue parameters.
 {% endif_version %}
 
 {% if_plugin_version gte:3.5.x %}
