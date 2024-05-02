@@ -49,7 +49,7 @@ spec:
                             limit configuration
                           properties:
                             http:
-                              description: LocalHTTP defines configuration of local
+                              description: LocalHTTP defines confguration of local
                                 HTTP rate limiting https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter
                               properties:
                                 disabled:
@@ -128,7 +128,7 @@ spec:
                                   type: object
                               type: object
                             tcp:
-                              description: LocalTCP defines configuration of local
+                              description: LocalTCP defines confguration of local
                                 TCP rate limiting https://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/local_rate_limit_filter
                               properties:
                                 connectionRate:
