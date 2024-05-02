@@ -93,10 +93,6 @@ ja:
       functionality: "機能"
       view_all: "すべてを表示"
 
-    missing_translation_banner:
-      text: |
-        このページはまだ日本語で利用できません。翻訳中です。
-
     lts-changes:
       thead:
         change: "変更"
