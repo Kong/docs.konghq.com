@@ -78,3 +78,37 @@ Now that you've configured the IdP team mappings in {{site.konnect_short_name}} 
 
 Once a developer in your IdP team signs into the Dev Portal, they will be populated as a new developer associated with that team in {{site.konnect_short_name}}. You can verify this by going to the Dev Portal teams settings in {{site.konnect_short_name}}. The test developer should be listed there as a developer associated with your team.
 
+## Troubleshooting
+
+<details><summary>"400 Bad Request - Request Header Or Cookie Too Large" error when logging in to Dev Portal with Azure AD SSO</summary>
+
+{% capture azure_400 %}
+You can resolve this error by adjusting the Nginx configuration to increase the size of the buffers that read the request headers. This error typically occurs due to the size of the tokens returned by Azure AD, especially when the tokens include a large number of claims or group memberships.
+
+To fix this issue, modify the `nginx_http_large_client_header_buffers` setting in your Kong configuration file. By default, Nginx uses four buffers with 8k each to read the request headers. Increasing the number and size of these buffers can help accommodate larger tokens.
+
+Here are the steps to adjust this setting:
+
+1. Find your kong.conf file. This file is often found in your Kong Helm chart under the `values.yaml` file, specifically under the `env:` section.
+
+1. Add or update the `nginx_http_large_client_header_buffers` parameter with a higher value. For example, to set eight buffers of 24k each, you would add the following:
+
+    ```yaml
+    nginx_http_large_client_header_buffers: "8 24k"
+    ```
+
+3. Apply the updated configuration to your {{site.konnect_short_name}} deployment. The specific steps to do this will depend on how {{site.konnect_short_name}} is deployed in your environment (for example, using Helm to update a Kubernetes deployment).
+{% endcapture %}
+
+{{ azure_400 | markdownify }}
+
+</details>
+
+<details><summary>`AADSTS90015: Requested query string is too long` error when logging out of Dev Portal with Azure AD SSO</summary>
+
+{% capture azure_query_string_long %}
+If you have issues with users logging out and receiving an error related to a long query string ("AADSTS90015: Requested query string is too long"), this suggests that the `id_token_hint` in the logout request is too large. This can occur when the `id_token` includes a significant number of group memberships. To resolve this issue, consider reducing the number of groups included in the token by adjusting the token configuration in Azure AD or consult with Microsoft for further assistance on filtering claims from the `id_token`.
+{% endcapture %}
+
+{{ azure_query_string_long | markdownify }}
+</details>
