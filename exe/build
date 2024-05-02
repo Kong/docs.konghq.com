@@ -2,10 +2,6 @@
 
 set -e
 
-echo $LOCALE
-echo $TRANSLATED_CONTENT_PATH
-echo $LOCALE_CONFIG_FILES
-
 if [[ -v LOCALE && -v TRANSLATED_CONTENT_PATH && -v LOCALE_CONFIG_FILES ]]; then
     echo "Building site in $LOCALE..."
     bundle exec jekyll build --config jekyll.yml${LOCALE_CONFIG_FILES:+,$LOCALE_CONFIG_FILES} --profile
