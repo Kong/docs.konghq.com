@@ -12,8 +12,8 @@ Here are a few example use cases where you can use the {{site.konnect_short_name
 
 | You want to... | Then use... |
 | -------------- | ----------- |
+| Navigate to a specific entity that you know exists. | You search for the name or key words of the entity in the Konnect search bar to quickly navigate the various pages in Konnect. |
 | Find entities that are "not compliant" | You can use search to find all entities that don't comply with your rules, such as all routes that don't have a path that starts with `/api` |
-| Select from a list of available entities | For example, if you are attaching a route to a service, you can use search to find and identify which service to attach the route to. Or when you're adding members to a team, you can search for the user. |
 
 ## Query Syntax
 
