@@ -111,7 +111,7 @@ async function buildBatchFileParamsForData(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForPluginsMetadata(fileUri, locale) {
-  // TODO: only desc
+  // TODO: only desc, dbless_explanation
   const batchFileParams = new UploadBatchFileParameters()
     .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
