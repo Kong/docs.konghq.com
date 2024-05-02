@@ -76,7 +76,7 @@ curl -X 'GET' \
 ```
 
 #### Searchable attributes
-For each entity type, there is a list of entity specific attributes that are searchable. These attributes are returned in the attributes object in the search response while the schema of the searchable attributes can be found in the types endpoint. <!-- I'm guessing this specifies stuff like "department" in the example, but I wasn't finding this listed by the types endpoint. Also, can you search by a certain entity? Like "user"?-->
+For each entity type, there is a list of entity specific attributes that are searchable. These attributes are returned in the attributes object in the search response while the schema of the searchable attributes can be found in the `/types` endpoint.
 
 ### Selectors
 
