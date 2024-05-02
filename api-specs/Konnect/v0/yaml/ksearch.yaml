@@ -108,11 +108,70 @@ components:
               type:
                 type: string
                 description: The entity type.
+              name:
+                type: string
+                description: The human-readable entity name.
+              description:
+                type: string
+                description: A short description of the entity.
+              attributes:
+                type: object
+                description: The entity's searchable attributes.
+                additionalProperties:
+                  $ref: '#/components/schemas/SearchTypesAttribute'
               regions:
                 type: array
                 items:
                   type: string
                 description: The regions the entity is available.
+            required:
+              - type
+              - name
+              - description
+              - regions
+    SearchTypesAttribute:
+      title: SearchableEntityAttributesResponse
+      description: Searchable attribute for the entity type.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - string
+            - number
+            - boolean
+            - array
+          description: The attribute type.
+        format:
+          type: string
+          enum:
+            - date-time
+            - uuid
+            - email
+          description: An optional hint at the contents and format of string types.
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - string
+                - number
+                - boolean
+              description: The attribute items' type.
+          required:
+            - type
+          description: An optional hint at the type of content in array types.
+        name:
+          type: string
+          description: The human-readable attribute name.
+        description:
+          type: string
+          description: A short description of the attribute.
+      required:
+        - type
+        - name
+        - description
     SearchResultItem:
       title: SearchResultItem
       description: Item included in the list of search results.
@@ -460,12 +519,44 @@ components:
             next: /search?q=son&page[after]=ewogICJpZCI6ICJoZWysbyB3b3JsZCIKgZ
     Searchable-Entity-Types:
       value:
-        types:
-          - developer
-          - developer_team
-          - user
-          - system_account
-          - team
+        data:
+          - type: user
+            name: User
+            description: A Konnect user
+            attributes:
+              created_at:
+                type: string
+                format: date-time
+                name: Created At
+                description: The time the user was created
+              preferred_name:
+                type: string
+                name: Preferred Name
+                description: The user's preferred name
+              email:
+                type: string
+                format: email
+                name: Email
+                description: The user's email address
+            regions:
+              - global
+          - type: system_account
+            name: System Account
+            description: A Konnect system account
+            attributes:
+              konnect_managed:
+                type: boolean
+                name: Konnect Managed
+                description: Whether the system account is managed by Konnect
+            regions:
+              - global
+          - type: api_product
+            name: API Product
+            description: A Konnect API Product
+            regions:
+              - us
+              - eu
+              - au
   parameters:
     PageSize:
       name: page[size]

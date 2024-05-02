@@ -48,8 +48,18 @@ After creating the resource share, copy the **RAM Share ARN**. You will need thi
 1. In the form that appears, enter a **Transit Gateway Name**.
 1. Add one or more CIDR blocks that will be forwarded to your AWS Transit Gateway. Ensure these do not overlap with the CIDR of your cloud gateways network.
 1. Paste the **RAM Share ARN** and the **Transit Gateway ID** you saved earlier into the matching fields.
-1. For DNS configuration, add the IP addresses of DNS servers that will resolve to your private domains, along with any domains you want associated with your DNS.
-1. Click **Save**.
+1. For DNS configuration, add the IP addresses of DNS servers that will resolve to your private domains, along with any domains you want associated with your DNS. {{site.konnect_short_name}} supports the following mappings:
+    * 1-1 Mapping
+        * Each domain is mapped to a unique IP address.
+        * For example: `example.com` -> `192.168.1.1`
+    * N-1 Mapping
+        * Multiple domains are mapped to a single IP address.
+        * `example.com`, `example2.com` -> `192.168.1.1`
+    * M-N Mapping
+        * Multiple domains are mapped to multiple IP addresses, not necessarily in a one-to-one relationship.
+        * `example.com`, `example2.com` -> `192.168.1.1`, `192.168.1.2`
+        * `example3.com` -> `192.168.1.1`
+1. **Save**.
 
 ### Accept Transit Gateway attachment request
 

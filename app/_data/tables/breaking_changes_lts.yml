@@ -20,7 +20,7 @@ categories:
       The following table lists behavior changes that may cause your database configuration 
       or `kong.conf` to fail. 
       This includes deprecated (but not removed) features.
-  - name: Debateable
+  - name: Debatable
     key: 4
     desc: |
       Upgrades using the following features might require help from Kong.

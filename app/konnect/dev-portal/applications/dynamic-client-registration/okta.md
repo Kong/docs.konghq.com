@@ -115,7 +115,7 @@ You will receive a response that includes a `dcr_provider` object similar to the
    ```
 Save the `id` value for creating the authentication strategy.
 
-2. Now that you've obtained the `dcr_id` in the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
+2. Now that you've obtained the `dcr_id` in the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-strategies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
    ```sh
    curl --request POST \
    --url https://us.api.konghq.com/v2/application-auth-strategies \

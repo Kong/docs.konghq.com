@@ -1,8 +1,10 @@
 name: Submodule Sync
 on:
   workflow_dispatch:
-  schedule:
-  - cron: '0 0 * * *'
+    schedule:
+      - cron: '0 0 * * *'
+  repository_dispatch:
+    types: [PLUGINS_UPDATED]
 
 permissions:
   contents: write

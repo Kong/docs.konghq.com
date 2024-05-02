@@ -14,4 +14,6 @@ The following Vault implementations are supported:
 
 | [GCP Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)      | Enterprise |
 | [HashiCorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/) | Enterprise |
-| [Environment Variable](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/env/)        | Free       |
+
+
+In the Free tier, secrets may be stored in [environment variables](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/env/).

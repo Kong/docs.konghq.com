@@ -155,7 +155,7 @@ You will receive a response that includes a `dcr_provider` object similar to the
    ```
 Save the `id` value for creating the authentication strategy.
 
-2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
+2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-strategies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
 
    ```sh
    curl --request POST \
@@ -199,7 +199,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 3. Click **Create** to save your application.
 
 4. After your application is created, you will see the **Client ID** and **Client Secret**.
-   Store these values, they will only be shown once.
+   Store the Client Secret, it will only be shown once.  
 
 5. Click **Proceed** to continue to the application's details page.
 

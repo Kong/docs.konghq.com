@@ -455,7 +455,7 @@
 /konnect/api/portal-auth/portal-rbac-guide/ /konnect/dev-portal/access-and-approval/manage-teams/
 #API Redirects
 
-/konnect/identity-management-api/   /konnect/api/identity-management/v2/
+/konnect/identity-management-api/   /konnect/api/identity-management/latest/
 /gateway/*/kong-enterprise/dev-portal/portal-api/ /dev-portal/api/v1/
 
 # STUDIO
