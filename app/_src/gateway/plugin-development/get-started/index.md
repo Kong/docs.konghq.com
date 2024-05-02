@@ -28,4 +28,4 @@ with this sample code or guidance in these pages, please reach out by
 > **Note**: This guide is written to help you quickly build a custom plugin 
 > from the beginning. For advanced topics on plugin development with {{site.base_gateway}},
 > be sure to see the remaining areas of documentation in the 
-> [Plugin Development Section](/gateway/{{page.release_version}}/plugin-development/).
+> [Plugin Development Section](/gateway/{{page.release}}/plugin-development/).

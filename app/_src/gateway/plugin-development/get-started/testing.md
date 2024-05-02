@@ -61,7 +61,7 @@ manually first, and then you will add automated tests in subsequent steps of thi
 
 {:.note}
 > **Note**: {{site.base_gateway}} runs in a variety of
-> [deployment topologies](/gateway{{page.release}}/production/deployment-topologies). 
+> [deployment topologies](/gateway/{{page.release}}/production/deployment-topologies). 
 > By default, Pongo runs {{site.base_gateway}} in _traditional mode_, which uses a database 
 > to store configured entities such as routes, services, and plugins. 
 > {{site.base_gateway}} and the database are run in separate containers,
@@ -130,8 +130,8 @@ Database is up-to-date
 Kong started
 ```
 
-As mentioned previously, Pongo installs some development tools to help us test your plugin. 
-You can now validate that the plugin is installed by querying the [Admin API](gateway/{{page.release}}/admin-api/)
+As mentioned previously, Pongo installs some development tools to help us test your plugin.
+You can now validate that the plugin is installed by querying the [Admin API](/gateway/{{page.release}}/admin-api/)
 using `curl` and filtering the response with `jq`:
 
 ```sh
