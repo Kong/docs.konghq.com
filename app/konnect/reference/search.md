@@ -30,8 +30,8 @@ The following provides more details about the different components of the query 
 * Selectors: `type`, `label`, and `name`. They define what you are searching by. 
 * Entity type: `team`. These define what {{site.konnect_short_name}} entity you want to search for.
 * Logical operator: `AND NOT` and `AND`. These are used to combine multiple criteria in a query.
-* Wildcard: `*`
-* Search values: `eng` and `_qa`. These values aren't set and can vary. They determine what you search for, such as the name of an API product or service that is unique to your environment.
+* Wildcard: `*` to denote any a suffix match.
+* Search values: `eng` and `_qa`. These are the values that the search service is matching for.
 
 ### Entity types
 
