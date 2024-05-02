@@ -12,7 +12,8 @@
   BUNDLE_WITHOUT = "development"
 
 [context.i18n-spike-demo-dummy-content.environment]
-  LOCALE_CONFIG_FILES = "_translated_content/ja/jekyll.yml,_translated_content/ja/jekyll-dev.yml"
+  JEKYLL_ENV = "preview"
+  LOCALE_CONFIG_FILES = "_translated_content/ja/jekyll.yml"
   TRANSLATED_CONTENT_PATH = "../_translated_content/"
   LOCALE = "ja"
 
