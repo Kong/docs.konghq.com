@@ -19,7 +19,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
   * Developers
   * Developer Teams
 
-: The {{site.konnect_short_name}} Search API allows you to search through all supported {{site.konnect_short_name}} entities with a common search query language. For more information, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/api/ksearch/).
+: The {{site.konnect_short_name}} Search API allows you to search through all supported {{site.konnect_short_name}} entities with a common search query language. For more information, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/reference/search/).
 
 ## April 2024
 
