@@ -8,11 +8,11 @@ The {{site.konnect_short_name}} Search feature allows you to perform simple and 
 
 The {{site.konnect_short_name}} Search API is available in global and regional locations with regional-awareness, ensuring that returned entities are relevant to their geographical location. 
 
-Here are a few example use cases where you can use the {{site.konnect_short_name}} Search API in your automation: <!--I'm not sure, based on the examples, how you use the API for this and not just advanced search. these don't seem like automation use cases-->
+Here are a few example use cases where you can use the {{site.konnect_short_name}} Search capabilities:
 
 | You want to... | Then use... |
 | -------------- | ----------- |
-| Find entities that are "not compliant" | You can use search to find all routes that don't have a path that starts with `/api` |
+| Find entities that are "not compliant" | You can use search to find all entities that don't comply with your rules, such as all routes that don't have a path that starts with `/api` |
 | Select from a list of available entities | For example, if you are attaching a route to a service, you can use search to find and identify which service to attach the route to. Or when you're adding members to a team, you can search for the user. |
 
 ## Query Syntax
