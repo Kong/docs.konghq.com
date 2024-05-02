@@ -9,7 +9,7 @@ custom plugins.
 
 ## Prerequisites
 
-This page is the second chapter in the [Getting Started](/gateway/{{page.gateway_release}}/plugin-development/get-started/index) 
+This page is the second chapter in the [Getting Started](/gateway/{{page.release}}/plugin-development/get-started/index)
 guide for developing custom plugins. These instructions refer to the previous chapter in the guide and require the same
 developer tool prerequisites.
 
