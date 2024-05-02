@@ -26,7 +26,7 @@ The following is an example advanced search query syntax:
 ```
 type:team AND NOT label.department:eng AND name:*_qa
 ```
-The following provides more details about the different components of the query syntax:
+The following provides more details about the different components of the query syntax in the example:
 * Selectors: `type`, `label`, and `name`. They define what you are searching by. 
 * Entity type: `team`. These define what {{site.konnect_short_name}} entity you want to search for.
 * Logical operator: `AND NOT` and `AND`. These are used to combine multiple criteria in a query.
