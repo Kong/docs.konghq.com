@@ -13,7 +13,7 @@ module Jekyll
       end
     end
 
-    def render(context)
+    def render(context) # rubocop:disable Metrics/MethodLength
       locale = context.registers[:site].config['locale']
 
       # Render the parameter values with the Liquid context
@@ -28,7 +28,7 @@ module Jekyll
       end
 
       # Render the translation with the rendered parameters
-      I18n.t(@translation_key, locale: locale, **rendered_params)
+      I18n.t(@translation_key, locale:, **rendered_params)
     end
   end
 end
