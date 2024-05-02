@@ -11,6 +11,11 @@
   JEKYLL_ENV = "preview"
   BUNDLE_WITHOUT = "development"
 
+[context.i18n-spike-demo-dummy-content.environment]
+  CONFIG_FILES = "_translated_content/ja/jekyll.yml,_translated_content/ja/jekyll-dev.yml"
+  TRANSLATED_CONTENT_PATH = "../_translated_content/"
+  LOCALE = "ja"
+
 [dev]
   autoLaunch = false
   targetPort = 4000
