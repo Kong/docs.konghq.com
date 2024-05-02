@@ -1,7 +1,7 @@
 ---
 title: Create a Proxy-Wasm filter
 book: plugin_dev
-chapter: 11
+chapter: 12
 ---
 
 ## Your first Proxy-Wasm filter
