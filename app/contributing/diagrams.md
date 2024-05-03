@@ -226,8 +226,10 @@ flowchart TD
 
 ## Export a Mermaid diagram from the docs
 
-You can export a Mermaid diagram from the Kong docs using the Mermaid live editor. 
+You can export a Mermaid diagram from the Kong docs using the Mermaid live editor. This method will only work with diagrams that don't contain icons or images.
 
 1. Copy the Mermaid diagram from the Kong doc file. You can find the doc source file by clicking **Edit this page** at the top right corner of the doc.
-1. Paste the Mermaid diagram into the [Mermaid live editor](https://mermaid.live/edit).
+1. Paste the Mermaid diagram into the [Mermaid live editor](https://mermaid.live/edit#pako:eNpl0D1vwjAQBuC_El3XDFQCRDK2VdWhXaDqUHm52Gew5I_o4lBSlP9eh4Dkiu107_PecGeQQRHUoG34kQfkWLxvoQRH7NCoFJyFLwoB8UCOBNRpbLBLU5ntv5ANNpa6CVwKU6SDj6_ojB3m3hvZI0Uj8Vq-mZ35vV5-XLWnLGzZOOThOdjAM3jQWt-Dp8CKOGdL3Kxpcy8_6RT_uWol18vMWeMpB1XVLORCwJSPwo_pNdjHsBu8hDpyTyX0rcJILwb3jA5qjbZLW1ImBv6Yn3v5cQkt-u8Qbmb8A-8_eHU).
+1. If the diagram contains images, remove all `<img>` tags.
+1. Replace any [Liquid variables](/contributing/variables/) (for example, {% raw %}`{{site.base_gateway}}`{% endraw %}) with their output. Liquid variables won't render correctly in the Mermaid live editor.
 1. Click **Actions** on the bottom left corner and select the file type you want to export the diagram to.
