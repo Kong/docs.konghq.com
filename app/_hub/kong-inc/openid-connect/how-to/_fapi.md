@@ -25,7 +25,7 @@ With JARM enabled, Kong requests the authorization server to return the authoriz
 
 JARM can be enabled by setting the `response_mode` configuration option to any of the following available values: `query.jwt`, `form_post.jwt`, `fragment.jwt`, `jwt`.
 
-For more information refer to the [Configuration reference](/hub/kong-inc/openid-connect/configuration/#config-response_mode)
+For more information, refer to the [configuration reference for the `response_mode` parameter](/hub/kong-inc/openid-connect/configuration/#config-response_mode).
 
 ### Certificate-Bound Access Tokens
 
