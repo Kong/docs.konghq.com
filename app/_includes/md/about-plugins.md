@@ -55,9 +55,9 @@ The complete order of precedence for plugins configured to multiple entities is:
 11. Plugins configured on a service.
 12. Plugins configured globally.
 
-## Precedence for Consumer Groups
+### Precedence for consumer groups
 
-When a consumer is a member of two Consumer Groups, each with a scoped plugin, Kong Gateway ensures deterministic behavior by executing only one of these plugins. However, the specific rules that govern this behavior are not defined and are subject to change in future releases.
+When a consumer is a member of two consumer groups, each with a scoped plugin, {{site.base_gateway}} ensures deterministic behavior by executing only one of these plugins. However, the specific rules that govern this behavior are not defined and are subject to change in future releases.
 
 ## Terminology
 **Plugin**
