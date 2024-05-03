@@ -1,0 +1,9 @@
+description: |
+  Maximum of 100 requests every rolling hour, continuously adjusting the count over the course of the hour. No hard limit or known reset.
+
+config:
+  limit: 
+    - 100
+  window_size: 
+    - 3600
+  window_type: sliding
