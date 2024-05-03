@@ -65,7 +65,7 @@ Kong supports the following versions of {{site.ee_product_name}}:
 {% endnavtabs %}
 
 {:.note}
-> **Note:**: This policy **only** applies to {{site.base_gateway}} and {{site.ee_product_name}}. For the {{site.konnect_product_name}} version support policy, please review the [{{site.konnect_product_name}} policy](/konnect/compatibility/#kong-gateway-version-compatibility).
+> **Note:**: This policy **only** applies to {{site.base_gateway}} and {{site.ee_product_name}}. For the {{site.konnect_product_name}} version support policy, review the [{{site.konnect_product_name}} policy](/konnect/compatibility/#kong-gateway-version-compatibility).
 
 ### Marketplaces
 
