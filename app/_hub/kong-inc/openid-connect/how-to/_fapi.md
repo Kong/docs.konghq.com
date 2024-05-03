@@ -13,7 +13,7 @@ With PAR enabled, Kong (OAuth client) sends the payload of an authorization requ
 
 For more information, refer to the [configuration reference for the `pushed_authorization_request_endpoint` parameter](/hub/kong-inc/openid-connect/configuration/#config-pushed_authorization_request_endpoint).
 
-### JWT-Secured Authorization requests (JAR)
+### JWT-Secured Authorization Requests (JAR)
 
 With JAR enabled, when sending requests to the authorization endpoint, Kong provides request parameters in a JSON Web Token (JWT) instead of using a query string, which allows the request data to be signed with JSON Web Signature (JWS).
 
