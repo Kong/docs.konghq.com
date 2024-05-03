@@ -1,8 +1,11 @@
 description: |
   Authenticate browser clients using Google's identity provider.
 
-  Replace the issuer URL, client ID, client secret, and redirect URI
-  with your own Google IdP configuration.
+custom_values: 
+  - config.issuer
+  - config.client_id
+  - config.client_secret
+  - config.redirect_uri
 
 config:
   issuer: "https://accounts.google.com/.well-known/openid-configuration"

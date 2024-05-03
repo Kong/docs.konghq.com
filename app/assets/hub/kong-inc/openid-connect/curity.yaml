@@ -2,7 +2,10 @@ description: |
   Integrate Kong Gateway and the Curity Identity Server for introspection using the
   Phantom Token pattern.
 
-  Replace the issuer URL, client ID, and client secret with your own values.
+custom_values: 
+  - config.issuer
+  - config.client_id
+  - config.client_secret
 
 config:
   issuer: "https://idsvr.example.com/oauth/v2/oauth-anonymous"

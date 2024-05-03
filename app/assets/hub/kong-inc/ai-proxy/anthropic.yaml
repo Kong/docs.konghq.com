@@ -2,7 +2,9 @@ description: |
   This configuration enables AI Proxy with Anthropic.
   
   Apply this plugin to a route with `"paths[]=~/anthropic-chat$"` configured.
-  Replace the `<anthropic_key>` with your own API key.
+
+custom_values: 
+  - config.auth.header_value
 
 config:
   route_type: "llm/v1/chat"

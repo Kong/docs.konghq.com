@@ -2,7 +2,9 @@ description: |
   This configuration enables AI Proxy with OpenAI.
 
   Apply this plugin to a route with `"paths[]=~/openai-chat$"` configured.
-  Replace the `<openai-key>` with your own API key.
+
+custom_values: 
+  - config.auth.header_value
 
 config:
   route_type: "llm/v1/chat"

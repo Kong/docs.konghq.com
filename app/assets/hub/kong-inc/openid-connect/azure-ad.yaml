@@ -1,8 +1,12 @@
 description: |
   Authenticate browser clients using an Azure AD identity provider.
 
-  Replace the issuer URL, client ID, client secret, redirect URI, 
-  and the custom scope with your own Azure IdP configuration.
+custom_values: 
+  - config.issuer
+  - config.client_id
+  - config.client_secret
+  - config.redirect_uri
+  - config.scopes
 
 config:
   issuer: "https://login.microsoftonline.com/YOUR_DIRECTORY_ID/v2.0/.well-known/openid-configuration"

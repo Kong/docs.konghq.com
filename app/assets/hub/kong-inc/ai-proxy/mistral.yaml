@@ -3,7 +3,9 @@ description: |
 
   You need a running Mistral instance to use this option.
   Apply this plugin to a route with `"paths[]=~/mistral-chat$"` configured.
-  Replace the `<MISTRAL_AI_KEY>` with your own API key.
+
+custom_values: 
+  - config.auth.header_value
 
 config:
   route_type: "llm/v1/chat"

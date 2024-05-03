@@ -2,7 +2,9 @@ description: |
   This configuration enables AI Proxy with Azure OpenAI Service.
   
   Apply this plugin to a route with `"paths[]=~/azure-chat$"` configured.
-  Replace the `<azure_ai_access_key>` with your own API key.
+
+custom_values: 
+  - config.auth.header_value
 
 config:
   route_type: "llm/v1/chat"

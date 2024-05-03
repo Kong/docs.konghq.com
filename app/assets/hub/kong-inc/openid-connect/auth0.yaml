@@ -5,6 +5,10 @@ description: |
   an Auth0 API configured with the `openid` scope. Find your `issuer` URL and `audience`
   in your Auth0 API configuration.
 
+custom_values: 
+  - config.issuer
+  - config.audience
+
 config:
   auth_methods:
     - client_credentials
