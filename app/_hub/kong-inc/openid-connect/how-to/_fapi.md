@@ -11,7 +11,7 @@ The OpenID Connect plugin supports various features of the FAPI standard, aimed 
 
 With PAR enabled, Kong (OAuth client) sends the payload of an authorization request to the IdP. As a result, it obtains a `request_uri` value. This value is used by the client in a call to the authorization endpoint as a reference to obtain the authorization request payload data.
 
-For more information refer to the [Configuration reference](/hub/kong-inc/openid-connect/configuration/#config-pushed_authorization_request_endpoint)
+For more information, refer to the [configuration reference for the `pushed_authorization_request_endpoint` parameter](/hub/kong-inc/openid-connect/configuration/#config-pushed_authorization_request_endpoint).
 
 ### JWT-Secured Authorization requests (JAR)
 
