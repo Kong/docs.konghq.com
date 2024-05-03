@@ -38,7 +38,7 @@ For more information, refer to the [guide on certificate-bound access tokens](/h
 When mTLS client authentication is enabled, Kong establishes mTLS connections with the IdP using the configured X.509 certificate as client credentials.
 If the authorization server is configured to bind the client certificate with the issued access token, Kong can validate the access token using mTLS proof of possession.
 
-For more information refer to the dedicated sections of [mTLS Client Authentication](/hub/kong-inc/openid-connect/how-to/client-authentication/mtls) and [Certificate-Bound Access Tokens](/hub/kong-inc/openid-connect/how-to/cert-bound-access-tokens).
+For more information, refer the guides on [mTLS Client Authentication](/hub/kong-inc/openid-connect/how-to/client-authentication/mtls) and [Certificate-Bound Access Tokens](/hub/kong-inc/openid-connect/how-to/cert-bound-access-tokens).
 
 ### Demonstrating Proof-of-Possession (DPoP)
 
