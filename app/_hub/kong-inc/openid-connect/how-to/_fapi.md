@@ -15,7 +15,7 @@ For more information, refer to the [configuration reference for the `pushed_auth
 
 ### JWT-Secured Authorization Requests (JAR)
 
-With JAR enabled, when sending requests to the authorization endpoint, Kong provides request parameters in a JSON Web Token (JWT) instead of using a query string, which allows the request data to be signed with JSON Web Signature (JWS).
+With JAR enabled, when sending requests to the authorization endpoint, Kong provides request parameters in a JSON Web Token (JWT) instead of using a query string. This allows the request data to be signed with JSON Web Signature (JWS).
 
 For more information refer to the [Configuration reference](/hub/kong-inc/openid-connect/configuration/#config-require_signed_request_object)
 
