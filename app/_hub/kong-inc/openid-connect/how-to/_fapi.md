@@ -45,3 +45,5 @@ For more information, refer the guides on [mTLS Client Authentication](/hub/kong
 Demonstrating Proof of Possession (DPoP) is an application-level mechanism for proving the sender's ownership of OAuth access and refresh tokens. With DPoP a client can prove the possession of a public/private key pair associated with a token, using a header. The header contains a signed JWT that includes a reference to the associated access token.
 
 When DPoP is enabled, Kong validates the DPoP header in the request to ensure that the sender is authorized to use the access token.
+
+For more information, refer the guide on [Demonstrating Proof-of-Possession](/hub/kong-inc/openid-connect/how-to/demonstrating_proof_of_possession/).
