@@ -31,7 +31,7 @@ For more information, refer to the [configuration reference for the `response_mo
 
 Certificate-bound access tokens allow binding tokens to clients. This guarantees the authenticity of the token by verifying whether the sender is authorized to use it for accessing protected resources.
 
-For more information refer to the [dedicated section](/hub/kong-inc/openid-connect/how-to/cert-bound-access-tokens).
+For more information, refer to the [guide on certificate-bound access tokens](/hub/kong-inc/openid-connect/how-to/cert-bound-access-tokens).
 
 ### Mutual TLS (mTLS) Client Authentication and Certificate-Bound Access Tokens
 
