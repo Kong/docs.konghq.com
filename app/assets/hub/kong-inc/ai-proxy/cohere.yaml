@@ -1,7 +1,8 @@
 description: |
   This configuration enables AI Proxy with Cohere.
-  
-  Apply this plugin to a route with `"paths[]=~/cohere-chat$"` configured.
+
+prereqs: 
+  - A route with `paths[]=~/cohere-chat$` configured. Apply the plugin to this route.
 
 custom_values: 
   - config.auth.header_value

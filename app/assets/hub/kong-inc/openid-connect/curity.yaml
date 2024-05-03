@@ -2,6 +2,10 @@ description: |
   Integrate Kong Gateway and the Curity Identity Server for introspection using the
   Phantom Token pattern.
 
+prereqs:
+  - Curity Identity Server installed.
+  - An introspection endpoint configured with the Token Procedure Approach.
+
 custom_values: 
   - config.issuer
   - config.client_id

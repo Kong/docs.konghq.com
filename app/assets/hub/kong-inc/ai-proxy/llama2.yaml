@@ -1,8 +1,9 @@
 description: |
   This configuration enables AI Proxy with Llama2.
 
-  You need a running Llama2 instance to use this option.
-  Apply this plugin to a route with `"paths[]=~/llama2-chat$"` configured.
+prereqs: 
+  - A running Llama2 instance.
+  - A route with `paths[]=~/llama2-chat$` configured. Apply the plugin to this route.
 
 config:
   route_type: "llm/v1/chat"

@@ -1,9 +1,10 @@
 description: |
   Authenticate headless service consumers using Auth0's identity provider.
 
-  This configuration uses the `client_credentials` grant, and requires you to have 
-  an Auth0 API configured with the `openid` scope. Find your `issuer` URL and `audience`
+prereqs:
+  - Auth0 API configured with the `openid` scope. Find your `issuer` URL and `audience`
   in your Auth0 API configuration.
+  - A Kong service with `url` configured to match your Auth0 API Identifier.
 
 custom_values: 
   - config.issuer
@@ -14,6 +15,4 @@ config:
     - client_credentials
   issuer: "https://<auth0 API name>.auth0.com/.well-known/openid-configuration"
   audience: "<auth0 API identifier>"
-
-  # Need to re-check this example, it looks incomplete. Does it actually work?
   

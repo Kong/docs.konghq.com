@@ -1,6 +1,11 @@
 description: |
   Authenticate browser clients using an Azure AD identity provider.
 
+prereqs:
+  - A Kong route secured with HTTPS.
+  - In Azure AD, configure a redirect URI that is handled by your route.
+  - In Azure AD, register an app and add a client secret credential that this plugin will use to access it.
+
 custom_values: 
   - config.issuer
   - config.client_id

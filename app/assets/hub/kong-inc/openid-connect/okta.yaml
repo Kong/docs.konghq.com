@@ -1,6 +1,11 @@
 description: |
   Authenticate browser clients using Okta.
 
+prereqs: 
+  - A Kong route secured with HTTPS.
+  - A registered application in Okta pointing to the Kong route.
+  - Any network access control to your Kong node must allow traffic to and from Okta, the upstream service, and the client.
+
 custom_values: 
   - config.issuer
   - config.client_id

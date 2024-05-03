@@ -1,7 +1,8 @@
 description: |
   This configuration enables AI Proxy with Anthropic.
-  
-  Apply this plugin to a route with `"paths[]=~/anthropic-chat$"` configured.
+
+prereqs: 
+  - A route with `paths[]=~/anthropic-chat$` configured. Apply the plugin to this route.
 
 custom_values: 
   - config.auth.header_value

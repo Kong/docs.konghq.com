@@ -1,8 +1,9 @@
 description: |
   This configuration enables AI Proxy with Mistral.
 
-  You need a running Mistral instance to use this option.
-  Apply this plugin to a route with `"paths[]=~/mistral-chat$"` configured.
+prereqs: 
+  - A running Mistral instance.
+  - A route with `paths[]=~/mistral-chat$` configured. Apply the plugin to this route.
 
 custom_values: 
   - config.auth.header_value

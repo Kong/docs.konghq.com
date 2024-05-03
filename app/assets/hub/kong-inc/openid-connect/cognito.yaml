@@ -1,7 +1,8 @@
 description: |
   Integrate Kong Gateway with Amazon Cognito.
 
-  Set up an Amazon Cognito User Pool and Application Definition before configuring the plugin.
+prereqs:
+  - Set up an Amazon Cognito User Pool and Application Definition before configuring the plugin.
 
 custom_values: 
   - config.issuer
