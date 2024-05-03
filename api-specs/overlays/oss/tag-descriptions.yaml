@@ -37,8 +37,8 @@ actions:
       <br><br>
 
       Learn more about the router: 
-      * [Configure routes using expressions](https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions)
-      * [Router Expressions language reference](https://docs.konghq.com/gateway/3.4.x/reference/router-expressions-language/)
+      * [Configure routes using expressions](https://docs.konghq.com/gateway/latest/key-concepts/routes/expressions/)
+      * [Router Expressions language reference](https://docs.konghq.com/gateway/latest/reference/expressions-language/)
 - target: $.tags[2] #plugins
   update:
     description: |

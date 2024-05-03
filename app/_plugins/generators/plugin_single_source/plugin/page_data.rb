@@ -72,7 +72,7 @@ module PluginSingleSource
           schema: @release.schema,
           example: @release.schema.example,
           targets: ::Jekyll::InlinePluginExample::Config::TARGETS,
-          formats: %i[curl konnect yaml kubernetes]
+          formats: %i[curl konnect yaml kubernetes terraform]
         )
       end
 

@@ -9,6 +9,17 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.6.1.3
+**Release Date** 04/16/2024
+
+### Fixes
+
+#### Kong Manager
+* Fixed an issue where the admin account profile page returned a 404 error if the `admin_gui_path` was not a slash.
+
+#### Plugins
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Improved robustness of parsing for short trace IDs.
 
 ## 3.6.1.2
 **Release Date** 04/08/2024
@@ -430,7 +441,7 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 * Fixed an issue where the IAM auth token was not refreshed when the underlying AWS credential expired.
 * Redis's `timeout` warning message is only printed if the timeout is set explicitly. If it isn't set, the default timeout value is used.
 * Removed inaccurate critical level logs which appeared when starting external plugin servers.
-These logs can't be suppressed due to a limitation of OpenResty. We chose to remove the socket availibilty detection feature.
+These logs can't be suppressed due to a limitation of OpenResty. We chose to remove the socket availability detection feature.
 
 #### Kong Manager Enterprise
 
@@ -872,7 +883,7 @@ action items when certain conditions are met.
 [#11696](https://github.com/kong/kong/issues/11696)
 * Enabled the use of vault references in DB-less mode in declarative configuration files. 
 [#11845](https://github.com/kong/kong/issues/11845)
-* Vault caches now properly warm up during initalization.
+* Vault caches now properly warm up during initialization.
 [#11827](https://github.com/kong/kong/issues/11827)
 * The vault resurrect time is now respected if a vault secret is deleted from a vault.
 [#11852](https://github.com/kong/kong/issues/11852)
@@ -963,6 +974,94 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+
+## 3.4.3.7
+**Release Date** 2024/04/23
+
+### Features
+#### Plugins
+
+* [**Portal Application Registration**](/hub/kong-inc/application-registration/) (`application-registration`)
+  * Added support for accessing the service using consumer credential authentication. 
+  To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
+
+### Fixes
+#### Clustering
+* Fixed an issue where event hooks were prematurely validated in hybrid mode. 
+The fix delays the validation of event hooks to the point where event hooks are emitted.
+
+#### Core
+
+* Fixed an issue with data planes in hybrid mode, where a certificate entity configured with a vault 
+reference was occasionally not refreshed on time.
+
+#### PDK
+
+<!-- _Backported from 3.7.0.0_ -->
+* Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_port`. 
+It now correctly returns a number.
+
+### Dependencies
+
+* Bumped `lua-protobuf` to 0.5.1.
+
+## 3.4.3.6
+**Release Date** 2024/04/15
+
+### Features
+#### Kong Manager Enterprise
+
+_Backported from 3.5.0.0_
+* Added support for Microsoft Azure's KeyVault Secrets Engine. 
+
+#### Plugins
+
+_Backported from 3.6.1.2_
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
+  * Added the new field `api_spec_encoded` to indicate whether the `api_spec` is URI-encoded.
+
+### Fixes
+#### Configuration
+
+_Backported from 3.6.1.2_
+* Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
+apply a change to the plugin config via the Admin API.
+
+#### Kong Manager Enterprise
+
+* Fixed an issue where logging in failed when fields in the Developer Portal configuration 
+**Developer Meta Fields** tab contained characters outside the Latin1 range.
+
+_Backported from 3.6.1.3_
+* Fixed an issue where the admin account profile page returned a 404 error if 
+the `admin_gui_path` wasn't a slash.
+
+#### Plugins
+
+_Backported from 3.6.1.2_
+* [**ACME**](/hub/kong-inc/acme/) (`acme`)
+  * Fixed an issue where the certificate was not successfully renewed during ACME renewal.
+
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
+  would interfere with each other and fail to synchronize counter data to the central data store.
+
+_Backported from 3.6.1.3_
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
+  * Improved robustness of parsing for short trace IDs.
+
+#### Plugin
+
+### Dependencies
+
+_Backported from 3.6.1.2_
+* Bumped `lua-kong-nginx-module` to 0.8.1
+* Bumped `lua-resty-luasocket` to 1.1.2 to fix [luasocket#427](https://github.com/lunarmodules/luasocket/issues/427)
+
+
 ## 3.4.3.5
 **Release Date** 2024/03/21
 
@@ -1044,7 +1143,6 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
   * Fixed an OTEL sampling mode Lua panic bug that occurred when the `http_response_header_for_traceid` option was enabled.
- <!-- asked for clarification on this description -->
   * Increased queue max batch size to 200. 
    
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
@@ -1376,7 +1474,7 @@ This change is in direct response to the identified vulnerability [CVE-2023-4448
 * Fixed a keyring issue where a Kong node fails to send keyring material when using cluster strategy.
 * Fixed an issue that will cause a failure to send tracing data to Datadog when the value of the `x-datadog-parent-id` header in requests is a short decimal string.
 * Fixed the way RBAC retrieves group roles with a group name whose type is a number.
-* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature. 
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availability detection feature. 
 
 
 
@@ -1817,7 +1915,7 @@ doesn't match the provided status.
 * Updated the datafile library that meant when Kong was started with systemd, the SAML plugin did not load. 
 * Fixed a bug that the anonymous report can't be silenced by setting `anonymous_reports=false`.
 * Fixed a Jenkins issue where `kong/kong-gateway:3.3.0.0-alpine` was missing `resty.dns.resolver` patch. 
-* Fixed an issue addressing occassional issues attaching a workspace with the cache's consumer well.
+* Fixed an issue addressing occasional issues attaching a workspace with the cache's consumer well.
 
 #### Plugins
 * Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
@@ -3340,7 +3438,7 @@ Review the [breaking changes and deprecations](#breaking-changes-and-deprecation
 #### Enterprise
 
 * Kong Gateway now supports [dynamic plugin ordering](/gateway/3.0.x/kong-enterprise/plugin-ordering/).
-You can change a plugin's static priority by specifing the order in which plugins run.
+You can change a plugin's static priority by specifying the order in which plugins run.
 This lets you run plugins such as `rate-limiting` before authentication plugins.
 
 * Kong Gateway now offers a FIPS package. The package replaces the primary library, OpenSSL, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
@@ -4165,6 +4263,26 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+## 2.8.4.9
+**Release Date** 2024/04/19
+
+### Fixes
+#### Core
+
+_Backported from 3.3.0.0_
+* Fixed an issue where vault configuration stayed sticky and cached even when configurations were changed.
+
+#### PDK
+
+<!-- _Backported from 3.7.0.0_ -->
+* Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_portand`. It now correctly returns a number.
+
+#### Plugins
+
+_Backported from 3.6.1.2_
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
 
 
 ## 2.8.4.8
