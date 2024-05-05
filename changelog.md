@@ -2,6 +2,200 @@
 
 <!--vale off-->
 
+## Week 18
+
+### [chore: Add links to graphql paper](https://github.com/Kong/docs.konghq.com/pull/7340) (2024-05-03)
+
+Adding links to Kong with GraphQL ebook to make it more discoverable: https://konghq.com/solutions/api-management-graphql
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/overview/
+
+
+### [Chore: Generate 3.7 kong.conf reference](https://github.com/Kong/docs.konghq.com/pull/7336) (2024-05-03)
+
+https://konghq.atlassian.net/browse/DOCU-3804
+
+#### Added
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [chore: Add 3.7 support tabs/pages and fix typo](https://github.com/Kong/docs.konghq.com/pull/7333) (2024-05-03)
+
+Update support pages for 3.7.
+
+https://konghq.atlassian.net/browse/DOCU-3800
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/security/plugin-secrets
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/guides/security/plugin-secrets
+- https://docs.konghq.com/kubernetes-ingress-controller/unreleased/guides/security/plugin-secrets
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Add paragraph to explain queue parameter scope](https://github.com/Kong/docs.konghq.com/pull/7331) (2024-05-02)
+
+Explicitly mention that queue parameters are scoped to one worker in the Queueing section of plugins that use queues.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/datadog/overview/
+- https://docs.konghq.com/hub/kong-inc/http-log/overview/
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/overview/
+- https://docs.konghq.com/hub/kong-inc/statsd/overview/
+- https://docs.konghq.com/hub/kong-inc/zipkin/overview/
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Improved readability and detatched some commands from their output](https://github.com/Kong/docs.konghq.com/pull/7324) (2024-05-01)
+
+I improved the readability of some commands separating their outputs, facilitating user copy-paste flow when trying out when trying the autoscaling setup, clarified the k6s installation is required before running the command and its javascript test.
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Fix guide docs about using configPatches](https://github.com/Kong/docs.konghq.com/pull/7320) (2024-04-29)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+Fix instructions in the guide page of uing `configPatch`es in plugins.
+Docs part of https://github.com/Kong/kubernetes-ingress-controller/issues/5687.
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Fix typos under app/](https://github.com/Kong/docs.konghq.com/pull/7317) (2024-05-01)
+
+Fix tons of typos under `app/` directory.
+
+Some backgrounds on how theses typos are fixed, I've wrote a (Chinese) blog about this: https://nova.moe/fast-typo-fix/ (English version: https://nova.moe/fast-typo-fix-en/) 😇
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/post-function/how-to/
+- https://docs.konghq.com/gateway-operator/1.1.x/production/monitoring/status/gateway/
+- https://docs.konghq.com/gateway-operator/1.2.x/production/monitoring/status/gateway/
+- https://docs.konghq.com/gateway-operator/unreleased/production/monitoring/status/gateway/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/required-permissions
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/reference/required-permissions
+- https://docs.konghq.com/kubernetes-ingress-controller/unreleased/reference/required-permissions
+- https://docs.konghq.com/api/identity.yaml
+- https://docs.konghq.com/assets/mesh/2.1.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.2.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.3.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.3.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/2.4.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.4.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/2.5.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.5.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/2.6.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.6.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/2.7.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.7.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/raw/CHANGELOG
+- https://docs.konghq.com/gateway/2.6.x/plugin-development/custom-entities
+- https://docs.konghq.com/gateway/2.6.x/reference/configuration
+- https://docs.konghq.com/gateway/2.7.x/reference/configuration
+- https://docs.konghq.com/gateway/2.7.x/reference/rate-limiting
+- https://docs.konghq.com/gateway/2.8.x/plugin-development/custom-entities
+- https://docs.konghq.com/gateway/2.8.x/reference/configuration
+- https://docs.konghq.com/gateway/2.8.x/reference/rate-limiting
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update Konnect API links to point to latest](https://github.com/Kong/docs.konghq.com/pull/7313) (2024-04-29)
+
+Some links in our konnect docs point explicitly to v2 of various APIs, when they should be pointing to `latest` to remain evergreen. The only API where this is currently an issue is the identity API, as the latest version is now v3. Updating all versioned links to avoid this issue in the future.
+
+Issue reported on slack.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/api/identity-management/identity-integration
+- https://docs.konghq.com/konnect/dev-portal/customization/
+- https://docs.konghq.com/konnect/dev-portal/customization/netlify
+- https://docs.konghq.com/konnect/dev-portal/customization/self-hosted-portal
+- https://docs.konghq.com/konnect/gateway-manager/
+- https://docs.konghq.com/konnect/org-management/audit-logging/
+- https://docs.konghq.com/konnect/org-management/audit-logging/reference
+- https://docs.konghq.com/konnect/org-management/audit-logging/replay-job
+- https://docs.konghq.com/konnect/org-management/audit-logging/webhook
+- https://docs.konghq.com/konnect/org-management/system-accounts
+- https://docs.konghq.com/konnect/updates
+
+
+### [feat(gateway/oas-validation): OpenAPI 3.1.0 documentation](https://github.com/Kong/docs.konghq.com/pull/7310) (2024-05-03)
+
+Update document for OAS-Validation plugin about OpenAPI 3.1.0
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/oas-validation/overview/
+
+
+### [Feat: new expressions flavor in 3.7](https://github.com/Kong/docs.konghq.com/pull/7304) (2024-04-30)
+
+KAG-3927
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Chore: Split AI Gateway into its own section](https://github.com/Kong/docs.konghq.com/pull/7274) (2024-05-01)
+
+Splitting AI gateway into its own nav section to make it more prominent. 
+
+This is a 3.7 ticket, but it really also applies to 3.6, so making the change in both.
+
+https://konghq.atlassian.net/browse/DOCU-3792
+
+#### Added
+
+- https://docs.konghq.com/assets/images/icons/documentation/icn-ai.svg
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.6.x/get-started/ai-gateway/
+- https://docs.konghq.com/gateway/unreleased/get-started/ai-gateway/
+
+
+### [feat(openid-connect): fapi docs](https://github.com/Kong/docs.konghq.com/pull/7236) (2024-05-03)
+
+This PR adds a page to summarize/link all the FAPI-related features that the OpenID Connect plugin provides.
+
+https://konghq.atlassian.net/browse/DOCU-3627
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
 ## Week 17
 
 ### [Fix multiple typos under app/_src/gateway](https://github.com/Kong/docs.konghq.com/pull/7312) (2024-04-26)
