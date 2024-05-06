@@ -64,7 +64,7 @@ code to the client with the following JSON body:
 { "message": "API rate limit exceeded for provider azure, cohere" }
 ```
 
-For each providers it will also indicate how long it  will take until the quota will be restored:
+For each provider, it also indicates how long it will take until the quota will be restored:
 
 ```plaintext
 X-AI-RateLimit-Retry-After-30-azure: 1500
