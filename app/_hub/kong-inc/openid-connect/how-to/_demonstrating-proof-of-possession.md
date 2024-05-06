@@ -36,8 +36,6 @@ sequenceDiagram
     activate kong
     kong-->>client: response
     deactivate kong
-    activate client
-    deactivate client
 {% endmermaid %}
 <!--vale on-->
 
