@@ -443,7 +443,7 @@ items:
         url: /plugin-development/admin-api
       - text: Writing Tests
         url: /plugin-development/tests
-      - text: Managing your custom plugin
+      - text: Installation and Distribution
         url: /plugin-development/distribution
       - text: Proxy-Wasm Filters
         items:

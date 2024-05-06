@@ -1,5 +1,5 @@
 ---
-title: Managing your custom plugin
+title: Installation and Distribution
 book: plugin_dev
 chapter: 10
 ---
