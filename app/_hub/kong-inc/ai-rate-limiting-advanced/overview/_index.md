@@ -24,7 +24,7 @@ You can also create a generic prompt rate limit using the [request prompt provid
     * Example: A request is made and `AI proxy` plugin is returning a token cost of `100` for the `OpenAI` provider:
       - The request will be made to OpenAi provider and response returned to user
       - The next request will be blocked if rate limit is reached
-    * Known limitation: the disable penalty will only work for the `requestPrompt` provider
+    * Known limitation: The disable penalty will only work for the `requestPrompt` provider.
 
 
 ## Headers sent to the client
