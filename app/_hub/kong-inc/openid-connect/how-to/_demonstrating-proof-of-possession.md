@@ -20,12 +20,14 @@ sequenceDiagram
     participant idp as Authenticate Server <br>(e.g. Keycloak)
     activate client
     client->>client: generate key pair
-    activate idp
     client->>idp: POST /oauth2/token<br>DPoP:$PROOF
+    deactivate client
+    activate idp
     idp-->>client: DPoP bound access token ($AT)
+    activate client
     deactivate idp
-    activate kong
     client->>kong: GET https://example.com/resource<br>Authorization: DPoP $AT<br>DPoP: $PROOF
+    activate kong
     deactivate client
     kong->>kong: validate $AT and $PROOF
     kong->>upstream: proxied request <br> GET https://example.com/resource<br>Authorization: Berear $AT
