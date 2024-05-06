@@ -153,7 +153,7 @@ instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.0.
 
 **[Pre-function](/hub/kong-inc/pre-function/) and [Post-function](/hub/kong-inc/post-function/) plugins**
 * Removed the deprecated `config.functions` configuration parameter from the
-`post-fuction` and `pre-function` plugins' schemas. Use the `config.access` phase instead.
+`post-function` and `pre-function` plugins' schemas. Use the `config.access` phase instead.
 
 **[StatsD](/hub/kong-inc/statsd/)**
 * Any metric name that is related to a service now has a `service.` prefix: `kong.service.<service_identifier>.request.count`.

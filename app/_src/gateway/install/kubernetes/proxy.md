@@ -98,7 +98,7 @@ The control plane contains all {{ site.base_gateway }} configurations. The confi
     ```yaml
     # This is for testing purposes only
     # DO NOT DO THIS IN PRODUCTION
-    # Your cluster needs a way to create PersistantVolumeClaims
+    # Your cluster needs a way to create PersistentVolumeClaims
     # if this option is enabled
     postgresql:
       enabled: true

@@ -163,7 +163,7 @@ Batch process spans
 
 **Parameters**
 
-* **processor** (`function`):  a function that accecpt a span as the parameter
+* **processor** (`function`):  a function that accept a span as the parameter
   
 
 {% if_version gte:3.3.x %}

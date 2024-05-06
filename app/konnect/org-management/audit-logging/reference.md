@@ -215,4 +215,4 @@ Property | Description
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
-* [Audit Logs API](/konnect/api/audit-logs/v2/)
+* [Audit Logs API](/konnect/api/audit-logs/latest/)

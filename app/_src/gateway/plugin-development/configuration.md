@@ -1,7 +1,7 @@
 ---
 title: Plugin Configuration
 book: plugin_dev
-chapter: 4
+chapter: 5
 ---
 
 Most of the time, it makes sense for your plugin to be configurable to answer

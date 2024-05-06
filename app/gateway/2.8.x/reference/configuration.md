@@ -1199,7 +1199,7 @@ Accepted values are `modern`, `intermediate`, `old`, `fips` or `custom`.
 If you want to enable TLSv1.1, this value has to be `old`.
 
 See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
-of each cipher suite. `fips` cipher suites are as decribed in
+of each cipher suite. `fips` cipher suites are as described in
 https://wiki.openssl.org/index.php/FIPS_mode_and_TLS.
 
 **Default:** `intermediate`
@@ -2755,7 +2755,7 @@ Influxdb password
 {:.badge .enterprise}
 
 Defines the host and port (and an optional protocol) of the StatsD server to
-which Kong should write Vitals metics. This value is only applied when the
+which Kong should write Vitals metrics. This value is only applied when the
 `vitals_strategy` is set to `prometheus`. This value accepts IPv4, IPv6, and,
 hostnames. Additionally, the suffix `tcp` can be specified; doing so will result
 in Kong sending StatsD metrics via TCP instead of the UDP (default).

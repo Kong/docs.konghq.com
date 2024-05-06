@@ -10,9 +10,6 @@ ifndef RUBY_MATCH
 	$(error ruby $(RUBY_VERSION_REQUIRED) is required. Found $(RUBY_VERSION). $(newline)Run `rbenv install $(RUBY_VERSION_REQUIRED)`)$(newline)
 endif
 
-install-prerequisites:
-	npm install -g netlify-cli@16.5.1
-
 # Installs npm packages and gems.
 install: ruby-version-check
 	git submodule update --init

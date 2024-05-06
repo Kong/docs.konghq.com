@@ -348,7 +348,7 @@ Send anonymous usage data such as error stack traces to help improve Kong.
 ### proxy_server
 
 Proxy server defined as a URL. Kong will only use this option if any component
-is explictly configured to use proxy.
+is explicitly configured to use proxy.
 
 **Default:** none
 
@@ -1029,7 +1029,7 @@ Defines the TLS ciphers served by Nginx.
 Accepted values are `modern`, `intermediate`, `old`, `fips`, or `custom`.
 
 See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
-of each cipher suite. `fips` cipher suites are as decribed in
+of each cipher suite. `fips` cipher suites are as described in
 https://wiki.openssl.org/index.php/FIPS_mode_and_TLS.
 
 **Default:** `intermediate`
@@ -2975,7 +2975,7 @@ Influxdb password
 {:.badge .enterprise}
 
 Defines the host and port (and an optional protocol) of the StatsD server to
-which Kong should write Vitals metics. This value is only applied when the
+which Kong should write Vitals metrics. This value is only applied when the
 `vitals_strategy` is set to `prometheus`. This value accepts IPv4, IPv6, and,
 hostnames. Additionally, the suffix `tcp` can be specified; doing so will result
 in Kong sending StatsD metrics via TCP instead of the UDP (default).
@@ -3694,7 +3694,7 @@ any requests.
 
 By default, `smtp_admin_emails` will be the recipients.
 
-This can be overriden by `portal_smtp_admin_emails`, which can be set
+This can be overridden by `portal_smtp_admin_emails`, which can be set
 dynamically per workspace through the Admin API.
 
 The email looks like the following:

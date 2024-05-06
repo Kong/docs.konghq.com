@@ -9,7 +9,7 @@ store:
   # Kubernetes Store configuration (used when store.type=kubernetes)
   kubernetes:
     # Namespace where Control Plane is installed to.
-    systemNamespace: kuma-system # ENV: KUMA_STORE_KUBERNETES_SYSTEM_NAMESPACE
+    systemNamespace: kong-mesh-system # ENV: KUMA_STORE_KUBERNETES_SYSTEM_NAMESPACE
   # Postgres Store configuration (used when store.type=postgres)
   postgres:
     # Host of the Postgres DB
@@ -393,6 +393,9 @@ runtime:
     # If this is set to true, deleting a Mesh will not delete resources that belong to that Mesh.
     # This can be useful when resources are managed in Argo CD where creation/deletion is managed there.
     skipMeshOwnerReference: false # ENV: KUMA_RUNTIME_KUBERNETES_SKIP_MESH_OWNER_REFERENCE
+    # If true, then control plane can support TLS secrets for builtin gateway outside of mesh system namespace.
+    # The downside is that control plane requires permission to read Secrets in all namespaces.
+    supportGatewaySecretsInAllNamespaces: false # ENV: KUMA_RUNTIME_KUBERNETES_SUPPORT_GATEWAY_SECRETS_IN_ALL_NAMESPACES
   # Universal-specific configuration
   universal:
     # DataplaneCleanupAge defines how long Dataplane should be offline to be cleaned up by GC
@@ -405,7 +408,7 @@ defaults:
   skipMeshCreation: false # ENV: KUMA_DEFAULTS_SKIP_MESH_CREATION
   # If true, it skips creating the default tenant resources
   skipTenantResources: false # ENV: KUMA_DEFAULTS_SKIP_TENANT_RESOURCES
-  # If true, it creates the default routing (TrafficPermisson and TrafficRoute) resources for a new Mesh
+  # If true, it creates the default routing (TrafficPermission and TrafficRoute) resources for a new Mesh
   createMeshRoutingResources: false # ENV: KUMA_DEFAULTS_CREATE_MESH_ROUTING_RESOURCES
 # Metrics configuration
 metrics:
@@ -858,7 +861,7 @@ kmesh:
     # Service account name of rate limit service which will be used in
     # authentication process of communication between rate limit service and
     # control plane.
-    # The value can tak two forms:
+    # The value can take two forms:
     # - "system:serviceaccount:[namespace]:[service_account_name]" (example:
     #   system:serviceaccount:kong-mesh-system:default)
     # - "[service_account_name]" - in this form, the namespace of the service
