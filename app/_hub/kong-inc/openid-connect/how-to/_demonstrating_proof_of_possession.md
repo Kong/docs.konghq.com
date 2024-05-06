@@ -6,12 +6,12 @@ minimum_version: 3.7.x
 
 ## Overview
 
-Demonstrating Proof-of-Possession(DPoP) is an alternative technique to the Mutual TLS certificate-bound access tokens. Instead of binding the token with the client certificate used in the mTLS, it binds the token with a JWK provided by the client.
+Demonstrating Proof-of-Possession (DPoP) is an alternative technique to the [Mutual TLS certificate-bound access tokens](/hub/kong-inc/openid-connect/how-to/client-authentication/mtls/). Instead of binding the token with the client certificate used in the mTLS, it binds the token with a JWK provided by the client.
 
-It's possible to use Demonstrating Proof-of-Possession without mTLS, or even with a plain HTTP. But HTTPS is recommended for better protection.
+It's possible to use Demonstrating Proof-of-Possession without mTLS, or even with plain HTTP. HTTPS is recommended for better protection.
 
-Note that by enabling the verification of the DPoP proof, Kong removes the `DPoP` header and changes the token type from "dpop" to "bearer", which essentially downgrades the request to use a conventional bearer token.
-This allows an OAuth2 upstream without DPoP support to work with the DPoP token without loosing the protection of key-binding mechanism.
+Note that by enabling the verification of the DPoP proof, Kong removes the `DPoP` header and changes the token type from `dpop` to `bearer`, which essentially downgrades the request to use a conventional bearer token.
+This allows an OAuth2 upstream without DPoP support to work with the DPoP token without losing the protection of the key-binding mechanism.
 
 It's a prerequisite that the auth server is configured to enable the DPoP for you to enable it with Kong.
 
@@ -22,7 +22,7 @@ Some of the instructions in the other how-to guides for OpenID Connect support v
 Enabling the [`proof_of_possession_dpop`](/hub/kong-inc/openid-connect/configuration/#config-proof_of_possession_dpop) configuration option in the plugin helps to ensure that the supplied access token
 belongs to the client by verifying its binding with the client certificate provided in the request.
 
-The DPoP are supported by the following auth methods:
+DPoP is supported by the following auth methods:
 
 - [JWT Access Token Authentication](/hub/kong-inc/openid-connect/how-to/authentication/jwt-access-token/)
 - [Introspection Authentication](/hub/kong-inc/openid-connect/how-to/authentication/introspection/)
@@ -73,7 +73,7 @@ Follow these prerequisites to set up a demo Keycloak app and a Kong service and 
     }
     ```
 
-1. Obtain the token from the IdP. A DPoP supporting client is required. For the demonstration purpose below is an example using [`oauth2c`](https://github.com/cloudentity/oauth2c.git):
+1. Obtain the token from the IdP. A DPoP supporting client is required. For this demo, here is an example using [`oauth2c`](https://github.com/cloudentity/oauth2c.git):
     ```bash
     oauth2c https://keycloak.test:8440/realms/master/.well-known/openid-configuration \
     --client-id cert-bound --client-secret cf4c655a-0622-4ce6-a0de-d3353ef0b714       \
