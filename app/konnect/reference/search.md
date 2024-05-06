@@ -96,10 +96,12 @@ Selectors are used to define the criteria of the search. The following table des
 
 The following table describes the characters with special meanings in the query syntax:
 
-| Character | Function                                     |
-|-----------|----------------------------------------------|
-| `*`       | Use as a wildcard.                           |
-| `""`      | Denotes an exact match. This is case insensitive and includes spaces. |
+| Character | Function                                                                        |
+|-----------|---------------------------------------------------------------------------------|
+| `*`       | Use as a wildcard.                                                              |
+| `""`      | Denotes an exact match. This is case insensitive and includes spaces.           |
+| `-`       | Use as an exclusion operator to search for entities which are `NOT` in a field. |
+| `\|`      | Use as an `OR` operator. For example, `type:route \|\| type:service`.                              |
 
 ### Logical Operators
 
