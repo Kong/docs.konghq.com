@@ -18,7 +18,7 @@ After installing and starting {{site.base_gateway}}, use the Admin API on port 8
 ```sh
 curl -i -X POST \
   --url http://localhost:8001/services/ \
-  --data 'name=graphql-service' \
+  --data 'name=example-service' \
   --data 'url=http://example.com'
 ```
 
@@ -28,7 +28,7 @@ curl -i -X POST \
   --data 'hosts[]=example.com' \
 ```  
 
-## Add the GraphQL Rate Limiting Advanced plugin to the service
+## Add the AI Rate Limiting Advanced plugin to the service
 
 Protect your LLM service with rate limiting. It will analyze query costs and token response to provide an enterprise-grade rate limiting strategy.
 
