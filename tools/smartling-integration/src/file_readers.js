@@ -215,59 +215,68 @@ async function getProductsConfigs(config, locale) {
   });
 }
 
-async function pluginsMetadataFiles(gatewayConfig) {
+async function pluginsMetadataFiles(gatewayConfig, pluginsConfig) {
   // non-kong plugins only have one version
   // check if there's a specific file or index.md
   let srcPath = 'app/_hub';
   let metadataFiles = [];
 
-  let folders = await fg('**/_metadata/', { cwd: path.resolve(__dirname, '../../../', srcPath), onlyDirectories: true });
-  folders.forEach((folder) => {
-    let files = [];
-    gatewayConfig.versions.forEach((v) => {
-      let filePath = path.join(srcPath, folder, `_${v}.yml`);
-      if (fs.existsSync(filePath)) {
-        files.push(filePath);
+  for (const plugin of pluginsConfig['kong-inc']) {
+    let folders = await fg(`kong-inc/${plugin}/_metadata/`, { cwd: path.resolve(__dirname, '../../../', srcPath), onlyDirectories: true });
+
+    folders.forEach((folder) => {
+      let files = [];
+      gatewayConfig.versions.forEach((v) => {
+        let filePath = path.join(srcPath, folder, `_${v}.yml`);
+        if (fs.existsSync(filePath)) {
+          files.push(filePath);
+        }
+      });
+      if (files.length === 0) {
+        files.push(path.join(srcPath, folder, '_index.yml'));
       }
+      metadataFiles.push(...files);
     });
-    if (files.length === 0) {
-      files.push(path.join(srcPath, folder, '_index.yml'));
-    }
-    metadataFiles.push(...files);
-  });
+  }
   return metadataFiles;
 }
 
-async function pluginsOverviewFiles() {
+async function pluginsOverviewFiles(pluginsConfig) {
   // non-kong and kong plugins only have one version
   let srcPath = 'app/_hub';
   let overviewFiles = [];
 
-  let files = await fg('**/overview/_index.md', { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
-  overviewFiles.push(...files.map((file) => {
-    return path.join(srcPath, file);
-  }));
+  for (const plugin of pluginsConfig['kong-inc']) {
+    let files = await fg(`kong-inc/${plugin}/overview/_index.md`, { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
+    overviewFiles.push(...files.map((file) => {
+      return path.join(srcPath, file);
+    }));
+  }
 
   return overviewFiles;
 }
 
-async function pluginsSchemaFiles(gatewayConfig) {
+async function pluginsSchemaFiles(gatewayConfig, pluginsConfig) {
   // non-kong plugins only have _index.md if any
   // kong-inc: have version specific files
   let schemaFiles = [];
 
   let srcPath = 'app/_hub';
-  let thirdPartySchemas = await fg('**/schemas/_index.json', { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
-  schemaFiles.push(...thirdPartySchemas.map((file) => {
-    return path.join(srcPath, file);
-  }));
+
+  // let thirdPartySchemas = await fg('**/schemas/_index.json', { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
+  // schemaFiles.push(...thirdPartySchemas.map((file) => {
+  //   return path.join(srcPath, file);
+  // }));
 
   let versions = gatewayConfig.versions.join(',');
   srcPath = 'app/_src/.repos/kong-plugins/schemas/';
-  let kongSchemas = await fg(`**/{${versions}}.json`, { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
-  schemaFiles.push(...kongSchemas.map((file) => {
-    return path.join(srcPath, file);
-  }));
+
+  for (const plugin of pluginsConfig['kong-inc']) {
+    let kongSchemas = await fg(`${plugin}/{${versions}}.json`, { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
+    schemaFiles.push(...kongSchemas.map((file) => {
+      return path.join(srcPath, file);
+    }));
+  }
   return schemaFiles;
 }
 

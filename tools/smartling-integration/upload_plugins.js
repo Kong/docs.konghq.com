@@ -82,6 +82,12 @@ async function buildProductsConfig(locale, product, versions) {
   return productsConfig;
 };
 
+async function buildPluginsConfig(locale) {
+  const configFromFile = readTranslationConfig();
+
+  return configFromFile[locale]['plugins'];
+}
+
 async function createJobAndSendFiles () {
   try {
     // TODO: handle access token expiration, it's not clear from the docs if the node-sdk
@@ -111,12 +117,13 @@ async function createJobAndSendFiles () {
       .setAuthorize(false);
 
     const gatewayConfig = productsConfig.find(c => c.product === 'gateway');
+    const pluginsConfig = await buildPluginsConfig(locale);
 
     const {
       pluginsMetadataFilesUris,
       pluginsOverviewFilesUris,
       pluginsSchemaFilesUris
-    } = await pluginFileUris(gatewayConfig);
+    } = await pluginFileUris(gatewayConfig, pluginsConfig);
 
     const filesUris = [
       ...pluginsMetadataFilesUris,
@@ -144,7 +151,6 @@ async function createJobAndSendFiles () {
     for (const file of pluginsSchemaFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForPluginsSchema(file, locale);
       await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
-      // console.log(file)
     }
     console.log("Finished adding files to batch");
     console.log("Head to Smartling's Dashboard to authorize the job");
