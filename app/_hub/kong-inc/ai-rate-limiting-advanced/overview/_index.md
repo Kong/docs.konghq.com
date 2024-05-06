@@ -41,7 +41,7 @@ X-AI-RateLimit-Retry-After: 47
 ```
 
 The plugin also sends headers indicating the limits in the time frame and the number
-of remaining minutes for each providers:
+of remaining minutes for each provider:
 
 ```plaintext
 X-AI-RateLimit-Limit-30-azure: 1000
