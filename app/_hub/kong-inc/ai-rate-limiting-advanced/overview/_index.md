@@ -21,7 +21,7 @@ You can also create a generic prompt rate limit using the request prompt provide
   * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster datastore.
   * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
     * Known limitation: The cost for `AI proxy` will be only reflected during the next request.
-    * Example: a request is made and `AI proxy` plugin is returning a token cost of `100` for the `OpenAi` provider:
+    * Example: A request is made and `AI proxy` plugin is returning a token cost of `100` for the `OpenAI` provider:
       - The request will be made to OpenAi provider and response returned to user
       - The next request will be blocked if rate limit is reached
     * Known limitation: the disable penalty will only work for the `requestPrompt` provider
