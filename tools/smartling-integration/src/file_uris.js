@@ -49,11 +49,11 @@ async function fileUris(productsConfig) {
   };
 };
 
-async function pluginFileUris(gatewayConfig) {
+async function pluginFileUris(gatewayConfig, pluginsConfig) {
   // TODO: scope plugins to a list?
-  const pluginsMetadataFilesUris = await pluginsMetadataFiles(gatewayConfig);
-  const pluginsOverviewFilesUris = await pluginsOverviewFiles();
-  const pluginsSchemaFilesUris = await pluginsSchemaFiles(gatewayConfig);
+  const pluginsMetadataFilesUris = await pluginsMetadataFiles(gatewayConfig, pluginsConfig);
+  const pluginsOverviewFilesUris = await pluginsOverviewFiles(pluginsConfig);
+  const pluginsSchemaFilesUris = await pluginsSchemaFiles(gatewayConfig, pluginsConfig);
 
   return {
     pluginsMetadataFilesUris: pluginsMetadataFilesUris,
