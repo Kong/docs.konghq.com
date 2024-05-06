@@ -17,6 +17,7 @@ notes: |
   is not supported. Use <code>redis</code> instead.
 categories:
   - traffic-control
+  - ai
 publisher: Kong Inc.
 desc: Provide rate limiting for AI providers defined in the AI plugins
 
