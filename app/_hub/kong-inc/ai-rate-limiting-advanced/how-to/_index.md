@@ -9,7 +9,7 @@ The AI Rate Limiting Advanced plugin enables rate limiting for AI providers used
 
 ## Prerequisite
 
-You have LLM plugins proxy already configured
+You have the [AI Proxy plugin](/hub/kong-inc/ai-proxy) configured.
 
 ## Add your service and route on Kong
 
