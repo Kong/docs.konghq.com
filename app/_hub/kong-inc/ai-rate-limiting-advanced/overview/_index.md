@@ -31,7 +31,7 @@ You can also create a generic prompt rate limit using the [request prompt provid
 
 When this plugin is enabled, Kong sends some additional headers back to the client
 indicating the allowed limits, how many requests are available, and how long it will take
-until the quota will be restored.
+until the quota is restored.
 
 For example:
 
