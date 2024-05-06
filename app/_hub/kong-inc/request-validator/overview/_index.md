@@ -23,7 +23,7 @@ Request body validation is only performed for requests with `application/json` C
 Request body validation is only performed for requests with `application/json` Content-Type or when `+json` is suffixed in the request Content-Type’s subtype (for example, `application/merge-patch+json`).
 {% endif_plugin_version %}
 
-For requests with any other allowed Content-Type, body validation will be skipped. So the requuest will be proxied to upstream without validating the body.
+For requests with any other allowed Content-Type, body validation will be skipped. So the request will be proxied to upstream without validating the body.
 
 ## Examples
 
