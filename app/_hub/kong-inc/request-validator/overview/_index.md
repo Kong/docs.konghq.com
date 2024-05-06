@@ -6,6 +6,25 @@ Validate requests before they reach their upstream service. Supports validating
 the schema of the body and the parameters of the request using either Kong's own
 schema validator (body only) or a JSON Schema Draft 4 compliant validator.
 
+## Content-Type Validation
+
+Request Content-Type Header is validated against the plugin's [`allowed_content_types`](/hub/kong-inc/request-validator/configuration/#config-allowed_content_types). If the request Content-Type is not listed, the request will be rejected with an HTTP/400 error: `{"message":"specified Content-Type is not allowed"}`
+
+The parameter is strictly validated, which means a request with a parameter (e.g. `application/json; charset=UTF-8`) is NOT considered valid for one without the same parameter (e.g. `application/json`). The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
+
+Only one parameter is supported. If a request sends more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated.
+
+## Body Validation
+
+{% if_plugin_version lte:3.5.x %}
+Request body validation is only performed for requests with `application/json` Content-Type.
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.6.x %}
+Request body validation is only performed for requests with `application/json` Content-Type or when `+json` is suffixed in the request Content-Type’s subtype (for example, `application/merge-patch+json`).
+{% endif_plugin_version %}
+
+For requests with any other allowed Content-Type, body validation will be skipped. So the requuest will be proxied to upstream without validating the body.
+
 ## Examples
 
 ### Overview
