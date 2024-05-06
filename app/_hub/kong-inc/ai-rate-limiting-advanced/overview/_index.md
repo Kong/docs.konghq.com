@@ -57,7 +57,7 @@ X-AI-RateLimit-Limit-40-cohere: 2000
 X-AI-RateLimit-Remaining-40-cohere: 1150
 ```
 
-If any of the limits configured has been reached, the plugin returns an `HTTP/1.1 429` status
+If any of the limits configured have been reached, the plugin returns an `HTTP/1.1 429` status
 code to the client with the following JSON body:
 
 ```plaintext
