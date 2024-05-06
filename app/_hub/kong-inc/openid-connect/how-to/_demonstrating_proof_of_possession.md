@@ -16,21 +16,28 @@ sequenceDiagram
     autonumber
     participant client as Client <br>(e.g. mobile app)
     participant kong as API Gateway <br>(Kong)
-    participant httpbin as Upstream <br>(backend service,<br> e.g. httpbin)
+    participant upstream as Upstream <br>(backend service,<br> e.g. httpbin)
+    participant idp as Authenticate Server <br>(e.g. Keycloak)
     activate client
     client->>client: generate key pair
+    activate idp
+    client->>idp: POST /oauth2/token<br>DPoP:$PROOF
+    idp-->>client: DPoP bound access token ($AT)
+    deactivate idp
     activate kong
-    client->>kong: POST /oauth2/token<br>DPoP:$PROOF
-    kong-->>client: DPoP bound access token ($AT)
+    client->>kong: GET https://example.com/resource<br>Authorization: DPoP $AT<br>DPoP: $PROOF
+    deactivate client
+    kong->>kong: validate $AT and $PROOF
+    kong->>upstream: proxied request <br> GET https://example.com/resource<br>Authorization: Berear $AT
     deactivate kong
-    activate httpbin
-    client->>httpbin: GET https://example.com/resource<br>Authorization: DPoP $AT<br>DPoP: $PROOF
-    deactivate client
-    httpbin->>httpbin: validate $AT and $PROOF
+    activate upstream
+    upstream-->>kong: upstream response
+    deactivate upstream
+    activate kong
+    kong-->>client: response
+    deactivate kong
     activate client
-    httpbin-->>client: response
     deactivate client
-    deactivate httpbin
 {% endmermaid %}
 <!--vale on-->
 
