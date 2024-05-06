@@ -77,7 +77,7 @@ If using the request prompt provider, the plugin will send the query cost:
 X-AI-RateLimit-Query-Cost: 100
 ```
 
-The [`Retry-After`] headers will be present on `429` errors to indicate how long the service is
+The `Retry-After` headers will be present on `429` errors to indicate how long the service is
 expected to be unavailable to the client. When using `window_type=sliding` and `RateLimit-Reset`, `Retry-After`
 may increase due to the rate calculation for the sliding window.
 
