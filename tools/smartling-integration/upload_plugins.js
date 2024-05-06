@@ -28,7 +28,8 @@ const {
 const {
   buildBatchFileParamsForPluginsMetadata,
   buildBatchFileParamsForPluginsOverview,
-  buildBatchFileParamsForPluginsSchema
+  buildBatchFileParamsForPluginsSchema,
+  buildBatchFileParamsForInclude
 } = require('./src/batch_params');
 
 const projectId = process.env.PROJECT_ID;
@@ -122,13 +123,15 @@ async function createJobAndSendFiles () {
     const {
       pluginsMetadataFilesUris,
       pluginsOverviewFilesUris,
-      pluginsSchemaFilesUris
+      pluginsSchemaFilesUris,
+      pluginsIncludeFilesUris
     } = await pluginFileUris(gatewayConfig, pluginsConfig);
 
     const filesUris = [
       ...pluginsMetadataFilesUris,
       ...pluginsOverviewFilesUris,
-      ...pluginsSchemaFilesUris
+      ...pluginsSchemaFilesUris,
+      ...pluginsIncludeFilesUris
     ];
 
     // Create the batch, supplying the URIs of the files that will be uploaded to it
@@ -150,6 +153,11 @@ async function createJobAndSendFiles () {
 
     for (const file of pluginsSchemaFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForPluginsSchema(file, locale);
+      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+    }
+
+    for (const file of pluginsIncludeFilesUris) {
+      const { fileUri, batchFileParams } = await buildBatchFileParamsForInclude(file, locale);
       await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
     }
     console.log("Finished adding files to batch");
