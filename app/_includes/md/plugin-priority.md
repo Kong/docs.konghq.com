@@ -88,7 +88,6 @@ acl                         | 950
 opa                         | 920
 rate-limiting               | 910
 rate-limiting-advanced      | 910
-ai-rate-limiting-advanced   | 905
 graphql-rate-limiting-advanced | 902
 response-ratelimiting       | 900
 saml                        | 900
