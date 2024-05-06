@@ -10,3 +10,16 @@ ja:
     - 3.0.x
     - 2.9.x
   konnect: []
+
+  plugins:
+    kong-inc:
+      - key-auth
+      - cors
+      - rate-limiting
+      - acl
+      - basic-auth
+      - openid-connect
+      - request-transformer
+      - jwt
+      - proxy-cache
+      - prometheus
