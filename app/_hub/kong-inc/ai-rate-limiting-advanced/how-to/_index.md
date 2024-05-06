@@ -1,6 +1,6 @@
 ---
-nav_title: How to create rate limiting for different LLM providers
-title: How to create rate limiting for different LLM providers
+nav_title: Set up rate limiting for different LLM providers
+title: Set up rate limiting for different LLM providers
 ---
 
 ## About AI Rate Limiting with {{site.base_gateway}}
