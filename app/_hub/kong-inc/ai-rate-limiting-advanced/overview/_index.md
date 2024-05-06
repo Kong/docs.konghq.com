@@ -22,8 +22,8 @@ You can also create a generic prompt rate limit using the [request prompt provid
   * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
     * Known limitation: The cost for `AI proxy` will be only reflected during the next request.
     * Example: A request is made and `AI proxy` plugin is returning a token cost of `100` for the `OpenAI` provider:
-      - The request will be made to OpenAi provider and response returned to user
-      - The next request will be blocked if rate limit is reached
+      - The request is made to the OpenAI provider and the response is returned to user
+      -  If the rate limit is reached, the next request will be blocked
     * Known limitation: The disable penalty will only work for the `requestPrompt` provider.
 
 
