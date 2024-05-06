@@ -14,7 +14,7 @@ A common pattern to protect your AI API is then to analyze and
 assign costs to incoming  queries and rate limit the consumer's
 cost for a given time window and providers.
 
-You can also create a generic prompt rate limit using the request prompt provider (#request-prompt-function)
+You can also create a generic prompt rate limit using the [request prompt provider](#request-prompt-function).
 
 {:.note}
 > **Notes:**
