@@ -53,7 +53,7 @@
     ]
   },
   "dependencies": {
-    "@kong-ui-public/spec-renderer": "2.1.20",
+    "@kong-ui-public/spec-renderer": "2.1.21",
     "@kong/kongponents": "9.0.0-alpha.146",
     "@kong/sdk-portal-js": "^2.0.0",
     "@segment/analytics-next": "1.69.0",
