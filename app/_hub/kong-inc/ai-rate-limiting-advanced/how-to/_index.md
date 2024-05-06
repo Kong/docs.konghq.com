@@ -13,7 +13,7 @@ You have the [AI Proxy plugin](/hub/kong-inc/ai-proxy) configured.
 
 ## Add your service and route on Kong
 
-After installing and starting {{site.base_gateway}}, use the Admin API on port 8001 to add a new Service and Route. In this example, {{site.base_gateway}} will reverse proxy every incoming request with the specified incoming host to the associated upstream URL. You can implement very complex routing mechanisms beyond simple host matching.
+After installing and starting {{site.base_gateway}}, use the Admin API on port 8001 to add a new service and route. In this example, {{site.base_gateway}} will reverse proxy every incoming request with the specified incoming host to the associated upstream URL. You can implement very complex routing mechanisms beyond simple host matching.
 
 ```sh
 curl -i -X POST \
