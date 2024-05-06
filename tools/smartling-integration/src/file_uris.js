@@ -50,15 +50,21 @@ async function fileUris(productsConfig) {
 };
 
 async function pluginFileUris(gatewayConfig, pluginsConfig) {
-  // TODO: scope plugins to a list?
   const pluginsMetadataFilesUris = await pluginsMetadataFiles(gatewayConfig, pluginsConfig);
   const pluginsOverviewFilesUris = await pluginsOverviewFiles(pluginsConfig);
   const pluginsSchemaFilesUris = await pluginsSchemaFiles(gatewayConfig, pluginsConfig);
+  const pluginsIncludeFilesUris = new Set();
+  const includePaths = await readIncludeFilesForProduct(gatewayConfig, pluginsOverviewFilesUris);
+
+  for (path of includePaths) {
+    pluginsIncludeFilesUris.add(path);
+  }
 
   return {
     pluginsMetadataFilesUris: pluginsMetadataFilesUris,
     pluginsOverviewFilesUris: pluginsOverviewFilesUris,
-    pluginsSchemaFilesUris: pluginsSchemaFilesUris
+    pluginsSchemaFilesUris: pluginsSchemaFilesUris,
+    pluginsIncludeFilesUris: Array.from(pluginsIncludeFilesUris)
   };
 }
 
