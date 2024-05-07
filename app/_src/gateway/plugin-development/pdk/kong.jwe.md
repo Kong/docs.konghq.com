@@ -166,8 +166,12 @@ Encrypt plaintext using JWE encryption and returns a JWT token  Supported algori
 * **enc** (`string`):         Encryption algorithm used for content encryption
 * **key** (`string|table`):         Public key
 * **plaintext** (`string`):   Plaintext
+{% if_version lte:3.6.x %}
 * **options** (`?table`):     Options (optional), default: nil
-
+{% endif_version %}
+{% if_version gte:3.7.x %}
+* **options** (`table`, _optional_):     Options (optional), default: nil
+{% endif_version %}
 **Returns**
 
 1.  `string`:  JWE encrypted JWT token, or nil

@@ -261,10 +261,14 @@ Options:
 
                                     With 'migrate-community-to-enterprise' it
                                     disables the workspace entities check.
-
+{% if_version lte:3.6.x %}
  --db-timeout     (default 60)      Timeout, in seconds, for all database
                                     operations.
-
+{% endif_version %}
+{% if_version gte:3.7.x %}
+ --db-timeout     (optional number)      Timeout, in seconds, for all database
+                                    operations.
+{% endif_version %}
  --lock-timeout   (default 60)      Timeout, in seconds, for nodes waiting on
                                     the leader node to finish running
                                     migrations.
@@ -365,7 +369,7 @@ in the given prefix directory.
 
 This command is equivalent to doing both 'kong stop' and
 'kong start'.
-
+{% if_version lte:3.6.x %}
 Options:
  -c,--conf        (optional string)   configuration file
  -p,--prefix      (optional string)   prefix at which Kong should be running
@@ -373,7 +377,18 @@ Options:
  --run-migrations (optional boolean)  optionally run migrations on the DB
  --db-timeout     (default 60)
  --lock-timeout   (default 60)
-{% if_version gte:3.3.x -%}
+{% endif_version %}
+
+{% if_version gte:3.7.x %}
+Options:
+ -c,--conf        (optional string)   configuration file
+ -p,--prefix      (optional string)   prefix at which Kong should be running
+ --nginx-conf     (optional string)   custom Nginx configuration template
+ --run-migrations (optional boolean)  optionally run migrations on the DB
+ --db-timeout     (optional number)
+ --lock-timeout   (default 60)
+{% endif_version %}
+{% if_version gte:3.3.x %}
  --nginx-conf-flags        (optional string)   flags that can be used to control
                                                how Nginx configuration templates are rendered
 {% endif_version %}
@@ -406,7 +421,7 @@ Usage: kong start [OPTIONS]
 
 Start Kong (Nginx and other configured services) in the configured
 prefix directory.
-
+{% if_version lte:3.6.x %}
 Options:
  -c,--conf        (optional string)   Configuration file.
 
@@ -423,6 +438,26 @@ Options:
                                       in seconds, for nodes waiting on the
                                       leader node to finish running migrations.
                                       
+{% endif_version %}
+{% if_version gte:3.7.x %}
+Options:
+ -c,--conf        (optional string)   Configuration file.
+
+ -p,--prefix      (optional string)   Override prefix directory.
+
+ --nginx-conf     (optional string)   Custom Nginx configuration template.
+
+ --run-migrations (optional boolean)  Run migrations before starting.
+
+ --db-timeout     (optional number)        Timeout, in seconds, for all database
+                                      operations.
+
+ --lock-timeout   (default 60)        When --run-migrations is enabled, timeout,
+                                      in seconds, for nodes waiting on the
+                                      leader node to finish running migrations.
+                                      
+{% endif_version %}
+
 {% if_version gte:3.5.x -%}
  --nginx-conf-flags        (optional string)   Flags that can be used to control
                                                how Nginx configuration templates are rendered

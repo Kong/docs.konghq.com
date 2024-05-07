@@ -51,12 +51,20 @@ An integral number representing the version number of the currently running
 
 **Usage**
 
+{% if_version lte:3.6.x %}
 ``` lua
 if kong.version_num < 3004001 then -- 300.40.1 -> 3.4.1
   -- no support for Routes & Services
 end
 ```
-
+{% endif_version %}
+{% if_version gte:3.7.x %}
+``` lua
+if kong.version_num < 13000 then -- 000.130.00 -> 0.13.0
+  -- no support for Routes & Services
+end
+```
+{% endif_version %}
 
 
 ## kong.configuration
