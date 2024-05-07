@@ -498,7 +498,7 @@ items:
         url: /plugin-development/admin-api
       - text: Writing Tests
         url: /plugin-development/tests
-      - text: (un)Installing your Plugin
+      - text: Installation and Distribution
         url: /plugin-development/distribution
       - text: Proxy-Wasm Filters
         items:

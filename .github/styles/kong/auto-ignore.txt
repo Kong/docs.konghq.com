@@ -88,3 +88,5 @@ UDPIngress
 KongPlugin
 KongClusterPlugin
 KongConsumer
+Rekor
+Sigstore
