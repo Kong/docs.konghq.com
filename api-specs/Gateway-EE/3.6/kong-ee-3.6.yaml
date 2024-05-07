@@ -5786,7 +5786,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Enterprise Kong Admin API
-  version: 3.7.0
+  version: 3.6.0
 openapi: 3.0.0
 paths:
   /:
@@ -11910,38 +11910,6 @@ paths:
           description: No vault named
       operationId: get-schemas-vaults-vault_name
       description: Retrieve the schema of a vault.
-    post:
-      summary: Validate Vault Schema
-      tags:
-        - Validation
-      requestBody:
-        description: Payload containing the schema data to validate
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                schemaData:
-                  type: string
-                  description: JSON string containing the vault schema data
-      responses:
-        '200':
-          description: Validation successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  validation:
-                    type: boolean
-                    description: Indicates if the schema is valid
-        '400':
-          description: Bad request due to invalid schema data
-        '405':
-          description: Method Not Allowed
-      operationId: post-schemas-vaults-validate
-      description: Validates the given vault schema data against predefined validation rules.
   /admins:
     get:
       summary: List Admins
