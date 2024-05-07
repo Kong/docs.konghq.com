@@ -11,6 +11,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## May 2024
 
+
+**Integrated Markdown Renderer**
+: The integrated Markdown editor in {{site.konnect_saas}} now supports creating new documents directly within the platform. This enhancement allows you to start with an empty file and build your documentation from scratch, improving usability and discoverability.
+
 **{{site.konnect_short_name}} Konnect Search Enhancements**
 : The new {{site.konnect_saas}} search enhancements now allows you to to search across 29 entities in {{site.konnect_short_name}}. The search enhancement is made up of an advanced search syntax coupled with a refreshed search bar in the UI and a [Konnect Search API](/konnect/api/search/latest/). 
 

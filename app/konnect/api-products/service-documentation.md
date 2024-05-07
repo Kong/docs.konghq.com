@@ -7,7 +7,7 @@ A core function of the Dev Portal is publishing API product descriptions, docume
 
 ## API Product Documentation
 
-You can provide extended descriptions of your API products with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. API product descriptions can be any markdown document that describes your service such as: 
+You can provide extended descriptions of your API products with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. API product descriptions can be any markdown document that describes your service such as:
 
 * Release notes
 * Support and SLA 
@@ -23,14 +23,13 @@ Manage all API product descriptions from the Documentation section in the API Pr
 
 ### Interactive markdown renderer
 
-The integrated markdown editor allows you to edit your documentation directly within {{site.konnect_saas}}. It supports:
+The integrated markdown editor allows you to　create and edit documentation directly within {{site.konnect_saas}}. It supports:
 
 * Code syntax highlighting for Bash, JSON, Go, and JavaScript
 * Rendering UML diagrams and flowcharts via Mermaid and PlantUML
 * Emojis
 
 You can insert Mermaid and PlantUML diagrams by using a language-specific identifier immediately following the triple backtick (```) notation that initiates the code block:
-
 * ```mermaid
 * ```plantuml
 
