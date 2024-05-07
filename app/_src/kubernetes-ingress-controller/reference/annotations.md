@@ -187,7 +187,7 @@ are proxied to your service.
 
 With the {{site.kic_product_name}}, plugins can be configured by creating
 KongPlugin Custom Resources and then associating them with an Ingress, Service,
-KongConsumer or a combination of those.
+HTTPRoute, KongConsumer, KongConsumerGroup or a combination of those.
 
 This is an example of how to use the annotation:
 
