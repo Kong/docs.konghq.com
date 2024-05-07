@@ -30,15 +30,6 @@ The {{site.base_gateway}} software is governed by the
 * A Docker-enabled system with proper Docker access
 * (Enterprise only) A `license.json` file from Kong
 
-### Choose an image
-
-This page uses the Ubuntu {{ site.base_gateway }} image by default. {{ site.base_gateway }} provides multiple distributions. Select which distribution you would like to use:
-
-<label for="docker-os-ubuntu"><input id="docker-os-ubuntu" type="radio" name="docker-os" class="docker-os-select" style="margin-right: 4px" value="" checked="checked" />Ubuntu</label>
-<label for="docker-os-debian"><input id="docker-os-debian" type="radio" name="docker-os" class="docker-os-select" style="margin-right: 4px" value="debian" />Debian</label>
-<label for="docker-os-rhel"><input id="docker-os-rhel" type="radio" name="docker-os" class="docker-os-select" style="margin-right: 4px" value="rhel" />RHEL</label>
-<label for="docker-os-amazonlinux"><input id="docker-os-amazonlinux" type="radio" name="docker-os" class="docker-os-select" style="margin-right: 4px" value="amazonlinux-2023" />Amazon Linux (Enterprise Only)</label>
-
 Choose a path to install {{site.base_gateway}}:
 * [With a database](#install-kong-gateway-with-a-database): Use a database to
 store Kong entity configurations. Can use the Admin API or declarative
@@ -575,58 +566,3 @@ For troubleshooting license issues, see:
 If you did not receive a `200 OK` status code or need assistance completing
 setup, reach out to your support contact or head over to the
 [Support Portal](https://support.konghq.com/support/s/).
-
-<script>
-
-const eeToggle = document.getElementById("oss-ee-toggle");
-const eeToggleSwitch = document.getElementById("switch-to-version");
-
-let lastSelectedOs = "";
-let eeVersion = "{{page.versions.ee}}";
-let ceVersion = "{{page.versions.ce}}";
-
-const eeCodeBlocks = document.querySelectorAll("[data-panel='kong-gateway'] code");
-const ceCodeBlocks = document.querySelectorAll("[data-panel='kong-gateway-oss'] code");
-
-function createReplacement(os, image){
-    if (os != "" && image == "kong"){
-        image = "kong/kong";
-    }
-    return image + ":" + (image == "kong/kong-gateway" ? eeVersion : ceVersion) + (os.length > 0 ? "-" : "") + os;
-}
-
-function replaceOs(oldOs, newOs){
-    const eeOldOsReplace = createReplacement(oldOs, "kong/kong-gateway");
-    const ceOldOsReplace = createReplacement(oldOs, "kong");
-    const eeNewOsReplace = createReplacement(newOs, "kong/kong-gateway");
-    const ceNewOsReplace = createReplacement(newOs, "kong");
-
-    eeCodeBlocks.forEach(function(n){
-        n.innerHTML = n.innerHTML.replace(eeOldOsReplace, eeNewOsReplace);
-    });
-    ceCodeBlocks.forEach(function(n){
-        n.innerHTML = n.innerHTML.replace(ceOldOsReplace, ceNewOsReplace);
-    });
-
-    lastSelectedOs = newOs;
-}
-
-document.querySelectorAll(".docker-os-select").forEach(function(n){
-    n.addEventListener("click", function(e){
-
-        if (e.target.value == "amazonlinux-2023"){
-            // This text is what to switch to, so OSS = we're looking at enterprise
-            if (eeToggleSwitch.textContent != "OSS") {
-                eeToggleSwitch.click();
-            }
-            eeToggle.style.display = "none";
-        } else {
-            eeToggle.style.display = "flex";
-        }
-        replaceOs(lastSelectedOs , e.target.value);
-    });
-});
-
-const dockerOs = (new URLSearchParams(window.location.search)).get("os");
-document.getElementById("docker-os-" + dockerOs).click();
-</script>

@@ -13,5 +13,5 @@ helm install myrelease kong/ingress --skip-crds
 
 Note that even when you _do_ use Helm to install CRDs, Helm does not update
 CRDs when running `helm upgrade`. You must separately install updated CRDs using
-the above `kubectl` command versions before running a `helm ugprade` that
+the above `kubectl` command versions before running a `helm upgrade` that
 installs a newer controller release.

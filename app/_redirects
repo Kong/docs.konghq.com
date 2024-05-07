@@ -15,6 +15,8 @@
 /gateway/:version/install/post-install/kong-manager-oss/    /gateway/:version/kong-manager-oss/
 /gateway/latest/install/post-install/kong-manager-oss/      /gateway/latest/kong-manager-oss/
 /gateway/latest/kong-production/db-encryption/ /gateway/latest/kong-enterprise/db-encryption/
+/gateway/:version/ai-gateway/ai-analytics/ /gateway/:version/production/logging/ai-analytics/
+/gateway/latest/ai-gateway/ai-analytics/ /gateway/:version/production/latest/ai-analytics/
 ######################################################################
 
 ## App reg v2 
@@ -455,7 +457,7 @@
 /konnect/api/portal-auth/portal-rbac-guide/ /konnect/dev-portal/access-and-approval/manage-teams/
 #API Redirects
 
-/konnect/identity-management-api/   /konnect/api/identity-management/v2/
+/konnect/identity-management-api/   /konnect/api/identity-management/latest/
 /gateway/*/kong-enterprise/dev-portal/portal-api/ /dev-portal/api/v1/
 
 # STUDIO

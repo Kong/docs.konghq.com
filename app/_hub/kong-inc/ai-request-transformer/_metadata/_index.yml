@@ -18,5 +18,3 @@ categories:
 publisher: Kong Inc.
 desc: Use an LLM service to inspect and transform the client's request body prior to proxying the request to the upstream server
 type: plugin
-
-kong_beta: true

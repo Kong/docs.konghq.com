@@ -19,5 +19,3 @@ publisher: Kong Inc.
 desc: Check llm/v1/chat or llm/v1/completions requests against a list of allowed or denied expressions
 
 type: plugin
-
-kong_beta: true

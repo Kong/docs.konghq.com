@@ -20,6 +20,10 @@ in the {{site.base_gateway}} documentation.
 
 The queue parameters all reside in a record under the key `queue` in
 the `config` parameter section of the plugin.
+
+Queues are not shared between workers and queueing parameters are
+scoped to one worker.  For whole-system capacity planning, the number
+of workers need to be considered when setting queue parameters.
 {% endif_version %}
 
 {% if_plugin_version gte:3.5.x %}
@@ -192,12 +196,12 @@ The top level span has the following attributes:
 
 ### Propagation
 
-The OpenTelemetry plugin propagates the following headers:
+The OpenTelemetry plugin supports propagation of the following header formats:
 - `w3c`: [W3C trace context](https://www.w3.org/TR/trace-context/)
 - `b3` and `b3-single`: [Zipkin headers](https://github.com/openzipkin/b3-propagation)
 - `jaeger`: [Jaeger headers](https://www.jaegertracing.io/docs/client-libraries/#propagation-format)
 - `ot`: [OpenTracing headers](https://github.com/opentracing/specification/blob/master/rfc/trace_identifiers.md)
-- `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/#trace-context-propagation-for-distributed-tracing) (Enterprise only)
+- `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/#trace-context-propagation-for-distributed-tracing)
 {% if_plugin_version gte:3.4.x %}
 - `aws`: [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader)
 {% endif_plugin_version %}
@@ -205,8 +209,21 @@ The OpenTelemetry plugin propagates the following headers:
 - `gcp`: [GCP X-Cloud-Trace-Context header](https://cloud.google.com/trace/docs/setup#force-trace)
 {% endif_plugin_version %}
 
+{% if_plugin_version gte:3.7.x %}
+{% include /md/plugins-hub/tracing-headers-propagation.md %}
+
+Refer to the plugin's [configuration reference](/hub/kong-inc/opentelemetry/configuration/#config-propagation) for a complete overview of the available options and values.
+
+
+{:.note}
+> **Note:** If any of the `propagation.*` configuration options (`extract`, `clear`, or `inject`) are configured, the `propagation` configuration takes precedence over the deprecated `header_type` parameter. 
+If none of the `propagation.*` configuration options are set, the `header_type` parameter is still used to determine the propagation behavior.
+{% endif_plugin_version %}
+{% if_plugin_version lte:3.6.x %}
 The plugin detects the propagation format from the headers and will use the appropriate format to propagate the span context.
 If no appropriate format is found, the plugin will fallback to the default format, which is `w3c`.
+{% endif_plugin_version %}
+
 
 ### OTLP exporter
 

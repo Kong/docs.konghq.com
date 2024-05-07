@@ -324,6 +324,13 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
+    - text: Konnect Search API (Beta)
+      items:
+        - text: API Spec
+          url: /konnect/api/search/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Mesh Manager API
       items:
         - text: API Spec
@@ -385,3 +392,5 @@
       url: /reference/plugins/
     - text: Custom Domains
       url: /reference/custom-dns/
+    - text: Konnect Search
+      url: /reference/search/

@@ -1,7 +1,7 @@
 ---
 title: Implementing Custom Logic
 book: plugin_dev
-chapter: 3
+chapter: 4
 ---
 
 {:.note}
@@ -248,7 +248,7 @@ of the `access` function would be:
 
 ``` lua
 function CustomHandler.access(self, config)
-  -- Implement logic for the rewrite phase here (http)
+  -- Implement logic for the access phase here (http)
   kong.log("access")
 end
 ```

@@ -25,9 +25,9 @@ describe("Version Switcher", () => {
   });
 });
 
-describe("Outdated version documentation", () => {
+describe("Older version documentation", () => {
   const oldVersionSelector =
-    'blockquote:contains("You are browsing documentation for an outdated version.") a';
+    'blockquote:contains("You are browsing documentation for an older version.") a';
   const latestGatewayVersion = "2.8.x";
 
   test("does not show on the latest version", async () => {
@@ -55,7 +55,7 @@ describe("Sidebar section count", () => {
     {
       title: "Gateway Single Sourced",
       path: "/gateway/latest/",
-      count: 11,
+      count: 12,
     },
     {
       title: "decK",
