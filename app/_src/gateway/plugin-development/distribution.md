@@ -1,7 +1,7 @@
 ---
 title: (un)Installing your plugin
 book: plugin_dev
-chapter: 10
+chapter: 11
 ---
 
 Custom plugins for Kong consist of Lua source files that need to be in the file
@@ -137,7 +137,7 @@ FROM kong/kong-gateway:latest
 USER root
 
 # Add custom plugin to the image
-COPY example-plugin /usr/local/bin/example-plugin
+COPY example-plugin/kong/plugins/example-plugin /usr/local/share/lua/5.1/kong/plugins/example-plugin
 ENV KONG_PLUGINS=bundled,example-plugin
 
 # Ensure kong user is selected for image execution

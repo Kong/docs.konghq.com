@@ -27,6 +27,9 @@ id: documentation
           {% if page.release.latest? %}
             <span>(latest)</span>
           {% endif %}
+          {% if page.release.lts %}
+            <span>LTS</span>
+          {% endif %}
         </div>
         {% endunless %}
       </div>
@@ -102,7 +105,7 @@ id: documentation
                 {% endif %}
             {% else %}
               <blockquote id="version-notice" class="important">
-                You are browsing documentation for an outdated version.
+                You are browsing documentation for an older version.
             {% endif %}
                 See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
               </blockquote>

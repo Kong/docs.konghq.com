@@ -10,6 +10,7 @@ apiVersion
 Arya
 Autonegotiation
 autoscale
+autoscales
 autoscaling
 APIOps
 Bagdi
@@ -117,6 +118,7 @@ Wasm
 WebAssembly
 Wireshark
 Zipkin
+_prod
 acl
 admin's
 allowlist
@@ -242,6 +244,7 @@ glibc
 globbing
 Gluu
 gojira
+Golang
 Goroutine
 Grafana
 grpc

@@ -40,6 +40,8 @@
   items:
     - text: Overview
       url: /gateway-manager/
+    - text: Dedicated Cloud Gateways
+      url: /gateway-manager/dedicated-cloud-gateways/
     - text: Data Plane Nodes
       items:
         - text: Installation Options
@@ -56,6 +58,10 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
+        - text: Transit Gateways
+          url: /gateway-manager/data-plane-nodes/transit-gateways
+    - text: Provision a Dedicated Cloud Gateway
+      url: /gateway-manager/provision-cloud-gateway/
     - text: Control Plane Groups
       items:
         - text: Overview
@@ -66,7 +72,6 @@
           url: /gateway-manager/control-plane-groups/migrate/
         - text: Conflicts in Control Planes
           url: /gateway-manager/control-plane-groups/conflicts/
-
     - text: Kong Gateway Configuration in Konnect
       items:
         - text: Overview
@@ -301,6 +306,13 @@
           absolute_url: true
           generate: false
           target_blank: true
+    - text: Cloud Gateways API
+      items: 
+        - text: API Spec
+          url: /konnect/api/cloud-gateways/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Identity API
       items:
         - text: API Spec
@@ -312,6 +324,13 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
+    - text: Konnect Search API (Beta)
+      items:
+        - text: API Spec
+          url: /konnect/api/search/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Mesh Manager API
       items:
         - text: API Spec
@@ -371,3 +390,7 @@
       url: /reference/labels/
     - text: Plugin Ordering Reference
       url: /reference/plugins/
+    - text: Custom Domains
+      url: /reference/custom-dns/
+    - text: Konnect Search
+      url: /reference/search/

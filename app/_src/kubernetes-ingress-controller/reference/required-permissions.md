@@ -33,7 +33,7 @@ You need write access to the following resources to install {{ site.kic_product_
 | `ServiceAccount`                 | `v1`                              | namespaced     | install components                 |
 | `Secret`                         | `v1`                              | namespaced     | set configurations and credentials |
 | `ConfigMap`                      | `v1`                              | namespaced     | set configurations                 |
-| `PersistentVolumeClaim`          | `v1`                              | namespaced     | claime volume for DB               |
+| `PersistentVolumeClaim`          | `v1`                              | namespaced     | claim volume for DB               |
 | `Job`                            | `v1`                              | namespaced     | create DB migration jobs           | 
 | `HorizontalPodAutoscaler`        | `autoscaling/v2`                  | namespaced     | configure auto scaling             |
 | `IngressClass`                   | `networking.k8s.io/v1`            | cluster        | install ingress class              | 

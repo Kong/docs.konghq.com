@@ -31,10 +31,11 @@ Due to backports, new features and breaking changes are possible at any version 
 To avoid issues, do not upgrade to any new version automatically, and 
 make sure to review all relevant [changelog entries](/gateway/changelog/) before manually upgrading your deployments.
 
-Kong may designate a specific minor version as a Long-Term Support (LTS) version. Kong provides technical support for the LTS version on a given distribution for the duration of the distribution’s lifecycle, or for 3 years from LTS version release, whichever comes sooner. An LTS version is backwards compatible within its major version sequence. An LTS version receives all security fixes. Additionally, an LTS version may receive certain non-security patches at Kong's discretion. At any time, there will be at least 1 active LTS {{site.ee_product_name}} version.
+### Long-term support
 
+Kong may designate a specific minor version as a **Long-Term Support (LTS)** version. Kong provides technical support for the LTS version on a given distribution for the duration of the distribution’s lifecycle, or for 3 years from LTS version release, whichever comes sooner. An LTS version is backwards compatible within its major version sequence. An LTS version receives all security fixes. Additionally, an LTS version may receive certain non-security patches at Kong's discretion. At any time, there will be at least 1 active LTS {{site.ee_product_name}} version.
 
-## Sunset support
+### Sunset support
 After the product hits the end of the support period, Kong will provide limited support to help the customer upgrade to a fully supported version of {{site.ee_product_name}} for up to an additional 12 month sunset period. Kong will not provide patches for software covered by this sunset period. If there is an issue that requires a patch during this period, the customer will need to upgrade to a newer {{site.ee_product_name}} version covered by active support.
 
 {% include_cached /md/support-policy.md %}
@@ -44,6 +45,11 @@ After the product hits the end of the support period, Kong will provide limited 
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
+  {% if_version gte: 3.7.x %}
+  {% navtab 3.7 %}
+    {% include_cached gateway-support.html version="3.7" data=site.data.tables.support.gateway.versions.37 eol="May 2025" %}
+  {% endnavtab %}
+  {% endif_version %}
   {% if_version gte: 3.6.x %}
   {% navtab 3.6 %}
     {% include_cached gateway-support.html version="3.6" data=site.data.tables.support.gateway.versions.36 eol="Feb 2025" %}
@@ -63,6 +69,9 @@ Kong supports the following versions of {{site.ee_product_name}}:
   {% endnavtab %}
 {% endnavtabs %}
 
+{:.note}
+> **Note:**: This policy **only** applies to {{site.base_gateway}} and {{site.ee_product_name}}. For the {{site.konnect_product_name}} version support policy, review the [{{site.konnect_product_name}} policy](/konnect/compatibility/#kong-gateway-version-compatibility).
+
 ### Marketplaces
 
 {{site.ee_product_name}} is available through the following marketplaces:
@@ -71,6 +80,21 @@ Kong supports the following versions of {{site.ee_product_name}}:
 - Google Cloud Marketplace
 
 Latest versions are not guaranteed.
+
+### Supported public cloud deployment platforms
+
+{{site.ee_product_name}} supports the following public cloud deployment platforms:
+
+* AWS EKS
+* AWS EKS Fargate
+* AWS ECS
+* AWS ECS Fargate
+* Azure AKS
+* Azure Container Instances
+* Azure Container Apps
+* Google Cloud GKE
+* Google Cloud GKE Autopilot
+* Google Cloud Run
 
 ## Older versions
 

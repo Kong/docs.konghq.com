@@ -37,7 +37,7 @@ To log in to the Dev Portal using SSO, navigate to the Dev Portal and follow the
 
 2. After you are redirected to the identity provider (IdP), log in using your IdP's credentials.
 
-3. You will be automatically logged in and redirected to the {{site.konnect_short_name}} catalog.
+3. You will be automatically logged in and redirected to the Dev Portal catalog.
 
 ## Account Management {#management}
 

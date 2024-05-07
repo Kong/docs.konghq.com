@@ -100,3 +100,11 @@ third-party:
   s3_api:
     - *s3
     - *minio
+  
+  ai_providers:
+    - *openai
+    - *cohere
+    - *azure_ai
+    - *anthropic
+    - *mistral
+    - *llama2

@@ -481,7 +481,7 @@ kong:{{page.versions.ce}}-alpine
     : The tag of the {{site.base_gateway}} image that you're using, and the Docker network it communicates on.
 
     `KONG_CLUSTER_CONTROL_PLANE`
-    : Sets the address and port of the control plane (port `8005` by defaut).
+    : Sets the address and port of the control plane (port `8005` by default).
 
     `KONG_DATABASE`
     : Specifies whether this node connects directly to a database.

@@ -6749,6 +6749,10 @@ components:
                 properties:
                   total_count:
                     type: integer
+                  next_cursor:
+                    type: string
+                  has_next_page:
+                    type: boolean
     list-nodes-eol:
       description: Example response
       content:
