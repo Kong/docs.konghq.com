@@ -8,7 +8,7 @@ minimum_version: 3.7.x
 
 Demonstrating Proof-of-Possession (DPoP) is an alternative technique to the 
 [Mutual TLS certificate-bound access tokens](/hub/kong-inc/openid-connect/how-to/client-authentication/mtls/). 
-Instead of binding the token with the client certificate used in the mTLS, it binds the token with a JWK provided by the client.
+Unlike its alternative, which binds the token to the mTLS client certificate, it binds the token to a JSON Web Key (JWK) provided by the client.
 
 <!--vale off-->
 {% mermaid %}
@@ -41,22 +41,22 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-It's possible to use Demonstrating Proof-of-Possession option without mTLS, or even with plain HTTP. HTTPS is recommended for better protection.
+You can utilize the Demonstrating Proof-of-Possession option without Mutual TLS, and even with plain HTTP, although HTTPS is recommended for enhanced security.
 
-Note that by enabling the verification of the DPoP proof, Kong removes the `DPoP` header and changes the token type from `dpop` to `bearer`,
-which essentially downgrades the request to use a conventional bearer token.
+When verification of the DPoP proof is enabled, Kong removes the `DPoP` header and changes the token type from `dpop` to `bearer`.
+This effectively downgrades the request to use a conventional bearer token.
 This allows an OAuth2 upstream without DPoP support to work with the DPoP token without losing the protection of the key-binding mechanism.
 
 It's a prerequisite that the auth server is configured to enable the DPoP for you to enable it with Kong.
 
-If you are configuring this in Keycloak, see the [Keycloak configuration](#prerequisites) section in the prerequisites.
-For alternative auth servers, consult their documentation to configure this functionality.
+If you are setting up Demonstrating Proof-of-Possession in Keycloak, refer to the [Keycloak configuration](#prerequisites) section in the prerequisites.
+For other authentication servers, please consult their specific documentation to configure this functionality.
 
-Some of the instructions in the other how-to guides for OpenID Connect support validation of access tokens using mTLS proof of possession.
+Many instructions in the other how-to guides for OpenID Connect support validation of access tokens using Demonstrating Proof-of-Possession.
 Enabling the [`proof_of_possession_dpop`](/hub/kong-inc/openid-connect/configuration/#config-proof_of_possession_dpop) configuration option in the plugin helps to ensure that the supplied access token
-belongs to the client by verifying its binding with the client certificate provided in the request.
+is bound to the client by verifying its association with the JWT provided in the request.
 
-DPoP is supported by the following auth methods:
+DPoP is compatible with the following authentication methods:
 
 - [JWT Access Token Authentication](/hub/kong-inc/openid-connect/how-to/authentication/jwt-access-token/)
 - [Introspection Authentication](/hub/kong-inc/openid-connect/how-to/authentication/introspection/)
@@ -64,7 +64,7 @@ DPoP is supported by the following auth methods:
 
    Session Authentication is only compatible with DPoP when used along with one of the other supported authentication methods:
 
-    * If multiple `openid-connect` plugins are configured with the `session` auth method, we strongly recommend configuring different values of [`session_secret`](/hub/kong-inc/openid-connect/configuration/#config-session_secret) across plugin instances for additional security. This avoids sessions being shared across plugins and possibly bypassing the proof of possession validation.
+    * If multiple `openid-connect` plugins are configured with the `session` authentication method, we strongly recommend configuring different values of [`session_secret`](/hub/kong-inc/openid-connect/configuration/#config-session_secret) across plugin instances for additional security. This avoids sessions being shared across plugins and possibly bypassing the proof of possession validation.
 
 The following example shows how to enable this feature for the JWT Access Token Authentication method. Similar steps can be followed for the other methods.
 
@@ -101,7 +101,7 @@ formats:
 {% endplugin_example %}
 <!-- vale on -->
 
-If this is configured correctly, it returns a `200` response and something like the following:
+If configured correctly, it returns a `200` response like this:
 
 
 ```json
