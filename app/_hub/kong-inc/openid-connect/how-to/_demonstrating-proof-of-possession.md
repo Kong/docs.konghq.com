@@ -41,7 +41,7 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-You can utilize the Demonstrating Proof-of-Possession option without Mutual TLS, and even with plain HTTP, although HTTPS is recommended for enhanced security.
+You can use the Demonstrating Proof-of-Possession option without Mutual TLS, and even with plain HTTP, although HTTPS is recommended for enhanced security.
 
 When verification of the DPoP proof is enabled, Kong removes the `DPoP` header and changes the token type from `dpop` to `bearer`.
 This effectively downgrades the request to use a conventional bearer token.
