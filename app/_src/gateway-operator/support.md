@@ -17,8 +17,6 @@ LTS versions of {{site.kgo_product_name}} are supported for 3 years after releas
 {:.note}
 > {{site.kgo_product_name}} is a recently released product and does not currently provide an LTS version.
 
-## Version support for {{site.kgo_product_name}}
-
 {% support_policy kong_versions_kgo%}
 
 > *Table 1: Version Support for {{site.kgo_product_name}}*
