@@ -590,6 +590,13 @@ components:
             id:
               type: string
           type: object
+        expression:
+          description: The route expression used for advanced routing scenarios. This field is used to evaluate route matches based on complex criteria beyond the standard routing fields.
+          type: string
+        priority:
+          description: A number used to specify the matching order for expression routes. The higher the `priority`, the sooner a route will be evaluated. This field is ignored unless `expression` field is set. The value must be between 0 and 2^46 - 1.
+          type: integer
+          default: 0
         snis:
           description: A list of SNIs that match this route when using stream routing.
           items:
