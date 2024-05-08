@@ -8,7 +8,7 @@ module PluginSingleSource
       include ::PluginSingleSource::Pages::Nestable
 
       def page_title
-        "Using the #{@release.metadata['name']} plugin"
+        @page_title ||= I18n.t('hub.page_title.how_to', locale: translate_to, plugin_name: @release.metadata['name'])
       end
 
       def breadcrumb_title

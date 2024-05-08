@@ -447,4 +447,22 @@ en:
         functionality: "Functionality"
         support_by: "Support by"
         compatibility: "Compatibility"
-
+    sidebar:
+      basic_config_examples: "Basic config examples"
+      changelog: "Changelog"
+      configuration: "Configuration reference"
+      introduction: "Introduction"
+      troubleshooting: "Troubleshooting"
+      using_the_plugin: "Using the plugin"
+    page_title:
+      api_reference: "%{plugin_name} API reference"
+      basic_config_examples: "Basic config examples for %{plugin_name}"
+      changelog: "%{plugin_name} Changelog"
+      configuration: "%{plugin_name} Configuration"
+      how_to: "Using the %{plugin_name} plugin"
+    breadcrumbs:
+      api_reference: "%{plugin_name} API reference"
+      basic_config_examples: "Basic config examples"
+      changelog: "Changelog"
+      configuration: "Configuration"
+      introduction: "Introduction"
