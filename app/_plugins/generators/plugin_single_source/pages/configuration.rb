@@ -3,8 +3,6 @@
 module PluginSingleSource
   module Pages
     class Configuration < Base
-      TITLE = 'Configuration'
-
       def canonical_url
         "#{base_url}configuration/"
       end
@@ -18,7 +16,8 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.metadata['name']} #{TITLE}"
+        @page_title ||= I18n.t('hub.page_title.configuration', locale: translate_to,
+                                                               plugin_name: @release.metadata['name'])
       end
 
       def dropdown_url
@@ -30,11 +29,11 @@ module PluginSingleSource
       end
 
       def nav_title
-        'Configuration reference'
+        @nav_title ||= I18n.t('hub.sidebar.configuration', locale: translate_to)
       end
 
       def breadcrumb_title
-        TITLE
+        @breadcrumb_title ||= I18n.t('hub.breadcrumbs.configuration', locale: translate_to)
       end
 
       def icon; end

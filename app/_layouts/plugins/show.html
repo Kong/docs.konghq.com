@@ -55,7 +55,7 @@ type: plugin
       {{ content }}
     {% endcapture %}
 
-    {% include plugins/sidebar.html sidenav=page.sidenav %}
+    {% include_cached plugins/sidebar.html sidenav=page.sidenav %}
 
     {% include plugins/right_nav.html full_content=full_content extn_publisher=page.extn_publisher %}
 
