@@ -5,8 +5,6 @@ require_relative 'how_to'
 module PluginSingleSource
   module Pages
     class ConfigurationExamples < HowTo
-      TITLE = 'Basic config examples'
-
       def canonical_url
         "#{base_url}how-to/basic-example/"
       end
@@ -20,7 +18,8 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{TITLE} for #{@release.metadata['name']}"
+        @page_title ||= I18n.t('hub.page_title.basic_config_examples', locale: translate_to,
+                                                                       plugin_name: @release.metadata['name'])
       end
 
       def dropdown_url
@@ -32,11 +31,11 @@ module PluginSingleSource
       end
 
       def nav_title
-        TITLE
+        @nav_title ||= I18n.t('hub.sidebar.basic_config_examples', locale: translate_to)
       end
 
       def breadcrumb_title
-        TITLE
+        @breadcrumb_title ||= I18n.t('hub.breadcrumbs.basic_config_examples', locale: translate_to)
       end
 
       def icon
