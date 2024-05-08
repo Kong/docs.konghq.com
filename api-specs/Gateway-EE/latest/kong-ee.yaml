@@ -12958,6 +12958,13 @@ paths:
                           properties:
                             id:
                               type: string
+                        role_source:
+                          description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                          type: string
+                          default: "local"
+                          enum:
+                            - "local"
+                            - "idp"
                         workspace:
                           type: string
                 x-examples:
@@ -13012,6 +13019,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13133,6 +13147,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13193,6 +13214,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13296,6 +13324,13 @@ paths:
                           properties:
                             id:
                               type: string
+                        role_source:
+                          description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                          type: string
+                          default: "local"
+                          enum:
+                            - "local"
+                            - "idp"
                 x-examples:
                   Example 1:
                     data:
@@ -13457,6 +13492,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                 x-examples:
                   Example 1:
                     actions:
@@ -14617,6 +14659,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
               example: 
@@ -14811,6 +14860,7 @@ tags:
       <br><br>
       * User: The entity interacting with the system. Can be associated with zero, one, or more roles. For example: The user `bob` has the token `1234`.
       * Role: Set of permissions (`role_endpoint` and `role_entity`). Has a name and can be associated with zero, one, or more permissions. For example: The user `bob` is associated with the role `developer`.
+      * `role_source`: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
       * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
       * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
     name: RBAC
