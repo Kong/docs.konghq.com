@@ -86,6 +86,10 @@ module PluginSingleSource
         Utils::Version.in_range?(@release.version, min:, max:)
       end
 
+      def translate_to
+        @translate_to ||= @release.missing_translation? ? I18n.default_locale : I18n.locale
+      end
+
       private
 
       def url_attributes
