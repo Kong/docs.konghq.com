@@ -12,6 +12,9 @@ This plugin can also be used for debugging, as described in the
 Once this plugin is enabled, every request (within the configured plugin scope of a service,
 route, consumer, or global) will be immediately terminated by sending the configured response.
 
+{:.important}
+> **Note:** The Request Termination plugin will not execute if the [Forward Proxy plugin](/hub/kong-inc/forward-proxy/) is enabled. This is because the Forward Proxy plugin has a higher priority and when it executes, the request is forwardered according to the plugin configuration. If you need to change this behaviour, you can configure the Request Termination plugin to execute before the the Forward Proxy plugin using [Dynamic Plugin Ordering](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/).
+
 ## Example Use Cases
 
 - Temporarily disable a service, for example, if the service is under maintenance
