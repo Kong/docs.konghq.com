@@ -56,7 +56,7 @@ inherit:
       text: Kong Mesh license
       url: /production/cp-deployment/license
     - path: [ Kong Mesh in Production, Secure your deployment, Kuma API access control ]
-      action: modify
+      action: delete
       text: Kong Mesh API access control
     - path: [ Kong Mesh in Production, Secure your deployment ]
       action: insert
