@@ -33,3 +33,11 @@ When the notification appears to confirm your gateway has been provisioned, you 
 > _**Figure 1:** The Serverless Gateway CP overview in the {{site.konnect_short_name}} UI. Once provisioned, the gateway proxy URL will show in this overview section._
 
 The Serverless Gateway is now ready to use, and you can create services, routes, plugins, view analytics and more as you would with Hybrid Gateways or Dedicated Cloud Gateways in {{site.konnect_short_name}}.
+
+## Limitations
+
+Serverless Cloud Gateways is a lightweight managed Gateway offering, and as such has several limitations:
+* A user can only have 1 Serverless CP per Organization
+* A Serverless CP can only have a single data plane node attached to it
+* If a serverless DP is deleted, it is not possible to re-provision one through the UI (but can be done via the API)
+* Serverless data plane nodes automatically shutdown after a short period of time. Sending new traffic will re-awaken them but first request latency may be a little higher while this process occurs.
