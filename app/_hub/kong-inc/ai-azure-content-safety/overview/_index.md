@@ -6,15 +6,18 @@ The Azure Content Safety plugin allows administrators to enforce
 introspection with the [Azure Content Safety](https://azure.microsoft.com/en-us/products/ai-services/ai-content-safety) service 
 for all requests handled by the AI Proxy plugin.
 The plugin enables configurable thresholds for the different moderation categories 
-and reports audit results into the {{Site.base_gateway}} log serializer for reporting purposes.
+and an array set of pre-configured blocklist IDs can be specified from your Azure Content Safety instance.
+
+Audit failures can be observed and reported on using the {{Site.base_gateway}} logging plugins.
 
 {:.note}
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 
 Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
 
-## Format 
+## Format
 
-This plugin supports large text documents, base64 images, and many more formats. It is mostly format-agnostic.
+This plugin works with all of the AI Proxy plugin's `route_type` settings (excluding the `preserve` mode), and is able to
+compose an Azure Content Safety text check by compiling all chat history, or just the 'user' content.
 
 ## Get started with the AI Prompt Decorator plugin
 

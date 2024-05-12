@@ -18,5 +18,5 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: Use Azure Cognitive Services to check and audit AI Proxy plugin messages before proxying them to an upstream LLM
+desc: Use Azure Cognitive Services (Content Safety) to check and audit AI Proxy plugin messages before proxying them to an upstream LLM
 type: plugin
