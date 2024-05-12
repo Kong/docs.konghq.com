@@ -12,7 +12,7 @@ categories.
 This plugin integrates with the [Azure REST API](https://westus.dev.cognitive.microsoft.com/docs/services/content-safety-service-2023-04-30-preview/operations/TextOperations_Analyze) and transmits every user LLM request 
 from users to the Azure Content Safety SaaS **before** proxying to the upstream LLM.
 
-It currently uses the [**text moderation**](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text?tabs=visual-studio%2Cwindows&pivots=programming-language-rest) operation.
+It currently uses the [**text moderation**](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text?tabs=visual-studio%2Cwindows&pivots=programming-language-rest) operation, and only supports REST API version **2023-10-01**.
 
 You set a configurable array of categories and levels, and if a piece of content is deeemd (by Azure) to have
 breached one or more of these levels, the request will be stopped with a 400 status and will be reported
@@ -28,7 +28,9 @@ that will serve as your LLM access point.
 
 ## Examples
 
-You can configure the plugin with an array of supported categories as defined by the Azure SaaS itself:
+You should configure the plugin with an array of supported categories as defined in the 
+[Content Services REST API documentation](https://westus.dev.cognitive.microsoft.com/docs/services/content-safety-service-2023-10-01/operations/TextOperations_AnalyzeText), for example using all four
+supported categories in this API version:
 
 <!-- vale off-->
 {% plugin_example %}
@@ -40,10 +42,17 @@ config:
   reveal_failure_reason: true
   content_safety_key: "{vault://env/AZURE_CONTENT_SAFETY_KEY}"
   categories:
-    - name: "Hate"
-      rejection_level: 2
-    - name: "Violence"
-      rejection_level: 2
+  - name: Hate
+    rejection_level: 2
+  - name: SelfHarm
+    rejection_level: 2
+  - name: Sexual
+    rejection_level: 2
+  - name: Violence
+    rejection_level: 2
+  text_source: concatenate_user_content
+  reveal_failure_reason: true
+  output_type: FourSeverityLevels
 targets:
   - service
 formats:
@@ -79,7 +88,7 @@ Now, given the following AI Chat request:
 }
 ```
 
-The plugin forms the "text" to inspect by concatenating the contents into the following:
+The plugin folds the "text" to inspect, by concatenating the contents into the following:
 
 ```plaintext
 You are a mathematician.; What is 1 + 1?; The answer is 3.; You lied, I hate you!
@@ -99,4 +108,3 @@ Based on the plugin's configuration, Azure responds with the following analysis:
 ```
 
 This breaches the plugin's configured (inclusive and greater) threshold of `2` for `Hate`, and sends a 400 error code to the client.
-
