@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "exe/build"
+  command = "git submodule update --init && exe/build"
   environment = { JEKYLL_ENV = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
 
 [context.production.environment]
