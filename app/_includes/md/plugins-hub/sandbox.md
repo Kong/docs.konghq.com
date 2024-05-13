@@ -24,4 +24,6 @@ In addition to the above restrictions:
 
 * All the provided modules (like `string` or `table`) are read-only and can't be modified.
 * Bytecode execution is disabled.
+{% if_version gte:3.3.x %}
 * The `kong.cache` points to a cache instance that is dedicated to the Serverless Functions plugins. It does not provide access to the global Kong Gateway cache. It only exposes `get` method. Explicit write operations like `set` or `invalidate` are not available.
+{% endif_version %}
