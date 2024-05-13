@@ -11,9 +11,9 @@ This guide walks you through setting up the AI Proxy plugin with streaming.
 
 Streaming is a mode where a client can specify `"stream": true` in their request and the LLM server will stream each piece of the response text (usually token-by-token) as a server-sent event.
 
-Kong captures each batch of events and translates them back into the inference format, so that all providers are compatible with the same framework that you create on your side.
+Kong captures each batch of events and translates them back into the Kong inference format, so that all providers are compatible with the same framework that you create on your side (including OpenAI-compatible SDKs or similar).
 
-When streaming is disabled, requests proxy directly to the LLM look like this:
+In a standard LLM transaction, requests proxy directly to the LLM look like this:
 
 {% mermaid %}
 flowchart LR
@@ -28,7 +28,7 @@ flowchart LR
   C --> A
 {% endmermaid %}
 
-When streaming is enabled, requests proxy directly to the LLM look like this:
+When streaming is requested, requests proxy directly to the LLM look like this:
 
 {% mermaid %}
 flowchart LR
@@ -74,15 +74,31 @@ It will also estimate tokens for LLM services that decided to not stream back th
 Keep the following limitations in mind when you configure streaming for the AI Proxy plugin: 
 
 * Multiple AI features shouldn’t expect to be applied and work simultaneously
-* You cannot use the [Response Transformer plugin](/hub/kong-inc/response-transformer/) when streaming is configured.
+* You cannot use the [Response Transformer plugin](/hub/kong-inc/response-transformer/) plugin or any other "response" phase plugin when streaming is configured
+* The [AI Request Transformer plugin](/hub/kong-inc/ai-request-transformer/) plugin **will** work, but the [AI Response Transformer plugin](/hub/kong-inc/ai-response-transformer/) **will not**. This is a limitation of the fact that Kong cannot check every single response token against a separate system.
+* Streaming currently does not work with the HTTP/2 protocol - you must disable this in your `proxy_listen` configuration.
 
 ## Configuration
 
-### Prerequisites
+The `ai-proxy` plugin already supports request streaming - simply ask the Kong gateway to stream the response tokens back to you!
 
-### Set up streaming
+An example `llm/v1/completions` route-type streaming request:
 
-### Test the configuration
+```json
+{
+  "prompt": "What is the theory of relativity?",
+  "stream": true
+}
+```
 
-Make an `llm/v1/chat` type request to test your new endpoint:
+and you should receive each batch of tokens as HTTP chunks, each containing one-or-many Server-Sent Events.
 
+### Disable Response Streaming
+
+In AI Proxy, there is an optional configuration field `config.response_streaming`, which can be set to one of three values:
+
+| Value  | Effect                                                                                                |
+|--------|-------------------------------------------------------------------------------------------------------|
+| allow  | Allows the caller to optionally specify a streaming response in their request (default is not-stream) |
+| deny   | Blocks the caller from setting stream=true in their request                                           |
+| always | Will always return streaming responses, even if the caller hasn't specified it in their request       |
