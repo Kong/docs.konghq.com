@@ -2,6 +2,53 @@
 
 <!--vale off-->
 
+## Week 19
+
+### [Remove duplicated entry](https://github.com/Kong/docs.konghq.com/pull/7361) (2024-05-10)
+
+`control_plane` was listed twice.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/search
+
+
+### [(fix) Remove "enterprise" category from Datadome](https://github.com/Kong/docs.konghq.com/pull/7350) (2024-05-07)
+
+Based on review w/ @DaniellaFreese and Eric, this plugin doesn't qualify as Enterprise based on the revised categorization set at end of last year. 
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/datadome/kong-plugin-datadome/_metadata/_index.yml
+
+
+### [Plugins troubleshooting](https://github.com/Kong/docs.konghq.com/pull/7290) (2024-05-07)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/assets/images/icons/hub-layout/icn-troubleshooting.svg
+
+
+### [feat: add OCI plugin distribution docs](https://github.com/Kong/docs.konghq.com/pull/7245) (2024-05-07)
+
+Added docs around using an OCI registry and OSS tooling to sign and distribute custom plugins.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.6.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/unreleased/plugin-development/pdk/kong.jwe
+
 ## Week 18
 
 ### [chore: Add links to graphql paper](https://github.com/Kong/docs.konghq.com/pull/7340) (2024-05-03)
