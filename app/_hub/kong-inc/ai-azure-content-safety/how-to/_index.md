@@ -26,6 +26,34 @@ to get set-up quickly.
 Then, as in the [AI Proxy](/hub/kong-inc/ai-proxy/) documentation, create a service, route, and `ai-proxy` plugin
 that will serve as your LLM access point.
 
+## Authentication
+
+In any one configuration, the plugin supports one of:
+
+* Content Safety Key (static key generated from Azure Portal)
+* Managed Identity Authentication
+
+### Content Safety Key Auth
+
+To use a content safety key, you must set the `config.content_safety_key` parameter.
+
+### Managed Identity Auth
+
+To use Managed Identity auth (e.g. Machine Identity on an Azure VM or AKS Pod), you must set `config.use_azure_managed_identity`
+to `true`.
+
+Following this, there are three more parameters that may or may not be required:
+
+* `config.azure_client_id`
+* `config.azure_client_secret`
+* `config.azure_tenant_id`
+
+"Client ID" is normally required when you want to use a different *user assigned identity* instead of the 
+managed identity assigned to the resource on which Kong is running.
+
+The remaining two ("client secret" and "tenant ID") are usually only used when you are running Kong somewhere outside 
+of Azure, but still want to use Entra ID (ADFS) to authenticate with Content Services.
+
 ## Examples
 
 You should configure the plugin with an array of supported categories as defined in the 
@@ -39,7 +67,6 @@ name: ai-azure-content-safety
 config:
   content_safety_url: "https://my-acs-instance.cognitiveservices.azure.com/contentsafety/text:analyze"
   use_azure_managed_identity: false
-  reveal_failure_reason: true
   content_safety_key: "{vault://env/AZURE_CONTENT_SAFETY_KEY}"
   categories:
   - name: Hate
@@ -52,7 +79,7 @@ config:
     rejection_level: 2
   text_source: concatenate_user_content
   reveal_failure_reason: true
-  output_type: FourSeverityLevels
+  output_type: FourSeverityLevels  # Supports FOUR or EIGHT level severity-grading
 targets:
   - service
 formats:
@@ -107,4 +134,64 @@ Based on the plugin's configuration, Azure responds with the following analysis:
 }
 ```
 
-This breaches the plugin's configured (inclusive and greater) threshold of `2` for `Hate`, and sends a 400 error code to the client.
+This breaches the plugin's configured (inclusive and greater) threshold of `2` for `Hate` and `Violence`, and sends a 400 error code to the client:
+
+```json
+{
+	"error": {
+		"message": "request failed content safety check: breached category [Hate] at level 2; breached category [Violence] at level 2"
+	}
+}
+```
+
+### Hiding the Failure from the Client
+
+If you don't want to reveal to the caller why their request has failed, you can set `config.reveal_failure_reason` to `false`, in which
+case the response will be non:
+
+```json
+{
+	"error": {
+		"message": "request failed content safety check"
+	}
+}
+```
+
+### Using Blocklists
+
+The plugin supports previously-created blocklists in Azure Content Safety.
+
+Using the [Azure Content Safety API]() or the Azure Portal, you can create a series of blocklists for banned phrases or patterns. You can then
+reference their unique names in the plugin configuration, for example:
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/ai-azure-content-safety
+name: ai-azure-content-safety
+config:
+  content_safety_url: "https://my-acs-instance.cognitiveservices.azure.com/contentsafety/text:analyze"
+  use_azure_managed_identity: false
+  content_safety_key: "{vault://env/AZURE_CONTENT_SAFETY_KEY}"
+  categories:
+  - name: Hate
+    rejection_level: 2
+  blocklist_names:
+  - company_competitors
+  - financial_properties
+  halt_on_blocklist_hit: true
+  text_source: concatenate_user_content
+  reveal_failure_reason: true
+  output_type: FourSeverityLevels  # Supports FOUR or EIGHT level severity-grading
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+Kong will then command Content Safety to enable and execute these blocklists against the content. The plugin property `config.halt_on_blocklist_hit` is
+used to tell Content Safety to STOP analyzing the content as soon as any blocklist hit matches. This can save analysis cost, at the expense of accuracy
+in the response (i.e. if it also fails "Hate" category, this will not be reported).
