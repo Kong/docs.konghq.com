@@ -10,7 +10,6 @@ gem 'liquid-c'
 gem 'rouge', '3.30.0'
 gem 'activesupport'
 gem 'nokogiri'
-gem 'jekyll-kuma-plugins', path: './app/_src/.repos/kuma/jekyll-kuma-plugins'
 gem 'jekyll-vite'
 gem 'i18n'
 
