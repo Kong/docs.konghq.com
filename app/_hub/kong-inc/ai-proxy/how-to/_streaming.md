@@ -5,15 +5,13 @@ title: Configure Streaming with AI Proxy
 
 This guide walks you through setting up the AI Proxy plugin with streaming.
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='intro' %}
-
 ## How it works
 
 Streaming is a mode where a client can specify `"stream": true` in their request and the LLM server will stream each piece of the response text (usually token-by-token) as a server-sent event.
 
-Kong captures each batch of events and translates them back into the Kong inference format, so that all providers are compatible with the same framework that you create on your side (including OpenAI-compatible SDKs or similar).
+Kong captures each batch of events and translates them back into the Kong inference format, so that all providers are compatible with the same framework that you create on your side (including [OpenAI-compatible SDKs](/hub/kong-inc/ai-proxy/how-to/sdk-usage/) or similar).
 
-In a standard LLM transaction, requests proxy directly to the LLM look like this:
+In a standard LLM transaction, requests proxied directly to the LLM look like this:
 
 {% mermaid %}
 flowchart LR
@@ -28,7 +26,7 @@ flowchart LR
   C --> A
 {% endmermaid %}
 
-When streaming is requested, requests proxy directly to the LLM look like this:
+When streaming is requested, requests proxied directly to the LLM look like this:
 
 {% mermaid %}
 flowchart LR
@@ -76,13 +74,13 @@ Keep the following limitations in mind when you configure streaming for the AI P
 * Multiple AI features shouldn’t expect to be applied and work simultaneously
 * You cannot use the [Response Transformer plugin](/hub/kong-inc/response-transformer/) plugin or any other "response" phase plugin when streaming is configured
 * The [AI Request Transformer plugin](/hub/kong-inc/ai-request-transformer/) plugin **will** work, but the [AI Response Transformer plugin](/hub/kong-inc/ai-response-transformer/) **will not**. This is a limitation of the fact that Kong cannot check every single response token against a separate system.
-* Streaming currently does not work with the HTTP/2 protocol - you must disable this in your `proxy_listen` configuration.
+* Streaming currently doesn't work with the HTTP/2 protocol. You must disable this in your `proxy_listen` configuration.
 
 ## Configuration
 
-The `ai-proxy` plugin already supports request streaming - simply ask the Kong gateway to stream the response tokens back to you!
+The `ai-proxy` plugin already supports request streaming, all you have to do is request {{site.base_gateway}} to stream the response tokens back to you.
 
-An example `llm/v1/completions` route-type streaming request:
+The following is an example `llm/v1/completions` route-type streaming request:
 
 ```json
 {
@@ -91,14 +89,14 @@ An example `llm/v1/completions` route-type streaming request:
 }
 ```
 
-and you should receive each batch of tokens as HTTP chunks, each containing one-or-many Server-Sent Events.
+You should receive each batch of tokens as HTTP chunks, each containing one or many server-sent events.
 
-### Disable Response Streaming
+### Response streaming configuration parameters
 
-In AI Proxy, there is an optional configuration field `config.response_streaming`, which can be set to one of three values:
+In the AI Proxy plugin configuration, you can set an optional field `config.response_streaming` to one of three values:
 
-| Value  | Effect                                                                                                |
-|--------|-------------------------------------------------------------------------------------------------------|
-| allow  | Allows the caller to optionally specify a streaming response in their request (default is not-stream) |
-| deny   | Blocks the caller from setting stream=true in their request                                           |
-| always | Will always return streaming responses, even if the caller hasn't specified it in their request       |
+| Value  | Effect                                                                                    |
+|--------|------------------------------------------------------------------------------------------------------|
+| `allow`  | Allows the caller to optionally specify a streaming response in their request (default is not-stream) |
+| `deny`   | Prevents the caller from setting `stream=true` in their request                                           |
+| `always` | Always returns streaming responses, even if the caller hasn't specified it in their request       |

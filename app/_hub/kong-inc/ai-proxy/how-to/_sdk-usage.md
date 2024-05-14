@@ -3,7 +3,12 @@ title: SDK Usage
 nav_title: Using Programmatic SDKs with AI Proxy
 ---
 
-AI Proxy currently allows you to use an OpenAI-compatible SDK in multiple ways, depending on the required use-case.
+You can use an OpenAI-compatible SDK with the AI Proxy plugin in multiple ways, depending on the required use case.
+
+| You want to... | Then use... |
+| -------------- | ----------- |
+| Proxy an unsupported model, like Whisper-2. | [OpenAI-compatible SDK for unsupported models](#using-an-unsupported-model) |
+| etc | etc |
 
 ## Templated Model Parameters
 
@@ -17,12 +22,13 @@ The available templated parameters are:
 * `$(uri_captures.name)`
 * `$(query_params.name)`
 
-where name is either the header name, URI named capture (in the route path), or the query parameter name, respectively.
+`name` is either the header name, URI named capture (in the route path), or the query parameter name, respectively.
 
-## Example: Using OpenAI SDK with Multiple Models on the Same Provider
+## Use case examples
+### Using OpenAI SDK with Multiple Models on the Same Provider
 
-To read the desired model from the user, rather than hard-coding into the plugin config for each route,
-you can e.g. read it from a path parameter, as with this example:
+To read the desired model from the user, rather than hard coding it into the plugin config for each route,
+you can read it from a path parameter, for example:
 
 ```yaml
 - name: openai-chat
@@ -45,7 +51,7 @@ you can e.g. read it from a path parameter, as with this example:
         name: "$(uri_captures.model)"
 ```
 
-you can now target two different models using e.g. the Python SDK:
+You can now target two different models using an OpenAI-compatible SDK:
 
 ```python
 client = OpenAI(
@@ -53,14 +59,13 @@ client = OpenAI(
 )
 ```
 
-The Python SDK (in OpenAI standard mode) will fill in the URL to: `http://localhost:8000/gpt-4/chat/completions` and thus
-Kong will recognise the model as "gpt-4" and route appropriately.
+The Python SDK (in OpenAI standard mode) will fill in the URL with `http://localhost:8000/gpt-4/chat/completions`. {{site.base_gateway}} recognizes the model as "gpt-4" and the route appropriately.
 
-## Example: Using OpenAI SDK with Multiple Providers
+### Using OpenAI SDK with Multiple Providers
 
 To use the same OpenAI SDK but with multiple LLM providers, Kong AI Proxy can arbitrate this for you.
 
-Simply set up two routes like so:
+Set up two routes:
 
 ```yaml
 - name: cohere-chat
@@ -102,7 +107,7 @@ Simply set up two routes like so:
         name: "$(uri_captures.model)"
 ```
 
-now the user can select their desired provider using the SDK:
+Now, the user can select their desired provider using the SDK:
 
 ```python
 client = OpenAI(
@@ -118,9 +123,9 @@ client = OpenAI(
 )
 ```
 
-## Example: Multiple Azure OpenAI Deployments on One Route
+### Multiple Azure OpenAI Deployments on One Route
 
-With AI Proxy, it is easy to create two routes to point to two different deployments of an
+With AI Proxy, you can create two routes to point to two different deployments of an
 Azure OpenAI model:
 
 ```yaml
@@ -169,9 +174,7 @@ Azure OpenAI model:
           azure_deployment_id: "my-gpt-4"
 ```
 
-But what if the requirement is to use one route to proxy multiple models deployed in the same instance?
-
-We can use request parameters to do this, like this example:
+But if you are required to only use one route to proxy multiple models deployed in the same instance, you can use request parameters:
 
 ```yaml
 - name: azure-chat
@@ -197,18 +200,18 @@ We can use request parameters to do this, like this example:
           azure_deployment_id: "$(uri_captures.azure_instance)"
 ```
 
-Now the user can set the SDK endpoint to simply `http://localhost:8000/azure` and, when the "Azure Instance" parameter is
-set to `"my-gpt-3-5"`, the Python SDK will produce the URL: `http://localhost:8000/openai/deployments/my-gpt-3-5/chat/completions` and
-thus will be directed to the respective Azure Deployment ID and Model.
+Now the user can set the SDK endpoint to `http://localhost:8000/azure`. When the Azure instance parameter is
+set to `"my-gpt-3-5"`, the Python SDK produces the URL (`http://localhost:8000/openai/deployments/my-gpt-3-5/chat/completions`) and
+is directed to the respective Azure deployment ID and model.
 
-## Example: Using an 'Unsupported' Model (e.g. Whisper-2)
+### Use an unsupported model
 
-Kong can perform a **best-effort** to support models that are not programmed with to/from format transformers, or are untested.
+{{site.base_gateway}} can perform a **best-effort** to support models that are not programmed with to/from format transformers or are untested.
 These will be unsupported use-cases, but may work depending on your setup.
 
 For these, you must use the `preserve` "route_type" mode.
 
-For example, the Whisper-2 audio transcription model is tested, and is set up with a route like this:
+For example, you could use the Whisper-2 audio transcription model with a route:
 
 ```yaml
 - name: openai-any
@@ -233,7 +236,7 @@ For example, the Whisper-2 audio transcription model is tested, and is set up wi
           upstream_path: "$(uri_captures.op_path)"
 ```
 
-Now you can POST a file (multipart form) for transcription:
+Now you can `POST` a file (multi-part form) for transcription:
 
 ```sh
 curl --location 'http://localhost:8000/openai/v1/audio/transcriptions' \
@@ -241,7 +244,7 @@ curl --location 'http://localhost:8000/openai/v1/audio/transcriptions' \
      --form 'file=@"me_saying_hello.m4a"'
 ```
 
-and the response comes back un-altered:
+The response comes back unaltered:
 
 ```json
 {
