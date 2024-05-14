@@ -974,6 +974,48 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.8
+**Release Date** 2024/05/18
+
+### Features
+#### Admin API
+
+<!-- _Backported from 3.7.0.0_ -->
+
+* Changed the default ordering of `audit_requests` to sort by `request_timestamp` in descending order.
+
+### Fixes
+
+#### Admin API
+
+_Backported from 3.6.0.0_
+
+* Fixed an issue where HTTP 500 errors were returned when paginating and sorting by timestamp fields
+(for example, `created_at`).
+
+#### Plugins
+
+_Backported from 3.6.1.4_
+
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`), 
+[**WebSocket Size Limit**](/hub/kong-inc/websocket-size-limit/) (`websocket-size-limit`), 
+[**WebSocket Validator**](/hub/kong-inc/websocket-validator/) (`websocket-validator`),
+ [**XML Threat Protection**](/hub/kong-inc/xml-threat-protection/) (`xml-threat-protection`)
+  * The priorities of these plugins have been updated to prevent collisions between plugins.
+    The relative priority (and the order of execution) of bundled plugins remains unchanged.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Refactored `kong/tools/public/rate-limiting`, adding the new interface `new_instance` to provide isolation between different plugins. 
+  The original interfaces remain unchanged for backward compatibility. 
+
+    If you are using custom Rate Limiting plugins based on this library, update the initialization code to the new format. For example: 
+    `'local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("custom-plugin-name")'`.
+    The old interface will be removed in the upcoming major release.
+
+### Dependencies
+
+* Improved the robustness of `lua-cjson` when handling unexpected input.
+* Bumped `kong-lua-resty-kafka` to 0.19 to support TCP socket keepalive.
 
 ## 3.4.3.7
 **Release Date** 2024/04/23
