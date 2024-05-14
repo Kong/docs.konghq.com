@@ -49,6 +49,17 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
     it 'returns an array containing the schema\'s shorthand_fields' do
       expect(subject.deprecated_fields.size).to eq(14)
     end
+
+    context 'when the plugin has fields marked as deprecated' do
+      let(:plugin_name) { 'datadog' }
+      let(:version) { '3.7.0' }
+      let(:metadata_file) { 'app/_hub/kong-inc/datadog/_metadata/_index.yml' }
+
+      it 'returns an array of SchemaFields with the deprecated fields and shorthand_fields' do
+        expect(subject.deprecated_fields).to all(be_an(Jekyll::Drops::Plugins::SchemaField))
+        expect(subject.deprecated_fields.map(&:name)).to match_array(['retry_count', 'queue_size', 'flush_timeout'])
+      end
+    end
   end
 
   describe '#enable_on_consumer?' do

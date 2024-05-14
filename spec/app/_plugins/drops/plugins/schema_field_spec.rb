@@ -2,11 +2,13 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
   let(:name) { 'config' }
   let(:parent) { '' }
   let(:field_schema) { schema.config }
+  let(:plugin_name) { 'saml' }
+  let(:version) { '3.2.2' }
   let(:schema) do
     PluginSingleSource::Plugin::Schemas::Kong.new(
-      plugin_name: 'saml',
+      plugin_name: plugin_name,
       vendor: 'kong-inc',
-      version: '3.2.2'
+      version: version
     )
   end
 
@@ -54,6 +56,17 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
       expect(subject.fields.size).to eq(54)
       expect(subject.fields).to all(be_an(described_class))
     end
+
+    context 'when the plugin has fields marked as deprecated' do
+      let(:plugin_name) { 'datadog' }
+      let(:version) { '3.7.0' }
+      let(:metadata_file) { 'app/_hub/kong-inc/datadog/_metadata/_index.yml' }
+
+      it 'returns the list of `fields` excluding the depreacted ones' do
+        expect(subject.fields.size).to eq(8)
+        expect(subject.fields.map(&:name)).not_to include(*['retry_count', 'queue_size', 'flush_timeout'])
+      end
+    end
   end
 
   describe '#referenceable' do
@@ -78,6 +91,53 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
       end
 
       it { expect(subject.referenceable).to eq(true) }
+    end
+  end
+
+  describe '#deprecated?' do
+    context 'when the field has a `deprecation` key' do
+      let(:name) { 'proxy_host' }
+      let(:parent) { 'shorthand_fields' }
+      let(:field_schema) { schema.config[parent].detect { |f| f.key?(name) }[name] }
+      let(:schema) do
+        PluginSingleSource::Plugin::Schemas::Kong.new(
+          plugin_name: 'forward-proxy',
+          vendor: 'kong-inc',
+          version: '3.7.0'
+        )
+      end
+
+      it { expect(subject.deprecated?).to eq(true) }
+    end
+
+    context 'when the field does not have a `deprecation` key' do
+      it { expect(subject.deprecated?).to eq(false) }
+    end
+  end
+
+  describe '#deprecation' do
+    context 'when the field has a `deprecation` key' do
+      let(:name) { 'proxy_host' }
+      let(:parent) { 'shorthand_fields' }
+      let(:field_schema) { schema.config[parent].detect { |f| f.key?(name) }[name] }
+      let(:schema) do
+        PluginSingleSource::Plugin::Schemas::Kong.new(
+          plugin_name: 'forward-proxy',
+          vendor: 'kong-inc',
+          version: '3.7.0'
+        )
+      end
+      it 'returns the value of the `deprecation` key' do
+        schema = JSON.parse(File.read('app/_src/.repos/kong-plugins/schemas/forward-proxy/3.7.x.json'))
+        shorthand_fields = schema['fields'].detect { |f| f.key?('config') }.dig('config', 'shorthand_fields')
+        field = shorthand_fields.detect { |f| f.key?(name) }[name]
+
+        expect(subject.deprecation).to eq(field['deprecation'])
+      end
+    end
+
+    context 'when the field does not have a `deprecation` key' do
+      it { expect(subject.deprecation).to be_nil }
     end
   end
 end

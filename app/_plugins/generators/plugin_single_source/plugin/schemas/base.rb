@@ -3,7 +3,7 @@
 module PluginSingleSource
   module Plugin
     module Schemas
-      class Base
+      class Base # rubocop:disable Metrics/ClassLength
         NO_SERVICE = { 'service' => { 'type' => 'foreign', 'reference' => 'services', 'eq' => nil } }.freeze
 
         NO_ROUTE = { 'route' => { 'type' => 'foreign', 'reference' => 'routes', 'eq' => nil } }.freeze
@@ -105,12 +105,48 @@ module PluginSingleSource
           schema.empty?
         end
 
+        def deprecated_fields
+          @deprecated_fields ||= find_deprecated_fields(config, '')
+        end
+
         private
 
         def field_no_def?(key, field, no_def)
           no_def[key].all? do |k, v|
             field[key][k] == v
           end
+        end
+
+        def find_deprecated_fields(obj, field_name) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+          return [] if obj.nil?
+
+          result = []
+          if obj['deprecation']
+            result << { name: field_name, parent: '', schema: obj }
+          else
+            if obj.key?('fields')
+              obj['fields'].each do |field|
+                schema = field.is_a?(Hash) ? field : field.schema
+                result.concat(
+                  find_deprecated_fields(
+                    schema.values.first,
+                    [field_name, schema.keys.first].reject(&:empty?).join('.')
+                  )
+                )
+              end
+            end
+            obj.dig('elements', 'fields')&.each do |field|
+              schema = field.is_a?(Hash) ? field : field.schema
+              result.concat(
+                find_deprecated_fields(
+                  schema,
+                  [field_name, schema.keys.first].reject(&:empty?).join('.')
+                )
+              )
+            end
+          end
+
+          result
         end
       end
     end

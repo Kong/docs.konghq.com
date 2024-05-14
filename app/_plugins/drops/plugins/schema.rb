@@ -6,7 +6,7 @@ module Jekyll
   module Drops
     module Plugins
       class SchemaField < Liquid::Drop
-        attr_reader :name
+        attr_reader :name, :schema
 
         def initialize(name:, parent:, schema:) # rubocop:disable Lint/MissingSuper
           @name = name
@@ -68,21 +68,33 @@ module Jekyll
           @schema['one_of']
         end
 
-        def elements
+        def deprecated?
+          !!@schema['deprecation']
+        end
+
+        def deprecation
+          @deprecation ||= @schema['deprecation']
+        end
+
+        def elements # rubocop:disable Metrics/AbcSize
           return {} unless @schema.key?('elements')
 
           @elements ||= begin
             @schema['elements']['fields'] = @schema['elements'].fetch('fields', []).map do |f|
+              next if f.values.first.key?('deprecation')
+
               SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
             end
             @schema['elements']
-          end
+          end.compact
         end
 
         def fields
           @fields ||= @schema.fetch('fields', []).map do |f|
+            next if f.values.first.key?('deprecation')
+
             SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
-          end
+          end.compact
         end
       end
 
@@ -121,13 +133,25 @@ module Jekyll
         def deprecated_fields
           return [] if @schema.config.empty?
 
-          @deprecated_fields ||= @schema.config.fetch('shorthand_fields', []).map do |f|
-            SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: f.values.first)
-          end
+          @deprecated_fields ||= shorthand_fields.concat(fields_flagged_as_deprecated).flatten.compact
         end
 
         def defined?
           !@schema.config.empty?
+        end
+
+        private
+
+        def shorthand_fields
+          @shorthand_fields ||= @schema.config.fetch('shorthand_fields', []).map do |f|
+            SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: f.values.first)
+          end
+        end
+
+        def fields_flagged_as_deprecated
+          @fields_flagged_as_deprecated ||= @schema.deprecated_fields.map do |f|
+            SchemaField.new(name: f[:name], parent: f[:parent], schema: f[:schema])
+          end
         end
       end
     end
