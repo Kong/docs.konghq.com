@@ -13,7 +13,7 @@ Once this plugin is enabled, every request (within the configured plugin scope o
 route, consumer, or global) will be immediately terminated by sending the configured response.
 
 {:.important}
-> **Note:** The Request Termination plugin will not execute if the [Forward Proxy plugin](/hub/kong-inc/forward-proxy/) is enabled. This is because the Forward Proxy plugin has a higher priority and when it executes, the request is forwardered according to the plugin configuration. If you need to change this behaviour, you can configure the Request Termination plugin to execute before the Forward Proxy plugin using [Dynamic Plugin Ordering](/gateway/latest/kong-enterprise/plugin-ordering/).
+> **Note:** The Request Termination plugin will not execute if the [Forward Proxy plugin](/hub/kong-inc/forward-proxy/) is enabled. This is because the Forward Proxy plugin has a higher priority, and when it executes, the request is forwarded according to that plugin's configuration. If you need to change this behavior, you can configure the Request Termination plugin to execute before the Forward Proxy plugin using [Dynamic Plugin Ordering](/gateway/latest/kong-enterprise/plugin-ordering/).
 
 ## Example Use Cases
 
