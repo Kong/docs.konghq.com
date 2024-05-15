@@ -14,16 +14,14 @@ Kong captures each batch of events and translates them back into the Kong infere
 In a standard LLM transaction, requests proxied directly to the LLM look like this:
 
 {% mermaid %}
-flowchart LR
-  A(client)
-  B(Kong Gateway with 
-  AI Proxy plugin)
-  C(Cloud LLM)
-
-  A --> B
-  B --sends request 
-  information--> C
-  C --> A
+sequenceDiagram    
+  actor Client
+  participant Kong
+  Note right of Kong: AI Proxy plugin
+  Client->>+Kong: 
+  destroy Kong
+  Kong->>+Cloud LLM: Sends proxy request information
+  Cloud LLM->>+Client: Sends chunk to client
 {% endmermaid %}
 
 When streaming is requested, requests proxied directly to the LLM look like this:
