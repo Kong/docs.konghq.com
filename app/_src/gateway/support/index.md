@@ -1,4 +1,3 @@
-
 ---
 title: Kong Gateway Enterprise Version Support
 breadcrumb: Distributions
@@ -69,7 +68,6 @@ Kong supports the following versions of {{site.ee_product_name}}:
     {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.28  eol="March 2025" %}
   {% endnavtab %}
 {% endnavtabs %}
-
 
 
 ### Marketplaces
