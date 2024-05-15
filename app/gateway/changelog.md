@@ -9,6 +9,59 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.6.1.4
+**Release Date** 05/14/2024
+
+### Features
+#### Plugins
+
+* [**Portal Application Registration**](/hub/kong-inc/application-registration/) (`application-registration`)
+  * Added support for accessing the service using consumer credential authentication. 
+  To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
+
+* [**Mutual TLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
+  * Added the `default_consumer` option, which lets you use a default consumer when the client certificate is valid 
+  but doesn't match any existing consumers.
+
+### Fixes
+
+#### Clustering
+* Fixed an issue where event hooks were prematurely validated in hybrid mode. 
+The fix delays the validation of event hooks to the point where event hooks are emitted.
+
+#### Core
+
+* Fixed an issue with data planes in hybrid mode, where a certificate entity configured with a vault 
+reference was occasionally not refreshed on time.
+
+* Fixed vault initialization by postponing vault reference resolution to a timer in the `init_worker` phase.
+
+#### PDK
+
+* Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_port`. 
+It now correctly returns a number.
+
+#### Plugins
+
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`), 
+[**WebSocket Size Limit**](/hub/kong-inc/websocket-size-limit/) (`websocket-size-limit`), 
+[**WebSocket Validator**](/hub/kong-inc/websocket-validator/) (`websocket-validator`),
+ [**XML Threat Protection**](/hub/kong-inc/xml-threat-protection/) (`xml-threat-protection`)
+  * The priorities of these plugins have been updated to prevent collisions between plugins.
+    The relative priority (and the order of execution) of bundled plugins remains unchanged.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Refactored `kong/tools/public/rate-limiting`, adding the new interface `new_instance` to provide isolation between different plugins. 
+  The original interfaces remain unchanged for backward compatibility. 
+  
+    If you are using custom Rate Limiting plugins based on this library, update the initialization code to the new format. For example: 
+    `'local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("custom-plugin-name")'`.
+    The old interface will be removed in the upcoming major release.
+
+### Dependencies
+
+* Bumped `lua-protobuf` to 0.5.1.
+
 ## 3.6.1.3
 **Release Date** 04/16/2024
 
@@ -981,23 +1034,27 @@ was called multiple times in a request lifecycle.
 ### Features
 #### Plugins
 
+_Backported from 3.6.1.4_
 * [**Portal Application Registration**](/hub/kong-inc/application-registration/) (`application-registration`)
   * Added support for accessing the service using consumer credential authentication. 
   To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
 
 ### Fixes
 #### Clustering
+
+_Backported from 3.6.1.4_
 * Fixed an issue where event hooks were prematurely validated in hybrid mode. 
 The fix delays the validation of event hooks to the point where event hooks are emitted.
 
 #### Core
 
+_Backported from 3.6.1.4_
 * Fixed an issue with data planes in hybrid mode, where a certificate entity configured with a vault 
 reference was occasionally not refreshed on time.
 
 #### PDK
 
-<!-- _Backported from 3.7.0.0_ -->
+_Backported from 3.6.1.4_
 * Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_port`. 
 It now correctly returns a number.
 
