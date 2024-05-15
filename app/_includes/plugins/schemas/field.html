@@ -110,15 +110,17 @@
 
     {% if include.field.deprecated? %}
       <div class="field-deprecation">
-        <strong>Deprecation notice:</strong>
-        {% if include.field.deprecation['message'] -%}
-          <span class="field-deprecation__message">{{ include.field.deprecation['message'] }}.</span>
-        {%- endif -%}
-        {%- if include.field.deprecation['removal_in_version'] -%}
-          <span class="field-deprecation__version">
-            This field will be removed in version: {{ include.field.deprecation['removal_in_version'] }}.
-          </span>
-        {%- endif -%}
+        <blockquote class="important">
+          <strong>Deprecation notice:</strong>
+          {% if include.field.deprecation['message'] -%}
+            <span class="field-deprecation__message">{{ include.field.deprecation['message'] }}.</span>
+          {%- endif -%}
+          {%- if include.field.deprecation['removal_in_version'] -%}
+            <span class="field-deprecation__version">
+              This field will be removed in version: {{ include.field.deprecation['removal_in_version'] }}.
+            </span>
+          {%- endif -%}
+        </blockquote>
       </div>
     {% endif %}
 
