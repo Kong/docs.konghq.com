@@ -1,3 +1,4 @@
+
 ---
 title: Kong Gateway Enterprise Version Support
 breadcrumb: Distributions
@@ -69,8 +70,7 @@ Kong supports the following versions of {{site.ee_product_name}}:
   {% endnavtab %}
 {% endnavtabs %}
 
-{:.note}
-> **Note:**: This policy **only** applies to {{site.base_gateway}} and {{site.ee_product_name}}. For the {{site.konnect_product_name}} version support policy, review the [{{site.konnect_product_name}} policy](/konnect/compatibility/#kong-gateway-version-compatibility).
+
 
 ### Marketplaces
 
@@ -121,6 +121,9 @@ These versions have reached the end of full support.
 |   0.32   |  2018-05-22   |     2019-05-21      |      2020-05-21       |
 |   0.31   |  2018-03-13   |     2019-03-12      |      2020-03-12       |
 |   0.30   |  2018-01-22   |     2019-01-21      |      2020-01-21       |
+
+{:.note}
+> **Note:** This policy **only** applies to {{site.base_gateway}} and {{site.ee_product_name}}. For the {{site.konnect_product_name}} version support policy, review the [{{site.konnect_product_name}} policy](/konnect/compatibility/#kong-gateway-version-compatibility).
 
 ## See also
 
