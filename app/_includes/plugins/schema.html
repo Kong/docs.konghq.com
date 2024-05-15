@@ -172,7 +172,7 @@
 </blockquote>
 
   <ul class="fields">
-    {% for field in schema.deprecated_fields %}
+    {% for field in schema.shorthand_fields %}
       {% include plugins/schemas/field.html field=field %}
     {% endfor %}
   </ul>

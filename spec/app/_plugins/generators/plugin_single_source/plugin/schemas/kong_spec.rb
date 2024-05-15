@@ -113,29 +113,4 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::Kong do
       expect(subject.file_path).to eq('app/_src/.repos/kong-plugins/schemas/acme/3.1.x.json')
     end
   end
-
-  describe '#deprecated_fields' do
-    context 'plugin with deprecated fields' do
-      let(:version) { '3.7.0' }
-      let(:plugin_name) { 'datadog' }
-      let(:config_field) do
-        JSON.parse(File.read('app/_src/.repos/kong-plugins/schemas/datadog/3.7.x.json'))['fields'].detect { |f| f.key?('config') }['config']
-      end
-
-      it 'returns a list of fields (recursive) that have the attribute `deprecation`' do
-        expect(subject.deprecated_fields).to eq([
-          { name: 'retry_count', parent: '', schema: config_field['fields'].detect { |f| f.key?('retry_count') }['retry_count'] },
-          { name: 'queue_size', parent: '', schema: config_field['fields'].detect { |f| f.key?('queue_size') }['queue_size'] },
-          { name: 'flush_timeout', parent: '', schema: config_field['fields'].detect { |f| f.key?('flush_timeout') }['flush_timeout'] }
-        ])
-      end
-    end
-
-    context 'plugin without deprecated fields' do
-      let(:version) { '3.6.0' }
-      let(:plugin_name) { 'datadog' }
-
-      it { expect(subject.deprecated_fields).to eq([]) }
-    end
-  end
 end

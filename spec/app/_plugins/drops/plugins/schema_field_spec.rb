@@ -56,17 +56,6 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
       expect(subject.fields.size).to eq(54)
       expect(subject.fields).to all(be_an(described_class))
     end
-
-    context 'when the plugin has fields marked as deprecated' do
-      let(:plugin_name) { 'datadog' }
-      let(:version) { '3.7.0' }
-      let(:metadata_file) { 'app/_hub/kong-inc/datadog/_metadata/_index.yml' }
-
-      it 'returns the list of `fields` excluding the depreacted ones' do
-        expect(subject.fields.size).to eq(8)
-        expect(subject.fields.map(&:name)).not_to include(*['retry_count', 'queue_size', 'flush_timeout'])
-      end
-    end
   end
 
   describe '#referenceable' do

@@ -76,13 +76,11 @@ module Jekyll
           @deprecation ||= @schema['deprecation']
         end
 
-        def elements # rubocop:disable Metrics/AbcSize
+        def elements
           return {} unless @schema.key?('elements')
 
           @elements ||= begin
             @schema['elements']['fields'] = @schema['elements'].fetch('fields', []).map do |f|
-              next if f.values.first.key?('deprecation')
-
               SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
             end
             @schema['elements']
@@ -91,8 +89,6 @@ module Jekyll
 
         def fields
           @fields ||= @schema.fetch('fields', []).map do |f|
-            next if f.values.first.key?('deprecation')
-
             SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
           end.compact
         end
@@ -130,28 +126,16 @@ module Jekyll
           [SchemaField.new(name: 'config', parent: '', schema: @schema.config)]
         end
 
-        def deprecated_fields
+        def shorthand_fields
           return [] if @schema.config.empty?
 
-          @deprecated_fields ||= shorthand_fields.concat(fields_flagged_as_deprecated).flatten.compact
-        end
-
-        def defined?
-          !@schema.config.empty?
-        end
-
-        private
-
-        def shorthand_fields
           @shorthand_fields ||= @schema.config.fetch('shorthand_fields', []).map do |f|
             SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: f.values.first)
           end
         end
 
-        def fields_flagged_as_deprecated
-          @fields_flagged_as_deprecated ||= @schema.deprecated_fields.map do |f|
-            SchemaField.new(name: f[:name], parent: f[:parent], schema: f[:schema])
-          end
+        def defined?
+          !@schema.config.empty?
         end
       end
     end
