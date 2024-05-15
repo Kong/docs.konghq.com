@@ -45,6 +45,7 @@ See the following links for individual entity documentation:
 | [Consumers](/gateway/api/admin-oss/latest/#/Consumers/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-oss/latest/#/Plugins/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-oss/latest/#/Certificates/list-certificate){:target="_blank"} |
 | [CA Certificates](/gateway/api/admin-oss/latest/#/CA%20Certificates/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-oss/latest/#/SNIs/list-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-oss/latest/#/Upstreams/list-upstream){:target="_blank"} |
 | [Targets](/gateway/api/admin-oss/latest/#/Targets/list-target-with-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-oss/latest/#/Vaults/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-oss/latest/#/Keys/list-key){:target="_blank"} |
+| [Filter Chains](/gateway/api/admin-oss/latest/#/filter-chains/get-filter-chains){:target="_blank"} | | |
 {% endnavtab %}
 {% endnavtabs %}
 
