@@ -5,7 +5,7 @@ breadcrumb: Distributions
 
 Kong adopts a structured approach to versioning its products.
 Products follow a pattern of `{MAJOR}.{MINOR}.{PATCH}.{ENTERPRISE_PATCH}`.
-The `ENTERPRISE_PATCH` segment identifies a sub-patch for {{site.ee_product_name}} based on {{site.ce_product_name}}.
+The `ENTERPRISE_PATCH` segment identifies a sub-patch for {{site.ee_product_name}} based on {{site.ce_product_name}}. This policy **only** applies to {{site.base_gateway}} and {{site.ee_product_name}}. For the {{site.konnect_product_name}} version support policy, review the [{{site.konnect_product_name}} policy](/konnect/compatibility/#kong-gateway-version-compatibility).
 
 ## Versioning
 
