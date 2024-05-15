@@ -156,5 +156,5 @@ plugin, which can be used to implement rate limiting on your AI requests traffic
 
 * The [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced) plugin introspects LLM responses to calculate token cost and 
 enable rate limits for the LLM backend service. When the LLM service returns a response, this is used as a cost to calculate the rate limit. 
-More info on the analytics format can be found in [AI Analytics](/src/gateway/production/logging/ai-analytics).
+More info on the analytics format can be found in [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
 {% endif_version %}
