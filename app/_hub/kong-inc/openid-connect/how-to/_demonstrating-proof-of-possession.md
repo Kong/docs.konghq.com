@@ -17,7 +17,7 @@ sequenceDiagram
     participant client as Client <br>(e.g. mobile app)
     participant kong as API Gateway <br>(Kong)
     participant upstream as Upstream <br>(backend service,<br> e.g. httpbin)
-    participant idp as Authenticate Server <br>(e.g. Keycloak)
+    participant idp as Authentication Server <br>(e.g. Keycloak)
     activate client
     client->>client: generate key pair
     client->>idp: POST /oauth2/token<br>DPoP:$PROOF
