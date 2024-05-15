@@ -45,6 +45,11 @@ After the product hits the end of the support period, Kong will provide limited 
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
+  {% if_version gte: 3.7.x %}
+  {% navtab 3.7 %}
+    {% include_cached gateway-support.html version="3.7" data=site.data.tables.support.gateway.versions.37 eol="May 2025" %}
+  {% endnavtab %}
+  {% endif_version %}
   {% if_version gte: 3.6.x %}
   {% navtab 3.6 %}
     {% include_cached gateway-support.html version="3.6" data=site.data.tables.support.gateway.versions.36 eol="Feb 2025" %}
@@ -63,6 +68,9 @@ Kong supports the following versions of {{site.ee_product_name}}:
     {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.28  eol="March 2025" %}
   {% endnavtab %}
 {% endnavtabs %}
+
+{:.note}
+> **Note:**: This policy **only** applies to {{site.base_gateway}} and {{site.ee_product_name}}. For the {{site.konnect_product_name}} version support policy, review the [{{site.konnect_product_name}} policy](/konnect/compatibility/#kong-gateway-version-compatibility).
 
 ### Marketplaces
 

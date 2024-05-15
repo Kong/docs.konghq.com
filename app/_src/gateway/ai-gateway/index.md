@@ -148,3 +148,13 @@ HTTP(S) response from upstream before sending it back to the client. This plugin
 introspection of LLM responses against a different LLM. Importantly, it adjusts response headers, response status codes, and the body of the 
 response based on instructions from the LLM. The adjusted response is then sent back to the client. 
 
+{% if_version gte:3.7.x %}
+#### Rate limiting
+
+Kong's AI Gateway also allows you to manage traffic to your LLM API. Kong's AI Gateway provides the AI Rate Limiting Advanced
+plugin, which can be used to implement rate limiting on your AI requests traffic.
+
+* The [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced) plugin introspects LLM responses to calculate token cost and 
+enable rate limits for the LLM backend service. When the LLM service returns a response, this is used as a cost to calculate the rate limit. 
+More info on the analytics format can be found in [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
+{% endif_version %}

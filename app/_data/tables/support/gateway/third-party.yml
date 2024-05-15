@@ -152,7 +152,7 @@ _third_party:
   openai: &openai
     name: OpenAI
   cohere: &cohere
-    name: Coheres
+    name: Cohere
   azureai: &azure_ai
     name: Microsoft Azure AI
   anthropic: &anthropic

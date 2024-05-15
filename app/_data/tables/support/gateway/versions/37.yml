@@ -31,6 +31,7 @@ distributions:
     arm: true
     fips: true
   - <<: *ubuntu2004
+    eol: April 2025
     arm: false
     docker: false
     fips: true
