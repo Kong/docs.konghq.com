@@ -415,8 +415,6 @@ components:
         name:
           description: 'The name of the Plugin that''s going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
           type: string
-        ordering:
-          type: object
         protocols:
           default:
             - grpc
@@ -1261,9 +1259,6 @@ components:
                 tags:
                   - user-level
                   - low-priority
-                ordering:
-                  before:
-                    - plugin-name
             properties:
               name:
                 type: string
@@ -1319,17 +1314,6 @@ components:
                   An optional set of strings associated with the Plugin for grouping and filtering.
                 items:
                   type: string
-              ordering:
-                type: object
-                description: |-
-                  Describes a dependency to another plugin to determine plugin ordering during the access phase.
-                  –`before`: The plugin will be executed before a specified plugin or list of plugins.
-                  – `after`: The plugin will be executed after a specified plugin or list of plugins.
-                properties:
-                  before:
-                    type: array
-                    items:
-                      type: string
           examples:
             request example:
               value:
@@ -1346,9 +1330,6 @@ components:
                 enabled: true
                 tags:
                   - string
-                ordering:
-                  before:
-                    - string
       description: Plugin request body
     key-set-request:
       content:
@@ -2652,17 +2633,6 @@ components:
                   An optional set of strings associated with the Plugin for grouping and filtering.
                 items:
                   type: string
-              ordering:
-                type: object
-                description: |-
-                  Describes a dependency to another plugin to determine plugin ordering during the access phase.
-                  –`before`: The plugin will be executed before a specified plugin or list of plugins.
-                  – `after`: The plugin will be executed after a specified plugin or list of plugins.
-                properties:
-                  before:
-                    type: array
-                    items:
-                      type: string
           x-examples:
             Example 1:
               id: ce44eef5-41ed-47f6-baab-f725cecf98c7
@@ -2682,9 +2652,6 @@ components:
               tags:
                 - user-level
                 - low-priority
-              ordering:
-                before:
-                  - plugin-name
           examples:
             Plugin response:
               value:
@@ -2705,9 +2672,6 @@ components:
                     tags:
                       - user-level
                       - low-priority
-                    ordering:
-                      before:
-                        - plugin-name
                   - id: 66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4
                     name: rate-limiting
                     created_at: 1422386534
@@ -2725,9 +2689,6 @@ components:
                       - admin
                       - high-priority
                       - critical
-                    ordering:
-                      after:
-                        - plugin-name
                 next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     key-set-response:
       description: Key set object response body
