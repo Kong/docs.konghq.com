@@ -189,6 +189,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/SortPortalProducts'
+        - $ref: '#/components/parameters/PortalProductFilter'
       tags:
         - Portal Products
       responses:
@@ -3284,6 +3286,17 @@ components:
       required: false
       schema:
         type: string
+    SortPortalProducts:
+      name: sort
+      description: |
+        Sorts a collection of Portal Products. Supported sort attributes are:
+          - created_at
+          - name
+          - description
+      in: query
+      required: false
+      schema:
+        type: string
     SortPortalProductVersions:
       name: sort
       description: >
@@ -3309,6 +3322,14 @@ components:
       style: deepObject
       schema:
         $ref: '#/components/schemas/PortalProductVersionFilters'
+    PortalProductFilter:
+      name: filter
+      description: Filters a collection of Portal Products.
+      required: false
+      in: query
+      style: deepObject
+      schema:
+        $ref: '#/components/schemas/PortalProductFilters'
     SortDevelopers:
       name: sort
       description: |
@@ -4367,6 +4388,17 @@ components:
               department: engineering
               location: cyberspace
             version_count: 21
+    PortalProductFilters:
+      title: PortalProductFilters
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        name:
+          $ref: '#/components/schemas/StringFieldFilter'
+        description:
+          $ref: '#/components/schemas/StringFieldFilter'
     PortalProductVersionFilters:
       title: PortalProductVersionFilters
       type: object
