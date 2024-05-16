@@ -4,7 +4,7 @@ content_type: reference
 description: This documentation provides a comprehensive guide for conducting Kong Gateway performance testing using Kong's test suite, including Kong's own benchmark for the current version.
 ---
 
-As of {{site.base_gateway}} 3.6.x, Kong now publishes performance results on {{site.base_gateway}}, along with the test methodology and details. <!--Kong will conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.-->
+As of {{site.base_gateway}} 3.7.x, Kong now publishes performance results on {{site.base_gateway}}, along with the test methodology and details. <!--Kong will conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.-->
 
 In addition to viewing our performance test results, you can use [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main) to conduct your own performance tests with {{site.base_gateway}}.
 
@@ -31,18 +31,18 @@ The performance tests cover a number of baseline configurations and common use c
 
 ### {{site.base_gateway}} performance benchmark results
 
-{% if_version eq:3.6.x %}
+{% if_version eq:3.7.x %}
 
 | Test type                   | Number of routes/consumers  | Requests per second (RPS) | P99 (ms) | P95 (ms) |
 | --------------------------- | --------------------------- | ------------------------- | -------- | -------- |
-| Kong proxy with no plugins  | 1 route, 0 consumers       | 137850.4                  | 6.25     | 3.82     |
-| Kong proxy with no plugins  | 100 routes, 0 consumers    | 132302.8                  | 6.55     | 3.99     |
-| Rate limit and no auth      | 1 route, 0 consumers       | 116413.8                  | 7.59     | 4.56     |
-| Rate limit and no auth      | 100 routes, 0 consumers    | 111615.8                  | 7.62     | 4.54     |
-| Rate limit and key auth     | 1 route, 1 consumer         | 102261.6                  | 8.47     | 5.05     |
-| Rate limit and key auth     | 100 routes, 100 consumers   | 96289.6                   | 8.82     | 5.25     |
-| Rate limit and basic auth   | 1 route, 1 consumer         | 95297.8                   | 8.75     | 5.66     |
-| Rate limit and basic auth   | 100 routes, 100 consumers   | 89777.4                   | 9.34     | 5.89     |
+| Kong proxy with no plugins  | 1 route, 0 consumers       | 138087.1                  | 6.82     | 3.99     |
+| Kong proxy with no plugins  | 100 routes, 0 consumers    | 132870.9                  | 7.23     | 4.20     |
+| Rate limit and no auth      | 1 route, 0 consumers       | 119777.3                  | 7.77     | 4.01     |
+| Rate limit and no auth      | 100 routes, 0 consumers    | 116180.2                  | 8.06     | 4.11     |
+| Rate limit and key auth     | 1 route, 1 consumer         | 101482.9                  | 8.56     | 4.80     |
+| Rate limit and key auth     | 100 routes, 100 consumers   | 96734.6                   | 10.01    | 4.92     |
+| Rate limit and basic auth   | 1 route, 1 consumer         | 95389.6                   | 8.92     | 5.25     |
+| Rate limit and basic auth   | 100 routes, 100 consumers   | 90544.2                   | 9.68     | 5.67     |
 {% endif_version %}
 
 
