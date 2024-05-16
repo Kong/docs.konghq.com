@@ -52,7 +52,7 @@ module PluginSingleSource
       end
 
       def kong_edit_link
-        return @release.metadata['source_url'] if @release.metadata.key?('source_url')
+        return @release.metadata['schema_source_url'] if @release.metadata.key?('schema_source_url')
 
         if @release.enterprise_plugin?
           "https://github.com/Kong/kong-ee/edit/master/plugins-ee/#{@release.name}/kong/plugins/#{@release.name}/schema.lua"

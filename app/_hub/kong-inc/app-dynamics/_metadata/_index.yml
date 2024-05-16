@@ -18,4 +18,4 @@ categories:
   - analytics-monitoring
 bundled: false
 dbless_compatible: 'yes'
-source_url: https://github.com/Kong/kong-ee/edit/master/kong/plugins/app-dynamics/schema.lua
+schema_source_url: https://github.com/Kong/kong-ee/edit/master/kong/plugins/app-dynamics/schema.lua

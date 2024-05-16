@@ -63,13 +63,13 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
   end
 
   describe '#edit_link' do
-    context 'plugins having a `source_url`' do
+    context 'plugins having a `schema_source_url`' do
       let(:plugin_name) { 'kong-inc/app-dynamics' }
       let(:source_path) { File.expand_path('_hub/kong-inc/app-dynamics/', site.source) }
       let(:file) { "app/_src/.repos/kong-plugins/schemas/app-dynamics/#{version}.json" }
 
       before do
-        allow(release).to receive(:metadata).and_return({ 'source_url' => 'https://github.com/Kong/kong-ee/edit/master/kong/plugins/app-dynamics/schema.lua' })
+        allow(release).to receive(:metadata).and_return({ 'schema_source_url' => 'https://github.com/Kong/kong-ee/edit/master/kong/plugins/app-dynamics/schema.lua' })
       end
 
       it { expect(subject.edit_link).to eq('https://github.com/Kong/kong-ee/edit/master/kong/plugins/app-dynamics/schema.lua') }

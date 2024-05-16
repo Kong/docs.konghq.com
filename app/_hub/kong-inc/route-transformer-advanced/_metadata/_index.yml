@@ -13,4 +13,4 @@ categories:
   - transformations
 publisher: Kong Inc.
 desc: Transform routing by changing the upstream server, port, or path
-source_url: https://github.com/Kong/kong-ee/edit/master/kong/plugins/route-transformer-advanced/schema.lua
+schema_source_url: https://github.com/Kong/kong-ee/edit/master/kong/plugins/route-transformer-advanced/schema.lua
