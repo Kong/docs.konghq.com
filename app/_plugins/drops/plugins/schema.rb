@@ -97,6 +97,8 @@ module Jekyll
       class Schema < Liquid::Drop
         extend Forwardable
 
+        DEPRECATION_MESSAGE = 'The following field has been deprecated and will be removed in a future version.'
+
         def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
                        :enable_on_service?, :enable_on_consumer_group?
 
@@ -130,12 +132,20 @@ module Jekyll
           return [] if @schema.config.empty?
 
           @shorthand_fields ||= @schema.config.fetch('shorthand_fields', []).map do |f|
-            SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: f.values.first)
+            SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: schema_for(f.values.first))
           end
         end
 
         def defined?
           !@schema.config.empty?
+        end
+
+        private
+
+        def schema_for(values)
+          return values if values.key?('deprecation')
+
+          values.merge('deprecation' => { 'message' => DEPRECATION_MESSAGE })
         end
       end
     end
