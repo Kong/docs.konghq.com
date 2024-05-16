@@ -5,10 +5,13 @@ nav_title: Using Programmatic SDKs with AI Proxy
 
 You can use an OpenAI-compatible SDK with the AI Proxy plugin in multiple ways, depending on the required use case.
 
-| You want to... | Then use... |
-| -------------- | ----------- |
-| Proxy an unsupported model, like Whisper-2. | [OpenAI-compatible SDK for unsupported models](#using-an-unsupported-model) |
-| etc | etc |
+| You want to...                                                                         | Then use...                                        |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Allow the user to select their target model, based on some header or request parameter | [Using OpenAI SDK with Multiple Models on the Same Provider](#using-openai-sdk-with-multiple-models-on-the-same-provider) |
+| Proxy the same request to an LLM provider of the user's choosing | [Using OpenAI SDK with Multiple Providers](#using-openai-sdk-with-multiple-providers) |
+| Use the OpenAI SDK for Azure, and allow the user to choose the Azure Deployment ID | [Multiple Azure OpenAI Deployments on One Route](#multiple-azureopenai-deployments-on-one-route) |
+| Proxy an unsupported model, like Whisper-2. | [OpenAI-compatible SDK for unsupported models](#using-an-unsupported-model)               |
+
 
 ## Templated Model Parameters
 

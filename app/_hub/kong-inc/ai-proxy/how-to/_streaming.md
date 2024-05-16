@@ -5,7 +5,48 @@ title: Configure Streaming with AI Proxy
 
 This guide walks you through setting up the AI Proxy plugin with streaming.
 
-## How it works
+## What is Request Streaming
+
+In a typical LLM inference request, Kong would use the upstream provider's REST API to execute e.g. the next chat message from the caller.
+This request is then executed and buffered fully on the LLM side, before returning to Kong, and finally to the caller, all in one
+large JSON block.
+
+This can take a lot of time, depending on the `max_tokens`, other request parameters, and the complexity of the request sent to the LLM model.
+
+To ensure that the user is not watching a loading animation, waiting for their chat response, most models offer the ability to **stream** each
+word (or set of words / tokens) back to the client, so that the chat response can be rendered in front of them in real-time.
+
+## Example
+
+A client would set up their streaming request using the OpenAI Python SDK like this:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="http://127.0.0.1:8000/12/openai",
+    api_key="none"
+)
+
+stream = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Tell me the history of Kong Inc."}],
+    stream=True,
+)
+
+print('>')
+for chunk in stream:
+    print(chunk.choices[0].delta.content or "", end="", flush=True)
+```
+
+The client won't have to wait for the entire response. Instead, tokens will appear as they come in, looking like this:
+
+```sh
+$ python3 long-streaming-request.py
+> Kong Inc. is a software company providing cloud-native connectivity solutions for APIs and # and so on...
+```
+
+## How it Works
 
 Streaming is a mode where a client can specify `"stream": true` in their request and the LLM server will stream each piece of the response text (usually token-by-token) as a server-sent event.
 
