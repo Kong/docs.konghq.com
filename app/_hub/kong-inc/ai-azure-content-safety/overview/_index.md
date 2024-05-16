@@ -17,7 +17,7 @@ Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) t
 ## Format
 
 This plugin works with all of the AI Proxy plugin's `route_type` settings (excluding the `preserve` mode), and is able to
-compose an Azure Content Safety text check by compiling all chat history, or just the 'user' content.
+compose an Azure Content Safety text check by compiling all chat history, or just the `'user'` content.
 
 ## Get started with the AI Prompt Decorator plugin
 
