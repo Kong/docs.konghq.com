@@ -4,7 +4,8 @@ content_type: reference
 description: This documentation provides a comprehensive guide for conducting Kong Gateway performance testing using Kong's test suite, including Kong's own benchmark for the current version.
 ---
 
-As of {{site.base_gateway}} 3.7.x, Kong now publishes performance results on {{site.base_gateway}}, along with the test methodology and details. <!--Kong will conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.-->
+As of {{site.base_gateway}} 3.6.x, Kong publishes performance results on {{site.base_gateway}}, along with the test methodology and details. 
+Kong plants to conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.
 
 In addition to viewing our performance test results, you can use [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main) to conduct your own performance tests with {{site.base_gateway}}.
 
@@ -29,7 +30,20 @@ The performance tests cover a number of baseline configurations and common use c
 * **Protocol**: HTTPS only.
 * **Sample size**: Each test case was run five times, each for a duration of 15 minutes. The results are an average of the five different test runs.
 
-### {{site.base_gateway}} performance benchmark results
+### {{site.base_gateway}} {{page.release}} performance benchmark results
+
+{% if_version eq:3.6.x %}
+| Test type                   | Number of routes/consumers  | Requests per second (RPS) | P99 (ms) | P95 (ms) |
+| --------------------------- | --------------------------- | ------------------------- | -------- | -------- |
+| Kong proxy with no plugins  | 1 route, 0 consumers       | 137850.4                  | 6.25     | 3.82     |
+| Kong proxy with no plugins  | 100 routes, 0 consumers    | 132302.8                  | 6.55     | 3.99     |
+| Rate limit and no auth      | 1 route, 0 consumers       | 116413.8                  | 7.59     | 4.56     |
+| Rate limit and no auth      | 100 routes, 0 consumers    | 111615.8                  | 7.62     | 4.54     |
+| Rate limit and key auth     | 1 route, 1 consumer         | 102261.6                  | 8.47     | 5.05     |
+| Rate limit and key auth     | 100 routes, 100 consumers   | 96289.6                   | 8.82     | 5.25     |
+| Rate limit and basic auth   | 1 route, 1 consumer         | 95297.8                   | 8.75     | 5.66     |
+| Rate limit and basic auth   | 100 routes, 100 consumers   | 89777.4                   | 9.34     | 5.89     |
+{% endif_version %}
 
 {% if_version eq:3.7.x %}
 
