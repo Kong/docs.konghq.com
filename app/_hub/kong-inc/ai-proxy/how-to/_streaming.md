@@ -1,24 +1,20 @@
 ---
 nav_title: Streaming
 title: Configure Streaming with AI Proxy
+minimum_version: 3.7.x
 ---
 
 This guide walks you through setting up the AI Proxy plugin with streaming.
 
-## What is Request Streaming
+## What is request streaming
 
-In a typical LLM inference request, Kong would use the upstream provider's REST API to execute e.g. the next chat message from the caller.
-This request is then executed and buffered fully on the LLM side, before returning to Kong, and finally to the caller, all in one
-large JSON block.
+In a typical LLM inference request, {{site.base_gateway}} would use the upstream provider's REST API to execute the next chat message from the caller, for example.
+This request is then executed and buffered fully on the LLM side, before returning to {{site.base_gateway}}, and finally to the caller, all in one large JSON block. This process can take a lot of time, depending on the `max_tokens`, other request parameters, and the complexity of the request sent to the LLM model.
 
-This can take a lot of time, depending on the `max_tokens`, other request parameters, and the complexity of the request sent to the LLM model.
+To ensure that the user is not watching a loading animation and waiting for their chat response, most models offer the ability to stream each
+word (or a set of words and tokens) back to the client, so that the chat response can be rendered in real-time.
 
-To ensure that the user is not watching a loading animation, waiting for their chat response, most models offer the ability to **stream** each
-word (or set of words / tokens) back to the client, so that the chat response can be rendered in front of them in real-time.
-
-## Example
-
-A client would set up their streaming request using the OpenAI Python SDK like this:
+For example, a client would set up their streaming request using the OpenAI Python SDK like this:
 
 ```python
 from openai import OpenAI
@@ -39,29 +35,29 @@ for chunk in stream:
     print(chunk.choices[0].delta.content or "", end="", flush=True)
 ```
 
-The client won't have to wait for the entire response. Instead, tokens will appear as they come in, looking like this:
+The client won't have to wait for the entire response. Instead, tokens will appear as they come in, for example:
 
 ```sh
 $ python3 long-streaming-request.py
 > Kong Inc. is a software company providing cloud-native connectivity solutions for APIs and # and so on...
 ```
 
-## How it Works
+## How AI Proxy streaming works
 
 Streaming is a mode where a client can specify `"stream": true` in their request and the LLM server will stream each piece of the response text (usually token-by-token) as a server-sent event.
 
-Kong captures each batch of events and translates them back into the Kong inference format, so that all providers are compatible with the same framework that you create on your side (including [OpenAI-compatible SDKs](/hub/kong-inc/ai-proxy/how-to/sdk-usage/) or similar).
+{{site.base_gateway}} captures each batch of events and translates them back into the {{site.base_gateway}} inference format, so that all providers are compatible with the same framework that you create on your side (including [OpenAI-compatible SDKs](/hub/kong-inc/ai-proxy/how-to/sdk-usage/) or similar).
 
 In a standard LLM transaction, requests proxied directly to the LLM look like this:
 
 {% mermaid %}
 sequenceDiagram    
   actor Client
-  participant Kong
-  Note right of Kong: AI Proxy plugin
-  Client->>+Kong: 
-  destroy Kong
-  Kong->>+Cloud LLM: Sends proxy request information
+  participant {{site.base_gateway}}
+  Note right of {{site.base_gateway}}: AI Proxy plugin
+  Client->>+{{site.base_gateway}}: 
+  destroy {{site.base_gateway}}
+  {{site.base_gateway}}->>+Cloud LLM: Sends proxy request information
   Cloud LLM->>+Client: Sends chunk to client
 {% endmermaid %}
 
@@ -70,7 +66,7 @@ When streaming is requested, requests proxied directly to the LLM look like this
 {% mermaid %}
 flowchart LR
   A(client)
-  B(Kong Gateway with 
+  B({{site.base_gateway}} Gateway with 
   AI Proxy plugin)
   C(Cloud LLM)
   D[[transform frame]]
@@ -112,7 +108,7 @@ Keep the following limitations in mind when you configure streaming for the AI P
 
 * Multiple AI features shouldn’t expect to be applied and work simultaneously
 * You cannot use the [Response Transformer plugin](/hub/kong-inc/response-transformer/) plugin or any other "response" phase plugin when streaming is configured
-* The [AI Request Transformer plugin](/hub/kong-inc/ai-request-transformer/) plugin **will** work, but the [AI Response Transformer plugin](/hub/kong-inc/ai-response-transformer/) **will not**. This is a limitation of the fact that Kong cannot check every single response token against a separate system.
+* The [AI Request Transformer plugin](/hub/kong-inc/ai-request-transformer/) plugin **will** work, but the [AI Response Transformer plugin](/hub/kong-inc/ai-response-transformer/) **will not**. This is a limitation of the fact that {{site.base_gateway}} cannot check every single response token against a separate system.
 * Streaming currently doesn't work with the HTTP/2 protocol. You must disable this in your `proxy_listen` configuration.
 
 ## Configuration

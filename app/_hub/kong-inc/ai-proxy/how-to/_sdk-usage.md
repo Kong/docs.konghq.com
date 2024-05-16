@@ -1,16 +1,17 @@
 ---
 title: SDK Usage
-nav_title: Using Programmatic SDKs with AI Proxy
+nav_title: Use Programmatic SDKs with AI Proxy
+minimum_version: 3.7.x
 ---
 
 You can use an OpenAI-compatible SDK with the AI Proxy plugin in multiple ways, depending on the required use case.
 
-| You want to...                                                                         | Then use...                                        |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Allow the user to select their target model, based on some header or request parameter | [Using OpenAI SDK with Multiple Models on the Same Provider](#using-openai-sdk-with-multiple-models-on-the-same-provider) |
-| Proxy the same request to an LLM provider of the user's choosing | [Using OpenAI SDK with Multiple Providers](#using-openai-sdk-with-multiple-providers) |
-| Use the OpenAI SDK for Azure, and allow the user to choose the Azure Deployment ID | [Multiple Azure OpenAI Deployments on One Route](#multiple-azureopenai-deployments-on-one-route) |
-| Proxy an unsupported model, like Whisper-2. | [OpenAI-compatible SDK for unsupported models](#using-an-unsupported-model)               |
+| You want to...       | Then use...                   |
+| -------------------- | -------------------------------------------------- |
+| Allow the user to select their target model, based on some header or request parameter | [OpenAI SDK with multiple models on the same provider](#use-openai-sdk-with-multiple-models-on-the-same-provider) |
+| Proxy the same request to an LLM provider of the user's choosing | [OpenAI SDK with multiple providers](#use-openai-sdk-with-multiple-providers) |
+| Use the OpenAI SDK for Azure, and allow the user to choose the Azure Deployment ID | [Multiple Azure OpenAI deployments on one route](#multiple-azureopenai-deployments-on-one-route) |
+| Proxy an unsupported model, like Whisper-2. | [OpenAI-compatible SDK for unsupported models](#use-an-unsupported-model)               |
 
 
 ## Templated Model Parameters
@@ -28,7 +29,7 @@ The available templated parameters are:
 `name` is either the header name, URI named capture (in the route path), or the query parameter name, respectively.
 
 ## Use case examples
-### Using OpenAI SDK with Multiple Models on the Same Provider
+### Use OpenAI SDK with multiple models on the same provider
 
 To read the desired model from the user, rather than hard coding it into the plugin config for each route,
 you can read it from a path parameter, for example:
@@ -64,7 +65,7 @@ client = OpenAI(
 
 The Python SDK (in OpenAI standard mode) will fill in the URL with `http://localhost:8000/gpt-4/chat/completions`. {{site.base_gateway}} recognizes the model as "gpt-4" and the route appropriately.
 
-### Using OpenAI SDK with Multiple Providers
+### Using OpenAI SDK with multiple providers
 
 To use the same OpenAI SDK but with multiple LLM providers, Kong AI Proxy can arbitrate this for you.
 
@@ -126,7 +127,7 @@ client = OpenAI(
 )
 ```
 
-### Multiple Azure OpenAI Deployments on One Route
+### Use multiple Azure OpenAI deployments on one route
 
 With AI Proxy, you can create two routes to point to two different deployments of an
 Azure OpenAI model:
