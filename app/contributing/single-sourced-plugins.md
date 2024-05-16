@@ -43,7 +43,7 @@ overrides:
 
 Content within a page can be conditionally rendered using [`if_version`](/contributing/conditional-rendering/).
 Adding specific pages to a range of versions is also supported by including
-`minimum_version` and/or `maximum_version` in the frontmatter the of the page.
+`minimum_version` and/or `maximum_version` in the front matter the of the page.
 
 ```yaml
 ---
@@ -52,7 +52,7 @@ minimum_version: 3.6.x
 ---
 ```
 
-If a page has one of these set in frontmatter, it gets generated for that version range.
+If a page has one of these set in front matter, it gets generated for that version range.
 Otherwise, it defaults to the setting for the whole plugin, which is specified in `versions.yml`
 
 ## Open source and enterprise discrepancies
