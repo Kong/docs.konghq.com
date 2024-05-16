@@ -812,6 +812,42 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+  /portals/{portalId}/appearance/logo:
+    get:
+      summary: Get Portal Logo
+      description: Returns the portal logo or returns the default
+      operationId: get-portal-logo
+      parameters:
+        - $ref: '#/components/parameters/parameters-PortalId'
+      tags:
+        - Portal Appearance
+      responses:
+        '200':
+          $ref: '#/components/responses/GetPortalLogoResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /portals/{portalId}/appearance/catalog-cover:
+    get:
+      summary: Get Portal Catalog Cover
+      description: Returns the portal catalog cover or returns the default
+      operationId: get-portal-catalog-cover
+      parameters:
+        - $ref: '#/components/parameters/parameters-PortalId'
+      tags:
+        - Portal Appearance
+      responses:
+        '200':
+          $ref: '#/components/responses/GetPortalCatalogCoverResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /portals/{portalId}/verify-domain:
     post:
       summary: Verify Custom Domains
@@ -1723,6 +1759,7 @@ components:
             created_at: '2022-02-07T17:46:57.52Z'
             updated_at: '2022-10-08T17:00:00.52Z'
             name: Portal A
+            display_name: Developer Portal A
             description: The Portal A
             default_domain: 123455678abcd.us.portal.konghq.com
             is_public: false
@@ -1827,6 +1864,7 @@ components:
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        display_name: Developer Portal A
         description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
@@ -1844,6 +1882,7 @@ components:
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        display_name: Developer Portal A
         description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
@@ -3004,6 +3043,14 @@ components:
               - updated_at
             reason: must be one of [created_at, updated_at]
             source: query
+    GetPortalLogoResponseExample1:
+      value: data:image/png;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalLogoResponseExample2:
+      value: data:image/jpg;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalCatalogCoverResponseExample1:
+      value: data:image/png;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalCatalogCoverResponseExample2:
+      value: data:image/jpg;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
     UnauthorizedExample:
       value:
         status: 401
@@ -3614,6 +3661,36 @@ components:
           examples:
             Example 1:
               $ref: '#/components/examples/UpdatePortalAppearanceResponseExample1'
+    GetPortalLogoResponse:
+      description: Logo of the portal. Can be either png or jpg
+      content:
+        image/png:
+          schema:
+            $ref: '#/components/schemas/GetPortalAppearanceLogoResponse'
+          examples:
+            Example 1:
+              $ref: '#/components/examples/GetPortalLogoResponseExample1'
+        image/jpg:
+          schema:
+            $ref: '#/components/schemas/GetPortalAppearanceLogoResponse'
+          examples:
+            Example 2:
+              $ref: '#/components/examples/GetPortalLogoResponseExample2'
+    GetPortalCatalogCoverResponse:
+      description: Catalog Cover of the portal. Can be either png or jpg
+      content:
+        image/png:
+          schema:
+            $ref: '#/components/schemas/GetPortalAppearanceCatalogCoverResponse'
+          examples:
+            Example 1:
+              $ref: '#/components/examples/GetPortalCatalogCoverResponseExample1'
+        image/jpg:
+          schema:
+            $ref: '#/components/schemas/GetPortalAppearanceCatalogCoverResponse'
+          examples:
+            Example 2:
+              $ref: '#/components/examples/GetPortalCatalogCoverResponseExample2'
     Unauthorized:
       description: Unauthorized
       content:
@@ -4236,6 +4313,7 @@ components:
             created_at: '2022-02-07T17:46:57.52Z'
             updated_at: '2022-10-08T17:00:00.52Z'
             name: Portal A
+            display_name: Developer Portal A
             description: The Portal A
             default_domain: 123455678abcd.us.portal.konghq.com
             is_public: false
@@ -4321,6 +4399,10 @@ components:
     PortalProductVersionDeprecated:
       type: boolean
       description: Whether the api product version on the portal is deprecated
+    NotifyDevelopers:
+      title: NotifyDevelopers
+      description: Whether to notify developers who are affected by this change
+      type: boolean
     PublishStatusFilter:
       title: PublishStatusFilter
       description: Filters on the given publish status
@@ -4405,6 +4487,8 @@ components:
           $ref: '#/components/schemas/AutoApproveRegistration'
         deprecated:
           $ref: '#/components/schemas/PortalProductVersionDeprecated'
+        notify_developers:
+          $ref: '#/components/schemas/NotifyDevelopers'
     UpdatePortalProductVersionPayload:
       title: UpdatePortalProductVersionPayload
       type: object
@@ -4421,6 +4505,8 @@ components:
           $ref: '#/components/schemas/AutoApproveRegistration'
         deprecated:
           $ref: '#/components/schemas/PortalProductVersionDeprecated'
+        notify_developers:
+          $ref: '#/components/schemas/NotifyDevelopers'
     PortalProductVersion:
       title: PortalProductVersion
       type: object
@@ -4727,6 +4813,16 @@ components:
             filename: logo.png
           catalog_cover:
             data: data:image/jpeg;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalAppearanceLogoResponse:
+      title: GetPortalAppearanceLogoResponse
+      type: string
+      format: binary
+      example: data:image/png;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalAppearanceCatalogCoverResponse:
+      title: GetPortalAppearanceLogoResponse
+      type: string
+      format: binary
+      example: data:image/png;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
     ListDevelopersResponse:
       additionalProperties: false
       type: object
@@ -5265,6 +5361,7 @@ components:
         - created_at
         - updated_at
         - name
+        - display_name
         - default_domain
         - is_public
         - rbac_enabled
@@ -5285,6 +5382,8 @@ components:
           $ref: '#/components/schemas/UpdatedAt'
         name:
           $ref: '#/components/schemas/PortalName'
+        display_name:
+          $ref: '#/components/schemas/PortalDisplayName'
         description:
           $ref: '#/components/schemas/PortalDescription'
         default_domain:
@@ -5358,6 +5457,7 @@ components:
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        display_name: Developer Portal A
         description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
@@ -5387,12 +5487,21 @@ components:
       type: string
       maxLength: 255
       minLength: 1
+    PortalDisplayName:
+      description: >-
+        The display name of the portal. This value will be the portal's `name`
+        in Portal API.
+      type: string
+      maxLength: 255
+      minLength: 1
     UpdatePortalRequest:
       additionalProperties: false
       type: object
       properties:
         name:
           $ref: '#/components/schemas/PortalName'
+        display_name:
+          $ref: '#/components/schemas/PortalDisplayName'
         description:
           $ref: '#/components/schemas/PortalDescription'
         is_public:
@@ -6601,84 +6710,74 @@ components:
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
     BadRequestError:
-      type: object
-      required:
-        - invalid_parameters
-      properties:
-        status:
-          example: 400
-        title:
-          example: Bad Request
-        type:
-          example: https://httpstatuses.com/400
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid request body
-        invalid_parameters:
-          $ref: '#/components/schemas/InvalidParameters'
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
     UnauthorizedError:
-      type: object
-      properties:
-        status:
-          example: 401
-        title:
-          example: Unauthorized
-        type:
-          example: https://httpstatuses.com/401
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid credentials
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 401
+            title:
+              example: Unauthorized
+            type:
+              example: https://httpstatuses.com/401
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Invalid credentials
     ForbiddenError:
-      type: object
-      properties:
-        status:
-          example: 403
-        title:
-          example: Forbidden
-        type:
-          example: https://httpstatuses.com/403
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Forbidden
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 403
+            title:
+              example: Forbidden
+            type:
+              example: https://httpstatuses.com/403
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Forbidden
     NotFoundError:
-      type: object
-      properties:
-        status:
-          example: 404
-        title:
-          example: Not Found
-        type:
-          example: https://httpstatuses.com/404
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Not found
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 404
+            title:
+              example: Not Found
+            type:
+              example: https://httpstatuses.com/404
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Not found
     ConflictError:
-      type: object
-      properties:
-        status:
-          example: 409
-        title:
-          example: Conflict
-        type:
-          example: https://httpstatuses.com/409
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Conflict
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 409
+            title:
+              example: Conflict
+            type:
+              example: https://httpstatuses.com/409
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Conflict
     Labels:
       title: Labels
       type: object
