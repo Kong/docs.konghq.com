@@ -1420,7 +1420,7 @@ components:
               - username
               - custom_id
       description: Consumer request body
-    filter-chain-request:
+    filter-chains-request:
       content:
         application/json:
           schema:
