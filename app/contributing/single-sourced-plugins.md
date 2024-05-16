@@ -41,7 +41,7 @@ overrides:
 
 ## Version-specific plugin pages
 
-Content within a page can be conditionally rendered using `if_plugin_version`.
+Content within a page can be conditionally rendered using [`if_version`](/contributing/conditional-rendering/).
 Adding specific pages to a range of versions is also supported by including
 `minimum_version` and/or `maximum_version` in the frontmatter the of the page.
 
