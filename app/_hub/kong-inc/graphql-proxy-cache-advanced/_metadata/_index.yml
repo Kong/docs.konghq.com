@@ -15,3 +15,4 @@ categories:
   - traffic-control
 publisher: Kong Inc.
 desc: Cache and serve commonly requested responses in Kong
+schema_source_url: https://github.com/Kong/kong-ee/edit/master/kong/plugins/graphql-proxy-cache-advanced/schema.lua
