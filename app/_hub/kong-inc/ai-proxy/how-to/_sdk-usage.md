@@ -11,16 +11,16 @@ You can use an OpenAI-compatible SDK with the AI Proxy plugin in multiple ways, 
 | Allow the user to select their target model, based on some header or request parameter | [OpenAI SDK with multiple models on the same provider](#use-openai-sdk-with-multiple-models-on-the-same-provider) |
 | Proxy the same request to an LLM provider of the user's choosing | [OpenAI SDK with multiple providers](#use-openai-sdk-with-multiple-providers) |
 | Use the OpenAI SDK for Azure, and allow the user to choose the Azure Deployment ID | [Multiple Azure OpenAI deployments on one route](#multiple-azureopenai-deployments-on-one-route) |
-| Proxy an unsupported model, like Whisper-2. | [OpenAI-compatible SDK for unsupported models](#use-an-unsupported-model)               |
+| Proxy an unsupported model, like Whisper-2 | [OpenAI-compatible SDK for unsupported models](#use-an-unsupported-model)               |
 
 
-## Templated Model Parameters
+## Templated model parameters
 
-The plugin enables you to substitute values in the `config.model.name` and/or any `config.model.options.*` field,
+The plugin enables you to substitute values in the `config.model.name` and any `config.model.options.*` field
 with specific placeholders, similar to those in the [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
 templating system.
 
-The available templated parameters are:
+Available templated parameters:
 
 * `$(headers.name)`
 * `$(uri_captures.name)`
@@ -32,7 +32,7 @@ The available templated parameters are:
 ### Use OpenAI SDK with multiple models on the same provider
 
 To read the desired model from the user, rather than hard coding it into the plugin config for each route,
-you can read it from a path parameter, for example:
+you can read it from a path parameter. For example:
 
 ```yaml
 - name: openai-chat
@@ -63,13 +63,13 @@ client = OpenAI(
 )
 ```
 
-The Python SDK (in OpenAI standard mode) will fill in the URL with `http://localhost:8000/gpt-4/chat/completions`. {{site.base_gateway}} recognizes the model as "gpt-4" and the route appropriately.
+The Python SDK (in OpenAI standard mode) fills in the URL with `http://localhost:8000/gpt-4/chat/completions`. {{site.base_gateway}} recognizes the model as gpt-4, as well as the route.
 
 ### Using OpenAI SDK with multiple providers
 
-To use the same OpenAI SDK but with multiple LLM providers, Kong AI Proxy can arbitrate this for you.
+Kong AI Proxy can help you arbitrate using the same OpenAI SDK with multiple LLM providers.
 
-Set up two routes:
+For example, set up two routes:
 
 ```yaml
 - name: cohere-chat
@@ -111,7 +111,7 @@ Set up two routes:
         name: "$(uri_captures.model)"
 ```
 
-Now, the user can select their desired provider using the SDK:
+Now, you can select your desired provider using the SDK:
 
 ```python
 client = OpenAI(
@@ -178,7 +178,7 @@ Azure OpenAI model:
           azure_deployment_id: "my-gpt-4"
 ```
 
-But if you are required to only use one route to proxy multiple models deployed in the same instance, you can use request parameters:
+If you have to use only one route to proxy multiple models deployed in the same instance, you can use request parameters:
 
 ```yaml
 - name: azure-chat
@@ -204,16 +204,19 @@ But if you are required to only use one route to proxy multiple models deployed 
           azure_deployment_id: "$(uri_captures.azure_instance)"
 ```
 
-Now the user can set the SDK endpoint to `http://localhost:8000/azure`. When the Azure instance parameter is
-set to `"my-gpt-3-5"`, the Python SDK produces the URL (`http://localhost:8000/openai/deployments/my-gpt-3-5/chat/completions`) and
+Now you can set the SDK endpoint to `http://localhost:8000/azure`. When the Azure instance parameter is
+set to `"my-gpt-3-5"`, the Python SDK produces the URL `http://localhost:8000/openai/deployments/my-gpt-3-5/chat/completions` and
 is directed to the respective Azure deployment ID and model.
 
 ### Use an unsupported model
 
-{{site.base_gateway}} can perform a **best-effort** to support models that are not programmed with to/from format transformers or are untested.
-These will be unsupported use-cases, but may work depending on your setup.
+{{site.base_gateway}} can perform a **best-effort** to support models that are not programmed with to/from format transformers, or are untested.
 
-For these, you must use the `preserve` "route_type" mode.
+{:.important}
+> **Caution**: The following use cases are unsupported, but may work depending on your setup.
+> Use at your own discretion.
+
+For the following examples, you must set the `route_type` to `preserve` mode.
 
 For example, you could use the Whisper-2 audio transcription model with a route:
 
@@ -240,7 +243,7 @@ For example, you could use the Whisper-2 audio transcription model with a route:
           upstream_path: "$(uri_captures.op_path)"
 ```
 
-Now you can `POST` a file (multi-part form) for transcription:
+Now you can `POST` a file for transcription, using `multipart/form-data` formatting:
 
 ```sh
 curl --location 'http://localhost:8000/openai/v1/audio/transcriptions' \
