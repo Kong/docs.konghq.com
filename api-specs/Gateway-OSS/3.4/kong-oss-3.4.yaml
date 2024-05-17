@@ -6230,7 +6230,7 @@ paths:
         List all the supported HTTP methods by an endpoint. This can also be used with a CORS preflight request.
       tags:
         - Information
-  '/schemas/{entity}/validate':
+  '/schemas/{entity}':
     parameters:
       - schema:
           type: string
@@ -6289,6 +6289,13 @@ paths:
                           type: integer
       operationId: get-schemas-entity
       description: Retrieve the schema of an entity. This is useful to understand what fields an entity accepts, and can be used for building third-party integrations with Kong.
+  '/schemas/{entity}/validate':
+    parameters:
+      - schema:
+          type: string
+        name: entity
+        in: path
+        required: true
     post:
       summary: Validate a configuration against a schema
       operationId: post-schemas-entity-validate
