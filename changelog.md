@@ -2,6 +2,107 @@
 
 <!--vale off-->
 
+## Week 20
+
+### [feat(ai-proxy): added Azure native auth explanation](https://github.com/Kong/docs.konghq.com/pull/7390) (2024-05-16)
+
+> ⚠️ I need help here because there are two pre-requisites:
+>
+> 1. This only works in Kong Enterprise
+> 2. This is only available (the whole page / feature) in Kong 3.7
+
+I have added an explanation on how to use [Azure Managed Identity](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/managed-identity) authentication when using the Kong AI Proxy within the Azure SaaS.
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/
+
+
+### [chore: Set source URLs for moved EE plugins](https://github.com/Kong/docs.konghq.com/pull/7386) (2024-05-17)
+
+A bunch of EE plugins were moved to a new directory, breaking the "Edit this page" links on their schema config reference pages. This PR adds a source_url to each moved plugin to use as the link for editing.
+
+https://konghq.atlassian.net/browse/DOCU-3841
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/canary/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/degraphql/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/forward-proxy/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/jq/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/jwe-decrypt/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/key-auth-enc/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/mocking/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/oauth2-introspection/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/route-by-header/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/route-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.6.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.7.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.8.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/tls-handshake-modifier/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/tls-metadata-headers/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/upstream-timeout/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-size-limit/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-validator/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/xml-threat-protection/_metadata/_index.yml
+
+
+### [Release: Gateway 3.4.3.8](https://github.com/Kong/docs.konghq.com/pull/7379) (2024-05-16)
+
+Changelog and version bump for 3.4.3.8
+
+Schema update will come separately.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.6.1.4](https://github.com/Kong/docs.konghq.com/pull/7377) (2024-05-15)
+
+Changelog and version bump for 3.6.1.4
+
+https://konghq.atlassian.net/browse/DOCU-3842
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [request-termination and forward-proxy incompatibility](https://github.com/Kong/docs.konghq.com/pull/7358) (2024-05-15)
+
+Clarification: the plugin won't execute if if forward-proxy is enabled (valid for all versions)
+Jira: https://konghq.atlassian.net/browse/FTI-5909
+Kong idea reported to review the plugin priority: https://kong-internal-portal.ideas.aha.io/ideas/GTWY-I-886
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-termination/overview/
+
+
+### [docs(oidc): supporting dpop](https://github.com/Kong/docs.konghq.com/pull/7323) (2024-05-15)
+
+KAG-4377
+
+New feature support.
+
+https://github.com/Kong/kong-ee/pull/8482
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
 ## Week 19
 
 ### [Remove duplicated entry](https://github.com/Kong/docs.konghq.com/pull/7361) (2024-05-10)
