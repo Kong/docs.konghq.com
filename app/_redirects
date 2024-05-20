@@ -23,6 +23,7 @@
 
 /gateway/:version/kong-manager-oss/troubleshoot/    /gateway/version/kong-manager/troubleshoot/
 /gateway/:version/kong-manager-oss/index/   /gateway/version/kong-manager/index/
+/gateway/:version/install/post-install/kong-manager-oss/   /gateway/version/kong-manager/index/
 
 ## App reg v2 
 
