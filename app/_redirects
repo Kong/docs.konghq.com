@@ -19,6 +19,11 @@
 /gateway/latest/ai-gateway/ai-analytics/ /gateway/:version/production/latest/ai-analytics/
 ######################################################################
 
+## Kong Manager
+
+/gateway/:version/kong-manager-oss/troubleshoot/    /gateway/version/kong-manager/troubleshoot/
+/gateway/:version/kong-manager-oss/index/   /gateway/version/kong-manager/index/
+
 ## App reg v2 
 
 /konnect/dev-portal/applications/dev-reg-app-service/ /konnect/dev-portal/applications/dev-apps/

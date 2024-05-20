@@ -491,13 +491,9 @@ items:
         url: /kong-manager/consumer-groups
       - text: Sending Email
         url: /kong-manager/configuring-to-send-email
-  - title: Kong Manager Open Source
-    icon: /assets/images/icons/documentation/icn-manager-oss-color.svg
-    items:
-      - text: Overview
-        url: /kong-manager-oss/
       - text: Troubleshooting
-        url: /kong-manager-oss/troubleshoot/
+        url: /kong-manager/troubleshoot/
+
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
