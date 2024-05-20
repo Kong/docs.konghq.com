@@ -49,14 +49,14 @@ The performance tests cover a number of baseline configurations and common use c
 
 | Test type                   | Number of routes/consumers  | Requests per second (RPS) | P99 (ms) | P95 (ms) |
 | --------------------------- | --------------------------- | ------------------------- | -------- | -------- |
-| Kong proxy with no plugins  | 1 route, 0 consumers       | 138087.1                  | 6.82     | 3.99     |
-| Kong proxy with no plugins  | 100 routes, 0 consumers    | 132870.9                  | 7.23     | 4.20     |
-| Rate limit and no auth      | 1 route, 0 consumers       | 119777.3                  | 7.77     | 4.01     |
-| Rate limit and no auth      | 100 routes, 0 consumers    | 116180.2                  | 8.06     | 4.11     |
-| Rate limit and key auth     | 1 route, 1 consumer         | 101482.9                  | 8.56     | 4.80     |
-| Rate limit and key auth     | 100 routes, 100 consumers   | 96734.6                   | 10.01    | 4.92     |
-| Rate limit and basic auth   | 1 route, 1 consumer         | 95389.6                   | 8.92     | 5.25     |
-| Rate limit and basic auth   | 100 routes, 100 consumers   | 90544.2                   | 9.68     | 5.67     |
+| Kong proxy with no plugins  | 1 route, 0 consumers       | 137358.8                  | 7.25     | 4.06     |
+| Kong proxy with no plugins  | 100 routes, 0 consumers    | 133953.4                  | 7.20     | 4.17     |
+| Rate limit and no auth      | 1 route, 0 consumers       | 121737.2                  | 7.69     | 4.01     |
+| Rate limit and no auth      | 100 routes, 0 consumers    | 117521.4                  | 8.53     | 4.22     |
+| Rate limit and key auth     | 1 route, 1 consumer         | 103777.6                  | 9.43     | 4.39     |
+| Rate limit and key auth     | 100 routes, 100 consumers   | 98777.5                   | 9.16     | 4.79     |
+| Rate limit and basic auth   | 1 route, 1 consumer         | 97397.6                   | 9.69     | 4.93     |
+| Rate limit and basic auth   | 100 routes, 100 consumers   | 92372.6                   | 10.17    | 5.31     |
 {% endif_version %}
 
 
