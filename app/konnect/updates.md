@@ -20,8 +20,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : For more information, syntax description and use cases, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/reference/search/).
 
-
-
 ## April 2024
 
 
