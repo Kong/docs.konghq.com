@@ -6,13 +6,16 @@ The AI Proxy plugin lets you transform and proxy requests to a number of AI prov
 
 The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
 
-The AI Proxy plugin supports `llm/v1/chat` and `llm/v1/completion` style requests for all of the following providers:
-* OpenAI
-* Cohere
-* Azure
-* Anthropic
-* Mistral (raw and OLLAMA formats)
-* Llama2 (raw, OLLAMA, and OpenAI formats)
+The following table describes which providers and requests the AI Proxy plugin supports:
+
+| Provider | Chat | Completion | Streaming |
+| -------- | ---- | ---------- | --------- |
+| OpenAI | ✅ | ✅ | ✅ |
+| Cohere | ✅ | ✅ | ✅ |
+| Azure | ✅ | ✅ | ✅ |
+| Anthropic | ✅ | ✅ | ✅ |
+| Mistral (raw and OLLAMA formats) | ✅ | ✅ | ✅ |
+| Llama2 (raw, OLLAMA, and OpenAI formats) | ✅ | ✅ | ✅ |
 
 ## How it works
 
