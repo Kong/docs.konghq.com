@@ -5,9 +5,8 @@ title: Using the AI Azure Content Safety plugin
 
 ## Overview
 
-When using Kong to proxy your Large Language Model (LLM) traffic, as a platform owner, it may be necessary to ensure that 
-all user request content is moderated against a reputable service, to ensure compliance with specific sensitive 
-categories.
+As a platform owner, you might need to moderate all user request content against a reputable service to comply with specific sensitive 
+categories when using Kong to proxy your Large Language Model (LLM) traffic.
 
 This plugin integrates with the [Azure REST API](https://westus.dev.cognitive.microsoft.com/docs/services/content-safety-service-2023-04-30-preview/operations/TextOperations_Analyze) and transmits every user LLM request 
 from users to the Azure Content Safety SaaS *before* proxying to the upstream LLM.
@@ -16,15 +15,14 @@ The plugin uses the [**text moderation**](https://learn.microsoft.com/en-us/azur
 
 To configure the plugin, you set an array of [categories and levels](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/harm-categories).
 If Azure finds that a piece of content has breached one or more of these levels, 
-the request will be stopped with a 400 status and reported to the Kong log file for auditing.
+the request is stopped with a 400 status and reported to the Kong log file for auditing.
 
 ## Prerequisites
 
-You need an Azure subscription and a Content Safety instance. 
+* An Azure subscription and a Content Safety instance. 
 You can [follow the quickstart from Microsoft](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text?tabs=visual-studio%2Cwindows&pivots=programming-language-rest#prerequisites) 
 to get set up quickly.
-
-Then, as in the [AI Proxy](/hub/kong-inc/ai-proxy/) documentation, create a service, route, and `ai-proxy` plugin
+* [Create a service, route, and `ai-proxy` plugin](/hub/kong-inc/ai-proxy/)
 that will serve as your LLM access point.
 
 ## Authentication
@@ -59,8 +57,13 @@ See the [cloud provider authentication](/hub/kong-inc/ai-proxy/how-to/cloud-prov
 
 ## Examples
 
-Configure the plugin with an array of supported categories as defined in the 
-[Content Services REST API documentation](https://westus.dev.cognitive.microsoft.com/docs/services/content-safety-service-2023-10-01/operations/TextOperations_AnalyzeText), for example using all four
+Configure the plugin with an array of supported categories, as defined by Azure Content Safety:
+* [Content Services REST API documentation](https://westus.dev.cognitive.microsoft.com/docs/services/content-safety-service-2023-10-01/operations/TextOperations_AnalyzeText)
+* [Harm categories in Azure AI Content Safety](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/harm-categories)
+
+Azure's harm categories map to `categories.name` in the plugin's configuration, and the severity levels map to `categories.rejection_level`. 
+
+For example, here's what it looks like if you use all four
 supported categories in this API version:
 
 <!-- vale off-->
@@ -137,19 +140,19 @@ Based on the plugin's configuration, Azure responds with the following analysis:
 }
 ```
 
-This breaches the plugin's configured (inclusive and greater) threshold of `2` for `Hate` and `Violence`, and sends a 400 error code to the client:
+This breaches the plugin's configured (inclusive and greater) threshold of `2` for `Hate` [based on Azure's ruleset](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/harm-categories?tabs=definitions#hate-and-fairness-severity-levels), and sends a 400 error code to the client:
 
 ```json
 {
 	"error": {
-		"message": "request failed content safety check: breached category [Hate] at level 2; breached category [Violence] at level 2"
+		"message": "request failed content safety check: breached category [Hate] at level 2"
 	}
 }
 ```
 
 ### Hiding the failure from the client
 
-If you don't want to reveal to the caller why their request has failed, you can set `config.reveal_failure_reason` to `false`, in which
+If you don't want to reveal to the caller why their request failed, you can set `config.reveal_failure_reason` to `false`, in which
 case the response looks like this:
 
 ```json
@@ -160,13 +163,16 @@ case the response looks like this:
 }
 ```
 
-### Using Blocklists
+### Using blocklists
 
 The plugin supports previously-created blocklists in Azure Content Safety.
 
 Using the [Azure Content Safety API](https://learn.microsoft.com/en-us/rest/api/cognitiveservices/contentsafety/operation-groups) 
 or the Azure Portal, you can create a series of blocklists for banned phrases or patterns. 
-You can then reference their unique names in the plugin configuration. For example:
+You can then reference their unique names in the plugin configuration. 
+
+In the following example, the plugin takes two existing blocklists from Azure, `company_competitors` and 
+`financial_properties`:
 
 <!-- vale off-->
 {% plugin_example %}

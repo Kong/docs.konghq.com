@@ -6,7 +6,7 @@ The Azure Content Safety plugin allows administrators to enforce
 introspection with the [Azure Content Safety](https://azure.microsoft.com/en-us/products/ai-services/ai-content-safety) service 
 for all requests handled by the AI Proxy plugin.
 The plugin enables configurable thresholds for the different moderation categories 
-and an array set of pre-configured blocklist IDs can be specified from your Azure Content Safety instance.
+and you can specify an array set of pre-configured blocklist IDs from your Azure Content Safety instance.
 
 Audit failures can be observed and reported on using the {{Site.base_gateway}} logging plugins.
 
