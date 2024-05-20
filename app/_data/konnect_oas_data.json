@@ -22,19 +22,19 @@
   },
   {
     "id": "3e660af4-c727-4640-8f71-19718640d6b4",
-    "title": "Cloud Gateways",
+    "title": "Dedicated Cloud Gateways",
     "latestVersion": {
       "name": "v2",
       "id": "1b770f7b-581b-4ab2-9766-70c046aa7fca"
     },
-    "description": "Konnect API for managing cloud-gateways infrastructure.",
+    "description": "Konnect API for managing Dedicated Cloud Gateways infrastructure configuration.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
         "id": "1b770f7b-581b-4ab2-9766-70c046aa7fca",
         "created_at": "2024-04-10T19:07:03.399Z",
-        "updated_at": "2024-04-10T19:14:56.526Z",
+        "updated_at": "2024-04-15T19:17:24.675Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -429,6 +429,27 @@
         "updated_at": "2023-09-20T15:35:47.234Z",
         "name": "v2",
         "deprecated": true,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "97cb97c2-0824-4e87-a13f-2fad352d698f",
+    "title": "Konnect Search",
+    "latestVersion": {
+      "name": "Konnect Search v1",
+      "id": "c0b23b3d-0e01-4045-98d8-0846c346e6e3"
+    },
+    "description": "The search API for Kong Konnect.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "c0b23b3d-0e01-4045-98d8-0846c346e6e3",
+        "created_at": "2024-05-02T16:10:01.020Z",
+        "updated_at": "2024-05-09T16:28:09.916Z",
+        "name": "Konnect Search v1",
+        "deprecated": false,
         "registration_configs": []
       }
     ]

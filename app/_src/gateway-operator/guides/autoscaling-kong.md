@@ -29,6 +29,7 @@ The `scaleUp` configuration states that either 100% of existing replicas, or 5 n
 The `scaleDown` configuration states that 100% of pods may be removed (with a `minReplicas` value of 2).
 
 ```yaml
+echo '
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
@@ -75,7 +76,8 @@ spec:
             limits:
               memory: "1024Mi"
               cpu: "1000m"
-          # Konnect related environment variables, volumes etc...
+          # Add any Konnect-related configuration here: environment variables, volumes, and so on.
+' | kubectl apply -f -
 ```
 
 {:.note}
@@ -84,7 +86,12 @@ spec:
 A `DataPlane` is created when the manifest above is applied. This creates 2 `Pod`s running {{site.base_gateway}}, as well as a `HorizontalPodAutoscaler` which will manage the replica count of those `Pod`s to ensure that the average CPU utilization is around 50%.
 
 ```bash
-$ kubectl get hpa
+kubectl get hpa
+```
+
+The output will show the `HorizontalPodAutoscaler` resource:
+
+```bash
 NAME                     REFERENCE                                           TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
 horizontal-autoscaling   Deployment/dataplane-horizontal-autoscaling-4q72p   2%/50%    2         10        2          30s
 ```
@@ -99,10 +106,9 @@ You can test if the autoscaling works by using a load testing tool (e.g. k6s) to
     export PROXY_IP=$(kubectl get dataplanes.gateway-operator.konghq.com -o jsonpath='{.status.addresses[0].value}' horizontal-autoscaling)
     ```
 
-1. Create a [`k6s`](https://k6.io/) configuration file.
+1. Install [`k6s`](https://k6.io/), then create a configuration file containing the following code:
 
-    ```bash
-    $ cat k6s.js
+    ```javascript
     import http from "k6/http";
     import { check } from "k6";
 
@@ -123,13 +129,17 @@ You can test if the autoscaling works by using a load testing tool (e.g. k6s) to
 1. Start the load test.
 
    ```
-   $ k6 run k6.js
+   k6 run k6.js
    ```
 
 1. Observe the scaling events in the cluster while the test is running.
 
     ```bash
-    $ kubectl get events --field-selector involvedObject.name=horizontal-autoscaling --field-selector involvedObject.kind=HorizontalPodAutoscaler
+    kubectl get events --field-selector involvedObject.name=horizontal-autoscaling --field-selector involvedObject.kind=HorizontalPodAutoscaler
+    ```
+
+    The output will show the scaling events:
+    ```bash
     LAST SEEN   TYPE      REASON                         OBJECT                                           MESSAGE
     3m55s       Normal    SuccessfulRescale              horizontalpodautoscaler/horizontal-autoscaling   New size: 6; reason: cpu resource utilization (percentage of request) above target
     3m25s       Normal    SuccessfulRescale              horizontalpodautoscaler/horizontal-autoscaling   New size: 7; reason: cpu resource utilization (percentage of request) above target
@@ -140,7 +150,10 @@ You can test if the autoscaling works by using a load testing tool (e.g. k6s) to
     The `DataPlane`'s `status` field will also be updated with the number of ready/target replicas:
 
     ```bash
-    $ kubectl get dataplanes.gateway-operator.konghq.com horizontal-autoscaling -o jsonpath-as-json='{.status}'
+    kubectl get dataplanes.gateway-operator.konghq.com horizontal-autoscaling -o jsonpath-as-json='{.status}'
+    ```
+
+    ```json
     [
         {
             ...

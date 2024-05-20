@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 module.exports = function extractNavWithMeta(items, base, srcPrefix) {
   let urls = [];
   for (let u of items) {
@@ -29,16 +31,22 @@ module.exports = function extractNavWithMeta(items, base, srcPrefix) {
         }
       } else {
         const url = `${base}${u.url}`;
-        urls.push({
-          src:
-            srcPrefix +
-            (u.src || url)
-              .replace(/\/?#.*$/, "") // Remove anchor links
-              .replace(/\/$/, "") + // Remove trailing slashes
-            ".md",
-          url,
-          is_absolute: false,
-        });
+
+        let src = srcPrefix
+          .concat(u.src || url)
+          .replace(/\/?#.*$/, "") // Remove anchor links
+          .replace(/\/$/, ""); // Remove trailing slashes
+
+        // check if src.md exists, otherwise check if src/index.md exists
+        if (fs.existsSync(`${src}.md`)) {
+          src += '.md';
+        } else if (`${src}/index.md`) {
+          src += '/index.md';
+        } else {
+          console.log(`Could not find the src file of: ${url}.`)
+        }
+
+        urls.push({ src, url, is_absolute: false });
       }
     }
   }

@@ -59,7 +59,7 @@ In order to control what is placed in the logs, we will be using the NGINX map m
 
 ```
 
-map $paramater_to_look_at $variable_name {
+map $parameter_to_look_at $variable_name {
     pattern_to_look_for 0;
     second_pattern_to_look_for 0;
 

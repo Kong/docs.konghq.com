@@ -48,12 +48,11 @@ To run in {{site.konnect_short_name}}, every custom plugin must meet the followi
   * Each custom plugin must have a unique name.
   * All plugin files must also be deployed to **each** {{site.base_gateway}} data plane node.
 * **File structure requirements:**
-  * Admin API extensions must not contain an `api.lua` file.
-  * Custom plugin database tables must not contain a `dao.lua` file.
-  * The plugin must not have a `migration.lua` file.
+  * The plugin must not contain an `api.lua` file as Admin API extensions are not supported. 
+  * The plugin must not contain the `dao.lua` or `migrations.lua` files as custom data entities are not supported.
 * **Code and language requirements:** 
   * The schema for your custom plugin must be written in Lua.
-  * Custom validation functions must be written in Lua and be self-contained within the schema.
+  * Custom validation functions must be written in Lua and be self-contained within the `schema.lua` file.
   * The `schema.lua` file must not contain any `require()` statements.
   * Plugins that require third-party libraries must reference them in the `handler.lua` file.
 

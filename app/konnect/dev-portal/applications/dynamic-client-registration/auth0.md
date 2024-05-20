@@ -199,7 +199,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 3. Click **Create** to save your application.
 
 4. After your application is created, you will see the **Client ID** and **Client Secret**.
-   Store these values, they will only be shown once.
+   Store the Client Secret, it will only be shown once.  
 
 5. Click **Proceed** to continue to the application's details page.
 

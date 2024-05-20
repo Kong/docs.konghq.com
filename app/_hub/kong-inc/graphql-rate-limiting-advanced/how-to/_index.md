@@ -5,7 +5,7 @@ title: Getting Started with GraphQL and Kong Gateway
 
 ## About GraphQL with {{site.base_gateway}}
 
-GraphQL decouples apps from services by introducing a flexible query language. Instead of a custom API for each screen, app developers describe the data they need, service developers describe what they can supply, and GraphQL automatically matches the two together. Teams ship faster across more platforms, with new levels of visibility and control over the use of their data. To learn more about how teams benefit, read why [GraphQL is important](https://www.apollographql.com/why-graphql/).
+GraphQL decouples apps from services by introducing a flexible query language. Instead of a custom API for each screen, app developers describe the data they need, service developers describe what they can supply, and GraphQL automatically matches the two together. Teams ship faster across more platforms, with new levels of visibility and control over the use of their data. To learn more about how teams benefit, read why [GraphQL is important](https://www.apollographql.com/why-graphql/), and learn how to [leverage GraphQL for next-gen API platforms](https://konghq.com/solutions/api-management-graphql).
 
 The GraphQL paradigm differs from traditional API-based systems. Depending on the resolver implementation details, one query can potentially generate an arbitrary number of requests. Proxy caching and rate limiting on top of GraphQL is key but usually overlooked as a hard problem to solve, since traditional proxy caching and rate limiting is not a good fit for GraphQL.
 
@@ -52,3 +52,5 @@ The GraphQL Rate Limiting Advanced plugin supports two rate limiting strategies.
 A more advanced strategy is available for GraphQL schemas that enforce quantifier arguments on any connection, providing a good approximation on the number of nodes visited for satisfying a query. Any query without decorated quantifiers has a cost of 1. It is roughly based on [GitHub's GraphQL resource limits](https://developer.github.com/v4/guides/resource-limitations/).
 
 
+## More information
+* [Learn about API management with {{site.base_gateway}} and GraphQL](https://konghq.com/solutions/api-management-graphql)

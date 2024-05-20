@@ -9,6 +9,13 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## May 2024
+
+**{{site.konnect_short_name}} Konnect Search Enhancements**
+: The new {{site.konnect_saas}} search enhancements now allows you to to search across 29 entities in {{site.konnect_short_name}}. The search enhancement is made up of an advanced search syntax coupled with a refreshed search bar in the UI and a [Konnect Search API](/konnect/api/search/latest/). 
+
+: For more information, syntax description and use cases, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/reference/search/).
+
 ## April 2024
 
 **API Requests**
@@ -42,6 +49,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * Emojis
 
 ![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
+
+**PKI Cert Mode Improvements**
+: Konnect now defaults to PKI Cert mode for CP/DP connections. As a result, you can now specify your own CA certs during the creation of control planes. In addition, you can now upload your own Kong Cluster Cert/Key pairs to sign off using the CA cert that you uploaded, or continue to have Konnect generate Kong Cluster Cert/Key pairs for you. 
 
 ## March 2024
 
