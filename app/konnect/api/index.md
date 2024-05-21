@@ -39,7 +39,7 @@ The {{site.konnect_short_name}} APIs accept three content types, depending on th
 - **application/x-www-form-urlencoded**
 - **multipart/form-data**
 
-Please refer to the API specification for detailed information on the content types supported by each endpoint.
+Refer to the individual API specifications for detailed information on the content types supported by each endpoint.
 
 ## Specifications
 
