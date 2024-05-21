@@ -144,9 +144,6 @@ items:
               - text: Enable Kong Manager (Enterprise)
                 url: /install/post-install/kong-manager/
                 generate: false
-              - text: Enable Kong Manager (OSS)
-                url: /install/post-install/kong-manager-oss/
-                generate: false
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user

@@ -128,9 +128,6 @@ items:
           - text: Enable Kong Manager (Enterprise)
             url: /install/post-install/kong-manager/
             generate: false
-          - text: Enable Kong Manager (OSS)
-            url: /install/post-install/kong-manager-oss/
-            generate: false
 
   - title: Kong in Production
     icon: /assets/images/icons/icn-server.svg
