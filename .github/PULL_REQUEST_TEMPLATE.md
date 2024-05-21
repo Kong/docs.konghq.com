@@ -14,7 +14,7 @@ Preview link: <!-- Netlify will generate a preview link after PR is opened. Add 
 - [ ] Review label added <!-- (see below) -->
 - [ ] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
 
-<!-- For example, if this change is for an upcoming 3.6 release, enclose your content in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags (or `if_plugin_version` tags for plugins). 
+<!-- For example, if this change is for an upcoming 3.6 release, enclose your content in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags. 
 
 Use any of the following keys:
 * `gte:<version>` - greater than or equal to a specific version

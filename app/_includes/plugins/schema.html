@@ -22,7 +22,7 @@
     </div>
   </li>
 
-  {% if_plugin_version gte:3.2.x %}
+  {% if_version gte:3.2.x %}
     <li class="field">
       <div class="field-overview">
         <h4 id="instance_name">instance_name</h4>
@@ -48,7 +48,7 @@
         </p>
       </div>
     </li>
-  {% endif_plugin_version %}
+  {% endif_version %}
 
   {% if schema.enable_on_service? %}
     <li class="field">

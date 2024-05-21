@@ -5,11 +5,11 @@ title: Setting up and using ACLs
 
 ## Setting up and using ACLs
 
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 
 {:.note}
 > **Note**: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`. This change may require Admin API requests to be updated.
-{% endif_plugin_version %}
+{% endif_version %}
 
 ### Prerequisites
 

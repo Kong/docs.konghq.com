@@ -16,13 +16,13 @@ configures the greatest datagram size the plugin can combine, this should be les
 > Starting in Gateway version 3.0.x, StatsD Advanced has been combined with the open-sourced [StatsD](/hub/kong-inc/statsd/) plugin.
 StatsD Advanced has been deprecated.
 
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 The StatsD Advanced plugin provides
 features not available in the open-source [StatsD](/hub/kong-inc/statsd/) plugin, such as:
 * Ability to choose status codes to log to metrics.
 * More granular status codes per workspace.
 * Ability to use TCP instead of UDP.
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## Metrics
 
