@@ -244,6 +244,8 @@ items:
             url: /production/logging/customize-gateway-logs
           - text: Debug Requests
             url: /production/debug-request
+          - text: AI Gateway Analytics
+            url: /production/logging/ai-analytics/
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
@@ -378,6 +380,9 @@ items:
             url: /hub/kong-inc/ai-proxy/how-to/llama2/
             generate: false
             absolute_url: true
+      - text: AI Gateway Analytics
+        url: /ai-gateway/ai-analytics/
+        generate: false
       - text: AI Gateway plugins
         url: /hub/?category=ai
         generate: false
@@ -493,7 +498,7 @@ items:
         url: /plugin-development/admin-api
       - text: Writing Tests
         url: /plugin-development/tests
-      - text: (un)Installing your Plugin
+      - text: Installation and Distribution
         url: /plugin-development/distribution
       - text: Proxy-Wasm Filters
         items:
@@ -723,7 +728,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
-        src: /gateway/reference/configuration/configuration-3.6.x
+        src: /gateway/reference/configuration/configuration-3.7.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

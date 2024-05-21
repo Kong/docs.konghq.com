@@ -1,19 +1,19 @@
 openapi: 3.0.2
 info:
   title: Konnect Search
-  version: 0.0.1
+  version: 1.0.0
   description: The search API for Kong Konnect.
   contact:
     name: Kong
     url: https://konghq.com
 servers:
-  - url: https://global.api.konghq.com/v0
+  - url: https://global.api.konghq.com/v1
     description: Global Base URL
-  - url: https://us.api.konghq.com/v0
+  - url: https://us.api.konghq.com/v1
     description: US Region Base URL
-  - url: https://eu.api.konghq.com/v0
+  - url: https://eu.api.konghq.com/v1
     description: EU Region Base URL
-  - url: https://au.api.konghq.com/v0
+  - url: https://au.api.konghq.com/v1
     description: AU Region Base URL
 security:
   - personalAccessToken: []
@@ -84,6 +84,28 @@ components:
             Searchable Entity Types:
               $ref: '#/components/examples/Searchable-Entity-Types'
   schemas:
+    SearchCursorMeta:
+      type: object
+      description: Pagination metadata.
+      required:
+        - page
+      properties:
+        page:
+          $ref: '#/components/schemas/SearchCursorMetaPage'
+    SearchCursorMetaPage:
+      type: object
+      required:
+        - size
+      properties:
+        next:
+          description: URI to the next page
+          type: string
+          format: path
+          nullable: true
+        size:
+          description: Requested page size
+          type: number
+          example: 10
     SearchResponse:
       title: SearchResponse
       description: Search response schema.
@@ -94,7 +116,7 @@ components:
           items:
             $ref: '#/components/schemas/SearchResultItem'
         meta:
-          $ref: '#/components/schemas/CursorPaginatedMeta'
+          $ref: '#/components/schemas/SearchCursorMeta'
     SearchTypesResponse:
       title: SearchableEntityTypesResponse
       description: The collection of searchable entity types.
@@ -151,6 +173,7 @@ components:
           description: An optional hint at the contents and format of string types.
         items:
           type: object
+          nullable: true
           properties:
             type:
               type: string
@@ -199,85 +222,9 @@ components:
         relations:
           type: object
           description: Relations for the entity.
-    CursorPageMetaWithTotal:
-      type: object
-      description: >-
-        Pagination metadata with exact total. Useful when the collection size is
-        inexpensive to provide.
-      required:
-        - size
-        - next
-        - previous
-      properties:
-        first:
-          description: URI to the first page
-          type: string
-          format: uri
-        last:
-          description: URI to the last page
-          type: string
-          format: uri
-        next:
-          description: URI to the next page
-          type: string
-          format: uri
-        previous:
-          description: URI to the previous page
-          type: string
-          format: uri
-        size:
-          description: Requested page size
-          type: number
-          example: 10
-        total:
-          description: Total number of objects in the collection
-          type: number
-          example: 974
-    CursorPageMetaWithEstimatedTotal:
-      type: object
-      description: >-
-        Pagination metadata with estimated total. Useful when exact total cannot
-        be computed in reasonable time.
-      required:
-        - size
-        - next
-        - previous
-      properties:
-        first:
-          description: URI to the first page
-          type: string
-          format: uri
-        last:
-          description: URI to the last page
-          type: string
-          format: uri
-        next:
-          description: URI to the next page
-          type: string
-          format: uri
-        previous:
-          description: URI to the previous page
-          type: string
-          format: uri
-        size:
-          description: Requested page size
-          type: number
-          example: 10
-        estimated_total:
-          description: Approximate number of objects in the collection
-          type: number
-          example: 1000000000
-    CursorPaginatedMeta:
-      type: object
-      title: CursorPaginatedMeta
-      description: Returns the pagination information
-      properties:
-        page:
-          oneOf:
-            - $ref: '#/components/schemas/CursorPageMetaWithTotal'
-            - $ref: '#/components/schemas/CursorPageMetaWithEstimatedTotal'
-      required:
-        - page
+        attributes:
+          type: object
+          description: Attributes for the entity.
     BaseError:
       type: object
       title: Error
@@ -417,24 +364,14 @@ components:
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
     BadRequestError:
-      type: object
-      required:
-        - invalid_parameters
-      properties:
-        status:
-          example: 400
-        title:
-          example: Bad Request
-        type:
-          example: https://httpstatuses.com/400
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid request body
-        invalid_parameters:
-          $ref: '#/components/schemas/InvalidParameters'
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
   securitySchemes:
     systemAccountAccessToken:
       type: http

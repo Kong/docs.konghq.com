@@ -7,7 +7,9 @@ minimum_version: 3.6.x
 ## Overview
 
 One of the main vulnerabilities of OAuth are bearer tokens. With OAuth, presenting a valid bearer token is enough proof to access a resource.
-This can create problems since the client presenting the token isn't validated as the legitimate user that the token was issued to. 
+This can create problems since the client presenting the token isn't validated as the legitimate user that the token was issued to.
+
+For an alternative solution, please refer to: [Demonstrating Proof-of-Possession](/hub/kong-inc/openid-connect/how-to/demonstrating-proof-of-possession).
 
 Certificate-bound access tokens can solve this problem by binding tokens to clients. 
 This ensures the legitimacy of the token because the it requires proof that the sender is authorized to use a particular token to access protected resources. 

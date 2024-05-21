@@ -42,7 +42,7 @@ span:finish(time * 100000000)
 Set an attribute to a Span
 
 **Parameters**
-
+{% if_version lte:3.6.x %}
 * **key** (`string`):
 * **value** (`string|number|boolean`):
 
@@ -53,9 +53,21 @@ span:set_attribute("net.transport", "ip_tcp")
 span:set_attribute("net.peer.port", 443)
 span:set_attribute("exception.escaped", true)
 ```
+{% endif_version %}
 
+{% if_version gte:3.7.x %}
+* **key** (`string`):
+* **value** (`string|number|boolean|nil`):
 
+**Usage**
 
+``` lua
+span:set_attribute("net.transport", "ip_tcp")
+span:set_attribute("net.peer.port", 443)
+span:set_attribute("exception.escaped", true)
+span:set_attribute("unset.this", nil)
+```
+{% endif_version %}
 ## span:add_event(name, attributes, time_ns)
 
 Adds an event to a Span

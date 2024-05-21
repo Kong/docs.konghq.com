@@ -33,6 +33,7 @@ DPPs
 Datadog
 Dex
 ElastiCache
+Entra
 Equinix
 Equinix
 Fargate
@@ -304,6 +305,7 @@ kafka
 keepalive
 keps
 Keycloak
+keyless
 keyrings
 keyspace
 keystore
@@ -560,6 +562,7 @@ unix
 unmanaged
 unmarshalled
 unnormalized
+unpackage
 unparsed
 unprocessable
 unpublish

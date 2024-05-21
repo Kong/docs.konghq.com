@@ -26,11 +26,13 @@ distributions:
   - <<: *rhel8
     docker: false
     fips: true
+    eol: May 2024
   - <<: *rhel9
     docker: true
     arm: true
     fips: true
   - <<: *ubuntu2004
+    eol: April 2025
     arm: false
     docker: false
     fips: true

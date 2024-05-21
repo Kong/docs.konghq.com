@@ -34,3 +34,4 @@ Kong also provides a [GraphQL Proxy Cache Advanced plugin](/hub/kong-inc/graphql
 * [Learn how to use the plugin](/hub/kong-inc/graphql-rate-limiting-advanced/how-to/)
 * [Working with costs](/hub/kong-inc/graphql-rate-limiting-advanced/how-to/costs/)
 * [Costs API reference](/hub/kong-inc/graphql-rate-limiting-advanced/api/)
+* [Learn about API management with {{site.base_gateway}} and GraphQL](https://konghq.com/solutions/api-management-graphql)

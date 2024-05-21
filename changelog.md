@@ -2,14 +2,337 @@
 
 <!--vale off-->
 
+## Week 20
+
+### [feat(ai-proxy): added Azure native auth explanation](https://github.com/Kong/docs.konghq.com/pull/7390) (2024-05-16)
+
+I have added an explanation on how to use [Azure Managed Identity](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/managed-identity) authentication when using the Kong AI Proxy within the Azure SaaS.
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/
+
+
+### [chore: Set source URLs for moved EE plugins](https://github.com/Kong/docs.konghq.com/pull/7386) (2024-05-17)
+
+A bunch of EE plugins were moved to a new directory, breaking the "Edit this page" links on their schema config reference pages. This PR adds a source_url to each moved plugin to use as the link for editing.
+
+https://konghq.atlassian.net/browse/DOCU-3841
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/canary/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/degraphql/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/forward-proxy/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/jq/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/jwe-decrypt/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/key-auth-enc/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/mocking/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/oauth2-introspection/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/route-by-header/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/route-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.6.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.7.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.8.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/tls-handshake-modifier/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/tls-metadata-headers/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/upstream-timeout/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-size-limit/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-validator/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/xml-threat-protection/_metadata/_index.yml
+
+
+### [Release: Gateway 3.4.3.8](https://github.com/Kong/docs.konghq.com/pull/7379) (2024-05-16)
+
+Changelog and version bump for 3.4.3.8
+
+Schema update will come separately.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.6.1.4](https://github.com/Kong/docs.konghq.com/pull/7377) (2024-05-15)
+
+Changelog and version bump for 3.6.1.4
+
+https://konghq.atlassian.net/browse/DOCU-3842
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [request-termination and forward-proxy incompatibility](https://github.com/Kong/docs.konghq.com/pull/7358) (2024-05-15)
+
+Clarification: the plugin won't execute if if forward-proxy is enabled (valid for all versions)
+Jira: https://konghq.atlassian.net/browse/FTI-5909
+Kong idea reported to review the plugin priority: https://kong-internal-portal.ideas.aha.io/ideas/GTWY-I-886
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-termination/overview/
+
+
+### [docs(oidc): supporting dpop](https://github.com/Kong/docs.konghq.com/pull/7323) (2024-05-15)
+
+KAG-4377
+
+New feature support.
+
+https://github.com/Kong/kong-ee/pull/8482
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
+## Week 19
+
+### [Remove duplicated entry](https://github.com/Kong/docs.konghq.com/pull/7361) (2024-05-10)
+
+`control_plane` was listed twice.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/search
+
+
+### [(fix) Remove "enterprise" category from Datadome](https://github.com/Kong/docs.konghq.com/pull/7350) (2024-05-07)
+
+Based on review w/ @DaniellaFreese and Eric, this plugin doesn't qualify as Enterprise based on the revised categorization set at end of last year. 
+
+#### Modified
+
+- https://docs.konghq.com/hub/datadome/kong-plugin-datadome/_metadata/_index.yml
+
+
+### [Plugins troubleshooting](https://github.com/Kong/docs.konghq.com/pull/7290) (2024-05-07)
+
+#### Added
+
+- https://docs.konghq.com/assets/images/icons/hub-layout/icn-troubleshooting.svg
+
+
+### [feat: add OCI plugin distribution docs](https://github.com/Kong/docs.konghq.com/pull/7245) (2024-05-07)
+
+Added docs around using an OCI registry and OSS tooling to sign and distribute custom plugins.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/3.6.x/plugin-development/pdk/kong.jwe
+- https://docs.konghq.com/gateway/unreleased/plugin-development/pdk/kong.jwe
+
+## Week 18
+
+### [chore: Add links to graphql paper](https://github.com/Kong/docs.konghq.com/pull/7340) (2024-05-03)
+
+Adding links to Kong with GraphQL ebook to make it more discoverable: https://konghq.com/solutions/api-management-graphql
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/overview/
+
+
+### [Chore: Generate 3.7 kong.conf reference](https://github.com/Kong/docs.konghq.com/pull/7336) (2024-05-03)
+
+https://konghq.atlassian.net/browse/DOCU-3804
+
+#### Added
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [chore: Add 3.7 support tabs/pages and fix typo](https://github.com/Kong/docs.konghq.com/pull/7333) (2024-05-03)
+
+Update support pages for 3.7.
+
+https://konghq.atlassian.net/browse/DOCU-3800
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/security/plugin-secrets
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/guides/security/plugin-secrets
+- https://docs.konghq.com/kubernetes-ingress-controller/unreleased/guides/security/plugin-secrets
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Add paragraph to explain queue parameter scope](https://github.com/Kong/docs.konghq.com/pull/7331) (2024-05-02)
+
+Explicitly mention that queue parameters are scoped to one worker in the Queueing section of plugins that use queues.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/datadog/overview/
+- https://docs.konghq.com/hub/kong-inc/http-log/overview/
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/overview/
+- https://docs.konghq.com/hub/kong-inc/statsd/overview/
+- https://docs.konghq.com/hub/kong-inc/zipkin/overview/
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Improved readability and detatched some commands from their output](https://github.com/Kong/docs.konghq.com/pull/7324) (2024-05-01)
+
+I improved the readability of some commands separating their outputs, facilitating user copy-paste flow when trying out when trying the autoscaling setup, clarified the k6s installation is required before running the command and its javascript test.
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Fix guide docs about using configPatches](https://github.com/Kong/docs.konghq.com/pull/7320) (2024-04-29)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+Fix instructions in the guide page of uing `configPatch`es in plugins.
+Docs part of https://github.com/Kong/kubernetes-ingress-controller/issues/5687.
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Fix typos under app/](https://github.com/Kong/docs.konghq.com/pull/7317) (2024-05-01)
+
+Fix tons of typos under `app/` directory.
+
+Some backgrounds on how theses typos are fixed, I've wrote a (Chinese) blog about this: https://nova.moe/fast-typo-fix/ (English version: https://nova.moe/fast-typo-fix-en/) 😇
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/post-function/how-to/
+- https://docs.konghq.com/gateway-operator/1.1.x/production/monitoring/status/gateway/
+- https://docs.konghq.com/gateway-operator/1.2.x/production/monitoring/status/gateway/
+- https://docs.konghq.com/gateway-operator/unreleased/production/monitoring/status/gateway/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/required-permissions
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/reference/required-permissions
+- https://docs.konghq.com/kubernetes-ingress-controller/unreleased/reference/required-permissions
+- https://docs.konghq.com/api/identity.yaml
+- https://docs.konghq.com/assets/mesh/2.1.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.2.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.3.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.3.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/2.4.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.4.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/2.5.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.5.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/2.6.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.6.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/2.7.x/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/2.7.x/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/kuma-cp.yaml
+- https://docs.konghq.com/assets/mesh/raw/CHANGELOG
+- https://docs.konghq.com/gateway/2.6.x/plugin-development/custom-entities
+- https://docs.konghq.com/gateway/2.6.x/reference/configuration
+- https://docs.konghq.com/gateway/2.7.x/reference/configuration
+- https://docs.konghq.com/gateway/2.7.x/reference/rate-limiting
+- https://docs.konghq.com/gateway/2.8.x/plugin-development/custom-entities
+- https://docs.konghq.com/gateway/2.8.x/reference/configuration
+- https://docs.konghq.com/gateway/2.8.x/reference/rate-limiting
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update Konnect API links to point to latest](https://github.com/Kong/docs.konghq.com/pull/7313) (2024-04-29)
+
+Some links in our konnect docs point explicitly to v2 of various APIs, when they should be pointing to `latest` to remain evergreen. The only API where this is currently an issue is the identity API, as the latest version is now v3. Updating all versioned links to avoid this issue in the future.
+
+Issue reported on slack.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/api/identity-management/identity-integration
+- https://docs.konghq.com/konnect/dev-portal/customization/
+- https://docs.konghq.com/konnect/dev-portal/customization/netlify
+- https://docs.konghq.com/konnect/dev-portal/customization/self-hosted-portal
+- https://docs.konghq.com/konnect/gateway-manager/
+- https://docs.konghq.com/konnect/org-management/audit-logging/
+- https://docs.konghq.com/konnect/org-management/audit-logging/reference
+- https://docs.konghq.com/konnect/org-management/audit-logging/replay-job
+- https://docs.konghq.com/konnect/org-management/audit-logging/webhook
+- https://docs.konghq.com/konnect/org-management/system-accounts
+- https://docs.konghq.com/konnect/updates
+
+
+### [feat(gateway/oas-validation): OpenAPI 3.1.0 documentation](https://github.com/Kong/docs.konghq.com/pull/7310) (2024-05-03)
+
+Update document for OAS-Validation plugin about OpenAPI 3.1.0
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/oas-validation/overview/
+
+
+### [Feat: new expressions flavor in 3.7](https://github.com/Kong/docs.konghq.com/pull/7304) (2024-04-30)
+
+KAG-3927
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-kong/
+- https://docs.konghq.com/gateway-operator/unreleased/guides/autoscaling-kong/
+
+
+### [Chore: Split AI Gateway into its own section](https://github.com/Kong/docs.konghq.com/pull/7274) (2024-05-01)
+
+Splitting AI gateway into its own nav section to make it more prominent. 
+
+This is a 3.7 ticket, but it really also applies to 3.6, so making the change in both.
+
+https://konghq.atlassian.net/browse/DOCU-3792
+
+#### Added
+
+- https://docs.konghq.com/assets/images/icons/documentation/icn-ai.svg
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.6.x/get-started/ai-gateway/
+- https://docs.konghq.com/gateway/unreleased/get-started/ai-gateway/
+
+
+### [feat(openid-connect): fapi docs](https://github.com/Kong/docs.konghq.com/pull/7236) (2024-05-03)
+
+This PR adds a page to summarize/link all the FAPI-related features that the OpenID Connect plugin provides.
+
+https://konghq.atlassian.net/browse/DOCU-3627
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
 ## Week 17
 
 ### [Fix multiple typos under app/_src/gateway](https://github.com/Kong/docs.konghq.com/pull/7312) (2024-04-26)
 
 Fix multiple typos under app/_src/gateway
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.1.x/breaking-changes/30x/
@@ -79,10 +402,6 @@ Fixed multiple typos under app/konnect directory
 * trasparent -> transparent
 * mutliple -> multiple
 
-I think this PR might go with `review:general` label. 
-
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
@@ -150,13 +469,8 @@ The old docker logo was deleted but the Mesh install page is still pointing to i
 "Any" is not a valid value, it should be "All":
 spec.listeners[0].allowedRoutes.namespaces.from: Unsupported value: "Any": supported values: "All", "Selector", "Same", <nil>
 
-
-
-
-<!-- What did you change and why? -->
 Fixed an apparent mistake in the docs where it said "Any", but meant "All"
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -192,11 +506,8 @@ And adjust heading levels on the support page. The LTS section needed a heading 
 
 ### [fix: Add two missing OTEL images to Kong Mesh docs](https://github.com/Kong/docs.konghq.com/pull/7268) (2024-04-19)
 
-<!-- What did you change and why? -->
 There were two missing images from a Kuma doc that was shared in Kong Mesh. The link checker caught one (https://github.com/Kong/docs.konghq.com/actions/runs/8677190800/job/23792517751), but I added both to our site.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Added
 
 - https://docs.konghq.com/assets/images/guides/otel-metrics/grafana-dataplane-view.png
@@ -251,16 +562,9 @@ Version bump and changelog for 2.8.4.9.
 ### [(fix) upload current docker logos](https://github.com/Kong/docs.konghq.com/pull/7256) (2024-04-18)
 
 Replacing Docker logos w/ most current version from https://www.docker.com/company/newsroom/media-resources/. Changed icon is one shade of blue not multiple. 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 
 
 ### [docs(*): add a deprecated message to granular tracing](https://github.com/Kong/docs.konghq.com/pull/7254) (2024-04-18)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 This is for `3.7.0.0` release.
 
@@ -374,12 +678,6 @@ No ticket, this is an ad hoc patch.
 Anthropic released a new `messages` API, we change the `chat` route_type of Anthropic to the new `messages` API correspondingly. 
 This new feature is about to be released in 3.7.0.0, the doc should be updated simultaneously.
 The sister [PR](https://github.com/Kong/kong-ee/pull/8747) for kong-ee has already been merged.
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
@@ -450,14 +748,6 @@ Added support for:
 * PS384
 * PS512
 * EdDSA
-
-@kong-docs Should we restructure the docs a bit to use `Conditional version tags` more effectively?
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [ ] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
-
 
 Jira: https://konghq.atlassian.net/browse/KAG-4029
 
@@ -641,10 +931,6 @@ These are the customer-facing docs needed to allow customers to take full advant
 Confluence: [Solutions Document](https://konghq.atlassian.net/wiki/spaces/KS/pages/3309273092/Solution+-+Container+Provenance+-+SLSA+generator)
 Jira: [SEC-973](https://konghq.atlassian.net/browse/SEC-1003)
 https://github.com/Kong/kong-ee/pull/7179
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Added
 
@@ -933,10 +1219,7 @@ Addresses https://konghq.atlassian.net/browse/DOCU-3719 and https://konghq.atlas
 ### [Fix: Update `get-admins` endpoint description](https://github.com/Kong/docs.konghq.com/pull/7064) (2024-03-12)
 
 Update Admin API's `get-admins` endpoint description.
-<!-- What did you change and why? -->
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.0.x/admin-api/admins/reference
