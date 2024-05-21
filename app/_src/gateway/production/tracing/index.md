@@ -3,20 +3,20 @@ title: Tracing Reference
 content-type: reference
 ---
 
-In this section, we will describe the tracing capabilities of Kong.
-
+This reference describes the OpenTelemetry tracing capabilities of {{site.base_gateway}}.
 {% if_version gte:3.7.x %}
+
 {:.important}
-> **Important**: Granular Tracing is deprecated from {{site.base_gateway}} `3.7.0.0` onward,
+> **Important**: OpenTelemetry tracing replaces the deprecated Granular Tracing feature.
+Granular Tracing has been removed from {{site.base_gateway}} starting in 3.7.0.0,
 and configurations like `tracing = on` are no longer available. Instead, use the
 OpenTelemetry Tracing described on this page.
 {% endif_version %}
 
 ## Core instrumentations
 
-**Note**
-Only works for the plugins that are built on top of Kong's tracing API.
-e.g. OpenTelemetry plugin.
+The following instrumentations can be used by any plugins built on top of Kong's tracing API, for example, 
+the [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/).
 
 {% if_version gte:3.2.x %}
 Kong provides a set of core instrumentations for tracing, these can be configured in the `tracing_instrumentations` configuration.
@@ -24,7 +24,6 @@ Kong provides a set of core instrumentations for tracing, these can be configure
 {% if_version lte:3.1.x %}
 Kong provides a set of core instrumentations for tracing, these can be configured in the `opentelemetry_tracing` configuration.
 {% endif_version %}
-
 
 - `off`: do not enable instrumentations.
 - `request`: only enable request-level instrumentations.
@@ -40,13 +39,13 @@ Kong provides a set of core instrumentations for tracing, these can be configure
 
 ## Propagation
 
-The tracing API support to propagate the following headers:
+The tracing API supports propagating the following headers:
 - `w3c` - [W3C trace context](https://www.w3.org/TR/trace-context/)
 - `b3`, `b3-single` - [Zipkin headers](https://github.com/openzipkin/b3-propagation)
 - `jaeger` - [Jaeger headers](https://www.jaegertracing.io/docs/client-libraries/#propagation-format)
 - `ot` - [OpenTracing headers](https://github.com/opentracing/specification/blob/master/rfc/trace_identifiers.md)
 
-The tracing API will detect the propagation format from the headers, and will use the appropriate format to propagate the span context.
-If no appropriate format is found, then will fallback to the default format, which can be specified.
+The tracing API detects the propagation format from the headers, and uses the appropriate format to propagate the span context.
+If no appropriate format is found, it falls back to the default format, which can be user-specified.
 
-The propagation api works for both the OpenTelemetry plugin and the Zipkin plugin.
+The propagation API works for both the OpenTelemetry plugin and the Zipkin plugin.
