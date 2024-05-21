@@ -15,6 +15,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : We've enhanced {{site.konnect_short_name}} by integrating key features from {{site.base_gateway}} version 3.7. Highlights include Plugin Streaming, Dynamic Log Leveling, and a refreshed OTEL Plugin, among other improvements!
 : The expression router is fully supported in the {{site.konnect_short_name}}. You can now define your routes via expressions, and perform CRUD operations on them.
 
+: See the [Gateway 3.7.0.0 changelog](/gateway/changelog/#3700) for all changes in the {{site.base_gateway}} release.
 **{{site.konnect_short_name}} Konnect Search Enhancements**
 : The new {{site.konnect_saas}} search enhancements now allows you to to search across 29 entities in {{site.konnect_short_name}}. The search enhancement is made up of an advanced search syntax coupled with a refreshed search bar in the UI and a [Konnect Search API](/konnect/api/search/latest/). 
 
