@@ -13,7 +13,7 @@ The following table describes which providers and requests the AI Proxy plugin s
 | OpenAI | ✅ | ✅ | ✅ |
 | Cohere | ✅ | ✅ | ✅ |
 | Azure | ✅ | ✅ | ✅ |
-| Anthropic | ✅ | ✅ | ✅ |
+| Anthropic | ✅ | ✅ | Only chat type |
 | Mistral (raw and OLLAMA formats) | ✅ | ✅ | ✅ |
 | Llama2 (raw, OLLAMA, and OpenAI formats) | ✅ | ✅ | ✅ |
 
