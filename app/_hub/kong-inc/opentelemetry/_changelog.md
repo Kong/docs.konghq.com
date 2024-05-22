@@ -1,4 +1,11 @@
 ## Changelog
+### {{site.base_gateway}} 3.7.x
+* The propagation module has been reworked. The new
+options allow better control over the configuration of tracing header propagation.
+ [#12670](https://github.com/Kong/kong/issues/12670)
+* Fixed an OTEL sampling mode Lua panic bug, which happened 
+when the `http_response_header_for_traceid` option was enabled.
+ [#12544](https://github.com/Kong/kong/issues/12544)
 
 ### {{site.base_gateway}} 3.6.x
 * Tracing sampling rate can now be set via the [`config.sampling_rate`](/hub/kong-inc/opentelemetry/configuration/#configsampling_rate) property of the OpenTelemetry plugin 

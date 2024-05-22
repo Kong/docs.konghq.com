@@ -1,6 +1,10 @@
 ## Changelog
 
 ### {{site.base_gateway}} 3.6.x
+* Added the [`custom_base_path`](/hub/kong-inc/mocking/configuration/#config-custom_base_path) field to specify a custom base path.
+Use it with the [`deck file namespace`](/deck/latest/reference/deck_file_namespace/) command.
+
+### {{site.base_gateway}} 3.6.x
 * Fixed an issue where valid recursive schemas were always rejected.
 * Fixed an issue where the plugin failed to return the mock response when `responses` contained `default` or wildcard codes like `2XX`.
 * The plugin now prints a `notice` log entry if a revocation check fails with `revocation_check_mode = IGNORE_CA_ERROR`.

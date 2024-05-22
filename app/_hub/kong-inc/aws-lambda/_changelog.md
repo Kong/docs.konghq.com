@@ -1,5 +1,9 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.7.x**
+* Fixed an issue where the latency attributed to AWS Lambda API requests was counted as part of the latency in Kong Gateway.
+ [#12835](https://github.com/Kong/kong/issues/12835)
+
 **{{site.base_gateway}} 3.5.x**
 * The AWS-Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library.
 The refactor simplifies the AWS Lambda plugin code base and adds support for multiple IAM
