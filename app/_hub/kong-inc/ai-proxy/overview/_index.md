@@ -6,13 +6,16 @@ The AI Proxy plugin lets you transform and proxy requests to a number of AI prov
 
 The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
 
-The AI Proxy plugin supports `llm/v1/chat` and `llm/v1/completion` style requests for all of the following providers:
-* OpenAI
-* Cohere
-* Azure
-* Anthropic
-* Mistral (raw and OLLAMA formats)
-* Llama2 (raw, OLLAMA, and OpenAI formats)
+The following table describes which providers and requests the AI Proxy plugin supports:
+
+| Provider | Chat | Completion | Streaming |
+| -------- | ---- | ---------- | --------- |
+| OpenAI | ✅ | ✅ | ✅ |
+| Cohere | ✅ | ✅ | ✅ |
+| Azure | ✅ | ✅ | ✅ |
+| Anthropic | ✅ | ✅ | Only chat type |
+| Mistral (raw and OLLAMA formats) | ✅ | ✅ | ✅ |
+| Llama2 (raw, OLLAMA, and OpenAI formats) | ✅ | ✅ | ✅ |
 
 ## How it works
 
@@ -190,7 +193,9 @@ See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/
 The AI Proxy plugin enables using all of the following AI plugins:
 * [AI Request Transformer](/hub/kong-inc/ai-request-transformer/)
 * [AI Response Transformer](/hub/kong-inc/ai-response-transformer/)
+{% if_version gte:3.7.x %} 
 * [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced/)
+{% endif_version %}
 * [AI Prompt Template](/hub/kong-inc/ai-prompt-template/)
 * [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)
 * [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/)
