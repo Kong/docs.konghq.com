@@ -97,7 +97,7 @@ module Jekyll
       class Schema < Liquid::Drop
         extend Forwardable
 
-        DEPRECATION_MESSAGE = 'The following field has been deprecated and will be removed in a future version.'
+        DEPRECATION_MESSAGE = 'This field has been deprecated and will be removed in a future version.'
 
         def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
                        :enable_on_service?, :enable_on_consumer_group?
