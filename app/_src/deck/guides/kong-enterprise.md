@@ -52,8 +52,10 @@ If you have RBAC enabled, you need to give decK permissions to perform operation
 
 Here are some common endpoints hit by decK for normal operations:
 
-* `GET, POST, PATCH, PUT, DELETE /{workspace}/{entityType}`: Perform read and write operations on entities inside workspaces. 
+* `GET, POST, PATCH, PUT, DELETE /{entityType}` or `GET, POST, PATCH, PUT, DELETE /{workspace}/{entityType}`: Perform read and write operations on entities.
+If you are running {{site.ee_product_name}}, then decK interacts with entities inside workspaces. 
 See the [Entities managed by decK](/deck/{{page.release}}/reference/entities/) reference for the full list.
+Note that decK also performs operations on entities enabled by plugins, such as `/basic-auths`, `/jwts`, and so on.
 * `GET /`: Get the {{site.base_gateway}} version.
 * `GET /{workspace}/kong`: Get entities in a workspace.
 * `GET /{workspace}/workspaces/{entityType}`: Check whether the workspace or other entity exists or not.
