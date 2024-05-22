@@ -7,8 +7,8 @@ prereqs:
   - A Kong service with `url` configured to match your Auth0 API Identifier.
 
 custom_values: 
-  - config.issuer
-  - config.audience
+  - issuer
+  - audience
 
 config:
   auth_methods:

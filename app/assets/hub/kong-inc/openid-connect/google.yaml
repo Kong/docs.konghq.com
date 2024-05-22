@@ -7,10 +7,10 @@ prereqs:
   - An authorized redirect URI for the part of the API you want to protect.
 
 custom_values: 
-  - config.issuer
-  - config.client_id
-  - config.client_secret
-  - config.redirect_uri
+  - issuer
+  - client_id
+  - client_secret
+  - redirect_uri
 
 config:
   issuer: "https://accounts.google.com/.well-known/openid-configuration"

@@ -6,7 +6,7 @@ prereqs:
   - A route with `paths[]=~/mistral-chat$` configured. Apply the plugin to this route.
 
 custom_values: 
-  - config.auth.header_value
+  - auth.header_value
 
 config:
   route_type: "llm/v1/chat"

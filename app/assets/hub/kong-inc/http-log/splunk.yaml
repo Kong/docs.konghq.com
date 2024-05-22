@@ -4,8 +4,8 @@ description: |
   Adjust the `http_endpoint` and its secure token in `headers.Authorization` to your own values.
 
 custom_values: 
-  - config.headers.Authorization
-  - config.http_endpoint
+  - headers.Authorization
+  - http_endpoint
 
 config:
   headers:

@@ -7,10 +7,10 @@ prereqs:
   - Any network access control to your Kong node must allow traffic to and from Okta, the upstream service, and the client.
 
 custom_values: 
-  - config.issuer
-  - config.client_id
-  - config.client_secret
-  - config.redirect_uri
+  - issuer
+  - client_id
+  - client_secret
+  - redirect_uri
 
 config:
   issuer: "https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration"

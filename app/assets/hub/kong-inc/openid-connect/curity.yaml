@@ -7,9 +7,9 @@ prereqs:
   - An introspection endpoint configured with the Token Procedure Approach.
 
 custom_values: 
-  - config.issuer
-  - config.client_id
-  - config.client_secret
+  - issuer
+  - client_id
+  - client_secret
 
 config:
   issuer: "https://idsvr.example.com/oauth/v2/oauth-anonymous"

@@ -5,9 +5,9 @@ prereqs:
   - Set up an Amazon Cognito User Pool and Application Definition before configuring the plugin.
 
 custom_values: 
-  - config.issuer
-  - config.client_id
-  - config.client_secret
+  - issuer
+  - client_id
+  - client_secret
 
 config:
   issuer: "https://cognito-idp.<REGION>.amazonaws.com/<USER-POOL-ID>"

@@ -7,11 +7,11 @@ prereqs:
   - In Azure AD, register an app and add a client secret credential that this plugin will use to access it.
 
 custom_values: 
-  - config.issuer
-  - config.client_id
-  - config.client_secret
-  - config.redirect_uri
-  - config.scopes
+  - issuer
+  - client_id
+  - client_secret
+  - redirect_uri
+  - scopes
 
 config:
   issuer: "https://login.microsoftonline.com/YOUR_DIRECTORY_ID/v2.0/.well-known/openid-configuration"
