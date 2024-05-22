@@ -130,7 +130,7 @@ and reports audit results into the Kong log serializer for reporting purposes.
  [#12731](https://github.com/Kong/kong/issues/12731)
 
 * [**JWT**](/hub/kong-inc/jwt/) (`jwt`)
-  * Addded support for EdDSA algorithms.
+  * Added support for EdDSA algorithms.
  [#12726](https://github.com/Kong/kong/issues/12726)
   * Added support for ES512, PS256, PS384, and PS512 algorithms.
  [#12638](https://github.com/Kong/kong/issues/12638)
@@ -171,7 +171,8 @@ options allow better control over the configuration of tracing header propagatio
 
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
   * Added the new field [`api_spec_encoded`](/hub/kong-inc/oas-validation/configuration/#config-api_spec_encoded) to indicate whether the `api_spec` is URI-Encoded.
-  * Add the [`custom_base_path`](/hub/kong-inc/oas-validation/configuration/#config-custom_base_path) field to specifiy a custom base path. It will be used with the `deck file namespace` feature
+  * Add the [`custom_base_path`](/hub/kong-inc/oas-validation/configuration/#config-custom_base_path) field to specifiy a custom base path.
+  Use it with the [`deck file namespace`](/deck/latest/reference/deck_file_namespace/) command.
   * The plugin now supports OpenAPI Specification v3.1.0. The plugin now switches to a new JSONSchema validator when the specification version is v3.1.0.
 
 ### Performance

@@ -1,7 +1,7 @@
 ## Changelog
 
 **{{site.base_gateway}} 3.7.x**
-* Addded support for EdDSA algorithms.
+* Added support for EdDSA algorithms.
 [#12726](https://github.com/Kong/kong/issues/12726)
 * Added support for ES512, PS256, PS384, and PS512 algorithms.
 [#12638](https://github.com/Kong/kong/issues/12638)

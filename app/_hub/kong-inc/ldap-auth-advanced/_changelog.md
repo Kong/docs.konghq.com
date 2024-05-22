@@ -1,6 +1,6 @@
 ## Changelog
 ### {{site.base_gateway}} 3.7.x
-* Fixed an issue where, if the credential was encoded with no username, Kong Gateway threw an error and returned a 500 code.
+* Fixed an issue where, if the credential was encoded with no username, {{site.base_gateway}} threw an error and returned a 500 code.
 * Fixed an issue where an exception would be thrown when LDAP search failed.
 
 ### {{site.base_gateway}} 3.6.x
