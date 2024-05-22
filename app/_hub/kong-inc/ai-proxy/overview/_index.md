@@ -192,21 +192,14 @@ See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/
 * [Configuration reference](/hub/kong-inc/ai-proxy/configuration/)
 * [Basic configuration example](/hub/kong-inc/ai-proxy/how-to/basic-example/)
 * Learn how to use the plugin with different providers:
-  * [OpenAI](/hub/kong-inc/ai-proxy/how-to/openai/)
-  * [Cohere](/hub/kong-inc/ai-proxy/how-to/cohere/)
-  * [Azure](/hub/kong-inc/ai-proxy/how-to/azure/)
-  * [Anthropic](/hub/kong-inc/ai-proxy/how-to/anthropic/)
-  * [Mistral](/hub/kong-inc/ai-proxy/how-to/mistral/)
-  * [Llama2](/hub/kong-inc/ai-proxy/how-to/llama2/)
+  * [OpenAI](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/openai/)
+  * [Cohere](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/cohere/)
+  * [Azure](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/azure/)
+  * [Anthropic](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/)
+  * [Mistral](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/)
+  * [Llama2](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/)
 
-### Other AI plugins
+### All AI Gateway plugins
 
-The AI Proxy plugin enables using all of the following AI plugins:
-* [AI Request Transformer](/hub/kong-inc/ai-request-transformer/)
-* [AI Response Transformer](/hub/kong-inc/ai-response-transformer/)
-{% if_version gte:3.7.x %} 
-* [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced/)
-{% endif_version %}
-* [AI Prompt Template](/hub/kong-inc/ai-prompt-template/)
-* [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)
-* [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/)
+{% include_cached /md/ai-plugins-links.md %}
+

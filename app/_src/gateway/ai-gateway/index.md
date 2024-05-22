@@ -150,6 +150,7 @@ response based on instructions from the LLM. The adjusted response is then sent 
 
 {% if_version gte:3.7.x %}
 #### Rate limiting
+{:.badge .enterprise}
 
 Kong's AI Gateway also allows you to manage traffic to your LLM API. Kong's AI Gateway provides the AI Rate Limiting Advanced
 plugin, which can be used to implement rate limiting on your AI requests traffic.
@@ -157,4 +158,16 @@ plugin, which can be used to implement rate limiting on your AI requests traffic
 * The [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced) plugin introspects LLM responses to calculate token cost and 
 enable rate limits for the LLM backend service. When the LLM service returns a response, this is used as a cost to calculate the rate limit. 
 More info on the analytics format can be found in [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
+
+#### Content safety and moderation
+{:.badge .enterprise}
+
+Kong's AI Gateway provides mechanisms for moderating content.
+
+* The [Azure Content Safety plugin](/hub/kong-inc/ai-azure-content-safety/) allows administrators to enforce 
+introspection with the [Azure Content Safety](https://azure.microsoft.com/en-us/products/ai-services/ai-content-safety) service 
+for all requests handled by the AI Proxy plugin.
+The plugin enables configurable thresholds for the different moderation categories 
+and you can specify an array set of pre-configured blocklist IDs from your Azure Content Safety instance.
+
 {% endif_version %}

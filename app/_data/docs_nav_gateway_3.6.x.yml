@@ -359,27 +359,27 @@ items:
       - text: LLM Provider Integration Guides
         items:
           - text: OpenAI
-            url: /hub/kong-inc/ai-proxy/how-to/openai/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/openai/
             generate: false
             absolute_url: true
           - text: Cohere
-            url: /hub/kong-inc/ai-proxy/how-to/cohere/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/cohere/
             generate: false
             absolute_url: true
           - text: Azure
-            url: /hub/kong-inc/ai-proxy/how-to/azure/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/azure/
             generate: false
             absolute_url: true
           - text: Anthropic
-            url: /hub/kong-inc/ai-proxy/how-to/anthropic/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/
             generate: false
             absolute_url: true
           - text: Mistral
-            url: /hub/kong-inc/ai-proxy/how-to/mistral/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/
             generate: false
             absolute_url: true
           - text: Llama2
-            url: /hub/kong-inc/ai-proxy/how-to/llama2/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
             generate: false
             absolute_url: true
       - text: AI Gateway plugins
