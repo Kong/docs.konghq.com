@@ -10,7 +10,7 @@ Changelog for supported Kong Gateway versions.
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.7.0.0
-**Release Date** 05/22/2024
+**Release Date** 05/23/2024
 
 ### Breaking changes and deprecations
 
@@ -20,7 +20,7 @@ the upstream path of the `Anthropic` for `llm/v1/chat` route type has changed fr
 * **Hashicorp Vault**: 
   * Starting from this version, a string entirely made of spaces can't be specified as the `role_id` or `secret_id`
  value in the Hashicorp Vault entity when using the AppRole authentication method.
-  * Starting from this version, at least one of `secret_id` or `secret_id_file` must be specified in the Hashicorp Vault 
+  * Starting from this version, you must specify at least one of `secret_id` or `secret_id_file` in the Hashicorp Vault 
   entity when using the AppRole authentication method.
 
 * The **Granular Tracing** feature has been deprecated and removed.
