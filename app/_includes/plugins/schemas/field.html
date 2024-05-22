@@ -117,7 +117,7 @@
           {%- endif -%}
           {%- if include.field.deprecation['removal_in_version'] -%}
             <span class="field-deprecation__version">
-              This field will be removed in version: {{ include.field.deprecation['removal_in_version'] }}.
+              This field is planned to be removed in version {{ include.field.deprecation['removal_in_version'] }}.
             </span>
           {%- endif -%}
         </blockquote>
