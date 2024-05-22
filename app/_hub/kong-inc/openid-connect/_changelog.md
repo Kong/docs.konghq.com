@@ -2,7 +2,7 @@
 
 ### {{site.base_gateway}} 3.7.x
 
-* Added support for [DPoP (Demonstrating Proof-of-Possession) token validation](/hub/kong-inc/openid-connect/demonstrating-proof-of-possession/). 
+* Added support for [DPoP (Demonstrating Proof-of-Possession) token validation](/hub/kong-inc/openid-connect/how-to/demonstrating-proof-of-possession/). 
 You can enable it using the configuration parameter [`proof_of_possession_dpop`](/hub/kong-inc/openid-connect/configuration/#config-proof_of_possession_dpop).
 * Added support for JWT Secured Authorization Requests (JAR) on Authorization and Pushed Authorization (PAR) endpoints. 
 See the configuration parameter [`require_signed_request_object`](/hub/kong-inc/openid-connect/configuration/#config-require_signed_request_object).
