@@ -117,7 +117,7 @@ into `/usr/local/kong/js-plugins/node_modules`.
 The Node.js version and architecture that runs the plugin server and
 the one that runs `npm install` under plugins directory must match.
 
-When running TypeScript plugins `kong-pdk` needs to be defined as dependency in `package.json` like:
+When running TypeScript plugins, `kong-pdk` needs to be defined as a dependency in `package.json`:
 
 ````json
 {
@@ -130,7 +130,7 @@ When running TypeScript plugins `kong-pdk` needs to be defined as dependency in 
   }
 }
 ````
-and import it in your TypeScript file like:
+Then, import `kong-pdk` in your TypeScript file:
 
 ````javascript
 import kong from "kong-pdk/kong";
@@ -169,7 +169,7 @@ contains examples of writing tests with `jest`.
 
 ## Example configuration
 
-Prepare the system installing the required dependencies. In Debian/Ubuntu based systems:
+Prepare the system by installing the required dependencies. In Debian/Ubuntu based systems:
 
 ````
 apt update
@@ -177,14 +177,14 @@ apt install -y nodejs npm
 npm install -g kong-pdk
 ````
 
-Copy the plugin code and the `package.json` file in `/usr/local/kong/js-plugins` and run:
+Copy the plugin code and the `package.json` file in `/usr/local/kong/js-plugins`, then run:
 
 ````
 cd /usr/local/kong/js-plugins/ 
 npm install
 ````
 
-To load plugins using the `kong.conf` [configuration file](/gateway/latest/production/kong-conf/), you have to map existing {{site.base_gateway}} properties to aspects of your plugin.  Here there is an example of loading plugin within `kong.conf`:
+To load plugins using the `kong.conf` [configuration file](/gateway/latest/production/kong-conf/), you have to map existing {{site.base_gateway}} properties to aspects of your plugin. Here is an example of loading a plugin within `kong.conf`:
 
 ````
 pluginserver_names = js
