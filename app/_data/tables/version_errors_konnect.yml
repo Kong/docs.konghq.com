@@ -3019,4 +3019,4 @@ messages:
       Remove any `sni` elements with unsupported wildcard formats, or upgrade to Kong
       version >= 3.7.0.0.
     DocumentationURL: |
-      [Route entity](/gateway/latest/admin-api/#route-object)
+      [Route entity](/gateway/api/admin-oss/latest/#/Routes)
