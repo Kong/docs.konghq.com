@@ -86,4 +86,4 @@ This lets you change specific headers such as `Content-Type`, or throw errors fr
 
 ### All AI Gateway plugins
 
-{% include_cached /md/ai-plugins-links.md %}
+{% include_cached /md/ai-plugins-links.md release=page.release %}
