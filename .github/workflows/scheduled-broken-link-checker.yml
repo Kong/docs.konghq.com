@@ -61,7 +61,7 @@ jobs:
 
       - name: Run site
         run: |
-          npm install -g wait-on netlify-cli
+          npm install -g wait-on
           netlify dev & wait-on http://localhost:8888
 
       - name: Run link checker
