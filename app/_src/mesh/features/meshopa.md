@@ -1,7 +1,6 @@
 ---
 title: MeshOPA - OPA Policy Integration
 content_type: reference
-beta: true
 ---
 
 
