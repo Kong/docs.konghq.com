@@ -28,4 +28,4 @@ compose an Azure Content Safety text check by compiling all chat history, or jus
 
 ### All AI Gateway plugins
 
-{% include_cached /md/ai-plugins-links.md %}
+{% include_cached /md/ai-plugins-links.md release=page.release %}

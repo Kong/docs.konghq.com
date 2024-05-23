@@ -39,4 +39,4 @@ When activated the template restricts an LLM usage to just those pre-defined tem
 
 ### All AI Gateway plugins
 
-{% include_cached /md/ai-plugins-links.md %}
+{% include_cached /md/ai-plugins-links.md release=page.release %}
