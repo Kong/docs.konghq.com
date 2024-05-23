@@ -1,5 +1,6 @@
 description: |
-  Maximum of 100 requests every rolling hour, continuously adjusting the count over the course of the hour. No hard limit or known reset.
+   Each user can make up to 100 requests every rolling hour, with the plugin continuously 
+   adjusting the count over the course of the hour. There is no hard limit or known reset.
 
 config:
   limit: 
