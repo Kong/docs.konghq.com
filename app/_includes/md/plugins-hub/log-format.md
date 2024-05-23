@@ -88,16 +88,16 @@ Every request is logged separately in a JSON object, separated by a new line `\n
   "client_ip": "192.168.144.1",
   "workspace": "54baa5a9-23d6-41e0-9c9a-02434b010b25",
   "upstream_uri": "/anything",
-	"authenticated_entity": {
+  "authenticated_entity": {
 		"id": "c62c1455-9b1d-4f2d-8797-509ba83b8ae8"
-	},
-	"consumer": {
-		"id": "ae974d6c-0f8a-4dc5-b701-fa0aa38592bd",
-		"created_at": 1674035962,
-		"username_lower": "foo",
-		"username": "foo",
-		"type": 0
-	},
+  },
+  "consumer": {
+    "id": "ae974d6c-0f8a-4dc5-b701-fa0aa38592bd",
+    "created_at": 1674035962,
+    "username_lower": "foo",
+    "username": "foo",
+    "type": 0
+  },
   "started_at": 1614232668342
 }
 ```
