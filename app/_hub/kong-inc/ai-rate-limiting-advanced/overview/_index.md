@@ -112,4 +112,4 @@ You can decide to use a custom function to count the tokens for a requests. When
 
 ### All AI Gateway plugins
 
-{% include_cached /md/ai-plugins-links.md %}
+{% include_cached /md/ai-plugins-links.md release=page.release %}

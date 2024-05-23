@@ -22,4 +22,4 @@ Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) t
 
 ### All AI Gateway plugins
 
-{% include_cached /md/ai-plugins-links.md %}
+{% include_cached /md/ai-plugins-links.md release=page.release %}
