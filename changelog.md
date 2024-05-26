@@ -2,6 +2,56 @@
 
 <!--vale off-->
 
+## Week 21
+
+### [chore: set version tags around table](https://github.com/Kong/docs.konghq.com/pull/7415) (2024-05-22)
+
+Add version tags to plugin table, since streaming only appears in 3.7.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
+
+
+### [Release: Gateway 3.5.0.4](https://github.com/Kong/docs.konghq.com/pull/7378) (2024-05-20)
+
+Changelog, version bump, and remove 'unless' statements for 3.5
+
+https://konghq.atlassian.net/browse/DOCU-3739
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [add content-type and body-validation explanation in _index.md](https://github.com/Kong/docs.konghq.com/pull/7348) (2024-05-22)
+
+request-validation limitations are not listed anymore since 3.4 version. Adding them in the main page
+
+https://github.com/Kong/docs.konghq.com/commit/b492d3ecb31e2335f37dfe361295c8bc545f2e85#diff-f88716a1e934cd881cb07ecb1cc41ebdcd62fd950aa0e821603755e1a8caa2d4
+
+New feature in 3.6 to perform body validation on +json content-types.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-validator/overview/
+
+
+### [Feat: AI Azure Content Safety plugin doc](https://github.com/Kong/docs.konghq.com/pull/7326) (2024-05-21)
+
+Docs for new AI Azure Content Safety plugin.
+
+https://konghq.atlassian.net/browse/DOCU-3767
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/how-to/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/overview/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_ai-azure-content-safety.png
+
 ## Week 20
 
 ### [feat(ai-proxy): added Azure native auth explanation](https://github.com/Kong/docs.konghq.com/pull/7390) (2024-05-16)
