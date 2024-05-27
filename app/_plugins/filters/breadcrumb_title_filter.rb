@@ -4,7 +4,7 @@ require 'yaml'
 module Jekyll
   module BreadcrumbTitleFilter
     def initialize(ctx)
-      super(ctx)
+      super
       @mapping = YAML.load_file("#{__dir__}/../../breadcrumb_titles.yml")
     end
 
