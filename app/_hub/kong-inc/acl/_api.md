@@ -116,6 +116,17 @@ Result:
 Update and insert the group name of the ACL by passing a new group name.
 
 ```bash
+curl -X POST http://localhost:8001/consumers/{CONSUMER}/acls \
+    --data "group=group1"
+```
+
+`CONSUMER`: The `username` property of the consumer entity.
+
+### Update an ACL group by ID
+
+Updates an ACL group name by passing a new group name.
+
+```bash
 curl -X PUT http://localhost:8001/consumers/{CONSUMER}/acls/{ID}
   --data "group=newgroupname"
 ```
@@ -123,17 +134,6 @@ curl -X PUT http://localhost:8001/consumers/{CONSUMER}/acls/{ID}
 `CONSUMER`: The `username` property of the consumer entity.
 
 `ID`: The `id` property of the ACL.  
-
-### Update an ACL group by ID
-
-Updates an ACL group name by passing a new group name.
-
-```bash
-curl -X POST http://localhost:8001/consumers/{CONSUMER}/acls \
-    --data "group=group1"
-```
-
-`CONSUMER`: The `username` property of the consumer entity.
 
 #### Remove an ACL group for a consumer
 
