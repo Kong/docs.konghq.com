@@ -95,13 +95,15 @@ async function buildBatchFileParamsForInclude(fileUri, locale) {
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
 
-// TODO: There are two special considerations:
-// * categories
-// * hub-filters
-// we shouldn't translate `slug`, so we might need to edit the content when we upload the files...
 async function buildBatchFileParamsForData(fileUri, locale) {
-  const batchFileParams = new UploadBatchFileParameters()
-    .setFileFromLocalFilePath(fileUri)
+  const batchFileParams = new UploadBatchFileParameters();
+
+  if (fileUri.endsWith('app/_data/extensions.yml')) {
+    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['name', 'desc']))
+  } else {
+    batchFileParams.setFileFromLocalFilePath(fileUri)
+  }
+  batchFileParams
     .setFileUri(fileUri)
     .setFileType(FileType.YAML)
     .setLocalesToApprove([locale])
