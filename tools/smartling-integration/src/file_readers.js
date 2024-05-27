@@ -17,10 +17,15 @@ const DATA_FILES_TO_EXCLUDE = [
   'konnect_oas_data.json',
   'kong_versions.yml',
   'books.yml',
-  'installation/fateway.yml',
+  'installation/gateway.yml',
   'tables/compat.json',
   'hub_filters.yml',
-  'extensions.yml'
+  'extensions.yml',
+  'tables/version_errors_konnect.yml',
+  'tables/os_support.yml',
+  'tables/install_options_konnect.yml',
+  'tables/install_options_34x.yml',
+  'tables/install_options.yml'
 ]
 
 function readTranslationConfig() {
