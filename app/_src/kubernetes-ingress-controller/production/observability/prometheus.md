@@ -73,6 +73,17 @@ This metric provides these labels:
 `ingress_controller_translation_broken_resource_count` (type: `gauge`) provides the number of resources that the controller cannot successfully translate to {{site.base_gateway}} configuration.
 
 {% endif_version %}
+{% if_version gte:3.2.x %}
+### ingress_controller_admission_count
+
+`ingress_controller_admission_count` (type: `counter`) provides the number of admissions that the admission webhook processes.
+
+This metric provides these labels:
+
+* `allowed` describes whether an admission was allowed
+* `resource` describes the resource under admission
+
+{% endif_version %}
 
 ## Low-level performance metrics
 
