@@ -37,9 +37,8 @@ async function buildBatchFileParamsForConfig(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForDocsNav(fileUri, locale) {
-  // TODO: do we need to tell it not to translate product: ???
   const batchFileParams = new UploadBatchFileParameters()
-    .setFileFromLocalFilePath(fileUri)
+    .setFileContent(yamlPreProcessor(fileUri, ['text', 'title']))
     .setFileUri(fileUri)
     .setFileType(FileType.YAML)
     .setLocalesToApprove([locale])
