@@ -4,6 +4,7 @@ const {
   FileType,
 } = require("smartling-api-sdk-nodejs");
 
+const yamlPreProcessor = require('./pre-processors/yaml-files.js');
 
 // Exclude from Frontmatter:
 const FRONTMATTER_KEYS_TO_EXCLUDE =  [
@@ -111,9 +112,8 @@ async function buildBatchFileParamsForData(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForPluginsMetadata(fileUri, locale) {
-  // TODO: only desc, dbless_explanation
   const batchFileParams = new UploadBatchFileParameters()
-    .setFileFromLocalFilePath(fileUri)
+    .setFileContent(yamlPreProcessor(fileUri, ['desc', 'dbless_explanation', 'notes']))
     .setFileUri(fileUri)
     .setFileType(FileType.YAML)
     .setLocalesToApprove([locale])
