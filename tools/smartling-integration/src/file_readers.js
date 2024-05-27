@@ -20,7 +20,6 @@ const DATA_FILES_TO_EXCLUDE = [
   'installation/gateway.yml',
   'tables/compat.json',
   'hub_filters.yml',
-  'extensions.yml',
   'tables/version_errors_konnect.yml',
   'tables/os_support.yml',
   'tables/install_options_konnect.yml',
