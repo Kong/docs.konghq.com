@@ -99,7 +99,7 @@ Update the license with a `PATCH` request to the existing license's ID:
 {% endnavtab %}
 {% endnavtabs %}
 
-Ensure to [restart](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after adding or updating a license.
+[Restart](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after adding or updating a license.
 
 For more detail and options, see the
 [Admin API `licenses` endpoint reference](/gateway/latest/licenses/examples).
