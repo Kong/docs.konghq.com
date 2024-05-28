@@ -1690,6 +1690,42 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+
+## 3.4.3.9
+**Release Date** TBA
+
+### Features
+#### Admin API
+
+<!-- _Backported from 3.7.0.0_ -->
+
+* Added LHS bracket filtering to search fields.
+ [#9121](https://github.com/Kong/kong-ee/issues/9121)
+ [KAG-3940](https://konghq.atlassian.net/browse/KAG-3940)
+
+* **Audit logs:**
+  * Added `request_timestamp` to `audit_objects`.
+  * Added before and after aliases for LHS Brackets filters.
+  * `audit_requests` and `audit_objects` can now be filtered by `request_timestamp`.
+
+### Fixes
+#### Admin API
+
+* Fixed an issue with the workspace listing API, which showed workspaces that the user didn't have any roles in.
+The API now only shows workspaces that the user has access to.
+
+#### Core
+
+* Fixed an issue where `cluster_cert` or `cluster_ca_cert` was inserted into `lua_ssl_trusted_certificate` before being base64-decoded.
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+* **Vitals**: Fixed an issue where each data plane connecting to the control plane would trigger the creation of a redundant 
+table rotater timer on the control plane.
+
+### Dependencies
+
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+ 
 ## 3.4.3.8
 **Release Date** 2024/05/16
 
