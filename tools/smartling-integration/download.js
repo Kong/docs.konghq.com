@@ -8,10 +8,10 @@ const userSecret = process.env.USER_SECRET;
 const translatedContentPath = process.env.TRANSLATED_CONTENT_PATH;
 const locale = process.env.LOCALE || 'ja';
 
-// if (!projectId || !userId || !userSecret || !jobId || !translatedContentPath) {
-//   console.error("Missing environment variables.");
-//   process.exit(1);
-// }
+if (!projectId || !userId || !userSecret || !jobId || !translatedContentPath) {
+  console.error("Missing environment variables.");
+  process.exit(1);
+}
 
 const {
   ListJobFilesParameters,
@@ -21,11 +21,11 @@ const {
   SmartlingFilesApi
 } = require("smartling-api-sdk-nodejs");
 
-// const apiBuilder = new SmartlingApiClientBuilder()
-//     .setLogger(console)
-//     .setBaseSmartlingApiUrl("https://api.smartling.com")
-//     .setHttpClientConfiguration({ timeout: 10000 })
-//     .authWithUserIdAndUserSecret(userId, userSecret);
+const apiBuilder = new SmartlingApiClientBuilder()
+    .setLogger(console)
+    .setBaseSmartlingApiUrl("https://api.smartling.com")
+    .setHttpClientConfiguration({ timeout: 10000 })
+    .authWithUserIdAndUserSecret(userId, userSecret);
 
 async function getFilesListForJob(projectId, jobId) {
   try {
@@ -60,22 +60,25 @@ async function getFilesListForJob(projectId, jobId) {
 // Run this only if the Job is Completed
 async function downloadFiles() {
   try {
-    // const filesApi = apiBuilder.build(SmartlingFilesApi);
-    // const filesUris = await getFilesListForJob(projectId, jobId);
-
-    const filesUris = ['app/_data/docs_nav_gateway_2.6.x.yml', 'app/_data/docs_nav_konnect.yml']
+    const filesApi = apiBuilder.build(SmartlingFilesApi);
+    const filesUris = await getFilesListForJob(projectId, jobId);
 
     for (const fileUri of filesUris) {
-      // const downloadFileParams = new DownloadFileParameters()
-        // .setRetrievalType(RetrievalType.PUBLISHED);
+      const downloadFileParams = new DownloadFileParameters()
+        .setRetrievalType(RetrievalType.PUBLISHED);
 
       // TODO: any post-processing goes here...
       // config/locales/en.yml => config/locales/ja.yml
-      // const downloadedFileContent = await filesApi.downloadFile(projectId, fileUri, locale, downloadFileParams);
+      const downloadedFileContent = await filesApi.downloadFile(projectId, fileUri, locale, downloadFileParams);
       const filePath = path.join(translatedContentPath, locale, fileUri);
-      fs.writeFileSync(filePath, 'test');
+      const dir = filePath.dirame(filePath);
 
-      // console.log(`Downloaded ${fileUri}`);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFileSync(filePath, downloadedFileContent);
+
+      console.log(`Downloaded ${fileUri}`);
     }
   } catch (e) {
     console.log(e);
@@ -83,4 +86,4 @@ async function downloadFiles() {
   }
 }
 
-downloadFiles()
+downloadFiles();
