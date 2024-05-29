@@ -44,13 +44,6 @@ If you are using an older version of {{site.base_gateway}}, or if you prefer to 
 - If above options are not available, the `libappdynamics.so` file can be in one of the locations configured by the [system's shared library loader](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html).
 - Alternatively, the `LD_LIBRARY_PATH` environment variable can be set to the directory containing the `libappdynamics.so` file when starting {{site.base_gateway}}.
 
-If the AppDynamics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start.
-You will receive an error message like this:
-
-```
-kong/plugins/app-dynamics/appdynamics.lua:74: libappdynamics.so: cannot open shared object file: No such file or directory
-```
-
 ## Configuration
 
 The AppDynamics plugin is configured through environment variables
