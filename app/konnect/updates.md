@@ -12,7 +12,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## May 2024
 
 **Gateway 3.7 Support**
-: We've enhanced {{site.konnect_short_name}} by integrating key features from {{site.base_gateway}} version 3.7. Highlights include Plugin Streaming, Dynamic Log Leveling, and a refreshed OTEL Plugin, among other improvements!
 : The expression router is fully supported in the {{site.konnect_short_name}}. You can now define your routes via expressions, and perform CRUD operations on them.
 
 : See the [Gateway 3.7.0.0 changelog](/gateway/changelog/#3700) for all changes in the {{site.base_gateway}} release.
