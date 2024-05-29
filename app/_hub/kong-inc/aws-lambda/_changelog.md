@@ -1,5 +1,9 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.7.x**
+* Fixed an issue where the latency attributed to AWS Lambda API requests was counted as part of the latency in {{site.base_gateway}}.
+ [#12835](https://github.com/Kong/kong/issues/12835)
+
 **{{site.base_gateway}} 3.5.x**
 * The AWS-Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library.
 The refactor simplifies the AWS Lambda plugin code base and adds support for multiple IAM
@@ -9,7 +13,7 @@ authenticating scenarios. [#11350](https://github.com/Kong/kong/pull/11350)
 This improvement allows the EKS IRSA credential provider (`TokenFileWebIdentityCredentials`) to correctly route requests through the plugin-level proxy configuration when obtaining credentials from the AWS STS service. 
 [#11551](https://github.com/Kong/kong/pull/11551)
 
-* The plugin now caches the AWS ambda service by lambda service related fields. 
+* The plugin now caches the AWS Lambda service by lambda service related fields. 
 [#11821](https://github.com/kong/kong/pulls/11821)
 
 **{{site.base_gateway}} 3.3.x**

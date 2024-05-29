@@ -2,6 +2,152 @@
 
 <!--vale off-->
 
+## Week 21
+
+### [chore: set version tags around table](https://github.com/Kong/docs.konghq.com/pull/7415) (2024-05-22)
+
+Add version tags to plugin table, since streaming only appears in 3.7.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
+
+
+### [Release: Gateway 3.5.0.4](https://github.com/Kong/docs.konghq.com/pull/7378) (2024-05-20)
+
+Changelog, version bump, and remove 'unless' statements for 3.5
+
+https://konghq.atlassian.net/browse/DOCU-3739
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [add content-type and body-validation explanation in _index.md](https://github.com/Kong/docs.konghq.com/pull/7348) (2024-05-22)
+
+request-validation limitations are not listed anymore since 3.4 version. Adding them in the main page
+
+https://github.com/Kong/docs.konghq.com/commit/b492d3ecb31e2335f37dfe361295c8bc545f2e85#diff-f88716a1e934cd881cb07ecb1cc41ebdcd62fd950aa0e821603755e1a8caa2d4
+
+New feature in 3.6 to perform body validation on +json content-types.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-validator/overview/
+
+
+### [Feat: AI Azure Content Safety plugin doc](https://github.com/Kong/docs.konghq.com/pull/7326) (2024-05-21)
+
+Docs for new AI Azure Content Safety plugin.
+
+https://konghq.atlassian.net/browse/DOCU-3767
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/how-to/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/overview/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_ai-azure-content-safety.png
+
+## Week 20
+
+### [feat(ai-proxy): added Azure native auth explanation](https://github.com/Kong/docs.konghq.com/pull/7390) (2024-05-16)
+
+I have added an explanation on how to use [Azure Managed Identity](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/managed-identity) authentication when using the Kong AI Proxy within the Azure SaaS.
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/
+
+
+### [chore: Set source URLs for moved EE plugins](https://github.com/Kong/docs.konghq.com/pull/7386) (2024-05-17)
+
+A bunch of EE plugins were moved to a new directory, breaking the "Edit this page" links on their schema config reference pages. This PR adds a source_url to each moved plugin to use as the link for editing.
+
+https://konghq.atlassian.net/browse/DOCU-3841
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/canary/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/degraphql/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/forward-proxy/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/jq/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/jwe-decrypt/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/key-auth-enc/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/mocking/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/oauth2-introspection/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/route-by-header/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/route-transformer-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.6.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.7.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_2.8.x.yml
+- https://docs.konghq.com/hub/kong-inc/statsd-advanced/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/tls-handshake-modifier/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/tls-metadata-headers/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/upstream-timeout/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-size-limit/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-validator/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/xml-threat-protection/_metadata/_index.yml
+
+
+### [Release: Gateway 3.4.3.8](https://github.com/Kong/docs.konghq.com/pull/7379) (2024-05-16)
+
+Changelog and version bump for 3.4.3.8
+
+Schema update will come separately.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.6.1.4](https://github.com/Kong/docs.konghq.com/pull/7377) (2024-05-15)
+
+Changelog and version bump for 3.6.1.4
+
+https://konghq.atlassian.net/browse/DOCU-3842
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [request-termination and forward-proxy incompatibility](https://github.com/Kong/docs.konghq.com/pull/7358) (2024-05-15)
+
+Clarification: the plugin won't execute if if forward-proxy is enabled (valid for all versions)
+Jira: https://konghq.atlassian.net/browse/FTI-5909
+Kong idea reported to review the plugin priority: https://kong-internal-portal.ideas.aha.io/ideas/GTWY-I-886
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-termination/overview/
+
+
+### [docs(oidc): supporting dpop](https://github.com/Kong/docs.konghq.com/pull/7323) (2024-05-15)
+
+KAG-4377
+
+New feature support.
+
+https://github.com/Kong/kong-ee/pull/8482
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
 ## Week 19
 
 ### [Remove duplicated entry](https://github.com/Kong/docs.konghq.com/pull/7361) (2024-05-10)
@@ -16,8 +162,6 @@
 ### [(fix) Remove "enterprise" category from Datadome](https://github.com/Kong/docs.konghq.com/pull/7350) (2024-05-07)
 
 Based on review w/ @DaniellaFreese and Eric, this plugin doesn't qualify as Enterprise based on the revised categorization set at end of last year. 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -25,10 +169,6 @@ Based on review w/ @DaniellaFreese and Eric, this plugin doesn't qualify as Ente
 
 
 ### [Plugins troubleshooting](https://github.com/Kong/docs.konghq.com/pull/7290) (2024-05-07)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Added
 
@@ -194,10 +334,6 @@ Issue reported on slack.
 
 Update document for OAS-Validation plugin about OpenAPI 3.1.0
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/oas-validation/overview/
@@ -206,8 +342,6 @@ Update document for OAS-Validation plugin about OpenAPI 3.1.0
 ### [Feat: new expressions flavor in 3.7](https://github.com/Kong/docs.konghq.com/pull/7304) (2024-04-30)
 
 KAG-3927
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -249,8 +383,6 @@ https://konghq.atlassian.net/browse/DOCU-3627
 
 Fix multiple typos under app/_src/gateway
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.1.x/breaking-changes/30x/
@@ -320,10 +452,6 @@ Fixed multiple typos under app/konnect directory
 * trasparent -> transparent
 * mutliple -> multiple
 
-I think this PR might go with `review:general` label. 
-
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
@@ -391,13 +519,8 @@ The old docker logo was deleted but the Mesh install page is still pointing to i
 "Any" is not a valid value, it should be "All":
 spec.listeners[0].allowedRoutes.namespaces.from: Unsupported value: "Any": supported values: "All", "Selector", "Same", <nil>
 
-
-
-
-<!-- What did you change and why? -->
 Fixed an apparent mistake in the docs where it said "Any", but meant "All"
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -433,11 +556,8 @@ And adjust heading levels on the support page. The LTS section needed a heading 
 
 ### [fix: Add two missing OTEL images to Kong Mesh docs](https://github.com/Kong/docs.konghq.com/pull/7268) (2024-04-19)
 
-<!-- What did you change and why? -->
 There were two missing images from a Kuma doc that was shared in Kong Mesh. The link checker caught one (https://github.com/Kong/docs.konghq.com/actions/runs/8677190800/job/23792517751), but I added both to our site.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Added
 
 - https://docs.konghq.com/assets/images/guides/otel-metrics/grafana-dataplane-view.png
@@ -492,16 +612,9 @@ Version bump and changelog for 2.8.4.9.
 ### [(fix) upload current docker logos](https://github.com/Kong/docs.konghq.com/pull/7256) (2024-04-18)
 
 Replacing Docker logos w/ most current version from https://www.docker.com/company/newsroom/media-resources/. Changed icon is one shade of blue not multiple. 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 
 
 ### [docs(*): add a deprecated message to granular tracing](https://github.com/Kong/docs.konghq.com/pull/7254) (2024-04-18)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 This is for `3.7.0.0` release.
 
@@ -615,12 +728,6 @@ No ticket, this is an ad hoc patch.
 Anthropic released a new `messages` API, we change the `chat` route_type of Anthropic to the new `messages` API correspondingly. 
 This new feature is about to be released in 3.7.0.0, the doc should be updated simultaneously.
 The sister [PR](https://github.com/Kong/kong-ee/pull/8747) for kong-ee has already been merged.
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
@@ -691,14 +798,6 @@ Added support for:
 * PS384
 * PS512
 * EdDSA
-
-@kong-docs Should we restructure the docs a bit to use `Conditional version tags` more effectively?
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [ ] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
-
 
 Jira: https://konghq.atlassian.net/browse/KAG-4029
 
@@ -882,10 +981,6 @@ These are the customer-facing docs needed to allow customers to take full advant
 Confluence: [Solutions Document](https://konghq.atlassian.net/wiki/spaces/KS/pages/3309273092/Solution+-+Container+Provenance+-+SLSA+generator)
 Jira: [SEC-973](https://konghq.atlassian.net/browse/SEC-1003)
 https://github.com/Kong/kong-ee/pull/7179
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Added
 
@@ -1174,10 +1269,7 @@ Addresses https://konghq.atlassian.net/browse/DOCU-3719 and https://konghq.atlas
 ### [Fix: Update `get-admins` endpoint description](https://github.com/Kong/docs.konghq.com/pull/7064) (2024-03-12)
 
 Update Admin API's `get-admins` endpoint description.
-<!-- What did you change and why? -->
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.0.x/admin-api/admins/reference

@@ -3,7 +3,7 @@ This example is from 2.2.1 per DOCS-1617 --->
 
 Every request is logged separately in a JSON object, separated by a new line `\n`, with the following format:
 
-{% if_plugin_version lte:3.3.x %}
+{% if_version lte:3.3.x %}
 ```json
 {
   "service": {
@@ -101,10 +101,10 @@ Every request is logged separately in a JSON object, separated by a new line `\n
   "started_at": 1614232668342
 }
 ```
-{% endif_plugin_version %}
+{% endif_version %}
 
 
-{% if_plugin_version gte:3.4.x %}
+{% if_version gte:3.4.x %}
 ```json
 {
   "service": {
@@ -203,4 +203,4 @@ Every request is logged separately in a JSON object, separated by a new line `\n
   "started_at": 1614232668342
 }
 ```
-{% endif_plugin_version %}
+{% endif_version %}

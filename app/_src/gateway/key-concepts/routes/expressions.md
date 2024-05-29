@@ -65,10 +65,8 @@ For a list of all available language features, see the [expressions language ref
 
 The following table describes the available matching fields, as well as their associated type when using an expressions based router.
 
-<!-- TO DO: Remove the "unless" tags when we have support for eq/neq OR if all of these changes get backported into 3.5 as well-->
 <!-- There are two separate tables because Liquid's whitespace handling breaks tables when using if tags -->
 
-{% unless page.release == '3.5.x' %}
 {% if_version gte:3.4.x %}
 | Field                                                | Type       | Available in HTTP Subsystem | Available in Stream Subsystem | Description |
 |------------------------------------------------------|------------|-----------------------------|-------------------------------|-------------|
@@ -87,10 +85,8 @@ The following table describes the available matching fields, as well as their as
 | `net.dst.ip`                          | `IpAddr`   | ✅  | ✅  | Listening IP address where {{site.base_gateway}} accepts the incoming connection.  |
 | `net.dst.port`                        | `Int`      | ✅  | ✅  | Listening port number where {{site.base_gateway}} accepts the incoming connection. |
 {% endif_version %}
-{% endunless %}
 
-{% unless page.release == '3.4.x' %}
-{% if_version lte:3.5.x %}
+{% if_version lte:3.4.x %}
 | Field                                                | Type       | Available in HTTP Subsystem | Available in Stream Subsystem | Description |
 |------------------------------------------------------|------------|-----------------------------|-------------------------------|-------------|
 | `net.protocol`                                       | `String`   | ✅  | ✅  | Protocol of the route. Roughly equivalent to the `protocols` field on the `Route` entity.  **Note:** Configured `protocols` on the `Route` entity are always added to the top level of the generated route but additional constraints can be provided by using the `net.prococol` field directly inside the expression. |
@@ -105,8 +101,6 @@ The following table describes the available matching fields, as well as their as
 | `net.dst.ip`                          | `IpAddr`   | ❌  | ✅  | Listening IP address where {{site.base_gateway}} accepts the incoming connection.  |
 | `net.dst.port`                        | `Int`      | ❌  | ✅  | Listening port number where {{site.base_gateway}} accepts the incoming connection. |
 {% endif_version %}
-{% endunless %}
-
 
 ## More information
 

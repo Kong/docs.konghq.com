@@ -1,4 +1,20 @@
 ## Changelog
+### {{site.base_gateway}} 3.7.x
+* Refactored `kong/tools/public/rate-limiting`, adding the new interface `new_instance` to provide isolation between different plugins. 
+  The original interfaces remain unchanged for backward compatibility. 
+
+  If you are using custom Rate Limiting plugins based on this library, update the initialization code to the new format. For example: 
+  `'local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("custom-plugin-name")'`.
+  The old interface will be removed in the upcoming major release.
+
+* Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
+  would interfere with each other and fail to synchronize counter data to the central data store.
+* Fixed an issue with `sync_rate` setting being used with the `redis` strategy. 
+  If the Redis connection is interrupted while `sync_rate = 0`, the plugin now accurately falls back to the `local` strategy.
+* Fixed an issue where, if `sync_rate` was changed from a value greater than `0` to `0`, the namespace was cleared unexpectedly.
+* Fixed some timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
+* The plugin now creates counter syncing timers during plugin execution instead of plugin creation to reduce some meaningless error logs.
+* Fixed an issue where {{site.base_gateway}} produced a log of error log entries when multiple Rate Limiting Advanced plugins shared the same namespace.
 
 ### {{site.base_gateway}} 3.6.x
 * Enhanced the resolution of the RLA sliding window weight.

@@ -30,6 +30,17 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 The Konnect API supports filtering, read the [Filtering reference](/konnect/api/filtering/) to learn more.
 
+
+## Supported Content Types
+
+The {{site.konnect_short_name}} APIs accept three content types, depending on the API specification and the specific endpoint:
+
+- **application/json**
+- **application/x-www-form-urlencoded**
+- **multipart/form-data**
+
+Refer to the individual API specifications for detailed information on the content types supported by each endpoint.
+
 ## Specifications
 
 For a full list of the API specifications supported for use in production environments, visit [API Specs](/api/). 

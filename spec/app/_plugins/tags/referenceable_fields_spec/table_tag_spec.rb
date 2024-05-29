@@ -1,3 +1,5 @@
+require 'ostruct'
+
 RSpec.describe Jekyll::ReferenceableFieldsTable do
   let(:version) { '3.2.x' }
   let(:hub) do

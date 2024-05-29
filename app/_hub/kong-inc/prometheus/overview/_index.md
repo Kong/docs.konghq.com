@@ -22,7 +22,7 @@ dashboard: [https://grafana.com/grafana/dashboards/7424-kong-official/](https://
 
 ## Available metrics
 
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 - **Status codes**: HTTP status codes returned by upstream services.
   These are available per service, across all services, and per route per consumer.
 - **Latencies Histograms**: Latency (in ms), as measured at Kong:
@@ -33,15 +33,15 @@ dashboard: [https://grafana.com/grafana/dashboards/7424-kong-official/](https://
    - **Upstream**: Time taken by the upstream service to respond to requests.
 - **Bandwidth**: Total Bandwidth (egress/ingress) flowing through Kong.
   This metric is available per service and as a sum across all services.
-{% endif_plugin_version %}
+{% endif_version %}
 - **DB reachability**: A gauge type with a value of 0 or 1, which represents
   whether DB can be reached by a Kong node.
 - **Connections**: Various Nginx connection metrics like active, reading,
   writing, and number of accepted connections.
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of targets
   belonging to a given upstream as well as their subsystem (`http` or `stream`).
-{% endif_plugin_version %}
+{% endif_version %}
 - **Dataplane Status**: The last seen timestamp, config hash, config sync status and certificate expiration timestamp for
 data plane nodes is exported to control plane.
 - **Enterprise License Information**: The {{site.base_gateway}} license expiration date, features and
@@ -51,7 +51,7 @@ license signature. Those metrics are only exported on {{site.base_gateway}}.
 - **Number of Nginx timers** : A gauge metric that measures the total number of Nginx
     timers, in Running or Pending state.
 
-{% if_plugin_version gte:3.0.x %}
+{% if_version gte:3.0.x %}
 Following metrics are disabled by default as it may create high cardinality of metrics and may
 cause performance issues:
 
@@ -75,7 +75,7 @@ When `upstream_health_metrics` is set to true:
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of targets
   belonging to a given upstream as well as their subsystem (`http` or `stream`).
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
@@ -93,7 +93,7 @@ Transfer-Encoding: chunked
 Connection: keep-alive
 Access-Control-Allow-Origin: *
 
-{% if_plugin_version gte:3.0.x %}
+{% if_version gte:3.0.x %}
 # HELP kong_bandwidth_bytes Total bandwidth (ingress/egress) throughput in bytes
 # TYPE kong_bandwidth_bytes counter
 kong_bandwidth_bytes{service="google",route="google.route-1",direction="egress",consumer=""} 264
@@ -216,19 +216,19 @@ kong_upstream_latency_ms_bucket{service="google",route="google.route-1",le="6000
 kong_upstream_latency_ms_bucket{service="google",route="google.route-1",le="+Inf"} 1
 kong_upstream_latency_ms_count{service="google",route="google.route-1"} 1
 kong_upstream_latency_ms_sum{service="google",route="google.route-1"} 2
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 # HELP kong_bandwidth Total bandwidth in bytes consumed per service/route in Kong
 # TYPE kong_bandwidth counter
 kong_bandwidth{type="egress",service="google",route="google.route-1"} 1277
 kong_bandwidth{type="ingress",service="google",route="google.route-1"} 254
-{% if_plugin_version gte:2.8.x %}
+{% if_version gte:2.8.x %}
 # HELP kong_nginx_timers Number of nginx timers
 # TYPE kong_nginx_timers gauge
 kong_nginx_timers{state="running"} 3
 kong_nginx_timers{state="pending"} 1
-{% endif_plugin_version %}
+{% endif_version %}
 # HELP kong_datastore_reachable Datastore reachable from Kong, 0 is unreachable
 # TYPE kong_datastore_reachable gauge
 kong_datastore_reachable 1
@@ -301,7 +301,7 @@ kong_upstream_target_health{upstream="UPSTREAM_NAME",target="TARGET",address="IP
 kong_upstream_target_health{upstream="UPSTREAM_NAME",target="TARGET",address="IP:PORT",state="healthy",subsystem="http"} 1
 kong_upstream_target_health{upstream="UPSTREAM_NAME",target="TARGET",address="IP:PORT",state="unhealthy",subsystem="http"} 0
 kong_upstream_target_health{upstream="UPSTREAM_NAME",target="TARGET",address="IP:PORT",state="dns_error",subsystem="http"} 0
-{% endif_plugin_version %}
+{% endif_version %}
 ```
 
 {:.note}
