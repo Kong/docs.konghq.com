@@ -17,7 +17,7 @@ content_type: reference
 
 {{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or JSON. You may specify which format to use in the [audit log webhook](/konnect/org-management/audit-logging/webhook/) endpoint.
 
-Webhook calls include a batch of events. Each event is formatted in either CEF or JSON and separated by a newline. The `Content-Type` is `application/text`.
+Webhook calls include a batch of events. Each event is formatted in either CEF or JSON and separated by a newline. The `Content-Type` is `text/plain`.
 
 To minimize payload size, the message body is compressed. The `Content-Encoding` is `application/gzip`.
 
