@@ -6173,7 +6173,7 @@ paths:
         List all the supported HTTP methods by an endpoint. This can also be used with a CORS preflight request.
       tags:
         - Information
-  '/schemas/{entity}/validate':
+  '/schemas/{entity}/':
     parameters:
       - schema:
           type: string
@@ -6232,31 +6232,38 @@ paths:
                           type: integer
       operationId: get-schemas-entity
       description: Retrieve the schema of an entity. This is useful to understand what fields an entity accepts, and can be used for building third-party integrations with Kong.
-    post:
-      summary: Validate a configuration against a schema
-      operationId: post-schemas-entity-validate
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Message:
-                    type: string
-                    example: schema validation successful
-                    description: A success message
-              examples:
-                schema validation successful:
-                  value:
-                    Message: schema validation successful
-      description: |-
-        Check validity of a configuration against its entity schema. This allows you to test your input before submitting a request to the entity endpoints of the Admin API.
+  /schemas/{entity}/validate':
+      parameters:
+      - schema:
+          type: string
+        name: entity
+        in: path
+        required: true
+      post:
+        summary: Validate a configuration against a schema
+        operationId: post-schemas-entity-validate
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    Message:
+                      type: string
+                      example: schema validation successful
+                      description: A success message
+                examples:
+                  schema validation successful:
+                    value:
+                      Message: schema validation successful
+        description: |-
+          Check validity of a configuration against its entity schema. This allows you to test your input before submitting a request to the entity endpoints of the Admin API.
 
-        A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store.
-      tags:
-        - Information
+          A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store.
+        tags:
+          - Information
   '/schemas/filters/{filter_name}':
     parameters:
       - schema:
