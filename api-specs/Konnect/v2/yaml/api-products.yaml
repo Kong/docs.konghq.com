@@ -873,6 +873,7 @@ components:
                     name: API Product
                     description: Text describing the API product
                     portal_ids: []
+                    portals: []
                     created_at: '2023-01-01T00:00:00.000Z'
                     updated_at: '2023-01-01T00:00:00.000Z'
                     version_count: 10
@@ -1050,6 +1051,28 @@ components:
 
         JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar
         desc').
+    APIProductPortals:
+      title: APIProductPortals
+      type: array
+      minItems: 0
+      description: The list of portals which this API product is published to
+      items:
+        $ref: '#/components/schemas/APIProductPortal'
+    APIProductPortal:
+      title: APIProductPortal
+      type: object
+      additionalProperties: false
+      required:
+        - portal_id
+        - portal_name
+      properties:
+        portal_id:
+          type: string
+          format: uuid
+          example: 35a2624c-49fc-4764-99e1-224ed819f200
+        portal_name:
+          type: string
+          example: Developer Portal
     APIProductVersionPublishStatus:
       title: APIProductVersionPublishStatus
       type: string
@@ -1127,6 +1150,7 @@ components:
         - name
         - description
         - portal_ids
+        - portals
         - created_at
         - updated_at
         - labels
@@ -1148,17 +1172,23 @@ components:
           description: The description of the API product
           example: MyDescription
         portal_ids:
+          deprecated: true
           type: array
           nullable: false
           uniqueItems: true
           minItems: 0
-          description: >-
+          description: >
             The list of portal identifiers which this API product is published
-            to
+            to.
+
+            This property is deprecated and will be removed in a future version.
+            Use the `portals` property instead.
           items:
             type: string
             format: uuid
             example: 25a2624c-49fc-4764-99e1-224ed819f200
+        portals:
+          $ref: '#/components/schemas/APIProductPortals'
         version_count:
           type: number
           example: 10
@@ -2607,6 +2637,7 @@ components:
         name: API Product
         description: Text describing the API product
         portal_ids: []
+        portals: []
         created_at: '2023-01-01T00:00:00.000Z'
         updated_at: '2023-01-01T00:00:00.000Z'
         version_count: 10
