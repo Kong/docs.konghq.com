@@ -5,9 +5,9 @@ nav_title: Overview
 ---
 
 
-{% if_plugin_version lte:2.7.x %}
+{% if_version lte:2.7.x %}
 ## _2.6.x Description
-{% endif_plugin_version %}
+{% endif_version %}
 
 {{ page.desc }}
 

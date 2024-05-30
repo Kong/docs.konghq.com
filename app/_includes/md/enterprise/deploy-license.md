@@ -46,27 +46,19 @@ applies the license to data planes automatically.
 The license data must contain straight quotes to be considered valid JSON
 (`'` and `"`, not `’` or `“`).
 
-`POST` the contents of the provided `license.json` license to your
-{{site.base_gateway}} instance:
-
 {:.note}
-> **Note:** The following license is only an example. You must use the
+> **Note:** The payload of the following license is only an example. You must use the
 following format, but provide your own content.
 
-{% navtabs codeblock %}
-{% navtab cURL %}
+{% navtabs %}
+{% navtab Add new license %}
+To add a new license, `POST` the contents of the provided `license.json` license to your
+{{site.base_gateway}} instance:
+
 ```bash
-$ curl -i -X POST http://localhost:8001/licenses \
+curl -i -X POST http://localhost:8001/licenses \
   -d payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-$ http POST :8001/licenses \
-  payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
-```
-{% endnavtab %}
-{% endnavtabs %}
 
 Result:
 ```json
@@ -77,11 +69,40 @@ Result:
   "updated_at": 1500508800
 }
 ```
+{% endnavtab %}
+{% navtab Update existing license %}
+Update the license with a `PATCH` request to the existing license's ID:
+
+1. Find the license you want to update, and copy the ID from the output:
+
+    ```bash
+    curl -i -X GET http://localhost:8001/licenses
+    ```
+
+1. Submit a `PATCH` request to the license ID:
+
+    ```bash
+    curl -i -X PATCH http://localhost:8001/licenses/30b4edb7-0847-4f65-af90-efbed8b0161f \
+      payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-21","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb","version":"1"}}'
+    ```
+
+    Response:
+    ```json
+    {
+      "created_at": 1500595200,
+      "id": "30b4edb7-0847-4f65-af90-efbed8b0161f",
+      "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-21\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}",
+      "updated_at": 1500595200
+    }
+    ```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+[Restart](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after adding or updating a license.
 
 For more detail and options, see the
 [Admin API `licenses` endpoint reference](/gateway/latest/licenses/examples).
-
-We recommend [restarting](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after applying or updating a license.
 
 {% endnavtab %}
 {% navtab Filesystem %}

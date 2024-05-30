@@ -22,7 +22,7 @@
     </div>
   </li>
 
-  {% if_plugin_version gte:3.2.x %}
+  {% if_version gte:3.2.x %}
     <li class="field">
       <div class="field-overview">
         <h4 id="instance_name">instance_name</h4>
@@ -48,7 +48,7 @@
         </p>
       </div>
     </li>
-  {% endif_plugin_version %}
+  {% endif_version %}
 
   {% if schema.enable_on_service? %}
     <li class="field">
@@ -160,19 +160,9 @@
   {% endfor %}
 </ul>
 
-{% if schema.deprecated_fields.size > 0 %}
-
-<h3 id="deprecated-parameters">Deprecated parameters</h3>
-
-<blockquote class="important">
-  <strong>Important:</strong> The following fields have been deprecated and will be 
-  removed in a future version. 
-  <br>
-  See the <a href="../changelog/" class="no-link-icon">changelog</a> for this plugin for new field mapping info.
-</blockquote>
-
+{% if schema.shorthand_fields.size > 0 %}
   <ul class="fields">
-    {% for field in schema.deprecated_fields %}
+    {% for field in schema.shorthand_fields %}
       {% include plugins/schemas/field.html field=field %}
     {% endfor %}
   </ul>

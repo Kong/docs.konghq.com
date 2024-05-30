@@ -10,13 +10,10 @@ RSpec.describe Jekyll::Drops::Plugins::Examples::Curl do
 
   describe '#params' do
     it 'returns the list of params defined on the example' do
-      expect(subject.params.size).to eq(2)
-      expect(subject.params).to all(be_an(Jekyll::Drops::Plugins::Examples::Fields::Curl))
-
-      expect(subject.params.map(&:to_s)).to match_array([
-        "name=acme",
-        "config.account_email=example@example.com"
-      ])
+      expect(subject.params).to eq(
+        "name" => "acme",
+        "config" => { "account_email" => "example@example.com" }
+      )
     end
   end
 

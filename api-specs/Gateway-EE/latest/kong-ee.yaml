@@ -232,6 +232,24 @@ components:
       schema:
         type: string
       description: The unique identifier of the filter chain to retrieve.
+    BeforeAuditLogFilter:
+      name: before_audit_log_filter
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/RequestTimestampFilterSchema'
+      description: |
+        Before filter could be used to request audit log data that was recorded before certain time (exclusive).
+        It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
+    AfterAuditLogFilter:
+      name: after_audit_log_filter
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/RequestTimestampFilterSchema'
+      description: |
+        After filter could be used to request audit log data that was recorded after certain time (inclusive).
+        It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
   schemas:
     UnauthorizedError:
       type: object
@@ -590,6 +608,13 @@ components:
             id:
               type: string
           type: object
+        expression:
+          description: The route expression used for advanced routing scenarios. This field is used to evaluate route matches based on complex criteria beyond the standard routing fields.
+          type: string
+        priority:
+          description: A number used to specify the matching order for expression routes. The higher the `priority`, the sooner a route will be evaluated. This field is ignored unless `expression` field is set. The value must be between 0 and 2^46 - 1.
+          type: integer
+          default: 0
         snis:
           description: A list of SNIs that match this route when using stream routing.
           items:
@@ -1275,6 +1300,11 @@ components:
           type: array
           items:
             type: string
+    RequestTimestampFilterSchema:
+      oneOf:
+        - type: string
+          pattern: '^(\d+|\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)$'
+        - type: integer
   responses:
     HTTP401Error:
       content:
@@ -5786,7 +5816,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Enterprise Kong Admin API
-  version: 3.6.0
+  version: 3.7.0
 openapi: 3.0.0
 paths:
   /:
@@ -11910,6 +11940,38 @@ paths:
           description: No vault named
       operationId: get-schemas-vaults-vault_name
       description: Retrieve the schema of a vault.
+    post:
+      summary: Validate Vault Schema
+      tags:
+        - Validation
+      requestBody:
+        description: Payload containing the schema data to validate
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemaData:
+                  type: string
+                  description: JSON string containing the vault schema data
+      responses:
+        '200':
+          description: Validation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validation:
+                    type: boolean
+                    description: Indicates if the schema is valid
+        '400':
+          description: Bad request due to invalid schema data
+        '405':
+          description: Method Not Allowed
+      operationId: post-schemas-vaults-validate
+      description: Validates the given vault schema data against predefined validation rules.
   /admins:
     get:
       summary: List Admins
@@ -12919,6 +12981,13 @@ paths:
                           properties:
                             id:
                               type: string
+                        role_source:
+                          description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                          type: string
+                          default: "local"
+                          enum:
+                            - "local"
+                            - "idp"
                         workspace:
                           type: string
                 x-examples:
@@ -12973,6 +13042,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13094,6 +13170,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13154,6 +13237,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13257,6 +13347,13 @@ paths:
                           properties:
                             id:
                               type: string
+                        role_source:
+                          description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                          type: string
+                          default: "local"
+                          enum:
+                            - "local"
+                            - "idp"
                 x-examples:
                   Example 1:
                     data:
@@ -13418,6 +13515,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                 x-examples:
                   Example 1:
                     actions:
@@ -14133,6 +14237,9 @@ paths:
   /audit/requests:
     get:
       summary: List request audit logs
+      parameters:
+        - $ref: '#/components/parameters/befpre_audit_log_filter'
+        - $ref: '#/components/parameters/after_audit_log_filter'
       tags:
         - audit-logs
       responses:
@@ -14143,10 +14250,14 @@ paths:
       operationId: get-audit-requests
       description: |-
         You can access request and database audit logs through the Admin API.
+        The default order of audit log is by request timestamp - latest to oldest.
         For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/).
   /audit/objects:
     get:
       summary: List database audit logs
+      parameters:
+        - $ref: '#/components/parameters/befpre_audit_log_filter'
+        - $ref: '#/components/parameters/after_audit_log_filter'
       responses:
         '200':
           $ref: '#/components/responses/database-audit-log-response'
@@ -14155,7 +14266,7 @@ paths:
       operationId: get-audit-objects
       tags:
         - audit-logs
-      description: List database audit logs
+      description: List database audit logs (ordered by request timestamp - latest to oldest)
   /event-hooks:
     get:
       summary: List all event hooks
@@ -14578,6 +14689,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
               example: 
@@ -14772,6 +14890,7 @@ tags:
       <br><br>
       * User: The entity interacting with the system. Can be associated with zero, one, or more roles. For example: The user `bob` has the token `1234`.
       * Role: Set of permissions (`role_endpoint` and `role_entity`). Has a name and can be associated with zero, one, or more permissions. For example: The user `bob` is associated with the role `developer`.
+      * `role_source`: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
       * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
       * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
     name: RBAC
@@ -14779,7 +14898,7 @@ tags:
       A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
     name: filter-chains
   - description: |
-      You can access request and database audit logs through the Admin API.
+      You can access request and database audit logs through the Admin API. The default order of audit log is by request timestamp - latest to oldest.
       <br><br>
       For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/admin-api/audit-logs/).
     name: audit-logs
