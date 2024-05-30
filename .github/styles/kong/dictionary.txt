@@ -33,6 +33,7 @@ DPPs
 Datadog
 Dex
 ElastiCache
+Entra
 Equinix
 Equinix
 Fargate
@@ -159,6 +160,7 @@ booleans
 burstable
 CAs
 certificate_admin
+charset
 chatbot
 cleartext
 client_payload
@@ -304,6 +306,7 @@ kafka
 keepalive
 keps
 Keycloak
+keyless
 keyrings
 keyspace
 keystore

@@ -11,6 +11,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## May 2024
 
+**Gateway 3.7 Support**
+: {{site.konnect_short_name}} now supports the latest {{site.base_gateway}} release version of 3.7.
+: Additionally, the expression router is fully supported in the {{site.konnect_short_name}}. You can now define your routes via expressions, and perform CRUD operations on them.
+
+: See the [Gateway 3.7.0.0 changelog](/gateway/changelog/#3700) for all changes in the {{site.base_gateway}} release.
+
 **{{site.konnect_short_name}} Konnect Search Enhancements**
 : The new {{site.konnect_saas}} search enhancements now allows you to to search across 29 entities in {{site.konnect_short_name}}. The search enhancement is made up of an advanced search syntax coupled with a refreshed search bar in the UI and a [Konnect Search API](/konnect/api/search/latest/). 
 

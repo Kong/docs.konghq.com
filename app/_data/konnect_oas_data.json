@@ -83,6 +83,14 @@
         "name": "3.6.0.0",
         "deprecated": false,
         "registration_configs": []
+      },
+      {
+        "id": "7dad8169-6779-49bb-bb78-19f88b186d92",
+        "created_at": "2024-05-08T18:37:51.370Z",
+        "updated_at": "2024-05-08T18:37:51.370Z",
+        "name": "3.7.0.0",
+        "deprecated": false,
+        "registration_configs": []
       }
     ]
   },
@@ -126,6 +134,14 @@
         "created_at": "2024-02-14T20:08:38.884Z",
         "updated_at": "2024-02-14T20:12:53.995Z",
         "name": "3.6.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b",
+        "created_at": "2024-05-08T18:40:28.598Z",
+        "updated_at": "2024-05-08T18:40:28.598Z",
+        "name": "3.7",
         "deprecated": false,
         "registration_configs": []
       }

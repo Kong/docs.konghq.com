@@ -51,31 +51,31 @@ service, you must add the new consumer to an allowed group. See
 
 ### Create a Vault
 
-{% if_plugin_version lte:3.0.x %}
+{% if_version lte:3.0.x %}
 
 {:.note}
 > The Vault Auth plugin only works with HashiCorp Vault KV Secrets Engine - Version 1.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version gte:3.1.x %}
+{% if_version gte:3.1.x %}
 
 {:.note}
 > The Vault plugin supports HashiCorp Vault KV Secrets Engine versions 1 and 2.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 A Vault object represents the connection between Kong and a Vault server. It defines the connection and authentication information used to communicate with the Vault API. This allows different instances of the `vault-auth` plugin to communicate with different Vault servers, providing a flexible deployment and consumption model.
 
-{% if_plugin_version gte:3.1.x %}
+{% if_version gte:3.1.x %}
 Vault objects require setting a `vault_token` attribute. This attribute is _referenceable_, which means it can be securely stored as a
 [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
 in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
-{% endif_plugin_version %}
+{% endif_version %}
 
 Vault objects can be created via the following HTTP request:
 
-{% if_plugin_version gte:3.1.x %}
+{% if_version gte:3.1.x %}
 ```bash
 curl -X POST http://localhost:8001/vault-auth \
   --header 'Content-Type: multipart/form-data' \
@@ -108,9 +108,9 @@ HTTP/1.1 201 Created
 `<secret_version>` can be configured with the values `v1` or `v2`, which correspond to KV secrets engines version 1 and 2 respectively.
 This assumes a Vault server is accessible via `127.0.0.1:8200`, and that a version 1 or 2 KV secrets engine has been enabled at `kong-auth`. Vault KV secrets engine documentation is available via the Vault documentation for [version 1](https://www.vaultproject.io/docs/secrets/kv/kv-v1.html) and [version 2](https://developer.hashicorp.com/vault/docs/secrets/kv/kv-v2).
 
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version lte:3.0.x %}
+{% if_version lte:3.0.x %}
 ```bash
 curl -X POST http://localhost:8001/vault-auth \
   --header 'Content-Type: multipart/form-data' \
@@ -140,7 +140,7 @@ HTTP/1.1 201 Created
 
 This assumes a Vault server is accessible via `127.0.0.1:8200`, and that a version 1 KV secrets engine has been enabled at `kong-auth`. Vault KV secrets engine documentation is available via the [Vault documentation](https://www.vaultproject.io/docs/secrets/kv/kv-v1.html).
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 ### Create an Access/Secret Token Pair
 
@@ -246,11 +246,11 @@ When reading a token from Vault, Kong will search the responding KV value for th
 
 ### Extra-Kong Token Pairs
 
-{% if_plugin_version lte:3.0.x %}
+{% if_version lte:3.0.x %}
 
 Currently `vault-auth` supports creating and reading credentials based on the Vault v1 KV engine.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 Kong can read access/token secret pairs that have been created directly in Vault, outside of the Kong Admin API. Create Vault KV secret values must contain the following fields:
 
@@ -268,7 +268,7 @@ Kong can read access/token secret pairs that have been created directly in Vault
 ```
 
 Additional fields within the secret are ignored. The key must be the `access_token` value; this is the identifier by which Kong queries the Vault API to fetch the credential data. See the Vault documentation for [version 1](https://www.vaultproject.io/docs/secrets/kv/kv-v1.html)
-{% if_plugin_version gte:3.1.x %} or [version 2](https://developer.hashicorp.com/vault/docs/secrets/kv/kv-v2) {% endif_plugin_version %}
+{% if_version gte:3.1.x %} or [version 2](https://developer.hashicorp.com/vault/docs/secrets/kv/kv-v2) {% endif_version %}
 for further information on the KV secrets engine.
 
 `vault-auth` token pairs can be created with the Vault HTTP API or the `vault write` command:

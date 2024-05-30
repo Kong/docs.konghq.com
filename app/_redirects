@@ -19,9 +19,22 @@
 /gateway/latest/ai-gateway/ai-analytics/ /gateway/:version/production/latest/ai-analytics/
 ######################################################################
 
+
 ## Kong Manager
 
 /gateway/:version/kong-manager-oss/troubleshoot/    /gateway/:version/kong-manager/troubleshoot/
+
+## AI plugins
+
+/hub/kong-inc/ai-proxy/how-to/openai/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/openai/
+/hub/kong-inc/ai-proxy/how-to/cohere/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/cohere/
+/hub/kong-inc/ai-proxy/how-to/azure/     /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/azure/
+/hub/kong-inc/ai-proxy/how-to/anthropic/ /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/
+/hub/kong-inc/ai-proxy/how-to/mistral/   /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/
+/hub/kong-inc/ai-proxy/how-to/llama2/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
+
+## App reg v2 
+
 
 /konnect/dev-portal/applications/dev-reg-app-service/ /konnect/dev-portal/applications/dev-apps/
 /konnect/dev-portal/access/ /konnect/dev-portal/

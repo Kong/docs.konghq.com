@@ -24,14 +24,14 @@ invoke the Lambda function.
 If you do not provide an `aws_key` and `aws_secret`, the plugin uses an IAM role inherited
 from the instance running Kong.
 
-{% if_plugin_version lte:2.7.x %}
+{% if_version lte:2.7.x %}
 
 First, the plugin tries ECS metadata to get the role. If no ECS metadata is available,
 the plugin falls back on EC2 metadata.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version eq:2.8.x %}
+{% if_version eq:2.8.x %}
 
 The AWS Lambda plugin automatically fetches the IAM role credential according to the following
 precedence order:
@@ -48,9 +48,9 @@ configuring AWS access key/secret or fetching credentials automatically from EC2
 If it succeeds, the plugin fetches temporary security credentials that represent
 that the plugin now has the access permission configured in the target assumed role. Then, the plugin will try to invoke the lambda function based on the target assumed role.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version gte:2.8.x %}
+{% if_version gte:2.8.x %}
 
 The AWS Lambda plugin will automatically fetch the IAM role credential according to the following
 precedence order:
@@ -67,7 +67,7 @@ configuring the AWS access key/secret or fetching credentials automatically from
 If it succeeds, the plugin will fetch temporary security credentials that represents
 that the plugin now has the access permission configured in the target assumed role. Then the plugin will try to invoke the lambda function based on the target assumed role.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 
 ## AWS region as environment variable

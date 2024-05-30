@@ -1,5 +1,9 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.7.x**
+* Added missing `WWW-Authenticate` headers to all 401 responses.
+ [#11794](https://github.com/Kong/kong/issues/11794)
+
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `X-Credential-Username` header has been removed.
 * The `key-auth` plugin priority has changed from 1003 to 1250.
