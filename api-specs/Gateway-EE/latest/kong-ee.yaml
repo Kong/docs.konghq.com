@@ -3431,6 +3431,44 @@ components:
                       type: boolean
               next:
                 nullable: true
+    groups-response:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                data:
+                  - created_at: 1717123483
+                    id: 4844ded2-06d1-44f5-974a-03982696f889
+                    updated_at: 1717123483
+                    name: group1
+                    comment: comment1
+                  - created_at: 1717123637
+                    id: 65b3d436-3c5b-4b0e-a2a5-ee188d526ad8
+                    updated_at: 1717123637
+                    name: group2
+                    comment: comment2
+                next: null
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    created_at:
+                      type: integer
+                    id:
+                      type: string
+                    updated_at:
+                      type: integer
+                    name:
+                      type: string
+                    comment:
+                      type: string
+              next:
+                nullable: true
     rbac-user-response:
       description: Example response
       content:
@@ -11998,11 +12036,10 @@ paths:
             examples:
               Invite an admin:
                 value:
-                  admin:
-                    username: test-case-3
-                    email: test3@test.com
-                    custom_id: customId
-                    rbac_token_enabled: true
+                  username: test-case-3
+                  email: test3@test.com
+                  custom_id: customId
+                  rbac_token_enabled: true
   /admins/register:
     post:
       summary: Register an Admin’s Credentials
@@ -12338,11 +12375,11 @@ paths:
             schema:
               type: object
               properties:
-                Roles:
+                roles:
                   type: string
               x-examples:
                 Example 1:
-                  Roles: read-only
+                  roles: read-only
         description: Comma-separated string of role names to create or update for an admin.
       description: Create or update roles for an admin
     delete:
@@ -12375,6 +12412,339 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-admins-name_or_id-workspaces
       description: Return workspaces associated with an admin.
+  /groups:
+    get:
+      summary: List Groups
+      tags:
+        - groups
+      responses:
+        '200':
+          $ref: '#/components/responses/groups-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-groups
+      description: Returns a list of groups.
+    post:
+      summary: Create a new group
+      operationId: post-groups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  updated_at:
+                    type: integer
+                  name:
+                    type: string
+                  comment:
+                    type: string
+                x-examples:
+                  Example 1:
+                    created_at: 1556638641
+                    id: 8f0a742f-07f3-49e0-90d7-4fc7eea7e897
+                    updated_at: 1556638641
+                    name: demo-group
+                    comment: comment
+              examples:
+                Example group response:
+                  value:
+                    created_at: 0
+                    id: string
+                    updated_at: 0
+                    name: string
+                    comment: string
+      tags:
+        - groups
+      description: Create a group to your organization.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The group's name
+                  example: my_group
+            examples:
+              Create a group:
+                value:
+                  name: demo-group
+                  comment: comment
+  '/groups/{name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The group’s name or ID.
+    get:
+      summary: Retrieve a Group
+      tags:
+        - groups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  updated_at:
+                    type: integer
+                  name:
+                    type: string
+                  comment:
+                    type: string
+                x-examples:
+                  Example 1:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    name: test-group
+                    comment: comment1
+              examples:
+                Example response body:
+                  value:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    username: test-group
+                    comment: comment
+      operationId: get-groups-name_or_id
+      description: Retrieve a group using their name or ID.
+    patch:
+      tags:
+        - groups
+      summary: Update a Group
+      operationId: patch-groups-name_or_id
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                comment:
+                  type: string
+              x-examples:
+                Example 1:
+                  name: test-group
+                  comment: comment1
+            examples:
+              Example 1:
+                value:
+                  name: string
+                  comment: string
+      description: Update information about a group
+    delete:
+      tags:
+        - groups
+      summary: Delete an Group
+      operationId: delete-groups-name_or_id
+      responses:
+        '204':
+          description: No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Delete a group by specifying the group's name or ID.
+  '/groups/{name_or_id}/roles':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The group’s username or ID
+    get:
+      summary: List an Group’s Roles
+      tags:
+        - groups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    properties:
+                      group:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          comment:
+                            type: string
+                          updated_at:
+                            type: timestamp
+                      rbac_role:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                      workspace:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                  next:
+                    nullable: true
+                x-examples:
+                  Example 1:
+                    data:
+                      - group:
+                          comment: 'comment1'
+                          created_at: 1556563122
+                          id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                          name: demo-group
+                        rbac_role:
+                          id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                          name: admin
+                        workspace:
+                          id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+              examples:
+                Example role list:
+                  value:
+                    data:
+                      - group:
+                          comment: 'comment1'
+                          created_at: 1556563122
+                          id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                          name: demo-group
+                        rbac_role:
+                          id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                          name: admin
+                        workspace:
+                          id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+      operationId: get-groups-name_or_id-roles
+      description: List all roles related to a group.
+    post:
+      summary: Create or Update a Group's Roles
+      operationId: post-groups-name_or_id-roles
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  group:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      comment:
+                        type: string
+                      updated_at:
+                        type: timestamp
+                  rbac_role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                  workspace:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                x-examples:
+                  Example 1:
+                    group:
+                      comment: 'Read access to all endpoints, across all workspaces'
+                      created_at: 1556563122
+                      id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                      name: read-only
+                      is_default: false
+                    rbac_role:
+                      id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                      name: admin
+                    workspace:
+                      id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+              examples:
+                Example role assignment:
+                  value:
+                    group:
+                      comment: 'Read access to all endpoints, across all workspaces'
+                      created_at: 1556563122
+                      id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                      name: read-only
+                      is_default: false
+                    rbac_role:
+                      id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                      name: admin
+                    workspace:
+                      id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+      tags:
+        - groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rbac_role_id:
+                  type: string
+                workspace_id: 
+                  type: string
+              x-examples:
+                Example 1:
+                  rbac_role_id: 12773c9a-7f7c-45f2-bcea-5285eb18fd2f
+                  workspace_id: d107bce7-dd86-4124-93c8-667ecc34b32e
+        description: Comma-separated string of role names to create or update for a group.
+      description: Create or update roles for a admin
+    delete:
+      tags:
+        - groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rbac_role_id:
+                  type: string
+                workspace_id: 
+                  type: string
+              x-examples:
+                Example 1:
+                  rbac_role_id: 12773c9a-7f7c-45f2-bcea-5285eb18fd2f
+                  workspace_id: d107bce7-dd86-4124-93c8-667ecc34b32e
+      summary: Delete a group’s Role
+      operationId: delete-groups-name_or_id-roles
+      responses:
+        '204':
+          description: No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Delete a group's roles.
   '/debug/cluster/control-planes-nodes/log-level/{log_level}':
     parameters:
       - schema:
@@ -14762,6 +15132,9 @@ tags:
   - description: |
       Admin routes
     name: admins
+  - description: |
+      Group routes
+    name: groups
   - description: |
       Debug Routes
     name: debug

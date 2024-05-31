@@ -11420,11 +11420,10 @@ paths:
                         examples:
                             Invite an admin:
                                 value:
-                                    admin:
-                                        username: test-case-3
-                                        email: test3@test.com
-                                        custom_id: customId
-                                        rbac_token_enabled: true
+                                    username: test-case-3
+                                    email: test3@test.com
+                                    custom_id: customId
+                                    rbac_token_enabled: true
     /admins/register:
         post:
             summary: Register an Admin’s Credentials
@@ -11744,11 +11743,11 @@ paths:
                         schema:
                             type: object
                             properties:
-                                Roles:
+                                roles:
                                     type: string
                             x-examples:
                                 Example 1:
-                                    Roles: read-only
+                                    roles: read-only
                 description: Comma-separated string of role names to create or update for an admin.
             description: Create or update roles for an admin
         delete:
