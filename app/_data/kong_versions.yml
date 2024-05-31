@@ -143,7 +143,6 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  latest: true
 - release: "3.7.x"
   ee-version: "3.7.0.0"
   ce-version: "3.7.0"
@@ -158,7 +157,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  label: unreleased
+  latest: true
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
@@ -386,7 +385,7 @@
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: 2.6.6
+  version: 2.6.7
   release: 2.6.x
   releaseDate: "2024-02-01"
   endOfLifeDate: "2025-02-01"

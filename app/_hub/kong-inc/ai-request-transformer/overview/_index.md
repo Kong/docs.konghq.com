@@ -67,4 +67,4 @@ instructions for the incoming user request body.
 
 ### All AI Gateway plugins
 
-{% include_cached /md/ai-plugins-links.md %}
+{% include_cached /md/ai-plugins-links.md release=page.release %}

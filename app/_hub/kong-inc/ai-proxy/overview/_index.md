@@ -201,5 +201,5 @@ See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/
 
 ### All AI Gateway plugins
 
-{% include_cached /md/ai-plugins-links.md %}
+{% include_cached /md/ai-plugins-links.md release=page.release %}
 

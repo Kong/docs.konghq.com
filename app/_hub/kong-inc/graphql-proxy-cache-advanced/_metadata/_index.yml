@@ -10,7 +10,9 @@ enterprise: true
 paid: true
 konnect: true
 network_config_opts: All
-notes: --
+notes: | 
+  This plugin's API doesn't work in hybrid mode, as it targets data that only exists on data planes, 
+  and data planes can't use Kong's Admin API. 
 categories:
   - traffic-control
 publisher: Kong Inc.
