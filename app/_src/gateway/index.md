@@ -137,7 +137,7 @@ configuration, and are forwarded to upstream services._
 
 **{{site.ce_product_name}}**: An open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
-with Kong's [Admin API](#kong-admin-api){% if_version gte:3.4.x %}, [Kong Manager Open Source](/gateway/{{page.release}}/kong-manager-oss/),{% endif_version %} or with [declarative configuration](#deck).
+with Kong's [Admin API](#kong-admin-api){% if_version gte:3.4.x %}, [Kong Manager Open Source](/gateway/{{page.release}}/kong-manager/),{% endif_version %} or with [declarative configuration](#deck).
 
 **{{site.ee_product_name}}** (available in
 [Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway

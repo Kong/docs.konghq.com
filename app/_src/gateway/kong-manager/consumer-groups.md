@@ -1,7 +1,6 @@
 ---
 title: Create Consumer Groups in Kong Manager
 content_type: tutorial
-badge: free
 ---
 With consumer groups, you can define any number of rate limiting tiers and
 apply them to subsets of consumers, instead of managing each consumer

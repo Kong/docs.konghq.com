@@ -128,11 +128,8 @@ items:
           - text: Apply Enterprise license
             url: /install/post-install/enterprise-license/
             generate: false
-          - text: Enable Kong Manager (Enterprise)
+          - text: Enable Kong Manager
             url: /install/post-install/kong-manager/
-            generate: false
-          - text: Enable Kong Manager (OSS)
-            url: /install/post-install/kong-manager-oss/
             generate: false
   
   - title: Kong in Production
@@ -460,13 +457,8 @@ items:
         url: /kong-manager/consumer-groups
       - text: Sending Email
         url: /kong-manager/configuring-to-send-email
-  - title: Kong Manager Open Source
-    icon: /assets/images/icons/documentation/icn-manager-oss-color.svg
-    items:
-      - text: Overview
-        url: /kong-manager-oss/
-      - text: Troubleshooting
-        url: /kong-manager-oss/troubleshoot/
+      - text: Troubleshoot
+        url: /kong-manager/troubleshoot/
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
