@@ -19,6 +19,15 @@
 /gateway/latest/ai-gateway/ai-analytics/ /gateway/:version/production/latest/ai-analytics/
 ######################################################################
 
+## AI plugins
+
+/hub/kong-inc/ai-proxy/how-to/openai/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/openai/
+/hub/kong-inc/ai-proxy/how-to/cohere/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/cohere/
+/hub/kong-inc/ai-proxy/how-to/azure/     /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/azure/
+/hub/kong-inc/ai-proxy/how-to/anthropic/ /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/
+/hub/kong-inc/ai-proxy/how-to/mistral/   /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/
+/hub/kong-inc/ai-proxy/how-to/llama2/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
+
 ## App reg v2 
 
 /konnect/dev-portal/applications/dev-reg-app-service/ /konnect/dev-portal/applications/dev-apps/
@@ -728,6 +737,7 @@
 /mesh/:version/introduction/overview-of-kong-mesh /mesh/:version/
 /mesh/:version/overview /mesh/:version/
 /mesh/:version/quickstart/kubernetes/ /mesh/:version/quickstart/kubernetes-demo/
+/mesh/:version/production/secure-deployment/api-access-control/ /mesh/:version/features/rbac/
 
 # Make GUI docs link work
 /mesh/konnect/* /mesh/latest/:splat

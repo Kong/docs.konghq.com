@@ -26,7 +26,7 @@ scoped to one worker.  For whole-system capacity planning, the number
 of workers need to be considered when setting queue parameters.
 {% endif_version %}
 
-{% if_plugin_version gte:3.5.x %}
+{% if_version gte:3.5.x %}
 ## Trace IDs in serialized logs
 
 When the OpenTelemetry plugin is configured along with a plugin that uses the 
@@ -44,19 +44,19 @@ for each different header format, as in the following example:
   "datadog": "11803532876627986230"
 },
 ```
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## Usage
 
-{% if_plugin_version gte:3.2.x %}
+{% if_version gte:3.2.x %}
 {:.note}
 > **Note**: The OpenTelemetry plugin only works when {{site.base_gateway}}'s `tracing_instrumentations` configuration is enabled.
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version lte:3.1.x %}
+{% if_version lte:3.1.x %}
 {:.note}
 > **Note**: The OpenTelemetry plugin only works when {{site.base_gateway}}'s `opentelemetry_tracing` configuration is enabled.
-{% endif_plugin_version %}
+{% endif_version %}
 
 The OpenTelemetry plugin is fully compatible with the OpenTelemetry specification and can be used with any OpenTelemetry compatible backend.
 
@@ -69,18 +69,18 @@ There are two ways to set up an OpenTelemetry backend:
 ### Set up {{site.base_gateway}}
 
 Enable the OpenTelemetry tracing capability in {{site.base_gateway}}'s configuration:
-{% if_plugin_version lte:3.1.x %}
+{% if_version lte:3.1.x %}
 - `opentelemetry_tracing = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#tracing_instrumentations).
 - `opentelemetry_tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
   Tracer samples a fixed percentage of all spans following the sampling rate.
   Set the sampling rate to a lower value to reduce the impact of the instrumentation on {{site.base_gateway}}'s proxy performance in production.
-{% endif_plugin_version %}
-{% if_plugin_version gte:3.2.x %}
+{% endif_version %}
+{% if_version gte:3.2.x %}
 - `tracing_instrumentations = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#tracing_instrumentations).
 - `tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
   Tracer samples a fixed percentage of all spans following the sampling rate.
   Set the sampling rate to a lower value to reduce the impact of the instrumentation on {{site.base_gateway}}'s proxy performance in production.
-{% endif_plugin_version %}
+{% endif_version %}
 ### Set up an OpenTelemetry compatible backend
 
 This section is optional if you are using a OpenTelemetry compatible APM vendor.
@@ -173,16 +173,16 @@ This section describes how the OpenTelemetry plugin works.
 
 ### Built-in tracing instrumentations
 
-{% if_plugin_version gte:3.2.x %}
+{% if_version gte:3.2.x %}
 {{site.base_gateway}} has a series of built-in tracing instrumentations
 which are configured by the `tracing_instrumentations` configuration.
 {{site.base_gateway}} creates a top-level span for each request by default when `tracing_instrumentations` is enabled.
-{% endif_plugin_version %}
-{% if_plugin_version lte:3.1.x %}
+{% endif_version %}
+{% if_version lte:3.1.x %}
 {{site.base_gateway}} has a series of built-in tracing instrumentations
 which are configured by the `opentelemetry_tracing` configuration.
 {{site.base_gateway}} creates a top-level span for each request by default when `opentelemetry_tracing` is enabled.
-{% endif_plugin_version %}
+{% endif_version %}
 
 The top level span has the following attributes:
 - `http.method`: HTTP method
@@ -202,14 +202,14 @@ The OpenTelemetry plugin supports propagation of the following header formats:
 - `jaeger`: [Jaeger headers](https://www.jaegertracing.io/docs/client-libraries/#propagation-format)
 - `ot`: [OpenTracing headers](https://github.com/opentracing/specification/blob/master/rfc/trace_identifiers.md)
 - `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/#trace-context-propagation-for-distributed-tracing)
-{% if_plugin_version gte:3.4.x %}
+{% if_version gte:3.4.x %}
 - `aws`: [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader)
-{% endif_plugin_version %}
-{% if_plugin_version gte:3.5.x %}
+{% endif_version %}
+{% if_version gte:3.5.x %}
 - `gcp`: [GCP X-Cloud-Trace-Context header](https://cloud.google.com/trace/docs/setup#force-trace)
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version gte:3.7.x %}
+{% if_version gte:3.7.x %}
 {% include /md/plugins-hub/tracing-headers-propagation.md %}
 
 Refer to the plugin's [configuration reference](/hub/kong-inc/opentelemetry/configuration/#config-propagation) for a complete overview of the available options and values.
@@ -218,11 +218,11 @@ Refer to the plugin's [configuration reference](/hub/kong-inc/opentelemetry/conf
 {:.note}
 > **Note:** If any of the `propagation.*` configuration options (`extract`, `clear`, or `inject`) are configured, the `propagation` configuration takes precedence over the deprecated `header_type` parameter. 
 If none of the `propagation.*` configuration options are set, the `header_type` parameter is still used to determine the propagation behavior.
-{% endif_plugin_version %}
-{% if_plugin_version lte:3.6.x %}
+{% endif_version %}
+{% if_version lte:3.6.x %}
 The plugin detects the propagation format from the headers and will use the appropriate format to propagate the span context.
 If no appropriate format is found, the plugin will fallback to the default format, which is `w3c`.
-{% endif_plugin_version %}
+{% endif_version %}
 
 
 ### OTLP exporter
@@ -286,20 +286,20 @@ Span #4 name=access phase: cors duration=1500.824576ms
 Span #5 name=cors: heavy works duration=1500.709632ms attributes={"username":"kongers"}
 Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.21.11.162","net.peer.port":80}
 ```
-{% if_plugin_version gte:3.2.x %}
+{% if_version gte:3.2.x %}
 ## Known issues
 
 - Only supports the HTTP protocols (http/https) of {{site.base_gateway}}.
 - May impact the performance of {{site.base_gateway}}.
   It's recommended to set the sampling rate (`tracing_sampling_rate`)
   via Kong configuration file when using the OpenTelemetry plugin.
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version lte:3.1.x %}
+{% if_version lte:3.1.x %}
 ## Known issues
 
 - Only supports the HTTP protocols (http/https) of {{site.base_gateway}}.
 - May impact the performance of {{site.base_gateway}}.
   It's recommended to set the sampling rate (`opentelemetry_tracing_sampling_rate`)
   via Kong configuration file when using the OpenTelemetry plugin.
-{% endif_plugin_version %}
+{% endif_version %}

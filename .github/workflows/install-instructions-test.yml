@@ -4,7 +4,7 @@ on:
     inputs:
       base_url:
         type: string
-        description: URL to test against. Defaults to http://localhost:8888
+        description: URL to test against. Defaults to https://docs.konghq.com. Use the netlify preview URL when testing against a branch.
 
 jobs:
   install-instructions:

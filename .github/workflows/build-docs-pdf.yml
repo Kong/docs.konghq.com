@@ -67,7 +67,7 @@ jobs:
         env:
           KONG_DOC_VERSIONS: "${{ github.event.inputs.version }}"
         run: |
-          npm install -g wait-on netlify-cli
+          npm install -g wait-on
           netlify dev & wait-on http://localhost:8888
           cd pdf-generation
           npm ci

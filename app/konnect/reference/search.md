@@ -44,8 +44,7 @@ The following {{site.konnect_short_name}} entity types are supported:
 - `certificate`  
 - `consumer`  
 - `consumer_group`  
-- `control_plane`  
-- `control_plane`  
+- `control_plane`
 - `data_plane`  
 - `developer`  
 - `developer_team`  

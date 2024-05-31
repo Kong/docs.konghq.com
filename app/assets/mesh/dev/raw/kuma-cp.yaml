@@ -366,7 +366,7 @@ runtime:
       # An example of this is ArgoCD's BlueGreen deployment and "rollouts-pod-template-hash" selector.
       ignoredServiceSelectorLabels: [] # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_IGNORED_SERVICE_SELECTOR_LABELS
       # nodeLabelsToCopy defines a list of node labels that should be copied to the Pod.
-      nodeLabelsToCopy: ["topology.kubernetes.io/zone", "topology.kubernetes.io/region"] # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_NODE_LABELS_TO_COPY
+      nodeLabelsToCopy: ["topology.kubernetes.io/zone", "topology.kubernetes.io/region", "kubernetes.io/hostname"] # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_NODE_LABELS_TO_COPY
     marshalingCacheExpirationTime: 5m # ENV: KUMA_RUNTIME_KUBERNETES_MARSHALING_CACHE_EXPIRATION_TIME
     # Kubernetes's resources reconciliation concurrency configuration
     controllersConcurrency:
@@ -793,7 +793,16 @@ policies:
     - meshtrafficpermissions
 coreResources:
   enabled: # ENV: KUMA_CORE_RESOURCES_ENABLED
+    - meshexternalservices
     - meshservices
+# IP address management configuration
+ipam:
+  # MeshService address management
+  meshService:
+    # CIDR for MeshService IPs
+    cidr: 241.0.0.0/8 # ENV: IPAM_MESH_SERVICE_CIDR
+    # Interval on which Kuma will allocate new IPs for MeshServices
+    allocationInterval: 5s # ENV: IPAM_MESH_SERVICE_ALLOCATION_INTERVAL
 kmesh:
   # License of Kong Mesh
   license:

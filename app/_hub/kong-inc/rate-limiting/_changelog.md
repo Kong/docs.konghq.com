@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.7.x
+* Fixed migration of Redis configuration.
+
 ### {{site.base_gateway}} 3.6.x
 * This plugin can now be scoped to consumer groups.
 * Standardized Redis configuration across plugins. The Redis configuration now follows a common schema that is shared across other plugins.

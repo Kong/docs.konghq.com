@@ -60,7 +60,7 @@ You will deploy the self-hosted example Dev Portal using Netlify in this example
 1. Select **prod** from the **Branch to deploy** drop-down menu.
 1. Click **Show advanced**. 
 1. In the **Environment variables** section, click **New variable**.
-1. Enter `VITE_PORTAL_API_URL` in the **Key** field and your custom portal domain API (`api.mycompany.com`) in the **Value** field.
+1. Enter `VITE_PORTAL_API_URL` in the **Key** field and your custom portal domain API (`https://api.mycompany.com`) in the **Value** field.
 1. Click **Deploy site**. 
 
 ### Add your domain to Netlify

@@ -82,6 +82,8 @@ expected to be unavailable to the client. When using `window_type=sliding` and `
 may increase due to the rate calculation for the sliding window.
 
 {:.important}
+
+> **Important**:
 > * You can optionally hide the cost, limit, and remaining headers with the `hide_client_headers` option.
 > * The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers) and may change in the future to respect specification updates.
 
@@ -108,12 +110,6 @@ You can decide to use a custom function to count the tokens for a requests. When
 * [Basic configuration example](/hub/kong-inc/ai-rate-limiting-advanced/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/ai-rate-limiting-advanced/how-to/)
 
-### Other AI plugins
+### All AI Gateway plugins
 
-You may also be interested in the following AI plugins:
-* [AI Proxy](/hub/kong-inc/ai-proxy/)
-* [AI Request Transformer](/hub/kong-inc/ai-request-transformer/)
-* [AI Response Transformer](/hub/kong-inc/ai-response-transformer/)
-* [AI Prompt Template](/hub/kong-inc/ai-prompt-template/)
-* [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)
-* [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/)
+{% include_cached /md/ai-plugins-links.md release=page.release %}

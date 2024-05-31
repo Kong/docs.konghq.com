@@ -7,7 +7,9 @@ minimum_version: 3.6.x
 ## Overview
 
 One of the main vulnerabilities of OAuth are bearer tokens. With OAuth, presenting a valid bearer token is enough proof to access a resource.
-This can create problems since the client presenting the token isn't validated as the legitimate user that the token was issued to. 
+This can create problems since the client presenting the token isn't validated as the legitimate user that the token was issued to.
+
+For an alternative solution, please refer to: [Demonstrating Proof-of-Possession](/hub/kong-inc/openid-connect/how-to/demonstrating-proof-of-possession).
 
 Certificate-bound access tokens can solve this problem by binding tokens to clients. 
 This ensures the legitimacy of the token because the it requires proof that the sender is authorized to use a particular token to access protected resources. 
@@ -46,11 +48,12 @@ Follow these prerequisites to set up a demo Keycloak app and a Kong service and 
 1. Configure {{site.base_gateway}} to use mTLS client certificate authentication. You can do this by configuring the [TLS Handshake Modifier plugin](/hub/kong-inc/tls-handshake-modifier/) or the [Mutual TLS Authentication plugin](/hub/kong-inc/mtls-auth/):
 
     ```bash
-    http -f post :8001/plugins    \
-    name=tls-handshake-modifier \
-    service.name=openid-connect
+    curl -X POST http://localhost:8001/plugins \
+      --data "name=tls-handshake-modifier" \
+      --data "service.name=openid-connect"
     ```
-    If this is configured correctly, it returns a `200` response and something like the following:
+    
+    If this is configured correctly, it returns a `200` response with the following data:
     ```json
     {
         "id": "a7f676e6-580d-4841-80de-de46e1f79eb2",
@@ -64,16 +67,16 @@ Follow these prerequisites to set up a demo Keycloak app and a Kong service and 
 1. To enable certificate-bound access tokens, use the [`proof_of_possession_mtls`](/hub/kong-inc/openid-connect/configuration/#config-proof_of_possession_mtls) configuration option:
 
     ```bash
-    http -f put :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-    name=openid-connect                                          \
-    service.name=openid-connect                                  \
-    config.issuer=https://keycloak.test:8440/auth/realms/master  \
-    config.client_id=cert-bound                                  \
-    config.client_secret=cf4c655a-0622-4ce6-a0de-d3353ef0b714    \
-    config.auth_methods=bearer                                   \
-    config.proof_of_possession_mtls=strict
+    curl -X PUT http://localhost:8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
+      --data "name=openid-connect" \
+      --data "service.name=openid-connect" \
+      --data "config.issuer=https://keycloak.test:8440/auth/realms/master" \
+      --data "config.client_id=cert-bound" \
+      --data "config.client_secret=cf4c655a-0622-4ce6-a0de-d3353ef0b714" \
+      --data "config.auth_methods=bearer" \
+      --data "config.proof_of_possession_mtls=strict" 
     ```
-    If this is configured correctly, it returns a `200` response and something like the following:
+    If this is configured correctly, it returns a `200` response with the following data:
     ```json
     {
         "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
@@ -93,13 +96,14 @@ Follow these prerequisites to set up a demo Keycloak app and a Kong service and 
 
 1. Obtain the token from the IdP, making sure to modify the following command for your environment:
     ```bash
-    http --cert client-cert.pem --cert-key client-key.pem                                 \
-    -f post https://keycloak.test:8440/auth/realms/master/protocol/openid-connect/token \
-    client_id=cert-bound                                                                \
-    client_secret=cf4c655a-0622-4ce6-a0de-d3353ef0b714                                  \
-    grant_type=client_credentials
+     curl -f -X POST https://keycloak.test:8440/auth/realms/master/protocol/openid-connect/token \
+       --cert client-cert.pem \
+       --cert-key client-key.pem \
+       --data "client_id=cert-bound" \
+       --data "client_secret=cf4c655a-0622-4ce6-a0de-d3353ef0b714" \
+       --data "grant_type=client_credentials" \
     ```
-    If this is configured correctly, it returns a `200` response and something like the following:
+    If this is configured correctly, it returns a `200` response with the following data:
     ```json
     {
         "access_token": "eyJhbG...",
@@ -119,9 +123,10 @@ Follow these prerequisites to set up a demo Keycloak app and a Kong service and 
 
 1. Access the service using the same client certificate and key used to obtain the token:
     ```bash
-    http --cert client-cert.pem --cert-key client-key.pem \
-    -f post https://kong.test:8443                      \
-    Authorization:"Bearer eyJhbGc..."
+    curl -f -X POST https://kong.test:8443 \
+      -H "Authorization: Bearer eyJhbGc..." \
+      --cert client-cert.pem \
+      --cert-key client-key.pem \
     ```
     If this is configured correctly, it returns a `200` response:
     ```http
