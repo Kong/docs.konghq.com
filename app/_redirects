@@ -69,9 +69,9 @@
 
 # Konnect Dev Portal rework
 
-/konnect/dev-portal/dev-reg/
-/konnect/dev-portal/applications/dev-apps/
-/konnect/dev-portal/applications/dev-gen-creds/
+/konnect/dev-portal/dev-reg/    /konnect/dev-portal/register-and-create-app/
+/konnect/dev-portal/applications/dev-apps/    /konnect/dev-portal/register-and-create-app/
+/konnect/dev-portal/applications/dev-gen-creds/    /konnect/dev-portal/register-and-create-app/
 
 # API markdown doc deprecation
 
