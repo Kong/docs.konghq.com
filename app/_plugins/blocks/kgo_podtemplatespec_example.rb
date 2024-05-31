@@ -43,7 +43,9 @@ module Jekyll
         The `GatewayConfiguration` resource is a Kong-specific API which allows you to set both `controlPlaneOptions` and `dataPlaneOptions`.
 
         You can customize both the container image and version.
+
         1.  Define the image in the `GatewayConfiguration`.
+
             ```yaml
             kind: GatewayConfiguration
             apiVersion: gateway-operator.konghq.com/#{gateway_config_api_version}
@@ -71,7 +73,8 @@ module Jekyll
                 namespace: default
             ```
 
-        1.  Use the `GatewayClass` in your `Gateway`
+        1.  Use the `GatewayClass` in your `Gateway`.
+
             ```yaml
             kind: Gateway
             apiVersion: gateway.networking.k8s.io/v1
@@ -85,6 +88,7 @@ module Jekyll
                 protocol: HTTP
                 port: 80
             ```
+
       TEXT
     end
 
