@@ -128,7 +128,7 @@ items:
           - text: Apply Enterprise license
             url: /install/post-install/enterprise-license/
             generate: false
-          - text: Enable Kong Manager (Enterprise)
+          - text: Enable Kong Manager
             url: /install/post-install/kong-manager/
             generate: false
   

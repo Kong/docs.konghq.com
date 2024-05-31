@@ -1,6 +1,5 @@
 ---
 title: Load balancing in Kong Manager
-badge: free
 ---
 
 This tutorial walks you through setting up load balancing across targets in Kong Manager.

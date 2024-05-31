@@ -1,7 +1,6 @@
 ---
 title: Troubleshooting Kong Manager
 content_type: reference
-badge: oss
 ---
 
 ## Kong Manager URL doesn't resolve

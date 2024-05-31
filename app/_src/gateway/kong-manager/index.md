@@ -1,7 +1,6 @@
 ---
 title: Kong Manager
 toc: false
-badge: free
 ---
 
 Kong Manager is the graphical user interface (GUI) for {{site.base_gateway}}.
