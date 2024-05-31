@@ -8,7 +8,7 @@ It comes in two options, depending on the edition of {{site.base_gateway}} that 
 
 Here's a comparison of some of the capabilities you get access to between the Kong Manager Enterprise (or Free mode) edition, and the OSS edition:
 
-| Capability | Kong Manager Enteprise | Kong Manager OSS |
+| Capability | Kong Manager Enterprise | Kong Manager OSS |
 |--|---------------------------------------|------------------|
 | Manage all workspaces in one place | ✅ | ❌ |
 | Create and manage routes and services | ✅ | ✅ |
