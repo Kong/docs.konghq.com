@@ -25,4 +25,4 @@ LTS versions of {{site.kgo_product_name}} are supported for 3 years after releas
 
 ## Version compatibility with Kubernetes
 
-Version compatibility matrix with Kubernetes versions can be found in our [reference](/gateway-operator/{{ page.release }}/reference/version-compatibility/).
+You can see the version compatibility matrix with Kubernetes versions in the [compatibility reference](/gateway-operator/{{ page.release }}/reference/version-compatibility/).
