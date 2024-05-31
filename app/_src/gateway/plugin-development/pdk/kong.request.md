@@ -362,7 +362,7 @@ kong.request.get_path() -- "/t/Abc 123ø%2F/test/"
 Returns the path component of the request's URL.  It is not normalized in
  any way and does not include the query string.
 
- **NOTE:** Using the raw path to perform string comparision during request
+ **NOTE:** Using the raw path to perform string comparison during request
  handling (such as in routing, ACL/authorization checks, setting rate-limit
  keys, etc) is widely regarded as insecure, as it can leave plugin code
  vulnerable to path traversal attacks. Prefer `kong.request.get_path()` for
@@ -647,10 +647,8 @@ Returns the plain request body.
 * `string`:  The plain request body.
 {% endif_version %}
 {% if_version gte:3.5.x %}
-
 1.  `string|nil`:  The plain request body or nil if it does not fit into
  the NGINX temporary buffer.
-
 1.  `nil|string`:  An error message.
 {% endif_version %}
 
@@ -766,7 +764,7 @@ Returns the URI captures matched by the router.
 
 **Returns**
 
-* `table`:  tables containing unamed and named captures.
+* `table`:  tables containing unnamed and named captures.
 
 
 **Usage**

@@ -8,7 +8,11 @@ The GraphQL Proxy Cache Advanced plugin exposes several endpoints for cache mana
 They are available through the Kong Admin API.
 
 To configure and enable the plugin itself, [use the `/plugins` API endpoint](/hub/kong-inc/graphql-proxy-cache-advanced/how-to/basic-example/).
-The `/graphql-proxy-cache-advanced` endpoints only appear once the plugin has been enabled. 
+The `/graphql-proxy-cache-advanced` endpoints only appear once the plugin has been enabled.
+
+{:.important}
+> This plugin's API endpoints are not available in hybrid mode. 
+The data that this API targets is located on the data planes, and data planes can't use the Kong Admin API.
 
 ### Retrieve a cache entity
 

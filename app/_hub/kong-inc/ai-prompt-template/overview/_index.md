@@ -37,11 +37,6 @@ When activated the template restricts an LLM usage to just those pre-defined tem
 * [Basic configuration example](/hub/kong-inc/ai-prompt-template/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/ai-prompt-template/how-to/)
 
-### Other AI plugins
+### All AI Gateway plugins
 
-You may also be interested in the following AI plugins:
-* [AI Proxy](/hub/kong-inc/ai-proxy/)
-* [AI Request Transformer](/hub/kong-inc/ai-request-transformer/)
-* [AI Response Transformer](/hub/kong-inc/ai-request-transformer/)
-* [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)
-* [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/)
+{% include_cached /md/ai-plugins-links.md release=page.release %}

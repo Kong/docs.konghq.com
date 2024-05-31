@@ -127,12 +127,10 @@ Read the [LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more
 ## More resources
 
 * [**decK FAQs**](/deck/{{page.release}}/faqs)
-
-{% if_version gte:1.35.x inline:true %}
+{% if_version gte:1.35.x -%}
 * **Use case:** [Streamlining KongAir APIs](/deck/{{page.release}}/use-case/), based on the 
 [KongAir demo app](https://github.com/Kong/KongAir)
-{% endif_version %}
-
+{% endif_version -%}
 * **References:** The command line `--help` flag on the main command or a subcommand (like `diff`,
 `sync`, `reset`, and so on) shows the help text along with supported flags for those
 commands. You can also see the references for all [commands available with decK](/deck/{{page.release}}/reference/deck)

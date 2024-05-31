@@ -60,7 +60,7 @@ You will deploy the self-hosted example Dev Portal using Netlify in this example
 1. Select **prod** from the **Branch to deploy** drop-down menu.
 1. Click **Show advanced**. 
 1. In the **Environment variables** section, click **New variable**.
-1. Enter `VITE_PORTAL_API_URL` in the **Key** field and your custom portal domain API (`api.mycompany.com`) in the **Value** field.
+1. Enter `VITE_PORTAL_API_URL` in the **Key** field and your custom portal domain API (`https://api.mycompany.com`) in the **Value** field.
 1. Click **Deploy site**. 
 
 ### Add your domain to Netlify
@@ -76,7 +76,7 @@ Once your name servers are propagated (this may take a few minutes), your Dev Po
 
 If you want to further customize the example self-hosted Dev Portal, you can edit the settings in your forked copy of the open source {{site.konnect_short_name}} Dev Portal repository. For more information, see the [{{site.konnect_short_name}} Portal repository](https://github.com/Kong/konnect-portal).  
 
-You can also customize your Dev Portal using the [Portal API](/konnect/api/portal/v2/) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js). 
+You can also customize your Dev Portal using the [Portal API](/konnect/api/portal/latest/) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js). 
 
 ## More information
 

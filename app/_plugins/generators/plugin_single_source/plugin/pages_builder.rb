@@ -26,7 +26,8 @@ module PluginSingleSource
           @release.configuration_examples,
           @release.how_tos,
           @release.changelog,
-          @release.references
+          @release.references,
+          @release.troubleshooting
         ].compact
       end
 

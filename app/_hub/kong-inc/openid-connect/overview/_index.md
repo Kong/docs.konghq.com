@@ -103,7 +103,7 @@ To set up RBAC in Kong Manager with OIDC, see:
 * [Enable OIDC for Kong Manager](/gateway/latest/kong-manager/auth/oidc/configure/)
 * [OIDC Authenticated Group Mapping](/gateway/latest/kong-manager/auth/oidc/mapping/)
 
-{% if_plugin_version lte:3.4.x %}
+{% if_version lte:3.4.x %}
 ### OIDC authentication in Dev Portal
 
 The OpenID Connect plugin allows the Kong Dev Portal to hook into existing authentication 
@@ -137,7 +137,7 @@ Application registration in self-managed {{site.base_gateway}}:
 * [Third-party OAuth2 Support for Application Registration](/gateway/latest/kong-enterprise/dev-portal/authentication/3rd-party-oauth/)
 * [External Portal Application Authentication with Azure AD and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/azure-oidc-config/)
 * [Set Up External Portal Application Authentication with Okta and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/okta-config/)
-{% endif_plugin_version %}
+{% endif_version %}
 
 ### More information
 

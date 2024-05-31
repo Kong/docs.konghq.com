@@ -58,7 +58,7 @@ module Jekyll
         context.stack do
           unless context[SENTINEL]
             context[SENTINEL] = true
-            super(context)
+            super
           end
         end
       end

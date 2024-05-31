@@ -3,7 +3,7 @@ title: Network Resiliency and Availability
 toc: false
 ---
 
-{{site.konnect_saas}} deployments run in hybrid mode, which means that there is
+{{site.konnect_saas}} deployments run either in either [managed](/konnect/gateway-manager/dedicated-cloud-gateways) or hybrid mode, which means that there is
 a separate control plane attached to a data plane consisting of one or more 
 data plane nodes. Control planes and data plane nodes must communicate with 
 each other to receive and send configurations. If communication is interrupted 
@@ -36,6 +36,11 @@ plane. The node sends a heartbeat to the control plane every 30 seconds to
 keep the connection alive. If it receives no answer, it tries to reconnect to the
 control plane after a 5-10 second delay.
 
+
+### How does network peering work with Dedicated Cloud Gateway nodes?
+
+Each Cloud Gateway node is part of a dedicated Cloud Gateway network that corresponds to a specific cloud region, such as `us-east-1` or `us-west-2`. For enhanced security and seamless connectivity between your cloud network and the {{site.konnect_short_name}} environment, you can peer your Cloud Gateway network with your own network in AWS. This integration is facilitated by using AWS's [TransitGateway](https://aws.amazon.com/transit-gateway/) feature, enabling secure network connections across both platforms.
+
 ### What types of data travel between the {{site.konnect_saas}} control plane and the data plane nodes, and how?
 
 There are two types of data that travel between the planes: configuration
@@ -52,10 +57,19 @@ and telemetry. Both use the secure TCP port `443`.
 Telemetry data does not include any customer information or any data processed
 by the data plane. All telemetry data is encrypted using mTLS.
 
-### How frequently does data travel between the Konnect control plane and data plane nodes?
+### How frequently does configuration data travel between the Konnect control plane and data plane nodes?
 
 When you make a configuration change on the control plane, that change is
 immediately pushed to any connected data plane nodes.
+
+### How frequently do data planes send telemetry data to the control plane?
+
+The telemetry message interval depends on the major release version of the data plane:
+* 2.x data planes send messages every 10 seconds by default
+* 3.x data planes send messages every 1 second by default
+
+You can configure this interval using the 
+[`analytics_flush_interval`](/gateway/latest/reference/configuration/#analytics_flush_interval) setting.
 
 ## Connection behavior and incident recovery
 
@@ -79,6 +93,15 @@ Whenever a connection is re-established with the control plane, it pushes the l
 configuration to the data plane node. It doesn't queue up or try to apply older changes.
 
 If your control plane is a {{site.mesh_product_name}} global control plane, see [Failure modes](/mesh/latest/production/deployment/multi-zone/#failure-modes) in the {{site.mesh_product_name}} documentation for more details on what happens when there are {{site.mesh_product_name}} connectivity issues.
+
+### If the data plane loses communication with the control plane, what happens to telemetry data?
+
+If a data plane loses contact with the control plane, the data plane accumulates request data into a buffer.
+Once the buffer fills up, the data plane starts dropping older data. 
+The faster your requests come in, the faster the buffer fills up.
+
+By default, the buffer limit is 100000 requests. You can configure a custom buffer amount using the 
+[`analytics_buffer_size_limit`](/gateway/latest/reference/configuration/#analytics_buffer_size_limit) setting.
 
 ### How long can data plane nodes remain disconnected from the control plane?
 

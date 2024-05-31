@@ -7,7 +7,7 @@ title: Custom fields and headers
 
 The log server that receives these messages might require extra headers, such as for authorization purposes.
 
-{% if_plugin_version gte:3.0.x %}
+{% if_version gte:3.0.x %}
 ```yaml
 ...
   - name: http-log
@@ -16,8 +16,8 @@ The log server that receives these messages might require extra headers, such as
         Authorization: "Bearer <token>"
 ...
 ```
-{% endif_plugin_version %}
-{% if_plugin_version lte:2.8.x %}
+{% endif_version %}
+{% if_version lte:2.8.x %}
 ```yaml
 ...
   - name: http-log
@@ -27,7 +27,7 @@ The log server that receives these messages might require extra headers, such as
           - "Bearer <token>"
 ...
 ```
-{% endif_plugin_version %}
+{% endif_version %}
 
 
 ## Custom fields by Lua

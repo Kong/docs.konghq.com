@@ -92,6 +92,14 @@ module PluginSingleSource
         )
       end
 
+      def troubleshooting
+        @troubleshooting ||= Pages::Troubleshooting.make_for(
+          release: self,
+          file: nil,
+          source_path: pages_source_path
+        )
+      end
+
       def generate_pages
         PagesBuilder.new(self).run
       end

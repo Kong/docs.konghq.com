@@ -1,4 +1,8 @@
 ## Changelog
+**{{site.base_gateway}} 3.7.x**
+* Added the [`default_consumer`](/hub/kong-inc/mtls-auth/configuration/#config-default_consumer) option, 
+  which lets you use a default consumer when the client certificate is valid 
+  but doesn't match any existing consumers.
 
 **{{site.base_gateway}} 3.5.x**
 * Fixed an issue to prevent caching network failures during revocation checks.

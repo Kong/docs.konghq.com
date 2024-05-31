@@ -6,7 +6,7 @@ module Jekyll
   module Drops
     module Plugins
       class SchemaField < Liquid::Drop
-        attr_reader :name
+        attr_reader :name, :schema
 
         def initialize(name:, parent:, schema:) # rubocop:disable Lint/MissingSuper
           @name = name
@@ -68,6 +68,14 @@ module Jekyll
           @schema['one_of']
         end
 
+        def deprecated?
+          !!@schema['deprecation']
+        end
+
+        def deprecation
+          @deprecation ||= @schema['deprecation']
+        end
+
         def elements
           return {} unless @schema.key?('elements')
 
@@ -76,18 +84,20 @@ module Jekyll
               SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
             end
             @schema['elements']
-          end
+          end.compact
         end
 
         def fields
           @fields ||= @schema.fetch('fields', []).map do |f|
             SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
-          end
+          end.compact
         end
       end
 
       class Schema < Liquid::Drop
         extend Forwardable
+
+        DEPRECATION_MESSAGE = 'This field has been deprecated and will be removed in a future version.'
 
         def_delegators :@schema, :enable_on_consumer?, :enable_on_route?,
                        :enable_on_service?, :enable_on_consumer_group?
@@ -118,16 +128,24 @@ module Jekyll
           [SchemaField.new(name: 'config', parent: '', schema: @schema.config)]
         end
 
-        def deprecated_fields
+        def shorthand_fields
           return [] if @schema.config.empty?
 
-          @deprecated_fields ||= @schema.config.fetch('shorthand_fields', []).map do |f|
-            SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: f.values.first)
+          @shorthand_fields ||= @schema.config.fetch('shorthand_fields', []).map do |f|
+            SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: schema_for(f.values.first))
           end
         end
 
         def defined?
           !@schema.config.empty?
+        end
+
+        private
+
+        def schema_for(values)
+          return values if values.key?('deprecation')
+
+          values.merge('deprecation' => { 'message' => DEPRECATION_MESSAGE })
         end
       end
     end

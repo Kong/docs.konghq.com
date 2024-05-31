@@ -4,7 +4,7 @@ release: 2.7.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
-  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_dev.yml
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.7.x.yml
   patches:
     - path: [ Introduction ]
       action: modify
@@ -51,9 +51,9 @@ inherit:
       index: 0
       text: Kong Mesh license
       url: /production/cp-deployment/license
-    - path: [ Kong Mesh in Production, Secure your deployment, Kuma API access control ]
-      action: modify
-      text: Kong Mesh API access control
+    - path: [ Kong Mesh in Production, Secure your deployment ]
+      action: delete
+      entries: [ Kuma API access control ]
     - path: [ Kong Mesh in Production, Secure your deployment ]
       action: insert
       index: -1

@@ -1,6 +1,5 @@
 {% include_relative_once _data/tables/support/gateway/packages.yml %}
 {% include_relative_once _data/tables/support/gateway/third-party.yml %}
-{% include_relative_once _data/tables/support/gateway/browsers.yml %}
 
 lts: false
 distributions:
@@ -27,6 +26,7 @@ distributions:
   - <<: *rhel8
     docker: false
     fips: true
+    eol: May 2024
   - <<: *rhel9
     docker: true
     arm: true
@@ -101,9 +101,11 @@ third-party:
   s3_api:
     - *s3
     - *minio
-
-browsers:
-  - *edge
-  - *chrome
-  - *firefox
-  - *safari
+  
+  ai_providers:
+    - *openai
+    - *cohere
+    - *azure_ai
+    - *anthropic
+    - *mistral
+    - *llama2

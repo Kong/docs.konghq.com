@@ -13,7 +13,12 @@ before proceeding through the rest of this guide.
 
 Edit the [kong.conf](/gateway/latest/production/kong-conf/) to contain the line `router_flavor = expressions` and restart {{site.base_gateway}}.
 {:.note}
+{% if_version gte:3.7.x %}
+> **Note:** After enabling expressions, traditional match fields on the route object (such as `paths` and `methods`) remain configurable. You may specify Expressions in the new `expression` field. However, these cannot be configured simultaneously with traditional match fields. Additionally, a new `priority` field, used in conjunction with the `expression` field, allows you to specify the order of evaluation for Expression routes.
+{% endif_version %}
+{% if_version lte:3.6.x %}
 > **Note:** Once you enable expressions, the match fields that traditionally exist on the route object (such as `paths` and `methods`) will no longer be configurable and you must specify Expressions in the `expression` field. A new field `priority` will be made available that allows specifying the order of evaluation of configured Expression routes.
+{% endif_version %}
 
 ## Create routes with expressions
 
@@ -60,10 +65,8 @@ For a list of all available language features, see the [expressions language ref
 
 The following table describes the available matching fields, as well as their associated type when using an expressions based router.
 
-<!-- TO DO: Remove the "unless" tags when we have support for eq/neq OR if all of these changes get backported into 3.5 as well-->
 <!-- There are two separate tables because Liquid's whitespace handling breaks tables when using if tags -->
 
-{% unless page.release == '3.5.x' %}
 {% if_version gte:3.4.x %}
 | Field                                                | Type       | Available in HTTP Subsystem | Available in Stream Subsystem | Description |
 |------------------------------------------------------|------------|-----------------------------|-------------------------------|-------------|
@@ -82,10 +85,8 @@ The following table describes the available matching fields, as well as their as
 | `net.dst.ip`                          | `IpAddr`   | ✅  | ✅  | Listening IP address where {{site.base_gateway}} accepts the incoming connection.  |
 | `net.dst.port`                        | `Int`      | ✅  | ✅  | Listening port number where {{site.base_gateway}} accepts the incoming connection. |
 {% endif_version %}
-{% endunless %}
 
-{% unless page.release == '3.4.x' %}
-{% if_version lte:3.5.x %}
+{% if_version lte:3.4.x %}
 | Field                                                | Type       | Available in HTTP Subsystem | Available in Stream Subsystem | Description |
 |------------------------------------------------------|------------|-----------------------------|-------------------------------|-------------|
 | `net.protocol`                                       | `String`   | ✅  | ✅  | Protocol of the route. Roughly equivalent to the `protocols` field on the `Route` entity.  **Note:** Configured `protocols` on the `Route` entity are always added to the top level of the generated route but additional constraints can be provided by using the `net.prococol` field directly inside the expression. |
@@ -99,10 +100,7 @@ The following table describes the available matching fields, as well as their as
 | `net.src.port`                        | `Int`      | ❌  | ✅  | The port number used by the client to connect.                                     |
 | `net.dst.ip`                          | `IpAddr`   | ❌  | ✅  | Listening IP address where {{site.base_gateway}} accepts the incoming connection.  |
 | `net.dst.port`                        | `Int`      | ❌  | ✅  | Listening port number where {{site.base_gateway}} accepts the incoming connection. |
-
 {% endif_version %}
-{% endunless %}
-
 
 ## More information
 

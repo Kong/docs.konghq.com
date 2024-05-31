@@ -12,9 +12,9 @@ You can use this information on your side to implement additional logic.
 You can use the `X-Consumer-ID` value to query the Kong Admin API and retrieve
 more information about the consumer.
 
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 
 {:.important}
 > **Important**: `X-Credential-Username` was deprecated in favor of `X-Credential-Identifier` in Kong 2.1.
 
-{% endif_plugin_version %}
+{% endif_version %}
