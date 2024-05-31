@@ -69,6 +69,7 @@ module Jekyll
                 kind: GatewayConfiguration
                 name: kong
                 namespace: default
+            ```
 
         1.  Use the `GatewayClass` in your `Gateway`
             ```yaml
