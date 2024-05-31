@@ -10,7 +10,6 @@ distributions:
     eol: June 2024
   - <<: *rhel8
     docker: true
-    eol: May 2024
   - <<: *amazonlinux2
     docker: true
   - <<: *centos7
