@@ -28,7 +28,6 @@ distributions:
   - <<: *rhel8
     docker: false
     fips: true
-    eol: May 2024
   - <<: *rhel9
     docker: true
     arm: true
