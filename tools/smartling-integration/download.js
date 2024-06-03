@@ -14,8 +14,10 @@ if (!projectId || !userId || !userSecret || !jobId || !translatedContentPath) {
 }
 
 const {
+  DownloadFileParameters,
   ListJobFilesParameters,
   Logger,
+  RetrievalType,
   SmartlingApiClientBuilder,
   SmartlingJobsApi,
   SmartlingFilesApi
@@ -38,15 +40,10 @@ async function getFilesListForJob(projectId, jobId) {
 
     do {
       params.setOffset(offset).setLimit(limit);
-      let response = await jobApi.getJobFiles(projectId, jobId, params);
-      if (response.code === 200) {
-        totalCount = response.data.totalCount;
-        fileUris.push(...response.data.items.map(f => f.uri));
-      } else {
-        // handle errors
-        console.log(`There was an error fetching the files for JobId: ${jobId}, offset: ${offset}`);
-        process.exit(1)
-      }
+      let response = await jobsApi.getJobFiles(projectId, jobId, params);
+
+      totalCount = response.totalCount;
+      fileUris.push(...response.items.map(f => f.uri));
       offset += limit;
     } while (offset <= totalCount)
 
@@ -71,7 +68,7 @@ async function downloadFiles() {
       // config/locales/en.yml => config/locales/ja.yml
       const downloadedFileContent = await filesApi.downloadFile(projectId, fileUri, locale, downloadFileParams);
       const filePath = path.join(translatedContentPath, locale, fileUri);
-      const dir = filePath.dirame(filePath);
+      const dir = path.dirname(filePath);
 
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
