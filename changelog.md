@@ -4,18 +4,6 @@
 
 ## Week 22
 
-### [doc(dcr): clarify audience field](https://github.com/Kong/docs.konghq.com/pull/7444) (2024-05-30)
-
-Fixes confusion around audience and client audience 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-#### Modified
-
-- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
-
-
 ### [Fix: remove inaccurate note about AppDynamics library](https://github.com/Kong/docs.konghq.com/pull/7443) (2024-05-30)
 
 During testing, it was found that Kong Gateway will start without the library, and won't error out.
@@ -50,41 +38,6 @@ https://konghq.atlassian.net/browse/DOCU-3859
 - https://docs.konghq.com/konnect/analytics/
 - https://docs.konghq.com/konnect/network-resiliency
 
-
-### [docs: incorrect value for netlify env variable](https://github.com/Kong/docs.konghq.com/pull/7425) (2024-05-28)
-
-Fixed the correct value for netlify deployment of custom dev portal
-
-
-
-
-<!-- Changed the value for VITE_PORTAL_API_URL -->
- 
-<!-- Had a discussion with Andrew Wylde, the suggested change works
-
-"VITE_PORTAL_API_URL should be a full url, I think, not just the subdomain. Can you try setting it to https://api-developer.jwconsult.in/  and letting me know if that works for you? " -->
-
-#### Modified
-
-- https://docs.konghq.com/konnect/dev-portal/customization/netlify
-
-
-### [Fixed Context-Type](https://github.com/Kong/docs.konghq.com/pull/7424) (2024-05-29)
-
-Incorrect: application/text
-Correct: text/plain
-
-
-
-The description of `Context-Type` is incorrect.
-The actual webhook received is `text/plain`.
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-#### Modified
-
-- https://docs.konghq.com/konnect/org-management/audit-logging/reference
 
 
 ### [chore: Convert remaining OIDC topic that uses httpie to curl](https://github.com/Kong/docs.konghq.com/pull/7422) (2024-05-29)
@@ -129,18 +82,6 @@ https://konghq.atlassian.net/browse/DOCU-3797
 - https://docs.konghq.com/hub/kong-inc/rate-limiting/
 - https://docs.konghq.com/hub/kong-inc/response-ratelimiting/
 - https://docs.konghq.com/gateway/changelog
-
-
-### [Chore: Update Konnect changelog for Gateway 3.7](https://github.com/Kong/docs.konghq.com/pull/7408) (2024-05-29)
-
-https://konghq.atlassian.net/browse/DOCU-3762
-https://konghq.atlassian.net/browse/DOCU-3782
-
-https://deploy-preview-7408--kongdocs.netlify.app/konnect/updates/
-
-#### Modified
-
-- https://docs.konghq.com/konnect/updates
 
 
 ### [Fix: Unifiy Kong Manager and Kong Manager OSS sections in GW docs](https://github.com/Kong/docs.konghq.com/pull/7394) (2024-05-31)
