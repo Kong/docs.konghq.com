@@ -2,6 +2,113 @@
 
 <!--vale off-->
 
+## Week 22
+
+### [Fix: remove inaccurate note about AppDynamics library](https://github.com/Kong/docs.konghq.com/pull/7443) (2024-05-30)
+
+During testing, it was found that Kong Gateway will start without the library, and won't error out.
+
+https://konghq.atlassian.net/browse/DOCU-3862
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
+
+### [Update: Graphql proxy cache adv plugin API not supported in hybrid mode](https://github.com/Kong/docs.konghq.com/pull/7435) (2024-05-29)
+
+Adding a note on API usage in hybrid mode for the graphql proxy cache plugin.
+
+Addresses docs callout in KAG-4357.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/_metadata/_index.yml
+
+
+### [Update: Telemetry FAQs for Konnect](https://github.com/Kong/docs.konghq.com/pull/7434) (2024-05-29)
+
+Updating the Konnect network FAQ with Q&As about telemetry data communication between cp and dp.
+
+https://konghq.atlassian.net/browse/DOCU-3859
+
+#### Modified
+
+- https://docs.konghq.com/konnect/analytics/
+- https://docs.konghq.com/konnect/network-resiliency
+
+
+
+### [chore: Convert remaining OIDC topic that uses httpie to curl](https://github.com/Kong/docs.konghq.com/pull/7422) (2024-05-29)
+
+Converting HTTPie to curl. This topic was added in 3.6 and I ran out of time to convert it, so we just merged it.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
+
+### [chore: Changelog for 3.7.0.0](https://github.com/Kong/docs.konghq.com/pull/7411) (2024-05-29)
+
+* Compile changelog for 3.7.
+* Add changelogs to plugins.
+* Add missing breaking change to 3.7 breaking changes doc.
+
+https://konghq.atlassian.net/browse/DOCU-3797
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acme/
+- https://docs.konghq.com/hub/kong-inc/ai-prompt-guard/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/
+- https://docs.konghq.com/hub/kong-inc/degraphql/
+- https://docs.konghq.com/hub/kong-inc/jwt-signer/
+- https://docs.konghq.com/hub/kong-inc/jwt/
+- https://docs.konghq.com/hub/kong-inc/key-auth/
+- https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/
+- https://docs.konghq.com/hub/kong-inc/mocking/
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/
+- https://docs.konghq.com/hub/kong-inc/oas-validation/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/
+- https://docs.konghq.com/hub/kong-inc/prometheus/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/
+- https://docs.konghq.com/hub/kong-inc/response-ratelimiting/
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Unifiy Kong Manager and Kong Manager OSS sections in GW docs](https://github.com/Kong/docs.konghq.com/pull/7394) (2024-05-31)
+
+Unify the two Kong Manager sections into one. 
+
+Background request tracked on https://konghq.atlassian.net/browse/DOCU-3861
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/
+- https://docs.konghq.com/gateway/3.1.x/
+- https://docs.konghq.com/gateway/3.2.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.6.x/
+- https://docs.konghq.com/gateway/3.7.x/
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/
+- https://docs.konghq.com/gateway/3.7.x/kong-manager/
+
 ## Week 21
 
 ### [chore: set version tags around table](https://github.com/Kong/docs.konghq.com/pull/7415) (2024-05-22)
