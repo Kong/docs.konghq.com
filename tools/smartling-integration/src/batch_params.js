@@ -43,8 +43,8 @@ async function buildBatchFileParamsForDocsNav(fileUri, locale) {
     .setFileType(FileType.YAML)
     .setLocalesToApprove([locale])
     .setDirective("whitespace_trim", "off")
-    .setDirective("yaml_locale_detection", false)
-    .setDirective("yaml_locale_substitution", false);
+    .setDirective("yaml_locale_detection", "off")
+    .setDirective("yaml_locale_substitution", "off");
 
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
