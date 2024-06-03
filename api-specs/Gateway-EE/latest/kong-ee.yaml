@@ -12586,32 +12586,35 @@ paths:
                 properties:
                   data:
                     type: array
-                    properties:
-                      group:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                          name:
-                            type: string
-                          comment:
-                            type: string
-                          updated_at:
-                            type: timestamp
-                      rbac_role:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                          name:
-                            type: string
-                      workspace:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                  next:
-                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        group:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            comment:
+                              type: string
+                            updated_at:
+                              type: string
+                              format: date-time
+                        rbac_role:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                        workspace:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                        next:
+                          nullable: true
                 x-examples:
                   Example 1:
                     data:
@@ -12662,7 +12665,8 @@ paths:
                       comment:
                         type: string
                       updated_at:
-                        type: timestamp
+                        type: string
+                        format: date-time
                   rbac_role:
                     type: object
                     properties:
@@ -12723,26 +12727,25 @@ paths:
     delete:
       tags:
         - groups
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                rbac_role_id:
-                  type: string
-                workspace_id: 
-                  type: string
-              x-examples:
-                Example 1:
-                  rbac_role_id: 12773c9a-7f7c-45f2-bcea-5285eb18fd2f
-                  workspace_id: d107bce7-dd86-4124-93c8-667ecc34b32e
       summary: Delete a group’s Role
       operationId: delete-groups-name_or_id-roles
+      parameters:
+        - name: rbac_role_id
+          in: query
+          required: true
+          schema:
+            type: string
+          example: 12773c9a-7f7c-45f2-bcea-5285eb18fd2f
+        - name: workspace_id
+          in: query
+          required: true
+          schema:
+            type: string
+          example: d107bce7-dd86-4124-93c8-667ecc34b32e
       responses:
         '204':
           description: No Content
-        '401': 
+        '401':
           $ref: '#/components/responses/HTTP401Error'
       description: Delete a group's roles.
   '/debug/cluster/control-planes-nodes/log-level/{log_level}':
