@@ -6,7 +6,7 @@ const userId = process.env.USER_IDENTIFIER;
 const jobId = process.env.JOB_ID;
 const userSecret = process.env.USER_SECRET;
 const translatedContentPath = process.env.TRANSLATED_CONTENT_PATH;
-const locale = process.env.LOCALE || 'ja';
+const locale = process.env.LOCALE || 'ja-JP';
 
 if (!projectId || !userId || !userSecret || !jobId || !translatedContentPath) {
   console.error("Missing environment variables.");

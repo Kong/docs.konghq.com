@@ -38,7 +38,7 @@ const projectId = process.env.PROJECT_ID;
 let jobId = process.env.JOB_ID;
 const userId = process.env.USER_IDENTIFIER;
 const userSecret = process.env.USER_SECRET;
-const locale = process.env.LOCALE || 'ja';
+const locale = process.env.LOCALE || 'ja-JP';
 const product = process.env.PRODUCT;
 const versions = process.env.VERSIONS;
 
