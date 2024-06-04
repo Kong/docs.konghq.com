@@ -19,7 +19,7 @@ To write a {{site.base_gateway}} plugin in Go, you need to:
 6. Compile as an executable with `go build`.
 
 {:.note}
-> **Note**: [The Kong Go plugins repository](https://github.com/Kong/go-plugins) contains example Go plugins.
+> **Note**: The Go PDK repository contains [example plugins](https://github.com/Kong/go-pdk/tree/master/examples).
 
 ## Configuration
 
