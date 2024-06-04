@@ -15,7 +15,7 @@ Hub](/hub/), they are called Community or Third-Party plugins. For more informat
 
 Plugins provide advanced functionality and extend the use of the {{site.base_gateway}}, allowing you to add new features to your implementation. Plugins can be configured to run in various contexts. For example, plugins can be applied to a single [**route**](/gateway/latest/key-concepts/services/), which is the specific path requests take through your system, or they can be used across all [**upstreams**](/gateway/latest/key-concepts/upstreams), which are the servers or services that process these requests after they pass through {{site.base_gateway}}. 
 
-By using plugins, you gain the ability to customize how Kong handles functions in your enviroment, either before a request is sent to your backend services or after it receives a response. 
+By using plugins, you gain the ability to customize how Kong handles functions in your environment, either before a request is sent to your backend services or after it receives a response. 
 
 ## Plugin compatibility with deployment types
 
