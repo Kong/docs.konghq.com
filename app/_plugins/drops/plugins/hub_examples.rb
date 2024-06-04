@@ -90,6 +90,10 @@ module Jekyll
           @kubernetes ||= Examples::Yaml.new(type:, example:)
         end
 
+        def terraform
+          @terraform ||= Examples::Terraform.new(type:, example:)
+        end
+
         def plugin_name
           @plugin_name ||= @example.fetch('name')
         end
