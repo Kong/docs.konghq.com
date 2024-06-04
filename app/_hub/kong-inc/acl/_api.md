@@ -69,7 +69,7 @@ Result:
 
 `CONSUMER`: The `username` or `id` of the consumer.
 
-### Retrieve ACL by ID
+#### Retrieve ACL by ID
 
 Retrieves ACL by ID if the ACL belongs to the specified consumer.
 
@@ -111,9 +111,9 @@ Result:
 
 `ID`: The `id` property of the ACL.
 
-#### Update and insert an ACL group name
+### Assign a consumer to an ACL group
 
-Update and insert the group name of the ACL by passing a new group name.
+Assign a consumer to an existing ACL group, previously configured via the ACL plugin's config.
 
 ```bash
 curl -X POST http://localhost:8001/consumers/{CONSUMER}/acls \
@@ -135,7 +135,7 @@ curl -X PUT http://localhost:8001/consumers/{CONSUMER}/acls/{ID}
 
 `ID`: The `id` property of the ACL.  
 
-#### Remove an ACL group for a consumer
+### Remove an ACL group for a consumer
 
 Deletes an ACL group by ID or group name.
 
