@@ -146,6 +146,45 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
      -F "paths[2]=/path/two"
 ```
 
+## HTTP status response codes
+
+The following status codes can be returned in HTTP responses:
+
+| HTTP Code | HTTP Description | Notes |
+| --------- | ---------------- | ----- |
+| a | a | a |
+
+GET
+200
+401
+404
+
+POST
+200
+201
+400
+401
+409
+
+DELETE
+204
+401
+
+PATCH
+200
+400
+401
+404
+
+PUT
+200
+400
+401
+404
+405
+
+
+
 ## Using the API in workspaces 
 {:.badge .enterprise}
 
