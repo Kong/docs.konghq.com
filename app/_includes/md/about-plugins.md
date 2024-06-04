@@ -7,17 +7,15 @@ we commonly refer to as _plugins_. Kong provides a set of
 {{site.konnect_short_name}}. The set of plugins you
 have access to depends on your [license tier](/hub/plugins/license-tiers/).
 
-Custom plugins can also be developed by the Kong Community and are supported
-and maintained by the plugin creators. If they are published on the Kong Plugin
-Hub, they are called Community or Third-Party plugins.
+Custom plugins are also developed by the Kong Community and are supported
+and maintained by the plugin creators. If they are published on the [Kong Plugin
+Hub](/hub/), they are called Community or Third-Party plugins. For more information on developing plugins, see the [Kong Plugin Development Kit](/gateway/latest/plugin-development/pdk/)
 
 ## Why use plugins?
 
-Plugins provide advanced functionality and extend the use of the {{site.base_gateway}},
-which allows you to add new features to your implementation. Plugins can be configured to run in
-a variety of contexts, ranging from a specific route to all upstreams, and can
-execute actions inside Kong before or after a request has been proxied to the
-upstream API, as well as on any incoming responses.
+Plugins provide advanced functionality and extend the use of the {{site.base_gateway}}, allowing you to add new features to your implementation. Plugins can be configured to run in various contexts. For example, plugins can be applied to a single [**route**](/gateway/latest/key-concepts/services/), which is the specific path requests take through your system, or they can be used across all [**upstreams**](/gateway/latest/key-concepts/upstreams), which are the servers or services that process these requests after they pass through {{site.base_gateway}}. 
+
+By using plugins, you gain the ability to customize how Kong handles functions in your enviroment, either before a request is sent to your backend services or after it receives a response. 
 
 ## Plugin compatibility with deployment types
 
@@ -30,30 +28,26 @@ for a comparison.
 A single plugin instance always runs _once_ per request. The
 configuration with which it runs depends on the entities it has been
 configured for.
-Plugins can be configured for various entities, combinations of entities, or
-even globally. This is useful, for example, when you want to configure a plugin
-a certain way for most requests, but make _authenticated requests_ behave
-slightly differently.
+Plugins can be configured for various entities, combinations of entities, or even globally.
+This is useful, for example, when you want to configure a plugin a certain way for most requests but make _authenticated requests_ behave slightly differently.
 
-Therefore, there is an order of precedence for running a plugin when it has
-been applied to different entities with different configurations. The amount of entities configured to a specific plugin directly correlate to its priority. The more entities configured to a plugin the higher its order of precedence is.
+Therefore, there is an order of precedence for running a plugin when it has been applied to different entities with different configurations. The number of entities configured to a specific plugin directly correlates to its priority. The more entities a plugin is configured for, the higher its order of precedence.
+
 The complete order of precedence for plugins configured to multiple entities is:
 
-1. Plugins configured on a combination of a consumer, a route, and a service.
-    (Consumer means the request must be authenticated).
-2. Plugins configured on a combination of a consumer group, service, and a route.
-    (Consumer group means the request must be authenticated).
-3. Plugins configured on a combination of a consumer and a route.
-    (Consumer means the request must be authenticated).
-4. Plugins configured on a combination of a consumer and a service.
-5. Plugins configured on a consumer group and route.
-6. Plugins configured on a consumer group and service.
-7. Plugins configured on a route and service.
-8. Plugins configured on a consumer.
-9. Plugins configured on a consumer group.
-10. Plugins configured on a route.
-11. Plugins configured on a service.
-12. Plugins configured globally.
+
+1. **Consumer** + **route** + **service**: Highest precedence, affecting authenticated requests that match a specific consumer on a particular route and service.
+1. **Consumer group** + **service** + **route**: Affects groups of authenticated users across specific services and routes.
+1. **Consumer** + **route**: Targets authenticated requests from a specific consumer on a particular route.
+1. **Consumer** + **service**: Applies to authenticated requests from a specific consumer accessing any route within a given service.
+1. **Consumer group** + **route**: Affects groups of authenticated users on specific routes.
+1. **Consumer group** + **service**: Applies to all routes within a specific service for groups of authenticated users.
+1. **Route** + **service**: Targets all consumers on a specific route and service.
+1. **Consumer**: Applies to all requests from a specific, authenticated consumer across all routes and services.
+1. **Consumer Group**: Affects all routes and services for a designated group of authenticated users.
+1. **Route**: Specific to given route.
+1. **Service**: Specific to given service. 
+1. **Globally configured plugins**: Lowest precedence, applies to all requests across all services and routes regardless of consumer status.
 
 ### Precedence for consumer groups
 
@@ -61,37 +55,23 @@ When a consumer is a member of two consumer groups, each with a scoped plugin, {
 
 ## Terminology
 **Plugin**
-: An extension to the {{site.base_gateway}}.
+: An extension to {{site.base_gateway}}.
 
-: For plugins developed and maintained by Kong, plugin versioning generally has
-no impact on your implementation, other than to find out which versions of Kong
-contain which plugin features. Kong plugins are bundled with the
-{{site.base_gateway}}, so compatible plugin versions are already associated
-with the correct version of Kong.
+:  For plugins developed and maintained by Kong, plugin versioning generally does not impact your implementation, other than helping you determine which versions of Kong contain specific plugin features.
+Kong plugins are bundled with the {{site.base_gateway}}, ensuring that compatible plugin versions are already associated with the correct version of Kong.
 
 **Kong plugin** or **Kong bundled plugin**
 : A plugin developed, maintained, and [supported by Kong](/hub/?support=kong-inc).
 
-: Because third-party plugins are not maintained by Kong and are not bundled with
-the {{site.base_gateway}}, version compatibility is a bigger concern. See each
-individual plugin's page for its tested compatibility.
-
-: If the versions on the plugin page are outdated, contact the maintainer directly.
+: Unlike third-party plugins, which are not maintained by Kong and are not bundled with the {{site.base_gateway}}, version compatibility for Kong plugins is less of a concern.
+: If the versions on a plugin page is outdated, contact the maintainer directly.
 
 **Plugin supported by 3rd party**
-: A plugin in the category "Contact 3rd party for support".
-This is a custom plugin developed, tested, and maintained by an external developer,
-not by Kong.
-Unless the plugin is explicitly labelled as a technical partner,
-Kong does not test these plugins, or update their version
-compatibility.
+: A plugin categorized under "Contact 3rd party for support." This custom plugin is developed, tested, and maintained by an external developer, not by Kong.
+Unless explicitly labeled as a technical partner, Kong does not test these plugins or maintain their version compatibility. If the versions listed on the plugin page is outdated, contact the maintainer directly.
 
 **Technical partner plugin**
-: A 3rd party custom plugin that has been carefully validated by Kong and
-has met certain standards.
-These plugins are still developed, tested, and maintained by an external developer,
-not by Kong. The plugin owner also maintains the plugin's version compatibility with
-{{site.base_gateway}}.
+: A 3rd party custom plugin that has been validated by Kong and meets certain standards. Although these plugins are developed, tested, and maintained by an external developer, the plugin owner also ensures the plugin's version compatibility with {{site.base_gateway}}.
 
 ## Developing custom plugins
 
@@ -104,7 +84,10 @@ Kong provides PDKs for two languages: Lua and Go. Both of these PDKs are sets
 of functions that a plugin can use to facilitate interactions between plugins
 and the core (or other components) of Kong.
 
-To start creating your own plugins, check out the PDK documentation:
+To start creating your own plugins, review the [Getting Started documentation](/gateway/latest/plugin-development/get-started/).
+
+For more information about the PDK, review the following documentation: 
+
 * [Plugin Development Guide](/gateway/latest/plugin-development/)
 * [Plugin Development Kit reference](/gateway/latest/plugin-development/pdk/)
 * [Other Language Support](/gateway/latest/plugin-development/pluginserver/go/)
