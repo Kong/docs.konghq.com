@@ -18,6 +18,8 @@ module Jekyll
 | Version  | Latest Patch  | Released Date | End of Full Support |
 |:--------:|:-------------:|:-------------:|:-------------------:|\n"
       versions.each do |entry|
+        next if entry['label'] == 'unreleased'
+
         out += "| #{entry['release']} | #{entry['version']} | #{entry['releaseDate']} | #{entry['endOfLifeDate']} |\n"
       end
       out

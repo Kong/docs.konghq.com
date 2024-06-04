@@ -26,7 +26,7 @@ items:
       - text: Changelog
         url: /gateway-operator/changelog
         absolute_url: true
-      - text: Support
+      - text: Version Support Policy
         url: /support
       - text: FAQ
         url: /faq
