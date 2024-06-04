@@ -588,6 +588,7 @@ upvalues
 uri
 uris
 url
+URLRewrite
 urls
 use_daily_image
 usr
