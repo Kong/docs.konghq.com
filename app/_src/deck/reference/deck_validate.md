@@ -34,14 +34,17 @@ deck validate [command-specific flags] [global flags]
 `-h`, `--help`
 :  help for validate 
 
-{% if_version gte:1.11.x %}
+{% if_version gte:1.37.x %}
+`--konnect-compatibility`
+:  validate that the state file(s) are ready to be deployed to Konnect (Default: `false`)
+{% endif_version %}
 
+{% if_version gte:1.11.x %}
 
 `--online`
 :  perform validations against Kong API. When this flag is used, validation is done
 via communication with Kong. This increases the time for validation but catches
 significant errors. No resource is created in Kong. (Default: `false`)
-
 
 `--parallelism`
 :  Maximum number of concurrent requests to Kong. (Default: `10`)
