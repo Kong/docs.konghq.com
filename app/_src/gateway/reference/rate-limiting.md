@@ -49,7 +49,6 @@ The following public functions are provided by this library:
 
 {% if_version gte:3.4.x %}
 
-{% if_version gte:3.4.x %}
 `ratelimiting.new_instance`
 
 _syntax: ratelimiting = ratelimiting.new_instance(instance_name)_
