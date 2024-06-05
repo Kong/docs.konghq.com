@@ -57,7 +57,6 @@ The `ratelimiting.new_instance` interface provides the necessary isolation witho
 
 If the library is used in the old way, the behavior is as before. In this case, it will return a default instance which may be shared with other plugins: `local ratelimiting = require("kong.tools.public.rate-limiting")`
 
-Other functions below remain unchanged.
 
 `ratelimiting.new`
 
