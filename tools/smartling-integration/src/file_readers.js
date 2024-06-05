@@ -214,7 +214,9 @@ async function readIncludeFilesForProduct(productConfig, srcFiles) {
 }
 
 async function getProductsConfigs(config, locale) {
-  return Object.entries(config[locale]).map(([product, versions]) => {
+  const  { plugins, ...entries } = config[locale];
+
+  return Object.entries(entries).map(([product, versions]) => {
     return { product, versions };
   });
 }
