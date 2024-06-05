@@ -55,7 +55,7 @@ Previously, this library used a module level global table `config`, which lacked
 
 The `ratelimiting.new_instance` interface provides the necessary isolation without changing the original interfaces. Every returned instance has its own `ratelimiting.config` which don't interfere with each other. See the following usage example: `local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("rate-limiting-foo")`.
 
-If the library is used in the old way, the behavior is as before. In this case, it will return a default instance which may be shared with other plugins. `local ratelimiting = require("kong.tools.public.rate-limiting")`
+If the library is used in the old way, the behavior is as before. In this case, it will return a default instance which may be shared with other plugins: `local ratelimiting = require("kong.tools.public.rate-limiting")`
 
 Other functions below remain unchanged.
 
