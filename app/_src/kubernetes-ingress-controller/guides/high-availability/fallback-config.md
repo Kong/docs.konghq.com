@@ -199,6 +199,7 @@ config:
 ```
 
 The results should look like this:
+
 ```text
 kongplugin.configuration.konghq.com/key-auth created
 ```
@@ -210,6 +211,7 @@ kubectl annotate httproute route-b konghq.com/plugins=key-auth
 ```
 
 The results should look like this:
+
 ```text
 httproute.gateway.networking.k8s.io/route-b patched
 ```
@@ -223,6 +225,7 @@ curl -i $PROXY_IP/route-b
 ```
 
 The results should look like this:
+
 ```text
 HTTP/1.1 404 Not Found
 Content-Type: application/json; charset=utf-8
@@ -246,11 +249,12 @@ dependants, including the `HTTPRoute`, from the configuration.
 We can verify this by inspecting the diagnostic endpoint:
 
 ```bash
-kubectl port-forward -n kong deploy/kong-controller 10256:10256 &
+kubectl port-forward -n kong deploy/kong-controller 10256 &
 curl -i localhost:10256/debug/config/problems
 ```
 
 The results should look like this:
+
 ```text
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -349,7 +353,7 @@ we begin with a clean slate, allowing {{site.kic_product_name}} to store it.
 Let's detach the broken `KongPlugin` from `route-b` so we get an entirely valid configuration:
 
 ```bash
-kubectl annotate --overwrite httproute route-b konghq.com/plugins=
+kubectl annotate --overwrite httproute route-b konghq.com/plugins-
 ```
 
 The results should look like this:
@@ -428,7 +432,7 @@ With IP address 192.168.194.13.
 Using diagnostic endpoints, we can now inspect the objects that were excluded and backfilled in the configuration:
 
 ```bash
-kubectl port-forward -n kong deploy/kong-controller 10256:10256 &
+kubectl port-forward -n kong deploy/kong-controller 10256 &
 curl -i localhost:10256/debug/config/problems
 ```
 
