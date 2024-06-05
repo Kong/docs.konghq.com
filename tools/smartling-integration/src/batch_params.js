@@ -124,12 +124,25 @@ async function buildBatchFileParamsForPluginsMetadata(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForPluginsSchema(fileUri, locale) {
-  // TODO: only descriptions
+  const translatePaths = [
+    {
+      path: "*/description",
+      key: "{*}/description"
+    },
+    {
+      path: "*/deprecation/message",
+      key: "{*}/deprecation/message"
+    }
+  ];
+
   const batchFileParams = new UploadBatchFileParameters()
     .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.JSON)
     .setLocalesToApprove([locale])
+    .setDirective("entity_escapting", "true")
+    .setDirective("variants_enabled", "true")
+    .setDirective("translate_paths", JSON.stringify(translatePaths))
     .setDirective("whitespace_trim", "off");
 
   return { fileUri: fileUri, batchFileParams: batchFileParams };
