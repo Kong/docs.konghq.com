@@ -459,10 +459,8 @@ Under `shared` mode, it must be the same for all nodes. Under `pki` mode it
 should be a different certificate for each DP node.
 
 The certificate key can be configured on this property with either of the
-following values: 
-* absolute path to the certificate key 
-* certificate key content 
-* base64 encoded certificate key content
+following values: * absolute path to the certificate key * certificate key
+content * base64 encoded certificate key content
 
 **Default:** none
 
@@ -479,11 +477,9 @@ If Control Plane certificate is issued by a well known CA, user can set
 
 This field is ignored if `cluster_mtls` is set to `shared`.
 
-The certificate can be configured on this property with any of the following
-values: 
-* absolute path to the certificate 
-* certificate content 
-* base64 encoded certificate content
+The certificate can be configured on this property with either of the following
+values: * absolute path to the certificate * certificate content * base64
+encoded certificate content
 
 **Default:** none
 
@@ -646,7 +642,7 @@ on.
 ### cluster_max_payload
 
 This sets the maximum compressed payload size allowed to be sent across from CP
-to DP in Hybrid mode. Default is 16MB - 16 * 1024 * 1024.
+to DP in Hybrid mode Default is 16MB - 16 * 1024 * 1024.
 
 **Default:** `16777216`
 
@@ -688,14 +684,14 @@ Some suffixes can be specified for each pair:
   the `backlog` number set.
 - `ipv6only=on|off` whether an IPv6 socket listening on a wildcard address [::]
   will accept only IPv6 connections or both IPv6 and IPv4 connections
-- `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the
-  `TCP keepalive` behavior for the listening socket. If this parameter is
-  omitted then the operating system’s settings will be in effect for the socket.
-  If it is set to the value `on`, the `SO_KEEPALIVE` option is turned
-  on for the socket. If it is set to the value `off`, the `SO_KEEPALIVE` option
-  is turned off for the socket. Some operating systems support setting of
-  TCP keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
-  `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
+- so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt] configures the “TCP
+  keepalive” behavior for the listening socket. If this parameter is omitted
+  then the operating system’s settings will be in effect for the socket. If it
+  is set to the value “on”, the SO_KEEPALIVE option is turned on for the
+  socket. If it is set to the value “off”, the SO_KEEPALIVE option is turned
+  off for the socket. Some operating systems support setting of TCP keepalive
+  parameters on a per-socket basis using the TCP_KEEPIDLE, TCP_KEEPINTVL, and
+  TCP_KEEPCNT socket options.
 
 This value can be set to `off`, thus disabling the HTTP/HTTPS proxy port for
 this node.
@@ -771,14 +767,14 @@ Some suffixes can be specified for each pair:
   the `backlog` number set.
 - `ipv6only=on|off` whether an IPv6 socket listening on a wildcard address [::]
   will accept only IPv6 connections or both IPv6 and IPv4 connections
-- `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the
-  `TCP keepalive` behavior for the listening socket. If this parameter is
-  omitted then the operating system’s settings will be in effect for the socket.
-  If it is set to the value `on`, the `SO_KEEPALIVE` option is turned
-  on for the socket. If it is set to the value `off`, the `SO_KEEPALIVE` option
-  is turned off for the socket. Some operating systems support setting of
-  TCP keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
-  `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
+- so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt] configures the “TCP
+  keepalive” behavior for the listening socket. If this parameter is omitted
+  then the operating system’s settings will be in effect for the socket. If it
+  is set to the value “on”, the SO_KEEPALIVE option is turned on for the
+  socket. If it is set to the value “off”, the SO_KEEPALIVE option is turned
+  off for the socket. Some operating systems support setting of TCP keepalive
+  parameters on a per-socket basis using the TCP_KEEPIDLE, TCP_KEEPINTVL, and
+  TCP_KEEPCNT socket options.
 
 Examples:
 
@@ -845,14 +841,14 @@ Some suffixes can be specified for each pair:
   the `backlog` number set.
 - `ipv6only=on|off` whether an IPv6 socket listening on a wildcard address [::]
   will accept only IPv6 connections or both IPv6 and IPv4 connections
-- `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the
-  `TCP keepalive` behavior for the listening socket. If this parameter is
-  omitted then the operating system’s settings will be in effect for the socket.
-  If it is set to the value `on`, the `SO_KEEPALIVE` option is turned
-  on for the socket. If it is set to the value `off`, the `SO_KEEPALIVE` option
-  is turned off for the socket. Some operating systems support setting of
-  TCP keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
-  `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
+- so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt] configures the “TCP
+  keepalive” behavior for the listening socket. If this parameter is omitted
+  then the operating system’s settings will be in effect for the socket. If it
+  is set to the value “on”, the SO_KEEPALIVE option is turned on for the
+  socket. If it is set to the value “off”, the SO_KEEPALIVE option is turned
+  off for the socket. Some operating systems support setting of TCP keepalive
+  parameters on a per-socket basis using the TCP_KEEPIDLE, TCP_KEEPINTVL, and
+  TCP_KEEPCNT socket options.
 
 This value can be set to `off`, thus disabling the Admin interface for this
 node, enabling a 'data-plane' mode (without configuration capabilities) pulling
@@ -1082,11 +1078,9 @@ Unless this option is explicitly set, Kong will auto-generate a pair of default
 certificates (RSA + ECC) first time it starts up and use it for serving TLS
 requests.
 
-Certificates can be configured on this property with any of the following
-values: 
-* absolute path to the certificate 
-* certificate content 
-* base64 encoded certificate content
+Certificates can be configured on this property with either of the following
+values: * absolute path to the certificate * certificate content * base64
+encoded certificate content
 
 **Default:** none
 
@@ -1103,10 +1097,9 @@ Unless this option is explicitly set, Kong will auto-generate a pair of default
 private keys (RSA + ECC) first time it starts up and use it for serving TLS
 requests.
 
-Keys can be configured on this property with any of the following values: 
-* absolute path to the certificate key 
-* certificate key content 
-* base64 encoded certificate key content
+Keys can be configured on this property with either of the following values: *
+absolute path to the certificate key * certificate key content * base64 encoded
+certificate key content
 
 **Default:** none
 
@@ -1127,11 +1120,9 @@ If `client_ssl` is enabled, the client certificate for the
 This value can be overwritten dynamically with the `client_certificate`
 attribute of the `Service` object.
 
-The certificate can be configured on this property with any of the following
-values: 
-* absolute path to the certificate 
-* certificate content 
-* base64 encoded certificate content
+The certificate can be configured on this property with either of the following
+values: * absolute path to the certificate * certificate content * base64
+encoded certificate content
 
 **Default:** none
 
@@ -1145,10 +1136,8 @@ This value can be overwritten dynamically with the `client_certificate`
 attribute of the `Service` object.
 
 The certificate key can be configured on this property with either of the
-following values: 
-* absolute path to the certificate key 
-* certificate key content 
-* base64 encoded certificate key content
+following values: * absolute path to the certificate key * certificate key
+content * base64 encoded certificate key content
 
 **Default:** none
 
@@ -1414,8 +1403,8 @@ The following namespaces are supported:
   {}` block.
 - `nginx_status_<directive>`: Injects `<directive>` in Kong's Status API
   `server {}` block (only effective if `status_listen` is enabled).
-- `nginx_debug_<directive>` <span class="badge enterprise"></span>: 
-Injects `<directive>` in Kong's Debug API `server {}` block (only effective if `debug_listen` or `debug_listen_local` is
+- `nginx_debug_<directive>`: Injects `<directive>` in Kong's Debug API `server
+  {}` block (only effective if `debug_listen` or `debug_listen_local` is
   enabled).
 - `nginx_stream_<directive>`: Injects `<directive>` in Kong's stream module
   `stream {}` block (only effective if `stream_listen` is enabled).
@@ -2491,12 +2480,9 @@ one found will be used:
 When `pg_ssl_verify` is enabled, these certificate authority files will be used
 for verifying Kong's database connections.
 
-Certificates can be configured on this property with any of the following
-values: 
-* `system` 
-* absolute path to the certificate 
-* certificate content 
-* base64 encoded certificate content
+Certificates can be configured on this property with either of the following
+values: * `system` * absolute path to the certificate * certificate content *
+base64 encoded certificate content
 
 See https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate
 
@@ -2598,7 +2584,7 @@ happens on a service, the event hook calls a URL with information about that
 event. Event hook configurations differ depending on the handler. The events
 that are triggered send associated data.
 
-See: https://docs.konghq.com/gateway/latest/admin-api/event-hooks/reference/
+See: https://docs.konghq.com/enterprise/latest/admin-api/event-hooks/reference/
 
 **Default:** `on`
 
@@ -2704,10 +2690,8 @@ Defines the TLS versions supported for Kong Manager
 
 The SSL certificate for `admin_gui_listen` values with SSL enabled.
 
-values: 
-* absolute path to the certificate 
-* certificate content 
-* base64 encoded certificate content
+values: * absolute path to the certificate * certificate content * base64
+encoded certificate content
 
 **Default:** none
 
@@ -2716,10 +2700,8 @@ values:
 
 The SSL key for `admin_gui_listen` values with SSL enabled.
 
-values: 
-* absolute path to the certificate key 
-* certificate key content 
-* base64 encoded certificate key content
+values: * absolute path to the certificate key * certificate key content *
+base64 encoded certificate key content
 
 **Default:** none
 
@@ -3307,10 +3289,8 @@ Defines the public key of an RSA keypair.
 This keypair is used for symmetric keyring import/export, e.g., for disaster
 recovery and optional bootstrapping.
 
-values: 
-* absolute path to the public key 
-* public key content 
-* base64 encoded public key content
+values: * absolute path to the public key * public key content * base64 encoded
+public key content
 
 **Default:** none
 
@@ -3323,23 +3303,12 @@ Defines the private key of an RSA keypair.
 This keypair is used for symmetric keyring import/export, e.g., for disaster
 recovery and optional bootstrapping.
 
-values: 
-* absolute path to the private key 
-* private key content 
-* base64 encoded private key content 
-
-**Default:** none
-
-### keyring_recovery_public_key
-{:.badge .enterprise}
-
-Defines the public key
+values: * absolute path to the private key * private key content * base64
+encoded private key content keyring_recovery_public_key # Defines the public key
 to optionally encrypt all keyring materials and backup in the database.
 
-values: 
-* absolute path to the public key 
-* public key content 
-* base64 encoded public key content
+values: * absolute path to the public key * public key content * base64 encoded
+public key content
 
 **Default:** none
 
@@ -3485,7 +3454,7 @@ contains the following `requires`:
 
 ```
 local template = require "resty.template"
-local split = require "kong.tools.utils".split
+local split = require "kong.tools.string".split
 ```
 
 To run the plugin, add the modules to the allowed list:
@@ -3616,7 +3585,7 @@ passed and export D, skipping B and C.
 
 ---
 
-## WebAssembly (Wasm) section
+## Webassembly (Wasm) section
 
 ### wasm
 
@@ -3645,13 +3614,12 @@ The name of a wasm filter module is derived from the filename itself, with the
 
 The resulting filter modules available for use in Kong will be:
 
-* `my_module` 
-* `my_other_module`
+* `my_module` * `my_other_module`
 
 Notes:
 
-* No recursion is performed. Only `.wasm` files at the top level are registered 
-* This path _may_ be a symlink to a directory.
+* No recursion is performed. Only .wasm files at the top level are registered *
+This path _may_ be a symlink to a directory.
 
 **Default:** none
 
@@ -3688,7 +3656,7 @@ used instead.
 
 ## Wasm Injected Directives section
 
-The Nginx Wasm module (i.e. `ngx_wasm_module`) has its own settings, which can be
+The Nginx Wasm module (i.e. ngx_wasm_module) has its own settings, which can be
 tuned via `wasm_*` directives in the Nginx configuration file. Kong supports
 configuration of these directives via its Nginx directive injection mechanism.
 
@@ -3739,10 +3707,9 @@ Some TLS-related settings receive special treatment as well:
 - `lua_ssl_trusted_certificate`: when set, the value is propagated to the
   `nginx_wasm_tls_trusted_certificate` directive.
 - `lua_ssl_verify_depth`: when set (to a value greater than zero), several
-  TLS-related `nginx_wasm_*` settings are enabled: 
-  * `nginx_wasm_tls_verify_cert` 
-  * `nginx_wasm_tls_verify_host` 
-  * `nginx_wasm_tls_no_verify_warn`
+  TLS-related `nginx_wasm_*` settings are enabled: *
+  `nginx_wasm_tls_verify_cert` * `nginx_wasm_tls_verify_host` *
+  `nginx_wasm_tls_no_verify_warn`
 
 Like other `kong.conf` fields, all injected Nginx directives documented here
 can be set via environment variable. For instance, setting:
@@ -3765,12 +3732,20 @@ result in unintentional breakage:
 - `proxy_wasm_request_headers_in_access`
 - `shm_queue`
 
+
+### test
+
+test
+
+**Default:** `on`
+
+
 ---
 
 ## Request Debugging section
 
 Request debugging is a mechanism that allows admin to collect the timing of
-proxy path request in the response header (`X-Kong-Request-Debug-Output`) and
+proxy path request in the response header (X-Kong-Request-Debug-Output) and
 optionally, the error log.
 
 This feature provides insights into the time spent within various components of
@@ -3789,18 +3764,18 @@ proxy request:
   be collected and exported for the current request. If this header is not
   present or contains unknown value, timing information will not be collected
   for the current request. You can also specify a list of filters, separated by
-  commas, to filter the scope of the time information that is collected. The
-  following filters are supported: 
-    - `rewrite`: Collect timing information from
-  the `rewrite` phase. 
-    - `access`: Collect timing information from the `access`
-  phase. 
-    - `balancer`: Collect timing information from the `balancer` phase. 
-    - `response`: Collect timing information from the `response` phase. 
-    - `header_filter`: Collect timing information from the `header_filter` phase. 
-    - `body_filter`: Collect timing information from the `body_filter` phase. 
-    - `log`: Collect timing information from the `log` phase.
-    - `upstream`: Collect timing information from the `upstream` phase.
+  commas, to filter the scope of the time information that is collected.
+
+The following filters are supported for `X-Kong-Request-Debug`:
+
+- `rewrite`: Collect timing information from the `rewrite` phase.
+- `access`: Collect timing information from the `access` phase.
+- `balancer`: Collect timing information from the `balancer` phase.
+- `response`: Collect timing information from the `response` phase.
+- `header_filter`: Collect timing information from the `header_filter` phase.
+- `body_filter`: Collect timing information from the `body_filter` phase.
+- `log`: Collect timing information from the `log` phase.
+- `upstream`: Collect timing information from the `upstream` phase.
 
 - `X-Kong-Request-Debug-Log`: If set to `true`, timing information will also be
   logged in the Kong error log with a log level of `notice`. Defaults to
