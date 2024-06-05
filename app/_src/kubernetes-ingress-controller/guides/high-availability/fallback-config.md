@@ -5,6 +5,13 @@ purpose: |
   Explain how the Fallback Configuration feature works
 ---
 
+In this guide you'll learn about the Fallback Configuration feature. We'll explain its 
+implementation details and provide an example scenario to demonstrate how it works in practice.
+
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
+
+## Overview 
+
 {{site.kic_product_name}} in version 3.2.0 introduced the Fallback Configuration
 feature. It is designed to isolate issues related to individual parts
 of the configuration, allowing updates to the rest of it to proceed with no
@@ -52,7 +59,10 @@ Below diagram illustrates how the Fallback Configuration feature works in detail
 
 In this example we'll demonstrate how the Fallback Configuration works in practice.
 
-{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
+### Excluding broken objects
+
+First, we'll demonstrate the default behavior of the Fallback Configuration feature, which is to exclude broken objects
+and their dependants from the configuration.
 
 To test the Fallback Configuration, make sure your {{site.kic_product_name}} instance is running with
 the Fallback Configuration feature, diagnostics server enabled, and the Admission Webhook server disabled
@@ -66,8 +76,10 @@ helm upgrade --install kong kong/ingress -n kong \
 
 In the example, we'll consider a situation where:
 
-1. We have two `HTTPRoutes` pointing to the same `Service` and working correctly.
-2. One of the `HTTPRoutes` gets broken because of referencing an invalid `KongPlugin`.
+1. We have two `HTTPRoute`s pointing to the same `Service` and working correctly.
+2. One of the `HTTPRoute`s gets broken because of referencing an invalid `KongPlugin`.
+
+#### Deploying valid configuration
 
 First, let's deploy the `Service` and its backing `Deployment`:
 
@@ -80,7 +92,7 @@ service/echo created
 deployment.apps/echo created
 ```
 
-Next, let's deploy the `HTTPRoutes`:
+Next, let's deploy the `HTTPRoute`s:
 
 ```bash
 echo 'apiVersion: gateway.networking.k8s.io/v1
@@ -123,7 +135,9 @@ httproute.gateway.networking.k8s.io/route-a created
 httproute.gateway.networking.k8s.io/route-b created
 ```
 
-Let's ensure that the `HTTPRoutes` are working as expected:
+#### Verifying routes are functional 
+
+Let's ensure that the `HTTPRoute`s are working as expected:
 
 ```bash
 curl -i $PROXY_IP/route-a
@@ -167,7 +181,9 @@ In namespace default.
 With IP address 192.168.194.13.
 ```
 
-Now, let's introduce a breaking change in the `route-2` by attaching a broken `KongPlugin` to it.
+#### Introducing a breaking change to the configuration
+
+Now, let's introduce a breaking change in the `route-b` by attaching a broken `KongPlugin` to it.
 
 Create a `KongPlugin` with an invalid configuration:
 
@@ -198,6 +214,8 @@ The results should look like this:
 httproute.gateway.networking.k8s.io/route-b patched
 ```
 
+#### Verifying the broken route was excluded 
+
 This will cause the `route-b` to break. Let's verify this:
 
 ```bash
@@ -220,26 +238,36 @@ X-Kong-Request-Id: 209a6b14781179103528093188ed4008
 }%
 ```
 
+#### Inspecting diagnostic endpoints
+
 The route is not configured because the Fallback Configuration mechanism has excluded the broken `KongPlugin` and its
 dependants, including the `HTTPRoute`, from the configuration.
 
 We can verify this by inspecting the diagnostic endpoint:
 
 ```bash
-kubectl port-forward -n kong deploy/kong-controller 8010:10256 &
-curl -i localhost:8010/debug/config/problems
+kubectl port-forward -n kong deploy/kong-controller 10256:10256 &
+curl -i localhost:10256/debug/config/problems
 ```
 
 The results should look like this:
 ```text
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 2
-Connection: keep-alive
-Server: kong/3.2.0
 
-{"brokenObjects": [{}]}
+{
+    "brokenObjects": [
+        {"kind": "KongPlugin", "name": "key-auth", "namespace": "default"}, 
+        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
+    ],
+    "excludedObjects": [
+        {"kind": "KongPlugin", "name": "key-auth", "namespace": "default"}, 
+        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
+    ]
+}
 ```
+
+#### Verifying the working route is still operational and can be updated
 
 We can also ensure the other `HTTPRoute` is still working:
 
@@ -301,9 +329,130 @@ With IP address 192.168.194.13.
 The Fallback Configuration mechanism has successfully isolated the broken `HTTPRoute` and allowed the correct one to be
 updated.
 
-{:.note}
-> An alternative way to recover is to backfill broken objects with their last valid version.
-> To change the behavior, make sure {{site.kic_product_name}}'s `--use-last-valid-config-for-fallback` flag is set.
+### Backfilling broken objects
+
+Another mode of operation that the Fallback Configuration feature supports is backfilling broken objects with their last
+valid version. To demonstrate this, we'll use the same setup as in the default mode, but this time we'll enable the
+`--use-last-valid-config-for-fallback` flag.
+
+```bash
+helm upgrade --install kong kong/ingress -n kong \
+--set ingressController.env.feature_gates=FallbackConfiguration=true \
+--set ingressController.env.use_last_valid_config_for_fallback=true \
+--set ingressController.admissionWebhook.enabled=false
+```
+
+#### Detaching the broken KongPlugin
+
+As this mode of operation leverages the last valid Kubernetes objects' cache state, we need to make sure that
+we begin with a clean slate, allowing {{site.kic_product_name}} to store it. 
+Let's detach the broken `KongPlugin` from `route-b` so we get an entirely valid configuration:
+
+```bash
+kubectl annotate --overwrite httproute route-b konghq.com/plugins=
+```
+
+The results should look like this:
+```text
+httproute.gateway.networking.k8s.io/route-b annotated
+```
+
+#### Verifying both routes are operational again
+
+Now, let's verify that both `HTTPRoute`s are operational back again:
+
+```bash
+curl -i $PROXY_IP/route-a-modified
+curl -i $PROXY_IP/route-b
+```
+
+For both, the results should look like this:
+```text
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Content-Length: 137
+Connection: keep-alive
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 0
+Via: kong/3.6.0
+X-Kong-Request-Id: 0d91bf2d355ede4d2b01c3306886c043
+
+Welcome, you are connected to node orbstack.
+Running on Pod echo-74c66b778-szf8f.
+In namespace default.
+With IP address 192.168.194.13.
+```
+
+#### Breaking the route again
+
+As we've verified that both `HTTPRoute`s are operational, let's break `route-b` again by attaching the broken `KongPlugin`:
+
+```bash
+kubectl annotate --overwrite httproute route-b konghq.com/plugins=key-auth
+```
+
+The results should look like this:
+```text
+httproute.gateway.networking.k8s.io/route-b annotated
+```
+
+#### Verifying the broken route was backfilled
+
+Backfilling the broken `HTTPRoute` with its last valid version should have restored the route to its last valid working
+state. That means we should be able to access `route-b`, but with no `KongPlugin` attached:
+
+```bash
+curl -i $PROXY_IP/route-b
+```
+
+The results should look like this:
+
+```text
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Content-Length: 137
+Connection: keep-alive
+X-Kong-Upstream-Latency: 2
+X-Kong-Proxy-Latency: 0
+Via: kong/3.6.0
+X-Kong-Request-Id: 0d91bf2d355ede4d2b01c3306886c043
+
+Welcome, you are connected to node orbstack.
+Running on Pod echo-74c66b778-szf8f.
+In namespace default.
+With IP address 192.168.194.13.
+```
+
+#### Inspecting diagnostic endpoints
+
+Using diagnostic endpoints, we can now inspect the objects that were excluded and backfilled in the configuration:
+
+```bash
+kubectl port-forward -n kong deploy/kong-controller 10256:10256 &
+curl -i localhost:10256/debug/config/problems
+```
+
+The results should look like this:
+```text
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "brokenObjects": [
+        {"kind": "KongPlugin", "name": "key-auth", "namespace": "default"}, 
+        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
+    ]
+    "excludedObjects": [
+        {"kind": "KongPlugin", "name": "key-auth", "namespace": "default"}, 
+        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
+    ],
+    "backfilledObjects": [
+        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
+    ]
+}
+```
+
+### Inspecting the Fallback Configuration process
 
 Each time {{site.kic_product_name}} successfully applies a fallback configuration, it emits a Kubernetes Event
 with the `FallbackKongConfigurationSucceeded` reason. It will also emit an Event with `FallbackKongConfigurationApplyFailed`
@@ -324,4 +473,4 @@ kong        4m26s       Normal   FallbackKongConfigurationSucceeded   pod/kong-c
 
 {:.note}
 > Another way to monitor the Fallback Configuration mechanism is by Prometheus metrics. Please refer to the
-> [Prometheus Metrics](/production/observability/prometheus) for more information.
+> [Prometheus Metrics](/kubernetes-ingress-controller/{{page.release}}/production/observability/prometheus) for more information.
