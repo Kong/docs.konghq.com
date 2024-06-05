@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "fast-glob": "^3.3.2",
     "js-yaml": "^4.1.0",
     "smartling-api-sdk-nodejs": "^2.9.1"
   },
