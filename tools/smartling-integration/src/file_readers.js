@@ -278,7 +278,7 @@ async function pluginsSchemaFiles(gatewayConfig, pluginsConfig) {
   srcPath = 'app/_src/.repos/kong-plugins/schemas/';
 
   for (const plugin of pluginsConfig['kong-inc']) {
-    let kongSchemas = await fg(`${plugin}/{${versions}}.json`, { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
+    let kongSchemas = await fg(`${plugin}/{${versions},}.json`, { cwd: path.resolve(__dirname, '../../../', srcPath), onlyFiles: true });
     schemaFiles.push(...kongSchemas.map((file) => {
       return path.join(srcPath, file);
     }));
