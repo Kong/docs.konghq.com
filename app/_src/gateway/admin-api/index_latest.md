@@ -148,42 +148,18 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
 
 ## HTTP status response codes
 
-The following status codes can be returned in HTTP responses:
+The following status codes are returned in HTTP responses:
 
-| HTTP Code | HTTP Description | Notes |
-| --------- | ---------------- | ----- |
-| a | a | a |
-
-GET
-200
-401
-404
-
-POST
-200
-201
-400
-401
-409
-
-DELETE
-204
-401
-
-PATCH
-200
-400
-401
-404
-
-PUT
-200
-400
-401
-404
-405
-
-
+| HTTP Code | HTTP Description | Notes | Request method |
+| --------- | ---------------- | ----- | ------------- |
+| 200 | OK | The request succeeded. The result of a `200` request depends on the request type: `GET`: The resource was fetched and sent in the message body. `PUT` or `POST`:  The resource that describes the result of the action is sent in the message body. `PATCH`: ? | `GET`, `POST`, `PATCH`, `PUT` |
+| 201 | Created | The request succeeded and a new resource was created. | `POST` |
+| 204 | No Content | There is no content in the request to send. | `DELETE` |
+| 400 | Bad Request | The server can't or won't send the request because of an error by the client. | `POST`, `PATCH`, `PUT` |
+| 401 | Unauthorized | The client is unauthenticated. | `GET`, `POST`, `DELETE`, `PATCH`, `PUT` |
+| 404 | Not Found | The server can't find the resource you requested. With an API, this can mean that the endpoint is valid but the resource doesn't exist. | `GET`, `PATCH`, `PUT` |
+| 405 | Method Not Allowed | The server knows the request method, but it isn't supported by the resource. | `PUT` |
+| 409 | Conflict | A request conflicts with the current state of the server.  | `POST` |
 
 ## Using the API in workspaces 
 {:.badge .enterprise}
