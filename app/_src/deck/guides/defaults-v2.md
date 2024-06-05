@@ -275,7 +275,7 @@ _info:
 ```
 
 For all available properties, see the
-[Route object](/gateway/latest/admin-api/#route-object) documentation.
+[Route object](/gateway/api/admin-ee/latest/#/Routes/list-route/) documentation.
 
 {% endnavtab %}
 {% navtab Service %}
@@ -294,7 +294,7 @@ _info:
       retries: 5
 ```
 For all available properties, see the
-[Service object](/gateway/latest/admin-api/#service-object) documentation.
+[Service object](/gateway/api/admin-ee/latest/#/Services) documentation.
 
 {% endnavtab %}
 {% navtab Upstream %}
@@ -372,7 +372,7 @@ _info:
         threshold: 0
 ```
 For all available properties, see the
-[Upstream object](/gateway/latest/admin-api/#upstream-object) documentation.
+[Upstream object](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream/) documentation.
 
 {% endnavtab %}
 {% navtab Target %}
@@ -386,7 +386,7 @@ _info:
       weight: 100
 ```
 For all available properties, see the
-[Target object](/gateway/latest/admin-api/#target-object) documentation.
+[Target object](/gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream/) documentation.
 
 {% endnavtab %}
 {% endnavtabs %}

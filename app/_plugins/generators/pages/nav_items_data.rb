@@ -50,7 +50,7 @@ module Jekyll
 
       def nav_items
         if release
-          @site.data["docs_nav_#{product_abbrv}_#{release.value.gsub(/\./, '')}"]
+          @site.data["docs_nav_#{product_abbrv}_#{release.value.gsub('.', '')}"]
         else
           @site.data["docs_nav_#{product_abbrv}"]
         end

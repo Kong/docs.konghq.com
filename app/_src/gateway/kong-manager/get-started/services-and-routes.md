@@ -1,6 +1,5 @@
 ---
 title: Services and Routes
-badge: free
 ---
 
 This tutorial walks you through creating services and routes in Kong Manager.

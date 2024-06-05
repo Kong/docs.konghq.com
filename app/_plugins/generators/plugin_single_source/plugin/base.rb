@@ -38,12 +38,8 @@ module PluginSingleSource
           version_file = File.join(site.source, Generator::PLUGINS_FOLDER, dir, "#{version}.md")
           next if !is_latest && File.exist?(version_file)
 
-          Release.new(plugin: self, source: sources[version], version:, is_latest:, site:).generate_pages
+          Release.new(plugin: self, version:, is_latest:, site:).generate_pages
         end.flatten.compact
-      end
-
-      def sources
-        @sources ||= Hash.new { |_k, _v| '_index' }
       end
 
       def ext_data

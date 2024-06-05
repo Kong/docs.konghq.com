@@ -289,7 +289,7 @@ curl -X POST http://localhost:8001/routes/{route id}/plugins \
 |h2:/match/status/,/status/no-match/   | h2:/status/no-match/ |
 
 [api-object]: /gateway/latest/admin-api/#api-object
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
 [configuration]: /gateway/latest/reference/configuration
 
 

@@ -60,7 +60,7 @@ will potentially be cached.
      --data "name=proxy-cache" \
      --data "config.request_method=GET" \
      --data "config.response_code=200" \
-     --data "config.content_type=application/json; charset=utf-8" \
+     --data "config.content_type=application/json" \
      --data "config.cache_ttl=30" \
      --data "config.strategy=memory"
    ```
@@ -69,7 +69,7 @@ will potentially be cached.
 
    This Admin API request configured a Proxy Cache plugin for all `GET` requests that resulted
    in response codes of `200` and *response* `Content-Type` headers that *equal*
-   `application/json; charset=utf-8`. `cache_ttl` instructed the plugin to flush values after 30 seconds.
+   `application/json`. `cache_ttl` instructed the plugin to flush values after 30 seconds.
 
    The final option `config.strategy=memory` specifies the backing data store for cached responses. More
    information on `strategy` can be found in the [parameter reference](/hub/kong-inc/proxy-cache/)
@@ -113,7 +113,10 @@ will potentially be cached.
    |Refresh| The resource was found in cache, but could not satisfy the request, due to Cache-Control behaviors or reaching its hard-coded `cache_ttl` threshold. |
    |Bypass| The request could not be satisfied from cache based on plugin configuration.                                                                         |
 
-### Service level proxy caching
+### Entity-level proxy caching
+
+{% navtabs %}
+{% navtab Service-level %}
 
 The Proxy Cache plugin can be enabled for specific services. The request is the same as above, but the request is sent to the service URL:
 
@@ -122,12 +125,13 @@ curl -X POST http://localhost:8001/services/example_service/plugins \
    --data "name=proxy-cache" \
    --data "config.request_method=GET" \
    --data "config.response_code=200" \
-   --data "config.content_type=application/json; charset=utf-8" \
+   --data "config.content_type=application/json" \
    --data "config.cache_ttl=30" \
    --data "config.strategy=memory"
 ```
 
-### Route level proxy caching
+{% endnavtab %}
+{% navtab Route-level %}
 
 The Proxy Caching plugin can be enabled for specific routes. The request is the same as above, but the request is sent to the route URL:
 
@@ -136,36 +140,37 @@ curl -X POST http://localhost:8001/routes/example_route/plugins \
    --data "name=proxy-cache" \
    --data "config.request_method=GET" \
    --data "config.response_code=200" \
-   --data "config.content_type=application/json; charset=utf-8" \
+   --data "config.content_type=application/json" \
    --data "config.cache_ttl=30" \
    --data "config.strategy=memory"
 ```
 
-### Consumer level proxy caching
+{% endnavtab %}
+{% navtab Consumer-level %}
 
-In {{site.base_gateway}}, [consumers](/gateway/latest/admin-api/#consumer-object) are an abstraction that defines a user of a service.
+In {{site.base_gateway}}, [consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/) are an abstraction that defines a user of a service.
 Consumer-level proxy caching can be used to cache responses per consumer.
 
-1. **Create a consumer**
+1. Create a consumer:
 
-Consumers are created using the consumer object in the Admin API.
+   ```sh
+   curl -X POST http://localhost:8001/consumers/ \
+   --data username=sasha
+   ```
 
-```sh
-curl -X POST http://localhost:8001/consumers/ \
-  --data username=sasha
-```
+2. Enable caching for the consumer:
 
-1. **Enable caching for the consumer**
-
-```sh
-curl -X POST http://localhost:8001/consumers/sasha/plugins \
-   --data "name=proxy-cache" \
-   --data "config.request_method=GET" \
-   --data "config.response_code=200" \
-   --data "config.content_type=application/json; charset=utf-8" \
-   --data "config.cache_ttl=30" \
-   --data "config.strategy=memory"
-```
+   ```sh
+   curl -X POST http://localhost:8001/consumers/sasha/plugins \
+      --data "name=proxy-cache" \
+      --data "config.request_method=GET" \
+      --data "config.response_code=200" \
+      --data "config.content_type=application/json" \
+      --data "config.cache_ttl=30" \
+      --data "config.strategy=memory"
+   ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Manage cached entities
 

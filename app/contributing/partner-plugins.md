@@ -5,8 +5,9 @@ content_type: how-to
 
 Plugin documentation is posted on the [Plugin Hub](/hub/). 
 
-We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis.
-For more information on technical partnerships, see the [Kong Partners page](https://konghq.com/partners/).
+At this time, Kong only maintains validated plugin listings for verified partners, on a limited basis.
+We don't maintain entries of custom plugins from individual contributors.
+If you would like to have your plugin featured on the Kong Plugin Hub, we encourage you to become a [Kong Partner](https://konghq.com/partners/).
 
 If you're looking to develop a plugin, see our plugin documentation:
 * [Plugin development guide](/gateway/latest/plugin-development/)

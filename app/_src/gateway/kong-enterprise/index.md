@@ -22,13 +22,14 @@ It offers exclusive versions of OSS plugins like the [Rate Limiting Advanced plu
 * [Mocking](/hub/kong-inc/mocking/)
 * [Advanced data transformation](/hub/kong-inc/jq/)
 * [OPA Policy driven traffic management](/hub/kong-inc/opa/)
-{% if_version lte:3.3.x %}
+{% if_version lte:3.3.x -%}
 * [API product tiers](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
-{% endif_version %}
-{% if_version gte:3.4.x %}
-* [API product tiers](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
+{% endif_version -%}
+{% if_version gte:3.4.x -%}
+* [API product tiers](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups)
 {% endif_version %}
 [Get started with plugins &rarr;](/hub/)
+
 {% if_version lte:3.4.x %}
 ## Dev Portal
 
@@ -48,7 +49,7 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 {% endif_version %}
 ## Role-based access control (RBAC)
 
-{{site.ee_product_name}} lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.release}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.release}}/kong-manager/auth/rbac/).
+{{site.ee_product_name}} lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/api/admin-ee/latest/), or [Kong Manager](/gateway/{{page.release}}/kong-manager/auth/rbac/).
 
 [Manage teams with RBAC &rarr;](/gateway/{{page.release}}/kong-manager/auth/rbac)
 
@@ -56,9 +57,9 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 {{site.ee_product_name}} offers out of the box secrets management with the following backends: 
 
 * [Amazon Web Services (AWS)](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
-{% if_version gte:3.5.x %}
+{% if_version gte:3.5.x -%}
 * [Microsoft Azure](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/azure-key-vaults/)
-{% endif_version %}
+{% endif_version -%}
 * [Google Cloud Platform (GCP)](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [Hashicorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
@@ -81,7 +82,7 @@ This provides encryption-at-rest security controls in a {{site.base_gateway}} cl
 {{site.base_gateway}} provides granular logging of the Admin API. You can keep detailed track of changes made to the
 cluster configuration throughout its lifetime, for compliance efforts and for
 providing valuable data points during forensic investigations. Generated audit
-log trails are [workspace](/gateway/{{page.release}}/admin-api/workspaces/reference/) and [RBAC](/gateway/{{page.release}}/admin-api/rbac/reference/)-aware,
+log trails are [workspace](/gateway/api/admin-ee/latest/#/Workspaces) and [RBAC](/gateway/api/admin-ee/latest/)-aware,
 providing {{site.base_gateway}} operators a deep and wide look into changes happening within
 the cluster.
 
@@ -121,26 +122,25 @@ In {{site.base_gateway}}, these callbacks can be defined using one of the follow
 
 You can configure event hooks through the Admin API.
 
-[Learn more about event hooks &rarr;](/gateway/{{page.release}}/admin-api/event-hooks/reference/)
+[Learn more about event hooks &rarr;](/gateway/api/admin-ee/latest/#/Event-hooks/)
 
 ## Consumer groups
 
-You can use consumer groups to manage custom rate limiting configuration for subsets of consumers. With consumer groups, you can define any number of rate limiting tiers and
+Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem. 
+By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, 
+efficient approach to managing configurations.
+
+For example, you could use consumer groups to define rate limiting tiers and
 apply them to subsets of consumers, instead of managing each consumer
 individually.
 
-For example, you could define three consumer groups:
-* A "gold tier" with 1000 requests per minute
-* A "silver tier" with 10 requests per second
-* A "bronze tier" with 6 requests per second
-
 {% if_version lte:3.3.x %}
-[Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
-[Consumer groups API reference](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
+* [Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
+* [Consumer groups API reference &rarr;](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
 {% endif_version %}
 {% if_version gte:3.4.x %}
-[Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
-[Consumer groups API documentation](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
+* [Consumer groups API documentation &rarr;](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups)
+* [Plugins with consumer groups support &rarr;](/hub/plugins/compatibility/#scopes)
 {% endif_version %}
 
 {% if_version gte:3.2.x %}
@@ -155,6 +155,14 @@ Starting in version 3.2, {{site.base_gateway}} can be configured to support conf
 ## Docker container image signing
 
 Starting with {{site.ee_product_name}} 3.5.0.2, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/signed-images/) documentation to learn more.
+{% endif_version %}
+
+{% if_version gte:3.6.x %}
+
+## Docker container image build provenance
+
+Kong produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository. Read the [Verify Build Provenance for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/provenance-verification/) documentation to learn more.
+
 {% endif_version %}
 
 ## More information

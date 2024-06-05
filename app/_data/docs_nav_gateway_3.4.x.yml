@@ -85,8 +85,52 @@ items:
         url: /get-started/key-authentication
       - text: Load-Balancing
         url: /get-started/load-balancing
-  - title: Kong in Production
+
+
+  - title: Install Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    items:
+      - text: Overview
+        url: /install/
+      - text: Kubernetes
+        items:
+          - text: Overview
+            url: /install/kubernetes/
+          - text: Install Kong Gateway
+            url: /install/kubernetes/proxy/
+          - text: Configure the Admin API
+            url: /install/kubernetes/admin/
+          - text: Install Kong Manager
+            url: /install/kubernetes/manager/
+      - text: Docker
+        items:
+          - text: Using docker run
+            url: /install/docker
+          - text: Build your own Docker images
+            url: /install/docker/build-custom-images/
+      - text: Linux
+        items:
+          - text: Amazon Linux
+            url: /install/linux/amazon-linux
+          - text: Debian
+            url: /install/linux/debian
+          - text: Red Hat
+            url: /install/linux/rhel
+          - text: Ubuntu
+            url: /install/linux/ubuntu
+      - text: Post-installation
+        items:
+          - text: Set up a data store
+            url: /install/post-install/set-up-data-store/
+          - text: Apply Enterprise license
+            url: /install/post-install/enterprise-license/
+            generate: false
+          - text: Enable Kong Manager (Enterprise)
+            url: /install/post-install/kong-manager/
+            generate: false
+
+  - title: Kong in Production
+    icon: /assets/images/icons/icn-server.svg
     items:
       - text: Deployment Topologies
         items:
@@ -102,51 +146,6 @@ items:
             url: /production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
             url: /production/deployment-topologies/traditional
-      - text: Installation Options
-        items:
-          - text: Overview
-            url: /install/
-          - text: Kubernetes
-            items:
-              - text: Overview
-                url: /install/kubernetes/
-              - text: Install Kong Gateway
-                url: /install/kubernetes/proxy/
-              - text: Configure the Admin API
-                url: /install/kubernetes/admin/
-              - text: Install Kong Manager
-                url: /install/kubernetes/manager/
-              - text: Install Developer Portal
-                url: /install/kubernetes/portal/
-          - text: Docker
-            items:
-              - text: Using docker run
-                url: /install/docker
-              - text: Build your own Docker images
-                url: /install/docker/build-custom-images/
-          - text: Linux
-            items:
-              - text: Amazon Linux
-                url: /install/linux/amazon-linux
-              - text: Debian
-                url: /install/linux/debian
-              - text: Red Hat
-                url: /install/linux/rhel
-              - text: Ubuntu
-                url: /install/linux/ubuntu
-          - text: Post-installation
-            items:
-              - text: Set up a data store
-                url: /install/post-install/set-up-data-store/
-              - text: Apply Enterprise license
-                url: /install/post-install/enterprise-license/
-                generate: false
-              - text: Enable Kong Manager (Enterprise)
-                url: /install/post-install/kong-manager/
-                generate: false
-              - text: Enable Kong Manager (OSS)
-                url: /install/post-install/kong-manager-oss/
-                generate: false
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user
@@ -228,6 +227,7 @@ items:
         url: /production/clustering
       - text: Establish a Performance Benchmark
         url: /production/benchmark
+        src: /gateway/production/performance/benchmark
       - text: Logging
         items:
           - text: Log Reference
@@ -236,6 +236,8 @@ items:
             url: /production/logging/update-log-level-dynamically
           - text: Customize Gateway Logs
             url: /production/logging/customize-gateway-logs
+          - text: Debug Requests
+            url: /production/debug-request
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
@@ -301,6 +303,8 @@ items:
                 url: /kong-enterprise/secrets-management/backends/env
               - text: AWS Secrets Manager
                 url: /kong-enterprise/secrets-management/backends/aws-sm
+              - text: Azure Key Vaults
+                url: /kong-enterprise/secrets-management/backends/azure-key-vaults
               - text: Google Secrets Manager
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
               - text: Hashicorp Vault
@@ -484,13 +488,9 @@ items:
         url: /kong-manager/consumer-groups
       - text: Sending Email
         url: /kong-manager/configuring-to-send-email
-  - title: Kong Manager Open Source
-    icon: /assets/images/icons/documentation/icn-manager-oss-color.svg
-    items:
-      - text: Overview
-        url: /kong-manager-oss/
       - text: Troubleshooting
-        url: /kong-manager-oss/troubleshoot/
+        url: /kong-manager/troubleshoot/
+
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
@@ -660,6 +660,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
+        src: /gateway/reference/configuration/configuration-3.4.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

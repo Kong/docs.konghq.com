@@ -4,7 +4,8 @@ content-type: explanation
 ---
 
 Dynamic Client Registration (DCR) within {{site.konnect_short_name}} Dev Portal allows applications created in the portal to automatically create a linked application in a third-party Identity Provider (IdP).
-This outsources the issuer and management of application credentials to a third party, allowing for additional configuration options and compatibility with various OIDC features provided by the IdP.
+
+This outsources the issuer and management of application credentials to a third party, allowing for additional configuration options and compatibility with various OIDC features provided by the IdP. {{site.konnect_short_name}} offers the flexibility to create multiple DCR configurations.
 
 ## Authentication Methods
 
@@ -22,19 +23,14 @@ Each method is available when using [Auth0](/konnect/dev-portal/applications/dyn
 
 You can obtain a bearer access token by requesting it from the IdP's `/token` endpoint:
 
-
-<p align="center">
-  <img src="/assets/images/products/konnect/dev-portal/dcr-bearer-tokens.png" />
-</p>
-
 Token endpoints for IdPs are:
 
 | Vendor  | Endpoint  | Body                                 |
 |:------|--------|----------------------------------------|
-| Auth0 | POST `https://YOUR_AUTH0_SUBDOMAIN.REGION.auth0.com/oauth/token` | `{ "grant_type": "client_credentials", "audience": "<your_audience>" }` |
-| Curity | POST `https://YOUR_CURITY_DOMAIN/oauth/v2/oauth-token` | `{ "grant_types": "client_credentials" }` |
-| Okta | POST `https://YOUR_OKTA_SUBDOMAIN.okta.com/oauth2/default/v1/token` | `{ "grant_types": "client_credentials" }` |
-| Azure | GET `https://login.microsoftonline.com/YOUR_TENANT_ID/oauth2/token` | `{"grant_type": "client_credentials", "scope":"https://graph.microsoft.com/.default"}`|
+| Auth0 | POST `https://{region}.auth0.com/oauth/token` | `{ "grant_type": "client_credentials", "audience": "<your_audience>" }` |
+| Curity | POST `https://{your_curity_domain}/oauth/v2/oauth-token` | `{ "grant_type": "client_credentials" }` |
+| Okta | POST `https://{okta-subdomain}.okta.com/oauth2/default/v1/token`  | `{ "grant_type": "client_credentials" }` |
+| Azure | POST `https://login.microsoftonline.com/{your_tenant_id}/oauth2/v2.0/token` | `{"grant_type": "client_credentials", "scope":"https://graph.microsoft.com/.default"}`|
 
 ### Authentication with session cookie
 

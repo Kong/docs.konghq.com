@@ -4,6 +4,13 @@ frontmatter_attr: Metadata defined in frontmatter
 nav_title: Overview
 ---
 
+
+{% if_version lte:2.7.x %}
+## _2.6.x Description
+{% endif_version %}
+
+{{ page.desc }}
+
 ## Manage key signing
 
 If you specify `config.access_token_keyset` or `config.channel_token_keyset` with either an

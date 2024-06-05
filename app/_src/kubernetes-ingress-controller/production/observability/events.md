@@ -93,3 +93,41 @@ type: Warning
 resource, so you may see multiple Events for a single resource with different
 messages. The message describes the reason the resource is invalid. In this
 case, it's because gRPC routes cannot use HTTP methods.
+
+### Events for cluster scoped resources
+
+Kubernetes events are namespaced and created in the same namespace as the involved object.
+Cluster scoped objects are handled differently because they aren't assigned to a particular namespace.
+
+`kubectl` and Kubernetes libraries, like `client-go`, assign the `default` namespace to
+events that involve cluster scoped resources.
+
+For example, if you defined the following `KongClusterPlugin`, which has an incorrect schema:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+config:
+  config:
+    latency_metrics: true
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: "true"
+  name: prometheus
+plugin: prometheus
+```
+
+You can find the relevant event in the `default` namespace using the following `kubectl` command:
+
+```bash
+kubectl get events --field-selector involvedObject.name=prometheus -n default
+```
+
+This could output the following:
+
+```bash
+LAST SEEN   TYPE      REASON                         OBJECT                         MESSAGE
+2s          Warning   KongConfigurationApplyFailed   kongclusterplugin/prometheus   invalid config.config: unknown field
+```

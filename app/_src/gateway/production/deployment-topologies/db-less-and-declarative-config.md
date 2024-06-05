@@ -11,6 +11,11 @@ specify the use of the database and its [various settings](/gateway/{{page.relea
 We call this DB-less mode. When running {{site.base_gateway}} DB-less, the configuration of 
 entities is done in a second configuration file, in YAML or JSON, using declarative configuration.
 
+{% include_cached /md/gateway/deployment-topologies.md topology='dbless' %}
+
+> _Figure 1: In DB-less mode, configuration is applied via YAML files. 
+{{ site.base_gateway }} nodes aren't connected to a database, or to each other._
+
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
 
@@ -237,8 +242,8 @@ Kong node with the Admin API, using the `/config` endpoint. The
 following example loads `kong.yml`:
 
 ```sh
-curl -i -X GET http://localhost:8001/config \
-  --data config=@kong.yml
+curl -i -X POST http://localhost:8001/config \
+  --form config=@kong.yml
 ```
 
 {:.important}

@@ -1,6 +1,5 @@
 ---
 title: Authentication with Consumers
-badge: free
 ---
 
 In this example, you’re going to enable the **Key Authentication plugin**, then create a consumer that uses key authentication. API key authentication is one of the most popular ways to conduct API authentication and can be implemented to create and delete access keys as required.

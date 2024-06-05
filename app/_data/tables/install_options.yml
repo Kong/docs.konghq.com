@@ -9,7 +9,7 @@ features:
   - name: "Packages"
     items:
       - name: "Alpine"
-        url: https://download.konghq.com/gateway-3.x-alpine/
+        url: https://cloudsmith.io/~kong/packages/?q=distribution%3Aalpine+AND+distribution%3Aany-version&sort=-version
         oss: true
         enterprise: true
         support: true

@@ -11,7 +11,7 @@ This guide describes how to invite an admin in Kong
 Manager. As an alternative, if a super admin wants to
 invite an admin with the Admin API, it is possible to
 do so using
-[`/admins`](/gateway/{{page.release}}/admin-api/admins/reference/#invite-an-admin).
+[`/admins`](/gateway/api/admin-ee/latest/#/admins/post-admins).
 
 ## Prerequisites
 

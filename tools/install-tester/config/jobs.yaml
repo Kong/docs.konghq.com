@@ -6,16 +6,16 @@
     - amazon-linux
     - ubuntu
     - debian
-    - rhel
+    - rhel:9
   skip:
     - 3.2.x/debian/enterprise/package
     - 3.2.x/debian/enterprise/repository
     - 3.3.x/debian/enterprise/package
     - 3.3.x/debian/enterprise/repository
-    - 3.2.x/rhel/enterprise/package
-    - 3.2.x/rhel/enterprise/repository
-    - 3.3.x/rhel/enterprise/package
-    - 3.3.x/rhel/enterprise/repository
+    - 3.2.x/rhel:9/enterprise/package
+    - 3.2.x/rhel:9/enterprise/repository
+    - 3.3.x/rhel:9/enterprise/package
+    - 3.3.x/rhel:9/enterprise/repository
   arch:
     - linux/arm64
   outputs:
@@ -29,7 +29,7 @@
   distros:
     - amazon-linux
     - ubuntu
-    - rhel
+    - rhel:7
     - debian
   arch:
     - linux/amd64
@@ -43,7 +43,7 @@
       - enterprise
   distros:
     - ubuntu
-    - rhel
+    - rhel:7
     - amazon-linux
     - debian
     - centos

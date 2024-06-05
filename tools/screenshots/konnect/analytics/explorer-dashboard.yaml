@@ -1,0 +1,11 @@
+- output: ../../app/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png
+  url: https://cloud.konghq.com/us/analytics/explorer
+  wait: 4000
+  width: 2033
+  height: 1384
+  javascript: |
+   async () => {
+    zoomPercentage(-35);} // 65% zoom level (100% - 35%)
+
+
+    app/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png

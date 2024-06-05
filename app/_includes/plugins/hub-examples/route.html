@@ -4,7 +4,7 @@
 {% if include.render_intro_text %}
 The following examples provide some typical configurations for enabling
 the <code>{{ hub_example.plugin_name }}</code> plugin on a
-[route](/gateway/latest/admin-api/#route-object).
+[route](/gateway/api/admin-ee/latest/#/Routes).
 {% endif %}
 
 {% navtabs %}
@@ -85,4 +85,17 @@ Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin co
 {% endnavtab %}
 {% endif %}
 {% endunless %}
+
+{% unless page.terraform_examples == false %}
+  {% if hub_example.render_terraform? %}
+  {% navtab Konnect Terraform %}
+
+{% include_cached plugins/hub-examples/terraform.html example=hub_example parent="route" %}
+
+{% include_cached plugins/create-consumer/terraform.html hub_example=hub_example %}
+
+  {% endnavtab %}
+  {% endif %}
+{% endunless %}
+
 {% endnavtabs %}

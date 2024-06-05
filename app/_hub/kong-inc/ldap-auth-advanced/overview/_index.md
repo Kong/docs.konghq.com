@@ -60,7 +60,7 @@ ldapsearch -x \
 
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
 
 
 
@@ -70,7 +70,7 @@ ldapsearch -x \
 
 ## Notes
 
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 
 `config.group_base_dn` and `config.base_dn` do not accept an array and
 it has to fully match the full DN the group is in - it won’t work if it
@@ -79,21 +79,21 @@ example, considering a case where there are nested `"OU's"`. If a
 top-level DN such as `"ou=dev,o=company"` is specified instead of
 `"ou=role,ou=groups,ou=dev,o=company"`, the authentication will fail.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 Referrals are not supported in the plugin. A workaround is
 to hit the LDAP Global Catalog instead, which is usually listening on a
 different port than the default `389`. That way, referrals don't get sent
 back to the plugin.
 
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 
 The plugin doesn’t authenticate users (allow/deny requests) based on group
 membership. For example:
 - If the user is a member of an LDAP group, the request is allowed.
 - if the user is not a member of an LDAP group, the request is still allowed.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 The plugin obtains LDAP groups and sets them in a header, `x-authenticated-groups`,
 to the request before proxying to the upstream. This is useful for Kong Manager role

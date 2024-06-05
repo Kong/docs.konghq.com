@@ -12,7 +12,7 @@ RSpec.describe 'Plugin page with multiple versions' do
 
     it 'renders the content' do
       expect(html).to have_css('h2', text: '_2.6.x Description')
-      expect(html).to have_css('p', text: 'content: Verify and (re-)sign one or two tokens in a request')
+      expect(html).to have_css('p', text: 'Verify and (re-)sign one or two tokens in a request')
     end
 
     it 'renders metadata in the header' do
@@ -20,7 +20,6 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
       expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
-      expect(html).to have_css('.old-version-banner')
     end
   end
 
@@ -37,7 +36,6 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
       expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
-      expect(html).not_to have_css('.old-version-banner')
     end
 
     it 'renders the sidenav' do
@@ -51,8 +49,9 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(how_tos).to have_css('.sidebar-item:nth-of-type(2)', text: 'Nested')
       expect(how_tos).to have_css('.sidebar-item:nth-of-type(3)', text: 'Manage key signing')
 
-      nested_how_to = how_tos.find('.sidebar-item:nth-of-type(2)')
-      expect(nested_how_to).to have_css('.sidebar-item', text: 'Nested Tutorial Nav title')
+      nested_how_tos = how_tos.find('.sidebar-item:nth-of-type(2)', text: /^Nested$/)
+      expect(nested_how_tos).to have_css('.sidebar-item', text: 'Nested Tutorial Nav title')
+      expect(nested_how_tos).to have_css('.sidebar-item', text: 'Nested Tutorial Nav title with Min and Max')
     end
 
     context 'plugins that are `paid` or `premium`' do

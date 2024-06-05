@@ -20,11 +20,11 @@ module OasDefinition
       @data
         .merge!({
                   'source_file' => @file,
-                  'dir' => permalink(version_segment),
+                  'dir' => permalink(release_segment),
                   'product' => ::Jekyll::Drops::Oas::Product.new(product: @product),
-                  'permalink' => permalink(version_segment),
+                  'permalink' => permalink(release_segment),
                   'description' => @product['description'],
-                  'title' => page_title,
+                  'title' => @product['title'],
                   'version' => @version.slice('id', 'name'),
                   'layout' => 'oas/spec',
                   'canonical_url' => canonical_url,
@@ -45,13 +45,15 @@ module OasDefinition
       permalink('latest')
     end
 
-    def version_segment
+    def release_segment
       return 'latest' if @latest
 
+      release
+    end
+
+    def release
       if Gem::Version.correct? @version['name']
-        version = @version['name'].split('.')
-        version.pop
-        version.join('.').concat('.x')
+        ::Utils::Version.to_release(@version['name'])
       else
         @version['name']
       end

@@ -11,7 +11,7 @@ There are many monitoring and alerting systems available, and {{site.base_gatewa
 multiple solutions:
 
 * [Prometheus](https://prometheus.io/) is an open-source systems monitoring and alerting toolkit.
-   Prometheus provides a multi-demensional time series data model and query language.
+   Prometheus provides a multi-dimensional time series data model and query language.
    The [Monitoring with Prometheus](/gateway/latest/production/monitoring/prometheus/) guide
    shows how to install and configure the {{site.base_gateway}} [Prometheus plugin](/hub/kong-inc/prometheus/).
 * [Datadog](https://www.datadoghq.com/) is a popular cloud based infrastructure and application monitoring service.

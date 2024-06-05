@@ -1,5 +1,5 @@
-- output: ../../app/assets/images/products/konnect/gateway-manager/konnect-runtime-instance-gateway.png
-  url: https://cloud.konghq.com/us/runtime-manager/988f1fa1-fd93-4ef7-a1f5-c481bd86e945/runtime-instances
+- output: ../../../app/assets/images/products/konnect/gateway-manager/konnect-runtime-instance-gateway.png
+  url: https://cloud.konghq.com/us/gateway-manager/988f1fa1-fd93-4ef7-a1f5-c481bd86e945/nodes/information
   wait: 4000
   width: 1920
   height: 1080

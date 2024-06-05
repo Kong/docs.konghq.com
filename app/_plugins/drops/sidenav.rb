@@ -68,8 +68,7 @@ module Jekyll
       end
 
       def edition
-        @edition ||= Jekyll::GeneratorSingleSource::Product::Edition
-                     .new(edition: @options['docs_url'], site: Jekyll.sites.first)
+        @edition ||= Jekyll.sites.first.data.dig('editions', @options['docs_url'])
       end
     end
 

@@ -9,7 +9,7 @@ store:
   # Kubernetes Store configuration (used when store.type=kubernetes)
   kubernetes:
     # Namespace where Control Plane is installed to.
-    systemNamespace: kuma-system # ENV: KUMA_STORE_KUBERNETES_SYSTEM_NAMESPACE
+    systemNamespace: kong-mesh-system # ENV: KUMA_STORE_KUBERNETES_SYSTEM_NAMESPACE
   # Postgres Store configuration (used when store.type=postgres)
   postgres:
     # Host of the Postgres DB
@@ -26,6 +26,8 @@ store:
     driverName: pgx # ENV: KUMA_STORE_POSTGRES_DRIVER_NAME
     # Connection Timeout to the DB in seconds
     connectionTimeout: 5 # ENV: KUMA_STORE_POSTGRES_CONNECTION_TIMEOUT
+    # MaxConnectionIdleTime (applied only when driverName=pgx) is the duration after which an idle connection will be automatically closed by the health check.
+    maxConnectionIdleTime: "30m" # ENV: KUMA_STORE_POSTGRES_MAX_CONNECTION_IDLE_TIME
     # MaxConnectionLifetime (applied only when driverName=pgx) is the duration since creation after which a connection will be automatically closed
     maxConnectionLifetime: "1h" # ENV: KUMA_STORE_POSTGRES_MAX_CONNECTION_LIFETIME
     # MaxConnectionLifetimeJitter (applied only when driverName=pgx) is the duration after maxConnectionLifetime to randomly decide to close a connection.
@@ -40,7 +42,6 @@ store:
     maxOpenConnections: 50 # ENV: KUMA_STORE_POSTGRES_MAX_OPEN_CONNECTIONS
     # MaxIdleConnections is the maximum number of connections in the idle connection pool
     # <0 value means no idle connections and 0 means default max idle connections.
-    # Deprecated: it's only used when driverName=postgres (lib/pq) which is deprecated, use driverName=pgx instead.
     maxIdleConnections: 50 # ENV: KUMA_STORE_POSTGRES_MAX_IDLE_CONNECTIONS
     # MaxListQueryElements defines maximum number of changed elements before requesting full list of elements from the store.
     maxListQueryElements: 0 # ENV: KUMA_STORE_POSTGRES_MAX_LIST_QUERY_ELEMENTS
@@ -54,17 +55,6 @@ store:
       keyPath: # ENV: KUMA_STORE_POSTGRES_TLS_KEY_PATH
       # Path to the root certificate. Used in verifyCa and verifyFull modes.
       caPath: # ENV: KUMA_STORE_POSTGRES_TLS_ROOT_CERT_PATH
-    # MinReconnectInterval controls the duration to wait before trying to
-    # re-establish the database connection after connection loss. After each
-    # consecutive failure this interval is doubled, until MaxReconnectInterval
-    # is reached. Successfully completing the connection establishment procedure
-    # resets the interval back to MinReconnectInterval.
-    # Deprecated: it's only used when driverName=postgres (lib/pq) which is deprecated, use driverName=pgx instead.
-    minReconnectInterval: "10s" # ENV: KUMA_STORE_POSTGRES_MIN_RECONNECT_INTERVAL
-    # MaxReconnectInterval controls the maximum possible duration to wait before trying
-    # to re-establish the database connection after connection loss.
-    # Deprecated: it's only used when driverName=postgres (lib/pq) which is deprecated, use driverName=pgx instead.
-    maxReconnectInterval: "60s" # ENV: KUMA_STORE_POSTGRES_MAX_RECONNECT_INTERVAL
     # ReadReplica is a setting for a DB replica used only for read queries
     readReplica:
       # Host of the Postgres DB read replica. If not set, read replica is not used.
@@ -269,7 +259,10 @@ runtime:
         # Redirect port for inbound traffic.
         redirectPortInbound: 15006 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_REDIRECT_PORT_INBOUND
         # Redirect port for inbound traffic.
-        redirectPortInboundV6: 15010 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_REDIRECT_PORT_INBOUND_V6
+        # Deprecated: Use redirectPortInbound or ipFamilyMode instead.
+        redirectPortInboundV6: 15006 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_REDIRECT_PORT_INBOUND_V6
+        # IP family mode enabled for traffic redirection, can be 'dualstack' or 'ipv4'
+        ipFamilyMode: dualstack # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_IP_FAMILY_MODE
         # Redirect port for outbound traffic.
         redirectPortOutbound: 15001 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_REDIRECT_PORT_OUTBOUND
         # User ID.
@@ -300,6 +293,16 @@ runtime:
           periodSeconds: 5 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_LIVENESS_PROBE_PERIOD_SECONDS
           # Minimum consecutive failures for the probe to be considered failed after having succeeded.
           failureThreshold: 12 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_LIVENESS_PROBE_FAILURE_THRESHOLD
+        # Startup probe (if sidecar containers feature is enabled).
+        startupProbe:
+          # Number of seconds after the container has started before startup probes are initiated.
+          initialDelaySeconds: 1 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_STARTUP_PROBE_INITIAL_DELAY_SECONDS
+          # Number of seconds after which the probe times out.
+          timeoutSeconds: 3 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_STARTUP_PROBE_TIMEOUT_SECONDS
+          # How often (in seconds) to perform the probe.
+          periodSeconds: 5 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_STARTUP_PROBE_PERIOD_SECONDS
+          # Minimum consecutive failures for the probe to be considered failed after having succeeded.
+          failureThreshold: 12 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_STARTUP_PROBE_FAILURE_THRESHOLD
         # Compute resource requirements.
         resources:
           # Minimum amount of compute resources required.
@@ -356,12 +359,14 @@ runtime:
         # when not specified, we will try to automatically determine it
         tcAttachIface: "" # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_EBPF_TC_ATTACH_IFACE
         # Path where compiled eBPF programs are placed
-        programsSourcePath: /kuma/ebpf # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_EBPF_PROGRAMS_SOURCE_PATH
+        programsSourcePath: /tmp/kuma-ebpf # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_EBPF_PROGRAMS_SOURCE_PATH
       # IgnoredServiceSelectorLabels defines a list ignored labels in Service selector.
       # If Pod matches a Service with ignored labels, but does not match it fully, it gets Ignored inbound.
       # It is useful when you change Service selector and expect traffic to be sent immediately.
       # An example of this is ArgoCD's BlueGreen deployment and "rollouts-pod-template-hash" selector.
       ignoredServiceSelectorLabels: [] # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_IGNORED_SERVICE_SELECTOR_LABELS
+      # nodeLabelsToCopy defines a list of node labels that should be copied to the Pod.
+      nodeLabelsToCopy: ["topology.kubernetes.io/zone", "topology.kubernetes.io/region", "kubernetes.io/hostname"] # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_NODE_LABELS_TO_COPY
     marshalingCacheExpirationTime: 5m # ENV: KUMA_RUNTIME_KUBERNETES_MARSHALING_CACHE_EXPIRATION_TIME
     # Kubernetes's resources reconciliation concurrency configuration
     controllersConcurrency:
@@ -384,17 +389,26 @@ runtime:
       # RenewDeadline is the duration that the acting controlplane will retry
       # refreshing leadership before giving up. Default is 10 seconds.
       renewDeadline: 10s # ENV: KUMA_RUNTIME_KUBERNETES_LEADER_ELECTION_RENEW_DEADLINE
+    # SkipMeshOwnerReference is a flag that allows to skip adding Mesh owner reference to resources.
+    # If this is set to true, deleting a Mesh will not delete resources that belong to that Mesh.
+    # This can be useful when resources are managed in Argo CD where creation/deletion is managed there.
+    skipMeshOwnerReference: false # ENV: KUMA_RUNTIME_KUBERNETES_SKIP_MESH_OWNER_REFERENCE
+    # If true, then control plane can support TLS secrets for builtin gateway outside of mesh system namespace.
+    # The downside is that control plane requires permission to read Secrets in all namespaces.
+    supportGatewaySecretsInAllNamespaces: false # ENV: KUMA_RUNTIME_KUBERNETES_SUPPORT_GATEWAY_SECRETS_IN_ALL_NAMESPACES
   # Universal-specific configuration
   universal:
     # DataplaneCleanupAge defines how long Dataplane should be offline to be cleaned up by GC
     dataplaneCleanupAge: 72h0m0s # ENV: KUMA_RUNTIME_UNIVERSAL_DATAPLANE_CLEANUP_AGE
+    # VIPRefreshInterval defines how often all meshes' VIPs should be recomputed
+    vipRefreshInterval: 500ms # ENV: KUMA_RUNTIME_UNIVERSAL_VIP_REFRESH_INTERVAL
 # Default Kuma entities configuration
 defaults:
   # If true, it skips creating the default Mesh
   skipMeshCreation: false # ENV: KUMA_DEFAULTS_SKIP_MESH_CREATION
   # If true, it skips creating the default tenant resources
   skipTenantResources: false # ENV: KUMA_DEFAULTS_SKIP_TENANT_RESOURCES
-  # If true, it creates the default routing (TrafficPermisson and TrafficRoute) resources for a new Mesh
+  # If true, it creates the default routing (TrafficPermission and TrafficRoute) resources for a new Mesh
   createMeshRoutingResources: false # ENV: KUMA_DEFAULTS_CREATE_MESH_ROUTING_RESOURCES
 # Metrics configuration
 metrics:
@@ -444,6 +458,12 @@ general:
   # Kuma stores in this directory autogenerated entities like certificates.
   # If empty then the working directory is $HOME/.kuma
   workDir: "" # ENV: KUMA_GENERAL_WORK_DIR
+  # ResilientComponentBaseBackoff configures base backoff for restarting resilient components:
+  # KDS sync, Insight resync, PostgresEventListener, etc.
+  resilientComponentBaseBackoff: 5s # ENV: KUMA_GENERAL_RESILIENT_COMPONENT_BASE_BACKOFF
+  # ResilientComponentMaxBackoff configures max backoff for restarting resilient component:
+  # KDS sync, Insight resync, PostgresEventListener, etc.
+  resilientComponentMaxBackoff: 1m # ENV: KUMA_GENERAL_RESILIENT_COMPONENT_MAX_BACKOFF
 # DNS Server configuration
 dnsServer:
   # The domain that the server will resolve the services for
@@ -556,12 +576,6 @@ dpServer:
   # Tokens e2e tests, which started flaking a lot after introducing explicit
   # 1s timeout)
   readHeaderTimeout: 5s # ENV: KUMA_DP_SERVER_READ_HEADER_TIMEOUT
-  # Auth defines an authentication configuration for the DP Server
-  # DEPRECATED: use "authn" section.
-  auth:
-    # Type of authentication. Available values: "serviceAccountToken", "dpToken", "none".
-    # If empty, autoconfigured based on the environment - "serviceAccountToken" on Kubernetes, "dpToken" on Universal.
-    type: "" # ENV: KUMA_DP_SERVER_AUTH_TYPE
   # Authn defines an authentication configuration for the DP Server
   authn:
     # Configuration for data plane proxy authentication.
@@ -701,10 +715,13 @@ access:
       users: [] # ENV: KUMA_ACCESS_STATIC_VIEW_CLUSTERS_USERS
       # List of groups that are allowed to get envoy clusters
       groups: ["mesh-system:unauthenticated", "mesh-system:authenticated"] # ENV: KUMA_ACCESS_STATIC_VIEW_CLUSTERS_GROUPS
+    controlPlaneMetadata:
+      # List of users that are allowed to get control plane metadata
+      users: [] # ENV: KUMA_ACCESS_STATIC_CONTROL_PLANE_METADATA_USERS
+      # List of groups that are allowed to get control plane metadata
+      groups: ["mesh-system:unauthenticated", "mesh-system:authenticated"] # ENV: KUMA_ACCESS_STATIC_CONTROL_PLANE_METADATA_GROUPS
 # Configuration of experimental features of Kuma
 experimental:
-  # If true, experimental Gateway API is enabled
-  gatewayAPI: false # ENV: KUMA_EXPERIMENTAL_GATEWAY_API
   # If true, instead of embedding kubernetes outbounds into Dataplane object, they are persisted next to VIPs in ConfigMap
   # This can improve performance, but it should be enabled only after all instances are migrated to version that supports this config
   kubeOutboundsAsVIPs: true # ENV: KUMA_EXPERIMENTAL_KUBE_OUTBOUNDS_AS_VIPS
@@ -734,6 +751,14 @@ experimental:
   # If true then control plane computes reachable services automatically based on MeshTrafficPermission.
   # Lack of MeshTrafficPermission is treated as Deny the traffic.
   autoReachableServices: false # ENV: KUMA_EXPERIMENTAL_AUTO_REACHABLE_SERVICES
+  # Enables sidecar containers in Kubernetes if supported by the Kubernetes
+  # environment.
+  sidecarContainers: false # ENV: KUMA_EXPERIMENTAL_SIDECAR_CONTAINERS
+  # If true then it generates MeshServices from Kubernetes Service.
+  generateMeshServices: false # ENV: KUMA_EXPERIMENTAL_GENERATE_MESH_SERVICES
+  # If true skips persisted VIPs. Change to true only if generateMeshServices is enabled.
+  # Do not enable on production.
+  skipPersistedVIPs: false # ENV: KUMA_EXPERIMENTAL_SKIP_PERSISTED_VIPS
 proxy:
   gateway:
     # Sets the envoy runtime value to limit maximum number of incoming
@@ -747,6 +772,42 @@ eventBus:
   # BufferSize controls the buffer for every single event listener.
   # If we go over buffer, additional delay may happen to various operation like insight recomputation or KDS.
   bufferSize: 100 # ENV: KUMA_EVENT_BUS_BUFFER_SIZE
+policies:
+  # PluginPoliciesEnabled controls which policy plugins are enabled
+  pluginPoliciesEnabled: # ENV: KUMA_PLUGIN_POLICIES_ENABLED
+    - meshaccesslogs
+    - meshcircuitbreakers
+    - meshfaultinjections
+    - meshglobalratelimits
+    - meshhealthchecks
+    - meshhttproutes
+    - meshloadbalancingstrategies
+    - meshmetrics
+    - meshopas
+    - meshpassthroughs
+    - meshproxypatches
+    - meshratelimits
+    - meshretries
+    - meshtcproutes
+    - meshtimeouts
+    - meshtraces
+    - meshtrafficpermissions
+coreResources:
+  enabled: # ENV: KUMA_CORE_RESOURCES_ENABLED
+    - hostnamegenerators
+    - meshexternalservices
+    - meshservices
+# IP address management configuration
+ipam:
+  # MeshService address management
+  meshService:
+    # CIDR for MeshService IPs
+    cidr: 241.0.0.0/8 # ENV: IPAM_MESH_SERVICE_CIDR
+  meshExternalService:
+    # CIDR for MeshExternalService IPs
+    cidr: 242.0.0.0/8 # ENV: IPAM_MESH_EXTERNAL_SERVICE_CIDR
+  # Interval on which Kuma will allocate new IPs for MeshServices and MeshExternalServices
+  allocationInterval: 5s # ENV: IPAM_ALLOCATION_INTERVAL
 kmesh:
   # License of Kong Mesh
   license:
@@ -814,7 +875,7 @@ kmesh:
     # Service account name of rate limit service which will be used in
     # authentication process of communication between rate limit service and
     # control plane.
-    # The value can tak two forms:
+    # The value can take two forms:
     # - "system:serviceaccount:[namespace]:[service_account_name]" (example:
     #   system:serviceaccount:kong-mesh-system:default)
     # - "[service_account_name]" - in this form, the namespace of the service

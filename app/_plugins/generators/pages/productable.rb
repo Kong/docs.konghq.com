@@ -21,9 +21,7 @@ module Jekyll
       end
 
       def products
-        @products ||= Jekyll::GeneratorSingleSource::Product::Edition
-                      .all(site: @site)
-                      .keys
+        @products ||= @page.site.data['editions'].keys
       end
     end
   end

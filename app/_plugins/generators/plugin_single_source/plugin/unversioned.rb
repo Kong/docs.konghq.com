@@ -23,9 +23,7 @@ module PluginSingleSource
       end
 
       def latest_release
-        Jekyll::GeneratorSingleSource::Product::Edition
-          .new(edition: 'gateway', site: @site)
-          .latest_release
+        @site.data.dig('editions', 'gateway').latest_release
       end
     end
   end

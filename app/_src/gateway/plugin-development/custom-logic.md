@@ -1,7 +1,7 @@
 ---
 title: Implementing Custom Logic
 book: plugin_dev
-chapter: 3
+chapter: 4
 ---
 
 {:.note}
@@ -15,14 +15,14 @@ connection as it is proxied by {{site.base_gateway}}. To do so, the file
 more functions with predetermined names. Those functions will be
 invoked by {{site.base_gateway}} at different phases when it processes traffic.
 
-{% if_version gte: 3.5.x %}
+{% if_version gte: 3.4.x %}
 The first parameter they take is always `self`. All functions except `init_worker`
-and `configure`can receive a second parameter which is a table with the plugin
+and `configure` can receive a second parameter which is a table with the plugin
 configuration. The `configure` receives an array of all configurations for the
 specific plugin.
 {% endif_version %}
 
-{% if_version lte:3.4.x %}
+{% if_version lte:3.3.x %}
 The first parameter they take is always `self`. All functions except `init_worker`
 can receive a second parameter which is a table with the plugin configuration.
 {% endif_version %}
@@ -40,7 +40,7 @@ file you'll implement custom logic at various entry-points
 of {{site.base_gateway}}'s execution life-cycle:
 
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
-{% if_version lte: 3.4.x %}
+{% if_version lte: 3.3.x %}
 
 | Function name       | Phase             | Request Protocol        | Description
 |---------------------|-------------------|-------------------------|------------
@@ -73,11 +73,11 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 
 {% endif_version %}
 
-{% if_version gte: 3.5.x %}
+{% if_version gte: 3.4.x %}
 | Function name       | Phase               | Request Protocol              | Description
 |---------------------|---------------------|-------------------------------|------------
 | `init_worker`       | [init_worker]       | *                             | Executed upon every Nginx worker process's startup.
-| `configure`         | [init_worker]/timer | *                             | Executed everytime Kong plugin iterator is rebuild (aka after changes to configure plugins)
+| `configure`         | [init_worker]/timer | *                             | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
 | `certificate`       | [ssl_certificate]   | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
 | `rewrite`           | [rewrite]           | *                             | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
 | `access`            | [access]            | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
@@ -100,7 +100,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 | Function name   | Phase                                                                        | Description
 |-----------------|------------------------------------------------------------------------------|------------
 | `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
-| `configure`     | [init_worker]/timer                                                         | Executed everytime Kong plugin iterator is rebuild (aka after changes to configure plugins)
+| `configure`     | [init_worker]/timer                                                         | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
 | `preread`       | [preread]                                                                    | Executed once for every connection.
 | `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
 | `certificate`   | [ssl_certificate]                                                            | Executed during the SSL certificate serving phase of the SSL handshake.
@@ -122,21 +122,23 @@ connection.  After a configurable time without any packet, the connection is
 considered closed and the `log` function is executed.
 
 {:.note}
-> The `configure` handler was added on Kong 3.5. We are currently looking feedback for this new phase,
+> The `configure` handler was added in Kong 3.5, and has been backported to 3.4 LTS. 
+We are currently looking feedback for this new phase,
 > and there is a slight possibility that its signature might change in a future.
 {% endif_version %}
+
 ## handler.lua specifications
 
 {{site.base_gateway}} processes requests in **phases**. A plugin is a piece of code that gets
 activated by {{site.base_gateway}} as each phase is executed while the request gets proxied.
 
-{% if_version gte:3.5.x %}
+{% if_version gte:3.4.x %}
 Phases are limited in what they can do. For example, the `init_worker` phase
 does not have access to the `config` parameter because that information isn't
 available when kong is initializing each worker. On the other hand the `configure`
 is passed with all the active configurations for the plugin (or `nil` if not configured).
 {% endif_version %}
-{% if_version lte: 3.4.x %}
+{% if_version lte: 3.3.x %}
 Phases are limited in what they can do. For example, the `init_worker` phase
 does not have access to the `config` parameter because that information isn't
 available when kong is initializing each worker.
@@ -173,18 +175,18 @@ function CustomHandler:init_worker()
   kong.log("init_worker")
 end
 
-{% if_version gte:3.5.x %}
+{% if_version gte:3.4.x -%}
 function CustomHandler:configure(configs)
   -- Implement logic for the configure phase here
   --(called whenever there is change to any of the plugins)
   kong.log("configure")
 end
-{% endif_version %}
+{%- endif_version %}
+
 function CustomHandler:preread(config)
   -- Implement logic for the preread phase here (stream)
   kong.log("preread")
 end
-
 
 function CustomHandler:certificate(config)
   -- Implement logic for the certificate phase here (http/stream)
@@ -246,7 +248,7 @@ of the `access` function would be:
 
 ``` lua
 function CustomHandler.access(self, config)
-  -- Implement logic for the rewrite phase here (http)
+  -- Implement logic for the access phase here (http)
   kong.log("access")
 end
 ```
@@ -346,9 +348,9 @@ The following handlers are _unique to_ WebSocket services:
 
 The following handlers are executed for both WebSocket _and_ non-Websocket services:
   - `init_worker`
-  {% if_version gte:3.5.x %}
+  {% if_version gte:3.4.x -%}
   - `configure`
-  {% endif_version %}
+  {% endif_version -%}
   - `certificate` (TLS/SSL requests only)
   - `rewrite`
 
@@ -442,28 +444,30 @@ This can be adjusted dynamically using the `ordering` option. See
 for more information.
 
 {% navtabs %}
-{% navtab Open-source or Free mode %}
+{% navtab OSS %}
 
 The following list includes all plugins bundled with open-source
-{{site.base_gateway}} or {{site.base_gateway}} running in Free mode.
+{{site.base_gateway}}.
 
 {:.note}
-> **Note:** The correlation-id plugin's execution order is different depending
-on whether you're running {{site.base_gateway}} in Free mode or using the
-open-source package.
+> **Note:** The Correlation ID plugin's priority changes depending on
+> whether you're running it in open-source or Free mode.
+> Free mode uses the {{site.ee_product_name}} package.
+> Switch to the **Enterprise** tab to see the correct priority for this plugin.
 
 The current order of execution for the bundled plugins is:
 
-{% include /md/plugin-priority.md edition='oss' %}
+{% plugins_priority_table oss %}
 
 {% endnavtab %}
 {% navtab Enterprise %}
-The following list includes all plugins bundled with a {{site.base_gateway}}
-Enterprise subscription.
+The following list includes all plugins bundled with a {{site.ee_product_name}}
+subscription. This priority order also applies to plugins running in Free mode, 
+which uses the {{site.ee_product_name}} package.
 
 The current order of execution for the bundled plugins is:
 
-{% include /md/plugin-priority.md edition='enterprise' %}
+{% plugins_priority_table enterprise %}
 
 {% endnavtab %}
 {% endnavtabs %}

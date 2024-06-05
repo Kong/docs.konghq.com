@@ -10184,8 +10184,8 @@ tags:
       <br><br>
 
       Learn more about the router: 
-      * [Configure routes using expressions](https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions)
-      * [Router Expressions language reference](https://docs.konghq.com/gateway/3.4.x/reference/router-expressions-language/)
+      * [Configure routes using expressions](https://docs.konghq.com/gateway/latest/key-concepts/routes/expressions/)
+      * [Router Expressions language reference](https://docs.konghq.com/gateway/latest/reference/expressions-language/)
     name: Routes
   - description: |
       A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.

@@ -18,8 +18,7 @@ module SEO
         # We set the version to "latest" for this URL to ensure that it's
         # always added to the index
         @version ||= Utils::Version.to_version(
-          Jekyll::GeneratorSingleSource::Product::Edition
-          .new(edition: @page.data['edition'], site: @page.site)
+          @page.site.data.dig('editions', @page.data['edition'])
           .latest_release
           .value
         )

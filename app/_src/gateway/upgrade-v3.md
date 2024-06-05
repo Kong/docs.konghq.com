@@ -14,7 +14,7 @@ If you experience any issues when running migrations, contact
 
 ## Upgrade path for {{site.base_gateway}} releases
 
-Kong adheres to [semantic versioning](https://semver.org/), which makes a
+Kong follows a structured approach to versioning its products, which makes a
 distinction between major, minor, and patch versions.
 
 The upgrade to 3.0.x is a **major** upgrade.
@@ -114,7 +114,7 @@ The following plugins have had configuration parameters changed or removed. You 
 **[ACL](/hub/kong-inc/acl/), [Bot Detection](/hub/kong-inc/bot-detection/), and [IP Restriction](/hub/kong-inc/ip-restriction/)**
 * Removed the deprecated `blacklist` and `whitelist` configuration parameters. Use `allow` or `deny` instead.
 
-**[ACME](/hub/kong-inc/ACME/)**
+**[ACME](/hub/kong-inc/acme/)**
 * The default value of the `auth_method` configuration parameter is now `token`.
 
 **[AWS Lambda](/hub/kong-inc/aws-lambda/)**
@@ -153,7 +153,7 @@ instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.0.
 
 **[Pre-function](/hub/kong-inc/pre-function/) and [Post-function](/hub/kong-inc/post-function/) plugins**
 * Removed the deprecated `config.functions` configuration parameter from the
-`post-fuction` and `pre-function` plugins' schemas. Use the `config.access` phase instead.
+`post-function` and `pre-function` plugins' schemas. Use the `config.access` phase instead.
 
 **[StatsD](/hub/kong-inc/statsd/)**
 * Any metric name that is related to a service now has a `service.` prefix: `kong.service.<service_identifier>.request.count`.

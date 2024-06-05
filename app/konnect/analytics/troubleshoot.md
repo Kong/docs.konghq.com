@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot Analytics
+title: Troubleshoot analytics
 content_type: reference
 ---
 

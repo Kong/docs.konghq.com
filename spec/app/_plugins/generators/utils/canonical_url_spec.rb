@@ -15,5 +15,25 @@ RSpec.describe Utils::CanonicalUrl do
         expect(subject).to eq('/gateway/latest/')
       end
     end
+
+    context 'if the url has an extension' do
+      context '.html' do
+        let(:url) { '/index.html' }
+
+        it 'does not alter the original url' do
+          expect(subject).to eq('/index.html')
+          expect(url).to eq('/index.html')
+        end
+      end
+
+      context '.xml' do
+        let(:url) { '/index.xml' }
+
+        it 'does not alter the original url' do
+          expect(subject).to eq('/index.xml')
+          expect(url).to eq('/index.xml')
+        end
+      end
+    end
   end
 end

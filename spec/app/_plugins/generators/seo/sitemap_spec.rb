@@ -42,6 +42,7 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/changelog/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/how-to/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial-with-min-and-max/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/configuration/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/how-to/basic-example/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/' },

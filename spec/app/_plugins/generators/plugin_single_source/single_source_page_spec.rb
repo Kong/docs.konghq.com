@@ -4,7 +4,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
       PluginSingleSource::Plugin::Base.make_for(dir: 'kong-inc/jwt-signer', site:)
     end
     let(:release) do
-      PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, source:, is_latest:)
+      PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:)
     end
     let(:page) do
       release.overviews.detect { |p| p.data['source_file'].end_with?('overview/_index.md') }
@@ -13,7 +13,6 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
     subject { described_class.new(site:, page:) }
 
     context 'when it is the latest version of the plugin' do
-      let(:source) { '_index' }
       let(:version) { '3.0.x' }
       let(:is_latest) { true }
 
@@ -37,7 +36,6 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
     end
 
     context 'when it is not' do
-      let(:source) { '_index' }
       let(:version) { '2.8.x' }
       let(:is_latest) { false }
 
@@ -60,13 +58,12 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
       end
 
       context 'when there is a specific file for a particular version' do
-        let(:source) { '_2.6.x' }
         let(:version) { '2.6.x' }
         let(:is_latest) { false }
 
         it 'sets the corresponding attributes' do
           expect(subject.instance_variable_get(:@dir)).to eq('hub/kong-inc/jwt-signer')
-          expect(subject.instance_variable_get(:@relative_path)).to eq('_hub/kong-inc/jwt-signer/_2.6.x/overview/_index.md')
+          expect(subject.instance_variable_get(:@relative_path)).to eq('_hub/kong-inc/jwt-signer/overview/_index.md')
 
           expect(subject.data['version']).to eq('2.6.x')
           expect(subject.data['is_latest']).to eq(false)
@@ -75,7 +72,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
           expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.6.x/')
           expect(subject.data['layout']).to eq('extension')
 
-          expect(subject.data['source_file']).to eq('_hub/kong-inc/jwt-signer/_2.6.x/overview/_index.md')
+          expect(subject.data['source_file']).to eq('_hub/kong-inc/jwt-signer/overview/_index.md')
           expect(subject.data['extn_slug']).to eq('jwt-signer')
           expect(subject.data['extn_publisher']).to eq('kong-inc')
           expect(subject.data['extn_icon']).to eq('/assets/images/icons/hub/kong-inc_jwt-signer.png')
@@ -87,7 +84,6 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
         let(:plugin) do
           PluginSingleSource::Plugin::Base.make_for(dir: 'acme/unbundled-plugin', site:)
         end
-        let(:source) { '_index' }
         let(:version) { '2.8.x' }
 
         it 'sets the corresponding attributes' do
@@ -102,7 +98,6 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
         let(:plugin) do
           PluginSingleSource::Plugin::Base.make_for(dir: 'acme/unbundled-plugin', site:)
         end
-        let(:source) { '_index' }
         let(:version) { '3.0.x' }
 
         it 'sets the corresponding attributes' do

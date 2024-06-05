@@ -5,6 +5,11 @@ book: get-started
 chapter: 1
 ---
 
+
+{:.note}
+> **Note:**
+> This quickstart runs on your local machine to explore {{ site.base_gateway }}'s capabilities. If you want to run {{ site.base_gateway }} as a part of a production-ready API platform, [start on the /install page](/gateway/{{ page.release }}/install/).
+
 [{{site.base_gateway}}](/gateway/latest/) is a lightweight, fast, and flexible cloud-native API gateway. 
 {{site.base_gateway}} sits in front of your service applications, dynamically controlling, analyzing, and 
 routing requests and responses. {{site.base_gateway}} implements your API traffic policies 
@@ -69,7 +74,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    ```text
    HTTP/1.1 200 OK
    Date: Mon, 22 Aug 2022 19:25:49 GMT
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
    Connection: keep-alive
    Access-Control-Allow-Origin: *
    Content-Length: 11063

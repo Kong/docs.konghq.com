@@ -3,8 +3,14 @@ title: Create a Route
 content-type: tutorial
 book: kgo-kic-get-started
 chapter: 3
-alpha: true
 ---
+
+{% if_version lte: 1.1.x %}
+{:.note}
+> **Note:** `Gateway` and `ControlPlane` controllers are still `alpha` so be sure
+> to use the [installation steps from this guide](/gateway-operator/{{ page.release }}/get-started/kic/install/)
+> in order to get your `Gateway` up and running.
+{% endif_version %}
 
 After you've installed all of the required components and configured a `GatewayClass` you can route some traffic to a service in your Kubernetes cluster.
 
@@ -70,4 +76,4 @@ After you've installed all of the required components and configured a `GatewayC
 Now that you have a running `DataPlane` configured using Gateway API resources, you can explore the power that {{ site.base_gateway }} provides:
 
 * [Configuring {{ site.base_gateway }} plugins using {{ site.kic_product_name }}](/kubernetes-ingress-controller/latest/guides/using-kongplugin-resource/)
-* [Upgrading {{ site.kgo_product_name }} managed data planes](/gateway-operator/{{ page.release }}/production/upgrade/data-plane/rolling/)
+* [Upgrading {{ site.kgo_product_name }} managed data planes](/gateway-operator/{{ page.release }}/guides/upgrade/data-plane/rolling/)

@@ -52,9 +52,7 @@ module SEO
     def product_page?
       return false unless @page.data['edition']
 
-      Jekyll::GeneratorSingleSource::Product::Edition
-        .all(site: @page.site)
-        .keys.include?(@page.data['edition'])
+      @page.site.data['editions'].keys.include?(@page.data['edition'])
     end
 
     def global_page?
@@ -68,7 +66,7 @@ module SEO
     end
 
     def unprocessable_page?
-      ['/404.html', '/moved_urls.yml', '/redirects.json', '/robots.txt'].include?(@page.url)
+      ['/sitemap.xml', '/404.html', '/moved_urls.yml', '/redirects.json', '/robots.txt'].include?(@page.url)
     end
 
     def url_segments

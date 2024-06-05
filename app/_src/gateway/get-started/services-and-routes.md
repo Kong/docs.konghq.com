@@ -7,15 +7,42 @@ chapter: 2
 
 {{site.base_gateway}} administrators work with an object model to define their
 desired traffic management policies. Two important objects in that model are 
-[services](/gateway/latest/admin-api/#service-object) and 
-[routes](/gateway/latest/admin-api/#route-object). Services and routes are configured in a 
+[services](/gateway/api/admin-ee/latest/#/Services) and 
+[routes](/gateway/api/admin-ee/latest/#/Routes/list-route). Services and routes are configured in a 
 coordinated manner to define the routing path that requests and responses will take 
 through the system.
 
 The high level overview below shows requests arriving at routes and being forward to services,
 with responses taking the opposite pathway:
+  
+<!--vale off-->
 
-![Services and routes](/assets/images/products/gateway/getting-started-guide/route-and-service.png)
+{% mermaid %}
+flowchart LR
+  A(API client)
+  B("`Route 
+  (/mock)`")
+  C("`Service
+  (example_service)`")
+  D(Upstream 
+  application)
+  
+  A <--requests
+  responses--> B
+  subgraph id1 ["`
+  **KONG GATEWAY**`"]
+    B <--requests
+    responses--> C
+  end
+  C <--requests
+  responses--> D
+
+  style id1 rx:10,ry:10
+  
+{% endmermaid %}
+  
+<!-- vale on -->
+
 
 ### What is a service
 
@@ -370,7 +397,7 @@ You can also view the configuration for your services in the Kong Manager UI by 
    }
    ```
 
-The [Admin API documentation](/gateway/latest/admin-api/#route-object) has the 
+The [Admin API documentation](/gateway/api/admin-ee/latest/#/Routes/list-route/) has the 
 full specification for managing route objects.
 
 You can also view the configuration for your routes in the Kong Manager UI by navigating to the following URL in your browser: [http://localhost:8002/default/routes](http://localhost:8002/default/routes)

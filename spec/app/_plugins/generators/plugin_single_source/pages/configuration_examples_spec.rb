@@ -1,16 +1,15 @@
 RSpec.describe PluginSingleSource::Pages::ConfigurationExamples do
   let(:plugin_name) { 'kong-inc/jwt-signer' }
   let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: plugin_name, site:) }
-  let(:release) { PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:, source:) }
+  let(:release) { PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:) }
   let(:file) { "app/_src/.repos/kong-plugins/examples/jwt-signer/_#{version}.yaml" }
+
+  let(:is_latest) { true }
+  let(:version) { '2.8.x' }
 
   subject { described_class.new(release:, file:, source_path:) }
 
   describe '#edit_link' do
-    let(:is_latest) { true }
-    let(:source) { '_index' }
-    let(:version) { '2.8.x' }
-
     context 'kong-inc plugins' do
       context 'enterprise plugins' do
         let(:plugin_name) { 'kong-inc/jwt-signer' }
@@ -37,46 +36,19 @@ RSpec.describe PluginSingleSource::Pages::ConfigurationExamples do
   end
 
   describe '#breadcrumbs' do
-    context 'when _index.md exist' do
-      let(:is_latest) { true }
-      let(:version) { '2.8.x' }
-      let(:source) { '_index' }
-      let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
+    let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
 
-      it 'returns a hash containing the page\'s breadcrumbs' do
-        expect(subject.breadcrumbs).to eq([
-          { text: 'Authentication', url: '/hub/?category=authentication' },
-          { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
-          { text: 'How to', url: '/hub/kong-inc/jwt-signer/how-to/' },
-          { text: 'Basic config examples', url: '/hub/kong-inc/jwt-signer/how-to/basic-example/' }
-        ])
-      end
-    end
-
-    context 'when _index.md does not exist' do
-      let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: 'acme/kong-plugin', site:) }
-      let(:is_latest) { true }
-      let(:version) { '2.8.x' }
-      let(:source) { '_index' }
-      let(:file) { 'how-to/_local-testing.md' }
-      let(:source_path) { File.expand_path("_hub/acme/kong-plugin/#{source}/", site.source) }
-
-      it 'returns a hash containing the page\'s breadcrumbs' do
-        expect(subject.breadcrumbs).to eq([
-          { text: 'Logging', url: '/hub/?category=logging' },
-          { text: 'Sample plugin', url: '/hub/acme/kong-plugin/' },
-          { text: 'How to', url: nil },
-          { text: 'Basic config examples', url: '/hub/acme/kong-plugin/how-to/basic-example/' }
-        ])
-      end
+    it 'returns a hash containing the page\'s breadcrumbs' do
+      expect(subject.breadcrumbs).to eq([
+        { text: 'Authentication', url: '/hub/?category=authentication' },
+        { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
+        { text: 'How to', url: '/hub/kong-inc/jwt-signer/how-to/' },
+        { text: 'Basic config examples', url: '/hub/kong-inc/jwt-signer/how-to/basic-example/' }
+      ])
     end
   end
 
   describe '#source_file' do
-    let(:is_latest) { true }
-    let(:source) { '_index' }
-    let(:version) { '2.8.x' }
-
     context 'third-party plugins' do
       let(:plugin_name) { 'acme/kong-plugin' }
       let(:source_path) { File.expand_path('_hub/acme/kong-plugin/', site.source) }

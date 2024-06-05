@@ -33,7 +33,7 @@ You can configure these values with environment variables before starting {{site
 export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
 export KONG_VAULT_AZURE_TENANT_ID=tenant_id
 export KONG_VAULT_AZURE_CLIENT_ID=client_id
-export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
+export AZURE_CLIENT_SECRET=client_secret
 ```
 
 {:.note}
@@ -59,7 +59,7 @@ You can configure these values with environment variables before starting {{site
 export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
 export KONG_VAULT_AZURE_TENANT_ID=tenant_id
 export KONG_VAULT_AZURE_CLIENT_ID=client_id
-export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
+export AZURE_CLIENT_SECRET=client_secret
 ```
 
 ```bash
@@ -148,10 +148,8 @@ through it:
 Use the following configuration options to configure the vaults entity through
 any of the supported tools:
 
-{% if_version gte:3.1.x %}
 * Kong Manager
 * {{site.konnect_short_name}}
-{% endif_version %}
 * Admin API
 * Declarative configuration
 

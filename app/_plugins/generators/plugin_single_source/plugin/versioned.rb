@@ -3,10 +3,6 @@
 module PluginSingleSource
   module Plugin
     class Versioned < Base
-      def sources
-        @sources ||= super.merge(data.fetch('sources', {}))
-      end
-
       def releases
         @releases ||= ReleasesGenerator.call(
           releases: supported_releases,
@@ -37,16 +33,15 @@ module PluginSingleSource
         )
       end
 
-      def supported_releases
+      def supported_releases # rubocop:disable Metrics/AbcSize
         min, max = data['releases'].values_at('minimum_version', 'maximum_version')
         raise ArgumentError, '`releases` must have a `minimum_version` version set' unless min
 
-        Jekyll::GeneratorSingleSource::Product::Edition
-          .new(edition: 'gateway', site: @site)
-          .releases
-          .map(&:value)
-          .select { |v| Gem::Version.new(v) >= Gem::Version.new(min) }
-          .select { |v| max.nil? || Gem::Version.new(v) <= Gem::Version.new(max) }
+        site.data.dig('editions', 'gateway')
+            .releases
+            .map(&:value)
+            .select { |v| Gem::Version.new(v) >= Gem::Version.new(min) }
+            .select { |v| max.nil? || Gem::Version.new(v) <= Gem::Version.new(max) }
       end
 
       def replacements

@@ -62,7 +62,7 @@ _Service A_ and _Service B_ on consecutive requests.
 Canary provides an automatic fallback if, for some reason, a Consumer, Header, or IP can
 not be identified. The fallback order is `consumer`->`ip`->`none`.
 
-{% if_plugin_version gte:2.8.x %}
+{% if_version gte:2.8.x %}
 ### Overriding the Canary
 
 In some cases, you may want to allow clients to pick _Service A_ or _Service B_
@@ -70,7 +70,7 @@ instead of applying the configured canary rules. By setting the `config.canary_b
 clients can send the value `always` to always use the canary service (_Service B_) or send the
 value `never` to never use the canary service (always use _Service A_).
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 ### Finalizing the Canary
 
@@ -90,7 +90,7 @@ instantly switch all traffic to _Service A_.
 ### Upstream Healthchecks
 
 The configuration item `upstream_fallback` uses
-[**Upstream Healthchecks**](/gateway/latest/admin-api/#upstream-object)
+[**Upstream Healthchecks**](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream/)
 to skip applying the Canary upstream if it does not have at least one healthy
 target. For this configuration to take effect, the following conditions must be met:
 

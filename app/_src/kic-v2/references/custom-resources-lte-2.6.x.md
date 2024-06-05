@@ -49,7 +49,7 @@ configFrom:
      name: <Secret name>
      key: <Secret key>
 plugin: <name-of-plugin> # like key-auth, rate-limiting etc
-{% if_version gte:2.6.x %}
+{% if_version gte:2.6.x -%}
 ordering:
   before:
     <phase>:
@@ -77,14 +77,14 @@ ordering:
   or `configFrom` may be used in a KongPlugin, not both at once.
 - `plugin` field determines the name of the plugin in Kong.
   This field was introduced in {{site.kic_product_name}} 0.2.0.
-  {% if_version gte:2.6.x %}
+{% if_version gte:2.6.x -%}
 - `ordering` is only available on {{site.ee_product_name}}. `<phase>` is a
   request processing phase (for example, `access` or `body_filter`) and
   `<plugin>` is the name of the plugin that will run before or after the
   KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and
   `before.access: ["key-auth"]` will create a rate limiting plugin that limits
   requests _before_ they are authenticated.
-  {% endif_version %}
+{% endif_version %}
 
 **Please note:** validation of the configuration fields is left to the user
 by default. It is advised to setup and use the admission validating controller
@@ -223,7 +223,7 @@ configFrom:
        key: <Secret key>
        namespace: <Secret namespace>
 plugin: correlation-id
-{% if_version gte:2.6.x %}
+{% if_version gte:2.6.x -%}
 ordering:
   before:
     <phase>:
@@ -288,7 +288,7 @@ Please follow the
 [Using the KongIngress resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongingress-resource)
 guide for details on how to use this resource.
 
-For reference, the following is a complete spec for KongIngress (for property documentation, see [Upstream](/gateway/latest/admin-api/#upstream-object), [Service](/gateway/latest/admin-api/#service-object) and [Route](/gateway/latest/admin-api/#route-object] entities))
+For reference, the following is a complete spec for KongIngress (for property documentation, see [Upstream](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream/), [Service](/gateway/api/admin-ee/latest/#/Services/list-service/) and [Route](/gateway/api/admin-ee/latest/#/Routes/list-route/) entities.
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
@@ -451,8 +451,8 @@ may share the same `username` or `custom_id` value.
 For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-consumer-credential-resource/) guide.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway/latest/admin-api/#consumer-object
-[kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-object
-[kong-service]: /gateway/latest/admin-api/#service-object
-[kong-route]: /gateway/latest/admin-api/#route-object
+[kong-consumer]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+[kong-plugin]: /gateway/api/admin-ee/latest/#/Services/list-service/
+[kong-upstream]: /gateway/api/admin-ee/latest/#/Services/list-service/
+[kong-service]: /gateway/api/admin-ee/latest/#/Services/list-service/
+[kong-route]: /gateway/api/admin-ee/latest/#/Services/list-service/

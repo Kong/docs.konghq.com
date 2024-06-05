@@ -101,8 +101,14 @@ field/parameter                | default         | description
 ---                            | ---             | ---
 `consumer`                   |                 | The `id` or `username` property of the [consumer][consumer-object] entity to associate the credentials to.
 `key`<br>*optional*            |                 | A unique string identifying the credential. If left out, it will be auto-generated.
+{%- if_version gte:3.7.x %}
+`algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`, `ES256`, `ES384`, `ES512`, `PS256`, `PS384`, `PS512` or `EdDSA`.
+`rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS*`, `ES*`, `PS*` or `EdDSA*` the public key (in PEM format) to use to verify the token's signature.
+{%- endif_version -%}
+{%- if_version lte:3.6.x %}
 `algorithm`<br>*optional*      | `HS256`         | The algorithm used to verify the token's signature. Can be `HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`, `ES256`, or `ES384`.
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256`, `RS384`, `RS512`, `ES256`, or `ES384`, the public key (in PEM format) to use to verify the token's signature.
+{%- endif_version %}
 `secret`<br>*optional*         |                 | If `algorithm` is `HS256`, `HS384`, or `HS512`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
 {:.important}
@@ -113,9 +119,12 @@ above. Because they cannot rely on defaults and do not implement their own
 algorithm-specific requirements, all fields other than
 `rsa_public_key` fields are required.
 > <br/><br/>
-> You should always fill out `key`, `algorithm`, and
-`secret`. If you use the `RS256` or
-`ES256` algorithm, use a dummy value for `secret`.
+> {% if_version gte:3.7.x %} You should always fill out `key`, `algorithm`, and
+`secret`. If you use any `RS`, `ES`, or `PS` algorithm, use a dummy value for `secret`.
+{% endif_version %}
+{% if_version lte:3.6.x %} You should always fill out `key`, `algorithm`, and
+`secret`. If you use the `RS256` or `ES256` algorithm, use a dummy value for `secret`.
+{% endif_version %}
 
 ### Delete a JWT credential
 
@@ -543,4 +552,4 @@ associated [Consumer][consumer-object].
 
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/

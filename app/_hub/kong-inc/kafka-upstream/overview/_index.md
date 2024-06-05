@@ -57,7 +57,7 @@ Enable TLS by setting `config.security.ssl` to `true`.
 Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`.
 
 Note that this option needs `config.security.ssl` set to true.
-See [Certificate Object](/gateway/latest/admin-api/#certificate-object)
+See [Certificate Object](/gateway/api/admin-ee/latest/#/Certificates/list-certificate/)
 in the Admin API documentation for information on how to set up Certificates.
 
 ## SASL Authentication
@@ -80,11 +80,11 @@ This plugin supports the following authentication mechanisms:
     to `SCRAM-SHA-256`. You also need to provide a username and password with the config options
     `config.authentication.user` and `config.authentication.password` respectively.
 
-    {% if_plugin_version gte:2.8.x %}
+    {% if_version gte:2.8.x %}
     - **SCRAM-SHA-512:** Enable this mechanism by setting `config.authentication.mechanism`
       to `SCRAM-SHA-512`. You also need to provide a username and password with the config options
       `config.authentication.user` and `config.authentication.password` respectively.
-    {% endif_plugin_version %}
+    {% endif_version %}
 
 - **Delegation Tokens:** Delegation Tokens can be generated in Kafka and then used to authenticate
   this plugin. `Delegation Tokens` leverage the `SCRAM-SHA-256` authentication mechanism. The `tokenID`

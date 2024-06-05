@@ -444,7 +444,7 @@ and if they do, the admin can grant them individually.
     {
       "endpoint": "*",
       "created_at": 1531020573,
-      "udpated_at": 1531020573,
+      "updated_at": 1531020573,
       "role_id": "9846b92c-6820-4741-ac31-425b3d6abc5b",
       "actions": [
         "delete",

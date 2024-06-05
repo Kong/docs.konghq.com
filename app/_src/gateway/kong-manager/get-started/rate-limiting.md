@@ -1,6 +1,5 @@
 ---
 title: Rate Limiting
-badge: free
 ---
 
 This tutorial walks you through setting up rate limiting for a service in Kong Manager.

@@ -1,7 +1,6 @@
 ---
 title: Create Consumer Groups in Kong Manager
 content_type: tutorial
-badge: free
 ---
 With consumer groups, you can define any number of rate limiting tiers and
 apply them to subsets of consumers, instead of managing each consumer
@@ -15,7 +14,7 @@ For example, you could define three consumer groups:
 The `consumer_groups` endpoint works together with the following plugins:
 
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
-{% if_version gte:3.4.x %}
+{% if_version gte:3.4.x -%}
 * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
 * [Response transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
 * [Request Transformer](/hub/kong-inc/request-transformer)

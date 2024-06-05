@@ -4,7 +4,7 @@ content_type: how-to
 no_version: true
 ---
 
-This guide explains what a system account is, how it varies from a user account, and how to manage a system account using the [{{site.konnect_short_name}} Identity API](/konnect/api/identity-management/v2/). 
+This guide explains what a system account is, how it varies from a user account, and how to manage a system account using the [{{site.konnect_short_name}} Identity API](/konnect/api/identity-management/latest/). 
 
 A system account is a service account in {{site.konnect_short_name}}. Because system accounts are not associated with an email address and a user, they can be used for automation and integrations. 
 

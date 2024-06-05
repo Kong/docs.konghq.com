@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Portal Management
-  version: 2.0.0
+  version: 2.1.0
   description: The management API for Portals
   contact:
     name: Kong
@@ -39,6 +39,15 @@ tags:
     description: APIs related to Konnect Developer Portal Authentication Settings.
   - name: Portal Appearance
     description: APIs related to Konnect Developer Portal Appearance Settings.
+  - name: Portal Product Versions
+    description: >
+      Portal Product Versions hold metadata that describes how a Product Version
+      is configured for a specific portal.
+        
+        They contain:
+        - Lifecyle and deprecation statuses
+        - Application registration settings like auto approve or whether application registration is enabled
+        - The authentication strategy that is enabled for Application Registration
 paths:
   /portals:
     get:
@@ -54,6 +63,34 @@ paths:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
         - $ref: '#/components/parameters/SortPortals'
+        - in: query
+          name: filter
+          description: Filter portals returned in the response.
+          required: false
+          style: deepObject
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/UuidFieldFilter'
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+              description:
+                $ref: '#/components/schemas/StringFieldFilter'
+              is_public:
+                $ref: '#/components/schemas/BooleanFieldFilter'
+              rbac_enabled:
+                $ref: '#/components/schemas/BooleanFieldFilter'
+              auto_approve_developers:
+                $ref: '#/components/schemas/BooleanFieldFilter'
+              auto_approve_applications:
+                $ref: '#/components/schemas/BooleanFieldFilter'
+              default_domain:
+                $ref: '#/components/schemas/StringFieldFilter'
+              custom_domain:
+                $ref: '#/components/schemas/StringFieldFilter'
+              custom_client_domain:
+                $ref: '#/components/schemas/StringFieldFilter'
       responses:
         '200':
           $ref: '#/components/responses/ListPortals'
@@ -76,7 +113,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /portals/{portalId}:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: Get Portal
       description: >-
@@ -134,9 +171,11 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
   /portals/{portalId}/products:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Portal Products
       operationId: list-portal-products
@@ -150,6 +189,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/SortPortalProducts'
+        - $ref: '#/components/parameters/PortalProductFilter'
       tags:
         - Portal Products
       responses:
@@ -172,9 +213,127 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-  /portals/{portalId}/developers/{developerId}:
+  /portals/{portalId}/product-versions:
     parameters:
       - $ref: '#/components/parameters/PortalId'
+    get:
+      summary: List portal product versions
+      operationId: list-portal-product-versions
+      description: List portal product versions
+      parameters:
+        - $ref: '#/components/parameters/SortPortalProductVersions'
+        - $ref: '#/components/parameters/PortalProductVersionFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListPortalProductVersions'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+    post:
+      summary: Create a portal product version
+      operationId: create-portal-product-version
+      description: Create a portal product version
+      requestBody:
+        $ref: '#/components/requestBodies/CreatePortalProductVersion'
+      responses:
+        '201':
+          $ref: '#/components/responses/PortalProductVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+  /portals/{portalId}/product-versions/{productVersionId}:
+    parameters:
+      - $ref: '#/components/parameters/ProductVersionId'
+      - $ref: '#/components/parameters/PortalId'
+    get:
+      summary: Get a portal product version
+      operationId: get-portal-product-version
+      description: Get a portal product version
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalProductVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+    patch:
+      summary: Update a portal product version
+      operationId: update-portal-product-version
+      description: Update a portal product version
+      requestBody:
+        $ref: '#/components/requestBodies/UpdatePortalProductVersion'
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalProductVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+    put:
+      summary: Replace a portal product version
+      operationId: replace-portal-product-version
+      description: Replace a portal product version
+      requestBody:
+        $ref: '#/components/requestBodies/ReplacePortalProductVersion'
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalProductVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+    delete:
+      summary: Delete a portal product version
+      operationId: delete-portal-product-version
+      description: Delete a portal product version
+      responses:
+        '204':
+          description: No Content.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+  /portals/{portalId}/developers/{developerId}:
+    parameters:
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/DeveloperId'
     get:
       summary: Get Developer
@@ -185,7 +344,7 @@ paths:
         can be limited to specific API products using RBAC.
       operationId: get-developer
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/DeveloperId'
       tags:
         - Portal Developers
@@ -261,7 +420,7 @@ paths:
         `reference_id`.
       operationId: list-applications
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
         - $ref: '#/components/parameters/SortApplications'
@@ -309,7 +468,7 @@ paths:
           $ref: '#/components/responses/NotFound'
   /portals/{portalId}/applications/{applicationId}:
     get:
-      summary: Get Application
+      summary: Get Application by Portal
       description: >-
         Returns the configuration of a single application in this portal. If an
         application is linked to a DCR Provider, the `dcr_provider.id` and
@@ -317,7 +476,49 @@ paths:
         of credentials and registrations for specific API product versions.
       operationId: get-application
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
+        - $ref: '#/components/parameters/ApplicationId'
+      tags:
+        - Portal Applications
+      responses:
+        '200':
+          $ref: '#/components/responses/GetApplication'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete Application by Portal
+      description: >-
+        Delete a single application in this portal, along with its registrations
+        and credentials.
+      operationId: delete-application
+      parameters:
+        - $ref: '#/components/parameters/parameters-PortalId'
+        - $ref: '#/components/parameters/ApplicationId'
+      tags:
+        - Portal Applications
+      responses:
+        '204':
+          description: The application has been deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applications/{applicationId}:
+    get:
+      summary: Get Application
+      description: >-
+        Returns the configuration of a single application in any portal. If an
+        application is linked to a DCR Provider, the `dcr_provider.id` and
+        `reference_id` can be used to correlate it. An application manages a set
+        of credentials and registrations for specific API product versions.
+      operationId: get-application-unscoped
+      parameters:
         - $ref: '#/components/parameters/ApplicationId'
       tags:
         - Portal Applications
@@ -341,7 +542,7 @@ paths:
         registration.
       operationId: list-registrations
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
         - $ref: '#/components/parameters/SortListAllApplicationRegistrations'
@@ -399,7 +600,7 @@ paths:
         and their current status (e.g., pending, approved, rejected, revoked).
       operationId: list-registrations-by-application
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/ApplicationId'
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
@@ -446,7 +647,7 @@ paths:
           $ref: '#/components/responses/NotFound'
   /portals/{portalId}/applications/{applicationId}/registrations/{registrationId}:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/ApplicationId'
       - $ref: '#/components/parameters/RegistrationId'
     get:
@@ -527,7 +728,7 @@ paths:
       tags:
         - Portal Application Registrations
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/ApplicationId'
         - $ref: '#/components/parameters/RegistrationId'
       responses:
@@ -565,7 +766,7 @@ paths:
         by disregarding them in the code.
       operationId: get-portal-appearance
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
       tags:
         - Portal Appearance
       responses:
@@ -588,7 +789,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/UpdatePortalAppearance'
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
       tags:
         - Portal Appearance
       responses:
@@ -613,6 +814,42 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+  /portals/{portalId}/appearance/logo:
+    get:
+      summary: Get Portal Logo
+      description: Returns the portal logo or returns the default
+      operationId: get-portal-logo
+      parameters:
+        - $ref: '#/components/parameters/parameters-PortalId'
+      tags:
+        - Portal Appearance
+      responses:
+        '200':
+          $ref: '#/components/responses/GetPortalLogoResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /portals/{portalId}/appearance/catalog-cover:
+    get:
+      summary: Get Portal Catalog Cover
+      description: Returns the portal catalog cover or returns the default
+      operationId: get-portal-catalog-cover
+      parameters:
+        - $ref: '#/components/parameters/parameters-PortalId'
+      tags:
+        - Portal Appearance
+      responses:
+        '200':
+          $ref: '#/components/responses/GetPortalCatalogCoverResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /portals/{portalId}/verify-domain:
     post:
       summary: Verify Custom Domains
@@ -622,7 +859,7 @@ paths:
         if a corresponding SSL certificate has been generated.
       operationId: verify-portal-domains
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
       tags:
         - Portals
       responses:
@@ -645,7 +882,7 @@ paths:
           $ref: '#/components/responses/NotFound'
   /portals/{portalId}/authentication-settings:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: Get Auth Settings
       description: >-
@@ -704,7 +941,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /portals/{portalId}/identity-provider/team-group-mappings:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Team Group Mappings
       description: >-
@@ -770,7 +1007,7 @@ paths:
         $ref: '#/components/requestBodies/UpdatePortalTeamGroupMappings'
   /portals/{portalId}/teams:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Teams
       description: >-
@@ -837,7 +1074,7 @@ paths:
   /portals/{portalId}/teams/{teamId}:
     parameters:
       - $ref: '#/components/parameters/TeamId'
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: Get Team
       responses:
@@ -890,7 +1127,7 @@ paths:
         - Portal Teams
   /portals/{portalId}/teams/{teamId}/developers:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/TeamId'
     get:
       summary: List Team Developers
@@ -943,7 +1180,7 @@ paths:
         - Portal Team Membership
   /portals/{portalId}/teams/{teamId}/developers/{developerId}:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/parameters-DeveloperId'
       - $ref: '#/components/parameters/TeamId'
     delete:
@@ -965,7 +1202,7 @@ paths:
         - Portal Team Membership
   /portals/{portalId}/teams/{teamId}/assigned-roles:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/TeamId'
       - $ref: '#/components/parameters/PageSize'
       - $ref: '#/components/parameters/PageNumber'
@@ -1026,7 +1263,7 @@ paths:
   /portals/{portalId}/teams/{teamId}/assigned-roles/{roleId}:
     parameters:
       - $ref: '#/components/parameters/RoleId'
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/TeamId'
     delete:
       summary: Remove Role
@@ -1047,7 +1284,7 @@ paths:
         - Portal Team Roles
   /portals/{portalId}/developers:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Developers
       description: >-
@@ -1102,7 +1339,7 @@ paths:
   /portals/{portalId}/developers/{developerId}/teams:
     parameters:
       - $ref: '#/components/parameters/parameters-DeveloperId'
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Developer Teams
       operationId: list-portal-developer-teams
@@ -1524,6 +1761,8 @@ components:
             created_at: '2022-02-07T17:46:57.52Z'
             updated_at: '2022-10-08T17:00:00.52Z'
             name: Portal A
+            display_name: Developer Portal A
+            description: The Portal A
             default_domain: 123455678abcd.us.portal.konghq.com
             is_public: false
             rbac_enabled: true
@@ -1531,6 +1770,9 @@ components:
             auto_approve_developers: true
             custom_domain: api.example.com
             custom_client_domain: portal.example.com
+            application_count: 0
+            developer_count: 0
+            published_product_count: 0
     ListPortalProductsExample1:
       value:
         meta:
@@ -1560,12 +1802,72 @@ components:
               department: engineering
               location: cyberspace
             version_count: 21
+    PortalProductVersionExample1:
+      value:
+        id: 22f8380e-7798-4566-99e3-2edf2b57d289
+        publish_status: published
+        product_version_id: 33f8380e-7798-4566-99e3-2edf2b57d289
+        auth_strategies:
+          - id: 44f8380e-7798-4566-99e3-2edf2b57d289
+            name: key auth strategy
+            credential_type: key_auth
+        application_registration_enabled: true
+        auto_approve_registration: true
+        deprecated: false
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    ListPortalProductVersionsExample1:
+      value:
+        data:
+          - id: 22f8380e-7798-4566-99e3-2edf2b57d289
+            publish_status: published
+            product_version_id: 33f8380e-7798-4566-99e3-2edf2b57d289
+            auth_strategies:
+              - id: 44f8380e-7798-4566-99e3-2edf2b57d289
+                name: key auth strategy
+                credential_type: key_auth
+            application_registration_enabled: true
+            auto_approve_registration: true
+            deprecated: false
+            created_at: '2023-01-01T00:00:00.000Z'
+            updated_at: '2023-01-01T00:00:00.000Z'
+        meta:
+          page:
+            number: 1
+            size: 1
+            total: 10
+    PortalProductVersionCreateRequestExample1:
+      value:
+        product_version_id: 33f8380e-7798-4566-99e3-2edf2b57d289
+        auth_strategy_ids:
+          - 44f8380e-7798-4566-99e3-2edf2b57d289
+        publish_status: published
+        application_registration_enabled: true
+        auto_approve_registration: true
+        deprecated: false
+    PortalProductVersionUpdateRequestExample1:
+      value:
+        auto_approve_registration: false
+    PortalProductVersionReplaceRequestExample1:
+      value:
+        auth_strategy_ids:
+          - 44f8380e-7798-4566-99e3-2edf2b57d289
+        publish_status: published
+        application_registration_enabled: true
+        auto_approve_registration: true
+        deprecated: false
+    PortalProductVersionUpdateAuthStrategyExample:
+      value:
+        auth_strategy_ids:
+          - 44f8380e-7798-4566-99e3-2edf2b57d289
     GetPortalExample1:
       value:
         id: 9f9fd312-a987-4628-b4c5-bb4f4fddd5f7
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        display_name: Developer Portal A
+        description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
         rbac_enabled: true
@@ -1573,12 +1875,17 @@ components:
         auto_approve_developers: true
         custom_domain: api.example.com
         custom_client_domain: portal.example.com
+        application_count: 0
+        developer_count: 0
+        published_product_count: 0
     UpdatePortalResponseExample1:
       value:
         id: 9f9fd312-a987-4628-b4c5-bb4f4fddd5f7
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        display_name: Developer Portal A
+        description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
         rbac_enabled: true
@@ -1586,6 +1893,9 @@ components:
         auto_approve_developers: true
         custom_domain: api.example.com
         custom_client_domain: portal.example.com
+        application_count: 0
+        developer_count: 0
+        published_product_count: 0
     VerifyPortalDomainsExample1:
       value:
         is_cname_verified: true
@@ -1653,6 +1963,8 @@ components:
             total: 2
         data:
           - id: b15e2460-ba40-431d-9df0-4957fcffacda
+            labels:
+              env: test
             name: App 1
             description: An easy to manage app in a Konnect developer portal
             reference_id: df66b180-97df-4ddb-8b45-8b7d5eac56da
@@ -1667,6 +1979,8 @@ components:
             created_at: '2022-12-22T19:09:30.712Z'
             updated_at: '2022-12-22T19:09:30.712Z'
           - id: b15e2460-ba40-431d-9df0-4957fcffacda
+            labels:
+              env: test
             name: App 1
             description: >-
               A Konnect application that is linked to an Identity Provider
@@ -1686,6 +2000,8 @@ components:
     GetApplicationExampleBasic:
       value:
         id: b15e2460-ba40-431d-9df0-4957fcffacda
+        labels:
+          env: test
         name: App 1
         description: An easy to manage app in a Konnect developer portal
         reference_id: df66b180-97df-4ddb-8b45-8b7d5eac56da
@@ -1702,6 +2018,8 @@ components:
     GetApplicationExampleDcr:
       value:
         id: b15e2460-ba40-431d-9df0-4957fcffacda
+        labels:
+          env: test
         name: App 1
         description: >-
           A Konnect application that is linked to an Identity Provider
@@ -2129,6 +2447,7 @@ components:
           - field: custom_domain
             reason: portal needs a custom_domain to be verified
     UpdatePortalBadRequestExample1:
+      summary: Unknown property
       value:
         status: 400
         title: Invalid Request
@@ -2726,6 +3045,14 @@ components:
               - updated_at
             reason: must be one of [created_at, updated_at]
             source: query
+    GetPortalLogoResponseExample1:
+      value: data:image/png;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalLogoResponseExample2:
+      value: data:image/jpg;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalCatalogCoverResponseExample1:
+      value: data:image/png;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalCatalogCoverResponseExample2:
+      value: data:image/jpg;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
     UnauthorizedExample:
       value:
         status: 401
@@ -2827,6 +3154,36 @@ components:
               $ref: '#/components/examples/UpdatePortalExampleAutoApprove'
             Custom Domains:
               $ref: '#/components/examples/UpdatePortalExampleCustomDomains'
+    CreatePortalProductVersion:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreatePortalProductVersionPayload'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/PortalProductVersionCreateRequestExample1'
+    UpdatePortalProductVersion:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdatePortalProductVersionPayload'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/PortalProductVersionUpdateRequestExample1'
+            PortalProductVersionUpdateAuthStrategy:
+              $ref: >-
+                #/components/examples/PortalProductVersionUpdateAuthStrategyExample
+    ReplacePortalProductVersion:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReplacePortalProductVersionPayload'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/PortalProductVersionReplaceRequestExample1'
     UpdateApplicationRegistration:
       description: Update an application registration.
       required: true
@@ -2875,6 +3232,20 @@ components:
             Revoked:
               $ref: '#/components/examples/UpdateDeveloperExampleRevoked'
   parameters:
+    PortalId:
+      name: portalId
+      description: portal identifier
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/schemas-UUID'
+    ProductVersionId:
+      name: productVersionId
+      description: API product version identifier
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/schemas-UUID'
     DeveloperId:
       name: developerId
       in: path
@@ -2900,12 +3271,65 @@ components:
       name: sort
       description: |
         Sorts a collection of portals. Supported sort attributes are:
+          - name
+          - description
+          - is_public
+          - rbac_enabled
+          - auto_approve_applications
+          - auto_approve_developers
+          - default_domain
+          - custom_domain
+          - custom_client_domain
           - created_at
           - updated_at
       in: query
       required: false
       schema:
         type: string
+    SortPortalProducts:
+      name: sort
+      description: |
+        Sorts a collection of Portal Products. Supported sort attributes are:
+          - created_at
+          - name
+          - description
+      in: query
+      required: false
+      schema:
+        type: string
+    SortPortalProductVersions:
+      name: sort
+      description: >
+        Sorts a collection of Portal Product Versions. Supported sort attributes
+        are:
+          - created_at
+          - updated_at
+          - publish_status
+          - product_version_id
+          - auth_strategy_ids
+          - application_registration_enabled
+          - auto_approve_registration
+          - deprecated
+      in: query
+      required: false
+      schema:
+        type: string
+    PortalProductVersionFilter:
+      name: filter
+      description: Filters a collection of Portal Product Versions.
+      required: false
+      in: query
+      style: deepObject
+      schema:
+        $ref: '#/components/schemas/PortalProductVersionFilters'
+    PortalProductFilter:
+      name: filter
+      description: Filters a collection of Portal Products.
+      required: false
+      in: query
+      style: deepObject
+      schema:
+        $ref: '#/components/schemas/PortalProductFilters'
     SortDevelopers:
       name: sort
       description: |
@@ -2975,7 +3399,7 @@ components:
       schema:
         type: integer
         example: 1
-    PortalId:
+    parameters-PortalId:
       schema:
         type: string
         format: uuid
@@ -3102,6 +3526,24 @@ components:
           examples:
             Example 1:
               $ref: '#/components/examples/ListPortalProductsExample1'
+    ListPortalProductVersions:
+      description: A response containing a list of portal product versions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListPortalProductVersions'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/ListPortalProductVersionsExample1'
+    PortalProductVersion:
+      description: A response containing a portal product version
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalProductVersion'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/PortalProductVersionExample1'
     GetPortal:
       description: Details about a portal and its current settings.
       content:
@@ -3240,6 +3682,36 @@ components:
           examples:
             Example 1:
               $ref: '#/components/examples/UpdatePortalAppearanceResponseExample1'
+    GetPortalLogoResponse:
+      description: Logo of the portal. Can be either png or jpg
+      content:
+        image/png:
+          schema:
+            $ref: '#/components/schemas/GetPortalAppearanceLogoResponse'
+          examples:
+            Example 1:
+              $ref: '#/components/examples/GetPortalLogoResponseExample1'
+        image/jpg:
+          schema:
+            $ref: '#/components/schemas/GetPortalAppearanceLogoResponse'
+          examples:
+            Example 2:
+              $ref: '#/components/examples/GetPortalLogoResponseExample2'
+    GetPortalCatalogCoverResponse:
+      description: Catalog Cover of the portal. Can be either png or jpg
+      content:
+        image/png:
+          schema:
+            $ref: '#/components/schemas/GetPortalAppearanceCatalogCoverResponse'
+          examples:
+            Example 1:
+              $ref: '#/components/examples/GetPortalCatalogCoverResponseExample1'
+        image/jpg:
+          schema:
+            $ref: '#/components/schemas/GetPortalAppearanceCatalogCoverResponse'
+          examples:
+            Example 2:
+              $ref: '#/components/examples/GetPortalCatalogCoverResponseExample2'
     Unauthorized:
       description: Unauthorized
       content:
@@ -3273,7 +3745,20 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ConflictError'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
   schemas:
+    AuthStrategy:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/AuthStrategyKeyAuth'
+        - $ref: '#/components/schemas/AuthStrategyClientCredentials'
+      discriminator:
+        propertyName: credential_type
     PortalClaimMappings:
       title: PortalClaimMappings
       description: Mappings from a portal developer atribute to an Identity Provider claim.
@@ -3849,6 +4334,8 @@ components:
             created_at: '2022-02-07T17:46:57.52Z'
             updated_at: '2022-10-08T17:00:00.52Z'
             name: Portal A
+            display_name: Developer Portal A
+            description: The Portal A
             default_domain: 123455678abcd.us.portal.konghq.com
             is_public: false
             rbac_enabled: true
@@ -3856,6 +4343,9 @@ components:
             auto_approve_developers: true
             custom_domain: api.example.com
             custom_client_domain: portal.example.com
+            application_count: 0
+            developer_count: 0
+            published_product_count: 0
     ListPortalProductsResponse:
       additionalProperties: false
       description: A paginated list of API products published to a portal.
@@ -3898,6 +4388,219 @@ components:
               department: engineering
               location: cyberspace
             version_count: 21
+    PortalProductFilters:
+      title: PortalProductFilters
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        name:
+          $ref: '#/components/schemas/StringFieldFilter'
+        description:
+          $ref: '#/components/schemas/StringFieldFilter'
+    PortalProductVersionFilters:
+      title: PortalProductVersionFilters
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        publish_status:
+          $ref: '#/components/schemas/PublishStatusFilter'
+        product_version_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        created_at:
+          $ref: '#/components/schemas/DateTimeFieldFilter'
+        updated_at:
+          $ref: '#/components/schemas/DateTimeFieldFilter'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        application_registration_enabled:
+          $ref: '#/components/schemas/BooleanFieldFilter'
+        auto_approve_registration:
+          $ref: '#/components/schemas/BooleanFieldFilter'
+        deprecated:
+          $ref: '#/components/schemas/BooleanFieldFilter'
+    PortalProductVersionPublishStatus:
+      type: string
+      description: Publication status of the API product version on the portal
+      enum:
+        - published
+        - unpublished
+    PortalProductVersionDeprecated:
+      type: boolean
+      description: Whether the api product version on the portal is deprecated
+    NotifyDevelopers:
+      title: NotifyDevelopers
+      description: Whether to notify developers who are affected by this change
+      type: boolean
+    PublishStatusFilter:
+      title: PublishStatusFilter
+      description: Filters on the given publish status
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      x-examples:
+        example-1: published
+        example-2:
+          eq: unpublished
+        example-3:
+          neq: unpublished
+    ApplicationRegistrationEnabled:
+      type: boolean
+      description: >-
+        Whether the application registration on this portal for the api product
+        version is enabled
+    AutoApproveRegistration:
+      type: boolean
+      description: >-
+        Whether the application registration auto approval on this portal for
+        the api product version is enabled
+    AuthStrategies:
+      description: A list of authentication strategies
+      type: array
+      minItems: 0
+      maxItems: 1
+      items:
+        $ref: '#/components/schemas/AuthStrategy'
+    AuthStrategyIDs:
+      description: A list of authentication strategy IDs
+      type: array
+      minItems: 0
+      maxItems: 1
+      items:
+        $ref: '#/components/schemas/UUID_RW'
+    CreatePortalProductVersionPayload:
+      title: CreatePortalProductVersionPayload
+      description: Payload to create a Portal Product Version
+      type: object
+      additionalProperties: false
+      properties:
+        publish_status:
+          $ref: '#/components/schemas/PortalProductVersionPublishStatus'
+        product_version_id:
+          $ref: '#/components/schemas/UUID_RW'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/AuthStrategyIDs'
+        application_registration_enabled:
+          $ref: '#/components/schemas/ApplicationRegistrationEnabled'
+        auto_approve_registration:
+          $ref: '#/components/schemas/AutoApproveRegistration'
+        deprecated:
+          $ref: '#/components/schemas/PortalProductVersionDeprecated'
+      required:
+        - publish_status
+        - application_registration_enabled
+        - auto_approve_registration
+        - product_version_id
+        - deprecated
+        - auth_strategy_ids
+    ReplacePortalProductVersionPayload:
+      title: ReplacePortalProductVersionPayload
+      type: object
+      description: Payload to update a Portal Product Version
+      additionalProperties: false
+      required:
+        - publish_status
+        - application_registration_enabled
+        - auto_approve_registration
+        - deprecated
+        - auth_strategy_ids
+      properties:
+        publish_status:
+          $ref: '#/components/schemas/PortalProductVersionPublishStatus'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/AuthStrategyIDs'
+        application_registration_enabled:
+          $ref: '#/components/schemas/ApplicationRegistrationEnabled'
+        auto_approve_registration:
+          $ref: '#/components/schemas/AutoApproveRegistration'
+        deprecated:
+          $ref: '#/components/schemas/PortalProductVersionDeprecated'
+        notify_developers:
+          $ref: '#/components/schemas/NotifyDevelopers'
+    UpdatePortalProductVersionPayload:
+      title: UpdatePortalProductVersionPayload
+      type: object
+      description: Payload to update a Portal Product Version
+      additionalProperties: false
+      properties:
+        publish_status:
+          $ref: '#/components/schemas/PortalProductVersionPublishStatus'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/AuthStrategyIDs'
+        application_registration_enabled:
+          $ref: '#/components/schemas/ApplicationRegistrationEnabled'
+        auto_approve_registration:
+          $ref: '#/components/schemas/AutoApproveRegistration'
+        deprecated:
+          $ref: '#/components/schemas/PortalProductVersionDeprecated'
+        notify_developers:
+          $ref: '#/components/schemas/NotifyDevelopers'
+    PortalProductVersion:
+      title: PortalProductVersion
+      type: object
+      description: >
+        A Portal Product Version holds metadata that describes how a Product
+        Version is configured for a specific portal.
+
+
+        It contains:
+
+        - Lifecyle and deprecation statuses
+
+        - Application registration settings like auto approve or whether
+        application registration is enabled
+
+        - The Authentication Strategy (if present) that is enabled for
+        Application Registration
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/schemas-UUID'
+        publish_status:
+          $ref: '#/components/schemas/PortalProductVersionPublishStatus'
+        product_version_id:
+          $ref: '#/components/schemas/UUID_RW'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        auth_strategies:
+          $ref: '#/components/schemas/AuthStrategies'
+        application_registration_enabled:
+          $ref: '#/components/schemas/ApplicationRegistrationEnabled'
+        auto_approve_registration:
+          $ref: '#/components/schemas/AutoApproveRegistration'
+        deprecated:
+          $ref: '#/components/schemas/PortalProductVersionDeprecated'
+      required:
+        - id
+        - publish_status
+        - application_registration_enabled
+        - auto_approve_registration
+        - product_version_id
+        - deprecated
+        - auth_strategies
+        - created_at
+        - updated_at
+    ListPortalProductVersions:
+      title: ListPortalProductVersions
+      type: object
+      description: A paginated list response for a collection of portal product versions
+      additionalProperties: false
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortalProductVersion'
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
     PublishedAPIProduct:
       title: PublishedApiProduct
       type: object
@@ -3950,7 +4653,7 @@ components:
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
         labels:
-          $ref: '#/components/schemas/APIProductLabels'
+          $ref: '#/components/schemas/Labels'
       example:
         id: 7cdcba18-5bdf-4936-81de-d76da02cb99b
         name: Excellent API
@@ -4142,6 +4845,16 @@ components:
             filename: logo.png
           catalog_cover:
             data: data:image/jpeg;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalAppearanceLogoResponse:
+      title: GetPortalAppearanceLogoResponse
+      type: string
+      format: binary
+      example: data:image/png;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    GetPortalAppearanceCatalogCoverResponse:
+      title: GetPortalAppearanceLogoResponse
+      type: string
+      format: binary
+      example: data:image/png;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
     ListDevelopersResponse:
       additionalProperties: false
       type: object
@@ -4211,6 +4924,8 @@ components:
             total: 2
         data:
           - id: b15e2460-ba40-431d-9df0-4957fcffacda
+            labels:
+              env: test
             name: App 1
             description: An easy to manage app in a Konnect developer portal
             reference_id: df66b180-97df-4ddb-8b45-8b7d5eac56da
@@ -4225,6 +4940,8 @@ components:
             created_at: '2022-12-22T19:09:30.712Z'
             updated_at: '2022-12-22T19:09:30.712Z'
           - id: b15e2460-ba40-431d-9df0-4957fcffacda
+            labels:
+              env: test
             name: App 1
             description: >-
               A Konnect application that is linked to an Identity Provider
@@ -4472,6 +5189,7 @@ components:
         - dcr_provider
         - portal
         - developer
+        - labels
       properties:
         id:
           $ref: '#/components/schemas/UUID'
@@ -4486,6 +5204,8 @@ components:
           description: A description of the application.
           type: string
           nullable: true
+        labels:
+          $ref: '#/components/schemas/LabelsUpdate'
         reference_id:
           description: >-
             The ID used to linked the portal application to an Identity Provider
@@ -4537,8 +5257,12 @@ components:
             email:
               description: The email of the developer that created the application.
               type: string
+        auth_strategy:
+          $ref: '#/components/schemas/AuthStrategy'
       example:
         id: b15e2460-ba40-431d-9df0-4957fcffacda
+        labels:
+          env: test
         name: App 1
         description: An easy to manage app in a Konnect developer portal
         reference_id: df66b180-97df-4ddb-8b45-8b7d5eac56da
@@ -4669,6 +5393,7 @@ components:
         - created_at
         - updated_at
         - name
+        - display_name
         - default_domain
         - is_public
         - rbac_enabled
@@ -4676,6 +5401,10 @@ components:
         - auto_approve_developers
         - custom_domain
         - custom_client_domain
+        - description
+        - application_count
+        - developer_count
+        - published_product_count
       properties:
         id:
           $ref: '#/components/schemas/UUID'
@@ -4684,10 +5413,11 @@ components:
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
         name:
-          description: The name of the portal, used to distinguish it from other portals.
-          type: string
-          maxLength: 255
-          minLength: 1
+          $ref: '#/components/schemas/PortalName'
+        display_name:
+          $ref: '#/components/schemas/PortalDisplayName'
+        description:
+          $ref: '#/components/schemas/PortalDescription'
         default_domain:
           description: >-
             The domain assigned to the portal by Konnect. This is the default
@@ -4745,11 +5475,22 @@ components:
           format: hostname
         default_application_auth_strategy_id:
           $ref: '#/components/schemas/DefaultApplicationAuthStratID'
+        application_count:
+          type: number
+          description: Number of applications created in the portal.
+        developer_count:
+          type: number
+          description: Number of developers using the portal.
+        published_product_count:
+          type: number
+          description: Number of api products published to the portal
       example:
         id: 9f9fd312-a987-4628-b4c5-bb4f4fddd5f7
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        display_name: Developer Portal A
+        description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
         rbac_enabled: true
@@ -4757,16 +5498,44 @@ components:
         auto_approve_developers: true
         custom_domain: api.example.com
         custom_client_domain: portal.example.com
+        application_count: 0
+        developer_count: 0
+        published_product_count: 0
+    PortalDescription:
+      description: The description of the portal.
+      type: string
+      maxLength: 512
+      nullable: true
     DefaultApplicationAuthStratID:
       description: Default strategy ID applied on applications for the portal
       nullable: true
       type: string
       format: uuid
       example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+    PortalName:
+      description: >-
+        The name of the portal, used to distinguish it from other portals. Name
+        must be unique.
+      type: string
+      maxLength: 255
+      minLength: 1
+    PortalDisplayName:
+      description: >-
+        The display name of the portal. This value will be the portal's `name`
+        in Portal API.
+      type: string
+      maxLength: 255
+      minLength: 1
     UpdatePortalRequest:
       additionalProperties: false
       type: object
       properties:
+        name:
+          $ref: '#/components/schemas/PortalName'
+        display_name:
+          $ref: '#/components/schemas/PortalDisplayName'
+        description:
+          $ref: '#/components/schemas/PortalDescription'
         is_public:
           description: >-
             Whether the portal catalog can be accessed publicly without any
@@ -4819,6 +5588,7 @@ components:
         default_application_auth_strategy_id:
           $ref: '#/components/schemas/DefaultApplicationAuthStratID'
       example:
+        name: Aperture
         is_public: false
         rbac_enabled: true
         auto_approve_applications: false
@@ -5672,271 +6442,6 @@ components:
         - dark_mode
         - custom
       example: mint_rocket
-    PageMeta:
-      type: object
-      description: >-
-        Contains pagination query parameters and the total number of objects
-        returned.
-      required:
-        - number
-        - size
-        - total
-      properties:
-        number:
-          type: number
-          example: 1
-        size:
-          type: number
-          example: 10
-        total:
-          type: number
-          example: 100
-    PaginatedMeta:
-      type: object
-      title: PaginatedMeta
-      description: returns the pagination information
-      properties:
-        page:
-          $ref: '#/components/schemas/PageMeta'
-      required:
-        - page
-    UUID:
-      type: string
-      format: uuid
-      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-      description: Contains a unique identifier used for this resource.
-      readOnly: true
-    CreatedAt:
-      type: string
-      format: date-time
-      example: '2022-11-04T20:10:06.927Z'
-      description: An ISO-8601 timestamp representation of entity creation date.
-      readOnly: true
-    UpdatedAt:
-      type: string
-      format: date-time
-      example: '2022-11-04T20:10:06.927Z'
-      description: An ISO-8601 timestamp representation of entity update date.
-      readOnly: true
-    BaseError:
-      type: object
-      title: Error
-      description: standard error
-      required:
-        - status
-        - title
-        - instance
-        - detail
-      properties:
-        status:
-          type: integer
-          description: >
-            The HTTP status code of the error. Useful when passing the response
-
-            body to child properties in a frontend UI. Must be returned as an
-            integer.
-          readOnly: true
-        title:
-          type: string
-          description: |
-            A short, human-readable summary of the problem. It should not
-            change between occurences of a problem, except for localization.
-            Should be provided as "Sentence case" for direct use in the UI.
-          readOnly: true
-        type:
-          type: string
-          description: The error type.
-          readOnly: true
-        instance:
-          type: string
-          description: |
-            Used to return the correlation ID back to the user, in the format
-            kong:trace:<correlation_id>. This helps us find the relevant logs
-            when a customer reports an issue.
-          readOnly: true
-        detail:
-          type: string
-          description: >
-            A human readable explanation specific to this occurence of the
-            problem.
-
-            This field may contain request/entity data to help the user
-            understand
-
-            what went wrong. Enclose variable values in square brackets. Should
-            be
-
-            provided as "Sentence case" for direct use in the UI.
-          readOnly: true
-    InvalidRules:
-      description: invalid parameters rules
-      type: string
-      readOnly: true
-      nullable: true
-      enum:
-        - required
-        - enum
-        - min_length
-        - max_length
-        - min_digits
-        - min_lowercase
-        - min_uppercase
-        - min_symbols
-        - is_array
-        - is_base64
-        - is_boolean
-        - is_date_time
-        - is_integer
-        - is_null
-        - is_number
-        - is_object
-        - is_string
-        - is_uuid
-        - unknown_property
-        - is_label
-        - matches_regex
-    InvalidParameterChoiceItem:
-      type: object
-      properties:
-        field:
-          type: string
-          example: name
-          readOnly: true
-        rule:
-          $ref: '#/components/schemas/InvalidRules'
-        reason:
-          type: string
-          example: is a required field
-          readOnly: true
-        choices:
-          type: array
-          uniqueItems: true
-          nullable: true
-          items: {}
-          readOnly: true
-      required:
-        - field
-        - reason
-    InvalidParameterDependentItem:
-      type: object
-      properties:
-        field:
-          type: string
-          example: name
-          readOnly: true
-        rule:
-          description: invalid parameters rules
-          type: string
-          readOnly: true
-          nullable: true
-          enum:
-            - dependent_fields
-        reason:
-          type: string
-          example: is a required field
-          readOnly: true
-        dependents:
-          type: array
-          uniqueItems: true
-          nullable: true
-          items: {}
-          readOnly: true
-      required:
-        - field
-        - rule
-        - reason
-        - dependents
-    InvalidParameters:
-      type: array
-      nullable: false
-      uniqueItems: true
-      minItems: 1
-      description: invalid parameters
-      items:
-        oneOf:
-          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
-          - $ref: '#/components/schemas/InvalidParameterDependentItem'
-    BadRequestError:
-      type: object
-      required:
-        - invalid_parameters
-      properties:
-        status:
-          example: 400
-        title:
-          example: Bad Request
-        type:
-          example: https://httpstatuses.com/400
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid request body
-        invalid_parameters:
-          $ref: '#/components/schemas/InvalidParameters'
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    UnauthorizedError:
-      type: object
-      properties:
-        status:
-          example: 401
-        title:
-          example: Unauthorized
-        type:
-          example: https://httpstatuses.com/401
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid credentials
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    ForbiddenError:
-      type: object
-      properties:
-        status:
-          example: 403
-        title:
-          example: Forbidden
-        type:
-          example: https://httpstatuses.com/403
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Forbidden
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    NotFoundError:
-      type: object
-      properties:
-        status:
-          example: 404
-        title:
-          example: Not Found
-        type:
-          example: https://httpstatuses.com/404
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Not found
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    APIProductLabels:
-      title: Labels
-      type: object
-      description: >
-        description: A maximum of 5 user-defined labels are allowed on this
-        resource.
-
-        Keys must not start with kong, konnect, insomnia, mesh, kic or _, which
-        are reserved for Kong.
-
-        Keys are case-sensitive.
-      additionalProperties:
-        type: string
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-._]*[a-z0-9A-Z]+)?$
-        minLength: 1
-        maxLength: 63
-      default: {}
     StringFieldEqualsFilter:
       title: StringFieldEqualsFilter
       description: Filters on the given string field value by exact match.
@@ -6046,6 +6551,522 @@ components:
           oeq: some-potential,value
         example-6:
           neq: not-this-value
+    BooleanFieldFilter:
+      title: BooleanFieldFilter
+      description: Filter by a boolean value (true/false).
+      type: boolean
+      x-examples:
+        example-1: true
+    PageMeta:
+      type: object
+      description: >-
+        Contains pagination query parameters and the total number of objects
+        returned.
+      required:
+        - number
+        - size
+        - total
+      properties:
+        number:
+          type: number
+          example: 1
+        size:
+          type: number
+          example: 10
+        total:
+          type: number
+          example: 100
+    PaginatedMeta:
+      type: object
+      title: PaginatedMeta
+      description: returns the pagination information
+      properties:
+        page:
+          $ref: '#/components/schemas/PageMeta'
+      required:
+        - page
+    UUID:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier used for this resource.
+      readOnly: true
+    CreatedAt:
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      description: An ISO-8601 timestamp representation of entity creation date.
+      readOnly: true
+    UpdatedAt:
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      description: An ISO-8601 timestamp representation of entity update date.
+      readOnly: true
+    BaseError:
+      type: object
+      title: Error
+      description: standard error
+      required:
+        - status
+        - title
+        - instance
+        - detail
+      properties:
+        status:
+          type: integer
+          description: >
+            The HTTP status code of the error. Useful when passing the response
+
+            body to child properties in a frontend UI. Must be returned as an
+            integer.
+          readOnly: true
+        title:
+          type: string
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+        type:
+          type: string
+          description: The error type.
+          readOnly: true
+        instance:
+          type: string
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          readOnly: true
+        detail:
+          type: string
+          description: >
+            A human readable explanation specific to this occurence of the
+            problem.
+
+            This field may contain request/entity data to help the user
+            understand
+
+            what went wrong. Enclose variable values in square brackets. Should
+            be
+
+            provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+    InvalidRules:
+      description: invalid parameters rules
+      type: string
+      readOnly: true
+      nullable: true
+      enum:
+        - required
+        - max_length
+        - is_array
+        - is_base64
+        - is_boolean
+        - is_date_time
+        - is_integer
+        - is_null
+        - is_number
+        - is_object
+        - is_string
+        - is_uuid
+        - is_fqdn
+        - is_arn
+        - unknown_property
+        - is_label
+        - matches_regex
+        - invalid
+        - is_supported_network_availability_zone_list
+        - is_supported_network_cidr_block
+        - is_supported_provider_region
+    InvalidParameterStandard:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          $ref: '#/components/schemas/InvalidRules'
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterMinimumLength:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - min_length
+            - min_digits
+            - min_lowercase
+            - min_uppercase
+            - min_symbols
+        minimum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+        - rule
+        - minimum
+    InvalidParameterChoiceItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - enum
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        choices:
+          type: array
+          uniqueItems: true
+          readOnly: true
+          nullable: false
+          minimum: 1
+          items: {}
+        source:
+          type: string
+          example: body
+      required:
+        - field
+        - reason
+        - rule
+        - choices
+    InvalidParameterDependentItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: true
+          enum:
+            - dependent_fields
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        dependents:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+        source:
+          type: string
+          example: body
+      required:
+        - field
+        - rule
+        - reason
+        - dependents
+    InvalidParameters:
+      type: array
+      nullable: false
+      uniqueItems: true
+      minItems: 1
+      description: invalid parameters
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/InvalidParameterStandard'
+          - $ref: '#/components/schemas/InvalidParameterMinimumLength'
+          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
+          - $ref: '#/components/schemas/InvalidParameterDependentItem'
+    BadRequestError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
+    UnauthorizedError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 401
+            title:
+              example: Unauthorized
+            type:
+              example: https://httpstatuses.com/401
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Invalid credentials
+    ForbiddenError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 403
+            title:
+              example: Forbidden
+            type:
+              example: https://httpstatuses.com/403
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Forbidden
+    NotFoundError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 404
+            title:
+              example: Not Found
+            type:
+              example: https://httpstatuses.com/404
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Not found
+    ConflictError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 409
+            title:
+              example: Conflict
+            type:
+              example: https://httpstatuses.com/409
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Conflict
+    Labels:
+      title: Labels
+      type: object
+      example:
+        env: test
+      maxProperties: 50
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
+    schemas-UUID:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier used by the API for this resource.
+      readOnly: true
+    DateTimeFieldFilter:
+      title: DateTimeFieldFilter
+      description: Filters on the given datetime (RFC-3339) field value.
+      oneOf:
+        - type: string
+          format: date-time
+          description: Value strictly equals given RFC-3339 formatted timestamp in UTC
+          example: '2022-03-30T07:20:50Z'
+        - type: object
+          title: DateTimeFieldEqualsFilter
+          additionalProperties: false
+          properties:
+            eq:
+              type: string
+              format: date-time
+              description: Value strictly equals given RFC-3339 formatted timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - eq
+        - type: object
+          title: DateTimeFieldLTFilter
+          additionalProperties: false
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Value is less than the given RFC-3339 formatted timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - lt
+        - type: object
+          title: DateTimeFieldLTEFilter
+          additionalProperties: false
+          properties:
+            lte:
+              type: string
+              format: date-time
+              description: >-
+                Value is less than or equal to the given RFC-3339 formatted
+                timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - lte
+        - type: object
+          title: DateTimeFieldGTFilter
+          additionalProperties: false
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: >-
+                Value is greater than the given RFC-3339 formatted timestamp in
+                UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - gt
+        - type: object
+          title: DateTimeFieldGTEFilter
+          additionalProperties: false
+          properties:
+            lte:
+              type: string
+              format: date-time
+              description: >-
+                Value is greater than or equal to the given RFC-3339 formatted
+                timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - gte
+      x-examples:
+        datetime_field_1: '2022-03-30T07:20:50Z'
+        datetime_field_2:
+          eq: '2022-03-30T07:20:50Z'
+        datetime_field_3:
+          lt: '2022-03-30T07:20:50Z'
+        datetime_field_4:
+          lte: '2022-03-30T07:20:50Z'
+        datetime_field_5:
+          gt: '2022-03-30T07:20:50Z'
+        datetime_field_6:
+          gte: '2022-03-30T07:20:50Z'
+    UUID_RW:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier used by the API for this resource.
+    AuthStrategyKeyAuth:
+      description: KeyAuth Auth strategy that the application uses.
+      type: object
+      required:
+        - id
+        - name
+        - credential_type
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          description: The Application Auth Strategy ID.
+          readOnly: true
+        name:
+          type: string
+          example: name
+          default: name
+        credential_type:
+          type: string
+          enum:
+            - key_auth
+    AuthMethods:
+      type: array
+      items:
+        description: Auth Methods enabled for this strategy
+        type: string
+      example:
+        - bearer
+    AuthStrategyClientCredentials:
+      description: Client Credential Auth strategy that the application uses.
+      type: object
+      required:
+        - id
+        - name
+        - credential_type
+        - auth_methods
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          description: The Application Auth Strategy ID.
+          readOnly: true
+        name:
+          type: string
+          example: name
+          default: name
+        credential_type:
+          type: string
+          enum:
+            - client_credentials
+            - self_managed_client_credentials
+        auth_methods:
+          $ref: '#/components/schemas/AuthMethods'
+    LabelsUpdate:
+      type: object
+      nullable: true
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      example:
+        env: test
+      maxProperties: 50
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
+        nullable: true
+      writeOnly: true
     ImageDataUri:
       title: ImageDataUri
       type: string
@@ -6059,21 +7080,6 @@ components:
         must be a data URL with base64 image data, e.g.,
         data:image/jpeg;base64,<BASE64_IMAGE_DATA>
       example: data:image/png,YW5faW1hZ2VfZmlsZQ==
-    ConflictError:
-      type: object
-      properties:
-        status:
-          example: 409
-        title:
-          example: Conflict
-        type:
-          example: https://httpstatuses.com/409
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Conflict
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
   securitySchemes:
     personalAccessToken:
       type: http

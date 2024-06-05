@@ -15,7 +15,8 @@ module PluginSingleSource
           configuration,
           configuration_examples,
           references,
-          changelog
+          changelog,
+          troubleshooting
         ].compact
       end
 
@@ -102,6 +103,16 @@ module PluginSingleSource
           'title' => @release.changelog.nav_title,
           'url' => @release.changelog.permalink,
           'icon' => @release.changelog.icon
+        }
+      end
+
+      def troubleshooting
+        return unless @release.troubleshooting
+
+        {
+          'title' => @release.troubleshooting.nav_title,
+          'url' => @release.troubleshooting.permalink,
+          'icon' => @release.troubleshooting.icon
         }
       end
     end

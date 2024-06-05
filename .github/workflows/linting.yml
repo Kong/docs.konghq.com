@@ -12,6 +12,7 @@ env:
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check if manual review has been performed
         uses: actions/github-script@v7
@@ -43,7 +44,7 @@ jobs:
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v42
+        uses: tj-actions/changed-files@v44
         with:
           sha: ${{ github.sha }}
           files: |
@@ -88,23 +89,24 @@ jobs:
     if: needs.check.outputs.result == 'false'
     name: Vale
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v42
+        uses: tj-actions/changed-files@v44
         with:
           sha: ${{ github.sha }}
           files: |
             app/**
-            docs/**
           files_ignore: |
             app/_src/.repos/kuma/**
             app/gateway/2.7.x/**
             app/gateway/2.6.x/**
             app/assets/mesh/raw/CHANGELOG.md
+            app/assets/mesh/raw/UPGRADE.md
           json: true
           quotepath: false
           escape_json: false

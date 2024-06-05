@@ -31,12 +31,12 @@ Install {{site.base_gateway}} on Debian from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.cloudsmith }}/public/gateway-legacy/deb/debian/pool/stretch/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_all.deb"
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.direct }}/gateway-legacy/deb/debian/pool/stretch/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_all.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.cloudsmith }}/public/gateway-legacy/deb/debian/pool/stretch/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_amd64.deb"
+curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.direct }}/gateway-legacy/deb/debian/pool/stretch/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_amd64.deb"
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -83,8 +83,8 @@ Install the APT repository from the command line.
 
 1. Download the Kong APT repository:
     ```bash
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-legacy/gpg.{{ gpg_key }}.key" |  gpg --dearmor | sudo tee -a /usr/share/keyrings/kong-gateway-legacy-archive-keyring.gpg > /dev/null
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-legacy/config.deb.txt?distro=debian&codename=stretch" | sudo tee /etc/apt/sources.list.d/kong-gateway-legacy.list > /dev/null
+    curl -1sLf "{{ site.links.direct }}/gateway-legacy/gpg.{{ gpg_key }}.key" |  gpg --dearmor | sudo tee -a /usr/share/keyrings/kong-gateway-legacy-archive-keyring.gpg > /dev/null
+    curl -1sLf "{{ site.links.direct }}/gateway-legacy/config.deb.txt?distro=debian&codename=stretch" | sudo tee /etc/apt/sources.list.d/kong-gateway-legacy.list > /dev/null
     ```
 2. Update the repository:
     ```bash

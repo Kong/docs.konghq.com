@@ -21,9 +21,9 @@ These CRDs allow users to declaratively configure all aspects of Kong:
 - [**KongPlugin**](#kongplugin)
 - [**KongClusterPlugin**](#kongclusterplugin)
 - [**KongConsumer**](#kongconsumer)
-{% if_version gte:2.11.x %}
+{% if_version gte:2.11.x -%}
 - [**KongConsumerGroup**](#kongconsumergroup)
-{% endif_version %}
+{% endif_version -%}
 - [**TCPIngress**](#tcpingress)
 - [**UDPIngress**](#udpingress)
 
@@ -139,8 +139,8 @@ This is useful for services such as DNS servers, Game Servers,
 VPN software and a variety of other applications.
 
 {% if_version gte:2.11.x %}
-## KongConsumerGroup
 
+## KongConsumerGroup
 {:.badge .enterprise}
 
 {:.note}
@@ -165,9 +165,9 @@ then executes that plugin on every consumer in the consumer group.
 
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway/latest/admin-api/#consumer-object
-[kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-route]: /gateway/latest/admin-api/#route-object
-[kong-service]: /gateway/latest/admin-api/#service-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-object
+[kong-consumer]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+[kong-plugin]: /gateway/api/admin-ee/latest/#/Plugins/list-plugin
+[kong-route]: /gateway/api/admin-ee/latest/#/Routes/list-route/
+[kong-service]: /gateway/api/admin-ee/latest/#/Services/list-service/
+[kong-upstream]: /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/
 [kong-consumer-group]: /gateway/latest/kong-enterprise/consumer-groups/

@@ -1,8 +1,10 @@
 name: Submodule Sync
 on:
   workflow_dispatch:
-  schedule:
-  - cron: '0 0 * * *'
+    schedule:
+      - cron: '0 0 * * *'
+  repository_dispatch:
+    types: [PLUGINS_UPDATED]
 
 permissions:
   contents: write
@@ -12,6 +14,7 @@ jobs:
   submodule-sync:
     name: Submodule Sync
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Submodule Sync
         uses: mheap/submodule-sync-action@v1

@@ -23,6 +23,7 @@ endpoint_key
 eventTime
 firstTimestamp
 foogineer
+geos
 if_version
 ingress_controller_configuration_push_count
 ingress_controller_configuration_push_duration_milliseconds
@@ -34,6 +35,7 @@ inlineString
 involvedObject
 kuma
 lastTimestamp
+linkStyle
 max_args
 max_headers
 metatable
@@ -55,6 +57,7 @@ resourceVersion
 resty
 role_endpoint
 role_entity
+route_type
 saml
 search_by_username
 sequenceDiagram
@@ -63,6 +66,8 @@ start_cmd
 stream_listen
 stringified
 subcomponent
+subgraph
+subgraphs
 trusted_ips
 DECK_
 Gateway
@@ -87,3 +92,5 @@ UDPIngress
 KongPlugin
 KongClusterPlugin
 KongConsumer
+Rekor
+Sigstore

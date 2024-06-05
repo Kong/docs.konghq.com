@@ -1,6 +1,8 @@
 ---
 nav_title: How to create rate limiting tiers
 title: How to create rate limiting tiers
+
+minimum_version: 3.4.x
 ---
 
 With consumer groups, you can define rate limiting tiers and apply them to subsets of application consumers.
@@ -21,13 +23,13 @@ To use consumer groups for rate limiting, you need to:
 * Create one or more consumer groups
 * Create consumers
 * Assign consumers to groups
-{% if_plugin_version lte:3.3.x %}
+{% if_version lte:3.3.x %}
 * Configure the Rate Limiting Advanced plugin with the `enforce_consumer_groups`
 and `consumer_groups` parameters, setting up the list of consumer groups that
 the plugin accepts
 * Configure rate limiting for each consumer group, overriding the plugin's
 configuration
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## Create rate limiting tiers
 
@@ -98,7 +100,7 @@ configuration
       ]
     }
     ```
-{% if_plugin_version gte:3.4.x %}
+{% if_version gte:3.4.x %}
 1. Enable the plugin on the consumer group:
 
     ```bash
@@ -112,9 +114,9 @@ configuration
 This configuration sets the rate limit to five requests (`config.limit`) for every
 30 seconds (`config.window_size`). 
 
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version lte:3.3.x %}
+{% if_version lte:3.3.x %}
 ## Set up Rate Limiting Advanced config for consumer group
 
 1. Enable the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/),
@@ -184,7 +186,7 @@ the limit to ten requests for every ten seconds:
     Notice the `plugins` object in the response, along with the parameters that you
     just set for the Rate Limiting Advanced plugin:
 
-{% if_plugin_version lte:3.3.x %}
+{% if_version lte:3.3.x %}
 
     ```json
     {
@@ -225,8 +227,8 @@ the limit to ten requests for every ten seconds:
         ]
     }
     ```
-{% endif_plugin_version %}
-{% if_plugin_version gte:3.4.x %}
+{% endif_version %}
+{% if_version gte:3.4.x %}
 
     ```json
     {
@@ -247,7 +249,7 @@ the limit to ten requests for every ten seconds:
         ]
     }
     ```
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## Remove consumer from group - group view
 
@@ -585,7 +587,7 @@ if you need to cycle the group for a new batch of users.
     HTTP/1.1 204 No Content
     ```
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## More Information
 

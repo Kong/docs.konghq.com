@@ -13,7 +13,7 @@ difficulties during this phase, refer to the [Keycloak documentation](https://ww
    <br>
    <img src="/assets/images/products/plugins/openid-connect/keycloak-client-kong-auth.png">
    <br>
-2. Create another confidential client `service` with `client_secret_basic` authentication.
+1. Create another confidential client `service` with `client_secret_basic` authentication.
    For this client, Keycloak will auto-generate a secret similar to the following: `cf4c655a-0622-4ce6-a0de-d3353ef0b714`.
    Enable the client credentials grant for the client:
    <br><br>
@@ -21,7 +21,20 @@ difficulties during this phase, refer to the [Keycloak documentation](https://ww
    <br>
    <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-auth.png">
    <br>
-3. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
+{% if_version gte:3.5.x %}
+1. (Optional) Create another confidential client `cert-bound` with settings similar to the `service` client created previously.
+   From the **Advanced** tab, enable the **OAuth 2.0 Mutual TLS Certificate Bound Access Tokens Enabled** toggle.
+{% endif_version %}
+{% if_version gte:3.6.x %}
+1. (Optional, to test mTLS Client Authentication) Create another confidential client `client-tls-auth` with settings similar to the `service` client created above. 
+   From the **Credentials** tab, select the **X509 Certificate** Client Authenticator and fill the Subject DN field so that it matches the Kong client certificate's, e.g.: `CN=JohnDoe, OU=IT`.
+{% endif_version %}
+{% if_version gte:3.7.x %}
+1. (Optional, to test Demonstrating Proof-of-Possession Client Authentication) Create another confidential client `client-dpop-auth` with settings similar to the `service` client created above. 
+   From the **Advanced** tab, enable the**OAuth 2.0 DPoP Bound Access Tokens Enabled** toggle.
+{% endif_version %}
+
+1. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
    <br><br>
    <img src="/assets/images/products/plugins/openid-connect/keycloak-user-john.png">
 
@@ -44,6 +57,16 @@ to
 The Keycloak default `https` port conflicts with the default Kong TLS proxy port,
 and that can be a problem if both are started on the same host.
 
+{% if_version eq:3.5.x %}
+{:.note}
+> **Note:** The mTLS proof of possession feature that validates OAuth 2.0 Mutual TLS Certificate Bound Access Tokens requires configuring Keycloak to validate client certificates using mTLS with the `--https-client-auth=request` option. For more information, see the [Keycloak documentation](https://www.keycloak.org/server/enabletls).
+{% endif_version %}
+
+{% if_version gte:3.6.x %}
+{:.note}
+> **Note:** The mTLS Client Authentication, along with the proof of possession feature that validates OAuth 2.0 Mutual TLS Certificate Bound Access Tokens, both require configuring Keycloak to validate client certificates with mTLS using the `--https-client-auth=request` option, and to configure TLS appropriately, including adding the trusted client certificates to the truststore. For more information, refer to the [Keycloak documentation](https://www.keycloak.org/server/enabletls).
+{% endif_version %}
+
 [keycloak]: http://www.keycloak.org/
 
 {% endcapture %}
@@ -53,76 +76,18 @@ and that can be a problem if both are started on the same host.
 1. Create a service:
 
     ```bash
-    http -f put :8001/services/openid-connect url=http://httpbin.org/anything
+    curl -i -X POST http://localhost:8001/services \
+      --data "name=openid-connect" \
+      --data "url=http://httpbin.org/anything"
     ```
-    ```http
-    HTTP/1.1 200 OK
-    ```
-    ```json
-    {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd",
-        "name": "openid-connect",
-        "protocol": "http",
-        "host": "httpbin.org",
-        "port": 80,
-        "path": "/anything"
-    }
-    ```
-
+    
 1. Create a route:
 
     ```bash
-    http -f put :8001/services/openid-connect/routes/openid-connect paths=/
+    curl -i -X POST http://localhost:8001/services/openid-connect/routes \
+      --data "name=openid-connect" \
+      --data "paths[]=/"
     ```
-    ```http
-    HTTP/1.1 200 OK
-    ```
-    ```json
-    {
-        "id": "ac1e86bd-4bce-4544-9b30-746667aaa74a",
-        "name": "openid-connect",
-        "paths": [ "/" ]
-    }
-    ```
-
-1. Create a plugin:
-
-    You may execute this before patching the plugin (as seen on following examples) to reset
-    the plugin configuration.
-
-    ```bash
-    http -f put :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-    name=openid-connect                                          \
-    service.name=openid-connect                                  \
-    config.issuer=http://keycloak.test:8080/auth/realms/master   \
-    config.client_id=kong                                        \
-    config.client_auth=private_key_jwt
-    ```
-    ```http
-    HTTP/1.1 200 OK
-    ```
-    ```json
-    {
-        "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-        "name": "openid-connect",
-        "service": {
-            "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-        },
-        "config": {
-            "issuer": "http://keycloak.test:8080/auth/realms/master",
-            "client_id": [ "kong" ],
-            "client_auth": [ "private_key_jwt" ]
-        }
-    }
-    ```
-
-1. Check the discovery cache: `http :8001/openid-connect/issuers`.
-
-    It should contain Keycloak OpenID Connect discovery document and the keys.
-
-
-At this point you have created a service, routed traffic to the service, and 
-enabled OpenID Connect plugin on the service.
 
 {% endcapture %}
 
@@ -131,22 +96,12 @@ The examples in this guide use Keycloak as a sample IdP.
 
 Expand the following sections to configure Keycloak and {{site.base_gateway}}.
 
-<blockquote class="note no-icon"><details><summary>
-    <strong>Configure Keycloak &nbsp;<i class="fas fa-arrow-right"></i> </strong>
-  </summary>
-
-<br>
+<details><summary>Configure Keycloak</summary>
 {{ prereqs_keycloak | markdownify }}
 
 </details>
-</blockquote>
 
-<blockquote class="note no-icon"><details><summary>
-   <strong> Configure {{site.base_gateway}} &nbsp;<i class="fas fa-arrow-right"></i> </strong>
-  </summary>
-
-<br>
+<details><summary>Configure {{site.base_gateway}} </summary>
 {{ prereqs_kong | markdownify }}
 
 </details>
-</blockquote>

@@ -1,7 +1,7 @@
 ---
 title: File Structure
 book: plugin_dev
-chapter: 2
+chapter: 3
 ---
 
 {:.note}
@@ -9,7 +9,7 @@ chapter: 2
 [Lua](http://www.lua.org/).
 
 Consider your plugin as a set of [Lua
-modules](http://www.lua.org/manual/5.1/manual.html#6.3). Each file described in
+modules](http://www.lua.org/manual/5.1/manual.html#5.3). Each file described in
 this chapter is to be considered as a separate module. Kong will detect and
 load your plugin's modules if their names follow this convention:
 
@@ -91,13 +91,13 @@ complete-plugin
 └── schema.lua
 ```
 
-Here is the complete list of possible modules to implement and a brief
-description of what their purpose is. This guide will go in details to let you
-master each one of them.
+Here is the complete list of possible modules to implement, a link to an example implementation, 
+and a brief description of what their purpose is. This guide will go in details to let you
+understand each of them.
 
 | Module name            | Required   | Description
 |:-----------------------|------------|------------
-| [api.lua](https://github.com/Kong/kong/blob/master/autodoc/admin-api/data/admin-api.lua)          | No         | Defines a list of endpoints to be available in the Admin API to interact with the custom entities handled by your plugin.
+| [api.lua](https://github.com/Kong/kong/blob/master/kong/plugins/prometheus/api.lua)          | No         | Defines a list of endpoints to be available in the Admin API to interact with the custom entities handled by your plugin.
 | [daos.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/daos.lua)        | No         | Defines a list of DAOs (Database Access Objects) that are abstractions of custom entities needed by your plugin and stored in the data store.
 | [handler.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/handler.lua)     | Yes        | An interface to implement. Each function is to be run by Kong at the desired moment in the lifecycle of a request / connection.
 | [migrations/*.lua](https://github.com/Kong/kong/tree/master/kong/plugins/basic-auth/migrations) | No         | The database migrations (e.g. creation of tables). Migrations are only necessary when your plugin has to store custom entities in the database and interact with them through one of the DAOs defined by [daos.lua](https://github.com/Kong/kong/blob/master/kong/plugins/basic-auth/daos.lua).

@@ -14,7 +14,7 @@ module SEO
       end
 
       def process!(index)
-        super(index)
+        super
 
         @page.data['canonical_url'] ||= Utils::CanonicalUrl.generate(url)
       end
@@ -27,8 +27,7 @@ module SEO
 
       def version
         Utils::Version.to_version(
-          Jekyll::GeneratorSingleSource::Product::Edition
-          .new(edition: 'gateway', site: @page.site)
+          @page.site.data.dig('editions', 'gateway')
           .latest_release
           .value
         )

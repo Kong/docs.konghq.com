@@ -26,7 +26,7 @@ $('$(something_that_needs_to_escaped)')
 query strings, and captured URIs before transformation. So any update or removal
  of parameters used in the template does not affect the rendered value of template.
 
-{% if_plugin_version gte:3.1.x %}
+{% if_version gte:3.1.x %}
 ### Arrays and nested objects
 
 The plugin allows navigating complex JSON objects (arrays and nested objects)
@@ -38,7 +38,7 @@ when `config.dots_in_keys` is set to `false` (the default is `true`).
 
 These can be combined. For example, `config.remove.json: customers[*].info.phone` removes
 all `phone` properties from inside the `info` object of all entries in the `customers` array.
-{% endif_plugin_version %}
+{% endif_version %}
 
 ### Advanced templates {#advanced-templates}
 
@@ -47,8 +47,8 @@ logical operators may be used. For example:
 
     Header-Name:$(uri_captures["user-id"] or query_params["user"] or "unknown")
 
-This will first look for the path parameter (`uri_captures`); if not found, it will
-return the query parameter; or if that also doesn't exist, it returns the default
+This will first look for the path parameter named `user-id` (in `uri_captures`). If not found, it will
+return the query parameter named `user`. If that also doesn't exist, it returns the default
 value '"unknown"'.
 
 Constant parts can be specified as part of the template outside the dynamic

@@ -550,7 +550,7 @@ jQuery(function () {
       '<div class="tooltip"><span class="tooltiptext">Available in Enterprise Free mode (without a license)</span></div>'
     );
     $(".badge.oss").append(
-      '<div class="tooltip"><span class="tooltiptext" >Available in Kong open-source only</span></div>'
+      '<div class="tooltip"><span class="tooltiptext" >Free open-source plugin</span></div>'
     );
     $(".badge.dbless").append(
       '<div class="tooltip"><span class="tooltiptext">Compatible with DB-less deployments</span></div>'

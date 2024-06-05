@@ -37,43 +37,46 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
-## Prepare Kong OAuth application
-
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-1. Create a Consumer:
+## Prepare Kong OAuth application
+
+1. Create a consumer:
    ```bash
-   http -f put :8001/consumers/jane
+   curl -i -X PUT http://localhost:8001/consumers/jane
    ```
-2. Create Kong OAuth Application for the consumer:
+
+2. Create a {{site.base_gateway}} OAuth application for the consumer:
    ```bash
-   http -f put :8001/consumers/jane/oauth2/client \
-     name=demo                                    \
-     client_secret=secret                         \
-     hash_secret=true
+   curl -i -X PUT http://localhost:8001/consumers/jane/oauth2/client \
+     --data "name=demo" \
+     --data "client_secret=secret" \
+     --data "hash_secret=true"
    ```
-3. Create a Route:
+
+3. Create a route:
    ```bash
-   http -f put :8001/routes/auth paths=/auth
+   curl -i -X PUT http://localhost:8001/routes/mock \
+     --data "paths=/mock"
    ```
-4. Apply OAuth plugin to the Route:
+
+4. Apply the OAuth plugin to the route:
    ```bash
-   http -f put :8001/plugins/7cdeaa2d-5faf-416d-8df5-533d1e4cd2c4 \
-     name=oauth2                                                  \
-     route.name=auth                                              \
-     config.global_credentials=true                               \
-     config.enable_client_credentials=true
+   curl -i -X POST http://localhost:8001/routes/mock/plugins \
+     --data "name=oauth2" \
+     --data "config.global_credentials=true" \
+     --data "config.enable_client_credentials=true"
    ```
+
 5. Test the token endpoint:
    ```bash
-   https -f --verify no post :8443/auth/oauth2/token \
-     client_id=client                                \
-     client_secret=secret                            \
-     grant_type=client_credentials
+   curl -i -X POST --insecure https://localhost:8443/mock/oauth2/token \
+    --data "client_id=client" \
+    --data "client_secret=secret" \
+    --data "grant_type=client_credentials"
    ```
-   ```http
-   HTTP/1.1 200 OK
-   ```
+
+   You should get an HTTP 200 response with the token in the `access_token` field:
    ```json
    {
        "access_token": "<access-token>",
@@ -82,79 +85,58 @@ sequenceDiagram
    }
    ```
 
-At this point we should be able to retrieve a new access token with:
-
-```bash
-https -f --verify no post :8443/auth/oauth2/token \
-  client_id=client                                \
-  client_secret=secret                            \
-  grant_type=client_credentials |                 \
-  jq -r .access_token
-```
-Output:
-```
-<access-token>
-```
-
 ## Set up Kong OAuth token authentication
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
+Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
+set up an instance of the OpenID Connect plugin.
 
-1. We want to only use the Kong OAuth authentication.
-2. We want to search the bearer token for the Kong OAuth authentication from the headers only.
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: Kong OAuth2.
+* We only want to search for the bearer token in the headers.
 
-```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.auth_methods=kong_oauth2                                \
-  config.bearer_token_param_type=header
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [ "kong_oauth2" ],
-        "bearer_token_param_type": [ "header" ]
-    }
-}
-```
+With all of the above in mind, let's test out Kong OAuth2 authentication with Keycloak. 
+Enable the OpenID Connect plugin on the `openid-connect` service:
 
-### Test the Kong OAuth token authentication
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "kong_oauth2"
+  bearer_token_param_type:
+    - "header"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+## Test the Kong OAuth token authentication
 
 Request the service with a Kong OAuth token:
-
 ```bash
-http -v :8000 Authorization:"Bearer $(https -f --verify no \
-    post :8443/auth/oauth2/token                             \
-    client_id=client                                         \
-    client_secret=secret                                     \
-    grant_type=client_credentials |                          \
-    jq -r .access_token)"
+curl -I http:localhost:8000 \
+  -H "Authorization: \
+  \"Bearer $(curl -i -X POST --insecure https://localhost:8443/mock/oauth2/token \
+  --data \"client_id=client\" \
+  --data \"client_secret=secret\" \
+  --data \"grant_type=client_credentials\" | \
+    jq -r .access_token)\""
 ```
+
 or
 ```bash
-http -v :8000 Authorization:"Bearer <access-token>"
+curl -I http:localhost:8000 \
+  -H "Authorization: Bearer <access-token>"
 ```
-```http
-GET / HTTP/1.1
-Authorization: Bearer <access-token>
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "headers": {
-        "Authorization": "Bearer <access-token>",
-        "X-Consumer-Id": "<consumer-id>",
-        "X-Consumer-Username": "jane"
-    },
-    "method": "GET"
-}
-```
+
+You should get an HTTP 200 response.

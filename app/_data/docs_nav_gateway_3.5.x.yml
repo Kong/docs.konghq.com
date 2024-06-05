@@ -85,8 +85,51 @@ items:
         url: /get-started/key-authentication
       - text: Load-Balancing
         url: /get-started/load-balancing
-  - title: Kong in Production
+
+  - title: Install Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    items:
+      - text: Overview
+        url: /install/
+      - text: Kubernetes
+        items:
+          - text: Overview
+            url: /install/kubernetes/
+          - text: Install Kong Gateway
+            url: /install/kubernetes/proxy/
+          - text: Configure the Admin API
+            url: /install/kubernetes/admin/
+          - text: Install Kong Manager
+            url: /install/kubernetes/manager/
+      - text: Docker
+        items:
+          - text: Using docker run
+            url: /install/docker
+          - text: Build your own Docker images
+            url: /install/docker/build-custom-images/
+      - text: Linux
+        items:
+          - text: Amazon Linux
+            url: /install/linux/amazon-linux
+          - text: Debian
+            url: /install/linux/debian
+          - text: Red Hat
+            url: /install/linux/rhel
+          - text: Ubuntu
+            url: /install/linux/ubuntu
+      - text: Post-installation
+        items:
+          - text: Set up a data store
+            url: /install/post-install/set-up-data-store/
+          - text: Apply Enterprise license
+            url: /install/post-install/enterprise-license/
+            generate: false
+          - text: Enable Kong Manager
+            url: /install/post-install/kong-manager/
+            generate: false
+
+  - title: Kong in Production
+    icon: /assets/images/icons/icn-server.svg
     items:
       - text: Deployment Topologies
         items:
@@ -102,49 +145,6 @@ items:
             url: /production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
             url: /production/deployment-topologies/traditional
-      - text: Installation Options
-        items:
-          - text: Overview
-            url: /install/
-          - text: Kubernetes
-            items:
-              - text: Overview
-                url: /install/kubernetes/
-              - text: Install Kong Gateway
-                url: /install/kubernetes/proxy/
-              - text: Configure the Admin API
-                url: /install/kubernetes/admin/
-              - text: Install Kong Manager
-                url: /install/kubernetes/manager/
-          - text: Docker
-            items:
-              - text: Using docker run
-                url: /install/docker
-              - text: Build your own Docker images
-                url: /install/docker/build-custom-images/
-          - text: Linux
-            items:
-              - text: Amazon Linux
-                url: /install/linux/amazon-linux
-              - text: Debian
-                url: /install/linux/debian
-              - text: Red Hat
-                url: /install/linux/rhel
-              - text: Ubuntu
-                url: /install/linux/ubuntu
-          - text: Post-installation
-            items:
-              - text: Set up a data store
-                url: /install/post-install/set-up-data-store/
-              - text: Apply Enterprise license
-                url: /install/post-install/enterprise-license/
-                generate: false
-              - text: Enable Kong Manager (Enterprise)
-                url: /install/post-install/kong-manager/
-                generate: false
-              - text: Enable Kong Manager (OSS)
-                url: /install/post-install/kong-manager-oss/
-                generate: false
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user
@@ -228,6 +228,7 @@ items:
         url: /production/clustering
       - text: Establish a Performance Benchmark
         url: /production/benchmark
+        src: /gateway/production/performance/benchmark
       - text: Logging and Debugging
         items:
           - text: Log Reference
@@ -402,13 +403,9 @@ items:
         url: /kong-manager/consumer-groups
       - text: Sending Email
         url: /kong-manager/configuring-to-send-email
-  - title: Kong Manager Open Source
-    icon: /assets/images/icons/documentation/icn-manager-oss-color.svg
-    items:
-      - text: Overview
-        url: /kong-manager-oss/
-      - text: Troubleshooting
-        url: /kong-manager-oss/troubleshoot/
+      - text: Troubleshoot
+        url: /kong-manager/troubleshoot/
+
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
@@ -521,65 +518,147 @@ items:
     items:
       - text: Overview
         url: /admin-api/
-      - text: Information Routes
-        url: /admin-api/#information-routes
-      - text: Health Routes
-        url: /admin-api/#health-routes
-      - text: Tags
-        url: /admin-api/#tags
-      - text: Debug Routes
-        url: /admin-api/#debug-routes
-      - text: Services
-        url: /admin-api/#service-object
-      - text: Routes
-        url: /admin-api/#route-object
-      - text: Consumers
-        url: /admin-api/#consumer-object
-      - text: Plugins
-        url: /admin-api/#plugin-object
-      - text: Certificates
-        url: /admin-api/#certificate-object
-      - text: CA Certificates
-        url: /admin-api/#ca-certificate-object
-      - text: SNIs
-        url: /admin-api/#sni-object
-      - text: Upstreams
-        url: /admin-api/#upstream-object
-      - text: Targets
-        url: /admin-api/#target-object
-      - text: Vaults
-        url: /admin-api/#vaults-object
-      - text: Keys
-        url: /admin-api/#keys-object
-      - text: Filter Chains
-        url: /admin-api/#filter-chain-object
-      - text: Licenses
-        url: /admin-api/licenses/reference
-      - text: Workspaces
-        url: /admin-api/workspaces/reference
-      - text: RBAC
-        url: /admin-api/rbac/reference
-      - text: Admins
-        url: /admin-api/admins/reference
-      - text: Consumer Groups
-        url: /gateway/api/admin-ee/latest/#/consumer_groups/
+        src: /gateway/admin-api/index_latest
+      - text: Declarative Configuration
+        url: /admin-api/declarative-configuration
+      - text: Enterprise API
+        items:
+        - text: Information Routes
+          url: /gateway/api/admin-ee/latest/#/Information/get-endpoints
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Health Routes
+          url: /gateway/api/admin-ee/latest/#/Information/get-status
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Tags
+          url: /gateway/api/admin-ee/latest/#/tags/get-tags
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Debug Routes
+          url: /gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Services
+          url: /gateway/api/admin-ee/latest/#/Services/list-service
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Routes
+          url: /gateway/api/admin-ee/latest/#/Routes/list-route
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Consumers
+          url: /gateway/api/admin-ee/latest/#/Consumers/list-consumer
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Plugins
+          url: /gateway/api/admin-ee/latest/#/Plugins/list-plugins-with-consumer
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Certificates
+          url: /gateway/api/admin-ee/latest/#/Certificates/list-certificate
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: CA Certificates
+          url: /gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: SNIs
+          url:  /gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Upstreams
+          url: /gateway/api/admin-ee/latest/#/Upstreams/list-upstream
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Targets
+          url: /gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Vaults
+          url: /gateway/api/admin-ee/latest/#/Vaults/list-vault
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Keys
+          url: /gateway/api/admin-ee/latest/#/Keys/list-key
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Filter Chains
+          url:  /gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Licenses
+          url: /gateway/api/admin-ee/latest/#/licenses/get-licenses
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Workspaces
+          url: /gateway/api/admin-ee/latest/#/Workspaces/list-workspace
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: RBAC
+          url: /gateway/api/admin-ee/latest/#/rbac/get-rbac-users
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Admins
+          url: /gateway/api/admin-ee/latest/#/admins/get-admins
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Consumer Groups
+          url: /gateway/api/admin-ee/latest/#/consumer_groups/
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Event Hooks
+          url: /gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Keyring and Data Encryption
+          url: /gateway/api/admin-ee/latest/#/Keyring/get-keyring
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Audit Logs
+          url: /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Status API
+          url: /gateway/api/status/v1/
+          absolute_url: true
+          generate: false
+          target_blank: true
+      - text: Open Source API
+        url: /gateway/api/admin-oss/latest/
         absolute_url: true
         generate: false
-      - text: Event Hooks
-        url: /admin-api/event-hooks/reference
-      - text: Keyring and Data Encryption
-        url: /admin-api/db-encryption
-      - text: Audit Logs
-        url: /admin-api/audit-logs
-      - text: Status API
-        url: /gateway/api/status/v1/
-        absolute_url: true
-        generate: false
+        target_blank: true
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
       - text: kong.conf
         url: /reference/configuration
+        src: /gateway/reference/configuration/configuration-3.5.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

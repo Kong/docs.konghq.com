@@ -35,11 +35,11 @@ You can also download the distribution manually. Download a distribution for
 the client host from the machine where you plan to run the commands to access
 Kubernetes:
 
-* [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
-* [Red Hat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-rhel-amd64.tar.gz)
-* [Debian]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-debian-amd64.tar.gz)
-* [Ubuntu]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-ubuntu-amd64.tar.gz)
-* [macOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-darwin-amd64.tar.gz)
+* [CentOS]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-centos-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
+* [Red Hat]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-rhel-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-rhel-amd64.tar.gz)
+* [Debian]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-debian-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-debian-amd64.tar.gz)
+* [Ubuntu]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-ubuntu-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-ubuntu-amd64.tar.gz)
+* [macOS]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-darwin-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-darwin-amd64.tar.gz)
 
 Then, extract the archive with:
 

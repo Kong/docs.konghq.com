@@ -15,7 +15,6 @@ RSpec.describe 'Plugin page' do
     expect(html).not_to have_css('.badge.premium')
     expect(html).to have_css('.badge.enterprise')
     expect(html).not_to have_css('.badge.oss')
-    expect(html).not_to have_css('.old-version-banner')
   end
 
   it 'renders the content' do

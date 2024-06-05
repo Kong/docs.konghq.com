@@ -4,7 +4,7 @@
 {% if include.render_intro_text %}
 The following examples provide some typical configurations for enabling
 the <code>{{ hub_example.plugin_name }}</code> plugin on a
-[service](/gateway/latest/admin-api/#service-object).
+[service](/gateway/api/admin-ee/latest/#/Services).
 {% endif %}
 
 {% navtabs %}
@@ -80,6 +80,18 @@ Add this section to your declarative configuration file:
 Replace `SERVICE_NAME|ID` with the `id` or `name` of the service that this plugin configuration will target.
 
 {% include_cached plugins/create-consumer/yaml.html hub_example=hub_example %}
+
+    {% endnavtab %}
+    {% endif %}
+  {% endunless %}
+
+  {% unless page.terraform_examples == false %}
+    {% if hub_example.render_terraform? %}
+    {% navtab Konnect Terraform %}
+
+{% include_cached plugins/hub-examples/terraform.html example=hub_example parent="service" %}
+
+{% include_cached plugins/create-consumer/terraform.html hub_example=hub_example %}
 
     {% endnavtab %}
     {% endif %}

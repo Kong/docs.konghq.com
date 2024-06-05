@@ -31,8 +31,7 @@ curl -i -X POST http://localhost:8001/kong-admin/services/{SERVICE_NAME}/plugins
   --data name="openid-connect" \
   --data config.auth_methods="client_credentials" \
   --data config.issuer="https://<auth0 API name>.auth0.com/.well-known/openid-configuration" \
-  --data config.token_post_args_names="audience" \
-  --data config.token_post_args_values="https://example.com/"
+  --data config.audience="<auth0 API identifier>"
 ```
 
 ## Downstream configuration
@@ -46,5 +45,5 @@ For basic authentication, use your client ID as the username and your client sec
 [client-credentials-grant]: https://auth0.com/docs/api-auth/tutorials/client-credentials
 [create-auth0-api]: https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0
 [non-interactive-client]: https://auth0.com/docs/clients
-[add-service]: /gateway/latest/admin-api/#service-object
+[add-service]: /gateway/api/admin-ee/latest/#/Services/create-service
 [audience-required]: https://auth0.com/docs/api/authentication#client-credentials

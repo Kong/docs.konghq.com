@@ -1,5 +1,5 @@
 {% unless include.disable_accordian %}
-<details markdown="1">
+<details class="custom" markdown="1">
 <summary>
 <blockquote class="note">
   <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}}</u> {% unless include.disable_gateway_api %}with Gateway API support {% endunless %}in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>{{site.ee_product_name}}</strong>.{% endif %}</p>
@@ -34,7 +34,7 @@
 {% assign gwapi_version = "v1beta1" %}
 {% endif_version %}
 
-    ```bash
+   ```bash
    echo "
    ---
    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
@@ -101,9 +101,29 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
 
 1. Install {{site.kic_product_name}} and {{ site.base_gateway }} with Helm:
 
+{% if include.enable_oss %}
+
+{% capture values_file %}
+{% navtabs_ee codeblock %}
+{% navtab Kong Gateway %}
+```bash
+helm install kong kong/ingress -n kong --create-namespace
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+```bash
+helm install kong kong/ingress -n kong --create-namespace --set gateway.image.repository=kong --set gateway.image.tag="{{ site.data.kong_latest_gateway.ce-version }}"
+```
+{% endnavtab %}
+{% endnavtabs_ee %}
+{% endcapture %}
+
+{{ values_file | indent }}
+{% else %}
     ```bash
     helm install kong kong/ingress -n kong --create-namespace {% if include.enterprise %}--values ./values.yaml{% endif %}
     ```
+{% endif %}
 
 {% if include.gateway_api_experimental %}
 1. Enable the Gateway API Alpha feature gate:

@@ -1,0 +1,20 @@
+name: GraphQL Proxy Caching Advanced
+search_aliases:
+  - proxy cache
+  - graphql proxy cache
+  - graphql proxy cache advanced
+  - graphql-proxy-cache-advanced
+dbless_compatible: 'yes'
+free: false
+enterprise: true
+paid: true
+konnect: true
+network_config_opts: All
+notes: | 
+  This plugin's API doesn't work in hybrid mode, as it targets data that only exists on data planes, 
+  and data planes can't use Kong's Admin API. 
+categories:
+  - traffic-control
+publisher: Kong Inc.
+desc: Cache and serve commonly requested responses in Kong
+schema_source_url: https://github.com/Kong/kong-ee/edit/master/kong/plugins/graphql-proxy-cache-advanced/schema.lua

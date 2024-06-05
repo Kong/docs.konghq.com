@@ -47,12 +47,13 @@ const expectedFailures = yaml.load(
   const config = loadConfig();
   for (let job of config) {
     for (let distro of job.distros) {
+      const osOnly = distro.split(":")[0];
       for (let arch of job.arch) {
         let installOptions;
         if (job.version.slice(0, 2) === "2.") {
-          installOptions = await extractV2(job.version, distro);
+          installOptions = await extractV2(job.version, osOnly);
         } else {
-          installOptions = await extractV3(job.version, distro);
+          installOptions = await extractV3(job.version, osOnly);
         }
         for (let installOption of installOptions) {
           await runSingleJob(distro, job, arch, installOption, conditions);
@@ -72,6 +73,7 @@ async function runSingleJob2(distro, job, arch, installOption, conditions) {
 }
 
 async function runSingleJob(distro, job, arch, installOption, conditions) {
+  const osOnly = distro.split(":")[0];
   const marker = `${installOption.package}@${job.version} via ${installOption.type}`;
   const ref = `${job.version}/${distro}/${
     installOption.package
@@ -132,7 +134,6 @@ async function runSingleJob(distro, job, arch, installOption, conditions) {
     );
 
     if (expected !== version) {
-
       // Check if the package exists on download.konghq.com
       // Only supports RHEL at the moment
       let existsOnOldSite = "❓";
@@ -147,7 +148,10 @@ async function runSingleJob(distro, job, arch, installOption, conditions) {
 
       if (distro === "rhel") {
         // 2.x packages are noarch for enterprise on RHEL
-        if (installOption.package == "enterprise" && expectedVersion[0] == "2") {
+        if (
+          installOption.package == "enterprise" &&
+          expectedVersion[0] == "2"
+        ) {
           packageArch = "noarch";
         }
         url = `https://download.konghq.com/gateway-${expectedVersion[0]}.x-rhel-7/Packages/k/${packageName}-${expectedVersion}.rhel7.${packageArch}.rpm`;
@@ -203,7 +207,8 @@ function shouldSkip(
     } not in [${conditions.version.join(", ")}]`;
   }
 
-  if (conditions.distro.length && !conditions.distro.includes(distro)) {
+  const osOnly = distro.split(":")[0];
+  if (conditions.distro.length && !conditions.distro.includes(distro) && !conditions.distro.includes(osOnly)) {
     return `⌛ ${summary} skipped | Distro ${distro} not in [${conditions.distro.join(
       ", ",
     )}]`;

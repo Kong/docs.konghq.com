@@ -25,7 +25,7 @@ module SEO
       end
 
       def process!(index)
-        super(index)
+        super
 
         set_canonical_url(index)
         set_seo_noindex

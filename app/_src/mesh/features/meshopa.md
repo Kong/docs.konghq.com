@@ -1,12 +1,10 @@
 ---
-title: MeshOPA (beta) - OPA Policy Integration
+title: MeshOPA - OPA Policy Integration
 content_type: reference
-beta: true
 ---
 
-{:.warning}
-> **Warning:** This policy uses the new policy matching algorithm and is in a beta state.
-It should not be mixed with the [OPA Policy](../opa).
+
+> **Warning:** This policy uses the new policy matching algorithm, it should not be mixed with the [OPA Policy](../opa).
 
 ## MeshOPA policy plugin
 
@@ -21,6 +19,24 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 
 ## TargetRef support matrix
 
+{% if_version gte:2.6.x %}
+{% tabs targetRef useUrlFragment=false %}
+{% tab targetRef Sidecar %}
+| `targetRef`           | Allowed kinds                                            |
+| --------------------- | -------------------------------------------------------- |
+| `targetRef.kind`      | `Mesh`, `MeshSubset`, `MeshService`, `MeshServiceSubset` |
+{% endtab %}
+
+{% tab targetRef Builtin Gateway %}
+| `targetRef`             | Allowed kinds                                             |
+| ----------------------- | --------------------------------------------------------- |
+| `targetRef.kind`        | `Mesh`, `MeshGateway`                                     |
+{% endtab %}
+{% endtabs %}
+
+{% endif_version %}
+{% if_version lte:2.5.x %}
+
 | TargetRef type    | top level | to  | from |
 | ----------------- | --------- | --- | ---- |
 | Mesh              | ✅        | ❌  | ❌   |
@@ -28,6 +44,9 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 | MeshService       | ✅        | ❌  | ❌   |
 | MeshServiceSubset | ✅        | ❌  | ❌   |
 | MeshGatewayRoute  | ❌        | ❌  | ❌   |
+
+{% endif_version %}
+
 
 To learn more about the information in this table, see the [matching docs](/mesh/{{page.release}}/policies/targetref).
 
@@ -437,6 +456,7 @@ The following environment variables are available:
 | KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
 | KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | nil |
 {% endif_version %}
+
 
 {% navtabs %}
 {% navtab kumactl %}

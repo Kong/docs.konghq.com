@@ -171,7 +171,7 @@ upstream service untouched, with the exception of various headers such as
 Let's now discuss how Kong matches a request against the configured routing
 attributes.
 
-Kong supports native proxying of HTTP/HTTPS, TCL/TLS, and GRPC/GRPCS protocols;
+Kong supports native proxying of HTTP/HTTPS, TCP/TLS, and GRPC/GRPCS protocols;
 as mentioned earlier, each of these protocols accept a different set of routing
 attributes:
 - `http`: `methods`, `hosts`, `headers`, `paths` (and `snis`, if `https`)
@@ -1080,8 +1080,8 @@ HTTP/1.1 201 Created
 ...
 ```
 
-The `snis` form parameter is a sugar parameter, directly inserting an SNI and
-associating the uploaded certificate to it.
+The `snis` form parameter is a convenience parameter. Under the hood, it directly inserts an SNI and
+associates the uploaded certificate to it.
 
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.tls-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or

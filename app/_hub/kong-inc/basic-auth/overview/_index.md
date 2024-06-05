@@ -210,5 +210,5 @@ Note that the `username` accepted here is **not** the `username` property of a
 Consumer.
 
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
 [acl-associating]: /plugins/acl/#associating-consumers
