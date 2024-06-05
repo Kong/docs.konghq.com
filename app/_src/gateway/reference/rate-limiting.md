@@ -51,7 +51,7 @@ The following public functions are provided by this library:
 
 _syntax: ratelimiting = ratelimiting.new_instance(instance_name)_
 
-Previously this library used a module level global table `config` and thus lacked of necessary data isolation between different plugins. So when two or more different plugins are using it at the same time, it doesn't work normally because we can't distinguish which namespaces belong to which plugin. When the `reconfigure` event happens, the plugin will delete all the namespaces it does not use anymore, but those deleted namespaces may belong to other plugins.
+Previously, this library used a module level global table `config`, which lacked the necessary data isolation between plugins. When two or more different plugins used the table at the same time, {{site.base_gateway}} couldn't distinguish which namespaces belong to which plugin. When the `reconfigure` event happened, the plugin deleted all the namespaces it didn't use anymore, but those deleted namespaces could have belonged to other plugins.
 
 To provide necessary isolation without changing the original interfaces, we added this new interface. Every returned instance has its own `ratelimiting.config` that won't interfere with each other. As a usage example: `local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("rate-limiting-foo")`
 
