@@ -243,6 +243,8 @@
           url: /org-management/org-switcher/
         - text: Set up SSO with OIDC
           url: /org-management/oidc-idp/
+        - text: Set up SSO with SAML 2.0
+          url: /org-management/saml-idp/
         - text: Set up SSO with Okta
           url: /org-management/okta-idp/
         - text: Login Sessions Reference
