@@ -122,9 +122,7 @@ You can set the Host header explicitly if needed by disabling `konghq.com/preser
 
 Users have the following options to rewrite the default path handling behavior:
 
-{% if_version gte 3.2.0 %}
-* Rewrite using Gateway API's `URLRewrite` filter 
-{% endif_version %}
+{% if_version gte 3.2.0 %}* Rewrite using Gateway API's `URLRewrite` filter {% endif_version %}
 * Rewrite using regular expressions
 * Remove the path prefix using `strip-path`
 * Add a path prefix using the `path` annotation
@@ -177,19 +175,10 @@ rules:
 
 Add the [`konghq.com/rewrite` annotation][2] to your Ingress, allows you set a specific path for the upstream request. Any regex matches defined in your route definition are usable (see the [annotation documentation][2] for more information):
 
-{% navtabs api %}
-{% navtab Gateway API %}
 ```bash
 kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
 ```
-{% endnavtab %}
-{% navtab Ingress %}
-```bash
-  $ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
-``` 
-{% endnavtab %}
-{% endnavtabs %}
-
+ 
 The request upstream now contains the value of the rewrite annotation:
 ```
 HTTP request details
