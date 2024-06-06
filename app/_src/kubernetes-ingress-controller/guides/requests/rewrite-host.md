@@ -120,7 +120,7 @@ You can set the Host header explicitly if needed by disabling `konghq.com/preser
 
 ## Rewriting the path
 
-There are three options to rewrite the default path handling behavior:
+Users have the following options to rewrite the default path handling behavior:
 
 {% if_version gte 3.2.0 %}
 * Rewrite using Gateway API's `URLRewrite` filter 
