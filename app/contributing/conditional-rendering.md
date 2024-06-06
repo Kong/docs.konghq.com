@@ -34,15 +34,14 @@ You can find all the supported editions in the [`app/_data/kong_versions.yml`](h
 You can use conditional rendering by version for any content in the `app/_src` or `app/_hub` directories.
 
 As we add new functionality, we want content on a page to be displayed only for specific releases of a product. 
-You can use the `if_version` block for this, or `if_plugin_version` for any content in the Plugin Hub.
+You can use the `if_version` block for this.
 
-* `if_version` is used by {{site.base_gateway}}, {{site.mesh_product_name}}, {{site.kic_product_name}}, and decK documentation.
-* `if_plugin_version` can only be used for plugin documentation in the `app/_hub` directory.
-
-`if_version` and `if_plugin_version` support the following filters:
-* `eq`: Render content that **equals** the provided version.
+`if_version` supports the following filters:
+* `eq`: Render content that **equals** the provided version. It also supports a comma-separated list of values, i.e. `if_version eq:1.1.x,1.3.x`
+* `neq`: Render content that does not **equal** the provided version.
 * `gte`: Render content that is **equal or greater than** the provided version.
 * `lte`: Render content that is **equal or less than** the provided version.
+
 
 For example, `eq` displays content for only one specific version:
 
@@ -56,14 +55,6 @@ This will only show for version 1.11.x
 
 ```
 
-Or for a plugin:
-```
-
-{% if_plugin_version eq:2.8.x %}
-This will only show for plugin version 2.8.x
-{% endif_plugin_version %}
-
-```
 {% endraw %}
 
 Greater than (`gte`) and less than (`lte`) are **inclusive** of the version provided:
@@ -76,12 +67,6 @@ This will only show for version 1.11.x and later (1.12.x, 2.0.0 etc)
 {% endif_version %}
 
 
-
-{% if_plugin_version lte:2.8.x %}
-This will only show for plugin version 2.8.x and earlier (2.7.x, 2.6.x etc)
-{% endif_plugin_version %}
-
-
 {% if_version gte:1.11.x lte:1.19.x %}
 This will show for versions 1.11.x through 1.19.x, inclusive
 {% endif_version %}
@@ -91,7 +76,7 @@ This will show for versions 1.11.x through 1.19.x, inclusive
 ### Table rows
 
 When working with tables, you can set a conditional filter for a given row. 
-The filter expects new lines before and after `if_version` or `if_plugin_version`:
+The filter expects new lines before and after `if_version`:
 
 ```
 | Name  | One         | Two    |
@@ -109,18 +94,22 @@ The filter expects new lines before and after `if_version` or `if_plugin_version
 
 The above will be rendered as a single table.
 
-### Inline content
+### Whitespace control
 
-If you want to conditionally render content in a sentence, you can use `if_version` or `if_plugin_version`
-and specify `inline:true`:
+`if_version` uses the same implementation as Liquid's `if` tag. Therefore, it has the same [whitespace control](https://shopify.github.io/liquid/basics/whitespace/).
+
+When rendering lists with `if_version` or `if`, there's a caveat: you must add a hyphen to the right side of the tags (for consistency, it could be either side) to render them correctly.
 
 {% raw %}
 ```
-Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world.
-
-Hello {% if_plugin_version lte:2.8.x inline:true %}everyone in the {% endif_plugin_version %} world.
+* Item 1
+{% if_version gte:3.6.x -%}
+* Item 2
+{% endif_version -%}
+* Item 3
 ```
 {% endraw %}
+
 
 ### Front matter
 

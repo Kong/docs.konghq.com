@@ -27,6 +27,10 @@ in the {{site.base_gateway}} documentation.
 
 The queue parameters all reside in a record under the key `queue` in
 the `config` parameter section of the plugin.
+
+Queues are not shared between workers and queueing parameters are
+scoped to one worker.  For whole-system capacity planning, the number
+of workers need to be considered when setting queue parameters.
 {% endif_version %}
 
 
@@ -34,7 +38,7 @@ the `config` parameter section of the plugin.
 
 ## Metrics
 
-{% if_plugin_version gte:3.0.x %}
+{% if_version gte:3.0.x %}
 Metric                     | Description | Namespace syntax
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.service.<service_identifier>.request.count`
@@ -53,8 +57,8 @@ Metric                     | Description | Namespace syntax
 `cache_datastore_hits_total`            | The total number of cache hits. ({{site.ee_product_name}} only) | `kong.service.<service_identifier>.cache_datastore_hits_total`
 `cache_datastore_misses_total`            | The total number of cache misses. ({{site.ee_product_name}} only) | `kong.service.<service_identifier>.cache_datastore_misses_total`
 
-{% endif_plugin_version %}
-{% if_plugin_version lte:2.8.x %}
+{% endif_version %}
+{% if_version lte:2.8.x %}
 Metric                     | Description | Namespace
 ---                        | ---         | ---
 `request_count`            | The number of requests. | `kong.<service_identifier>.request.count`
@@ -67,7 +71,7 @@ Metric                     | Description | Namespace
 `upstream_latency`         | Tracks the time in milliseconds it took for the final Service to process the request. | `kong.<service_identifier>.upstream_latency`
 `kong_latency`             | Tracks the internal Kong latency in milliseconds that it took to run all the plugins. | `kong.<service_identifier>.kong_latency`
 `status_count_per_user`    | Tracks the status code for per Consumer per Service. | `kong.<service_identifier>.user.<consumer_identifier>.request.status.<status>` and `kong.<service_identifier>.user.<consumer_identifier>.request.status.total`
-{% endif_plugin_version %}
+{% endif_version %}
 
 If a request URI doesn't match any Routes, the following metrics are sent instead:
 
@@ -80,7 +84,7 @@ Metric                     | Description | Namespace
 `status_count`             | The status count. | `kong.global.unmatched.status.<status>.count`
 `kong_latency`             | The internal Kong latency in milliseconds that it took to run all the plugins. | `kong.global.unmatched.kong_latency`
 
-{% if_plugin_version gte:3.2.x %}
+{% if_version gte:3.2.x %}
 If you enable the `tag_style` configuration for the StatsD plugin, the following metrics are sent instead:
 
 Metric                     | Description | Namespace
@@ -124,7 +128,7 @@ For example:
 kong.request.size,workspace=default,route=d02485d7-8a28-4ec2-bc0b-caabed82b499,status=200,consumer=d24d866a-020a-4605-bc3c-124f8e1d5e3f,service=bdabce05-e936-4673-8651-29d2e9eca382,node=c80a9c5845bd:120|c
 ```
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 ### Metric Fields
 
@@ -136,27 +140,27 @@ Field         | Description                                             | Dataty
 `stat_type`  <br>*required*     | Determines what sort of event a metric represents.  | String   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
 `sample_rate`<br>*required* <br>*conditional*   | Sampling rate.              | Number        | `number`                 
 `consumer_identifier`<br>*conditional* | Authenticated user detail.  | String   | One of the following options: `consumer_id`, `custom_id`, `username`, `null`
-{% if_plugin_version gte:3.0.x %}
+{% if_version gte:3.0.x %}
 `service_identifier`<br>*conditional* | Service detail.  | String   |  One of the following options: `service_id`, `service_name`, `service_host`, `service_name_or_host`, `null`
 `workspace_identifier`<br>*conditional* | Workspace detail.  | String | One of the following options:`workspace_id`, `workspace_name`, `null`
-{% endif_plugin_version %}
+{% endif_version %}
 
 ### Metric behaviors
 
 * By default, all metrics get logged.
 * Metric with `stat_type` set to `counter` or `gauge` must have `sample_rate` defined as well.
 * `unique_users` metric only works with `stat_type` as `set`.
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 * `status_count`, `status_count_per_user` and `request_per_user` work only with `stat_type`  as `counter`.
 * `status_count_per_user`, `request_per_user` and `unique_users` must have `customer_identifier` defined.
-{% endif_plugin_version %}
-{% if_plugin_version gte:3.0.x %}
+{% endif_version %}
+{% if_version gte:3.0.x %}
 * `status_count`, `status_count_per_user`, `status_count_per_user_per_route` and `request_per_user` work only with `stat_type` as `counter`.
 * `shdict_usage` work only with `stat_type` as `gauge`.
 * `status_count_per_user`, `request_per_user`, `unique_users` and `status_count_per_user_per_route` must have `customer_identifier` defined.
 * All metrics can optionally configure `service_identifier`; by default it's set to `service_name_or_host`.
 * `status_count_per_workspace` must have `workspace_identifier` defined.
-{% endif_plugin_version %}
+{% endif_version %}
 
 
 ## Kong Process Errors

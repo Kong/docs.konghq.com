@@ -172,6 +172,13 @@ components:
                   - json
                 description: The output format of each log messages.
                 default: cef
+              skip_ssl_verification:
+                type: boolean
+                example: false
+                description: >-
+                  Indicates if the SSL certificate verification of the host
+                  endpoint should be skipped when delivering payloads.
+                default: false
               updated_at:
                 type: string
                 description: >-
@@ -348,6 +355,19 @@ components:
                   - json
                 description: The output format of each log message.
                 default: cef
+              skip_ssl_verification:
+                type: boolean
+                example: false
+                description: >-
+                  Indicates if the SSL certificate verification of the host
+                  endpoint should be skipped when delivering payloads.
+
+                  We strongly recommend not setting this to 'true' as you are
+                  subject to man-in-the-middle and other attacks.
+
+                  This option should be considered only for self-signed SSL
+                  certificates used in a non-production environment.
+                default: false
           examples:
             Disable Webhook:
               $ref: '#/components/examples/Disable-Audit-Log-Webhook'
@@ -435,6 +455,7 @@ components:
       value:
         endpoint: https://example.com/audit-log-json
         log_format: json
+        skip_ssl_verification: false
     Disable-Audit-Log-Webhook:
       value:
         enabled: false
@@ -446,6 +467,7 @@ components:
         endpoint: https://example.com/audit-log
         enabled: true
         log_format: cef
+        skip_ssl_verification: false
         updated_at: '2023-03-21T09:29:14.52Z'
     Get-Audit-Log-Webhook-Status:
       value:
@@ -552,35 +574,35 @@ components:
             provided as "Sentence case" for direct use in the UI.
           readOnly: true
     UnauthorizedError:
-      type: object
-      properties:
-        status:
-          example: 401
-        title:
-          example: Unauthorized
-        type:
-          example: https://httpstatuses.com/401
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid credentials
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 401
+            title:
+              example: Unauthorized
+            type:
+              example: https://httpstatuses.com/401
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Invalid credentials
     ForbiddenError:
-      type: object
-      properties:
-        status:
-          example: 403
-        title:
-          example: Forbidden
-        type:
-          example: https://httpstatuses.com/403
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Forbidden
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 403
+            title:
+              example: Forbidden
+            type:
+              example: https://httpstatuses.com/403
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Forbidden
     InvalidRules:
       description: invalid parameters rules
       type: string
@@ -588,13 +610,7 @@ components:
       nullable: true
       enum:
         - required
-        - enum
-        - min_length
         - max_length
-        - min_digits
-        - min_lowercase
-        - min_uppercase
-        - min_symbols
         - is_array
         - is_base64
         - is_boolean
@@ -605,11 +621,18 @@ components:
         - is_object
         - is_string
         - is_uuid
+        - is_fqdn
+        - is_arn
         - unknown_property
         - is_label
         - matches_regex
-    InvalidParameterChoiceItem:
+        - invalid
+        - is_supported_network_availability_zone_list
+        - is_supported_network_cidr_block
+        - is_supported_provider_region
+    InvalidParameterStandard:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -617,6 +640,65 @@ components:
           readOnly: true
         rule:
           $ref: '#/components/schemas/InvalidRules'
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterMinimumLength:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - min_length
+            - min_digits
+            - min_lowercase
+            - min_uppercase
+            - min_symbols
+        minimum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+        - rule
+        - minimum
+    InvalidParameterChoiceItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - enum
         reason:
           type: string
           example: is a required field
@@ -624,14 +706,21 @@ components:
         choices:
           type: array
           uniqueItems: true
-          nullable: true
-          items: {}
           readOnly: true
+          nullable: false
+          minimum: 1
+          items: {}
+        source:
+          type: string
+          example: body
       required:
         - field
         - reason
+        - rule
+        - choices
     InvalidParameterDependentItem:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -654,6 +743,9 @@ components:
           nullable: true
           items: {}
           readOnly: true
+        source:
+          type: string
+          example: body
       required:
         - field
         - rule
@@ -667,39 +759,31 @@ components:
       description: invalid parameters
       items:
         oneOf:
+          - $ref: '#/components/schemas/InvalidParameterStandard'
+          - $ref: '#/components/schemas/InvalidParameterMinimumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
     BadRequestError:
-      type: object
-      required:
-        - invalid_parameters
-      properties:
-        status:
-          example: 400
-        title:
-          example: Bad Request
-        type:
-          example: https://httpstatuses.com/400
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid request body
-        invalid_parameters:
-          $ref: '#/components/schemas/InvalidParameters'
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
     ConflictError:
-      type: object
-      properties:
-        status:
-          example: 409
-        title:
-          example: Conflict
-        type:
-          example: https://httpstatuses.com/409
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Conflict
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 409
+            title:
+              example: Conflict
+            type:
+              example: https://httpstatuses.com/409
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Conflict

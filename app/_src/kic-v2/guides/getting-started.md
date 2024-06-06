@@ -181,7 +181,7 @@ plugin configuration on all requests to that Service, without configuring the sa
 
 * To learn how to secure proxied routes, see the [ACL and JWT Plugins Guide](/kubernetes-ingress-controller/{{page.release}}/guides/configure-acl-plugin/).
 * The [External Services Guide](/kubernetes-ingress-controller/{{page.release}}/guides/using-external-service/) explains how to proxy services outside of your Kubernetes cluster.
-{% if_version gte:2.4.x %}
+{% if_version gte:2.4.x -%}
 * [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
 configuring networking in Kubernetes. The {{site.kic_product_name}} supports Gateway API by default. To learn how to use Gateway API supported by the {{site.kic_product_name}}, see [Using Gateway API](/kubernetes-ingress-controller/{{page.release}}/guides/using-gateway-api/).
 {% endif_version %}

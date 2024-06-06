@@ -72,7 +72,7 @@ To create a new API audience:
 
 5. Click **create**
 
-6. Note the **identifier** value used above, which is also known as the **audience**, as it will be used as the **Client Audience** value in {{site.konnect_short_name}}
+6. Note the **identifier** value used above, which is also known as the **audience**, as it will be used as the **Audience** value when configuring the auth strategy in {{site.konnect_short_name}}
 
 ## Configure the Dev Portal
 
@@ -98,7 +98,7 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 
 7. Input the Client ID of the previously created admin application in Auth0 into the **Initial Client ID** field. input the Client Secret of the same Auth0 admin application into the Initial Client Secret field. **The Initial client secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.**
 
-8. Enter the **Client Audience** as the identifier value you set when configuring the API entity above.
+8. If you are using a custom domain for Auth0, enter the audience of the initial client as the **Client Audience**. Otherwise, leave this field blank.
 
 9. **Optional**: If you are using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox.
 
@@ -155,7 +155,7 @@ You will receive a response that includes a `dcr_provider` object similar to the
    ```
 Save the `id` value for creating the authentication strategy.
 
-2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
+2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-strategies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
 
    ```sh
    curl --request POST \
@@ -199,7 +199,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 3. Click **Create** to save your application.
 
 4. After your application is created, you will see the **Client ID** and **Client Secret**.
-   Store these values, they will only be shown once.
+   Store the Client Secret, it will only be shown once.  
 
 5. Click **Proceed** to continue to the application's details page.
 

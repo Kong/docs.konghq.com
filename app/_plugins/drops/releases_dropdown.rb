@@ -30,6 +30,10 @@ module Jekyll
         @data_id ||= @release.value
       end
 
+      def lts
+        @release.lts
+      end
+
       private
 
       def label

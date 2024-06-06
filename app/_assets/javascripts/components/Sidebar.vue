@@ -102,7 +102,10 @@ function onSelectedVersion (event) {
   let versionSegment = versionToRelease(version.name);
 
   let newPathname = currentPath.split('/').slice(0, -2).concat(versionSegment).join('/').concat('/')
-  window.location.pathname = newPathname;
+  if (newPathname !== window.location.pathname) {
+    window.location.pathname = newPathname;
+  }
+  return;
 }
 
 function versionToRelease(version) {
@@ -171,7 +174,7 @@ function versionToRelease(version) {
   }
 
   .px-5 {
-    padding-left: 24px !important;
+    padding-left: 8px !important;
     padding-right: 24px !important;
   }
 

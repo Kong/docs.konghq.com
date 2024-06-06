@@ -47,6 +47,19 @@ Module configuration data, such as sync rate, shared dictionary name, storage po
 ### Public Functions
 The following public functions are provided by this library:
 
+{% if_version gte:3.4.x %}
+
+`ratelimiting.new_instance`
+
+_syntax: ratelimiting = ratelimiting.new_instance(instance_name)_
+
+Previously, this library used a module level global table `config`, which lacked the necessary data isolation between plugins. When two or more different plugins used the library at the same time, {{site.base_gateway}} couldn't distinguish which namespaces belong to which plugin. When the `reconfigure` event happened, the plugin deleted all the namespaces it didn't use anymore, but those deleted namespaces could have belonged to other plugins.
+
+The `ratelimiting.new_instance` interface provides the necessary isolation without changing the original interfaces. Every returned instance has its own `ratelimiting.config` which don't interfere with each other. See the following usage example: `local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("rate-limiting-foo")`.
+
+If the library is used in the old way, the behavior is as before. In this case, it will return a default instance which may be shared with other plugins: `local ratelimiting = require("kong.tools.public.rate-limiting")`
+{% endif_version %}
+
 `ratelimiting.new`
 
 _syntax: ok = ratelimiting.new(opts)_
@@ -55,15 +68,15 @@ Define configurations for a new namespace. The following options are accepted:
 
 - `dict`: Name of the shared dictionary to use
 - `sync_rate`: Rate, in seconds, to sync data diffs to the storage server.
-{% if_version lte:3.3.x %}
+{% if_version lte:3.3.x -%}
 - `strategy`: Storage strategy to use. Cassandra, PostgresSQL, and Redis are supported. Strategies must provide several public—functions defined below.
 
     {% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
   
-{% endif_version %}
-{% if_version gte:3.4.x %}
+{% endif_version -%}
+{% if_version gte:3.4.x -%}
 - `strategy`: Storage strategy to use. PostgresSQL and Redis are supported. Strategies must provide several public—functions defined below.
-{% endif_version %}
+{% endif_version -%}
 - `strategy_opts`: A table of options used by the storage strategy. Currently only applicable for the 'redis' strategy.
 - `namespace`: String defining these config values. A namespace may only be defined once; if a namespace has already been defined on this worker, an error is thrown. If no namespace is defined, the literal string "default" will be used.
 - `window_sizes`: A list of window sizes used by this configuration.
@@ -138,7 +151,7 @@ Push a table of key diffs to the storage server. diffs is a table provided in th
 
 `_syntax: rows = strategy:get_counters(namespace, window_sizes, time?)_`
 
-Return an iterator for each key stored in the data store/redis for a given `namepsace` and list of window sizes. 'time' is an optional unix second- precision timestamp; if not provided, this value will be set via `ngx.time()`. It is encouraged to pass this via a previous defined timestamp, depending on the context (e.g., if previous calls in the same thread took a nontrivial amount of time to run).
+Return an iterator for each key stored in the data store/redis for a given `namespace` and list of window sizes. 'time' is an optional unix second- precision timestamp; if not provided, this value will be set via `ngx.time()`. It is encouraged to pass this via a previous defined timestamp, depending on the context (e.g., if previous calls in the same thread took a nontrivial amount of time to run).
 
 #### strategy:get_window
 

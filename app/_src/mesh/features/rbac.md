@@ -17,64 +17,7 @@ Role-Based Access Control (RBAC) lets you restrict access to resources and actio
 It is global-scoped, which means it is not bound to a mesh.
 
 {% navtabs %}
-{% navtab Source and Destination selectors %}
-{% navtabs %}
-{% navtab Kubernetes %}
-```yaml
-apiVersion: kuma.io/v1alpha1
-kind: AccessRole
-metadata:
-  name: role-1
-spec:
-  rules:
-  - types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of Kuma resource kinds to which access is granted. If empty, then access is granted to all kinds
-    names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
-    mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
-    access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
-    when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
-    - sources: # a condition on sources section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all sources are allowed
-        match:
-          kuma.io/service: web
-      destinations: # a condition on destinations section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all destinations are allowed
-        match:
-          kuma.io/service: backend
-    - selectors: # a condition on selectors section in dataplane policies (like TrafficTrace or ProxyTemplate).
-        match:
-          kuma.io/service: web
-    - dpToken: # a condition on generate dataplane token.
-        tags:
-        - name: kuma.io/service
-          value: web
-```
-{% endnavtab %}
-{% navtab Universal %}
-```yaml
-type: AccessRole
-name: role-1
-rules:
-- types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of Kuma resource types to which access is granted. If empty, then access is granted to all types
-  names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
-  mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
-  access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
-  when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
-  - sources: # a condition on sources section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all sources are allowed
-      match:
-        kuma.io/service: web
-    destinations: # a condition on destinations section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all destinations are allowed
-      match:
-        kuma.io/service: backend
-  - selectors: # a condition on selectors section in dataplane policies (like TrafficTrace or ProxyTemplate).
-      match:
-        kuma.io/service: web
-  - dpToken: # a condition on generate dataplane token.
-      tags:
-      - name: kuma.io/service
-        value: web
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endnavtab %}
-{% navtab `targetRef` selectors %}
+{% navtab "targetRef" selectors %}
 For policies using the `targetRef` selector. You can specify which `targetRef` kinds users should have access to.
 
 {% navtabs %}
@@ -92,14 +35,13 @@ spec:
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
     when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-    - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+    - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
         kind: MeshService
         name: backend
     - targetRef:
         kind: MeshSubset
         tags:
-        - name: k8s.kuma.io/namespace
-          value: kuma-demo
+          k8s.kuma.io/namespace: kuma-demo
 ```
 {% endif_version %}
 {% if_version gte:2.1.x %}
@@ -115,14 +57,13 @@ spec:
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
     when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-    - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+    - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
         kind: MeshService
         name: backend
     - targetRef:
         kind: MeshSubset
         tags:
-        - name: k8s.kuma.io/namespace
-          value: kuma-demo
+          k8s.kuma.io/namespace: kuma-demo
     - targetRef:
         kind: MeshService
         name: web
@@ -150,14 +91,13 @@ rules:
   mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
   when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-  - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
-        kind: MeshService
-        name: backend
+  - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+      kind: MeshService
+      name: backend
   - targetRef:
       kind: MeshSubset
       tags:
-      - name: k8s.kuma.io/namespace
-        value: kuma-demo
+        k8s.kuma.io/namespace: kuma-demo
 ```
 {% endif_version %}
 {% if_version gte:2.1.x %}
@@ -170,14 +110,13 @@ rules:
   mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
   when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-  - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
-        kind: MeshService
-        name: backend
+  - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+      kind: MeshService
+      name: backend
   - targetRef:
       kind: MeshSubset
       tags:
-      - name: k8s.kuma.io/namespace
-        value: kuma-demo
+        k8s.kuma.io/namespace: kuma-demo
   - targetRef:
       kind: MeshService
       name: web
@@ -201,6 +140,63 @@ For example, the `when` element with a specific `from` section allows the user t
 
 If the policy contains multiple `to` elements, you must specify an RBAC qualifier for every single `to` element.
 {% endif_version %}
+{% endnavtab %}
+{% navtab Source and Destination selectors %}
+{% navtabs %}
+{% navtab Kubernetes %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRole
+metadata:
+  name: role-1
+spec:
+  rules:
+  - types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of Kuma resource kinds to which access is granted. If empty, then access is granted to all kinds
+    names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
+    mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
+    access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
+    when: # a set of qualifiers to receive access. Only one of them needs to be fulfilled to receive an access
+    - sources: # a condition on sources section in connection policies (like TrafficRoute or HealthCheck). If missing, then all sources are allowed
+        match:
+          kuma.io/service: web
+      destinations: # a condition on destinations section in connection policies (like TrafficRoute or HealthCheck). If missing, then all destinations are allowed
+        match:
+          kuma.io/service: backend
+    - selectors: # a condition on selectors section in dataplane policies (like TrafficTrace or ProxyTemplate).
+        match:
+          kuma.io/service: web
+    - dpToken: # a condition on generate dataplane token.
+        tags:
+        - name: kuma.io/service
+          value: web
+```
+{% endnavtab %}
+{% navtab Universal %}
+```yaml
+type: AccessRole
+name: role-1
+rules:
+- types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of Kuma resource types to which access is granted. If empty, then access is granted to all types
+  names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
+  mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
+  access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
+  when: # a set of qualifiers to receive access. Only one of them needs to be fulfilled to receive an access
+  - sources: # a condition on sources section in connection policies (like TrafficRoute or HealthCheck). If missing, then all sources are allowed
+      match:
+        kuma.io/service: web
+    destinations: # a condition on destinations section in connection policies (like TrafficRoute or HealthCheck). If missing, then all destinations are allowed
+      match:
+        kuma.io/service: backend
+  - selectors: # a condition on selectors section in dataplane policies (like TrafficTrace or ProxyTemplate).
+      match:
+        kuma.io/service: web
+  - dpToken: # a condition on generate dataplane token.
+      tags:
+      - name: kuma.io/service
+        value: web
+```
+{% endnavtab %}
+{% endnavtabs %}
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -282,6 +278,7 @@ Service owner is a part of team responsible for given service. Let's take a `bac
 
 {% navtabs %}
 {% navtab Kubernetes %}
+{% if_version lte:2.0.x %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: AccessRole
@@ -289,33 +286,122 @@ metadata:
   name: backend-owner
 spec:
   rules:
-    - mesh: default
-      types: ["TrafficPermission", "RateLimit"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - destinations:
-            match:
-              kuma.io/service: backend
-    - mesh: default
-      types: ["TrafficRoute", "HealthCheck", "CircuitBreaker", "FaultInjection", "Retry", "Timeout", "TrafficLog"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - sources:
-            match:
-              kuma.io/service: backend
-        - destinations:
-            match:
-              kuma.io/service: backend
-    - mesh: default
-      types: ["TrafficTrace", "ProxyTemplate"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - selectors:
-            match:
-              kuma.io/service: backend
+  - mesh: default
+    types: ["TrafficPermission", "RateLimit"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - destinations:
+        match:
+          kuma.io/service: backend
+  - mesh: default
+    types: ["TrafficRoute", "HealthCheck", "CircuitBreaker", "FaultInjection", "Retry", "Timeout", "TrafficLog"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - sources:
+        match:
+          kuma.io/service: backend
+    - destinations:
+        match:
+          kuma.io/service: backend
+  - mesh: default
+    types: ["TrafficTrace", "ProxyTemplate"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - selectors:
+        match:
+          kuma.io/service: backend
 ```
+{% endif_version %}
+[//]: # (MeshTCPRoute was added in `2.3.0`)
+{% if_version gte:2.1.x lte:2.2.x %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRole
+metadata:
+  name: backend-owner
+spec:
+  rules:
+  - mesh: default
+    types: ["MeshTrafficPermission", "MeshRateLimit"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: Mesh
+      to:
+        targetRef:
+          kind: MeshService
+          name: backend
+  - mesh: default
+    types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: Mesh
+      from:
+        targetRef:
+          kind: MeshService
+          name: backend
+    - targetRef:
+        kind: Mesh
+      to:
+        targetRef:
+          kind: MeshService
+          name: backend
+  - mesh: default
+    types: ["MeshTrace", "MeshProxyPatch"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: MeshService
+        name: backend
+```
+{% endif_version %}
+{% if_version gte:2.3.x %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRole
+metadata:
+  name: backend-owner
+spec:
+  rules:
+  - mesh: default
+    types: ["MeshTrafficPermission", "MeshRateLimit"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: Mesh
+      to:
+        targetRef:
+          kind: MeshService
+          name: backend
+  - mesh: default
+    types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: Mesh
+      from:
+        targetRef:
+          kind: MeshService
+          name: backend
+    - targetRef:
+        kind: Mesh
+      to:
+        targetRef:
+          kind: MeshService
+          name: backend
+  - mesh: default
+    types: ["MeshTrace", "MeshProxyPatch"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: MeshService
+        name: backend
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Universal %}
+{% if_version lte:2.0.x %}
 ```yaml
 type: AccessRole
 name: backend-owner
@@ -345,9 +431,92 @@ rules:
       match:
         kuma.io/service: backend
 ```
+{% endif_version %}
+[//]: # (MeshTCPRoute was added in `2.3.0`)
+{% if_version gte:2.1.x lte:2.2.x %}
+```yaml
+type: AccessRole
+name: backend-owner
+rules:
+- mesh: default
+  types: ["MeshTrafficPermission", "MeshRateLimit"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: Mesh
+    to:
+      targetRef:
+        kind: MeshService
+        name: backend
+- mesh: default
+  types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: Mesh
+    from:
+      targetRef:
+        kind: MeshService
+        name: backend
+  - targetRef:
+      kind: Mesh
+    to:
+      targetRef:
+        kind: MeshService
+        name: backend
+- mesh: default
+  types: ["MeshTrace", "MeshProxyPatch"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: MeshService
+      name: backend
+```
+{% endif_version %}
+{% if_version gte:2.3.x %}
+```yaml
+type: AccessRole
+name: backend-owner
+rules:
+- mesh: default
+  types: ["MeshTrafficPermission", "MeshRateLimit"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: Mesh
+    to:
+      targetRef:
+        kind: MeshService
+        name: backend
+- mesh: default
+  types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: Mesh
+    from:
+      targetRef:
+        kind: MeshService
+        name: backend
+  - targetRef:
+      kind: Mesh
+    to:
+      targetRef:
+        kind: MeshService
+        name: backend
+- mesh: default
+  types: ["MeshTrace", "MeshProxyPatch"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: MeshService
+      name: backend
+```
+{% endif_version %}
 {% endnavtab %}
 {% endnavtabs %}
 
+{% if_version lte:2.0.x %}
 This way a service owners can:
 * Modify `RateLimit` and `TrafficPermission` that allows/restrict access to the backend service.
   This changes the configuration of data plane proxy that implements `backend` service.
@@ -357,6 +526,17 @@ This way a service owners can:
   This changes the configuration of data plane proxies that are connecting to backend, but the configuration only affects connections to backend service.
   It's useful because the service owner of backend has the best knowledge what (`Timeout`, `HealthCheck`) should be applied when communicating with their service.
 * Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
+{% endif_version %}
+{% if_version gte:2.1.x %}
+* Modify `MeshRateLimit` and `MeshTrafficPermission` that allows/restricts access to the backend service.
+  This changes the configuration of the data plane proxy that implements the `backend` service.
+* Modify connection policies (`MeshHTTPRoute`, {% if_version gte:2.3.x inline:true %}`MeshTCPRoute`, {% endif_version %}`MeshHealthCheck`, `MeshCircuitBreaker`, `MeshFaultInjection`, `MeshRetry`, `MeshTimeout`, `MeshRateLimit`, `MeshAccessLog`)
+  that matches the backend service that connects to other services. This changes the configuration of the data plane proxy that implements the `backend` service.
+* Modify connection policies that matches any service that consumes backend service.
+  This changes the configuration of data plane proxies that are connecting to the backend, but the configuration only affects connections to the backend service.
+  It's useful because the service owner of the backend knows what (`MeshTimeout`, `MeshHealthCheck`) should be applied when communicating with their service.
+* Modify the `MeshTrace` or `MeshProxyPatch` that matches the backend service. This changes the configuration of the data plane proxy that implements the `backend` service.
+{% endif_version %}
 
 {:.note}
 > **Note**: When giving users `UPDATE` permission, remember to add `UPDATE` permission to all selectors they can switch between. For example, if a user only has access to `sources` selector, they won't be able to update policy with `destinations` selector or new `targetRef` selectors. Likewise, when a user only has access to the `targetRef` kind `MeshService`, they won't be able to update the policy to use a different `targetRef` kind.
@@ -364,10 +544,11 @@ This way a service owners can:
 ### Observability operator
 
 We may also have an infrastructure team which is responsible for the logging/metrics/tracing systems in the organization.
-Currently, those features are configured on `Mesh`, `TrafficLog` and `TrafficTrace` objects.
+Currently, those features are configured on `Mesh`, {% if_version lte:2.0.x inline:true %}`TrafficLog`, and `TrafficTrace`{% endif_version %}{% if_version gte:2.1.x inline:true %}`MeshAccessLog`, and `MeshTrace`{% endif_version %} objects.
 
 {% navtabs %}
 {% navtab Kubernetes %}
+{% if_version lte:2.0.x %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: AccessRole
@@ -375,14 +556,31 @@ metadata:
   name: observability-operator
 spec:
   rules:
-    - mesh: '*'
-      types: ["TrafficLog", "TrafficTrace"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-    - types: ["Mesh"]
-      access: ["CREATE", "DELETE", "UPDATE"]
+  - mesh: '*'
+    types: ["TrafficLog", "TrafficTrace"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+  - types: ["Mesh"]
+    access: ["CREATE", "DELETE", "UPDATE"]
 ```
+{% endif_version %}
+{% if_version gte:2.1.x %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRole
+metadata:
+  name: observability-operator
+spec:
+  rules:
+  - mesh: '*'
+    types: ["MeshAccessLog", "MeshTrace"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+  - types: ["Mesh"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Universal %}
+{% if_version lte:2.0.x %}
 ```yaml
 type: AccessRole
 name: observability-operator
@@ -393,17 +591,30 @@ rules:
 - types: ["Mesh"]
   access: ["CREATE", "DELETE", "UPDATE"]
 ```
+{% endif_version %}
+{% if_version gte:2.1.x %}
+```yaml
+type: AccessRole
+name: observability-operator
+rules:
+- mesh: '*'
+  types: ["MeshAccessLog", "MeshTrace"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+- types: ["Mesh"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+```
+{% endif_version %}
 {% endnavtab %}
 {% endnavtabs %}
 
 This way an observability operator can:
-* Modify `TrafficLog` and `TrafficTrace` in any mesh
+* Modify {% if_version lte:2.0.x inline:true %}`TrafficLog` and `TrafficTrace`{% endif_version %}{% if_version gte:2.1.x inline:true %}`MeshAccessLog` and `MeshTrace`{% endif_version %} in any mesh
 * Modify any `Mesh`
 
 ### Single Mesh operator
 
 {{site.mesh_product_name}} lets us segment the deployment into many logical service meshes configured by Mesh object.
-We may want to give an access to one specific Mesh and all objects connected with this Mesh.
+We may want to give access to one specific Mesh and all objects connected with this Mesh.
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -414,12 +625,11 @@ metadata:
   name: demo-mesh-operator
 spec:
   rules:
-    - mesh: demo
-      access: ["CREATE", "DELETE", "UPDATE"]
-    - types: ["Mesh"]
-      names: ["demo"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-
+  - mesh: demo
+    access: ["CREATE", "DELETE", "UPDATE"]
+  - types: ["Mesh"]
+    names: ["demo"]
+    access: ["CREATE", "DELETE", "UPDATE"]
 ```
 {% endnavtab %}
 {% navtab Universal %}
@@ -443,11 +653,16 @@ This way all observability operator can:
 ## Kubernetes
 
 Kubernetes provides their own RBAC system, but it's not sufficient to cover use cases for several reasons:
-* You cannot restrict an access to resources of specific Mesh
-* You cannot restrict an access based on the content of the policy
+* You cannot restrict access to resources of specific Mesh
+* You cannot restrict access based on the content of the policy
 
 {{site.mesh_product_name}} RBAC works on top of Kubernetes RBAC.
+{% if_version lte:2.0.x %}
 For example, to restrict the access for a user to modify `TrafficPermission` for backend service, they need to be able to create `TrafficPermission` in the first place.
+{% endif_version %}
+{% if_version gte:2.1.x %}
+For example, to restrict the access for a user to modify `MeshTrafficPermission` for backend service, they need to be able to create `MeshTrafficPermission` in the first place.
+{% endif_version %}
 
 The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and groups.
 {{site.mesh_product_name}} RBAC on Kubernetes is implemented using Kubernetes Webhook when applying resources. This means you can only use Kubernetes users and groups for `CREATE`, `DELETE` and `UPDATE` access.
@@ -548,14 +763,14 @@ roles:
 
 ## Example
 
-Here are the steps to create a new user and restrict the access only to `TrafficPermission` for backend service.
-
 {% navtabs %}
-{% navtab Source and Destination selectors %}
+{% navtab "targetRef" selectors %}
+The following steps create a new user and restrict the access to only `MeshTrafficPermission` for the backend service.
+
 {% navtabs %}
 {% navtab Kubernetes %}
 
-1.  Create a backend-owner Kubernetes user and configure kubectl:
+1. Create a backend-owner Kubernetes user and configure `kubectl`:
 
     ```sh
     mkdir -p /tmp/k8s-certs
@@ -580,266 +795,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
     kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
     ```
 
-1.  Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
-
-    ```sh
-    echo "
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: ClusterRole
-    metadata:
-      name: kuma-policy-management
-    rules:
-    - apiGroups:
-      - kuma.io
-      resources:
-      - trafficpermissions
-      verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: ClusterRoleBinding
-    metadata:
-      name: kuma-policy-management-backend-owner
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: kuma-policy-management
-    subjects:
-    - kind: User
-      name: backend-owner
-      apiGroup: rbac.authorization.k8s.io
-    " | kubectl apply -f -
-    ```
-
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
-
-    ```sh
-    echo "
-    apiVersion: kuma.io/v1alpha1
-    kind: AccessRoleBinding
-    metadata:
-      name: default
-    spec:
-      subjects:
-      - type: Group
-        name: mesh-system:admin
-      - type: Group
-        name: system:masters
-      - type: Group
-        name: system:serviceaccounts:kube-system
-      roles:
-      - admin
-    " | kubectl apply -f -
-    ```
-
-1.  Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
-
-    ```sh
-    echo '
-    ---
-    apiVersion: kuma.io/v1alpha1
-    kind: AccessRole
-    metadata:
-      name: backend-owner
-    spec:
-      rules:
-      - types: ["TrafficPermission"]
-        mesh: default
-        access: ["CREATE", "UPDATE", "DELETE"]
-        when:
-        - destinations:
-            match:
-              kuma.io/service: backend
-    ---
-    apiVersion: kuma.io/v1alpha1
-    kind: AccessRoleBinding
-    metadata:
-      name: backend-owners
-    spec:
-      subjects:
-      - type: User
-        name: backend-owner
-      roles:
-      - backend-owner
-    ' | kubectl apply -f -
-    ```
-
-1.  Change the service to test user access:
-
-    ```sh
-    kubectl config use-context backend-owner
-    echo "
-    apiVersion: kuma.io/v1alpha1
-    kind: TrafficPermission
-    mesh: default
-    metadata:
-      name: web-to-backend
-    spec:
-      sources:
-        - match:
-            kuma.io/service: web
-      destinations:
-        - match:
-            kuma.io/service: backend
-    " | kubectl apply -f -
-    # operation should succeed, access to backend service access is granted
-
-    echo "
-    apiVersion: kuma.io/v1alpha1
-    kind: TrafficPermission
-    mesh: default
-    metadata:
-      name: web-to-backend
-    spec:
-      sources:
-        - match:
-            kuma.io/service: web
-      destinations:
-        - match:
-            kuma.io/service: not-backend # access to this service is not granted
-    " | kubectl apply -f -
-    # operation should not succeed
-    ```
-{% endnavtab %}
-{% navtab Universal %}
-
-{:.note}
-> **Note**: By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
-In order for this example to work you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or be accessing the control plane not via localhost.
-
-1.  Extract admin token and configure kumactl with admin:
-
-    ```sh
-    export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
-    kumactl config control-planes add \
-    --name=cp-admin \
-    --address=https://localhost:5682 \
-    --skip-verify=true \
-    --auth-type=tokens \
-    --auth-conf token=$ADMIN_TOKEN
-    ```
-
-1.  Configure backend-owner:
-
-    ```sh
-    export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
-    kumactl config control-planes add \
-    --name=cp-backend-owner \
-    --address=https://localhost:5682 \
-    --skip-verify=true \
-    --auth-type=tokens \
-    --auth-conf token=$BACKEND_OWNER_TOKEN
-    kumactl config control-planes switch --name cp-admin # switch back to admin
-    ```
-
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
-
-    ```sh
-    echo "type: AccessRoleBinding
-    name: default
-    subjects:
-    - type: Group
-      name: mesh-system:admin
-    roles:
-    - admin" | kumactl apply -f -
-    ```
-
-1.  Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify `TrafficPermission` for backend:
-
-    ```sh
-    echo '
-    type: AccessRole
-    name: backend-owner
-    rules:
-    - types: ["TrafficPermission"]
-      mesh: default
-      access: ["CREATE", "UPDATE", "DELETE"]
-      when:
-      - destinations:
-          match:
-            kuma.io/service: backend
-    ' | kumactl apply -f -
-    echo '
-    type: AccessRoleBinding
-    name: backend-owners
-    subjects:
-    - type: User
-      name: backend-owner
-    roles:
-    - backend-owner' | kumactl apply -f -
-    ```
-
-1.  Change the user and test RBAC:
-
-    ```sh
-    kumactl config control-planes switch --name cp-backend-owner
-    echo "
-    type: TrafficPermission
-    mesh: default
-    name: web-to-backend
-    sources:
-    - match:
-        kuma.io/service: web
-    destinations:
-    - match:
-        kuma.io/service: backend
-    " | kumactl apply -f -
-    # this operation should succeed
-
-    echo "
-    type: TrafficPermission
-    mesh: default
-    name: web-to-backend
-    sources:
-    - match:
-        kuma.io/service: web
-    destinations:
-    - match:
-        kuma.io/service: other
-    " | kumactl apply -f -
-    Error: Access Denied (user "backend-owner/mesh-system:authenticated" cannot access the resource)
-    ```
-
-{% endnavtab %}
-{% endnavtabs %}
-{% endnavtab %}
-{% navtab `targetRef` selectors %}
-{% navtabs %}
-{% navtab Kubernetes %}
-
-1.  Create a backend-owner Kubernetes user and configure kubectl:
-
-    ```sh
-    mkdir -p /tmp/k8s-certs
-    cd /tmp/k8s-certs
-    openssl genrsa -out backend-owner.key 2048 # generate client key
-    openssl req -new -key backend-owner.key -subj "/CN=backend-owner" -out backend-owner.csr # generate client certificate request
-    CSR=$(cat backend-owner.csr | base64 | tr -d "\n") && echo "apiVersion: certificates.k8s.io/v1
-    kind: CertificateSigningRequest
-    metadata:
-      name: backend-owner
-    spec:
-      request: $CSR
-      signerName: kubernetes.io/kube-apiserver-client
-      usages:
-      - client auth" | kubectl apply -f -
-    kubectl certificate approve backend-owner
-    kubectl get csr backend-owner -o jsonpath='{.status.certificate}'| base64 -d > backend-owner.crt
-    kubectl config set-credentials backend-owner \
-    --client-key=/tmp/k8s-certs/backend-owner.key \
-    --client-certificate=/tmp/k8s-certs/backend-owner.crt \
-    --embed-certs=true
-    kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
-    ```
-
-1.  Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
+2. Create Kubernetes RBAC to allow backend-owner to manage all `MeshTrafficPermission`:
 
     ```sh
     echo "
@@ -877,7 +833,7 @@ In order for this example to work you must either run the control plane with `KU
     " | kubectl apply -f -
     ```
 
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
     echo "
@@ -898,7 +854,7 @@ In order for this example to work you must either run the control plane with `KU
     " | kubectl apply -f -
     ```
 
-1.  Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
+4. Create an AccessRole to grant permissions to user `backend-owner` to modify `MeshTrafficPermission` only for the backend service:
 
     ```sh
     echo '
@@ -930,7 +886,7 @@ In order for this example to work you must either run the control plane with `KU
     ' | kubectl apply -f -
     ```
 
-1.  Change the service to test user access:
+5. Change the service to test user access:
 
     ```sh
     kubectl config use-context backend-owner
@@ -947,11 +903,11 @@ In order for this example to work you must either run the control plane with `KU
         kind: MeshService
         name: backend
       from:
-        - targetRef:
-            kind: MeshService
-            name: web
-          default:
-            action: ALLOW
+      - targetRef:
+          kind: MeshService
+          name: web
+        default:
+          action: ALLOW
     " | kubectl apply -f -
     # operation should succeed, access to backend service access is granted
 
@@ -968,22 +924,23 @@ In order for this example to work you must either run the control plane with `KU
         kind: MeshService
         name: not-backend # access to this service is not granted
       from:
-        - targetRef:
-            kind: MeshService
-            name: web
-          default:
-            action: ALLOW
+      - targetRef:
+          kind: MeshService
+          name: web
+        default:
+          action: ALLOW
     " | kubectl apply -f -
     # operation should not succeed
     ```
 {% endnavtab %}
 {% navtab Universal %}
+The following steps create a new user and restrict the access to only `TrafficPermission` for the backend service.
 
 {:.note}
 > **Note**: By default, all requests that originate from localhost are authenticated as the `admin` user in the `mesh-system:admin` group.
 For this example to work, you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or access the control plane using a method other than localhost.
 
-1.  Extract admin token and configure kumactl with admin:
+1. Extract the admin token and configure `kumactl` with the admin:
 
     ```sh
     export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
@@ -995,7 +952,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     --auth-conf token=$ADMIN_TOKEN
     ```
 
-1.  Configure backend-owner:
+2. Configure backend-owner:
 
     ```sh
     export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
@@ -1008,7 +965,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     kumactl config control-planes switch --name cp-admin # switch back to admin
     ```
 
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
     echo "type: AccessRoleBinding
@@ -1020,7 +977,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     - admin" | kumactl apply -f -
     ```
 
-1.  Create {{site.mesh_product_name}} RBAC to only allow the backend-owner to modify `TrafficPermission` for backend:
+4. Create {{site.mesh_product_name}} RBAC to only allow the backend-owner to modify `MeshTrafficPermission` for backend:
 
     ```sh
     echo '
@@ -1045,7 +1002,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     - backend-owner' | kumactl apply -f -
     ```
 
-1.  Change the user and test RBAC:
+5. Change the user and test RBAC:
 
     ```sh
     kumactl config control-planes switch --name cp-backend-owner
@@ -1058,11 +1015,11 @@ For this example to work, you must either run the control plane with `KUMA_API_S
         kind: MeshService
         name: backend
       from:
-        - targetRef:
-            kind: MeshService
-            name: web
-          default:
-            action: ALLOW
+      - targetRef:
+          kind: MeshService
+          name: web
+        default:
+          action: ALLOW
     " | kumactl apply -f -
     # this operation should succeed
 
@@ -1075,11 +1032,270 @@ For this example to work, you must either run the control plane with `KUMA_API_S
         kind: MeshService
         name: not-backend
       from:
-        - targetRef:
-            kind: MeshService
-            name: web
-          default:
-            action: ALLOW
+      - targetRef:
+          kind: MeshService
+          name: web
+        default:
+          action: ALLOW
+    " | kumactl apply -f -
+    Error: Access Denied (user "backend-owner/mesh-system:authenticated" cannot access the resource)
+    ```
+
+{% endnavtab %}
+{% endnavtabs %}
+{% endnavtab %}
+{% navtab Source and Destination selectors %}
+{% navtabs %}
+{% navtab Kubernetes %}
+
+1. Create a backend-owner Kubernetes user and configure `kubectl`:
+
+    ```sh
+    mkdir -p /tmp/k8s-certs
+    cd /tmp/k8s-certs
+    openssl genrsa -out backend-owner.key 2048 # generate client key
+    openssl req -new -key backend-owner.key -subj "/CN=backend-owner" -out backend-owner.csr # generate client certificate request
+    CSR=$(cat backend-owner.csr | base64 | tr -d "\n") && echo "apiVersion: certificates.k8s.io/v1
+    kind: CertificateSigningRequest
+    metadata:
+      name: backend-owner
+    spec:
+      request: $CSR
+      signerName: kubernetes.io/kube-apiserver-client
+      usages:
+      - client auth" | kubectl apply -f -
+    kubectl certificate approve backend-owner
+    kubectl get csr backend-owner -o jsonpath='{.status.certificate}'| base64 -d > backend-owner.crt
+    kubectl config set-credentials backend-owner \
+    --client-key=/tmp/k8s-certs/backend-owner.key \
+    --client-certificate=/tmp/k8s-certs/backend-owner.crt \
+    --embed-certs=true
+    kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
+    ```
+
+2. Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
+
+    ```sh
+    echo "
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: kuma-policy-management
+    rules:
+    - apiGroups:
+      - kuma.io
+      resources:
+      - trafficpermissions
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: kuma-policy-management-backend-owner
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: kuma-policy-management
+    subjects:
+    - kind: User
+      name: backend-owner
+      apiGroup: rbac.authorization.k8s.io
+    " | kubectl apply -f -
+    ```
+
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+
+    ```sh
+    echo "
+    apiVersion: kuma.io/v1alpha1
+    kind: AccessRoleBinding
+    metadata:
+      name: default
+    spec:
+      subjects:
+      - type: Group
+        name: mesh-system:admin
+      - type: Group
+        name: system:masters
+      - type: Group
+        name: system:serviceaccounts:kube-system
+      roles:
+      - admin
+    " | kubectl apply -f -
+    ```
+
+4. Create an AccessRole to grant permissions to the `backend-owner` user to modify `TrafficPermission` only for the backend service:
+
+    ```sh
+    echo '
+    ---
+    apiVersion: kuma.io/v1alpha1
+    kind: AccessRole
+    metadata:
+      name: backend-owner
+    spec:
+      rules:
+      - types: ["TrafficPermission"]
+        mesh: default
+        access: ["CREATE", "UPDATE", "DELETE"]
+        when:
+        - destinations:
+            match:
+              kuma.io/service: backend
+    ---
+    apiVersion: kuma.io/v1alpha1
+    kind: AccessRoleBinding
+    metadata:
+      name: backend-owners
+    spec:
+      subjects:
+      - type: User
+        name: backend-owner
+      roles:
+      - backend-owner
+    ' | kubectl apply -f -
+    ```
+
+5. Change the service to test user access:
+
+    ```sh
+    kubectl config use-context backend-owner
+    echo "
+    apiVersion: kuma.io/v1alpha1
+    kind: TrafficPermission
+    mesh: default
+    metadata:
+      name: web-to-backend
+    spec:
+      sources:
+      - match:
+          kuma.io/service: web
+      destinations:
+      - match:
+          kuma.io/service: backend
+    " | kubectl apply -f -
+    # operation should succeed, access to backend service access is granted
+
+    echo "
+    apiVersion: kuma.io/v1alpha1
+    kind: TrafficPermission
+    mesh: default
+    metadata:
+      name: web-to-backend
+    spec:
+      sources:
+      - match:
+          kuma.io/service: web
+      destinations:
+      - match:
+          kuma.io/service: not-backend # access to this service is not granted
+    " | kubectl apply -f -
+    # operation should not succeed
+    ```
+{% endnavtab %}
+{% navtab Universal %}
+
+{:.note}
+> **Note**: By default, all requests that originates from localhost are authenticated as the `admin` user belonging to the `mesh-system:admin` group.
+For this example to work, you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or access the control plane via a method other than localhost.
+
+1. Extract admin token and configure kumactl with admin:
+
+    ```sh
+    export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
+    kumactl config control-planes add \
+    --name=cp-admin \
+    --address=https://localhost:5682 \
+    --skip-verify=true \
+    --auth-type=tokens \
+    --auth-conf token=$ADMIN_TOKEN
+    ```
+
+2. Configure backend-owner:
+
+    ```sh
+    export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
+    kumactl config control-planes add \
+    --name=cp-backend-owner \
+    --address=https://localhost:5682 \
+    --skip-verify=true \
+    --auth-type=tokens \
+    --auth-conf token=$BACKEND_OWNER_TOKEN
+    kumactl config control-planes switch --name cp-admin # switch back to admin
+    ```
+
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+
+    ```sh
+    echo "type: AccessRoleBinding
+    name: default
+    subjects:
+    - type: Group
+      name: mesh-system:admin
+    roles:
+    - admin" | kumactl apply -f -
+    ```
+
+4. Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify `TrafficPermission` for backend:
+
+    ```sh
+    echo '
+    type: AccessRole
+    name: backend-owner
+    rules:
+    - types: ["TrafficPermission"]
+      mesh: default
+      access: ["CREATE", "UPDATE", "DELETE"]
+      when:
+      - destinations:
+          match:
+            kuma.io/service: backend
+    ' | kumactl apply -f -
+    echo '
+    type: AccessRoleBinding
+    name: backend-owners
+    subjects:
+    - type: User
+      name: backend-owner
+    roles:
+    - backend-owner' | kumactl apply -f -
+    ```
+
+5. Change the user and test RBAC:
+
+    ```sh
+    kumactl config control-planes switch --name cp-backend-owner
+    echo "
+    type: TrafficPermission
+    mesh: default
+    name: web-to-backend
+    sources:
+    - match:
+        kuma.io/service: web
+    destinations:
+    - match:
+        kuma.io/service: backend
+    " | kumactl apply -f -
+    # this operation should succeed
+
+    echo "
+    type: TrafficPermission
+    mesh: default
+    name: web-to-backend
+    sources:
+    - match:
+        kuma.io/service: web
+    destinations:
+    - match:
+        kuma.io/service: other
     " | kumactl apply -f -
     Error: Access Denied (user "backend-owner/mesh-system:authenticated" cannot access the resource)
     ```
@@ -1097,6 +1313,10 @@ In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized
 
 {:.note}
 > **Note**: This feature is available starting in {{site.mesh_product_name}} 1.9.1
+
+{:.note}
+> **Note**: This feature currently only works with "Source and Destination" selectors. This limitation restricts using newer policy types like `MeshTrafficPermission`, `MeshAccessLog`, or `MeshHTTPRoute`.
+
 
 You can perform partial tag value matching using `*` wildcards.
 
@@ -1153,13 +1373,13 @@ metadata:
   name: tr-orders
 spec:
   sources:
-    - match:
-        k8s.kuma.io/namespace: 'orders'
+  - match:
+      k8s.kuma.io/namespace: 'orders'
   destinations:
-    - match:
-        kuma.io/service: web_orders_svc_1000
-    - match:
-        kuma.io/service: backend_orders_svc_1000
+  - match:
+      kuma.io/service: web_orders_svc_1000
+  - match:
+      kuma.io/service: backend_orders_svc_1000
   conf:
     destination:
       kuma.io/service: '*'
@@ -1171,13 +1391,13 @@ type: TrafficRoute
 mesh: default
 name: tr-orders
 sources:
-  - match:
-      k8s.kuma.io/namespace: 'orders'
+- match:
+    k8s.kuma.io/namespace: 'orders'
 destinations:
-  - match:
-      kuma.io/service: web_orders_svc_1000
-  - match:
-      kuma.io/service: backend_orders_svc_1000
+- match:
+    kuma.io/service: web_orders_svc_1000
+- match:
+    kuma.io/service: backend_orders_svc_1000
 conf:
   destination:
     kuma.io/service: '*'

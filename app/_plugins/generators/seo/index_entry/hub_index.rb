@@ -6,7 +6,7 @@ module SEO
   module IndexEntry
     class HubIndex < HubPage
       def process!(index)
-        super(index)
+        super
 
         @page.data['canonical_url'] = '/hub/'
       end

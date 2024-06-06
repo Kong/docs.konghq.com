@@ -25,7 +25,43 @@ tags:
   - name: System Accounts - Roles
   - name: System Accounts - Team Membership
   - name: Authentication
+  - name: Impersonation Settings
 paths:
+  /organizations/impersonation:
+    get:
+      summary: Get Impersonation Settings
+      description: >-
+        Returns Impersonation Settings, which determines if user impersonation
+        is allowed for an organization.
+      operationId: get-impersonation-settings
+      tags:
+        - Impersonation Settings
+      responses:
+        '200':
+          $ref: '#/components/responses/GetImpersonationSettingsResponse'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+    patch:
+      summary: Update Impersonation Settings
+      description: Updates Impersonation Settings.
+      operationId: update-impersonation-settings
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateImpersonationSettingsRequest'
+      tags:
+        - Impersonation Settings
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdateImpersonationSettingsResponse'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
   /authentication-settings:
     get:
       summary: Get Auth Settings
@@ -1219,6 +1255,36 @@ paths:
           $ref: '#/components/responses/IdentityUnauthenticated'
 components:
   responses:
+    GetImpersonationSettingsResponse:
+      description: Response for Get Impersonation Settings endpoint
+      content:
+        application/json:
+          schema:
+            type: object
+            title: Get Impersonation Settings Response
+            properties:
+              enabled:
+                type: boolean
+                example: true
+                description: The organization has user impersonation enabled.
+          examples:
+            Get Impersonation Settings:
+              $ref: '#/components/examples/GetImpersonationSettings'
+    UpdateImpersonationSettingsResponse:
+      description: Response for Update Impersonation Settings endpoint
+      content:
+        application/json:
+          schema:
+            type: object
+            title: Update Impersonation Settings Response
+            properties:
+              enabled:
+                type: boolean
+                example: true
+                description: The organization has user impersonation enabled.
+          examples:
+            Update Impersonation Settings:
+              $ref: '#/components/examples/UpdateImpersonationSettings'
     UserSingle:
       description: A get action response of a single user.
       content:
@@ -2436,6 +2502,23 @@ components:
           schema:
             $ref: '#/components/schemas/IdP'
   requestBodies:
+    UpdateImpersonationSettingsRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                example: true
+                description: >-
+                  Indicates if user impersonation is allowed for the
+                  organization.
+          examples:
+            Update Impersonation Settings:
+              value:
+                enabled: false
+      description: The request schema for adding a system account to a team.
     UpdateUser:
       description: The request schema for the update user request.
       content:
@@ -3176,13 +3259,7 @@ components:
       nullable: true
       enum:
         - required
-        - enum
-        - min_length
         - max_length
-        - min_digits
-        - min_lowercase
-        - min_uppercase
-        - min_symbols
         - is_array
         - is_base64
         - is_boolean
@@ -3193,11 +3270,18 @@ components:
         - is_object
         - is_string
         - is_uuid
+        - is_fqdn
+        - is_arn
         - unknown_property
         - is_label
         - matches_regex
-    InvalidParameterChoiceItem:
+        - invalid
+        - is_supported_network_availability_zone_list
+        - is_supported_network_cidr_block
+        - is_supported_provider_region
+    InvalidParameterStandard:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -3205,6 +3289,65 @@ components:
           readOnly: true
         rule:
           $ref: '#/components/schemas/InvalidRules'
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterMinimumLength:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - min_length
+            - min_digits
+            - min_lowercase
+            - min_uppercase
+            - min_symbols
+        minimum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+        - rule
+        - minimum
+    InvalidParameterChoiceItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - enum
         reason:
           type: string
           example: is a required field
@@ -3212,14 +3355,21 @@ components:
         choices:
           type: array
           uniqueItems: true
-          nullable: true
-          items: {}
           readOnly: true
+          nullable: false
+          minimum: 1
+          items: {}
+        source:
+          type: string
+          example: body
       required:
         - field
         - reason
+        - rule
+        - choices
     InvalidParameterDependentItem:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -3242,6 +3392,9 @@ components:
           nullable: true
           items: {}
           readOnly: true
+        source:
+          type: string
+          example: body
       required:
         - field
         - rule
@@ -3255,42 +3408,34 @@ components:
       description: invalid parameters
       items:
         oneOf:
+          - $ref: '#/components/schemas/InvalidParameterStandard'
+          - $ref: '#/components/schemas/InvalidParameterMinimumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
     BadRequestError:
-      type: object
-      required:
-        - invalid_parameters
-      properties:
-        status:
-          example: 400
-        title:
-          example: Bad Request
-        type:
-          example: https://httpstatuses.com/400
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid request body
-        invalid_parameters:
-          $ref: '#/components/schemas/InvalidParameters'
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
     NotFoundError:
-      type: object
-      properties:
-        status:
-          example: 404
-        title:
-          example: Not Found
-        type:
-          example: https://httpstatuses.com/404
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Not found
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 404
+            title:
+              example: Not Found
+            type:
+              example: https://httpstatuses.com/404
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Not found
     PageMeta:
       type: object
       description: >-
@@ -3320,54 +3465,54 @@ components:
       required:
         - page
     UnauthorizedError:
-      type: object
-      properties:
-        status:
-          example: 401
-        title:
-          example: Unauthorized
-        type:
-          example: https://httpstatuses.com/401
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid credentials
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 401
+            title:
+              example: Unauthorized
+            type:
+              example: https://httpstatuses.com/401
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Invalid credentials
     ConflictError:
-      type: object
-      properties:
-        status:
-          example: 409
-        title:
-          example: Conflict
-        type:
-          example: https://httpstatuses.com/409
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Conflict
       allOf:
         - $ref: '#/components/schemas/BaseError'
-    ForbiddenError:
-      type: object
-      properties:
-        status:
-          example: 403
-        title:
-          example: Forbidden
-        type:
-          example: https://httpstatuses.com/403
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Forbidden
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 409
+            title:
+              example: Conflict
+            type:
+              example: https://httpstatuses.com/409
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Conflict
     StringFieldEqualsFilter:
       title: StringFieldEqualsFilter
       description: Filter a string value by exact match.
       type: string
+    ForbiddenError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 403
+            title:
+              example: Forbidden
+            type:
+              example: https://httpstatuses.com/403
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Forbidden
     StringFieldContainsFilter:
       type: object
       title: StringFieldContainsFilter
@@ -3388,6 +3533,7 @@ components:
       type: object
       example:
         env: test
+      maxProperties: 50
       description: >
         Labels store metadata of an entity that can be used for filtering an
         entity list or for searching across entity types. 
@@ -3397,8 +3543,7 @@ components:
         "konnect", "mesh", "kic", or "_".
       additionalProperties:
         type: string
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-\.\_]*[a-z0-9A-Z]+)?$
-        maxItems: 50
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
         minLength: 1
         maxLength: 63
     LabelsUpdate:
@@ -3413,8 +3558,13 @@ components:
         "konnect", "mesh", "kic", or "_".
       example:
         env: test
-      maxItems: 50
-      maxLength: 63
+      maxProperties: 50
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
+        nullable: true
       writeOnly: true
   securitySchemes:
     systemAccountAccessToken:
@@ -3680,6 +3830,12 @@ components:
         active: true
         created_at: '1992-02-07T17:46:57.52Z'
         updated_at: '2022-02-07T17:00:00.52Z'
+    GetImpersonationSettings:
+      value:
+        enabled: true
+    UpdateImpersonationSettings:
+      value:
+        enabled: false
     Assign-Roles-US:
       value:
         role_name: Viewer

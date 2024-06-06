@@ -14,9 +14,11 @@ You need to upload enough of the certificate chain in the control plane so that 
 
 Consider the following scenarios with this example cert chain:
 
-  | `cert1` | service | (issuer: intermediary) |
-  | `cert2` | intermediary | (issuer: root) |
-  | `cert3` | root | (issuer: root / self signed) |
+| Certificate | Type         | Issuer                   |
+|-------------|--------------|--------------------------|
+| `cert1`     | Service      | Issued by Intermediary   |
+| `cert2`     | Intermediary | Issued by Root           |
+| `cert3`     | Root         | Issued by Root (Self-signed) |
 
 * **Upload only cert1 to the control plane**: This is the Pinned mode. You can include just `cert1` in your data plane request and not include the chain. The control plane doesn’t need to evaluate the issuer because it trusts the cert itself.
 * **Upload only cert2 to the control plane**: This would mean any cert coming in that has (issuer: intermediary) would be trusted. You can include just `cert1` in your data plane request. The control plane would trust any certificate issued by the intermediary public key. 

@@ -9,7 +9,61 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## May 2024
+
+**Gateway 3.7 Support**
+: {{site.konnect_short_name}} now supports the latest {{site.base_gateway}} release version of 3.7.
+: Additionally, the expression router is fully supported in the {{site.konnect_short_name}}. You can now define your routes via expressions, and perform CRUD operations on them.
+
+: See the [Gateway 3.7.0.0 changelog](/gateway/changelog/#3700) for all changes in the {{site.base_gateway}} release.
+
+
+**{{site.konnect_short_name}} Konnect Search Enhancements**
+: The new {{site.konnect_saas}} search enhancements now allows you to to search across 29 entities in {{site.konnect_short_name}}. The search enhancement is made up of an advanced search syntax coupled with a refreshed search bar in the UI and a [Konnect Search API](/konnect/api/search/latest/). 
+
+: For more information, syntax description and use cases, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/reference/search/).
+
+## April 2024
+
+
+**Dedicated Cloud Gateways**
+: You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
+
+: Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
+
+: Dedicated Cloud Gateways also have the following benefits:
+* SOC1 compliant out-of-the-box
+* {{site.konnect_short_name}} handles gateway upgrades for you
+* Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
+
+: For more information, see [About Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/).
+
+: ![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
+: > _**Figure 1:** Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._
+
+**Improved UI/UX for Plugins**
+: We are happy to announce that a polished UI/UX experience for plugins is now available to our customers on Konnect. Required configuration settings are now grouped together, and indicated as required on the forms, improved tooltips and default fields are present on plugin forms, and a "most popular" plugins section is now available.
+: ![Improved UI/UX for plugins](/assets/images/products/konnect/changelog/improved-plugins-ui.png)
+
+
+**Integrated Markdown Renderer**
+: You can now take advantage of an integrated markdown editor for API Products in {{site.konnect_short_name}}. This enhancement simplifies documentation updates by enabling you to edit markdown files directly within {{site.konnect_short_name}}. The {{site.konnect_short_name}} interactive markdown renderer supports: 
+* Code syntax highlighting for bash, json, go, and js
+* Rendering UML diagrams and flowcharts via Mermaid and PlantUML
+* Emojis
+
+![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
+
+**PKI Cert Mode Improvements**
+: Konnect now defaults to PKI Cert mode for CP/DP connections. As a result, you can now specify your own CA certs during the creation of control planes. In addition, you can now upload your own Kong Cluster Cert/Key pairs to sign off using the CA cert that you uploaded, or continue to have Konnect generate Kong Cluster Cert/Key pairs for you. 
+
 ## March 2024
+
+
+**OAS 3.1 Support**
+: Konnect and Portal now support OAS 3.1 out of the box. Users can now upload a YAML/JSON version of OAS 3.1 into their API Product version and the specification will be rendered in the spec viewer on both Konnect and Portal. With OAS 3.1, we now support describing the webhooks in your OAS the same way you describe your API paths. The new version of the spec renderer also supports all available theming options as before. 
+
+: OSS Portal users can also take advantage of this component by upgrading to the latest version of `@kong-ui-public/spec-renderer@2.1.1`.
 
 **Refined user experience for Control Plane Groups**
 : We've made improvements to refine the end-to-end workflow of Control Plane Groups for our customers. Now, Control Plane Groups are more intuitive, and easier to understand.
@@ -27,7 +81,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
 : > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
-
 
 ## February 2024
 
@@ -240,7 +293,7 @@ You can upload a plugin schema to Konnect and get started with custom plugins in
 ## July 2023
 
 **API Products API released**
-: A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/v2/)
+: A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/latest/)
 
 **API Products**
 : Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
@@ -256,7 +309,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 * [Set up and manage runtime groups](/konnect/gateway-manager/control-plane-groups/how-to/)
 * [Migrate configuration into a composite runtime group](/konnect/gateway-manager/control-plane-groups/migrate/)
 * [Conflicts in runtime groups](/konnect/gateway-manager/control-plane-groups/conflicts/)
-* [API documentation](/konnect/api/runtime-groups/v2/)
+* [API documentation](/konnect/api/runtime-groups/latest/)
 
 **Analytics for composite runtime groups**
 : Custom reports now support grouping and filtering by composite runtime group.
@@ -286,7 +339,7 @@ For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/cus
 
 **Portal Client API**
 : {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. 
-For more information, see the [Portal Client API spec](/konnect/api/portal/v2/).
+For more information, see the [Portal Client API spec](/konnect/api/portal/latest/).
 
 **Audit logging**
 : Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. 
@@ -385,7 +438,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 : [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) is now available as an identity provider for Dynamic Client Registration (DCR).
 
 : **Known limitation:** Unlike other DCR providers, Auth0 requires specifying audience, which represents an independent token recipient. Multiple applications can be mapped to one Audience API within auth0 and share the same permissions accordingly.
-Currently, our OIDC plugin can only support single audience for this release. We will consider adding support for mutliple audiences in the future iteration.
+Currently, our OIDC plugin can only support single audience for this release. We will consider adding support for multiple audiences in the future iteration.
 
 **Simplified docker script for creating Runtime Instances**
 : {{site.konnect_short_name}} now supports a simplified docker script to create a new runtime instance as well as in the QuickStart which makes it easier to create runtime instances. Instead of downloading a script from github, customers can now use a simple docker run command. This decrease the time and effort taken by customers to launch a Kong Gateway and improves security during runtime instance creation. Runtime Manager also supports simple copy buttons inside the code block components to make it easy for users to copy!
@@ -433,7 +486,7 @@ with any of the following backends:
 : {{site.konnect_short_name}} users can now take advantage of the the entire plugin suite offered alongside {{site.base_gateway}} 3.1. For more information about the available plugins. review our [compatibility documentation](/konnect/compatibility/#plugin-compatibility).
 
 **Runtime Groups API**
-: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](/konnect/api/runtime-groups/v2/).
+: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](/konnect/api/runtime-groups/latest/).
 
 ## November 2022
 
@@ -474,7 +527,7 @@ The group still retains its status as the default group, and can't be deleted.
 
 **Konnect APIs for identity management**
 : Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
-[IdP API documentation](/konnect/api/identity-management/v2/)
+[IdP API documentation](/konnect/api/identity-management/latest/)
 
 ## October 2022
 

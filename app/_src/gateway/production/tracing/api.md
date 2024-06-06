@@ -1,5 +1,5 @@
 ---
-title: Tracing API Referenece
+title: Tracing API Reference
 content-type: Reference
 ---
 

@@ -14,10 +14,7 @@ module Jekyll
           }.freeze
 
           def params
-            @params ||= [
-              Fields::Curl.new(key: 'name', values: plugin_name),
-              config_to_params
-            ].flatten
+            @params ||= { 'name' => plugin_name }.merge(config_to_params)
           end
 
           def url
@@ -27,19 +24,9 @@ module Jekyll
           private
 
           def config_to_params
-            @example.fetch('config', []).map do |field, values|
-              Fields::Curl.make_for(
-                key: "config.#{field}",
-                values:,
-                options: field_config(field)
-              )
-            end
-          end
+            return {} unless @example.key?('config')
 
-          def field_config(_field)
-            # TODO: handle url-encode with overlays or metadata
-            {}
-            # @config.fetch('config', {}).detect { |f| f['name'] == field } || {}
+            { 'config' => @example.fetch('config') }
           end
         end
       end

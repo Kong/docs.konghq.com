@@ -65,7 +65,7 @@ jobs:
           KONG_PLUGIN_NAME: "${{ github.event.inputs.plugin }}"
           KONG_PLUGIN_VERSION: "${{ github.event.inputs.version }}"
         run: |
-          npm install -g wait-on netlify-cli
+          npm install -g wait-on
           netlify dev & wait-on http://localhost:8888
           cd pdf-generation
           npm ci

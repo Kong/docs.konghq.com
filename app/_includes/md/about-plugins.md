@@ -2,8 +2,8 @@
 ## What are plugins?
 
 {{site.base_gateway}} is a Lua application designed to load and execute Lua or Go modules, which
-we commonly refer to as _plugins_. Kong provides a set of 
-[standard Lua plugins](/hub/?support=kong-inc) that get bundled with {{site.base_gateway}} and 
+we commonly refer to as _plugins_. Kong provides a set of
+[standard Lua plugins](/hub/?support=kong-inc) that get bundled with {{site.base_gateway}} and
 {{site.konnect_short_name}}. The set of plugins you
 have access to depends on your [license tier](/hub/plugins/license-tiers/).
 
@@ -25,7 +25,7 @@ upstream API, as well as on any incoming responses.
 are fully compatible with each mode. See [Plugin Compatibility](/hub/plugins/compatibility#plugin-compatibility)
 for a comparison.
 
-## Precedence 
+## Precedence
 
 A single plugin instance always runs _once_ per request. The
 configuration with which it runs depends on the entities it has been
@@ -36,8 +36,8 @@ a certain way for most requests, but make _authenticated requests_ behave
 slightly differently.
 
 Therefore, there is an order of precedence for running a plugin when it has
-been applied to different entities with different configurations. The amount of entities configured to a specific plugin directly correlate to its priority. The more entities configured to a plugin the higher its order of precedence is. 
-The complete order of precedence for plugins configured to multiple entities is: 
+been applied to different entities with different configurations. The amount of entities configured to a specific plugin directly correlate to its priority. The more entities configured to a plugin the higher its order of precedence is.
+The complete order of precedence for plugins configured to multiple entities is:
 
 1. Plugins configured on a combination of a consumer, a route, and a service.
     (Consumer means the request must be authenticated).
@@ -52,8 +52,12 @@ The complete order of precedence for plugins configured to multiple entities is:
 8. Plugins configured on a consumer.
 9. Plugins configured on a consumer group.
 10. Plugins configured on a route.
-11. Plugins configured on a service. 
-12. Plugins configured globally. 
+11. Plugins configured on a service.
+12. Plugins configured globally.
+
+### Precedence for consumer groups
+
+When a consumer is a member of two consumer groups, each with a scoped plugin, {{site.base_gateway}} ensures deterministic behavior by executing only one of these plugins. However, the specific rules that govern this behavior are not defined and are subject to change in future releases.
 
 ## Terminology
 **Plugin**
@@ -77,13 +81,13 @@ individual plugin's page for its tested compatibility.
 **Plugin supported by 3rd party**
 : A plugin in the category "Contact 3rd party for support".
 This is a custom plugin developed, tested, and maintained by an external developer,
-not by Kong. 
+not by Kong.
 Unless the plugin is explicitly labelled as a technical partner,
 Kong does not test these plugins, or update their version
 compatibility.
 
 **Technical partner plugin**
-: A 3rd party custom plugin that has been carefully validated by Kong and 
+: A 3rd party custom plugin that has been carefully validated by Kong and
 has met certain standards.
 These plugins are still developed, tested, and maintained by an external developer,
 not by Kong. The plugin owner also maintains the plugin's version compatibility with

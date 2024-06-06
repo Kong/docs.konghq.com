@@ -55,3 +55,4 @@ reaching its hard-coded `cache_ttl` threshold.
 * [Basic configuration example](/hub/kong-inc/graphql-proxy-cache-advanced/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/graphql-proxy-cache-advanced/how-to/)
 * [GraphQL Cache API reference](/hub/kong-inc/graphql-proxy-cache-advanced/api/)
+* [Learn about API management with {{site.base_gateway}} and GraphQL](https://konghq.com/solutions/api-management-graphql)

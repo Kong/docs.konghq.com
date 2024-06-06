@@ -8,8 +8,11 @@ free: true
 enterprise: true
 paid: true
 konnect: true
-network_config_opts: All
-notes: --
+cloud_gateways: false
+network_config_opts: traditional, hybrid, konnect hybrid, and db-less
+notes: | 
+   <b>Dedicated Cloud Gateways</b>: This plugin is not supported in Dedicated Cloud Gateways because it depends on the 
+   Admin API and the Status API, which aren't accessible in that setup.
 categories:
   - analytics-monitoring
 publisher: Kong Inc.

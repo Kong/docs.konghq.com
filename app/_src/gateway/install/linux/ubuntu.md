@@ -67,15 +67,17 @@ You should receive a `200` status code.
 Once {{ site.base_gateway }} is running, you may want to do the following:
 
 * Optional: [Add your Enterprise license](/gateway/{{ page.release }}/licenses/deploy/)
-{%- if_version gte:3.4.x -%}
+{% if_version gte:3.4.x -%}
 * Enable Kong Manager:
   * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
   * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
-{%- endif_version -%}{%- if_version lte:3.3.x -%}
+{% endif_version -%}
+{% if_version lte:3.3.x -%}
 * [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
-{%- endif_version -%}{%- if_version lte:3.4.x -%}
+{% endif_version -%}
+{% if_version lte:3.4.x -%}
 * [Enable Dev Portal](/gateway/{{ page.release }}/kong-enterprise/dev-portal/enable/)
-{%- endif_version -%}
+{% endif_version -%}
 * [Create services and routes](/gateway/{{ page.release }}/get-started/services-and-routes/)
 
 ## Advanced installation
@@ -83,13 +85,6 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 ### Package install
 
 You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
-
-{% if_version gte:3.4.x %}
-We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the commands below. To check your release name, run `lsb_release -sc`.
-{% endif_version %}
-{% if_version lte:3.3.x %}
-We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the commands below. To check your release name, run `lsb_release -sc`.
-{% endif_version %}
 
 The following steps install the package **only**, without a data store. 
 You will need to set one up after installation.
@@ -99,7 +94,16 @@ You will need to set one up after installation.
 
 Install {{site.base_gateway}} on Ubuntu from the command line.
 
-1. Download the Kong package:
+1. Download the Kong package.
+
+    {% if_version gte:3.4.x %}
+    We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. The following command assumes you're running `jammy`. 
+    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% endif_version %}
+    {% if_version lte:3.3.x %}
+    We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. The following command assumes you're running `jammy`. 
+    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% endif_version %}
 
 {% assign ubuntu_flavor = "jammy" %}
 {% if page.release == "3.0.x" %}
@@ -152,7 +156,17 @@ Install the APT repository from the command line.
 {% assign gpg_key = site.data.installation.gateway.legacy.gpg_key  %}
 {% endunless %}
 
-1. Setup the Kong APT repository:
+1. Set up the Kong APT repository.
+
+    {% if_version gte:3.4.x %}
+    We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. The following command assumes you're running `jammy`. 
+    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% endif_version %}
+    {% if_version lte:3.3.x %}
+    We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. The following command assumes you're running `jammy`. 
+    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% endif_version %}
+    
     ```bash
     curl -1sLf "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/gpg.{{ gpg_key }}.key" |  gpg --dearmor | sudo tee /usr/share/keyrings/kong-gateway-{{ page.major_minor_version }}-archive-keyring.gpg > /dev/null
     curl -1sLf "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/config.deb.txt?distro=ubuntu&codename={{ ubuntu_flavor }}" | sudo tee /etc/apt/sources.list.d/kong-gateway-{{ page.major_minor_version }}.list > /dev/null
@@ -209,12 +223,12 @@ and update the `kong.conf.default` configuration property file with a reference 
 
 Depending on your desired environment, also see the following guides:
 * Optional: [Add your Enterprise license](/gateway/{{ page.release }}/licenses/deploy/)
-{%- if_version gte:3.4.x -%}
+{% if_version gte:3.4.x -%}
 * Enable Kong Manager:
   * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
   * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
-{%- endif_version -%}
-{%- if_version lte:3.3.x -%}
+{% endif_version -%}
+{% if_version lte:3.3.x -%}
 * [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
 {% endif_version %}
 
