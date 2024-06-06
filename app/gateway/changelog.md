@@ -5,7 +5,9 @@ no_version: true
 
 <!-- vale off -->
 
-Changelog for supported Kong Gateway versions. 
+Changelog for supported Kong Gateway Enterprise versions.
+
+For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong/kong/tree/master/changelog).
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
