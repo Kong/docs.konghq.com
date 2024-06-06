@@ -61,9 +61,9 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
  
        | Name       | Name format  | Value          |
        |------------|--------------|----------------|
-       | firstName  | Unspecified  | user.firstName |
-       | lastName   | Unspecified  | user.lastName  |
-       | email      | Unspecified  | user.email     |
+       | `firstName`  | Unspecified  | user.firstName |
+       | `lastName`   | Unspecified  | user.lastName  |
+       | `email`      | Unspecified  | user.email     |
     1. In the **Group Attributes** optionally add the below attribute:
 
        | Name    | Name format  | Filter          | Filter Value |
