@@ -152,7 +152,7 @@ The following status codes are returned in HTTP responses:
 
 | HTTP Code | HTTP Description | Notes | Request method |
 | --------- | ---------------- | ----- | ------------- |
-| 200 | OK | The request succeeded. The result of a `200` request depends on the request type: `GET`: The resource was fetched and sent in the message body. `PUT` or `POST`:  The resource that describes the result of the action is sent in the message body. `PATCH`: ? | `GET`, `POST`, `PATCH`, `PUT` |
+| 200 | OK | The request succeeded. The result of a `200` request depends on the request type: <br>- `GET`: The resource was fetched and sent in the message body. <br>- `PUT` or `POST`:  The resource that describes the result of the action is sent in the message body. <br>- `PATCH`: ? | `GET`, `POST`, `PATCH`, `PUT` |
 | 201 | Created | The request succeeded and a new resource was created. | `POST` |
 | 204 | No Content | There is no content in the request to send. | `DELETE` |
 | 400 | Bad Request | The server can't or won't send the request because of an error by the client. | `POST`, `PATCH`, `PUT` |
