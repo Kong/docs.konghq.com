@@ -25,6 +25,8 @@ const FRONTMATTER_KEYS_TO_EXCLUDE =  [
   'no_version'
 ];
 
+const MARKDOWN_PLACEHOLDERS = "\\{\\{.+?\\}\\}|\\{%.+?%\\}";
+
 async function buildBatchFileParamsForConfig(fileUri, locale) {
   // TODO: when we download this, we need to change the name of the file to ja.yml
   const batchFileParams = new UploadBatchFileParameters()
@@ -50,14 +52,13 @@ async function buildBatchFileParamsForDocsNav(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForApp(fileUri, locale) {
-  // TODO: do we need to set the placeholder?
   const batchFileParams = new UploadBatchFileParameters()
     .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.MARKDOWN)
     .setLocalesToApprove([locale])
     .setDirective("whitespace_trim", "off")
-    .setDirective("primary_placeholder_format_custom", "(\{\{.+?\}}|(\{\%.+?\%}))")
+    .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS)
     .setDirective("yfm_block_enabled", "on")
     .setDirective("yaml_front_matter", "on")
     .setDirective("no_translate_keys", FRONTMATTER_KEYS_TO_EXCLUDE.join(','));
@@ -66,14 +67,13 @@ async function buildBatchFileParamsForApp(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForSrc(fileUri, locale) {
-  // TODO: do we need to set the placeholder?
   const batchFileParams = new UploadBatchFileParameters()
     .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.MARKDOWN)
     .setLocalesToApprove([locale])
     .setDirective("whitespace_trim", "off")
-    .setDirective("primary_placeholder_format_custom", "(\{\{.+?\}}|(\{\%.+?\%}))")
+    .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS)
     .setDirective("yfm_block_enabled", "on")
     .setDirective("yaml_front_matter", "on")
     .setDirective("no_translate_keys", FRONTMATTER_KEYS_TO_EXCLUDE.join(','));
@@ -83,14 +83,13 @@ async function buildBatchFileParamsForSrc(fileUri, locale) {
 
 async function buildBatchFileParamsForInclude(fileUri, locale) {
   // Includes don't have frontmatters
-  // TODO: do we need to set the placeholder?
   const batchFileParams = new UploadBatchFileParameters()
     .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.MARKDOWN)
     .setLocalesToApprove([locale])
     .setDirective("whitespace_trim", "off")
-    .setDirective("primary_placeholder_format_custom", "(\{\{.+?\}}|(\{\%.+?\%}))");
+    .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS);
 
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
@@ -155,7 +154,7 @@ async function buildBatchFileParamsForPluginsOverview(fileUri, locale) {
     .setFileType(FileType.MARKDOWN)
     .setLocalesToApprove([locale])
     .setDirective("whitespace_trim", "off")
-    .setDirective("primary_placeholder_format_custom", "(\{\{.+?\}}|(\{\%.+?\%}))");
+    .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS);
 
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
