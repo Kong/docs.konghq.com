@@ -16,11 +16,15 @@ The same definitions of `feature gates` and `feature stages` from upstream Kuber
 
 ## Available feature gates
 
-| Feature      | Default | Stage | Since  | Until |
-|--------------|---------|-------|--------|-------|
-| GatewayAlpha | `false` | Alpha | 2.6.0  | TBD   |
-| FillIDs      | `true`  | Beta  | 3.0.0  | TBD   |
-| RewriteURIs  | `false` | Alpha | 2.12.0 | TBD   |
+| Feature                    | Default | Stage | Since  | Until |
+|----------------------------|---------|-------|--------|-------|
+| GatewayAlpha               | `false` | Alpha | 2.6.0  | TBD   |
+| FillIDs                    | `true`  | Beta  | 3.0.0  | TBD   |
+| RewriteURIs                | `false` | Alpha | 2.12.0 | TBD   |
+| KongServiceFacade          | `false` | Alpha | 3.1.0  | TBD   |
+| SanitizeKonnectConfigDumps | `true`  | Beta  | 3.1.0  | TBD   |
+| FallbackConfiguration      | `false` | Alpha | 3.2.0  | TBD   |
+| KongCustomEntity           | `false` | Alpha | 3.2.0  | TBD   |
 
 ## Using feature gates
 
