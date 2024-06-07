@@ -59,7 +59,6 @@ async function buildBatchFileParamsForApp(fileUri, locale) {
     .setLocalesToApprove([locale])
     .setDirective("whitespace_trim", "off")
     .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS)
-    .setDirective("yfm_block_enabled", "on")
     .setDirective("yaml_front_matter", "on")
     .setDirective("no_translate_keys", FRONTMATTER_KEYS_TO_EXCLUDE.join(','));
 
@@ -74,7 +73,6 @@ async function buildBatchFileParamsForSrc(fileUri, locale) {
     .setLocalesToApprove([locale])
     .setDirective("whitespace_trim", "off")
     .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS)
-    .setDirective("yfm_block_enabled", "on")
     .setDirective("yaml_front_matter", "on")
     .setDirective("no_translate_keys", FRONTMATTER_KEYS_TO_EXCLUDE.join(','));
 
@@ -154,6 +152,7 @@ async function buildBatchFileParamsForPluginsOverview(fileUri, locale) {
     .setFileType(FileType.MARKDOWN)
     .setLocalesToApprove([locale])
     .setDirective("whitespace_trim", "off")
+    .setDirective("yaml_front_matter", "on")
     .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS);
 
   return { fileUri: fileUri, batchFileParams: batchFileParams };
