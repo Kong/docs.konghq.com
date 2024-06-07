@@ -78,7 +78,7 @@ When `upstream_health_metrics` is set to true:
 
 {% endif_version %}
 
-{% if_version gte:3.7.x %}
+{% if_version gte:3.8.x %}
 When `ai_llm_metrics` is set to true:
 - **AI Requests**: AI request sent to LLM providers.
   These are available per provider, model, cache, database name (if cached), and workspace.
