@@ -687,8 +687,8 @@ Some suffixes can be specified for each pair:
   server.
 - `proxy_protocol` will enable usage of the PROXY protocol for a given
   address/port.
-- `deferred` instructs to use a deferred accept on Linux (the TCP_DEFER_ACCEPT
-  socket option).
+- `deferred` instructs to use a deferred accept on Linux (the
+  `TCP_DEFER_ACCEPT` socket option).
 - `bind` instructs to make a separate bind() call for a given address:port
   pair.
 - `reuseport` instructs to create an individual listening socket for each
@@ -707,11 +707,11 @@ Some suffixes can be specified for each pair:
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the “TCP
   keepalive” behavior for the listening socket. If this parameter is omitted,
   the operating system’s settings will be in effect for the socket. If it is
-  set to the value “on”, the SO_KEEPALIVE option is turned on for the
-  socket. If it is set to the value “off”, the SO_KEEPALIVE option is turned
-  off for the socket. Some operating systems support setting of TCP keepalive
-  parameters on a per-socket basis using the TCP_KEEPIDLE, TCP_KEEPINTVL, and
-  TCP_KEEPCNT socket options.
+  set to the value “on”, the `SO_KEEPALIVE` option is turned on for the
+  socket. If it is set to the value “off”, the `SO_KEEPALIVE` option is
+  turned off for the socket. Some operating systems support setting of TCP
+  keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,`
+  TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
 
 This value can be set to `off`, thus disabling the HTTP/HTTPS proxy port for
 this node.
@@ -791,11 +791,11 @@ Some suffixes can be specified for each pair:
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the “TCP
   keepalive” behavior for the listening socket. If this parameter is omitted,
   the operating system’s settings will be in effect for the socket. If it is
-  set to the value “on”, the SO_KEEPALIVE option is turned on for the
-  socket. If it is set to the value “off”, the SO_KEEPALIVE option is turned
-  off for the socket. Some operating systems support setting of TCP keepalive
-  parameters on a per-socket basis using the TCP_KEEPIDLE, TCP_KEEPINTVL, and
-  TCP_KEEPCNT socket options.
+  set to the value “on”, the `SO_KEEPALIVE` option is turned on for the
+  socket. If it is set to the value “off”, the `SO_KEEPALIVE` option is
+  turned off for the socket. Some operating systems support setting of TCP
+  keepalive parameters on a per-socket basis using the` TCP_KEEPIDLE`,
+  `TCP_KEEPINTVL`, and `TCP_KEEPCNT`socket options.
 
 Examples:
 
@@ -846,8 +846,8 @@ Some suffixes can be specified for each pair:
   server.
 - `proxy_protocol` will enable usage of the PROXY protocol for a given
   address/port.
-- `deferred` instructs to use a deferred accept on Linux (the TCP_DEFER_ACCEPT
-  socket option).
+- `deferred` instructs to use a deferred accept on Linux (the
+  `TCP_DEFER_ACCEPT` socket option).
 - `bind` instructs to make a separate bind() call for a given address:port
   pair.
 - `reuseport` instructs to create an individual listening socket for each
@@ -866,11 +866,11 @@ Some suffixes can be specified for each pair:
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the “TCP
   keepalive” behavior for the listening socket. If this parameter is omitted,
   the operating system’s settings will be in effect for the socket. If it is
-  set to the value “on”, the SO_KEEPALIVE option is turned on for the
-  socket. If it is set to the value “off”, the SO_KEEPALIVE option is turned
-  off for the socket. Some operating systems support setting of TCP keepalive
-  parameters on a per-socket basis using the TCP_KEEPIDLE, TCP_KEEPINTVL, and
-  TCP_KEEPCNT socket options.
+  set to the value “on”, the `SO_KEEPALIVE` option is turned on for the
+  socket. If it is set to the value “off”, the `SO_KEEPALIVE` option is
+  turned off for the socket. Some operating systems support setting of TCP
+  keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
+  `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
 
 This value can be set to `off`, thus disabling the Admin interface for this
 node, enabling a 'data-plane' mode (without configuration capabilities) pulling
@@ -2490,12 +2490,12 @@ by each distro, according to an arbitrary heuristic. In the current
 implementation, the following pathnames will be tested in order, and the first
 one found will be used:
 
-- /etc/ssl/certs/ca-certificates.crt (Debian/Ubuntu/Gentoo)
-- /etc/pki/tls/certs/ca-bundle.crt (Fedora/RHEL 6)
-- /etc/ssl/ca-bundle.pem (OpenSUSE)
-- /etc/pki/tls/cacert.pem (OpenELEC)
-- /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem (CentOS/RHEL 7)
-- /etc/ssl/cert.pem (OpenBSD, Alpine)
+- `/etc/ssl/certs/ca-certificates.crt` (Debian/Ubuntu/Gentoo)
+- `/etc/pki/tls/certs/ca-bundle.crt` (Fedora/RHEL 6)
+- `/etc/ssl/ca-bundle.pem` (OpenSUSE)
+- `/etc/pki/tls/cacert.pem` (OpenELEC)
+- `/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem` (CentOS/RHEL 7)
+- `/etc/ssl/cert.pem` (OpenBSD, Alpine)
 
 `system` can be used by itself or in conjunction with other CA file paths.
 
@@ -2732,8 +2732,7 @@ base64 encoded certificate key content
 ### admin_gui_flags
 {:.badge .free}
 
-Alters the layout Admin GUI (JSON) The only supported value is `{
-"IMMUNITY_ENABLED": true }` to enable Kong Immunity in the Admin GUI.
+Alters the layout Admin GUI (JSON) to enable Kong Immunity in the Admin GUI.
 
 **Default:** `{}`
 
