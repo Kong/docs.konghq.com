@@ -82,7 +82,7 @@ This metric provides these labels:
 
 This metric provides the `success` label:
 
-* `success` logs the status of translation. If `success` is `false`, an unrecoverable error occurred. If `success` is `true`, the translation succeeded with no errors.
+* `success` logs the status of the translation. If `success` is `false`, an unrecoverable error occurs. If `success` is `true`, the translation succeeded without errors.
 
 ### ingress_controller_fallback_translation_broken_resource_count
 
@@ -96,7 +96,7 @@ This metric provides these labels:
 
 * `dataplane` describes the data plane that was the target of the configuration push.
 * `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`.
-* `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred. If `success` is `true`, the push succeeded with no errors.
+* `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurs. If `success` is `true`, the push succeeded without errors.
 * `failure_reason` is populated if `success="false"`. It describes the reason for the failure:
   * `conflict`: A configuration conflict that must be manually fixed.
   * `network`: A network related issue, such as {{site.base_gateway}} being offline.
@@ -118,11 +118,11 @@ This metric provides these labels:
 
 * `dataplane` describes the data plane that was the target of the configuration push.
 * `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`.
-* `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred. If `success` is `true`, the push succeeded with no errors.
+* `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurs. If `success` is `true`, the push succeeded without errors.
 
 ### ingress_controller_fallback_configuration_push_broken_resource_count
 
-`ingress_controller_fallback_configuration_push_broken_resource_count` (type: `gauge`) provides the number of resources not accepted by Kong when attempting to push fallback configuration.
+`ingress_controller_fallback_configuration_push_broken_resource_count` (type: `gauge`) provides the number of resources not accepted by Kong when attempting to push the fallback configuration.
 
 This metric provides these labels:
 
@@ -134,7 +134,7 @@ This metric provides these labels:
 
 This metric provides the `success` label:
 
-* `success` logs the status of cache generation. If `success` is `false`, an unrecoverable error occurred. If `success` is `true`, the cache generation succeeded with no errors.
+* `success` logs the status of cache generation. If `success` is `false`, an unrecoverable error occurs. If `success` is `true`, the cache generation succeeded without errors.
 
 ### ingress_controller_processed_config_snapshot_cache_hit
 
