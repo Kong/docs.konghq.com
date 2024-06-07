@@ -23,7 +23,7 @@
   "devDependencies": {
     "@rollup/plugin-inject": "^5.0.3",
     "@vitejs/plugin-vue": "^5.0.0",
-    "broken-link-checker": "0.7.8",
+    "broken-link-checker": "^0.6.7",
     "browser-sync": "3.0.2",
     "cheerio": "1.0.0-rc.12",
     "del": "6.1.1",
@@ -53,7 +53,7 @@
     ]
   },
   "dependencies": {
-    "@kong-ui-public/spec-renderer": "2.1.21",
+    "@kong-ui-public/spec-renderer": "^0.2.2",
     "@kong/kongponents": "9.0.0-alpha.146",
     "@kong/sdk-portal-js": "^2.0.0",
     "@segment/analytics-next": "1.70.0",

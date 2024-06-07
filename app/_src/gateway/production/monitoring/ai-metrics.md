@@ -81,8 +81,8 @@ ai_tokens_total{ai_provider="provider1",ai_model="model1",cache="true",db_name="
 ```
 
 {:.note}
-> **Note:** If you don't use any cache plugins, then cache value will be `not_cached`
-by default and and db_name will be empty. 
+> **Note:** If you don't use any cache plugins, then `cache` value will be `not_cached`
+by default and `db_name` will be empty. 
 
 ## Accessing the metrics
 

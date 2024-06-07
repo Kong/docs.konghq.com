@@ -172,6 +172,7 @@ and you can specify an array set of pre-configured blocklist IDs from your Azure
 
 {% endif_version %}
 
+{% if_version gte:3.7.x %}
 ### AI observability
 
 Kong's AI Gateway enables comprehensive observability of your AI services through logging and metrics. These features provide insights into AI usage, performance, and costs, helping you optimize and govern AI operations effectively.
@@ -182,6 +183,7 @@ Kong's AI Gateway enables comprehensive observability of your AI services throug
 Kong's AI Gateway provides standardized logging formats for AI plugins, allowing you to track and analyze AI usage consistently across various providers. 
 
 More info on AI logging can be found in [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
+{% endif_version %}
 
 {% if_version gte:3.8.x %}
 #### Metrics and Prometheus
