@@ -474,6 +474,7 @@ runtimes
 SAML
 sandboxed
 sandboxing
+sanitization
 SBOM
 SBOMs
 SCCs
