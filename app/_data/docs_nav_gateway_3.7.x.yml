@@ -248,6 +248,8 @@ items:
             url: /production/debug-request
           - text: AI Gateway Analytics
             url: /production/logging/ai-analytics/
+          - text: AI Gateway Monitoring
+            url: /production/monitoring/ai-metrics/
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
@@ -384,6 +386,9 @@ items:
             absolute_url: true
       - text: AI Gateway Analytics
         url: /ai-gateway/ai-analytics/
+        generate: false
+      - text: AI Gateway Metrics
+        url: /ai-gateway/ai-metrics/
         generate: false
       - text: AI Gateway plugins
         url: /hub/?category=ai

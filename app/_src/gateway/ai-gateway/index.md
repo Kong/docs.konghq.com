@@ -185,15 +185,14 @@ Kong's AI Gateway provides standardized logging formats for AI plugins, allowing
 More info on AI logging can be found in [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
 {% endif_version %}
 
-{% if_version gte:3.8.x %}
+{% if_version gte:3.7.x %}
 #### Metrics and Prometheus
 {:.badge .enterprise}
 
 Kong's AI Gateway allows you to expose and visualize AI metrics through Prometheus and Grafana. These metrics include
-the number of AI requests, the cost associated with AI services, and the token usage per provider and model.
-
-The metrics can be scraped by a Prometheus server and visualized using a Grafana dashboard. This setup provides
-a real-time view of AI operations, helping you monitor performance and costs effectively.
+the number of AI requests, the cost associated with AI services, and the token usage per provider and model. The metrics
+can be scraped by a Prometheus server and visualized using a Grafana dashboard. This setup provides a real-time view of
+AI operations, helping you monitor performance and costs effectively.
 
 More info on AI Metrics can be found in [AI Metrics](/gateway/{{ page.release }}/production/monitoring/ai-metrics).
 
