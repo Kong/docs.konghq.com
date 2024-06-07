@@ -54,6 +54,75 @@ Below table summarizes the behavior of the Fallback Configuration feature based 
 
 Below diagram illustrates how the Fallback Configuration feature works in detail:
 
+<!--vale off-->
+{% mermaid %}
+flowchart TD
+classDef sub opacity:0
+classDef note stroke:#e1bb86,fill:#fdf3d8
+classDef externalCall fill:#9e8ebf,stroke:none,color:#fff
+classDef decision fill:#d0e1fb
+classDef startEnd fill:#545454,stroke:none,color:#fff
+
+    A([Update loop triggered]) --> B[Generate Kubernetes objects' store  
+    snapshot to be passed to the Translator]
+    B --> C[Translator: generate Kong configuration 
+    based on the generated snapshot]
+    C --> D(Configure Kong Gateways using generated 
+    declarative configuration)
+    D --> E{Configuration 
+    rejected?}
+    E --> |No| G[Store the Kubernetes objects' snapshot 
+    to be used as the last valid state]
+    E --> |Yes| F[Build a dependency graph of Kubernetes 
+    objects - using the snapshot]
+    G --> H[Store the declarative configuration to be 
+    used as the last valid configuration]
+    H --> Z([End of the loop])
+    F --> I[Exclude an object along with all its 
+    dependants from the fallback Kubernetes objects snapshot]
+    I --> J[Add a previous valid version of the object along 
+    with its dependants' previous versions to the fallback snapshot]
+    J --> K[Translator: generate Kong configuration 
+    based on the fallback snapshot]
+    K --> L(Configure Kong Gateways using generated 
+    fallback declarative configuration)
+    L --> M{Fallback 
+    configuration 
+    rejected?}
+    M --> |Yes| N{Was the last 
+    valid configuration 
+    preserved?}
+    N --> |Yes| O(Configure Kong Gateways using the 
+    last valid declarative configuration)
+    O --> Z
+    N --> |No| Z
+    M --> |No| P[Store the fallback Kubernetes objects' snapshot
+     to be used as the last valid state]
+    P --> R[Store the fallback declarative configuration 
+    to be used as the last valid configuration]
+
+    subgraph subI [" "]
+        I
+        noteI[For every invalid object 
+        reported by the Gateway]
+    end
+
+    subgraph subJ [" "]
+        J
+        noteJ[Given there was a last valid 
+        Kubernetes objects' store snapshot 
+        preserved and the object is present]
+    end
+
+    class subI,subJ sub
+    class noteI,noteJ note
+    class D,L,O externalCall
+    class A,Z startEnd
+    class E,M,N decision
+
+{% endmermaid %}
+<!--vale on-->
+
 ![fallback-config](/assets/images/products/kubernetes-ingress-controller/fallback-config.png "Fallback Configuration diagram")
 
 ## Example Scenario
