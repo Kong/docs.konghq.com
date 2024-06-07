@@ -23,8 +23,10 @@ The same definitions of `feature gates` and `feature stages` from upstream Kuber
 | RewriteURIs                | `false` | Alpha | 2.12.0 | TBD   |
 | KongServiceFacade          | `false` | Alpha | 3.1.0  | TBD   |
 | SanitizeKonnectConfigDumps | `true`  | Beta  | 3.1.0  | TBD   |
+{% if_version gte:3.2.x %}
 | FallbackConfiguration      | `false` | Alpha | 3.2.0  | TBD   |
 | KongCustomEntity           | `false` | Alpha | 3.2.0  | TBD   |
+{% endif_version %}
 
 ## Using feature gates
 
