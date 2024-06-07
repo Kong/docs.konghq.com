@@ -25,7 +25,7 @@ const FRONTMATTER_KEYS_TO_EXCLUDE =  [
   'no_version'
 ];
 
-const MARKDOWN_PLACEHOLDERS = "\\{\\{.+?\\}\\}|\\{%.+?%\\}";
+const MARKDOWN_PLACEHOLDERS = "\\{\\{.+?\\}\\}|\\{%.+?%\\}|\\{:.+?\\}";
 
 async function buildBatchFileParamsForConfig(fileUri, locale) {
   // TODO: when we download this, we need to change the name of the file to ja.yml
