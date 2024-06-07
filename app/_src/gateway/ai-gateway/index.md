@@ -185,7 +185,7 @@ Kong's AI Gateway provides standardized logging formats for AI plugins, allowing
 More info on AI logging can be found in [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
 {% endif_version %}
 
-{% if_version gte:3.7.x %}
+{% if_version gte:3.8.x %}
 #### Metrics and Prometheus
 {:.badge .enterprise}
 

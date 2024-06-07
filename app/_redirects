@@ -17,8 +17,6 @@
 /gateway/latest/kong-production/db-encryption/ /gateway/latest/kong-enterprise/db-encryption/
 /gateway/:version/ai-gateway/ai-analytics/ /gateway/:version/production/logging/ai-analytics/
 /gateway/latest/ai-gateway/ai-analytics/ /gateway/:version/production/latest/ai-analytics/
-/gateway/:version/ai-gateway/ai-metrics/ /gateway/:version/production/monitoring/ai-metrics/
-/gateway/latest/ai-gateway/ai-metrics/ /gateway/:version/production/latest/ai-metrics/
 ######################################################################
 
 

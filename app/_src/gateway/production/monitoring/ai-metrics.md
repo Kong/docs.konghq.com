@@ -1,7 +1,7 @@
 ---
 nav_title: Expose and Graphed Kong AI Metrics
 title: Expose and Graphed Kong AI Metrics
-minimum_version: 3.7.x
+minimum_version: 3.8.x
 ---
 
 {:.note}
