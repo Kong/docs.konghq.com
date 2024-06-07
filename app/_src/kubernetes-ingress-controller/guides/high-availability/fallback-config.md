@@ -12,7 +12,7 @@ implementation details and provide an example scenario to demonstrate how it wor
 
 ## Overview 
 
-{{site.kic_product_name}} in version 3.2.0 introduced the Fallback Configuration
+{{site.kic_product_name}} 3.2.0 introduced the Fallback Configuration
 feature. It is designed to isolate issues related to individual parts
 of the configuration, allowing updates to the rest of it to proceed with no
 interruption. If you're using {{site.kic_product_name}} in a multi-team environment, the
@@ -22,7 +22,8 @@ configuration is broken.
 {:.note}
 > **Note:** The Fallback Configuration is an opt-in feature. You must
 > enable it by setting `FallbackConfiguration=true` in the controller's feature
-> gates configuration.
+> gates configuration. See [Feature Gates](/kubernetes-ingress-controller/{{page.release}}/reference/feature-gates)
+> to learn how to do that.
 
 ## How it works
 
@@ -39,17 +40,17 @@ Fallback Configuration is triggered when an issue is detected in the 3rd stage a
 - Automatically builds a fallback configuration that Kong will accept without requiring user intervention by
   either:
   - Excluding the broken objects along with its dependants.
-  - Backfilling the broken object along with its dependants using the last valid Kubernetes objects' in-memory cache (if `--use-last-valid-config-for-fallback` flag is set).
+  - Backfilling the broken object along with its dependants using the last valid Kubernetes objects' in-memory cache (if `CONTROLLER_USE_LAST_VALID_CONFIG_FOR_FALLBACK` environment variable is set to `true`).
 - Enables users to inspect and identify what objects were excluded from or backfilled in the configuration using
   diagnostic endpoints.
 
 Below table summarizes the behavior of the Fallback Configuration feature based on the configuration:
 
-| `FallbackConfiguration` feature gate value | `--use-last-valid-config-for-fallback` flag value | Behavior                                                                                                                                             |
-|--------------------------------------------|---------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `false`                                    | `false`/`true` (has no effect)                    | The last valid configuration is used as a whole to recover (if stored).                                                                              |
-| `true`                                     | `false`                                           | The Fallback Configuration is triggered - broken objects and their dependants are excluded.                                                          |
-| `true`                                     | `true`                                            | The Fallback Configuration is triggered - broken objects and their dependants are excluded and backfilled with their last valid version (if stored). |
+| `FallbackConfiguration` feature gate value | `CONTROLLER_USE_LAST_VALID_CONFIG_FOR_FALLBACK` value | Behavior                                                                                                                                             |
+|--------------------------------------------|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `false`                                    | `false`/`true` (has no effect)                        | The last valid configuration is used as a whole to recover (if stored).                                                                              |
+| `true`                                     | `false`                                               | The Fallback Configuration is triggered - broken objects and their dependants are excluded.                                                          |
+| `true`                                     | `true`                                                | The Fallback Configuration is triggered - broken objects and their dependants are excluded and backfilled with their last valid version (if stored). |
 
 Below diagram illustrates how the Fallback Configuration feature works in detail:
 
@@ -336,8 +337,8 @@ updated.
 ### Backfilling broken objects
 
 Another mode of operation that the Fallback Configuration feature supports is backfilling broken objects with their last
-valid version. To demonstrate this, we'll use the same setup as in the default mode, but this time we'll enable the
-`--use-last-valid-config-for-fallback` flag.
+valid version. To demonstrate this, we'll use the same setup as in the default mode, but this time we'll set the
+`CONTROLLER_USE_LAST_VALID_CONFIG_FOR_FALLBACK` environment variable to `true`.
 
 ```bash
 helm upgrade --install kong kong/ingress -n kong \
