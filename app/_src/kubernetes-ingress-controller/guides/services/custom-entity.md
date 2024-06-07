@@ -6,29 +6,40 @@ purpose: |
 alpha: true
 ---
 
-This document introduces how to configure a custom Kong entity by the example
-of `degraphql_routes` entity and `degraphql` plugin. 
-Not all Kong entities are processed in dedicated procedure of KIC. You can
-configure Kong entities whose types are not supported in KIC by `KongCustomEntity`
-resource: [KongCustomEntity].
+{{ site.kic_product_name }} provides an interface to configure {{ site.base_gateway }} entities using CRDs.
+
+Some Kong plugins define custom entities that require configuration. These entities can be configured using the `KongCustomEntity` resource.
 
 {:.note}
 > **Note:** The KongCustomEntity controller is an opt-in feature. You must enable it by
 > setting feature gate `KongCustomEntity` to `true` to enable the controller.
 
-{:.note}
-> **Note:** The following example uses `degraphql` plugin and `degraphql_routes` entity
-> which are only available in {{site.ee_product_name}}. So you need to try the example
-> with {{site.ee_product_name}} installed.
+The `KongCustomEntity` resource contains a `type` field which indicates the type of Kong entity to create, and a `fields` property which can contain any values that need to be set on an entity.
 
-## Create a GraphQL Service
+In the following example, a `degraphql_routes` entity is created with two properties, `uri` and `query`.
 
-You can use [hasura] to create an example GraphQL service with the following steps:
+```yaml
+spec:
+  type: degraphql_routes
+  fields:
+    uri: "/contacts"
+    query: "query{ contacts { name } }"
+```
 
-### Create the deployment,service and the ingress to configure the GraphQL service 
+This corresponds to the `uri` and `query` parameters documented in the [plugin documentation](/hub/kong-inc/degraphql/#available-endpoints)
+
+# Tutorial: DeGraphQL custom entities
+
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false enterprise=true %}
+
+This example configures custom entities for the `degraphql` plugin, which allows you to access a GraphQL endpoint as a REST API.
+
+### Create a GraphQL Service
+
+The `degraphql` plugin requires an upstream GraphQL API. For this tutorial, we'll use [Hasura] to create an example GraphQL service:
 
 ```bash
-   echo 'apiVersion: apps/v1
+echo 'apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -98,7 +109,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /hasura
         pathType: Prefix
         backend:
           service:
@@ -107,56 +118,22 @@ spec:
               number: 80' | kubectl apply -f -
 ```
 
-### Configure data provided in GraqhQL service
-
-You can access http://${PROXY_IP}/console to access hasura's console to set up data
-for serving GraphQL service following the [steps][hasura_console_steps].
-
-In this step, you can create a `contacts` table under `public` schema including 3 columns:
-
-`id` Integer auto increment; `name` Text; `phone` Text.
-
-Then insert a row: (name = "Alice", phone = "0123456789"). 
-
-Or you can insert data by directly calling the hasura's API:
+Once the Hasura Pod is running, create an API to return contact details using the Hasura API:
 
 ```bash
-  curl -XPOST -H"Content-Type:application/json" -H"X-Hasura-Role:admin" http://${PROXY_IP}/v2/query -d'{"type": "run_sql","args": {"sql": "CREATE TABLE contacts(id serial NOT NULL, name text NOT NULL, phone text NOT NULL, PRIMARY KEY(id));"}}'
-  curl -XPOST -H"Content-Type:application/json" -H"X-Hasura-Role:admin" http://${PROXY_IP}/v2/query -d'{"type": "run_sql","args": {"sql": "INSERT INTO contacts (name, phone) VALUES ('Alice','0123456789');"}}' 
-  curl -XPOST -H"Content-Type:application/json" -H"X-Hasura-Role:admin" http://${PROXY_IP}/v1/metadata -d'{"type": "pg_track_table","args": {"schema": "public","name": "contacts"}}'
+curl -X POST -H "Content-Type:application/json" -H "X-Hasura-Role:admin" http://${PROXY_IP}/hasura/v2/query -d '{"type": "run_sql","args": {"sql": "CREATE TABLE contacts(id serial NOT NULL, name text NOT NULL, phone text NOT NULL, PRIMARY KEY(id));"}}'
+curl -X POST -H "Content-Type:application/json" -H "X-Hasura-Role:admin" http://${PROXY_IP}/hasura/v2/query -d $'{"type": "run_sql","args": {"sql": "INSERT INTO contacts (name, phone) VALUES (\'Alice\',\'0123456789\');"}}'
+curl -X POST -H "Content-Type:application/json" -H "X-Hasura-Role:admin" http://${PROXY_IP}/hasura/v1/metadata -d '{"type": "pg_track_table","args": {"schema": "public","name": "contacts"}}'
 ```
 
-## Create degraphql Plugin and degraphql_routes Entity
+## Configure the degraphql plugin
 
-Then you can create an ingress and attach a `degraphql` plugin and
-a `degrpahql_routes` entity to the ingress.
+The degraphql entity requires you to configure a mapping between paths and GraphQL queries. In this example, we'll map the `/contact` path to `query{ contacts { name } }`.
 
-```bash
-  echo '# This is the ingress to expose graqhql services. 
-# Because we attached the `degraphql` plugin to the ingress, regular route matching is not available.
-# So we cannot access the console, then we used two ingresses for console and graphQL service.
-# You could use `curl -H"Host:graphql.service.example" http://${PROXY_IP}/...` to test function of degraphql plugin.
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: hasura-ingress-graphql
-  annotations:
-    konghq.com/strip-path: "true"
-    konghq.com/plugins: "degraphql-example"
-spec:
-  ingressClassName: kong
-  rules:
-  - host: "graphql.service.example"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: hasura
-            port:
-              number: 80
----
+The `KongPlugin` CRD creates a new `degraphql` plugin, and the `KongCustomEntity` CRD attaches the `fields` to the `KongPlugin` in `parentRef`.
+
+```yaml
+echo '---
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
@@ -166,43 +143,67 @@ plugin: degraphql
 config:
   graphql_server_path: /v1/graphql
 ---
-# This route serves endpoint `/contacts` which extracts column `name` of all rows in `contacts` table in your `hasura_data` DB.
-# You can use other query in the `query` field for fetching other data.
 apiVersion: configuration.konghq.com/v1alpha1
 kind: KongCustomEntity
 metadata:
   namespace: default
   name: degraphql-route-example
 spec:
-  controllerName: kong
   type: degraphql_routes
+  fields:
+    uri: "/contacts"
+    query: "query{ contacts { name } }"
+  controllerName: kong
   parentRef:
     group: "configuration.konghq.com"
     kind: "KongPlugin"
     name: "degraphql-example"
-  fields:
-    uri: "/contacts"
-    query: "query{ contacts { name } }"
 ' | kubectl apply -f -
+```
+
+Once the `KongPlugin` is configured, you can attach it to an `Ingress`:
+
+
+```bash
+echo '
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-graphql
+  annotations:
+    konghq.com/plugins: "degraphql-example"
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: /contacts
+        pathType: Prefix
+        backend:
+          service:
+            name: hasura
+            port:
+              number: 80' | kubectl apply -f -
 ```
 
 ## Test the Service with the degraphql Plugin
 
-You can try to access the `hasura-ingress-graphql` ingress with `degraphql`
+You can access the `demo-graphql` ingress with the `degraphql`
 plugin attached to verify the `degraphql` plugin and `degraphql_routes` entity works:
 
 ```bash
-  curl -H"Host:graphql.service.example" http://${PROXY_IP}/contacts
+  curl http://${PROXY_IP}/contacts
 ```
 
 The `curl` command should return
+
 ```
 {"data":{"contacts":[{"name":"Alice"}]}}
 ```
+
 which matches the data inserted in the previous steps.
 
 [hasura]: https://hasura.io/
-[hasura_console_steps]: https://hasura.io/docs/latest/getting-started/docker-simple/#step-2-connect-a-database
 <!-- >
 Need to be updated when custom resource reference page is updated.
 [KongCustomEntity]: /reference/custom-resources/
