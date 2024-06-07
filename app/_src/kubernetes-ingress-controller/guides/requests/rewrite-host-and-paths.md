@@ -176,7 +176,7 @@ rules:
 Add the [`konghq.com/rewrite` annotation][2] to your Ingress, allows you set a specific path for the upstream request. Any regex matches defined in your route definition are usable (see the [annotation documentation][2] for more information):
 
 ```bash
-kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
+kubectl patch ingress echo --type merge -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
 ```
  
 The request upstream now contains the value of the rewrite annotation:
