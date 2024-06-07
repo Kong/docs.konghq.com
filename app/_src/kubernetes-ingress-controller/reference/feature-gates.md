@@ -67,3 +67,15 @@ kubectl set env -n kong deployment/kong-controller CONTROLLER_FEATURE_GATES="Fil
 [kic-keps]:https://github.com/Kong/kubernetes-ingress-controller/tree/main/keps
 [releases]:https://github.com/Kong/kubernetes-ingress-controller/releases
 
+## Feature gate details 
+
+### SanitizeKonnectConfigDumps
+
+The `SanitizeKonnectConfigDumps` feature enables the sanitization of configuration dumps that are sent to Konnect.
+This means {{site.kic_product_name}} will obfuscate all sensitive information that your Kong config contains, such as 
+private keys in `Certificate` entities and `Consumer` entities' credentials.
+
+{:.important}
+> **Warning:** `KongPlugin`'s and `KongClusterPlugin`'s `config` field is not sanitized. If you have sensitive information 
+> in your `KongPlugin`'s `config` field, it will be sent to Konnect as is. To avoid that, please consider using 
+> [KongVault](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongvault).
