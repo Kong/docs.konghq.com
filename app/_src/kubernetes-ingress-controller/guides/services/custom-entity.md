@@ -12,12 +12,14 @@ Not all Kong entities are processed in dedicated procedure of KIC. You can
 configure Kong entities whose types are not supported in KIC by `KongCustomEntity`
 resource: [KongCustomEntity].
 
-**Note** The KongCustomEntity controller is an opt-in feature. You must enable it by
-setting feature gate `KongCustomEntity` to `true` to enable the controller.
+{:.note}
+> **Note:** The KongCustomEntity controller is an opt-in feature. You must enable it by
+> setting feature gate `KongCustomEntity` to `true` to enable the controller.
 
-**Note** The following example uses `degraphql` plugin and `degraphql_routes` entity
-which are only available in {{site.ee_product_name}}. So you need to try the example
-with {{site.ee_product_name}} installed.
+{:.note}
+> **Note:** The following example uses `degraphql` plugin and `degraphql_routes` entity
+> which are only available in {{site.ee_product_name}}. So you need to try the example
+> with {{site.ee_product_name}} installed.
 
 ## Create a GraphQL Service
 
