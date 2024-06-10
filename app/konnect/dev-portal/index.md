@@ -5,6 +5,16 @@ content_type: explanation
 
 The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, test API endpoints, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
 
+## mermaid diagram
+
+## use cases table
+
+You can use the following table to help you determine which Dev Portal configuration is best for your use case:
+
+| You want to... | Then use... |
+| -------------- | ----------- |
+| asf | asfa|
+
 ## Publish service documentation
 
 In {{site.konnect_short_name}}, API products can be published to the Dev Portal with one click. Published API products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any product documentation becomes discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
