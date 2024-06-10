@@ -45,12 +45,12 @@
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
     "title": "Gateway Admin - EE (Beta)",
     "latestVersion": {
-      "name": "3.6.0.0",
-      "id": "95e68025-45a1-4e24-8561-6d7e5f422de5"
+      "name": "3.7.0.0",
+      "id": "7dad8169-6779-49bb-bb78-19f88b186d92"
     },
     "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 2,
-    "versionCount": 4,
+    "versionCount": 5,
     "versions": [
       {
         "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
@@ -98,12 +98,12 @@
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
     "title": "Gateway Admin - OSS (Beta)",
     "latestVersion": {
-      "name": "3.6.0",
-      "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e"
+      "name": "3.7",
+      "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b"
     },
     "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 0,
-    "versionCount": 4,
+    "versionCount": 5,
     "versions": [
       {
         "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
@@ -140,7 +140,7 @@
       {
         "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b",
         "created_at": "2024-05-08T18:40:28.598Z",
-        "updated_at": "2024-05-08T18:40:28.598Z",
+        "updated_at": "2024-05-29T14:32:48.678Z",
         "name": "3.7",
         "deprecated": false,
         "registration_configs": []
@@ -314,6 +314,28 @@
         "registration_configs": []
       }
     ]
+  },
+  {
+    "id": "295fef86-02f3-438a-ada1-256680ba6424",
+    "title": "Konnect Developer Portal",
+    "latestVersion": {
+      "name": "v2",
+      "id": "33ab825d-dec0-4d29-8e17-5133655d7ae7"
+    },
+    "description": "The API that powers the Konnect Developer Portal. Access portal data from the perspective of a Portal user, rather than a Portal administrator.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "33ab825d-dec0-4d29-8e17-5133655d7ae7",
+        "created_at": "2024-06-10T13:14:58.432Z",
+        "updated_at": "2024-06-10T13:16:49.437Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ],
+    "generateErrorsPage": true
   },
   {
     "id": "5175b87f-bfae-40f6-898d-82d224387f9b",
