@@ -5,8 +5,20 @@ toc: false
 
 A software bill of materials (SBOM) is an inventory of all software components (proprietary and open source), open source licenses, and dependencies in a given product. A software bill of materials (SBOM) provides visibility into the software supply chain and any license compliance, security, and quality risks that may exist.
 
-Starting in {{site.mesh_product_name}} 2.7.0, we are generating SBOMs for our artifact images and binaries.
-You can learn more about this from our software bill of materials knowledge base page:
+Starting in {{site.mesh_product_name}} 2.7.4, we are generating SBOMs for {{site.mesh_product_name}} and docker container images.
 
-* [{{site.mesh_product_name}} 2.7.0 SBOM](https://support.konghq.com/support/s/article/SBOM-Artifacts-for-Kong-Mesh-2.7.0).
-* [{{site.mesh_product_name}} 2.8.0 SBOM](https://support.konghq.com/support/s/article/SBOM-Artifacts-for-Kong-Mesh-2.8.0).
+1. Download the security assets for the required version of {{site.mesh_product_name}}
+
+   * [2.7.4 Security Assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets+version%3A2.7.4)
+   * [2.8.0 Security Assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets+version%3A2.8.0)
+
+2. Extract the downloaded `security-assets.tar.gz`
+
+    ```sh
+    tar -xvzf security-assets.tar.gz
+    ```
+
+3. Access the below SBOMs:
+
+   * `sbom.spdx.json` and `sbom.cyclonedx.json` are the SBOM files for {{site.mesh_product_name}}
+   * `image_<image_name>-*.spdx.json` and `image_<image_name>-*.cyclonedx.json` are the SBOM files for Docker Container Images of {{site.mesh_product_name}}

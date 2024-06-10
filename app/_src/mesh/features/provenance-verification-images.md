@@ -3,7 +3,7 @@ title: Verify Build Provenance for Signed Kong Mesh Images
 badge: enterprise
 ---
 
-Starting with 2.7.0, {{site.mesh_product_name}} produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
+Starting with 2.7.4, {{site.mesh_product_name}} produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
 
 This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} Docker container images in two different ways:
 
@@ -22,6 +22,7 @@ For the complete example, you need the same details as the minimal example, as w
 | `<repo>` | GitHub repository | `kong-mesh` |
 | `<workflow name>` | GitHub workflow name | `build-test-distribute` |
 | `<workflow trigger>` | Github workflow trigger name | `push` |
+| `<version>` | Artifact version to download | `2.7.4` |
 
 Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's OIDC identity to generate build provenance for container images, which is why many of these details are GitHub-related.
 
@@ -70,7 +71,7 @@ Here's the same example using sample values instead of placeholders:
 
 ```sh
 cosign verify-attestation \
-   'kumahq/kuma-cp:2.7.0-testprov@sha256:865d9e92fe793d827f20e3c84ff20630a994ae21701ef8b1342bd5418de946eb' \
+   'kong/kuma-cp:2.7.4@sha256:<manifest_digest>' \
    --type='slsaprovenance' \
    --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
    --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$'
@@ -99,9 +100,9 @@ Here's the same example using sample values instead of placeholders:
 
 ```sh
 slsa-verifier verify-image \
-   'kumahq/kuma-cp:2.7.0-testprov@sha256:865d9e92fe793d827f20e3c84ff20630a994ae21701ef8b1342bd5418de946eb' \
+   'kong/kuma-cp:2.7.4@sha256:<manifest_digest>' \
    --print-provenance \
-   --source-uri 'github.com/kumahq/kuma'
+   --source-uri 'github.com/Kong/kong-mesh'
 ```
 
 The command will print "Verified SLASA provenance" if successful:
@@ -132,11 +133,11 @@ Here's the same example using sample values instead of placeholders:
 
 ```sh
 cosign verify-attestation \
-   'kumahq/kuma-cp:2.7.0-testprov@sha256:865d9e92fe793d827f20e3c84ff20630a994ae21701ef8b1342bd5418de946eb' \
+   'kong/kuma-cp:2.7.4@sha256:<manifest_digest>' \
    --type='slsaprovenance' \
    --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
    --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
-   --certificate-github-workflow-repository='kumahq/kuma' \
+   --certificate-github-workflow-repository='Kong/kong-mesh' \
    --certificate-github-workflow-name='build-test-distribute' \
    --certificate-github-workflow-trigger='push'
 ```
@@ -150,15 +151,15 @@ slsa-verifier verify-image \
    <image>:<tag>@sha256:<manifest_digest> \
    --print-provenance \
    --source-uri 'github.com/Kong/<repo>' \
-   --source-tag '<release-tag-version>'
+   --source-tag '<version>'
 ```
 
 Here's the same example using sample values instead of placeholders:
 
 ```sh
 slsa-verifier verify-image \
-   'kumahq/kuma-cp:2.7.0-testprov@sha256:865d9e92fe793d827f20e3c84ff20630a994ae21701ef8b1342bd5418de946eb' \
+   'kong/kuma-cp:2.7.4@sha256:<manifest_digest>' \
    --print-provenance \
-   --source-uri 'github.com/kumahq/kuma' \
-   --source-tag '2.7.0-testprov'
+   --source-uri 'github.com/Kong/kong-mesh' \
+   --source-tag '2.7.4'
 ```
