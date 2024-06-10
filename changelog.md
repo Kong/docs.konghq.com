@@ -21,8 +21,6 @@ https://konghq.atlassian.net/browse/DOCU-3413
 
 Fixed a broken URL of the Noname documentation portal
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongtrafficsource/overview/
@@ -72,9 +70,7 @@ Corrects broken link to demonstrated proof-of-possession page in changelog.
 
 ### [feat: Document Request ID in debugging, tracing, and logging](https://github.com/Kong/docs.konghq.com/pull/7441) (2024-06-05)
 
-<!-- What did you change and why? -->
- The Request ID feature was released in 3.5 and never documented. This PR adds information about it to the existing tracing, debugging, and logging docs.
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+The Request ID feature was released in 3.5 and never documented. This PR adds information about it to the existing tracing, debugging, and logging docs.
 DOCU-3853
 
 #### Modified
