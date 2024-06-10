@@ -1806,7 +1806,7 @@ The router adds:
 Learn more about the router:
 
 * [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions/)
-* [Expressions language reference](/gateway/3.0.x/reference/router-language/)
+* [Expressions language reference](/gateway/3.0.x/reference/expressions-language/)
 
 #### Path handling algorithms
 
