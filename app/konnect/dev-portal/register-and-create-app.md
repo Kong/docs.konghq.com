@@ -75,5 +75,5 @@ All developers must register through the {{site.konnect_short_name}} Dev Portal.
 
 1. **Use your application**
     
-    <!--how do I USE the application?-->
+    You can start making requests to the endpoints in your application, making sure to use the app credentials you configured.
 
