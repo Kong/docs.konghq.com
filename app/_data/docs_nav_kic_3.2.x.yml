@@ -113,6 +113,8 @@ items:
             url: /guides/services/multiple-backends
           - text: Configuring Gateway API resources across namespaces
             url: /guides/services/cross-namespace
+          - text: Configuring Custom Kong Entities
+            url: /guides/services/custom-entity
       - text: Request Manipulation
         items:
           - text: Rewriting Hosts and Paths

@@ -94,3 +94,4 @@ KongClusterPlugin
 KongConsumer
 Rekor
 Sigstore
+Hasura
