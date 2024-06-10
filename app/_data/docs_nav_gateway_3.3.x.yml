@@ -288,7 +288,7 @@ items:
                 url: /kong-enterprise/secrets-management/backends/env
               - text: AWS Secrets Manager
                 url: /kong-enterprise/secrets-management/backends/aws-sm
-              - text: Google Secrets Manager
+              - text: Google Cloud Secret Manager
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
               - text: Hashicorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault

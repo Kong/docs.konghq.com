@@ -68,7 +68,7 @@ _third_party:
     name: Microsoft Azure Key Vault
     icon: azure.svg
   gcp-sm: &gcp-sm
-    name: Google Secrets Manager
+    name: Google Cloud Secret Manager
     icon: gcp.svg
 
   # IDP

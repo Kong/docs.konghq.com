@@ -109,7 +109,7 @@ See each plugin's documentation for more information on each field:
 {{site.base_gateway}} supports the following vault backends:
 * Environment variables
 * AWS Secrets Manager
-* GCP Secrets Manager
+* GCP Secret Manager
 * Azure Key Vaults
 * HashiCorp Vault
 
