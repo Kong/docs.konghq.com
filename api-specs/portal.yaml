@@ -4435,3 +4435,9 @@ tags:
       all of the described endpoints will return a 404 error
   - name: search
     description: The API for Konnect Portal Search.
+x-errors:
+  granted-scopes-unavailable:
+    description: |
+      The IDP used does not support granted scopes.
+    resolution: |
+      Switch to an IDP that allows you to grant specific scopes.
