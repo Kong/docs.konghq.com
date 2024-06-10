@@ -17,7 +17,7 @@ environment variables.
 
 ## Available Vaults
 
-{{ site.base_gateway }} supports environment variables, Hashicorp Vault, AWS Secrets Manager and Google Cloud Secret Manager as a source for secret configuration. These vaults can be configured using environment variables on your `gateway` deployments.
+{{ site.base_gateway }} supports environment variables, HashiCorp Vault, AWS Secrets Manager and Google Cloud Secret Manager as a source for secret configuration. These vaults can be configured using environment variables on your `gateway` deployments.
 {% if_version gte:3.1.x %}You can also configure vaults using the `KongVault` CRD.{% endif_version %}
 
 To learn more about the available vaults, see the [{{ site.base_gateway }} documentation](/gateway/latest/kong-enterprise/secrets-management/).
@@ -70,7 +70,7 @@ To learn more about the available vaults, see the [{{ site.base_gateway }} docum
       redis_password: "vault://env/secret-redis-password"
     ```
 
-### Hashicorp Vault
+### HashiCorp Vault
 
 {% navtabs  %}
 {% navtab Environment variables %}
@@ -108,7 +108,7 @@ metadata:
 spec:
     backend: hashicorp
     prefix: hcv
-    description: "Hashicorp Vault"
+    description: "HashiCorp Vault"
     config:
         protocol: "https"
         host: "vault.default.svc.cluster.local"

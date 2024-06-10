@@ -57,7 +57,7 @@ _third_party:
 
   # Vaults
   vaultproject: &vaultproject
-    name: Hashicorp Vault
+    name: HashiCorp Vault
     versions:
       - 1.12
     icon: vaultproject.svg

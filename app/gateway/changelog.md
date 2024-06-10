@@ -19,10 +19,10 @@ For product versions that have reached the end of sunset support, see the [chang
 * [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`): To support the new messages API of Anthropic,
 the upstream path of the `Anthropic` for `llm/v1/chat` route type has changed from `/v1/complete` to `/v1/messages`.
  [#12699](https://github.com/Kong/kong/issues/12699)
-* **Hashicorp Vault**: 
+* **HashiCorp Vault**: 
   * Starting from this version, a string entirely made of spaces can't be specified as the `role_id` or `secret_id`
- value in the Hashicorp Vault entity when using the AppRole authentication method.
-  * Starting from this version, you must specify at least one of `secret_id` or `secret_id_file` in the Hashicorp Vault 
+ value in the HashiCorp Vault entity when using the AppRole authentication method.
+  * Starting from this version, you must specify at least one of `secret_id` or `secret_id_file` in the HashiCorp Vault 
   entity when using the AppRole authentication method.
 
 * The **Granular Tracing** feature has been deprecated and removed.
@@ -211,7 +211,7 @@ was not explicitly passed in CLI arguments.
 * Adjusted the clustering compatibility check related to AWS Secrets Manager
 to use `AK-SK` environment variables to grant IAM role permissions.
 * Adjusted a clustering compatibility check related to HCV Kubernetes authentication paths.
-* Adjusted a clustering compatibility check related to Hashicorp Vault Approle authentication.
+* Adjusted a clustering compatibility check related to HashiCorp Vault Approle authentication.
 * Fixed an issue where event hooks were prematurely validated in hybrid mode. 
 The fix delays the validation of event hooks to the point where event hooks are emitted.
 
