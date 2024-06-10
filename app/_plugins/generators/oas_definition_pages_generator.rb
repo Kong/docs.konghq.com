@@ -13,6 +13,8 @@ module OasDefinitionPages
       Dir.glob(File.join(site.source, '_api/**/**/_index.md')).each do |file|
         product = page_product(file)
 
+        raise "Could not load API Product for #{file}" unless product
+
         ::OasDefinition::Product.new(product:, file:, site:).generate_pages!
       end
 
