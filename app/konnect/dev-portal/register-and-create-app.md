@@ -4,7 +4,7 @@ title: Register and create an application as a developer
 
 This guide explains how developers can get started with the developer platform by registering and creating an application. 
 
-Dev Portal allows developers to create applications by using APIs from another company. For example, say you're a developer for an airline company. Your airline is forming a partnership with a hotel and a theme park so that you can get a vacation package that includes airplane, theme park, and hotel tickets. To make this possible, you'd need to create an application that consumes both the hotel's API as well as the theme park API so that when customers buy airplane tickets, your application would use the other companies' APIs to also purchase the theme park tickets and hotel.
+Dev Portal allows developers to create applications by using APIs from another company. For example, say you're a developer for a company that wants to consume two different APIs from another company. To make this possible, you'd need to create an application in Dev Portal that consumes both the APIs.
 
 The following diagram shows how you can register your app in Dev Portal:
 
