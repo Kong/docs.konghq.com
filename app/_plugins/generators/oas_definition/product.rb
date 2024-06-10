@@ -14,7 +14,7 @@ module OasDefinition
       product['versions'].map do |version|
         data = OasDefinition::PageData.generate(product:, version:, file:, site:)
 
-        generate_product_pages!(product, data)
+        generate_product_pages!(data)
       end
 
       generate_latest_page!
@@ -23,9 +23,9 @@ module OasDefinition
 
     private
 
-    def generate_product_pages!(product, data)
+    def generate_product_pages!(data)
       site.pages << ::OasDefinition::Page.new(site:, data:)
-      site.pages << ::OasDefinition::ErrorPage.new(site:, data:) if product['generateErrorsPage']
+      site.pages << ::OasDefinition::ErrorPage.new(site:, data:)
     end
 
     def generate_latest_page!

@@ -30,7 +30,7 @@ module OasDefinition
     end
 
     def generate_error_table(spec) # rubocop:disable Metrics/MethodLength
-      raise "No x-errors key found for #{api_spec_path}" unless spec['x-errors']
+      return '' unless spec['x-errors']
 
       # heredoc string return
       <<~HEREDOC
