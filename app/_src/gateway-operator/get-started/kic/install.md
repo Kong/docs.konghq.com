@@ -3,37 +3,19 @@ title: Install KIC with Kong Gateway Operator
 content-type: tutorial
 book: kgo-kic-get-started
 chapter: 1
-alpha: true
 ---
 
-{% assign gwapi_version = "1.0.0" %}
-{% if_version lte:1.0.0 %}
-{% assign gwapi_version = "0.8.1" %}
+{% if_version lte: 1.1.x %}
+{:.note}
+> **Note:** `Gateway` and `ControlPlane` controllers are still `alpha` so be sure
+> to use the [installation steps from this guide](/gateway-operator/{{ page.release }}/get-started/kic/install/)
+> in order to get your `Gateway` up and running.
 {% endif_version %}
 
 Both {{ site.kgo_product_name }} and {{ site.kic_product_name }} can be configured using the [Kubernetes Gateway API](https://github.com/kubernetes-sigs/gateway-api).
 
-You configure your `GatewayClass` and `Gateway` objects in a vendor independent way and {{ site.kgo_product_name }} translates those requirements in to Kong specific configuration.
+You can configure your `GatewayClass` and `Gateway` objects in a vendor independent way and {{ site.kgo_product_name }} translates those requirements in to Kong specific configuration.
 
 This means that CRDs for both the Gateway API and {{ site.kic_product_name }} have to be installed.
 
-Below command installs all Gateway API resources that have graduated to GA or beta,
-including `GatewayClass`, `Gateway`, `HTTPRoute`, and `ReferenceGrant`.
-
-```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/standard-install.yaml
-```
-
-If you want to use experimental resources and fields such as `TCPRoute`s and `UDPRoute`s, please run this command.
-
-```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/experimental-install.yaml
-```
-
-To install Kong specific CRDs, run the following command.
-
-```bash
-kubectl apply -k https://github.com/Kong/kubernetes-ingress-controller/config/crd
-```
-
-{% include snippets/gateway-operator/install_with_kubectl_all_controllers.md version=page.version%}
+{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release %}

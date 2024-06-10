@@ -51,63 +51,56 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
+Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
+set up an instance of the OpenID Connect plugin with user info authentication.
 
-1. We want to only use the user info authentication, but we also enable the
-[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) for demoing purposes.
-2. We want to search the bearer token for the user info from the headers only.
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: you only need user info auth for this flow. 
+For the purposes of the demo, the example also enables the
+[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
+* We want to only search the bearer token headers for the user info.
 
-```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.bearer_token_param_type=header                          \
-  config.auth_methods=userinfo                                   \
-  config.auth_methods=password # only enabled for demoing purposes
-```
-```http
-HTTP/1.1 200 OK
-```
+With all of the above in mind, let's test out user info authentication with Keycloak. 
+Enable the OpenID Connect plugin on the `openid-connect` service:
 
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [
-            "userinfo",
-            "password"
-        ],
-        "bearer_token_param_type": [ "header" ]
-    }
-}
-```
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "userinfo"
+    - "password"
+  bearer_token_param_type: 
+    - "header"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
 
-### Test the user info authentication
+## Test the user info authentication
 
 Request the service with a bearer token:
 
-```bash
-http -v :8000 Authorization:"$(http -a john:doe :8000 | \
-    jq -r .headers.Authorization)"
+```sh
+curl -I http://localhost:8000/openid-connect \
+  -H "Authorization: \
+  \"$(curl --user john:doe http://localhost:8000/openid-connect \
+  | jq -r .headers.Authorization)\""
 ```
-or
-```bash
-http -v :8000 Authorization:"Bearer <access-token>"
-```
+
+You should get an HTTP 200 response with a bearer token header:
+
 ```http
 GET / HTTP/1.1
 Authorization: Bearer <access-token>
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "headers": {
-        "Authorization": "Bearer <access-token>"
-    },
-    "method": "GET"
-}
 ```

@@ -7,18 +7,18 @@ For more information, see [Kafka topics](https://kafka.apache.org/documentation/
 
 Kong also provides a Kafka plugin for request transformations. See [Kafka Upstream](/hub/kong-inc/kafka-upstream/).
 
-{% if_plugin_version lte:3.3.x %}
+{% if_version lte:3.3.x %}
 {:.note}
 > **Note**: This plugin has the following limitations:
 * Message compression is not supported.
 * The message format is not customizable.
-{% endif_plugin_version %}
+{% endif_version %}
 
 
-{% if_plugin_version gte:3.4.x %}
+{% if_version gte:3.4.x %}
 {:.note}
 > **Note**: This plugin does not support message compression.
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## Quickstart
 
@@ -121,11 +121,11 @@ This plugin supports the following authentication mechanisms:
     to `SCRAM-SHA-256`. You also need to provide a username and password with the config options
     `config.authentication.user` and `config.authentication.password` respectively.
 
-    {% if_plugin_version gte:2.8.x %}
+    {% if_version gte:2.8.x %}
     - **SCRAM-SHA-512:** Enable this mechanism by setting `config.authentication.mechanism`
       to `SCRAM-SHA-512`. You also need to provide a username and password with the config options
       `config.authentication.user` and `config.authentication.password` respectively.
-    {% endif_plugin_version %}
+    {% endif_version %}
 
 - **Delegation Tokens:** Delegation Tokens can be generated in Kafka and then used to authenticate
   this plugin. `Delegation Tokens` leverage the `SCRAM-SHA-256` authentication mechanism. The `tokenID`
@@ -135,10 +135,10 @@ This plugin supports the following authentication mechanisms:
 
   [Read more on how to create, renew, and revoke delegation tokens.](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_delegation.html#authentication-using-delegation-tokens)
 
-{% if_plugin_version gte:3.4.x %}
+{% if_version gte:3.4.x %}
 ## Custom Fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
 
-{% endif_plugin_version %}
+{% endif_version %}
 

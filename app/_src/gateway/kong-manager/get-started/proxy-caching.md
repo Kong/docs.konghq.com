@@ -1,6 +1,5 @@
 ---
 title: Proxy Caching
-badge: free
 ---
 
 This tutorial walks you through setting up proxy caching in Kong Manager.

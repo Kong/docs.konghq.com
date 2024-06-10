@@ -32,9 +32,9 @@ You can completely customize the Dev Portal using the [open source Dev Portal cl
 
 This self-hosted portal provides the following benefits: 
 
-* **Fully customizable:** Use the [example frontend Dev Portal application](https://github.com/Kong/konnect-portal) as a starting point and then customize Dev Portal for your needs using the [Portal API](/konnect/api/portal/v2/) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js). You can also integrate the API specs with workflows tailored to your organization's own processes.
+* **Fully customizable:** Use the [example frontend Dev Portal application](https://github.com/Kong/konnect-portal) as a starting point and then customize Dev Portal for your needs using the [Portal API](/konnect/api/portal/latest/) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js). You can also integrate the API specs with workflows tailored to your organization's own processes.
 * **Hosting service choice:** When you self-host, you also get to choose which hosting service you use to deploy your Dev Portal. 
-* **Range of customization options:** With the self-hosted Dev Portal, you determine how much you want to customize. You can choose to use the example application right out of the box, or you can use the [Portal API](/konnect/api/portal/v2/) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js) for more fine-grained control.
+* **Range of customization options:** With the self-hosted Dev Portal, you determine how much you want to customize. You can choose to use the example application right out of the box, or you can use the [Portal API](/konnect/api/portal/latest/) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js) for more fine-grained control.
 
 ## Custom Dev Portal URL
 
@@ -48,90 +48,7 @@ To add a custom URL to Dev Portal, you need:
 
 You can also choose to [self-host the Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) or any other static hosting service that supports single page applications.
 
-### Configure DNS
-
-In your DNS configuration, create a CNAME record for the domain you want to use using the automatically generated Dev Portal URL.
-The record will look like this:
-
-| Type  | Name   | Value                                  |
-|:------|--------|----------------------------------------|
-| CNAME | portal | `https://example.us.portal.konghq.com` |
-
-If your domain has specific CAA DNS records that list authorized certificate authorities/issuers, you'll also need to create a new CAA DNS record to permit [Google Trust Services](https://pki.goog/faq/#caa) as an issuer. If your domain doesn't currently have any CAA DNS records, it means all issuers are implicitly allowed, and there's no need for a new CAA DNS record in that case.
-
-### Update Dev Portal URL settings {#update-portal}
-
-To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps:
-
-1. Open the **Portal Domain** tab.
-
-3. Enter the fully qualified domain name (FQDN) including the subdomain, if applicable, into the **Custom Hosted Domain** field.
-   Don't include a path or protocol (e.g. `https://`).
-
-4. Click **Save Custom Domain**.
-
-5. Click **Confirm** to begin the domain verification process.
-
-### Domain name restrictions
-
-Because of SSL certificate authority restrictions, {{site.konnect_short_name}} can't generate SSL certificates
-for the following domains:
-
-* TLDs containing a brand name: `.aws`, `.microsoft`, `.ebay`
-* Hosting provider subdomains: `.amazonaws.com`, `.azurewebsites.net`
-* TLDs restricted by US export laws:
-  * `.af` Afghanistan
-  * `.by` The Republic of Belarus
-  * `.cu` Cuba
-  * `.er` Eritrea
-  * `.gn` Guinea
-  * `.ir` Islamic Republic of Iran
-  * `.kp` Democratic People's Republic of Korea
-  * `.lr` Liberia
-  * `.ru` The Russian Federation
-  * `.ss` South Sudan
-  * `.su` Soviet Union
-  * `.sy` Syrian Arab Republic
-  * `.zw` Zimbabwe
-
-If you have any questions, [contact Support](https://support.konghq.com).
-
-### Delete a custom URL {#delete-url}
-
-Delete a custom Dev Portal URL through your organization's {{site.konnect_short_name}} admin UI.
-
-1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
-
-2. Open the **Portal Domain** tab.
-
-3. Click **Delete Custom Domain**
-
-### Troubleshoot DNS {#troubleshoot}
-
-After the DNS verification process is complete, {{site.konnect_short_name}} will attempt to automatically generate
-an SSL certificate for your custom domain. This process can take several hours. If you attempt to access the custom URL from a browser _before_ the certificate generation process is finished,
-you will receive an SSL certificate error.  If this process takes more than 24 hours,
-please check if the new DNS record is correctly applied. You can use the `dig` tool to troubleshoot your DNS:
-
-* Run `dig`, replacing `CUSTOM_DOMAIN` with your custom domain
-and `CUSTOM_DOMAIN_DNS` with the DNS server for the custom domain:
-
-   ```shell
-   dig +nocmd @CUSTOM_DOMAIN_DNS cname CUSTOM_DOMAIN +noall +answer
-   ```
-
-   The output will look like this:
-
-   ```shell
-   portal.example.com.	172	IN	CNAME	example.us.portal.konghq.com.
-   ```
-
-where `portal.example.com` is your custom domain and `example.us.portal.konghq.com` is the default auto-generated
-URL for your Dev Portal.
-
-{:.note}
->**Note:** If the command returns no output, or the values are incorrect, check the custom domain DNS configuration or contact your DNS provider.
->You may need to reset your Dev Portal domain settings to fix your DNS records, you can do this by [deleting the custom URL](#delete-url) and [setting the portal URL](#update-portal) again.
+[Configure DNS &rarr;](/konnect/reference/custom-dns)
 
 ## Single sign-on
 {:.badge .enterprise}

@@ -11343,7 +11343,7 @@ paths:
                 '200':
                     $ref: '#/components/responses/admins-response'
             operationId: get-admins
-            description: Returns a list of admins. The `status` field in the response indicates the state of the admins invitation. `0`= Approved, `1`= Pending, `2`= Rejected, `3`= Revoked, `4` = Invited, `5`= Unverified.
+            description: Returns a list of admins. To query all admins, add a parameter `all_workspaces=true` to the `/admins` endpoint. The `status` field in the response indicates the state of the admins invitation. `0`= Approved, `1`= Pending, `2`= Rejected, `3`= Revoked, `4` = Invited, `5`= Unverified.
         post:
             summary: Invite an Admin
             operationId: post-admins
@@ -11420,11 +11420,10 @@ paths:
                         examples:
                             Invite an admin:
                                 value:
-                                    admin:
-                                        username: test-case-3
-                                        email: test3@test.com
-                                        custom_id: customId
-                                        rbac_token_enabled: true
+                                    username: test-case-3
+                                    email: test3@test.com
+                                    custom_id: customId
+                                    rbac_token_enabled: true
     /admins/register:
         post:
             summary: Register an Admin’s Credentials
@@ -11744,11 +11743,11 @@ paths:
                         schema:
                             type: object
                             properties:
-                                Roles:
+                                roles:
                                     type: string
                             x-examples:
                                 Example 1:
-                                    Roles: read-only
+                                    roles: read-only
                 description: Comma-separated string of role names to create or update for an admin.
             description: Create or update roles for an admin
         delete:
@@ -13734,7 +13733,7 @@ security:
 tags:
     - description: "Service entities are abstractions of your microservice interfaces or formal APIs. For example, a service could be a data transformation microservice or a billing API.\n<br><br>\nThe main attribute of a service is the destination URL for proxying traffic. This URL can be set as a single string or by specifying its protocol, host, port and path individually. \n<br><br>\nServices are associated to routes, and a single service can have many routes associated with it. Routes are entrypoints in Kong Gateway which define rules to match client requests. Once a route is matched, Kong Gateway proxies the request to its associated service. See the [Proxy Reference](https://docs.konghq.com/gateway/latest/how-kong-works/routing-traffic/) for a detailed explanation of how Kong proxies traffic.\n<br><br>\nServices can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).\n"
       name: Services
-    - description: "Route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to the associated service. You need at least one matching rule that applies to the protocol being matched by the route.\n<br><br>\nThe combination of routes and services, and the separation of concerns between them, offers a powerful routing mechanism with which it is possible to define fine-grained entrypoints in Kong Gateway leading to different upstream services of your infrastructure.\n<br><br>\nDepending on the protocol, one of the following attributes must be set:\n<br>\n* `http`: At least one of `methods`, `hosts`, `headers`, or `paths`\n* `https`:  At least one of `methods`, `hosts`, `headers`, `paths`, or `snis`\n*  `tcp`: At least one of `sources` or `destinations`\n* `tls`: at least one of `sources`, `destinations`, or `snis`\n* `tls_passthrough`: set `snis`\n* `grpc`: At least one of `hosts`, `headers`, or `paths`\n* `grpcs`: At least one of `hosts`, `headers`, `paths`, or `snis`\n* `ws`: At least one of `hosts`, `headers`, or `paths`\n* `wss`: At least one of `hosts`, `headers`, `paths`, or `snis` \n<br>\n\nA route can't have both `tls` and `tls_passthrough` protocols at same time.\n<br><br>\n\nLearn more about the router: \n* [Configure routes using expressions](https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions)\n* [Router Expressions language reference](https://docs.konghq.com/gateway/3.4.x/reference/router-expressions-language/)\n"
+    - description: "Route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to the associated service. You need at least one matching rule that applies to the protocol being matched by the route.\n<br><br>\nThe combination of routes and services, and the separation of concerns between them, offers a powerful routing mechanism with which it is possible to define fine-grained entrypoints in Kong Gateway leading to different upstream services of your infrastructure.\n<br><br>\nDepending on the protocol, one of the following attributes must be set:\n<br>\n* `http`: At least one of `methods`, `hosts`, `headers`, or `paths`\n* `https`:  At least one of `methods`, `hosts`, `headers`, `paths`, or `snis`\n*  `tcp`: At least one of `sources` or `destinations`\n* `tls`: at least one of `sources`, `destinations`, or `snis`\n* `tls_passthrough`: set `snis`\n* `grpc`: At least one of `hosts`, `headers`, or `paths`\n* `grpcs`: At least one of `hosts`, `headers`, `paths`, or `snis`\n* `ws`: At least one of `hosts`, `headers`, or `paths`\n* `wss`: At least one of `hosts`, `headers`, `paths`, or `snis` \n<br>\n\nA route can't have both `tls` and `tls_passthrough` protocols at same time.\n<br><br>\n\nLearn more about the router: \n* [Configure routes using expressions](https://docs.konghq.com/gateway/latest/key-concepts/routes/expressions/)\n* [Router Expressions language reference](https://docs.konghq.com/gateway/latest/reference/expressions-language/)\n"
       name: Routes
     - description: |
         A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.

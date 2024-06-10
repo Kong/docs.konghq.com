@@ -128,14 +128,14 @@ You should receive a `200` status code.
 
 Depending on your desired environment, see the following guides:
 * [Add your Enterprise license](/gateway/{{ page.release }}/licenses/deploy)
-{% if_version gte:3.4.x %}
+{% if_version gte:3.4.x -%}
 * Enable Kong Manager:
   * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
   * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
-{% endif_version %}
-{% if_version lte:3.3.x %}
+{% endif_version -%}
+{% if_version lte:3.3.x -%}
 * [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
-{% endif_version %}
+{% endif_version -%}
 * [Default ports reference](/gateway/{{page.release}}/production/networking/default-ports/)
 
 You can also check out {{site.base_gateway}}'s series of

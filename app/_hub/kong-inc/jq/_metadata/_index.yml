@@ -13,3 +13,4 @@ categories:
   - transformations
 publisher: Kong Inc.
 desc: Transform JSON objects included in API requests or responses using jq programs.
+schema_source_url: https://github.com/Kong/kong-ee/edit/master/kong/plugins/jq/schema.lua

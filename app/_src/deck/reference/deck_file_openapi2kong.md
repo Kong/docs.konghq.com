@@ -32,8 +32,26 @@ cat service_oas.yml | deck file openapi2kong --inso-compatible --select-tag=serv
 `--format`
 :  Output format: yaml or json. (Default: `"yaml"`)
 
+{% if_version gte:1.30.x %}
+`--generate-security`
+:  Generate OpenIDConnect plugins from the security directives. (Default: `false`)
+{% endif_version %}
+
 `-h`, `--help`
 :  Help for openapi2kong.
+
+{% if_version gte:1.30.x %}
+`--ignore-security-errors`
+: Ignore errors for unsupported security schemes. (Default: `false`)
+{% endif_version %}
+
+{% if_version gte:1.28.x %}
+`-i`, `--inso-compatible`
+:  This flag will enable Inso compatibility. The generated entity names will be the same, and no `id` fields will be generated. (Default: `false`)
+
+`--no-id`
+:  Setting this flag will skip UUID generation for entities (no `id` fields will be added, implicit if `--inso-compatible` is set). (Default: `false`)
+{% endif_version %}
 
 `-o`, `--output-file`
 :  Output file to write to. Use `-` to write to stdout. (Default: `"-"`)

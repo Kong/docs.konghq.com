@@ -65,11 +65,6 @@ instructions for the incoming user request body.
 * [Basic configuration example](/hub/kong-inc/ai-request-transformer/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/ai-request-transformer/how-to/)
 
-### Other AI plugins
+### All AI Gateway plugins
 
-You may also be interested in the following AI plugins:
-* [AI Proxy](/hub/kong-inc/ai-proxy/)
-* [AI Response Transformer](/hub/kong-inc/ai-request-transformer/)
-* [AI Prompt Template](/hub/kong-inc/ai-prompt-template/)
-* [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)
-* [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/)
+{% include_cached /md/ai-plugins-links.md release=page.release %}

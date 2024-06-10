@@ -149,7 +149,7 @@ items:
         items:
           - text: Start Kong Gateway Securely
             url: /production/access-control/start-securely
-          - text: Programatically Creating Admins
+          - text: Programmatically Creating Admins
             url: /production/access-control/register-admin-api
           - text: Enabling RBAC
             url: /production/access-control/enable-rbac
@@ -632,7 +632,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
-        src: /gateway/reference/configuration-3.0-3.3
+        src: /gateway/reference/configuration/configuration-3.0-3.3
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

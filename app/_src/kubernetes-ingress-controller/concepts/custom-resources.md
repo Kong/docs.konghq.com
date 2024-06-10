@@ -21,9 +21,9 @@ These CRDs allow users to declaratively configure all aspects of Kong:
 - [**KongPlugin**](#kongplugin)
 - [**KongClusterPlugin**](#kongclusterplugin)
 - [**KongConsumer**](#kongconsumer)
-{% if_version gte:2.11.x %}
+{% if_version gte:2.11.x -%}
 - [**KongConsumerGroup**](#kongconsumergroup)
-{% endif_version %}
+{% endif_version -%}
 - [**TCPIngress**](#tcpingress)
 - [**UDPIngress**](#udpingress)
 
@@ -77,7 +77,7 @@ These plugins can be used to modify the request or impose restrictions
 on the traffic.
 
 Once this resource is created, the resource needs to be associated with an
-Ingress, Service, or KongConsumer resource in Kubernetes.
+Ingress, Service, HTTPRoute, KongConsumer or KongConsumerGroup resource in Kubernetes.
 
 This diagram shows how you can link a KongPlugin resource to an
 Ingress, Service, or KongConsumer.
@@ -139,8 +139,8 @@ This is useful for services such as DNS servers, Game Servers,
 VPN software and a variety of other applications.
 
 {% if_version gte:2.11.x %}
-## KongConsumerGroup
 
+## KongConsumerGroup
 {:.badge .enterprise}
 
 {:.note}

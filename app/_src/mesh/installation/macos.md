@@ -36,8 +36,8 @@ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} sh 
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also download the [amd64]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-darwin-amd64.tar.gz) {% if_version gte:1.8.x %}
-or [arm64]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-darwin-arm64.tar.gz){% endif_version %} distribution manually.
+You can also download the [amd64]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-darwin-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-darwin-amd64.tar.gz) {% if_version gte:1.8.x %}
+or [arm64]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-darwin-arm64/versions/{{page.version}}/kong-mesh-{{page.version}}-darwin-arm64.tar.gz){% endif_version %} distribution manually.
 
 Then, extract the archive with:
 

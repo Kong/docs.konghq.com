@@ -102,7 +102,10 @@ function onSelectedVersion (event) {
   let versionSegment = versionToRelease(version.name);
 
   let newPathname = currentPath.split('/').slice(0, -2).concat(versionSegment).join('/').concat('/')
-  window.location.pathname = newPathname;
+  if (newPathname !== window.location.pathname) {
+    window.location.pathname = newPathname;
+  }
+  return;
 }
 
 function versionToRelease(version) {
@@ -159,5 +162,23 @@ function versionToRelease(version) {
     margin: 0;
     cursor: pointer;
     pointer-events: none;
+  }
+
+  .operations-list :deep(input) {
+    margin: 0 !important;
+  }
+
+  .py-6 {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  .px-5 {
+    padding-left: 8px !important;
+    padding-right: 24px !important;
+  }
+
+  .mb-3 {
+    margin-bottom: 12px !important;
   }
 </style>

@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Wait for Pages changed to be neutral
-        uses: fountainhead/action-wait-for-check@v1.1.0
+        uses: fountainhead/action-wait-for-check@v1.2.0
         id: waitForCheck
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}

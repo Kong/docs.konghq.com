@@ -21,6 +21,10 @@ in the {{site.base_gateway}} documentation.
 
 The queue parameters all reside in a record under the key `queue` in
 the `config` parameter section of the plugin.
+
+Queues are not shared between workers and queueing parameters are
+scoped to one worker.  For whole-system capacity planning, the number
+of workers need to be considered when setting queue parameters.
 {% endif_version %}
 
 ---
@@ -46,7 +50,7 @@ Plugin can be configured with any combination of [Metrics](#metrics), with each 
 Field           | Description                                           | Data types   | Allowed values
 ---             | ---                                                   | ---         | ---
 `name`          | Datadog metric's name                                 | String      | [Metrics](#metrics)
-`stat_type`     | Determines what sort of event the metric represents   | String      | `gauge`, `timer`, `counter`, `histogram`, `meter`, `set` {% if_plugin_version gte:2.7.x %}, `distribution` {% endif_plugin_version %}
+`stat_type`     | Determines what sort of event the metric represents   | String      | `gauge`, `timer`, `counter`, `histogram`, `meter`, `set` {% if_version gte:2.7.x %}, `distribution` {% endif_version %}
 `sample_rate`<br>*conditional*   | Sampling rate                        | Number      | `number`
 `consumer_identifier`<br>*conditional* | Authenticated user detail       | String      | `consumer_id`, `custom_id`, `username`
 `tags`<br>*optional* | List of tags                                      | Array of strings    | `key[:value]`
@@ -76,12 +80,12 @@ When installing a multi-data center setup, you might want to set Datadog's agent
 
 {:.note}
 > **Note:** `host` and `port` fields in the plugin config take precedence over environment variables.
-{% if_plugin_version gte:3.3.x %}
+{% if_version gte:3.3.x %}
 > <br><br>
 > For Kubernetes, there is a known limitation that you can't set `host` to null to use the environment variable. 
 > You can work around this by using a vault reference, for example: `{vault://env/kong-datadog-agent-host}`. 
 > Refer to [Configure with Kubernetes](#configure-with-kubernetes).
-{% endif_plugin_version %}
+{% endif_version %}
 
 Field           | Description                                           | Data types
 ---             | ---                                                   | ---
@@ -92,7 +96,7 @@ Field           | Description                                           | Data t
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
-{% if_plugin_version gte:3.3.x %}
+{% if_version gte:3.3.x %}
 
 ## Configure with Kubernetes
 
@@ -167,5 +171,5 @@ This is achieved using environment variables.
     ```
 {% endnavtab %}
 {% endnavtabs %}
-{% endif_plugin_version %}
+{% endif_version %}
 

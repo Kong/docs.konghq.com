@@ -10,6 +10,7 @@ apiVersion
 Arya
 Autonegotiation
 autoscale
+autoscales
 autoscaling
 APIOps
 Bagdi
@@ -32,6 +33,7 @@ DPPs
 Datadog
 Dex
 ElastiCache
+Entra
 Equinix
 Equinix
 Fargate
@@ -117,6 +119,7 @@ Wasm
 WebAssembly
 Wireshark
 Zipkin
+_prod
 acl
 admin's
 allowlist
@@ -140,7 +143,9 @@ autoscalers
 Autonegotiation
 aws
 backport
+backports
 backported
+backporting
 backtrace
 Bagdi
 bcc
@@ -155,6 +160,7 @@ booleans
 burstable
 CAs
 certificate_admin
+charset
 chatbot
 cleartext
 client_payload
@@ -207,6 +213,7 @@ DNs
 dockerfile
 downsample
 downsampled
+downstreams
 downtime
 downtimes
 DPP
@@ -240,6 +247,7 @@ glibc
 globbing
 Gluu
 gojira
+Golang
 Goroutine
 Grafana
 grpc
@@ -299,6 +307,7 @@ kafka
 keepalive
 keps
 Keycloak
+keyless
 keyrings
 keyspace
 keystore
@@ -362,6 +371,7 @@ nameserver
 nameservers
 namespace
 namespaced
+namespacing
 namespaces
 NAT
 NATs
@@ -464,6 +474,7 @@ runtimes
 SAML
 sandboxed
 sandboxing
+sanitization
 SBOM
 SBOMs
 SCCs
@@ -554,6 +565,7 @@ unix
 unmanaged
 unmarshalled
 unnormalized
+unpackage
 unparsed
 unprocessable
 unpublish

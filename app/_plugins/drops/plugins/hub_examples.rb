@@ -2,6 +2,37 @@
 
 # There are also oauth2, acl and mtls-auth but I don't have examples of how to use them yet
 AUTH_PLUGINS = %w[basic-auth hmac-auth jwt key-auth].freeze
+TERRAFORM_ENABLED_PLUGINS = %w[
+  key-auth
+  cors
+  rate-limiting
+  basic-auth
+  rate-limiting-advanced
+  openid-connect
+  jwt
+  prometheus
+  acl
+  request-termination
+  file-log
+  request-transformer
+  correlation-id
+  proxy-cache
+  request-transformer-advanced
+  response-transformer
+  response-transformer-advanced
+  ip-restriction
+  pre-function
+  oauth2
+  opentelemetry
+  ai-proxy
+  ai-prompt-guard
+  ai-prompt-template
+  ai-prompt-decorator
+  aws-lambda
+  jq
+  jwt-signer
+  saml
+].freeze
 
 module Jekyll
   module Drops
@@ -31,6 +62,14 @@ module Jekyll
           @formats.include?(:kubernetes)
         end
 
+        def render_terraform?
+          terraform_implemented? && @formats.include?(:terraform)
+        end
+
+        def terraform_implemented?
+          TERRAFORM_ENABLED_PLUGINS.include?(plugin_name)
+        end
+
         def auth_plugin?
           AUTH_PLUGINS.include?(plugin_name)
         end
@@ -49,6 +88,10 @@ module Jekyll
 
         def kubernetes
           @kubernetes ||= Examples::Yaml.new(type:, example:)
+        end
+
+        def terraform
+          @terraform ||= Examples::Terraform.new(type:, example:)
         end
 
         def plugin_name

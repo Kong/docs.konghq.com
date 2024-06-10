@@ -31,9 +31,6 @@ For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway
 For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
 
 ```bash
-# Install prerequisites
-make install-prerequisites
-
 # Install dependencies
 make install
 
@@ -41,13 +38,15 @@ make install
 # OAS Pages require VITE_PORTAL_API_URL to be set in your current environment, it should match the Kong supplied portal URL
 cp .env.example .env
 
-# Build the site and watch for changes 
+# Build the site and watch for changes
 make run
 ```
 
+Once you see the `Server now ready on …` message, the docs site is available at [http://localhost:8888](http://localhost:8888).
+
 ### Troubleshooting the local build
 
-#### Invalid byte sequence in US-ASCII 
+#### Invalid byte sequence in US-ASCII
 
 If you encounter an error that looks like this:
 
@@ -86,7 +85,7 @@ It also supports wildcard matching for both products and versions, i.e.
 KONG_PRODUCTS='gateway:3.*'
 ```
 
-and 
+and
 
 ```bash
 KONG_PRODUCTS='*:latest'

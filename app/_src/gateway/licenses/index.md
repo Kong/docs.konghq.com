@@ -11,10 +11,12 @@ functionality, {{site.base_gateway}} enforces the presence and validity of a
 |--------------------|:---------:|:-----------------------:|
 | Manager            | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Admin API          | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+
 {% if_version lte:3.4.x %}
 | Vitals             | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 | Dev Portal         | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 {% endif_version %}
+
 | Enterprise plugins | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 
 ## Deploying the license file

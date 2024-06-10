@@ -26,14 +26,12 @@ Workspaces | <i class="fa fa-check"></i> <sup>2</sup>
 RBAC: roles and endpoint permissions | <i class="fa fa-check"></i>
 RBAC: groups and admins | <i class="fa fa-times"></i>
 Developers | <i class="fa fa-times"></i>
-
-{% if_version lte:1.16.x inline:true %}
+{% if_version lte:1.16.x -%}
 Consumer groups | <i class="fa fa-times"></i>
-{% endif_version %}
-{% if_version gte:1.17.x inline:true %}
+{% endif_version -%}
+{% if_version gte:1.17.x -%}
 Consumer groups | <i class="fa fa-check"></i>
-{% endif_version %}
-
+{% endif_version -%}
 Event hooks | <i class="fa fa-times"></i>
 Keyring and data encryption | <i class="fa fa-times"></i>
 
@@ -49,3 +47,7 @@ See [Manage multiple workspaces](/deck/{{page.release}}/guides/kong-enterprise/#
 While deck can manage a majority of {{site.base_gateway}}'s configuration, we recommend additional arrangements for deployment, backup, and restoring unmanaged entities for a more comprehensive approach.
 
 In the event that the data plane loses connection to the control plane in hybrid mode, the data plane can continue to function using a [backup declarative configuration file](/gateway/latest/reference/configuration/#declarative_config). This feature is not available if you have any unmanaged entities configured.
+
+## See also
+
+* [Kong Admin API endpoints used by decK](/deck/{{page.release}}/guides/kong-enterprise/#endpoints-used-by-deck)

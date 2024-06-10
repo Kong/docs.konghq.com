@@ -493,8 +493,6 @@ components:
         name:
           description: The name of the Plugin thats going to be added. Currently, the Plugin must be installed in every Kong instance separately.
           type: string
-        ordering:
-          type: object
         protocols:
           default:
             - grpc
@@ -1433,9 +1431,6 @@ components:
                 tags:
                   - user-level
                   - low-priority
-                ordering:
-                  before:
-                    - plugin-name
             properties:
               name:
                 type: string
@@ -1495,17 +1490,6 @@ components:
                   An optional set of strings associated with the Plugin for grouping and filtering.
                 items:
                   type: string
-              ordering:
-                type: object
-                description: |
-                  Describes a dependency to another plugin to determine plugin ordering during the access phase.
-                  - `before`: The plugin will be executed before a specified plugin or list of plugins.
-                  - `after`: The plugin will be executed after a specified plugin or list of plugins.
-                properties:
-                  before:
-                    type: array
-                    items:
-                      type: string
           examples:
             request example:
               value:
@@ -1522,9 +1506,6 @@ components:
                 enabled: true
                 tags:
                   - string
-                ordering:
-                  before:
-                    - string
       description: Plugin request body
     key-set-request:
       content:
@@ -3349,17 +3330,6 @@ components:
                   An optional set of strings associated with the Plugin for grouping and filtering.
                 items:
                   type: string
-              ordering:
-                type: object
-                description: |
-                  Describes a dependency to another plugin to determine plugin ordering during the access phase.
-                  - `before`: The plugin will be executed before a specified plugin or list of plugins.
-                  - `after`: The plugin will be executed after a specified plugin or list of plugins.
-                properties:
-                  before:
-                    type: array
-                    items:
-                      type: string
           x-examples:
             Example 1:
               id: ce44eef5-41ed-47f6-baab-f725cecf98c7
@@ -3379,9 +3349,6 @@ components:
               tags:
                 - user-level
                 - low-priority
-              ordering:
-                before:
-                  - plugin-name
           examples:
             Plugin response:
               value:
@@ -3402,9 +3369,6 @@ components:
                     tags:
                       - user-level
                       - low-priority
-                    ordering:
-                      before:
-                        - plugin-name
                   - id: 66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4
                     name: rate-limiting
                     created_at: 1422386534
@@ -3422,9 +3386,6 @@ components:
                       - admin
                       - high-priority
                       - critical
-                    ordering:
-                      after:
-                        - plugin-name
                 next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     key-set-response:
       description: Key set object response body
@@ -6230,7 +6191,7 @@ paths:
         List all the supported HTTP methods by an endpoint. This can also be used with a CORS preflight request.
       tags:
         - Information
-  '/schemas/{entity}/validate':
+  '/schemas/{entity}':
     parameters:
       - schema:
           type: string
@@ -6289,6 +6250,13 @@ paths:
                           type: integer
       operationId: get-schemas-entity
       description: Retrieve the schema of an entity. This is useful to understand what fields an entity accepts, and can be used for building third-party integrations with Kong.
+  '/schemas/{entity}/validate':
+    parameters:
+      - schema:
+          type: string
+        name: entity
+        in: path
+        required: true
     post:
       summary: Validate a configuration against a schema
       operationId: post-schemas-entity-validate
@@ -6965,8 +6933,8 @@ tags:
       <br><br>
 
       Learn more about the router: 
-      * [Configure routes using expressions](https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions)
-      * [Router Expressions language reference](https://docs.konghq.com/gateway/3.4.x/reference/router-expressions-language/)
+      * [Configure routes using expressions](https://docs.konghq.com/gateway/latest/key-concepts/routes/expressions/)
+      * [Router Expressions language reference](https://docs.konghq.com/gateway/latest/reference/expressions-language/)
     name: Routes
   - description: |
       A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.

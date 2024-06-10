@@ -1,46 +1,46 @@
 <template>
   <div class="view-spec-modal">
     <KModal
-      :is-visible="isVisible"
+      :close-on-backdrop-click="true"
+      :visible="visible"
+      hide-close-icon
       title="View Spec"
       @canceled="closeModal"
     >
-      <template #header-content>
+      <template #title>
         <span class="color-text_colors-primary">View Spec</span>
       </template>
-      <template #body-content>
-        <span>
-          <code>
-            <!--
-              eslint-disable vue/no-mutating-props
-              specContents is from props and not to be changed. The no-mutating-props
-              rule does not take into account that even though textarea is an editable element,
-              ours is disabled meaning no mutation
-            -->
-            <textarea
-              id="spec-area"
-              :value="specContents"
-              disabled
-            />
-          </code>
-        </span>
-      </template>
-      <template #footer-content>
+
+      <span>
+        <code>
+          <!--
+            eslint-disable vue/no-mutating-props
+            specContents is from props and not to be changed. The no-mutating-props
+            rule does not take into account that even though textarea is an editable element,
+            ours is disabled meaning no mutation
+          -->
+          <textarea
+            id="spec-area"
+            :value="specContents"
+            disabled
+          />
+        </code>
+      </span>
+
+      <template #footer-actions>
         <KClipboardProvider v-slot="{ copyToClipboard }">
           <KButton
             class="copy"
             appearance="primary"
-            :is-rounded="false"
             data-testid="copy-btn"
             @click="copySpec(copyToClipboard)"
           >
-            Copy
+           Copy
           </KButton>
         </KClipboardProvider>
         <KButton
           class="ml-2"
           appearance="secondary"
-          :is-rounded="false"
           data-testid="download-btn"
           type="submit"
           @click="downloadCallback"
@@ -50,7 +50,6 @@
         <KButton
           data-testid="close-btn"
           class="close"
-          :is-rounded="false"
           style="margin-left: auto;"
           appearance="secondary"
           @click="closeModal"
@@ -74,7 +73,7 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  isVisible: {
+  visible: {
     type: Boolean,
     default: false
   },
@@ -113,7 +112,7 @@ const copySpec = (executeCopy) => {
   overflow: scroll;
   white-space: pre;
   color: var(--text_colors-primary);
-  background-color: var(--section_colors-tertiary);
+  background-color: var(--kui-color-background-neutral-weakest, #f9fafb);
   margin: 0;
   padding: var(--spacing-md);
   font-size: var(--type-xs);
@@ -123,5 +122,10 @@ const copySpec = (executeCopy) => {
 }
 code {
   background: none;
+}
+
+.view-spec-modal :deep(.modal-footer .footer-actions) {
+  width: 100% !important;
+  margin-left: 0 !important;
 }
 </style>

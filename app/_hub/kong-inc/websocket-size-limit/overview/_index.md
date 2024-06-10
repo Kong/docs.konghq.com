@@ -181,29 +181,23 @@ exceed the limit, the message is rejected, and the connection is closed.
 
 For example, assuming `client_max_payload = 1024`:
 
-```
- .------.                                       .----.
- |Client|                                       |Kong|
- '------'                                       '----'
-    |                                             |
-    |     text(fin=false, len=500, msg=[...])     |
-    |>------------------------------------------->| # buffer += 500 (500)
-    |                                             |
-    |                                             |
-    |   continue(fin=false, len=500, msg=[...])   |
-    |>------------------------------------------->| # buffer += 500 (1000)
-    |                                             |
-    |                                             |
-    |   continue(fin=false, len=500, msg=[...])   |
-    |>------------------------------------------->| # buffer += 500 (1500)
-    |                                             | # buffer >= 1024 (limit exceeded!)
-    |                                             |
-    | close(status=1009, msg="Payload Too Large") |
-    |<-------------------------------------------<|
- .------.                                       .----.
- |Client|                                       |Kong|
- '------'                                       '----'
-```
+<!-- vale off -->
+{% mermaid %}
+sequenceDiagram
+autonumber
+    activate Client
+    activate Kong
+    Client->>Kong: text(fin=false, len=500, msg=[...])
+    note right of Kong: buffer += 500 (500)
+    Client->>Kong: continue(fin=false, len=500, msg=[...])
+    note right of Kong: buffer += 500 (1000)
+    Client->>Kong: continue(fin=false, len=500, msg=[...])
+    note right of Kong: buffer += 500 (1500) <br> buffer >= 1024 (limit exceeded!)
+    Kong->>Client: close(status=1009, msg="Payload Too Large")
+    deactivate Kong
+    deactivate Client
+{% endmermaid %}
+<!--vale on-->
 
 ### For control frames
 

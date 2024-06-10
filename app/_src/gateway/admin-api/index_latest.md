@@ -45,6 +45,7 @@ See the following links for individual entity documentation:
 | [Consumers](/gateway/api/admin-oss/latest/#/Consumers/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-oss/latest/#/Plugins/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-oss/latest/#/Certificates/list-certificate){:target="_blank"} |
 | [CA Certificates](/gateway/api/admin-oss/latest/#/CA%20Certificates/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-oss/latest/#/SNIs/list-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-oss/latest/#/Upstreams/list-upstream){:target="_blank"} |
 | [Targets](/gateway/api/admin-oss/latest/#/Targets/list-target-with-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-oss/latest/#/Vaults/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-oss/latest/#/Keys/list-key){:target="_blank"} |
+| [Filter Chains](/gateway/api/admin-oss/latest/#/filter-chains/get-filter-chains){:target="_blank"} | | |
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -144,6 +145,21 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
      -F "paths[1]=/path/one" \
      -F "paths[2]=/path/two"
 ```
+
+## HTTP status response codes
+
+The following status codes are returned in HTTP responses:
+
+| HTTP Code | HTTP Description | Notes | Request method |
+| --------- | ---------------- | ----- | ------------- |
+| 200 | OK | The request succeeded. The result of a `200` request depends on the request type: <br>- `GET`: The resource was fetched and sent in the message body. <br>- `PUT` or `POST`:  The resource that describes the result of the action is sent in the message body. <br>- `PATCH`: ? | `GET`, `POST`, `PATCH`, `PUT` |
+| 201 | Created | The request succeeded and a new resource was created. | `POST` |
+| 204 | No Content | There is no content in the request to send. | `DELETE` |
+| 400 | Bad Request | The server can't or won't send the request because of an error by the client. | `POST`, `PATCH`, `PUT` |
+| 401 | Unauthorized | The client is unauthenticated. | `GET`, `POST`, `DELETE`, `PATCH`, `PUT` |
+| 404 | Not Found | The server can't find the resource you requested. With an API, this can mean that the endpoint is valid but the resource doesn't exist. | `GET`, `PATCH`, `PUT` |
+| 405 | Method Not Allowed | The server knows the request method, but it isn't supported by the resource. | `PUT` |
+| 409 | Conflict | A request conflicts with the current state of the server.  | `POST` |
 
 ## Using the API in workspaces 
 {:.badge .enterprise}

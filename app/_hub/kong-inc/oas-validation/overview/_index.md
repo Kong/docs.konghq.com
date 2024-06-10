@@ -2,16 +2,26 @@
 nav_title: Overview
 ---
 
-Validate HTTP requests and responses based on an API specification. 
-Supports both Swagger v2 and OpenAPI v3 specifications JSON request and response bodies, with support for schema definitions described using JSON Schema draft v4. 
-For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https://json-schema.org/) for details on the format and examples.
+Validate HTTP requests and responses against an OpenAPI Specification.
 
-{% if_plugin_version gte:3.2.x %}
+
+{% if_version lte:3.6.x %}
+
+The plugin supports both Swagger (v2) and OpenAPI (3.0.x) specifications, with the support of JSON Schema [Draft-04](https://json-schema.org/specification-links#draft-4). 
+
+{% endif_version %}
+{% if_version gte:3.7.x %}
+
+The plugin supports both Swagger (v2) and OpenAPI (3.0.x and 3.1.0) specifications with a JSON Schema validator that supports [Draft 2019-09](https://json-schema.org/specification-links#draft-2019-09-(formerly-known-as-draft-8)).
+
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
 {:.important .no-icon}
 > In {{site.base_gateway}} versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default. Upgrade to 3.1.1.2, or manually [enable the plugin](/hub/kong-inc/oas-validation/3.1.x/#enable-the-plugin).
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version eq:3.1.x %}
+{% if_version eq:3.1.x %}
 ## Enable the plugin
 
 In {{site.base_gateway}} versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default.
@@ -21,7 +31,21 @@ To enable the plugin, use one of the following methods:
   * Docker: Set `KONG_PLUGINS=bundled,oas-validation` in the environment
   * Kubernetes: Set `KONG_PLUGINS=bundled,oas-validation` using [these instructions](/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration)
 
-{% endif_plugin_version %}
+{% endif_version %}
+
+{% if_version gte:3.7.x %}
+
+## Supported OpenAPI 3.1.0 specification features
+
+| Category                        | Supported                      | Not supported                                                            |
+|---------------------------------|--------------------------------|--------------------------------------------------------------------------|
+| Request Body                    | `application/json`               | `application/xml`<br>`multipart/form-data`<br>`text/plain`<br>`text/xml`<br> |
+| Response Body                   | `application/json`               | -                                                                        |
+| Request Parameters              | `path`, `query`, `header`, `cookie`    | -                                                                        |
+| Schema                          | `allOf`<br>`oneOf`<br>`anyOf`<br> | -                                                                        |
+| Parameter Serialization         | `style`, `explode `                | -                                                                        |
+
+{% endif_version %}
 
 ## Tutorial
 

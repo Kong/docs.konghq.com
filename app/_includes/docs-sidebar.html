@@ -63,6 +63,9 @@
           {% if include.release.latest? %}
             <span>(latest)</span>
           {% endif %}
+          {% if include.release.lts %}
+            <span>(LTS)</span>
+          {% endif %}
         </span>
         <span class="caret"></span>
       </button>
@@ -70,7 +73,7 @@
         {% for option in include.releases_dropdown.options reversed %}
           <li {% if option.active? %}class="active" {% endif %} role="menuitem" tabindex="-1">
             <a href="{{ option.url }}" {% if option.active? %} class="active" {% endif %} data-version-id="{{ option.data_id }}">
-              {{ option.value }}
+              {{ option.value }}{% if option.lts %} (LTS){% endif %}
             </a>
           </li>
         {% endfor %}

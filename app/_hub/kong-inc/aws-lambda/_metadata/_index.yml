@@ -7,7 +7,9 @@ enterprise: true
 paid: true
 konnect: true
 network_config_opts: All
-notes: --
+notes: |
+  <b>Dedicated Cloud Gateways</b>: If you use the IAM assumeRole functionality with this plugin, 
+  it must be configured differently than for hybrid deployments in Konnect.
 categories:
   - serverless
 publisher: Kong Inc.
