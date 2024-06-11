@@ -69,9 +69,9 @@ service/grpcbin created
 
 ## Create a GRPCRoute
 
-### gRPC over HTTPS
+### gRPC over TLS
 
-All services are assumed to be either HTTP or HTTPS by default. We need to update the service to specify gRPC as the protocol by adding a `konghq.com/protocol` annotation.
+All services are assumed to be either HTTP or HTTPS by default. We need to update the service to specify gRPC over TLS as the protocol by adding a `konghq.com/protocol` annotation.
 
 The annotation `grpcs` informs Kong that this service is a gRPC (with TLS) service and not a HTTP service.
 
@@ -127,7 +127,7 @@ gateway.gateway.networking.k8s.io/kong patched
 Next, create a `GRPCRoute`:
 
 ```bash
-echo 'apiVersion: gateway.networking.k8s.io/v1alpha2
+echo 'apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
 metadata:
   name: grpcbin
@@ -196,11 +196,11 @@ The results should look like this:
 }
 ```
 
-### gRPC over HTTP
+## gRPC without TLS
 
-All services are assumed to be either HTTP or HTTPS by default. We need to update the service to specify gRPC as the protocol by adding a `konghq.com/protocol` annotation.
+All services are assumed to be either HTTP or HTTPS by default. We can update the service to specify gRPC as the protocol by adding a `konghq.com/protocol` annotation. If you do not perform this step, it will also default to using gRPC as the default protocol.
 
-The annotation `grpc` informs Kong that this service is a gRPC (with TLS) service and not a HTTP service.
+The annotation `grpc` informs Kong that this service is a gRPC (without TLS) service and not a HTTP service.
 
 ```bash
 kubectl annotate service grpcbin 'konghq.com/protocol=grpc'
@@ -209,7 +209,7 @@ kubectl annotate service grpcbin 'konghq.com/protocol=grpc'
 Now that the test application is running, you can create GRPC routing configuration that
 proxies traffic to the application:
 
-For gRPC over HTTP (plaintext without TLS), configuration of Kong Gateway needs to be adjusted. By default Kong Gateway
+For gRPC without TLS, configuration of Kong Gateway needs to be adjusted. By default Kong Gateway
 accepts HTTP/2 traffic with TLS on port `443`. And HTTP/1.1 traffic on port `80`. To accept HTTP/2 (which is required by gRPC standard)
 traffic without TLS on port `80`, the configuration has to be adjusted.
 
@@ -217,9 +217,11 @@ traffic without TLS on port `80`, the configuration has to be adjusted.
 kubectl set env deployment/kong-gateway -n kong 'KONG_PROXY_LISTEN=0.0.0.0:8000 http2, 0.0.0.0:8443 http2 ssl'
 ```
 
-**Caveat:** Currently, Kong Gateway doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
+**Caveat:** Before Kong Gateway v3.6, it doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
 it's not possible to connect with HTTP/1.1 protocol, requests will be rejected. For HTTP/2 with TLS everything works seamlessly (connections
 are handled transparently). You may configure an alternative HTTP/2 port (e.g. `8080`) if you require HTTP/1.1 traffic on port 80.
+Since Kong Gateway v3.6, it has been able to support listening HTTP/2 without TLS(h2c) and HTTP/1.1 on the same port, so you can use port 80 for both
+HTTP/1.1 and HTTP/2 without TLS.
 
 #### Route gRPC traffic
 
@@ -229,7 +231,7 @@ are handled transparently). You may configure an alternative HTTP/2 port (e.g. `
 If you are using the Gateway APIs (GRPCRoute), your Gateway needs additional configuration under `listeners`.
 
 ```bash
-echo 'apiVersion: gateway.networking.k8s.io/v1alpha2
+echo 'apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
 metadata:
   name: grpcbin
