@@ -123,8 +123,6 @@ classDef startEnd fill:#545454,stroke:none,color:#fff
 {% endmermaid %}
 <!--vale on-->
 
-![fallback-config](/assets/images/products/kubernetes-ingress-controller/fallback-config.png "Fallback Configuration diagram")
-
 ## Example Scenario
 
 In this example we'll demonstrate how the Fallback Configuration works in practice.
