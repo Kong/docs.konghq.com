@@ -3336,8 +3336,8 @@ managed based on the strategy defined below.
 
 Defines the strategy implementation by which Kong nodes will manage symmetric
 encryption keys. Please see the Kong Enterprise documentation for a detailed
-description of each strategy. Acceptable values for this option are 'cluster'
-and 'vault'.
+description of each strategy. Acceptable values for this option are `cluster`
+and `vault`.
 
 **Default:** `cluster`
 
@@ -3511,7 +3511,7 @@ Examples of `untrusted_lua = sandbox` behavior:
 - You can't access or change global values such as
   `kong.configuration.pg_password`
 - You can run harmless Lua: `local foo = 1 + 1`. However, OS level functions
-  are not allowed, like: `os.execute('rm -rf /*')`.
+  are not allowed, like: `os.execute(`rm -rf /*`)`.
 
 For a full allowed/disallowed list, see:
 https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua
