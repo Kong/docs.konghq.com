@@ -839,7 +839,7 @@ Access to this interface should be *restricted* to Kong administrators *only*.
 This value accepts IPv4, IPv6, and hostnames.
 
 It is highly recommended to avoid exposing the Admin API to public interfaces,
-by using values such as 0.0.0.0:8001
+by using values such as `0.0.0.0:8001`
 
 See
 https://docs.konghq.com/gateway/latest/production/running-kong/secure-admin-api/
@@ -2907,9 +2907,9 @@ attempts allowed.
 ### admin_gui_header_txt
 {:.badge .free}
 
-Sets text for Kong Manager Header Banner.
+Sets the text for the Kong Manager header banner.
 
-Header Banner is not shown if this config is empty.
+Header banner is not shown if this config is empty.
 
 
 
@@ -2919,7 +2919,7 @@ Header Banner is not shown if this config is empty.
 ### admin_gui_header_bg_color
 {:.badge .free}
 
-Sets background color for Kong Manager Header Banner.
+Sets the background color for the Kong Manager header banner.
 
 Accepts CSS color keyword, #-hexadecimal, or RGB format. Invalid values are
 ignored by Manager.
@@ -2930,7 +2930,7 @@ ignored by Manager.
 ### admin_gui_header_txt_color
 {:.badge .free}
 
-Sets text color for Kong Manager Header Banner.
+Sets the text color for the Kong Manager header banner.
 
 Accepts CSS color keyword, #-hexadecimal, or RGB format. Invalid values are
 ignored by Kong Manager.
@@ -2943,8 +2943,8 @@ ignored by Kong Manager.
 ### admin_gui_footer_txt
 {:.badge .free}
 
-Sets text for Kong Manager Footer Banner. Footer Banner is not shown if this
-config is empty.
+Sets the text for the Kong Manager footer banner. Footer banner is not shown if
+this config is empty.
 
 **Default:** none
 
@@ -2952,10 +2952,10 @@ config is empty.
 ### admin_gui_footer_bg_color
 {:.badge .free}
 
-Sets background color for Kong Manager Footer Banner.
+Sets the background color for the Kong Manager footer banner.
 
 Accepts CSS color keyword, #-hexadecimal, or RGB format. Invalid values are
-ignored by Manager.
+ignored by manager.
 
 
 
@@ -2965,7 +2965,7 @@ ignored by Manager.
 ### admin_gui_footer_txt_color
 {:.badge .free}
 
-Sets text color for Kong Manager Footer Banner.
+Sets the text color for the Kong Manager footer banner.
 
 Accepts CSS color keyword, #-hexadecimal, or RGB format. Invalid values are
 ignored by Kong Manager.
@@ -2978,9 +2978,9 @@ ignored by Kong Manager.
 ### admin_gui_login_banner_title
 {:.badge .free}
 
-Sets title text for Kong Manager Login Banner.
+Sets the title text for the Kong Manager login banner.
 
-Login Banner is not shown if both `admin_gui_login_banner_title` and
+Login banner is not shown if both `admin_gui_login_banner_title` and
 `admin_gui_login_banner_body` are empty.
 
 
@@ -2991,9 +2991,9 @@ Login Banner is not shown if both `admin_gui_login_banner_title` and
 ### admin_gui_login_banner_body
 {:.badge .free}
 
-Sets body text for Kong Manager Login Banner.
+Sets the body text for the Kong Manager login banner.
 
-Login Banner is not shown if both `admin_gui_login_banner_title` and
+Login banner is not shown if both `admin_gui_login_banner_title` and
 `admin_gui_login_banner_body` are empty.
 
 
