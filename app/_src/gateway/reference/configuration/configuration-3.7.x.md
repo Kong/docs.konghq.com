@@ -92,8 +92,8 @@ logs is adjusted by the `log_level` property.
 
 Path for Admin API request access logs.
 
-If Hybrid Mode is enabled and the current node is set to be the Control Plane,
-then the connection requests from Data Planes are also written to this file with
+If hybrid mode is enabled and the current node is set to be the control plane,
+then the connection requests from data planes are also written to this file with
 server name "kong_cluster_listener".
 
 Set this value to `off` to disable logging Admin API requests.
@@ -138,7 +138,7 @@ The granularity of these logs is adjusted by the `log_level` property.
 ### debug_access_log
 {:.badge .enterprise}
 
-Path for Debug API request access logs. The default value, `off` implies that
+Path for Debug API request access logs. The default value `off`, implies that
 logging for this API is disabled by default.
 
 If this value is a relative path, it will be placed under the `prefix`
@@ -408,13 +408,13 @@ placeholders for the error message and the request ID respectively.
 
 ### role
 
-Use this setting to enable Hybrid Mode, This allows running some Kong nodes in
+Use this setting to enable hybrid mode, This allows running some Kong nodes in
 a control plane role with a database and have them deliver configuration updates
-to other nodes running to DB-less running in a Data Plane role.
+to other nodes running to DB-less running in a data plane role.
 
 Valid values for this setting are:
 
-- `traditional`: do not use Hybrid Mode.
+- `traditional`: do not use hybrid mode.
 - `control_plane`: this node runs in a control plane role. It can use a
   database and will deliver configuration updates to data plane nodes.
 - `data_plane`: this is a data plane node. It runs DB-less and receives
@@ -453,8 +453,11 @@ Under `shared` mode, it must be the same for all nodes.
 Under `pki` mode, it should be a different certificate for each DP node.
 
 The certificate can be configured on this property with any of the following
-values: * absolute path to the certificate * certificate content * base64
-encoded certificate content
+values:
+
+- absolute path to the certificate
+- certificate content
+- base64 encoded certificate content
 
 **Default:** none
 
@@ -470,8 +473,11 @@ Under `shared` mode, it must be the same for all nodes. Under `pki` mode it
 should be a different certificate for each DP node.
 
 The certificate key can be configured on this property with either of the
-following values: * absolute path to the certificate key * certificate key
-content * base64 encoded certificate key content
+following values:
+
+- absolute path to the certificate key
+- certificate key content
+- base64 encoded certificate key content
 
 **Default:** none
 
@@ -480,19 +486,22 @@ content * base64 encoded certificate key content
 
 The trusted CA certificate file in PEM format used for:
 
-- Control Plane to verify data plane's certificate
-- Data Plane to verify control plane's certificate
+- Control plane to verify data plane's certificate
+- Data plane to verify control plane's certificate
 
 Required on data plane if `cluster_mtls` is set to `pki`.
 
-If the Control Plane certificate is issued by a well-known CA, set
-`lua_ssl_trusted_certificate=system` on Data Plane and leave this field empty.
+If the control plane certificate is issued by a well-known CA, set
+`lua_ssl_trusted_certificate=system` on Data plane and leave this field empty.
 
 This field is ignored if `cluster_mtls` is set to `shared`.
 
 The certificate can be configured on this property with any of the following
-values: * absolute path to the certificate * certificate content * base64
-encoded certificate content
+values:
+
+- absolute path to the certificate
+- certificate content
+- base64 encoded certificate content
 
 **Default:** none
 
@@ -501,7 +510,7 @@ encoded certificate content
 
 The list of Common Names that are allowed to connect to control plane. Multiple
 entries may be supplied in a comma-separated string. When not set, data plane
-with same parent domain of Control Plane cert is allowed to connect.
+with same parent domain of control plane cert is allowed to connect.
 
 This field is ignored if `cluster_mtls` is not set to `pki_check_cn`.
 
@@ -555,7 +564,7 @@ The SNI (Server Name Indication extension) to use for Vitals telemetry data.
 
 Comma-separated list of labels for the data plane.
 
-Labels are key-value pairs that provide additional context information for each
+labels are key-value pairs that provide additional context information for each
 DP.
 
 Each label must be configured as a string in the format `key:value`.
@@ -616,8 +625,8 @@ its entry gets removed from the database, as returned by the
 /clustering/data-planes Admin API endpoint.
 
 This is to prevent the cluster data plane table from growing indefinitely. The
-default is set to 14 days. That is, if CP hasn't heard from a DP for 14 days,
-its entry will be removed.
+default is set to 14 days. That is, if the CP hasn't heard from a DP for 14
+days, its entry will be removed.
 
 **Default:** `1209600`
 
@@ -648,7 +657,7 @@ Valid values for this setting are:
 ### cluster_use_proxy
 
 Whether to turn on HTTP CONNECT proxy support for hybrid mode connections.
-`proxy_server` will be used for Hybrid mode connections if this option is turned
+`proxy_server` will be used for hybrid mode connections if this option is turned
 on.
 
 **Default:** `off`
@@ -657,7 +666,7 @@ on.
 ### cluster_max_payload
 
 This sets the maximum compressed payload size allowed to be sent from CP to DP
-in Hybrid mode.
+in hybrid mode.
 
 Default is 16MB - 16 * 1024 * 1024.
 
@@ -702,8 +711,8 @@ Some suffixes can be specified for each pair:
 - `ipv6only=on|off` specifies whether an IPv6 socket listening on a wildcard
   address [::] will accept only IPv6 connections or both IPv6 and IPv4
   connections.
-- `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the “TCP
-  keepalive” behavior for the listening socket. If this parameter is omitted,
+- `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the `TCP
+  keepalive` behavior for the listening socket. If this parameter is omitted,
   the operating system’s settings will be in effect for the socket. If it is
   set to the value “on”, the `SO_KEEPALIVE` option is turned on for the
   socket. If it is set to the value “off”, the `SO_KEEPALIVE` option is
@@ -714,7 +723,7 @@ Some suffixes can be specified for each pair:
 This value can be set to `off`, thus disabling the HTTP/HTTPS proxy port for
 this node.
 
-If `stream_listen` is also set to `off`, this enables 'control-plane' mode for
+If `stream_listen` is also set to `off`, this enables control plane mode for
 this node (in which all traffic proxying capabilities are disabled). This node
 can then be used only to configure a cluster of Kong nodes connected to the same
 datastore.
@@ -786,8 +795,8 @@ Some suffixes can be specified for each pair:
 - `ipv6only=on|off` specifies whether an IPv6 socket listening on a wildcard
   address [::] will accept only IPv6 connections or both IPv6 and IPv4
   connections.
-- `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the “TCP
-  keepalive” behavior for the listening socket. If this parameter is omitted,
+- `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the `TCP
+  keepalive` behavior for the listening socket. If this parameter is omitted,
   the operating system’s settings will be in effect for the socket. If it is
   set to the value “on”, the `SO_KEEPALIVE` option is turned on for the
   socket. If it is set to the value “off”, the `SO_KEEPALIVE` option is
@@ -864,11 +873,11 @@ Some suffixes can be specified for each pair:
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the “TCP
   keepalive” behavior for the listening socket. If this parameter is omitted,
   the operating system’s settings will be in effect for the socket. If it is
-  set to the value “on”, the `SO_KEEPALIVE` option is turned on for the
-  socket. If it is set to the value “off”, the `SO_KEEPALIVE` option is
-  turned off for the socket. Some operating systems support setting of TCP
-  keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,
-  `TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
+  set to the value `on`, the `SO_KEEPALIVE` option is turned on for the socket.
+  If it is set to the value `off`, the `SO_KEEPALIVE` option is turned off for
+  the socket. Some operating systems support setting of TCP keepalive parameters
+  on a per-socket basis using the `TCP_KEEPIDLE`, `TCP_KEEPINTVL`, and
+  `TCP_KEEPCNT` socket options.
 
 This value can be set to `off`, thus disabling the Admin interface for this
 node, enabling a 'data-plane' mode (without configuration capabilities) pulling
@@ -929,7 +938,7 @@ Example: `debug_listen = 0.0.0.0:8200 ssl http2`
 Expose `debug_listen` functionalities via a Unix domain socket under the Kong
 prefix.
 
-This option allows local users to use "kong debug" command to invoke various
+This option allows local users to use `kong debug` command to invoke various
 debug functionalities without needing to enable `debug_listen` ahead of time.
 
 **Default:** `on`
@@ -1099,8 +1108,11 @@ certificates (RSA + ECC) the first time it starts up and use them for serving
 TLS requests.
 
 Certificates can be configured on this property with any of the following
-values: * absolute path to the certificate * certificate content * base64
-encoded certificate content
+values:
+
+- absolute path to the certificate
+- certificate content
+- base64 encoded certificate content
 
 **Default:** none
 
@@ -1117,9 +1129,11 @@ Unless this option is explicitly set, Kong will auto-generate a pair of default
 private keys (RSA + ECC) the first time it starts up and use them for serving
 TLS requests.
 
-Keys can be configured on this property with any of the following values: *
-absolute path to the certificate key * certificate key content * base64 encoded
-certificate key content
+Keys can be configured on this property with any of the following values:
+
+- absolute path to the certificate key
+- certificate key content
+- base64 encoded certificate key content
 
 **Default:** none
 
@@ -1141,8 +1155,11 @@ This value can be overwritten dynamically with the `client_certificate`
 attribute of the `Service` object.
 
 The certificate can be configured on this property with any of the following
-values: * absolute path to the certificate * certificate content * base64
-encoded certificate content
+values:
+
+- absolute path to the certificate
+- certificate content
+- base64 encoded certificate content
 
 **Default:** none
 
@@ -1156,8 +1173,11 @@ This value can be overwritten dynamically with the `client_certificate`
 attribute of the `Service` object.
 
 The certificate key can be configured on this property with any of the
-following values: * absolute path to the certificate key * certificate key
-content * base64 encoded certificate key content
+following values:
+
+- absolute path to the certificate key
+- certificate key content
+- base64 encoded certificate key content
 
 **Default:** none
 
@@ -1599,7 +1619,7 @@ cluster, or without a database, where each node stores its information
 independently in memory.
 
 When using a database, Kong will store data for all its entities (such as
-Routes, Services, Consumers, and Plugins) in PostgreSQL, and all Kong nodes
+routes, Services, Consumers, and Plugins) in PostgreSQL, and all Kong nodes
 belonging to the same cluster must connect to the same database.
 
 Kong supports PostgreSQL versions 9.5 and above.
@@ -1682,14 +1702,14 @@ name   | description  | default
 ### declarative_config
 
 The path to the declarative configuration file which holds the specification of
-all entities (Routes, Services, Consumers, etc.) to be used when the `database`
+all entities (routes, Services, Consumers, etc.) to be used when the `database`
 is set to `off`.
 
 Entities are stored in Kong's LMDB cache, so you must ensure that enough
 headroom is allocated to it via the `lmdb_map_size` property.
 
-If the Hybrid mode `role` is set to `data_plane` and there's no configuration
-cache file, this configuration is used before connecting to the Control Plane
+If the hybrid mode `role` is set to `data_plane` and there's no configuration
+cache file, this configuration is used before connecting to the control plane
 node as a user-controlled fallback.
 
 **Default:** none
@@ -1704,7 +1724,7 @@ The declarative configuration as a string
 
 ### lmdb_environment_path
 
-Directory where the LMDB database files used by DB-less and Hybrid mode to
+Directory where the LMDB database files used by DB-less and hybrid mode to
 store Kong configurations reside.
 
 This path is relative under the Kong `prefix`.
@@ -1714,7 +1734,7 @@ This path is relative under the Kong `prefix`.
 
 ### lmdb_map_size
 
-Maximum size of the LMDB memory map, used to store the DB-less and Hybrid mode
+Maximum size of the LMDB memory map, used to store the DB-less and hybrid mode
 configurations. Default is 2048m.
 
 This config defines the limit of LMDB file size; the actual file size growth
@@ -1725,7 +1745,7 @@ future database growth and Multi-Version Concurrency Control (MVCC) headroom
 needs.
 
 The file size of the LMDB database file should stabilize after a few config
-reloads/Hybrid mode syncs, and the actual memory used by the LMDB database will
+reloads/hybrid mode syncs, and the actual memory used by the LMDB database will
 be smaller than the file size due to dynamic swapping of database pages by the
 OS.
 
@@ -2350,7 +2370,7 @@ will be made.
 
 Defines whether this node should rebuild its state synchronously or
 asynchronously (the balancers and the router are rebuilt on updates that affect
-them, e.g., updates to Routes, Services, or Upstreams via the Admin API or
+them, e.g., updates to routes, services, or upstreams via the admin API or
 loading a declarative configuration file). (This option is deprecated and will
 be removed in future releases. The new default is `eventual`.)
 
@@ -2364,11 +2384,11 @@ Accepted values are:
 
 Note that `strict` ensures that all workers of a given node will always proxy
 requests with an identical router, but increased long-tail latency can be
-observed if frequent Routes and Services updates are expected.
+observed if frequent routes and Services updates are expected.
 
 Using `eventual` will help prevent long-tail latency issues in such cases, but
 may cause workers to route requests differently for a short period of time after
-Routes and Services updates.
+routes and Services updates.
 
 **Default:** `eventual`
 
@@ -2396,13 +2416,13 @@ Accepted values are:
 - `traditional_compatible`: the DSL-based expression router engine will be used
   under the hood. However, the router config interface will be the same as
   `traditional`, and expressions are automatically generated at router build
-  time. The `expression` field on the `Route` object is not visible.
+  time. The `expression` field on the `route` object is not visible.
 - `expressions`: the DSL-based expression router engine will be used under the
   hood. The traditional router config interface is still visible, and you can
-  also write Router Expressions manually and provide them in the `expression`
-  field on the `Route` object.
-- `traditional`: the pre-3.0 Router engine will be used. The config interface
-  will be the same as pre-3.0 Kong, and the `expression` field on the `Route`
+  also write router Expressions manually and provide them in the `expression`
+  field on the `route` object.
+- `traditional`: the pre-3.0 router engine will be used. The config interface
+  will be the same as pre-3.0 Kong, and the `expression` field on the `route`
   object is not visible.
 
 Deprecation warning: In Kong 3.0, `traditional` mode should be avoided and only
@@ -2501,8 +2521,12 @@ When `pg_ssl_verify` is enabled, these certificate authority files will be used
 for verifying Kong's database connections.
 
 Certificates can be configured on this property with any of the following
-values: * `system` * absolute path to the certificate * certificate content *
-base64 encoded certificate content
+values:
+
+- `system`
+- absolute path to the certificate
+- certificate content
+- base64 encoded certificate content
 
 See https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate
 
@@ -2711,8 +2735,11 @@ Defines the TLS versions supported for Kong Manager
 
 The SSL certificate for `admin_gui_listen` values with SSL enabled.
 
-values: * absolute path to the certificate * certificate content * base64
-encoded certificate content
+values:
+
+- absolute path to the certificate
+- certificate content
+- base64 encoded certificate content
 
 **Default:** none
 
@@ -2721,8 +2748,11 @@ encoded certificate content
 
 The SSL key for `admin_gui_listen` values with SSL enabled.
 
-values: * absolute path to the certificate key * certificate key content *
-base64 encoded certificate key content
+values:
+
+- absolute path to the certificate key
+- certificate key content
+- base64 encoded certificate key content
 
 **Default:** none
 
@@ -3257,7 +3287,7 @@ filter.
 {:.badge .enterprise}
 
 Specifies the Lua pattern which will be enforced on the `paths` attribute of a
-Route object. You can also add a placeholder for the workspace in the pattern,
+route object. You can also add a placeholder for the workspace in the pattern,
 which will be rendered during runtime based on the workspace to which the
 `route` belongs.
 
@@ -3320,8 +3350,11 @@ Defines the public key of an RSA keypair.
 This keypair is used for symmetric keyring import/export, e.g., for disaster
 recovery and optional bootstrapping.
 
-Values: * absolute path to the public key * public key content * base64 encoded
-public key content
+Values:
+
+- absolute path to the public key
+- public key content
+- base64 encoded public key content
 
 **Default:** none
 
@@ -3334,8 +3367,11 @@ Defines the private key of an RSA keypair.
 This keypair is used for symmetric keyring import/export, e.g., for disaster
 recovery and optional bootstrapping.
 
-Values: * absolute path to the private key * private key content * base64
-encoded private key content
+Values:
+
+- absolute path to the private key
+- private key content
+- base64 encoded private key content
 
 **Default:** none
 
@@ -3346,8 +3382,11 @@ encoded private key content
 Defines the public key to optionally encrypt all keyring materials and back
 them up in the database.
 
-Values: * absolute path to the public key * public key content * base64 encoded
-public key content
+Values:
+
+- absolute path to the public key
+- public key content
+- base64 encoded public key content
 
 **Default:** none
 
@@ -3399,12 +3438,12 @@ service.
 
 Accepted values are: `token`, or `kubernetes`:
 
-* `token`: Uses the static token defined in the `keyring_vault_token`
-configuration property.
+- `token`: Uses the static token defined in the `keyring_vault_token`
+  configuration property.
 
-* `kubernetes`: Uses the Kubernetes authentication mechanism, with the running
-pod's mapped service account, to assume the Hashicorp Vault role name that is
-defined in the `keyring_vault_kube_role` configuration property.
+- `kubernetes`: Uses the Kubernetes authentication mechanism, with the running
+  pod's mapped service account, to assume the Hashicorp Vault role name that is
+  defined in the `keyring_vault_kube_role` configuration property.
 
 **Default:** `token`
 
@@ -3449,19 +3488,19 @@ attackers or unintentional modification of the Kong global environment.
 
 Accepted values are: `off`, `sandbox`, or `on`:
 
-* `off`: Disallow loading of any arbitrary Lua functions. The `off` option
-disables any functionality that runs arbitrary Lua code, including the
-Serverless Functions plugins and any transformation plugin that allows custom
-Lua functions.
+- `off`: Disallow loading of any arbitrary Lua functions. The `off` option
+  disables any functionality that runs arbitrary Lua code, including the
+  Serverless Functions plugins and any transformation plugin that allows custom
+  Lua functions.
 
-* `sandbox`: Allow loading of Lua functions, but use a sandbox when executing
-them. The sandboxed function has restricted access to the global environment and
-only has access to standard Lua functions that will generally not cause harm to
-the Kong Gateway node.
+- `sandbox`: Allow loading of Lua functions, but use a sandbox when executing
+  them. The sandboxed function has restricted access to the global environment
+  and only has access to standard Lua functions that will generally not cause
+  harm to the Kong Gateway node.
 
-* `on`: Functions have unrestricted access to the global environment and can
-load any Lua modules. This is similar to the behavior in Kong Gateway prior to
-2.3.0.
+- `on`: Functions have unrestricted access to the global environment and can
+  load any Lua modules. This is similar to the behavior in Kong Gateway prior to
+  2.3.0.
 
 The default `sandbox` environment does not allow importing other modules or
 libraries, or executing anything at the OS level (for example, file read/write).
@@ -3469,10 +3508,10 @@ The global environment is also not accessible.
 
 Examples of `untrusted_lua = sandbox` behavior:
 
-* You can't access or change global values such as
-`kong.configuration.pg_password` * You can run harmless Lua: `local foo = 1 +
-1`. However, OS level functions are not allowed, like: `os.execute('rm -rf
-/*')`.
+- You can't access or change global values such as
+  `kong.configuration.pg_password`
+- You can run harmless Lua: `local foo = 1 + 1`. However, OS level functions
+  are not allowed, like: `os.execute('rm -rf /*')`.
 
 For a full allowed/disallowed list, see:
 https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua
@@ -3653,13 +3692,13 @@ The name of a wasm filter module is derived from the filename itself, with the
 
 The resulting filter modules available for use in Kong will be:
 
-* `my_module` * `my_other_module`
+- `my_module`
+- `my_other_module`
 
 Notes:
 
-* No recursion is performed. Only .wasm files at the top level are registered.
-
-* This path _may_ be a symlink to a directory.
+- No recursion is performed. Only .wasm files at the top level are registered.
+- This path _may_ be a symlink to a directory.
 
 **Default:** none
 
@@ -3747,8 +3786,8 @@ Some TLS-related settings receive special treatment as well:
 - `lua_ssl_trusted_certificate`: when set, the value is propagated to the
   `nginx_wasm_tls_trusted_certificate` directive.
 - `lua_ssl_verify_depth`: when set (to a value greater than zero), several
-  TLS-related `nginx_wasm_*` settings are enabled: *
-  `nginx_wasm_tls_verify_cert` * `nginx_wasm_tls_verify_host` *
+  TLS-related `nginx_wasm_*` settings are enabled: -
+  `nginx_wasm_tls_verify_cert` - `nginx_wasm_tls_verify_host` -
   `nginx_wasm_tls_no_verify_warn`
 
 Like other `kong.conf` fields, all injected Nginx directives documented here
