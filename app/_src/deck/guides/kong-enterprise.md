@@ -45,6 +45,56 @@ It is advised that you do not use an RBAC token with super admin privileges
 with decK, and always scope down the exact permissions you need to give
 decK.
 
+### Endpoints used by decK
+
+decK uses Kong's Admin API to communicate with {{site.base_gateway}}. 
+If you have RBAC enabled, you need to give decK permissions to perform operations, or use an admin account that has these permissions. 
+
+Here are some common endpoints hit by decK for normal operations:
+
+* `GET, POST, PATCH, PUT, DELETE /{entityType}` or `GET, POST, PATCH, PUT, DELETE /{workspace}/{entityType}`: Perform read and write operations on entities.
+
+   If you are running {{site.ee_product_name}}, then decK interacts with entities inside workspaces. 
+   See the [Entities managed by decK](/deck/{{page.release}}/reference/entities/) reference for the full list.
+   
+   Note that decK also performs operations on entities enabled by plugins, such as `/basic-auths`, `/jwts`, and so on.
+* `GET /`: Get the {{site.base_gateway}} version.
+* `GET /{workspace}/kong`: Get entities in a workspace.
+* `GET /{workspace}/workspaces/{entityType}`: Check whether the workspace or other entity exists or not.
+* `GET /{workspace}/schemas/{entityType}`: Retrieves the schema for a specified entity type within a workspace and applies default settings.
+* `GET /{workspace}/schemas/plugins/{pluginName}`: Retrieves the schema for a specified plugin within a workspace and applies default settings.
+* `POST /workspaces`: Create missing workspaces.
+
+To find out which endpoints your instance of decK is hitting, execute any decK command with the `--verbose 1` flag. 
+This outputs all of the queries being made. For example, here's a snippet from `deck gateway dump --verbose 1`:
+
+```sh
+...
+GET /routes?size=1000 HTTP/1.1
+Host: localhost:8001
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+
+GET /consumers?size=1000 HTTP/1.1
+Host: localhost:8001
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+
+GET /mtls-auths?size=1000 HTTP/1.1
+Host: localhost:8001
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+
+GET /snis?size=1000 HTTP/1.1
+Host: localhost:8001
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+...
+```
+
 ## Workspaces
 
 decK is workspace-aware, meaning it can interact with multiple workspaces.

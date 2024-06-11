@@ -101,7 +101,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.4.x"
-  ee-version: "3.4.3.8"
+  ee-version: "3.4.3.9"
   ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -158,6 +158,21 @@
     pcre: 8.45
   lua_doc: true
   latest: true
+- release: "3.8.x"
+  ee-version: "3.8.0.0"
+  ce-version: "3.8.0"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+  label: unreleased
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
