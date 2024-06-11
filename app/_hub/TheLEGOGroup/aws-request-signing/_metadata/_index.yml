@@ -24,7 +24,7 @@ kong_version_compatibility:
     compatible:
       - 3.2.x
   enterprise_edition: # optional
-    compatible: true
+    compatible:
       - 3.2.x
 
 dbless_compatible: yes
