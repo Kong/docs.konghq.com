@@ -196,7 +196,7 @@ The results should look like this:
 }
 ```
 
-## gRPC without TLS
+### gRPC without TLS
 
 All services are assumed to be either HTTP or HTTPS by default. We can update the service to specify gRPC as the protocol by adding a `konghq.com/protocol` annotation. If you do not perform this step, it will also default to using gRPC as the default protocol.
 
