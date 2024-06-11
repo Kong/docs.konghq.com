@@ -7,7 +7,7 @@ A software bill of materials (SBOM) is an inventory of all software components (
 
 Starting in {{site.mesh_product_name}} 2.7.4, we are generating SBOMs for {{site.mesh_product_name}} and docker container images.
 
-1. [Download security assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets+version%3A{{page.latest_version}}) for the latest version of {{site.mesh_product_name}}
+1. [Download security assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets+version%3A{{page.kong_latest.version}}) for the latest version of {{site.mesh_product_name}}
 
 2. Extract the downloaded `security-assets.tar.gz`
 
