@@ -846,7 +846,7 @@ kmesh:
       # LogActions defines actions that will be logged when RBAC is resolved. Allowed values: "allowed", "denied"
       logActions: ["allowed", "denied"] # ENV: KMESH_ACCESS_RBAC_LOG_ACTIONS
       # DefaultAdminRoleGroups defines a list of groups to be added to the default admin role
-      defaultAdminRoleGroups: ["mesh-system:authenticated", "mesh-system:unauthenticated", "system:authenticated", "system:unauthenticated"] # ENV: KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_GROUPS
+      defaultAdminRoleGroups: ["mesh-system:authenticated", "mesh-system:unauthenticated"] # ENV: KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_GROUPS
       # DefaultAdminRoleUsers defines a list of users to be added to the default list of admins.
       defaultAdminRoleUsers: [] # ENV: KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_USERS
       # SkipAdminRoleCreation set whether skip creating the default admin role
