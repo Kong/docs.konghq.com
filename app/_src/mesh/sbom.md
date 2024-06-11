@@ -7,10 +7,7 @@ A software bill of materials (SBOM) is an inventory of all software components (
 
 Starting in {{site.mesh_product_name}} 2.7.4, we are generating SBOMs for {{site.mesh_product_name}} and docker container images.
 
-1. Download the security assets for the required version of {{site.mesh_product_name}}
-
-   * [2.7.4 Security Assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets+version%3A2.7.4)
-   * [2.8.0 Security Assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets+version%3A2.8.0)
+1. [Download security assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets+version%3A{{page.latest_version}}) for the latest version of {{site.mesh_product_name}}
 
 2. Extract the downloaded `security-assets.tar.gz`
 
@@ -20,5 +17,5 @@ Starting in {{site.mesh_product_name}} 2.7.4, we are generating SBOMs for {{site
 
 3. Access the below SBOMs:
 
-   * `sbom.spdx.json` and `sbom.cyclonedx.json` are the SBOM files for {{site.mesh_product_name}}
-   * `image_<image_name>-*.spdx.json` and `image_<image_name>-*.cyclonedx.json` are the SBOM files for Docker Container Images of {{site.mesh_product_name}}
+   * `sbom.spdx.json` and `sbom.cyclonedx.json` are the SBOM files for **binaries** built from {{site.mesh_product_name}}
+   * `image_<image_name>-*.spdx.json` and `image_<image_name>-*.cyclonedx.json` are the SBOM files for **docker container images** of {{site.mesh_product_name}}
