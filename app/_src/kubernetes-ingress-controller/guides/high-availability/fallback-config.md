@@ -139,8 +139,8 @@ the Fallback Configuration feature and diagnostics server enabled.
 
 ```bash
 helm upgrade --install kong kong/ingress -n kong \
-  --set ingressController.env.feature_gates=FallbackConfiguration=true \
-  --set ingressController.env.dump_config=true
+  --set controller.ingressController.env.feature_gates=FallbackConfiguration=true \
+  --set controller.ingressController.env.dump_config=true
 ```
 
 In the example, we'll consider a situation where:
@@ -484,8 +484,8 @@ valid version. To demonstrate this, we'll use the same setup as in the default m
 
 ```bash
 helm upgrade --install kong kong/ingress -n kong \
---set ingressController.env.feature_gates=FallbackConfiguration=true \
---set ingressController.env.use_last_valid_config_for_fallback=true
+--set controller.ingressController.env.feature_gates=FallbackConfiguration=true \
+--set controller.ingressController.env.use_last_valid_config_for_fallback=true
 ```
 
 #### Attaching the plugin back
