@@ -11,11 +11,12 @@ module OasDefinitionPages
       @site.data['ssg_oas_pages'] = []
 
       Dir.glob(File.join(site.source, '_api/**/**/_index.md')).each do |file|
-        product = page_product(file)
+        frontmatter = page_frontmatter(file)
+        product = page_product(frontmatter)
 
         raise "Could not load API Product for #{file}" unless product
 
-        ::OasDefinition::Product.new(product:, file:, site:).generate_pages!
+        ::OasDefinition::Product.new(product:, file:, site:, frontmatter:).generate_pages!
       end
 
       generate_index_page!
@@ -23,8 +24,11 @@ module OasDefinitionPages
 
     private
 
-    def page_product(page)
-      frontmatter = Utils::FrontmatterParser.new(File.read(page)).frontmatter
+    def page_frontmatter(page)
+      Utils::FrontmatterParser.new(File.read(page)).frontmatter
+    end
+
+    def page_product(frontmatter)
       product_id = frontmatter.fetch('konnect_product_id')
 
       products.detect { |p| p['id'] == product_id }

@@ -2,7 +2,7 @@
 
 module OasDefinition
   class ErrorPage < ::Jekyll::Page
-    def initialize(site:, data:) # rubocop:disable Lint/MissingSuper
+    def initialize(site:, data:, errors:) # rubocop:disable Lint/MissingSuper
       # Prevent modification of source data that's used in OasDefinition::Page
       data = data.clone
 
@@ -17,15 +17,8 @@ module OasDefinition
 
       # Error specific overrides
       override_data_for_error!
-      api_path = api_spec_path
 
-      unless api_path
-        @content = 'This API does not have error definitions.'
-        return
-      end
-
-      spec = load_api_file(api_path)
-      @content = generate_error_table(spec)
+      @content = generate_error_table(errors)
     end
 
     private
@@ -37,9 +30,7 @@ module OasDefinition
       @data['no_version'] = true
     end
 
-    def generate_error_table(spec) # rubocop:disable Metrics/MethodLength
-      return '' unless spec['x-errors']
-
+    def generate_error_table(errors)
       # heredoc string return
       <<~HEREDOC
         <div><a class="no-link-icon" href="../">&laquo; Back to API</a></div>
@@ -53,7 +44,7 @@ module OasDefinition
             </tr>
           </thead>
           <tbody>
-            #{spec['x-errors'].map { |k, v| generate_error_row(k, v) }.join("\n")}
+            #{errors.map { |k, v| generate_error_row(k, v) }.join("\n")}
           </tbody>
         </table>
       HEREDOC
@@ -75,19 +66,6 @@ module OasDefinition
       return '' unless link
 
       "<a href=\"#{link['url']}\">#{link['text']}</a>"
-    end
-
-    def api_spec_path
-      return nil unless @data['insomnia_link']
- 
-      spec_file = CGI.unescape(@data['insomnia_link']).split('&uri=')[1].gsub(
-        'https://raw.githubusercontent.com/Kong/docs.konghq.com/main/', ''
-      )
-      File.join(@base, '..', spec_file)
-    end
-
-    def load_api_file(api_path)
-      YAML.load_file(api_path)
     end
   end
 end
