@@ -25,16 +25,14 @@ You can also manage all {{site.base_gateway}} configuration parameters using [en
 
 ## General section
 
-### proxy_access_log
+### prefix
 
-Path for proxy port request access logs.
+Working directory. Equivalent to Nginx's prefix path, containing temporary
+files and logs.
 
-Set to `off` to disable logging proxy requests.
+Each Kong process must have a separate working directory.
 
-If this value is a relative path, it will be placed under the `prefix`
-location.
-
-**Default:** `logs/access.log`
+**Default:** `/usr/local/kong/`
 
 
 ### log_level
