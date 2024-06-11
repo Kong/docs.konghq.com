@@ -100,6 +100,7 @@ classDef startEnd fill:#545454,stroke:none,color:#fff
      to be used as the last valid state]
     P --> R[Store the fallback declarative configuration
     to be used as the last valid configuration]
+    R --> Z
 
     subgraph subI [" "]
         I
@@ -391,24 +392,47 @@ We can verify this by inspecting the diagnostic endpoint:
 
 ```bash
 kubectl port-forward -n kong deploy/kong-controller 10256 &
-curl -i localhost:10256/debug/config/problems
+curl localhost:10256/debug/config/fallback | jq
 ```
 
 The results should look like this:
 
-```text
-HTTP/1.1 200 OK
-Content-Type: application/json
-
+```json
 {
-    "brokenObjects": [
-        {"kind": "KongPlugin", "name": "rate-limit-consumer", "namespace": "default"},
-        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
-    ],
-    "excludedObjects": [
-        {"kind": "KongPlugin", "name": "rate-limit-consumer", "namespace": "default"},
-        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
-    ]
+  "status": "triggered",
+  "brokenObjects": [
+    {
+      "group": "configuration.konghq.com",
+      "kind": "KongPlugin",
+      "namespace": "default",
+      "name": "rate-limit-consumer",
+      "id": "7167315d-58f5-4aea-8aa5-a9d989f33a49"
+    }
+  ],
+  "excludedObjects": [
+    {
+      "group": "configuration.konghq.com",
+      "kind": "KongPlugin",
+      "version": "v1",
+      "namespace": "default",
+      "name": "rate-limit-consumer",
+      "id": "7167315d-58f5-4aea-8aa5-a9d989f33a49",
+      "causingObjects": [
+        "configuration.konghq.com/KongPlugin:default/rate-limit-consumer"
+      ]
+    },
+    {
+      "group": "gateway.networking.k8s.io",
+      "kind": "HTTPRoute",
+      "version": "v1",
+      "namespace": "default",
+      "name": "route-b",
+      "id": "fc82aa3d-512c-42f2-b7c3-e6f0069fcc94",
+      "causingObjects": [
+        "configuration.konghq.com/KongPlugin:default/rate-limit-consumer"
+      ]
+    }
+  ]
 }
 ```
 
@@ -601,28 +625,82 @@ Using diagnostic endpoints, we can now inspect the objects that were excluded an
 
 ```bash
 kubectl port-forward -n kong deploy/kong-controller 10256 &
-curl -i localhost:10256/debug/config/problems
+curl localhost:10256/debug/config/fallback | jq
 ```
 
 The results should look like this:
-```text
-HTTP/1.1 200 OK
-Content-Type: application/json
-
+```json
 {
-    "brokenObjects": [
-        {"kind": "KongPlugin", "name": "rate-limit-consumer", "namespace": "default"},
-        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
-    ],
-    "excludedObjects": [
-        {"kind": "KongPlugin", "name": "rate-limit-consumer", "namespace": "default"},
-        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
-    ]
-    "backfilledObjects": [
-        {"kind": "KongPlugin", "name": "rate-limit-consumer", "namespace": "default"},
-        {"kind": "HTTPRoute", "name": "route-b", "namespace": "default"}
-        {"kind": "KongConsumer", "name": "bob", "namespace": "default"}
-    ]
+  "status": "triggered",
+  "brokenObjects": [
+    {
+      "group": "configuration.konghq.com",
+      "kind": "KongPlugin",
+      "namespace": "default",
+      "name": "rate-limit-consumer",
+      "id": "7167315d-58f5-4aea-8aa5-a9d989f33a49"
+    }
+  ],
+  "excludedObjects": [
+    {
+      "group": "configuration.konghq.com",
+      "kind": "KongPlugin",
+      "version": "v1",
+      "namespace": "default",
+      "name": "rate-limit-consumer",
+      "id": "7167315d-58f5-4aea-8aa5-a9d989f33a49",
+      "causingObjects": [
+        "configuration.konghq.com/KongPlugin:default/rate-limit-consumer"
+      ]
+    },
+    {
+      "group": "gateway.networking.k8s.io",
+      "kind": "HTTPRoute",
+      "version": "v1",
+      "namespace": "default",
+      "name": "route-b",
+      "id": "fc82aa3d-512c-42f2-b7c3-e6f0069fcc94",
+      "causingObjects": [
+        "configuration.konghq.com/KongPlugin:default/rate-limit-consumer"
+      ]
+    }
+  ],
+  "backfilledObjects": [
+    {
+      "group": "configuration.konghq.com",
+      "kind": "KongPlugin",
+      "version": "v1",
+      "namespace": "default",
+      "name": "rate-limit-consumer",
+      "id": "7167315d-58f5-4aea-8aa5-a9d989f33a49",
+      "causingObjects": [
+        "configuration.konghq.com/KongPlugin:default/rate-limit-consumer"
+      ]
+    },
+    {
+      "group": "configuration.konghq.com",
+      "kind": "KongConsumer",
+      "version": "v1",
+      "namespace": "default",
+      "name": "bob",
+      "id": "deecb7c5-a3f6-4b88-a875-0e1715baa7c3",
+      "causingObjects": [
+        "configuration.konghq.com/KongPlugin:default/rate-limit-consumer"
+      ]
+    },
+    {
+      "group": "gateway.networking.k8s.io",
+      "kind": "HTTPRoute",
+      "version": "v1",
+      "namespace": "default",
+      "name": "route-b",
+      "id": "fc82aa3d-512c-42f2-b7c3-e6f0069fcc94",
+      "causingObjects": [
+        "configuration.konghq.com/KongPlugin:default/rate-limit-consumer",
+        "gateway.networking.k8s.io/HTTPRoute:default/route-b"
+      ]
+    }
+  ]
 }
 ```
 
