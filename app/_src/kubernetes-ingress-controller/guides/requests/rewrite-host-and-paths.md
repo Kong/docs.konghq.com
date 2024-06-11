@@ -13,7 +13,7 @@ This guide demonstrates host and path rewrites using Ingress and Service configu
 
 {% include /md/kic/http-test-routing.md release=include.release path='/echo' name='echo' %}
 
-## Rewriting the host
+## Host manipulation
 
 {{ site.kic_product_name }} provides two annotations for manipulating the `Host` header. These annotations allow for three different behaviours:
 
@@ -118,7 +118,7 @@ You can set the Host header explicitly if needed by disabling `konghq.com/preser
     URL: /?details=true
     ```
 
-## Rewriting the path
+## Path manipulation
 
 Users have the following options to rewrite the default path handling behavior:
 
@@ -127,12 +127,13 @@ Users have the following options to rewrite the default path handling behavior:
 * Remove the path prefix using `strip-path`
 * Add a path prefix using the `path` annotation
 
+### Rewriting the path
+
+{% navtabs rewrite %}
+
 {% if_version gte 3.2.0 %}
-### Rewrite using Gateway API's `URLRewrite` filter
-
-#### Rewriting full path
-
-Add the `URLRewrite` filter with `path.replaceFullPath` to your `HTTPRoute` rule to rewrite path entirely.
+{% navtab Gateway API %}
+You can replace the full path for a request by adding the `URLRewrite` filter with `path.replaceFullPath` to your `HTTPRoute`.
 
 ```yaml
 ...
@@ -144,9 +145,8 @@ filters:
       replaceFullPath: /rewritten-path
 ```
 
-#### Rewriting path prefix
+Alternatively, you can add the `URLRewrite` filter with `path.replacePrefixMatch` to your `HTTPRoute` rule to rewrite the path prefix.
 
-Add the `URLRewrite` filter with `path.replacePrefixMatch` to your `HTTPRoute` rule to rewrite path prefix.
 See the [URLRewrite filter documentation](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2fv1.HTTPPathModifier)
 for more information.
 
@@ -165,9 +165,9 @@ rules:
            replacePrefixMatch: /new-prefix
 ```
 
+{% endnavtab %}
 {% endif_version %}
-
-### Rewrite using regular expressions
+{% navtab Ingress %}
 
 {:.note}
 > This feature is available from {{ site.kic_product_name }} 2.12 and requires the [`RewriteURIs` feature gate](/kubernetes-ingress-controller/{{ page.release }}/reference/feature-gates/) to be activated.
@@ -188,6 +188,11 @@ Host: kong.example
 Method: GET
 URL: /hello/world?details=true
 ```
+
+[2]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcomrewrite
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Strip the path
 
@@ -243,6 +248,5 @@ coming first. Adding both annotations send requests for `/api/echo`.
 
 [0]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcompreserve-host
 [1]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcomhost-header
-[2]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcomrewrite
 [3]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcomstrip-path
 [4]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcompath
