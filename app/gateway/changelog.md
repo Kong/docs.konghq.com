@@ -1692,6 +1692,50 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+
+## 3.4.3.9
+**Release Date** 2024/06/08
+
+### Features
+#### Admin API
+
+_Backported from 3.7.0.0_
+
+* Added LHS bracket filtering to search fields.
+* **Audit logs:**
+  * Added `request_timestamp` to `audit_objects`.
+  * Added before and after aliases for LHS Brackets filters.
+  * `audit_requests` and `audit_objects` can now be filtered by `request_timestamp`.
+
+### Fixes
+#### Admin API
+
+_Backported from 3.6.0.0_
+* Fixed an issue with the workspace listing API, which showed workspaces that the user didn't have any roles in.
+The API now only shows workspaces that the user has access to.
+
+#### Core
+
+* Fixed an issue where `cluster_cert` or `cluster_ca_cert` was inserted into `lua_ssl_trusted_certificate` before being base64-decoded.
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+* **Vitals**: Fixed an issue where each data plane connecting to the control plane would trigger the creation of a redundant 
+table rotater timer on the control plane.
+* Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
+* Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
+
+#### Plugins
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Timer spikes no longer occur when there is network instability with the central data store.
+
+### Dependencies
+
+* Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+ 
 ## 3.4.3.8
 **Release Date** 2024/05/16
 

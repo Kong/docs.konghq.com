@@ -53,20 +53,21 @@ The following parameters let you provide consumer mapping:
 - `config.channel_token_consumer_claim`
 - `config.channel_token_introspection_consumer_claim`
 
-You can map only once. The plugin applies mappings in the following order:
+The plugin only maps consumers once. 
 
-1. access token introspection results
-2. access token jwt payload
-3. access token introspection results
-4. access token jwt payload
+It applies mappings in the following order, depending on whether the input is opaque or JWT:
 
-The mapping order depends on input (opaque or JWT).
+1. Access token introspection results
+2. Access token JWT payload
+3. Channel token introspection results
+4. Channel token JWT payload
 
-When mapping is done, no other mappings are used. If access token already maps
-to a Kong consumer, the plugin does not try to map a channel token to a consumer
-anymore and does not even error in that case.
+When mapping is done, no other mappings are used.
+The plugin won't try to remap or override consumers once they've been found and mapped. 
+For example, if an access token already maps to a Kong consumer, the plugin doesn't try 
+to map a channel token to that consumer anymore, and won't throw any errors.
 
-A general rule is to map either the access token or the channel token.
+A general rule is to map either the access token or the channel token, not both.
 
 ## Kong Admin API Endpoints
 

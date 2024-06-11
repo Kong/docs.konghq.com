@@ -29,7 +29,10 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/host-aliases`](#konghqcomhostaliases)                                   | Additional hosts for routes created from this Ingress's rules                                                   |
 | [`konghq.com/override`](#konghqcomoverride)                                          | (Deprecated, replace with per-setting annotations) Control other routing attributes with a KongIngress resource |
 | [`konghq.com/path-handling`](#konghqcompathhandling)                                 | Set the path handling algorithm                                                                                 |
-| [`konghq.com/headers.*`](#konghqcomheaders)                                          | Set header values required to match rules in this Ingress                                                       |
+| [`konghq.com/headers.*`](#konghqcomheaders)                                          | Set header values required to match rules in this Ingress, default separator for multiple values is `,`         |
+{% if_version gte:3.2.x %}
+| [`konghq.com/headers-separator`](#konghqcomheaders-separator)                        | Separator for header values, other than default `,`                                                             |
+{% endif_version %}
 | [`konghq.com/rewrite`](#konghqcomrewrite)                                            | Rewrite the path of a URL                                                                                       |
 | [`konghq.com/tags`](#konghqcomtags)                                                  | Assign custom tags to Kong entities generated out of this Ingress                                               |
 
@@ -570,6 +573,17 @@ annotation name is the header, and the value is a CSV of allowed header values.
 For example, setting `konghq.com/headers.x-routing: alpha,bravo` will only
 match requests that include an `x-routing` header whose value is either `alpha`
 or `bravo`.
+
+{% if_version gte:3.2.x %}
+### konghq.com/headers-separator
+
+> Available since controller 3.2
+
+Sets the separator for the `konghq.com/headers.*` annotation to be something
+other than default `,`. This is useful when the header values themselves contain
+commas. For example, setting `konghq.com/headers-separator: ";"` will allow
+header values to be separated by `;` instead of `,`.
+{% endif_version %}
 
 ### konghq.com/connect-timeout
 
