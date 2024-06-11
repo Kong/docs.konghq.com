@@ -17,14 +17,14 @@ As an alternative to {{site.konnect_saas}}’s native authentication, you can se
 
 3. Enter the **Metadata URL** from your IdP in the **Identity Provider Metadata URL** field, or paste the **Metadata XML** in to the Identity **Provider Metadata XML** field.
 
-4. In the **Organization Login Path** field, enter a unique string. For example: `examplepath`.
+4. In the **Organization Login Path** field, enter the unique string that matches the one in Okta. For example: `examplepath`.
 
    {{site.konnect_short_name}} uses this string to generate a custom login
    URL for your organization.
 
    Requirements:
     * The path must be unique across all {{site.konnect_short_name}} organizations.
-      If your desired path is already taken, you must to choose another one.
+      If your desired path is already taken, you must choose another one.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 
@@ -43,7 +43,7 @@ If the configuration is correct, you will see the IdP sign-in page. You can now 
 
 In the **Advanced Settings**  section of the OIDC configuration form, you can customize IdP-specific behaviors. The following options are available:
 
-1. **Attribute Mappings**: Customize the mapping of required attributes to different attribute names from those received from the IdP. By default, {{site.konnect_short_name}} requires three attributes: `name`, `email`, and `groups`. These attributes are mapped as follows:
+**Attribute Mappings**: Customize the mapping of required attributes to different attribute names from those received from the IdP. By default, {{site.konnect_short_name}} requires three attributes: `name`, `email`, and `groups`. These attributes are mapped as follows:
     - `name`: Used as the {{site.konnect_short_name}} account's `full_name`.
     - `email`: Used as the {{site.konnect_short_name}} account's `email`.
     - `groups`: Used to map users to teams defined in the team mappings upon login.

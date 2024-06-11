@@ -42,7 +42,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
 {% navtab SAML %}
 ### Prepare the Okta application
 
-Create a new application in Okta to manage {{site.konnect_saas}} account integration.
+Create a new application in Okta to manage the {{site.konnect_saas}} account integration.
 
 1. Sign in to your [Okta admin account](https://okta.com/login/).
 2. In the sidebar, click **Applications > Applications**, then click **Create App Integration**.
@@ -55,22 +55,22 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
     1. In the **General Settings** page, enter a unique name for your application in the **App Name** box. Optionally add a logo in **App Logo** and update **App Visibility**. Click **Next**.
     1. In the **Configure SAML** page:
        1. Add placeholder values for the below fields. The actual values will updated after the configuration is updated in Konnect.
-          1. Single Sign-On URL - Enter `https://cloud.konghq.com`
-          2. Audience URI (SP Entity ID) - `https://konghq.sp`
-    1. In the **Attribute Statements** optionally add the below three attributes:
+          1. **Single Sign-On URL**: `https://cloud.konghq.com`
+          2. **Audience URI (SP Entity ID)**: `https://konghq.sp`
+    1. Optional: In the **Attribute Statements**, add the following three attributes:
  
        | Name       | Name format  | Value          |
        |------------|--------------|----------------|
        | `firstName`  | Unspecified  | user.firstName |
        | `lastName`   | Unspecified  | user.lastName  |
        | `email`      | Unspecified  | user.email     |
-    1. In the **Group Attributes** optionally add the below attribute:
+    1. Optional: In the **Group Attributes**, add the following attribute:
 
        | Name    | Name format  | Filter          | Filter Value |
        |---------|--------------|-----------------|--------------|
        | groups  | Unspecified  | Matches regex   | .*           |
     1. Click **Next**.
-    1. In the **Feedback** page, select **I’m an Okta customer adding an internal app** and CLick **Finish**
+    1. In the **Feedback** page, select **I’m an Okta customer adding an internal app** and click **Finish**
 {% endnavtab %}
 {% endnavtabs %}
 ### (Optional) Set up claims in Okta
@@ -202,7 +202,7 @@ application into {{site.konnect_saas}}.
 2. Click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
 3. Click **Configure provider** for **SAML**.
 
-4. In Okta, locate your Metadata URL.
+4. In Okta, locate your Metadata URL:
     1. Go to **Sign On** page in the Okta application created in the previous step.
     2. Copy the **Metadata URL** under the Settings section. It should look something like:
 
@@ -216,11 +216,11 @@ application into {{site.konnect_saas}}.
 
    Requirements:
     * The path must be unique *across all {{site.konnect_short_name}} organizations*.
-      If your desired path is already taken, you must to choose another one.
+      If your desired path is already taken, you must choose another one.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 
-6.Click **Save**.
+6. Click **Save**.
 {% endnavtab %}
 {% endnavtabs %}
 ### Map {{site.konnect_short_name}} teams to Okta groups
