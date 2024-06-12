@@ -24,7 +24,7 @@ Package v1 contains API Schema definitions for the konghq.com v1 API group.
 
 KongClusterPlugin is the Schema for the kongclusterplugins API.
 
-<!-- kong_cluster_plugin description placeholder -->
+{% include md/kic/crd-ref/kong_cluster_plugin_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -49,7 +49,7 @@ KongClusterPlugin is the Schema for the kongclusterplugins API.
 
 KongConsumer is the Schema for the kongconsumers API.
 
-<!-- kong_consumer description placeholder -->
+{% include md/kic/crd-ref/kong_consumer_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -68,7 +68,7 @@ KongConsumer is the Schema for the kongconsumers API.
 
 KongIngress is the Schema for the kongingresses API.
 
-<!-- kong_ingress description placeholder -->
+{% include md/kic/crd-ref/kong_ingress_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -86,7 +86,7 @@ KongIngress is the Schema for the kongingresses API.
 
 KongPlugin is the Schema for the kongplugins API.
 
-<!-- kong_plugin description placeholder -->
+{% include md/kic/crd-ref/kong_plugin_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -326,7 +326,7 @@ Package v1alpha1 contains API Schema definitions for the configuration.konghq.co
 
 IngressClassParameters is the Schema for the IngressClassParameters API.
 
-<!-- ingress_class_parameters description placeholder -->
+{% include md/kic/crd-ref/ingress_class_parameters_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -342,7 +342,7 @@ IngressClassParameters is the Schema for the IngressClassParameters API.
 
 KongCustomEntity defines a "custom" Kong entity that KIC cannot support the entity type directly.
 
-<!-- kong_custom_entity description placeholder -->
+{% include md/kic/crd-ref/kong_custom_entity_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -358,7 +358,7 @@ KongCustomEntity defines a "custom" Kong entity that KIC cannot support the enti
 
 KongLicense stores a Kong enterprise license to apply to managed Kong gateway instances.
 
-<!-- kong_license description placeholder -->
+{% include md/kic/crd-ref/kong_license_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -377,7 +377,7 @@ KongVault is the schema for kongvaults API which defines a custom Kong vault.
 A Kong vault is a storage to store sensitive data, where the values can be referenced in configuration of plugins.
 See: https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/
 
-<!-- kong_vault description placeholder -->
+{% include md/kic/crd-ref/kong_vault_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -572,7 +572,7 @@ Package v1beta1 contains API Schema definitions for the configuration.konghq.com
 
 KongConsumerGroup is the Schema for the kongconsumergroups API.
 
-<!-- kong_consumer_group description placeholder -->
+{% include md/kic/crd-ref/kong_consumer_group_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -599,7 +599,7 @@ Note: KongUpstreamPolicy doesn't implement Gateway API's GEP-713 strictly.
 In particular, it doesn't use the TargetRef for attaching to Services and Gateway API *Routes - annotations are
 used instead. This is to allow reusing the same KongUpstreamPolicy for multiple Services and Gateway API *Routes.
 
-<!-- kong_upstream_policy description placeholder -->
+{% include md/kic/crd-ref/kong_upstream_policy_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -615,7 +615,7 @@ used instead. This is to allow reusing the same KongUpstreamPolicy for multiple 
 
 TCPIngress is the Schema for the tcpingresses API.
 
-<!-- tcp_ingress description placeholder -->
+{% include md/kic/crd-ref/tcp_ingress_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -631,7 +631,7 @@ TCPIngress is the Schema for the tcpingresses API.
 
 UDPIngress is the Schema for the udpingresses API.
 
-<!-- udp_ingress description placeholder -->
+{% include md/kic/crd-ref/udp_ingress_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
