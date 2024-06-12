@@ -215,11 +215,11 @@ The results should look like this:
 }
 ```
 {% if_version lte:3.1.x %}
-### gRPC over HTTP
+### gRPC without TLS
 
 All services are assumed to be either HTTP or HTTPS by default. We need to update the service to specify gRPC as the protocol by adding a `konghq.com/protocol` annotation.
 
-The annotation `grpc` informs Kong that this service is a gRPC (with TLS) service and not a HTTP service.
+The annotation `grpc` informs Kong that this service is a gRPC (without TLS) service and not a HTTP service.
 
 ```bash
 kubectl annotate service grpcbin 'konghq.com/protocol=grpc'
@@ -228,7 +228,7 @@ kubectl annotate service grpcbin 'konghq.com/protocol=grpc'
 Now that the test application is running, you can create GRPC routing configuration that
 proxies traffic to the application:
 
-For gRPC over HTTP (plaintext without TLS), configuration of Kong Gateway needs to be adjusted. By default Kong Gateway
+For gRPC without TLS, configuration of {{site.base_gateway}} needs to be adjusted. By default {{site.base_gateway}}
 accepts HTTP/2 traffic with TLS on port `443`. And HTTP/1.1 traffic on port `80`. To accept HTTP/2 (which is required by gRPC standard)
 traffic without TLS on port `80`, the configuration has to be adjusted.
 
@@ -236,7 +236,7 @@ traffic without TLS on port `80`, the configuration has to be adjusted.
 kubectl set env deployment/kong-gateway -n kong 'KONG_PROXY_LISTEN=0.0.0.0:8000 http2, 0.0.0.0:8443 http2 ssl'
 ```
 
-**Caveat:** Currently, Kong Gateway doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
+**Caveat:** Currently, {{site.base_gateway}} doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
 it's not possible to connect with HTTP/1.1 protocol, requests will be rejected. For HTTP/2 with TLS everything works seamlessly (connections
 are handled transparently). You may configure an alternative HTTP/2 port (e.g. `8080`) if you require HTTP/1.1 traffic on port 80.
 {% endif_version %}
