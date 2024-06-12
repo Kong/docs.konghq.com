@@ -228,7 +228,7 @@ kubectl annotate service grpcbin 'konghq.com/protocol=grpc'
 Now that the test application is running, you can create GRPC routing configuration that
 proxies traffic to the application:
 
-For gRPC over HTTP (plaintext without TLS), configuration of Kong Gateway needs to be adjusted. By default Kong Gateway
+For gRPC over HTTP (plaintext without TLS), configuration of {{site.base_gateway}} needs to be adjusted. By default {{site.base_gateway}}
 accepts HTTP/2 traffic with TLS on port `443`. And HTTP/1.1 traffic on port `80`. To accept HTTP/2 (which is required by gRPC standard)
 traffic without TLS on port `80`, the configuration has to be adjusted.
 
