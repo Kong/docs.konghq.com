@@ -51,6 +51,11 @@ inherit:
       index: 0
       text: Kong Mesh license
       url: /production/cp-deployment/license
+    - path: [ Kong Mesh in Production, Control plane deployment ]
+      action: insert
+      index: -1
+      text: Production usage values
+      url: /production/cp-deployment/production-usage-values
     - path: [ Kong Mesh in Production, Secure your deployment ]
       action: delete
       entries: [ Kuma API access control ]
