@@ -93,6 +93,7 @@ Run the `slsa-verifier verify-image ...` command:
 slsa-verifier verify-image \
    <image>:<tag>@sha256:<manifest_digest> \
    --print-provenance \
+   --provenance-repository 'kong/notary' \
    --source-uri 'github.com/Kong/<repo>'
 ```
 
@@ -102,6 +103,7 @@ Here's the same example using sample values instead of placeholders:
 slsa-verifier verify-image \
    'kong/kuma-cp:2.7.4@sha256:<manifest_digest>' \
    --print-provenance \
+   --provenance-repository 'kong/notary' \
    --source-uri 'github.com/Kong/kong-mesh'
 ```
 
@@ -151,6 +153,7 @@ slsa-verifier verify-image \
    <image>:<tag>@sha256:<manifest_digest> \
    --print-provenance \
    --source-uri 'github.com/Kong/<repo>' \
+   --provenance-repository 'kong/notary' \
    --source-tag '<version>'
 ```
 
@@ -161,5 +164,6 @@ slsa-verifier verify-image \
    'kong/kuma-cp:2.7.4@sha256:<manifest_digest>' \
    --print-provenance \
    --source-uri 'github.com/Kong/kong-mesh' \
+   --provenance-repository 'kong/notary' \
    --source-tag '2.7.4'
 ```

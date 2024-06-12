@@ -20,7 +20,7 @@ For the complete example, you need the same details as the minimal example, as w
 | `<workflow name>` | GitHub workflow name | `build-test-distribute` |
 | `<workflow trigger>` | Github workflow trigger name | `push` |
 | `<version>` | Artifact version to download | `2.7.4` |
-| `<binary-files>` | Compressed binary files for the specified version | `kong-mesh-<version>-*-*.tar.gz` |
+| `<binary-files>` | Compressed binary files for the specified version | `kong-mesh-2.7.4-*-*.tar.gz` |
 | `<provenance-file>` | Binary provenance file | `kong-mesh.intoto.jsonl` |
 
 Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's OIDC identity to generate build provenance for binary artifacts, which is why many of these details are GitHub-related.
