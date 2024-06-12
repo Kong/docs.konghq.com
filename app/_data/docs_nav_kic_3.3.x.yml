@@ -1,12 +1,12 @@
 product: kubernetes-ingress-controller
-release: 3.2.x
+release: 3.3.x
 generate: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Overview
-        url: /kubernetes-ingress-controller/3.2.x/
+        url: /kubernetes-ingress-controller/3.3.x/
         absolute_url: true
       - text: Kubernetes Gateway API
         url: /gateway-api
