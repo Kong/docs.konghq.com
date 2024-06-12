@@ -30,6 +30,19 @@ router:
     * If the matching Service or Route's `host` is an absolute value, a
       conflict is reported—`409 Conflict`
 
+Some entities are kind of "global" entities and thus have no workspaces. In
+particular, `ca_certificates` is used to verify the client certificates in mTLS.
+The SSL handshaking takes place before sending an HTTP request when the
+workspace is not yet known, so `ca_certificates` is made "global".
+
+Some entities have workspaces but contain a certain field that should be unique
+across workspaces to avoid conflict. Specifically, the `name` field of the
+`snis` entity should be unique across workspaces because it'll be used in the
+SSL phase before the workspace is known.
+Similarly, the `prefix` field of the `vaults` entity is the host part of the
+vault reference uri which may be used in a context where no workspace information
+is available, for example when loading the `kong.conf` during startup.
+
 ## The default workspace
 
 Kong starts with a default workspace named `default`. This workspace
