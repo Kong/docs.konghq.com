@@ -43,32 +43,35 @@ ingressController:
 
 {% include /md/kic-crd-upgrades.md %}
 
+{% if_version gte:3.2.x %}
+
 ### Update Gateway API from v1.0 to v1.1
 
-Starting from version 3.2, {{ site.kic_product_name }} has introduced support for Gateway API version 1.1.
+Starting from version 3.2, {{ site.kic_product_name }} supports Gateway API version 1.1.
 The primary change in Gateway API v1.1 is the promotion of GRPCRoute from v1alpha2 to v1.
 
-If you have been using the Standard Channel of Gateway API, then you don't need to do anything extra.
-Just download the latest version of CRD from Standard Channel and install it in your cluster directly.
+If you have been using the Standard Channel of the Gateway API, then you don't need to do anything extra.
+Just download the latest version of the CRD from the Standard Channel and install it in your cluster directly.
 
-If you have installed the Experimental Channel of Gateway API v1.0, then when you want to upgrade to version v1.1 of CRD,
-you need to complete the following steps.
+If you have installed the Experimental Channel of Gateway API v1.0, 
+complete the following steps to upgrade to version v1.1 of the CRD:
 
-* Install the Experimental Channel of Gateway API v1.1
+1. Install the Experimental Channel of Gateway API v1.1:
 
-```
-kubectl apply --force=true -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/experimental-install.yaml  
-```
+   ```sh
+   kubectl apply --force=true -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/experimental-install.yaml  
+   ```
 
-The addition of `--force=true` here is due to the fact that upstream updated the CRD directly for the alpha stage
-[without preserving the definition of the old version](gwapi-alpha-version-update).
+   `--force=true` is necessary because upstream updated the CRD directly for the alpha stage
+   [without preserving the definition of the old version](gwapi-alpha-version-update).
 
-* Update all your manifests to use `v1` instead of `v1alpha2`
-* Upgrade to {{ site.kic_product_name }} v3.2, please refer to the document below
-* Install the Standard Channel of Gateway API v1.1 if you want.
+2. Update all your manifests to use `v1` instead of `v1alpha2`.
+3. [Upgrade to {{ site.kic_product_name }} v3.2](#upgrade).
+4. (Optional) Install the Standard Channel of Gateway API v1.1.
 
 [gwapi-alpha-version-update]: https://github.com/kubernetes-sigs/gateway-api/issues/3086
 
+{% endif_version %}
 
 ### Upgrade
 
