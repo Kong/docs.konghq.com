@@ -138,7 +138,7 @@ The granularity of these logs is adjusted by the `log_level` property.
 ### debug_access_log
 {:.badge .enterprise}
 
-Path for Debug API request access logs. The default value `off`, implies that
+Path for Debug API request access logs. The default value `off` implies that
 logging for this API is disabled by default.
 
 If this value is a relative path, it will be placed under the `prefix`
@@ -510,8 +510,9 @@ values:
 ### cluster_allowed_common_names
 
 The list of Common Names that are allowed to connect to control plane. Multiple
-entries may be supplied in a comma-separated string. When not set, data plane
-with same parent domain of control plane cert is allowed to connect.
+entries may be supplied in a comma-separated string. When not set, only data
+plane with the same parent domain as the control plane cert is allowed to
+connect.
 
 This field is ignored if `cluster_mtls` is not set to `pki_check_cn`.
 
@@ -1703,7 +1704,7 @@ name   | description  | default
 ### declarative_config
 
 The path to the declarative configuration file which holds the specification of
-all entities (routes, Services, Consumers, etc.) to be used when the `database`
+all entities (routes, services, consumers, etc.) to be used when the `database`
 is set to `off`.
 
 Entities are stored in Kong's LMDB cache, so you must ensure that enough
@@ -1758,7 +1759,7 @@ OS.
 ## Datastore Cache section
 
 In order to avoid unnecessary communication with the datastore, Kong caches
-entities (such as APIs, Consumers, Credentials...) for a configurable period of
+entities (such as APIs, consumers, credentials...) for a configurable period of
 time. It also handles invalidations if such an entity is updated.
 
 This section allows for configuring the behavior of Kong regarding the caching
@@ -2385,11 +2386,11 @@ Accepted values are:
 
 Note that `strict` ensures that all workers of a given node will always proxy
 requests with an identical router, but increased long-tail latency can be
-observed if frequent routes and Services updates are expected.
+observed if frequent routes and services updates are expected.
 
 Using `eventual` will help prevent long-tail latency issues in such cases, but
 may cause workers to route requests differently for a short period of time after
-routes and Services updates.
+routes and services updates.
 
 **Default:** `eventual`
 
@@ -3308,7 +3309,7 @@ Example For Pattern `/$(workspace)/v%d/.*` valid paths are:
 ## Database Encryption & Keyring Management section
 
 When enabled, Kong will transparently encrypt sensitive fields, such as
-Consumer credentials, TLS private keys, and RBAC user tokens, among others. A
+consumer credentials, TLS private keys, and RBAC user tokens, among others. A
 full list of encrypted fields is available from the Kong Enterprise
 documentation site.
 
