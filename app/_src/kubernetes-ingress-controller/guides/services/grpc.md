@@ -263,10 +263,10 @@ traffic without TLS on port `80`, the configuration has to be adjusted.
 kubectl set env deployment/kong-gateway -n kong 'KONG_PROXY_LISTEN=0.0.0.0:8000 http2, 0.0.0.0:8443 http2 ssl'
 ```
 
-**Caveat:** Before {{site.base_gateway}} v3.6, it doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
+**Caveat:** {{site.base_gateway}} 3.6.x and earlier doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
 it's not possible to connect with HTTP/1.1 protocol, requests will be rejected. For HTTP/2 with TLS everything works seamlessly (connections
 are handled transparently). You may configure an alternative HTTP/2 port (e.g. `8080`) if you require HTTP/1.1 traffic on port 80.
-Since {{site.base_gateway}} v3.6, it has been able to support listening HTTP/2 without TLS(h2c) and HTTP/1.1 on the same port, so you can use port 80 for both
+Since {{site.base_gateway}} 3.6.x, {{site.base_gateway}} is able to support listening HTTP/2 without TLS(h2c) and HTTP/1.1 on the same port, so you can use port 80 for both
 HTTP/1.1 and HTTP/2 without TLS.
 {% endif_version %}
 
