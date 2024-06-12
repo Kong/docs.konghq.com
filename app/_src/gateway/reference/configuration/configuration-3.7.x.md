@@ -492,7 +492,8 @@ The trusted CA certificate file in PEM format used for:
 Required on data plane if `cluster_mtls` is set to `pki`.
 
 If the control plane certificate is issued by a well-known CA, set
-`lua_ssl_trusted_certificate=system` on Data plane and leave this field empty.
+`lua_ssl_trusted_certificate=system` on the data plane and leave this field
+empty.
 
 This field is ignored if `cluster_mtls` is set to `shared`.
 
@@ -564,7 +565,7 @@ The SNI (Server Name Indication extension) to use for Vitals telemetry data.
 
 Comma-separated list of labels for the data plane.
 
-labels are key-value pairs that provide additional context information for each
+Labels are key-value pairs that provide additional context information for each
 DP.
 
 Each label must be configured as a string in the format `key:value`.
@@ -714,11 +715,11 @@ Some suffixes can be specified for each pair:
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the `TCP
   keepalive` behavior for the listening socket. If this parameter is omitted,
   the operating system’s settings will be in effect for the socket. If it is
-  set to the value “on”, the `SO_KEEPALIVE` option is turned on for the
-  socket. If it is set to the value “off”, the `SO_KEEPALIVE` option is
-  turned off for the socket. Some operating systems support setting of TCP
-  keepalive parameters on a per-socket basis using the `TCP_KEEPIDLE`,`
-  TCP_KEEPINTVL`, and `TCP_KEEPCNT` socket options.
+  set to the value `on`, the `SO_KEEPALIVE` option is turned on for the socket.
+  If it is set to the value `off`, the `SO_KEEPALIVE` option is turned off for
+  the socket. Some operating systems support setting of TCP keepalive parameters
+  on a per-socket basis using the `TCP_KEEPIDLE`,` TCP_KEEPINTVL`, and
+  `TCP_KEEPCNT` socket options.
 
 This value can be set to `off`, thus disabling the HTTP/HTTPS proxy port for
 this node.
@@ -798,11 +799,11 @@ Some suffixes can be specified for each pair:
 - `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the `TCP
   keepalive` behavior for the listening socket. If this parameter is omitted,
   the operating system’s settings will be in effect for the socket. If it is
-  set to the value “on”, the `SO_KEEPALIVE` option is turned on for the
-  socket. If it is set to the value “off”, the `SO_KEEPALIVE` option is
-  turned off for the socket. Some operating systems support setting of TCP
-  keepalive parameters on a per-socket basis using the` TCP_KEEPIDLE`,
-  `TCP_KEEPINTVL`, and `TCP_KEEPCNT`socket options.
+  set to the value `on`, the `SO_KEEPALIVE` option is turned on for the socket.
+  If it is set to the value `off`, the `SO_KEEPALIVE` option is turned off for
+  the socket. Some operating systems support setting of TCP keepalive parameters
+  on a per-socket basis using the` TCP_KEEPIDLE`, `TCP_KEEPINTVL`, and
+  `TCP_KEEPCNT` socket options.
 
 Examples:
 
@@ -880,7 +881,7 @@ Some suffixes can be specified for each pair:
   `TCP_KEEPCNT` socket options.
 
 This value can be set to `off`, thus disabling the Admin interface for this
-node, enabling a 'data-plane' mode (without configuration capabilities) pulling
+node, enabling a data plane mode (without configuration capabilities) pulling
 its configuration changes from the database.
 
 Example: `admin_listen = 127.0.0.1:8444 http2 ssl`
@@ -1443,8 +1444,8 @@ The following namespaces are supported:
   {}` block.
 - `nginx_status_<directive>`: Injects `<directive>` in Kong's Status API
   `server {}` block (only effective if `status_listen` is enabled).
-- `nginx_debug_<directive>`: Injects `<directive>` in Kong's Debug API `server
-  {}` block (only effective if `debug_listen` or `debug_listen_local` is
+- `nginx_debug_<directive>`: Injects `<directive>` in Kong's Debug API
+  `server{}` block (only effective if `debug_listen` or `debug_listen_local` is
   enabled).
 - `nginx_stream_<directive>`: Injects `<directive>` in Kong's stream module
   `stream {}` block (only effective if `stream_listen` is enabled).
@@ -1619,7 +1620,7 @@ cluster, or without a database, where each node stores its information
 independently in memory.
 
 When using a database, Kong will store data for all its entities (such as
-routes, Services, Consumers, and Plugins) in PostgreSQL, and all Kong nodes
+routes, services, consumers, and plugins) in PostgreSQL, and all Kong nodes
 belonging to the same cluster must connect to the same database.
 
 Kong supports PostgreSQL versions 9.5 and above.
