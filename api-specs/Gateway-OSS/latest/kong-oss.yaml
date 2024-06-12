@@ -635,6 +635,13 @@ components:
           properties:
             id:
               type: string
+        expression:
+          description: The route expression used for advanced routing scenarios. This field is used to evaluate route matches based on complex criteria beyond the standard routing fields.
+          type: string
+        priority:
+          description: A number used to specify the matching order for expression routes. The higher the `priority`, the sooner a route will be evaluated. This field is ignored unless `expression` field is set. The value must be between 0 and 2^46 - 1.
+          type: integer
+          default: 0
         snis:
           description: A list of SNIs that match this route when using stream routing.
           type: array
@@ -3613,7 +3620,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Kong Admin API
-  version: 3.6.0
+  version: 3.7.0
 openapi: 3.0.0
 paths:
   /:
@@ -7417,6 +7424,38 @@ paths:
           description: No vault named
       operationId: get-schemas-vaults-vault_name
       description: Retrieve the schema of a vault.
+    post:
+      summary: Validate Vault Schema
+      tags:
+        - Validation
+      requestBody:
+        description: Payload containing the schema data to validate
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemaData:
+                  type: string
+                  description: JSON string containing the vault schema data
+      responses:
+        '200':
+          description: Validation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validation:
+                    type: boolean
+                    description: Indicates if the schema is valid
+        '400':
+          description: Bad request due to invalid schema data
+        '405':
+          description: Method Not Allowed
+      operationId: post-schemas-vaults-validate
+      description: Validates the given vault schema data against predefined validation rules.
   /filter-chains:
     post:
       summary: Add Filter Chain

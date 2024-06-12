@@ -232,6 +232,24 @@ components:
       schema:
         type: string
       description: The unique identifier of the filter chain to retrieve.
+    BeforeAuditLogFilter:
+      name: before_audit_log_filter
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/RequestTimestampFilterSchema'
+      description: |
+        Before filter could be used to request audit log data that was recorded before certain time (exclusive).
+        It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
+    AfterAuditLogFilter:
+      name: after_audit_log_filter
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/RequestTimestampFilterSchema'
+      description: |
+        After filter could be used to request audit log data that was recorded after certain time (inclusive).
+        It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
   schemas:
     UnauthorizedError:
       type: object
@@ -590,6 +608,13 @@ components:
             id:
               type: string
           type: object
+        expression:
+          description: The route expression used for advanced routing scenarios. This field is used to evaluate route matches based on complex criteria beyond the standard routing fields.
+          type: string
+        priority:
+          description: A number used to specify the matching order for expression routes. The higher the `priority`, the sooner a route will be evaluated. This field is ignored unless `expression` field is set. The value must be between 0 and 2^46 - 1.
+          type: integer
+          default: 0
         snis:
           description: A list of SNIs that match this route when using stream routing.
           items:
@@ -1275,6 +1300,11 @@ components:
           type: array
           items:
             type: string
+    RequestTimestampFilterSchema:
+      oneOf:
+        - type: string
+          pattern: '^(\d+|\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)$'
+        - type: integer
   responses:
     HTTP401Error:
       content:
@@ -3429,6 +3459,44 @@ components:
                       type: string
                     rbac_token_enabled:
                       type: boolean
+              next:
+                nullable: true
+    groups-response:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                data:
+                  - created_at: 1717123483
+                    id: 4844ded2-06d1-44f5-974a-03982696f889
+                    updated_at: 1717123483
+                    name: group1
+                    comment: comment1
+                  - created_at: 1717123637
+                    id: 65b3d436-3c5b-4b0e-a2a5-ee188d526ad8
+                    updated_at: 1717123637
+                    name: group2
+                    comment: comment2
+                next: null
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    created_at:
+                      type: integer
+                    id:
+                      type: string
+                    updated_at:
+                      type: integer
+                    name:
+                      type: string
+                    comment:
+                      type: string
               next:
                 nullable: true
     rbac-user-response:
@@ -5786,7 +5854,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Enterprise Kong Admin API
-  version: 3.6.0
+  version: 3.7.0
 openapi: 3.0.0
 paths:
   /:
@@ -11910,6 +11978,38 @@ paths:
           description: No vault named
       operationId: get-schemas-vaults-vault_name
       description: Retrieve the schema of a vault.
+    post:
+      summary: Validate Vault Schema
+      tags:
+        - Validation
+      requestBody:
+        description: Payload containing the schema data to validate
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemaData:
+                  type: string
+                  description: JSON string containing the vault schema data
+      responses:
+        '200':
+          description: Validation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validation:
+                    type: boolean
+                    description: Indicates if the schema is valid
+        '400':
+          description: Bad request due to invalid schema data
+        '405':
+          description: Method Not Allowed
+      operationId: post-schemas-vaults-validate
+      description: Validates the given vault schema data against predefined validation rules.
   /admins:
     get:
       summary: List Admins
@@ -11998,11 +12098,10 @@ paths:
             examples:
               Invite an admin:
                 value:
-                  admin:
-                    username: test-case-3
-                    email: test3@test.com
-                    custom_id: customId
-                    rbac_token_enabled: true
+                  username: test-case-3
+                  email: test3@test.com
+                  custom_id: customId
+                  rbac_token_enabled: true
   /admins/register:
     post:
       summary: Register an Admin’s Credentials
@@ -12338,11 +12437,11 @@ paths:
             schema:
               type: object
               properties:
-                Roles:
+                roles:
                   type: string
               x-examples:
                 Example 1:
-                  Roles: read-only
+                  roles: read-only
         description: Comma-separated string of role names to create or update for an admin.
       description: Create or update roles for an admin
     delete:
@@ -12375,6 +12474,342 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-admins-name_or_id-workspaces
       description: Return workspaces associated with an admin.
+  /groups:
+    get:
+      summary: List Groups
+      tags:
+        - groups
+      responses:
+        '200':
+          $ref: '#/components/responses/groups-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-groups
+      description: Returns a list of groups.
+    post:
+      summary: Create a new group
+      operationId: post-groups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  updated_at:
+                    type: integer
+                  name:
+                    type: string
+                  comment:
+                    type: string
+                x-examples:
+                  Example 1:
+                    created_at: 1556638641
+                    id: 8f0a742f-07f3-49e0-90d7-4fc7eea7e897
+                    updated_at: 1556638641
+                    name: demo-group
+                    comment: comment
+              examples:
+                Example group response:
+                  value:
+                    created_at: 0
+                    id: string
+                    updated_at: 0
+                    name: string
+                    comment: string
+      tags:
+        - groups
+      description: Create a group to your organization.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The group's name
+                  example: my_group
+            examples:
+              Create a group:
+                value:
+                  name: demo-group
+                  comment: comment
+  '/groups/{name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The group’s name or ID.
+    get:
+      summary: Retrieve a Group
+      tags:
+        - groups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  updated_at:
+                    type: integer
+                  name:
+                    type: string
+                  comment:
+                    type: string
+                x-examples:
+                  Example 1:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    name: test-group
+                    comment: comment1
+              examples:
+                Example response body:
+                  value:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    username: test-group
+                    comment: comment
+      operationId: get-groups-name_or_id
+      description: Retrieve a group using their name or ID.
+    patch:
+      tags:
+        - groups
+      summary: Update a Group
+      operationId: patch-groups-name_or_id
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                comment:
+                  type: string
+              x-examples:
+                Example 1:
+                  name: test-group
+                  comment: comment1
+            examples:
+              Example 1:
+                value:
+                  name: string
+                  comment: string
+      description: Update information about a group
+    delete:
+      tags:
+        - groups
+      summary: Delete an Group
+      operationId: delete-groups-name_or_id
+      responses:
+        '204':
+          description: No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Delete a group by specifying the group's name or ID.
+  '/groups/{name_or_id}/roles':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The group’s username or ID
+    get:
+      summary: List an Group’s Roles
+      tags:
+        - groups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        group:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            comment:
+                              type: string
+                            updated_at:
+                              type: string
+                              format: date-time
+                        rbac_role:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                        workspace:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                        next:
+                          nullable: true
+                x-examples:
+                  Example 1:
+                    data:
+                      - group:
+                          comment: 'comment1'
+                          created_at: 1556563122
+                          id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                          name: demo-group
+                        rbac_role:
+                          id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                          name: admin
+                        workspace:
+                          id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+              examples:
+                Example role list:
+                  value:
+                    data:
+                      - group:
+                          comment: 'comment1'
+                          created_at: 1556563122
+                          id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                          name: demo-group
+                        rbac_role:
+                          id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                          name: admin
+                        workspace:
+                          id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+      operationId: get-groups-name_or_id-roles
+      description: List all roles related to a group.
+    post:
+      summary: Create or Update a Group's Roles
+      operationId: post-groups-name_or_id-roles
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  group:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      comment:
+                        type: string
+                      updated_at:
+                        type: string
+                        format: date-time
+                  rbac_role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                  workspace:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                x-examples:
+                  Example 1:
+                    group:
+                      comment: 'Read access to all endpoints, across all workspaces'
+                      created_at: 1556563122
+                      id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                      name: read-only
+                      is_default: false
+                    rbac_role:
+                      id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                      name: admin
+                    workspace:
+                      id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+              examples:
+                Example role assignment:
+                  value:
+                    group:
+                      comment: 'Read access to all endpoints, across all workspaces'
+                      created_at: 1556563122
+                      id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                      name: read-only
+                      is_default: false
+                    rbac_role:
+                      id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                      name: admin
+                    workspace:
+                      id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+      tags:
+        - groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rbac_role_id:
+                  type: string
+                workspace_id: 
+                  type: string
+              x-examples:
+                Example 1:
+                  rbac_role_id: 12773c9a-7f7c-45f2-bcea-5285eb18fd2f
+                  workspace_id: d107bce7-dd86-4124-93c8-667ecc34b32e
+        description: Comma-separated string of role names to create or update for a group.
+      description: Create or update roles for a admin
+    delete:
+      tags:
+        - groups
+      summary: Delete a group’s Role
+      operationId: delete-groups-name_or_id-roles
+      parameters:
+        - name: rbac_role_id
+          in: query
+          required: true
+          schema:
+            type: string
+          example: 12773c9a-7f7c-45f2-bcea-5285eb18fd2f
+        - name: workspace_id
+          in: query
+          required: true
+          schema:
+            type: string
+          example: d107bce7-dd86-4124-93c8-667ecc34b32e
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      description: Delete a group's roles.
   '/debug/cluster/control-planes-nodes/log-level/{log_level}':
     parameters:
       - schema:
@@ -12919,6 +13354,13 @@ paths:
                           properties:
                             id:
                               type: string
+                        role_source:
+                          description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                          type: string
+                          default: "local"
+                          enum:
+                            - "local"
+                            - "idp"
                         workspace:
                           type: string
                 x-examples:
@@ -12973,6 +13415,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13094,6 +13543,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13154,6 +13610,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
                 x-examples:
@@ -13257,6 +13720,13 @@ paths:
                           properties:
                             id:
                               type: string
+                        role_source:
+                          description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                          type: string
+                          default: "local"
+                          enum:
+                            - "local"
+                            - "idp"
                 x-examples:
                   Example 1:
                     data:
@@ -13418,6 +13888,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                 x-examples:
                   Example 1:
                     actions:
@@ -14133,6 +14610,9 @@ paths:
   /audit/requests:
     get:
       summary: List request audit logs
+      parameters:
+        - $ref: '#/components/parameters/befpre_audit_log_filter'
+        - $ref: '#/components/parameters/after_audit_log_filter'
       tags:
         - audit-logs
       responses:
@@ -14143,10 +14623,14 @@ paths:
       operationId: get-audit-requests
       description: |-
         You can access request and database audit logs through the Admin API.
+        The default order of audit log is by request timestamp - latest to oldest.
         For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/).
   /audit/objects:
     get:
       summary: List database audit logs
+      parameters:
+        - $ref: '#/components/parameters/befpre_audit_log_filter'
+        - $ref: '#/components/parameters/after_audit_log_filter'
       responses:
         '200':
           $ref: '#/components/responses/database-audit-log-response'
@@ -14155,7 +14639,7 @@ paths:
       operationId: get-audit-objects
       tags:
         - audit-logs
-      description: List database audit logs
+      description: List database audit logs (ordered by request timestamp - latest to oldest)
   /event-hooks:
     get:
       summary: List all event hooks
@@ -14578,6 +15062,13 @@ paths:
                     properties:
                       id:
                         type: string
+                  role_source:
+                    description: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
+                    type: string
+                    default: "local"
+                    enum:
+                      - "local"
+                      - "idp"
                   workspace:
                     type: string
               example: 
@@ -14763,6 +15254,9 @@ tags:
       Admin routes
     name: admins
   - description: |
+      Group routes
+    name: groups
+  - description: |
       Debug Routes
     name: debug
   - description: |
@@ -14772,6 +15266,7 @@ tags:
       <br><br>
       * User: The entity interacting with the system. Can be associated with zero, one, or more roles. For example: The user `bob` has the token `1234`.
       * Role: Set of permissions (`role_endpoint` and `role_entity`). Has a name and can be associated with zero, one, or more permissions. For example: The user `bob` is associated with the role `developer`.
+      * `role_source`: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
       * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
       * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
     name: RBAC
@@ -14779,7 +15274,7 @@ tags:
       A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
     name: filter-chains
   - description: |
-      You can access request and database audit logs through the Admin API.
+      You can access request and database audit logs through the Admin API. The default order of audit log is by request timestamp - latest to oldest.
       <br><br>
       For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/admin-api/audit-logs/).
     name: audit-logs

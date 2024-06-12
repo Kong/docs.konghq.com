@@ -10,6 +10,12 @@
 * fix(license): don't fail if we ever saw a valid license (backport of #5968) [#5973](https://github.com/Kong/kong-mesh/pull/5973) @kong-mesh
 
 
+## 2.6.7
+> Released on 2024/05/30
+
+* chore(deps): bump kumahq/kuma from 946233ed1fe6 to 68fa9292c [#6055](https://github.com/Kong/kong-mesh/pull/6055) [#6058](https://github.com/Kong/kong-mesh/pull/6058) [#6060](https://github.com/Kong/kong-mesh/pull/6060) @kong-mesh
+
+
 ## 2.6.6
 > Released on 2024/05/17
 

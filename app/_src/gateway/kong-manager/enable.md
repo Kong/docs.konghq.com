@@ -1,6 +1,5 @@
 ---
 title: Enable Kong Manager
-badge: free
 ---
 
 If you're running {{site.base_gateway}} with a database (either in traditional

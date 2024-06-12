@@ -41,8 +41,8 @@ deck file add-plugins [command-specific flags] [global flags] [...plugin-files]
 # adds 2 plugins to all services in a deck file, unless they are already present
 cat kong.yml | deck file add-plugins --selector='services[*]' plugin1.json plugin2.yml
 
-# same, but now overwriting plugins if they already exist
-cat kong.yml | deck file add-plugins --overwrite --selector='services[*]' plugin1.json plugin2.yml
+# same, but now overwriting plugins if they already exist and reading from files
+cat kong.yml | deck file add-plugins --overwrite plugin1.json plugin2.yml
 ```
 
 ## Flags

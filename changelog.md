@@ -2,6 +2,266 @@
 
 <!--vale off-->
 
+## Week 23
+
+### [Fix: Typo in JWT mapping order and clarify behavior](https://github.com/Kong/docs.konghq.com/pull/7484) (2024-06-07)
+
+The consumer mapping priority order for the plugin is supposed to include both access token and channel token, but instead just listed access tokens. 
+
+Also clarifying some of the phrasing around mapping so that it doesn't appear to contradict itself
+
+https://konghq.atlassian.net/browse/DOCU-3413
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/jwt-signer/overview/
+
+
+### [Noname fix performance benchmark url](https://github.com/Kong/docs.konghq.com/pull/7477) (2024-06-06)
+
+Fixed a broken URL of the Noname documentation portal
+ 
+#### Modified
+
+- https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongtrafficsource/overview/
+
+
+### [Chore: Convert codeblock diagrams into mermaid format](https://github.com/Kong/docs.konghq.com/pull/7472) (2024-06-06)
+
+Converting this:
+<img width="808" alt="Screenshot 2024-06-05 at 4 16 10 PM" src="https://github.com/Kong/docs.konghq.com/assets/54370747/1c596492-91a3-46ee-881d-8e38729efcf1">
+
+Into this:
+<img width="740" alt="Screenshot 2024-06-05 at 4 16 36 PM" src="https://github.com/Kong/docs.konghq.com/assets/54370747/fffa64ad-8015-4877-a4e9-337930c5045d">
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/websocket-size-limit/overview/
+- https://docs.konghq.com/hub/kong-inc/websocket-validator/overview/
+
+
+### [Release: decK 1.37 and 1.38](https://github.com/Kong/docs.konghq.com/pull/7466) (2024-06-05)
+
+Bump deck versions, add new and missing cli flags.
+
+Based on changelogs for 1.37 and and 1.38: https://github.com/Kong/deck/releases
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/
+- https://docs.konghq.com/gateway/unreleased/production/tracing/
+
+
+### [fix(changelog): correct broken link](https://github.com/Kong/docs.konghq.com/pull/7461) (2024-06-04)
+
+Corrects broken link to demonstrated proof-of-possession page in changelog.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [feat: Document Request ID in debugging, tracing, and logging](https://github.com/Kong/docs.konghq.com/pull/7441) (2024-06-05)
+
+The Request ID feature was released in 3.5 and never documented. This PR adds information about it to the existing tracing, debugging, and logging docs.
+DOCU-3853
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/
+- https://docs.konghq.com/gateway/unreleased/production/tracing/
+
+
+### [Fixes reversed descriptions of post and put.](https://github.com/Kong/docs.konghq.com/pull/7428) (2024-06-04)
+
+Fixed 'Update and insert ACL group names' and 'Update ACL groups by ID' being reversed.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acl/
+
+
+### [Feat: integrated markdown feature update](https://github.com/Kong/docs.konghq.com/pull/7405) (2024-06-04)
+
+https://konghq.atlassian.net/browse/DOCU-3819
+Update [Product Documentation - Kong Konnect | Kong Docs](https://docs.konghq.com/konnect/api-products/service-documentation/#interactive-markdown-renderer)  to include information about being able to start a document from the editor.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/api-products/service-documentation
+- https://docs.konghq.com/konnect/updates
+
+## Week 22
+
+### [Fix: remove inaccurate note about AppDynamics library](https://github.com/Kong/docs.konghq.com/pull/7443) (2024-05-30)
+
+During testing, it was found that Kong Gateway will start without the library, and won't error out.
+
+https://konghq.atlassian.net/browse/DOCU-3862
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
+
+### [Update: Graphql proxy cache adv plugin API not supported in hybrid mode](https://github.com/Kong/docs.konghq.com/pull/7435) (2024-05-29)
+
+Adding a note on API usage in hybrid mode for the graphql proxy cache plugin.
+
+Addresses docs callout in KAG-4357.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/_metadata/_index.yml
+
+
+### [Update: Telemetry FAQs for Konnect](https://github.com/Kong/docs.konghq.com/pull/7434) (2024-05-29)
+
+Updating the Konnect network FAQ with Q&As about telemetry data communication between cp and dp.
+
+https://konghq.atlassian.net/browse/DOCU-3859
+
+#### Modified
+
+- https://docs.konghq.com/konnect/analytics/
+- https://docs.konghq.com/konnect/network-resiliency
+
+
+
+### [chore: Convert remaining OIDC topic that uses httpie to curl](https://github.com/Kong/docs.konghq.com/pull/7422) (2024-05-29)
+
+Converting HTTPie to curl. This topic was added in 3.6 and I ran out of time to convert it, so we just merged it.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
+
+### [chore: Changelog for 3.7.0.0](https://github.com/Kong/docs.konghq.com/pull/7411) (2024-05-29)
+
+* Compile changelog for 3.7.
+* Add changelogs to plugins.
+* Add missing breaking change to 3.7 breaking changes doc.
+
+https://konghq.atlassian.net/browse/DOCU-3797
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acme/
+- https://docs.konghq.com/hub/kong-inc/ai-prompt-guard/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/
+- https://docs.konghq.com/hub/kong-inc/degraphql/
+- https://docs.konghq.com/hub/kong-inc/jwt-signer/
+- https://docs.konghq.com/hub/kong-inc/jwt/
+- https://docs.konghq.com/hub/kong-inc/key-auth/
+- https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/
+- https://docs.konghq.com/hub/kong-inc/mocking/
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/
+- https://docs.konghq.com/hub/kong-inc/oas-validation/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/
+- https://docs.konghq.com/hub/kong-inc/prometheus/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/
+- https://docs.konghq.com/hub/kong-inc/response-ratelimiting/
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Unifiy Kong Manager and Kong Manager OSS sections in GW docs](https://github.com/Kong/docs.konghq.com/pull/7394) (2024-05-31)
+
+Unify the two Kong Manager sections into one. 
+
+Background request tracked on https://konghq.atlassian.net/browse/DOCU-3861
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/
+- https://docs.konghq.com/gateway/3.1.x/
+- https://docs.konghq.com/gateway/3.2.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.6.x/
+- https://docs.konghq.com/gateway/3.7.x/
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/
+- https://docs.konghq.com/gateway/3.7.x/kong-manager/
+
+## Week 21
+
+### [chore: set version tags around table](https://github.com/Kong/docs.konghq.com/pull/7415) (2024-05-22)
+
+Add version tags to plugin table, since streaming only appears in 3.7.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
+
+
+### [Release: Gateway 3.5.0.4](https://github.com/Kong/docs.konghq.com/pull/7378) (2024-05-20)
+
+Changelog, version bump, and remove 'unless' statements for 3.5
+
+https://konghq.atlassian.net/browse/DOCU-3739
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [add content-type and body-validation explanation in _index.md](https://github.com/Kong/docs.konghq.com/pull/7348) (2024-05-22)
+
+request-validation limitations are not listed anymore since 3.4 version. Adding them in the main page
+
+https://github.com/Kong/docs.konghq.com/commit/b492d3ecb31e2335f37dfe361295c8bc545f2e85#diff-f88716a1e934cd881cb07ecb1cc41ebdcd62fd950aa0e821603755e1a8caa2d4
+
+New feature in 3.6 to perform body validation on +json content-types.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-validator/overview/
+
+
+### [Feat: AI Azure Content Safety plugin doc](https://github.com/Kong/docs.konghq.com/pull/7326) (2024-05-21)
+
+Docs for new AI Azure Content Safety plugin.
+
+https://konghq.atlassian.net/browse/DOCU-3767
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/how-to/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/overview/
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_ai-azure-content-safety.png
+
 ## Week 20
 
 ### [feat(ai-proxy): added Azure native auth explanation](https://github.com/Kong/docs.konghq.com/pull/7390) (2024-05-16)

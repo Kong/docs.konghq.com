@@ -12,6 +12,9 @@ Autonegotiation
 autoscale
 autoscales
 autoscaling
+backfilled
+Backfilling
+backfilling
 APIOps
 Bagdi
 Bintray
@@ -160,6 +163,7 @@ booleans
 burstable
 CAs
 certificate_admin
+charset
 chatbot
 cleartext
 client_payload
@@ -212,6 +216,7 @@ DNs
 dockerfile
 downsample
 downsampled
+downstreams
 downtime
 downtimes
 DPP
@@ -472,6 +477,7 @@ runtimes
 SAML
 sandboxed
 sandboxing
+sanitization
 SBOM
 SBOMs
 SCCs
@@ -586,6 +592,7 @@ upvalues
 uri
 uris
 url
+URLRewrite
 urls
 use_daily_image
 usr

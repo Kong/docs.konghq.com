@@ -31,8 +31,10 @@ deck gateway validate [command-specific flags] [global flags]
 `-h`, `--help`
 :  help for validate 
 
-`--json-output`
-:  generate command execution report in a JSON format (Default: `false`)
+{% if_version gte:1.37.x %}
+`--konnect-compatibility`
+:  validate that the state file(s) are ready to be deployed to Konnect (Default: `false`)
+{% endif_version %}
 
 `--parallelism`
 :  Maximum number of concurrent requests to Kong. (Default: `10`)

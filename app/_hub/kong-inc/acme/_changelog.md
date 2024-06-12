@@ -1,4 +1,9 @@
 ## Changelog
+### {{site.base_gateway}} 3.7.x
+* Fixed an issue where the certificate was not successfully renewed during ACME renewal.
+[#12773](https://github.com/Kong/kong/issues/12773)
+* Fixed migration of Redis configuration.
+* Fixed an issue where the wrong error log was printed regarding private keys.
 
 ### {{site.base_gateway}} 3.6.x
 

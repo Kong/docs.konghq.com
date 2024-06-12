@@ -67,33 +67,22 @@ plugins:
 
 Here's an example sequence for this configuration:
 
-
-```
- .------.                               .----.                          .--------.
- |Client|                               |Kong|                          |Upstream|
- '------'                               '----'                          '--------'
-    |                                     |                                 |
-    |     text(`{ "name": "Alex" }`)      |                                 |
-    |>----------------------------------->|                                 |
-    |                                     |                                 |
-    |                                     |    text(`{ "name": "Alex" }`)   |
-    |                                     |>------------------------------->|
-    |                                     |                                 |
-    |     text(`{ "name": "Kiran" }`)     |                                 |
-    |>----------------------------------->|                                 |
-    |                                     |                                 |
-    |                                     |   text(`{ "name": "Kiran" }`)   |
-    |                                     |>------------------------------->|
-    |                                     |                                 |
-    |  text(`{ "missing_name": true }`)   |                                 |
-    |>----------------------------------->|                                 |
-    |                                     |                                 |
-    |         close(status=1007)          |                                 |
-    |<-----------------------------------<|                                 |
-    |                                     |                                 |
-    |                                     |             close()             |
-    |                                     |>------------------------------->|
- .------.                               .----.                          .--------.
- |Client|                               |Kong|                          |Upstream|
- '------'                               '----'                          '--------'
-```
+<!-- vale off -->
+{% mermaid %}
+sequenceDiagram
+autonumber
+    activate Client
+    activate Kong
+    Client->>Kong: text(`{ "name": "Alex" }`)
+    activate Upstream
+    Kong->>Upstream: text(`{ "name": "Alex" }`)
+    Client->>Kong: text(`{ "name": "Kiran" }`)
+    Kong->>Upstream: text(`{ "name": "Kiran" }`)
+    Client->>Kong: text(`{ "missing_name": true }`)
+    Kong->>Client: close(status=1007)
+    Kong->>Upstream: close()
+    deactivate Upstream
+    deactivate Kong
+    deactivate Client
+{% endmermaid %}
+<!--vale on-->

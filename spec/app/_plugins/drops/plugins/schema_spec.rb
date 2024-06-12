@@ -41,13 +41,13 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
     end
   end
 
-  describe '#deprecated_fields' do
+  describe '#shorthand_fields' do
     let(:plugin_name) { 'saml' }
     let(:version) { '3.2.2' }
     let(:metadata_file) { 'app/_hub/kong-inc/saml/_metadata/_index.yml' }
 
     it 'returns an array containing the schema\'s shorthand_fields' do
-      expect(subject.deprecated_fields.size).to eq(14)
+      expect(subject.shorthand_fields.size).to eq(14)
     end
   end
 

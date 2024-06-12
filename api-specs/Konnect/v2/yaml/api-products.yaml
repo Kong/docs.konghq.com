@@ -873,6 +873,7 @@ components:
                     name: API Product
                     description: Text describing the API product
                     portal_ids: []
+                    portals: []
                     created_at: '2023-01-01T00:00:00.000Z'
                     updated_at: '2023-01-01T00:00:00.000Z'
                     version_count: 10
@@ -1050,6 +1051,28 @@ components:
 
         JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar
         desc').
+    APIProductPortals:
+      title: APIProductPortals
+      type: array
+      minItems: 0
+      description: The list of portals which this API product is published to
+      items:
+        $ref: '#/components/schemas/APIProductPortal'
+    APIProductPortal:
+      title: APIProductPortal
+      type: object
+      additionalProperties: false
+      required:
+        - portal_id
+        - portal_name
+      properties:
+        portal_id:
+          type: string
+          format: uuid
+          example: 35a2624c-49fc-4764-99e1-224ed819f200
+        portal_name:
+          type: string
+          example: Developer Portal
     APIProductVersionPublishStatus:
       title: APIProductVersionPublishStatus
       type: string
@@ -1127,6 +1150,7 @@ components:
         - name
         - description
         - portal_ids
+        - portals
         - created_at
         - updated_at
         - labels
@@ -1148,17 +1172,23 @@ components:
           description: The description of the API product
           example: MyDescription
         portal_ids:
+          deprecated: true
           type: array
           nullable: false
           uniqueItems: true
           minItems: 0
-          description: >-
+          description: >
             The list of portal identifiers which this API product is published
-            to
+            to.
+
+            This property is deprecated and will be removed in a future version.
+            Use the `portals` property instead.
           items:
             type: string
             format: uuid
             example: 25a2624c-49fc-4764-99e1-224ed819f200
+        portals:
+          $ref: '#/components/schemas/APIProductPortals'
         version_count:
           type: number
           example: 10
@@ -1953,13 +1983,7 @@ components:
       nullable: true
       enum:
         - required
-        - enum
-        - min_length
         - max_length
-        - min_digits
-        - min_lowercase
-        - min_uppercase
-        - min_symbols
         - is_array
         - is_base64
         - is_boolean
@@ -1970,11 +1994,18 @@ components:
         - is_object
         - is_string
         - is_uuid
+        - is_fqdn
+        - is_arn
         - unknown_property
         - is_label
         - matches_regex
-    InvalidParameterChoiceItem:
+        - invalid
+        - is_supported_network_availability_zone_list
+        - is_supported_network_cidr_block
+        - is_supported_provider_region
+    InvalidParameterStandard:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -1982,6 +2013,65 @@ components:
           readOnly: true
         rule:
           $ref: '#/components/schemas/InvalidRules'
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterMinimumLength:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - min_length
+            - min_digits
+            - min_lowercase
+            - min_uppercase
+            - min_symbols
+        minimum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+        - rule
+        - minimum
+    InvalidParameterChoiceItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - enum
         reason:
           type: string
           example: is a required field
@@ -1989,14 +2079,21 @@ components:
         choices:
           type: array
           uniqueItems: true
-          nullable: true
-          items: {}
           readOnly: true
+          nullable: false
+          minimum: 1
+          items: {}
+        source:
+          type: string
+          example: body
       required:
         - field
         - reason
+        - rule
+        - choices
     InvalidParameterDependentItem:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -2019,6 +2116,9 @@ components:
           nullable: true
           items: {}
           readOnly: true
+        source:
+          type: string
+          example: body
       required:
         - field
         - rule
@@ -2032,6 +2132,8 @@ components:
       description: invalid parameters
       items:
         oneOf:
+          - $ref: '#/components/schemas/InvalidParameterStandard'
+          - $ref: '#/components/schemas/InvalidParameterMinimumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
     BadRequestError:
@@ -2535,6 +2637,7 @@ components:
         name: API Product
         description: Text describing the API product
         portal_ids: []
+        portals: []
         created_at: '2023-01-01T00:00:00.000Z'
         updated_at: '2023-01-01T00:00:00.000Z'
         version_count: 10
@@ -2774,7 +2877,7 @@ components:
         invalid_parameters:
           - field: name
             rule: min_length
-            choices: []
+            minimum: 1
             reason: name must be longer than or equal to 1 characters
     APIProductDocumentBadRequestExample:
       value:
@@ -2785,7 +2888,6 @@ components:
         invalid_parameters:
           - field: slug
             rule: matches_regex
-            choices: []
             reason: slug must match /^[\w-]+$/ regular expression
     APIProductVersionSpecContentBadRequestExample:
       value:
@@ -2796,7 +2898,7 @@ components:
         invalid_parameters:
           - field: content
             rule: min_length
-            choices: []
+            minimum: 1
             reason: content must be longer than or equal to 1 characters
     UnauthorizedExample:
       value:

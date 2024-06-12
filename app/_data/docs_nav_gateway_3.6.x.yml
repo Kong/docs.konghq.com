@@ -126,11 +126,8 @@ items:
           - text: Apply Enterprise license
             url: /install/post-install/enterprise-license/
             generate: false
-          - text: Enable Kong Manager (Enterprise)
+          - text: Enable Kong Manager
             url: /install/post-install/kong-manager/
-            generate: false
-          - text: Enable Kong Manager (OSS)
-            url: /install/post-install/kong-manager-oss/
             generate: false
 
   - title: Kong in Production
@@ -359,27 +356,27 @@ items:
       - text: LLM Provider Integration Guides
         items:
           - text: OpenAI
-            url: /hub/kong-inc/ai-proxy/how-to/openai/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/openai/
             generate: false
             absolute_url: true
           - text: Cohere
-            url: /hub/kong-inc/ai-proxy/how-to/cohere/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/cohere/
             generate: false
             absolute_url: true
           - text: Azure
-            url: /hub/kong-inc/ai-proxy/how-to/azure/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/azure/
             generate: false
             absolute_url: true
           - text: Anthropic
-            url: /hub/kong-inc/ai-proxy/how-to/anthropic/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/
             generate: false
             absolute_url: true
           - text: Mistral
-            url: /hub/kong-inc/ai-proxy/how-to/mistral/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/
             generate: false
             absolute_url: true
           - text: Llama2
-            url: /hub/kong-inc/ai-proxy/how-to/llama2/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
             generate: false
             absolute_url: true
       - text: AI Gateway plugins
@@ -454,13 +451,8 @@ items:
         url: /kong-manager/consumer-groups
       - text: Sending Email
         url: /kong-manager/configuring-to-send-email
-  - title: Kong Manager Open Source
-    icon: /assets/images/icons/documentation/icn-manager-oss-color.svg
-    items:
-      - text: Overview
-        url: /kong-manager-oss/
       - text: Troubleshooting
-        url: /kong-manager-oss/troubleshoot/
+        url: /kong-manager/troubleshoot/
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg

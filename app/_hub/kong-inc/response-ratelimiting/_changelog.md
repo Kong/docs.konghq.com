@@ -1,4 +1,6 @@
 ## Changelog
+### {{site.base_gateway}} 3.7.x
+* Fixed migration of Redis configuration.
 
 ### {{site.base_gateway}} 3.6.x
 

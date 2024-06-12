@@ -1,14 +1,13 @@
 ---
-title: Troubleshooting Kong Manager OSS
+title: Troubleshooting Kong Manager
 content_type: reference
-badge: oss
 ---
 
-## Kong Manager OSS URL doesn't work
+## Kong Manager URL doesn't resolve
 
 **Problem:** 
 
-You installed {{site.ce_product_name}} and it's running, but you can't access Kong Manager OSS.
+You installed {{site.base_gateway}} and it's running, but you can't access Kong Manager.
 Most likely, the port wasn't exposed during installation.
 
 **Solution:**
