@@ -49,9 +49,9 @@ If you have a spec, use it in the following steps. Otherwise, you can
 use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 
 
-1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) dashboard, select **Product Version** then **Upload**. 
+1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) dashboard, select **Product Version** then click the product version you want to upload the spec for. 
 
-1. Find the **Version Spec** section and click **Upload Spec**.
+1. In the **API Spec** tab, click **Upload**.
 
 1. Select a spec file to upload.
 
@@ -61,14 +61,26 @@ use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 This OpenAPI spec will be shown under the version name when this service is
 published to the Dev Portal.
 
-## Publish API Product to the Dev Portal
+## Publish an API product to a Dev Portal
 
-To view an API Product's documentation alongside its dynamic API reference (based on the API specification), 
-navigate to {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) and publish your API product along with its API version.
+{% navtabs %}
+{% navtab One Dev Portal %}
+1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), select the Dev Portal you want to publish the API for.
+1. Click **API Products**.
+1. Click **Add** next to the API product or products you want to publish to the Dev Portal.
+1. What about product version?
+1. Click **Finish**. 
 
-1. In the **API Products** section, select your API Product. Then, click **Actions** and select **Publish to portal**.
+need conclusion 
+{% endnavtab %}
+{% navtab Multiple Dev Portals %}
+1. go to API products and select the number of portals you want
+{% endnavtab %}
+{% endnavtabs %}
+
+<!-- old stuffs - the **API Products** section, select your API product. Then, click **Actions** and select **Publish to portal**.
 1. From the left-side navigation panel, select **Product Version** and click on the version you created previously.
-On the version's homepage, change the **Status** to **Published**.
+On the version's homepage, change the **Status** to **Published**.-->
 
 ## View the published content on Dev Portal
 
