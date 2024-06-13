@@ -507,7 +507,8 @@ valid version. To demonstrate this, we'll use the same setup as in the default m
 ```bash
 helm upgrade --install kong kong/ingress -n kong \
 --set controller.ingressController.env.feature_gates=FallbackConfiguration=true \
---set controller.ingressController.env.use_last_valid_config_for_fallback=true
+--set controller.ingressController.env.use_last_valid_config_for_fallback=true \
+--set controller.ingressController.env.dump_config=true
 ```
 
 #### Attaching the plugin back
