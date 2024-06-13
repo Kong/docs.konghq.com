@@ -43,12 +43,12 @@
   },
   {
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
-    "title": "Gateway Admin - EE (Beta)",
+    "title": "Gateway Admin - EE",
     "latestVersion": {
       "name": "3.6.0.0",
       "id": "95e68025-45a1-4e24-8561-6d7e5f422de5"
     },
-    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes.",
     "documentCount": 2,
     "versionCount": 4,
     "versions": [
@@ -96,12 +96,12 @@
   },
   {
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
-    "title": "Gateway Admin - OSS (Beta)",
+    "title": "Gateway Admin - OSS",
     "latestVersion": {
       "name": "3.6.0",
       "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e"
     },
-    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes.",
     "documentCount": 0,
     "versionCount": 4,
     "versions": [
