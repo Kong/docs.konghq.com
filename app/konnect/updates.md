@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## June 2024
+
+**SAML Login support**
+: {{site.konnect_short_name}} now supports SAML authentication protocol for logging in. SAML is an open standard that allows {{site.konnect_short_name}} to delegate authentication to an identity provider (IdP).
+
 ## May 2024
 
 **Gateway 3.7 Support**
