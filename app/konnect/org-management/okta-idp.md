@@ -266,9 +266,6 @@ in with your Okta credentials.
     If a group-to-team mapping exists, the user is automatically provisioned with
     a {{site.konnect_saas}} account with the relevant team membership.
 
-1. Log out of this account, and log back in with a {{site.konnect_short_name}}
-admin account.
-
 1. In the left menu, select **Organization**.
 
     You should see a list of users in this org, including a new entry for the
