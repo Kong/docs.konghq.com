@@ -1,9 +1,9 @@
 ---
 title: API Requests
-beta: true
+badge: advanced
 ---
 
-API Requests in {{site.konnect_short_name}} Analytics provides a fully integrated and intuitive web experience that allows you to view detailed records for requests made to your API, in near real-time.
+API Requests is a {{site.konnect_short_name}} Advanced Analytics feature which provides a fully integrated and intuitive web experience that allows you to view detailed records for requests made to your API, in near real-time.
 
 Here are a couple of benefits of using API Requests:
 * **Understand usage behavior:** By analyzing API requests, organizations can derive insights about consumer behavior, popular endpoints, peak usage times, and more. This information can be crucial for making informed decisions about product development and marketing strategies.

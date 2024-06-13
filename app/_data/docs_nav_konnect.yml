@@ -204,7 +204,7 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Dashboard
+    - text: Analytics Dashboard
       url: /analytics/dashboard/
     - text: Explorer
       url: /analytics/explorer/
