@@ -98,7 +98,7 @@
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
     "title": "Gateway Admin - OSS",
     "latestVersion": {
-      "name": "3.7",
+      "name": "3.7.0",
       "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b"
     },
     "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes.",
@@ -140,8 +140,8 @@
       {
         "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b",
         "created_at": "2024-05-08T18:40:28.598Z",
-        "updated_at": "2024-05-29T14:32:48.678Z",
-        "name": "3.7",
+        "updated_at": "2024-06-13T19:06:00.994Z",
+        "name": "3.7.0",
         "deprecated": false,
         "registration_configs": []
       }
