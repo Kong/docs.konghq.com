@@ -1074,8 +1074,65 @@ These logs can't be suppressed due to a limitation of OpenResty. We chose to rem
 If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
 * If you are using `ngx.var.http_*` in custom code in order to access HTTP headers, the behavior of that variable changed slightly when the same header is used multiple times in a single request. Previously it would return the first value only, now it returns all the values, separated by commas. Kong's PDK header getters and setters work as before.
 
+## 3.5.0.5
+**Release Date** 06/17/2024
+
+### Features
+#### Admin API
+
+_Backported from 3.7.0.0_
+* Added LHS bracket filtering to search fields.
+* **Audit logs:**
+  * Added `request_timestamp` to `audit_objects`.
+  * Added before and after aliases for LHS Brackets filters.
+  * `audit_requests` and `audit_objects` can now be filtered by `request_timestamp`.
+
+#### Plugin
+
+_Backported from 3.6.1.4_
+* [**Portal Application Registration**](/hub/kong-inc/application-registration/) (`application-registration`)
+  * Added support for accessing the service using consumer credential authentication. 
+  To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
+
+### Fixes
+#### Core
+
+_Backported from 3.7.1.0_
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain 
+and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+* Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly 
+as a Host header in requests to the upstream during connection retries.
+* Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` 
+under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
+
+#### Plugins
+
+_Backported from 3.7.1.0_
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Timer spikes no longer occur when there is network instability with the central data store.
+
+#### Admin API
+
+_Backported from 3.7.0.0_
+* The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
+on their assigned RBAC roles. It has been fixed to return admins according to the workspace they belong to.
+
+_Backported from 3.6.0.0_
+* Fixed an issue with the workspace listing API, which showed workspaces that the user didn't have any roles in.
+The API now only shows workspaces that the user has access to.
+
+### Dependencies
+
+* Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
+* Bumped `lua-resty-events` to 0.2.1.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+
 ## 3.5.0.4 
-**Release Date** 2024/05/20
+**Release Date** 05/20/2024
 
 ### Breaking Changes
 
