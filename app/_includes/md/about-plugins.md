@@ -7,9 +7,9 @@ we commonly refer to as _plugins_. Kong provides a set of
 {{site.konnect_short_name}}. The set of plugins you
 have access to depends on your [license tier](/hub/plugins/license-tiers/).
 
-Custom plugins are also developed by the Kong Community and are supported
-and maintained by the plugin creators. If they are published on the [Kong Plugin
-Hub](/hub/), they are called Community or Third-Party plugins. For more information on developing plugins, see the [Kong Plugin Development Kit](/gateway/latest/plugin-development/pdk/)
+You can also develop custom plugins, adding your own custom functionality to {{site.base_gateway}}. For more information on developing plugins, see the [Kong Plugin Development Kit](/gateway/latest/plugin-development/pdk/).
+
+Through partnerships with third parties, Kong also lists some [third-party custom plugins](/hub/?support=third-party-partner%2Ccommunity) on the Kong Plugin Hub. These plugins are maintained by Kong partners. If you would like to have your plugin featured on the Kong Plugin Hub, we encourage you to become a [Kong Partner](https://konghq.com/partners/).
 
 ## Why use plugins?
 
@@ -67,10 +67,11 @@ Kong plugins are bundled with the {{site.base_gateway}}, ensuring that compatibl
 : If the versions on a plugin page is outdated, contact the maintainer directly.
 
 **Plugin supported by 3rd party**
-: A plugin categorized under "Contact 3rd party for support." This custom plugin is developed, tested, and maintained by an external developer, not by Kong.
-Unless explicitly labeled as a technical partner, Kong does not test these plugins or maintain their version compatibility. If the versions listed on the plugin page is outdated, contact the maintainer directly.
+: A plugin categorized under ["Contact 3rd party for support"](/hub/?support=community). 
+This custom plugin is developed, tested, and maintained by an external developer, not by Kong.
+Unless explicitly labeled as a [tech partner](/hub/?support=third-party-partner), Kong does not test these plugins or maintain their version compatibility. If the versions listed on the plugin page are outdated, contact the maintainer directly.
 
-**Technical partner plugin**
+**Tech partner plugin**
 : A 3rd party custom plugin that has been validated by Kong and meets certain standards. Although these plugins are developed, tested, and maintained by an external developer, the plugin owner also ensures the plugin's version compatibility with {{site.base_gateway}}.
 
 ## Developing custom plugins
