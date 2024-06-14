@@ -32,6 +32,10 @@ You can use the following table to help you determine which Dev Portal configura
 | You want to... | Then use... |
 | -------------- | ----------- |
 | Publish some APIs to an internal Dev Portal as well as an external Dev Portal. | Multi-portal |
+| Allow developers to reuse your APIs in their company. | Enable app reg and Dev Portal |
+| Only allow certain users to see your published APIs | 1.  |
+| kaj | kajlk |
+| kaj | kajlk |
 | kaj | kajlk |
 
 ## Publish service documentation

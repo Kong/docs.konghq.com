@@ -20,7 +20,7 @@ You can set up an API product and API product version by clicking {% konnect_ico
 
 1. Select **API Product** from the API products dashboard to add a new API product.
 
-1. Create a new name for your API product, and enter an optional **Description** and any **labels** that you want to associate with the product, then press **create**. 
+1. Create a new name for your API product, and enter an optional **Description** and any **labels** that you want to associate with the product, then click **Create**. 
 
 You will be greeted by the dashboard for the API product that you just created. You can use this dashboard to manage an API product. You can read more about this dashboard on the API products [overview page](/konnect/api-products/)
 {% endnavtab %}
@@ -38,7 +38,7 @@ Create a new API product by issuing a `POST` request to the [`/api-products`](/k
         "name": "API Product"
         }'
     ```
-The response body will include an `id` field, denoting the unique identifier for your newly created API product. Please save this identifier because you will need it in subsequent steps. 
+The response body will include an `id` field, denoting the unique identifier for your newly created API product. Save this identifier because you will need it in subsequent steps. 
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -47,7 +47,7 @@ The response body will include an `id` field, denoting the unique identifier for
 {% navtab Konnect UI %}
 After creating a new API product, you can attach an API product version to it.
 
-1. From the API product builder, select **Product Versions**, then select **New Version**.
+1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), click the API product you want to create the version for and then click **Product Versions**, then click **New Version**.
 
 1. Enter a version name. For example `v1`.
      A version name can be any string containing letters, numbers, or characters;
@@ -102,12 +102,15 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 {% navtabs %}
 {% navtab Konnect UI %}
 
-API products can be published to the Dev Portal. To publish your new API product navigate to the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) and follow these steps: 
+1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product that you created in the previous step.
+1. Click **Add** next to the API product or products you want to publish to the Dev Portal and then click **Finish**. 
+1. Repeat steps 1-3 for any other Dev Portals you want to add the API product to.
+1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product you added to the Dev Portal. 
+1. Click **Product Versions** in the sidebar.
+1. Click the product version you created previously and in the **Dev Portals** tab, click **Browse Dev Portals** and select the Dev Portals you want to add the product version to. 
+    Product versions are published by default when you select Dev Portals, you can disable publishing while configuring the Dev Portals if you'd like to publish them later.
 
-1. Select the API product that you created in the previous step.
-2. Navigate to the **Actions** menu, then select **publish**. 
-
-Your API product is now consumable by developers from the **Dev Portal**.
+The API product and product versions should now display in the Dev Portals you selected.
 {% endnavtab %}
 {% navtab API %}
 You can publish an API product by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{ApiProductId}` with the API product ID returned in the previous step.. 

@@ -43,8 +43,7 @@ For non-`default` control planes, app registration is supported using the `konne
 
 ## Prerequisites
 
-- An API product that is versioned and published to the
-  {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
+- [An API product that is versioned and published to a {{site.konnect_short_name}} Dev Portal](/konnect/dev-portal/publish-service) so that it appears in the catalog.
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
@@ -52,37 +51,31 @@ For non-`default` control planes, app registration is supported using the `konne
 
   - Edit the **Reference ID** field in the Dev Portal
     [Update Application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
-    dialog to match to your third-party OAuth2 claim.
+    dialog to match to your third-party OAuth2 claim. <!-- is this on the admin side of Dev Portal UI, or dev side?-->
 
 {:.note}
 > **Note:** Generally, it's only recommended for an API product version to be linked to a Gateway service. However, for app registration to work, the link between API product version and a Gateway service is required. 
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
-To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-product %} **API Products**, select a
-service, and follow these steps:
+1. In {% konnect_icon api-product %} **API Products**, select a service.
 
-1. Click **Product Versions** to select a version
+1. Click **Product Versions** and select a product version.
 
-2. Select **Disabled** under **App Registration**
+  {:.note}
+  > **Note:** If the API product version is in the `default` control plane group, it will
+  instead receive read-only entries for the `acl` and `key-auth` plugins to provide
+  support for {{site.base_gateway}} versions less than 3.0.
 
-3. Select `Key Auth` from the **Auth Strategy** list
+1. From the **Dev Portals** tab, click **Publish API**.
 
-4. Toggle the **Application registration enabled** button to true to allow Dev Portal developers to register their applications for the API product version.
+1. Enable **Require Authentication** and select **key-auth** for your auth strategy for each Dev Portal.
 
-5. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests
+1. Enable **Accept application registrations** for each Dev Portal.
 
-6. Click save to enable application registration and apply the auth strategy for that product version
+5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) checkbox if you want to automatically approve all application registration requests.
 
-7. Click **Status** and update it to **Published** to publish the product version to the Dev Portal product catalog
-
-    This version of the API products now includes a
-    read-only entry for the `konnect-application-auth` plugin.
-
-{:.note}
-> **Note:** If the API product version is in the `default` control plane group, it will
-instead receive read-only entries for the `acl` and `key-auth` plugins to provide
-support for {{site.base_gateway}} versions less than 3.0.
+1. Click **Save**.
 
 ## Enable app registration with OpenID Connect {#oidc-flow}
 
