@@ -436,6 +436,72 @@ when the `http_response_header_for_traceid` option was enabled.
 * Bumped `msgpack-c` to 6.0.1
 * Removed the `lua-resty-openssl-aux-module` dependency
 
+
+## 3.6.1.5
+**Release Date** 06/17/2024
+
+### Features
+#### Admin API
+
+_Backported from 3.7.0.0_
+* Added LHS bracket filtering to search fields.
+* **Audit logs:**
+  * Added `request_timestamp` to `audit_objects`.
+  * Added before and after aliases for LHS Brackets filters.
+  * `audit_requests` and `audit_objects` can now be filtered by `request_timestamp`.
+  * Changed the default ordering of `audit_requests` to be sorted by `request_timestamp` in descending order.
+
+#### Plugins
+* [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  * Added the new configuration field `content_type_parameter_validation` to determine whether to enable Content-Type parameter validation.
+
+
+### Fixes
+#### Admin API
+
+* The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
+on their assigned RBAC roles. It has been fixed to return admins according to the workspace they belong to.
+
+#### CLI
+
+* Fixed an issue where the `pg_timeout` was overridden to `60s` even if `--db-timeout`
+was not explicitly passed in CLI arguments.
+
+#### Core
+
+* Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` 
+under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
+
+_Backported from 3.7.1.0_
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+* Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
+
+#### Plugins
+
+* [**ACME**](/hub/kong-inc/acme/) (`acme`), [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`), and 
+[**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
+  * Fixed migration of redis configuration.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Timer spikes no longer occur when there is network instability with the central data store.
+<!-- 
+* [**Basic Authentication**](/hub/kong-inc/basic-auth/) (`basic-auth`)
+  * Fixed an issue where the realm field wasn't recognized for older kong versions (before 3.6) -->
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
+
+* [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  * Fixed an issue where the plugin could fail to handle requests when `param_schema` was `$ref schema`.
+
+### Dependencies
+
+* Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
+* Bumped `lua-resty-events` to 0.2.1.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Improved the robustness of `lua-cjson` when handling unexpected input.
+
 ## 3.6.1.4
 **Release Date** 05/14/2024
 
