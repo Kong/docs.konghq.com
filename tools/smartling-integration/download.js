@@ -23,6 +23,8 @@ const {
   SmartlingFilesApi
 } = require("smartling-api-sdk-nodejs");
 
+const processMarkdown = require('./src/post-processors/markdown-files.js');
+
 const apiBuilder = new SmartlingApiClientBuilder()
     .setLogger(console)
     .setBaseSmartlingApiUrl("https://api.smartling.com")
@@ -66,7 +68,13 @@ async function downloadFiles() {
 
       // TODO: any post-processing goes here...
       // config/locales/en.yml => config/locales/ja.yml
-      const downloadedFileContent = await filesApi.downloadFile(projectId, fileUri, locale, downloadFileParams);
+      let downloadedFileContent = await filesApi.downloadFile(projectId, fileUri, locale, downloadFileParams);
+
+      // post-processing
+      if (path.extname(fileUri) === '.md') {
+        downloadedFileContent  = processMarkdown(downloadedFileContent);
+      }
+
       const filePath = path.join(translatedContentPath, locale, fileUri);
       const dir = path.dirname(filePath);
 
