@@ -455,15 +455,16 @@ _Backported from 3.7.0.0_
 * [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
   * Added the new configuration field `content_type_parameter_validation` to determine whether to enable Content-Type parameter validation.
 
-
 ### Fixes
 #### Admin API
 
+_Backported from 3.7.0.0_
 * The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
 on their assigned RBAC roles. It has been fixed to return admins according to the workspace they belong to.
 
 #### CLI
 
+_Backported from 3.7.0.0_
 * Fixed an issue where the `pg_timeout` was overridden to `60s` even if `--db-timeout`
 was not explicitly passed in CLI arguments.
 
@@ -479,12 +480,6 @@ It now ignores records when the RR type differs from that of the query when pars
 
 #### Plugins
 
-* [**ACME**](/hub/kong-inc/acme/) (`acme`), [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`), and 
-[**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
-  * Fixed migration of redis configuration.
-
-* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
-  * Timer spikes no longer occur when there is network instability with the central data store.
 <!-- 
 * [**Basic Authentication**](/hub/kong-inc/basic-auth/) (`basic-auth`)
   * Fixed an issue where the realm field wasn't recognized for older kong versions (before 3.6) -->
@@ -494,6 +489,15 @@ It now ignores records when the RR type differs from that of the query when pars
 
 * [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
   * Fixed an issue where the plugin could fail to handle requests when `param_schema` was `$ref schema`.
+
+_Backported from 3.7.1.0_
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Timer spikes no longer occur when there is network instability with the central data store.
+
+_Backported from 3.7.0.0_
+* [**ACME**](/hub/kong-inc/acme/) (`acme`), [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`), and 
+[**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
+  * Fixed migration of Redis configuration.
 
 ### Dependencies
 
