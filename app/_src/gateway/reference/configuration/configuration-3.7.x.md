@@ -3813,14 +3813,6 @@ result in unintentional breakage:
 - `proxy_wasm_request_headers_in_access`
 - `shm_queue`
 
-
-### test
-
-test
-
-**Default:** `on`
-
-
 ---
 
 ## Request Debugging section
