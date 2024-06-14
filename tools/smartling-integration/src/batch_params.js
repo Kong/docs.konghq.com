@@ -27,6 +27,27 @@ const FRONTMATTER_KEYS_TO_EXCLUDE =  [
 
 const MARKDOWN_PLACEHOLDERS = "\\{\\{.+?\\}\\}|\\{%.+?%\\}|\\{:.+?\\}";
 
+const MARKDOWN_DIRECTIVES = {
+  whitespace_trim: "off",
+  markdown_code_notranslate: "on",
+  primary_placeholder_format_custom: MARKDOWN_PLACEHOLDERS,
+  markdown_html_strategy: "restore" // undocumented flag: restores the original file html tags
+};
+
+async function buildBatchParamsForMarkdownFile(fileUri, locale) {
+  let batchFileParams = new UploadBatchFileParameters()
+    .setFileFromLocalFilePath(fileUri)
+    .setFileUri(fileUri)
+    .setFileType(FileType.MARKDOWN)
+    .setLocalesToApprove([locale])
+
+  Object.entries(MARKDOWN_DIRECTIVES).forEach(([directive, value]) => {
+    batchFileParams.setDirective(directive, value)
+  });
+
+  return batchFileParams;
+}
+
 async function buildBatchFileParamsForConfig(fileUri, locale) {
   // TODO: when we download this, we need to change the name of the file to ja.yml
   const batchFileParams = new UploadBatchFileParameters()
@@ -52,14 +73,9 @@ async function buildBatchFileParamsForDocsNav(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForApp(fileUri, locale) {
-  const batchFileParams = new UploadBatchFileParameters()
-    .setFileFromLocalFilePath(fileUri)
-    .setFileUri(fileUri)
-    .setFileType(FileType.MARKDOWN)
-    .setLocalesToApprove([locale])
-    .setDirective("whitespace_trim", "off")
-    .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS)
-    .setDirective("markdown_code_notranslate", "on")
+  let batchFileParams = await buildBatchParamsForMarkdownFile(fileUri, locale);
+
+  batchFileParams
     .setDirective("yaml_front_matter", "on")
     .setDirective("no_translate_keys", FRONTMATTER_KEYS_TO_EXCLUDE.join(','));
 
@@ -67,14 +83,9 @@ async function buildBatchFileParamsForApp(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForSrc(fileUri, locale) {
-  const batchFileParams = new UploadBatchFileParameters()
-    .setFileFromLocalFilePath(fileUri)
-    .setFileUri(fileUri)
-    .setFileType(FileType.MARKDOWN)
-    .setLocalesToApprove([locale])
-    .setDirective("whitespace_trim", "off")
-    .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS)
-    .setDirective("markdown_code_notranslate", "on")
+  let batchFileParams = await buildBatchParamsForMarkdownFile(fileUri, locale);
+
+  batchFileParams
     .setDirective("yaml_front_matter", "on")
     .setDirective("no_translate_keys", FRONTMATTER_KEYS_TO_EXCLUDE.join(','));
 
@@ -83,14 +94,7 @@ async function buildBatchFileParamsForSrc(fileUri, locale) {
 
 async function buildBatchFileParamsForInclude(fileUri, locale) {
   // Includes don't have frontmatters
-  const batchFileParams = new UploadBatchFileParameters()
-    .setFileFromLocalFilePath(fileUri)
-    .setFileUri(fileUri)
-    .setFileType(FileType.MARKDOWN)
-    .setLocalesToApprove([locale])
-    .setDirective("whitespace_trim", "off")
-    .setDirective("markdown_code_notranslate", "on")
-    .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS);
+  let batchFileParams = await buildBatchParamsForMarkdownFile(fileUri, locale);
 
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
@@ -149,15 +153,10 @@ async function buildBatchFileParamsForPluginsSchema(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForPluginsOverview(fileUri, locale) {
-  const batchFileParams = new UploadBatchFileParameters()
-    .setFileFromLocalFilePath(fileUri)
-    .setFileUri(fileUri)
-    .setFileType(FileType.MARKDOWN)
-    .setLocalesToApprove([locale])
-    .setDirective("whitespace_trim", "off")
+  let batchFileParams = await buildBatchParamsForMarkdownFile(fileUri, locale);
+
+  batchFileParams
     .setDirective("yaml_front_matter", "on")
-    .setDirective("markdown_code_notranslate", "on")
-    .setDirective("primary_placeholder_format_custom", MARKDOWN_PLACEHOLDERS);
 
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
