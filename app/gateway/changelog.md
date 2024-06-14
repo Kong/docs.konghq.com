@@ -1692,6 +1692,20 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.10
+**Release Date** 2024/06/17
+
+### Fixes
+#### Admin API
+
+_Backported from 3.7.0.0_
+* The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
+on their assigned RBAC roles. It has been fixed to return admins according to the workspace they belong to.
+
+### Dependencies
+
+* Bumped `lua-resty-events` to 0.2.1.
+
 
 ## 3.4.3.9
 **Release Date** 2024/06/08
