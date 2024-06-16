@@ -2,6 +2,76 @@
 
 <!--vale off-->
 
+## Week 24
+
+### [Chore: Remove beta label from Admin API specs](https://github.com/Kong/docs.konghq.com/pull/7518) (2024-06-13)
+
+Removing beta label from admin API specs. 
+
+The changes are staged in Konnect.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/api/
+
+
+### [Update okta-idp.md](https://github.com/Kong/docs.konghq.com/pull/7514) (2024-06-13)
+
+Updating Okta documentation to remove the restriction that you cannot mix authentication type in Kong Konnect.
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/okta-idp
+
+
+### [Fix: Remove extra word in plugin metadata](https://github.com/Kong/docs.konghq.com/pull/7504) (2024-06-12)
+
+Remove extra word in compat list for the AWS Request signing plugin. The compatibility has to be an array of versions, not a boolean.
+
+![Screenshot 2024-06-11 at 2 21 41 PM](https://github.com/Kong/docs.konghq.com/assets/54370747/24394317-fe26-4313-ac5b-e883696c76e1)
+
+#### Modified
+
+- https://docs.konghq.com/hub/TheLEGOGroup/aws-request-signing/_metadata/_index.yml
+
+
+### [Add Konnect Terraform reference page](https://github.com/Kong/docs.konghq.com/pull/7500) (2024-06-13)
+
+Add Terraform page for Konnect so that it shows up when searching for "Terraform" on the docs site.
+
+Please run the Algolia indexer after merge
+
+#### Added
+
+- https://docs.konghq.com/konnect/reference/terraform
+
+
+### [docs(kic): update rewrite-host guide with URLRewrite filter](https://github.com/Kong/docs.konghq.com/pull/7469) (2024-06-11)
+
+Extends `Rewrite Host` guide with `URLRewrite` filter usage implemented in KIC 3.2.
+ 
+Closes https://github.com/Kong/kubernetes-ingress-controller/issues/5853.
+
+#### Modified
+
+- https://docs.konghq.com/moved_urls.yml
+
+
+### [Release: Gateway 3.4.3.9](https://github.com/Kong/docs.konghq.com/pull/7432) (2024-06-10)
+
+Changelog and version bump for 3.4.3.9.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
 ## Week 23
 
 ### [Fix: Typo in JWT mapping order and clarify behavior](https://github.com/Kong/docs.konghq.com/pull/7484) (2024-06-07)
