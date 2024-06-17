@@ -13,7 +13,8 @@ The log level change is propagated to all NGINX worker nodes in a traditional cl
 > **Notes:**
 > * The `debug` endpoints **do not** work for hybrid mode data planes. They can only be used for [control plane nodes](#manage-new-nodes-in-the-cluster).
 > * Changing the log level to `debug` in a production environment can rapidly fill up the disk.
-> After debug logging, switch back to a higher level like `notice` or use a `timeout` parameter in the request query string. **The default timeout for dynamically set log levels is 60 seconds**.
+> After finishing debug logging, switch back to a higher level like `notice` or use a `timeout` parameter in the request query string.
+> **The default timeout for dynamically set log levels is 60 seconds**.
 
 
 ## View current log level
