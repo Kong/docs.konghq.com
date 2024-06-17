@@ -16,7 +16,12 @@ For this example, you need to:
 
 To make `gRPC` requests, you need a client that can invoke gRPC requests. You can use [`grpcurl`](https://github.com/fullstorydev/grpcurl#installation) as the client. Ensure that you have it installed on your local system.
 
-{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=true %}
+{% assign grpcroute_is_experimental = false %}
+{% if_version lte:3.1.x %}
+{% assign grpcroute_is_experimental = true %}
+{% endif_version %}
+
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=grpcroute_is_experimental %}
 
 ## Deploy a gRPC test application
 
