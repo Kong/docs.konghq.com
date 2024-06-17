@@ -394,3 +394,5 @@
       url: /reference/custom-dns/
     - text: Konnect Search
       url: /reference/search/
+    - text: Terraform Provider
+      url: /reference/terraform/

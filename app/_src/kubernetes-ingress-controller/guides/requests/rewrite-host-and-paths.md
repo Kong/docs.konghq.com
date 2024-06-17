@@ -1,8 +1,8 @@
 ---
-title: Rewrite Host
+title: Rewrite Host and Paths
 type: how-to
 purpose: |
-  Rewrite the host header for incoming requests
+  Rewrite the host header and paths for incoming requests
 ---
 
 This guide demonstrates host and path rewrites using Ingress and Service configuration.
@@ -13,7 +13,7 @@ This guide demonstrates host and path rewrites using Ingress and Service configu
 
 {% include /md/kic/http-test-routing.md release=include.release path='/echo' name='echo' %}
 
-## Rewriting the host
+## Host manipulation
 
 {{ site.kic_product_name }} provides two annotations for manipulating the `Host` header. These annotations allow for three different behaviours:
 
@@ -75,6 +75,23 @@ URL: /?details=true
 ```
 ### Set the Host header explicitly
 
+{% if_version gte 3.2.0 %}
+#### Using Gateway API
+
+You can set the Host header explicitly when using Gateway API's HTTPRoute with [`URLRewrite`](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2fv1.HTTPURLRewriteFilter) 
+filter's `hostname` field. You only need to add a `URLRewrite` filter to your HTTPRoute rule.
+
+```yaml
+...
+filters:
+- type: URLRewrite
+  urlRewrite:
+    hostname: internal.myapp.example.com
+```
+{% endif_version %}
+
+#### Using the `konghq.com/host-header` annotation
+
 You can set the Host header explicitly if needed by disabling `konghq.com/preserve-host` and setting the `konghq.com/host-header` annotation.
 
 1. Add the [`konghq.com/preserve-host` annotation][0] to your Ingress, to disable `preserve-host` and send the hostname provided in the `host-header` annotation:
@@ -101,34 +118,67 @@ You can set the Host header explicitly if needed by disabling `konghq.com/preser
     URL: /?details=true
     ```
 
-## Rewriting the path
+## Path manipulation
 
-There are three options to rewrite the default path handling behavior:
+Users have the following options to rewrite the default path handling behavior:
 
+{% if_version gte 3.2.0 %}* Rewrite using Gateway API's `URLRewrite` filter {% endif_version %}
 * Rewrite using regular expressions
 * Remove the path prefix using `strip-path`
 * Add a path prefix using the `path` annotation
 
-### Rewrite using regular expressions
+### Rewriting the path
+
+{% navtabs rewrite %}
+
+{% if_version gte 3.2.0 %}
+{% navtab Gateway API %}
+You can replace the full path for a request by adding the `URLRewrite` filter with `path.replaceFullPath` to your `HTTPRoute`.
+
+```yaml
+...
+filters:
+- type: URLRewrite
+  urlRewrite:
+    path:
+      type: ReplaceFullPath
+      replaceFullPath: /rewritten-path
+```
+
+Alternatively, you can add the `URLRewrite` filter with `path.replacePrefixMatch` to your `HTTPRoute` rule to rewrite the path prefix.
+
+See the [URLRewrite filter documentation](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2fv1.HTTPPathModifier)
+for more information.
+
+```yaml
+...
+rules:
+  - matches:
+      - path:
+          type: PathPrefix # Only PathPrefix path type is supported with URLRewrite filter using path.type == ReplacePrefixMatch.
+          value: /old-prefix
+    filters:
+     - type: URLRewrite
+       urlRewrite:
+         path:
+           type: ReplacePrefixMatch
+           replacePrefixMatch: /new-prefix
+```
+
+{% endnavtab %}
+{% endif_version %}
+{% navtab Ingress %}
 
 {:.note}
 > This feature is available from {{ site.kic_product_name }} 2.12 and requires the [`RewriteURIs` feature gate](/kubernetes-ingress-controller/{{ page.release }}/reference/feature-gates/) to be activated.
+> It's only available for Ingress.
 
 Add the [`konghq.com/rewrite` annotation][2] to your Ingress, allows you set a specific path for the upstream request. Any regex matches defined in your route definition are usable (see the [annotation documentation][2] for more information):
 
-{% navtabs api %}
-{% navtab Gateway API %}
 ```bash
-kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
+kubectl patch ingress echo --type merge -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
 ```
-{% endnavtab %}
-{% navtab Ingress %}
-```bash
-  $ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
-``` 
-{% endnavtab %}
-{% endnavtabs %}
-
+ 
 The request upstream now contains the value of the rewrite annotation:
 ```
 HTTP request details
@@ -138,6 +188,11 @@ Host: kong.example
 Method: GET
 URL: /hello/world?details=true
 ```
+
+[2]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcomrewrite
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Strip the path
 
@@ -193,6 +248,5 @@ coming first. Adding both annotations send requests for `/api/echo`.
 
 [0]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcompreserve-host
 [1]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcomhost-header
-[2]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcomrewrite
 [3]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcomstrip-path
 [4]: /kubernetes-ingress-controller/{{page.release}}/reference/annotations/#konghqcompath
