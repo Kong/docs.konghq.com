@@ -69,20 +69,20 @@ Access-Control-Allow-Origin: *
 {% if_version gte:3.0.x %}
 # HELP ai_requests_total AI requests total per ai_provider in Kong
 # TYPE ai_requests_total counter
-ai_requests_total{ai_provider="provider1",ai_model="model1",cache="true",db_name="db1",workspace="workspace1"} 100
+ai_requests_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1"} 100
 # HELP ai_cost_total AI requests cost per ai_provider/cache in Kong
 # TYPE ai_cost_total counter
-ai_cost_total{ai_provider="provider1",ai_model="model1",cache="true",db_name="db1",workspace="workspace1"} 50
+ai_cost_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1"} 50
 # HELP ai_tokens_total AI tokens total per ai_provider/cache in Kong
 # TYPE ai_tokens_total counter
-ai_tokens_total{ai_provider="provider1",ai_model="model1",cache="true",db_name="db1",token_type="input",workspace="workspace1"} 1000
-ai_tokens_total{ai_provider="provider1",ai_model="model1",cache="true",db_name="db1",token_type="output",workspace="workspace1"} 2000
+ai_tokens_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",token_type="input",workspace="workspace1"} 1000
+ai_tokens_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",token_type="output",workspace="workspace1"} 2000
 {% endif_version %}
 ```
 
 {:.note}
-> **Note:** If you don't use any cache plugins, then `cache` value will be `not_cached`
-by default and `db_name` will be empty. 
+> **Note:** If you don't use any cache plugins, then `cache_status`, `vector_db`,
+`embeddings_provider` and `embeddings_model` values will be empty. 
 
 ## Accessing the metrics
 
