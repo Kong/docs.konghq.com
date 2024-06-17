@@ -43,12 +43,12 @@
   },
   {
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
-    "title": "Gateway Admin - EE (Beta)",
+    "title": "Gateway Admin - EE",
     "latestVersion": {
       "name": "3.7.0.0",
       "id": "7dad8169-6779-49bb-bb78-19f88b186d92"
     },
-    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes.",
     "documentCount": 2,
     "versionCount": 5,
     "versions": [
@@ -96,12 +96,12 @@
   },
   {
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
-    "title": "Gateway Admin - OSS (Beta)",
+    "title": "Gateway Admin - OSS",
     "latestVersion": {
-      "name": "3.7",
+      "name": "3.7.0",
       "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b"
     },
-    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes.",
     "documentCount": 0,
     "versionCount": 5,
     "versions": [
@@ -140,8 +140,8 @@
       {
         "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b",
         "created_at": "2024-05-08T18:40:28.598Z",
-        "updated_at": "2024-05-29T14:32:48.678Z",
-        "name": "3.7",
+        "updated_at": "2024-06-13T19:06:00.994Z",
+        "name": "3.7.0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -334,8 +334,7 @@
         "deprecated": false,
         "registration_configs": []
       }
-    ],
-    "generateErrorsPage": true
+    ]
   },
   {
     "id": "5175b87f-bfae-40f6-898d-82d224387f9b",
