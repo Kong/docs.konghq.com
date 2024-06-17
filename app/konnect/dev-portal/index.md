@@ -5,38 +5,50 @@ content_type: explanation
 
 The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, test API endpoints, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
 
-## general steps
-
-1. Create Dev Portal
-    - need to decide how to manage developers/their apps. Manually approve or auto approve?
-    - enable portal RBAC
-    - define default auth strategy
-    - minimal customizations to portal (icon, logo, etc.)
-    - labels? why?
-
-1. Configure manual dev/app settings. 
-    - DCR?
-1. Add API product and API product version to Dev Portal(s)
-1. Publish stuff to the portal
-
-## mermaid diagram
-
-{% mermaid %}
-
-{% endmermaid %}
-
-## use cases table
+## Dev Portal use cases
 
 You can use the following table to help you determine which Dev Portal configuration is best for your use case:
 
 | You want to... | Then use... |
 | -------------- | ----------- |
 | Publish some APIs to an internal Dev Portal as well as an external Dev Portal. | Multi-portal |
-| Allow developers to reuse your APIs in their company. | Enable app reg and Dev Portal |
-| Only allow certain users to see your published APIs | 1.  |
-| kaj | kajlk |
-| kaj | kajlk |
-| kaj | kajlk |
+| Allow developers to reuse your APIs in applications | [Enable app reg and Dev Portal](/konnect/dev-portal/applications/enable-app-reg/) |
+| Only allow certain users to see your published APIs | [Manage dev teams with RBAC](/konnect/api/portal-auth/portal-rbac-guide/#main) |
+| Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
+
+## mermaid diagram? better title here or no title?
+
+The following diagram displays the different Dev Portal configuration options you have depending on if you're planning to configure a public or private Dev Portal, or both. 
+
+{% mermaid %}
+flowchart TD
+    A[Create a Dev Portal] --> C{Public Dev Portal}
+    A --> B{Private Dev Portal}
+    B -->D[Manage devs] 
+    D --> E(Third-party IdP)
+    D --> F(Approve/deny)
+    D --> G(RBAC)
+    B --> H[Manage apps]
+    H --> I(Enable app reg)
+    H --> J(Approve/deny apps)
+    H --> K(DCR)
+    C --> L[Customize Dev Portal]
+    B --> L
+    L --> M(Self host with Netlify)
+    L --> N(Self host)
+    L --> O(Customize appearance)
+
+    %% this section defines node interactions
+    click E "/konnect/dev-portal/access-and-approval/add-teams/"
+    click F "/konnect/dev-portal/access-and-approval/manage-devs/"
+    click G "/konnect/api/portal-auth/portal-rbac-guide/#main"
+    click I "/konnect/dev-portal/applications/enable-app-reg/"
+    click J "/konnect/dev-portal/access-and-approval/manage-app-reg-requests/"
+    click K "/konnect/dev-portal/applications/dynamic-client-registration/"
+    click M "/konnect/dev-portal/customization/netlify/"
+    click N "/konnect/dev-portal/customization/self-hosted-portal/"
+    click O "/konnect/dev-portal/customization/"
+{% endmermaid %}
 
 ## Publish service documentation
 
