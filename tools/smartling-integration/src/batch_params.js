@@ -25,7 +25,7 @@ const FRONTMATTER_KEYS_TO_EXCLUDE =  [
   'no_version'
 ];
 
-const MARKDOWN_PLACEHOLDERS = "\\{\\{.+?\\}\\}|\\{%.+?%\\}|\\{:.+?\\}";
+const MARKDOWN_PLACEHOLDERS = "\\{%\\s?mermaid\\s?%\\}((.|\\n)*?)?\\{%\\s?endmermaid\\s%\\}|\\{\\{.+?\\}\\}|\\{%.+?%\\}|\\{:.+?\\}";
 
 const MARKDOWN_DIRECTIVES = {
   whitespace_trim: "off",
