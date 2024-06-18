@@ -13,7 +13,7 @@ Konnect provides embedded reports at various different levels throughout its use
 
 Konnect offers two levels of analytics: Basic and Advanced. This allows you to choose the level of insight and control that best fits your needs.
 
-| Feature                          | Complementary                                     | Advanced           <span class="badge advanced"></span>                                  |
+| Feature                          | Basic                                     | Advanced           <span class="badge advanced"></span>                                  |
 |----------------------------------|------------------------------------------------------------|------------------------------------------------------------|
 | **Data Retention**               | 7 days                                                     | 30 days for common dimensions, 425 days for long-term trend anayltics|
 | **Data Granularity**             | 1 minute                                                   | 10 seconds                                                 |
