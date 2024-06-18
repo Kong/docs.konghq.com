@@ -94,7 +94,10 @@ en:
 
     missing_translation_banner:
       text: |
-        This page is not yet available in Japanese, its translation is in progress.
+        This page is not yet available in Japanese. Translation is in progress.
+    do_not_translate_banner:
+      text: |
+        This page is not being translated.
 
     lts-changes:
       thead:
