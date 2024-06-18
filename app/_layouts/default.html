@@ -188,7 +188,7 @@
     {% endif %}
 
     {% if site.locale != 'en' and page.translation_fallback == true %}
-      {%- capture banner %}{%- t _includes.missing_translation_banner.text -%}{%- endcapture -%}
+      {%- capture banner %}{%- t _includes.do_not_translate_banner.text -%}{%- endcapture -%}
       <script>
         window.pageI18n = { "banner": {{ banner | rstrip | jsonify }} }
       </script>
