@@ -2220,7 +2220,7 @@ Default: none
 ### vault_hcv_auth_method
 {:.badge .enterprise}
 
-Defines the authentication mechanism when connecting to the Hashicorp Vault
+Defines the authentication mechanism when connecting to the HashiCorp Vault
 service.
 
 Accepted values are: `token`, or `kubernetes`.
@@ -4296,7 +4296,7 @@ Defines the names of the Vault v2 KV path at which symmetric keys are found.
 ### keyring_vault_auth_method
 {:.badge .enterprise}
 
-Defines the authentication mechanism when connecting to the Hashicorp Vault
+Defines the authentication mechanism when connecting to the HashiCorp Vault
 service.
 
 Accepted values are: `token`, or `kubernetes`:
@@ -4305,7 +4305,7 @@ Accepted values are: `token`, or `kubernetes`:
 configuration property.
 
 * `kubernetes`: Uses the Kubernetes authentication mechanism, with the running
-pod's mapped service account, to assume the Hashicorp Vault role name that is
+pod's mapped service account, to assume the HashiCorp Vault role name that is
 defined in the `keyring_vault_kube_role` configuration property.
 
 **Default:** `token`
@@ -4325,7 +4325,7 @@ Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 ### keyring_vault_kube_role
 {:.badge .enterprise}
 
-Defines the Hashicorp Vault role that will be assumed using the Kubernetes
+Defines the HashiCorp Vault role that will be assumed using the Kubernetes
 service account of the running pod.
 
 `keyring_vault_auth_method` must be set to `kubernetes` for this to activate.

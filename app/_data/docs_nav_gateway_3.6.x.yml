@@ -300,9 +300,9 @@ items:
                 url: /kong-enterprise/secrets-management/backends/aws-sm
               - text: Azure Key Vaults
                 url: /kong-enterprise/secrets-management/backends/azure-key-vaults
-              - text: Google Secrets Manager
+              - text: Google Cloud Secret Manager
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
-              - text: Hashicorp Vault
+              - text: HashiCorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
           - text: How-To
             items:

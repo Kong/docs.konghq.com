@@ -109,7 +109,7 @@ See each plugin's documentation for more information on each field:
 {{site.base_gateway}} supports the following vault backends:
 * Environment variables
 * AWS Secrets Manager
-* GCP Secrets Manager
+* GCP Secret Manager
 * Azure Key Vaults
 * HashiCorp Vault
 
@@ -120,7 +120,9 @@ for more information about each option.
 
 For further information on secrets management, see the following topics:
 * [Get started with secrets management](/gateway/{{page.release}}/kong-enterprise/secrets-management/getting-started/)
+{% if_version gte:3.4.x -%}
 * [Secrets rotation](/gateway/{{page.release}}/kong-enterprise/secrets-management/secrets-rotation/)
+{% endif_version -%}
 * [Backends overview](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/)
 * [Reference format](/gateway/{{page.release}}/kong-enterprise/secrets-management/reference-format/)
 * [Advanced usage](/gateway/{{page.release}}/kong-enterprise/secrets-management/advanced-usage/)
