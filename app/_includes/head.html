@@ -90,17 +90,8 @@
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
 
-  {% assign domain = site.links.web %}
-  {% if include.site_locale != 'en' %}
-    {% if include.translation_fallback == true %}
-      {% assign domain = site.links.canonical_web %}
-    {% endif %}
-  {% endif %}
-
   {% if include.canonical_url %}
-    <link rel="canonical" href="{{ domain }}{{ include.canonical_url }}" />
-  {% elsif include.translation_fallback == true %}
-    <link rel="canonical" href="{{ site.links.canonical_web }}{{ include.url }}" />
+    <link rel="canonical" href="{{ site.links.web }}{{ include.canonical_url }}" />
   {% endif %}
 
   <link rel="alternate" hreflang="x-default" href="{{ site.links.locales['en'] }}">
