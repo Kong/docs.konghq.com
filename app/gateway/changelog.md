@@ -34,13 +34,11 @@ It now ignores records when the RR type differs from that of the query when pars
 * [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
   * Resolved an issue where the object constructor would set data on the class instead of the instance.
 
-<!-- 
 * [**Basic Authentication**](/hub/kong-inc/basic-auth/) (`basic-auth`)
-  * Fixed an issue where the realm field wasn't recognized for older kong versions (before 3.6)
+  * Fixed an issue where the `realm` field wasn't recognized for Kong Gateway versions before 3.6.
 
 * [**Key Authentication**](/hub/kong-inc/key-auth/) (`key-auth`)
-  * Fixed an issue where the realm field wasn't recognized for older kong versions (before 3.7)
- -->
+  * Fixed an issue where the `realm` field wasn't recognized for Kong Gateway versions before 3.7.
 
 * [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)
   * Fixed the logic for the window adjustment when using a sliding window.
