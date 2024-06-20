@@ -151,5 +151,5 @@ The token you obtain should include a claim that consists of the hash of the cli
 }
 ```
 
-Using the same client key to both obtain the token and to sign the request to access the resource.
+Use the same client key to obtain both the token and sign the request to access the resource.
 The client should generate proper proof for possession of the key and send it via the `DPoP` header, which will be verified by Kong together with the token.
