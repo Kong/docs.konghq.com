@@ -5097,7 +5097,7 @@ _Backported from 3.7.0.0_
     The original interfaces remain unchanged for backward compatibility. 
   
     If you are using custom Rate Limiting plugins based on this library, update the initialization code to the new format. For example: 
-    `'local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("custom-plugin-name")'`.
+    `local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("custom-plugin-name")`.
     The old interface will be removed in the upcoming major release.
 
 ### Dependencies
