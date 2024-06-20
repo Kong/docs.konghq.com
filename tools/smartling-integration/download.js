@@ -29,7 +29,7 @@ const { handleRateLimiting } = require('./src/rate_limit');
 const apiBuilder = new SmartlingApiClientBuilder()
     .setLogger(console)
     .setBaseSmartlingApiUrl("https://api.smartling.com")
-    .setHttpClientConfiguration({ timeout: 10000 })
+    .setHttpClientConfiguration({ timeout: 300000 })
     .authWithUserIdAndUserSecret(userId, userSecret);
 
 async function getFilesListForJob(projectId, jobId) {
