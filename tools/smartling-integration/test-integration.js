@@ -18,6 +18,7 @@ const {
 } = require("smartling-api-sdk-nodejs");
 
 const { fileUris } = require('./src/file_uris');
+const { handleRateLimiting } = require('./src/rate_limit');
 
 const {
   PRODUCT_MAPPINGS,
@@ -124,7 +125,7 @@ async function createJobAndSendFiles () {
           throw new Error(`Unsupported file: ${file}`)
       }
       console.log(fileUri)
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     console.log("Finished adding files to batch");
