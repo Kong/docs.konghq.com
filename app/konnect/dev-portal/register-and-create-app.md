@@ -70,9 +70,5 @@ All developers must register through the {{site.konnect_short_name}} Dev Portal.
         
     * **Manually create OIDC credentials**: To use ODIC without DCR, you must manually create the application in an IdP and use the reference ID (listed on your application in Dev Portal) when creating the application.
 
-    You can use your app once you've added products to you application, created credentials for your application, and a Dev Portal admin has approved your app.
-
-1. **Use your application**
-    
-    You can start making requests to the endpoints in your application, making sure to use the app credentials you configured.
+    You can use your app once you've added products to you application, created credentials for your application, and a Dev Portal admin has approved your app. You can start making requests to the endpoints in your application, making sure to use the app credentials you configured.
 
