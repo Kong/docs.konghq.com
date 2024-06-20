@@ -1693,14 +1693,14 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 ## 3.4.3.10
-**Release Date** 2024/06/17
+**Release Date** 2024/06/18
 
 ### Fixes
 #### Admin API
 
 _Backported from 3.7.0.0_
 * The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
-on their assigned RBAC roles. It has been fixed to return admins according to the workspace they belong to.
+on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
 
 ### Dependencies
 
