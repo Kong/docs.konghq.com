@@ -18,6 +18,7 @@ const {
 } = require("smartling-api-sdk-nodejs");
 
 const { pluginFileUris } = require('./src/file_uris');
+const { handleRateLimiting } = require('./src/rate_limit');
 
 const {
   PRODUCT_MAPPINGS,
@@ -40,10 +41,10 @@ const product = process.env.PRODUCT;
 const versions = process.env.VERSIONS;
 const locale = process.env.LOCALE || 'ja-JP';
 
-// if (!projectId || !userId || !userSecret) {
-//   console.error("Missing environment variables.");
-//   process.exit(1);
-// }
+if (!projectId || !userId || !userSecret) {
+  console.error("Missing environment variables.");
+  process.exit(1);
+}
 
 // Create factory for building API clients.
 const apiBuilder = new SmartlingApiClientBuilder()
@@ -91,8 +92,6 @@ async function buildPluginsConfig(locale) {
 
 async function createJobAndSendFiles () {
   try {
-    // TODO: handle access token expiration, it's not clear from the docs if the node-sdk
-    // refreshes it automatically. However, the code suggests so.
     const jobsApi = apiBuilder.build(SmartlingJobsApi);
     const batchesApi = apiBuilder.build(SmartlingJobBatchesApi);
 
@@ -143,22 +142,26 @@ async function createJobAndSendFiles () {
     console.log("Uploading files to batch...")
     for (const file of pluginsMetadataFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForPluginsMetadata(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     for (const file of pluginsOverviewFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForPluginsOverview(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     for (const file of pluginsSchemaFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForPluginsSchema(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     for (const file of pluginsIncludeFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForInclude(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
     console.log("Finished adding files to batch");
     console.log("Head to Smartling's Dashboard to authorize the job");
