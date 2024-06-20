@@ -138,8 +138,6 @@
   items:
     - text: Overview
       url: /dev-portal/
-    - text: Sign Up for a Dev Portal Account
-      url: /dev-portal/dev-reg/
     - text: Productize a Service
       url: /dev-portal/publish-service/ 
     - text: Access and Approval
@@ -163,9 +161,7 @@
     - text: Enable and Disable App Registration for API Product Versions
       url: /dev-portal/applications/enable-app-reg/
     - text: Application Lifecycle
-      items:
-        - text: Overview
-          url: /dev-portal/applications/application-overview/
+      url: /dev-portal/applications/application-overview/
     - text: Dynamic Client Registration
       items:
         - text: Overview
