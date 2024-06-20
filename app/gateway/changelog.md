@@ -1075,7 +1075,7 @@ If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gatewa
 * If you are using `ngx.var.http_*` in custom code in order to access HTTP headers, the behavior of that variable changed slightly when the same header is used multiple times in a single request. Previously it would return the first value only, now it returns all the values, separated by commas. Kong's PDK header getters and setters work as before.
 
 ## 3.5.0.5
-**Release Date** 06/17/2024
+**Release Date** 06/18/2024
 
 ### Features
 #### Admin API
@@ -1119,11 +1119,11 @@ _Backported from 3.7.1.0_
 
 _Backported from 3.7.0.0_
 * The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
-on their assigned RBAC roles. It has been fixed to return admins according to the workspace they belong to.
+on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
 
 _Backported from 3.6.0.0_
 * Fixed an issue with the workspace listing API, which showed workspaces that the user didn't have any roles in.
-The API now only shows workspaces that the user has access to.
+The API now only shows workspaces that a user has access to.
 
 ### Dependencies
 
