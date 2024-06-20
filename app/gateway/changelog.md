@@ -5261,6 +5261,39 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.10
+**Release Date** 2024/06/18
+
+### Features
+
+* Added a Docker image for RHEL 8.
+
+### Fixes
+#### Core
+
+_Backported from 3.7.1.0_
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+
+_Backported from 3.4.3.9_
+* **Vitals**: Fixed an issue where each data plane connecting to the control plane would trigger the creation of a redundant 
+table rotater timer on the control plane.
+
+#### Plugins
+
+_Backported from 3.7.0.0_
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Refactored `kong/tools/public/rate-limiting`, adding the new interface `new_instance` to provide isolation between different plugins. 
+    The original interfaces remain unchanged for backward compatibility. 
+  
+    If you are using custom Rate Limiting plugins based on this library, update the initialization code to the new format. For example: 
+    `local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("custom-plugin-name")`.
+    The old interface will be removed in the upcoming major release.
+
+### Dependencies
+
+* Improved the robustness of `lua-cjson` when handling unexpected input.
+
 ## 2.8.4.9
 **Release Date** 2024/04/19
 
