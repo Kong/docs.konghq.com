@@ -63,8 +63,7 @@ All developers must register through the {{site.konnect_short_name}} Dev Portal.
 
 1. **Create API credentials for your application**
 
-    Every application must have credentials so that you can access your app. An application can have multiple credentials. You can generate credentials using one of the following methods:
-    * **Generate credentials**: A credential, or API key, generated in the {{site.konnect_short_name}} Dev Portal is a 32-character string associated with an application. 
+    You can generate credentials using one of the following methods:
         1. To generate an API key from the Dev Portal, navigate to the **My Apps** page and click the application that you want to generate a credential for. 
 
         1. In the **Authentication** pane, click **Generate Credential**.
