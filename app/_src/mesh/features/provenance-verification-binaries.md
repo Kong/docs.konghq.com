@@ -33,7 +33,7 @@ For both examples, you need to:
 
 1. Ensure `slsa-verifier` is installed.
 
-2. [Download security assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets*+version%3A%3E%3D2.7.4) for the required version of {{site.mesh_product_name}} binaries 
+2. [Download security assets](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Asecurity-assets*+version%3A{{page.kong_latest.version}}) for the required version of {{site.mesh_product_name}} binaries
 
 3. Extract the downloaded `security-assets.tar.gz` to access the provenance file `kong-mesh.intoto.jsonl`
 
@@ -41,7 +41,7 @@ For both examples, you need to:
    tar -xvzf security-assets.tar.gz
    ```
 
-4. [Download compressed binaries](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Akong-mesh-*+version%3A%3E%3D2.7.4) for the required version  of {{site.mesh_product_name}}
+4. [Download compressed binaries](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Akong-mesh-*+version%3A{{page.kong_latest.version}}) for the required version  of {{site.mesh_product_name}}
 
 {:.important .no-icon}
 > The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).

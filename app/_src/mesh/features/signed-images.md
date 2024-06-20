@@ -56,7 +56,7 @@ Here's the same example using sample values instead of placeholders:
 
 ```sh
 cosign verify \
-   'kong/kuma-cp:2.7.4-preview.v6b466331d@sha256:76d59540e50c4bb1d6c5f33bc7aaf03add74f97e7efcb416a04d7fde86e86d0c' \
+   'kong/kuma-cp:2.7.4@sha256:87c441496c55569946384642d35fefa7f243809ed67a25cedef7f6ee043f9beb' \
    --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
    --certificate-identity-regexp='https://github.com/Kong/kong-mesh/.github/workflows/kuma-_build_publish.yaml'
 ```
@@ -76,7 +76,7 @@ Here's the same example using sample values instead of placeholders:
 
 ```sh
 cosign verify \
-   'kong/kuma-cp:2.7.4-preview.v6b466331d@sha256:76d59540e50c4bb1d6c5f33bc7aaf03add74f97e7efcb416a04d7fde86e86d0c' \
+   'kong/kuma-cp:2.7.4@sha256:87c441496c55569946384642d35fefa7f243809ed67a25cedef7f6ee043f9beb' \
    --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
    --certificate-identity-regexp='https://github.com/Kong/kong-mesh/.github/workflows/kuma-_build_publish.yaml' \
    -a repo='Kong/kong-mesh' \
