@@ -24,6 +24,7 @@ const {
 } = require("smartling-api-sdk-nodejs");
 
 const processMarkdown = require('./src/post-processors/markdown-files.js');
+const { handleRateLimiting } = require('./src/rate_limit');
 
 const apiBuilder = new SmartlingApiClientBuilder()
     .setLogger(console)
@@ -68,7 +69,7 @@ async function downloadFiles() {
 
       // TODO: any post-processing goes here...
       // config/locales/en.yml => config/locales/ja.yml
-      let downloadedFileContent = await filesApi.downloadFile(projectId, fileUri, locale, downloadFileParams);
+      let downloadedFileContent = await handleRateLimiting(filesApi.downloadFile.bind(filesApi), projectId, fileUri, locale, downloadFileParams);
 
       // post-processing
       if (path.extname(fileUri) === '.md') {
