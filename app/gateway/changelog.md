@@ -438,7 +438,7 @@ when the `http_response_header_for_traceid` option was enabled.
 
 
 ## 3.6.1.5
-**Release Date** 06/17/2024
+**Release Date** 06/18/2024
 
 ### Features
 #### Admin API
@@ -460,7 +460,7 @@ _Backported from 3.7.0.0_
 
 _Backported from 3.7.0.0_
 * The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
-on their assigned RBAC roles. It has been fixed to return admins according to the workspace they belong to.
+on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
 
 #### CLI
 
@@ -480,9 +480,8 @@ It now ignores records when the RR type differs from that of the query when pars
 
 #### Plugins
 
-<!-- 
 * [**Basic Authentication**](/hub/kong-inc/basic-auth/) (`basic-auth`)
-  * Fixed an issue where the realm field wasn't recognized for older kong versions (before 3.6) -->
+  * Fixed an issue where the `realm` field wasn't recognized for Kong Gateway versions before 3.6.
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
