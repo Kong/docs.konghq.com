@@ -18,6 +18,7 @@ const {
 } = require("smartling-api-sdk-nodejs");
 
 const { fileUris } = require('./src/file_uris');
+const { handleRateLimiting } = require('./src/rate_limit');
 
 const {
   PRODUCT_MAPPINGS,
@@ -42,10 +43,10 @@ const locale = process.env.LOCALE || 'ja-JP';
 const product = process.env.PRODUCT;
 const versions = process.env.VERSIONS;
 
-// if (!projectId || !userId || !userSecret) {
-//   console.error("Missing environment variables.");
-//   process.exit(1);
-// }
+if (!projectId || !userId || !userSecret) {
+  console.error("Missing environment variables.");
+  process.exit(1);
+}
 
 // Create factory for building API clients.
 const apiBuilder = new SmartlingApiClientBuilder()
@@ -87,8 +88,6 @@ async function buildProductsConfig(locale, product, versions) {
 
 async function createJobAndSendFiles () {
   try {
-    // TODO: handle access token expiration, it's not clear from the docs if the node-sdk
-    // refreshes it automatically. However, the code suggests so.
     const jobsApi = apiBuilder.build(SmartlingJobsApi);
     const batchesApi = apiBuilder.build(SmartlingJobBatchesApi);
 
@@ -141,32 +140,38 @@ async function createJobAndSendFiles () {
     console.log("Uploading files to batch...")
     for (const file of appFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForApp(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     for (const file of appSrcFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForSrc(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     for (const file of configLocaleFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForConfig(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     for (const file of dataFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForData(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     for (const file of docsNavFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForDocsNav(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     for (const file of includeFilesUris) {
       const { fileUri, batchFileParams } = await buildBatchFileParamsForInclude(file, locale);
-      await batchesApi.uploadBatchFile(projectId, batch.batchUid, batchFileParams);
+      console.log(fileUri)
+      await handleRateLimiting(batchesApi.uploadBatchFile.bind(batchesApi), projectId, batch.batchUid, batchFileParams);
     }
 
     console.log("Finished adding files to batch");
