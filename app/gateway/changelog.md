@@ -11,6 +11,53 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.7.1.0
+**Release Date** 06/18/2024
+
+### Features
+#### Plugins
+
+* [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  * Added the new configuration field `content_type_parameter_validation` to determine whether to enable Content-Type parameter validation.
+
+### Fixes
+#### Core
+
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+* Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
+* Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
+* Fixed an issue where the priority field could be set in a traditional mode route when `router_flavor` was configured as `expressions`. 
+
+#### Plugins
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Resolved an issue where the object constructor would set data on the class instead of the instance.
+
+* [**Basic Authentication**](/hub/kong-inc/basic-auth/) (`basic-auth`)
+  * Fixed an issue where the `realm` field wasn't recognized for Kong Gateway versions before 3.6.
+
+* [**Key Authentication**](/hub/kong-inc/key-auth/) (`key-auth`)
+  * Fixed an issue where the `realm` field wasn't recognized for Kong Gateway versions before 3.7.
+
+* [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)
+  * Fixed the logic for the window adjustment when using a sliding window.
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Timer spikes no longer occur when there is network instability with the central data store.
+
+* [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  * Fixed an issue where the plugin could fail to handle requests when `param_schema` was `$ref schema`.
+
+### Dependencies
+
+* Bumped `lua-resty-events` to 0.2.1.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-jsonschema-rs` to 0.1.5.
+
 ## 3.7.0.0
 **Release Date** 05/28/2024
 
@@ -1717,15 +1764,18 @@ The API now only shows workspaces that the user has access to.
 #### Core
 
 * Fixed an issue where `cluster_cert` or `cluster_ca_cert` was inserted into `lua_ssl_trusted_certificate` before being base64-decoded.
-* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
-It now ignores records when the RR type differs from that of the query when parsing answers.
 * **Vitals**: Fixed an issue where each data plane connecting to the control plane would trigger the creation of a redundant 
 table rotater timer on the control plane.
+
+_Backported from 3.7.1.0_
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
 * Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
 * Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
 
 #### Plugins
 
+_Backported from 3.7.1.0_
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
