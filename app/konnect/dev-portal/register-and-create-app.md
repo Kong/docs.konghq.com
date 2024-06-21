@@ -2,31 +2,33 @@
 title: Register and create an application as a developer
 ---
 
-This guide explains how developers can get started with the developer platform by registering and creating an application. 
+This guide explains how developers can get started with the Dev Portal by registering and creating an application. 
 
-The Dev Portal enables developers to integrate applications with APIs from third-party providers. For instance, if you are developing for a company that requires access to two distinct APIs from a third-party provider, you would need to set up an application within the Dev Portal that consumes both APIs.
+The Dev Portal enables developers to quickly get access to their APIs of interest, in a self serve fashion. Whether you're accessing the Dev Portal of a company you work for, or are interested in, the Dev Portal lets you get started, get your credentials, and start accessing those APIs in minutes.
+
+In order to create credentials, developers must first create an application in which store those credentials.
 
 The following diagram shows how you can register your app in Dev Portal:
 
 {% mermaid %}
 flowchart TD
     A[Sign up for Dev Portal] --> B(Create an application)
-    B --> C(Add products to the application)
+    B --> C(Add APIs to the application)
     C --> D(Create application credentials)
     D --> |Generate in Dev Portal| E[Use application] 
     D --> |Create in IdP| E
 {% endmermaid %}
 
-> **Figure 1:** To create an application against APIs in the Dev Portal, you must first register an account. You can use APIs in the developer platform to create your own app and register that app with the company's developer platform. Before you can use your app, you must create credentials to access the app.
+> **Figure 1:** In order to use the Dev Portal, you must first register for the Portal with an account. You will receive an email from the Portal admin prompting you to confirm your email address.
 
 <details><summary>Key concepts</summary>
 
 {% capture konnect_concepts %}
-**Application:** An application enables developers to register and use APIs, whether they are your company’s own or those of a third-party provider. To facilitate diverse integrations, developers can create applications that consume multiple APIs from different providers, streamlining various services into a single offering.
+**Application:** An application enables developers to register for APIs in the Dev Portal. For ease of use, developers can create applications that consume multiple APIs. After creating the application, developers can create a single credential that consumes all the APIs that application is registered for. If you're unable to register more than one API to an application, be sure to check that the authentication strategies of those APIs are the same.
 
 **Application credentials:** Credentials authorize developers to access an application. You can generate credentials automatically, or  manage them manually through an Identity Provider (IdP), like OIDC.
 
-**Developer platform:** The developer platform allows developers like you to locate, access, and consume APIs. Using the Dev Portal, you can browse and search API documentation, test API endpoints, and manage your own credentials. 
+**Developer Portal:** The Dev Portal allows developers like you to locate, access, and consume APIs. Using the Dev Portal, you can browse and search API documentation, test API endpoints, manage your own credentials, and view your API consumption in the Analytics page.
 {% endcapture %}
 
 {{ konnect_concepts | markdownify }}
