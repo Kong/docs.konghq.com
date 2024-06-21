@@ -22,7 +22,7 @@ For the complete example, you need the same details as the minimal example, as w
 | `<repo>` | GitHub repository | `kong-mesh` |
 | `<workflow name>` | GitHub workflow name | `build-test-distribute` |
 | `<workflow trigger>` | Github workflow trigger name | `push` |
-| `<version>` | Artifact version to download | `2.7.4` |
+| `<version>` | Artifact version to download | `{{page.kong_latest.version}}` |
 
 Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's OIDC identity to generate build provenance for container images, which is why many of these details are GitHub-related.
 
