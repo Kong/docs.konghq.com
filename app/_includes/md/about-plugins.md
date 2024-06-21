@@ -88,7 +88,7 @@ Kong provides PDKs in the following languages:
 * [Lua](/gateway/latest/plugin-development/)
 * [Go](/gateway/latest/plugin-development/pluginserver/go/)
 * [Python](/gateway/latest/plugin-development/pluginserver/python/)
-* [Javascript](/gateway/latest/plugin-development/pluginserver/javascript/)
+* [JavaScript](/gateway/latest/plugin-development/pluginserver/javascript/)
 
 These PDKs are sets of functions that a plugin can use to facilitate interactions between plugins
 and the core (or other components) of Kong.
