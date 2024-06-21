@@ -7,7 +7,7 @@ Starting with 2.7.4, {{site.mesh_product_name}} produces build provenance for bi
 
 This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} binary artifacts in two different ways:
 
-* A minimal example, used to verify an binary artifacts without leveraging any annotations
+* A minimal example, used to verify a binary artifacts without leveraging any annotations
 * A complete example, leveraging optional annotations for increased trust
 
 For the minimal example, you only need a compressed binary file and provenance file.
