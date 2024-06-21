@@ -3,7 +3,7 @@ title: Verify Build Provenance for Signed Kong Mesh Images
 badge: enterprise
 ---
 
-Starting with 2.7.4, {{site.mesh_product_name}} produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
+Starting with 2.8.0, {{site.mesh_product_name}} produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
 
 This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} Docker container images using:
 
@@ -38,17 +38,14 @@ For both examples, you need to:
 4. Parse the `<manifest_digest>` for the image using `regctl`.
 
    ```sh
-   regctl manifest digest kong/kuma-cp:2.7.4
+   regctl manifest digest kong/kuma-cp:2.8.0
    ```
 
-{% if_version gte:2.8.x %}
 5. Set the `COSIGN_REPOSITORY` environment variable:
 
    ```sh
    export COSIGN_REPOSITORY=kong/notary
    ```
-
-{% endif_version %}
 
 {:.important .no-icon}
 > The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
@@ -61,7 +58,7 @@ Run the `cosign verify-attestation ...` command:
 
 ```sh
 cosign verify-attestation \
-   'kong/kuma-cp:2.7.4@sha256:87c441496c55569946384642d35fefa7f243809ed67a25cedef7f6ee043f9beb' \
+   'kong/kuma-cp:2.8.0@<TODO_IMAGE_DIGEST>' \
    --type='slsaprovenance' \
    --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
    --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
@@ -72,19 +69,13 @@ cosign verify-attestation \
 
 #### Using slsa-verifier
 
-{% if_version gte:2.8.x %}
-
-{:.important .no-icon}
-> Specify additional `--provenance-repository 'kong/notary'` argument to command below.
-
-{% endif_version %}
-
 Run the `slsa-verifier verify-image ...` command:
 
 ```sh
 slsa-verifier verify-image \
-   'kong/kuma-cp:2.7.4@sha256:87c441496c55569946384642d35fefa7f243809ed67a25cedef7f6ee043f9beb' \
+   'kong/kuma-cp:2.8.0@<TODO_IMAGE_DIGEST>' \
    --print-provenance \
+   --provenance-repository 'kong/notary' \
    --source-uri 'github.com/Kong/kong-mesh' \
-   --source-tag '2.7.4'
+   --source-tag '2.8.0'
 ```

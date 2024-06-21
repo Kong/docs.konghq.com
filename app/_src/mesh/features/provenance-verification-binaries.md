@@ -3,7 +3,7 @@ title: Verify Build Provenance for Kong Mesh Binaries
 badge: enterprise
 ---
 
-Starting with 2.7.4, {{site.mesh_product_name}} produces build provenance for binary artifacts, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
+Starting with 2.8.0, {{site.mesh_product_name}} produces build provenance for binary artifacts, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
 
 This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} binary artifacts using:
 
