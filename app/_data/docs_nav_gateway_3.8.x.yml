@@ -214,6 +214,8 @@ items:
             url: /production/monitoring/datadog
           - text: Health Check Probes
             url: /production/monitoring/healthcheck-probes
+          - text: Expose and graph AI Metrics
+            url: /production/monitoring/ai-metrics/
       - text: Tracing
         items:
           - text: Overview
@@ -386,6 +388,9 @@ items:
             absolute_url: true
       - text: AI Gateway Analytics
         url: /ai-gateway/ai-analytics/
+        generate: false
+      - text: Expose and graph AI Metrics
+        url: /ai-gateway/metrics/
         generate: false
       - text: AI Gateway plugins
         url: /hub/?category=ai
