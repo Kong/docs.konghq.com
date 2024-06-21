@@ -11,7 +11,7 @@ You can use the following table to help you determine which Dev Portal configura
 
 | You want to... | Then use... |
 | -------------- | ----------- |
-| Publish some APIs to an internal Dev Portal as well as an external Dev Portal. | Multi-portal |
+| Publish some APIs to an internal Dev Portal as well as an external Dev Portal. | [Multi-portal](/konnect/dev-portal/create-dev-portal/) |
 | Allow developers to reuse your APIs in applications | [Enable app reg and Dev Portal](/konnect/dev-portal/applications/enable-app-reg/) |
 | Only allow certain users to see your published APIs | [Manage dev teams with RBAC](/konnect/api/portal-auth/portal-rbac-guide/#main) |
 | Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
@@ -39,6 +39,7 @@ flowchart TD
     L --> O(Customize appearance)
 
     %% this section defines node interactions
+    click A "/konnect/dev-portal/create-dev-portal/"
     click E "/konnect/dev-portal/access-and-approval/add-teams/"
     click F "/konnect/dev-portal/access-and-approval/manage-devs/"
     click G "/konnect/api/portal-auth/portal-rbac-guide/#main"
