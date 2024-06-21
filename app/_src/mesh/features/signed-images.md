@@ -5,14 +5,11 @@ badge: enterprise
 
 Starting with {{site.mesh_product_name}} 2.7.4, Docker container images are now signed using `cosign` with signatures published to a Docker Hub repository.
 
-This guide provides steps to verify signatures for signed {{site.mesh_product_name}} Docker container images in two different ways:
+This guide provides steps to verify signatures for signed {{site.mesh_product_name}} Docker container images using:
 
-* A minimal example, used to verify an image without leveraging any annotations
-* A complete example, leveraging optional annotations for increased trust
+* An example, used to verify an image leveraging optional annotations for increased trust
 
-For the minimal example, you only need Docker image details, a GitHub repo name, and a GitHub workflow filename.
-
-For the complete example, you need the same details as the minimal example, as well as any of the optional annotations you wish to verify:
+For the example, you need Docker image details, a GitHub repo name, a GitHub workflow filename as well as any of the optional annotations you wish to verify:
 
 | Shorthand | Description | Example Value |
 |---|---|---|
@@ -41,38 +38,9 @@ For both examples, you need to:
 {:.important .no-icon}
 > Github owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
 
-### Minimal example
+### Example
 
 Run the `cosign verify ...` command:
-
-```sh
-cosign verify \
-   kong/<image>:<tag>@sha256:<digest> \
-   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
-   --certificate-identity-regexp='https://github.com/Kong/<repo>/.github/workflows/<workflow filename>'
-```
-
-Here's the same example using sample values instead of placeholders:
-
-```sh
-cosign verify \
-   'kong/kuma-cp:2.7.4@sha256:87c441496c55569946384642d35fefa7f243809ed67a25cedef7f6ee043f9beb' \
-   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
-   --certificate-identity-regexp='https://github.com/Kong/kong-mesh/.github/workflows/kuma-_build_publish.yaml'
-```
-
-### Complete example
-
-```sh
-cosign verify \
-   <image>:<tag>@sha256:<digest> \
-   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
-   --certificate-identity-regexp='https://github.com/Kong/<repo>/.github/workflows/<workflow filename>' \
-   -a repo='Kong/<repo>' \
-   -a workflow='<workflow name>'
-```
-
-Here's the same example using sample values instead of placeholders:
 
 ```sh
 cosign verify \

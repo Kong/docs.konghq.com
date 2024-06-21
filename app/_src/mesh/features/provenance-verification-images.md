@@ -5,17 +5,14 @@ badge: enterprise
 
 Starting with 2.7.4, {{site.mesh_product_name}} produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
 
-This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} Docker container images in two different ways:
+This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} Docker container images using:
 
-* A minimal example, used to verify an image without leveraging any annotations
-* A complete example, leveraging optional annotations for increased trust
+* An example, to verify an image provenance leveraging any optional annotations for increased trust
 
-For the minimal example, you only need a Docker manifest digest and a GitHub repo name.
+For the example, you will need a Docker manifest digest, a GitHub repo name, as well as any of the optional annotations you wish to verify:
 
 {:.important .no-icon}
 > The Docker manifest digest is required for build provenance verification. The manifest digest can be different from the platform specific image digest for a specific distribution.
-
-For the complete example, you need the same details as the minimal example, as well as any of the optional annotations you wish to verify:
 
 | Shorthand | Description | Example Value |
 |---|---|---|
@@ -41,12 +38,11 @@ For both examples, you need to:
 4. Parse the `<manifest_digest>` for the image using `regctl`.
 
    ```sh
-   regctl manifest digest <image>:<tag>
+   regctl manifest digest kong/kuma-cp:2.7.4
    ```
 
 {% if_version gte:2.8.x %}
-
-1. Set the `COSIGN_REPOSITORY` environment variable:
+5. Set the `COSIGN_REPOSITORY` environment variable:
 
    ```sh
    export COSIGN_REPOSITORY=kong/notary
@@ -57,90 +53,11 @@ For both examples, you need to:
 {:.important .no-icon}
 > The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
 
-### Minimal example
+### Example
 
 #### Using Cosign
 
 Run the `cosign verify-attestation ...` command:
-
-```sh
-cosign verify-attestation \
-   <image>:<tag>@sha256:<manifest_digest> \
-   --type='slsaprovenance' \
-   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
-   --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$'
-```
-
-Here's the same example using sample values instead of placeholders:
-
-```sh
-cosign verify-attestation \
-   'kong/kuma-cp:2.7.4@sha256:87c441496c55569946384642d35fefa7f243809ed67a25cedef7f6ee043f9beb' \
-   --type='slsaprovenance' \
-   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
-   --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$'
-```
-
-The command will exit with `0` when the `cosign` verification is completed:
-
-```sh
-...
-echo $?
-0
-```
-
-#### Using slsa-verifier
-
-{% if_version gte:2.8.x %}
-
-{:.important .no-icon}
-> Specify additional `--provenance-repository 'kong/notary'` argument to command below.
-
-{% endif_version %}
-
-Run the `slsa-verifier verify-image ...` command:
-
-```sh
-slsa-verifier verify-image \
-   <image>:<tag>@sha256:<manifest_digest> \
-   --print-provenance \
-   --source-uri 'github.com/Kong/<repo>'
-```
-
-Here's the same example using sample values instead of placeholders:
-
-```sh
-slsa-verifier verify-image \
-   'kong/kuma-cp:2.7.4@sha256:87c441496c55569946384642d35fefa7f243809ed67a25cedef7f6ee043f9beb' \
-   --print-provenance \
-   --source-uri 'github.com/Kong/kong-mesh'
-```
-
-The command will print "Verified SLASA provenance" if successful:
-
-```sh
-...
-PASSED: Verified SLSA provenance
-```
-
-### Complete example
-
-#### Using Cosign
-
-Run the `cosign verify-attestation ...` command:
-
-```sh
-cosign verify-attestation \
-   <image>:<tag>@sha256:<manifest_digest> \
-   --type='slsaprovenance' \
-   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
-   --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
-   --certificate-github-workflow-repository='Kong/<repo>' \
-   --certificate-github-workflow-name='<workflow name>' \
-   --certificate-github-workflow-trigger='<workflow trigger>'
-```
-
-Here's the same example using sample values instead of placeholders:
 
 ```sh
 cosign verify-attestation \
@@ -163,16 +80,6 @@ cosign verify-attestation \
 {% endif_version %}
 
 Run the `slsa-verifier verify-image ...` command:
-
-```sh
-slsa-verifier verify-image \
-   <image>:<tag>@sha256:<manifest_digest> \
-   --print-provenance \
-   --source-uri 'github.com/Kong/<repo>' \
-   --source-tag '<version>'
-```
-
-Here's the same example using sample values instead of placeholders:
 
 ```sh
 slsa-verifier verify-image \
