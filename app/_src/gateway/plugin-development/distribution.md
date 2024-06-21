@@ -31,10 +31,14 @@ Pack your rock using the following command (from the plugin repo):
     ```
 
 2. Pack the installed rock:
+
+{:.important}
+> **Important:** `luarocks pack` is dependent on the `zip` utility being installed. More recent images of Kong Gateway have been hardened, and utilities such as `zip` are no longer available. If this is being performed as part of a custom Docker image, please ensure `zip` is installed prior to running this command.
+
+
     ```sh
     luarocks pack <plugin-name> <version>
     ```
-
     Assuming your plugin rockspec is called
     `kong-plugin-my-plugin-0.1.0-1.rockspec`, the above would become;
 
