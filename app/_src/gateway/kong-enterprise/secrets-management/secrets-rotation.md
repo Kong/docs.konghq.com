@@ -43,7 +43,7 @@ Kong automatically rotates secrets *once every minute* in the background. This d
 The TTL based rotation works with most of the Kong supported vaults, including:
 
 * [AWS Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
-* [GCP Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [GCP Secret Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [HashiCorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
 When rotating with TTLs, it is usually useful to have two versions of the same secret valid at the same time.
@@ -98,9 +98,9 @@ The secrets (certificates, in this case) referenced with `aws-certs` vault
 will share the same 6 hours TTL, and will be rotated one minute earlier than
 their expiry.
 
-### Configuring GCP Secrets Manager Secrets Rotation using TTLs
+### Configuring GCP Secret Manager Secrets Rotation using TTLs
 
-The default [GCP Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+The default [GCP Secret Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 vault TTLs can be configured through `kong.conf` or environment variables (the values are in seconds):
 
 ```bash
@@ -127,7 +127,7 @@ and set the TTLs by secret types, e.g.:
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/gcp-certs  \
   --data name=gcp \
-  --data description="Storing secrets in GCP Secrets Manager" \
+  --data description="Storing secrets in GCP Secret Manager" \
   --data config.project_id="my_project_id-1" \
   --data config.ttl=21600
 ```

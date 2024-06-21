@@ -39,6 +39,12 @@ kuma:
     konnect:
       # -- Control Plane Id of the control-plane in Mesh Konnect
       cpId: ""
+    defaults:
+      adminRoleGroups:
+      - mesh-system:authenticated
+      - mesh-system:unauthenticated
+      - system:authenticated
+      - system:unauthenticated
   plugins:
     policies:
       meshglobalratelimits: true

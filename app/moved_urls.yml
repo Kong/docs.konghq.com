@@ -203,7 +203,8 @@
 /kubernetes-ingress-controller/VERSION/guides/using-ingress-with-grpc/: /kubernetes-ingress-controller/VERSION/guides/services/grpc/
 /kubernetes-ingress-controller/VERSION/guides/using-mtls-auth-plugin/: /kubernetes-ingress-controller/VERSION/plugins/mtls/
 /kubernetes-ingress-controller/VERSION/guides/using-oidc-plugin/: /kubernetes-ingress-controller/VERSION/plugins/oidc/
-/kubernetes-ingress-controller/VERSION/guides/using-rewrites/: /kubernetes-ingress-controller/VERSION/guides/requests/rewrite-host/
+/kubernetes-ingress-controller/VERSION/guides/using-rewrites/: /kubernetes-ingress-controller/VERSION/guides/requests/rewrite-host-and-paths/
+/kubernetes-ingress-controller/VERSION/guides/rewrite-host/: /kubernetes-ingress-controller/VERSION/guides/requests/rewrite-host-and-paths/
 /kubernetes-ingress-controller/VERSION/guides/preserve-client-ip/: /kubernetes-ingress-controller/VERSION/guides/security/client-ip/
 /kubernetes-ingress-controller/VERSION/guides/using-multiple-backends/: /kubernetes-ingress-controller/VERSION/guides/services/multiple-backends/
 /kubernetes-ingress-controller/VERSION/guides/using-gateway-discovery/: /kubernetes-ingress-controller/VERSION/production/deployment-topologies/gateway-discovery/

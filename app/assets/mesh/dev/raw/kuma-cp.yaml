@@ -534,6 +534,9 @@ multizone:
       responseBackoff: 0s # ENV: KUMA_MULTIZONE_ZONE_KDS_RESPONSE_BACKOFF
     # disableOriginLabelValidation disables validation of the origin label when applying resources on Zone CP
     disableOriginLabelValidation: false # ENV: KUMA_MULTIZONE_ZONE_DISABLE_ORIGIN_LABEL_VALIDATION
+    # IngressUpdateInterval is the interval between the CP updating the list of
+    # available services on ZoneIngress.
+    ingressUpdateInterval: 1s # ENV: KUMA_MULTIZONE_ZONE_INGRESS_UPDATE_INTERVAL
 # Diagnostics configuration
 diagnostics:
   # Port of Diagnostic Server for checking health and readiness of the Control Plane
@@ -802,12 +805,12 @@ ipam:
   # MeshService address management
   meshService:
     # CIDR for MeshService IPs
-    cidr: 241.0.0.0/8 # ENV: IPAM_MESH_SERVICE_CIDR
+    cidr: 241.0.0.0/8 # ENV: KUMA_IPAM_MESH_SERVICE_CIDR
   meshExternalService:
     # CIDR for MeshExternalService IPs
-    cidr: 242.0.0.0/8 # ENV: IPAM_MESH_EXTERNAL_SERVICE_CIDR
+    cidr: 242.0.0.0/8 # ENV: KUMA_IPAM_MESH_EXTERNAL_SERVICE_CIDR
   # Interval on which Kuma will allocate new IPs for MeshServices and MeshExternalServices
-  allocationInterval: 5s # ENV: IPAM_ALLOCATION_INTERVAL
+  allocationInterval: 5s # ENV: KUMA_IPAM_ALLOCATION_INTERVAL
 kmesh:
   # License of Kong Mesh
   license:
@@ -844,10 +847,14 @@ kmesh:
         groups: ["mesh-system:admin"] # ENV: KMESH_RBAC_STATIC_GENERATE_CP_TOKEN_GROUPS
     rbac:
       # LogActions defines actions that will be logged when RBAC is resolved. Allowed values: "allowed", "denied"
-      logActions: ["allowed", "denied"]
+      logActions: ["allowed", "denied"] # ENV: KMESH_ACCESS_RBAC_LOG_ACTIONS
+      # DefaultAdminRoleGroups defines a list of groups to be added to the default admin role
+      defaultAdminRoleGroups: ["mesh-system:authenticated", "mesh-system:unauthenticated"] # ENV: KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_GROUPS
       # DefaultAdminRoleUsers defines a list of users to be added to the default list of admins.
-      defaultAdminRoleUsers: []
-      # Configuration for recording all the actions in the system.
+      defaultAdminRoleUsers: [] # ENV: KMESH_ACCESS_RBAC_DEFAULT_ADMIN_ROLE_USERS
+      # SkipAdminRoleCreation set whether skip creating the default admin role
+      skipAdminRoleCreation: false # ENV: KMESH_ACCESS_RBAC_SKIP_ADMIN_ROLE_CREATION
+    # Configuration for recording all the actions in the system.
     audit:
       # Types that are skipped by default when `types` list in AccessAudit resource is empty
       skipDefaultTypes: ["DataplaneInsight", "ZoneIngressInsight", "ZoneEgressInsight", "ZoneInsight", "ServiceInsight", "MeshInsight"]

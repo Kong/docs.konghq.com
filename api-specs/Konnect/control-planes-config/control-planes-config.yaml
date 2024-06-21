@@ -244,9 +244,6 @@ paths:
         config hash can be used to verify if the config hash of a data plane
         node is up to date with the control plane. The config hash will be the
         same if they are in sync.
-      parameters:
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_number'
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/dp-client-certificates:
@@ -266,8 +263,8 @@ paths:
         dataplanes configured with the certificate and corresponding private key
         to establish connection with this control plane.
       parameters:
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_number'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
     post:
       summary: Pin New DP Client Certificate
       description: >-
@@ -327,8 +324,8 @@ paths:
         control plane. A data plane node record contains metadata information
         for the data plane running Kong Gateway.
       parameters:
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_number'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/nodes/eol:
@@ -347,8 +344,8 @@ paths:
         version, and corresponding resolution message to upgrade to the closest
         Long Term Support version.
       parameters:
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_number'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/nodes/{nodeId}:
@@ -407,7 +404,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageAfter'
-        - $ref: '#/components/parameters/PageBefore'
       tags:
         - Custom Plugin Schemas
     post:
@@ -3052,20 +3048,6 @@ components:
       description: >-
         The UUID of your control plane. This variable is available in the
         Konnect manager
-    page_size:
-      name: page_size
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: The number of items to include in a page.
-    page_number:
-      name: page_number
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: The specific page number in the collection results.
     DataPlaneCertificateId:
       name: certificateId
       in: path
@@ -3285,17 +3267,6 @@ components:
       name: page[after]
       description: >-
         Request the next page of data, starting with the item after this
-        parameter.
-      required: false
-      in: query
-      allowEmptyValue: true
-      schema:
-        type: string
-        example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
-    PageBefore:
-      name: page[before]
-      description: >-
-        Request the next page of data, starting with the item before this
         parameter.
       required: false
       in: query
@@ -4838,7 +4809,7 @@ components:
               page:
                 type: object
                 properties:
-                  total_count:
+                  total:
                     type: integer
     list-nodes:
       description: Example response
@@ -4876,12 +4847,10 @@ components:
               page:
                 type: object
                 properties:
-                  total_count:
+                  total:
                     type: integer
-                  next_cursor:
+                  next:
                     type: string
-                  has_next_page:
-                    type: boolean
     list-nodes-eol:
       description: Example response
       content:
@@ -4903,7 +4872,7 @@ components:
               page:
                 type: object
                 properties:
-                  total_count:
+                  total:
                     type: integer
     get-node:
       description: Example response
@@ -4975,7 +4944,7 @@ components:
               page:
                 type: object
                 properties:
-                  total_count:
+                  total:
                     type: integer
     plugin-schemas:
       description: A response for a single custom plugin schema.

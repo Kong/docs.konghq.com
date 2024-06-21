@@ -2,6 +2,142 @@
 
 <!--vale off-->
 
+## Week 24
+
+
+### [Add Konnect Terraform reference page](https://github.com/Kong/docs.konghq.com/pull/7500) (2024-06-13)
+
+Add Terraform page for Konnect so that it shows up when searching for "Terraform" on the docs site.
+
+Please run the Algolia indexer after merge
+
+#### Added
+
+- https://docs.konghq.com/konnect/reference/terraform
+
+
+### [docs(kic): update rewrite-host guide with URLRewrite filter](https://github.com/Kong/docs.konghq.com/pull/7469) (2024-06-11)
+
+Extends `Rewrite Host` guide with `URLRewrite` filter usage implemented in KIC 3.2.
+ 
+Closes https://github.com/Kong/kubernetes-ingress-controller/issues/5853.
+
+#### Modified
+
+- https://docs.konghq.com/moved_urls.yml
+
+
+### [Release: Gateway 3.4.3.9](https://github.com/Kong/docs.konghq.com/pull/7432) (2024-06-10)
+
+Changelog and version bump for 3.4.3.9.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+## Week 23
+
+### [Fix: Typo in JWT mapping order and clarify behavior](https://github.com/Kong/docs.konghq.com/pull/7484) (2024-06-07)
+
+The consumer mapping priority order for the plugin is supposed to include both access token and channel token, but instead just listed access tokens. 
+
+Also clarifying some of the phrasing around mapping so that it doesn't appear to contradict itself
+
+https://konghq.atlassian.net/browse/DOCU-3413
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/jwt-signer/overview/
+
+
+### [Noname fix performance benchmark url](https://github.com/Kong/docs.konghq.com/pull/7477) (2024-06-06)
+
+Fixed a broken URL of the Noname documentation portal
+ 
+#### Modified
+
+- https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongtrafficsource/overview/
+
+
+### [Chore: Convert codeblock diagrams into mermaid format](https://github.com/Kong/docs.konghq.com/pull/7472) (2024-06-06)
+
+Converting this:
+<img width="808" alt="Screenshot 2024-06-05 at 4 16 10 PM" src="https://github.com/Kong/docs.konghq.com/assets/54370747/1c596492-91a3-46ee-881d-8e38729efcf1">
+
+Into this:
+<img width="740" alt="Screenshot 2024-06-05 at 4 16 36 PM" src="https://github.com/Kong/docs.konghq.com/assets/54370747/fffa64ad-8015-4877-a4e9-337930c5045d">
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/websocket-size-limit/overview/
+- https://docs.konghq.com/hub/kong-inc/websocket-validator/overview/
+
+
+### [Release: decK 1.37 and 1.38](https://github.com/Kong/docs.konghq.com/pull/7466) (2024-06-05)
+
+Bump deck versions, add new and missing cli flags.
+
+Based on changelogs for 1.37 and and 1.38: https://github.com/Kong/deck/releases
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/
+- https://docs.konghq.com/gateway/unreleased/production/tracing/
+
+
+### [fix(changelog): correct broken link](https://github.com/Kong/docs.konghq.com/pull/7461) (2024-06-04)
+
+Corrects broken link to demonstrated proof-of-possession page in changelog.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [feat: Document Request ID in debugging, tracing, and logging](https://github.com/Kong/docs.konghq.com/pull/7441) (2024-06-05)
+
+The Request ID feature was released in 3.5 and never documented. This PR adds information about it to the existing tracing, debugging, and logging docs.
+DOCU-3853
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/
+- https://docs.konghq.com/gateway/unreleased/production/tracing/
+
+
+### [Fixes reversed descriptions of post and put.](https://github.com/Kong/docs.konghq.com/pull/7428) (2024-06-04)
+
+Fixed 'Update and insert ACL group names' and 'Update ACL groups by ID' being reversed.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acl/
+
+
+### [Feat: integrated markdown feature update](https://github.com/Kong/docs.konghq.com/pull/7405) (2024-06-04)
+
+https://konghq.atlassian.net/browse/DOCU-3819
+Update [Product Documentation - Kong Konnect | Kong Docs](https://docs.konghq.com/konnect/api-products/service-documentation/#interactive-markdown-renderer)  to include information about being able to start a document from the editor.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/api-products/service-documentation
+- https://docs.konghq.com/konnect/updates
+
 ## Week 22
 
 ### [Fix: remove inaccurate note about AppDynamics library](https://github.com/Kong/docs.konghq.com/pull/7443) (2024-05-30)

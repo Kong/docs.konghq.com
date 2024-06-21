@@ -931,6 +931,7 @@ components:
                         publish_status: published
                         deprecated: false
                         application_registration_enabled: true
+                        auto_approve_registration: false
                         auth_strategies:
                           - id: 35a2624c-49fc-4764-99e1-224ed819f200
                             name: OIDC
@@ -1098,6 +1099,7 @@ components:
         - publish_status
         - deprecated
         - application_registration_enabled
+        - auto_approve_registration
         - auth_strategies
       properties:
         portal_id:
@@ -1119,6 +1121,9 @@ components:
         application_registration_enabled:
           type: boolean
           example: true
+        auto_approve_registration:
+          type: boolean
+          example: false
         auth_strategies:
           type: array
           items:
@@ -2662,6 +2667,7 @@ components:
             publish_status: published
             deprecated: false
             application_registration_enabled: true
+            auto_approve_registration: false
             auth_strategies:
               - id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
                 name: Key Auth

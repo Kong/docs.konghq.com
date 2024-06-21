@@ -29,7 +29,7 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.9"
+  ee-version: "2.8.4.10"
   ce-version: "2.8.4"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -101,7 +101,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.4.x"
-  ee-version: "3.4.3.8"
+  ee-version: "3.4.3.10"
   ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -116,7 +116,7 @@
   lua_doc: true
   lts: true
 - release: "3.5.x"
-  ee-version: "3.5.0.4"
+  ee-version: "3.5.0.5"
   ce-version: "3.5.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -130,7 +130,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.6.x"
-  ee-version: "3.6.1.4"
+  ee-version: "3.6.1.5"
   ce-version: "3.6.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -144,7 +144,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.7.x"
-  ee-version: "3.7.0.0"
+  ee-version: "3.7.1.0"
   ce-version: "3.7.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -158,6 +158,21 @@
     pcre: 8.45
   lua_doc: true
   latest: true
+- release: "3.8.x"
+  ee-version: "3.8.0.0"
+  ce-version: "3.8.0"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+  label: unreleased
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
@@ -242,9 +257,15 @@
 - release: "1.36.x"
   version: "1.36.1"
   edition: "deck"
-  latest: true
 - release: "1.37.x"
   version: "1.37.0"
+  edition: "deck"
+- release: "1.38.x"
+  version: "1.38.1"
+  edition: "deck"
+  latest: true
+- release: "1.39.x"
+  version: "1.39.0"
   edition: "deck"
   label: unreleased
 - edition: "konnect"
@@ -281,9 +302,12 @@
 - release: "3.1.x"
   version: "3.1.3"
   edition: "kubernetes-ingress-controller"
-  latest: true
 - release: "3.2.x"
   version: "3.2.0"
+  edition: "kubernetes-ingress-controller"
+  latest: true
+- release: "3.3.x"
+  version: "3.3.0"
   edition: "kubernetes-ingress-controller"
   label: unreleased
 - edition: gateway-operator
@@ -392,13 +416,13 @@
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: 2.6.7
+  version: 2.6.8
   release: 2.6.x
   releaseDate: "2024-02-01"
   endOfLifeDate: "2025-02-01"
   branch: release-2.6
 - edition: mesh
-  version: 2.7.3
+  version: 2.7.4
   release: 2.7.x
   latest: true
   releaseDate: "2024-04-19"
@@ -407,6 +431,5 @@
   lts: true
 - edition: mesh
   version: preview
-  release: 2.8.x
+  release: dev
   branch: master
-  label: dev
