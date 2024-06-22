@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/github": "^6.0.0",
-    "@octokit/rest": "^20.0.0",
+    "@octokit/rest": "^21.0.0",
     "gray-matter": "^4.0.3",
     "minimist": "^1.2.5"
   }
