@@ -24,7 +24,7 @@ The following diagram displays the different Dev Portal configuration options yo
 flowchart TD
     A[Create a Dev Portal] --> C{Public Dev Portal}
     A --> B{Private Dev Portal}
-    B -->D[Manage devs] 
+    B -->D[Manage developers] 
     D --> E(Third-party IdP)
     D --> F(Approve/deny)
     D --> G(RBAC)
