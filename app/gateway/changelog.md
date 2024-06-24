@@ -5264,7 +5264,7 @@ openid-connect
 ## 2.8.4.11
 **Release Date** 2024/06/22
 
-## Fixes
+### Fixes
 
 * Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
 
