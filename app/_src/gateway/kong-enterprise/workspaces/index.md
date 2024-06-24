@@ -30,17 +30,16 @@ router:
     * If the matching Service or Route's `host` is an absolute value, a
       conflict is reported—`409 Conflict`
 
-Some entities are "global" entities and thus does not belong to any workspace.
-In particular, the `ca_certificates` is global and used to verify the client
-certificates in mTLS handshaking. The SSL handshaking takes place before receiving
+Some entities are **global** entities, which means they don't belong to any workspace.
+In particular, CA certificates (`ca_certificates` entity) are global and are used to verify the client
+certificates in mTLS handshakes. The SSL handshake takes place before receiving
 an HTTP request when the workspace is unknown.
 
 Some entities reside in a workspace but contain fields that should be unique
-across workspaces to avoid conflict. Specifically, the `name` field of the
-`snis` entity should be unique across workspaces because it is used in the
+across workspaces to avoid conflict:
+*  The `name` field of the `snis` entity should be unique across workspaces because it is used in the
 SSL handshaking phase before the workspace is determined.
-
-Similarly, the `prefix` field of the `vaults` entity is the host part of the
+* The `prefix` field of the `vaults` entity is the host part of the
 vault reference URI which may be used in a context where no workspace information
 is available, for example, when loading the `kong.conf` during Kong startup.
 
