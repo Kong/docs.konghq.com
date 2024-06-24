@@ -9,12 +9,6 @@
 Documentation does not line up with the product: instead of Update Cluster Config should be Edit or Resize Cluster
 
 
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/upgrade
@@ -22,9 +16,6 @@ Documentation does not line up with the product: instead of Update Cluster Confi
 
 ### [fix(dpop): ambiguity of key validation description](https://github.com/Kong/docs.konghq.com/pull/7549) (2024-06-20)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
