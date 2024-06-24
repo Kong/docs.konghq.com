@@ -5261,8 +5261,20 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.11
+**Release Date** 2024/06/22
+
+## Fixes
+
+* Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
+
 ## 2.8.4.10
 **Release Date** 2024/06/18
+
+### Known issues
+
+* There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
+To avoid this issue, install 2.8.4.11 instead of this patch.
 
 ### Features
 
