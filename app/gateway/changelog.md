@@ -494,9 +494,20 @@ when the `http_response_header_for_traceid` option was enabled.
 * Bumped `msgpack-c` to 6.0.1
 * Removed the `lua-resty-openssl-aux-module` dependency
 
+## 3.6.1.6
+**Release Date** 2024/06/22
+
+## Fixes
+
+* Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
 
 ## 3.6.1.5
 **Release Date** 06/18/2024
+
+### Known issues
+
+* There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
+To avoid this issue, install 3.6.1.6 instead of this patch.
 
 ### Features
 #### Admin API
