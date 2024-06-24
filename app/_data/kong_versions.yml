@@ -116,7 +116,7 @@
   lua_doc: true
   lts: true
 - release: "3.5.x"
-  ee-version: "3.5.0.5"
+  ee-version: "3.5.0.6"
   ce-version: "3.5.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
