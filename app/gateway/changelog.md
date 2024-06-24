@@ -14,7 +14,7 @@ For product versions that have reached the end of sunset support, see the [chang
 ## 3.7.1.1
 **Release Date** 2024/06/22
 
-## Fixes
+### Fixes
 
 * Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
 
@@ -497,7 +497,7 @@ when the `http_response_header_for_traceid` option was enabled.
 ## 3.6.1.6
 **Release Date** 2024/06/22
 
-## Fixes
+### Fixes
 
 * Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
 
@@ -1215,7 +1215,7 @@ If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gatewa
 ## 3.5.0.6
 **Release Date** 2024/06/22
 
-## Fixes
+### Fixes
 
 * Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
 
