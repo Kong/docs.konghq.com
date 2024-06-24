@@ -20,11 +20,7 @@ For the example, you will need a compressed binary file and provenance file as w
 
 Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's OIDC identity to generate build provenance for binary artifacts, which is why many of these details are GitHub-related.
 
-## Examples
-
-### Prerequisites
-
-For both examples, you need to:
+## Prerequisites
 
 1. Ensure [slsa-verifier](https://github.com/slsa-framework/slsa-verifier?tab=readme-ov-file#installation) is installed.
 
@@ -41,22 +37,9 @@ For both examples, you need to:
 {:.important .no-icon}
 > The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
 
-### Example
+## Example
 
-#### Using slsa-verifier
-
-Run the `slsa-verifier verify-artifact ...` command:
-
-```sh
-slsa-verifier verify-artifact \
-   --print-provenance \
-   --provenance-path '<provenance-file>' \
-   --source-uri 'github.com/Kong/<repo>' \
-   --source-tag '<version>' \
-   <binary-files>
-```
-
-Here's the same example using sample values instead of placeholders:
+### Using slsa-verifier
 
 ```sh
 slsa-verifier verify-artifact \

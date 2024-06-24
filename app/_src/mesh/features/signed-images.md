@@ -23,7 +23,7 @@ Because Kong uses Github Actions to build and release, Kong also uses Github's O
 
 ### Prerequisites
 
-For both examples, you need to:
+For the example, you need to:
 
 1. Ensure `cosign` is installed.
 
