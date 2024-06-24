@@ -9,6 +9,27 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## June 2024
+
+**Hello World! Love, Konnect + Beamer**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer-SUMUZsV8)
+
+**Hello World! Love, KIC + Beamer**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/hello-world-love-kic-beamer)
+
+**Hello World! Love, Kong Mesh + Beamer**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer-kAjCsQux)
+
+**Announcing Kong Insomnia 9.2 with Faker API Support and More**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/announcing-kong-insomnia-92-with-faker-api-support-and-more)
+
+**Kong AI Gateway Goes GA, New Enterprise Capabilities Added**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/kong-ai-gateway-goes-ga-new-enterprise-capabilities-added)
+
+**Hello World! Love, Konnect + Beamer**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer)
+
+
 ## May 2024
 
 **Gateway 3.7 Support**
@@ -989,3 +1010,24 @@ for Dev Portal access.
 
 : For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.
+
+## 2024 06
+
+**Hello World! Love, Konnect + Beamer**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer-SUMUZsV8)
+
+**Hello World! Love, KIC + Beamer**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/hello-world-love-kic-beamer)
+
+**Hello World! Love, Kong Mesh + Beamer**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer-kAjCsQux)
+
+**Announcing Kong Insomnia 9.2 with Faker API Support and More**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/announcing-kong-insomnia-92-with-faker-api-support-and-more)
+
+**Kong AI Gateway Goes GA, New Enterprise Capabilities Added**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/kong-ai-gateway-goes-ga-new-enterprise-capabilities-added)
+
+**Hello World! Love, Konnect + Beamer**
+: [View in Konnect](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer)
+
