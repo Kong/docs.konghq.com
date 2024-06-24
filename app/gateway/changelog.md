@@ -1899,8 +1899,20 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.11
+**Release Date** 2024/06/22
+
+### Fixes
+
+* Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
+
 ## 3.4.3.10
 **Release Date** 2024/06/18
+
+### Known issues
+
+* There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
+To avoid this issue, install 3.4.3.11 instead of this patch.
 
 ### Fixes
 #### Admin API
