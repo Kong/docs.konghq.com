@@ -55,16 +55,16 @@ Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's O
 
 3. Run the `cosign verify-attestation ...` command:
 
-```sh
-cosign verify-attestation \
-   kong/kuma-cp:{{page.kong_latest.version}}@${IMAGE_DIGEST} \
-   --type='slsaprovenance' \
-   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
-   --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
-   --certificate-github-workflow-repository='Kong/kong-mesh' \
-   --certificate-github-workflow-name='build-test-distribute' \
-   --certificate-github-workflow-trigger='push'
-```
+   ```sh
+   cosign verify-attestation \
+      kong/kuma-cp:{{page.kong_latest.version}}@${IMAGE_DIGEST} \
+      --type='slsaprovenance' \
+      --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
+      --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
+      --certificate-github-workflow-repository='Kong/kong-mesh' \
+      --certificate-github-workflow-name='build-test-distribute' \
+      --certificate-github-workflow-trigger='push'
+   ```
 
 {% endnavtab %}
 
@@ -72,20 +72,20 @@ cosign verify-attestation \
 
 1. Parse the image manifest using `regctl`
 
-```sh
-IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.kong_latest.version}})
-```
+   ```sh
+   IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.kong_latest.version}})
+   ```
 
 1. Run the `slsa-verifier verify-image ...` command:
 
-```sh
-slsa-verifier verify-image \
-   kong/kuma-cp:{{page.kong_latest.version}}@${IMAGE_DIGEST} \
-   --print-provenance \
-   --provenance-repository 'kong/notary' \
-   --source-uri 'github.com/Kong/kong-mesh' \
-   --source-tag '{{page.kong_latest.version}}'
-```
+   ```sh
+   slsa-verifier verify-image \
+      kong/kuma-cp:{{page.kong_latest.version}}@${IMAGE_DIGEST} \
+      --print-provenance \
+      --provenance-repository 'kong/notary' \
+      --source-uri 'github.com/Kong/kong-mesh' \
+      --source-tag '{{page.kong_latest.version}}'
+   ```
 
 {% endnavtab %}
 {% endnavtabs %}

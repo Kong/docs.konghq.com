@@ -25,15 +25,23 @@ Because Kong uses Github Actions to build and release, Kong also uses Github's O
 
 For the example, you need to:
 
-1. Ensure `cosign` is installed.
+1. Ensure [cosign](https://docs.sigstore.dev/system_config/installation/) is installed
 
-2. Collect the necessary image details.
+2. Ensure [`regctl`](https://github.com/regclient/regclient/blob/main/docs/install.md) is installed
 
-3. Set the `COSIGN_REPOSITORY` environment variable:
+3. Collect the necessary image details.
+
+4. Set the `COSIGN_REPOSITORY` environment variable:
 
    ```sh
    export COSIGN_REPOSITORY=kong/notary
    ```
+
+5. Parse the image manifest using `regctl`
+
+```sh
+IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.kong_latest.version}})
+```
 
 {:.important .no-icon}
 > Github owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
@@ -44,7 +52,7 @@ Run the `cosign verify ...` command:
 
 ```sh
 cosign verify \
-   'kong/kuma-cp:2.7.4@sha256:87c441496c55569946384642d35fefa7f243809ed67a25cedef7f6ee043f9beb' \
+   kong/kuma-cp:{{page.kong_latest.version}}@${IMAGE_DIGEST} \
    --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
    --certificate-identity-regexp='https://github.com/Kong/kong-mesh/.github/workflows/kuma-_build_publish.yaml' \
    -a repo='Kong/kong-mesh' \
