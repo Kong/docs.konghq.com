@@ -202,7 +202,7 @@
 - title: Analytics
   icon: /assets/images/icons/konnect/icn-analytics-nav.svg
   items:
-    - text: Introduction to Analytics
+    - text: Introduction to Advanced Analytics
       url: /analytics/
     - text: Analytics Dashboard
       url: /analytics/dashboard/
@@ -212,8 +212,6 @@
       url: /analytics/use-cases/
     - text: Requests
       url: /analytics/api-requests/
-    - text: Troubleshooting
-      url: /analytics/troubleshoot
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:

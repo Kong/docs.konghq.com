@@ -1,6 +1,5 @@
 ---
 title: API Requests
-badge: advanced
 ---
 
 API Requests is a {{site.konnect_short_name}} Advanced Analytics feature which provides a fully integrated and intuitive web experience that allows you to view detailed records for requests made to your API, in near real-time.
