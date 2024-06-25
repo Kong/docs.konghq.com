@@ -1,0 +1,132 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/OPAPolicy",
+    "definitions": {
+        "OPAPolicy": {
+            "properties": {
+                "selectors": {
+                    "items": {
+                        "$ref": "#/definitions/kuma.mesh.v1alpha1.Selector"
+                    },
+                    "type": "array",
+                    "description": "List of selectors to match dataplanes."
+                },
+                "conf": {
+                    "$ref": "#/definitions/kuma.plugins.policies.OPAPolicy.Conf",
+                    "additionalProperties": true,
+                    "description": "Configuration of the policy."
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "OPA Policy",
+            "description": "OPAPolicy defines OpenPolicyAgent policy for selected Dataplanes"
+        },
+        "kuma.mesh.v1alpha1.Selector": {
+            "properties": {
+                "match": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object",
+                    "description": "Tags to match, can be used for both source and destinations"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Selector",
+            "description": "Selector defines structure for selecting tags for given dataplane"
+        },
+        "kuma.plugins.policies.OPAPolicy.Conf": {
+            "properties": {
+                "agentConfig": {
+                    "$ref": "#/definitions/kuma.system.v1alpha1.DataSource",
+                    "additionalProperties": true,
+                    "description": "AgentConfig defines bootstrap OPA agent configuration."
+                },
+                "policies": {
+                    "items": {
+                        "$ref": "#/definitions/kuma.system.v1alpha1.DataSource"
+                    },
+                    "type": "array",
+                    "description": "Policies define data source for a policies. Available values: secret, inline, inlineString."
+                },
+                "authConfig": {
+                    "$ref": "#/definitions/kuma.plugins.policies.OPAPolicy.Conf.AuthConf",
+                    "additionalProperties": true,
+                    "description": "AuthConfig are configurations specific to the filter."
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Conf",
+            "description": "Conf defines settings of the policy."
+        },
+        "kuma.plugins.policies.OPAPolicy.Conf.AuthConf": {
+            "properties": {
+                "statusOnError": {
+                    "type": "integer",
+                    "description": "statusOnError is the http status to return when there's a connection failure between the dataplane and the authorization agent"
+                },
+                "onAgentFailure": {
+                    "type": "string",
+                    "description": "onAgentFailure either 'allow' or 'deny' (default to deny) whether or not to allow requests when the authorization agent failed."
+                },
+                "requestBody": {
+                    "$ref": "#/definitions/kuma.plugins.policies.OPAPolicy.Conf.AuthConf.RequestBodyConf",
+                    "additionalProperties": true,
+                    "description": "requestBody configuration to apply on the request body sent to the authorization agent (if absent, the body is not sent)."
+                },
+                "timeout": {
+                    "pattern": "^([0-9]+\\.?[0-9]*|\\.[0-9]+)s$",
+                    "type": "string",
+                    "description": "The timeout for the single gRPC request from Envoy to OPA Agent.",
+                    "format": "regex"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Auth Conf"
+        },
+        "kuma.plugins.policies.OPAPolicy.Conf.AuthConf.RequestBodyConf": {
+            "properties": {
+                "maxSize": {
+                    "type": "integer",
+                    "description": "The maximum payload size sent to authorization agent. If the payload is larger it will be truncated and there will be a header `x-envoy-auth-partial-body: true`. If it is set to 0 no body will be sent to the agent."
+                },
+                "sendRawBody": {
+                    "type": "boolean",
+                    "description": "Send a raw body instead of the body encoded into UTF-8"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Request Body Conf"
+        },
+        "kuma.system.v1alpha1.DataSource": {
+            "properties": {
+                "secret": {
+                    "type": "string",
+                    "description": "Data source is a secret with given Secret key."
+                },
+                "file": {
+                    "type": "string",
+                    "description": "Data source is a path to a file. Deprecated, use other sources of a data."
+                },
+                "inline": {
+                    "additionalProperties": true,
+                    "type": "string",
+                    "description": "Data source is inline bytes."
+                },
+                "inlineString": {
+                    "type": "string",
+                    "description": "Data source is inline string"
+                }
+            },
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Data Source",
+            "description": "DataSource defines the source of bytes to use."
+        }
+    }
+}

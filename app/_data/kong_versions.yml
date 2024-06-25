@@ -424,12 +424,19 @@
 - edition: mesh
   version: 2.7.4
   release: 2.7.x
-  latest: true
   releaseDate: "2024-04-19"
   endOfLifeDate: "2026-04-19"
   branch: release-2.7
   lts: true
 - edition: mesh
+  version: 2.8.0
+  release: 2.8.x
+  latest: true
+  releaseDate: "2024-06-24"
+  endOfLifeDate: "2025-06-24"
+  branch: release-2.8
+- edition: mesh
   version: preview
-  release: dev
+  release: 2.9.x
   branch: master
+  label: dev
