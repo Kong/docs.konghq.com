@@ -4,16 +4,16 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: meshpassthroughs.kuma.io
+  name: meshopas.kuma.io
 spec:
   group: kuma.io
   names:
     categories:
     - kuma
-    kind: MeshPassthrough
-    listKind: MeshPassthroughList
-    plural: meshpassthroughs
-    singular: meshpassthrough
+    kind: MeshOPA
+    listKind: MeshOPAList
+    plural: meshopas
+    singular: meshopa
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
@@ -45,62 +45,99 @@ spec:
           metadata:
             type: object
           spec:
-            description: Spec is the specification of the Kuma MeshPassthrough resource.
+            description: Spec is the specification of the Kuma MeshOPA resource.
             properties:
               default:
-                description: MeshPassthrough configuration.
                 properties:
-                  appendMatch:
-                    description: AppendMatch is a list of destinations that should
-                      be allowed through the sidecar.
+                  agentConfig:
+                    description: AgentConfig defines bootstrap OPA agent configuration.
+                    properties:
+                      inline:
+                        description: Data source is inline bytes.
+                        format: byte
+                        type: string
+                      inlineString:
+                        description: Data source is inline string`
+                        type: string
+                      secret:
+                        description: Data source is a secret with given Secret key.
+                        type: string
+                    type: object
+                  appendPolicies:
+                    description: Policies define OPA policies that will be applied
+                      on OPA Agent.
                     items:
                       properties:
-                        port:
-                          description: Port defines the port to which a user makes
-                            a request.
-                          type: integer
-                        protocol:
-                          default: tcp
-                          description: 'Protocol defines the communication protocol.
-                            Possible values: `tcp`, `tls`, `grpc`, `http`, `http2`.'
-                          enum:
-                          - tcp
-                          - tls
-                          - grpc
-                          - http
-                          - http2
-                          type: string
-                        type:
-                          description: Type of the match, one of `Domain`, `IP` or
-                            `CIDR` is available.
-                          enum:
-                          - Domain
-                          - IP
-                          - CIDR
-                          type: string
-                        value:
-                          description: Value for the specified Type.
-                          type: string
+                        ignoreDecision:
+                          description: If true, then policy won't be taken into account
+                            when making a decision.
+                          type: boolean
+                        rego:
+                          description: 'OPA Policy written in Rego. Available values:
+                            secret, inline, inlineString.'
+                          properties:
+                            inline:
+                              description: Data source is inline bytes.
+                              format: byte
+                              type: string
+                            inlineString:
+                              description: Data source is inline string`
+                              type: string
+                            secret:
+                              description: Data source is a secret with given Secret
+                                key.
+                              type: string
+                          type: object
                       required:
-                      - port
+                      - rego
                       type: object
                     type: array
-                  passthroughMode:
-                    default: None
-                    description: |-
-                      Defines the passthrough behavior. Possible values: `All`, `None`, `Matched`
-                      When `All` or `None` `appendMatch` has no effect.
-                    enum:
-                    - All
-                    - Matched
-                    - None
-                    type: string
+                  authConfig:
+                    description: AuthConfig are configurations specific to the filter.
+                    properties:
+                      onAgentFailure:
+                        description: |-
+                          OnAgentFailure either 'allow' or 'deny' (default to deny) whether
+                          to allow requests when the authorization agent failed.
+                        enum:
+                        - Allow
+                        - Deny
+                        type: string
+                      requestBody:
+                        description: |-
+                          RequestBody configuration to apply on the request body sent to the
+                          authorization agent (if absent, the body is not sent).
+                        properties:
+                          maxSize:
+                            description: |-
+                              MaxSize defines the maximum payload size sent to authorization agent. If the payload
+                              is larger it will be truncated and there will be a header
+                              `x-envoy-auth-partial-body: true`. If it is set to 0 no body will be
+                              sent to the agent.
+                            format: int32
+                            type: integer
+                          sendRawBody:
+                            description: SendRawBody enable sending raw body instead
+                              of the body encoded into UTF-8
+                            type: boolean
+                        type: object
+                      statusOnError:
+                        description: |-
+                          StatusOnError is the http status to return when there's a connection
+                          failure between the dataplane and the authorization agent
+                        format: int32
+                        type: integer
+                      timeout:
+                        description: Timeout for the single gRPC request from Envoy
+                          to OPA Agent.
+                        type: string
+                    type: object
                 type: object
               targetRef:
                 description: |-
                   TargetRef is a reference to the resource the policy takes an effect on.
                   The resource could be either a real store object or virtual resource
-                  defined in-place.
+                  defined inplace.
                 properties:
                   kind:
                     description: Kind of the referenced resource
