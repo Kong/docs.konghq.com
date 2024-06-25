@@ -45,7 +45,7 @@ dashboard](https://grafana.com/grafana/dashboards/21162-kong-cx-ai/):
   These are available per provider, model, cache, database name (if cached), token type, and workspace.
 
 AI metrics are disabled by default as it may create high cardinality of metrics and may
-cause performance issues.
+cause performance issues. To enable them, set `ai_metrics` to true in the Prometheus plugin configuration.
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 
