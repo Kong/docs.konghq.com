@@ -8,27 +8,27 @@ The following table presents the general compatibility of {{site.kgo_product_nam
 
 ## Kubernetes
 
-| {{site.kgo_product_name}}        |            1.0.x            |            1.1.x            |            1.2.x            |
-|:---------------------------------|:---------------------------:|:---------------------------:|:---------------------------:|
-| {{ site.kic_product_name }} 2.11 | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> |
-| {{ site.kic_product_name }} 2.12 | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> |
-| {{ site.kic_product_name }} 3.0  | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> |
-| {{ site.kic_product_name }} 3.1  | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| {{ site.kic_product_name }} 3.2  | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| {{site.kgo_product_name}}        |            1.0.x            |            1.1.x            |            1.2.x            |            1.3.x            |
+|:---------------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| {{ site.kic_product_name }} 2.11 | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
+| {{ site.kic_product_name }} 2.12 | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
+| {{ site.kic_product_name }} 3.0  | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
+| {{ site.kic_product_name }} 3.1  | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| {{ site.kic_product_name }} 3.2  | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 ### General
 
 The following table presents the general compatibility of {{site.kgo_product_name}} with specific Kubernetes versions.
 Users should expect all the combinations marked with <i class="fa fa-check"></i> to work and to be supported.
 
-| {{site.kgo_product_name}} |            1.0.x            |            1.1.x            |            1.2.x            |
-|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|
-| Kubernetes 1.25           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Kubernetes 1.26           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Kubernetes 1.27           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Kubernetes 1.28           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Kubernetes 1.29           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Kubernetes 1.30           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| {{site.kgo_product_name}} |            1.0.x            |            1.1.x            |            1.2.x            |            1.3.x            |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| Kubernetes 1.25           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Kubernetes 1.26           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Kubernetes 1.27           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Kubernetes 1.28           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Kubernetes 1.29           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Kubernetes 1.30           | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 ### Gateway API
 
