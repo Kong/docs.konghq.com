@@ -39,9 +39,9 @@ For the example, you need to:
 
 5. Parse the image manifest using `regctl`
 
-```sh
-IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.kong_latest.version}})
-```
+   ```sh
+   IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.version}})
+   ```
 
 {:.important .no-icon}
 > Github owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
@@ -50,11 +50,11 @@ IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.kong_latest.version}})
 
 Run the `cosign verify ...` command:
 
-```sh
-cosign verify \
-   kong/kuma-cp:{{page.kong_latest.version}}@${IMAGE_DIGEST} \
-   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
-   --certificate-identity-regexp='https://github.com/Kong/kong-mesh/.github/workflows/kuma-_build_publish.yaml' \
-   -a repo='Kong/kong-mesh' \
-   -a workflow='build-test-distribute'
-```
+   ```sh
+   cosign verify \
+      kong/kuma-cp:{{page.version}}@${IMAGE_DIGEST} \
+      --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
+      --certificate-identity-regexp='https://github.com/Kong/kong-mesh/.github/workflows/kuma-_build_publish.yaml' \
+      -a repo='Kong/kong-mesh' \
+      -a workflow='build-test-distribute'
+   ```
