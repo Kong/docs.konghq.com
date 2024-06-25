@@ -79,15 +79,15 @@ When `upstream_health_metrics` is set to true:
 {% endif_version %}
 
 {% if_version gte:3.8.x %}
-When `ai_llm_metrics` is set to true:
-- **AI Requests**: AI request sent to LLM providers.
+When `ai_llm_metrics` is set to `true`:
+- **AI Requests**: AI requests sent to LLM providers.
   These are available per provider, model, cache, database name (if cached), and workspace.
-- **AI Cost:**: AI Cost charged by LLM providers.
+- **AI Cost:**: AI costs charged by LLM providers.
   These are available per provider, model, cache, database name (if cached), and workspace.
-- **AI Tokens** AI Tokens counted by LLM providers.
+- **AI Tokens** AI tokens counted by LLM providers.
   These are available per provider, model, cache, database name (if cached), token type, and workspace.
 
-Please find more details on [AI Metrics](/gateway/{{ page.release }}/production/monitoring/ai-metrics).
+For more details, see [AI Metrics](/gateway/latest/production/monitoring/ai-metrics/).
 {% endif_version %}
 
 
