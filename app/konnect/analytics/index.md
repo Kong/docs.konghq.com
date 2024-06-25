@@ -1,10 +1,11 @@
 ---
-title: Introduction to Monitoring Health with Analytics
+title: Advanced Analytics
 ---
 
-You can monitor the health and performance of any API product, route, or application managed by {{site.konnect_product_name}}.
 
-Konnect provides embedded reports at various different levels throughout its user interface. Our embedded reports help to stop switching away from your current page to start investigating or derive insights. For example, in the Gateway Manager, you can see activity graphs for gateway services or routes. For gateway services and routes, the graphs show requests broken down by status codes.
+Konnect Advanced Analytics simplifies access to comprehensive, context-rich API usage and performance data in near real-time for swift issue resolution and insights to drive business strategy. Konnect provides embedded reports at various different levels throughout its user interface. Our embedded reports help to stop switching away from your current page to start investigating or derive insights. For example, in the Gateway Manager, you can see activity graphs for gateway services or routes. For gateway services and routes, the graphs show requests broken down by status codes. You can monitor the health and performance of any API product, route, or application managed by {{site.konnect_product_name}}.
+
+
 
 ![service graph](/assets/images/products/konnect/analytics/konnect-analytics-gateway-service.png){:.image-border}
 
