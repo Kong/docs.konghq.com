@@ -64,7 +64,6 @@ Your Dev Portal URL may vary. Keep the following in mind:
 
 
 ## Contextual developer analytics 
-{:.badge .advanced}
 
 You can view analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs.
 
