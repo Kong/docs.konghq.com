@@ -163,13 +163,13 @@ inherit:
           url: /features/access-audit
         - text: MeshGlobalRateLimit (beta)
           url: /features/meshglobalratelimit
-        - text: Verify Signatures for Signed Kong Mesh Images
+        - text: Verify signatures for signed Kong Mesh images
           url: /features/signed-images
-        - text: Build Provenance
+        - text: Build provenance
           items:
-            - text: Verify Build Provenance for Signed Kong Mesh Images
+            - text: Verify build provenance for signed Kong Mesh images
               url: /features/provenance-verification-images
-            - text: Verify Build Provenance for Signed Kong Mesh Binaries
+            - text: Verify build provenance for signed Kong Mesh binaries
               url: /features/provenance-verification-binaries
     - path: [ Reference ]
       action: modify

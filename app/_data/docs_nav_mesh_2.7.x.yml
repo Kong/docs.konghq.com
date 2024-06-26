@@ -163,7 +163,7 @@ inherit:
           url: /features/access-audit
         - text: MeshGlobalRateLimit (beta)
           url: /features/meshglobalratelimit
-        - text: Verify Signatures for Signed Kong Mesh Images
+        - text: Verify signatures for signed Kong Mesh images
           url: /features/signed-images
     - path: [ Reference ]
       action: modify

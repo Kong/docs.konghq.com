@@ -1,37 +1,23 @@
 ---
-title: Verify Build Provenance for Signed Kong Mesh Images
+title: Verify build provenance for signed Kong Mesh images
 badge: enterprise
 ---
 
-Starting with 2.8.0, {{site.mesh_product_name}} produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
+Starting with 2.8.0, {{site.mesh_product_name}} produces build provenance for Docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
 
-This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} Docker container images using:
-
-* An example, to verify an image provenance leveraging any optional annotations for increased trust
-
-For the example, you will need a Docker manifest digest, a GitHub repo name, as well as any of the optional annotations you wish to verify:
-
-{:.important .no-icon}
-> The Docker manifest digest is required for build provenance verification. The manifest digest can be different from the platform specific image digest for a specific distribution.
-
-| Shorthand | Description | Example Value |
-|---|---|---|
-| `<repo>` | GitHub repository | `kong-mesh` |
-| `<workflow name>` | GitHub workflow name | `build-test-distribute` |
-| `<workflow trigger>` | Github workflow trigger name | `push` |
-| `<version>` | Artifact version to download | `{{page.version}}` |
+This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} Docker container images with an example to verify an image provenance leveraging any optional annotations for increased trust.
 
 Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's OIDC identity to generate build provenance for container images, which is why many of these details are GitHub-related.
 
 ## Prerequisites
 
-1. Ensure [cosign](https://docs.sigstore.dev/system_config/installation/) / [slsa-verifier](https://github.com/slsa-framework/slsa-verifier?tab=readme-ov-file#installation) is installed
+* [`Cosign`](https://docs.sigstore.dev/system_config/installation/) / [`slsa-verifier`](https://github.com/slsa-framework/slsa-verifier?tab=readme-ov-file#installation) is installed
 
-2. Ensure [`regctl`](https://github.com/regclient/regclient/blob/main/docs/install.md) is installed
+* [`regctl`](https://github.com/regclient/regclient/blob/main/docs/install.md) is installed
 
-3. Collect the necessary image details.
+* Collect the necessary image details.
 
-4. The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
+* The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
 
 ## Example with kong/kuma-cp
 
@@ -46,7 +32,7 @@ Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's O
    export COSIGN_REPOSITORY=kong/notary
    ```
 
-2. Parse the image manifest using `regctl`
+2. Parse the image manifest using `regctl`:
 
    ```sh
    export IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.version}})
