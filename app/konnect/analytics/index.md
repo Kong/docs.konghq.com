@@ -5,18 +5,17 @@ title: Advanced Analytics
 
 ## What is {{site.konnect_short_name}} Advanced Analytics
 
-![service graph](/assets/images/products/konnect/analytics/konnect-analytics-gateway-service.png){:.image-border}
+{{site.konnect_short_name}} Advanced Analytics  is a real-time, highly contextual analytics platform that offers deep insights into API health, performance, and usage. It has been designed to help businesses optimize their API strategies and improve operational efficiency and is now offered as a premium (paid) service within Kong Konnect.
 
-{{site.konnect_short_name}} Advanced Analytics is a low-cost, efficient observability solution optimized for Kong's runtimes. It allows you to view data across multiple monitoring tools, providing comprehensive insights into your API ecosystem. This solution eliminates the need for deploying a custom observability stack and accessing siloed data, enabling real-time API performance monitoring.
+![Summary dashboard](/assets/images/products/konnect/analytics/konnect-summary-dashboard.png){:.image-border}
 
-The main objective of Konnect Advanced Analytics is to provide easy access to important API usage and performance data for both business users and platform and application teams. 
+Konnect Advanced Analytics offers:
+* Cost-savings: {{site.konnect_short_name}} Advanced Analytics provides a cost-effective analytics solution without the need for significant infrastructure investments, additional staffing or unnecessary 3rd party expenses.
+* Centralized visibility: Delivers comprehensive, centralized insights across your entire API landscape for all APIs, services and data planes.
+* Contextual API Analytics: {{site.konnect_short_name}} Advanced Analytics offers information about each API request, including the specific routes, consumers involved, and the services accessed
+* Data insights: {{site.konnect_short_name}} Advanced Analytics provides data in as fast as 10 second increments, delivering comprehensive contextual insights, including links directly to Gateway configurations. 
 
-Here are a few benefits of using Konnect Advanced Analytics:
-* Cost-savings
-* Centralized visibility
-* Contextual API Analytics
-* Democratized data insights
-* Fastest time to insight
+
 
 ## Advanced Analytics capabilities
 
@@ -30,7 +29,7 @@ You can use the following table to help you determine which analytics tools are 
 | Browse API usage data to gain access to key performance and health statistics. Visualize, slice, and dice API usage data you’ve stored in only a few clicks. | [Explorer](/konnect/analytics/explorer/) |
 | Communicate contextual insights across teams or departments and share important KPIs. | [Custom reports](/konnect/analytics/custom-reports/) |
 | Understand user behavior or pinpoint where issues occur. See detailed information about each individual request made to your APIs. | [Requests](/konnect/analytics/api-requests/)  |
-| Manage costs by collecting data from specific control planes. | [Scoping control planes](/konnect/analytics/#control-plane-scoping) |
+| Manage Advanced Analytics costs.| [Scoping control planes](/konnect/analytics/#control-plane-scoping) |
 
 ### Charts and limitations
 
