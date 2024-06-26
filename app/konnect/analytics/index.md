@@ -1,25 +1,28 @@
 ---
-title: Advanced Analytics
+title: Konnect Advanced Analytics
 ---
 
 
 ## What is {{site.konnect_short_name}} Advanced Analytics
 
-{{site.konnect_short_name}} Advanced Analytics  is a real-time, highly contextual analytics platform that offers deep insights into API health, performance, and usage. It has been designed to help businesses optimize their API strategies and improve operational efficiency and is now offered as a premium service within {{site.konnect_short_name}}.
+{{site.konnect_short_name}} Advanced Analytics is a real-time, highly contextual analytics platform that offers deep insights into API health, performance, and usage. It has been designed to help businesses optimize their API strategies and improve operational efficiency and is now offered as a premium service within {{site.konnect_short_name}}.
 
-![Summary dashboard](/assets/images/products/konnect/analytics/konnect-summary-dashboard.png){:.image-border}
+![Summary dashboard](/assets/images/products/konnect/analytics/konnect-api-usage-summary.png){:.image-border}
 
 Konnect Advanced Analytics offers:
-* Cost-savings: {{site.konnect_short_name}} Advanced Analytics provides a cost-effective analytics solution without the need for significant infrastructure investments, additional staffing or unnecessary 3rd party expenses.
-* Centralized visibility: Delivers comprehensive, centralized insights across your entire API landscape for all APIs, services and data planes.
-* Contextual API Analytics: {{site.konnect_short_name}} Advanced Analytics offers information about each API request, including the specific routes, consumers involved, and the services accessed
-* Data insights: {{site.konnect_short_name}} Advanced Analytics provides data in as fast as 10 second increments, delivering comprehensive contextual insights, including links directly to Gateway configurations. 
+* **Cost-savings**: {{site.konnect_short_name}} Advanced Analytics provides a cost-effective analytics solution without the need for significant infrastructure investments, additional staffing or unnecessary 3rd party expenses.
+* **Centralized visibility**: Delivers comprehensive, centralized insights across your entire API landscape for all APIs, services and data planes.
+* **Contextual API Analytics**: {{site.konnect_short_name}} Advanced Analytics offers information about each API request, including the specific routes, consumers involved, and the services accessed
+* **Data insights**: {{site.konnect_short_name}} Advanced Analytics provides data in as fast as 10 second increments, delivering comprehensive contextual insights, including links directly to Gateway configurations. 
+* **Contextual Reports**: Offer the flexibility to craft reports that match your unique requirements. 
 
 
 
 ## Advanced Analytics capabilities
 
 {{site.konnect_short_name}} Analytics {% konnect_icon analytics %} provides different tools to help you track the performance and behavior of your APIs and data plane nodes. You can use these tools to access key statistics, monitor vitals, and pinpoint anomalies in real-time.
+
+The primary goal of {{site.konnect_short_name}} Advanced Analytics is to make important API usage and performance data easily accessible for both business users and platform and application teams. The interface is designed to be user-friendly and intuitive, ensuring that users can quickly find the information they need and derive valuable insights effortlessly.
 
 You can use the following table to help you determine which analytics tools are best for your use case:
 
@@ -29,20 +32,29 @@ You can use the following table to help you determine which analytics tools are 
 | Browse API usage data to gain access to key performance and health statistics. Visualize, slice, and dice API usage data you’ve stored in only a few clicks. | [Explorer](/konnect/analytics/explorer/) |
 | Communicate contextual insights across teams or departments and share important KPIs. | [Custom reports](/konnect/analytics/custom-reports/) |
 | Understand user behavior or pinpoint where issues occur. See detailed information about each individual request made to your APIs. | [Requests](/konnect/analytics/api-requests/)  |
-| Manage Advanced Analytics costs.| [Scoping control planes](/konnect/analytics/#control-plane-scoping) |
+| Manage Advanced Analytics cost for individual control planes| [Scoping control planes](/konnect/analytics/#ingestion) |
 
 ### Charts and limitations
 
-{{site.konnect_short_name}} charts offer interactive features such as the ability to hover over elements to reveal additional details, and to filter data by selecting items with the chart. {{site.konnect_short_name}} caps the number of entities showing in any activity graph or [custom reports](/konnect/analytics/generate-reports/) to 50. If this limit is exceeded, a warning icon displays at the top of the affected graph or report.
+{{site.konnect_short_name}} charts offer interactive features such as the ability to hover over elements to reveal additional details, and to filter data by selecting items with the chart. {{site.konnect_short_name}} caps the number of entities showing in any activity graph or [custom reports](/konnect/analytics/use-cases/) to 50. If this limit is exceeded, a warning icon displays at the top of the affected graph or report.
 
 ### Team permissions
 
 You can assign {{site.konnect_short_name}} users to specific, predefined Analytic teams. This allows you to give certain users access to only view or manage the Analytics area of your {{site.konnect_short_name}} instance. For more information about the Analytics Admin and Analytics Viewer teams, see the [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
 
-### Control plane scoping
+### Ingestion
 
-You can scope Advanced Analytics to specific control planes. This allows you to generate analytics for individual control planes and manage costs effectively.
+The Advanced Analytics toggle feature allows you to control whether Advanced Analytics data is collected and processed for your API traffic through a control plane.
+This feature provides flexibility in managing your data insights and can help you control costs. There are two states: 
+
+* **On**: When Advanced Analytics is enabled, both basic and advanced data is collected. This gives you valuable insights into API traffic and allows you to generate detailed custom reports.
+* **Off**: When you disable Advanced Analytics, the collection of advanced data stops. However, basic data continues to be collected. This ensures that you still have essential insights and that contextual features in {{site.konnect_short_name}} remain functional.
+
+When Advanced Analytics is set to **off**, you won’t be able to generate [custom reports](/konnect/analytics/use-cases/) but, you will still have access to basic API usage information. 
+
+{:.note}
+> **Transition Time**: It takes a couple of minutes to toggle Advanced Analytics between states. During this time, you will continue to see data being collected.
 
 ## More information
 
