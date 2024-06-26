@@ -43,6 +43,8 @@ paths:
           $ref: '#/components/responses/IdentityUnauthenticated'
         '404':
           $ref: '#/components/responses/IdentityNotFound'
+      servers:
+        - url: https://global.api.konghq.com/
     patch:
       summary: Update Impersonation Settings
       description: Updates Impersonation Settings.
@@ -62,6 +64,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/IdentityNotFound'
+      servers:
+        - url: https://global.api.konghq.com/
   /authentication-settings:
     get:
       summary: Get Auth Settings
@@ -76,6 +80,8 @@ paths:
           $ref: '#/components/responses/AuthenticationSettings'
         '401':
           $ref: '#/components/responses/IdentityUnauthenticated'
+      servers:
+        - url: https://global.api.konghq.com/
     patch:
       summary: Update Auth Settings
       description: Updates authentication configuration.
@@ -93,6 +99,8 @@ paths:
           $ref: '#/components/responses/IdentityUnauthenticated'
         '403':
           $ref: '#/components/responses/Unauthorized'
+      servers:
+        - url: https://global.api.konghq.com/
   /invites:
     post:
       summary: Invite User
@@ -115,6 +123,8 @@ paths:
           $ref: '#/components/responses/RateLimited'
       tags:
         - Invites
+      servers:
+        - url: https://global.api.konghq.com/
   /identity-provider:
     get:
       summary: Fetch IdP Configuration
@@ -133,6 +143,8 @@ paths:
       tags:
         - Auth Settings
       description: Fetch the IdP configuration.
+      servers:
+        - url: https://global.api.konghq.com/
     parameters: []
     patch:
       summary: Update IdP Configuration
@@ -151,6 +163,8 @@ paths:
         $ref: '#/components/requestBodies/UpdateIdPConfiguration'
       tags:
         - Auth Settings
+      servers:
+        - url: https://global.api.konghq.com/
   /identity-provider/team-mappings:
     put:
       summary: Update Team Mappings
@@ -171,6 +185,8 @@ paths:
       description: Updates the IdP group to Konnect team mapping.
       requestBody:
         $ref: '#/components/requestBodies/UpdateTeamMappings'
+      servers:
+        - url: https://global.api.konghq.com/
     get:
       summary: Fetch Team Mapping
       operationId: get-idp-team-mappings
@@ -191,6 +207,8 @@ paths:
       tags:
         - Auth Settings
       description: Fetch the IdP group to Konnect team mapping.
+      servers:
+        - url: https://global.api.konghq.com/
   /identity-provider/team-group-mappings:
     get:
       summary: Fetch Team Group Mappings
@@ -214,6 +232,8 @@ paths:
         Groups.
 
         Returns a 400 error if an Identity Provider has not yet been configured.
+      servers:
+        - url: https://global.api.konghq.com/
     patch:
       summary: Patch Mappings by Team ID
       operationId: patch-team-group-mappings
@@ -245,6 +265,8 @@ paths:
         the request body is not found or is not a UUID.
       requestBody:
         $ref: '#/components/requestBodies/PatchTeamGroupMappings'
+      servers:
+        - url: https://global.api.konghq.com/
   /roles:
     get:
       summary: Get Predefined Roles
@@ -259,6 +281,8 @@ paths:
           $ref: '#/components/responses/IdentityUnauthenticated'
       tags:
         - Roles
+      servers:
+        - url: https://global.api.konghq.com/
   /teams:
     get:
       summary: List Teams
@@ -288,6 +312,8 @@ paths:
           style: deepObject
       tags:
         - Teams
+      servers:
+        - url: https://global.api.konghq.com/
     parameters: []
     post:
       summary: Create Team
@@ -304,6 +330,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/CreateTeam'
       description: 'Creates a team in the Konnect Organization. '
+      servers:
+        - url: https://global.api.konghq.com/
   /teams/{teamId}/users:
     parameters:
       - schema:
@@ -348,6 +376,8 @@ paths:
           style: deepObject
       tags:
         - Team Membership
+      servers:
+        - url: https://global.api.konghq.com/
     post:
       summary: Add User
       operationId: add-user-to-team
@@ -363,6 +393,8 @@ paths:
         $ref: '#/components/requestBodies/AddUserToTeam'
       tags:
         - Team Membership
+      servers:
+        - url: https://global.api.konghq.com/
   /teams/{teamId}:
     parameters:
       - schema:
@@ -386,6 +418,8 @@ paths:
       description: Returns information about a team from a given team ID.
       tags:
         - Teams
+      servers:
+        - url: https://global.api.konghq.com/
     patch:
       summary: Update Team
       operationId: update-team
@@ -401,6 +435,8 @@ paths:
         $ref: '#/components/requestBodies/UpdateTeam'
       tags:
         - Teams
+      servers:
+        - url: https://global.api.konghq.com/
     delete:
       summary: Delete Team
       operationId: delete-team
@@ -414,6 +450,8 @@ paths:
       description: Deletes an individual team. Returns 404 if the team is not found.
       tags:
         - Teams
+      servers:
+        - url: https://global.api.konghq.com/
   /teams/{teamId}/users/{userId}:
     parameters:
       - schema:
@@ -449,6 +487,8 @@ paths:
         the user or team were not found.
       tags:
         - Team Membership
+      servers:
+        - url: https://global.api.konghq.com/
   /teams/{teamId}/assigned-roles:
     parameters:
       - schema:
@@ -491,8 +531,10 @@ paths:
           description: Filter roles returned in the response.
           required: false
           style: deepObject
+      servers:
+        - url: https://global.api.konghq.com/
     post:
-      summary: Assign Role
+      summary: Assign Team Role
       operationId: teams-assign-role
       responses:
         '201':
@@ -512,6 +554,8 @@ paths:
         $ref: '#/components/requestBodies/AssignRole'
       tags:
         - Roles
+      servers:
+        - url: https://global.api.konghq.com/
   /teams/{teamId}/assigned-roles/{roleId}:
     parameters:
       - schema:
@@ -531,7 +575,7 @@ paths:
         required: true
         description: The role ID.
     delete:
-      summary: Remove Role
+      summary: Remove Team Role
       operationId: teams-remove-role
       responses:
         '204':
@@ -549,6 +593,8 @@ paths:
       description: >-
         Removes an assigned role from a team. Returns 404 if the requested team
         or assigned role were not found.
+      servers:
+        - url: https://global.api.konghq.com/
   /users:
     get:
       summary: List Users
@@ -580,6 +626,8 @@ paths:
           description: Filter users returned in the response.
           required: false
           style: deepObject
+      servers:
+        - url: https://global.api.konghq.com/
   /users/{userId}:
     parameters:
       - schema:
@@ -603,6 +651,8 @@ paths:
           $ref: '#/components/responses/IdentityNotFound'
       operationId: get-user
       description: Returns the user object for the user ID specified as a path parameter.
+      servers:
+        - url: https://global.api.konghq.com/
     patch:
       summary: Update User
       operationId: update-user
@@ -620,6 +670,8 @@ paths:
         $ref: '#/components/requestBodies/UpdateUser'
       tags:
         - Users
+      servers:
+        - url: https://global.api.konghq.com/
     delete:
       summary: Delete User
       operationId: delete-user
@@ -633,6 +685,8 @@ paths:
         found.
       tags:
         - Users
+      servers:
+        - url: https://global.api.konghq.com/
   /users/{userId}/teams:
     parameters:
       - schema:
@@ -667,6 +721,8 @@ paths:
           style: deepObject
       tags:
         - Team Membership
+      servers:
+        - url: https://global.api.konghq.com/
   /users/{userId}/assigned-roles:
     parameters:
       - schema:
@@ -705,6 +761,8 @@ paths:
           description: Filter roles returned in the response.
           required: false
           style: deepObject
+      servers:
+        - url: https://global.api.konghq.com/
     post:
       summary: Assign Role
       operationId: users-assign-role
@@ -726,6 +784,8 @@ paths:
         $ref: '#/components/requestBodies/AssignRole'
       tags:
         - Roles
+      servers:
+        - url: https://global.api.konghq.com/
   /users/{userId}/assigned-roles/{roleId}:
     parameters:
       - schema:
@@ -761,6 +821,8 @@ paths:
       description: >-
         Removes an assigned role from a user. Returns 404 if the requested user
         or assigned role were not found.
+      servers:
+        - url: https://global.api.konghq.com/
   /system-accounts:
     get:
       summary: List System Accounts
@@ -796,6 +858,8 @@ paths:
           description: Filter system accounts returned in the response.
           required: false
           style: deepObject
+      servers:
+        - url: https://global.api.konghq.com/
     post:
       summary: Create System Account
       operationId: post-system-accounts
@@ -815,6 +879,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '409':
           $ref: '#/components/responses/IdentityConflict'
+      servers:
+        - url: https://global.api.konghq.com/
   /system-accounts/{accountId}:
     get:
       summary: Fetch System Account
@@ -833,6 +899,8 @@ paths:
       description: >-
         Returns the system account (SA) for the SA ID specified as a path
         parameter.
+      servers:
+        - url: https://global.api.konghq.com/
     parameters:
       - schema:
           type: string
@@ -861,6 +929,8 @@ paths:
         - System Accounts
       requestBody:
         $ref: '#/components/requestBodies/UpdateSystemAccount'
+      servers:
+        - url: https://global.api.konghq.com/
     delete:
       summary: Delete System Account
       operationId: delete-system-accounts-id
@@ -878,6 +948,8 @@ paths:
         account was not found.
       tags:
         - System Accounts
+      servers:
+        - url: https://global.api.konghq.com/
   /system-accounts/{accountId}/access-tokens:
     get:
       summary: List System Account Access Tokens
@@ -911,6 +983,8 @@ paths:
           description: Filter access tokens returned in the response.
           required: false
           style: deepObject
+      servers:
+        - url: https://global.api.konghq.com/
     parameters:
       - schema:
           type: string
@@ -941,6 +1015,8 @@ paths:
         $ref: '#/components/requestBodies/CreateSystemAccountAccessToken'
       tags:
         - System Accounts - Access Tokens
+      servers:
+        - url: https://global.api.konghq.com/
   /system-accounts/{accountId}/access-tokens/{tokenId}:
     get:
       summary: Fetch System Account Access Token
@@ -960,6 +1036,8 @@ paths:
       parameters: []
       tags:
         - System Accounts - Access Tokens
+      servers:
+        - url: https://global.api.konghq.com/
     parameters:
       - schema:
           type: string
@@ -994,6 +1072,8 @@ paths:
         $ref: '#/components/requestBodies/UpdateSystemAccountAccessToken'
       tags:
         - System Accounts - Access Tokens
+      servers:
+        - url: https://global.api.konghq.com/
     delete:
       summary: Delete System Account Access Token
       operationId: delete-system-accounts-id-access-tokens-id
@@ -1009,6 +1089,8 @@ paths:
       description: Deletes the specified token. Returns 404 if the token was not found.
       tags:
         - System Accounts - Access Tokens
+      servers:
+        - url: https://global.api.konghq.com/
   /system-accounts/{accountId}/assigned-roles:
     parameters:
       - schema:
@@ -1049,6 +1131,8 @@ paths:
           style: deepObject
       tags:
         - System Accounts - Roles
+      servers:
+        - url: https://global.api.konghq.com/
     post:
       summary: Create Assigned Role for System Account
       operationId: post-system-accounts-accountId-assigned-roles
@@ -1070,6 +1154,8 @@ paths:
         $ref: '#/components/requestBodies/AssignRole'
       tags:
         - System Accounts - Roles
+      servers:
+        - url: https://global.api.konghq.com/
   /system-accounts/{accountId}/assigned-roles/{roleId}:
     parameters:
       - schema:
@@ -1101,6 +1187,8 @@ paths:
         system account or assigned role were not found.
       tags:
         - System Accounts - Roles
+      servers:
+        - url: https://global.api.konghq.com/
   /teams/{teamId}/system-accounts:
     parameters:
       - schema:
@@ -1139,6 +1227,8 @@ paths:
           style: deepObject
       tags:
         - System Accounts - Team Membership
+      servers:
+        - url: https://global.api.konghq.com/
     post:
       summary: Add System Account to a Team
       operationId: post-teams-teamId-system-accounts
@@ -1160,6 +1250,8 @@ paths:
         $ref: '#/components/requestBodies/AddSystemAccountToTeam'
       tags:
         - System Accounts - Team Membership
+      servers:
+        - url: https://global.api.konghq.com/
   /teams/{teamId}/system-accounts/{accountId}:
     parameters:
       - schema:
@@ -1191,6 +1283,8 @@ paths:
         account were not found.
       tags:
         - System Accounts - Team Membership
+      servers:
+        - url: https://global.api.konghq.com/
   /system-accounts/{accountId}/teams:
     parameters:
       - schema:
@@ -1227,6 +1321,8 @@ paths:
           style: deepObject
       tags:
         - System Accounts - Team Membership
+      servers:
+        - url: https://global.api.konghq.com/
   /authenticate/{organizationLoginPath}:
     get:
       summary: SSO Callback
@@ -1253,6 +1349,8 @@ paths:
           $ref: '#/components/responses/IdentityBadRequest'
         '401':
           $ref: '#/components/responses/IdentityUnauthenticated'
+      servers:
+        - url: https://global.api.konghq.com/
 components:
   responses:
     GetImpersonationSettingsResponse:
