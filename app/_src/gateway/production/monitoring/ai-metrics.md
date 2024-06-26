@@ -39,9 +39,9 @@ dashboard](https://grafana.com/grafana/dashboards/21162-kong-cx-ai/):
 
 - **AI Requests**: AI requests sent to LLM providers.
   These are available per provider, model, cache, database name (if cached), and workspace.
-- **AI Cost:**: AI costs charged by LLM providers.
+- **AI Cost**: AI costs charged by LLM providers.
   These are available per provider, model, cache, database name (if cached), and workspace.
-- **AI Tokens** AI tokens counted by LLM providers.
+- **AI Tokens**: AI tokens counted by LLM providers.
   These are available per provider, model, cache, database name (if cached), token type, and workspace.
 
 AI metrics are disabled by default as it may create high cardinality of metrics and may
