@@ -5,6 +5,41 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.3.0
+
+**Release Date** 2024/06/24
+
+### Fixes
+
+* Fix the `ControlPlane` extensions controller to gracefully handle the
+  absence of a {{site.ee_product_name}} license on startup.
+* Do not require existence of `certmanager.io/v1.certificates` CRD when
+  `KonnectCertificateOptions` is empty in `DataPlane`.
+* Fix version reporting in logs and via `-version` CLI arg
+* Fix enforcing up to date `ControlPlane`'s `ValidatingWebhookConfiguration`
+
+### Changes
+
+* `Gateway` do not have their `Ready` status condition set anymore.
+* This aligns with Gateway API and its conformance test suite.
+* `Gateway`s' listeners now have their `attachedRoutes` count filled in status.
+* Detect when `ControlPlane` has its admission webhook disabled via
+* `CONTROLLER_ADMISSION_WEBHOOK_LISTEN` environment variable and ensure that
+* relevant webhook resources are not created/deleted.
+* The `OwnerReferences` on cluster-wide resources to indicate their owner are now
+* replaced by a proper set of labels to identify `kind`, `namespace`, and
+* `name` of the owning object.
+* Default version of `ControlPlane` is bumped to 3.2.0
+
+### Breaking Changes
+
+* Changes project layout to match `kubebuilder` `v4`. Some import paths (due to dir renames) have changed
+  `apis` -> `api` and `controllers` -> `controller`.
+
+### Added
+
+* Add `ExternalTrafficPolicy` to `DataPlane`'s `ServiceOptions`
+
 ## 1.2.3
 
 **Release Date** 2024/04/24
