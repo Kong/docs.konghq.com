@@ -2,11 +2,13 @@
 title: Add and publish API product documentation
 ---
 
-The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} API products
+The Dev Portal is an API catalog that lets you document and publish your {{site.konnect_short_name}} API products
 and share them with your developers. Developers can use the Dev Portal to
-locate, access, consume, and register applications against the products.
+locate, access, consume, and register applications against the products. 
 
 This guide walks you through associating API specs and product documentation with your API products, and viewing any published content, and Dev Portal specific customization options.
+
+Published API products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any product documentation becomes discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
 
 
 ### Add Product Documentation
@@ -152,5 +154,7 @@ In this topic, you added documentation for your API product and logged into the 
 
 ## More information
 
+* [API product documentation](/konnect/api-products/service-documentation/): This doc explains how to upload, edit, and publish product documentation using the **API Products** dashboard and publish API product to the Dev Portal to be consumed by your users.
+* [Manage Konnect API product versions](/konnect/api-products/): This explains how to manage the API product version for your services, including the status of the API product version. API product versions can have a status of "Published", "Deprecated", or "Unpublished".
 * [Register an application against the API product](/konnect/dev-portal/applications/dev-apps/).
 * [Customize Dev Portal](/konnect/dev-portal/customization/)

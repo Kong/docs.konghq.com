@@ -7,7 +7,7 @@ The {{site.konnect_short_name}} Dev Portal is a customizable website for develop
 
 ## Dev Portal use cases
 
-You can use the following table to help you determine which Dev Portal configuration is best for your use case:
+You can use the following table to help you determine which Dev Portal configurations are best for your use case:
 
 | You want to... | Then use... |
 | -------------- | ----------- |
@@ -15,8 +15,9 @@ You can use the following table to help you determine which Dev Portal configura
 | Allow developers to reuse your APIs in applications | [Enable app reg and Dev Portal](/konnect/dev-portal/applications/enable-app-reg/) |
 | Only allow certain users to see your published APIs | [Manage dev teams with RBAC](/konnect/api/portal-auth/portal-rbac-guide/#main) |
 | Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
+| Publish documentation for your APIs | [Add and publish API product documentation](/konnect/dev-portal/publish-service/) |
 
-## mermaid diagram? better title here or no title?
+## Dev Portal configuration options
 
 The following diagram displays the different Dev Portal configuration options you have depending on if you're planning to configure a public or private Dev Portal, or both. 
 
@@ -49,26 +50,7 @@ flowchart TD
     click M "/konnect/dev-portal/customization/netlify/"
     click N "/konnect/dev-portal/customization/self-hosted-portal/"
     click O "/konnect/dev-portal/customization/"
-{% endmermaid %}
-
-## Publish service documentation
-
-In {{site.konnect_short_name}}, API products can be published to the Dev Portal. Published API products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any product documentation becomes discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
-
-* [Getting started guide](/konnect/getting-started/publish-service/): This guide walks you through importing an API spec, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications.
-
-* [API product documentation](/konnect/api-products/service-documentation/): This doc explains how to upload, edit, and publish product documentation using the **API Products** dashboard and publish API product to the Dev Portal to be consumed by your users.
-
-* [Manage Konnect API product versions](/konnect/api-products/): This explains how to manage the API product version for your services, including the status of the API product version. API product versions can have a status of "Published", "Deprecated", or "Unpublished". 
-
-### API specification
-
-API specifications can be uploaded and attached to a specific API product version within the [**API Product**](https://cloud.konghq.com/api-products/). 
-You can have different API specs that correspond to different API product versions.
-{{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
-
-Once you've uploaded the spec, you can also preview the way the spec will render, including the methods available, endpoint descriptions, and example values. You'll also be able to filter by tag when in full-page view. 
-The Dev Portal lives at a separate URL from {{site.konnect_short_name}} and requires that all users, including Admin roles, [register as a Developer](/konnect/dev-portal/dev-reg/).
+{% endmermaid %} 
 
 ## Developer self service
 
@@ -93,42 +75,6 @@ For developers:
 
 * [Manage Applications](/konnect/dev-portal/applications/dev-apps/) - Managing application registration requests.
 
-* [Generate credentials for an application](/konnect/dev-portal/applications/dev-gen-creds/) - This guide walks you through the process of generating and deleting API keys on the Dev Portal platform.
-
-
-## Access the Dev Portal
-
-You can access the Dev Portal using the Dev Portal URL. The URL is displayed when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published API Products** overview page.
-The Dev Portal URL looks like this: 
-    
-    https://example.us.portal.konghq.com/
-
-Your Dev Portal URL may vary. Keep the following in mind:
-
-* The Dev Portal URL varies based on geo.
-* If you're hosting your Dev Portal through Netlify, the Dev Portal URL is the one you specify in the **Dev Portal** sidebar under **Settings** > **Portal Domain** > **Custom Self-Hosted UI Domain**. 
-
-
-## Contextual developer analytics 
-
-You can view analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs.
-
-Each application has its own dashboard, which provides a high-level summary of the **Number of Requests**, **Average Error Rate**, and **p99 Latency**, and charts for the following data points: 
-
-* Requests by version
-* P99 latency by version
-* Error code distribution 
-
-All of these metrics can be viewed within a selected time frame of up to **Last 30 days**, over a period of the last 90 days.
-
-{:.note}
-> Free accounts only have access to a time frame of 24 hours.
-
-
-## Customization
-
-{{site.konnect_short_name}} has built-in customization options for managing the Dev Portal so that you can build a consistent experience for the consumers of your API. Customizing your Dev Portal to reflect the likeness of your brand can help convince developers to create applications with your services. With {{site.konnect_short_name}}, you can customize everything from the application, {{site.konnect_short_name}} also offers pre-built themes. 
-
-For more information please read our doc on [customization](/konnect/dev-portal/customization/).
+* [Generate credentials for an application](/konnect/dev-portal/applications/dev-gen-creds/) - This guide walks you through the process of generating and deleting API keys on the Dev Portal platform. 
 
 
