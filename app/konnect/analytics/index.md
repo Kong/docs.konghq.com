@@ -5,7 +5,7 @@ title: Advanced Analytics
 
 ## What is {{site.konnect_short_name}} Advanced Analytics
 
-{{site.konnect_short_name}} Advanced Analytics  is a real-time, highly contextual analytics platform that offers deep insights into API health, performance, and usage. It has been designed to help businesses optimize their API strategies and improve operational efficiency and is now offered as a premium (paid) service within Kong Konnect.
+{{site.konnect_short_name}} Advanced Analytics  is a real-time, highly contextual analytics platform that offers deep insights into API health, performance, and usage. It has been designed to help businesses optimize their API strategies and improve operational efficiency and is now offered as a premium service within {{site.konnect_short_name}}.
 
 ![Summary dashboard](/assets/images/products/konnect/analytics/konnect-summary-dashboard.png){:.image-border}
 
