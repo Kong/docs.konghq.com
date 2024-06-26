@@ -31,10 +31,9 @@ Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's O
 
 3. Collect the necessary image details.
 
-{:.important .no-icon}
-> The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
+4. The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
 
-## Example
+## Example with kong/kuma-cp
 
 {{site.mesh_product_name}} image provenance can be verified using `cosign` or `slsa-verifier`:
 
@@ -50,7 +49,7 @@ Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's O
 2. Parse the image manifest using `regctl`
 
    ```sh
-   IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.version}})
+   export IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.version}})
    ```
 
 3. Run the `cosign verify-attestation ...` command:
@@ -73,10 +72,10 @@ Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's O
 1. Parse the image manifest using `regctl`
 
    ```sh
-   IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.version}})
+   export IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.version}})
    ```
 
-1. Run the `slsa-verifier verify-image ...` command:
+2. Run the `slsa-verifier verify-image ...` command:
 
    ```sh
    slsa-verifier verify-image \

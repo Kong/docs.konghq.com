@@ -19,11 +19,7 @@ For the example, you need Docker image details, a GitHub repo name, a GitHub wor
 
 Because Kong uses Github Actions to build and release, Kong also uses Github's OIDC identity to sign images, which is why many of these details are Github-related.
 
-## Examples
-
-### Prerequisites
-
-For the example, you need to:
+## Prerequisites
 
 1. Ensure [cosign](https://docs.sigstore.dev/system_config/installation/) is installed
 
@@ -31,24 +27,28 @@ For the example, you need to:
 
 3. Collect the necessary image details.
 
-4. Set the `COSIGN_REPOSITORY` environment variable:
+4. Github owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`)
+
+### Example with kong/kuma-cp
+
+{{site.mesh_product_name}} image signature can be verified using `cosign`:
+
+{% navtabs %}
+{% navtab cosign %}
+
+1. Set the `COSIGN_REPOSITORY` environment variable:
 
    ```sh
    export COSIGN_REPOSITORY=kong/notary
    ```
 
-5. Parse the image manifest using `regctl`
+2. Parse the image manifest using `regctl`
 
    ```sh
    IMAGE_DIGEST=$(regctl manifest digest kong/kuma-cp:{{page.version}})
    ```
 
-{:.important .no-icon}
-> Github owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
-
-### Example
-
-Run the `cosign verify ...` command:
+3. Run the `cosign verify ...` command:
 
    ```sh
    cosign verify \
@@ -58,3 +58,6 @@ Run the `cosign verify ...` command:
       -a repo='Kong/kong-mesh' \
       -a workflow='build-test-distribute'
    ```
+
+{% endnavtab %}
+{% endnavtabs %}

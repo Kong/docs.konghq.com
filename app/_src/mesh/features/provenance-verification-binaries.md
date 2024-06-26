@@ -3,7 +3,7 @@ title: Verify Build Provenance for Kong Mesh Binaries
 badge: enterprise
 ---
 
-Starting with 2.8.0, {{site.mesh_product_name}} produces build provenance for binary artifacts, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
+Starting with 2.8.0, {{site.mesh_product_name}} produces build provenance for binary artifacts, which can be verified using `slsa-verifier` with attestations published to a Docker Hub repository.
 
 This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} binary artifacts using:
 
@@ -34,18 +34,25 @@ Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's O
 
 4. [Download compressed binaries](https://cloudsmith.io/~kong/repos/kong-mesh-binaries-release/packages/?q=name%3Akong-mesh-*+version%3A{{page.version}}) for the required version  of {{site.mesh_product_name}}
 
-{:.important .no-icon}
-> The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
+5. The GitHub owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
 
 ## Example
 
-### Using slsa-verifier
+{% navtabs %}
+{% navtab slsa-verifier %}
 
-```sh
-slsa-verifier verify-artifact \
-   --print-provenance \
-   --provenance-path 'kong-mesh.intoto.jsonl' \
-   --source-uri 'github.com/Kong/kong-mesh' \
-   --source-tag '{{page.version}}' \
-   kong-mesh-{{page.version}}-*-*.tar.gz
-```
+1. Change to directory where the `security-assets.tar.gz` and compressed binaries are downloaded
+
+2. Run the `slsa-verifier verify-artifact ...` command:
+
+   ```sh
+   slsa-verifier verify-artifact \
+      --print-provenance \
+      --provenance-path 'kong-mesh.intoto.jsonl' \
+      --source-uri 'github.com/Kong/kong-mesh' \
+      --source-tag '{{page.version}}' \
+      kong-mesh-{{page.version}}-*-*.tar.gz
+   ```
+
+{% endnavtab %}
+{% endnavtabs %}
