@@ -13,7 +13,7 @@ B(Service with
 DeGraphQL routes)
 C(<img src="/assets/images/icons/third-party/graphql-logo.svg" style="max-height:20px" class="no-image-expand"/> GraphQL)
 
-A-->B
+A<-->B
 subgraph id1 [Data center]
 subgraph id2 [{{site.base_gateway}}]
 B
@@ -33,8 +33,8 @@ style id1 stroke-dasharray:3
 end
 {% endmermaid %}
 <!-- vale on -->
-
-
+> _Figure 1: Diagram showing how {{site.base_gateway}} receives traffic from clients and uses a service 
+with DeGraphQL routes to map URIs to GraphQL queries._
 
 ## Usage
 
