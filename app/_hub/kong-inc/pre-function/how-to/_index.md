@@ -103,7 +103,7 @@ Let's test out the Pre-function plugin by filtering requests based on header nam
 1. Sync the file to your {{site.base_gateway}} instance:
 
     ```sh
-    deck sync
+    deck gateway sync kong.yaml
     ```
 
 {% endnavtab %}
