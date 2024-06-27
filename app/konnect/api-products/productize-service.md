@@ -114,7 +114,7 @@ The API product and product versions should now display in the Dev Portals you s
 {% endnavtab %}
 {% navtab API %}
 
-1. Before you publish the API product version, you must first assign the API product to any Dev Portals by issuing a `PATCH` reuqest to the [`/api-products/{id}](/konnect/api/api-products/latest/#/API%20Products/update-api-product) endpoint:
+1. Before you publish the API product version, you must first assign the API product to any Dev Portals by issuing a `PATCH` request to the [`/api-products/{id}](/konnect/api/api-products/latest/#/API%20Products/update-api-product) endpoint:
 
     ```sh
     curl --request PATCH \
