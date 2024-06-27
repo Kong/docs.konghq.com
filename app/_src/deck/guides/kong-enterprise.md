@@ -149,9 +149,16 @@ inside the workspace, but not the workspace itself.
 You can manage the configurations of all workspaces in {{site.ee_product_name}}
 with the `--all-workspaces` flag:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck dump --all-workspaces
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway dump -o kong.yaml --all-workspaces
+```
+{% endif_version %}
 
 This creates one configuration file per workspace.
 
@@ -161,6 +168,8 @@ However, since a `workspace` is an isolated unit of configuration, decK doesn't
 allow the deployment of multiple workspaces at a time. Therefore, each
 workspace configuration file must be deployed individually:
 
+{% if_version lte:1.27.x %}
+
 ```sh
 deck sync -s workspace1.yaml --workspace workspace1
 ```
@@ -168,6 +177,17 @@ deck sync -s workspace1.yaml --workspace workspace1
 ```sh
 deck sync -s workspace2.yaml --workspace workspace2
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+
+```sh
+deck gateway sync workspace1.yaml --workspace workspace1
+```
+
+```sh
+deck gateway sync workspace2.yaml --workspace workspace2
+```
+{% endif_version %}
 
 {% endif_version %}
 

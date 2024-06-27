@@ -37,7 +37,7 @@ retrieve the latest object schemas for your instance of the {{site.base_gateway}
 
 Configuring your own defaults is a good way to keep updated on potential
 breaking changes between versions. If you upgrade {{site.base_gateway}} to a
-version which introduces a new property with a default value, a `deck diff`
+version which introduces a new property with a default value, a `diff`
 will catch the difference.
 
 If defaults are not set in the declarative configuration file, any newly

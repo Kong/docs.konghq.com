@@ -11,11 +11,11 @@ check the latest object schemas for your instance of the {{site.base_gateway}}.
 
 decK recognizes value defaults and doesn't interpret them as changes to
 configuration. If you push a config for an object to {{site.base_gateway}} with
-`deck sync`, {{site.base_gateway}} applies its default values to the object,
+`sync`, {{site.base_gateway}} applies its default values to the object,
 but a further `diff` or `sync` does not show any changes.
 
 If you upgrade {{site.base_gateway}} to a version that introduces a new
-property with a default value, a `deck diff` will catch the difference.
+property with a default value, a `diff` will catch the difference.
 
 You can also configure your own [custom defaults](#set-custom-defaults) to
 enforce a set of standard values and avoid repetition in your configuration.
@@ -151,7 +151,7 @@ overwriting your current state file, specify a different filename:
   {% endif_version %}
 
 
-    Even though `deck diff` didn't show any changes, the result now has
+    Even though `diff` didn't show any changes, the result now has
     default values populated for the service, route, and Basic Auth plugin:
 
    ```yaml
@@ -302,9 +302,16 @@ configuration would overwrite the value in your environment.
 
 1. Sync your changes with {{site.base_gateway}}:
 
-   ```sh
-   deck sync
-   ```
+    {% if_version lte:1.27.x %}
+    ```sh
+    deck sync
+    ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway sync kong.yaml
+    ```
+    {% endif_version %}
 
 1.  Run a diff and note the response:
 

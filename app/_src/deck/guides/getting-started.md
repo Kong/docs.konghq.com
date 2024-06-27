@@ -103,22 +103,36 @@ If you already have {{site.base_gateway}} set up with the configuration of your 
 
 1. Check that decK recognizes your {{site.base_gateway}} installation:
 
+    {% if_version lte:1.27.x %}
     ```sh
     deck ping
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway ping
+    ```
+    {% endif_version %}
 
     If the connection is successful, the terminal displays your gateway version:
 
     ```sh
     Successfully connected to Kong!
-    Kong version:  2.5.1
+    Kong version:  3.7.1
     ```
 
 2. Export {{site.base_gateway}}'s configuration:
 
-    ```shell
+    {% if_version lte:1.27.x %}
+    ```sh
     deck dump
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway dump -o kong.yaml
+    ```
+    {% endif_version %}
 
 3. Open the generated `kong.yaml` file. If you're using the sample
 configuration in this guide, the file should look like this:
@@ -274,9 +288,16 @@ plugins:
 
 2. Check what decK reports on a diff now:
 
-    ```shell
+    {% if_version lte:1.27.x %}
+    ```sh
     deck diff
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway diff kong.yaml
+    ```
+    {% endif_version %}
 
     Response:
     ```sh
@@ -288,9 +309,16 @@ plugins:
 
 3. Run the sync process:
 
-    ```shell
+    {% if_version lte:1.27.x %}
+    ```sh
     deck sync
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway sync kong.yaml
+    ```
+    {% endif_version %}
 
 4. Now, looking up the consumer in {{site.base_gateway}}'s database returns a
 `404`:
@@ -308,7 +336,7 @@ plugins:
     Access-Control-Allow-Origin: *
     Content-Length: 23
     X-Kong-Admin-Latency: 2
-    Server: kong/2.5.1
+    Server: kong/3.7.1
 
     {"message":"Not found"}
     ```
@@ -323,7 +351,7 @@ You can reset the configuration of {{site.kong_gateway}} using decK.
 
 {:.warning}
 > **Warning**: The changes performed by this command are irreversible (unless you've created
-a backup using `deck dump`), so be careful.
+a backup using `dump`), so be careful.
 
 {% if_version lte:1.27.x %}
 ```sh
