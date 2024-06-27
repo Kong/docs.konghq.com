@@ -101,7 +101,7 @@ You can back up a particular workspace or all workspaces at once:
 {% endnavtab %}
 {% navtab Traditional or hybrid mode - kong config CLI %}
 
-As a final failsafe for a database-backed deployment, you can also back up the database using the kong config CLI.
+As a final fail-safe for a database-backed deployment, you can also back up the database using the `kong config` CLI.
 
 {:.important}
 > Never use this method as your primary backup, as it might not accurately represent the final state of your database.
