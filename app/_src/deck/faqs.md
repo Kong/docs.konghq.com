@@ -58,8 +58,8 @@ If you are using Kong alongside a database, you need decK because:
   the config file is the same. This feature is designed in decK to integrate decK
   with a CI system or a `cronjob` which periodically checks for drifts and alerts
   a team if needed.
-- `decK dump` outputs a more human-readable configuration file compared
-  to Kong's `db_import`.
+- `deck dump` or `deck gateway dump` outputs a more human-readable configuration file 
+  compared to Kong's `db_import`.
 
 However, decK has the following limitations which might or might not affect
 your use case:
@@ -117,7 +117,7 @@ It is derived from the combination of words 'declarative' and 'Kong'.
 Yes. The decK team maintains a JSON schema that you can use to validate YAML files on [Github](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json). You can use the schema with a text editor to provide JIT YAML validation. For example, to use the JSON schema with VS Code: 
 
 1. Install the Red Hat YAML extension:
-```console
+```sh
 code --install-extension redhat.vscode-yaml
 ```
 

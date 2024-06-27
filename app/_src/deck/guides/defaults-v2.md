@@ -55,9 +55,7 @@ want to use, skip to [setting defaults](#set-defaults).
 
 ### Create a file and test without defaults
 
-1. Create a `kong.yaml` configuration file.
-
-2. Add the following sample service and route to the file:
+1. Create a `kong.yaml` configuration file with the following sample contents:
 
     ```yaml
     _format_version: "3.0"
@@ -74,9 +72,16 @@ want to use, skip to [setting defaults](#set-defaults).
 {% capture deck_diff1 %}
 {% navtabs codeblock %}
 {% navtab Command %}
+{% if_version lte:1.27.x %}
 ```sh
 deck diff
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Response %}
 ```sh
@@ -97,18 +102,32 @@ Summary:
 
 4. Sync your changes with {{site.base_gateway}}:
 
+    {% if_version lte:1.27.x %}
     ```sh
     deck sync
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway sync kong.yaml
+    ```
+    {% endif_version %}
 
 5. Now, run another diff and note the difference in the response:
 
 {% capture deck_diff2 %}
 {% navtabs codeblock %}
 {% navtab Command %}
+{% if_version lte:1.27.x %}
 ```sh
 deck diff
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Response %}
 ```sh
@@ -226,9 +245,16 @@ Summary:
 {% capture deck_diff3 %}
 {% navtabs codeblock %}
 {% navtab Command %}
+{% if_version lte:1.27.x %}
 ```sh
 deck diff
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Response %}
 ```sh

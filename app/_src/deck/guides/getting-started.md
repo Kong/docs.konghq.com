@@ -205,17 +205,32 @@ plugins:
 
 1. Run the diff command:
 
-    ```shell
+    {% if_version lte:1.27.x %}
+    ```sh
     deck diff
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway diff kong.yaml
+    ```
+    {% endif_version %}
+
     You should see decK reporting that the properties you had changed
     in the file are going to be changed by decK in {{site.base_gateway}}'s database.
 
 2. Apply the changes:
 
+    {% if_version lte:1.27.x %}
     ```sh
     deck sync
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway sync kong.yaml
+    ```
+    {% endif_version %}
 
 3. Curl Kong's Admin API to see the updated route and service in {{site.base_gateway}}:
 
@@ -225,9 +240,16 @@ plugins:
 
 4. Run the diff command again, which should report no changes:
 
+    {% if_version lte:1.27.x %}
     ```sh
     deck diff
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway diff kong.yaml
+    ```
+    {% endif_version %}
 
 ## Drift detection using decK
 
@@ -303,9 +325,16 @@ You can reset the configuration of {{site.kong_gateway}} using decK.
 > **Warning**: The changes performed by this command are irreversible (unless you've created
 a backup using `deck dump`), so be careful.
 
+{% if_version lte:1.27.x %}
 ```sh
 deck reset
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway reset
+```
+{% endif_version %}
 
 Response:
 ```

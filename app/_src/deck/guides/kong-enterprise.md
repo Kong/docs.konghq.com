@@ -1,5 +1,5 @@
 ---
-title: decK and Kong Gateway (Enterprise)
+title: decK and Kong Gateway Enterprise
 content_type: explanation
 ---
 
@@ -27,17 +27,32 @@ RBAC token to decK so that decK can authenticate itself against the Admin API.
 
 Use the `--headers` flag to pass the RBAC token to decK. For example, you can pass the token as a string:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck diff --headers "kong-admin-token:<your-token>"
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml --headers "kong-admin-token:<your-token>"
+```
+{% endif_version %}
+
 
 However, passing the token directly is not secure and should only be used for testing. The command and all of its flags are logged to your shell's history file, potentially leaking the token.
 
 For a more secure approach, you can store the token in a file and load the file as you execute the command. For example:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck diff --headers "kong-admin-token:$(cat token.txt)"
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml --headers "kong-admin-token:$(cat token.txt)"
+```
+{% endif_version %}
 
 You can also use the `DECK_HEADERS` environment variable to supply the same token with an environment variable.
 

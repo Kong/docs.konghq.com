@@ -219,7 +219,7 @@ consumers:
 Now, you can edit plugin configuration in a single place and you can see its
 effect across multiple entities. Under the hood, decK takes the change and
 applies it to each entity which references the plugin configuration that has
-been changed. As always, use `deck diff` to inspect the changes before you
+been changed. As always, use `diff` to inspect the changes before you
 apply those to your Kong clusters.
 
 ## Overriding fields in plugin configs
