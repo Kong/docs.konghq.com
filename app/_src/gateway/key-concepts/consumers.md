@@ -1,44 +1,49 @@
 ---
 title: Consumers
-concept_type: explanation
+concept_type: reference
 ---
 
 ## What is a consumer?
 
-A consumer typically refers to an entity that consumes or uses the APIs managed by Kong. 
+A consumer typically refers to an entity that consumes or uses the APIs managed by {{site.base_gateway}}. 
 Consumers can be applications, services, or users who interact with your APIs. 
-Since they are not always human, Kong calls them consumers, as they "consume" the service.
-Kong allows you to define and manage consumers, apply access control policies, and monitor their usage of APIs.
+Since they are not always human, {{site.base_gateway}} calls them consumers, as they "consume" the service.
+{{site.base_gateway}} allows you to define and manage consumers, apply access control policies, and monitor their usage of APIs.
 
-Consumers in Kong are often associated with key authentication, OAuth, or other authentication and authorization mechanisms. 
-They are essential for controlling access to your APIs, tracking usage, and ensuring security.
+Consumers are essential for controlling access to your APIs, tracking usage, and ensuring security.
+They are identified by key authentication, OAuth, or other authentication and authorization mechanisms. 
+For example, adding a Basic Auth plugin to a service or route allows it to identify a consumer, or block access if credentials are bad.
 
-You can either rely on Kong Gateway as the primary datastore, or you can map the consumer list 
-to your database to keep consistency between Kong Gateway and your existing primary datastore
+You can either rely on {{site.base_gateway}} as the primary datastore, or you can map the consumer list 
+to your database to keep consistency between {{site.base_gateway}} and your existing primary datastore.
 
-Consumers are identified by authentication plug-ins. 
-For example, adding a basic auth to a service or route allows it to identify a consumer, or block access if credentials are bad.
-
-By attaching a plugin to a consumer, you can control things on a consumer level - for example, rate limits.
+By attaching a plugin directly to a consumer, you can control things on a consumer level - for example, rate limits.
 
 {% mermaid %}
 flowchart LR
-A(Consumer)
+
+A(Consumer entity)
 B(Auth plugin)
-C(Upstream service)
-A--Credentials-->B
-subgraph Kong Gateway
+C[Upstream service]
+
+Client --> A
+subgraph id1[{{site.base_gateway}}]
 direction LR
-B
+A--Credentials-->B
 end
+
 B-->C
 {% endmermaid %}
 
 ## Use cases for consumers
 
-* **Authentication:** Authentication plugins require credentials. To create credentials, you need a consumer object.
-* **Consumer groups:** Group consumers by sets of criteria and apply certain rules to them.
-* **Rate limiting:** Rate limit specific consumers based on tiers.
+The following is a short list of common use cases for consumers:
+
+Use case | Description
+---------|------------
+Authentication | Client authentication is the most common reason for setting up a consumer. If you're using an authentication plugin, you'll need a consumer with credentials.
+Consumer groups | Group consumers by sets of criteria and apply certain rules to them.
+Rate limiting | Rate limit specific consumers based on tiers.
 
 ## Manage consumers
 
@@ -54,33 +59,6 @@ curl -i -X POST http://localhost:8001/consumers/ \
   --data custom_id=consumer
 ```
 
-Once provisioned, call the Admin API to provision a key for the consumer
-created above. For this example, set the key to `apikey`.
-
-```sh
-curl -i -X POST http://localhost:8001/consumers/consumer/key-auth \
-  --data key=apikey
-```
-
-If no key is entered, Kong automatically generates the key.
-
-Result:
-
-```json
-HTTP/1.1 201 Created
-...
-{
-    "consumer": {
-        "id": "2c43c08b-ba6d-444a-8687-3394bb215350"
-    },
-    "created_at": 1568255693,
-    "id": "86d283dd-27ee-473c-9a1d-a567c6a76d8e",
-    "key": "apikey"
-}
-```
-
-You now have a consumer with an API key provisioned to access the route.
-
 {% endnavtab %}
 {% navtab Konnect API %}
 ```sh
@@ -90,12 +68,10 @@ curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/c
 {% endnavtab %}
 {% navtab decK (YAML) %}
 ``` yaml
-_format_version: "3.0""
+_format_version: "3.0"
 consumers:
 - custom_id: consumer
     username: consumer
-    keyauth_credentials:
-    - key: apikey
 ```
 {% endnavtab %}
 {% navtab KIC (YAML) %}
@@ -107,8 +83,6 @@ metadata:
  annotations:
    kubernetes.io/ingress.class: kong
 username: alex
-credentials:
-- alex-key-auth
 ```
 {% endnavtab %}
 {% navtab Kong Manager %}
@@ -117,12 +91,7 @@ credentials:
 2. Click **New Consumer**.
 3. Enter the **Username** and **Custom ID**. For this example, use `consumer` for each field.
 4. Click **Create**.
-5. On the Consumers page, find your new consumer and click **View**.
-6. Scroll down the page and click the **Credentials** tab.
-7. Click **New Key Auth Credential**.
-8. Set the key to `apikey` and click **Create**.
 
-  The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 {% endnavtab %}
 {% navtab Konnect - Gateway Manager %}
 
@@ -130,26 +99,36 @@ credentials:
 2. Click **New Consumer**.
 3. Enter the **Username** and **Custom ID**. For this example, use `consumer` for each field.
 4. Click **Create**.
-5. On the Consumers page, find your new consumer and click **View**.
-6. Scroll down the page and click the **Credentials** tab.
-7. Click **New Key Auth Credential**.
-8. Set the key to `apikey` and click **Create**.
 
-  The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 {% endnavtab %}
 {% endnavtabs %}
 
+### Next steps
+
+You will need a credential for each consumer.
+Find your [authentication plugin](/hub/?category=authentication) 
+for the specific instructions for each authentication method. Open the plugin, go to **Using this plugin** > **Basic examples**, 
+then choose your preferred tool and follow the instructions.
+
 ## FAQs
+
+<details><summary>What are credentials, and why do I need them?</summary>
+Credentials are necessary to authenticate consumers via various authentication mechanisms. 
+The credential type depends on which authentication plugin you want to use.
+<br><br>
+For example, a Key Authentication plugin requires an API key, and a Basic Auth plugin requires a username and password pair.
+</details>
 
 <details><summary>What is the difference between consumers and applications?</summary>
 
-Applications provide developers the ability to, in a self-service way, get access to APIs managed by Kong with no interaction from the Kong team to generate credentials required.
-
+Applications provide developers the ability to get access to APIs managed by {{site.base_gateway}} or {{site.konnect_short_name}} 
+with no interaction from the Kong admin team to generate credentials required.
+<br><br>
 With consumers, the Kong team creates consumers, generates credentials and needs to share them with the developers that need access to the APIs.
-
 You can think as applications as a type of consumer in Kong that allows developers to automatically obtain credentials for and subscribe to the required APIs.
 
 </details>
+
 <details><summary>What is the difference between consumers and developers?</summary>
 
 Developers are real users of the Dev Portal, whereas consumers are abstractions.
@@ -164,13 +143,31 @@ RBAC users are users of Kong Manager, whereas consumers are users (real or abstr
 
 <details><summary>Which plugins can be scoped to consumers?</summary>
 
-Certain plugins can be scoped to consumers (as opposed to services, routes, or globally). 
+Certain plugins can be scoped to consumers (as opposed to services, routes, or globally). For example, you might want to 
+configure the Rate Limiting plugin to rate limit a specific consumer, or use the Request Transformer plugin to edit requests for that consumer.
 You can see the full list in the <a href="/hub/plugins/compatibility/#scopes">plugin scopes compatibility reference</a>.
+</details>
+
+<details><summary>Can you scope authentication plugins to consumers?</summary>
+
+No. You can associate consumers with an auth plugin by configuring credentials - a consumer with basic 
+auth credentials will use the Basic Auth plugin, for example. 
+But that plugin must be scoped to either a route, service, or globally, so that the consumer can access it.
+
 </details>
 
 <details><summary>Are consumers used in Kuma/Mesh?</summary>
 
 No.
+</details>
+
+<details><summary>Can you manage consumers with decK?</summary>
+
+Yes, you can manage consumers using decK, but take caution if you have a large number of consumers.
+<br><br>
+If you have many consumers in your database, don't export or manage them using decK. 
+decK is built for managing entity configuration. It is not meant for end user data, 
+which can easily grow into hundreds of thousands or millions of records.
 </details>
 
 ## Related links
