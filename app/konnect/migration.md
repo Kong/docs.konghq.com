@@ -8,105 +8,152 @@ This has resulted in a large deployment base over a variety of environments and 
 
 As organizations grow and scale, they find a need for more advanced capabilities, 
 such as strong multi-tenancy, federated API management, advanced security integrations, 
-and more. {{site.konnect_product_name}} provides a full featured API management platform 
-that builds on the lessons learned from deep customer usage of {{site.base_gateway}}. 
+and more. With {{site.konnect_product_name}}, users have access to a full featured 
+API management platform that builds on the lessons learned from deep customer 
+usage of {{site.base_gateway}} and API management best practices.
 
 This document will provide a guide for {{site.base_gateway}} users (Open Source or Enterprise) 
-looking to migrate to {{site.konnect_product_name}}. The document reviews the differences between 
-{{site.base_gateway}} and {{site.konnect_product_name}} architecturally, and provides a guide 
+looking to migrate to {{site.konnect_product_name}}. The document reviews the design differences
+between {{site.base_gateway}} on-premises vs {{site.konnect_product_name}} and provides a guide 
 for planning and executing a successful migration.
 
-## Architectural Considerations - Kong Konnect vs Kong Gateway
+## {{site.base_gateway}} - On-Premises vs. {{site.konnect_product_name}}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis facilisis nisi, 
-id tempus urna venenatis ac. Quisque a commodo urna. Aliquam erat volutpat. Etiam non purus 
-sit amet magna sollicitudin pretium. Sed non feugiat purus. Ut laoreet orci dui, eu 
-ultrices nibh finibus sit amet.
+{{site.base_gateway}} on-premises requires users to deploy and manage various components
+themselves. Depending on the chosen 
+[deployment mode](/gateway/{{site.release}}/production/deployment-topologies/), a successful 
+installation of {{site.base_gateway}} may require a database and one or more
+gateway components. 
 
-### Security Model
+Alternatively, {{site.konnect_product_name}} provides fully hosted components, reducing the 
+operational burden for users while providing access to a modern full API management platform.
 
-{{site.konnect_product_name}} provides a modern authentication and authorization model 
-designed to scale with your organization. {{site.konnnect_product_name}} users can define a hierarchy of 
-[organizations, teams, and roles](/konnect/org-management/auth/) that maps to their 
-organization's structure. Additionally, a strong integration with Identity Providers (IdP) is supported
-allowing for easy mappings of IdP groups to {{site.konnnect_product_name}} teams.
+In this section, we will break down the design differences between on-premises and 
+{{site.konnect_product_name}} deployments, giving users a base understanding before planning 
+a migration.
 
-With {{site.base_gateway}} on-prem, users only have the option to manage local administrators, 
-users, and roles which can be challening to scale as your organization grows.
+### Runtime Component Management
 
-### Control Plane Architecture
+When deploying {{site.base_gateway}} on-premisies, users choose between 
+traditional, hybrid, and db-less deployment topologies. Depending on the 
+chosen topology and scale requirements, gateway components are deployed in 
+various configurations and node counts.
 
-{{site.base_gateway}} operations can be logically divided into a Control Plane (CP) and a Data Plane (DP).
+When running {{site.base_gateway}} on Konnect, the gateway is deployed in a hybrid 
+topology, meaning the Control Plane (CP) and Data Planes (DP) are separated. 
 
-With {{site.base_gateway}}, users choose a deployment mode, which includes 
-[traditional, hybrid, and db-less](/gateway/latest/production/deployment-topologies/).
+With {{site.konnect_product_name}}, users can deploy lightweight virtual CPs that can
+be provisioned instantly and are fully managed by Kong.
 
+On-premises deployments require users to self-manage Data Planes (DPs).
 
-{{site.base_gateway}} supports Workspaces. Workspaces allow for isolated configurations
-and adminstration via RBAC. All workspaces can then be ran on shared runtimes.
-
-Kong Konnect supports a lightweight virtual Control Plane (CP) model. CPs are isolated
-configurations that can be attached to runtimes and integrate seamlessly with the 
-Konnect org/team model. 
-
-Kong Konnect provides virtual Control Planes which provide a very lightweight way to isolate
-Gateway configurations. CPs can be provisioned instantly and protected independently
-using the Konnect org/team model.
-
-### Data Plane Architecture
-
-Cloud Gateway is an option...
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis facilisis nisi, 
-id tempus urna venenatis ac. Quisque a commodo urna. Aliquam erat volutpat. Etiam non purus 
-sit amet magna sollicitudin pretium. Sed non feugiat purus. Ut laoreet orci dui, eu 
-ultrices nibh finibus sit amet.
+With Konnnect, users can choose to self-manage DPs or delegate DP
+operations to Kong with fully managed Cloud Dataplanes.
 
 ### Multi-tenancy
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis facilisis nisi, 
-id tempus urna venenatis ac. Quisque a commodo urna. Aliquam erat volutpat. Etiam non purus 
-sit amet magna sollicitudin pretium. Sed non feugiat purus. Ut laoreet orci dui, eu 
-ultrices nibh finibus sit amet.
+{{site.base_gateway}} supports Workspaces. Workspaces allow for semi-isolated configurations
+and adminstration via {{site.base_gateway}} RBAC capabilities. DPs share runtime processing
+of Workspaces increasing operational efficiency.
 
-Kong Konnect approaches multi-tenancy differently from on-premises. 
+{{site.konnect_product_name}} approaches multi-tenancy differently from on-premises. Konnect 
+provides [Control Plane Groups](https://docs.konghq.com/konnect/gateway-manager/control-plane-groups/)
+which allows for runtime multi-tenancy to support resource sharing DP deployments. 
+CP Groups aggregate multiple CPs into a single configuration at runtime. 
+The CPGs detect runtime conflicts and allow administrators to resolve them pre-deployment.
 
-Konnect provides CP Groups which allows for runtime multi-tenancy to support
-resource sharing in on-premise runtime deployments. CP Groups aggregate multiple CPs
-into a single configuration at runtime. The CPGs detect runtime conflicts and allow
-administrators to resolve them pre-deployment.
+### Identity and Access Management 
 
-## Migration Strategies
+With {{site.base_gateway}} on-prem, users have the option to manage gateway local administrators, 
+users, and roles. As your organization scales, maintaining this additional set of credentials
+can be challening. 
 
-### On-premises deployment modes
+{{site.konnect_product_name}} provides a modern authentication and authorization model 
+designed to scale with your organization. Konnect supports a strong integration with Identity Providers (IdP)
+allowing for an easy mapping of IdP groups to Konnect teams.
 
-#### Traditional Mode
+Additionally, {{site.konnnect_product_name}} users can define a hierarchy of 
+[organizations, teams, and roles](/konnect/org-management/auth/) that maps to their 
+organization's structure. 
 
-Here is what you need to think about
+### Developer Portals
 
-#### Hybrid Mode
+* Kong deprecated support for on-premises Kong Gateway developer portal support
+* Konnect supports a more modern developer portal experience including support for multiple portals,
+  API Products, and multi-portal support.
+* Information on migrating portals is provided in the migration section below.
 
-Here is what you need to think about
 
-#### Db-less Mode
+## Migration Planning and Execution
 
-Here is what you need to think about
+The following sections will provide various things to consider when migrating from 
+{{site.base_gateway}} on-prem to {{site.konnect_product_name}}.
 
-### Workspaces -> CPs
+### API Delivery (APIOps)
 
-* 1 WS to 1 CP strategy
-* When only using the default workspace, migrate to a single CP or look for ways to isolate current configurations if desired
-* Other strategies?
+Organizations migrating to {{site.konnect_product_name}} that do not already have a mature
+API autmoation delivery process, have an opportunity to adopt best practices in API delivery.
+Konnect supports multiple API driven and declarative approaches to managing the full API delivery lifecycle.
+
+The migration process should involve the modification of your existing API delivery pipelines. In the event
+that you do not currently have an APIOps delivery automation, adopting these practices during the migration
+will greatly improve the overall API delivery process.
+
+Multiple tools are available to assist in automating your API delivery:
+
+* Kong Konnect APIs
+* Kong Terraform Provider
+* Kong decK 
 
 ### RBAC -> Orgs/Teams
 
-* EE Admins and users --> Konnect Teams
-  * Generally migrating users have decided to utilize Idp integrations over migrating 
+Users migrating to Konnect are typically looking to leverage the new Orgs/Teams/Roles model 
+instead of trying to model after any existing Admin/user setup in on-premises {{site.base_gateway}}.
+
+* Generally migrating users have decided to utilize Idp integrations over migrating 
     local users and admins to fully utilize the new Konnect RBAC security model
 * Konnect IdP mappings
-  * Konnect uses the group in the token and the mapping table to assign a team
+    Konnect uses the group in the token and the mapping table to assign a team
 
-### Plugins
+### Configuration Migration
+
+When migrating a configuration from {{site.base_gateway}} to {{site.konnect_product_name}} 
+consider the following.
+
+Do you have workspaces?
+Yes -> Migrate each Workspace to a CP
+    * 1 WS to 1 CP strategy
+    * others?
+No  -> Migrate the entire configuration to a single CP
+    * When only using the default workspace, migrate to a single CP or look for ways to isolate 
+      current configurations if desired
+
+### Setup Audit Log
+
+create your webhook to receive audit logs
+
+### Deployment mode specifics
+
+Depending on your current deployment mode, you may
+
+#### Traditional Mode
+
+* Create new Konnect CPs for every independent Kong Gateway installation
+* You'll redeploy new DPs connecting to the Konnect CPs and decomissino the previous DPs
+* Post migration and validation you will decomission the database
+
+#### Hybrid Mode
+
+* You'll need to migrate to the Konnect CPs
+* You can re-configure the existing DPs to connect to Konnect or provision new ones and decomission the previous
+
+#### Db-less Mode
+
+* If you're using Db-less {{site.base_gateway}}, you are likely laready running with Kong Ingress Controller. 
+* If using KIC, you can configure a read-only connection to Konnect to leverage API Management capabilities 
+while retaining the existing KIC setup
+
+#### Plugins
 
 * Konnect supports a subset of all available plugins
 * Custom plugins with DB access are not supported
@@ -117,39 +164,43 @@ Here is what you need to think about
 * List of incompatible plugins ?
     * alternatives?
 
-## Runtime Multi-tenancy
+### Runtime Multi-tenancy
 
 CP Groups provide a way to share resources across multiple CPs. This is useful for 
 resource optimization
 
-## Service Hub
 
-## Developer Portals
+### Developer Portals
 
 Integrating wiki doc: https://konghq.atlassian.net/l/cp/Uk64sQ8j
 
-## Infrastructure as code
+## Layering in API Management Platform Capabilities
 
-Migration to SaaS provides an opportunity advance your teams operational automation capabilities.
-Terraform providers for Konnect are available to automate the provisioning of Konnect resources.
-decK - what it means to use on Konnect vs on-prem
+In addition to a fully or partially hosted {{site.base_gateway}} deployment, {{site.konnect_product_name}}
+provides a full API management platform that includes additional capabilities unavailable on-premises.  API Products,
+Service Catalogs, API Analytics, logging and monitoring and more... 
 
-## Cloud Runtime Migrations
+Post migration, these capabilities can be layered on as needed.
+
+#### API Products
+
+#### Service Catalog
+
+#### Analytics
+
+## Cloud Runtimes
 
 Konnect provides a full managed runtime environment on top of the virtual CPs and API management features.
 Allowing an organization to move to a fully managed API management platform.
 
-### Benefits of Not hosting a database 
+Things to consider for cloud gateways...
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis facilisis nisi, id tempus urna venenatis ac. 
-Quisque a commodo urna. Aliquam erat volutpat. Etiam non purus sit amet magna sollicitudin pretium. Sed non feugiat purus. 
-Ut laoreet orci dui, eu ultrices nibh finibus sit amet.
-
-### Migrating from on-prem runtimes to cloud gateways
-
-Things to consider for cloud gateways
+* abc
+* def
+* ghi
 
 ## Migration next steps
 
-If  you are interested in assistence with migrating from Kong Gateway to Kong Konnect, please contact a Kong field representative.
+If  you are interested in assistence with migrating from Kong Gateway to 
+{{site.konnect_product_name}} , please contact a Kong field representative.
 
