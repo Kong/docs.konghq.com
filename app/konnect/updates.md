@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## July 2024
+
+**Multi-portal**
+: {{site.konnect_short_name}} now supports multiple Dev Portals. This allows you to better segment your customers, brands, and API Product experiences. For more information, see [Create Dev Portal](/konnect/dev-portal/create-dev-portal)
+
 ## May 2024
 
 **Gateway 3.7 Support**
