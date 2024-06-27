@@ -5,6 +5,37 @@ nav_title: Overview
 The DeGraphQL plugin transforms a GraphQL upstream into a traditional endpoint 
 by mapping URIs into GraphQL queries.
 
+<!-- vale off -->
+{% mermaid %}
+flowchart LR
+A(Devices/apps)
+B(Service with 
+DeGraphQL routes)
+C(<img src="/assets/images/icons/third-party/graphql-logo.svg" style="max-height:20px" class="no-image-expand"/> GraphQL)
+
+A-->B
+subgraph id1 [Data center]
+subgraph id2 [{{site.base_gateway}}]
+B
+end
+B--Query 1-->C
+B--Query 2-->C
+B--Query 3-->C
+B--Query 4-->C
+
+Note[Queries are passed as 
+parameters to GraphQL]
+
+style C stroke:#E10098
+style Note fill:#fdf3d8,stroke:#e1bb86
+style id1 stroke-dasharray:3
+
+end
+{% endmermaid %}
+<!-- vale on -->
+
+
+
 ## Usage
 
 DeGraphQL needs a GraphQL endpoint to query. As an example, we are going to
