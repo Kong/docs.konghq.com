@@ -113,11 +113,27 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 The API product and product versions should now display in the Dev Portals you selected.
 {% endnavtab %}
 {% navtab API %}
-You can publish an API product by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{ApiProductId}` with the API product ID returned in the previous step.. 
+
+1. Before you publish the API product version, you must first assign the API product to any Dev Portals by issuing a `PATCH` reuqest to the [`/api-products/{id}](/konnect/api/api-products/latest/#/API%20Products/update-api-product) endpoint:
+
+    ```sh
+    curl --request PATCH \
+        --url https://{region}.api.konghq.com/v2/api-products/{ApiProductId} \
+        --header 'Authorization: <personal-access-token>' \
+        --header 'Content-Type: application/json' \
+        --data '{
+        "portal_ids": [
+            "4602b8cc-92fb-4197-b836-3eab20b16147"
+        ]
+    }'
+    ```
+    Be sure to replace `{ApiProductId}`, `name`, and `portal_ids` with your own values.
+
+1. You can publish an API product version by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{ApiProductId}` with the API product ID returned in the previous step. 
 
     ```sh
     curl -X 'POST' \
-        'https://{region).api.konghq.com/v2/api-products/{ApiProductId}/product-versions' \
+        'https://{region}.api.konghq.com/v2/api-products/{ApiProductId}/product-versions' \
         -H 'accept: application/json' \
         -H 'Authorization: Bearer <personal-access-token>' \
         -H 'Content-Type: application/json' \

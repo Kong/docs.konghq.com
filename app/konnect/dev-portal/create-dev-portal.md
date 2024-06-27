@@ -34,7 +34,7 @@ To create a Dev Portal, do one of the following:
 * Create a private Dev Portal using the `/portals` endpoint:
     ```sh
     curl --request POST \
-    --url https://us.api.konghq.com/v2/portals \
+    --url https://{region}.api.konghq.com/v2/portals \
     --header 'Authorization: <personal-access-token>' \
     --header 'Content-Type: application/json' \
     --data '{
@@ -85,7 +85,7 @@ To create a Dev Portal, do one of the following:
 * Create a public Dev Portal using the `/portals` endpoint:
     ```sh
     curl --request POST \
-    --url https://us.api.konghq.com/v2/portals \
+    --url https://{region}.api.konghq.com/v2/portals \
     --header 'Authorization: <personal-access-token>' \
     --header 'Content-Type: application/json' \
     --data '{
