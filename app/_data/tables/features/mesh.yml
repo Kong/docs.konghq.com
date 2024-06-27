@@ -97,6 +97,14 @@ features:
           Allows you to store and fetch auditing logs for operations that were performed on the cluster. When used with RBAC, it allows us to have full visibility into how the system is being governed and configured by the users.
         kuma: false
         mesh: true
+      - name: Signed Images
+        tooltip: Kong Mesh container images are signed and verifiable in accordance with SLSA guidelines.
+        kuma: false
+        mesh: true
+      - name: Build Provenance
+        tooltip: Kong Mesh container images and binaries generate build level provenance and are verifiable in accordance with SLSA guidelines.
+        kuma: false
+        mesh: true
   - name: Universal Platform Distributions
     items:
       - name: Containers, Kubernetes & OpenShift
