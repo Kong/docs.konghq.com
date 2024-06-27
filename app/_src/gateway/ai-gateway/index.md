@@ -171,3 +171,29 @@ The plugin enables configurable thresholds for the different moderation categori
 and you can specify an array set of pre-configured blocklist IDs from your Azure Content Safety instance.
 
 {% endif_version %}
+
+{% if_version gte:3.7.x %}
+### AI observability
+
+Kong's AI Gateway enables comprehensive observability of your AI services through logging and metrics. These features provide insights into AI usage, performance, and costs, helping you optimize and govern AI operations effectively.
+
+#### Logging
+{:.badge .enterprise}
+
+Kong's AI Gateway provides standardized logging formats for AI plugins, allowing you to track and analyze AI usage consistently across various providers. 
+
+For more information, see [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
+{% endif_version %}
+
+{% if_version gte:3.8.x %}
+#### Metrics and Prometheus
+{:.badge .enterprise}
+
+Kong's AI Gateway allows you to expose and visualize AI metrics through Prometheus and Grafana. These metrics include
+the number of AI requests, the cost associated with AI services, and the token usage per provider and model. The metrics
+can be scraped by a Prometheus server and visualized using a Grafana dashboard. This setup provides a real-time view of
+AI operations, helping you monitor performance and costs effectively.
+
+For more information, see [AI Metrics](/gateway/{{ page.release }}/production/monitoring/ai-metrics).
+
+{% endif_version %}

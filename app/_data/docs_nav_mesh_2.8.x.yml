@@ -4,7 +4,7 @@ release: 2.8.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
-  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_dev.yml
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.8.x.yml
   patches:
     - path: [ Introduction ]
       action: modify
@@ -30,6 +30,11 @@ inherit:
     - path: [ Introduction ]
       text: Version support policy
       url: /support-policy/
+      action: insert
+      index: -3
+    - path: [ Introduction ]
+      text: Software Bill of Materials
+      url: /sbom
       action: insert
       index: -3
     - path: [ Introduction, Release notes]
@@ -158,6 +163,14 @@ inherit:
           url: /features/access-audit
         - text: MeshGlobalRateLimit (beta)
           url: /features/meshglobalratelimit
+        - text: Verify signatures for signed Kong Mesh images
+          url: /features/signed-images
+        - text: Build provenance
+          items:
+            - text: Verify build provenance for signed Kong Mesh images
+              url: /features/provenance-verification-images
+            - text: Verify build provenance for signed Kong Mesh binaries
+              url: /features/provenance-verification-binaries
     - path: [ Reference ]
       action: modify
       icon: /assets/images/icons/documentation/icn-references-color.svg

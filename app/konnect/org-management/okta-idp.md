@@ -10,11 +10,6 @@ up single sign-on (SSO) access to {{site.konnect_short_name}} through
 This authentication method allows your users to log in to {{site.konnect_saas}}
 using their Okta credentials, without needing a separate login.
 
-You can't mix authenticators in {{site.konnect_saas}}. With Okta
-authentication enabled, all non-admin {{site.konnect_short_name}} users have to
-log in through Okta. Only the {{site.konnect_short_name}} org
-owner can continue to log in with {{site.konnect_short_name}}'s native
-authentication.
 
 ## Prerequisites and overview of steps
 
@@ -270,9 +265,6 @@ in with your Okta credentials.
 
     If a group-to-team mapping exists, the user is automatically provisioned with
     a {{site.konnect_saas}} account with the relevant team membership.
-
-1. Log out of this account, and log back in with a {{site.konnect_short_name}}
-admin account.
 
 1. In the left menu, select **Organization**.
 

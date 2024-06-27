@@ -2,6 +2,228 @@
 
 <!--vale off-->
 
+## Week 25
+
+### [Fix: instead of Update Cluster Config should be Edit or Resize Cluster](https://github.com/Kong/docs.konghq.com/pull/7556) (2024-06-20)
+
+Documentation does not line up with the product: instead of Update Cluster Config should be Edit or Resize Cluster
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/upgrade
+
+
+### [fix(dpop): ambiguity of key validation description](https://github.com/Kong/docs.konghq.com/pull/7549) (2024-06-20)
+
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
+
+### [Release: Gateway 2.8.4.10](https://github.com/Kong/docs.konghq.com/pull/7530) (2024-06-20)
+
+Changelog and version bump for 2.8.4.10
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.4.3.10](https://github.com/Kong/docs.konghq.com/pull/7529) (2024-06-20)
+
+Changelog and version bump for 3.4.3.10
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.5.0.5](https://github.com/Kong/docs.konghq.com/pull/7528) (2024-06-20)
+
+Changelog and version bump for 3.5.0.5.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.6.1.5](https://github.com/Kong/docs.konghq.com/pull/7527) (2024-06-20)
+
+Changelog and version bump for 3.6.1.5
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.7.1.0](https://github.com/Kong/docs.konghq.com/pull/7525) (2024-06-20)
+
+Changelog and version bump for 3.7.1.0.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-validator/
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Use consistent/accurate product name for Google Cloud/GCP secret manager and HashiCorp](https://github.com/Kong/docs.konghq.com/pull/7495) (2024-06-17)
+
+Use consistent and accurate naming for Google Cloud Secret Manager and HashiCorp Vault.
+
+* GCP Secret Manager and Google Cloud Secret Manager are both acceptable
+* Google Secret Manager is not used
+* "Secrets" plural is inaccurate, it's always "Secret"
+* "HashiCorp", not "Hashicorp"
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#information-routes
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#health-routes
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#tags
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#service-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#route-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#consumer-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#plugin-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#certificate-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#ca-certificate-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#sni-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#upstream-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#target-object
+- https://docs.konghq.com/gateway/3.0.x/admin-api/#vaults-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#information-routes
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#health-routes
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#tags
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#debug-routes
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#service-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#route-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#consumer-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#plugin-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#certificate-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#ca-certificate-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#sni-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#upstream-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#target-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#vaults-object
+- https://docs.konghq.com/gateway/3.1.x/admin-api/#keys-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#information-routes
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#health-routes
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#tags
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#debug-routes
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#service-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#route-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#consumer-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#plugin-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#certificate-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#ca-certificate-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#sni-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#upstream-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#target-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#vaults-object
+- https://docs.konghq.com/gateway/3.2.x/admin-api/#keys-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#information-routes
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#health-routes
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#tags
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#debug-routes
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#service-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#route-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#consumer-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#plugin-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#certificate-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#ca-certificate-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#sni-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#upstream-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#target-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#vaults-object
+- https://docs.konghq.com/gateway/3.3.x/admin-api/#keys-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#information-routes
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#health-routes
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#tags
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#debug-routes
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#service-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#route-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#consumer-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#plugin-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#certificate-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#ca-certificate-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#sni-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#upstream-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#target-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#vaults-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#keys-object
+- https://docs.konghq.com/gateway/3.4.x/admin-api/#filter-chain-object
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/secrets-management/backends
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/secrets-management/
+- https://docs.konghq.com/gateway/2.8.x/admin-api/
+- https://docs.konghq.com/gateway/2.8.x/plan-and-deploy/security/secrets-management/backends/gcp-sm
+- https://docs.konghq.com/gateway/2.8.x/plan-and-deploy/security/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/2.8.x/plan-and-deploy/security/secrets-management/backends/
+- https://docs.konghq.com/gateway/2.8.x/plan-and-deploy/security/secrets-management/
+- https://docs.konghq.com/gateway/changelog
+- https://docs.konghq.com/konnect/gateway-manager/configuration/vaults/
+
+## Week 24
+
+
+### [Add Konnect Terraform reference page](https://github.com/Kong/docs.konghq.com/pull/7500) (2024-06-13)
+
+Add Terraform page for Konnect so that it shows up when searching for "Terraform" on the docs site.
+
+Please run the Algolia indexer after merge
+
+#### Added
+
+- https://docs.konghq.com/konnect/reference/terraform
+
+
+### [docs(kic): update rewrite-host guide with URLRewrite filter](https://github.com/Kong/docs.konghq.com/pull/7469) (2024-06-11)
+
+Extends `Rewrite Host` guide with `URLRewrite` filter usage implemented in KIC 3.2.
+ 
+Closes https://github.com/Kong/kubernetes-ingress-controller/issues/5853.
+
+#### Modified
+
+- https://docs.konghq.com/moved_urls.yml
+
+
+### [Release: Gateway 3.4.3.9](https://github.com/Kong/docs.konghq.com/pull/7432) (2024-06-10)
+
+Changelog and version bump for 3.4.3.9.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
 ## Week 23
 
 ### [Fix: Typo in JWT mapping order and clarify behavior](https://github.com/Kong/docs.konghq.com/pull/7484) (2024-06-07)
