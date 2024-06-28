@@ -10,12 +10,12 @@ title: Konnect Advanced Analytics
 ![Summary dashboard](/assets/images/products/konnect/analytics/konnect-api-usage-summary.png){:.image-border}
 
 Konnect Advanced Analytics offers:
-* **Cost-savings**: {{site.konnect_short_name}} Advanced Analytics provides a cost-effective analytics solution without the need for significant infrastructure investments, additional staffing or unnecessary 3rd party expenses.
-* **Centralized visibility**: Delivers comprehensive, centralized insights across your entire API landscape for all APIs, services and data planes.
-* **Contextual API Analytics**: {{site.konnect_short_name}} Advanced Analytics offers information about each API request, including the specific routes, consumers involved, and the services accessed
-* **Data insights**: {{site.konnect_short_name}} Advanced Analytics provides data in as fast as 10 second increments, delivering comprehensive contextual insights, including links directly to Gateway configurations. 
-* **Contextual Reports**: Offer the flexibility to craft reports that match your unique requirements. 
 
+* **Centralized visibility**: Delivers comprehensive, centralized insights across your entire API landscape for all APIs, services and data planes.
+* **Contextual API analytics**: {{site.konnect_short_name}} Advanced Analytics offers information about each API request, including the specific routes, consumers involved, and the services accessed
+* **Democratized data insights**: {{site.konnect_short_name}} Empowers both business and platform teams to generate reports for any service, route, or consumer based on their specific requirements
+* **Fastest time to insight**: Provide application and platform teams with critical API metrics for each service in less than a second, for reduced time to resolution.
+* **Reduced cost of ownership**: Advanced Analytics is a turn-key analytics solution that removes the need to build, maintain or integrate with 3rd party products.
 
 
 ## Advanced Analytics capabilities
@@ -45,7 +45,8 @@ You can assign {{site.konnect_short_name}} users to specific, predefined Analyti
 
 ### Ingestion
 
-The Advanced Analytics toggle feature allows you to control whether Advanced Analytics data is collected and processed for your API traffic within a given control plane.
+Ingestion is managed from the **Control Plane Dashboard**, using the Advanced Analytics toggle, which allows you to turn ingestion and data collection on or off for your API traffic within a given control plane plane.
+
 This feature provides flexibility in managing your data insights and can help you control costs. There are two states: 
 
 * **On**: When Advanced Analytics is enabled, both basic and advanced data is collected. This gives you valuable insights into API traffic and allows you to generate detailed custom reports.
