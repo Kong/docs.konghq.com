@@ -11,46 +11,11 @@ You can use the following table to help you determine which Dev Portal configura
 
 | You want to... | Then use... |
 | -------------- | ----------- |
-| Publish some APIs to an internal Dev Portal as well as an external Dev Portal. | [Multi-portal](/konnect/dev-portal/create-dev-portal/) |
-| Allow developers to reuse your APIs in applications | [Enable app reg and Dev Portal](/konnect/dev-portal/applications/enable-app-reg/) |
-| Only allow certain users to see your published APIs | [Manage dev teams with RBAC](/konnect/api/portal-auth/portal-rbac-guide/#main) |
+| Publish APIs to two Dev Portals; one for internal developers and one for external partner developers | [Multi-portal](/konnect/dev-portal/create-dev-portal/) |
+| Let developers get API keys and start using your APIs | [Enable app reg and Dev Portal](/konnect/dev-portal/applications/enable-app-reg/) |
+| Segment which users can see which APIs | [Assign different APIs and permissions with RBAC Teams](/konnect/api/portal-auth/portal-rbac-guide/#main) |
 | Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
 | Publish documentation for your APIs | [Add and publish API product documentation](/konnect/dev-portal/publish-service/) |
-
-## Dev Portal configuration options
-
-The following diagram displays the different Dev Portal configuration options you have depending on if you're planning to configure a public or private Dev Portal, or both. 
-
-{% mermaid %}
-flowchart TD
-    A[Create a Dev Portal] --> C{Public Dev Portal}
-    A --> B{Private Dev Portal}
-    B -->D[Manage developers] 
-    D --> E(Third-party IdP)
-    D --> F(Approve/deny)
-    D --> G(RBAC)
-    B --> H[Manage apps]
-    H --> I(Enable app reg)
-    H --> J(Approve/deny apps)
-    H --> K(DCR)
-    C --> L[Customize Dev Portal]
-    B --> L
-    L --> M(Self host with Netlify)
-    L --> N(Self host)
-    L --> O(Customize appearance)
-
-    %% this section defines node interactions
-    click A "/konnect/dev-portal/create-dev-portal/"
-    click E "/konnect/dev-portal/access-and-approval/add-teams/"
-    click F "/konnect/dev-portal/access-and-approval/manage-devs/"
-    click G "/konnect/api/portal-auth/portal-rbac-guide/#main"
-    click I "/konnect/dev-portal/applications/enable-app-reg/"
-    click J "/konnect/dev-portal/access-and-approval/manage-app-reg-requests/"
-    click K "/konnect/dev-portal/applications/dynamic-client-registration/"
-    click M "/konnect/dev-portal/customization/netlify/"
-    click N "/konnect/dev-portal/customization/self-hosted-portal/"
-    click O "/konnect/dev-portal/customization/"
-{% endmermaid %} 
 
 ## Developer self service
 
