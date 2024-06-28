@@ -50,54 +50,65 @@ Rate limiting | Rate limit specific consumers based on tiers.
 {% navtabs %}
 {% navtab Kong Admin API %}
 
-To create a consumer, call the Admin API and the consumer’s endpoint.
-The following creates a new consumer called **consumer**:
+To create a consumer, call the [Admin API's `/consumers` endpoint](/gateway/api/admin-ee/latest/#/Consumers).
+The following creates a consumer called **example-consumer**:
 
 ```sh
 curl -i -X POST http://localhost:8001/consumers/ \
-  --data username=consumer \
-  --data custom_id=consumer
+  --data username=example-consumer \
+  --data custom_id=example-consumer-id \
+  --data tags[]=silver-tier
 ```
 
 {% endnavtab %}
 {% navtab Konnect API %}
+
+To create a consumer, call the {{site.konnect_short_name}} [control plane config API's `/consumers` endpoint](/konnect/api/control-plane-configuration/latest/#/Consumers).
+The following creates a consumer called **example-consumer**:
+
 ```sh
 curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers \
-  --data username=alex
+  --data '{
+    "custom_id":"example-consumer-id",
+    "tags":["silver-tier"],
+    "username":"example-consumer"
+    }'
 ```
 {% endnavtab %}
 {% navtab decK (YAML) %}
+
+The following creates a consumer called **example-consumer**:
+
 ``` yaml
 _format_version: "3.0"
 consumers:
-- custom_id: consumer
-    username: consumer
+- custom_id: example-consumer-id
+  username: example-consumer
+  tags:
+    - silver-tier
 ```
 {% endnavtab %}
 {% navtab KIC (YAML) %}
+
+The following creates a consumer called **example-consumer**:
+
 ```yaml
 apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
- name: alex
+ name: example-consumer
  annotations:
    kubernetes.io/ingress.class: kong
-username: alex
+username: example-consumer
 ```
 {% endnavtab %}
-{% navtab Kong Manager %}
+{% navtab Kong Manager or Gateway Manager %}
 
-1. In Kong Manager, go to **API Gateway** > **Consumers**.
+The following creates a new consumer called **example-consumer**:
+
+1. In Kong Manager or Gateway Manager, go to **API Gateway** > **Consumers**.
 2. Click **New Consumer**.
-3. Enter the **Username** and **Custom ID**. For this example, use `consumer` for each field.
-4. Click **Create**.
-
-{% endnavtab %}
-{% navtab Konnect - Gateway Manager %}
-
-1. In Gateway Manager, go to **API Gateway** > **Consumers**.
-2. Click **New Consumer**.
-3. Enter the **Username** and **Custom ID**. For this example, use `consumer` for each field.
+3. Enter the **Username** and **Custom ID**.
 4. Click **Create**.
 
 {% endnavtab %}
@@ -173,6 +184,7 @@ which can easily grow into hundreds of thousands or millions of records.
 ## Related links
 
 * [Authentication reference](/gateway/latest/kong-plugins/authentication/reference/)
-* [Consumers API reference](/gateway/api/admin-ee/latest/#/Consumers)
+* [Consumers API reference - {{site.base_gateway}}](/gateway/api/admin-ee/latest/#/Consumers)
+* [Consumers API reference - {{site.konnect_short_name}}](/konnect/api/control-plane-configuration/latest/#/Consumers)
 * [Consumer groups API reference](/gateway/api/admin-ee/latest/#/consumer_groups)
 * [Plugins that can be enabled on consumers](/hub/plugins/compatibility/#scopes)
