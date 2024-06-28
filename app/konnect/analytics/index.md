@@ -32,7 +32,7 @@ You can use the following table to help you determine which analytics tools are 
 | Browse API usage data to gain access to key performance and health statistics. Visualize, slice, and dice API usage data you’ve stored in only a few clicks. | [Explorer](/konnect/analytics/explorer/) |
 | Communicate contextual insights across teams or departments and share important KPIs. | [Custom reports](/konnect/analytics/custom-reports/) |
 | Understand user behavior or pinpoint where issues occur. See detailed information about each individual request made to your APIs. | [Requests](/konnect/analytics/api-requests/)  |
-| Manage Advanced Analytics cost for individual control planes| [Scoping control planes](/konnect/analytics/#ingestion) |
+| Manage Advanced Analytics cost for individual control planes| [Ingestion](/konnect/analytics/#ingestion) |
 
 ### Charts and limitations
 
@@ -45,16 +45,18 @@ You can assign {{site.konnect_short_name}} users to specific, predefined Analyti
 
 ### Ingestion
 
-The Advanced Analytics toggle feature allows you to control whether Advanced Analytics data is collected and processed for your API traffic through a control plane.
+The Advanced Analytics toggle feature allows you to control whether Advanced Analytics data is collected and processed for your API traffic within a given control plane.
 This feature provides flexibility in managing your data insights and can help you control costs. There are two states: 
 
 * **On**: When Advanced Analytics is enabled, both basic and advanced data is collected. This gives you valuable insights into API traffic and allows you to generate detailed custom reports.
 * **Off**: When you disable Advanced Analytics, the collection of advanced data stops. However, basic data continues to be collected. This ensures that you still have essential insights and that contextual features in {{site.konnect_short_name}} remain functional.
 
-When Advanced Analytics is set to **off**, you won’t be able to generate [custom reports](/konnect/analytics/use-cases/) but, you will still have access to basic API usage information. 
+When Advanced Analytics is set to **off**, new analytics data for this control plane will not appear in [custom reports](/konnect/analytics/use-cases/) or [API requests](/konnect/analytics/api-requests/), but you will still have access to basic API usage information within the gateway manager.
+
+It is only possible to toggle Advanced Analytics for the entity your data planes are connected to: if you are using Control Plane Groups, the toggle will only have an effect on the group, not on member CPs.
 
 {:.note}
-> **Transition Time**: It takes a couple of minutes to toggle Advanced Analytics between states. During this time, you will continue to see data being collected.
+> **Transition Time**: When you change the toggle for a control plane, it may take a few minutes for the setting to take effect.  During this time, you may see partial data in Advanced Analytics for your dataplanes.
 
 ## More information
 
