@@ -31,14 +31,14 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          title: Automated Konnect changelog update [skip-ci]
+          title: Automated Changelog update [skip-ci]
           body: |
-            Latest Konnect changelog entries fetched from beamer
+            This is a scheduled pull request to update the changelog.
           labels: skip-changelog,review:copyedit
           base: main
-          branch: automated-konnect-changelog-update
+          branch: automated-changelog-update
           token: ${{ secrets.PAT }}
           committer: kong-docs[bot] <team-docs@konghq.com>
           author: kong-docs[bot] <team-docs@konghq.com>
           delete-branch: true
-          commit-message: "Automated Konnect changelog update"
+          commit-message: "Automated changelog update"
