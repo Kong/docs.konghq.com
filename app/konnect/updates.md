@@ -12,14 +12,13 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## June 2024
 
 **API Requests**
-: {{site.konnect_short_name}} users have now access to a new feature that tracks [API requests](/konnect/analytics/api-requests/) in near real-time. API Requests provide detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
+: All {{site.konnect_short_name}} Advanced Analytics users now access to a new feature that tracks [API requests](/konnect/analytics/api-requests/) in near real-time. API Requests provide detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
 
 **Manage control plane analytics data ingestion**
 : You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending on the Konnect Advanced Analytics app. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
 
 : You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Advanced Analytics** toggle.
 
-: > _**Figure 1:** Example of a control plane that has analytics data ingestion disabled. Analytics for the control plane are disabled and an alert displays that allows you to enable analytics._
 
 ## May 2024
 

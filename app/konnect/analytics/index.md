@@ -32,7 +32,7 @@ You can use the following table to help you determine which analytics tools are 
 | Browse API usage data to gain access to key performance and health statistics. Visualize, slice, and dice API usage data you’ve stored in only a few clicks. | [Explorer](/konnect/analytics/explorer/) |
 | Communicate contextual insights across teams or departments and share important KPIs. | [Custom reports](/konnect/analytics/custom-reports/) |
 | Understand user behavior or pinpoint where issues occur. See detailed information about each individual request made to your APIs. | [Requests](/konnect/analytics/api-requests/)  |
-| Manage Advanced Analytics cost for individual control planes| [Ingestion](/konnect/analytics/#ingestion) |
+| Manage Advanced Analytics cost for individual control planes| [Data ingestion](/konnect/analytics/#data-ingestion) |
 
 ### Charts and limitations
 
@@ -43,9 +43,9 @@ You can use the following table to help you determine which analytics tools are 
 You can assign {{site.konnect_short_name}} users to specific, predefined Analytic teams. This allows you to give certain users access to only view or manage the Analytics area of your {{site.konnect_short_name}} instance. For more information about the Analytics Admin and Analytics Viewer teams, see the [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
 
-### Ingestion
+### Data ingestion
 
-Ingestion is managed from the **Control Plane Dashboard**, using the Advanced Analytics toggle, which allows you to turn ingestion and data collection on or off for your API traffic within a given control plane plane.
+Data ingestion is managed from the **Control Plane Dashboard**, using the Advanced Analytics toggle, which allows you to turn ingestion and data collection on or off for your API traffic within a given control plane plane.
 
 This feature provides flexibility in managing your data insights and can help you control costs. There are two states: 
 
