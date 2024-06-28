@@ -3,19 +3,19 @@ title: Konnect Advanced Analytics
 ---
 
 
-## What is {{site.konnect_short_name}} Advanced Analytics
+## What is {{site.konnect_short_name}} Advanced Analytics?
 
-{{site.konnect_short_name}} Advanced Analytics is a real-time, highly contextual analytics platform that offers deep insights into API health, performance, and usage. It has been designed to help businesses optimize their API strategies and improve operational efficiency and is now offered as a premium service within {{site.konnect_short_name}}.
+{{site.konnect_short_name}} Advanced Analytics is a real-time, highly contextual analytics platform that offers deep insights into API health, performance, and usage. It has been designed to help businesses optimize their API strategies and improve operational efficiency and is offered as a premium service within {{site.konnect_short_name}}.
 
 ![Summary dashboard](/assets/images/products/konnect/analytics/konnect-api-usage-summary.png){:.image-border}
 
 Konnect Advanced Analytics offers:
 
 * **Centralized visibility**: Delivers comprehensive, centralized insights across your entire API landscape for all APIs, services and data planes.
-* **Contextual API analytics**: {{site.konnect_short_name}} Advanced Analytics offers information about each API request, including the specific routes, consumers involved, and the services accessed
-* **Democratized data insights**: {{site.konnect_short_name}} Empowers both business and platform teams to generate reports for any service, route, or consumer based on their specific requirements
-* **Fastest time to insight**: Provide application and platform teams with critical API metrics for each service in less than a second, for reduced time to resolution.
-* **Reduced cost of ownership**: Advanced Analytics is a turn-key analytics solution that removes the need to build, maintain or integrate with 3rd party products.
+* **Contextual API analytics**: {{site.konnect_short_name}} Advanced Analytics offers information about each API request, including the specific routes, consumers involved, and the services accessed.
+* **Democratized data insights**: {{site.konnect_short_name}} empowers both business and platform teams to generate reports for any service, route, or consumer based on their specific requirements.
+* **Fastest time to insight**: Provide application and platform teams with critical API metrics for each service in less than a second for reduced time to resolution.
+* **Reduced cost of ownership**: Advanced Analytics is a turn-key analytics solution that removes the need to build, maintain or integrate with third-party products.
 
 
 ## Advanced Analytics capabilities
@@ -54,10 +54,10 @@ This feature provides flexibility in managing your data insights and can help yo
 
 When Advanced Analytics is set to **off**, new analytics data for this control plane will not appear in [custom reports](/konnect/analytics/use-cases/) or [API requests](/konnect/analytics/api-requests/), but you will still have access to basic API usage information within the gateway manager.
 
-It is only possible to toggle Advanced Analytics for the entity your data planes are connected to: if you are using Control Plane Groups, the toggle will only have an effect on the group, not on member CPs.
+It is only possible to toggle Advanced Analytics for the entity your data planes are connected to. If you are using control plane groups, the toggle will only have an effect on the group, not on member CPs.
 
 {:.note}
-> **Transition Time**: When you change the toggle for a control plane, it may take a few minutes for the setting to take effect.  During this time, you may see partial data in Advanced Analytics for your dataplanes.
+> **Transition Time**: When you change the toggle for a control plane, it may take a few minutes for the setting to take effect. During this time, you may see partial data in Advanced Analytics for your data planes.
 
 ## More information
 
