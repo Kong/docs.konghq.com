@@ -24,6 +24,8 @@ You can set up an API product and API product version by clicking {% konnect_ico
 
 You will be greeted by the dashboard for the API product that you just created. You can use this dashboard to manage an API product. You can read more about this dashboard on the API products [overview page](/konnect/api-products/)
 {% endnavtab %}
+
+can we format lines 31-40? the curl command is not formatted correctly: https://deploy-preview-7561--kongdocs.netlify.app/konnect/api-products/productize-service/#create-an-api-product
 {% navtab API%}
 
 Create a new API product by issuing a `POST` request to the [`/api-products`](/konnect/api/api-products/latest/#/API%20Products/create-api-product) endpoint. 
@@ -104,13 +106,13 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product that you created in the previous step.
 1. Click **Add** on the API Product Overview page and select "Publish to Dev Portals" from the drop down menu. You will see a modal prompting you to select which Dev Portals you want to publish your API Product to. Click "Publish" for the Dev Portals you want to publish it to. Then click **Finish**. 
-1. Repeat steps 1-3 for any other Dev Portals you want to add the API product to.
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product you added to the Dev Portal. 
 1. Click **Product Versions** in the sidebar.
-1. Click the product version you created previously and in the **Dev Portals** tab, click **Browse Dev Portals** and select the Dev Portals you want to add the product version to. 
-    Product versions are published by default when you select Dev Portals, you can disable publishing while configuring the Dev Portals if you'd like to publish them later.
+1. Click the product version you created previously and either under the **Actions** button or the **Dev Portals** tab, click **Publish to Dev Portals** and select the Dev Portals you want to add the product version to.
 
-The API product and product versions should now display in the Dev Portals you selected.
+If want to require authentication on your API Product version, toggle **Require Authentication** to true. Note: If you require authentication you will need to select which authentication strategy applications registering to your API should use. The default auth strategy set by your portal admin will be auto selected for you.
+
+The API product and product versions you published should now be displayed in the Dev Portals you selected.
 {% endnavtab %}
 {% navtab API %}
 

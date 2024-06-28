@@ -67,11 +67,11 @@ For non-`default` control planes, app registration is supported using the `konne
   instead receive read-only entries for the `acl` and `key-auth` plugins to provide
   support for {{site.base_gateway}} versions less than 3.0.
 
-1. From the **Dev Portals** tab, click **Publish API**.
+1. From the **Dev Portals** tab, click **Publish to Dev Portals**.
 
-1. Enable **Require Authentication** and select **key-auth** for your auth strategy for each Dev Portal.
+1. First toggle on **Require Authentication**. If your API Product is already published to a Dev Portal, select **key-auth** in the Auth Strategy drop down for that Dev Portal. If your API Product is not yet published click **+ Dev Portal**, select the target Dev Portal in the dropdown, and then select **Key Auth** in the Auth Strategy dropdown selection.
 
-1. Enable **Accept application registrations** for each Dev Portal.
+1. Enable **Accept application registrations** for each Dev Portal to allow developers to register their applications to consume this API.
 
 5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) checkbox if you want to automatically approve all application registration requests.
 

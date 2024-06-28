@@ -75,7 +75,7 @@ yet had their request reviewed by a {{site.konnect_short_name}} admin.
 
 ## Contextual developer application analytics 
 
-You can view analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs.
+You can view analytics for your applications from within the {{site.konnect_short_name}} Dev Portal. This helps you gain insight into your consumption of different API versions, routes, and methods.
 
 Each application has its own dashboard, which provides a high-level summary of the **Number of Requests**, **Average Error Rate**, and **p99 Latency**, and charts for the following data points: 
 
