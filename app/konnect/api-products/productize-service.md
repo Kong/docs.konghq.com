@@ -103,7 +103,7 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 {% navtab Konnect UI %}
 
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product that you created in the previous step.
-1. Click **Add** next to the API product or products you want to publish to the Dev Portal and then click **Finish**. 
+1. Click **Add** on the API Product Overview page and select "Publish to Dev Portals" from the drop down menu. You will see a modal prompting you to select which Dev Portals you want to publish your API Product to. Click "Publish" for the Dev Portals you want to publish it to. Then click **Finish**. 
 1. Repeat steps 1-3 for any other Dev Portals you want to add the API product to.
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product you added to the Dev Portal. 
 1. Click **Product Versions** in the sidebar.
