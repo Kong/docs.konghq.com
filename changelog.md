@@ -2,6 +2,132 @@
 
 <!--vale off-->
 
+## Week 26
+
+### [Feat: decK gateway CLI](https://github.com/Kong/docs.konghq.com/pull/7585) (2024-06-27)
+
+The decK gateway interaction commands were moved into a `gateway` subcommand in decK version 1.28.0, which also included some refactoring in how they function. At the time, we avoided updating the docs as users were unlikely to have a version of decK that uses those commands, and they were not yet stable. 
+They are now ready to be updated, and the docs are causing more confusion by not using `deck gateway` in examples.
+
+Took two different approaches re: versioning these commands:
+* In the decK documentation (docs.konghq.com/deck), I version-tagged the commands whenever they were used in code blocks. If they were mentioned in text, I removed the `deck` portion.
+  * Duplicated one file (docker run reference), as the whole page would've needed version tagging otherwise.
+* In the rest of the site, I didn't version the commands, as there's no clear way to know what version of decK someone is using with a specific version of Gateway. All of the Gateway, Konnect, and plugin docs just use the `deck gateway` commands.
+
+https://konghq.atlassian.net/browse/DOCU-3565
+https://konghq.atlassian.net/browse/DOCU-3545
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/pre-function/how-to/
+- https://docs.konghq.com/konnect/dev-portal/troubleshoot/
+- https://docs.konghq.com/konnect/gateway-manager/backup-restore
+- https://docs.konghq.com/konnect/gateway-manager/control-plane-groups/conflicts
+- https://docs.konghq.com/konnect/gateway-manager/control-plane-groups/migrate
+- https://docs.konghq.com/konnect/gateway-manager/declarative-config
+
+
+### [chore(release): docs for KGO 1.3.0](https://github.com/Kong/docs.konghq.com/pull/7576) (2024-06-25)
+
+Changes needed for the release 
+
+- https://github.com/Kong/gateway-operator-enterprise/issues/199
+
+**please double-check compatibility matrixes, cli&crd docs and changelog.**
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/changelog
+
+
+### [Fix: GW changelog heading levels](https://github.com/Kong/docs.konghq.com/pull/7575) (2024-06-24)
+
+`## Fixes` should be `### Fixes`
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 2.8.4.11](https://github.com/Kong/docs.konghq.com/pull/7574) (2024-06-24)
+
+changelog and version bump for 2.8.4.11
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.4.3.11](https://github.com/Kong/docs.konghq.com/pull/7573) (2024-06-24)
+
+changelog and version bump for 3.4.3.11
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.5.0.6](https://github.com/Kong/docs.konghq.com/pull/7572) (2024-06-24)
+
+changelog and version bump for 3.5.0.6
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.6.1.6](https://github.com/Kong/docs.konghq.com/pull/7571) (2024-06-24)
+
+changelog and version bump for 3.6.1.6
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.7.1.1](https://github.com/Kong/docs.konghq.com/pull/7570) (2024-06-24)
+
+changelog and version bump for 3.7.1.1
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [fix(ai-proxy): fix several configs in docs](https://github.com/Kong/docs.konghq.com/pull/7550) (2024-06-25)
+
+<!-- What did you change and why? -->
+ 
+Fields other than name and provider should live under `options` field.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/assets/hub/kong-inc/ai-proxy/llama2.yaml
+- https://docs.konghq.com/assets/hub/kong-inc/ai-proxy/mistral.yaml
+- https://docs.konghq.com/assets/hub/kong-inc/ai-proxy/openai.yaml
+
+
+### [doc on ai metrics](https://github.com/Kong/docs.konghq.com/pull/7487) (2024-06-26)
+
+This PR is providing info on how to to expose and visualize AI metrics through Prometheus and Grafana. These metrics include the number of AI requests, the cost associated with AI services, and the token usage per provider and model.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/assets/images/products/gateway/vitals/grafana-ai-dashboard.png
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/prometheus/overview/
+
 ## Week 25
 
 ### [Fix: instead of Update Cluster Config should be Edit or Resize Cluster](https://github.com/Kong/docs.konghq.com/pull/7556) (2024-06-20)
