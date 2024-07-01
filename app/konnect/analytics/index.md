@@ -45,7 +45,7 @@ You can assign {{site.konnect_short_name}} users to specific, predefined Analyti
 
 ### Data ingestion
 
-Data ingestion is managed from the **Control Plane Dashboard**, using the Advanced Analytics toggle, which allows you to turn ingestion and data collection on or off for your API traffic within a given control plane plane.
+Data ingestion is managed from the **Control Plane Dashboard**, using the Advanced Analytics toggle, which allows you to turn ingestion and data collection on or off for your API traffic within a given control plane.
 
 This feature provides flexibility in managing your data insights and can help you control costs. There are two states: 
 
