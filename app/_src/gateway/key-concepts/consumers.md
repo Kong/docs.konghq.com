@@ -7,17 +7,17 @@ concept_type: reference
 
 A consumer typically refers to an entity that consumes or uses the APIs managed by {{site.base_gateway}}. 
 Consumers can be applications, services, or users who interact with your APIs. 
-Since they are not always human, {{site.base_gateway}} calls them consumers, as they "consume" the service.
-{{site.base_gateway}} allows you to define and manage consumers, apply access control policies, and monitor their usage of APIs.
+Since they are not always human, {{site.base_gateway}} calls them consumers, because they "consume" the service.
+{{site.base_gateway}} allows you to define and manage consumers, apply access control policies, and monitor their API usage.
 
 Consumers are essential for controlling access to your APIs, tracking usage, and ensuring security.
 They are identified by key authentication, OAuth, or other authentication and authorization mechanisms. 
-For example, adding a Basic Auth plugin to a service or route allows it to identify a consumer, or block access if credentials are bad.
+For example, adding a Basic Auth plugin to a service or route allows it to identify a consumer, or block access if credentials are invalid.
 
-You can either rely on {{site.base_gateway}} as the primary datastore, or you can map the consumer list 
-to your database to keep consistency between {{site.base_gateway}} and your existing primary datastore.
+You can choose to use {{site.base_gateway}} as the primary datastore for consumers, or you can map the consumer list 
+to an existing database to keep consistency between {{site.base_gateway}} and your existing primary datastore.
 
-By attaching a plugin directly to a consumer, you can control things on a consumer level - for example, rate limits.
+By attaching a plugin directly to a consumer, you can manage specific controls at the consumer level, such as rate limits.
 
 {% mermaid %}
 flowchart LR
@@ -37,7 +37,7 @@ B-->C
 
 ## Use cases for consumers
 
-The following is a short list of common use cases for consumers:
+The following are examples of common use cases for consumers:
 
 Use case | Description
 ---------|------------
