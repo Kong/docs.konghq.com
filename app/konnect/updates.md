@@ -9,6 +9,13 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## July 2024
+
+**Manage control plane analytics data ingestion**
+: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
+
+: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Analytics** toggle.
+
 ## May 2024
 
 **Gateway 3.7 Support**
