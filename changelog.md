@@ -35,10 +35,6 @@ Changes needed for the release
 
 **please double-check compatibility matrixes, cli&crd docs and changelog.**
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway-operator/changelog
@@ -99,8 +95,6 @@ changelog and version bump for 3.7.1.1
 
 
 ### [fix(ai-proxy): fix several configs in docs](https://github.com/Kong/docs.konghq.com/pull/7550) (2024-06-25)
-
-<!-- What did you change and why? -->
  
 Fields other than name and provider should live under `options` field.
 
@@ -117,8 +111,7 @@ Fields other than name and provider should live under `options` field.
 ### [doc on ai metrics](https://github.com/Kong/docs.konghq.com/pull/7487) (2024-06-26)
 
 This PR is providing info on how to to expose and visualize AI metrics through Prometheus and Grafana. These metrics include the number of AI requests, the cost associated with AI services, and the token usage per provider and model.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 
 #### Added
 
