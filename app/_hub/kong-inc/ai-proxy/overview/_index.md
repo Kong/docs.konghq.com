@@ -20,12 +20,14 @@ The following table describes which providers and requests the AI Proxy plugin s
 
 | Provider | Chat | Completion | Streaming |
 | -------- | ---- | ---------- | --------- |
-| OpenAI | ✅ | ✅ | ✅ |
+| OpenAI (GPT-4, GPT-3.5) | ✅ | ✅ | ✅ |
+| OpenAI (GPT-4o and Multi-Modal) | ✅ | ✅ | ✅ |
 | Cohere | ✅ | ✅ | ✅ |
 | Azure | ✅ | ✅ | ✅ |
-| Anthropic | ✅ | ✅ | Only chat type |
-| Mistral (raw and OLLAMA formats) | ✅ | ✅ | ✅ |
+| Anthropic | ✅ | ❌ | Only chat type |
+| Mistral (OpenAI (mistral.ai), raw, and OLLAMA formats) | ✅ | ✅ | ✅ |
 | Llama2 (raw, OLLAMA, and OpenAI formats) | ✅ | ✅ | ✅ |
+| Llama3 (OLLAMA and OpenAI formats) | ✅ | ✅ | ✅ |
 {% endif_version %}
 
 ## How it works
