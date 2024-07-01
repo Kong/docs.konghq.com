@@ -1,6 +1,6 @@
-const fs = require('fs');
+import { existsSync } from 'fs';
 
-module.exports = function extractNavWithMeta(items, base, srcPrefix) {
+export default function extractNavWithMeta(items, base, srcPrefix) {
   let urls = [];
   for (let u of items) {
     if (u.items) {
@@ -38,7 +38,7 @@ module.exports = function extractNavWithMeta(items, base, srcPrefix) {
           .replace(/\/$/, ""); // Remove trailing slashes
 
         // check if src.md exists, otherwise check if src/index.md exists
-        if (fs.existsSync(`${src}.md`)) {
+        if (existsSync(`${src}.md`)) {
           src += '.md';
         } else if (`${src}/index.md`) {
           src += '/index.md';

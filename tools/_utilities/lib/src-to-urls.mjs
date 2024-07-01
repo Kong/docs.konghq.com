@@ -2,16 +2,15 @@
 Accepts a file path in app/_src and returns all URLs that the file renders
 */
 
-// This is a hack to enable utilities to access node_modules out of tree
-module.paths.unshift(process.mainModule.paths[0]);
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-module.exports = srcToUrls;
-
-const fg = require("fast-glob");
-const yaml = require("js-yaml");
-const fs = require("fs");
-
-const extractNavWithMeta = require("./nav-to-urls");
+import fg from 'fast-glob';
+import { load } from "js-yaml";
+import { readFileSync } from "fs";
+import extractNavWithMeta from "./nav-to-urls.mjs";
 
 async function loadNavEntries(pattern) {
   let navEntries = await fg(
@@ -19,7 +18,7 @@ async function loadNavEntries(pattern) {
   );
   return navEntries
     .map((f) => {
-      return yaml.load(fs.readFileSync(f, "utf8"));
+      return load(readFileSync(f, "utf8"));
     })
     .filter((n) => {
       // Skip inherited nav files
@@ -29,7 +28,7 @@ async function loadNavEntries(pattern) {
 
 async function loadKongVersions() {
   let versions = await fg(`${__dirname}/../../../app/_data/kong_versions.yml`);
-  return yaml.load(fs.readFileSync(versions[0], "utf8"));
+  return load(readFileSync(versions[0], "utf8"));
 }
 
 function getReleaseData(release, versions) {
@@ -41,14 +40,14 @@ function getReleaseData(release, versions) {
 }
 
 // Take a file in src and output the URLs that it renders
-async function srcToUrls(pattern, file) {
+export default async function(pattern, file) {
   let urls = [];
 
   if (!file) {
     file = {};
   }
 
-  src = file.filename;
+  let src = file.filename;
 
   const navEntries = await loadNavEntries(pattern);
   const kongVersions = await loadKongVersions();

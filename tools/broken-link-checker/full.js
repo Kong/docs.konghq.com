@@ -1,8 +1,12 @@
-const fg = require("fast-glob");
-const semver = require("semver");
-const argv = require("minimist")(process.argv.slice(2));
+import fg from "fast-glob";
+import semver from 'semver';
+import minimist from 'minimist';
+const argv = minimist(process.argv.slice(2));
 
-const { SiteChecker } = require("broken-link-checker");
+import pkg from 'broken-link-checker';
+const { SiteChecker } = pkg;
+
+import ignoredTargets from "./config/ignored_targets.json?type=json" assert { type: 'json' };
 
 (async function () {
   const host = argv.host;
@@ -90,7 +94,7 @@ const { SiteChecker } = require("broken-link-checker");
   });
 
   // Add known list of exclusions
-  excluded = excluded.concat(require("./config/ignored_targets.json"));
+  excluded = excluded.concat(ignoredTargets);
 
   // Excluded external sites for full scan only
   excluded.push("https://github.com/*");
