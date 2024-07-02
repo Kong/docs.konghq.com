@@ -1212,6 +1212,17 @@ These logs can't be suppressed due to a limitation of OpenResty. We chose to rem
 If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
 * If you are using `ngx.var.http_*` in custom code in order to access HTTP headers, the behavior of that variable changed slightly when the same header is used multiple times in a single request. Previously it would return the first value only, now it returns all the values, separated by commas. Kong's PDK header getters and setters work as before.
 
+
+## 3.5.0.7
+**Release Date** 2024/07/02
+
+### Features
+
+#### Plugins
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
+  empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
+
 ## 3.5.0.6
 **Release Date** 2024/06/22
 
