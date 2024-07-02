@@ -4,14 +4,18 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::Kong do
   let(:acme_schema) { JSON.parse(File.read('app/_src/.repos/kong-plugins/schemas/acme/3.1.x.json')) }
   let(:version) { '3.1.1' }
 
-  subject { described_class.new(plugin_name:, vendor:, version:) }
+  subject { described_class.new(plugin_name:, vendor:, version:, site:) }
 
   describe '#schema' do
+    before do
+      allow(File).to receive(:read).and_call_original
+    end
+
     it 'returns the corresponding schema in JSON format' do
       expect(File)
         .to receive(:read)
-        .with('app/_src/.repos/kong-plugins/schemas/acme/3.1.x.json').and_call_original
-        .twice
+        .with(File.join(site.source, PluginSingleSource::Plugin::Schemas::Kong::SCHEMAS_PATH, 'acme/3.1.x.json')).and_call_original
+        .once
 
       expect(subject.schema).to eq(acme_schema)
     end
@@ -110,7 +114,8 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::Kong do
 
   describe '#file_path' do
     it 'returns the path to the corresponding schema file' do
-      expect(subject.file_path).to eq('app/_src/.repos/kong-plugins/schemas/acme/3.1.x.json')
+      expect(subject.file_path).
+        to eq(File.join(site.source, PluginSingleSource::Plugin::Schemas::Kong::SCHEMAS_PATH, 'acme/3.1.x.json'))
     end
   end
 end

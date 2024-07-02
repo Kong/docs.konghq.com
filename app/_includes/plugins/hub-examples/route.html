@@ -2,20 +2,19 @@
 {%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
 
 {% if include.render_intro_text %}
-The following examples provide some typical configurations for enabling
-the <code>{{ hub_example.plugin_name }}</code> plugin on a
-[route](/gateway/api/admin-ee/latest/#/Routes).
+{% capture link %}<a href="/gateway/api/admin-ee/latest/#/Routes">route</a>{% endcapture %}
+{% t _includes.plugins.hub-examples.route.intro_text plugin_name=hub_example.plugin_name link=link %}
 {% endif %}
 
 {% navtabs %}
   {% if hub_example.render_curl? %}
   {% navtab Kong Admin API %}
 
-Make the following request:
+{% t _includes.plugins.hub-examples.route.make_the_following_request %}
 
 {% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
-Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin configuration will target.
+{% t _includes.plugins.hub-examples.route.replace_route_name_or_id_with route_name="ROUTE_NAME|ID" id="id" name="name" %}
 
 {% include_cached plugins/create-consumer/curl.html hub_example=hub_example %}
 
@@ -26,11 +25,12 @@ Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin co
   {% if hub_example.render_konnect? %}
   {% navtab Konnect API %}
 
-Make the following request, substituting your own access token, region, control plane ID, and route ID:
+{% t _includes.plugins.hub-examples.route.make_the_following_request_substituting %}
 
 {% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
 
-See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
+{% capture link %}<a href="/konnect/api/">Konnect API reference</a>{% endcapture %}
+{% t _includes.plugins.hub-examples.route.see_konnect_api_reference link=link %}
 
 {% include_cached plugins/create-consumer/konnect.html hub_example=hub_example %}
 
@@ -42,25 +42,22 @@ See the [Konnect API reference](/konnect/api/) to learn about region-specific UR
     {% if hub_example.render_kubernetes? %}
     {% navtab Kubernetes %}
 
-First, create a [KongPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin)
-resource:
+{% capture link %}<a href="/kubernetes-ingress-controller/latest/references/custom-resources/#kongplugin">KongPlugin</a>{% endcapture %}
+{% t _includes.plugins.hub-examples.route.create_a_kong_plugin link=link %}
 
 {% include_cached plugins/hub-examples/kubernetes.html example=hub_example.kubernetes %}
 
-Next, apply the `KongPlugin` resource to an ingress by annotating the `ingress` as follows:
+{% t _includes.plugins.hub-examples.route.apply_the_resource kong_plugin="KongPlugin" ingress="ingress" %}
 
 ```yaml
 kubectl annotate ingress INGRESS_NAME konghq.com/plugins={{ hub_example.kubernetes.plugin_name }}-example
 ```
 
-Replace `INGRESS_NAME` with the name of the ingress that this plugin configuration will target.
-You can see your available ingresses by running `kubectl get ingress`.
+{% t _includes.plugins.hub-examples.route.replace_ingress_name_with ingress_name="INGRESS_NAME" command="kubectl get ingress" %}
 
 <blockquote class="note">
-  <strong>Note:</strong> The KongPlugin resource only needs to be defined once
-  and can be applied to any service, consumer, or route in the namespace. If you
-  want the plugin to be available cluster-wide, create the resource as a
-  <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
+  <strong>{% t _includes.plugins.hub-examples.route.note %}</strong>
+  {% t _includes.plugins.hub-examples.route.kong_plugin_resource_note kong_plugin="KongPlugin" kong_cluster_plugin="KongClusterPlugin" %}
 </blockquote>
 
 {% include_cached plugins/create-consumer/kubernetes.html hub_example=hub_example %}
@@ -73,12 +70,11 @@ You can see your available ingresses by running `kubectl get ingress`.
     {% if hub_example.render_yaml? %}
     {% navtab Declarative (YAML) %}
 
-Add this section to your declarative configuration file:
+{% t _includes.plugins.hub-examples.route.add_this_to_your_declarative_config_file %}
 
 {% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
 
-Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin configuration
-  will target.
+{% t _includes.plugins.hub-examples.route.replace_route_name_or_id_with route_name="ROUTE_NAME|ID" id="id" name="name" %}
 
 {% include_cached plugins/create-consumer/yaml.html hub_example=hub_example %}
 

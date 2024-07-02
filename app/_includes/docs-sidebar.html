@@ -50,7 +50,7 @@
         </li>
         <hr>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'contributing' %} class="active"{% endif %}>
-          <a href="/contributing/" {% if include.edition == 'contributing' %}class="active"{% endif %}>Docs contribution guidelines</a>
+          <a href="/contributing/" {% if include.edition == 'contributing' %}class="active"{% endif %}>{% t _includes.docs-sidebar.contribution_guidelines %}</a>
         </li>
       </ul>
     </div>
@@ -59,9 +59,9 @@
     <div class="versions-dropdown dropdown">
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
-          Version {{ include.release }}
+          {% t _includes.docs-sidebar.version %} {{ include.release }}
           {% if include.release.latest? %}
-            <span>(latest)</span>
+            <span>{% t _includes.docs-sidebar.latest %}</span>
           {% endif %}
           {% if include.release.lts %}
             <span>(LTS)</span>
@@ -80,7 +80,7 @@
         {% if include.edition == 'gateway' %}
         <li role="menuitem" tabindex="-1">
           <a href="{{site.links.archive}}/">
-            Archive (pre-2.6)
+            {% t _includes.docs-sidebar.archive %}
           </a>
         </li>
         {% endif %}
