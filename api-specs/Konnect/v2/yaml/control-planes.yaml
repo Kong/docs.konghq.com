@@ -742,6 +742,7 @@ components:
             - CLUSTER_TYPE_HYBRID
             - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
             - CLUSTER_TYPE_CONTROL_PLANE_GROUP
+            - CLUSTER_TYPE_SERVERLESS
         auth_type:
           type: string
           description: >-
