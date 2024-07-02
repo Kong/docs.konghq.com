@@ -494,6 +494,14 @@ when the `http_response_header_for_traceid` option was enabled.
 * Bumped `msgpack-c` to 6.0.1
 * Removed the `lua-resty-openssl-aux-module` dependency
 
+## 3.6.1.7
+**Release Date** 2024/07/02
+
+### Dependencies
+
+* Bumped `lua-resty-events` to 0.3.0 to fix race condition issues in event delivery at startup.
+* Bumped `lua-resty-healthcheck` to 3.1.0 to fix memory leak issues by reusing a timer for the same target instead of running many timers.
+
 ## 3.6.1.6
 **Release Date** 2024/06/22
 
