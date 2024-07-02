@@ -342,7 +342,12 @@ backed up by a Redis cluster).
 
     This guide assumes you named the file `kong.yml`.
 
-1.  Save your declarative configuration locally, and note the filepath.
+1.  Save your declarative configuration locally, and note the filepath. In this guide, the path is `/kong/declarative`.
+    {:.note}
+    > **Note:**
+    If your machine uses SELinux in Enforcing mode, set the `svirt_sandbox_file_t` context on the containing directory.
+    > ```bash
+    > chcon -Rt svirt_sandbox_file_t /kong/declarative
 
 ### Start {{site.base_gateway}} in DB-less mode
 
