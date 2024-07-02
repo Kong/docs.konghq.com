@@ -185,6 +185,8 @@ items:
         url: /plugins/mtls
       - text: OIDC
         url: /plugins/oidc
+      - text: Cross-namespace Plugins
+        url: /plugins/cross-namespace
 
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
