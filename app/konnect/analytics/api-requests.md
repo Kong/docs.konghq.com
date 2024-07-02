@@ -1,6 +1,5 @@
 ---
 title: API Requests
-beta: true
 ---
 
 API Requests in {{site.konnect_short_name}} Analytics provides a fully integrated and intuitive web experience that allows you to view detailed records for requests made to your API, in near real-time.
