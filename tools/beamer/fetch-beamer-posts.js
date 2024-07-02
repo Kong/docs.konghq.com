@@ -20,6 +20,27 @@ const monthNames = [
     "July", "August", "September", "October", "November", "December"
 ];
 
+function cleanHTML(contentHtml) {
+    if (!contentHtml) return '';
+    return contentHtml
+        .replace(/<[^>]*>/g, '') // Remove HTML taags
+        .replace(/\s+/g, ' ')    // Replace multiple spaces/ newlines with a single space
+        .trim();                 // Trim leading and trailing spaces
+}
+
+// Function to clean content and remove newlines
+function cleanContent(content) {
+    return content.replace(/\s+/g, ' ').trim();
+}
+
+function convertCategoryToBadges(category) {
+    if (!category) return '';
+    return category
+        .split(';')
+        .map(cat => `{:.badge .${cat.trim().replace(/\s+/g, '-').toLowerCase()}}`) // Trim, replace spaces, and convert to lowercase
+        .join(' ');
+}
+
 const req = https.request(options, (res) => {
     let data = '';
 
@@ -34,17 +55,28 @@ const req = https.request(options, (res) => {
 
             posts.forEach(post => {
                 const date = new Date(post.date);
-                const yearMonth = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+                const month = monthNames[date.getMonth()];
+                const year = date.getFullYear();
+                const day = String(date.getDate()).padStart(2, '0');
+                const monthYear = `${month} ${year}`;
+                const formattedDate = `${month} ${day}`;
 
-                if (!groupedPosts[yearMonth]) {
-                    groupedPosts[yearMonth] = [];
+                if (!groupedPosts[monthYear]) {
+                    groupedPosts[monthYear] = [];
                 }
 
                 post.translations.forEach(translation => {
-                    groupedPosts[yearMonth].push({
-                        title: translation.title,
-                        postUrl: translation.postUrl
-                    });
+                    if (translation.category.includes('Konnect')) {
+                        let contentPreview = translation.content ? cleanContent(translation.content) : cleanHTML(translation.contentHtml);
+                        contentPreview = contentPreview.slice(0, 50) + (contentPreview.length > 50 ? '...' : '');
+                        groupedPosts[monthYear].push({
+                            date: formattedDate,
+                            title: translation.title,
+                            postUrl: translation.postUrl,
+                            content: contentPreview,
+                            category: convertCategoryToBadges(translation.category)
+                        });
+                    }
                 });
             });
 
@@ -53,8 +85,11 @@ const req = https.request(options, (res) => {
             for (const [monthYear, posts] of Object.entries(groupedPosts)) {
                 updatesContent += `## ${monthYear}\n\n`;
                 posts.forEach(post => {
-                    updatesContent += `**${post.title}**\n`;
-                    updatesContent += `: [View in Konnect](${post.postUrl})\n\n`;
+                    updatesContent += `${post.date} **[${post.title}](${post.postUrl})**\n`;
+                    if (post.content) {
+                        updatesContent += `: ${post.content}\n`;
+                    }
+                    updatesContent += `: ${post.category}\n\n`;
                 });
             }
 
