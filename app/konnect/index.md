@@ -58,18 +58,18 @@ lightweight, fast, and flexible API gateway.
 </div>
 ## {{site.konnect_short_name}} modules
 
-### Service Hub
+### Service Catalog
 
-[Service Hub](/konnect/servicehub) makes internal APIs discoverable,
-consumable, and reusable for internal development teams. You can use the Service Hub to catalog
+The [Service Catalog](/konnect/servicehub) makes internal APIs discoverable,
+consumable, and reusable for internal development teams. You can use the Service Catalog to monitor
 all your services and create a single source of
-truth for your organization’s service inventory. By leveraging Service Hub,
+truth for your organization’s service inventory. By leveraging the Service Catalog,
 your application developers
 can search, discover, and consume existing services to accelerate their
 time-to-market, while enabling a more consistent end-user experience
 across the organization’s applications.
 
-[Start cataloging services with Service Hub &rarr;](/konnect/servicehub)
+[Start cataloging services &rarr;](/konnect/servicehub)
 
 
 ### Gateway Manager
