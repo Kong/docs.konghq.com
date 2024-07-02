@@ -329,7 +329,7 @@ You can upload a plugin schema to Konnect and get started with custom plugins in
 : A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/latest/)
 
 **API Products**
-: Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+: Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in the Service Catalog have been seamlessly moved to the new API Products UI & API experience.
 
 : **Note:** Tagging your Gateway services with `_KonnectService` doesn't automatically create an API product and API product version.
 
