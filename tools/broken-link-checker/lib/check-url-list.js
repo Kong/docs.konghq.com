@@ -1,7 +1,7 @@
-import pkg from 'broken-link-checker';
+import pkg from "broken-link-checker";
 const { HtmlUrlChecker } = pkg;
 
-import ignoredTargets from "../config/ignored_targets.json?type=json" assert { type: 'json' };
+import ignoredTargets from "../config/ignored_targets.json?type=json" assert { type: "json" };
 
 export function checkUrls(changes, opts) {
   return new Promise((resolve) => {

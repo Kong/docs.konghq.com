@@ -2,15 +2,15 @@
 Accepts a file path in app/_src and returns all URLs that the file renders
 */
 
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-import fg from 'fast-glob';
+import fg from "fast-glob";
 import { load } from "js-yaml";
 import { readFileSync } from "fs";
 import extractNavWithMeta from "./nav-to-urls.mjs";
+
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function loadNavEntries(pattern) {
   let navEntries = await fg(

@@ -1,14 +1,14 @@
 import { Octokit } from "@octokit/rest";
-import { context } from '@actions/github';
+import { context } from "@actions/github";
 
 import fg from "fast-glob";
-import minimist from 'minimist';
+import minimist from "minimist";
 const argv = minimist(process.argv.slice(2));
 
+import srcToUrls from "../_utilities/lib/src-to-urls.mjs";
 import convertFilePathsToUrls from "../_utilities/path-to-url.mjs";
 import { checkUrls } from "./lib/check-url-list.js";
-import srcToUrls from "../_utilities/lib/src-to-urls.mjs";
-import ignoredPaths from './config/ignored_paths.json' assert { type: 'json' };
+import ignoredPaths from "./config/ignored_paths.json?type=json" assert { type: "json" };
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
