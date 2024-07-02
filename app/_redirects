@@ -1083,3 +1083,6 @@
 # CODE SNIPPETS
 /code-snippets/spec-renderer.html https://github.com/Kong/docs.konghq.com/blob/main/app/code-snippets/_spec-renderer.html
 /code-snippets/spec-renderer https://github.com/Kong/docs.konghq.com/blob/main/app/code-snippets/_spec-renderer.html
+
+# Sitemap
+/sitemap.xml /sitemap-index/default.xml
