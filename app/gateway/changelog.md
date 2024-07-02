@@ -11,6 +11,14 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.7.1.2
+**Release Date** 2024/07/02
+
+### Dependencies
+
+* Bumped `lua-resty-events` to 0.3.0 to fix race condition issues in event delivery at startup.
+* Bumped `lua-resty-healthcheck` to 3.1.0 to fix memory leak issues by reusing a timer for the same target instead of running many timers.
+
 ## 3.7.1.1
 **Release Date** 2024/06/22
 
