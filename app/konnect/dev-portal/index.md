@@ -41,13 +41,7 @@ Manage developer access - This doc details to a {{site.konnect_short_name}} admi
 
 * [Manage application registration requests](/konnect/dev-portal/access-and-approval/manage-devs/) -  When developers want to create applications on your Dev Portal, they will have to create a request. Requests can be managed from within {{site.konnect_short_name}}. This document contains instructions on how to manage application requests. If you are interested in automatically allowing application requests automatically, read our guide on handling [auto approval](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
 
-For developers:
-
-* [Developer registration and account management](/konnect/dev-portal/dev-reg/) - This explains how to register for a Dev Portal as well as the registration process and different registration states, for developers who want to register for the platform. It also explains account management information.
-
-* [Manage Applications](/konnect/dev-portal/applications/dev-apps/) - Managing application registration requests.
-
-* [Generate credentials for an application](/konnect/dev-portal/applications/dev-gen-creds/) - This guide walks you through the process of generating and deleting API keys on the Dev Portal platform.
+For developers, see [Register and create an application as a developer](/konnect/dev-portal/register-and-create-app/).
 
 
 ## Access the Dev Portal
