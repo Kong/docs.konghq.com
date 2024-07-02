@@ -4,13 +4,13 @@ title: Create a Dev Portal
 
 The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services.
 
-Users can create both public and private Dev Portals, depending on their use case. Public Dev Portals do not require users to login to see published APIs, and are discoverable on the internet. Private Dev Portals require users to create an account and login in order to see published APIs. Coming soon, Konnect will support Dev Portals that contain pages that are public _and_ private, allowing the public to browse the publicly available catalog, but requiring users to login to see a full catalog, and begin consuming those APIs.
+You can create both public and private Dev Portals, depending on your use case. Public Dev Portals don't require users to login to see published APIs, and are discoverable on the internet. Private Dev Portals require users to create an account and log in to see published APIs. <!-- commenting out for now: Coming soon, Konnect will support Dev Portals that contain pages that are public _and_ private, allowing the public to browse the publicly available catalog, but requiring users to login to see a full catalog, and begin consuming those APIs.-->
 
-When Portal admins require developers to create an account and login to use the Dev Portal, developers can "self serve" their API consumption. Developers can create applications, register them to their target APIs, and generate credentials to start consuming those APIs.
+When Dev Portal admins require developers to create an account and log in to use the Dev Portal, developers can "self serve" their API consumption. Developers can create applications, register them to their target APIs, and generate credentials to start consuming those APIs.
 
 ## Prerequisites
 
-Configure an [authentication strategy](https://deploy-preview-7561--kongdocs.netlify.app/konnect/dev-portal/applications/enable-app-reg/) if you plan to use one. This auth strategy will be how developers authenticate when they use your APIs. <!-- tried searching for a link to a doc for this, is it just setting up an auth plugin?-->
+Configure an [authentication strategy](konnect/dev-portal/applications/enable-app-reg/) if you plan to use one. This auth strategy will be how developers authenticate when they use your APIs. 
 
 ## Steps
 {% navtabs %}
@@ -18,12 +18,12 @@ Configure an [authentication strategy](https://deploy-preview-7561--kongdocs.net
 1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click **Dev Portal** on the top right.
 1. In the Create Dev Portal dialog, configure your Dev Portal settings:
     1. Enter general information for your Dev Portal, including a name and optional description.
-    1. Select if you want the Dev Portal to be private or public. Anyone can see APIs published to a public portal, only registered and logged in users can see APIs in a private portal. Note: Developers can only get credentials and start consuming APIs in a self serve way in a private Dev Portal.
+    1. Select if you want the Dev Portal to be private or public. Anyone can see APIs published to a public portal while only registered and logged in users can see APIs in a private portal. Developers can only get credentials and start consuming APIs through self service in a private Dev Portal.
     1. Private Dev Portal only: Configure the following settings:
         * **Auto Approve Developers**: If you enable this setting, this will allow developers to automatically be approved when they sign up for your private Dev Portal. If you don't enable this, you must configure single sign-on or manually approve developers as they register. 
         * **Auto Approve Applications**: If you enable this setting, apps that developers create with your APIs will be automatically approved. If you don't enable this, you must manually approve or deny application registrations.
         * **Portal RBAC**: Portal RBAC allows you to assign developers to teams and roles that determine if they can only view or view and consume the APIs in your Dev Portal.
-        * **Default Application Auth Strategy**: Select the auth strategy you want the APIs in your Dev Portal to use if they require authentication. This auth strategy will be how developers authenticate when they register to consume your APIs. Note: Selecting a default auth strategy makes it easier for your API Product Owners to publish an API to a Dev Portal that requires authentication, as the default auth strategy will be auto selected for them. If you're not sure which auth strategy to use you can select the pre-created key-auth strategy.
+        * **Default Application Auth Strategy**: Select the auth strategy you want the APIs in your Dev Portal to use if they require authentication. This auth strategy will be how developers authenticate when they register to consume your APIs. Selecting a default auth strategy makes it easier for your API Product owners to publish an API to a Dev Portal that requires authentication, because the default auth strategy will be auto selected for them. If you're not sure which auth strategy to use, you can select the pre-created key-auth strategy.
     1. Optional: Configure the visual customization settings, such as a Dev Portal logo, favicon, and home page header image.
     1. Optional: Add labels to your Dev Portal. Labels will help you identify and search for your Dev Portal in {{site.konnect_short_name}}.
 1. Click **Save**. 

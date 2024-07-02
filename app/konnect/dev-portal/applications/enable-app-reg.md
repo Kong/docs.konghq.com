@@ -58,7 +58,7 @@ For non-`default` control planes, app registration is supported using the `konne
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
-1. In {% konnect_icon api-product %} **API Products**, select a service.
+1. In {% konnect_icon api-product %} **API Products**, select an API product.
 
 1. Click **Product Versions** and select a product version.
 
@@ -69,7 +69,9 @@ For non-`default` control planes, app registration is supported using the `konne
 
 1. From the **Dev Portals** tab, click **Publish to Dev Portals**.
 
-1. First toggle on **Require Authentication**. If your API Product is already published to a Dev Portal, select **key-auth** in the Auth Strategy drop down for that Dev Portal. If your API Product is not yet published click **+ Dev Portal**, select the target Dev Portal in the dropdown, and then select **Key Auth** in the Auth Strategy dropdown selection.
+1. Enable **Require Authentication** then do one of the following:
+  * If your API product is already published to a Dev Portal, select **key-auth** in the Auth Strategy menu for that Dev Portal. 
+  * If your API product is not published, add a **Dev Portal**, select the target Dev Portal in the menu, and then select **Key Auth** in the Auth Strategy menu.
 
 1. Enable **Accept application registrations** for each Dev Portal to allow developers to register their applications to consume this API.
 

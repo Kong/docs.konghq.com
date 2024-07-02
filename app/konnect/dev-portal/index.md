@@ -11,9 +11,9 @@ You can use the following table to help you determine which Dev Portal configura
 
 | You want to... | Then use... |
 | -------------- | ----------- |
-| Publish APIs to two Dev Portals; one for internal developers and one for external partner developers | [Multi-portal](/konnect/dev-portal/create-dev-portal/) |
-| Let developers get API keys and start using your APIs | [Enable app reg and Dev Portal](/konnect/dev-portal/applications/enable-app-reg/) |
-| Segment which users can see which APIs | [Assign different APIs and permissions with RBAC Teams](/konnect/api/portal-auth/portal-rbac-guide/#main) |
+| Publish APIs to two Dev Portals, one for internal developers and one for external partner developers | [Multi-portal](/konnect/dev-portal/create-dev-portal/) |
+| Allow developers get API keys and start using your APIs | [Enable app reg and Dev Portal](/konnect/dev-portal/applications/enable-app-reg/) |
+| Determine which users can see which APIs in Dev Portal | [Assign different APIs and permissions with RBAC Teams](/konnect/api/portal-auth/portal-rbac-guide/#main) |
 | Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
 | Publish documentation for your APIs | [Add and publish API product documentation](/konnect/dev-portal/publish-service/) |
 

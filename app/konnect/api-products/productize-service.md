@@ -24,22 +24,21 @@ You can set up an API product and API product version by clicking {% konnect_ico
 
 You will be greeted by the dashboard for the API product that you just created. You can use this dashboard to manage an API product. You can read more about this dashboard on the API products [overview page](/konnect/api-products/)
 {% endnavtab %}
-
-can we format lines 31-40? the curl command is not formatted correctly: https://deploy-preview-7561--kongdocs.netlify.app/konnect/api-products/productize-service/#create-an-api-product
 {% navtab API%}
 
 Create a new API product by issuing a `POST` request to the [`/api-products`](/konnect/api/api-products/latest/#/API%20Products/create-api-product) endpoint. 
 
-    ```sh
-    curl -X 'POST' \
-        'https://{region}.api.konghq.com/v2/api-products' \
-        -H 'accept: application/json' \
-        -H 'Authorization: Bearer <personal-access-token>' \
-        -H 'Content-Type: application/json' \
-        -d '{
-        "name": "API Product"
-        }'
-    ```
+```sh
+curl -X 'POST' \
+    'https://{region}.api.konghq.com/v2/api-products' \
+    -H 'accept: application/json' \
+    -H 'Authorization: Bearer <personal-access-token>' \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "name": "API Product"
+    }'
+```
+
 The response body will include an `id` field, denoting the unique identifier for your newly created API product. Save this identifier because you will need it in subsequent steps. 
 {% endnavtab %}
 {% endnavtabs %}
@@ -53,7 +52,7 @@ After creating a new API product, you can attach an API product version to it.
 
 1. Enter a version name. For example `v1`.
      A version name can be any string containing letters, numbers, or characters;
-     for example, `1.0.0`, `v1`, or `version#1`. A service can have multiple
+     for example, `1.0.0`, `v1`, or `version#1`. An API product can have multiple
      versions.
 1. Click **Create** to finish creating the product version and be taken to the **Product Versions dashboard**.
 
@@ -67,11 +66,11 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 {% endnavtab %}
 {% navtab API%}
 
-1. To create a new API product version, execute a POST request to the  [`/product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint, replace `{ApiProductId}` with your API product's actual ID:
+1. To create a new API product version, execute a POST request to the  [`/product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint, replace `{id}` with your API product's actual ID:
 
     ```sh
     curl -X 'POST' \
-        'https://{region).api.konghq.com/v2/api-products/{ApiProductId}/product-versions' \
+        'https://{region).api.konghq.com/v2/api-products/{id}/product-versions' \
         -H 'accept: application/json' \
         -H 'Authorization: Bearer <personal-access-token>' \
         -H 'Content-Type: application/json' \
@@ -81,11 +80,11 @@ After creating the new version, you will see **Link with a Gateway Service** as 
     ```
 
 
-1. After creating the new version, you can link a Gateway service to your product version to enable features like application registration by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{ApiProductId}` with your API product's ID, `{control_plane_id}` with your control plane's ID, and include the relevant Gateway service ID in the request body.
+1. After creating the new version, you can link a Gateway service to your product version to enable features like application registration by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{id}` with your API product's ID, `{control_plane_id}` with your control plane's ID, and include the relevant Gateway service ID in the request body.
 
     ```sh
     curl -X 'POST' \
-    'https://{region).api.konghq.com/v2/api-products/{ApiProductId}/product-versions' \
+    'https://{region).api.konghq.com/v2/api-products/{id}/product-versions' \
         -H 'accept: application/json' \
         -H 'Authorization: Bearer <personal-access-token>' \
         -H 'Content-Type: application/json' \
@@ -105,12 +104,13 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 {% navtab Konnect UI %}
 
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product that you created in the previous step.
-1. Click **Add** on the API Product Overview page and select "Publish to Dev Portals" from the drop down menu. You will see a modal prompting you to select which Dev Portals you want to publish your API Product to. Click "Publish" for the Dev Portals you want to publish it to. Then click **Finish**. 
+1. Click **Add** on the API Product Overview page and select **Publish to Dev Portals** from the menu. You will see a modal prompting you to select which Dev Portals you want to publish your API product to. 
+1. Click **Publish** for the Dev Portals you want to publish it to. Then, click **Finish**. 
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product you added to the Dev Portal. 
 1. Click **Product Versions** in the sidebar.
 1. Click the product version you created previously and either under the **Actions** button or the **Dev Portals** tab, click **Publish to Dev Portals** and select the Dev Portals you want to add the product version to.
 
-If want to require authentication on your API Product version, toggle **Require Authentication** to true. Note: If you require authentication you will need to select which authentication strategy applications registering to your API should use. The default auth strategy set by your portal admin will be auto selected for you.
+If want to require authentication on your API product version, toggle **Require Authentication** to true. Additionally, you must select which authentication strategy applications registering to your API should use. The default auth strategy set by your Dev Portal admin will be auto selected for you.
 
 The API product and product versions you published should now be displayed in the Dev Portals you selected.
 {% endnavtab %}
@@ -120,7 +120,7 @@ The API product and product versions you published should now be displayed in th
 
     ```sh
     curl --request PATCH \
-        --url https://{region}.api.konghq.com/v2/api-products/{ApiProductId} \
+        --url https://{region}.api.konghq.com/v2/api-products/{id} \
         --header 'Authorization: <personal-access-token>' \
         --header 'Content-Type: application/json' \
         --data '{
@@ -129,13 +129,13 @@ The API product and product versions you published should now be displayed in th
         ]
     }'
     ```
-    Be sure to replace `{ApiProductId}`, `name`, and `portal_ids` with your own values.
+    Be sure to replace `{id}` and `portal_ids` with your own values.
 
-1. You can publish an API product version by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{ApiProductId}` with the API product ID returned in the previous step. 
+1. You can publish an API product version by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{dd}` with the API product ID returned in the previous step. 
 
     ```sh
     curl -X 'POST' \
-        'https://{region}.api.konghq.com/v2/api-products/{ApiProductId}/product-versions' \
+        'https://{region}.api.konghq.com/v2/api-products/{id}/product-versions' \
         -H 'accept: application/json' \
         -H 'Authorization: Bearer <personal-access-token>' \
         -H 'Content-Type: application/json' \
@@ -149,8 +149,8 @@ The API product and product versions you published should now be displayed in th
 
 ## Summary
 
-In this section, you added an API product, linked a Gateway service via an API product version to it, and published it to the Dev Portal. 
+In this section, you created an API product and created an API product version with a linked Gateway service. You then published both the API product and API product version to one or more Dev Portals. 
 
 ## More information
 
-* [Add API product documentation](/konnect/dev-portal/publish-service/): Learn how to add API product documentation and test out the Dev Portal from the perspective of a developer.
+* [Add API product documentation](/konnect/dev-portal/publish-service/): Learn how to add your API spec and API product documentation to the Dev Portal so it's easier for developers to consume your APIs.
