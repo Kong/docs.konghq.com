@@ -199,10 +199,10 @@
     - text: Troubleshoot
       url: /dev-portal/troubleshoot/
 
-- title: Analytics
+- title: Advanced Analytics
   icon: /assets/images/icons/konnect/icn-analytics-nav.svg
   items:
-    - text: Introduction to Analytics
+    - text: Overview
       url: /analytics/
     - text: Dashboard
       url: /analytics/dashboard/
@@ -212,8 +212,6 @@
       url: /analytics/use-cases/
     - text: Requests
       url: /analytics/api-requests/
-    - text: Troubleshooting
-      url: /analytics/troubleshoot
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
