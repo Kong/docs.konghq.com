@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "run.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/github": "^6.0.0",
-    "@octokit/rest": "^20.0.0",
+    "@octokit/rest": "^21.0.0",
     "gray-matter": "^4.0.3",
     "minimist": "^1.2.5"
   }

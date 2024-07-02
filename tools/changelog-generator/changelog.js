@@ -1,14 +1,19 @@
-const fs = require("fs").promises;
-const { subDays, startOfDay, format } = require("date-fns");
-const groupBy = require("lodash.groupby");
+import { promises as fs } from 'fs';
+import { subDays, startOfDay, format } from 'date-fns';
+import groupBy from 'lodash.groupby';
+import { Octokit } from "@octokit/rest";
 
-const convertFilePathsToUrls = require("../_utilities/path-to-url");
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import convertFilePathsToUrls from "../_utilities/path-to-url.mjs";
 const now = startOfDay(new Date());
 const earliestDate = subDays(now, 7);
 
 (async function () {
   // Create an octokit instance
-  const { Octokit } = require("@octokit/rest");
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
   });
@@ -26,6 +31,7 @@ const earliestDate = subDays(now, 7);
     },
     (response, done) => {
       const validPulls = [];
+      let prDate;
 
       for (let pr of response.data) {
         //console.log(JSON.stringify(pr));
@@ -65,7 +71,7 @@ const earliestDate = subDays(now, 7);
         );
 
         // Convert app, _src, /hub/ etc paths to URLs
-        affected_files = (
+        let affected_files = (
           await convertFilePathsToUrls(pr_files, { skip_nav_files: true })
         ).map((v) => {
           return {
