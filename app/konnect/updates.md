@@ -9,6 +9,7 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
 ## May 2024
 
 **Gateway 3.7 Support**
@@ -989,3 +990,4 @@ for Dev Portal access.
 
 : For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.
+
