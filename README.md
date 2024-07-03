@@ -6,27 +6,22 @@
 
 This repository contains the source content and code for [Kong](https://github.com/Kong/kong)'s documentation website. It's built using [Jekyll](https://jekyllrb.com/) and deployed with [Netlify](https://www.netlify.com/).
 
-Here are some things to know before you get started:
+## Getting started
+
+Here are some things you should know before getting started:
 
 * **We're beginner-friendly**. Whether you're a Technical Writer learning about docs-as-code or an engineer practicing your documentation skills, we welcome your involvement. If you'd like to contribute and don't have something in mind already, head on over to [Issues](https://github.com/Kong/docs.konghq.com/issues). We've added `good first issue` labels on beginner-friendly issues.
 
 * **We need more help in some areas**. We'd especially love some help with [plugin](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub) documentation.
 
-* **Some of our docs are generated**.
-    * [Admin API](https://docs.konghq.com/gateway/latest/admin-api/)
-    * [CLI reference](https://docs.konghq.com/gateway/latest/reference/cli/)
-    * [OSS upgrade guide](https://docs.konghq.com/gateway/latest/install-and-run/upgrading-oss/)
-    * [PDK reference](https://docs.konghq.com/gateway/latest/pdk)
+* **Community is a priority for us**. Before submitting an issue or pull request, make sure to review our [Contributing Guide](https://docs.konghq.com/contributing/). 
 
-All pull requests for these docs should be opened in the [Kong/kong](https://github.com/Kong/kong) repository. Fork the repository and submit PRs from your fork.
+* **Some of our docs are [generated](docs/autodocs.md)**.
 
-For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway/latest/reference/configuration), open an issue on this repo and we'll update the docs.
+* **We are currently accepting plugin submissions** to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
 
-* **Community is a priority for us**. Before submitting an issue or pull request, make sure to review our [Contributing Guide](https://docs.konghq.com/contributing/) and our [documentation templates](https://github.com/Kong/docs.konghq.com/tree/main/docs/templates).
 
-* We are currently accepting plugin submissions to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
-
-## Run Locally
+### Running Locally
 
 For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
 
@@ -42,31 +37,9 @@ cp .env.example .env
 make run
 ```
 
-Once you see the `Server now ready on …` message, the docs site is available at [http://localhost:8888](http://localhost:8888).
+### Generating specific products locally
 
-### Troubleshooting the local build
-
-#### Invalid byte sequence in US-ASCII
-
-If you encounter an error that looks like this:
-
-```
-app/_plugins/generators/utils/frontmatter_parser.rb:8:in `match': invalid byte sequence in US-ASCII (ArgumentError)
-
-      @result = @string.match(Jekyll::Document::YAML_FRONT_MATTER_REGEXP)
-                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    from app/_plugins/generators/utils/frontmatter_parser.rb:8:in `match'
-```
-
-You can try setting the `LANG` or `LC_ALL` environment variable to `en_US.UTF-8`. For example:
-
-```bash
-export LANG=en_US.UTF-8
-```
-
-### Generating specific products
-
-In order to speed up build times, it's possible to generate a specific subset of products and their corresponding versions by specifying the `KONG_PRODUCTS` env variable. It takes a comma-separated list of products and for each product, the list of versions the versions to be generated separated by semi-colons, in the following way.
+Building the entire docs site can take quite a bit of time, to speed up build times, you can generate a specific subset of products and their versions by setting the `KONG_PRODUCTS` environment variable. This variable takes a comma-separated list of products, each followed by a colon and a semi-colon-separated list of versions. The format is:
 
 ```bash
 KONG_PRODUCTS='<product>:<version>;<version>,<product>:<version>,hub'
@@ -79,7 +52,7 @@ KONG_PRODUCTS='gateway:2.8.x;3.3.x,mesh:2.2.x,hub' make run
 ```
 
 will generate the plugin hub, mesh version `2.2.x`, and gateway versions `2.8.x` and `3.3.x`.
-It also supports wildcard matching for both products and versions, i.e.
+Wildcard matching is supported for both products and versions: 
 
 ```bash
 KONG_PRODUCTS='gateway:3.*'
@@ -92,16 +65,36 @@ KONG_PRODUCTS='*:latest'
 ```
  are also possible.
 
+The docs site will be available at [http://localhost:8888](http://localhost:8888).
+
+
+### Review Labels
+
+When raising a pull request, it's useful to indicate what type of review you're looking for from the team. To help with this, we've added three labels that can be applied:
+
+- `review:copyedit`: Request for writer review.
+- `review:general`: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
+- `review:tech`: Request for technical review from an SME.
+
+At least one of these labels must be applied to a PR or the build will fail.
+
+### Troubleshooting
+
+For troubleshooting instructions see the [troubleshooting documentation](docs/troubleshoot.md).
+
+
+
 ### Skipping slow generators
 
-Unfortunately, the `Sitemap` and `Hub` generators are slow. Even if they don't need to re-render a page,
-they still need to read the files and generate the necessary structures and pages, which takes time.
-The `Sitemap` generator is disabled by default if `JEKYLL_ENV=development`, so it doesn't run locally.
-Disabling the `Hub` generator can be done by setting the environment variable: `DISABLE_HUB`.
+Disable the `Hub` generator for faster builds by setting the `DISABLE_HUB` environment variable:
+
 
 ```bash
 DISABLE_HUB=1 make run
 ```
+The `Sitemap` generator is disabled by default if `JEKYLL_ENV=development`, so it doesn't run locally.
+Disabling the `Hub` generator can be done by setting the environment variable: `DISABLE_HUB`.
+
 
 ## Plugin contributors
 
@@ -117,132 +110,33 @@ Here's how the badge looks: [![](https://img.shields.io/badge/Kong-test-blue.svg
 
 See [Issue #908](https://github.com/Kong/docs.konghq.com/issues/908) for more information. Note that we're not currently hosting assets for badges.
 
-## Generate the PDK, Admin API, CLI, and Configuration documentation
-
-> This section is for Kong source code maintainers. You don't need to do anything here if you're contributing to this repo!
-
-The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release are generated from the Kong source code.
-
-To generate them, go to the `Kong/kong` repo and run:
-
-```bash
-scripts/autodoc <docs-folder> <kong-version>
-```
-
-For example:
-
-```bash
-cd /path/to/kong
-scripts/autodoc ../docs.konghq.com 2.4.x
-```
-
-This example assumes that the `Kong/docs.konghq.com` repo is cloned into the
-same directory as the `Kong/kong` repo, and that you want to generate the docs
-for version `2.4.x`. Adjust the paths and version as needed.
-
-After everything is generated, review, open a branch with the changes, send a
-pull request, and review the changes.
-
-You usually want to open a PR against a `release/*` branch. For example, in the
-example above, the branch was `release/2.4`.
-
-```bash
-cd docs.konghq.com
-git fetch --all
-git checkout release/2.4
-git checkout -b release/2.4-autodocos
-git add -A .
-git commit -m "docs(2.4.x) add autodocs"
-git push
-```
-
-Then open a pull request against `release/2.4`.
 
 ## Testing
 
-Tests for this site are written using `fetch`, `cheerio` and `jest`
+We use `fetch`, `cheerio`, and `jest` for testing. To run tests, first build the site, then run: 
+`make build` followed by  `make smoke`.
 
-To run the tests, you must first build the site by running `make build` before running `make smoke`.
+For more information, review the [Testing documentation](docs/testing.md).
 
-Many of the tests are smoke tests to check for issues that occurred while adding caching to the site, such as ensuring that the side navigation isn't cached.
-
-To add your own tests, look in the `tests` directory and use `home.test.js` as a sample. You specify which URL to visit and then a CSS selector to search for, before asserting that the contents match what you expect.
-
-```javascript
-test("has the 'Welcome to Kong' header", async () => {
-  const $ = await fetchPage("/")
-  expect($("#main")).toHaveText("Welcome to Kong Docs");
-});
-```
 
 ## Continuous Integration
 
-We run various quality checks at build time to ensure that the documentation is maintainable.
+We run various checks at build time. Some checks can be manually approved using labels like: 
 
-Some of the checks can be manually marked as approved using labels:
+> `ci:manual-approve:link-validation`
 
-* `ci:manual-approve:link-validation` - mark link checking as successful. Useful when Netlify returns an `HTTP 400` error and the links are validated manually.
 
-### include-check
+For more information review the [continuous integration documentation](docs/ci-cd.md)
 
-The `include-check.sh` script checks for any files in the `app/_includes` folder that depend on a `page.*` variable (e.g. `page.url`). This is not compatible with the `include_cached` gem that we use, and so using `page.*` in an include will fail the build.
+## Platform documentation
 
-> To run the script locally, open a terminal, navigate to the documentation
-folder, and run `./include-check.sh`. If there is no output, everything is
-successful.
+The following links contain information about the docs publishing platform: 
 
-In the following example, we can see that `admin-listen.md` uses a `page.*` variable, and that the include is used in the `docker.md` file:
-
-```bash
-❯ ./include-check.sh
-Page variables must not be used in includes.
-Pass them in via include_cached instead
-
-Files that currently use page.*:
-File: app/_includes/md/admin-listen.md
-via:
-app/_src/gateway/install/docker.md
-```
-
-Here are sample contents for those files:
-
-In `docker.md`:
-
-```md
-{% include_cached app/_includes/md/admin-listen.md %}
-```
-
-In `deployment-options-k8s`:
-
-```md
-This is an include that uses {{ page.release }}
-```
-
-To resolve this, the two files should be updated to pass in the URL when `include_cached` is called:
-
-In `docker.md`:
-
-```md
-{% include_cached app/_includes/md/admin-listen.md release=page.release %}
-```
-
-In `admin-listen`:
-
-```md
-This is an include that uses {{ include.release }}
-```
-
-The `include_cached` gem uses all passed parameters as the cache lookup key, and this ensures that all required permutations of an include file will be generated.
-
-For guidelines on how to write includes and call them in target topics, see the
-[Kong Docs contributing guidelines](https://docs.konghq.com/contributing/includes).
-
-### Review Labels
-
-When raising a pull request, it's useful to indicate what type of review you're looking for from the team. To help with this, we've added three labels that can be applied:
-
-- `review:copyedit`: Request for writer review.
-- `review:general`: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-- `review:tech`: Request for technical review from an SME.
-
-At least one of these labels must be applied to a PR or the build will fail.
+* [How to publish OAS pages](docs/oas-pages.md)
+* [Running docs.konghq.com locally](docs/platform-install.md)
+* [Product releases](docs/product-releases.md)
+* [Search](docs/search.md)
+* [SEO](docs/seo.md)
+* [Single source plugins](docs/single-sourced-plugins.md)
+* [Single source versions](docs/single-sourced-versions.md)
+* [vale](docs/vale.md)
