@@ -63,9 +63,9 @@ exports.onExecutePostLogin = async (event, api) => {
 
 From the [{{site.konnect_short_name}} portal identity page](https://cloud.konghq.com/portal/portal-settings#identity), click **Configure provider** for **OIDC**, and enter the values from your Auth0 application.
 
-This table maps the {{site.konnect_short_name}} values to the corresponding Azure values. 
+This table maps the {{site.konnect_short_name}} values to the corresponding Auth0 application values. 
 
-| {{site.konnect_short_name}} value      | Azure value |
+| {{site.konnect_short_name}} value      | Auth0 application value |
 | ----------- | ----------- |
 | Provider URL      | Your Auth0 tenant's **Domain** with a leading `https://` and trailing slash `/`, e.g., `https://<your-tenant>.<region>.auth0.com/` |
 | Client ID   | Your Auth0 application's **Client ID** value.        |
