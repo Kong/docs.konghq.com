@@ -47,7 +47,7 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 
     * Choose **Build from scratch** when selecting the action type
 
-    * Name the action something like **konnect_transform_updated_at_integer**
+    * Name the action something like `konnect_transform_updated_at_integer`
 
 1. Replace the new action's default code with the following snippet, making it compatible with Konnect's OIDC integration:
 ```
