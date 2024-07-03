@@ -5,37 +5,30 @@ content_type: how-to
 
 Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}} and the Dev Portal. This guide shows you how to configure Auth0 for Dev Portal SSO.
 
-
 ## Create an application in Auth0
 
 1. Login to [Auth0](https://auth0.com/), and navigate to the mangement dashboard for your Auth0 tenant.
 
-1. Navigate to the **Applications > Applications** page to and click "Create Application" create a new application:
+1. Navigate to the **Applications > Applications** page to and click "Create Application" create a new application.
 
-1. Name the application, making it easy to reference as the app that manages your Konnect Dev Portal SSO integration.
+    * Name the application, making it easy to reference as the app that manages your Konnect Dev Portal SSO integration.
+    * Select **Machine To Machine** as the **Application Type**.
+    * Select **Auth0 Management API** as the Authorized API.
+    * Authorize the application for at least one Permission to continue, e.g. `read:client_grants`. Note: this permission can be revoked later if desired, but is required to create the application.
 
-1. Select **Machine To Machine** as the **Application Type**. 
-
-1. Select **Auth0 Management API** as the Authorized API.
-
-1. Authorize the application for at least one Permission to continue, e.g. `read:client_grants`. Note: this permission can be revoked later if desired, but is required to create the application.
-    
-1. Submit the form to create the application
-
+1. Submit the form to create the application.
 
 ## Configure the Auth0 application
 
 1. Locate your portal's callback URL in the Konnect Identity Provider Configuration Settings page. It will have the form `https://<your_portal_domain>/login`
-1. Navigate to the **Settings** tab and enter the value of your portal's callback URL into each of the following fields.
+1. Navigate to the **Settings** tab and enter the value of your portal's callback URL into each of the following fields:
 
-   * **Application Login URI**
-     
-   * **Allowed Callback URLs**
+    * **Application Login URI**
+    * **Allowed Callback URLs**
 
 1. Scroll down to the **Advanced Settings** and open the **Grant Types** tab.
-    
-    * Check the box for **Authorization Code** and click **Save Changes**
 
+    * Check the box for **Authorization Code** and click **Save Changes**
 
 ## Configure Login Action in Auth0
 
@@ -46,11 +39,11 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 1. Add an action using the button in the corner of the interactive Login Flow diagram
 
     * Choose **Build from scratch** when selecting the action type
-
     * Name the action something like `konnect_transform_updated_at_integer`
 
 1. Replace the new action's default code with the following snippet, making it compatible with Konnect's OIDC integration:
-```
+
+```js
 exports.onExecutePostLogin = async (event, api) => {
   if (event.authorization) {
     // This transforms the ISO 8601 Timestamp string into the seconds integer representation that is expected for the OIDC standard,
