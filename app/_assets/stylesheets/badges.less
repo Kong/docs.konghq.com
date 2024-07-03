@@ -43,6 +43,22 @@
     color: #008871;
     background: #E8F8F5;
   }
+  
+  &.new::after {
+    content: "NEW";
+    color: @steel-700;
+    background: @steel-100;
+  }
+  &.update::after {
+    content: "update";
+    color: @steel-700;
+    background: @steel-100;
+  }
+  &.deprecation::after {
+    content: "deprecation";
+    color: @steel-700;
+    background: @steel-100;
+  }
 
   &.enterprise::after {
     content: "ENTERPRISE";
