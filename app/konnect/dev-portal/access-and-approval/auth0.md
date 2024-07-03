@@ -7,7 +7,7 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 
 ## Create an application in Auth0
 
-1. Login to [Auth0](https://auth0.com/), and navigate to the mangement dashboard for your Auth0 tenant.
+1. Login to [Auth0](https://auth0.com/), and navigate to the management dashboard for your Auth0 tenant.
 
 1. Navigate to the **Applications > Applications** page to and click "Create Application" create a new application.
 
