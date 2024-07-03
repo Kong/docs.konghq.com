@@ -1214,11 +1214,13 @@ If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gatewa
 
 
 ## 3.5.0.7
-**Release Date** 2024/07/02
+**Release Date** 2024/07/05
 
 ### Features
 
 #### Plugins
+
+_Backported from 3.7.1.2_
 * [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
   * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
   empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
