@@ -156,8 +156,10 @@
           url: /dev-portal/access-and-approval/manage-app-connections/
         - text: Auto Approve Dev and App Registrations
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
-        - text: Azure OIDC
+        - text: Azure SSO with OIDC
           url: /dev-portal/access-and-approval/azure/
+        - text: Auth0 SSO with OIDC
+          url: /dev-portal/access-and-approval/auth0/
     - text: Application Lifecycle
       items:
         - text: Overview
