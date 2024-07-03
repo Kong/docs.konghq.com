@@ -32,6 +32,9 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 
 ## Configure Login Action in Auth0
 
+   {:.note}
+   > **Important:** This section is required due to the Auth0 API implementation not being inline with the OIDC standard for the value of the `updated_at` token claim.
+
 1. Navigate to the **Actions > Flows** section in Auth0
 
 1. Select the **Login** flow
