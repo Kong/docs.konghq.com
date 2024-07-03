@@ -495,7 +495,16 @@ when the `http_response_header_for_traceid` option was enabled.
 * Removed the `lua-resty-openssl-aux-module` dependency
 
 ## 3.6.1.7
-**Release Date** 2024/07/02
+**Release Date** 2024/07/05
+
+### Features
+
+#### Plugins
+
+_Backported from 3.7.1.2_
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
+  empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
 
 ### Dependencies
 
