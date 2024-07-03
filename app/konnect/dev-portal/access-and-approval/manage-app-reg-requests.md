@@ -13,9 +13,8 @@ developers must register their applications with an API product. This guide expl
 
 From the **Requests** page, the **App Registrations** tab is for managing developer's requests to register an application with an API product, any pending application requests are
 displayed here.
-To manage an application registration request:
 
-* In the row for an application request you want to approve, click the {% konnect_icon cogwheel %} icon, then select **Approve** from the context menu.
+To manage an application registration request, click the {% konnect_icon cogwheel %} icon in the row for an application request you want to approve, then select **Approve** from the context menu.
 
 The status is updated from **Pending** to **Approved**. The application moves
 from the **App Registrations** tab to the **Applications** page.
@@ -33,10 +32,7 @@ An application registration request that
 is rejected requires the developer submit another request after
 unregistering their application from a product.
 
-From the **App Registrations** tab, reject an application registration request:
-
-
-* In the row for an application request you want to reject, click the {% konnect_icon cogwheel %} icon, then select **Reject** from the context menu.
+From the **App Registrations** tab, you can reject an application registration request. In the row for an application request you want to reject, click the {% konnect_icon cogwheel %} icon, then select **Reject** from the context menu.
 
 The status is updated to **Rejected**. You can
 let the rejected request remain on the Requests page
@@ -45,15 +41,12 @@ let the rejected request remain on the Requests page
 
 ## Delete an application registration request {#delete-app-reg}
 
-From the **App Registrations**, delete an application registration request:
-
-* In the row for the application registration request you want to delete, click the {% konnect_icon cogwheel %} icon and select
-   **Delete** from the context menu.
+From the **App Registrations**, you can delete an application registration request. In the row for the application registration request you want to delete, click the {% konnect_icon cogwheel %} icon and select **Delete** from the context menu.
 
 The request is deleted from the **App Registrations** tab. The pending request is also
 deleted from the **My Apps** pane of an application in the {{site.konnect_short_name}} Dev Portal.
 
- Any pending application requests are displayed in the **Access Requests** page **App Registrations** tab.
+Any pending application requests are displayed in the **Access Requests** page **App Registrations** tab.
 
 {:.important}
 > **Important:** Deleting an application request does not prevent a user from creating a registration request for the same application.

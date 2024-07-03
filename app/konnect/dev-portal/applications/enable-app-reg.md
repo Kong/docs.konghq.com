@@ -45,13 +45,7 @@ For non-`default` control planes, app registration is supported using the `konne
 
 - [An API product that is versioned and published to a {{site.konnect_short_name}} Dev Portal](/konnect/dev-portal/publish-service) so that it appears in the catalog.
 
-- If you are using [OpenID Connect](#oidc-flow) for your authorization:
-
-  - Set up your application, claims, and scopes in your OpenID identity provider. Refer to your IdP/OP provider's documentation for instructions.
-
-  - Edit the **Reference ID** field in the Dev Portal
-    [Update Application](/konnect/dev-portal/applications/dev-apps#edit-my-app)
-    dialog to match to your third-party OAuth2 claim. <!-- is this on the admin side of Dev Portal UI, or dev side?-->
+- If you are using [OpenID Connect](#oidc-flow) for your authorization, set up your application, claims, and scopes in your OpenID identity provider. Refer to your IdP/OP provider's documentation for instructions.
 
 {:.note}
 > **Note:** Generally, it's only recommended for an API product version to be linked to a Gateway service. However, for app registration to work, the link between API product version and a Gateway service is required. 
