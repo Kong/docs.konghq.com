@@ -12,7 +12,19 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.7.1.2
-**Release Date** 2024/07/02
+**Release Date** 2024/07/05
+
+### Features
+
+#### Plugins
+
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
+  empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
+
+### Fixed
+
+* Fixed an issue where the Dev Portal documentation link was unavailable because the official documentation was removed after the 3.4.x.
 
 ### Dependencies
 
