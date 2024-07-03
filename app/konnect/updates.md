@@ -9,6 +9,35 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
+
+
+## July 2024
+
+July 03 **[test badges post in July](https://app.getbeamer.com/kongsandbox/en/test-badges-post-in-july)**
+: test post for badges
+: {:.badge .new} {:.badge .konnect} {:.badge .update} {:.badge .deprecation}
+
+## June 2024
+
+June 24 **[Announcing Kong Insomnia 9.2 with Faker API Support and More](https://app.getbeamer.com/kongsandbox/en/announcing-kong-insomnia-92-with-faker-api-support-and-more)**
+: Gaby BeitlerSr. Technical PMM We're pleased to ann...
+: {:.badge .new} {:.badge .insomnia} {:.badge .konnect}
+
+June 05 **[Hello World! Love, Konnect + Beamer](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer)**
+: {:.badge .new} {:.badge .konnect}
+
+
+## June 2024
+
+June 24 **[Announcing Kong Insomnia 9.2 with Faker API Support and More](https://app.getbeamer.com/kongsandbox/en/announcing-kong-insomnia-92-with-faker-api-support-and-more)**
+: Gaby BeitlerSr. Technical PMM We're pleased to ann...
+: {:.badge .new} {:.badge .insomnia} {:.badge .konnect}
+
+June 05 **[Hello World! Love, Konnect + Beamer](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer)**
+: {:.badge .new} {:.badge .konnect}
+
+
 ## May 2024
 
 **Gateway 3.7 Support**
@@ -989,3 +1018,4 @@ for Dev Portal access.
 
 : For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.
+
