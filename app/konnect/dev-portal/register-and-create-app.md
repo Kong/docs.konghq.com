@@ -4,10 +4,10 @@ title: Register and create an application as a developer
 
 This guide explains how developers can get started with the Dev Portal by registering and creating an application. 
 
-The Dev Portal enables developers to quickly get access to their APIs of interest, in a self-serve way. 
+The Dev Portal enables you to quickly get access to your APIs of interest, in a self-serve way. 
 Whether you're accessing the Dev Portal of a company you work for, or one that you're interested in, all you need is an application and a set of credentials to start accessing those APIs in minutes.
 
-To create credentials, developers must first create an application in which store those credentials.
+To create credentials, you must first create an application in which store those credentials.
 
 The following diagram shows how to register your app in Dev Portal:
 
@@ -25,9 +25,9 @@ flowchart TD
 <details><summary>Key concepts</summary>
 
 {% capture konnect_concepts %}
-**Application:** An application enables developers to register for APIs in the Dev Portal. For ease of use, developers can create applications that consume multiple APIs. After creating the application, developers can create a single credential that consumes all the APIs that application is registered for. If you're unable to register more than one API to an application, be sure to check that the authentication strategies of those APIs are the same.
+**Application:** An application enables you to register for APIs in the Dev Portal. For ease of use, you can create applications that consume multiple APIs. After creating the application, you can create a single credential that consumes all the APIs that application is registered for. If you're unable to register more than one API to an application, be sure to check that the authentication strategies of those APIs are the same.
 
-**Application credentials:** Credentials authorize developers to access an application. You can generate credentials automatically, or  manage them manually through an Identity Provider (IdP), like OIDC.
+**Application credentials:** Credentials authorize you to access an application. You can generate credentials automatically, or manage them manually through an Identity Provider (IdP), like OIDC.
 
 **Developer Portal:** Using the Dev Portal, you can browse and search API documentation, test API endpoints, manage your own credentials, and view your API consumption in the Analytics page.
 {% endcapture %}
@@ -50,7 +50,10 @@ All developers must register through the {{site.konnect_short_name}} Dev Portal.
 
 1. **Create an application**
 
-    Click **My Apps**. From the **My Apps** page, click **New App** and fill out the application information. 
+    Do one of the following:
+    
+    * **If you want to create an application for multiple APIs:** Click **My Apps**. From the **My Apps** page, click **New App** and fill out the application information. 
+    * **If you want to create an application for one API:** Click **Catalog**. Find the API product version you want to register for and click **Register**. Select **Create an application**. 
     
     {:.note}
     > **Note:** The Reference ID must be unique. If your organization is using the [OIDC](/konnect/dev-portal/applications/enable-app-reg#oidc-flow) flow for application registration, enter the ID of your third-party OAuth2 claim.
