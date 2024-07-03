@@ -4,11 +4,12 @@ title: Register and create an application as a developer
 
 This guide explains how developers can get started with the Dev Portal by registering and creating an application. 
 
-The Dev Portal enables developers to quickly get access to their APIs of interest, in a self serve fashion. Whether you're accessing the Dev Portal of a company you work for, or are interested in, the Dev Portal lets you get started, get your credentials, and start accessing those APIs in minutes.
+The Dev Portal enables developers to quickly get access to their APIs of interest, in a self-serve way. 
+Whether you're accessing the Dev Portal of a company you work for, or one that you're interested in, all you need is an application and a set of credentials to start accessing those APIs in minutes.
 
-In order to create credentials, developers must first create an application in which store those credentials.
+To create credentials, developers must first create an application in which store those credentials.
 
-The following diagram shows how you can register your app in Dev Portal:
+The following diagram shows how to register your app in Dev Portal:
 
 {% mermaid %}
 flowchart TD
@@ -19,7 +20,7 @@ flowchart TD
     D --> |Create in IdP| E
 {% endmermaid %}
 
-> **Figure 1:** In order to use the Dev Portal, you must first register for the Portal with an account. You will receive an email from the Portal admin prompting you to confirm your email address.
+> _**Figure 1:** To use the Dev Portal, you must first register for the Portal with an account. You will receive an email from the Portal admin prompting you to confirm your email address. Then, you can log in, find the API you want to use, create an application with credentials, and start using the API with those credentials._
 
 <details><summary>Key concepts</summary>
 
@@ -28,7 +29,7 @@ flowchart TD
 
 **Application credentials:** Credentials authorize developers to access an application. You can generate credentials automatically, or  manage them manually through an Identity Provider (IdP), like OIDC.
 
-**Developer Portal:** The Dev Portal allows developers like you to locate, access, and consume APIs. Using the Dev Portal, you can browse and search API documentation, test API endpoints, manage your own credentials, and view your API consumption in the Analytics page.
+**Developer Portal:** Using the Dev Portal, you can browse and search API documentation, test API endpoints, manage your own credentials, and view your API consumption in the Analytics page.
 {% endcapture %}
 
 {{ konnect_concepts | markdownify }}
