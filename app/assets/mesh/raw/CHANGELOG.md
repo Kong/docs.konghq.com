@@ -9,6 +9,13 @@
 * chore(deps): use latest Kong/kong-mesh-gui [#6206](https://github.com/Kong/kong-mesh/pull/6206) @kong-mesh
 
 
+## 2.7.5
+> Released on 2024/07/03
+
+* chore(deps): bump kumahq/kuma from f19b85337222 to bab1af2f8 [#6208](https://github.com/Kong/kong-mesh/pull/6208) [#6232](https://github.com/Kong/kong-mesh/pull/6232) [#6246](https://github.com/Kong/kong-mesh/pull/6246) @kong-mesh
+* chore(deps): security update [#6195](https://github.com/Kong/kong-mesh/pull/6195) @kong-mesh
+
+
 ## 2.8.0
 > Released on 2024/06/24
 
