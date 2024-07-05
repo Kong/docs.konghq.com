@@ -65,18 +65,3 @@ yet had their request reviewed by a {{site.konnect_short_name}} admin.
 
 **Rejected**
 : An application registration request was rejected by a {{site.konnect_short_name}} admin.
-
-## Contextual developer application analytics 
-
-You can view analytics for your applications from within the {{site.konnect_short_name}} Dev Portal. This helps you gain insight into your consumption of different API versions, routes, and methods.
-
-Each application has its own dashboard, which provides a high-level summary of the **Number of Requests**, **Average Error Rate**, and **p99 Latency**, and charts for the following data points: 
-
-* Requests by version
-* P99 latency by version
-* Error code distribution 
-
-All of these metrics can be viewed within a selected time frame of up to **Last 30 days**, over a period of the last 90 days.
-
-{:.note}
-> Free accounts only have access to a time frame of 24 hours.

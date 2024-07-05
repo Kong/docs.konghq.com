@@ -17,29 +17,40 @@ You can use the following table to help you determine which Dev Portal configura
 | Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
 | Publish documentation for your APIs | [Add and publish API product documentation](/konnect/dev-portal/publish-service/) |
 
-## Developer self service
+For more information about developer self-service with Dev Portal, we offer several pieces of documentation depending on your use case.
 
-Dev Portals are created for developers to use. The Dev Portal removes the burden of credential management from the API creator, and empowers developers to manage aspects of the application development lifecycle on their own. 
-
-Developers can interact with API product versions that have been exposed through API Products via applications. They can register and unregister applications, manage their own application API keys, and view analytics for their applications from the Dev Portal. 
-
-For more information on this topic, we offer several pieces of documentation depending on your use case.
-
-For {{site.konnect_short_name}} administrators:
-
+{% navtabs %}
+{% navtab Konnect admin %}
 * [Enabling and disabling application registration](/konnect/dev-portal/applications/enable-app-reg/) - This explains how to grant and revoke application registration access.
 Manage developer access - This doc details to a {{site.konnect_short_name}} administrator all of the different options they have available to them to manage developer access to their Dev Portal. The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal.
 
 * [Manage developer access](/konnect/dev-portal/access-and-approval/manage-devs/)- This doc details to a {{site.konnect_short_name}} administrator all of the different options they have available to them to manage developer access to their Dev Portal. The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal.
 
 * [Manage application registration requests](/konnect/dev-portal/access-and-approval/manage-devs/) -  When developers want to create applications on your Dev Portal, they will have to create a request. Requests can be managed from within {{site.konnect_short_name}}. This document contains instructions on how to manage application requests. If you are interested in automatically allowing application requests automatically, read our guide on handling [auto approval](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
-
-For developers:
-
+{% endnavtab %}
+{% navtab Developers %}
 * [Developer registration and account management](/konnect/dev-portal/dev-reg/) - This explains how to register for a Dev Portal as well as the registration process and different registration states, for developers who want to register for the platform. It also explains account management information.
 
 * [Manage Applications](/konnect/dev-portal/applications/dev-apps/) - Managing application registration requests.
 
 * [Generate credentials for an application](/konnect/dev-portal/applications/dev-gen-creds/) - This guide walks you through the process of generating and deleting API keys on the Dev Portal platform. 
+{% endnavtab %}
+{% endnavtabs %}
+
+
+## Contextual developer application analytics 
+
+You can view analytics for your applications from within the {{site.konnect_short_name}} Dev Portal. This helps you gain insight into your consumption of different API versions, routes, and methods.
+
+Each application has its own dashboard, which provides a high-level summary of the **Number of Requests**, **Average Error Rate**, and **p99 Latency**, and charts for the following data points: 
+
+* Requests by version
+* P99 latency by version
+* Error code distribution 
+
+All of these metrics can be viewed within a selected time frame of up to **Last 30 days**, over a period of the last 90 days.
+
+{:.note}
+> Free accounts only have access to a time frame of 24 hours.
 
 

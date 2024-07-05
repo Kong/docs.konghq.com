@@ -1,5 +1,5 @@
 ---
-title: Productize a Service
+title: Publish an API to Dev Portal
 ---
 
 Using [API Products](/konnect/api-products), you can create and manage API products to productize your services. Each API product consists of at least one API product version, and each API product version is connected to a Gateway service. Creating API products is the first step in making your APIs and their documentation available to developers. API products are geo-specific and are not shared between [geographic regions](/konnect/geo/).
@@ -108,9 +108,8 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 1. Click **Publish** for the Dev Portals you want to publish it to. Then, click **Finish**. 
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product you added to the Dev Portal. 
 1. Click **Product Versions** in the sidebar.
-1. Click the product version you created previously and either under the **Actions** button or the **Dev Portals** tab, click **Publish to Dev Portals** and select the Dev Portals you want to add the product version to.
-
-If want to require authentication on your API product version, toggle **Require Authentication** to true. Additionally, you must select which authentication strategy applications registering to your API should use. The default auth strategy set by your Dev Portal admin will be auto selected for you.
+1. Click the product version you created previously and click the **Dev Portals** tab. Click **Publish to Dev Portals** and select the Dev Portals you want to add the product version to.
+1. Optional: If you want to require authentication on your API product version, enable **Require Authentication** and select which authentication strategy applications registering to your API should use. For more information about how to configure authentication, see [Enable or Disable Application Registration for an API Product Version](/konnect/dev-portal/applications/enable-app-reg/).
 
 The API product and product versions you published should now be displayed in the Dev Portals you selected.
 {% endnavtab %}

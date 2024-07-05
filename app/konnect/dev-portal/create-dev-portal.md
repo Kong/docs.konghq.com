@@ -53,13 +53,14 @@ To create a Dev Portal, do one of the following:
     }'
     ```
     Be sure to replace the PAT as well as the following placeholders with your own values: 
-    * `name`: The name you want to display for your Dev Portal.
-    * `rbac_enabled`: You must enable this setting if you plan to allow developers to register with your Dev Portal. Portal RBAC allows you to assign developers to teams and roles that determine if they can only view or view and consume the APIs in your Dev Portal.
-    * `auto_approve_applications`: If you enable this setting, apps that developers create with your APIs will be automatically approved. If you don't enable this, you must manually approve or deny application registrations.
-    * `auto_approve_developers`: If you enable this setting, this will allow developers to automatically be approved when they sign up for your private Dev Portal. If you don't enable this, you must configure single sign-on or manually approve developers as they register. 
-    * `custom_domain`: Optional, you can configure this if you want to use a different URL for hosting your Dev Portal instead of {{site.konnect_short_name}}. A CNAME for the portal's default domain must be able to be set for the custom domain for it to be valid. After setting a valid CNAME, an SSL/TLS certificate will be automatically manged for the custom domain, and traffic will be able to use the custom domain to route to the portal's web client and API.
-    * `custom_client_domain`: Optional, you can configure this if you want to use a different URL for your Dev Portal other than the default one.
-    * `default_application_auth_strategy_id`: Enter the auth strategy ID you want the APIs in your Dev Portal to use if they require authentication. This auth strategy will be how developers authenticate when they use your APIs. You can find the app auth strategy ID by ?
+    * `name`
+    * `rbac_enabled`
+    * `auto_approve_applications`
+    * `auto_approve_developers`
+    * `custom_domain`
+    * `custom_client_domain`
+    * `default_application_auth_strategy_id`
+    Refer to the API spec for more information. 
     
     You should get a `201` response like the following:
     ```sh
@@ -103,30 +104,6 @@ To create a Dev Portal, do one of the following:
     * `name`: The name you want to display for your Dev Portal.
     * `custom_domain`: Optional, you can configure this if you want to use a different URL for hosting your Dev Portal instead of {{site.konnect_short_name}}. A CNAME for the portal's default domain must be able to be set for the custom domain for it to be valid. After setting a valid CNAME, an SSL/TLS certificate will be automatically manged for the custom domain, and traffic will be able to use the custom domain to route to the portal's web client and API.
     * `custom_client_domain`: Optional, you can configure this if you want to use a different URL for your Dev Portal other than the default one.
-
-    You should get a `201` response like the following:
-    ```sh
-    {
-        "name": "My Dev Portal",
-        "is_public": true,
-        "custom_domain": "api.example.com",
-        "custom_client_domain": "portal.example.com",
-        "id": "4959b8cc-92fb-4197-b836-3eab20b16147",
-        "created_at": "2024-06-24T16:36:01.397Z",
-        "updated_at": "2024-06-24T16:36:01.397Z",
-        "description": null,
-        "display_name": "Developer Portal",
-        "auto_approve_developers": false,
-        "auto_approve_applications": false,
-        "rbac_enabled": false,
-        "labels": {},
-        "application_count": 0,
-        "developer_count": 0,
-        "published_product_count": 0,
-        "default_domain": "e7edf6822f8a.us.portal.konghq.com",
-        "default_application_auth_strategy_id": "eae8d5ab-0378-3958-9444-ca3091541cff"
-    }
-    ```
 
 {% endnavtab %}
 {% endnavtabs %}
