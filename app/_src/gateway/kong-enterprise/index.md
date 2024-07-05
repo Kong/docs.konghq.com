@@ -61,7 +61,7 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 * [Microsoft Azure](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/azure-key-vaults/)
 {% endif_version -%}
 * [Google Cloud Platform (GCP)](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
-* [Hashicorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+* [HashiCorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
 To configure secrets management, {{site.base_gateway}} consumes your key for the backend provider, authenticates with the backend provider, and uses the backend to centrally manage and store application secrets, sensitive data, passwords, keys, certifications, tokens, and other items.
 

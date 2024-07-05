@@ -56,6 +56,8 @@ items:
             url: /key-concepts/services
           - text: Routes
             url: /key-concepts/routes
+          - text: Consumers
+            url: /key-concepts/consumers
           - text: Upstreams
             url: /key-concepts/upstreams
           - text: Plugins
@@ -214,6 +216,8 @@ items:
             url: /production/monitoring/datadog
           - text: Health Check Probes
             url: /production/monitoring/healthcheck-probes
+          - text: Expose and graph AI Metrics
+            url: /production/monitoring/ai-metrics/
       - text: Tracing
         items:
           - text: Overview
@@ -305,9 +309,9 @@ items:
                 url: /kong-enterprise/secrets-management/backends/aws-sm
               - text: Azure Key Vaults
                 url: /kong-enterprise/secrets-management/backends/azure-key-vaults
-              - text: Google Secrets Manager
+              - text: Google Cloud Secret Manager
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
-              - text: Hashicorp Vault
+              - text: HashiCorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
           - text: How-To
             items:
@@ -386,6 +390,9 @@ items:
             absolute_url: true
       - text: AI Gateway Analytics
         url: /ai-gateway/ai-analytics/
+        generate: false
+      - text: Expose and graph AI Metrics
+        url: /ai-gateway/metrics/
         generate: false
       - text: AI Gateway plugins
         url: /hub/?category=ai

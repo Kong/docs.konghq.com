@@ -12,6 +12,9 @@ Autonegotiation
 autoscale
 autoscales
 autoscaling
+backfilled
+Backfilling
+backfilling
 APIOps
 Bagdi
 Bintray
@@ -589,6 +592,7 @@ upvalues
 uri
 uris
 url
+URLRewrite
 urls
 use_daily_image
 usr

@@ -406,7 +406,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong/kong-gateway:{{page.versions.ee}}-alpine
+kong/kong-gateway:{{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -422,7 +422,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong:{{page.versions.ce}}-alpine
+kong:{{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -449,7 +449,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong/kong-gateway:{{page.versions.ee}}-alpine
+kong/kong-gateway:{{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -468,7 +468,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong:{{page.versions.ce}}-alpine
+kong:{{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs %}

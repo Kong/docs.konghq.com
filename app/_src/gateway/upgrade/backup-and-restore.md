@@ -36,8 +36,8 @@ However, decK also has its limitations:
 
 * **Performance**: decK uses the Admin API to read and write entities and might take longer than expected, especially when the number of entities is very large.
 
-  You can resolve this by increasing the number of threads by passing the flag `--parallelism` to [`deck sync`](/deck/latest/reference/deck_sync/)
-  or [`deck diff`](/deck/latest/reference/deck_diff/), or use decK’s
+  You can resolve this by increasing the number of threads by passing the flag `--parallelism` to [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/)
+  or [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/), or use decK’s
   [distributed configuration](/deck/latest/guides/distributed-configuration/) feature.
 
 * **Entities managed by decK**: decK does not manage Enterprise-only entities, like RBAC roles, credentials, keyring, licence, etc. Configure these security related entities separately using Admin API or Kong Manager.
@@ -74,25 +74,25 @@ For a database-backed deployment, we recommend using decK as a secondary backup 
 1. To back up data with decK, first make sure it successfully connects to {{site.base_gateway}}:
 
     ```sh
-    deck ping
+    deck gateway ping
     ```
 
     If you have RBAC enabled, use the CLI option `--headers` to
     specify the admin token. You can specify this token with any decK command:
 
     ```sh
-    deck ping --headers “Kong-Admin-Token: <password>”
+    deck gateway ping --headers “Kong-Admin-Token: <password>”
     ```
 
 2. Use decK to dump the configuration and store the resulting file in a secure location.
 You can back up a particular workspace or all workspaces at once:
 
     ```sh
-    deck dump --all-workspaces -o /path/to/kong_backup.yaml
+    deck gateway dump --all-workspaces -o /path/to/kong_backup.yaml
     ```
     or
     ```sh
-    deck dump --workspace it_dept -o /path/to/kong_backup.yaml
+    deck gateway dump --workspace it_dept -o /path/to/kong_backup.yaml
     ```
 
     Store the resulting file or files in a safe location.
@@ -101,7 +101,7 @@ You can back up a particular workspace or all workspaces at once:
 {% endnavtab %}
 {% navtab Traditional or hybrid mode - kong config CLI %}
 
-As a final failsafe for a database-backed deployment, you can also back up the database using the kong config CLI.
+As a final fail-safe for a database-backed deployment, you can also back up the database using the `kong config` CLI.
 
 {:.important}
 > Never use this method as your primary backup, as it might not accurately represent the final state of your database.
@@ -168,23 +168,23 @@ In traditional or hybrid mode, use decK to restore your configuration from a bac
 1. Check that {{site.base_gateway}} is online:
 
     ```sh
-    deck ping
+    deck gateway ping
     ```
 2. Validate the declarative config:
 
     ```sh
-    deck validate [--online] -s /path/to/kong_backup.yaml
+    deck gateway validate /path/to/kong_backup.yaml [--online] 
     ```
 
 3. Once verified, restore a particular workspace or all workspaces at once:
 
     ```sh
-    deck sync --all-workspaces -s /path/to/kong_backup.yaml
+    deck gateway sync /path/to/kong_backup.yaml --all-workspaces 
     ```
     or
 
     ```sh
-    deck sync --workspace it_dept -s /path/to/kong_backup.yaml
+    deck gateway sync /path/to/kong_backup.yaml --workspace it_dept
     ```
 
 {% endnavtab %}

@@ -172,7 +172,7 @@ contains more information about available backends and configuration details.
 * See the following documentation for supported vault backends that  {{site.base_gateway}} can integrate with:
   * [Environment Variables Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/env/)
   * [AWS Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
-  * [Hashicorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+  * [HashiCorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
   * [Google Secrets Management](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * See [Starting Kong Securely](/gateway/{{page.release}}/production/access-control/start-securely/) for more
 security practices with {{site.base_gateway}}

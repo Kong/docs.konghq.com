@@ -11,6 +11,64 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.7.1.1
+**Release Date** 2024/06/22
+
+### Fixes
+
+* Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
+
+## 3.7.1.0
+**Release Date** 06/18/2024
+
+### Known issues
+* There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
+To avoid this issue, install 3.7.1.1 instead of this patch.
+
+### Features
+#### Plugins
+
+* [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  * Added the new configuration field `content_type_parameter_validation` to determine whether to enable Content-Type parameter validation.
+
+### Fixes
+#### Core
+
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+* Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
+* Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
+* Fixed an issue where the priority field could be set in a traditional mode route when `router_flavor` was configured as `expressions`. 
+
+#### Plugins
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Resolved an issue where the object constructor would set data on the class instead of the instance.
+
+* [**Basic Authentication**](/hub/kong-inc/basic-auth/) (`basic-auth`)
+  * Fixed an issue where the `realm` field wasn't recognized for Kong Gateway versions before 3.6.
+
+* [**Key Authentication**](/hub/kong-inc/key-auth/) (`key-auth`)
+  * Fixed an issue where the `realm` field wasn't recognized for Kong Gateway versions before 3.7.
+
+* [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)
+  * Fixed the logic for the window adjustment when using a sliding window.
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Timer spikes no longer occur when there is network instability with the central data store.
+
+* [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  * Fixed an issue where the plugin could fail to handle requests when `param_schema` was `$ref schema`.
+
+### Dependencies
+
+* Bumped `lua-resty-events` to 0.2.1.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-jsonschema-rs` to 0.1.5.
+
 ## 3.7.0.0
 **Release Date** 05/28/2024
 
@@ -19,10 +77,10 @@ For product versions that have reached the end of sunset support, see the [chang
 * [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`): To support the new messages API of Anthropic,
 the upstream path of the `Anthropic` for `llm/v1/chat` route type has changed from `/v1/complete` to `/v1/messages`.
  [#12699](https://github.com/Kong/kong/issues/12699)
-* **Hashicorp Vault**: 
+* **HashiCorp Vault**: 
   * Starting from this version, a string entirely made of spaces can't be specified as the `role_id` or `secret_id`
- value in the Hashicorp Vault entity when using the AppRole authentication method.
-  * Starting from this version, you must specify at least one of `secret_id` or `secret_id_file` in the Hashicorp Vault 
+ value in the HashiCorp Vault entity when using the AppRole authentication method.
+  * Starting from this version, you must specify at least one of `secret_id` or `secret_id_file` in the HashiCorp Vault 
   entity when using the AppRole authentication method.
 
 * The **Granular Tracing** feature has been deprecated and removed.
@@ -211,7 +269,7 @@ was not explicitly passed in CLI arguments.
 * Adjusted the clustering compatibility check related to AWS Secrets Manager
 to use `AK-SK` environment variables to grant IAM role permissions.
 * Adjusted a clustering compatibility check related to HCV Kubernetes authentication paths.
-* Adjusted a clustering compatibility check related to Hashicorp Vault Approle authentication.
+* Adjusted a clustering compatibility check related to HashiCorp Vault Approle authentication.
 * Fixed an issue where event hooks were prematurely validated in hybrid mode. 
 The fix delays the validation of event hooks to the point where event hooks are emitted.
 
@@ -435,6 +493,86 @@ when the `http_response_header_for_traceid` option was enabled.
 * Bumped `libxslt` to 1.1.39
 * Bumped `msgpack-c` to 6.0.1
 * Removed the `lua-resty-openssl-aux-module` dependency
+
+## 3.6.1.6
+**Release Date** 2024/06/22
+
+### Fixes
+
+* Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
+
+## 3.6.1.5
+**Release Date** 06/18/2024
+
+### Known issues
+
+* There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
+To avoid this issue, install 3.6.1.6 instead of this patch.
+
+### Features
+#### Admin API
+
+_Backported from 3.7.0.0_
+* Added LHS bracket filtering to search fields.
+* **Audit logs:**
+  * Added `request_timestamp` to `audit_objects`.
+  * Added before and after aliases for LHS Brackets filters.
+  * `audit_requests` and `audit_objects` can now be filtered by `request_timestamp`.
+  * Changed the default ordering of `audit_requests` to be sorted by `request_timestamp` in descending order.
+
+#### Plugins
+* [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  * Added the new configuration field `content_type_parameter_validation` to determine whether to enable Content-Type parameter validation.
+
+### Fixes
+#### Admin API
+
+_Backported from 3.7.0.0_
+* The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
+on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
+
+#### CLI
+
+_Backported from 3.7.0.0_
+* Fixed an issue where the `pg_timeout` was overridden to `60s` even if `--db-timeout`
+was not explicitly passed in CLI arguments.
+
+#### Core
+
+* Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` 
+under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
+
+_Backported from 3.7.1.0_
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+* Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
+
+#### Plugins
+
+* [**Basic Authentication**](/hub/kong-inc/basic-auth/) (`basic-auth`)
+  * Fixed an issue where the `realm` field wasn't recognized for Kong Gateway versions before 3.6.
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
+
+* [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
+  * Fixed an issue where the plugin could fail to handle requests when `param_schema` was `$ref schema`.
+
+_Backported from 3.7.1.0_
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Timer spikes no longer occur when there is network instability with the central data store.
+
+_Backported from 3.7.0.0_
+* [**ACME**](/hub/kong-inc/acme/) (`acme`), [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`), and 
+[**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
+  * Fixed migration of Redis configuration.
+
+### Dependencies
+
+* Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
+* Bumped `lua-resty-events` to 0.2.1.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Improved the robustness of `lua-cjson` when handling unexpected input.
 
 ## 3.6.1.4
 **Release Date** 05/14/2024
@@ -1074,8 +1212,77 @@ These logs can't be suppressed due to a limitation of OpenResty. We chose to rem
 If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
 * If you are using `ngx.var.http_*` in custom code in order to access HTTP headers, the behavior of that variable changed slightly when the same header is used multiple times in a single request. Previously it would return the first value only, now it returns all the values, separated by commas. Kong's PDK header getters and setters work as before.
 
+## 3.5.0.6
+**Release Date** 2024/06/22
+
+### Fixes
+
+* Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
+
+## 3.5.0.5
+**Release Date** 06/18/2024
+
+### Known issues
+
+* There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
+To avoid this issue, install 3.5.0.6 instead of this patch.
+
+### Features
+#### Admin API
+
+_Backported from 3.7.0.0_
+* Added LHS bracket filtering to search fields.
+* **Audit logs:**
+  * Added `request_timestamp` to `audit_objects`.
+  * Added before and after aliases for LHS Brackets filters.
+  * `audit_requests` and `audit_objects` can now be filtered by `request_timestamp`.
+
+#### Plugin
+
+_Backported from 3.6.1.4_
+* [**Portal Application Registration**](/hub/kong-inc/application-registration/) (`application-registration`)
+  * Added support for accessing the service using consumer credential authentication. 
+  To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
+
+### Fixes
+#### Core
+
+_Backported from 3.7.1.0_
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain 
+and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+* Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly 
+as a Host header in requests to the upstream during connection retries.
+* Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` 
+under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
+
+#### Plugins
+
+_Backported from 3.7.1.0_
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Timer spikes no longer occur when there is network instability with the central data store.
+
+#### Admin API
+
+_Backported from 3.7.0.0_
+* The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
+on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
+
+_Backported from 3.6.0.0_
+* Fixed an issue with the workspace listing API, which showed workspaces that the user didn't have any roles in.
+The API now only shows workspaces that a user has access to.
+
+### Dependencies
+
+* Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
+* Bumped `lua-resty-events` to 0.2.1.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+
 ## 3.5.0.4 
-**Release Date** 2024/05/20
+**Release Date** 05/20/2024
 
 ### Breaking Changes
 
@@ -1692,6 +1899,32 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.11
+**Release Date** 2024/06/22
+
+### Fixes
+
+* Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
+
+## 3.4.3.10
+**Release Date** 2024/06/18
+
+### Known issues
+
+* There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
+To avoid this issue, install 3.4.3.11 instead of this patch.
+
+### Fixes
+#### Admin API
+
+_Backported from 3.7.0.0_
+* The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
+on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
+
+### Dependencies
+
+* Bumped `lua-resty-events` to 0.2.1.
+
 
 ## 3.4.3.9
 **Release Date** 2024/06/08
@@ -1717,15 +1950,18 @@ The API now only shows workspaces that the user has access to.
 #### Core
 
 * Fixed an issue where `cluster_cert` or `cluster_ca_cert` was inserted into `lua_ssl_trusted_certificate` before being base64-decoded.
-* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
-It now ignores records when the RR type differs from that of the query when parsing answers.
 * **Vitals**: Fixed an issue where each data plane connecting to the control plane would trigger the creation of a redundant 
 table rotater timer on the control plane.
+
+_Backported from 3.7.1.0_
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
 * Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
 * Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
 
 #### Plugins
 
+_Backported from 3.7.1.0_
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
@@ -5070,6 +5306,51 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+## 2.8.4.11
+**Release Date** 2024/06/22
+
+### Fixes
+
+* Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
+
+## 2.8.4.10
+**Release Date** 2024/06/18
+
+### Known issues
+
+* There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
+To avoid this issue, install 2.8.4.11 instead of this patch.
+
+### Features
+
+* Added a Docker image for RHEL 8.
+
+### Fixes
+#### Core
+
+_Backported from 3.7.1.0_
+* **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
+It now ignores records when the RR type differs from that of the query when parsing answers.
+
+_Backported from 3.4.3.9_
+* **Vitals**: Fixed an issue where each data plane connecting to the control plane would trigger the creation of a redundant 
+table rotater timer on the control plane.
+
+#### Plugins
+
+_Backported from 3.7.0.0_
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Refactored `kong/tools/public/rate-limiting`, adding the new interface `new_instance` to provide isolation between different plugins. 
+    The original interfaces remain unchanged for backward compatibility. 
+  
+    If you are using custom Rate Limiting plugins based on this library, update the initialization code to the new format. For example: 
+    `local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("custom-plugin-name")`.
+    The old interface will be removed in the upcoming major release.
+
+### Dependencies
+
+* Improved the robustness of `lua-cjson` when handling unexpected input.
 
 ## 2.8.4.9
 **Release Date** 2024/04/19

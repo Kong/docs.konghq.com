@@ -19,7 +19,8 @@ All log entries include the following attributes:
       "usage": {
         "prompt_token": 28,
         "total_tokens": 48,
-        "completion_token": 20
+        "completion_token": 20,
+        "cost": 0.0038
       },
       "meta": {
         "request_model": "command",
@@ -33,7 +34,8 @@ All log entries include the following attributes:
       "usage": {
         "prompt_token": 89,
         "total_tokens": 145,
-        "completion_token": 56
+        "completion_token": 56,
+        "cost": 0.0012
       },
       "meta": {
         "request_model": "gpt-35-turbo",
@@ -57,6 +59,7 @@ Property | Description
 `ai.[$plugin_name].usage.prompt_token` | Number of tokens used for prompting.
 `ai.[$plugin_name].usage.completion_token` | Number of tokens used for completion.
 `ai.[$plugin_name].usage.total_tokens` | Total number of tokens used.
+`ai.[$plugin_name].usage.cost` | The total cost of the request (input and output cost).
 `ai.[$plugin_name].meta.request_model` | Model used for the AI request.
 `ai.[$plugin_name].meta.provider_name` | Name of the AI service provider.
 `ai.[$plugin_name].meta.response_model` | Model used for the AI response.

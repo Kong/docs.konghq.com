@@ -2,7 +2,7 @@
 
 module OasDefinition
   class ErrorPage < ::Jekyll::Page
-    def initialize(site:, data:) # rubocop:disable Lint/MissingSuper
+    def initialize(site:, data:, errors:) # rubocop:disable Lint/MissingSuper
       # Prevent modification of source data that's used in OasDefinition::Page
       data = data.clone
 
@@ -17,8 +17,8 @@ module OasDefinition
 
       # Error specific overrides
       override_data_for_error!
-      spec = load_api_file
-      @content = generate_error_table(spec)
+
+      @content = generate_error_table(errors)
     end
 
     private
@@ -27,11 +27,10 @@ module OasDefinition
       @dir = "#{data['dir']}errors/"
       @data['layout'] = 'docs-v2'
       @data['permalink'] = "#{@data['permalink']}errors/"
+      @data['no_version'] = true
     end
 
-    def generate_error_table(spec) # rubocop:disable Metrics/MethodLength
-      raise "No x-errors key found for #{api_spec_path}" unless spec['x-errors']
-
+    def generate_error_table(errors)
       # heredoc string return
       <<~HEREDOC
         <div><a class="no-link-icon" href="../">&laquo; Back to API</a></div>
@@ -45,7 +44,7 @@ module OasDefinition
             </tr>
           </thead>
           <tbody>
-            #{spec['x-errors'].map { |k, v| generate_error_row(k, v) }.join("\n")}
+            #{errors.map { |k, v| generate_error_row(k, v) }.join("\n")}
           </tbody>
         </table>
       HEREDOC
@@ -67,17 +66,6 @@ module OasDefinition
       return '' unless link
 
       "<a href=\"#{link['url']}\">#{link['text']}</a>"
-    end
-
-    def api_spec_path
-      spec_file = CGI.unescape(@data['insomnia_link']).split('&uri=')[1].gsub(
-        'https://raw.githubusercontent.com/Kong/docs.konghq.com/main/', ''
-      )
-      File.join(@base, '..', spec_file)
-    end
-
-    def load_api_file
-      YAML.load_file(api_spec_path)
     end
   end
 end

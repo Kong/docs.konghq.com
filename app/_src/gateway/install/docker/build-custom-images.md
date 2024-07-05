@@ -5,7 +5,7 @@ content_type: how-to
 
 Kong is distributed as prebuilt {% if_version lte:3.3.x %}`apk`, {% endif_version %}`deb` and `rpm` packages, in addition to official Docker images hosted on [DockerHub](https://hub.docker.com/r/kong)
 
-Kong builds and verifies [Debian](#dockerhub-debian-link-here) and [RHEL](#dockerhub-rhel-link-here) images for use in production. {% if_version lte:3.3.x %}[Alpine](#dockerhub-alpine-link-here) images are provided for **development purposes only** as they contain development tooling such as `git` for plugin development purposes.{%- endif_version %}
+Kong builds and verifies [Debian](https://hub.docker.com/r/kong/kong-gateway/tags?page=&page_size=&ordering=&name={{ page.release.tag }}-debian) and [RHEL](https://hub.docker.com/r/kong/kong-gateway/tags?page=&page_size=&ordering=&name={{ page.release.tag }}-rhel) images for use in production. {% if_version lte:3.3.x %}[Alpine](https://hub.docker.com/r/kong/kong-gateway/tags?page=&page_size=&ordering=&name={{ page.release.tag }}-alpine) images are provided for **development purposes only** as they contain development tooling such as `git` for plugin development purposes.{%- endif_version %}
 
 The Debian and RHEL images are built with minimal dependencies (as of {{ site.base_gateway }} 3.0) and run through automated security scanners before being published. Any vulnerabilities detected in supported images will be addressed in the next available patch release.
 

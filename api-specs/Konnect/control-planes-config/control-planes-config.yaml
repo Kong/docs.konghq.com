@@ -244,9 +244,6 @@ paths:
         config hash can be used to verify if the config hash of a data plane
         node is up to date with the control plane. The config hash will be the
         same if they are in sync.
-      parameters:
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_number'
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/dp-client-certificates:
@@ -266,8 +263,8 @@ paths:
         dataplanes configured with the certificate and corresponding private key
         to establish connection with this control plane.
       parameters:
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_number'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
     post:
       summary: Pin New DP Client Certificate
       description: >-
@@ -327,8 +324,8 @@ paths:
         control plane. A data plane node record contains metadata information
         for the data plane running Kong Gateway.
       parameters:
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_number'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/nodes/eol:
@@ -347,8 +344,8 @@ paths:
         version, and corresponding resolution message to upgrade to the closest
         Long Term Support version.
       parameters:
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_number'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/nodes/{nodeId}:
@@ -407,7 +404,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageAfter'
-        - $ref: '#/components/parameters/PageBefore'
       tags:
         - Custom Plugin Schemas
     post:
@@ -978,6 +974,37 @@ paths:
         '401':
           $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a Consumer Group
+      tags:
+        - Consumer Groups
+  /control-planes/{controlPlaneId}/core-entities/consumer_groups/{ConsumerGroupId}/consumers:
+    parameters:
+      - $ref: '#/components/parameters/ConsumerGroupId'
+      - $ref: '#/components/parameters/ControlPlaneId'
+    post:
+      description: Add a consumer to a consumer group
+      operationId: add-consumer-to-group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                consumer:
+                  example: bob
+                  type: string
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                properties:
+                  consumer:
+                    $ref: '#/components/schemas/Consumer'
+                  consumer_group:
+                    $ref: '#/components/schemas/ConsumerGroup'
+                type: object
+          description: Consumer Added
+      summary: Add consumer to consumer group
       tags:
         - Consumer Groups
   /control-planes/{controlPlaneId}/core-entities/consumers:
@@ -2261,6 +2288,34 @@ paths:
       summary: Upsert a Plugin associated with a Route
       tags:
         - Plugins
+  /control-planes/{controlPlaneId}/core-entities/schemas/plugins/{pluginName}:
+    get:
+      description: Get the schema for a plugin
+      operationId: fetch-plugin-schema
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  fields:
+                    items:
+                      additionalProperties: true
+                      type: object
+                    type: array
+                type: object
+          description: The schema for the plugin
+      summary: Fetch plugin schema
+      tags:
+        - Plugins
+    parameters:
+      - description: The name of the plugin
+        in: path
+        name: pluginName
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ControlPlaneId'
   /control-planes/{controlPlaneId}/core-entities/services:
     get:
       description: List all Services
@@ -3052,20 +3107,6 @@ components:
       description: >-
         The UUID of your control plane. This variable is available in the
         Konnect manager
-    page_size:
-      name: page_size
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: The number of items to include in a page.
-    page_number:
-      name: page_number
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: The specific page number in the collection results.
     DataPlaneCertificateId:
       name: certificateId
       in: path
@@ -3292,17 +3333,6 @@ components:
       schema:
         type: string
         example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
-    PageBefore:
-      name: page[before]
-      description: >-
-        Request the next page of data, starting with the item before this
-        parameter.
-      required: false
-      in: query
-      allowEmptyValue: true
-      schema:
-        type: string
-        example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
   schemas:
     DataPlaneClientCertificate:
       type: object
@@ -3405,6 +3435,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     Certificate:
       properties:
@@ -3460,6 +3494,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     Consumer:
       properties:
@@ -3483,6 +3521,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
         username:
           description: >-
             The unique username of the Consumer. You must send either this field
@@ -3504,6 +3546,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     GatewayUnauthorizedError:
       properties:
@@ -3570,6 +3616,11 @@ components:
             - RS512
             - ES256
             - ES384
+            - ES512
+            - PS256
+            - PS384
+            - PS512
+            - EdDSA
           type: string
         created_at:
           description: Unix epoch when the resource was created.
@@ -3704,6 +3755,13 @@ components:
                   type: string
               type: object
               x-foreign: true
+            consumer_group:
+              additionalProperties: false
+              properties:
+                id:
+                  type: string
+              type: object
+              x-foreign: true
             route:
               additionalProperties: false
               description: >-
@@ -3731,6 +3789,7 @@ components:
     PluginWithoutParents:
       properties:
         config:
+          additionalProperties: true
           description: >-
             The configuration properties for the Plugin which can be found on
             the plugins documentation page in the [Kong
@@ -3746,6 +3805,8 @@ components:
           type: boolean
         id:
           readOnly: true
+          type: string
+        instance_name:
           type: string
         name:
           description: >-
@@ -3787,6 +3848,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     Route:
       allOf:
@@ -4010,6 +4075,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     Service:
       properties:
@@ -4162,6 +4231,10 @@ components:
             resolves to an SRV record, the `port` value will be overridden by
             the value from the DNS record.
           type: string
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: number
         weight:
           default: 100
           description: >-
@@ -4179,6 +4252,7 @@ components:
             - consistent-hashing
             - least-connections
             - round-robin
+            - latency
           type: string
         client_certificate:
           additionalProperties: false
@@ -4436,6 +4510,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
         use_srv_name:
           default: false
           description: >-
@@ -4838,7 +4916,7 @@ components:
               page:
                 type: object
                 properties:
-                  total_count:
+                  total:
                     type: integer
     list-nodes:
       description: Example response
@@ -4876,12 +4954,10 @@ components:
               page:
                 type: object
                 properties:
-                  total_count:
+                  total:
                     type: integer
-                  next_cursor:
+                  next:
                     type: string
-                  has_next_page:
-                    type: boolean
     list-nodes-eol:
       description: Example response
       content:
@@ -4903,7 +4979,7 @@ components:
               page:
                 type: object
                 properties:
-                  total_count:
+                  total:
                     type: integer
     get-node:
       description: Example response
@@ -4975,7 +5051,7 @@ components:
               page:
                 type: object
                 properties:
-                  total_count:
+                  total:
                     type: integer
     plugin-schemas:
       description: A response for a single custom plugin schema.

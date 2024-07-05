@@ -232,7 +232,7 @@ components:
       schema:
         type: string
       description: The unique identifier of the filter chain to retrieve.
-    BeforeAuditLogFilter:
+    beforeAuditLogFilter:
       name: before_audit_log_filter
       in: query
       required: false
@@ -241,7 +241,7 @@ components:
       description: |
         Before filter could be used to request audit log data that was recorded before certain time (exclusive).
         It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
-    AfterAuditLogFilter:
+    afterAuditLogFilter:
       name: after_audit_log_filter
       in: query
       required: false
@@ -1063,7 +1063,7 @@ components:
           type: boolean
       type: object
     Vault:
-      description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
+      description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, HashiCorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
       example:
         config:
           prefix: vaults.config.resurrect_ttl
@@ -14611,8 +14611,8 @@ paths:
     get:
       summary: List request audit logs
       parameters:
-        - $ref: '#/components/parameters/befpre_audit_log_filter'
-        - $ref: '#/components/parameters/after_audit_log_filter'
+        - $ref: '#/components/parameters/beforeAuditLogFilter'
+        - $ref: '#/components/parameters/afterAuditLogFilter'
       tags:
         - audit-logs
       responses:
@@ -14629,8 +14629,8 @@ paths:
     get:
       summary: List database audit logs
       parameters:
-        - $ref: '#/components/parameters/befpre_audit_log_filter'
-        - $ref: '#/components/parameters/after_audit_log_filter'
+        - $ref: '#/components/parameters/beforeAuditLogFilter'
+        - $ref: '#/components/parameters/afterAuditLogFilter'
       responses:
         '200':
           $ref: '#/components/responses/database-audit-log-response'
@@ -15119,6 +15119,187 @@ paths:
                 fips_disabled:
                   value: {"active": false, "version": "unknown"}
                   summary: FIPS mode is disabled or not supported. This may be the default state or result from a license configuration that does not enable FIPS mode.
+  '/workspace_/groups':
+      get:
+          operationId: list-groups
+          responses:
+              "200":
+                  content:
+                      application/json:
+                          schema:
+                              items:
+                                  properties:
+                                      created_at:
+                                          format: date-time
+                                          type: string
+                                      id:
+                                          type: string
+                                      name:
+                                          type: string
+                                  type: object
+                              type: array
+                  description: Successfully retrieved the list of groups
+          summary: Retrieve a list of all groups
+          tags:
+              - Workspaces
+      post:
+          operationId: create-group
+          requestBody:
+              content:
+                  application/json:
+                      schema:
+                          properties:
+                              name:
+                                  type: string
+                          required:
+                              - name
+                          type: object
+          responses:
+              "201":
+                  content:
+                      application/json:
+                          schema:
+                              properties:
+                                  created_at:
+                                      format: date-time
+                                      type: string
+                                  id:
+                                      type: string
+                                  name:
+                                      type: string
+                              type: object
+                  description: Successfully created the group
+          summary: Create a new group
+          tags:
+              - Workspaces
+  '/workspace_/groups/{groups}':
+      parameters:
+          - in: path
+            name: groups
+            required: true
+            schema:
+              type: string
+      patch:
+          operationId: update-group
+          requestBody:
+              content:
+                  application/json:
+                      schema:
+                          properties:
+                              name:
+                                  type: string
+                          type: object
+          responses:
+              "200":
+                  description: Successfully updated the group
+          summary: Update details of a specific group
+          tags:
+              - Workspaces
+  '/workspace_/groups/{groups}/roles':
+      delete:
+          operationId: remove-role-from-group
+          parameters:
+              - in: query
+                name: rbac_role_id
+                required: true
+                schema:
+                  type: string
+              - in: query
+                name: workspace_id
+                required: true
+                schema:
+                  type: string
+          responses:
+              "204":
+                  description: Successfully removed the role association
+          summary: Remove a role association from a group
+          tags:
+              - Workspaces
+      get:
+          operationId: list-group-roles
+          responses:
+              "200":
+                  content:
+                      application/json:
+                          schema:
+                              items:
+                                  properties:
+                                      group:
+                                          properties:
+                                              id:
+                                                  type: string
+                                              name:
+                                                  type: string
+                                          type: object
+                                      rbac_role:
+                                          properties:
+                                              id:
+                                                  type: string
+                                              name:
+                                                  type: string
+                                          type: object
+                                      workspace:
+                                          properties:
+                                              id:
+                                                  type: string
+                                          type: object
+                                  type: object
+                              type: array
+                  description: Successfully retrieved the roles
+          summary: Retrieve roles associated with a specific group
+          tags:
+              - Workspaces
+      parameters:
+          - in: path
+            name: groups
+            required: true
+            schema:
+              type: string
+      post:
+          operationId: add-role-to-group
+          requestBody:
+              content:
+                  application/json:
+                      schema:
+                          properties:
+                              rbac_role_id:
+                                  type: string
+                              workspace_id:
+                                  type: string
+                          required:
+                              - rbac_role_id
+                              - workspace_id
+                          type: object
+          responses:
+              "201":
+                  content:
+                      application/json:
+                          schema:
+                              properties:
+                                  group:
+                                      properties:
+                                          id:
+                                              type: string
+                                          name:
+                                              type: string
+                                      type: object
+                                  rbac_role:
+                                      properties:
+                                          id:
+                                              type: string
+                                          name:
+                                              type: string
+                                      type: object
+                                  workspace:
+                                      properties:
+                                          id:
+                                              type: string
+                                      type: object
+                              type: object
+                  description: Successfully associated the role with the group
+          summary: Associate a role with a group
+          tags:
+              - Workspaces
 
 servers:
   - description: Default Admin API URL

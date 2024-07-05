@@ -68,7 +68,10 @@ The plugin supports three strategies.
 | --------- | ---- | ------ |
 | `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes.
 | `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
-| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
+| `redis`   | Accurate<sup>1</sup>, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
+
+{:.note .no-icon}
+> **\[1\]**: Only when `sync_rate` option is set to `-1` (synchronous behavior). When using Redis, it's possible to set the sync rate to a positive value, which can lead to some inaccuracies. See the [configuration reference](/hub/kong-inc/rate-limiting/configuration/#config-sync_rate) for more details.
 
 Two common use cases are:
 
