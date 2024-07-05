@@ -19,7 +19,7 @@ Configure an [authentication strategy](/konnect/dev-portal/applications/enable-a
 1. In the Create Dev Portal dialog, configure your Dev Portal settings:
     1. Enter general information for your Dev Portal, including a name and optional description.
     1. Select if you want the Dev Portal to be private or public. Anyone can see APIs published to a public portal while only registered and logged in users can see APIs in a private portal. Developers can only get credentials and start consuming APIs through self service in a private Dev Portal.
-    1. Private Dev Portal only: Configure the following settings:
+    1. **Private Dev Portal only**: Configure the following settings:
         * **Auto Approve Developers**: If you enable this setting, this will allow developers to automatically be approved when they sign up for your private Dev Portal. If you don't enable this, you must configure single sign-on or manually approve developers as they register. 
         * **Auto Approve Applications**: If you enable this setting, apps that developers create with your APIs will be automatically approved. If you don't enable this, you must manually approve or deny application registrations.
         * **Portal RBAC**: Portal RBAC allows you to assign developers to teams and roles that determine if they can only view or view and consume the APIs in your Dev Portal.
@@ -62,29 +62,8 @@ To create a Dev Portal, do one of the following:
     * `default_application_auth_strategy_id`
     Refer to the API spec for more information. 
     
-    You should get a `201` response like the following:
-    ```sh
-    {
-        "name": "My Dev Portal",
-        "id": "94e5fba1-ac2f-4f07-9fd7-9e2a91ad2c27",
-        "created_at": "2024-06-21T20:13:21.462Z",
-        "updated_at": "2024-06-21T20:13:21.462Z",
-        "custom_domain": "api.example.com",
-        "custom_client_domain": "portal.example.com",
-        "description": null,
-        "display_name": "Developer Portal",
-        "is_public": false,
-        "auto_approve_developers": true,
-        "auto_approve_applications": true,
-        "rbac_enabled": true,
-        "labels": {},
-        "application_count": 0,
-        "developer_count": 0,
-        "published_product_count": 0,
-        "default_domain": "5h0347374cb8.us.portal.konghq.com",
-        "default_application_auth_strategy_id": "eae9r3ab-0378-4558-9444-ca3091541cff"
-    }
-    ```
+    You should receive a `201` response containing information about your Dev Portal.
+
 
 
 * Create a public Dev Portal using the `/portals` endpoint:
@@ -100,8 +79,7 @@ To create a Dev Portal, do one of the following:
     "custom_client_domain": "portal.example.com"
     }'
     ```
-    Be sure to replace the PAT as well as the following placeholders with your own values:
-    * `name`: The name you want to display for your Dev Portal.
+    Be sure to replace the PAT token and placeholder values. You can use the following two values to further configure the Dev Portal: 
     * `custom_domain`: Optional, you can configure this if you want to use a different URL for hosting your Dev Portal instead of {{site.konnect_short_name}}. A CNAME for the portal's default domain must be able to be set for the custom domain for it to be valid. After setting a valid CNAME, an SSL/TLS certificate will be automatically manged for the custom domain, and traffic will be able to use the custom domain to route to the portal's web client and API.
     * `custom_client_domain`: Optional, you can configure this if you want to use a different URL for your Dev Portal other than the default one.
 
@@ -117,7 +95,7 @@ The Dev Portal URL looks like this:
 
 Your Dev Portal URL may vary. Keep the following in mind:
 
-* The Dev Portal URL varies based on geo.
+* The Dev Portal URL varies based on geographic location.
 * If you're hosting your Dev Portal through Netlify, the Dev Portal URL is the one you specify in the **Dev Portal** sidebar under **Settings** > **Portal Domain** > **Custom Self-Hosted UI Domain**.
 
 ## Next steps

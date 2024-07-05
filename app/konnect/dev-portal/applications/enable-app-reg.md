@@ -43,9 +43,9 @@ For non-`default` control planes, app registration is supported using the `konne
 
 ## Prerequisites
 
-- [An API product that is versioned and published to a {{site.konnect_short_name}} Dev Portal](/konnect/dev-portal/publish-service) so that it appears in the catalog.
+- [An API product that is versioned and published to a {{site.konnect_short_name}} Dev Portal](/konnect/dev-portal/publish-service).
 
-- If you are using [OpenID Connect](#oidc-flow) for your authorization, set up your application, claims, and scopes in your OpenID identity provider. Refer to your IdP/OP provider's documentation for instructions.
+- If you are using [OpenID Connect](#oidc-flow), set up your application, claims, and scopes in your OpenID identity provider. 
 
 {:.note}
 > **Note:** Generally, it's only recommended for an API product version to be linked to a Gateway service. However, for app registration to work, the link between API product version and a Gateway service is required. 

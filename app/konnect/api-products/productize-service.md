@@ -66,7 +66,7 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 {% endnavtab %}
 {% navtab API%}
 
-1. To create a new API product version, execute a POST request to the  [`/product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint, replace `{id}` with your API product's actual ID:
+1. To create a new API product version, execute a `POST` request to the  [`/product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint, replace `{id}` with your API product's actual ID:
 
     ```sh
     curl -X 'POST' \
@@ -104,7 +104,7 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 {% navtab Konnect UI %}
 
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product that you created in the previous step.
-1. Click **Add** on the API Product Overview page and select **Publish to Dev Portals** from the menu. You will see a modal prompting you to select which Dev Portals you want to publish your API product to. 
+1. Click **Add** on the API Product Overview page and select **Publish to Dev Portals**. You will see a modal prompting you to select which Dev Portals you want to publish your API product to. 
 1. Click **Publish** for the Dev Portals you want to publish it to. Then, click **Finish**. 
 1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product you added to the Dev Portal. 
 1. Click **Product Versions** in the sidebar.
@@ -130,7 +130,7 @@ The API product and product versions you published should now be displayed in th
     ```
     Be sure to replace `{id}` and `portal_ids` with your own values.
 
-1. You can publish an API product version by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{dd}` with the API product ID returned in the previous step. 
+1. You can publish an API product version by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{id}` with the API product ID returned in the previous step. 
 
     ```sh
     curl -X 'POST' \
@@ -148,7 +148,7 @@ The API product and product versions you published should now be displayed in th
 
 ## Summary
 
-In this section, you created an API product and created an API product version with a linked Gateway service. You then published both the API product and API product version to one or more Dev Portals. 
+In this section, you created an API product and an API product version with a linked Gateway service. You then published both the API product and API product version to one or more Dev Portals. 
 
 ## More information
 
