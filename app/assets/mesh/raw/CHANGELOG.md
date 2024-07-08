@@ -9,6 +9,32 @@
 * chore(deps): use latest Kong/kong-mesh-gui [#6206](https://github.com/Kong/kong-mesh/pull/6206) @kong-mesh
 
 
+## 2.5.8
+> Released on 2024/07/05
+
+* chore(deps): bump kumahq/kuma from 2a7e5013eb2c to e39c54306 [#6293](https://github.com/Kong/kong-mesh/pull/6293) [#5731](https://github.com/Kong/kong-mesh/pull/5731) [#5779](https://github.com/Kong/kong-mesh/pull/5779) [#5830](https://github.com/Kong/kong-mesh/pull/5830) [#5839](https://github.com/Kong/kong-mesh/pull/5839) [#5871](https://github.com/Kong/kong-mesh/pull/5871) [#5928](https://github.com/Kong/kong-mesh/pull/5928) [#5999](https://github.com/Kong/kong-mesh/pull/5999) [#6062](https://github.com/Kong/kong-mesh/pull/6062) [#6092](https://github.com/Kong/kong-mesh/pull/6092) [#6112](https://github.com/Kong/kong-mesh/pull/6112) [#6216](https://github.com/Kong/kong-mesh/pull/6216) [#6223](https://github.com/Kong/kong-mesh/pull/6223) [#6231](https://github.com/Kong/kong-mesh/pull/6231) [#6243](https://github.com/Kong/kong-mesh/pull/6243) @kong-mesh
+* chore(deps): security update [#5959](https://github.com/Kong/kong-mesh/pull/5959) [#6079](https://github.com/Kong/kong-mesh/pull/6079) [#6194](https://github.com/Kong/kong-mesh/pull/6194) [#6273](https://github.com/Kong/kong-mesh/pull/6273) @kong-mesh
+* fix(kuma-cp): downgrade go-control-plane to mitigate potential deadlock (backport of #6094) [#6098](https://github.com/Kong/kong-mesh/pull/6098) @kong-mesh
+* fix(license): don't fail if we ever saw a valid license (backport of #5968) [#5972](https://github.com/Kong/kong-mesh/pull/5972) @kong-mesh
+* fix(ubi): upgrade from non-existent iptables-nft version (backport of #5910) [#6008](https://github.com/Kong/kong-mesh/pull/6008) @kong-mesh
+
+
+## 2.4.9
+> Released on 2024/07/05
+
+* chore(deps): bump kumahq/kuma from 304050ffd4f5 to 124fc3eb9 [#5778](https://github.com/Kong/kong-mesh/pull/5778) [#5841](https://github.com/Kong/kong-mesh/pull/5841) [#5869](https://github.com/Kong/kong-mesh/pull/5869) [#5926](https://github.com/Kong/kong-mesh/pull/5926) [#5997](https://github.com/Kong/kong-mesh/pull/5997) [#6064](https://github.com/Kong/kong-mesh/pull/6064) [#6091](https://github.com/Kong/kong-mesh/pull/6091) [#6215](https://github.com/Kong/kong-mesh/pull/6215) [#6222](https://github.com/Kong/kong-mesh/pull/6222) [#6229](https://github.com/Kong/kong-mesh/pull/6229) [#6245](https://github.com/Kong/kong-mesh/pull/6245) [#6292](https://github.com/Kong/kong-mesh/pull/6292) @kong-mesh
+* chore(deps): security update [#5786](https://github.com/Kong/kong-mesh/pull/5786) [#5958](https://github.com/Kong/kong-mesh/pull/5958) [#6081](https://github.com/Kong/kong-mesh/pull/6081) [#6196](https://github.com/Kong/kong-mesh/pull/6196) [#6269](https://github.com/Kong/kong-mesh/pull/6269) @kong-mesh
+* fix(license): don't fail if we ever saw a valid license (backport of #5968) [#5971](https://github.com/Kong/kong-mesh/pull/5971) @kong-mesh
+* fix(ubi): upgrade from non-existent iptables-nft version (backport of #5910) [#6007](https://github.com/Kong/kong-mesh/pull/6007) @kong-mesh
+
+
+## 2.6.9
+> Released on 2024/07/04
+
+* chore(deps): bump kumahq/kuma from 498d86f27ece to e28b7339e [#6212](https://github.com/Kong/kong-mesh/pull/6212) [#6230](https://github.com/Kong/kong-mesh/pull/6230) [#6244](https://github.com/Kong/kong-mesh/pull/6244) [#6285](https://github.com/Kong/kong-mesh/pull/6285) @kong-mesh
+* chore(deps): security update [#6197](https://github.com/Kong/kong-mesh/pull/6197) [#6272](https://github.com/Kong/kong-mesh/pull/6272) @kong-mesh
+
+
 ## 2.7.5
 > Released on 2024/07/03
 
