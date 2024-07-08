@@ -63,7 +63,7 @@ and
 ```bash
 KONG_PRODUCTS='*:latest'
 ```
- are also possible.
+ is also possible.
 
 The docs site will be available at [http://localhost:8888](http://localhost:8888).
 
@@ -80,7 +80,7 @@ At least one of these labels must be applied to a PR or the build will fail.
 
 ### Troubleshooting
 
-For troubleshooting instructions see the [troubleshooting documentation](docs/troubleshoot.md).
+For troubleshooting instructions, see the [troubleshooting documentation](docs/troubleshoot.md).
 
 
 
