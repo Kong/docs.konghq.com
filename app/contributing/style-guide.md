@@ -276,6 +276,29 @@ When deciding which icon to use for a doc, use the following guidelines:
 4. If the answer to all of the above is "no", you can
    [upload a custom image](/contributing/markdown-rules/#icons).
 
+## Documenting Third-Party Tools
+
+Our documentation sometimes requires integration with third-party tools and services to help users succeed with our products. 
+When writing docs for third-party tools and services, follow these guidelines:
+
+* **Link to third-party documentation**: Always link to the official documentation of third-party products. For example:
+  * [Add Developer Teams from Identity Providers](/konnect/dev-portal/access-and-approval/add-teams/)
+* **Include third-party instructions with integrations**: Provide instructions that involve switching between products, and include links to the official third-party documentation when possible. For example:
+  * [How to configure Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/)
+
+### Pitfalls to Avoid
+
+To reduce maintenance challenges when documenting third-party instructions, avoid the following:
+
+* Do not include screenshots of third-party UIs.
+* **Do not refer to specific UI elements**:
+  * Instead of: "Click the blue 'Add' button in the top-right corner."
+  * Use: "Click **Add**."
+
+* **Describe the necessary variables, but do not specify their location in the UI**:
+  * Instead of: "Enter the API key found in the **Security tab** under **API Settings**."
+  * Use: "Enter the API key provided by your API provider."
+
 ## Links
 
 Write descriptive titles that make it clear what the reader is getting by clicking the link.
