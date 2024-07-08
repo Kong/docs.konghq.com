@@ -292,7 +292,7 @@ To reduce maintenance challenges when documenting third-party instructions, avoi
 
 * Do not include screenshots of third-party UIs.
 * **Do not refer to specific UI elements**:
-  * Instead of: "Click the blue 'Add' button in the top-right corner."
+  * Instead of: "Click the blue **Add** button in the top-right corner."
   * Use: "Click **Add**."
 
 * **Describe the necessary variables, but do not specify their location in the UI**:
