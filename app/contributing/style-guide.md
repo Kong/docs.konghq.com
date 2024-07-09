@@ -276,7 +276,7 @@ When deciding which icon to use for a doc, use the following guidelines:
 4. If the answer to all of the above is "no", you can
    [upload a custom image](/contributing/markdown-rules/#icons).
 
-## Documenting Third-Party Tools
+## Documenting third-party tools
 
 Our documentation sometimes requires integration with third-party tools and services to help users succeed with our products. 
 As a general rule, we try to avoid rewriting docs that exist elsewhere. When writing docs that involve interactions with third-party tools and services, think about the following:
@@ -293,7 +293,7 @@ In many cases, a link is enough, often as part of a step or a group of prerequis
 * **Include third-party instructions with integrations**: Provide instructions that involve switching between products, and include links to the official third-party documentation when possible. For example:
   * [How to configure Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/)
 
-### Pitfalls to Avoid
+### Pitfalls to avoid
 
 To reduce maintenance challenges when documenting third-party instructions, avoid the following:
 
