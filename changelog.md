@@ -2,6 +2,70 @@
 
 <!--vale off-->
 
+## Week 27
+
+### [chore(rate-limiting): clarify rate-limiting accuracy](https://github.com/Kong/docs.konghq.com/pull/7607) (2024-07-03)
+
+Both rate-limiting and rate-limiting-advanced plugins documentation specify that various policies are possible and states that `cluster` and `redis` are "Accurate". However it's possible to configure a `sync_rate` option for these plugins and set it to a value that does not offer synchronous behaviour allowing for some slippage in favor of performance.
+
+This commit clarifies that `sync_rate` affects mentioned accuracy.
+
+KAG-2896
+
+https://github.com/Kong/kong/issues/11846
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
+
+
+### [Feat: Konnect analytics ingestion toggle ](https://github.com/Kong/docs.konghq.com/pull/7600) (2024-07-03)
+
+Konnect analytics ingestion toggle.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/analytics/
+- https://docs.konghq.com/konnect/updates
+
+
+### [fix(ai-proxy): clarify model support](https://github.com/Kong/docs.konghq.com/pull/7596) (2024-07-01)
+
+Clarified a number of model supports, added GPT-4o / LLAMA3.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
+
+
+### [Fix: GraphQL RLA example needs a warning to not run in prod](https://github.com/Kong/docs.konghq.com/pull/7590) (2024-07-02)
+
+Adding a disclaimer to plugin basic examples about not using the examples in prod, and adding some extra language for the GraphQL RLA examples to caution against `sync_rate = -1` with the `cluster` strategy.
+
+We can use this same templating to add extra example descriptions to any of the plugins in the future.
+
+https://konghq.atlassian.net/browse/DOCU-3489
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/_metadata/_index.yml
+
+
+### [Update: DeGraphQL diagram](https://github.com/Kong/docs.konghq.com/pull/7588) (2024-07-01)
+
+Mermaid diagram for DeGraphQL plugin.
+
+https://konghq.atlassian.net/browse/DOCU-110
+
+#### Added
+
+- https://docs.konghq.com/assets/images/icons/third-party/graphql-logo.svg
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/degraphql/overview/
+
 ## Week 26
 
 ### [Feat: decK gateway CLI](https://github.com/Kong/docs.konghq.com/pull/7585) (2024-06-27)
