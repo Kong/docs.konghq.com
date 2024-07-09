@@ -1681,39 +1681,66 @@ components:
         application/json:
           schema:
             type: object
+            properties:
+              data:
+                type: array
+                description: The data array contains consumer group objects
+                items:
+                  type: object
+                  properties:
+                    created_at:
+                      type: integer
+                      description: Unix epoch when the resource was created.
+                      example: 1719859003
+                    id:
+                      type: string
+                      description: The UUID of the consumer group
+                      example: 0d8f5353-8dd2-4013-859a-21510b970a64
+                    name:
+                      type: string
+                      description: The name of the consumer group
+                      example: group2
+                    tags:
+                      type: array
+                      description: An optional set of strings associated with the consumer group for grouping and filtering.
+                      items:
+                        type: string
+                        example: example_tag
+                    updated_at:
+                      type: integer
+                      description: Unix epoch when the resource was last updated.
+                      example: 1719859003
+              next:
+                type: string
+                description: Link to the next page of results, if applicable
+                example: null
             x-examples:
               Example 1:
-                consumer_group:
-                  created_at: 1638917780
-                  id: be4bcfca-b1df-4fac-83cc-5cf6774bf48e
-                  name: JL
-                  tags: null
-            properties:
-              consumer_group:
-                type: object
-                properties:
-                  created_at:
-                    type: integer
-                    description: Unix epoch when the resource was created.
-                    example: 1638918560
-                  id:
-                    type: string
-                    description: The UUID of the consumer group
-                    example: 42b022c1-eb3c-4512-badc-1aee8c0f50b5
-                  name:
-                    type: string
-                    description: The name of the consumer group
-                    example: my_group
-                  tags:
-                    description: An optional set of strings associated with consumer group for grouping and filtering.
-          examples:
-            Consumer group example:
-              value:
-                consumer_group:
-                  created_at: 0
-                  id: 42b022c1-eb3c-4512-badc-1aee8c0f50b5
-                  name: my_group
-                  tags: red
+                data:
+                  - created_at: 1719859003
+                    id: 0d8f5353-8dd2-4013-859a-21510b970a64
+                    name: group2
+                    tags: []
+                    updated_at: 1719859003
+                  - created_at: 1719858982
+                    id: 7012a570-e372-4280-92db-7fbbe4af80bb
+                    name: group1
+                    tags: []
+                    updated_at: 1719858982
+                  - created_at: 1719859346
+                    id: 9faf2f1b-2110-4690-8b64-c70dc14aa51a
+                    name: group3
+                    tags: null
+                    updated_at: 1719859346
+                next: null
+              Consumer group example:
+                data:
+                  - created_at: 1719859003
+                    id: 0d8f5353-8dd2-4013-859a-21510b970a64
+                    name: group2
+                    tags: []
+                    updated_at: 1719859003
+                next: null
     add_consumer_to_group_response:
       description: The object returns information about the consumer and the group
       content:
@@ -1805,88 +1832,117 @@ components:
         application/json:
           schema:
             type: object
-            x-examples:
-              Example 1:
-                consumers:
-                  - created_at: 1638918560
-                    id: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
-                    type: 0
-                    username: BarryAllen
-                    username_lower: barryallen
             properties:
-              consumers:
+              data:
                 type: array
-                description: The consumers array contains consumer objects
+                description: The data array contains consumer objects
                 items:
                   type: object
                   properties:
                     created_at:
                       type: integer
                       description: Unix epoch when the resource was created.
-                      example: 1638918560
+                      example: 1719859293
+                    custom_id:
+                      type: string
+                      description: Custom ID of the consumer
+                      example: consumer_id3
                     id:
                       type: string
-                      example: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
+                      example: 1cf590ba-4b23-46fa-9e8d-4296213e2ac6
                       description: The consumer ID
+                    tags:
+                      type: array
+                      description: Tags associated with the consumer
+                      items:
+                        type: string
+                        example: test
                     type:
                       type: integer
                       default: 0
                       example: 0
+                    updated_at:
+                      type: integer
+                      description: Unix epoch when the resource was last updated.
+                      example: 1719859293
                     username:
                       type: string
-                      example: BarryAllen
+                      example: consumer3
                       description: The username of the consumer
                     username_lower:
                       type: string
-                      example: barryallen
+                      example: consumer3
                       description: Lowercase representation of the consumer username.
-                    tags:
-                      type: array
-                      description: tags
-                      items:
-                        type: string
-                        example: test
-              id:
+              next:
                 type: string
-                default: 496a3eae-5f7f-4e70-b254-95d5c9b8b764
-                description: Consumer ID
-          examples:
-            One consumer:
-              value:
-                consumers:
-                  - created_at: 1638918560
-                    id: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
-                    type: 0
-                    username: BarryAllen
-                    username_lower: barryallen
-            Multiple consumers:
-              value:
-                next: null
+                description: Link to the next page of results, if applicable
+                example: null
+            x-examples:
+              Example 1:
                 data:
-                  - type: 0
-                    username_lower: angel
-                    created_at: 1683054731
-                    custom_id: '123412312312312312312312'
-                    username: angel
+                  - created_at: 1719859293
+                    custom_id: consumer_id3
+                    id: 1cf590ba-4b23-46fa-9e8d-4296213e2ac6
                     tags: null
-                    id: 1ec7a260-b005-46b4-89e2-c62a417aa45c
-                  - type: 0
-                    username_lower: repr
-                    created_at: 1682006579
-                    custom_id: nisi in id ad
-                    username: repr
-                    tags:
-                      - Duis aliqua in
-                      - velit deserunt non dolor
-                    id: 4e8032e7-02b9-460c-8b2c-a6fee42aea51
-                  - type: 0
-                    username_lower: bob-the-builder
-                    created_at: 1682006428
-                    custom_id: '4200'
-                    username: bob-the-builder
-                    tags:
-                      - silver-tier
-                    id: 8a388226-80e8-4027-a486-25e4f7db5d21
+                    type: 0
+                    updated_at: 1719859293
+                    username: consumer3
+                    username_lower: consumer3
+                  - created_at: 1719858943
+                    custom_id: consumer_id
+                    id: 73b74f15-5185-4b16-a2fc-3c2fd834ba6c
+                    tags: null
+                    type: 0
+                    updated_at: 1719858943
+                    username: consumer
+                    username_lower: consumer
+                  - created_at: 1719858965
+                    custom_id: consumer_id2
+                    id: f9383372-7bf4-4275-8bbc-4f89d7a38a23
+                    tags: null
+                    type: 0
+                    updated_at: 1719858965
+                    username: consumer2
+                    username_lower: consumer2
+                next: null
+              One consumer:
+                data:
+                  - created_at: 1719859293
+                    custom_id: consumer_id3
+                    id: 1cf590ba-4b23-46fa-9e8d-4296213e2ac6
+                    tags: null
+                    type: 0
+                    updated_at: 1719859293
+                    username: consumer3
+                    username_lower: consumer3
+                next: null
+              Multiple consumers:
+                data:
+                  - created_at: 1719859293
+                    custom_id: consumer_id3
+                    id: 1cf590ba-4b23-46fa-9e8d-4296213e2ac6
+                    tags: null
+                    type: 0
+                    updated_at: 1719859293
+                    username: consumer3
+                    username_lower: consumer3
+                  - created_at: 1719858943
+                    custom_id: consumer_id
+                    id: 73b74f15-5185-4b16-a2fc-3c2fd834ba6c
+                    tags: null
+                    type: 0
+                    updated_at: 1719858943
+                    username: consumer
+                    username_lower: consumer
+                  - created_at: 1719858965
+                    custom_id: consumer_id2
+                    id: f9383372-7bf4-4275-8bbc-4f89d7a38a23
+                    tags: null
+                    type: 0
+                    updated_at: 1719858965
+                    username: consumer2
+                    username_lower: consumer2
+                next: null
     license-response:
       description: The license response object.
       content:
