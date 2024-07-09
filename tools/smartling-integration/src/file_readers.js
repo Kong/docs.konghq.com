@@ -13,18 +13,27 @@ const PRODUCT_MAPPINGS = {
 };
 
 const DATA_FILES_TO_EXCLUDE = [
+  'installation/gateway.yml',
   'pdk_info.yml',
   'konnect_oas_data.json',
   'kong_versions.yml',
   'books.yml',
-  'installation/gateway.yml',
-  'tables/compat.json',
   'hub_filters.yml',
+  'tables/compat.json',
   'tables/version_errors_konnect.yml',
-  'tables/os_support.yml',
   'tables/install_options_konnect.yml',
-  'tables/install_options_34x.yml',
-  'tables/install_options.yml'
+  'tables/install_options.yml',
+  'tables/features/mesh.yml',
+  'tables/support/gateway/versions/28.yml',
+  'tables/support/gateway/versions/32.yml',
+  'tables/support/gateway/versions/33.yml',
+  'tables/support/gateway/versions/34.yml',
+  'tables/support/gateway/versions/35.yml',
+  'tables/support/gateway/versions/36.yml',
+  'tables/support/gateway/versions/37.yml',
+  'tables/support/gateway/versions/38.yml',
+  'tables/support/gateway/browsers.yml',
+  'tables/support/gateway/third-party.yml'
 ]
 
 function readTranslationConfig() {
@@ -152,7 +161,7 @@ async function dataFiles() {
     if (fs.existsSync(srcDir)) {
       const files = await fg('**/*', { cwd: srcDir, onlyFiles: true });
       files.map((file) => {
-        if (!DATA_FILES_TO_EXCLUDE.includes(file) && !file.startsWith('docs_nav_') && !file.startsWith('tables/support/')) {
+        if (!DATA_FILES_TO_EXCLUDE.includes(file) && !file.startsWith('docs_nav_')) {
           dataFiles.push(path.join(dataPath, file));
         }
       });

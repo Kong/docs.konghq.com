@@ -103,7 +103,19 @@ async function buildBatchFileParamsForData(fileUri, locale) {
   const batchFileParams = new UploadBatchFileParameters();
 
   if (fileUri.endsWith('app/_data/extensions.yml')) {
-    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['name', 'desc']))
+    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['name', 'desc']));
+  } else if (fileUri.endsWith('app/_data/tables/os_support.yml')) {
+    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['deprecation_date']));
+  } else if (fileUri.endsWith('app/_data/tables/install_options_34.yml')) {
+    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['subtitle', 'name']));
+  } else if (fileUri.endsWith('app/_data/tables/breaking_changes_lts.yml')) {
+    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['name', 'desc', 'description', 'area', 'action']));
+  } else if (fileUri.endsWith('app/_data/tables/features/gateway.yml')) {
+    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['name', 'tooltip', 'cta']));
+  } else if (fileUri.startsWith('app/_data/tables/support/gateway/versions/')) {
+    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['eol']));
+  } else if (fileUri.endsWith('app/_data/tables/support/gateway/packages.yml')) {
+    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['eol']));
   } else {
     batchFileParams.setFileFromLocalFilePath(fileUri)
   }
