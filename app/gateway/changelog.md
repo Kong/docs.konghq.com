@@ -14,6 +14,12 @@ For product versions that have reached the end of sunset support, see the [chang
 ## 3.7.1.2
 **Release Date** 2024/07/05
 
+### Deprecations
+
+* Debian 10, CentOS 7, and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
+As of this patch, Kong is not building Kong Gateway 3.7.x installation packages or Docker images for these operating systems.
+As well, Kong is no longer providing official support for any Kong version running on these systems.
+
 ### Features
 
 #### Plugins
