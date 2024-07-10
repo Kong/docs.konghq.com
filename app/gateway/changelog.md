@@ -12,7 +12,7 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.7.1.2
-**Release Date** 2024/07/05
+**Release Date** 2024/07/09
 
 ### Deprecations
 
