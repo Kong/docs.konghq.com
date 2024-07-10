@@ -39,7 +39,9 @@ make run
 
 ### Generating specific products locally
 
-Building the entire docs site can take quite a bit of time, to speed up build times, you can generate a specific subset of products and their versions by setting the `KONG_PRODUCTS` environment variable. This variable takes a comma-separated list of products, each followed by a colon and a semi-colon-separated list of versions. The format is:
+Building the entire docs site can take a while. 
+To speed up build times, you can generate a specific subset of products and their versions by setting the `KONG_PRODUCTS` environment variable. 
+This variable takes a comma-separated list of products, each followed by a colon and a semicolon-separated list of versions. The format is:
 
 ```bash
 KONG_PRODUCTS='<product>:<version>;<version>,<product>:<version>,hub'
@@ -63,7 +65,6 @@ and
 ```bash
 KONG_PRODUCTS='*:latest'
 ```
- is also possible.
 
 The docs site will be available at [http://localhost:8888](http://localhost:8888).
 
@@ -74,7 +75,8 @@ When raising a pull request, it's useful to indicate what type of review you're 
 
 - `review:copyedit`: Request for writer review.
 - `review:general`: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-- `review:tech`: Request for technical review from an SME.
+- `review:tech`: Request for technical review, usually internal to docs. We normally use this for docs platform work.
+- `review:sme`: Request for SME review, external to the docs team.
 
 At least one of these labels must be applied to a PR or the build will fail.
 
@@ -98,7 +100,7 @@ Disabling the `Hub` generator can be done by setting the environment variable: `
 
 ## Plugin contributors
 
-If you have contributed a plugin, you can add a Kong badge to your plugin README.
+If you have contributed a plugin to the Kong Plugin Hub, you can add a Kong badge to your plugin README.
 
 Use the following, where you replace `test` with your plugin name and `link-to-docs` with a link to the Kong docs for your plugin.
 
@@ -119,7 +121,7 @@ We use `fetch`, `cheerio`, and `jest` for testing. To run tests, first build the
 For more information, review the [Testing documentation](docs/testing.md).
 
 
-## Continuous Integration
+## Continuous integration
 
 We run various checks at build time. Some checks can be manually approved using labels like: 
 
@@ -137,6 +139,4 @@ The following links contain information about the docs publishing platform:
 * [Product releases](docs/product-releases.md)
 * [Search](docs/search.md)
 * [SEO](docs/seo.md)
-* [Single source plugins](docs/single-sourced-plugins.md)
-* [Single source versions](docs/single-sourced-versions.md)
 * [vale](docs/vale.md)

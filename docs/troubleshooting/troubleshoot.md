@@ -1,6 +1,6 @@
-### Troubleshooting the local build
+## Troubleshooting the local build
 
-#### Invalid byte sequence in US-ASCII
+### Invalid byte sequence in US-ASCII
 
 If you encounter an error that looks like this:
 

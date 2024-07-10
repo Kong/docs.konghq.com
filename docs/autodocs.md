@@ -1,12 +1,12 @@
 * **Some of our docs are generated**.
-    * [API docs](https://docs.konghq.com/api//)
+    * [API docs](https://docs.konghq.com/api/)
     * [CLI reference](https://docs.konghq.com/gateway/latest/reference/cli/)
     * [OSS upgrade guide](https://docs.konghq.com/gateway/latest/upgrade/)
     * [PDK reference](https://docs.konghq.com/gateway/latest/pdk)
 
 All pull requests for these docs should be opened in the [Kong/kong](https://github.com/Kong/kong) repository. Fork the repository and submit PRs from your fork.
 
-For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway/latest/reference/configuration), open an issue on this repo and we'll update the docs.
+For the [Gateway configuration reference](https://docs.konghq.com/gateway/latest/reference/configuration), open an issue on this repo and we'll update the docs.
 
 
 
@@ -14,7 +14,7 @@ For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway
 
 > This section is for Kong source code maintainers. You don't need to do anything here if you're contributing to this repo!
 
-The PDK docs, Admin API docs, `cli.md` and `configuration.md` for each release are generated from the Kong source code.
+The PDK docs, Admin API docs, `cli.md`, and `configuration.md` for each release are generated from the Kong source code.
 
 To generate them, go to the `Kong/kong` repo and run:
 
