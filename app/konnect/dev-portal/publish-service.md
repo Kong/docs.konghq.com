@@ -2,11 +2,13 @@
 title: Add and publish API product documentation
 ---
 
-The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} API products
+The Dev Portal is an API catalog that lets you document and publish your {{site.konnect_short_name}} API products
 and share them with your developers. Developers can use the Dev Portal to
-locate, access, consume, and register applications against the products.
+locate, access, consume, and register applications to the products. 
 
 This guide walks you through associating API specs and product documentation with your API products, and viewing any published content, and Dev Portal specific customization options.
+
+Published API products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any product documentation becomes discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
 
 
 ### Add Product Documentation
@@ -49,9 +51,9 @@ If you have a spec, use it in the following steps. Otherwise, you can
 use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 
 
-1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) dashboard, select **Product Version** then **Upload**. 
+1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) dashboard, select **Product Version** then click the product version you want to upload the spec for. 
 
-1. Find the **Version Spec** section and click **Upload Spec**.
+1. In the **API Spec** tab, click **Upload**.
 
 1. Select a spec file to upload.
 
@@ -61,14 +63,19 @@ use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 This OpenAPI spec will be shown under the version name when this service is
 published to the Dev Portal.
 
-## Publish API Product to the Dev Portal
+## Publish an API product and API product version to a Dev Portal
 
-To view an API Product's documentation alongside its dynamic API reference (based on the API specification), 
-navigate to {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) and publish your API product along with its API version.
+To publish an API, you must publish both the API product and API product version to the Dev Portal.
 
-1. In the **API Products** section, select your API Product. Then, click **Actions** and select **Publish to portal**.
-1. From the left-side navigation panel, select **Product Version** and click on the version you created previously.
-On the version's homepage, change the **Status** to **Published**.
+1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), select the Dev Portal you want to publish the API for.
+1. Click [**API Products**](https://cloud.konghq.com/api-products/).
+1. Select the API product you want to publish. On the API product overview page, click **Add** and select **Publish to Dev Portals** in the menu.
+1. Click **Publish** to publish your API product to a specific Dev Portal.  
+1. In {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select the API product you added to the Dev Portal. 
+1. Click **Product Versions** in the sidebar.
+1. Click the product version you created previously and want to publish to your Dev Portals. From the **Actions** menu or the **Dev Portals** tab, click **Publish to Dev Portals** and select the Dev Portals you want to publish the product version to.
+
+The API product and product versions should now display in the Dev Portals you selected.
 
 ## View the published content on Dev Portal
 
@@ -146,5 +153,7 @@ In this topic, you added documentation for your API product and logged into the 
 
 ## More information
 
-* [Register an application against the API product](/konnect/dev-portal/applications/dev-apps/).
+* [API product documentation](/konnect/api-products/service-documentation/): This doc explains how to upload, edit, and publish product documentation using the **API Products** dashboard and publish API product to the Dev Portal to be consumed by your users.
+* [Manage Konnect API product versions](/konnect/api-products/): This explains how to manage the API product version for your services, including the status of the API product version. API product versions can have a status of "Published", "Deprecated", or "Unpublished".
+* [Register an application to the API product](/konnect/dev-portal/applications/dev-apps/).
 * [Customize Dev Portal](/konnect/dev-portal/customization/)

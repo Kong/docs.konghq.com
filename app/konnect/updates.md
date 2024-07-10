@@ -11,10 +11,14 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## July 2024
 
+**Multi-portal**
+: {{site.konnect_short_name}} now supports multiple Dev Portals. Users can create multiple Dev Portals with the same functionality to better segment their customers, brands, and API product experiences. For more information, see [Create Dev Portal](/konnect/dev-portal/create-dev-portal).
+
 **Manage control plane analytics data ingestion**
 : You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
 
 : You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Analytics** toggle.
+
 
 ## May 2024
 

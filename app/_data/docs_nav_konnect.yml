@@ -138,7 +138,11 @@
   items:
     - text: Overview
       url: /dev-portal/
-    - text: Productize a Service
+    - text: Create a Dev Portal
+      url: /dev-portal/create-dev-portal/
+    - text: Sign Up for a Dev Portal Account
+      url: /dev-portal/dev-reg/
+    - text: Publish an API to Dev Portal
       url: /dev-portal/publish-service/ 
     - text: Access and Approval
       items:
