@@ -502,7 +502,7 @@ when the `http_response_header_for_traceid` option was enabled.
 ### Deprecations
 
 * Debian 10, CentOS 7, and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
-As of this patch, Kong is not building Kong Gateway 3.7.x installation packages or Docker images for these operating systems.
+As of this patch, Kong is not building Kong Gateway 3.6.x installation packages or Docker images for these operating systems.
 Kong is no longer providing official support for any Kong version running on these systems.
 
 #### Plugins
