@@ -495,7 +495,7 @@ when the `http_response_header_for_traceid` option was enabled.
 * Removed the `lua-resty-openssl-aux-module` dependency
 
 ## 3.6.1.7
-**Release Date** 2024/07/05
+**Release Date** 2024/07/09
 
 ### Features
 
