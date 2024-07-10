@@ -1214,7 +1214,7 @@ If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gatewa
 
 
 ## 3.5.0.7
-**Release Date** 2024/07/05
+**Release Date** 2024/07/09
 
 ### Deprecations
 
