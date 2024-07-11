@@ -11,76 +11,35 @@ You can configure single sign-on (SSO) for {{site.konnect_short_name}} Dev Porta
 
 <!-- should we add a note that this SSO is different than the one for Konnect? As in, if they want to use SSO for logging in to Konnect, they still need to configure that separately?-->
 
+## Prerequisites
+
+* Ensure that any users that need to use the Dev Portal SSO have been added to the **User Management > Users** section of your Auth0 tenant
+* An application for {{site.konnect_short_name}} configured in your IdP:
+    * [Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard.htm)
+    * [Azure AD](https://learn.microsoft.com/graph/toolkit/get-started/add-aad-app-registration)
+    * [Auth0](https://auth0.com/docs/get-started/auth0-overview/create-applications)
+
+
 ## Configure an application and group claims in your IdP
 {% navtabs %}
 {% navtab Azure %}
 
-### Create an application in Azure
+1. In [Azure](https://portal.azure.com/), [create an application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate) for {{site.konnect_short_name}}. 
 
-1. In [Azure](https://portal.azure.com/), navigate to **App registrations**. 
+1. Enter the Dev Portal [Redirect URI](/konnect/dev-portal/access/) for the **Redirect URI**. 
 
-1. Click **New registration** to register a new application:
+1. [Create a client secret](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=client-secret) and save the secret value to configure {{site.konnect_short_name}}.
 
-1. Name the application.
-
-1. Select **Accounts in this organizational directory only** for the **Supported account type**. 
-
-1. Select **Web** and enter the Dev Portal [Redirect URI](/konnect/dev-portal/access/). 
-    
-1. Save the application ID for later.
-
-
-### Configure an application in Azure
-
-1. Click **New client secret**, enter a description, select an expiration value, and click **Add**.
-    
-    * Save the secret value for configuring {{site.konnect_short_name}}.
-
-
-1. Click **Overview** in the sidebar, then click the **Endpoints** tab.
-
-1. Copy the **OpenID Connect metadata document** URL and open it in your browser:
-
-1.  Your browser will display a large JSON blob object. In the object, find and save the `issuer` value.
-    
+1. [Use the OIDC well-known discovery endpoint](https://learn.microsoft.com/en-us/azure/active-directory-b2c/secure-api-management?tabs=app-reg-ga#get-a-token-issuer-endpoint) to find and save the `issuer` value. 
     The `issuer` value will be used as the provider URL when configuring SSO in {{site.konnect_short_name}}.
 
-## Configure group claims in Azure
+1. [Add a group claim](https://learn.microsoft.com/en-us/entra/identity-platform/optional-claims?tabs=appui#configure-groups-optional-claims). Enable all the group types settings and select **Group ID** for each setting in the token properties type.
 
-1. On your new application page in Azure, click **Token configuration** in the sidebar.
-
-1. Click **Add groups claim** and do the following:
-    1. Select each checkbox in the **Select group types to include in Access, ID, and SAML tokens** section. 
-    1. Select **Group ID** for each section in **Customize token properties by type**.
-    1. Click **Add**. 
-
-    ![Group claim](/assets/images/products/konnect/dev-portal/azure-group-claim.png)
-
-1. Click **Add optional claim**, select **ID** as the token type, and **email** as the claim.
-
-1. Click **Add**.
-
-## Configure SSO in {{site.konnect_short_name}}
-
-From the [{{site.konnect_short_name}} portal identity page](https://cloud.konghq.com/portal/portal-settings#identity), click **Configure provider** for **OIDC**, and enter the values from Azure.
-
-This table maps the {{site.konnect_short_name}} values to the corresponding Azure values. 
-
-| {{site.konnect_short_name}} value      | Azure value |
-| ----------- | ----------- |
-| Provider URL      | The value stored in the `issuer` variable. |
-| Client ID   | Your Azure application ID.        |
-| Client Secret | Azure client secret.|
-
-You can test your configuration by navigating to the Dev Portal and using your Azure credentials to log in. 
+1. [Configure an optional claim](https://learn.microsoft.com/en-us/entra/identity-platform/optional-claims?tabs=appui#configure-optional-claims-in-your-application) with **ID** as the token type and **email** as the claim.
 
 {% endnavtab %}
 {% navtab Okta %}
-## Create an application in Okta
-## Configure the application in Okta
-## Set up claims in Okta
-## 
-## Configure SSO in {{site.konnect_short_name}}
+things
 {% endnavtab %}
 {% navtab Auth0 %}
 Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}} and the Dev Portal. This guide shows you how to configure Auth0 for Dev Portal SSO.
@@ -140,24 +99,19 @@ exports.onExecutePostLogin = async (event, api) => {
 1. In the Login Flow diagram, select the **Custom** tab and drag the newly deployed action between the Start and Complete steps in the diagram.
 
 1. Click **Apply** to save the changes
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Configure SSO in {{site.konnect_short_name}}
 
-From the [{{site.konnect_short_name}} portal identity page](https://cloud.konghq.com/portal/portal-settings#identity), click **Configure provider** for **OIDC**, and enter the values from your Auth0 application.
+From the [{{site.konnect_short_name}} portal identity page](https://cloud.konghq.com/portal/portal-settings#identity), click **Configure provider** for **OIDC**, and enter the values from your IdP application.
 
-This table maps the {{site.konnect_short_name}} values to the corresponding Auth0 application values. 
+This table maps the {{site.konnect_short_name}} values to the corresponding IdP values:
 
-| {{site.konnect_short_name}} value      | Auth0 application value |
-| ----------- | ----------- |
-| Provider URL      | Your Auth0 tenant's **Domain** with a leading `https://` and trailing slash `/`, e.g., `https://<your-tenant>.<region>.auth0.com/` |
-| Client ID   | Your Auth0 application's **Client ID** value.        |
-| Client Secret | Your Auth0 application's **Client Secret** value.|
+| {{site.konnect_short_name}} value      | Azure value | Okta value | Auth0 value |
+| ----------- | ----------- | ----------- | ----------- |
+| Provider URL      | The value stored in the `issuer` variable. | Okta value | Your Auth0 tenant's **Domain** with a leading `https://` and trailing slash `/`, e.g., `https://<your-tenant>.<region>.auth0.com/` |
+| Client ID   | Your Azure application ID.        | Okta value | Your Auth0 application's **Client ID** value. |
+| Client Secret | Azure client secret.| Okta value | Your Auth0 application's **Client Secret** value. |
 
-## Add Users to Your Auth0 tenant
-
-1. Ensure that any users that need to use the Dev Portal SSO have been added to the **User Management > Users** section of your Auth0 tenant
-
-
-You can test your configuration by navigating to the Dev Portal and using your Auth0 user credentials to log in.
-{% endnavtab %}
-{% endnavtabs %}
+You can test your configuration by navigating to the Dev Portal and using your IdP credentials to log in. 
