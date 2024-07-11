@@ -15,10 +15,10 @@
     {% endfor %}
     <li>
       {% if page.extn_publisher == "kong-inc" %}
-      <a id="konnect-cta" href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}" class="sidebar-button" target="_blank">
-        Try it in {{site.konnect_short_name}}
-      </a>
-    {% endif %}
+        <a id="konnect-cta" href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ page.extn_slug }}" class="sidebar-button" target="_blank">
+          Try it in {{site.konnect_short_name}}
+        </a>
+      {% endif %}
     </li>
   </ul>
 
