@@ -129,8 +129,6 @@ async function appFiles(productConfig) {
   try {
     // /<product>/*.md
     let topLevelFiles = await fg(`app/${normalizedProductName}/*.md`);
-    // exclude changelogs
-    topLevelFiles = topLevelFiles.filter(filePath => filePath !== `app/${normalizedProductName}/changelog.md`)
 
     appFiles.push(...topLevelFiles);
 
