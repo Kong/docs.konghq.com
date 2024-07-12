@@ -59,7 +59,7 @@ inherit:
     - path: [ Kong Mesh in Production, Control plane deployment ]
       action: insert
       index: -1
-      text: Production usage values
+      text: Deploy Kong Mesh in Production with Helm
       url: /production/cp-deployment/production-usage-values
     - path: [ Kong Mesh in Production, Secure your deployment ]
       action: delete
