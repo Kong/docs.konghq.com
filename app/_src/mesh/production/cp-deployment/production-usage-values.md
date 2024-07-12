@@ -27,7 +27,7 @@ Suggested `values.yaml` file:
 {% endnavtab %}
 {% navtab Multi-zone global control plane %}
 
-## Install the global control plane for a multi-zone deployoment
+## Install the global control plane for a multi-zone deployment
 
 ```sh
 helm install {{ site.mesh_helm_install_name }} {{ site.mesh_helm_repo }} --namespace {{site.mesh_namespace}} -f ./values.global-cp.yaml
