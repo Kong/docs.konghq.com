@@ -24,7 +24,7 @@ By default, {{site.base_gateway}} listens on the following ports:
 | [`:8006`](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/setup/)         | TCP     | Hybrid mode only. Control Plane listens for Vitals telemetry data from Data Planes. | All tiers and modes |
 
 {% if_version gte:3.6.x %}
-| [`:8007`](/gateway/{{page.release}}/reference/configuration/#status_listen)     | HTTP     | Status listener. Listens for calls from the command line over HTTP. | {{site.ee_product_name}} tier|
+| [`:8007`](/gateway/{{page.release}}/reference/configuration/#status_listen)     | HTTP     | Status listener. Listens for calls from monitoring clients over HTTP. | All tiers and modes |
 {% endif_version %}
 
 {% if_version lte:3.4.x %}

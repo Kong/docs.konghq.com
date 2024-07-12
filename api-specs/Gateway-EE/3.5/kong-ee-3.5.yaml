@@ -1777,7 +1777,7 @@ components:
                                       name: JL
                                       tags: null
                         properties:
-                            consumer:
+                            data:
                                 type: object
                                 properties:
                                     created_at:
@@ -1848,14 +1848,14 @@ components:
                         type: object
                         x-examples:
                             Example 1:
-                                consumers:
+                                data:
                                     - created_at: 1638918560
                                       id: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
                                       type: 0
                                       username: BarryAllen
                                       username_lower: barryallen
                         properties:
-                            consumers:
+                            data:
                                 type: array
                                 description: The consumers array contains consumer objects
                                 items:

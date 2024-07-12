@@ -44,6 +44,8 @@ items:
             url: /key-concepts/services
           - text: Routes
             url: /key-concepts/routes
+          - text: Consumers
+            url: /key-concepts/consumers
           - text: Upstreams
             url: /key-concepts/upstreams
           - text: Plugins

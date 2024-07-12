@@ -2485,7 +2485,11 @@ components:
       type: object
       additionalProperties: false
       required:
+        - id
         - name
+        - credential_type
+        - registration_enabled
+        - registration_auto_approve
       properties:
         id:
           $ref: '#/components/schemas/UUID'
@@ -2502,6 +2506,14 @@ components:
           type: string
         available_scopes:
           $ref: '#/components/schemas/AvailableScopes'
+        registration_enabled:
+          type: boolean
+          description: If true, application registration is allowed for this configuration.
+          example: true
+        registration_auto_approve:
+          type: boolean
+          description: If true, applications are automatically approved for registration.
+          example: false
     CredentialType:
       type: string
       enum:

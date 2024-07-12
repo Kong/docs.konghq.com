@@ -99,8 +99,9 @@ plugins:
       model:
         provider: "mistral"
         name: "mistral-tiny"
-        mistral_format: "openai"
-        upstream_url: "https://api.mistral.ai/v1/chat/completions"
+        options:
+          mistral_format: "openai"
+          upstream_url: "https://api.mistral.ai/v1/chat/completions"
 ```
 {% endnavtab %}
 {% endnavtabs %}

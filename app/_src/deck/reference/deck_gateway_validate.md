@@ -23,7 +23,7 @@ For offline validation, see `deck file validate`.
 ## Syntax
 
 ```
-deck gateway validate [command-specific flags] [global flags]
+deck gateway validate [filename] [command-specific flags] [global flags]
 ```
 
 ## Flags

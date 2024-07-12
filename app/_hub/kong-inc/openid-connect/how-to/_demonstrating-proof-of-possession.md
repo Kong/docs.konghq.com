@@ -140,7 +140,7 @@ If this is configured correctly, it returns a `200` response and something like 
 }
 ```
 
-The token you obtain should include a claim that consists of the hash of the client certificate:
+The token you obtain should include a claim that consists of the hash of the client key:
 ```json
 {
     "exp": 1622556713,
@@ -151,5 +151,5 @@ The token you obtain should include a claim that consists of the hash of the cli
 }
 ```
 
-Access the service using the same client certificate and key used to obtain the token.
-The client should generate proper proof for possession of the key and send it via the `DPoP` header, which will be verified by Kong.
+Use the same client key to obtain both the token and sign the request to access the resource.
+The client should generate proper proof for possession of the key and send it via the `DPoP` header, which will be verified by Kong together with the token.

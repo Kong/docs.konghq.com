@@ -134,7 +134,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
   
     ```bash
     curl --request PATCH \
-      --url https://{region}.api.konghq.com/v2/api-products/{apiProductId} \
+      --url https://{region}.api.konghq.com/v2/api-products/{id} \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -166,7 +166,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 
     ```bash
     curl --request POST \
-      --url https://{region}.api.konghq.com/v2/api-products/{apiProductId}/product-versions \
+      --url https://{region}.api.konghq.com/v2/api-products/{id}/product-versions \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \

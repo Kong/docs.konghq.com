@@ -10,12 +10,22 @@ We currently only have installation instructions for MacOS. If you're using Wind
 
 ### Install Homebrew and required dependencies
 
+Install developer tools:
 ```bash
 xcode-select --install
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install rbenv ruby-build node
 ```
-If you are prompted, follow the Next steps instructions to add Homebrew to your PATH.
+
+Install Homebrew:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+Install Ruby/Node version manager:
+```bash
+brew install libyaml mise
+```
 
 ### Configure `git` and ensure that you're using `zsh`
 
@@ -25,13 +35,17 @@ git config --global user.email "user@example.com"
 chsh -s /bin/zsh
 ```
 
-### Configure `rbenv`
+### Configure `mise`
 
 ```bash
-rbenv init
-echo 'eval "$(rbenv init - zsh)"' >> ~/.zshrc
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
 source ~/.zshrc
+```
+
+If you want to set default versions for your entire system:
+
+```bash
+mise use -g node@latest
 ```
 
 ### Clone the repository and install dependencies
@@ -40,19 +54,23 @@ The method you use to clone the repository differs depending on if you use SSH o
 If you are using a personal access token, run the following:
 ```bash
 git clone https://github.com/Kong/docs.konghq.com.git
-cd docs.konghq.com
-rbenv install $(cat .ruby-version)
-rbenv global $(cat .ruby-version)
-gem install bundler
 ```
 
 If you are using SSH, run the following:
 ```bash
 git clone git@github.com:Kong/docs.konghq.com
+```
+
+Install Ruby/Node:
+```bash
 cd docs.konghq.com
-rbenv install $(cat .ruby-version)
-rbenv global $(cat .ruby-version)
+mise install
+```
+
+Install project dependencies:
+```
 gem install bundler
+make install
 ```
 
 At this point you can go [back to the README](https://github.com/Kong/docs.konghq.com#run-locally) and continue reading the `Run Locally` instructions.

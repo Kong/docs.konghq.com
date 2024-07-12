@@ -138,9 +138,11 @@
   items:
     - text: Overview
       url: /dev-portal/
+    - text: Create a Dev Portal
+      url: /dev-portal/create-dev-portal/
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
-    - text: Productize a Service
+    - text: Publish an API to Dev Portal
       url: /dev-portal/publish-service/ 
     - text: Access and Approval
       items:
@@ -158,16 +160,12 @@
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
         - text: Azure OIDC
           url: /dev-portal/access-and-approval/azure/
+    - text: Register and create an application as a developer
+      url: /dev-portal/register-and-create-app/
+    - text: Enable and Disable App Registration for API Product Versions
+      url: /dev-portal/applications/enable-app-reg/
     - text: Application Lifecycle
-      items:
-        - text: Overview
-          url: /dev-portal/applications/application-overview/
-        - text: Enable and Disable App Registration for API Product Versions
-          url: /dev-portal/applications/enable-app-reg/
-        - text: Create, Edit, and Delete an Application
-          url: /dev-portal/applications/dev-apps/
-        - text: Generate Credentials for an Application
-          url: /dev-portal/applications/dev-gen-creds/
+      url: /dev-portal/applications/application-overview/
     - text: Dynamic Client Registration
       items:
         - text: Overview
