@@ -91,14 +91,14 @@ See the following table for details on each plugin.
         </td>
         <td style="text-align: center">
         {% if plugin.konnect == false %}
-         <span>Not Applicable</span>
+         <span></span>
         {% elsif plugin.free == true %}
           <i class="fa fa-check"></i>
         {% endif %}
         </td>
         <td style="text-align: center">
           {% unless plugin.konnect %}
-            <span>Not Applicable</span>
+            <span>Not available in {{site.konnect_short_name}}</span>
           {% else %}
             {% unless plugin.free %}
               {% unless plugin.premium %}
@@ -111,7 +111,7 @@ See the following table for details on each plugin.
         </td>
         <td style="text-align: center">
           {% unless plugin.konnect %}
-            <span>Not Applicable</span>
+            <span></span>
           {% else %}
             {% unless plugin.free %}
               {% unless plugin.paid %}
@@ -124,7 +124,7 @@ See the following table for details on each plugin.
         </td>
     
         <td>
-          {{ plugin.notes }}
+          {{ plugin.notes | markdownify }}
         </td>
       </tr>
 
