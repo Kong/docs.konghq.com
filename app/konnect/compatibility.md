@@ -124,7 +124,7 @@ See the following table for details on each plugin.
         </td>
     
         <td>
-          {{ plugin.notes }}
+          {{ plugin.notes | markdownify }}
         </td>
       </tr>
 
