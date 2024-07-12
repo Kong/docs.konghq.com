@@ -23,7 +23,7 @@ Here are some things you should know before getting started:
 
 ### Running Locally
 
-For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
+For minor changes, please use GitHub Spaces. For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
 
 ```bash
 # Install dependencies
@@ -83,19 +83,6 @@ At least one of these labels must be applied to a PR or the build will fail.
 ### Troubleshooting
 
 For troubleshooting instructions, see the [troubleshooting documentation](docs/troubleshoot.md).
-
-
-
-### Skipping slow generators
-
-Disable the `Hub` generator for faster builds by setting the `DISABLE_HUB` environment variable:
-
-
-```bash
-DISABLE_HUB=1 make run
-```
-The `Sitemap` generator is disabled by default if `JEKYLL_ENV=development`, so it doesn't run locally.
-Disabling the `Hub` generator can be done by setting the environment variable: `DISABLE_HUB`.
 
 
 ## Plugin contributors

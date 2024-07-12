@@ -1,10 +1,18 @@
 We run various quality checks at build time to ensure that the documentation is maintainable.
 
-Some of the checks can be manually marked as approved using labels:
 
-* `ci:manual-approve:link-validation` - mark link checking as successful. Useful when Netlify returns an `HTTP 400` error and the links are validated manually.
 
-## include-check
+## Overriding default CI checks
+
+Some of the checks can be manually adjusted depending on a PR's needs:
+	
+* Set labels:
+    * `ci:manual-approve:link-validation` label - mark link checking as successful. Useful when Netlify returns an `HTTP 400` error and the links are validated manually.
+    * `skip-changelog` - mark an item that you don't want to appear in the weekly [docs changelog](https://github.com/Kong/docs.konghq.com/blob/main/changelog.md).
+
+* Set `[skip ci]` in the title of a PR to skip Netlify preview generation. This is useful for PRs that don't have any visual effect on the docs site, such as editing the repo README.
+
+### include-check
 
 The `include-check.sh` script checks for any files in the `app/_includes` folder that depend on a `page.*` variable (e.g. `page.url`). This is not compatible with the `include_cached` gem that we use, and so using `page.*` in an include will fail the build.
 

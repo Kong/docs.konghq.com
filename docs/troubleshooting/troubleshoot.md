@@ -17,3 +17,15 @@ You can try setting the `LANG` or `LC_ALL` environment variable to `en_US.UTF-8`
 ```bash
 export LANG=en_US.UTF-8
 ```
+
+
+## Skipping slow generators
+
+Disable the `Hub` generator for faster builds by setting the `DISABLE_HUB` environment variable:
+
+
+```bash
+DISABLE_HUB=1 make run
+```
+The `Sitemap` generator is disabled by default if `JEKYLL_ENV=development`, so it doesn't run locally.
+Disabling the `Hub` generator can be done by setting the environment variable: `DISABLE_HUB`.
