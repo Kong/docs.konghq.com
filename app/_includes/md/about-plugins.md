@@ -93,7 +93,7 @@ Kong provides PDKs in the following languages:
 These PDKs are sets of functions that a plugin can use to facilitate interactions between plugins
 and the core (or other components) of Kong.
 
-To start creating your own plugins, review the [Getting Started documentation](/gateway/latest/plugin-development/get-started/),
+To start creating your own plugins, review the [Getting Started documentation](/gateway/latest/plugin-development/get-started/index/),
 or see the following references:
 * [Plugin Development Kit reference](/gateway/latest/plugin-development/pdk/)
 * [Other Language Support](/gateway/latest/plugin-development/pluginserver/go/)
