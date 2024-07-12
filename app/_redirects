@@ -93,6 +93,7 @@
 /konnect/dev-portal/dev-reg/    /konnect/dev-portal/register-and-create-app/
 /konnect/dev-portal/applications/dev-apps/    /konnect/dev-portal/register-and-create-app/
 /konnect/dev-portal/applications/dev-gen-creds/    /konnect/dev-portal/register-and-create-app/
+/dev-portal/access-and-approval/manage-app-reg-requests/    /dev-portal/access-and-approval/manage-app-connections/
 
 # API markdown doc deprecation
 
