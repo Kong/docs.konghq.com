@@ -5,6 +5,7 @@ const {
 } = require("smartling-api-sdk-nodejs");
 
 const yamlPreProcessor = require('./pre-processors/yaml-files.js');
+const supportedVersionsPreProcessor = require('./pre-processors/supported-versions.js');
 
 // Exclude from Frontmatter:
 const FRONTMATTER_KEYS_TO_EXCLUDE =  [
@@ -49,7 +50,6 @@ async function buildBatchParamsForMarkdownFile(fileUri, locale) {
 }
 
 async function buildBatchFileParamsForConfig(fileUri, locale) {
-  // TODO: when we download this, we need to change the name of the file to ja.yml
   const batchFileParams = new UploadBatchFileParameters()
     .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
@@ -113,11 +113,11 @@ async function buildBatchFileParamsForData(fileUri, locale) {
   } else if (fileUri.endsWith('app/_data/tables/features/gateway.yml')) {
     batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['name', 'tooltip', 'cta']));
   } else if (fileUri.startsWith('app/_data/tables/support/gateway/versions/')) {
-    batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['eol']));
+    batchFileParams.setFileContent(supportedVersionsPreProcessor(fileUri, ['eol']));
   } else if (fileUri.endsWith('app/_data/tables/support/gateway/packages.yml')) {
     batchFileParams.setFileContent(yamlPreProcessor(fileUri, ['eol']));
   } else {
-    batchFileParams.setFileFromLocalFilePath(fileUri)
+    batchFileParams.setFileFromLocalFilePath(fileUri);
   }
   batchFileParams
     .setFileUri(fileUri)
@@ -172,9 +172,7 @@ async function buildBatchFileParamsForPluginsOverview(fileUri, locale) {
 
   return { fileUri: fileUri, batchFileParams: batchFileParams };
 }
-// TODO
-// Prep files to send
-//
+
 module.exports = {
   buildBatchFileParamsForApp,
   buildBatchFileParamsForConfig,
