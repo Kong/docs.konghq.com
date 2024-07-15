@@ -121,7 +121,7 @@ describe("sitemap includes", () => {
     "/hub/plugins/overview/",
   ].forEach((t) => {
     test(t, async () => {
-      const page = await fetchPageRaw("/sitemap.xml");
+      const page = await fetchPageRaw("/sitemap-index/default.xml");
       await expect(page.includes(`<loc>https://docs.konghq.com${t}</loc>`)).toBe(true);
     });
   });
@@ -136,7 +136,7 @@ describe("sitemap does not include", () => {
     "/gateway/",
   ].forEach((t) => {
     test(t, async () => {
-      const page = await fetchPageRaw("/sitemap.xml");
+      const page = await fetchPageRaw("/sitemap-index/default.xml");
       await expect(page.includes(`<loc>https://docs.konghq.com${t}</loc>`)).toBe(false);
     });
   });
