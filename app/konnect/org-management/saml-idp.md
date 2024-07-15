@@ -1,6 +1,5 @@
 ---
 title: Set up SSO with SAML 2.0
-content_type: how-to
 ---
 
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} through an identity provider (IdP) using SAML 2.0. This method allows your users to log in to {{site.konnect_saas}} with their IdP credentials, eliminating the need for a separate login.
