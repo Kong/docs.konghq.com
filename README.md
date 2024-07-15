@@ -21,9 +21,11 @@ Here are some things you should know before getting started:
 * **We are currently accepting plugin submissions** to our plugin hub from trusted technical partners, on a limited basis. For more information, see the [Kong Partners page](https://konghq.com/partners/).
 
 
-### Running Locally
+### Running locally
 
-For minor changes, please use GitHub Spaces. For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
+For minor changes, use the GitHub UI via the "Edit this page" button on any docs page, or use [GitHub Codespaces]. 
+
+For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
 
 ```bash
 # Install dependencies
@@ -69,9 +71,9 @@ KONG_PRODUCTS='*:latest'
 The docs site will be available at [http://localhost:8888](http://localhost:8888).
 
 
-### Review Labels
+### Review labels
 
-When raising a pull request, it's useful to indicate what type of review you're looking for from the team. To help with this, we've added three labels that can be applied:
+When raising a pull request, it's useful to indicate what type of review you're looking for from the team. To help with this, we've added the following labels:
 
 - `review:copyedit`: Request for writer review.
 - `review:general`: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
@@ -115,7 +117,7 @@ We run various checks at build time. Some checks can be manually approved using 
 > `ci:manual-approve:link-validation`
 
 
-For more information review the [continuous integration documentation](docs/ci-cd.md)
+For more information, review the [continuous integration documentation](docs/ci-cd.md).
 
 ## Platform documentation
 
