@@ -138,6 +138,8 @@
   items:
     - text: Overview
       url: /dev-portal/
+    - text: Dev Portal Configuration Preparation
+      url: /dev-portal/configuration-prep/
     - text: Create a Dev Portal
       url: /dev-portal/create-dev-portal/
     - text: Sign Up for a Dev Portal Account

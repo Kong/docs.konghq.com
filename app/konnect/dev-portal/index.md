@@ -17,6 +17,8 @@ You can use the following table to help you determine which Dev Portal configura
 | Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
 | Publish documentation for your APIs | [Add and publish API product documentation](/konnect/dev-portal/publish-service/) |
 
+To see guidance on all Dev Portal configuration options for your situation, see the [Dev Portal configuration preparation guide](/dev-portal/configuration-prep/).
+
 For more information about developer self-service with Dev Portal, we offer several pieces of documentation depending on your use case.
 
 {% navtabs %}
