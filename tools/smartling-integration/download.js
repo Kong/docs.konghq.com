@@ -24,6 +24,7 @@ const {
 } = require("smartling-api-sdk-nodejs");
 
 const processMarkdown = require('./src/post-processors/markdown-files.js');
+const processSupportedVersions = require('./src/post-processors/supported-versions.js');
 const { handleRateLimiting } = require('./src/rate_limit');
 
 const apiBuilder = new SmartlingApiClientBuilder()
@@ -73,7 +74,10 @@ async function downloadFiles() {
 
       // post-processing
       if (path.extname(fileUri) === '.md') {
-        downloadedFileContent  = processMarkdown(downloadedFileContent);
+        downloadedFileContent = processMarkdown(downloadedFileContent);
+      } else if (fileUri.startsWith('app/_data/tables/support/gateway/versions')) {
+        console.log(downloadedFileContent)
+        downloadedFileContent = processSupportedVersions(downloadedFileContent);
       }
 
       const filePath = path.join(translatedContentPath, locale, fileUri);
