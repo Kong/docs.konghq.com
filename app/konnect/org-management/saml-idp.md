@@ -38,15 +38,6 @@ Test the SSO configuration by navigating to the login URI based on the organizat
 
 If the configuration is correct, you will see the IdP sign-in page. You can now manage your organization's user permissions entirely from the IdP application.
 
-## Advanced Settings
-
-In the **Advanced Settings**  section of the OIDC configuration form, you can customize IdP-specific behaviors. The following options are available:
-
-**Attribute Mappings**: Customize the mapping of required attributes to different attribute names from those received from the IdP. By default, {{site.konnect_short_name}} requires three attributes: `name`, `email`, and `groups`. These attributes are mapped as follows:
-    - `name`: Used as the {{site.konnect_short_name}} account's `full_name`.
-    - `email`: Used as the {{site.konnect_short_name}} account's `email`.
-    - `groups`: Used to map users to teams defined in the team mappings upon login.
-
 ## Troubleshooting
 
 ### Authentication issues with large numbers of groups
