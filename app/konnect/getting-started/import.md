@@ -17,7 +17,7 @@ Afterward, you must manually move over:
 * Certificates
 * Custom plugins
 
-You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limitations).
+You cannot import [unsupported plugins](/konnect/service-catalog/plugins/#plugin-limitations).
 
 ## Prerequisites
 

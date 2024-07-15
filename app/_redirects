@@ -23,6 +23,11 @@
 ######################################################################
 
 
+
+## Service Catalog rename
+
+/konnect/servicehub/*  /konnect/service-catalog/:splat
+
 ## Kong Manager
 
 /gateway/:version/kong-manager-oss/troubleshoot/    /gateway/:version/kong-manager/troubleshoot/
