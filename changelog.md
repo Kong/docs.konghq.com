@@ -2,6 +2,92 @@
 
 <!--vale off-->
 
+## Week 28
+
+### [Fix: Key Auth Encrypted note and "not applicable" konnect labels](https://github.com/Kong/docs.konghq.com/pull/7635) (2024-07-12)
+
+* Fixing[ misleading/confusing note for Key Auth Enc](https://docs.konghq.com/hub/plugins/compatibility/#authentication:~:text=Key%20Authentication%20%2D%20Encrypted-,The%20time%2Dto%2Dlive%20(ttl)%20does%20not%20work%20in%20Konnect%20or%20hybrid%20mode.%20This%20setting%20determines%20the%20length%20of%20time%20a%20credential%20remains%20valid.,-LDAP%20Authentication), which was not providing enough info about why the plugin doesn't run in Konnect. 
+* Rephrasing the "Not applicable" table entries in the konnect compatibility table to say "Not available in Konnect" to make it clearer
+
+Issue reported on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/key-auth-enc/_metadata/_index.yml
+- https://docs.konghq.com/hub/plugins/compatibility/
+- https://docs.konghq.com/konnect/compatibility
+
+
+### [fix description about the execution order of the ai-request-transformer plugin](https://github.com/Kong/docs.konghq.com/pull/7628) (2024-07-11)
+
+This PR is to fix the description about the execution order of the ai-request-transformer plugin
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-request-transformer/overview/
+
+
+### [Chore: Documenting third-party tools instructions](https://github.com/Kong/docs.konghq.com/pull/7623) (2024-07-10)
+
+https://konghq.atlassian.net/browse/DOCU-3817
+Document expectations for writing about third-party things.
+
+#### Modified
+
+- https://docs.konghq.com/contributing/style-guide
+
+
+### [Release: Gateway 3.5.0.7](https://github.com/Kong/docs.konghq.com/pull/7603) (2024-07-10)
+
+Changelog and version bump for 3.5.0.7
+
+Will need a plugin schema update but there's no RC yet, so will generate that when it's available.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.6.1.7](https://github.com/Kong/docs.konghq.com/pull/7602) (2024-07-10)
+
+changelog and version bump for 3.6.1.7
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.7.1.2](https://github.com/Kong/docs.konghq.com/pull/7601) (2024-07-10)
+
+Changelog and version bump for 3.7.1.2
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [feat: Multi Dev Portal](https://github.com/Kong/docs.konghq.com/pull/7561) (2024-07-10)
+
+<!-- What did you change and why? -->
+ This PR documents the new multi-portal functionality and also does some docs cleanup in the Dev Portal section to make the user flow a bit clearer.
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+DOCU-3864
+
+#### Added
+
+- https://docs.konghq.com/konnect/dev-portal/create-dev-portal
+
+#### Modified
+
+- https://docs.konghq.com/konnect/api-products/productize-service
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-app-reg-requests
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+- https://docs.konghq.com/konnect/dev-portal/applications/enable-app-reg
+- https://docs.konghq.com/konnect/dev-portal/customization/
+- https://docs.konghq.com/konnect/dev-portal/
+- https://docs.konghq.com/konnect/dev-portal/publish-service
+- https://docs.konghq.com/konnect/updates
+
 ## Week 27
 
 ### [chore(rate-limiting): clarify rate-limiting accuracy](https://github.com/Kong/docs.konghq.com/pull/7607) (2024-07-03)
