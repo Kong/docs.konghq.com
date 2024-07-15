@@ -11,7 +11,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## July 2024
 
-**Dedicated Cloud Gateways on Azure**
+**Dedicated Cloud Gateways on Azure <span class="badge alpha"></span>**
+
 : You can now run Dedicated Cloud Gateways on Azure in the following regions: Frankfurt, Ireland, UK South, Virginia, and Washington.
 
 : ![Azure regions](/assets/images/products/konnect/gateway-manager/konnect-azure-cgw.png)
