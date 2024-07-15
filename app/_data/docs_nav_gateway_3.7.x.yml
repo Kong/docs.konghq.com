@@ -470,7 +470,7 @@ items:
       - text: Getting Started
         items:
           - text: Introduction
-            url: /plugin-development/get-started/index
+            url: /plugin-development/get-started/
           - text: Set up the Plugin Project
             url: /plugin-development/get-started/setup
           - text: Add Plugin Testing
