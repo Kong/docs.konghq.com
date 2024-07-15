@@ -27,7 +27,6 @@ const DATA_FILES_TO_EXCLUDE = [
   'tables/support/gateway/versions/28.yml',
   'tables/support/gateway/versions/32.yml',
   'tables/support/gateway/versions/33.yml',
-  'tables/support/gateway/versions/34.yml',
   'tables/support/gateway/versions/35.yml',
   'tables/support/gateway/versions/36.yml',
   'tables/support/gateway/versions/37.yml',
