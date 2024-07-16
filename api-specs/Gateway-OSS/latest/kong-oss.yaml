@@ -2602,15 +2602,10 @@ components:
                   - user-level
                   - low-priority
             properties:
-              upstream:
-                type: object
-                description: |
-                  The unique identifier or the name of the upstream for which to update the target.
-                properties:
-                  id:
-                    type: string
-                    example: 173a6cee-90d1-40a7-89cf-0329eca780a6
-                    description: The unique identifier or the name of the upstream for which to update the target.
+              target:
+                default: example.com:8000
+                description: The target for the upstream
+                type: string
               weight:
                 default: 100
                 description: The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.
@@ -2625,8 +2620,7 @@ components:
           examples:
             Example:
               value:
-                upstream:
-                  id: 173a6cee-90d1-40a7-89cf-0329eca780a6
+                target: example.com:8000
                 weight: 100
                 tags:
                   - string
@@ -3620,7 +3614,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Kong Admin API
-  version: 3.7.0
+  version: 3.7.1
 openapi: 3.0.0
 paths:
   /:
