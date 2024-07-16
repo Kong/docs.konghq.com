@@ -19,6 +19,9 @@
 /gateway/latest/ai-gateway/ai-analytics/ /gateway/:version/production/latest/ai-analytics/
 ######################################################################
 
+## Saml SSO
+
+/konnect/org-management/oidc-idp/   /konnect/org-management/sso/
 
 ## Kong Manager
 
