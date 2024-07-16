@@ -187,7 +187,7 @@ application into {{site.konnect_saas}}.
 
 1. Click **Save**.
 
-### Map {{site.konnect_short_name}} teams to Okta groups
+### Map {{site.konnect_short_name}} teams to Okta groups {#map-teams-to-groups}
 
 By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/),
 you can manage a user's {{site.konnect_short_name}} team membership directly through
@@ -240,7 +240,7 @@ in Okta to locate the Okta groups you want to map.
 
 1. Click **Save**.
 
-## Test and apply the configuration
+## Test and apply the configuration {#test-the-integration}
 
 {:.important}
 > **Important:** Keep built-in authentication enabled while you are testing Okta authentication. Only disable built-in authentication after successfully testing Okta authentication.
