@@ -14,9 +14,42 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## July 2024
 
-July 03 **[test badges post in July](https://app.getbeamer.com/kongsandbox/en/test-badges-post-in-july)**
-: test post for badges
-: {:.badge .new} {:.badge .konnect} {:.badge .update} {:.badge .deprecation}
+<div class="changelog-entries">
+  <div class="changelog-date">July 03</div>
+  <div class="changelog-entry">
+      <div class="changelog-title">
+        <a href="https://app.getbeamer.com/kongsandbox/en/test-badges-post-in-july">Test badges post in July</a>
+      </div>
+      <div class="changelog-description">You can now quickly spin up a dedicated AWS cloud gateway data plane node in Konnect. 
+With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway 
+infrastructure ...</div>
+      <div class="changelog-badges">
+        <span class="badge new"></span>
+        <span class="badge konnect"></span>
+        <span class="badge update"></span>
+  </div>
+  </div>
+</div>
+
+
+<div class="changelog-entries">
+  <div class="changelog-date">July 01</div>
+  <div class="changelog-entry">
+      <div class="changelog-title">
+        <a href="https://app.getbeamer.com/kongsandbox/en/test-badges-post-in-july">Test badges post in July</a>
+      </div>
+      <div class="changelog-description">You can now quickly spin up a dedicated AWS cloud gateway data plane node in Konnect. 
+With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway 
+infrastructure ...</div>
+      <div class="changelog-badges">
+        <span class="badge new"></span>
+        <span class="badge konnect"></span>
+        <span class="badge update"></span>
+  </div>
+  </div>
+</div>
+
+
 
 ## June 2024
 
