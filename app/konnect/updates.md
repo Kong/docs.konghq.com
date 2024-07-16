@@ -13,7 +13,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 ## July 2024
-
+<br>
 <div class="changelog-entries">
   <div class="changelog-date">July 03</div>
   <div class="changelog-entry">
@@ -25,8 +25,7 @@ With a dedicated cloud infrastructure, you control the sizing and deployment loc
 infrastructure ...</div>
       <div class="changelog-badges">
         <span class="badge new"></span>
-        <span class="badge konnect"></span>
-        <span class="badge update"></span>
+        <span class="badge dev-portal"></span>
   </div>
   </div>
 </div>
@@ -42,9 +41,8 @@ infrastructure ...</div>
 With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway 
 infrastructure ...</div>
       <div class="changelog-badges">
-        <span class="badge new"></span>
-        <span class="badge konnect"></span>
         <span class="badge update"></span>
+        <span class="badge dev-portal"></span>
   </div>
   </div>
 </div>
