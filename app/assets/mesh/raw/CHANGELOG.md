@@ -17,6 +17,8 @@
 * fix(kuma-cp): downgrade go-control-plane to mitigate potential deadlock (backport of #6094) [#6098](https://github.com/Kong/kong-mesh/pull/6098) @kong-mesh
 * fix(license): don't fail if we ever saw a valid license (backport of #5968) [#5972](https://github.com/Kong/kong-mesh/pull/5972) @kong-mesh
 * fix(ubi): upgrade from non-existent iptables-nft version (backport of #5910) [#6008](https://github.com/Kong/kong-mesh/pull/6008) @kong-mesh
+* fix(kuma-cp): fixed an issue that breaks license propagation from the global control plane to zone control planes
+
 
 
 ## 2.4.9
@@ -82,6 +84,8 @@
 * chore(deps): bump kumahq/kuma from 413bddfb40f2 to f19b85337 [#6056](https://github.com/Kong/kong-mesh/pull/6056) [#6088](https://github.com/Kong/kong-mesh/pull/6088) [#6107](https://github.com/Kong/kong-mesh/pull/6107) [#6115](https://github.com/Kong/kong-mesh/pull/6115) [#6119](https://github.com/Kong/kong-mesh/pull/6119) [#6142](https://github.com/Kong/kong-mesh/pull/6142) [#6151](https://github.com/Kong/kong-mesh/pull/6151) [#6164](https://github.com/Kong/kong-mesh/pull/6164) @kong-mesh
 * chore(deps): security update [#6078](https://github.com/Kong/kong-mesh/pull/6078) @kong-mesh
 * fix(kuma-cp): downgrade go-control-plane to mitigate potential deadlock (backport of #6094) [#6099](https://github.com/Kong/kong-mesh/pull/6099) @kong-mesh
+* fix(kuma-cp): fixed an issue that breaks license propagation from the global control plane to zone control planes
+
 
 
 ## 2.6.8
@@ -96,6 +100,7 @@
 > Released on 2024/05/30
 
 * chore(deps): bump kumahq/kuma from 946233ed1fe6 to 68fa9292c [#6055](https://github.com/Kong/kong-mesh/pull/6055) [#6058](https://github.com/Kong/kong-mesh/pull/6058) [#6060](https://github.com/Kong/kong-mesh/pull/6060) @kong-mesh
+* fix(kuma-cp): fixed an issue that breaks license propagation from the global control plane to zone control planes
 
 
 ## 2.7.3
