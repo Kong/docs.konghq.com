@@ -178,9 +178,11 @@ Access an older version of the secret like this:
 
 ## How does Kong retrieve secrets from HashiCorp Vault
 
-Kong retrieves secrets from HashiCorp Vault's HTTP API. There are two steps to retrieve a secret:
+Kong retrieves secrets from HashiCorp Vault's HTTP API through a two-step process:
 
-**Step 1: Depending on the authentication method defined in `config.auth_method`, Kong will do authentication.**
+**Step 1: Authentication**
+Depending on the authentication method defined in `config.auth_method`, Kong will authenticate using one of the following methods:
+
 - If you're using `token` auth method, the `config.token` will be used as the client token.
 - If you're using `kubernetes` auth method, Kong will use the service account JWT token mounted in the pod(path is defined in `config.kube_api_token_file`) to call the login API for kubernetes auth path on HashiCorp Vault server and retrieve a client token. The request looks like the following:
 
@@ -214,24 +216,31 @@ X-Vault-Namespace: <config.namespace>
 
 By calling the login API, Kong will retrieve a client token and then use it in the next step as the value of `X-Vault-Token` header to retrieve a secret.
 
-**Step 2: Kong will then retrieve the secret from HashiCorp Vault by using the client token retrieved from Step 1.**
+**Step 2: Retrieving the secret**
 
-Kong will call the read secret API to retrieve the secret value. The request varys depends on which secrets engine version you're using:
+Kong will use the client token retrieved in Step 1 to call the read secret API and retrieve the secret value. The request varies depending on the secrets engine version you're using:
+
+- KV v1:
 
 ```
-# If you're using KV v1
 GET /v1/<config.mount>/<secret path>
 Host: <config.host>:<config.port>
 X-Vault-Token: <client token>
 X-Vault-Namespace: <config.namespace>
+```
 
-# If you're using KV v2
+- KV v2:
+
+```
 GET /v1/<config.mount>/data/<secret path>
 Host: <config.host>:<config.port>
 X-Vault-Token: <client token>
 X-Vault-Namespace: <config.namespace>
+```
 
-# If you're using KV v2 with versioned secrets
+- KV v2 with versioned secrets:
+
+```
 GET /v1/<config.mount>/data/<secret path>?version=<version>
 Host: <config.host>:<config.port>
 X-Vault-Token: <client token>
