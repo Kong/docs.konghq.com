@@ -58,12 +58,12 @@ lightweight, fast, and flexible API gateway.
 </div>
 ## {{site.konnect_short_name}} modules
 
-### {{site.service_catalog_product_name}}
+### {{site.service_catalog_name}}
 
-The [{{site.service_catalog_product_name}}](/konnect/service-catalog) makes internal APIs discoverable,
-consumable, and reusable for internal development teams. You can use the {{site.service_catalog_product_name}} to monitor
+The [{{site.service_catalog_name}}](/konnect/service-catalog) makes internal APIs discoverable,
+consumable, and reusable for internal development teams. You can use the {{site.service_catalog_name}} to monitor
 all your services and create a single source of
-truth for your organization’s service inventory. By leveraging the {{site.service_catalog_product_name}},
+truth for your organization’s service inventory. By leveraging the {{site.service_catalog_name}},
 your application developers
 can search, discover, and consume existing services to accelerate their
 time-to-market, while enabling a more consistent end-user experience
