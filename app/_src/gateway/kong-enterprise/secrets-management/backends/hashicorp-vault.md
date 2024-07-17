@@ -238,6 +238,7 @@ X-Vault-Token: <client token>
 X-Vault-Namespace: <config.namespace>
 ```
 
+{:.warning}
 > **Warning:** Make sure you've configured the correct KV engine version in `conig.kv`, otherwise Kong will fail to parse the response.
 
 Kong will parse the response of the read secret API automatically and return the secret value.
