@@ -119,6 +119,8 @@ pg_ro_iam_auth_assume_role_arn=<role_arn>
 pg_ro_iam_auth_role_session_name=<role_session_name>
 ```
 
+{% endif_version %}
+
 
 {:.note}
 > **Note:** If you enable AWS IAM authentication in the configuration file, you must specify the configuration file with the feature property on when you run the migrations command. For example, `kong migrations bootstrap -c /path/to/kong.conf`.
