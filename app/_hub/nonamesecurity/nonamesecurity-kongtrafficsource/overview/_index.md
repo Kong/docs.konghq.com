@@ -25,7 +25,7 @@ If you already had a prevention integration configured and would like to migrate
 
 You can find the performance benchmarks for Kong with Noname here:
 
-[{{site.ee_product_name}} 2.8.1.1 with Noname 3.1](https://docs.nonamesecurity.com/v320/docs/kong-performance-results)
+[{{site.ee_product_name}} 2.8.1.1 with Noname 3.1](https://docs.nonamesecurity.com/docs/kong-performance-results)
 
 ## How to install
 

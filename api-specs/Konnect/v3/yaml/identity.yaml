@@ -492,7 +492,7 @@ paths:
           required: false
           style: deepObject
     post:
-      summary: Assign Role
+      summary: Assign Team Role
       operationId: teams-assign-role
       responses:
         '201':
@@ -531,7 +531,7 @@ paths:
         required: true
         description: The role ID.
     delete:
-      summary: Remove Role
+      summary: Remove Team Role
       operationId: teams-remove-role
       responses:
         '204':

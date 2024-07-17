@@ -68,10 +68,10 @@ grant access to the wrong resources to a new group of users.
 
 Assuming you already have a control plane group and a member control plane, you can export the configuration from the old control plane and apply it to the new one.
 
-1. Export the configuration of the old control plane via `deck dump`:
+1. Export the configuration of the old control plane via `deck gateway dump`:
 
     ```sh
-    deck dump \
+    deck gateway dump \
         -o old-group.yaml \
         --konnect-token <your_KPAT> \
         --konnect-control-plane-name old-group
@@ -80,8 +80,7 @@ Assuming you already have a control plane group and a member control plane, you 
 1. Sync the configuration to the new group:
 
     ```sh
-    deck sync \
-        -s old-group.yaml \
+    deck gateway sync old-group.yaml \
         --konnect-token <your_KPAT> \
         --konnect-control-plane-name CP1
     ```
@@ -95,10 +94,10 @@ Assuming you already have a control plane group and a member control plane, you 
 
 Use decK to migrate a self-managed {{site.base_gateway}} workspace into a control plane group.
 
-1. Run [`deck dump`](/deck/latest/reference/deck_dump/) to export workspace configuration into a file:
+1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export workspace configuration into a file:
 
     ```sh
-    deck dump --workspace ws1 -o ws1.yaml
+    deck gateway dump --workspace ws1 -o ws1.yaml
     ```
 
 1. Open the file. Remove the following:
@@ -112,17 +111,17 @@ Use decK to migrate a self-managed {{site.base_gateway}} workspace into a contro
 
     * Any other [unsupported plugins](/konnect/compatibility/#plugin-compatibility)
 
-1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff/)
+1. Preview the import with the [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/)
 command, pointing to the control plane that you want to target:
 
     ```sh
-    deck diff --konnect-control-plane-name CP1 -s ws1.yaml
+    deck gateway diff ws1.yaml --konnect-control-plane-name CP1
     ```
 
-1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync/):
+1. If you're satisfied with the preview, run [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/):
 
     ```sh
-    deck sync --konnect-control-plane-name CP1 -s ws1.yaml
+    deck gateway sync ws1.yaml --konnect-control-plane-name CP1
     ```
 
     If you don't specify the `--konnect-control-plane-name` flag, decK targets the

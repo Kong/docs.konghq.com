@@ -75,7 +75,21 @@ When `upstream_health_metrics` is set to true:
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of targets
   belonging to a given upstream as well as their subsystem (`http` or `stream`).
 
+
 {% endif_version %}
+
+{% if_version gte:3.8.x %}
+When `ai_llm_metrics` is set to `true`:
+- **AI Requests**: AI requests sent to LLM providers.
+  These are available per provider, model, cache, database name (if cached), and workspace.
+- **AI Cost:**: AI costs charged by LLM providers.
+  These are available per provider, model, cache, database name (if cached), and workspace.
+- **AI Tokens** AI tokens counted by LLM providers.
+  These are available per provider, model, cache, database name (if cached), token type, and workspace.
+
+For more details, see [AI Metrics](/gateway/latest/production/monitoring/ai-metrics/).
+{% endif_version %}
+
 
 Here is an example of output you could expect from the `/metrics` endpoint:
 

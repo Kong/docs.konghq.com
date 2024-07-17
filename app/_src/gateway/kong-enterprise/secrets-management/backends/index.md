@@ -12,7 +12,7 @@ The following Vault implementations are supported:
 | [Azure Key Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/azure-key-vaults/) | Enterprise |
 {% endif_version %}
 
-| [GCP Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)      | Enterprise |
+| [GCP Secret Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)      | Enterprise |
 | [HashiCorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/) | Enterprise |
 
 

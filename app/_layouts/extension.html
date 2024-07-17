@@ -13,19 +13,6 @@ breadcrumbs:
 </blockquote>
 {% endunless %}
 
-{% unless page.free %}
-  {% if page.extn_publisher == "kong-inc" %}
-    {% if page.paid or page.premium %}
-      <blockquote class="note" role="alert">
-        <p>
-          Did you know that you can try this plugin without talking to anyone for just {% if page.paid %}{{ site.pricing.konnect.paid_plugin }}{% else %}{{ site.pricing.konnect.premium_plugin }}{% endif %}/month with Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
-        </p>
-      </blockquote>
-    {% endif %}
-  {% endif %}
-{% endunless %}
-
-
 {% unless page.extn_publisher == "kong-inc" %}
     {% if page.techpartner %}
       <blockquote class="partner-plugin no-icon">

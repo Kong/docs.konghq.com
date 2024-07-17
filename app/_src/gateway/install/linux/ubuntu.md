@@ -37,12 +37,12 @@ The quickest way to get started with {{ site.base_gateway }} is using the instal
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-bash <(curl -sS https://get.konghq.com/install) -v {{ page.versions_ee }}
+bash <(curl -sS https://get.konghq.com/install) -v {{ page.versions.ee }}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-bash <(curl -sS https://get.konghq.com/install) -p kong -v {{ page.versions_ce }}
+bash <(curl -sS https://get.konghq.com/install) -p kong -v {{ page.versions.ce }}
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}

@@ -107,8 +107,9 @@ plugins:
       model:
         provider: "llama2"
         name: "llama2"
-        llama2_format: "ollama"
-        upstream_url: "http://llama2-server.local:11434/api/chat"
+        options:
+          llama2_format: "ollama"
+          upstream_url: "http://llama2-server.local:11434/api/chat"
 ```
 {% endnavtab %}
 {% endnavtabs %}

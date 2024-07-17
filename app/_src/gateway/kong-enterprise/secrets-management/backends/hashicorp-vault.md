@@ -205,7 +205,7 @@ Configuration options for a HashiCorp vault in {{site.base_gateway}}:
 
 {% if_version gte:3.1.x %}
 | `vaults.config.namespace` | `namespace` | Namespace for the Vault. Vault Enterprise requires a namespace to successfully connect to it. |
-| `vaults.config.auth_method` | `auth-method` | Defines the authentication mechanism when connecting to the Hashicorp Vault service. Accepted values are: `token`, `kubernetes` or `approle`.  |
+| `vaults.config.auth_method` | `auth-method` | Defines the authentication mechanism when connecting to the HashiCorp Vault service. Accepted values are: `token`, `kubernetes` or `approle`.  |
 | `vaults.config.kube_role` | `kube-role` | Defines the HashiCorp Vault role for the Kubernetes service account of the running pod. `keyring_vault_auth_method` must be set to `kubernetes` for this to activate. |
 | `vaults.config.kube_api_token_file` | `kube-api-token-file` | Defines the file path for the Kubernetes service account token. If not specified then a default path `/run/secrets/kubernetes.io/serviceaccount/token` will be used. |
 {% endif_version %}

@@ -54,7 +54,18 @@ You can use this method for any sensitive content.
     ```
     This snippet enables the [key authentication][key-auth] plugin globally and creates
      a consumer named `demo` with an API key.
-3. Run `deck sync -s env-demo.yaml` to sync this file.
+3. Run the following command to sync this file:
+
+    {% if_version lte:1.27.x %}
+    ```sh
+    deck sync -s env-demo.yaml
+    ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway sync env-demo.yaml
+    ```
+    {% endif_version %}
 
     The output should look something like this, where `abc` is the API key stored
     in the environment variable:

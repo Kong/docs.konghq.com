@@ -100,7 +100,7 @@ data plane roles. Kong provides and hosts the control plane and a database with
           {% endif %}
         </td>
         <td>
-          {{ plugin.notes }}
+          {{ plugin.notes | markdownify }}
         </td>
       </tr>
     {% endfor %}

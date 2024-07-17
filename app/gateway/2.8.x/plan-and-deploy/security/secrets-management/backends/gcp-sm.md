@@ -1,5 +1,5 @@
 ---
-title: GCP Secrets Manager
+title: GCP Secret Manager
 badge: enterprise
 content-type: how-to
 ---
@@ -8,13 +8,13 @@ content-type: how-to
 
 The current version of {{site.base_gateway}}'s implementation supports
 configuring
-[GCP Secrets Manager](https://cloud.google.com/secret-manager/) in two
+[GCP Secret Manager](https://cloud.google.com/secret-manager/) in two
 ways:
 
 * Environment variables
 * Workload Identity
 
-To configure GCP Secrets Manager, the `GCP_SERVICE_ACCOUNT`
+To configure GCP Secret Manager, the `GCP_SERVICE_ACCOUNT`
 environment variable must be set to the JSON document referring to the
 [credentials for your service account](https://cloud.google.com/iam/docs/creating-managing-service-account-keys):
 
@@ -25,7 +25,7 @@ export GCP_SERVICE_ACCOUNT=$(cat gcp-my-project-c61f2411f321.json)
 {{site.base_gateway}} uses the key to automatically authenticate
 with the GCP API and grant you access.
 
-To use GCP Secrets Manager with
+To use GCP Secret Manager with
 [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity)
 on a GKE cluster, update your pod spec so that the service account is
 attached to the pod. For configuration information, read the [Workload
@@ -75,7 +75,7 @@ that encapsulates the provider and the GCP project ID:
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/my-gcp-sm-vault \
   --data name=gcp \
-  --data description="Storing secrets in GCP Secrets Manager" \
+  --data description="Storing secrets in GCP Secret Manager" \
   --data config.project_id="my_project_id"
 ```
 
@@ -85,7 +85,7 @@ curl -i -X PUT http://HOSTNAME:8001/vaults/my-gcp-sm-vault \
 ```bash
 http -f PUT http://HOSTNAME:8001/vaults/my-gcp-sm-vault \
   name="gcp" \
-  description="Storing secrets in GCP Secrets Manager" \
+  description="Storing secrets in GCP Secret Manager" \
   config.project_id="my_project_id"
 ```
 
@@ -100,7 +100,7 @@ Result:
         "project_id": "my_project_id"
     },
     "created_at": 1657874961,
-    "description": "Storing secrets in GCP Secrets Manager",
+    "description": "Storing secrets in GCP Secret Manager",
     "id": "90e200be-cf84-4ce9-a1d6-a41c75c79f31",
     "name": "gcp",
     "prefix": "my-gcp-sm-vault",
