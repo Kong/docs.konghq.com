@@ -28,7 +28,7 @@ Kong Mesh <br><br> Mesh | Kong's service mesh. Use "Kong Mesh" for the first men
 Kuma | Kong's open-source service mesh. <br><br> ❌&nbsp; Do not use "Kong Kuma". This is an open-source project supported by the CNCF and maintained, not owned, by Kong.
 Insomnia | Kong's open-source API client.
 Dev Portal <br><br> Dev Portal, self-managed <br> Dev Portal, cloud | A module for sharing APIs and their specs with developers, and enabling the developers to create applications based on Gateway or Konnect services. <br><br> ❌&nbsp; Do not use "Developer Portal".
-Service Catalog | The service catalog in Konnect. <br><br> ❌&nbsp; Do not use "Servicecatalog", "Service catalog", or "servicecatalog".
+{{site.service_catalog_name}} | The service catalog in Konnect. <br><br> ❌&nbsp; Do not use "Servicecatalog", "Service catalog", or "servicecatalog".
 Gateway Manager | The runtime management service in Konnect <br><br> ❌&nbsp; Do not use "Gateway manager" with lowercase "manager".
 Analytics | Analytics and monitoring for Gateway and Konnect. <br><br> ❌&nbsp; Do not use "Vitals".
 decK | Kong's CLI tool for managing declarative configuration.<br><br> ❌&nbsp; Do not capitalize the first letter, even if the name appears at the start of a sentence.

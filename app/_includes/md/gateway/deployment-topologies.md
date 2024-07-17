@@ -2,7 +2,7 @@
 <!--vale off -->
 {% mermaid %}
 flowchart TD
-A(Dev Portal &bull; Gateway Manager &bull; Analytics &bull; Service Catalog)
+A(Dev Portal &bull; Gateway Manager &bull; Analytics &bull; {{site.service_catalog_name}})
 B(<img src="/assets/images/logos/kogo-white.svg" style="max-height:20px" class="no-image-expand"/> Control plane \n #40;{{site.base_gateway}} instance#41;)
 B2(<img src="/assets/images/logos/kogo-white.svg" style="max-height:20px" class="no-image-expand"/> Control plane \n #40;{{site.base_gateway}} instance#41;)
 C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Data plane 3\n #40;{{site.base_gateway}} instance#41;)

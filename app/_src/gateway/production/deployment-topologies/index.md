@@ -23,7 +23,7 @@ The following sections briefly describe each mode.
 {% include_cached /md/gateway/deployment-topologies.md topology='konnect' %}
 <!-- vale on-->
 
-> _Figure 1: In {{ site.konnect_short_name }}, Kong hosts your control planes and all of the related applications: Dev Portal, Gateway Manager, Analytics, Service Catalog, and so on. You attach data planes to {{ site.konnect_short_name }} to process traffic, which get all of their configuration from the control planes._
+> _Figure 1: In {{ site.konnect_short_name }}, Kong hosts your control planes and all of the related applications: Dev Portal, Gateway Manager, Analytics, {{site.service_catalog_name}}, and so on. You attach data planes to {{ site.konnect_short_name }} to process traffic, which get all of their configuration from the control planes._
 
 Configuration changes can be made using the {{ site.konnect_short_name }} UI and configuration wizards, or applied in an automated way using [decK](/deck/latest/).
 
