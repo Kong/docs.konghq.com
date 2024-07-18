@@ -40,41 +40,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
 
     Leave this page open. You'll need the connection details here to configure your {{site.konnect_saas}} account.
 
-{% endnavtab %}
-{% navtab SAML %}
-### Prepare the Okta application
 
-Create a new application in Okta to manage the {{site.konnect_saas}} account integration.
-
-1. Sign in to your [Okta admin account](https://okta.com/login/).
-2. In the sidebar, click **Applications > Applications**, then click **Create App Integration**.
-1. Select the application type:
-
-    1. For the **Sign-in method**, select **SAML 2.0**.
-    1. Click **Next**.
-
-1. Configure the application:
-    1. In the **General Settings** page, enter a unique name for your application in the **App Name** box. Optionally add a logo in **App Logo** and update **App Visibility**. Click **Next**.
-    1. In the **Configure SAML** page:
-       1. Add placeholder values for the below fields. The actual values will updated after the configuration is updated in Konnect.
-          1. **Single Sign-On URL**: `https://global.api.konghq.com/v2/authenticate/{login_path}/saml/acs`
-          2. **Audience URI (SP Entity ID)**: `https://cloud.konghq.com/sp/{SP_ID}`
-    1. Optional: In the **Attribute Statements**, add the following three attributes:
- 
-       | Name       | Name format  | Value          |
-       |------------|--------------|----------------|
-       | `firstName`  | Unspecified  | user.firstName |
-       | `lastName`   | Unspecified  | user.lastName  |
-       | `email`      | Unspecified  | user.email     |
-    1. Optional: In the **Group Attributes**, add the following attribute:
-
-       | Name    | Name format  | Filter          | Filter Value |
-       |---------|--------------|-----------------|--------------|
-       | groups  | Unspecified  | Matches regex   | .*           |
-    1. Click **Next**.
-    1. In the **Feedback** page, select **I’m an Okta customer adding an internal app** and click **Finish**
-{% endnavtab %}
-{% endnavtabs %}
 ### (Optional) Set up claims in Okta
 
 
@@ -113,6 +79,43 @@ If you have problems setting up these claims, refer to the Okta documentation
 for troubleshooting:
 * [Adding a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/add-groups-claim-custom-as/)
 * [Adding a custom claim](https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/add-custom-claim/)
+
+{% endnavtab %}
+{% navtab SAML %}
+### Prepare the Okta application
+
+Create a new application in Okta to manage the {{site.konnect_saas}} account integration.
+
+1. Sign in to your [Okta admin account](https://okta.com/login/).
+2. In the sidebar, click **Applications > Applications**, then click **Create App Integration**.
+1. Select the application type:
+
+    1. For the **Sign-in method**, select **SAML 2.0**.
+    1. Click **Next**.
+
+1. Configure the application:
+    1. In the **General Settings** page, enter a unique name for your application in the **App Name** box. Optionally add a logo in **App Logo** and update **App Visibility**. Click **Next**.
+    1. In the **Configure SAML** page:
+       1. Add placeholder values for the below fields. The actual values will updated after the configuration is updated in Konnect.
+          1. **Single Sign-On URL**: `https://global.api.konghq.com/v2/authenticate/{login_path}/saml/acs`
+          2. **Audience URI (SP Entity ID)**: `https://cloud.konghq.com/sp/{SP_ID}`
+    1. Optional: In the **Attribute Statements**, add the following three attributes:
+ 
+       | Name       | Name format  | Value          |
+       |------------|--------------|----------------|
+       | `firstName`  | Unspecified  | user.firstName |
+       | `lastName`   | Unspecified  | user.lastName  |
+       | `email`      | Unspecified  | user.email     |
+    1. Optional: In the **Group Attributes**, add the following attribute:
+
+       | Name    | Name format  | Filter          | Filter Value |
+       |---------|--------------|-----------------|--------------|
+       | groups  | Unspecified  | Matches regex   | .*           |
+    1. Click **Next**.
+    1. In the **Feedback** page, select **I’m an Okta customer adding an internal app** and click **Finish**
+{% endnavtab %}
+{% endnavtabs %}
+
 ### Add a user to your application
 
 1. In the sidebar of your Okta account, click **Applications > Applications**.
