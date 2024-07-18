@@ -13,6 +13,8 @@ and lets you create _dynamic_ dependencies between plugins.
 
 To configure this setting in {{site.konnect_short_name}}, go to **Gateway Manager > Plugins**, and then select **Configure Dynamic Ordering** from the context menu next to the plugin you want to configure. From the plugin ordering settings, you can configure whether a plugin runs before or after another plugin.
 
+There are certain limitations to Dynamic plugin ordering, particularly dynamic plugin ordering cannot coexist with consumer-scoped plugins, even if they are applied to entirely different service and route pairs or are running globally. For more information see [known limitations in Dynamic Plugin Ordering](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/#known-limitations)
+
 ## Plugin execution order
 
 The order in which plugins are executed in {{site.konnect_short_name}} is determined by their
