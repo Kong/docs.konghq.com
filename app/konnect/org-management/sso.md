@@ -64,9 +64,9 @@ You can configure custom IdP-specific behaviors in the **Advanced Settings** of 
 
 2. Click **Configure provider** under **SAML**. 
 
-3. Enter the **Metadata URL** from your IdP in the **Identity Provider Metadata URL** field, or paste the **Metadata XML** in to the Identity **Provider Metadata XML** field.
+3. Enter the **Metadata URL** from your IdP in the **IDP Metadata URL** field.
 
-4. In the **Organization Login Path** field, enter the unique string that matches the one in Okta. For example: `examplepath`.
+4. In the **Login Path** field, enter the unique string that matches the one in Okta. For example: `examplepath`.
 
    {{site.konnect_short_name}} uses this string to generate a custom login
    URL for your organization.
