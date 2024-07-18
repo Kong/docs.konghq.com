@@ -35,7 +35,7 @@ As an alternative to {{site.konnect_saas}}’s native authentication, you can se
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 
-1. Click **Save**.
+1. After clicking Save, configure the SP Entity ID and Login URL on your SAML IdP.
 
 ## Test and apply the configuration
 
