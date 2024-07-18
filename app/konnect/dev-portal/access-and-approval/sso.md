@@ -3,19 +3,19 @@ title: Configure SSO for Dev Portal
 content_type: how-to
 ---
 
-You can configure single sign-on (SSO) for {{site.konnect_short_name}} Dev Portal with OIDC. This allows developers to log in to Dev Portals by using their SSO credentials. 
+You can configure single sign-on (SSO) for {{site.konnect_short_name}} Dev Portal with OIDC. This allows developers to log in to Dev Portals by using their SSO credentials. This guide provides information about how to configure SSO for Okta, Azure AD, and Auth0, but you can use IdPs other than the ones listed as long as they follow the OIDC standard for SSO.
 
-Developers do get auto-approved by Konnect when using SSO. This is because we outsource the approval process to the IdP instance when using SSO. Meaning it is possible to restrict who can sign up via the IdP rather than through Konnect.
+Keep the following in mind when configuring SSO for Dev Portal:
 
-SSO and IdP team mappings must come from the same IdP instance.
-
-{:.note}
-> **Note:** This SSO is different than the one for Konnect. If they want to use SSO for logging in to Konnect, they still need to configure that separately. Also could be good to note that each Dev Portal has a separate SSO configuration. They can use the same IdP for multiple portals or different IdPs per portal.
+* Developers are auto-approved by {{site.konnect_short_name}} when they use SSO to log in to the Dev Portal. This is because Kong outsources the approval process to the IdP instance when using SSO. Therefore, you should restrict who can sign up from the IdP rather than through {{site.konnect_short_name}}.
+* If you plan on using [team mappings from an IdP](/konnect/dev-portal/access-and-approval/add-teams), they must be from the same IdP instance as your SSO.
+* If you have multiple Dev Portals, keep in mind that each Dev Portal has a separate SSO configuration. You can use the same IdP for multiple Dev Portals or different IdPs per Dev Portal.
+* Dev Portal SSO is different than the [SSO for {{site.konnect_short_name}}](/konnect/org-management/oidc-idp). If you want to use SSO to log in to {{site.konnect_short_name}}, you must configure that separately. 
 
 ## Prerequisites
 
-* Ensure that any users that need to use the Dev Portal SSO have been added to the **User Management > Users** section of your IdP tenant
-* An application for {{site.konnect_short_name}} configured in your IdP. You can use other IdPs than the ones listed below as long as they follow the OIDC standard for SSO.
+* Ensure that any users that need to use the Dev Portal SSO have been added to your IdP tenant
+* An application for {{site.konnect_short_name}} configured in your IdP. 
     * [Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard.htm)
     * [Azure AD](https://learn.microsoft.com/graph/toolkit/get-started/add-aad-app-registration)
     * [Auth0](https://auth0.com/docs/get-started/auth0-overview/create-applications)
