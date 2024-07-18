@@ -156,8 +156,6 @@
           url: /dev-portal/access-and-approval/add-teams/
         - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
-        - text: Auto Approve Dev and App Registrations
-          url: /dev-portal/access-and-approval/auto-approve-devs-apps/
         - text: Azure OIDC
           url: /dev-portal/access-and-approval/azure/
     - text: Application Lifecycle
