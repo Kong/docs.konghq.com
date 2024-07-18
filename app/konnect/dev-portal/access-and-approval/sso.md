@@ -5,12 +5,12 @@ content_type: how-to
 
 You can configure single sign-on (SSO) for {{site.konnect_short_name}} Dev Portal with OIDC. This allows developers to log in to Dev Portals by using their SSO credentials. 
 
-Developers do get auto-approved by Konnect when using SSO. This is because we outsource the approval process to the IDP instance when using SSO. Meaning it is possible to restrict who can sign up via the IDP rather than through Konnect.
+Developers do get auto-approved by Konnect when using SSO. This is because we outsource the approval process to the IdP instance when using SSO. Meaning it is possible to restrict who can sign up via the IdP rather than through Konnect.
 
-SSO and IDP team mappings must come from the same IDP instance.
+SSO and IdP team mappings must come from the same IdP instance.
 
 {:.note}
-> **Note:** This SSO is different than the one for Konnect. If they want to use SSO for logging in to Konnect, they still need to configure that separately. Also could be good to note that each Dev Portal has a separate SSO configuration. They can use the same IDP for multiple portals or different IDPs per portal.
+> **Note:** This SSO is different than the one for Konnect. If they want to use SSO for logging in to Konnect, they still need to configure that separately. Also could be good to note that each Dev Portal has a separate SSO configuration. They can use the same IdP for multiple portals or different IdPs per portal.
 
 ## Prerequisites
 
