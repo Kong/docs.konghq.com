@@ -95,36 +95,22 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
     * **Allowed Callback URLs**: `https://cloud.konghq.com/login`
     * **Grant Types**: Authorization Code
 
-## Configure Login Action in Auth0
+1. [Create a login action in Auth0](https://auth0.com/docs/customize/actions/write-your-first-action#create-an-action) and enter the following in the Actions Code Editor:
+    
+    ```js
+    exports.onExecutePostLogin = async (event, api) => {
+    if (event.authorization) {
+        // This transforms the ISO 8601 Timestamp string into the seconds integer representation that is expected for the OIDC standard,
+        // allowing the Konnect SSO validation to accept the format of the `updated_at` property when parsing the token claim.
+        api.idToken.setCustomClaim('updated_at', Math.floor(new Date(event.user.updated_at).getTime()/1000))
+    }
+    };
+    ```
 
    {:.note}
-   > **Important:** This section is required due to the Auth0 API implementation not being inline with the OIDC standard for the value of the `updated_at` token claim.
-1. Navigate to the **Actions > Flows** section in Auth0
+   > **Important:** This section is required because the Auth0 API implementation isn't inline with the OIDC standard for the `updated_at` token claim value.
 
-1. Select the **Login** flow
-
-1. Add an action using the button in the corner of the interactive Login Flow diagram
-
-    * Choose **Build from scratch** when selecting the action type
-    * Name the action something like `konnect_transform_updated_at_integer`
-
-1. Replace the new action's default code with the following snippet, making it compatible with Konnect's OIDC integration:
-
-```js
-exports.onExecutePostLogin = async (event, api) => {
-  if (event.authorization) {
-    // This transforms the ISO 8601 Timestamp string into the seconds integer representation that is expected for the OIDC standard,
-    // allowing the Konnect SSO validation to accept the format of the `updated_at` property when parsing the token claim.
-    api.idToken.setCustomClaim('updated_at', Math.floor(new Date(event.user.updated_at).getTime()/1000))
-  }
-};
-```
-
-1. Deploy the newly created action
-
-1. In the Login Flow diagram, select the **Custom** tab and drag the newly deployed action between the Start and Complete steps in the diagram.
-
-1. Click **Apply** to save the changes
+1. Deploy the action by dragging it from the Start to Complete step in the [Login Flow](https://auth0.com/docs/customize/actions/flows-and-triggers/login-flow).
 {% endnavtab %}
 {% endnavtabs %}
 
