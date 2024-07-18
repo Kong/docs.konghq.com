@@ -61,7 +61,7 @@ Developers are limited to using a single auth strategy per application. For exam
 
 1. Enable **Accept application registrations** for each Dev Portal to allow developers to register their applications to consume this API.
 
-5. Optional: Click the [**Auto Approve**](/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
+5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
 
 1. Click **Save**.
 
@@ -81,7 +81,7 @@ If you already have an OIDC Auth Strategy created in the **Application Auth**:
 
 1. Enable **Accept application registrations** for each Dev Portal to allow developers to register their applications to consume this API.
 
-5. Optional: Click the [**Auto Approve**](/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
+5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
 
 1. Click **Save**.
 
@@ -112,7 +112,7 @@ If you do _not_ already have an OIDC Auth Strategy created, we will first create
 
 1. Enable **Accept application registrations** for each Dev Portal to allow developers to register their applications to consume this API.
 
-5. Optional: Click the [**Auto Approve**](/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
+5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
 
 1. Click **Save**.
 
