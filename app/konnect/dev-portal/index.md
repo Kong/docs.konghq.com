@@ -17,7 +17,7 @@ You can use the following table to help you determine which Dev Portal configura
 | Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
 | Publish documentation for your APIs | [Add and publish API product documentation](/konnect/dev-portal/publish-service/) |
 
-To see guidance on all Dev Portal configuration options for your situation, see the [Dev Portal configuration preparation guide](/dev-portal/configuration-prep/).
+To see guidance on all Dev Portal configuration options for your situation, see the [Dev Portal configuration preparation guide](/konnect/dev-portal/configuration-prep/).
 
 For more information about developer self-service with Dev Portal, we offer several pieces of documentation depending on your use case.
 
@@ -28,7 +28,7 @@ Manage developer access - This doc details to a {{site.konnect_short_name}} admi
 
 * [Manage developer access](/konnect/dev-portal/access-and-approval/manage-devs/)- This doc details to a {{site.konnect_short_name}} administrator all of the different options they have available to them to manage developer access to their Dev Portal. The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal.
 
-* [Manage application registration requests](/konnect/dev-portal/access-and-approval/manage-devs/) -  When developers want to create applications on your Dev Portal, they will have to create a request. Requests can be managed from within {{site.konnect_short_name}}. This document contains instructions on how to manage application requests. If you are interested in automatically allowing application requests automatically, read our guide on handling [auto approval](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
+* [Manage application registration requests](/konnect/dev-portal/access-and-approval/manage-devs/) -  When developers want to create applications on your Dev Portal, they will have to create a request. Requests can be managed from within {{site.konnect_short_name}}. This document contains instructions on how to manage application requests. If you are interested in automatically allowing application requests automatically, see information about handling [auto approval](/konnect/dev-portal/create-dev-portal/).
 {% endnavtab %}
 {% navtab Developers %}
 For developers, see [Register and create an application as a developer](/konnect/dev-portal/register-and-create-app/).

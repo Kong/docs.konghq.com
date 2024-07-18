@@ -7,7 +7,7 @@ content_type: reference
 
 When a developer [registers an application with an API product](/konnect/dev-portal/register-and-create-app),
 the requests must be approved by an admin if
-[auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) isn't enabled. When
+[auto approve](/dev-portal/create-dev-portal/) isn't enabled. When
 [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg),
 developers must register their applications with an API product. You can manage developer application registration requests from the **App Registration Requests** tab on the **Overview** page of your Dev Portal in {{site.konnect_short_name}}. On this page, you can approve, reject, or delete an app request.
 

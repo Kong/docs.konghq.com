@@ -39,7 +39,7 @@ flowchart TD
     K --> H
     H --> I(Manually approve or deny apps)
     H --> L(Automatically approve all apps)
-    I --> M{How will devs authenticate their apps?}
+    I --> M{How will developers authenticate their apps?}
     M --> N(Dynamic client registration)
     M --> O(Use default authentication strategy in Konnect)
 
