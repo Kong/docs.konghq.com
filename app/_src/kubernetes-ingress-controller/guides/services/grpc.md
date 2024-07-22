@@ -16,7 +16,12 @@ For this example, you need to:
 
 To make `gRPC` requests, you need a client that can invoke gRPC requests. You can use [`grpcurl`](https://github.com/fullstorydev/grpcurl#installation) as the client. Ensure that you have it installed on your local system.
 
-{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=true %}
+{% assign grpcroute_is_experimental = false %}
+{% if_version lte:3.1.x %}
+{% assign grpcroute_is_experimental = true %}
+{% endif_version %}
+
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=grpcroute_is_experimental %}
 
 ## Deploy a gRPC test application
 
@@ -69,6 +74,7 @@ service/grpcbin created
 
 ## Create a GRPCRoute
 
+{% if_version lte:3.1.x %}
 ### gRPC over HTTPS
 
 All services are assumed to be either HTTP or HTTPS by default. We need to update the service to specify gRPC as the protocol by adding a `konghq.com/protocol` annotation.
@@ -83,6 +89,24 @@ The results should look like this:
 ```text
 service/grpcbin annotated
 ```
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
+### gRPC over TLS
+
+All services are assumed to be either HTTP or HTTPS by default. We need to update the service to specify gRPC over TLS as the protocol by adding a `konghq.com/protocol` annotation.
+
+The annotation `grpcs` informs Kong that this service is a gRPC (with TLS) service and not a HTTP service.
+
+```bash
+kubectl annotate service grpcbin 'konghq.com/protocol=grpcs'
+```
+
+The results should look like this:
+```text
+service/grpcbin annotated
+```
+{% endif_version %}
 
 #### Create a certificate
 
@@ -127,7 +151,7 @@ gateway.gateway.networking.k8s.io/kong patched
 Next, create a `GRPCRoute`:
 
 ```bash
-echo 'apiVersion: gateway.networking.k8s.io/v1alpha2
+echo 'apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
 metadata:
   name: grpcbin
@@ -195,7 +219,7 @@ The results should look like this:
   "reply": "hello Kong"
 }
 ```
-
+{% if_version lte:3.1.x %}
 ### gRPC over HTTP
 
 All services are assumed to be either HTTP or HTTPS by default. We need to update the service to specify gRPC as the protocol by adding a `konghq.com/protocol` annotation.
@@ -209,7 +233,7 @@ kubectl annotate service grpcbin 'konghq.com/protocol=grpc'
 Now that the test application is running, you can create GRPC routing configuration that
 proxies traffic to the application:
 
-For gRPC over HTTP (plaintext without TLS), configuration of Kong Gateway needs to be adjusted. By default Kong Gateway
+For gRPC over HTTP (plaintext without TLS), configuration of {{site.base_gateway}} needs to be adjusted. By default {{site.base_gateway}}
 accepts HTTP/2 traffic with TLS on port `443`. And HTTP/1.1 traffic on port `80`. To accept HTTP/2 (which is required by gRPC standard)
 traffic without TLS on port `80`, the configuration has to be adjusted.
 
@@ -217,9 +241,39 @@ traffic without TLS on port `80`, the configuration has to be adjusted.
 kubectl set env deployment/kong-gateway -n kong 'KONG_PROXY_LISTEN=0.0.0.0:8000 http2, 0.0.0.0:8443 http2 ssl'
 ```
 
-**Caveat:** Currently, Kong Gateway doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
+**Caveat:** Currently, {{site.base_gateway}} doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
 it's not possible to connect with HTTP/1.1 protocol, requests will be rejected. For HTTP/2 with TLS everything works seamlessly (connections
 are handled transparently). You may configure an alternative HTTP/2 port (e.g. `8080`) if you require HTTP/1.1 traffic on port 80.
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
+### gRPC without TLS
+
+All services are assumed to be either HTTP or HTTPS by default. We can update the service to specify gRPC as the protocol by adding a `konghq.com/protocol` annotation. If you do not perform this step, it will also default to using gRPC as the default protocol.
+
+The annotation `grpc` informs Kong that this service is a gRPC (without TLS) service and not a HTTP service.
+
+```bash
+kubectl annotate service grpcbin 'konghq.com/protocol=grpc'
+```
+
+Now that the test application is running, you can create GRPC routing configuration that
+proxies traffic to the application:
+
+For gRPC without TLS, configuration of {{site.base_gateway}} needs to be adjusted. By default {{site.base_gateway}}
+accepts HTTP/2 traffic with TLS on port `443`. And HTTP/1.1 traffic on port `80`. To accept HTTP/2 (which is required by gRPC standard)
+traffic without TLS on port `80`, the configuration has to be adjusted.
+
+```bash
+kubectl set env deployment/kong-gateway -n kong 'KONG_PROXY_LISTEN=0.0.0.0:8000 http2, 0.0.0.0:8443 http2 ssl'
+```
+
+**Caveat:** {{site.base_gateway}} 3.6.x and earlier doesn't offer simultaneous support of HTTP/1.1 and HTTP/2 without TLS on a single TCP socket. Hence
+it's not possible to connect with HTTP/1.1 protocol, requests will be rejected. For HTTP/2 with TLS everything works seamlessly (connections
+are handled transparently). You may configure an alternative HTTP/2 port (e.g. `8080`) if you require HTTP/1.1 traffic on port 80.
+Since {{site.base_gateway}} 3.6.x, {{site.base_gateway}} is able to support listening HTTP/2 without TLS(h2c) and HTTP/1.1 on the same port, so you can use port 80 for both
+HTTP/1.1 and HTTP/2 without TLS.
+{% endif_version %}
 
 #### Route gRPC traffic
 
@@ -228,6 +282,7 @@ are handled transparently). You may configure an alternative HTTP/2 port (e.g. `
 {% if_version gte:3.1.x %}
 If you are using the Gateway APIs (GRPCRoute), your Gateway needs additional configuration under `listeners`.
 
+{% if_version lte:3.1.x %}
 ```bash
 echo 'apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: GRPCRoute
@@ -244,6 +299,27 @@ spec:
       port: 9000
 ' | kubectl apply -f -
 ```
+{% endif_version %}
+
+{% if_version gte:3.2.x %}
+```bash
+echo 'apiVersion: gateway.networking.k8s.io/v1
+kind: GRPCRoute
+metadata:
+  name: grpcbin
+spec:
+  parentRefs:
+  - name: kong
+  hostnames:
+  - "example.com"
+  rules:
+  - backendRefs:
+    - name: grpcbin
+      port: 9000
+' | kubectl apply -f -
+```
+{% endif_version %}
+
 The results should look like this:
 ```text
 grpcroute.gateway.networking.k8s.io/grpcbin created

@@ -32,6 +32,11 @@ inherit:
       url: /support-policy/
       action: insert
       index: -3
+    - path: [ Introduction ]
+      text: Software Bill of Materials
+      url: /sbom
+      action: insert
+      index: -3
     - path: [ Introduction, Release notes]
       url: /mesh/changelog
       src: /mesh/changelog
@@ -51,9 +56,9 @@ inherit:
       index: 0
       text: Kong Mesh license
       url: /production/cp-deployment/license
-    - path: [ Kong Mesh in Production, Secure your deployment, Kuma API access control ]
-      action: modify
-      text: Kong Mesh API access control
+    - path: [ Kong Mesh in Production, Secure your deployment ]
+      action: delete
+      entries: [ Kuma API access control ]
     - path: [ Kong Mesh in Production, Secure your deployment ]
       action: insert
       index: 0
@@ -163,6 +168,8 @@ inherit:
           url: /features/access-audit
         - text: MeshGlobalRateLimit (beta)
           url: /features/meshglobalratelimit
+        - text: Verify signatures for signed Kong Mesh images
+          url: /features/signed-images
     - path: [ Reference ]
       action: modify
       icon: /assets/images/icons/documentation/icn-references-color.svg

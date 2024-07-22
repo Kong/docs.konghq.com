@@ -1036,7 +1036,7 @@ components:
                     type: boolean
             type: object
         Vault:
-            description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
+            description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, HashiCorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
             example:
                 config:
                     prefix: vaults.config.resurrect_ttl
@@ -1777,7 +1777,7 @@ components:
                                       name: JL
                                       tags: null
                         properties:
-                            consumer:
+                            data:
                                 type: object
                                 properties:
                                     created_at:
@@ -1848,14 +1848,14 @@ components:
                         type: object
                         x-examples:
                             Example 1:
-                                consumers:
+                                data:
                                     - created_at: 1638918560
                                       id: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
                                       type: 0
                                       username: BarryAllen
                                       username_lower: barryallen
                         properties:
-                            consumers:
+                            data:
                                 type: array
                                 description: The consumers array contains consumer objects
                                 items:
@@ -11420,11 +11420,10 @@ paths:
                         examples:
                             Invite an admin:
                                 value:
-                                    admin:
-                                        username: test-case-3
-                                        email: test3@test.com
-                                        custom_id: customId
-                                        rbac_token_enabled: true
+                                    username: test-case-3
+                                    email: test3@test.com
+                                    custom_id: customId
+                                    rbac_token_enabled: true
     /admins/register:
         post:
             summary: Register an Admin’s Credentials
@@ -11744,11 +11743,11 @@ paths:
                         schema:
                             type: object
                             properties:
-                                Roles:
+                                roles:
                                     type: string
                             x-examples:
                                 Example 1:
-                                    Roles: read-only
+                                    roles: read-only
                 description: Comma-separated string of role names to create or update for an admin.
             description: Create or update roles for an admin
         delete:

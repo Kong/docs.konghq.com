@@ -52,6 +52,7 @@ paths:
         - $ref: '#/components/parameters/FilterByClusterTypeEqualityShort'
         - $ref: '#/components/parameters/FilterByClusterTypeNotEquals'
         - $ref: '#/components/parameters/FilterByLabels'
+        - $ref: '#/components/parameters/ControlPlaneSort'
       tags:
         - Control Planes
     parameters: []
@@ -196,7 +197,7 @@ paths:
         plane group.
       parameters:
         - $ref: '#/components/parameters/PageSize'
-        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/PageAfter'
   /control-planes/{id}/group-memberships/add:
     parameters:
       - schema:
@@ -423,6 +424,15 @@ components:
       schema:
         type: string
         example: test
+    ControlPlaneSort:
+      name: sort
+      description: |
+        Sorts a collection of control-planes. Supported sort attributes are:
+          - created_at
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/SortQuery'
     PageSize:
       name: page[size]
       description: >-
@@ -443,6 +453,17 @@ components:
       schema:
         type: integer
         example: 1
+    PageAfter:
+      name: page[after]
+      description: >-
+        Request the next page of data, starting with the item after this
+        parameter.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: string
+        example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
   responses:
     RetrieveControlPlaneResponse:
       description: A response to retrieving a single control plane.
@@ -624,7 +645,7 @@ components:
             type: object
             properties:
               meta:
-                $ref: '#/components/schemas/PaginatedMeta'
+                $ref: '#/components/schemas/CursorPaginatedMetaWithSizeAndTotal'
               data:
                 type: array
                 description: >-
@@ -721,6 +742,7 @@ components:
             - CLUSTER_TYPE_HYBRID
             - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
             - CLUSTER_TYPE_CONTROL_PLANE_GROUP
+            - CLUSTER_TYPE_SERVERLESS
         auth_type:
           type: string
           description: >-
@@ -1057,6 +1079,19 @@ components:
         - host: example.com
           port: 443
           protocol: https
+    SortQuery:
+      title: SortQuery
+      type: string
+      example: name,created_at desc
+      description: >
+        The `asc` suffix is optional as the default sort order is ascending.
+
+        The `desc` suffix is used to specify a descending order.
+
+        Multiple sort attributes may be provided via a comma separated list.
+
+        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar
+        desc').
     PageMeta:
       type: object
       description: >-
@@ -1142,13 +1177,7 @@ components:
       nullable: true
       enum:
         - required
-        - enum
-        - min_length
         - max_length
-        - min_digits
-        - min_lowercase
-        - min_uppercase
-        - min_symbols
         - is_array
         - is_base64
         - is_boolean
@@ -1159,11 +1188,18 @@ components:
         - is_object
         - is_string
         - is_uuid
+        - is_fqdn
+        - is_arn
         - unknown_property
         - is_label
         - matches_regex
-    InvalidParameterChoiceItem:
+        - invalid
+        - is_supported_network_availability_zone_list
+        - is_supported_network_cidr_block
+        - is_supported_provider_region
+    InvalidParameterStandard:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -1171,6 +1207,65 @@ components:
           readOnly: true
         rule:
           $ref: '#/components/schemas/InvalidRules'
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterMinimumLength:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - min_length
+            - min_digits
+            - min_lowercase
+            - min_uppercase
+            - min_symbols
+        minimum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+        - rule
+        - minimum
+    InvalidParameterChoiceItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - enum
         reason:
           type: string
           example: is a required field
@@ -1178,14 +1273,21 @@ components:
         choices:
           type: array
           uniqueItems: true
-          nullable: true
-          items: {}
           readOnly: true
+          nullable: false
+          minimum: 1
+          items: {}
+        source:
+          type: string
+          example: body
       required:
         - field
         - reason
+        - rule
+        - choices
     InvalidParameterDependentItem:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -1208,6 +1310,9 @@ components:
           nullable: true
           items: {}
           readOnly: true
+        source:
+          type: string
+          example: body
       required:
         - field
         - rule
@@ -1221,87 +1326,111 @@ components:
       description: invalid parameters
       items:
         oneOf:
+          - $ref: '#/components/schemas/InvalidParameterStandard'
+          - $ref: '#/components/schemas/InvalidParameterMinimumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
     BadRequestError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
+    UnauthorizedError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 401
+            title:
+              example: Unauthorized
+            type:
+              example: https://httpstatuses.com/401
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Invalid credentials
+    ForbiddenError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 403
+            title:
+              example: Forbidden
+            type:
+              example: https://httpstatuses.com/403
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Forbidden
+    ConflictError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 409
+            title:
+              example: Conflict
+            type:
+              example: https://httpstatuses.com/409
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Conflict
+    NotFoundError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 404
+            title:
+              example: Not Found
+            type:
+              example: https://httpstatuses.com/404
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Not found
+    CursorMetaWithSizeAndTotal:
       type: object
       required:
-        - invalid_parameters
+        - size
+        - next
+        - total
       properties:
-        status:
-          example: 400
-        title:
-          example: Bad Request
-        type:
-          example: https://httpstatuses.com/400
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid request body
-        invalid_parameters:
-          $ref: '#/components/schemas/InvalidParameters'
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    UnauthorizedError:
+        next:
+          description: URI to the next page
+          type: string
+          format: path
+          nullable: true
+        size:
+          description: Requested page size
+          type: number
+          example: 10
+        total:
+          description: >-
+            Total number of objects in the collection; will only be present on
+            the first page
+          type: number
+          example: 974
+          nullable: true
+    CursorPaginatedMetaWithSizeAndTotal:
       type: object
+      title: CursorPaginatedMetaWithSizeAndTotal
+      description: returns the pagination information
       properties:
-        status:
-          example: 401
-        title:
-          example: Unauthorized
-        type:
-          example: https://httpstatuses.com/401
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid credentials
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    ForbiddenError:
-      type: object
-      properties:
-        status:
-          example: 403
-        title:
-          example: Forbidden
-        type:
-          example: https://httpstatuses.com/403
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Forbidden
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    ConflictError:
-      type: object
-      properties:
-        status:
-          example: 409
-        title:
-          example: Conflict
-        type:
-          example: https://httpstatuses.com/409
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Conflict
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    NotFoundError:
-      type: object
-      properties:
-        status:
-          example: 404
-        title:
-          example: Not Found
-        type:
-          example: https://httpstatuses.com/404
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Not found
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
+        page:
+          $ref: '#/components/schemas/CursorMetaWithSizeAndTotal'
+      required:
+        - page
   securitySchemes:
     personalAccessToken:
       type: http
@@ -1502,7 +1631,8 @@ components:
           page:
             total: 2
             size: 100
-            number: 1
+            next: >-
+              /control-planes/57fdf779-7935-476f-ab2b-7fa1323b70e6/group-memberships?q=son&page[after]=ewogICJpZCI6ICJoZWysbyB3b3JsZCIKgZ
         data:
           - id: 774f2a35-509d-4b94-97e9-1ed49563bcb1
             name: Group Member 1

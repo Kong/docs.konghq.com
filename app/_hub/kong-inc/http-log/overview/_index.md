@@ -6,7 +6,7 @@ The HTTP Log plugin lets you send request and response logs to an HTTP server.
 
 It also supports stream data (TCP, TLS, and UDP).
 
-{% if_plugin_version gte:3.3.x %}
+{% if_version gte:3.3.x %}
 ## Queueing
 
 The HTTP Log plugin uses internal queues to decouple the production of
@@ -21,7 +21,7 @@ share one queue.
 Queues are not shared between workers and queueing parameters are
 scoped to one worker.  For whole-system capacity planning, the number
 of workers need to be considered when setting queue parameters.
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## Kong process errors
 

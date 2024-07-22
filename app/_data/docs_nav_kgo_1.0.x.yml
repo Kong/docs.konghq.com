@@ -24,10 +24,8 @@ items:
       - text: Changelog
         url: /gateway-operator/changelog
         absolute_url: true
-      - text: Support
+      - text: Version Support Policy
         url: /support
-      - text: Version Compatibility
-        url: /version-compatibility
       - text: FAQ
         url: /faq
   - title: Get Started

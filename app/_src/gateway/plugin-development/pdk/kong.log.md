@@ -398,6 +398,9 @@ Generates a table with useful information for logging.
  The following fields are included in the returned table:
  * `client_ip` - client IP address in textual format.
  * `latencies` - request/proxy latencies.
+  {% if_version gte:3.7.x %}
+ * `request.id` - request id.
+  {% endif_version %}
  * `request.headers` - request headers.
  * `request.method` - request method.
  * `request.querystring` - request query strings.

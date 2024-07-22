@@ -77,7 +77,7 @@ These plugins can be used to modify the request or impose restrictions
 on the traffic.
 
 Once this resource is created, the resource needs to be associated with an
-Ingress, Service, or KongConsumer resource in Kubernetes.
+Ingress, Service, HTTPRoute, KongConsumer or KongConsumerGroup resource in Kubernetes.
 
 This diagram shows how you can link a KongPlugin resource to an
 Ingress, Service, or KongConsumer.

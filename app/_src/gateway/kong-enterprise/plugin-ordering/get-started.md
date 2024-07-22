@@ -111,7 +111,7 @@ ordering:
 2. Sync the configuration:
 
     ``` bash
-    deck sync
+    deck gateway sync kong.yaml
     ```
 
 {% endnavtab %}
@@ -227,8 +227,8 @@ ordering:
 
 2. Sync the configuration:
 
-    ``` bash
-    deck sync
+    ```bash
+    deck gateway sync kong.yaml
     ```
 
 {% endnavtab %}

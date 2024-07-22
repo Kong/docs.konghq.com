@@ -440,7 +440,7 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Product Versions
-  /api-products/{apiProductId}/product-versions/{productVersionId}/specifications:
+  /api-products/{apiProductId}/product-versions/{apiProductVersionId}/specifications:
     parameters:
       - schema:
           type: string
@@ -454,7 +454,7 @@ paths:
           type: string
           format: uuid
           example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
-        name: productVersionId
+        name: apiProductVersionId
         description: The API product version identifier
         in: path
         required: true
@@ -508,7 +508,7 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Product Version Specification
-  /api-products/{apiProductId}/product-versions/{productVersionId}/specifications/{specificationId}:
+  /api-products/{apiProductId}/product-versions/{apiProductVersionId}/specifications/{specificationId}:
     parameters:
       - schema:
           type: string
@@ -522,7 +522,7 @@ paths:
           type: string
           format: uuid
           example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
-        name: productVersionId
+        name: apiProductVersionId
         description: The API product version identifier
         in: path
         required: true
@@ -730,8 +730,6 @@ components:
           schema:
             $ref: '#/components/schemas/UpdateAPIProductVersionDTO'
           examples:
-            PublishAPIProductVersion:
-              $ref: '#/components/examples/PublishApiProductVersionRequestExample'
             LinkAPIProductVersionRequest:
               $ref: '#/components/examples/LinkAPIProductVersionRequestExample'
             UnlinkAPIProductVersionRequest:
@@ -873,6 +871,7 @@ components:
                     name: API Product
                     description: Text describing the API product
                     portal_ids: []
+                    portals: []
                     created_at: '2023-01-01T00:00:00.000Z'
                     updated_at: '2023-01-01T00:00:00.000Z'
                     version_count: 10
@@ -923,6 +922,17 @@ components:
                     deprecated: false
                     labels:
                       env: test
+                    portals:
+                      - portal_id: 35a2624c-49fc-4764-99e1-224ed819f200
+                        portal_name: Developer Portal
+                        portal_product_version_id: 35a2624c-49fc-4764-99e1-224ed819f200
+                        publish_status: published
+                        deprecated: false
+                        application_registration_enabled: true
+                        auto_approve_registration: false
+                        auth_strategies:
+                          - id: 35a2624c-49fc-4764-99e1-224ed819f200
+                            name: OIDC
                     created_at: '2023-01-01T00:00:00.000Z'
                     updated_at: '2023-01-01T00:00:00.000Z'
                 meta:
@@ -1040,6 +1050,100 @@ components:
 
         JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar
         desc').
+    APIProductPortals:
+      title: APIProductPortals
+      type: array
+      minItems: 0
+      description: The list of portals which this API product is published to
+      items:
+        $ref: '#/components/schemas/APIProductPortal'
+    APIProductPortal:
+      title: APIProductPortal
+      type: object
+      additionalProperties: false
+      required:
+        - portal_id
+        - portal_name
+      properties:
+        portal_id:
+          type: string
+          format: uuid
+          example: 35a2624c-49fc-4764-99e1-224ed819f200
+        portal_name:
+          type: string
+          example: Developer Portal
+    APIProductVersionPublishStatus:
+      title: APIProductVersionPublishStatus
+      type: string
+      enum:
+        - published
+        - unpublished
+      example: published
+    APIProductVersionPortals:
+      title: APIProductVersionPortals
+      type: array
+      minItems: 0
+      description: The list of portals which this API product version is configured for
+      items:
+        $ref: '#/components/schemas/APIProductVersionPortal'
+    APIProductVersionPortal:
+      title: APIProductVersionPortal
+      type: object
+      additionalProperties: false
+      required:
+        - portal_id
+        - portal_name
+        - portal_product_version_id
+        - publish_status
+        - deprecated
+        - application_registration_enabled
+        - auto_approve_registration
+        - auth_strategies
+      properties:
+        portal_id:
+          type: string
+          format: uuid
+          example: 35a2624c-49fc-4764-99e1-224ed819f200
+        portal_name:
+          type: string
+          example: Developer Portal
+        portal_product_version_id:
+          type: string
+          format: uuid
+          example: 35a2624c-49fc-4764-99e1-224ed819f200
+        publish_status:
+          $ref: '#/components/schemas/APIProductVersionPublishStatus'
+        deprecated:
+          type: boolean
+          example: false
+        application_registration_enabled:
+          type: boolean
+          example: true
+        auto_approve_registration:
+          type: boolean
+          example: false
+        auth_strategies:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIProductVersionAuthStrategy'
+    APIProductVersionAuthStrategy:
+      title: APIProductVersionAuthStrategy
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+        name:
+          type: string
+          example: Key Auth
+      example:
+        id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+        name: Key Auth
     APIProduct:
       title: API Product
       type: object
@@ -1049,6 +1153,7 @@ components:
         - name
         - description
         - portal_ids
+        - portals
         - created_at
         - updated_at
         - labels
@@ -1070,17 +1175,23 @@ components:
           description: The description of the API product
           example: MyDescription
         portal_ids:
+          deprecated: true
           type: array
           nullable: false
           uniqueItems: true
           minItems: 0
-          description: >-
+          description: >
             The list of portal identifiers which this API product is published
-            to
+            to.
+
+            This property is deprecated and will be removed in a future version.
+            Use the `portals` property instead.
           items:
             type: string
             format: uuid
             example: 25a2624c-49fc-4764-99e1-224ed819f200
+        portals:
+          $ref: '#/components/schemas/APIProductPortals'
         version_count:
           type: number
           example: 10
@@ -1231,6 +1342,7 @@ components:
         - publish_status
         - deprecated
         - labels
+        - portals
         - created_at
         - updated_at
       properties:
@@ -1282,7 +1394,8 @@ components:
           description: >-
             This field is published if the API product version is published to
             at least one portal. This field is deprecated: Use
-            PortalProductVersion.publish_status instead.
+            [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
+            instead.
           enum:
             - unpublished
             - published
@@ -1293,12 +1406,15 @@ components:
           description: >-
             Whether this API product version is deprecated in at least one
             portal. This field is deprecated: Use
-            PortalProductVersion.deprecated instead
+            [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
+            instead
           example: false
         labels:
           $ref: '#/components/schemas/Labels'
         auth_strategy_sync_errors:
           $ref: '#/components/schemas/AuthStrategySyncErrors'
+        portals:
+          $ref: '#/components/schemas/APIProductVersionPortals'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -1324,6 +1440,7 @@ components:
           type: string
           description: The name of the API product version specification
           example: oas.yaml
+          pattern: .+(\.yaml|\.yml|\.json)
         content:
           type: string
           description: The contents of the API product version specification
@@ -1399,7 +1516,13 @@ components:
             example: 25a2624c-49fc-4764-99e1-224ed819f200
     CreateAPIProductVersionDTO:
       title: Create API Product Version Request
-      description: The request schema to create a version of an API product.
+      description: >
+        The request schema to create a version of an API product.
+
+        Note that the `publish_status` and `deprecated` fields are deprecated: 
+        Use
+        [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
+        instead.
       type: object
       additionalProperties: false
       required:
@@ -1418,7 +1541,9 @@ components:
           description: >-
             The publish status of the API product version. Applies publish
             status to all related portal product versions. This field is
-            deprecated: Use PortalProductVersion.publish_status instead.
+            deprecated: Use
+            [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
+            instead.
           enum:
             - unpublished
             - published
@@ -1432,7 +1557,8 @@ components:
             Indicates if the version of the API product is deprecated. Applies
             deprecation or removes deprecation from all related portal product
             versions. This field is deprecated: Use
-            PortalProductVersion.deprecated instead.
+            [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
+            instead.
           example: false
           default: false
         labels:
@@ -1547,7 +1673,13 @@ components:
           nullable: false
     UpdateAPIProductVersionDTO:
       title: Update API Product Version Request
-      description: The request schema for updating a version of an API product.
+      description: >
+        The request schema for updating a version of an API product.
+
+        Note that the `publish_status` and `deprecated` fields are deprecated: 
+        Use
+        [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
+        instead.
       type: object
       additionalProperties: false
       properties:
@@ -1562,7 +1694,9 @@ components:
           description: >-
             The publish status of the API product version. Applies publish
             status to all related portal product versions. This field is
-            deprecated: Use PortalProductVersion.publish_status instead.
+            deprecated: Use
+            [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
+            instead.
           enum:
             - unpublished
             - published
@@ -1574,7 +1708,8 @@ components:
             Indicates if the version of the API product is deprecated. Applies
             deprecation or removes deprecation from all related portal product
             versions. This field is deprecated: Use
-            PortalProductVersion.deprecated instead.
+            [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
+            instead.
           example: false
         notify:
           type: boolean
@@ -1872,13 +2007,7 @@ components:
       nullable: true
       enum:
         - required
-        - enum
-        - min_length
         - max_length
-        - min_digits
-        - min_lowercase
-        - min_uppercase
-        - min_symbols
         - is_array
         - is_base64
         - is_boolean
@@ -1889,11 +2018,18 @@ components:
         - is_object
         - is_string
         - is_uuid
+        - is_fqdn
+        - is_arn
         - unknown_property
         - is_label
         - matches_regex
-    InvalidParameterChoiceItem:
+        - invalid
+        - is_supported_network_availability_zone_list
+        - is_supported_network_cidr_block
+        - is_supported_provider_region
+    InvalidParameterStandard:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -1901,6 +2037,65 @@ components:
           readOnly: true
         rule:
           $ref: '#/components/schemas/InvalidRules'
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterMinimumLength:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - min_length
+            - min_digits
+            - min_lowercase
+            - min_uppercase
+            - min_symbols
+        minimum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+        - rule
+        - minimum
+    InvalidParameterChoiceItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - enum
         reason:
           type: string
           example: is a required field
@@ -1908,14 +2103,21 @@ components:
         choices:
           type: array
           uniqueItems: true
-          nullable: true
-          items: {}
           readOnly: true
+          nullable: false
+          minimum: 1
+          items: {}
+        source:
+          type: string
+          example: body
       required:
         - field
         - reason
+        - rule
+        - choices
     InvalidParameterDependentItem:
       type: object
+      additionalProperties: false
       properties:
         field:
           type: string
@@ -1938,6 +2140,9 @@ components:
           nullable: true
           items: {}
           readOnly: true
+        source:
+          type: string
+          example: body
       required:
         - field
         - rule
@@ -1951,87 +2156,79 @@ components:
       description: invalid parameters
       items:
         oneOf:
+          - $ref: '#/components/schemas/InvalidParameterStandard'
+          - $ref: '#/components/schemas/InvalidParameterMinimumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
     BadRequestError:
-      type: object
-      required:
-        - invalid_parameters
-      properties:
-        status:
-          example: 400
-        title:
-          example: Bad Request
-        type:
-          example: https://httpstatuses.com/400
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid request body
-        invalid_parameters:
-          $ref: '#/components/schemas/InvalidParameters'
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
     UnauthorizedError:
-      type: object
-      properties:
-        status:
-          example: 401
-        title:
-          example: Unauthorized
-        type:
-          example: https://httpstatuses.com/401
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid credentials
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 401
+            title:
+              example: Unauthorized
+            type:
+              example: https://httpstatuses.com/401
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Invalid credentials
     ForbiddenError:
-      type: object
-      properties:
-        status:
-          example: 403
-        title:
-          example: Forbidden
-        type:
-          example: https://httpstatuses.com/403
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Forbidden
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 403
+            title:
+              example: Forbidden
+            type:
+              example: https://httpstatuses.com/403
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Forbidden
     NotFoundError:
-      type: object
-      properties:
-        status:
-          example: 404
-        title:
-          example: Not Found
-        type:
-          example: https://httpstatuses.com/404
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Not found
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 404
+            title:
+              example: Not Found
+            type:
+              example: https://httpstatuses.com/404
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Not found
     UnsupportedMediaTypeError:
-      type: object
-      properties:
-        status:
-          example: 415
-        title:
-          example: UnsupportedMediaType
-        type:
-          example: https://httpstatuses.com/415
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: UnsupportedMediaType
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 415
+            title:
+              example: UnsupportedMediaType
+            type:
+              example: https://httpstatuses.com/415
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: UnsupportedMediaType
     LabelsUpdate:
       type: object
       nullable: true
@@ -2410,20 +2607,20 @@ components:
           type: boolean
           description: State of the checkbox
     ConflictError:
-      type: object
-      properties:
-        status:
-          example: 409
-        title:
-          example: Conflict
-        type:
-          example: https://httpstatuses.com/409
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Conflict
       allOf:
         - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 409
+            title:
+              example: Conflict
+            type:
+              example: https://httpstatuses.com/409
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Conflict
   securitySchemes:
     personalAccessToken:
       type: http
@@ -2464,6 +2661,7 @@ components:
         name: API Product
         description: Text describing the API product
         portal_ids: []
+        portals: []
         created_at: '2023-01-01T00:00:00.000Z'
         updated_at: '2023-01-01T00:00:00.000Z'
         version_count: 10
@@ -2481,6 +2679,17 @@ components:
         deprecated: false
         labels:
           env: test
+        portals:
+          - portal_id: 35a2624c-49fc-4764-99e1-224ed819f200
+            portal_name: Developer Portal
+            portal_product_version_id: 35a2624c-49fc-4764-99e1-224ed819f200
+            publish_status: published
+            deprecated: false
+            application_registration_enabled: true
+            auto_approve_registration: false
+            auth_strategies:
+              - id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+                name: Key Auth
         created_at: '2023-01-01T00:00:00.000Z'
         updated_at: '2023-01-01T00:00:00.000Z'
     APIProductVersionSpecExample:
@@ -2551,10 +2760,6 @@ components:
       value:
         name: oas.yaml
         content: TXkgWUFNTCBvciBKU09OIGZvcm1hdHRlZCBPQVMgY29udGVudA==
-    PublishApiProductVersionRequestExample:
-      summary: Publish API Product Version
-      value:
-        publish_status: published
     LinkAPIProductVersionRequestExample:
       summary: Link API Product Version
       value:
@@ -2693,7 +2898,7 @@ components:
         invalid_parameters:
           - field: name
             rule: min_length
-            choices: []
+            minimum: 1
             reason: name must be longer than or equal to 1 characters
     APIProductDocumentBadRequestExample:
       value:
@@ -2704,7 +2909,6 @@ components:
         invalid_parameters:
           - field: slug
             rule: matches_regex
-            choices: []
             reason: slug must match /^[\w-]+$/ regular expression
     APIProductVersionSpecContentBadRequestExample:
       value:
@@ -2715,7 +2919,7 @@ components:
         invalid_parameters:
           - field: content
             rule: min_length
-            choices: []
+            minimum: 1
             reason: content must be longer than or equal to 1 characters
     UnauthorizedExample:
       value:

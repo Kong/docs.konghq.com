@@ -3,7 +3,7 @@ This example is from 2.2.1 per DOCS-1617 --->
 
 Every request is logged separately in a JSON object, separated by a new line `\n`, with the following format:
 
-{% if_plugin_version lte:3.3.x %}
+{% if_version lte:3.3.x %}
 ```json
 {
   "service": {
@@ -88,23 +88,23 @@ Every request is logged separately in a JSON object, separated by a new line `\n
   "client_ip": "192.168.144.1",
   "workspace": "54baa5a9-23d6-41e0-9c9a-02434b010b25",
   "upstream_uri": "/anything",
-	"authenticated_entity": {
-		"id": "c62c1455-9b1d-4f2d-8797-509ba83b8ae8"
-	},
-	"consumer": {
-		"id": "ae974d6c-0f8a-4dc5-b701-fa0aa38592bd",
-		"created_at": 1674035962,
-		"username_lower": "foo",
-		"username": "foo",
-		"type": 0
-	},
+  "authenticated_entity": {
+    "id": "c62c1455-9b1d-4f2d-8797-509ba83b8ae8"
+  },
+  "consumer": {
+    "id": "ae974d6c-0f8a-4dc5-b701-fa0aa38592bd",
+    "created_at": 1674035962,
+    "username_lower": "foo",
+    "username": "foo",
+    "type": 0
+  },
   "started_at": 1614232668342
 }
 ```
-{% endif_plugin_version %}
+{% endif_version %}
 
 
-{% if_plugin_version gte:3.4.x %}
+{% if_version gte:3.4.x %}
 ```json
 {
   "service": {
@@ -190,17 +190,17 @@ Every request is logged separately in a JSON object, separated by a new line `\n
   "workspace": "54baa5a9-23d6-41e0-9c9a-02434b010b25",
   "workspace_name": "default",
   "upstream_uri": "/anything",
-	"authenticated_entity": {
-		"id": "c62c1455-9b1d-4f2d-8797-509ba83b8ae8"
-	},
-	"consumer": {
-		"id": "ae974d6c-0f8a-4dc5-b701-fa0aa38592bd",
-		"created_at": 1674035962,
-		"username_lower": "foo",
-		"username": "foo",
-		"type": 0
-	},
+  "authenticated_entity": {
+    "id": "c62c1455-9b1d-4f2d-8797-509ba83b8ae8"
+  },
+  "consumer": {
+    "id": "ae974d6c-0f8a-4dc5-b701-fa0aa38592bd",
+    "created_at": 1674035962,
+    "username_lower": "foo",
+    "username": "foo",
+    "type": 0
+  },
   "started_at": 1614232668342
 }
 ```
-{% endif_plugin_version %}
+{% endif_version %}

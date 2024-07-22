@@ -150,11 +150,50 @@ response based on instructions from the LLM. The adjusted response is then sent 
 
 {% if_version gte:3.7.x %}
 #### Rate limiting
+{:.badge .enterprise}
 
 Kong's AI Gateway also allows you to manage traffic to your LLM API. Kong's AI Gateway provides the AI Rate Limiting Advanced
 plugin, which can be used to implement rate limiting on your AI requests traffic.
 
 * The [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced) plugin introspects LLM responses to calculate token cost and 
 enable rate limits for the LLM backend service. When the LLM service returns a response, this is used as a cost to calculate the rate limit. 
-More info on the analytics format can be found in [AI Analytics](/src/gateway/production/logging/ai-analytics).
+More info on the analytics format can be found in [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
+
+#### Content safety and moderation
+{:.badge .enterprise}
+
+Kong's AI Gateway provides mechanisms for moderating content.
+
+* The [Azure Content Safety plugin](/hub/kong-inc/ai-azure-content-safety/) allows administrators to enforce 
+introspection with the [Azure Content Safety](https://azure.microsoft.com/en-us/products/ai-services/ai-content-safety) service 
+for all requests handled by the AI Proxy plugin.
+The plugin enables configurable thresholds for the different moderation categories 
+and you can specify an array set of pre-configured blocklist IDs from your Azure Content Safety instance.
+
+{% endif_version %}
+
+{% if_version gte:3.7.x %}
+### AI observability
+
+Kong's AI Gateway enables comprehensive observability of your AI services through logging and metrics. These features provide insights into AI usage, performance, and costs, helping you optimize and govern AI operations effectively.
+
+#### Logging
+{:.badge .enterprise}
+
+Kong's AI Gateway provides standardized logging formats for AI plugins, allowing you to track and analyze AI usage consistently across various providers. 
+
+For more information, see [AI Analytics](/gateway/{{ page.release }}/production/logging/ai-analytics).
+{% endif_version %}
+
+{% if_version gte:3.8.x %}
+#### Metrics and Prometheus
+{:.badge .enterprise}
+
+Kong's AI Gateway allows you to expose and visualize AI metrics through Prometheus and Grafana. These metrics include
+the number of AI requests, the cost associated with AI services, and the token usage per provider and model. The metrics
+can be scraped by a Prometheus server and visualized using a Grafana dashboard. This setup provides a real-time view of
+AI operations, helping you monitor performance and costs effectively.
+
+For more information, see [AI Metrics](/gateway/{{ page.release }}/production/monitoring/ai-metrics).
+
 {% endif_version %}

@@ -18,7 +18,7 @@ The geo-specific endpoints are used to manage {{site.konnect_short_name}} entiti
 
 | Spec | Insomnia link |
 |------|---------------|
-| [Konnect control plane configuration beta API spec](/konnect/api/control-plane-configuration/latest/) | <a href="https://insomnia.rest/run/?label=Control%20Plane%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fcontrol-planes-config%2Fcontrol-planes-config.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| [Konnect control plane configuration API](/konnect/api/control-plane-configuration/latest/) | <a href="https://insomnia.rest/run/?label=Control%20Plane%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fcontrol-planes-config%2Fcontrol-planes-config.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 ## Authentication
 
@@ -29,6 +29,17 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 ## Filtering
 
 The Konnect API supports filtering, read the [Filtering reference](/konnect/api/filtering/) to learn more.
+
+
+## Supported Content Types
+
+The {{site.konnect_short_name}} APIs accept three content types, depending on the API specification and the specific endpoint:
+
+- **application/json**
+- **application/x-www-form-urlencoded**
+- **multipart/form-data**
+
+Refer to the individual API specifications for detailed information on the content types supported by each endpoint.
 
 ## Specifications
 

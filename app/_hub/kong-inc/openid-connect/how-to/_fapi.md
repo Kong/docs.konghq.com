@@ -46,4 +46,4 @@ Demonstrating Proof of Possession (DPoP) is an application-level mechanism for p
 
 When DPoP is enabled, Kong validates the DPoP header in the request to ensure that the sender is authorized to use the access token.
 
-For more information, refer to the guide on [Demonstrating Proof-of-Possession](/hub/kong-inc/openid-connect/how-to/demonstrating_proof_of_possession/).
+For more information, refer to the guide on [Demonstrating Proof-of-Possession](/hub/kong-inc/openid-connect/how-to/demonstrating-proof-of-possession/).

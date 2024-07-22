@@ -1,5 +1,5 @@
 ---
-title: Plugins in Other Languages Javascript
+title: Write plugins in JavaScript
 content-type: explanation
 ---
 
@@ -109,12 +109,32 @@ When using the plugin server, plugins are allowed to have extra dependencies, as
 directory that holds plugin source code also includes a `node_modules` directory.
 
 Assuming plugins are stored under `/usr/local/kong/js-plugins`, the extra dependencies are
-then defined in `/usr/local/kong/js-plugins/package.json`. Developers also need to
-run `npm install` under `/usr/local/kong/js-plugins` to install those dependencies locally
+then defined in `/usr/local/kong/js-plugins/package.json`. 
+
+Developers also need to run `npm install` under `/usr/local/kong/js-plugins` to install those dependencies locally
 into `/usr/local/kong/js-plugins/node_modules`.
 
 The Node.js version and architecture that runs the plugin server and
 the one that runs `npm install` under plugins directory must match.
+
+When running TypeScript plugins, `kong-pdk` needs to be defined as a dependency in `package.json`:
+
+````json
+{
+  "name": "ts_hello",
+  "version": "0.1.0",
+  "description": "hello TS plugin from kong",
+  "main": "ts_hello.ts",
+  "dependencies": {
+    "kong-pdk": "^0.5.5"
+  }
+}
+````
+Then, import `kong-pdk` in your TypeScript file:
+
+````javascript
+import kong from "kong-pdk/kong";
+````
 
 ### Testing
 
@@ -146,6 +166,35 @@ npm test
 
 [This repository](https://github.com/Kong/kong-js-pdk/tree/master/examples)
 contains examples of writing tests with `jest`.
+
+## Example configuration
+
+Prepare the system by installing the required dependencies. In Debian/Ubuntu based systems:
+
+````
+apt update
+apt install -y nodejs npm
+npm install -g kong-pdk
+````
+
+Copy the plugin code and the `package.json` file in `/usr/local/kong/js-plugins`, then run:
+
+````
+cd /usr/local/kong/js-plugins/ 
+npm install
+````
+
+To load plugins using the `kong.conf` [configuration file](/gateway/latest/production/kong-conf/), you have to map existing {{site.base_gateway}} properties to aspects of your plugin. Here is an example of loading a plugin within `kong.conf`:
+
+````
+pluginserver_names = js
+
+pluginserver_js_start_cmd = /usr/local/bin/kong-js-pluginserver -v --plugins-directory /usr/local/kong/js-plugins
+pluginserver_js_query_cmd = /usr/local/bin/kong-js-pluginserver --plugins-directory /usr/local/kong/js-plugins --dump-all-plugins
+
+pluginserver_js_socket = /usr/local/kong/js_pluginserver.sock
+````
+
 
 ## More Information
 * [PDK Reference](/gateway/latest/plugin-development/pdk/)

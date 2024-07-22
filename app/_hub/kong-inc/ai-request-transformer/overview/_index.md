@@ -9,7 +9,7 @@ This plugin supports `llm/v1/chat` style requests for all of the same providers 
 
 It also uses all of the same configuration and tuning parameters as the AI Proxy plugin, under the [`config.llm`](/hub/kong-inc/ai-request-transformer/configuration/#config-llm) block.
 
-The AI Request Transformer plugin runs **after** all of the [AI Prompt](/hub/?search=ai%2520prompt) plugins, but **before** the
+The AI Request Transformer plugin runs **before** all of the [AI Prompt](/hub/?search=ai%2520prompt) plugins and the
 AI Proxy plugin, allowing it to also introspect LLM requests against the same, or a different, LLM.
 
 ## How it works
@@ -65,12 +65,6 @@ instructions for the incoming user request body.
 * [Basic configuration example](/hub/kong-inc/ai-request-transformer/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/ai-request-transformer/how-to/)
 
-### Other AI plugins
+### All AI Gateway plugins
 
-You may also be interested in the following AI plugins:
-* [AI Proxy](/hub/kong-inc/ai-proxy/)
-* [AI Response Transformer](/hub/kong-inc/ai-response-transformer/)
-* [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced/)
-* [AI Prompt Template](/hub/kong-inc/ai-prompt-template/)
-* [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)
-* [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/)
+{% include_cached /md/ai-plugins-links.md release=page.release %}

@@ -22,7 +22,7 @@ For example, assuming that Splunk is running at `https://example.splunkcloud.com
 you can enable an HTTP Log plugin instance using the following configuration: 
 
 <!--vale off-->
-{% if_plugin_version gte:3.0.x %}
+{% if_version gte:3.0.x %}
 {% plugin_example %}
 plugin: kong-inc/http-log
 name: http-log
@@ -43,10 +43,10 @@ formats:
   - yaml
   - kubernetes
 {% endplugin_example %}
-{% endif_plugin_version %}
+{% endif_version %}
 
 
-{% if_plugin_version lte:2.8.x %}
+{% if_version lte:2.8.x %}
 {% plugin_example %}
 plugin: kong-inc/http-log
 name: http-log
@@ -68,7 +68,7 @@ formats:
   - yaml
   - kubernetes
 {% endplugin_example %}
-{% endif_plugin_version %}
+{% endif_version %}
 <!--vale on-->
 
 Based on this configuration, the HTTP Log plugin sends the logs to `https://example.splunkcloud.com:8088/services/collector/raw` with a secure token.

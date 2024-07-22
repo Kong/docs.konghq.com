@@ -22,19 +22,19 @@
   },
   {
     "id": "3e660af4-c727-4640-8f71-19718640d6b4",
-    "title": "Cloud Gateways",
+    "title": "Dedicated Cloud Gateways",
     "latestVersion": {
       "name": "v2",
       "id": "1b770f7b-581b-4ab2-9766-70c046aa7fca"
     },
-    "description": "Konnect API for managing cloud-gateways infrastructure.",
+    "description": "Konnect API for managing Dedicated Cloud Gateways infrastructure configuration.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
         "id": "1b770f7b-581b-4ab2-9766-70c046aa7fca",
         "created_at": "2024-04-10T19:07:03.399Z",
-        "updated_at": "2024-04-10T19:14:56.526Z",
+        "updated_at": "2024-04-15T19:17:24.675Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -43,14 +43,14 @@
   },
   {
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
-    "title": "Gateway Admin - EE (Beta)",
+    "title": "Gateway Admin - EE",
     "latestVersion": {
-      "name": "3.6.0.0",
-      "id": "95e68025-45a1-4e24-8561-6d7e5f422de5"
+      "name": "3.7.0.0",
+      "id": "7dad8169-6779-49bb-bb78-19f88b186d92"
     },
-    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes.",
     "documentCount": 2,
-    "versionCount": 4,
+    "versionCount": 5,
     "versions": [
       {
         "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
@@ -83,19 +83,27 @@
         "name": "3.6.0.0",
         "deprecated": false,
         "registration_configs": []
+      },
+      {
+        "id": "7dad8169-6779-49bb-bb78-19f88b186d92",
+        "created_at": "2024-05-08T18:37:51.370Z",
+        "updated_at": "2024-05-08T18:37:51.370Z",
+        "name": "3.7.0.0",
+        "deprecated": false,
+        "registration_configs": []
       }
     ]
   },
   {
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
-    "title": "Gateway Admin - OSS (Beta)",
+    "title": "Gateway Admin - OSS",
     "latestVersion": {
-      "name": "3.6.0",
-      "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e"
+      "name": "3.7.0",
+      "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b"
     },
-    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes.",
     "documentCount": 0,
-    "versionCount": 4,
+    "versionCount": 5,
     "versions": [
       {
         "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
@@ -126,6 +134,14 @@
         "created_at": "2024-02-14T20:08:38.884Z",
         "updated_at": "2024-02-14T20:12:53.995Z",
         "name": "3.6.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b",
+        "created_at": "2024-05-08T18:40:28.598Z",
+        "updated_at": "2024-06-13T19:06:00.994Z",
+        "name": "3.7.0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -300,6 +316,27 @@
     ]
   },
   {
+    "id": "295fef86-02f3-438a-ada1-256680ba6424",
+    "title": "Konnect Developer Portal",
+    "latestVersion": {
+      "name": "v2",
+      "id": "33ab825d-dec0-4d29-8e17-5133655d7ae7"
+    },
+    "description": "The API that powers the Konnect Developer Portal. Access portal data from the perspective of a Portal user, rather than a Portal administrator.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "33ab825d-dec0-4d29-8e17-5133655d7ae7",
+        "created_at": "2024-06-10T13:14:58.432Z",
+        "updated_at": "2024-06-10T13:16:49.437Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "5175b87f-bfae-40f6-898d-82d224387f9b",
     "title": "Konnect Identity Management",
     "latestVersion": {
@@ -435,20 +472,20 @@
   },
   {
     "id": "97cb97c2-0824-4e87-a13f-2fad352d698f",
-    "title": "Konnect Search (Beta)",
+    "title": "Konnect Search",
     "latestVersion": {
-      "name": "v0",
-      "id": "ad43ee2d-dd83-448a-90ec-ec0570bad622"
+      "name": "Konnect Search v1",
+      "id": "c0b23b3d-0e01-4045-98d8-0846c346e6e3"
     },
-    "description": "The search API for Kong Konnect. This API is released as beta.",
+    "description": "The search API for Kong Konnect.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
-        "id": "ad43ee2d-dd83-448a-90ec-ec0570bad622",
-        "created_at": "2023-12-13T09:50:05.266Z",
-        "updated_at": "2023-12-13T11:41:47.234Z",
-        "name": "v0",
+        "id": "c0b23b3d-0e01-4045-98d8-0846c346e6e3",
+        "created_at": "2024-05-02T16:10:01.020Z",
+        "updated_at": "2024-05-09T16:28:09.916Z",
+        "name": "Konnect Search v1",
         "deprecated": false,
         "registration_configs": []
       }

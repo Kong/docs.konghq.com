@@ -159,6 +159,13 @@ components:
           - crit
         example: warn
       description: Log levels are set in Kong's configuration. Log levels increase in order of their severity
+    filter_chain_id:
+      name: filter_chain_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique identifier of the filter chain to retrieve.
   schemas:
     UnauthorizedError:
       type: object
@@ -504,8 +511,6 @@ components:
         name:
           description: The name of the Plugin thats going to be added. Currently, the Plugin must be installed in every Kong instance separately.
           type: string
-        ordering:
-          type: object
         protocols:
           default:
             - grpc
@@ -630,6 +635,13 @@ components:
           properties:
             id:
               type: string
+        expression:
+          description: The route expression used for advanced routing scenarios. This field is used to evaluate route matches based on complex criteria beyond the standard routing fields.
+          type: string
+        priority:
+          description: A number used to specify the matching order for expression routes. The higher the `priority`, the sooner a route will be evaluated. This field is ignored unless `expression` field is set. The value must be between 0 and 2^46 - 1.
+          type: integer
+          default: 0
         snis:
           description: A list of SNIs that match this route when using stream routing.
           type: array
@@ -1116,7 +1128,7 @@ components:
           type: boolean
       type: object
     Vault:
-      description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
+      description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, HashiCorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
       example:
         config:
           prefix: vaults.config.resurrect_ttl
@@ -1182,6 +1194,79 @@ components:
           tags:
             - database-credentials
             - data-plane
+    Filter-chains:
+      type: object
+      x-examples:
+        Example 1:
+          id: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          name: my-chain
+          created_at: 1422386534
+          updated_at: 1422386534
+          enabled: true
+          route: null
+          service: 20487393-41ed-47f6-93a8-3407cade2002
+          filters:
+            - name: go-rate-limiting
+              enabled: true
+              config: '{ "minute": 30 }'
+            - name: rust-response-transformer
+              enabled: true
+              config: '{ "remove_header": "X-Example" }'
+          tags:
+            - my-tag
+      description: A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
+      title: Filter Chains
+      properties:
+        id:
+          type: string
+          description: The unique identifier or the name attribute of the route that should be associated to the newly created filter chain.
+          example: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          format: uuid
+        name:
+          type: string
+          description: |
+            The name of the filter chain.
+          example: my-chain
+        created_at:
+          type: integer
+          example: 1422386534
+        updated_at:
+          type: integer
+          example: 1422386534
+        enabled:
+          type: boolean
+          description: |
+            Whether the filter chain is applied. Default: true.
+          default: true
+        route:
+          description: The route to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default `null`. In form-encoded format, the notation is `route.id=<route id>` or `route.name=<route name>`. In JSON format, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
+          nullable: true
+        service:
+          type: string
+          description: The service to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default `null`. In form-encoded format, the notation is `service.id=<service id>` or `service.name=<service name>`. In JSON format, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
+          example: 20487393-41ed-47f6-93a8-3407cade2002
+        filters:
+          type: array
+          description: An array of filter definitions. Each filter is an object containing a mandatory name, an optional config, and a boolean enabled setting.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: |
+                  The name of the filter
+                example: go-rate-limiting
+              enabled:
+                type: boolean
+                description: Enable the filter
+              config:
+                type: string
+                description: configuration filter headers
+                example: '{ \"minute\": 30 }'
+        tags:
+          type: array
+          items:
+            type: string
     pagination-offset-response:
       description: Offset is used to paginate through the API. Provide this value to the next list operation to fetch the next page
       type: string
@@ -1340,7 +1425,7 @@ components:
               - username
               - custom_id
       description: Consumer request body
-    filter-chain-request:
+    filter-chains-request:
       content:
         application/json:
           schema:
@@ -1444,9 +1529,6 @@ components:
                 tags:
                   - user-level
                   - low-priority
-                ordering:
-                  before:
-                    - plugin-name
             properties:
               name:
                 type: string
@@ -1512,17 +1594,6 @@ components:
                   An optional set of strings associated with the Plugin for grouping and filtering.
                 items:
                   type: string
-              ordering:
-                type: object
-                description: |
-                  Describes a dependency to another plugin to determine plugin ordering during the access phase.
-                  - `before`: The plugin will be executed before a specified plugin or list of plugins.
-                  - `after`: The plugin will be executed after a specified plugin or list of plugins.
-                properties:
-                  before:
-                    type: array
-                    items:
-                      type: string
           examples:
             request example:
               value:
@@ -1539,9 +1610,6 @@ components:
                 enabled: true
                 tags:
                   - string
-                ordering:
-                  before:
-                    - string
       description: Plugin request body
     key-set-request:
       content:
@@ -2534,15 +2602,10 @@ components:
                   - user-level
                   - low-priority
             properties:
-              upstream:
-                type: object
-                description: |
-                  The unique identifier or the name of the upstream for which to update the target.
-                properties:
-                  id:
-                    type: string
-                    example: 173a6cee-90d1-40a7-89cf-0329eca780a6
-                    description: The unique identifier or the name of the upstream for which to update the target.
+              target:
+                default: example.com:8000
+                description: The target for the upstream
+                type: string
               weight:
                 default: 100
                 description: The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.
@@ -2557,8 +2620,7 @@ components:
           examples:
             Example:
               value:
-                upstream:
-                  id: 173a6cee-90d1-40a7-89cf-0329eca780a6
+                target: example.com:8000
                 weight: 100
                 tags:
                   - string
@@ -3375,17 +3437,6 @@ components:
                   An optional set of strings associated with the Plugin for grouping and filtering.
                 items:
                   type: string
-              ordering:
-                type: object
-                description: |
-                  Describes a dependency to another plugin to determine plugin ordering during the access phase.
-                  - `before`: The plugin will be executed before a specified plugin or list of plugins.
-                  - `after`: The plugin will be executed after a specified plugin or list of plugins.
-                properties:
-                  before:
-                    type: array
-                    items:
-                      type: string
           x-examples:
             Example 1:
               id: ce44eef5-41ed-47f6-baab-f725cecf98c7
@@ -3405,9 +3456,6 @@ components:
               tags:
                 - user-level
                 - low-priority
-              ordering:
-                before:
-                  - plugin-name
           examples:
             Plugin response:
               value:
@@ -3428,9 +3476,6 @@ components:
                     tags:
                       - user-level
                       - low-priority
-                    ordering:
-                      before:
-                        - plugin-name
                   - id: 66c7b5c4-4aaf-4119-af1e-ee3ad75d0af4
                     name: rate-limiting
                     created_at: 1422386534
@@ -3448,9 +3493,6 @@ components:
                       - admin
                       - high-priority
                       - critical
-                    ordering:
-                      after:
-                        - plugin-name
                 next: 'http://localhost:8001/plugins?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
     key-set-response:
       description: Key set object response body
@@ -3572,7 +3614,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Kong Admin API
-  version: 3.6.0
+  version: 3.7.1
 openapi: 3.0.0
 paths:
   /:
@@ -6592,7 +6634,7 @@ paths:
         List all the supported HTTP methods by an endpoint. This can also be used with a CORS preflight request.
       tags:
         - Information
-  '/schemas/{entity}/validate':
+  '/schemas/{entity}':
     parameters:
       - schema:
           type: string
@@ -6653,7 +6695,13 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-schemas-entity
       description: Retrieve the schema of an entity. This is useful to understand what fields an entity accepts, and can be used for building third-party integrations with Kong.
-
+  '/schemas/{entity}/validate':
+    parameters:
+      - schema:
+          type: string
+        name: entity
+        in: path
+        required: true
     post:
       summary: Validate a configuration against a schema
       operationId: post-schemas-entity-validate
@@ -7370,6 +7418,306 @@ paths:
           description: No vault named
       operationId: get-schemas-vaults-vault_name
       description: Retrieve the schema of a vault.
+    post:
+      summary: Validate Vault Schema
+      tags:
+        - Validation
+      requestBody:
+        description: Payload containing the schema data to validate
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemaData:
+                  type: string
+                  description: JSON string containing the vault schema data
+      responses:
+        '200':
+          description: Validation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validation:
+                    type: boolean
+                    description: Indicates if the schema is valid
+        '400':
+          description: Bad request due to invalid schema data
+        '405':
+          description: Method Not Allowed
+      operationId: post-schemas-vaults-validate
+      description: Validates the given vault schema data against predefined validation rules.
+  /filter-chains:
+    post:
+      summary: Add Filter Chain
+      operationId: post-filter-chains
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - filter-chains
+      description: |
+        Create Filter Chain
+        Note: This API is not available in DB-less mode.
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    get:
+      summary: List Filter Chains
+      operationId: get-filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - filter-chains
+      description: |
+        List All Filter Chains
+  '/routes/{route_id_or_name}/filter-chains':
+    parameters:
+      - name: route_id_or_name
+        in: path
+        required: true
+        schema:
+          type: string
+          example: my-route
+        description: The unique identifier or the name of the route to retrieve.
+    post:
+      summary: Add Filter Chain
+      tags:
+        - filter-chains
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-routes-route_name_or_id-filter-chains
+      description: |
+        Create Filter Chain Associated to a Specific Route
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    get:
+      summary: List Filter Chains Associated to a Specific Route
+      operationId: get-routes-route_id_or_name-filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      tags:
+        - filter-chains
+      description: |
+        List Filter Chains Associated to a Specific Route
+    patch:
+      summary: Update Filter Chain Associated to a Specific Route
+      operationId: patch-routes-route_id_or_name-filter-chains
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - filter-chains
+      description: |
+        Update Filter Chain Associated to a Specific Route
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+  '/services/{service_id_or_name}/filter-chains':
+    parameters:
+      - $ref: '#/components/parameters/service_id_or_name'
+    post:
+      summary: Create Filter Chain Associated to a Specific Service
+      tags:
+        - filter-chains
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-services-service_id_or_name-filter-chains
+      description: |
+        Add filter chain Associated to a Specific Service
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    get:
+      summary: List Filter Chains Associated to a Specific Service
+      operationId: get-service_id_or_name-filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        List Filter Chains Associated to a Specific Service
+      tags:
+        - filter-chains
+  '/filter-chains/{filter_chain_id}':
+    parameters:
+      - $ref: '#/components/parameters/filter_chain_id'
+    get:
+      summary: Retrieve Filter Chain
+      tags:
+        - filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      operationId: get-filter-chains-filter_chain_id
+      description: |
+        Retrieve Filter Chain
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+    patch:
+      summary: Update Filter Chain
+      operationId: patch-filter-chains-filter_chain_id
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - filter-chains
+      description: |
+        Update Filter Chain
+        Note: This API is not available in DB-less mode.
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    put:
+      summary: Update Or Create Filter Chain
+      operationId: put-filter-chains-filter_chain_id
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - filter-chains
+      description: |-
+        Inserts (or replaces) the filter chain under the requested resource with the definition specified in the body. The filter chain is identified via the name or ID attribute.
+
+        When the name or ID attribute has the structure of a UUID, the filter chain being inserted or replaced is identified by its ID. Otherwise, it is identified by its name.
+
+        When creating a new filter chain without specifying an ID (neither in the URL nor in the body), the ID will be auto-generated.
+
+        Notice that specifying a name in the URL and a different one in the request body is not allowed.
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    delete:
+      summary: Delete Filter Chain
+      operationId: delete-filter-chains-filter_chain_id
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Delete filter chain.
+      tags:
+        - filter-chains
+  '/routes/{route_id_or_name}/filter-chains/{filter_chain_id}':
+    parameters:
+      - $ref: '#/components/parameters/route_id_or_name'
+      - $ref: '#/components/parameters/filter_chain_id'
+    get:
+      summary: List Filter Chains Associated to a Specific Route
+      tags:
+        - filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-routes-route_id_or_name-filter-chains-filter_chain_id
+      description: |
+        Retrieve filter chain associated to a specific route.
+    put:
+      summary: Create Or Update Filter Chain Associated to a Specific Route
+      operationId: put-routes-route_id_or_name-filter-chains-filter_chain_id
+      responses:
+        '200':
+          description: OK
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Create or update filter chain associated to a specific route.
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+      tags:
+        - filter-chains
+  '/routes/{route_id_or_name}/{filter_chain_id}':
+    parameters:
+      - $ref: '#/components/parameters/filter_chain_id'
+      - $ref: '#/components/parameters/route_id_or_name'
+    delete:
+      summary: Delete Filter Chain Associated to a Specific Route
+      tags:
+        - filter-chains
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-routes-route_id_or_name-filter_chain_id
+      description: |
+        Delete filter chain associated to a specific route.
+  '/services/{service_id_or_name}/filter-chains/{filter_chain_id}':
+    parameters:
+      - $ref: '#/components/parameters/service_id_or_name'
+      - $ref: '#/components/parameters/filter_chain_id'
+    delete:
+      summary: Delete Filter Chain Associated to a Specific Service
+      operationId: delete-services-service_id_or_name-filter-chains-filter_chain_id
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Delete filter chain associated to a specific service.
+      tags:
+        - filter-chains
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'

@@ -7,7 +7,7 @@ RUBY_MATCH := $(shell [[ "$(shell ruby -v)" =~ "ruby $(shell cat .ruby-version)"
 .PHONY: ruby-version-check
 ruby-version-check:
 ifndef RUBY_MATCH
-	$(error ruby $(RUBY_VERSION_REQUIRED) is required. Found $(RUBY_VERSION). $(newline)Run `rbenv install $(RUBY_VERSION_REQUIRED)`)$(newline)
+	$(error ruby $(RUBY_VERSION_REQUIRED) is required. Found $(RUBY_VERSION). $(newline)Run `mise install`)$(newline)
 endif
 
 # Installs npm packages and gems.
@@ -19,7 +19,7 @@ install: ruby-version-check
 
 # Using local dependencies, starts a doc site instance on http://localhost:4000.
 run: ruby-version-check
-	netlify dev
+	npx netlify dev
 
 run-debug: ruby-version-check
 	JEKYLL_LOG_LEVEL='debug' netlify dev

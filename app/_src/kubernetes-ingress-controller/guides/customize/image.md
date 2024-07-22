@@ -37,8 +37,9 @@ You can test the latest build of {{ site.kic_product_name }} using the `kong/nig
 
 ```yaml
 controller:
-  image:
-    repository: kong/nightly-ingress-controller
-    tag: nightly
-    effectiveSemver: v{{ site.data.kong_latest_KIC.version }}
+  ingressController:
+    image:
+      repository: kong/nightly-ingress-controller
+      tag: nightly
+      effectiveSemver: v{{ site.data.kong_latest_KIC.version }}
 ```

@@ -38,7 +38,7 @@ plugins:
           port: 6379
 ```
 
-{% if_plugin_version gte:3.3.x %}
+{% if_version gte:3.3.x %}
 
 Here is another example that uses a `key_id` and `key_set` to configure the `account_key`:
 
@@ -80,4 +80,4 @@ plugins:
           port: 6379
 ```
 
-{% endif_plugin_version %}
+{% endif_version %}

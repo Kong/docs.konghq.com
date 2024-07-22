@@ -34,8 +34,6 @@ export KONG_VAULT_HCV_AUTH_METHOD=kubernetes
 export KONG_VAULT_HCV_KUBE_ROLE=<rolename>
 ```
 
-<!-- TO DO: Remove the "unless" tag when we have support for eq/neq OR if all of these changes get backported into 3.5 as well-->
-{% unless page.release == '3.5.x' %}
 {% if_version gte:3.4.x %}
 HashiCorp Vault AppRole authentication:
 
@@ -50,7 +48,6 @@ export KONG_VAULT_HCV_APPROLE_ROLE_ID=<role_id>
 export KONG_VAULT_HCV_APPROLE_SECRET_ID=<secret_id>
 ```
 {% endif_version %}
-{% endunless %}
 
 You can also store this information in an entity.
 
@@ -208,25 +205,19 @@ Configuration options for a HashiCorp vault in {{site.base_gateway}}:
 
 {% if_version gte:3.1.x %}
 | `vaults.config.namespace` | `namespace` | Namespace for the Vault. Vault Enterprise requires a namespace to successfully connect to it. |
-| `vaults.config.auth_method` | `auth-method` | Defines the authentication mechanism when connecting to the Hashicorp Vault service. Accepted values are: `token`, `kubernetes` or `approle`.  |
+| `vaults.config.auth_method` | `auth-method` | Defines the authentication mechanism when connecting to the HashiCorp Vault service. Accepted values are: `token`, `kubernetes` or `approle`.  |
 | `vaults.config.kube_role` | `kube-role` | Defines the HashiCorp Vault role for the Kubernetes service account of the running pod. `keyring_vault_auth_method` must be set to `kubernetes` for this to activate. |
 | `vaults.config.kube_api_token_file` | `kube-api-token-file` | Defines the file path for the Kubernetes service account token. If not specified then a default path `/run/secrets/kubernetes.io/serviceaccount/token` will be used. |
 {% endif_version %}
 
 {% if_version gte:3.4.x %}
 | `vaults.config.kube_auth_path` | `kube-auth-path` | Defines the path that activates the Kubernetes authentication method. If not specified, the default path kubernetes is used. Any single leading or trailing slash in the value will be automatically trimmed. |
-{% endif_version %}
-
-{% if_version gte:3.4.x %}
-{% unless page.release == '3.5.x' -%}
 | `vaults.config.approle_auth_path` | `approle_auth_path` | Specifies the path that activates the AppRole authentication method. If not provided, the default path AppRole will be used. Any single leading or trailing slash in the value will be automatically trimmed. |
 | `vaults.config.approle_role_id` | `approle_role_id` |  Specifies the role ID of the AppRole in HashiCorp Vault.|
 | `vaults.config.approle_secret_id` | `approle_secret_id` | Defines the secret ID of the AppRole in HashiCorp Vault. |
 | `vaults.config.approle_secret_id_file` | `approle_secret_id_file` | Defines the file path containing the secret ID value. |
 | `vaults.config.approle_response_wrapping` | `approle_response_wrapping` | Determines whether the secret_id configured in the vault entity or secret id file is actually a response wrapping token. By default, it is set to false. When set to true, Kong will attempt to unwrap the response wrapping token to retrieve the actual secret id of the AppRole. Note: A response wrapping token can only be unwrapped once. Therefore, ensure that individual tokens are distributed to each Kong node in a typical cluster.|
-{% endunless %}
 {% endif_version %}
-<!-- TO DO: Remove the "unless" tag when we have support for eq/neq OR if all of these changes get backported into 3.5 as well-->
 
 
 Common options:

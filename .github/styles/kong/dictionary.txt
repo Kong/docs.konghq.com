@@ -12,6 +12,9 @@ Autonegotiation
 autoscale
 autoscales
 autoscaling
+backfilled
+Backfilling
+backfilling
 APIOps
 Bagdi
 Bintray
@@ -33,6 +36,7 @@ DPPs
 Datadog
 Dex
 ElastiCache
+Entra
 Equinix
 Equinix
 Fargate
@@ -159,6 +163,7 @@ booleans
 burstable
 CAs
 certificate_admin
+charset
 chatbot
 cleartext
 client_payload
@@ -211,6 +216,7 @@ DNs
 dockerfile
 downsample
 downsampled
+downstreams
 downtime
 downtimes
 DPP
@@ -304,6 +310,7 @@ kafka
 keepalive
 keps
 Keycloak
+keyless
 keyrings
 keyspace
 keystore
@@ -470,6 +477,7 @@ runtimes
 SAML
 sandboxed
 sandboxing
+sanitization
 SBOM
 SBOMs
 SCCs
@@ -560,6 +568,7 @@ unix
 unmanaged
 unmarshalled
 unnormalized
+unpackage
 unparsed
 unprocessable
 unpublish
@@ -583,6 +592,7 @@ upvalues
 uri
 uris
 url
+URLRewrite
 urls
 use_daily_image
 usr

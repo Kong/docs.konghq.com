@@ -25,7 +25,7 @@ To upgrade a data plane node to a new version, follow these steps:
 {% navtabs %}
 {% navtab Konnect UI %}
 1. In [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager/), select the Dedicated Cloud Gateways powered control plane you want to upgrade the data plane nodes for.
-1. From the **Actions** menu, select **Update Cluster Config**.
+1. From the **Actions** menu, select **Edit or Resize Cluster**.
 1. Select the desired {{site.base_gateway}} version, and click **Update Cluster**.
 
 {{site.konnect_short_name}} will upgrade the version of all the data plane nodes to the version you selected automatically. 

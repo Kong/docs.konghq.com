@@ -13,7 +13,7 @@ support_url: https://docs.datadome.co/docs/support
 
 dbless_compatible: yes
 
-enterprise: true
+enterprise: false
 techpartner: false
 konnect: true
 

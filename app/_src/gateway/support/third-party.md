@@ -11,6 +11,11 @@ Unless otherwise noted, Kong supports the last 2 versions any third party tool, 
 > Some third party tools below do not have a version number. These tools are managed services and Kong provides compatibility with the currently released version
 
 {% navtabs %}
+  {% if_version gte: 3.8.x %}
+  {% navtab 3.8 %}
+    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.38 %}
+  {% endnavtab %}
+  {% endif_version %}
   {% if_version gte: 3.7.x %}
   {% navtab 3.7 %}
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.37 %}
@@ -24,11 +29,8 @@ Unless otherwise noted, Kong supports the last 2 versions any third party tool, 
   {% navtab 3.5 %}
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.35 %}
   {% endnavtab %}
-  {% navtab 3.4 %}
+  {% navtab 3.4 LTS %}
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.34 %}
-  {% endnavtab %}
-  {% navtab 3.3 %}
-    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.33 %}
   {% endnavtab %}
   {% navtab 2.8 LTS %}
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.28 %}

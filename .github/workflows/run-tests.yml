@@ -65,7 +65,7 @@ jobs:
 
       - name: Run Smoke Tests
         run: |
-          npm install -g wait-on netlify-cli
+          npm install -g wait-on
           netlify dev & wait-on http://localhost:8888
           npm test
 

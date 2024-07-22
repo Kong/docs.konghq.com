@@ -10,11 +10,11 @@ The Rate Limiting Advanced plugin offers more functionality than the {{site.base
 * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
 * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
 * More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
-{% if_plugin_version gte:3.4.x %}
+{% if_version gte:3.4.x %}
 * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](/hub/kong-inc/rate-limiting-advanced/how-to/)
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version lte:3.0.x %}
+{% if_version lte:3.0.x %}
 The Rate Limiting Advanced plugin for Konnect is a re-engineered version of the {{site.base_gateway}} (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
 
 As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides:
@@ -33,7 +33,7 @@ As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provide
 * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store.
 * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary,
   which could lead to `no memory` errors.
-{% endif_plugin_version %}
+{% endif_version %}
 
 ## Headers sent to the client
 
@@ -155,8 +155,12 @@ The plugin supports three strategies.
 | Strategy    | Pros | Cons   |
 | --------- | ---- | ------ |
 | `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes.
-| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
-| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
+| `cluster` | Accurate<sup>1</sup>, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
+| `redis`   | Accurate<sup>1</sup>, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
+
+{:.note .no-icon}
+> **\[1\]**: Only when `sync_rate` option is set to `0` (synchronous behavior). See the [configuration reference](/hub/kong-inc/rate-limiting-advanced/configuration/#config-sync_rate) for more details.
+
 
 Two common use cases are:
 
@@ -193,7 +197,7 @@ To minimize inaccuracies, consider using a consistent-hashing load balancer in f
 Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
 inaccuracies and preventing scaling problems.
 
-{% if_plugin_version lte:3.0.x %}
+{% if_version lte:3.0.x %}
 
 #### Fallback to IP
 
@@ -203,7 +207,7 @@ selected header was not sent by the client or the configured service was not fou
 
 [`Retry-After`]: https://tools.ietf.org/html/rfc7231#section-7.1.3
 
-{% endif_plugin_version %}
+{% endif_version %}
 
 #### Fallback from Redis
 
@@ -212,7 +216,7 @@ When the `redis` strategy is used and a {{site.base_gateway}} node is disconnect
 {{site.base_gateway}} will still rate limit, but the {{site.base_gateway}} nodes can't sync the counters. As a result, users will be able
 to perform more requests than the limit, but there will still be a limit per node.
 
-{% if_plugin_version gte:3.4.x%}
+{% if_version gte:3.4.x%}
 ## Rate limiting for consumer groups
 
 You can use the [consumer groups entity](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups) to manage custom rate limiting configurations for
@@ -220,9 +224,9 @@ subsets of consumers. This is enabled by default **without** using the `/consume
 
 You can see an example of this in the [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/) guide.
 
-{% endif_plugin_version %}
+{% endif_version %}
 
-{% if_plugin_version gte:2.7.x lte:3.3.x %}
+{% if_version gte:2.7.x lte:3.3.x %}
 ## Rate limiting for consumer groups
 
 You can use consumer groups to manage custom rate limiting configuration for
@@ -236,4 +240,4 @@ For guides on working with consumer groups, see the consumer group
 [API reference](/gateway/latest/admin-api/consumer-groups/reference) in
 the Admin API documentation.
 
-{% endif_plugin_version %}
+{% endif_version %}

@@ -1,5 +1,9 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.7.x
+* Added a workspace label to Prometheus plugin metrics.
+ [#12836](https://github.com/Kong/kong/issues/12836)
+ 
 ### {{site.base_gateway}} 3.6.x
 * Exposed metrics for serviceless routes.
  [#11781](https://github.com/Kong/kong/issues/11781)
