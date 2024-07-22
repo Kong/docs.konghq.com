@@ -373,4 +373,4 @@ This will delete all configuration from Kong's database.
 ## Next steps
 See decK [best practices](/deck/{{page.release}}/guides/best-practices/), and check out the individual guides for getting :
 * [Backup and restore of {{site.base_gateway}}'s configuration](/deck/{{page.release}}/guides/backup-restore/)
-* Deduplicate plugin configuration
+* [De-duplicate plugin configuration](/deck/{{page.release}}/guides/deduplicate-plugin-configuration/)
