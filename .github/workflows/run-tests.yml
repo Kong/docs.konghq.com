@@ -64,6 +64,8 @@ jobs:
           exe/build
 
       - name: Run Smoke Tests
+        env:
+          JEKYLL_ENV: production
         run: |
           npm install -g wait-on
           netlify dev & wait-on http://localhost:8888
