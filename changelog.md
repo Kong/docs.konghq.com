@@ -2,6 +2,38 @@
 
 <!--vale off-->
 
+## Week 29
+
+### [Update _local-testing-development.md](https://github.com/Kong/docs.konghq.com/pull/7646) (2024-07-17)
+
+Removed the "path" value from route created in step 2, as this would cause request in step 4 "Trigger certificate creation" to fail, and will not work with the "/.well-known/acme-challenge/x" path which would also need to be associated to this test route for the purpose of this walkthrough.
+ 
+Noted in Support case: 00047179
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acme/how-to/
+
+
+### [Feat: Azure support in dedicated cloud gateways](https://github.com/Kong/docs.konghq.com/pull/7634) (2024-07-15)
+
+Updating docs to introduce Azure support in Konnect Dedicated Cloud Gateways.
+
+Minor adjustments to the Konnect changelog to make it consistent.
+
+https://konghq.atlassian.net/browse/DOCU-3870
+
+#### Added
+
+- https://docs.konghq.com/assets/images/products/konnect/gateway-manager/konnect-azure-cgw.png
+
+#### Modified
+
+- https://docs.konghq.com/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways
+- https://docs.konghq.com/konnect/gateway-manager/
+- https://docs.konghq.com/konnect/updates
+
 ## Week 28
 
 ### [Fix: Key Auth Encrypted note and "not applicable" konnect labels](https://github.com/Kong/docs.konghq.com/pull/7635) (2024-07-12)
