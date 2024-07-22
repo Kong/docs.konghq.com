@@ -5,7 +5,7 @@ description: This documentation provides a comprehensive guide for conducting Ko
 ---
 
 As of {{site.base_gateway}} 3.6.x, Kong publishes performance results on {{site.base_gateway}}, along with the test methodology and details. 
-Kong plants to conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.
+Kong plans to conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.
 
 In addition to viewing our performance test results, you can use [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main) to conduct your own performance tests with {{site.base_gateway}}.
 
