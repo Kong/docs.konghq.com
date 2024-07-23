@@ -266,7 +266,7 @@ Logs are reported based on the log level that is configured for {{site.base_gate
 
 #### Log entry
 
-Each log entry adheres to the [OpenTelemetry Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/). Available information depend on the log scope and on whether **Tracing** is enabled for this plugin.
+Each log entry adheres to the [OpenTelemetry Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/). The available information depends on the log scope and on whether [**tracing**](#tracing) is enabled for this plugin.
 
 Every log entry includes the following fields:
 - `Timestamp`: Time when the event occurred.
