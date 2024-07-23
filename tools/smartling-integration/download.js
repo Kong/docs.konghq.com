@@ -64,20 +64,19 @@ async function downloadFiles() {
     const filesApi = apiBuilder.build(SmartlingFilesApi);
     const filesUris = await getFilesListForJob(projectId, jobId);
 
-    for (const fileUri of filesUris) {
+    for (let fileUri of filesUris) {
       const downloadFileParams = new DownloadFileParameters()
         .setRetrievalType(RetrievalType.PUBLISHED);
 
-      // TODO: any post-processing goes here...
-      // config/locales/en.yml => config/locales/ja.yml
       let downloadedFileContent = await handleRateLimiting(filesApi.downloadFile.bind(filesApi), projectId, fileUri, locale, downloadFileParams);
 
       // post-processing
       if (path.extname(fileUri) === '.md') {
         downloadedFileContent = processMarkdown(downloadedFileContent);
       } else if (fileUri.startsWith('app/_data/tables/support/gateway/versions')) {
-        console.log(downloadedFileContent)
         downloadedFileContent = processSupportedVersions(downloadedFileContent);
+      } else if (fileUri.endsWith('config/locales/en.yml')) {
+        fileUri = fileUri.replace('en.yml', `${locale}.yml`)
       }
 
       const filePath = path.join(translatedContentPath, locale, fileUri);
