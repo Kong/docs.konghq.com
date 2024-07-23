@@ -37,7 +37,7 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
    {:.warning}
    > **Warning:** You **can't** change the value of the environment variables you used to provide the AWS credential after booting {{site.base_gateway}}. Any changes are ignored.
 {% if_version gte:3.8.x %}
-   - {{site.base_gateway}} also supports role assuming which allows you to use a different IAM role to authenticate to the database. If you want to use role assuming, make sure the original IAM role Kong uses has the correct permission to do role assuming to the target IAM role, and the target IAM role has the correct permission to connect to the database using IAM authentication.
+   - If you want to assume a role, make sure the original IAM role that Kong uses has the correct permission to assume the role of the target IAM role, and the target IAM role has the correct permission to connect to the database using IAM authentication.
 {% endif_version %}
 
 - **Assign an IAM policy to the {{site.base_gateway}} IAM role**. For more information, see [Creating and using an IAM policy for IAM database access](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html) in the Amazon RDS documentation.
@@ -76,14 +76,14 @@ KONG_PG_RO_IAM_AUTH=on
 ```
 
 {% if_version gte:3.8.x %}
-If you want to use role assuming, set the following environment variables as well:
+If you want to [assume a role](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html), also set the following environment variables:
 
 ```bash
-# For read-write connection
+# For read-write connections
 KONG_PG_IAM_AUTH_ASSUME_ROLE_ARN=<role_arn>
 KONG_PG_IAM_AUTH_ROLE_SESSION_NAME=<role_session_name>
 
-# For read-only connection, if you need a different role for read-only connection
+# For read-only connections, if you need a different role than for read-write
 KONG_PG_RO_IAM_AUTH_ASSUME_ROLE_ARN=<role_arn>
 KONG_PG_RO_IAM_AUTH_ROLE_SESSION_NAME=<role_session_name>
 ```
@@ -107,14 +107,14 @@ pg_ro_iam_auth=on
 ```
 
 {% if_version gte:3.8.x %}
-If you want to use role assuming, set the following environment variables as well:
+If you want to [assume a role](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html), also set the following configuration parameters:
 
 ```bash
-# For read-write connection
+# For read-write connections
 pg_iam_auth_assume_role_arn=<role_arn>
 pg_iam_auth_role_session_name=<role_session_name>
 
-# For read-only connection, if you need a different role for read-only connection
+# For read-only connections, if you need a different role than for read-write
 pg_ro_iam_auth_assume_role_arn=<role_arn>
 pg_ro_iam_auth_role_session_name=<role_session_name>
 ```
