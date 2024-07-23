@@ -261,7 +261,8 @@ Two different kinds of logs are exported: **Request** and **Non-Request** scoped
 
 Logs are reported based on the log level that is configured for {{site.base_gateway}}. If a log is emitted with a level that is lower than the configured log level, it is not exported.
 
-> **Note:** not all logs are guaranteed to be exported.  Logs that are not exported include those produced by the Nginx master process and low-level errors produced by Nginx. Operators are expected to capture the nginx `error.log` file in addition to using this feature for observability purposes.
+{:.note}
+> **Note:** Not all logs are guaranteed to be exported. Logs that are not exported include those produced by the Nginx master process and low-level errors produced by Nginx. Operators are expected to capture the Nginx `error.log` file in addition to using this feature for observability purposes.
 
 #### Log entry
 
