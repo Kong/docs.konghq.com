@@ -69,7 +69,7 @@ curl -i -X POST http://localhost:8001/services/<YOUR_API>/plugins \
 - Depending on where you want to enable Impart, select `Plugins`
 - Click on `+ New Plugin`
 - On `Custom Plugins`, select `Kong Plugin Impart`
-- Fill the *Inspector Rpc Addr* field
+- Fill the `Inspector Rpc Addr` field
 - Hit `Save`
 
 For further information, please check our [Impart Kong documentation page](https://docs.impartsecurity.net/docs/Quickstart/Integrations/Kong_lua).
