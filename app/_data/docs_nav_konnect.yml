@@ -32,7 +32,7 @@
       url: /getting-started/
     - text: Add your API
       url: /getting-started/add-api/
-    - text: Migrating Kong Gateway On-Premises to Konnect
+    - text: Migrating a Self-Managed Kong Gateway into Konnect
       url: /getting-started/migration/
 
 - title: Gateway Manager
