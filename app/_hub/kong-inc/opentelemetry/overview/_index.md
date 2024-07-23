@@ -285,8 +285,8 @@ In addition to the above, request-scoped logs include:
   - `request.id`: Kong's request ID.
 
 In addition to the above, when **tracing** is enabled, request-scoped logs include:
-- `TraceID`: Request trace id.
-- `SpanID`: Request span id.
+- `TraceID`: Request trace ID.
+- `SpanID`: Request span ID.
 - `TraceFlags`: W3C trace flag.
 {% endif_version %}
 
