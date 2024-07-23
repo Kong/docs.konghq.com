@@ -253,7 +253,7 @@ This plugin supports [OpenTelemetry Logging](https://opentelemetry.io/docs/specs
 
 #### Log scopes
 
-Two different kinds of logs are exported: **Request** and **Non Request** scoped.
+Two different kinds of logs are exported: **Request** and **Non-Request** scoped.
 The former are logs that are directly associated with requests, they are produced during the request lifecycle. Example: logs generated during a plugin's Access phase.
 The latter are logs that are not directly associated with a request, they are produced outside the request lifecycle. Examples logs generated asynchronously or during a worker's startup.
 
