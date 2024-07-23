@@ -230,6 +230,7 @@ company_name: Kong Inc.
 mesh_product_name: Kong Mesh
 deck_product_name: decK
 contributing_product_name: Contribution Guidelines
+service_catalog_name: Service Catalog
 # Mesh specific config
 mesh_namespace: kong-mesh-system
 mesh_cp_name: kong-mesh-control-plane
