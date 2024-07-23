@@ -439,7 +439,6 @@
 /konnect/deployment/license-management              /konnect/account-management/
 /konnect/deployment/network                         /konnect/network/
 /konnect/deployment/network-resiliency              /konnect/network-resiliency/
-/konnect/migrate/                                   /konnect/getting-started/import/
 /konnect/getting-started/declarative-config/        /konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/

@@ -53,7 +53,8 @@ KIC-based control plane</a>]
 {% endmermaid %}
 <!--vale on-->
 
-> **Figure 1**: For traditional and hybrid deployments, you can migrate directly to {{site.konnect_short_name}} by following this guide. For DB-less deployments, migrate to hybrid first, then follow this guide. For KIC deployments, migrate to a KIC-based control plane.
+> _**Figure 1**: For traditional and hybrid deployments, you can migrate directly to {{site.konnect_short_name}} by following this guide. For DB-less deployments, migrate to hybrid first, then follow this guide. For KIC deployments, migrate to a KIC-based control plane._
+
 ### Role Based Access Controls (RBAC)
 
 Both {{site.base_gateway}} and {{site.konnect_product_name}} provide frameworks for controlling security and
@@ -97,7 +98,7 @@ When migrating to {{site.konnect_product_name}}, you will create a control plane
 best fits your goals, which may or may not mirror the number of workspaces you
 use in your self-managed deployment.
 
-#### Control plane design
+### Control plane design
 
 If you currently use a single workspace in your self-managed installation,
 you can simply create a matching control plane with the same name. Alternatively, 
@@ -108,7 +109,7 @@ If you're using multiple workspaces in your self-managed installation, the most 
 approach is to create a control plane for each workspace, but you may choose to reorganize your 
 design during the migration.
 
-#### Multi-tenancy
+### Multi-tenancy
 
 {{site.base_gateway}} workspaces provide a way to share runtime infrastructure across isolated configurations.
 With {{site.konnect_product_name}}, this is achieved using 
@@ -118,13 +119,13 @@ and removed from control plane groups, and you can set them up to mirror your ex
 With control plane groups set up, you can connect data plane instances to each group, creating
 a shared data plane infrastructure among the constituent control planes.
 
-#### Control plane management 
+### Control plane management 
 
 You can manage control planes and control plane groups in {{site.konnect_product_name}} by using the [Konnect UI](/konnect/gateway-manager/), the
 [Konnect Control Planes API](/konnect/api/control-planes/latest/), or the 
 [{{site.konnect_product_name}} Terraform Provider](https://registry.terraform.io/providers/Kong/konnect/latest).
 
-#### Example workspace migration
+### Example workspace migration
 
 The following provides an example set of steps for migrating a small multi-workspace setup to 
 {{site.konnect_product_name}}.

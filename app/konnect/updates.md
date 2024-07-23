@@ -654,7 +654,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
 
-: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/import/).
+: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/migration/).
 
 : The minimum supported {{site.base_gateway}} version for this environment is 2.5.0.1.
 

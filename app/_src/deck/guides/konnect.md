@@ -321,5 +321,5 @@ against {{site.konnect_short_name}}.
 
 ## See also
 
-* [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import/)
+* [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/migration/)
 * [Manage control planes with decK](/konnect/gateway-manager/declarative-config/)
