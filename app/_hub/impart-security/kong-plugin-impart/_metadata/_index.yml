@@ -2,8 +2,7 @@ name: Kong Plugin Impart
 publisher: Impart Security
 
 categories:
-  - security
-  - third-party-partner
+  - community
 
 type: plugin
 
@@ -15,7 +14,7 @@ dbless_compatible: yes
 
 free: false
 enterprise: false
-techpartner: true
+techpartner: false
 konnect: true
 
 kong_version_compatibility:
