@@ -84,7 +84,7 @@ The following are the general steps for setting up IAM in {{site.konnect_product
 4. For any custom teams, [assign the appropriate roles](/konnect/org-management/teams-and-roles/manage/#edit-roles-for-a-team) 
   from the predefined list of available roles in {{site.konnect_short_name}}.
 5. Use the {{site.konnect_short_name}} IdP Team Mappings feature to 
-  [map the{ {site.konnect_short_name}} teams to your IdP provider groups](/konnect/org-management/okta-idp/#map-konnect-teams-to-okta-groups).
+  [map the {{site.konnect_short_name}} teams to your IdP provider groups](/konnect/org-management/okta-idp/#map-konnect-teams-to-okta-groups).
 
 ### Migrating from workspaces to control planes
 
