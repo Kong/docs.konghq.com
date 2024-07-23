@@ -32,8 +32,8 @@
       url: /getting-started/
     - text: Add your API
       url: /getting-started/add-api/
-    - text: Import Kong Gateway Entities into Konnect
-      url: /getting-started/import/
+    - text: Migrating a Self-Managed Kong Gateway into Konnect
+      url: /getting-started/migration/
 
 - title: Gateway Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
@@ -143,7 +143,7 @@
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
     - text: Publish an API to Dev Portal
-      url: /dev-portal/publish-service/ 
+      url: /dev-portal/publish-service/
     - text: Access and Approval
       items:
         - text: Manage Developer Access
@@ -180,7 +180,7 @@
           url: /dev-portal/applications/dynamic-client-registration/azure/
         - text: Custom IdP
           url: /dev-portal/applications/dynamic-client-registration/custom/
-          
+
     - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
     - text: Portal Customization
@@ -305,7 +305,7 @@
           generate: false
           target_blank: true
     - text: Cloud Gateways API
-      items: 
+      items:
         - text: API Spec
           url: /konnect/api/cloud-gateways/latest/
           absolute_url: true
