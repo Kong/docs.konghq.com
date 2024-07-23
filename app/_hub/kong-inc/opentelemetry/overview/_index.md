@@ -168,9 +168,9 @@ curl -X POST http://localhost:8001/plugins \
     -d '{
       "name": "opentelemetry",
       "config": {
-      {% if_version lte:3.7.x %}"endpoint": "http://<opentelemetry-backend>:4318/v1/traces",{% endif_version %}
-      {% if_version gte:3.8.x %}"traces_endpoint": "http://<opentelemetry-backend>:4318/v1/traces",
-      "logs_endpoint": "http://<opentelemetry-backend>:4318/v1/logs",{% endif_version %}
+        {% if_version lte:3.7.x %}"endpoint": "http://<opentelemetry-backend>:4318/v1/traces",{% endif_version -%}
+        {% if_version gte:3.8.x %}"traces_endpoint": "http://<opentelemetry-backend>:4318/v1/traces",
+        "logs_endpoint": "http://<opentelemetry-backend>:4318/v1/logs",{% endif_version %}
         "resource_attributes": {
           "service.name": "kong-dev"
         }
