@@ -12,7 +12,7 @@ Values on this page may reference resources that need to be created in advance w
 {% navtabs %}
 {% navtab Single zone control plane %}
 
-## Install a single zone control plane
+Install a single zone control plane:
 
 ```sh
 helm install {{ site.mesh_helm_install_name }} {{ site.mesh_helm_repo }} --namespace {{site.mesh_namespace}} -f ./values.single-zone-cp.yaml
@@ -27,7 +27,7 @@ Suggested `values.yaml` file:
 {% endnavtab %}
 {% navtab Multi-zone global control plane %}
 
-## Install the global control plane for a multi-zone deployment
+Install the global control plane for a multi-zone deployment:
 
 ```sh
 helm install {{ site.mesh_helm_install_name }} {{ site.mesh_helm_repo }} --namespace {{site.mesh_namespace}} -f ./values.global-cp.yaml
@@ -45,7 +45,7 @@ The values on this page may reference resources that need to be created in advan
 
 {% navtab Multi-zone federated zone control planes %}
 
-## Install federated zone control planes for a multi-zone deployment
+Install federated zone control planes for a multi-zone deployment:
 
 ```sh
 helm install {{ site.mesh_helm_install_name }} {{ site.mesh_helm_repo }} --namespace {{site.mesh_namespace}} -f ./values.federated-zone-cp.yaml \
