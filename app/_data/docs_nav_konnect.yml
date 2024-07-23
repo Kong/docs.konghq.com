@@ -15,8 +15,6 @@
       url: /compatibility/
     - text: Stages of Software Availability
       url: /availability-stages/
-    - text: Migrating Kong Gateway On-Premises to Konnect
-      url: /migration/
     - text: Release Notes
       url: /updates/
     - text: Support
@@ -34,8 +32,8 @@
       url: /getting-started/
     - text: Add your API
       url: /getting-started/add-api/
-    - text: Import Kong Gateway Entities into Konnect
-      url: /getting-started/import/
+    - text: Migrating Kong Gateway On-Premises to Konnect
+      url: /getting-started/migration/
 
 - title: Gateway Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
