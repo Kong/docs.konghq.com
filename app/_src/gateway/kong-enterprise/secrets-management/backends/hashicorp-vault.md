@@ -176,15 +176,15 @@ Access an older version of the secret like this:
 ```
 
 
-## How does Kong retrieve secrets from HashiCorp Vault
+## How does Kong retrieve secrets from HashiCorp Vault?
 
-Kong retrieves secrets from HashiCorp Vault's HTTP API through a two-step process:
+Kong retrieves secrets from HashiCorp Vault's HTTP API through a two-step process: authentication and secret retrieval.
 
-**Step 1: Authentication**
-Depending on the authentication method defined in `config.auth_method`, Kong will authenticate using one of the following methods:
+### Step 1: Authentication
+Depending on the authentication method defined in `config.auth_method`, Kong authenticates to HashiCorp Vault using one of the following methods:
 
-- If you're using `token` auth method, the `config.token` will be used as the client token.
-- If you're using `kubernetes` auth method, Kong will use the service account JWT token mounted in the pod(path is defined in `config.kube_api_token_file`) to call the login API for kubernetes auth path on HashiCorp Vault server and retrieve a client token. The request looks like the following:
+- If you're using the `token` auth method, Kong uses the `config.token` as the client token.
+- If you're using the `kubernetes` auth method, Kong uses the service account JWT token mounted in the pod (path defined in the `config.kube_api_token_file`) to call the login API for the Kubernetes auth path on the HashiCorp Vault server and retrieve a client token. The request looks like the following:
 
 ```
 POST /v1/auth/<config.kube_auth_path>/login
@@ -199,7 +199,12 @@ X-Vault-Namespace: <config.namespace>
 ```
 
 {% if_version gte:3.4.x %}
-- If you're using `approle` auth method, Kong will use the AppRole credentials to retrieve a client token. The approle role id is configured by field `config.approle_role_id` and the secret id is configured by field `config.approle_secret_id` or `config.approle_secret_id_file`. Moreover, if you set `config.approle_response_wrapping` to true, then the secret id configured by `config.approle_secret_id` or `config.approle_secret_id_file` will be a response wrapping token, and Kong will call the unwrap API `/v1/sys/wrapping/unwrap` to unwrap the response wrapping token to fetch the real secret id. Kong will use the approle role id and secret id to call the login API for approle auth path on HashiCorp Vault server and retrieve a client token. The request looks like the following:
+- If you're using the `approle` auth method, Kong uses the AppRole credentials to retrieve a client token. The AppRole role ID is configured by field `config.approle_role_id`, and the secret ID is configured by field `config.approle_secret_id` or `config.approle_secret_id_file`. 
+  - If you set `config.approle_response_wrapping` to `true`, then the secret ID configured by
+  `config.approle_secret_id` or `config.approle_secret_id_file` will be a response wrapping token, 
+  and Kong will call the unwrap API `/v1/sys/wrapping/unwrap` to unwrap the response wrapping token to fetch 
+  the real secret ID. Kong will use the AppRole role ID and secret ID to call the login API for the AppRole auth path
+   on the HashiCorp Vault server and retrieve a client token. The request looks like the following:
 
 ```
 POST /v1/auth/<config.approle_auth_path>/login
@@ -216,11 +221,12 @@ X-Vault-Namespace: <config.namespace>
 
 By calling the login API, Kong will retrieve a client token and then use it in the next step as the value of `X-Vault-Token` header to retrieve a secret.
 
-**Step 2: Retrieving the secret**
+### Step 2: Retrieving the secret
 
-Kong will use the client token retrieved in Step 1 to call the read secret API and retrieve the secret value. The request varies depending on the secrets engine version you're using:
+Kong uses the client token retrieved in the [authentication step](#step-1-authentication) to call the Read Secret API and retrieve the secret value. The request varies depending on the secrets engine version you're using:
 
-- KV v1:
+{% navtabs %}
+{% navtab KV v1 %}
 
 ```
 GET /v1/<config.mount>/<secret path>
@@ -229,7 +235,8 @@ X-Vault-Token: <client token>
 X-Vault-Namespace: <config.namespace>
 ```
 
-- KV v2:
+{% endnavtab %}
+{% navtab KV v2 %}
 
 ```
 GET /v1/<config.mount>/data/<secret path>
@@ -238,7 +245,8 @@ X-Vault-Token: <client token>
 X-Vault-Namespace: <config.namespace>
 ```
 
-- KV v2 with versioned secrets:
+{% endnavtab %}
+{% navtab KV v2 with versioned secrets %}
 
 ```
 GET /v1/<config.mount>/data/<secret path>?version=<version>
@@ -246,6 +254,8 @@ Host: <config.host>:<config.port>
 X-Vault-Token: <client token>
 X-Vault-Namespace: <config.namespace>
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 {:.important}
 > **Warning:** Make sure you've configured the correct KV engine version in `conig.kv`, otherwise Kong will fail to parse the response.
