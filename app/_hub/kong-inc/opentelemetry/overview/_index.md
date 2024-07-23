@@ -50,7 +50,7 @@ for each different header format, as in the following example:
 
 {% if_version gte:3.2.x %}
 {:.note}
-> **Note**: The OpenTelemetry plugin only works when {{site.base_gateway}}'s `tracing_instrumentations` configuration is enabled.
+> **Note**: The OpenTelemetry plugin's tracing capabilities only work when {{site.base_gateway}}'s `tracing_instrumentations` configuration is enabled.
 {% endif_version %}
 
 {% if_version lte:3.1.x %}
@@ -68,14 +68,19 @@ There are two ways to set up an OpenTelemetry backend:
 
 ### Set up {{site.base_gateway}}
 
+{% if_version gte:3.8.x %}
+The OpenTelemetry tracing capability supported by this plugin requires the following {{site.base_gateway}}'s configuration:
+{% endif_version %}
+{% if_version lte:3.7.x %}
 Enable the OpenTelemetry tracing capability in {{site.base_gateway}}'s configuration:
+{% endif_version %}
 {% if_version lte:3.1.x %}
 - `opentelemetry_tracing = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#tracing_instrumentations).
 - `opentelemetry_tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
   Tracer samples a fixed percentage of all spans following the sampling rate.
   Set the sampling rate to a lower value to reduce the impact of the instrumentation on {{site.base_gateway}}'s proxy performance in production.
 {% endif_version %}
-{% if_version gte:3.2.x %}
+{% if_version gte:3.2.x lte:3.7.x %}
 - `tracing_instrumentations = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#tracing_instrumentations).
 - `tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
   Tracer samples a fixed percentage of all spans following the sampling rate.
@@ -133,6 +138,10 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [logging, zipkin]
+    {% if_version gte:3.8.x %}logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging]{% endif_version %}
 ```
 
 Run the OpenTelemetry Collector with Docker:
@@ -159,7 +168,9 @@ curl -X POST http://localhost:8001/plugins \
     -d '{
       "name": "opentelemetry",
       "config": {
-        "endpoint": "http://<opentelemetry-backend>:4318/v1/traces",
+        {% if_version lte:3.7.x %}"endpoint": "http://<opentelemetry-backend>:4318/v1/traces",{% endif_version -%}
+        {% if_version gte:3.8.x %}"traces_endpoint": "http://<opentelemetry-backend>:4318/v1/traces",
+        "logs_endpoint": "http://<opentelemetry-backend>:4318/v1/logs",{% endif_version %}
         "resource_attributes": {
           "service.name": "kong-dev"
         }
@@ -171,7 +182,9 @@ curl -X POST http://localhost:8001/plugins \
 
 This section describes how the OpenTelemetry plugin works.
 
-### Built-in tracing instrumentations
+### Tracing
+
+#### Built-in tracing instrumentations
 
 {% if_version gte:3.2.x %}
 {{site.base_gateway}} has a series of built-in tracing instrumentations
@@ -194,7 +207,7 @@ The top level span has the following attributes:
 
 <!-- TODO: link to Gateway 3.0 tracing docs for details -->
 
-### Propagation
+#### Propagation
 
 The OpenTelemetry plugin supports propagation of the following header formats:
 - `w3c`: [W3C trace context](https://www.w3.org/TR/trace-context/)
@@ -225,13 +238,57 @@ If no appropriate format is found, the plugin will fallback to the default forma
 {% endif_version %}
 
 
-### OTLP exporter
+#### OTLP exporter
 
 The OpenTelemetry plugin implements the [OTLP/HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md#otlphttp) exporter, which uses Protobuf payloads encoded in binary format and is sent via HTTP/1.1.
 
 `connect_timeout`, `read_timeout`, and `write_timeout` are used to set the timeouts for the HTTP request.
 
 `batch_span_count` and `batch_flush_delay` are used to set the maximum number of spans and the delay between two consecutive batches.
+
+{% if_version gte:3.8.x %}
+### Logging
+
+This plugin supports [OpenTelemetry Logging](https://opentelemetry.io/docs/specs/otel/logs/), which can be configured as described in the [configuration reference](/hub/kong-inc/opentelemetry/configuration/#config-traces_endpoint) to export logs in OpenTelemetry format to an OTLP-compatible backend.
+
+#### Log scopes
+
+Two different kinds of logs are exported: **Request** and **Non-Request** scoped.
+  * Request logs are directly associated with requests. They are produced during the request lifecycle. For example, this could be logs generated during a plugin's Access phase.
+  * Non-request logs are not directly associated with a request. They are produced outside the request lifecycle. For examples, this could be logs generated asynchronously or during a worker's startup.
+
+#### Log level
+
+Logs are reported based on the log level that is configured for {{site.base_gateway}}. If a log is emitted with a level that is lower than the configured log level, it is not exported.
+
+{:.note}
+> **Note:** Not all logs are guaranteed to be exported. Logs that are not exported include those produced by the Nginx master process and low-level errors produced by Nginx. Operators are expected to capture the Nginx `error.log` file in addition to using this feature for observability purposes.
+
+#### Log entry
+
+Each log entry adheres to the [OpenTelemetry Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/). The available information depends on the log scope and on whether [**tracing**](#tracing) is enabled for this plugin.
+
+Every log entry includes the following fields:
+- `Timestamp`: Time when the event occurred.
+- `ObservedTimestamp`: Time when the event was observed.
+- `SeverityText`: The severity text (log level).
+- `SeverityNumber`: Numerical value of the severity.
+- `Body`: The error log line.
+- `Resource`: Configurable resource attributes.
+- `InstrumentationScope`: Metadata that describes Kong's data emitter.
+- `Attributes`: Additional information about the event.
+  - `introspection.source`: Full path of the file that emitted the log.
+  - `introspection.current.line`: Line number that emitted the log.
+
+In addition to the above, request-scoped logs include:
+- `Attributes`: Additional information about the event.
+  - `request.id`: Kong's request ID.
+
+In addition to the above, when **tracing** is enabled, request-scoped logs include:
+- `TraceID`: Request trace ID.
+- `SpanID`: Request span ID.
+- `TraceFlags`: W3C trace flag.
+{% endif_version %}
 
 ## Customize OpenTelemetry spans as a developer
 
