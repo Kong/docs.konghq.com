@@ -177,7 +177,7 @@ curl -s -H "Authorization: Bearer ${KONNECT_PAT}" \
   --data '{"name":"sales","description":"CP for the Sales team.","cluster_type":"CLUSTER_TYPE_CONTROL_PLANE"}'
 ```
 
-Login into the Konnect UI and validate the new Control Planes.
+Log in into the {{site.konnect_short_name}} UI and validate the new control planes.
 
 ### Plugin migration
 
