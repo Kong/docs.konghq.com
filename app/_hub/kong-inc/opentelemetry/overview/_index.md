@@ -284,7 +284,7 @@ In addition to the above, request-scoped logs include:
 - `Attributes`: Additional information about the event.
   - `request.id`: Kong's request ID.
 
-In addition to the above, when **Tracing** is enabled, request-scoped logs include:
+In addition to the above, when **tracing** is enabled, request-scoped logs include:
 - `TraceID`: Request trace id.
 - `SpanID`: Request span id.
 - `TraceFlags`: W3C trace flag.
