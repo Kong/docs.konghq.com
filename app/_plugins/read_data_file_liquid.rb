@@ -17,7 +17,11 @@ module Jekyll
       # the most recent since we're just starting up
       site = Jekyll.sites.last
 
-      content = File.read(site.in_source_dir(dir, filename))
+      content = if dir.start_with?(site.source)
+                  File.read(site.in_source_dir(dir, filename))
+                else
+                  File.read(File.join(dir, filename))
+                end
       template = Liquid::Template.parse(content)
 
       context = Liquid::Context.new({}, {}, { site: })
