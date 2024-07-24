@@ -12,8 +12,6 @@ The request Content-Type header is validated against the plugin's [`allowed_cont
 
 The parameter is strictly validated, which means a request with a parameter (for example, `application/json; charset=UTF-8`) is NOT considered valid for one without the same parameter (for example, `application/json`). The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
 
-Only one parameter is supported. If a request sends more than one parameter with the Content-Type header, only the first parameter is evaluated and the rest are truncated.
-
 ## Body Validation
 
 {% if_version lte:3.5.x %}
