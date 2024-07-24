@@ -42,7 +42,7 @@
   <meta property="og:url" content="{{ site.links.share }}" />
   <meta property="og:description" content="{{ page_description }}" />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content="{{ site.locale | replace: '-', '_' }}" />
   <meta
     property="og:image"
     content="{{ site.links.web }}/assets/images/share.png"
