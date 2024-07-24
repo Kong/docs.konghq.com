@@ -173,7 +173,7 @@ jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
 
-locale: en
+locale: en-US
 
 # Analytics
 gtm_id: 'GTM-NL48VKT'
