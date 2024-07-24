@@ -52,7 +52,7 @@ installs Lua modules.
 
 ## Using the plugin
 
-First of all, make sure you have installed an Impart Inspector. Steps to do that can be found on the Impart console [Integrations](https://console.impartsecurity.net/orgs/_/integrations?q=kong) page.
+This plugin requires having installed an Impart Inspector. Steps to install an Inspector can be found on the Impart console [Integrations](https://console.impartsecurity.net/orgs/_/integrations?q=kong) page.
 
 ### {{site.base_gateway}}
 
