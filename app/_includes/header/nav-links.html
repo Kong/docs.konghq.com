@@ -1,6 +1,6 @@
 <div class="github-links">
   <div class="github-links--edit">
-    {% if site.locale == 'en' %}
+    {% if site.locale == site.default_locale %}
       {% if include.edit_link %}
         <a href={{ include.edit_link }}>
           <img src="/assets/images/icons/third-party/logo-github-white.svg" alt="github-edit-page"/>{% t _includes.header.nav-links.edit_page %}
