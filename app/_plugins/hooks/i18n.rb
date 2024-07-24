@@ -20,7 +20,7 @@ class LocalizedDataReader
     @data
   end
 
-  def read_data_to(dir, data) # rubocop:disable Metrics/MethodLength
+  def read_data_to(dir, data) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     entries = Dir.chdir(dir) do
       Dir['*.{yaml,yml,json}'] + Dir['*'].select { |fn| File.directory?(fn) }
     end
@@ -32,7 +32,11 @@ class LocalizedDataReader
         read_data_to(path, data[entry] = {})
       else
         key = File.basename(entry, '.*')
-        data[key] = SafeYAML.load_file(path)
+        data[key] = if path.match?(%r{tables/support/gateway/versions/\d+.yml$})
+                      Jekyll::DataReader.new(@site).read_data_file_with_liquid(path)
+                    else
+                      SafeYAML.load_file(path)
+                    end
       end
     end
   end
