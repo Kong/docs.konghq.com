@@ -54,6 +54,8 @@ end
 Jekyll::Hooks.register :site, :after_init do |site|
   I18n.locale = site.config['locale']
 
+  site.config['default_locale'] = I18n.default_locale.to_s
+
   if I18n.locale.to_s != I18n.default_locale.to_s && ENV['TRANSLATED_CONTENT_PATH']
     translated_content_path = File.join(ENV['TRANSLATED_CONTENT_PATH'], site.config['locale'], 'app')
     config = Jekyll::Utils.deep_merge_hashes(site.config, translated_content_path:)
