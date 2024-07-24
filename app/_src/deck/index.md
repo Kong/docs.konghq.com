@@ -69,6 +69,7 @@ The decK commands are structured into three main categories:
    - [deck file render](/deck/{{page.release}}/reference/deck_file_render/): Fuses multiple complete decK files, rendering a singular, unified configuration.
    - [deck file validate](/deck/{{page.release}}/reference/deck_file_validate/): Conducts an offline validation of the state file, pinpointing potential issues.
    - [deck file kong2kic](/deck/{{page.release}}/reference/deck_file_kong2kic/): Converts decK state files into {{site.kic_product_name}} manifests.
+   - [deck file kong2tf](/deck/{{page.release}}/reference/deck_file_kong2tf/): Converts decK state files into Terraform resources.
 
 3. **Gateway State Management**: This category encompasses commands that facilitate
 the synchronization of the final decK file with the target platform, be it {{site.konnect_product_name}}, {{site.base_gateway}}, 
