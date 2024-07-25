@@ -70,6 +70,7 @@ Attribute | Description
 `cookie_name` | A name for the cookie. <br> For example, `"cookie_name":"kong_cookie"`
 `secret` | The secret used in keyed HMAC generation. Although the Session plugin's default is a random string, the `secret` _must_ be manually set for use with Kong Manager since it must be the same across all Kong workers/nodes.
 `storage` | The location where session data is stored. <br> The default value is `cookie`. It may be more secure if set to `kong`, since access to the database would be required.
+`idling_timeout` | The session cookie idle time, in seconds. <br> The default value is 900.
 `rolling_timeout` | Specifies, in seconds, how long the session can be used until it needs to be renewed. <br> The default value is 3600.
 `cookie_secure` | Applies the Secure directive so that the cookie may be sent to the server only with an encrypted request over the HTTPS protocol. See [Session Security](#session-security) for exceptions. <br> The default value is `true`.
 `cookie_same_site`| Determines whether and how a cookie may be sent with cross-site requests. See [Session Security](#session-security) for exceptions. <br> The default value is `strict`.
