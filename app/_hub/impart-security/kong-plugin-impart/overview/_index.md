@@ -72,7 +72,7 @@ If the plugin has already been installed by an administrator, you can enable it 
 1. Depending on where you want to enable Impart, select **Plugins**.
 2. Click on **+ New Plugin**
 3. On **Custom Plugins**, select **Kong Plugin Impart**.
-4. Fill in the **Inspector Rpc Addr** field.
+4. Fill in the **`Inspector Rpc Addr`** field.
 5. Click **Save**.
 
 For further information, please check our [Impart Kong documentation page](https://docs.impartsecurity.net/docs/Quickstart/Integrations/Kong_lua).
