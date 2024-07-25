@@ -2,6 +2,16 @@
 title: DB-less Deployments
 ---
 
+{% assign gatewayApiVersion = "v1beta1" %}
+{% if_version gte:1.1.x %}
+{% assign gatewayApiVersion = "v1" %}
+{% endif_version %}
+
+{% assign gatewayConfigApiVersion = "v1beta1" %}
+{% if_version lte:1.1.x %}
+{% assign gatewayConfigApiVersion = "v1alpha1" %}
+{% endif_version %}
+
 {{ site.kgo_product_name }} can deploy both a {{ site.kic_product_name }} Control Plane and Data Plane resources automatically.
 
 DB-less deployments are powered using the [Kubernetes Gateway API](https://github.com/kubernetes-sigs/gateway-api).
@@ -12,7 +22,7 @@ You configure your `GatewayClass`, `Gateway` and `GatewayConfiguration` objects 
 ```yaml
 echo '
 kind: GatewayConfiguration
-apiVersion: gateway-operator.konghq.com/v1alpha1
+apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
 metadata:
   name: kong
   namespace: default
@@ -39,7 +49,7 @@ spec:
               value: debug
 ---
 kind: GatewayClass
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 metadata:
   name: kong
 spec:
@@ -51,7 +61,7 @@ spec:
     namespace: default
 ---
 kind: Gateway
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 metadata:
   name: kong
   namespace: default
@@ -81,7 +91,7 @@ For example:
 
 ```yaml
 kind: GatewayConfiguration
-apiVersion: gateway-operator.konghq.com/v1alpha1
+apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
 metadata:
   name: kong
   namespace: default
@@ -112,7 +122,7 @@ Configurations like the above can be created on the API, but won't be active unt
 
 ```yaml
 kind: GatewayClass
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 metadata:
   name: kong
 spec:
@@ -145,7 +155,7 @@ You can use {{site.ee_product_name}} as the data plane using the following steps
 
     ```yaml
     kind: GatewayConfiguration
-    apiVersion: gateway-operator.konghq.com/v1alpha1
+    apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
     metadata:
       name: kong
       namespace: <your-namespace>
@@ -169,7 +179,7 @@ You can use {{site.ee_product_name}} as the data plane using the following steps
 
     ```yaml
     kind: GatewayClass
-    apiVersion: gateway.networking.k8s.io/v1beta1
+    apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
     metadata:
       name: kong
     spec:
@@ -185,7 +195,7 @@ You can use {{site.ee_product_name}} as the data plane using the following steps
 
     ```yaml
     kind: Gateway
-    apiVersion: gateway.networking.k8s.io/v1beta1
+    apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
     metadata:
       name: kong
       namespace: <your-namespace>
