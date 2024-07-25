@@ -76,4 +76,3 @@ If the plugin has already been installed by an administrator, you can enable it 
 5. Click **Save**.
 
 For further information, please check our [Impart Kong documentation page](https://docs.impartsecurity.net/docs/Quickstart/Integrations/Kong_lua).
-
