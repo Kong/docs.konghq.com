@@ -6,7 +6,7 @@ categories:
 
 type: plugin
 
-desc: Integrate Impart Security's WAF and API security protection platform with Kong
+desc: Integrate Impart Security's WAF and API security protection platform with Kong.
 
 support_url: mailto:support@impart.security
 
