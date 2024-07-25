@@ -1001,12 +1001,15 @@ Learn more about these plugins in the [AI Gateway quickstart](/gateway/latest/ge
 **Existing plugins**:
 
 * **Consumer groups support**: The following plugins can now be scoped to consumer groups:
-  * ACL
   * IP Restriction
   * Rate Limiting
   * Request Termination
   * Proxy Cache
   * Proxy Cache Advanced
+
+* [**ACL**](/hub/kong-inc/acl/) (`acl`)
+  * The plugin now includes the configuration parameter `include_consumer_groups`, which lets you specify whether
+    Kong consumer groups can be added to allow and deny lists.
 
 * [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
   * This plugin now supports using self-signed certificates via the `CONTROLLER_CERTIFICATE_FILE`
