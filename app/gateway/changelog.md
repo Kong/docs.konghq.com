@@ -35,7 +35,7 @@ Kong is no longer providing official support for any Kong version running on the
 ### Dependencies
 
 * Bumped `lua-resty-events` to 0.3.0 to fix race condition issues in event delivery at startup.
-* Bumped `lua-resty-healthcheck` to 3.1.0 to fix memory leak issues by reusing a timer for the same target instead of running many timers.
+* Bumped `lua-resty-healthcheck` to 3.1.0 to remove version checks of the `lua-resty-events` lib.
 
 ## 3.7.1.1
 **Release Date** 2024/06/22
@@ -92,7 +92,7 @@ It now ignores records when the RR type differs from that of the query when pars
 ### Dependencies
 
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 * Bumped `lua-resty-jsonschema-rs` to 0.1.5.
 
 ## 3.7.0.0
@@ -541,7 +541,7 @@ _Backported from 3.7.1.2_
 ### Dependencies
 
 * Bumped `lua-resty-events` to 0.3.0 to fix race condition issues in event delivery at startup.
-* Bumped `lua-resty-healthcheck` to 3.1.0 to fix memory leak issues by reusing a timer for the same target instead of running many timers.
+* Bumped `lua-resty-healthcheck` to 3.1.0 to remove version checks of the `lua-resty-events` lib.
 
 ## 3.6.1.6
 **Release Date** 2024/06/22
@@ -620,7 +620,7 @@ _Backported from 3.7.0.0_
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 * Improved the robustness of `lua-cjson` when handling unexpected input.
 
 ## 3.6.1.4
@@ -1347,7 +1347,7 @@ The API now only shows workspaces that a user has access to.
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 
 ## 3.5.0.4 
 **Release Date** 05/20/2024
@@ -2038,7 +2038,7 @@ _Backported from 3.7.1.0_
 ### Dependencies
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
-* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
  
 ## 3.4.3.8
 **Release Date** 2024/05/16
