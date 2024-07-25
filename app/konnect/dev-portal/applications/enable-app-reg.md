@@ -47,11 +47,11 @@ Developers are limited to using a single auth strategy per application. For exam
 1. In {% konnect_icon api-product %} **API Products**, select an API product.
 
 1. Click **Product Versions** and select a product version.
-
-  {:.note}
-  > **Note:** If the API product version is in the `default` control plane group, it will
-  instead receive read-only entries for the `acl` and `key-auth` plugins to provide
-  support for {{site.base_gateway}} versions less than 3.0.
+    
+    {:.note}
+    > **Note:** If the API product version is in the `default` control plane group, it will
+    instead receive read-only entries for the `acl` and `key-auth` plugins to provide
+    support for {{site.base_gateway}} versions less than 3.0.
 
 1. From the **Dev Portals** tab, click **Publish to Dev Portals**.
 
@@ -142,11 +142,10 @@ In the `default` control plane group, **Credential claim** is used as a **Consum
 
    
 ## Enable app registration with multiple IdPs
-<!-- what does DCR have to do with application auth? This is confusing to me and I'm not sure I see the connection here -->
 
 In {{site.konnect_short_name}} can configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
 
-This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API, you can manage multiple APIs and configure a different DCR on a per API product basis.
+This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API, you can manage multiple APIs and configure a different DCR on a per API product basis. DCR is one type of strategy for application auth, where {{site.konnect_short_name}} is integrated directly with the IdP to outsource, link, and automate the credential management using that IDP.
 
 Using the [`product-versions`](/konnect/api/portal-management/latest/#/Portal%product%version/#/create-portal-product-version) endpoint, you can link authentication strategies with your API products. 
 
