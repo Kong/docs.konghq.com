@@ -66,11 +66,14 @@ curl -i -X POST http://localhost:8001/services/<YOUR_API>/plugins \
 
 ### {{site.konnect_product_name}}
 
-- Depending on where you want to enable Impart, select `Plugins`
-- Click on `+ New Plugin`
-- On `Custom Plugins`, select `Kong Plugin Impart`
-- Fill the `Inspector Rpc Addr` field
-- Hit `Save`
+If you are a {{site.konnect_short_name}} administrator, install the Impart plugin as a [custom plugin](/konnect/gateway-manager/plugins/add-custom-plugin/).
+
+If the plugin has already been installed by an administrator, you can enable it through {{site.konnect_short_name}}:
+1. Depending on where you want to enable Impart, select **Plugins**.
+2. Click on **+ New Plugin**
+3. On **Custom Plugins**, select **Kong Plugin Impart**.
+4. Fill in the **Inspector Rpc Addr** field.
+5. Click **Save**.
 
 For further information, please check our [Impart Kong documentation page](https://docs.impartsecurity.net/docs/Quickstart/Integrations/Kong_lua).
 
