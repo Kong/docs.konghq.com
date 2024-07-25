@@ -3,7 +3,15 @@ title: Configure Generic SSO
 ---
 
 
-As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} using OpenID Connect or SAML. This authentication method allows your users to log in to {{site.konnect_saas}} using their IdP credentials, without needing a separate login. This topic covers configuring SSO for use with various identity providers. If you want to configure Okta, please see the [Okta configuration guide](/konnect/org-management/sso/)
+As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} using OpenID Connect or SAML. This authentication method allows your users to log in to {{site.konnect_saas}} using their IdP credentials, without needing a separate login. This topic covers configuring SSO for use with various identity providers.
+
+We currently support the following providers: 
+* Okta 
+* Azure Active Directory
+* Oracle Identity Cloud Service 
+* Keycloak. 
+
+If you want to configure Okta, please see the [Okta configuration guide](/konnect/org-management/sso/).
 
 ## Prerequisites
 
