@@ -4,10 +4,11 @@ badge: enterprise
 ---
 
 
-As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} through Okta using OpenID Connect or SAML. These authentication methods allow your users to log in to {{site.konnect_saas}} using their Okta credentials without needing a separate login.
-
+As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} through Okta using OpenID Connect or SAML. These authentication methods allow your users to log in to {{site.konnect_saas}} using their Okta credentials without needing a separate login. 
 
 You cannot mix authenticators in {{site.konnect_saas}}. With Okta authentication enabled, all non-admin {{site.konnect_short_name}} users will log in through Okta. Only the {{site.konnect_short_name}} org owner can continue to log in with {{site.konnect_short_name}}'s native authentication.
+
+This topic covers configuring Okta. For generic instructions on configuring SAML or OIDC for use with other identity providers, see the [generic SSO guide](/konnect/org-management/sso/)
 
 ## Prerequisites and overview of steps
 
@@ -80,47 +81,11 @@ for troubleshooting:
 * [Adding a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/add-groups-claim-custom-as/)
 * [Adding a custom claim](https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/add-custom-claim/)
 
-{% endnavtab %}
-{% navtab SAML %}
-### Prepare the Okta application
-
-Create a new application in Okta to manage the {{site.konnect_saas}} account integration.
-
-1. Sign in to your [Okta admin account](https://okta.com/login/).
-2. In the sidebar, click **Applications > Applications**, then click **Create App Integration**.
-1. Select the application type:
-
-    1. For the **Sign-in method**, select **SAML 2.0**.
-    1. Click **Next**.
-
-1. Configure the application:
-    1. In the **General Settings** page, enter a unique name for your application in the **App Name** box. Optionally add a logo in **App Logo** and update **App Visibility**. Click **Next**.
-    1. In the **Configure SAML** page:
-       1. Add placeholder values for the below fields. The actual values will updated after the configuration is updated in Konnect.
-          1. **Single Sign-On URL**: `https://global.api.konghq.com/v2/authenticate/{login_path}/saml/acs`
-          2. **Audience URI (SP Entity ID)**: `https://cloud.konghq.com/sp/{SP_ID}`
-    1. Optional: In the **Attribute Statements**, add the following three attributes:
- 
-       | Name       | Name format  | Value          |
-       |------------|--------------|----------------|
-       | `firstName`  | Unspecified  | user.firstName |
-       | `lastName`   | Unspecified  | user.lastName  |
-       | `email`      | Unspecified  | user.email     |
-    1. Optional: In the **Group Attributes**, add the following attribute:
-
-       | Name    | Name format  | Filter          | Filter Value |
-       |---------|--------------|-----------------|--------------|
-       | groups  | Unspecified  | Matches regex   | .*           |
-    1. Click **Next**.
-    1. In the **Feedback** page, select **I’m an Okta customer adding an internal app** and click **Finish**
-{% endnavtab %}
-{% endnavtabs %}
-
 ### Add a user to your application
 
 1. In the sidebar of your Okta account, click **Applications > Applications**.
 
-1. Select your {{site.konnect_short_name}} application.
+1. Select the {{site.konnect_short_name}} application.
 
 1. Click the **Assignments** tab.
 
@@ -155,6 +120,59 @@ value is present.
 
 1. From the list of groups in the preview, identify groups that you want to use in
 {{site.konnect_short_name}}. Take note of these groups.
+
+{% endnavtab %}
+{% navtab SAML %}
+### Prepare the Okta application
+
+Create a new application in Okta to manage the {{site.konnect_saas}} account integration.
+
+1. Sign in to your [Okta admin account](https://okta.com/login/).
+2. In the sidebar, click **Applications > Applications**, then click **Create App Integration**.
+1. Select the application type:
+
+    1. For the **Sign-in method**, select **SAML 2.0**.
+    1. Click **Next**.
+
+1. Configure the application:
+    1. In the **General Settings** page, enter a unique name for your application in the **App Name** box. Optionally add a logo in **App Logo** and update **App Visibility**. Click **Next**.
+    1. In the **Configure SAML** page:
+       1. Add placeholder values for the below fields.
+          1. **Single Sign-On URL**: `https://global.api.konghq.com/v2/authenticatelogin_path/saml/acs`
+          2. **Audience URI (SP Entity ID)**: `https://cloud.konghq.com/sp/SP_ID`
+    1. Optional: In the **Attribute Statements**, add the following three attributes:
+ 
+       | Name       | Name format  | Value          |
+       |------------|--------------|----------------|
+       | `firstName`  | Unspecified  | user.firstName |
+       | `lastName`   | Unspecified  | user.lastName  |
+       | `email`      | Unspecified  | user.email     |
+    1. Optional: In the **Group Attributes**, add the following attribute:
+
+       | Name    | Name format  | Filter          | Filter Value |
+       |---------|--------------|-----------------|--------------|
+       | groups  | Unspecified  | Matches regex   | .*           |
+    1. Click **Next**.
+    1. On the **Feedback** page, select **I’m an Okta customer adding an internal app** and click **Finish**
+
+### Add a user to your application
+
+1. In the sidebar of your Okta account, click **Applications > Applications**.
+
+1. Select the {{site.konnect_short_name}} application.
+
+1. Click the **Assignments** tab.
+
+1. Click **Assign > Assign to People**, and then click **Assign** next to the name of the users you want to add.
+
+1. Optional: In the dialog, enter additional information about the user.
+
+1. Click **Save and Go Back**.
+
+1. Click **Done**.
+{% endnavtab %}
+{% endnavtabs %}
+
 
 ## Set up {{site.konnect_short_name}}
 
@@ -204,17 +222,16 @@ application into {{site.konnect_saas}}.
 {% endnavtab %}
 {% navtab SAML %}
 1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
-2. Click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
-3. Click **Configure provider** for **SAML**.
+1. Click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
+1. Click **Configure provider** for **SAML**.
 
-4. In Okta, locate your Metadata URL:
+1. In Okta, locate your Metadata URL:
     1. Go to **Sign On** page in the Okta application created in the previous step.
-    2. Copy the **IDP Metadata URL** under the Settings section. It should look something like:
+    2. Copy the **IDP Metadata URL** under the Settings section. It should look like:
 
-        `
-        https://<your-okta-domain>.okta.com/app/exkgzjkl0kUZB06Ky5d7/sso/saml/metadata
-        `
-5. In the **Login Path** box, enter a unique string. For example: `examplepath`.
+             https://<your-okta-domain>.okta.com/app/exkgzjkl0kUZB06Ky5d7/sso/saml/metadata
+
+1. In the **Login Path** box, enter a unique string. For example: `examplepath`.
 
    {{site.konnect_short_name}} uses this string to generate a custom login
    URL for your organization.
@@ -226,7 +243,9 @@ application into {{site.konnect_saas}}.
     * The path does not require a slash (`/`).
 
 
-6. Click **Save**.
+1. Click **Save**.
+1. In Okta update the placeholder **Single Sign-On URL** and **Audience URI (SP Entity ID)** that you set in the previous section.
+
 {% endnavtab %}
 {% endnavtabs %}
 

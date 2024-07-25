@@ -1,9 +1,9 @@
 ---
-title: Configure SSO
+title: Configure Generic SSO
 ---
 
 
-As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} using OpenID Connect or SAML. This authentication method allows your users to log in to {{site.konnect_saas}} using their IdP credentials, without needing a separate login.
+As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} using OpenID Connect or SAML. This authentication method allows your users to log in to {{site.konnect_saas}} using their IdP credentials, without needing a separate login. This topic covers configuring SSO for use with various identity providers. If you want to configure Okta, please see the [Okta configuration guide](/konnect/org-management/sso/)
 
 ## Prerequisites
 
@@ -62,11 +62,11 @@ You can configure custom IdP-specific behaviors in the **Advanced Settings** of 
 {% navtab SAML %}
 1. Log in to {{site.konnect_saas}}, click {% konnect_icon organizations %} **Organization**, and then select **Auth Settings**.
 
-2. Click **Configure provider** under **SAML**. 
+1. Click **Configure provider** under **SAML**. 
 
-3. Enter the **Metadata URL** from your IdP in the **IDP Metadata URL** field.
+1. Enter the **Metadata URL** from your IdP in the **IDP Metadata URL** field.
 
-4. In the **Login Path** field, enter the unique string that matches the one in Okta. For example: `examplepath`.
+1. In the **Login Path** field, enter the unique string that matches the one in Okta. For example: `examplepath`.
 
    {{site.konnect_short_name}} uses this string to generate a custom login
    URL for your organization.
@@ -77,7 +77,7 @@ You can configure custom IdP-specific behaviors in the **Advanced Settings** of 
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 
-5. Click **Save**.
+1. After clicking **Save**, configure the SP Entity ID and Login URL on your SAML IdP.
 
 ## Test and apply the configuration
 
