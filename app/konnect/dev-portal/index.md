@@ -28,7 +28,7 @@ Manage developer access - This doc details to a {{site.konnect_short_name}} admi
 
 * [Manage developer access](/konnect/dev-portal/access-and-approval/manage-devs/)- This doc details to a {{site.konnect_short_name}} administrator all of the different options they have available to them to manage developer access to their Dev Portal. The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal.
 
-* [Manage application registration requests](/konnect/dev-portal/access-and-approval/manage-devs/) -  When developers want to create applications on your Dev Portal, they will have to create a request. Requests can be managed from within {{site.konnect_short_name}}. This document contains instructions on how to manage application requests. If you are interested in automatically allowing application requests automatically, see information about handling [auto approval](/konnect/dev-portal/create-dev-portal/).
+* [Manage application registration requests](/konnect/dev-portal/access-and-approval/manage-devs/) -  When developers want to register applications for APIs in your Dev Portal, they will have to create a request. Registration requests can be managed from within {{site.konnect_short_name}}. This document contains instructions on how to manage registration requests. If you are interested in automatically allowing applications to register for APIs automatically, see information about handling [auto approval](/konnect/dev-portal/create-dev-portal/).
 {% endnavtab %}
 {% navtab Developers %}
 For developers, see [Register and create an application as a developer](/konnect/dev-portal/register-and-create-app/).

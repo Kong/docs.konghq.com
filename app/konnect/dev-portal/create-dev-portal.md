@@ -11,7 +11,7 @@ When Dev Portal admins require developers to create an account and log in to use
 ## Prerequisites
 
 * Be familiar with the general settings you plan to configure based on the [Dev Portal configuration preparation guide](/konnect/dev-portal/configuration-prep/)
-* Configure an [authentication strategy](/konnect/dev-portal/applications/enable-app-reg/) if you plan to use one. This auth strategy will be how developers authenticate when they use your APIs. 
+* Configure an [authentication strategy](/konnect/dev-portal/applications/enable-app-reg/) for your APIs if you plan to use one. This auth strategy will be how developers authenticate when they make API requests. 
 
 ## Steps
 {% navtabs %}
