@@ -99,6 +99,9 @@ Control Planes API:
     --header 'Authorization: Bearer <token>'
     ```
 
+    {:.note}
+    > **Tip**: You can find your control plane's API URL on its overview page in the Gateway Manager.
+
 2. In the response, find your `control_plane_endpoint` and the `telemetry_endpoint`:
     ```json
     {
@@ -192,6 +195,9 @@ You can find the control plane and telemetry hostnames through the Control Plane
     curl -X GET https://us.api.konghq.com/v2/control-planes/{controlPlaneId}  \
     --header 'Authorization: Bearer <token>'
     ```
+
+    {:.note}
+    > **Tip**: You can find your control plane's API URL on its overview page in the Gateway Manager.
 
 2. In the response, find your `control_plane_endpoint` and the `telemetry_endpoint`:
     ```json
