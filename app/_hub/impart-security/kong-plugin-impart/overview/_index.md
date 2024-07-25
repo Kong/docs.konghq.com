@@ -8,7 +8,7 @@ Impart's API Protection and WAF platform delivers comprehensive protection for A
 Use the Impart plugin to:
 * Discover and catalog your API and web application Attack Surface.
 * Protect your APIs and web applications from injection, enumeration, automated threats, and other attacks.
-* Find and help you fix your API and web application vulnerabilities and misconfigurations with built in API testing
+* Find and help you fix your API and web application vulnerabilities and misconfigurations with built in API testing.
 * Reduce your API and web application risk profile.
 
 
