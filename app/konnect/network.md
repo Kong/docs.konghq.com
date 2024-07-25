@@ -30,13 +30,8 @@ By default, {{site.base_gateway}} listens on the following ports:
 For Kubernetes or Docker deployments, map ports as needed. For example, if you
 want to use port `3001` for the proxy, map `3001:8000`.
 
-## Hostnames
-### Control planes
+## {{site.base_gateway}} hostnames
 
-Depending on your control plane type, you may need to add hostnames to your firewall allowlist.
-
-{% navtabs %}
-{% navtab Kong Gateway %}
 Data plane nodes initiate the connection to the {{site.konnect_short_name}} control plane.
 They require access through firewalls to communicate with the control plane.
 
@@ -78,7 +73,11 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 
 ### Find configuration and telemetry hostnames
 
-You can find the configuration and telemetry hostnames through the Gateway Manager:
+You can find the configuration and telemetry hostnames through the Gateway Manager or the {{site.konnect_short_name}}
+Control Planes API:
+
+{% navtabs %}
+{% navtab Gateway Manager %}
 
 1. Open a control plane.
 2. Select **Data Plane Nodes** from the side menu, then click the **New Data Plane Node** button.
@@ -92,8 +91,40 @@ You can find the configuration and telemetry hostnames through the Gateway Manag
     cluster_telemetry_server_name = example.us.tp0.konghq.com
     ```
 {% endnavtab %}
+{% navtab Control Planes API %}
+1. Send a GET request to the `control-planes` API and inspect the response:
 
-{% navtab Kong Ingress Controller %}
+    ```sh
+    curl -X GET https://us.api.konghq.com/v2/control-planes/{controlPlaneId}  \
+    --header 'Authorization: Bearer <token>'
+    ```
+
+    {:.note}
+    > **Tip**: You can find your control plane's API URL on its overview page in the Gateway Manager.
+
+2. In the response, find your `control_plane_endpoint` and the `telemetry_endpoint`:
+    ```json
+    {
+        "config": {
+            "auth_type": "pinned_client_certs",
+            "cloud_gateway": false,
+            "cluster_type": "CLUSTER_TYPE_CONTROL_PLANE",
+            "control_plane_endpoint": "https://example.us.cp0.konghq.com",
+            "proxy_urls": [],
+            "telemetry_endpoint": "https://example.us.tp0.konghq.com"
+        },
+        "created_at": "2024-07-24T22:43:31.705Z",
+        "description": "",
+        "id": "8f0daba0-2246-48fb-8d56-a47ab94saf78",
+        "labels": {},
+        "name": "Example CP",
+        "updated_at": "2024-07-24T22:43:31.705Z"
+    }
+    ```
+{% endnavtab %}
+{% endnavtabs %}
+
+## {{site.kic_product_name}} hostnames
 
 {{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Control Planes Configuration API](/konnect/api/control-plane-configuration/latest/) to:
 
@@ -140,7 +171,10 @@ Add the following hostnames to the firewall allowlist (depending on the [geograp
 
 ### Find configuration and telemetry hostnames
 
-You can find the Telemetry hostname through the Gateway Manager:
+{% navtabs %}
+{% navtab Gateway Manager %}
+
+You can find the telemetry hostname through the Gateway Manager:
 
 1. Open a control plane.
 2. Click {% konnect_icon cogwheel %} **Control Plane Actions** > **View Connection Instructions**.
@@ -149,12 +183,46 @@ You can find the Telemetry hostname through the Gateway Manager:
     ```
     cluster_telemetry_endpoint: "example.us.tp0.konghq.com:443"
     ```
+
+{% endnavtab %}
+{% navtab Control Planes API %}
+
+You can find the control plane and telemetry hostnames through the Control Planes API.
+
+1. Send a GET request to the `control-planes` API and inspect the response:
+
+    ```sh
+    curl -X GET https://us.api.konghq.com/v2/control-planes/{controlPlaneId}  \
+    --header 'Authorization: Bearer <token>'
+    ```
+
+    {:.note}
+    > **Tip**: You can find your control plane's API URL on its overview page in the Gateway Manager.
+
+2. In the response, find your `control_plane_endpoint` and the `telemetry_endpoint`:
+    ```json
+    {
+        "config": {
+            "auth_type": "pinned_client_certs",
+            "cloud_gateway": false,
+            "cluster_type": "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER",
+            "control_plane_endpoint": "https://example.us.cp0.konghq.com",
+            "telemetry_endpoint": "https://example.us.tp0.konghq.com"
+        },
+        "created_at": "2023-03-17T16:54:48.905Z",
+        "description": "",
+        "id": "32bf6188-906c-483c-b9e3-d7838a089364",
+        "labels": {},
+        "name": "KIC CP",
+        "updated_at": "2024-07-09T07:47:34.514Z"
+    }
+    ```
 {% endnavtab %}
 {% endnavtabs %}
 
 {:.note}
 > **Note**: Visit [https://ip-addresses.origin.konghq.com/ip-addresses.json](https://ip-addresses.origin.konghq.com/ip-addresses.json) for the list of IPs associated to regional hostnames. You can also subscribe to [https://ip-addresses.origin.konghq.com/rss](https://ip-addresses.origin.konghq.com/rss) for updates. 
 
-### Mesh Manager
+## Mesh Manager hostnames
 
 If you plan to use [Mesh Manager](/konnect/mesh-manager/) to manage your Kong service mesh, you must add the `{geo}.mesh.sync.konghq.com:443` hostname to your firewall allowlist. The geo can be `au`, `eu`, `us`, or `global`.
