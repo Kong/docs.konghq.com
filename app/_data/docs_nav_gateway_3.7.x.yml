@@ -730,6 +730,8 @@ items:
         src: /gateway/reference/configuration/configuration-3.7.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
+      - text: Brotli Compression
+        url: /reference/brotli/
       - text: CLI
         url: /reference/cli
       - text: Key Management

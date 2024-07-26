@@ -3,7 +3,7 @@ title: Nginx Directives
 content-type: reference
 ---
 
-### Injecting individual Nginx directives
+## Injecting individual Nginx directives
 
 Entries in `kong.conf` that are prefixed with `nginx_http_`,
 `nginx_proxy_` or `nginx_admin_` are converted to Nginx
@@ -51,7 +51,7 @@ directives, see the [Nginx reference](https://nginx.org/en/docs/beginners_guide.
 
 For a list of Nginx directives, see the [Nginx directives index](https://nginx.org/en/docs/dirindex.html).
 
-### Including files via injected Nginx directives
+## Including files via injected Nginx directives
 
 Complex configurations may require adding new `server` blocks to an Nginx configuration.
 You can inject `include` directives into an Nginx configuration that point to Nginx settings files. 
@@ -183,14 +183,11 @@ You can then start {{site.base_gateway}} with:
 kong start -c kong.conf --nginx-conf custom_nginx.template
 ```
 
-
 ## More information
 
-* [How to use `kong.conf`](/gateway/latest/production/kong-conf/)
-* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving/)
-
-
----
+* [How to use `kong.conf`](/gateway/{{page.release}}/production/kong-conf/)
+* [How to serve an API and a website with Kong](/gateway/{{page.release}}/production/website-api-serving/)
+* [Enable Brotli compression via the `ngx_brotli` module](/gateway/{{page.release}}/reference/brotli/)
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
