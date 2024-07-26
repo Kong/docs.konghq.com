@@ -22,10 +22,18 @@ You can perform the following actions from an application's details page:
 
 ## Application authentication considerations
 
-### Support for any control plane
+### App registration minimum versions
 
-App registration is fully supported in the `default` control plane when using the application `consumers` and the `acl` plugin. The `default` control plane is the one that is first created in each geo when you create an organization.
-For non-`default` control planes, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0. <!-- We mention using the different plugins, what do we need to do in those plugins to support app registration? Why do default CP and non-default CPs use different plugins and why those particular plugins? -->
+App registration is supported using the `konnect-application-auth` plugin, available as of {{site.base_gateway}} 3.0.x. 
+For compatibility with app registration features, ensure all Gateway nodes in relevant control planes are using the following minimum versions:
+
+| Feature    | {{site.base_gateway}} version |
+| -------- | ------- |
+| App registration with a single auth strategy  | 3.0.x    |
+| App registration with different auth strategies across multiple Dev Portals | 3.6.x     |
+
+{:.note}
+> **Note:** {{site.konnect_saas}} organizations created before July 2024 include a legacy mode control plane by default, which uses a different app registration setup. This includes the `acl`, `key-auth`, and `openid-connect` plugins and the `consumers` entity. These control planes are compatible with all {{site.konnect_saas}} supported versions {{site.base_gateway}}, including 2.x.
 
 ### Differences between control plane groups
 
