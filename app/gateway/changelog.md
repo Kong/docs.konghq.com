@@ -5378,6 +5378,21 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.12
+**Release Date** 2024/07/29
+
+### Breaking changes and deprecations
+
+* Debian 10 and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
+As of this patch, Kong is not building Kong Gateway 2.8.x installation packages or Docker images for these operating systems.
+Kong is no longer providing official support for any Kong version running on these systems.
+
+### Fixes
+
+* AWS2 x86_64 is now cross-built.
+* Cleaned up build code for deprecated packages.
+* Made the RPM package relocatable.
+
 ## 2.8.4.11
 **Release Date** 2024/06/22
 
