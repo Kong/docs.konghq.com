@@ -187,7 +187,9 @@ kong start -c kong.conf --nginx-conf custom_nginx.template
 
 * [How to use `kong.conf`](/gateway/{{page.release}}/production/kong-conf/)
 * [How to serve an API and a website with Kong](/gateway/{{page.release}}/production/website-api-serving/)
+{%- if_version gte:3.6.x %}
 * [Enable Brotli compression via the `ngx_brotli` module](/gateway/{{page.release}}/reference/brotli/)
+{% endif_version %}
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
