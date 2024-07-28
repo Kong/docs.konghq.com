@@ -2,6 +2,195 @@
 
 <!--vale off-->
 
+## Week 30
+
+### [fix(changelog): fix some changelog entry related to lua-resty-healthcheck bump](https://github.com/Kong/docs.konghq.com/pull/7684) (2024-07-25)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+This PR fixes an inconsistency changelog entry that `bumps lua-resty-healthcheck from 3.0.2 to 3.1.0`. The true purpose of this bumping is to remove the version check of another dependency library called `lua-resty-events`.
+
+For 3.6.1.7 changelog on gateway side: https://github.com/Kong/kong-ee/pull/9615/files#diff-4a52a116e1f88a220681718511ab310665400da44b3934fadb1cc00544cbb4e3R15
+For 3.7.1.2 changelog on gateway side: https://github.com/Kong/kong-ee/pull/9616/files#diff-40a27ffd90374a9ecc9cd699e3e0e9f7a417b14e001f716baf1674c883b23875R15
+
+The PR also replaces the changelog entry that `bumps lua-resty-healtcheck from 3.0.1 to 3.0.2`(for gateway branches 3.6/3.7) and `bumps lua-resty-healthcheck from 1.6.4 to 1.6.5`(for gateway branches 3.4/3.5) with a better sentence(the sentence).
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update: Add API instructions for finding Konnect hostnames](https://github.com/Kong/docs.konghq.com/pull/7681) (2024-07-25)
+
+Adding API instructions to find control plane and telemetry hostnames for Konnect control planes. Tested both regular and KIC control planes.
+
+The headings on this page were also broken and didn't work as anchor links, as they were nested inside navtabs. This doesn't work, so I turned them into regular headings.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/6869.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/network
+
+
+### [Fix: Changelog entry for ACL consumer groups](https://github.com/Kong/docs.konghq.com/pull/7679) (2024-07-25)
+
+The changelog entry for consumer groups support in 3.6 lists ACL as a plugin that can be scoped to consumer groups. The real feature is actually that consumer groups can be toggled on or off in a new config param, and the plugin _cannot_ be scoped to consumer groups.
+
+Issue reported on Slack.
+
+See https://github.com/Kong/kong-ee/pull/7603 for more info on the change.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acl/
+- https://docs.konghq.com/gateway/changelog
+
+
+### [AI Proxy plugin: fix incorrect format in example](https://github.com/Kong/docs.konghq.com/pull/7677) (2024-07-25)
+
+The description of the example and the example itself don't refer to the same format: the description says `ollama` but the example uses `openai`. The correct format is `openai`, as the example also uses an Authorization header, which is required for `openai`.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/7609. 
+
+### Checklist 
+
+- [x] Review label added <!-- (see below) -->
+- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
+
+<!-- For example, if this change is for an upcoming 3.6 release, enclose your content in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags. 
+
+Use any of the following keys:
+* `gte:<version>` - greater than or equal to a specific version
+* `lte:<version>` - less than or equal to a specific version
+* `eq:<version>` - exactly equal to a specific version
+
+You can do the same for older versions. -->
+
+<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
+
+<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
+
+    review:copyedit: Request for writer review.
+    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
+    review:tech: Request for technical review for a docs platform change.
+    review:sme: Request for review from an SME (engineer, PM, etc).
+
+At least one of these labels must be applied to a PR or the build will fail.
+-->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+
+
+### [Fix: Remove extra backslash](https://github.com/Kong/docs.konghq.com/pull/7676) (2024-07-25)
+
+Removing an extra character from the end of an example.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/7608.
+
+### Checklist 
+
+- [x] Review label added <!-- (see below) -->
+- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
+
+<!-- For example, if this change is for an upcoming 3.6 release, enclose your content in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags. 
+
+Use any of the following keys:
+* `gte:<version>` - greater than or equal to a specific version
+* `lte:<version>` - less than or equal to a specific version
+* `eq:<version>` - exactly equal to a specific version
+
+You can do the same for older versions. -->
+
+<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
+
+<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
+
+    review:copyedit: Request for writer review.
+    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
+    review:tech: Request for technical review for a docs platform change.
+    review:sme: Request for review from an SME (engineer, PM, etc).
+
+At least one of these labels must be applied to a PR or the build will fail.
+-->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+
+
+### [fix(gateway/request-validator): update document](https://github.com/Kong/docs.konghq.com/pull/7675) (2024-07-24)
+
+<!-- What did you change and why? -->
+
+The previous sentences already clarified the strictly validation behavior. Hence remove a sentence that may confuse users.
+
+> The parameter is strictly validated, which means a request with a parameter (for example, `application/json; charset=UTF-8`) is NOT considered valid for one without the same parameter (for example, `application/json`). The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
+
+
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-validator/overview/
+
+
+### [Update migration.md](https://github.com/Kong/docs.konghq.com/pull/7673) (2024-07-23)
+
+Fix nit in Konnect migration documentation where variable was not being replaced correctly.
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/getting-started/migration
+
+
+### [Update to improve accuracy regarding scoping of roles](https://github.com/Kong/docs.konghq.com/pull/7662) (2024-07-22)
+
+Old wording implied you can scope access to an individual service which is not true
+
+
+
+
+<!-- What did you change and why? -->
+ 
+Old wording implied you can scope access to an individual service which is not true
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/
+
+
+### [Provide link to limitations of dynamic plugin ordering](https://github.com/Kong/docs.konghq.com/pull/7656) (2024-07-22)
+
+Users are not warned about the limitations of Dynamic plugin ordering, particularly in relation to consumer scoped plugins.  This change informs of the limitation and provides a link to the details.
+
+
+
+
+ Users are not warned about the limitations of Dynamic plugin ordering in this page, particularly in relation to consumer scoped plugins. This change informs of the limitation and provides a link to the details. There have been cases of customers implementing dynamic ordering and then realise it is incompatible with consumer scoped plugins.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/plugins
+
+
+### [feat(observability): OpenTelemetry logs](https://github.com/Kong/docs.konghq.com/pull/7583) (2024-07-23)
+
+docs for https://github.com/Kong/kong/pull/13291
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/overview/
+
 ## Week 29
 
 ### [Update _local-testing-development.md](https://github.com/Kong/docs.konghq.com/pull/7646) (2024-07-17)
