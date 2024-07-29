@@ -170,7 +170,7 @@ secret/aygerim-basic-auth created
 secret/rustem-basic-auth created
 ```
 
-Create a consumers named `aygerim` and `rustem` that use these credentials:
+Create consumers named `aygerim` and `rustem` that use these credentials:
 
 > TODO Something weird is happening here with the markdown rendering of the included code blocks.
 
