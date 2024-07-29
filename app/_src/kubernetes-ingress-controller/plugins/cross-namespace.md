@@ -137,42 +137,40 @@ service/httpbin annotated
 
 ## Create consumers and credentials
 
-Create Secrets to add `basic-auth` credentials for two consumers:
+1. Create Secrets to add `basic-auth` credentials for two consumers:
 
-```bash
-echo '
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: aygerim-basic-auth
-  labels:
-    konghq.com/credential: basic-auth
-stringData:
-    username: aygerim
-    password: aygerim-password
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: rustem-basic-auth
-  labels:
-    konghq.com/credential: basic-auth
-stringData:
-    username: rustem
-    password: rustem-password
-' | kubectl apply -n qyzylorda -f -
-```
+    ```bash
+    echo '
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: aygerim-basic-auth
+      labels:
+        konghq.com/credential: basic-auth
+    stringData:
+        username: aygerim
+        password: aygerim-password
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: rustem-basic-auth
+      labels:
+        konghq.com/credential: basic-auth
+    stringData:
+        username: rustem
+        password: rustem-password
+    ' | kubectl apply -n qyzylorda -f -
+    ```
 
-The results should look like:
-```text
-secret/aygerim-basic-auth created
-secret/rustem-basic-auth created
-```
+    The results should look like:
+    ```text
+    secret/aygerim-basic-auth created
+    secret/rustem-basic-auth created
+    ```
 
-Create consumers named `aygerim` and `rustem` that use these credentials:
-
-> TODO Something weird is happening here with the markdown rendering of the included code blocks.
+1. Create consumers named `aygerim` and `rustem` that use these credentials:
 
 {% include /md/kic/consumer.md release=page.release name='aygerim' credName='aygerim-basic-auth' namespace='qyzylorda' %}
 
