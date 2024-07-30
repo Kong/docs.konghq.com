@@ -232,12 +232,14 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Performance Testing
+      - text: Performance
         items:
         - text: Performance Testing Benchmarks
           url: /production/performance/performance-testing
         - text: Establish a Performance Benchmark
           url: /production/performance/benchmark
+        - text: Improve performance with Brotli compression
+          url: /production/performance/brotli/
       - text: Logging and Debugging
         items:
           - text: Log Reference
@@ -730,8 +732,6 @@ items:
         src: /gateway/reference/configuration/configuration-3.7.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
-      - text: Brotli Compression
-        url: /reference/brotli/
       - text: CLI
         url: /reference/cli
       - text: Key Management
