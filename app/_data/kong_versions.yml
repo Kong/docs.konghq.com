@@ -29,8 +29,8 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.11"
-  ce-version: "2.8.4"
+  ee-version: "2.8.4.12"
+  ce-version: "2.8.5"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
   dependencies:
@@ -116,7 +116,7 @@
   lua_doc: true
   lts: true
 - release: "3.5.x"
-  ee-version: "3.5.0.6"
+  ee-version: "3.5.0.7"
   ce-version: "3.5.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -130,7 +130,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.6.x"
-  ee-version: "3.6.1.6"
+  ee-version: "3.6.1.7"
   ce-version: "3.6.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -144,8 +144,8 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.7.x"
-  ee-version: "3.7.1.1"
-  ce-version: "3.7.0"
+  ee-version: "3.7.1.2"
+  ce-version: "3.7.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -405,32 +405,32 @@
   endOfLifeDate: "2024-06-26"
   branch: release-2.3
 - edition: mesh
-  version: 2.4.8
+  version: 2.4.10
   release: 2.4.x
   releaseDate: "2023-08-29"
   endOfLifeDate: "2024-08-29"
   branch: release-2.4
 - edition: mesh
-  version: 2.5.7
+  version: 2.5.9
   release: 2.5.x
   releaseDate: "2023-11-15"
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: 2.6.8
+  version: 2.6.10
   release: 2.6.x
   releaseDate: "2024-02-01"
   endOfLifeDate: "2025-02-01"
   branch: release-2.6
 - edition: mesh
-  version: 2.7.4
+  version: 2.7.6
   release: 2.7.x
   releaseDate: "2024-04-19"
   endOfLifeDate: "2026-04-19"
   branch: release-2.7
   lts: true
 - edition: mesh
-  version: 2.8.0
+  version: 2.8.2
   release: 2.8.x
   latest: true
   releaseDate: "2024-06-24"

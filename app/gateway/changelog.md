@@ -11,6 +11,32 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.7.1.2
+**Release Date** 2024/07/09
+
+### Deprecations
+
+* Debian 10, CentOS 7, and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
+As of this patch, Kong is not building Kong Gateway 3.7.x installation packages or Docker images for these operating systems.
+Kong is no longer providing official support for any Kong version running on these systems.
+
+### Features
+
+#### Plugins
+
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
+  empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
+
+### Fixed
+
+* Fixed an issue where the Dev Portal documentation link was unavailable because the official documentation was removed after 3.4.x.
+
+### Dependencies
+
+* Bumped `lua-resty-events` to 0.3.0 to fix race condition issues in event delivery at startup.
+* Bumped `lua-resty-healthcheck` to 3.1.0 to remove version checks of the `lua-resty-events` lib.
+
 ## 3.7.1.1
 **Release Date** 2024/06/22
 
@@ -66,7 +92,7 @@ It now ignores records when the RR type differs from that of the query when pars
 ### Dependencies
 
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 * Bumped `lua-resty-jsonschema-rs` to 0.1.5.
 
 ## 3.7.0.0
@@ -494,6 +520,29 @@ when the `http_response_header_for_traceid` option was enabled.
 * Bumped `msgpack-c` to 6.0.1
 * Removed the `lua-resty-openssl-aux-module` dependency
 
+## 3.6.1.7
+**Release Date** 2024/07/09
+
+### Features
+
+### Deprecations
+
+* Debian 10, CentOS 7, and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
+As of this patch, Kong is not building Kong Gateway 3.6.x installation packages or Docker images for these operating systems.
+Kong is no longer providing official support for any Kong version running on these systems.
+
+#### Plugins
+
+_Backported from 3.7.1.2_
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
+  empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
+
+### Dependencies
+
+* Bumped `lua-resty-events` to 0.3.0 to fix race condition issues in event delivery at startup.
+* Bumped `lua-resty-healthcheck` to 3.1.0 to remove version checks of the `lua-resty-events` lib.
+
 ## 3.6.1.6
 **Release Date** 2024/06/22
 
@@ -571,7 +620,7 @@ _Backported from 3.7.0.0_
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 * Improved the robustness of `lua-cjson` when handling unexpected input.
 
 ## 3.6.1.4
@@ -952,12 +1001,15 @@ Learn more about these plugins in the [AI Gateway quickstart](/gateway/latest/ge
 **Existing plugins**:
 
 * **Consumer groups support**: The following plugins can now be scoped to consumer groups:
-  * ACL
   * IP Restriction
   * Rate Limiting
   * Request Termination
   * Proxy Cache
   * Proxy Cache Advanced
+
+* [**ACL**](/hub/kong-inc/acl/) (`acl`)
+  * The plugin now includes the configuration parameter `include_consumer_groups`, which lets you specify whether
+    Kong consumer groups can be added to allow and deny lists.
 
 * [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
   * This plugin now supports using self-signed certificates via the `CONTROLLER_CERTIFICATE_FILE`
@@ -1212,6 +1264,25 @@ These logs can't be suppressed due to a limitation of OpenResty. We chose to rem
 If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
 * If you are using `ngx.var.http_*` in custom code in order to access HTTP headers, the behavior of that variable changed slightly when the same header is used multiple times in a single request. Previously it would return the first value only, now it returns all the values, separated by commas. Kong's PDK header getters and setters work as before.
 
+
+## 3.5.0.7
+**Release Date** 2024/07/09
+
+### Deprecations
+
+* Debian 10, CentOS 7, and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
+As of this patch, Kong is not building Kong Gateway 3.5.x installation packages or Docker images for these operating systems.
+Kong is no longer providing official support for any Kong version running on these systems.
+
+### Features
+
+#### Plugins
+
+_Backported from 3.7.1.2_
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
+  empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
+
 ## 3.5.0.6
 **Release Date** 2024/06/22
 
@@ -1279,7 +1350,7 @@ The API now only shows workspaces that a user has access to.
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 
 ## 3.5.0.4 
 **Release Date** 05/20/2024
@@ -1970,7 +2041,7 @@ _Backported from 3.7.1.0_
 ### Dependencies
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
-* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
  
 ## 3.4.3.8
 **Release Date** 2024/05/16
@@ -5306,6 +5377,21 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+## 2.8.4.12
+**Release Date** 2024/07/29
+
+### Breaking changes and deprecations
+
+* Debian 10 and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
+As of this patch, Kong is not building Kong Gateway 2.8.x installation packages or Docker images for these operating systems.
+Kong is no longer providing official support for any Kong version running on these systems.
+
+### Fixes
+
+* AWS2 x86_64 is now cross-built.
+* Cleaned up build code for deprecated packages.
+* Made the RPM package relocatable.
 
 ## 2.8.4.11
 **Release Date** 2024/06/22

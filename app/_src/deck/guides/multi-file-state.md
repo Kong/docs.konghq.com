@@ -38,14 +38,23 @@ as [distributed configuration](/deck/{{page.release}}/guides/distributed-configu
 You must be careful when mixing distributed configuration in multiple files and
 the `--select-tag` flag, as this may result in undesired outcomes.
 For example, imagine you have a couple of services deployed with some tags
-and that you dump their configuration as follows:
+and that you dump their configuration.
 
+First dump configuration tagged with `team-svc1`:
+
+{% if_version lte:1.27.x %}
 ```sh
 deck dump --select-tag team-svc1 -o svc1.yaml
 ```
-
+{% endif_version %}
+{% if_version gte:1.28.x %}
 ```sh
-$ cat svc1.yaml
+deck gateway dump --select-tag team-svc1 -o svc1.yaml
+```
+{% endif_version %}
+
+Example `svc1.yaml` file:
+```yaml
 _format_version: "3.0"
 _info:
   defaults: {}
@@ -64,12 +73,20 @@ services:
   write_timeout: 60000
 ```
 
+Then dump configuration tagged with `team-svc2`:
+{% if_version lte:1.27.x %}
 ```sh
 deck dump --select-tag team-svc2 -o svc2.yaml
 ```
-
+{% endif_version %}
+{% if_version gte:1.28.x %}
 ```sh
-$ cat svc2.yaml
+deck gateway dump --select-tag team-svc2 -o svc2.yaml
+```
+{% endif_version %}
+
+Example `svc2.yaml` file:
+```yaml
 _format_version: "3.0"
 _info:
   defaults: {}
@@ -94,16 +111,31 @@ For syncing back (or diffing) the configurations, you must sync each of these fi
 otherwise decK merges the content of `select_tags` together and applies both tags
 to both services.
 
+{% if_version lte:1.27.x %}
 ```sh
 deck sync -s svc1.yaml
-Summary:
-  Created: 0
-  Updated: 0
-  Deleted: 0
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway sync svc1.yaml
+```
+{% endif_version %}
 
+{% if_version lte:1.27.x %}
 ```sh
 deck sync -s svc2.yaml
+```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway sync svc2.yaml
+```
+{% endif_version %}
+
+
+In both cases, the response should look like this:
+```
 Summary:
   Created: 0
   Updated: 0

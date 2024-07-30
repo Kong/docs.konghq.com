@@ -64,7 +64,8 @@ provides a full stack connectivity platform for all of our L4-L7 connectivity,
 for both edge and internal API traffic.
 
 <center>
-  <img src="/assets/images/docs/mesh/gw_mesh.png" width="600px"/>
+  <img src="/assets/images/docs/mesh/gw_mesh.png" width="600px" 
+  alt="Diagram showing how {{site.base_gateway}} and {{site.mesh_product_name}} work together to run two products on two data centers. {{site.base_gateway}} is used to manage communication between the client and the products in each data center, but also between two different products. {{site.mesh_product_name}} is used to allow different services within a product to communicate with one another."/>
   <br>
   <i>Two different applications - "Banking" and "Trading" - run in their
   own meshes "A" and "B" across different data centers. In this example,
@@ -125,7 +126,8 @@ simple and distributed deployments, including multi-cloud, multi-cluster, and
 hybrid Kubernetes/VMs:
 
 <center>
-  <img src="/assets/images/docs/mesh/multi-zone.jpg" width="600px"/>
+  <img src="/assets/images/docs/mesh/multi-zone.jpg" width="600px"
+  alt="Diagram showing a global control plane communicating with multiple zones. The global Kuma control plane manages three zones that each have their own control plane and contain four services. Each zone uses Kuma Ingress to communicate with the other zones."/>
   <br>
   <i>{{site.mesh_product_name}} can support multiple zones (like a Kubernetes
     cluster, VPC, data center, etc.) together in the same distributed deployment.
@@ -140,7 +142,8 @@ Example of a multi-zone deployment for multiple Kubernetes clusters, or a
 hybrid Kubernetes/VM cluster:
 
 <center>
-  <img src="/assets/images/diagrams/gslides/kuma_multizone.svg" alt="Kuma service mesh multi zone deployment" style="padding-top: 20px; padding-bottom: 10px;">
+  <img src="/assets/images/diagrams/gslides/kuma_multizone.svg" 
+  alt="Diagram showing a deployment with two zones, East and West. Each zone has a Kuma control plane, a zone ingress and a zone egress to communicate with the other zone, and four services with data plane proxies." style="padding-top: 20px; padding-bottom: 10px;">
 </center>
 
 ## Support policy

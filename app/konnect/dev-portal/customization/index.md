@@ -3,6 +3,7 @@ title: Customize the Konnect Dev Portal
 content_type: how-to
 ---
 
+{{site.konnect_short_name}} has built-in customization options for managing the Dev Portal so that you can build a consistent experience for the consumers of your API. Customizing your Dev Portal to reflect the likeness of your brand can help convince developers to create applications with your services. With {{site.konnect_short_name}}, you can customize everything from the application. {{site.konnect_short_name}} also offers pre-built themes. 
 
 ## Appearance
 

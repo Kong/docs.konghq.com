@@ -44,7 +44,7 @@ Check that you can log in to {{site.konnect_short_name}} and that decK
 recognizes your account credentials:
 
 ```sh
-deck ping \
+deck gateway ping \
   --konnect-control-plane-name default \
   --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
 ```
@@ -77,7 +77,7 @@ The following steps all use a `.deck.yaml` file to store the
 Capture a snapshot of the current configuration in a file:
 
 ```sh
-deck dump --konnect-control-plane-name default
+deck gateway dump --konnect-control-plane-name default -o konnect.yaml
 ```
 
 If you don't specify the `--konnect-control-plane-name` flag, decK will target the
@@ -85,7 +85,7 @@ If you don't specify the `--konnect-control-plane-name` flag, decK will target t
 organization, we recommend always setting this flag to avoid accidentally
 pushing configuration to the wrong group.
 
-The command creates a file named `kong.yaml`. If you have nothing
+The command creates a file named `konnect.yaml`. If you have nothing
 configured, decK creates the file with only the format version and control plane
 name:
 
@@ -99,7 +99,7 @@ You can specify a different filename or location, or export the
 configuration in JSON format:
 
 ```sh
-deck dump --konnect-control-plane-name default \
+deck gateway dump --konnect-control-plane-name default \
   --format json \
   --output-file examples/konnect.json
 ```
@@ -109,7 +109,7 @@ deck dump --konnect-control-plane-name default \
 Make any changes you like using YAML or JSON format.
 For this example, let's add a new service.
 
-1. Add the following snippet to your `kong.yaml` file:
+1. Add the following snippet to your `konnect.yaml` file:
 
     ```yaml
     _format_version: "1.1"
@@ -146,7 +146,7 @@ For this example, let's add a new service.
 {{site.konnect_saas}}:
 
     ```sh
-    deck diff --konnect-control-plane-name default
+    deck gateway diff konnect.yaml --konnect-control-plane-name default
     ```
 
     If the format and schema is correct, decK gives you a preview of what would
@@ -166,7 +166,7 @@ For this example, let's add a new service.
 {{site.konnect_saas}}:
 
     ```sh
-    deck sync --konnect-control-plane-name default
+    deck gateway sync konnect.yaml --konnect-control-plane-name default
     ```
 
     You should see the same output again:
@@ -227,14 +227,14 @@ down with repeated requests. Add a global proxy cache plugin:
 1. Run a diff to test your changes:
 
     ```sh
-    deck diff --konnect-control-plane-name default
+    deck gateway diff konnect.yaml --konnect-control-plane-name default
     ```
 
 1. If everything looks good, run another sync, then check {{site.konnect_saas}}
 to see your changes:
 
     ```sh
-    deck sync --konnect-control-plane-name default
+    deck gateway sync konnect.yaml --konnect-control-plane-name default
     ```
 
 ## Test the service
@@ -269,10 +269,10 @@ No API key found in request.
 You can also use decK to migrate or duplicate configuration between control planes.
 
 1. Export configuration from the original control plane with
-[`deck dump`](/deck/latest/reference/deck_dump) into a state file:
+[`deck gateway dump`](/deck/latest/reference/deck_gateway_dump) into a state file:
 
     ```bash
-    deck dump \
+    deck gateway dump \
       --konnect-control-plane-name default \
       --output-file default.yaml
     ```
@@ -286,22 +286,20 @@ You can also use decK to migrate or duplicate configuration between control plan
     ```
 
 1. Using the state file you just edited, preview the import with
-the [`deck diff`](/deck/latest/reference/deck_diff/)
+the [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/)
 command, pointing to the control plane that you want to target:
 
     ```sh
-    deck diff \
-      --konnect-control-plane-name staging \
-      --state default.yaml
+    deck gateway diff default.yaml \
+      --konnect-control-plane-name staging
     ```
 
-1. If everything looks good, [`deck sync`](/deck/latest/reference/deck_sync/)
+1. If everything looks good, [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/)
  the configuration to the new control plane:
 
     ```sh
-    deck sync \
-      --konnect-control-plane-name staging \
-      --state default.yaml
+    deck gateway sync default.yaml \
+      --konnect-control-plane-name staging
     ```
 
 You should now have two control planes in {{site.konnect_short_name}} with
@@ -310,4 +308,4 @@ the same configuration.
 ## More information
 
 * [decK CLI reference](/deck/latest/reference/deck/)
-* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/import/)
+* [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/migration/)

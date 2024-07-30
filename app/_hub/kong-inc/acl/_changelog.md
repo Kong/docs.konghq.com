@@ -1,7 +1,8 @@
 ## Changelog
 
 ### {{site.base_gateway}} 3.6.x
-* This plugin can now be scoped to consumer groups.
+* This plugin now includes the configuration parameter `include_consumer_groups`, which lets you specify whether
+  Kong consumer groups can be added to allow and deny lists.
 
 ### {{site.base_gateway}} 3.0.x
 - Removed the deprecated `whitelist` and `blacklist` parameters.
