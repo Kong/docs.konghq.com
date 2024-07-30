@@ -1,5 +1,5 @@
 ---
-title: Brotli compression
+title: Improve performance with Brotli compression
 content-type: reference
 ---
 
