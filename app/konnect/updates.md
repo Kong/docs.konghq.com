@@ -15,6 +15,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **SAML Login support**
 : {{site.konnect_short_name}} now supports [SAML authentication protocol](/konnect/org-management/saml-idp/) for logging in. SAML is an open standard that allows {{site.konnect_short_name}} to delegate authentication to an identity provider (IdP).
 
+**New refresh button in Advanced Analytics**
+: We've introduced a refresh button on selected analytics pages such as API Requests and Explorer, allowing users to view updated data without triggering a full site reload. This feature also preserves applied filters and provides a more seamless user experience.
+
 **Dedicated Cloud Gateways on Azure <span class="badge alpha"></span>**
 
 : You can now run Dedicated Cloud Gateways on Azure in the following regions: Frankfurt, Ireland, UK South, Virginia, and Washington.
@@ -658,7 +661,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
 
-: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/import/).
+: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/migration/).
 
 : The minimum supported {{site.base_gateway}} version for this environment is 2.5.0.1.
 

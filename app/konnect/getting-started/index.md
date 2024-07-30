@@ -21,7 +21,7 @@ title: Get started with Konnect
     <td style="border-bottom:none">
         <p><b>I know how to get started</b></p>
         <p><a href="/konnect/getting-started/add-api/"><i class="fas fa-plus"></i> Add an API &rarr;</a></p>
-        <p><a href="/konnect/getting-started/import/"><i class="fas fa-file-import"></i> Import {{site.base_gateway}} entities &rarr;</a></p>
+        <p><a href="/konnect/getting-started/migration/"><i class="fas fa-file-import"></i> Import {{site.base_gateway}} entities &rarr;</a></p>
     </td>
   </tr>
 </table>

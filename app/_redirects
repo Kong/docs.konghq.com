@@ -40,7 +40,7 @@
 /hub/kong-inc/ai-proxy/how-to/mistral/   /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/
 /hub/kong-inc/ai-proxy/how-to/llama2/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
 
-## App reg v2 
+## App reg v2
 
 
 /konnect/dev-portal/applications/dev-reg-app-service/ /konnect/dev-portal/applications/dev-apps/
@@ -80,9 +80,10 @@
 /konnect/getting-started/access-account/    /konnect/getting-started/
 /konnect/getting-started/configure-data-plane-node/ /konnect/gateway-manager/data-plane-nodes/#supported-installation-options
 /konnect/getting-started/deploy-service/    /konnect/gateway-manager/deploy-service/
-/konnect/getting-started/publish-service/   /konnect/dev-portal/publish-service/  
+/konnect/getting-started/publish-service/   /konnect/dev-portal/publish-service/
 /konnect/getting-started/app-registration/  /konnect/dev-portal/applications/dev-apps/
 /konnect/getting-started/productize-service/    /konnect/api-products/productize-service/
+/konnect/getting-started/import/                /konnect/getting-started/migration/
 /konnect/gateway-manager/deploy-service/        /konnect/getting-started/add-api
 
 # Konnect Analytics Explorer revision
@@ -146,7 +147,7 @@
 
 # 3.4
 
-/gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process 
+/gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
 /gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups
 /konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
@@ -441,7 +442,6 @@
 /konnect/deployment/license-management              /konnect/account-management/
 /konnect/deployment/network                         /konnect/network/
 /konnect/deployment/network-resiliency              /konnect/network-resiliency/
-/konnect/migrate/                                   /konnect/getting-started/import/
 /konnect/getting-started/declarative-config/        /konnect/runtime-manager/manage-runtime-groups/#manage-runtime-groups-using-deck
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/

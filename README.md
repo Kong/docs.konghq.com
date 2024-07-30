@@ -23,7 +23,7 @@ Here are some things you should know before getting started:
 
 ### Running locally
 
-For minor changes, use the GitHub UI via the "Edit this page" button on any docs page, or use [GitHub Codespaces]. 
+For minor changes, use the GitHub UI via the "Edit this page" button on any docs page, or use [GitHub Codespaces](https://docs.github.com/en/codespaces). 
 
 For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
 
@@ -84,7 +84,7 @@ At least one of these labels must be applied to a PR or the build will fail.
 
 ### Troubleshooting
 
-For troubleshooting instructions, see the [troubleshooting documentation](docs/troubleshoot.md).
+For troubleshooting instructions, see the [troubleshooting documentation](docs/troubleshooting/troubleshoot.md).
 
 
 ## Plugin contributors
