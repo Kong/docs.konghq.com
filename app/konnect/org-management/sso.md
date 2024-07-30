@@ -98,7 +98,70 @@ If the configuration is correct, you will see the IdP sign-in page. You can now 
 
 {% endnavtab %}
 {% endnavtabs %}
+
 ## Troubleshooting 
+
+### Provider specific configuration
+
+The following section contains provider specific information and attribute mapping tables neccessary for configuring SSO. 
+{% navtabs %}
+{% navtab Azure %}
+* **OIDC uses app registration**: When adding an enterprise application, note that OIDC uses app registration.
+* **Remove namespace from claim name**: Remove the namespace from the claim name in Azure.
+* **Using groups maps to the Group ID by default**.
+* **Remove Namespace by checking **Customize** on the group claim**.
+
+**Attribute mapping table for Azure configuration**
+
+| Azure                                       | Konnect                  |
+|---------------------------------------------|--------------------------|
+| Identifier (Entity ID)                      | `sp_entity_id`           |
+| Reply URL (Assertion Consumer Service URL)  | `callback_url`           |
+| App Federation Metadata Url                 | `idp_metadata_url`       |
+| email                                       | `user.email`             |
+| firstname                                   | `user.givenname`         |
+| lastname                                    | `user.surname`           |
+| groups                                      | `user.groups`            |
+| Unique user identifier                      | `user.principalname`     |
+
+
+{% endnavtab %}
+{% navtab Oracle Cloud %}
+
+
+* **Set name ID format to transient**: When configuring the Name ID format in Oracle Cloud, make sure to set it to `transient`.
+* **manually upload signing certificate**: You will need to manually upload the Signing certificate from `sp_metadata_url`.
+   - `cert.pem` must use the `X509Certificate` value for signing.
+
+**Attribute mapping table for Oracle Cloud configuration**
+
+| Oracle Cloud                                | Konnect                  |
+|---------------------------------------------|--------------------------|
+| Entity ID                                   | `sp_entity_id`           |
+| Assertion consumer URL                      | `callback_url`           |
+| App Federation Metadata Url                 | `idp_metadata_url`       |
+
+
+
+
+
+{% endnavtab %}
+{% navtab KeyCloak %}
+
+* **manually upload signing certificate**: You will need to manually upload the Signing certificate from `sp_metadata_url`.
+   - `cert.pem` must use the `X509Certificate` value for signing.
+* **Find your metadata endpoint**: Go to Realm Settings in Keycloak to locate your metadata endpoint. The `sp_metadata_url` for Konnect will be:`http://<keycloak-url>/realms/konnect/protocol/saml/descriptor`
+
+**Attribute mapping table for KeyCloak configuration**
+
+| KeyCloak                                    | Konnect                  |
+|---------------------------------------------|--------------------------|
+| Client ID                                   | `sp_entity_id`           |
+| Valid redirect URI                          | `callback_url`           |
+| App Federation Metadata Url                 | `idp_metadata_url`       |
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Authentication issues with large numbers of groups
 

@@ -180,7 +180,7 @@ Create a new application in Okta to manage the {{site.konnect_saas}} account int
 {% navtabs %}
 {% navtab OIDC %}
 1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
-1. Click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
+1. Click {% konnect_icon organizations %} **Organization** > **Settings**, then **Authentication Schemes**.
 1. Click **Configure provider** for **OIDC**.
 
 1. In Okta, locate your issuer URI.
@@ -219,10 +219,11 @@ application into {{site.konnect_saas}}.
     * The path does not require a slash (`/`).
 
 1. Click **Save**.
+1. From the list of authentication providers, open the context menu and **Enable OIDC**.
 {% endnavtab %}
 {% navtab SAML %}
 1. In another separate browser tab, log in to [{{site.konnect_saas}}](https://cloud.konghq.com).
-1. Click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
+1. Click {% konnect_icon organizations %} **Organization** > **Settings**, then **Authentication Schemes**.
 1. Click **Configure provider** for **SAML**.
 
 1. In Okta, locate your Metadata URL:
@@ -244,6 +245,7 @@ application into {{site.konnect_saas}}.
 
 
 1. Click **Save**.
+1. From the list of authentication providers, open the context menu and **Enable SAML**.
 1. In Okta update the placeholder **Single Sign-On URL** and **Audience URI (SP Entity ID)** that you set in the previous section.
 
 {% endnavtab %}
@@ -316,10 +318,6 @@ application.
 ## Log in through Okta to test the integration
 1. Copy your {{site.konnect_short_name}} organization's login URI.
 
-    If you ever need to find the path again, you can always find it under
-    {% konnect_icon organizations %} **Organization > Auth Settings**, then copy the **Organization Login URI**
-     and append it to `cloud.konghq.com/login/`.
-
 1. Paste the URI into a browser address bar. An Okta login page should appear.
 
 1. Using an account that belongs to one of the groups you just mapped
@@ -333,6 +331,9 @@ in with your Okta credentials.
 
     You should see a list of users in this org, including a new entry for the
     previous user and the team that they were assigned to.
+
+{:.note}
+> **Note**:  If you need to find your login path, go to** My Account**, locate the Login Path, and append it to `cloud.konghq.com/login/`.
 
 ## (Optional) Enable {{site.konnect_saas}} as a dashboard app in Okta
 

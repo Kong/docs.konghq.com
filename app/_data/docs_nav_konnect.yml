@@ -239,7 +239,7 @@
           url: /org-management/social-identity-login/
         - text: Org Switcher
           url: /org-management/org-switcher/
-        - text: Configure generic SSO
+        - text: Configure Generic SSO
           url: /org-management/sso/
         - text: Configure Okta
           url: /org-management/okta-idp/
