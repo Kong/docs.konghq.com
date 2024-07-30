@@ -195,6 +195,19 @@ must be restricted accordingly for your AWS account
 The control plane must have the following options enabled. The example
 Cloudformation [sets them via environment variables](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controlplane.yaml#L334-L337):
 
+{% if_version gte:2.7.x %}
+```yaml
+- Name: KUMA_DP_SERVER_AUTHN_DP_PROXY_TYPE
+  Value: aws-iam
+- Name: KUMA_DP_SERVER_AUTHN_ZONE_PROXY_TYPE
+  Value: aws-iam
+- Name: KUMA_DP_SERVER_AUTHN_ENABLE_RELOADABLE_TOKENS
+  Value: "true"
+- Name: KMESH_AWSIAM_AUTHORIZEDACCOUNTIDS
+  Value: !Ref AWS::AccountId # this tells the CP which accounts can be used by DPs to authenticate
+```
+{% endif_version %}
+{% if_version lte:2.6.x %}
 ```yaml
 - Name: KUMA_DP_SERVER_AUTH_TYPE
   Value: aws-iam
@@ -203,6 +216,7 @@ Cloudformation [sets them via environment variables](https://github.com/Kong/kon
 - Name: KMESH_AWSIAM_AUTHORIZEDACCOUNTIDS
   Value: !Ref AWS::AccountId # this tells the CP which accounts can be used by DPs to authenticate
 ```
+{% endif_version %}
 
 Every sidecar must have the [`--auth-type=aws` flag set as well](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L255).
 

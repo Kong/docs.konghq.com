@@ -18,6 +18,8 @@ directive handling {{site.base_gateway}}'s proxy ports.
 - Entries prefixed with `nginx_admin_` will be injected into the `server` block
 directive handling {{site.base_gateway}}'s Admin API ports.
 
+See the [NGINX Injected Directives section](/gateway/latest/reference/configuration/#nginx-injected-directives-section) for all supported namespaces.
+
 For example, if you add the following line to your `kong.conf` file:
 
 ```
