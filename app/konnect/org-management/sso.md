@@ -5,12 +5,6 @@ title: Configure Generic SSO
 
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} using OpenID Connect or SAML. This authentication method allows your users to log in to {{site.konnect_saas}} using their IdP credentials, without needing a separate login. This topic covers configuring SSO for use with various identity providers.
 
-We currently support the following providers: 
-* Okta 
-* Azure Active Directory
-* Oracle Identity Cloud Service 
-* Keycloak. 
-
 If you want to configure Okta, please see the [Okta configuration guide](/konnect/org-management/sso/).
 
 ## Prerequisites
@@ -68,6 +62,14 @@ You can configure custom IdP-specific behaviors in the **Advanced Settings** of 
     - `groups`: Used to map users to teams defined in the team mappings upon login.
 {% endnavtab %}
 {% navtab SAML %}
+
+The {{site.konnect_short_name}} SAML integration allows you to configure various identity providers. While technically any SAML-compliant provider can be used, the following have been verified:
+
+* Okta 
+* Azure Active Directory
+* Oracle Identity Cloud Service 
+* Keycloak
+
 1. Log in to {{site.konnect_saas}}, click {% konnect_icon organizations %} **Organization**, and then select **Auth Settings**.
 
 1. Click **Configure provider** under **SAML**. 
@@ -98,10 +100,9 @@ If the configuration is correct, you will see the IdP sign-in page. You can now 
 
 {% endnavtab %}
 {% endnavtabs %}
-
 ## Troubleshooting 
 
-### Provider specific configuration
+### Provider specific SAML configuration
 
 The following section contains provider specific information and attribute mapping tables neccessary for configuring SSO. 
 {% navtabs %}

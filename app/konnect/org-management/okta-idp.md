@@ -246,7 +246,9 @@ application into {{site.konnect_saas}}.
 
 1. Click **Save**.
 1. From the list of authentication providers, open the context menu and **Enable SAML**.
+1. Close the configuration dialog and click **Enable** on your SAML provider.
 1. In Okta update the placeholder **Single Sign-On URL** and **Audience URI (SP Entity ID)** that you set in the previous section.
+1. Close the configuration dialog and click **Enable** on your SAML provider.
 
 {% endnavtab %}
 {% endnavtabs %}
