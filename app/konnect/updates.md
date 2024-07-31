@@ -11,13 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 ## August 2024
-**API Requests**
+**General Availability of API Requests**
 : All {{site.konnect_short_name}} Advanced Analytics users now access to a new feature that tracks [API requests](/konnect/analytics/api-requests/) in near real-time. API Requests provide detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
 
-**Manage control plane analytics data ingestion**
-: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending on the Konnect Advanced Analytics app. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
-
-: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Advanced Analytics** toggle.
 ## July 2024
 
 **New refresh button in Advanced Analytics**
@@ -33,6 +29,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Multi-portal**
 : {{site.konnect_short_name}} now supports multiple Dev Portals. Users can create multiple Dev Portals with the same functionality to better segment their customers, brands, and API product experiences. For more information, see [Create Dev Portal](/konnect/dev-portal/create-dev-portal).
 
+**Manage control plane analytics data ingestion**
+: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending on the Konnect Advanced Analytics app. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
+
+: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Advanced Analytics** toggle.
 
 ## May 2024
 
