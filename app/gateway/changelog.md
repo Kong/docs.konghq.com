@@ -922,6 +922,7 @@ using all the upstreams than before.
 pertaining to model and provider usage.
  [#12495](https://github.com/Kong/kong/issues/12495)
 * Added the `ngx_brotli` module to kong prebuild nginx.
+  See the [documentation](/gateway/latest/production/performance/brotli/) to learn how to enable Brotli compression for Kong Gateway.
  [#12367](https://github.com/Kong/kong/issues/12367)
 * You can now pass a primary key as a full entity to DAO functions.
  [#11695](https://github.com/Kong/kong/issues/11695)
