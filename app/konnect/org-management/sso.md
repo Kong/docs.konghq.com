@@ -43,7 +43,7 @@ If you want to configure Okta, please see the [Okta configuration guide](/konnec
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 
-1. After clicking Save, configure the SP Entity ID and Login URL on your SAML IdP.
+1. After clicking Save, close the configuration dialog and click Enable on your OIDC provider.
 
 ## Test and apply the configuration
 
