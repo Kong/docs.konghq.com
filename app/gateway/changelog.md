@@ -1664,7 +1664,7 @@ both in the Admin API and in Kong Manager.
 - Fixed an issue where the dataplane's log serializer output has workspace name under Hybrid mode.
 
 #### Default
-- Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature.
+- Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availability detection feature.
 
 #### Configuration
 - Respect custom `proxy_access_log`. [#7435](https://github.com/Kong/kong/issues/7435)
@@ -2422,7 +2422,7 @@ and Kong Gateway will try to control the concurrency when exporting the config.
  [#7483](https://github.com/Kong/kong/issues/7483)
 * Correctly invalidate caches based on names and IDs for consumer groups.
 * Eliminated the asynchronous timer in syncQuery() to prevent hang risk.
-* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature.
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availability detection feature.
 
 #### Admin API
 
