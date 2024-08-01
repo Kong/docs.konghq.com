@@ -1,20 +1,20 @@
 ---
-title: GCP Secrets Manager
+title: GCP Secret Manager
 badge: enterprise
 content-type: how-to
 ---
 
 The current version of {{site.base_gateway}}'s implementation supports
 configuring
-[GCP Secrets Manager](https://cloud.google.com/secret-manager/) in two
+[GCP Secret Manager](https://cloud.google.com/secret-manager/) in two
 ways:
 
 * Environment variables
 * Workload Identity
 
-## Configure GCP Secrets Manager
+## Configure GCP Secret Manager
 
-To configure GCP Secrets Manager, the `GCP_SERVICE_ACCOUNT`
+To configure GCP Secret Manager, the `GCP_SERVICE_ACCOUNT`
 environment variable must be set to the JSON document referring to the
 [credentials for your service account](https://cloud.google.com/iam/docs/creating-managing-service-account-keys):
 
@@ -25,7 +25,7 @@ export GCP_SERVICE_ACCOUNT=$(cat gcp-project-c61f2411f321.json)
 {{site.base_gateway}} uses the key to automatically authenticate
 with the GCP API and grant you access.
 
-To use GCP Secrets Manager with
+To use GCP Secret Manager with
 [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity)
 on a GKE cluster, update your pod spec so that the service account is
 attached to the pod. For configuration information, read the [Workload
@@ -86,7 +86,7 @@ that encapsulates the provider and the GCP project ID:
 ```bash
 curl -i -X PUT http://HOSTNAME:8001/vaults/gcp-sm-vault \
   --data name=gcp \
-  --data description="Storing secrets in GCP Secrets Manager" \
+  --data description="Storing secrets in GCP Secret Manager" \
   --data config.project_id="project_id"
 ```
 
@@ -98,7 +98,7 @@ Result:
         "project_id": "project_id"
     },
     "created_at": 1657874961,
-    "description": "Storing secrets in GCP Secrets Manager",
+    "description": "Storing secrets in GCP Secret Manager",
     "id": "90e200be-cf84-4ce9-a1d6-a41c75c79f31",
     "name": "gcp",
     "prefix": "gcp-sm-vault",
@@ -119,7 +119,7 @@ _format_version: "3.0"
 vaults:
 - config:
     project_id: project_id
-  description: Storing secrets in GCP Secrets Manager
+  description: Storing secrets in GCP Secret Manager
   name: gcp
   prefix: gcp-sm-vault
 ```
@@ -147,7 +147,7 @@ any of the supported tools:
 {% endif_version %}
 
 
-Configuration options for a GCP Secrets Manager vault in {{site.base_gateway}}:
+Configuration options for a GCP Secret Manager vault in {{site.base_gateway}}:
 
 Parameter | Field name | Description
 ----------|------------|------------
@@ -161,5 +161,5 @@ Common options:
 Parameter | Field name | Description
 ----------|------------|------------
 `vaults.description` <br> *optional* | **Description** | An optional description for your vault.
-`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `gcp` for GCP Secrets Manager.
+`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `gcp` for GCP Secret Manager.
 `vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://gcp-sm-vault/<some-secret>}`.

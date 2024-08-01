@@ -25,8 +25,8 @@ roles.
 for assigning access by functionality, they can provide granular access to
 any group of {{site.konnect_short_name}} resources based on roles.
 
-* **Role:** Predefined access to a particular resource, or an
-instances of a particular resource type (for example, a particular service or all services).
+* **Role:** Predefined access to a particular resource, or
+instances of a particular resource type (for example, API product roles can be scoped to a particular API product or all API products whilst control plane roles can be scoped to a particular control plane or all control planes).
 
 When you create a {{site.konnect_short_name}} account, you are automatically added to the Organization
 Admin team, which is one of the [predefined teams](/konnect/org-management/teams-and-roles/teams-reference/)

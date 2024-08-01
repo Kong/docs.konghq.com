@@ -4,12 +4,17 @@ content_type: reference
 ---
 
 
-You can change the log level of {{site.base_gateway}} dynamically, without restarting {{site.base_gateway}}, using the Admin API. This set of endpoints can be protected using [RBAC](/gateway/api/admin-ee/latest/#/rbac/post-rbac-roles-name_or_id-endpoints) and changes in log level are reflected in the [audit log](/gateway/{{page.release}}/kong-enterprise/audit-log/).
+You can change the log level of {{site.base_gateway}} dynamically, without restarting {{site.base_gateway}}, using the Admin API's `/debug` endpoints.
+This set of endpoints can be protected using [RBAC](/gateway/api/admin-ee/latest/#/rbac/post-rbac-roles-name_or_id-endpoints) and changes in log level are reflected in the [audit log](/gateway/{{page.release}}/kong-enterprise/audit-log/).
 
-The log level change is propagated to all NGINX worker nodes, including the newly spawned workers.
+The log level change is propagated to all NGINX worker nodes in a traditional cluster, including the newly spawned workers.
 
 {:.note}
-> **Note:** Changing the log level to `debug` in a production environment can rapidly fill up the disk. After debug logging, switch back to a higher level like `notice` or use a `timeout` parameter in the request query string. **The default timeout for dynamically set log levels is 60 seconds**.
+> **Notes:**
+> * The `debug` endpoints **do not** work for hybrid mode data planes. They can only be used for [control plane nodes](#manage-new-nodes-in-the-cluster).
+> * Changing the log level to `debug` in a production environment can rapidly fill up the disk.
+> After finishing debug logging, switch back to a higher level like `notice` or use a `timeout` parameter in the request query string.
+> **The default timeout for dynamically set log levels is 60 seconds**.
 
 
 ## View current log level

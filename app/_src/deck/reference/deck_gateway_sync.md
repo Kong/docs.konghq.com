@@ -16,7 +16,7 @@ to get Kong's state in sync with the input state.
 ## Syntax
 
 ```
-deck gateway sync [command-specific flags] [global flags]
+deck gateway sync [filename] [command-specific flags] [global flags]
 ```
 
 ## Flags

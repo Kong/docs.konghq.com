@@ -40,8 +40,7 @@ Leave the process running.
     ```
     curl http://localhost:8001/routes \
     -d service.name=acme-test \
-    -d hosts=$NGROK_HOST \
-    -d paths=/mock
+    -d hosts=$NGROK_HOST
     ```
 
 1. Enable the plugin:

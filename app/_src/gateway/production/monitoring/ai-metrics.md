@@ -1,40 +1,37 @@
 ---
-nav_title: Expose and Graphed Kong AI Metrics
-title: Expose and Graphed Kong AI Metrics
+title: Expose and graph Kong AI Metrics
 minimum_version: 3.8.x
+badge: enterprise
 ---
 
-{:.note}
-> This feature requires {{site.ee_product_name}}.
 
-This guide walks you through getting and sending AI Metrics to Prometheus, and
-setting the Grafana Dashboard.
+This guide walks you through collecting AI metrics and sending them to Prometheus, and
+setting up the Grafana dashboard.
 
 ## Overview
 
-Kong's AI Gateway (AI Proxy) call LLM-based services according to the settings of the AI Proxy,
-we will aggregate the LLM provider response to count the number of tokens used by the AI Proxy.
-If you have defined input and output cost in the models we will also calculate cost aggregation.
-The metrics details also exposed if the requests has been cached by Kong saving the cost of contacting
-the LLM providers thus saving performance and money.
+Kong's AI Gateway (AI Proxy) calls LLM-based services according to the settings of the AI Proxy plugin.
+You can aggregate the LLM provider responses to count the number of tokens used by the AI Proxy.
+If you have defined input and output costs in the models, you can also calculate cost aggregation.
+The metrics details also expose if the requests have been cached by {{site.base_gateway}}, saving the cost of contacting the LLM providers, which improves performance.
 
-Expose metrics related to Kong and proxied upstream services in 
+Kong AI Gateway exposes metrics related to Kong and proxied upstream services in 
 [Prometheus](https://prometheus.io/docs/introduction/overview/) 
 exposition format, which can be scraped by a Prometheus Server.
 
 Metrics tracked by this plugin are available on both the Admin API and Status
 API at the `http://localhost:<port>/metrics`
-endpoint. Note that the URL to those APIs will be specific to your
-installation; see [Accessing the metrics](#accessing-the-metrics).
+endpoint. Note that the URL to those APIs is specific to your
+installation. See [Accessing the metrics](#accessing-the-metrics) for more information.
 
-This plugin records and exposes metrics at the node level. Your Prometheus
+The Kong [Prometheus plugin](/hub/kong-inc/prometheus/) records and exposes metrics at the node level. Your Prometheus
 server will need to discover all Kong nodes via a service discovery mechanism,
 and consume data from each node's configured `/metrics` endpoint.
 
 ## Grafana dashboard
 
-AI Metrics exported by the plugin can be graphed in Grafana using a drop-in
-dashboard: [https://grafana.com/grafana/dashboards/21162-kong-cx-ai/](https://grafana.com/grafana/dashboards/21162-kong-cx-ai/).
+AI Metrics exported by the plugin can be graphed in Grafana using a [drop-in
+dashboard](https://grafana.com/grafana/dashboards/21162-kong-cx-ai/):
 
 ![AI Grafana Dashboard](/assets/images/products/gateway/vitals/grafana-ai-dashboard.png)
 
@@ -107,7 +104,7 @@ ai_llm_provider_latency{ai_provider="provider1",ai_model="model1",cache_status="
 
 {:.note}
 > **Note:** If you don't use any cache plugins, then `cache_status`, `vector_db`,
-`embeddings_provider` and `embeddings_model` values will be empty. 
+`embeddings_provider`, and `embeddings_model` values will be empty. 
 
 ## Accessing the metrics
 
@@ -125,5 +122,4 @@ allow access to the `/metrics` endpoint to Prometheus:
    when [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users/) is enabled on the
    Admin API (Prometheus does not support Key-Auth to pass the token).
 
----
 

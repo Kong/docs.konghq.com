@@ -1,5 +1,5 @@
 ---
-title: Plugins in Other Languages Javascript
+title: Write plugins in JavaScript
 content-type: explanation
 ---
 

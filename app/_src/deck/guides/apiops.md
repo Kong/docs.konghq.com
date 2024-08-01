@@ -83,11 +83,18 @@ upstreams: []
 > **Note**: The {{site.base_gateway}} [getting started guide](/gateway/latest/get-started/) 
 can help you quickly run a gateway in Docker to follow along with these instructions.
 
-You can synchronize this directly to the gateway using `deck sync`:
+You can synchronize this directly to the gateway using `sync`:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck sync -s httpbin.yaml
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway sync httpbin.yaml
+```
+{% endif_version %}
 
 Which creates the service and route:
 
@@ -171,18 +178,35 @@ deck file patch --state merged-kong.yaml \
 
 The final `kong.yaml` file is a full configuration you can synchronize to the gateway:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck sync -s kong.yaml
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway sync kong.yaml
+```
+{% endif_version %}
 
 Here is an example of putting the above together in a Unix-style pipeline:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck file openapi2kong --spec oas.yaml --output-file httpbin.yaml && 
   deck file merge httpbin.yaml another-httpbin.yaml | 
   deck file patch --selector "$.services[*]" --value 'protocol: "https"' |
   deck sync -s -
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck file openapi2kong --spec oas.yaml --output-file httpbin.yaml && 
+  deck file merge httpbin.yaml another-httpbin.yaml | 
+  deck file patch --selector "$.services[*]" --value 'protocol: "https"' |
+  deck gateway sync
+```
+{% endif_version %}
 
 Most commonly, you will use the commands from CI/CD tools built into your version control system
 to bring full and partial {{site.base_gateway}} configurations together to create APIOps for your 

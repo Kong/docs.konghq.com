@@ -4,6 +4,9 @@
 - name: Kong Konnect
   desc: Single platform for SaaS end-to-end connectivity
   url: /konnect/
+- name: Kong AI Gateway
+  desc: Multi-LLM AI Gateway for GenAI infrastructure
+  url: /gateway/latest/ai-gateway/
 - name: Kong Mesh
   desc: Enterprise service mesh based on Kuma and Envoy
   url: /mesh/latest/
@@ -19,6 +22,3 @@
 - name: Insomnia
   desc: Collaborative API development platform
   url: https://docs.insomnia.rest/
-- name: Kuma
-  desc: Open-source distributed control plane with a bundled Envoy Proxy integration
-  url: https://kuma.io/docs/

@@ -10,11 +10,6 @@ up single sign-on (SSO) access to {{site.konnect_short_name}} through
 This authentication method allows your users to log in to {{site.konnect_saas}}
 using their Okta credentials, without needing a separate login.
 
-You can't mix authenticators in {{site.konnect_saas}}. With Okta
-authentication enabled, all non-admin {{site.konnect_short_name}} users have to
-log in through Okta. Only the {{site.konnect_short_name}} org
-owner can continue to log in with {{site.konnect_short_name}}'s native
-authentication.
 
 ## Prerequisites and overview of steps
 
@@ -192,7 +187,7 @@ application into {{site.konnect_saas}}.
 
 1. Click **Save**.
 
-### Map {{site.konnect_short_name}} teams to Okta groups
+### Map {{site.konnect_short_name}} teams to Okta groups {#map-teams-to-groups}
 
 By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/),
 you can manage a user's {{site.konnect_short_name}} team membership directly through
@@ -245,7 +240,7 @@ in Okta to locate the Okta groups you want to map.
 
 1. Click **Save**.
 
-## Test and apply the configuration
+## Test and apply the configuration {#test-the-integration}
 
 {:.important}
 > **Important:** Keep built-in authentication enabled while you are testing Okta authentication. Only disable built-in authentication after successfully testing Okta authentication.
@@ -270,9 +265,6 @@ in with your Okta credentials.
 
     If a group-to-team mapping exists, the user is automatically provisioned with
     a {{site.konnect_saas}} account with the relevant team membership.
-
-1. Log out of this account, and log back in with a {{site.konnect_short_name}}
-admin account.
 
 1. In the left menu, select **Organization**.
 

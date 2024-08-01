@@ -108,7 +108,7 @@ slsa-verifier verify-image \
    --source-uri 'github.com/Kong/kong-ee'
 ```
 
-The command will print "Verified SLASA provenance" if successful:
+The command will print "Verified SLSA provenance" if successful:
 
 ```sh
 ...

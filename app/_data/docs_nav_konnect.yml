@@ -32,8 +32,8 @@
       url: /getting-started/
     - text: Add your API
       url: /getting-started/add-api/
-    - text: Import Kong Gateway Entities into Konnect
-      url: /getting-started/import/
+    - text: Migrating a Self-Managed Kong Gateway into Konnect
+      url: /getting-started/migration/
 
 - title: Gateway Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
@@ -113,6 +113,8 @@
       url: /mesh-manager/
     - text: Create a mesh with the Kubernetes demo app
       url: /mesh-manager/service-mesh/
+    - text: Federate a zone control plane to Konnect
+      url: /mesh-manager/federate-zone/
     - text: Migrate a self-managed zone control plane to Konnect
       url: /mesh-manager/migrate-zone/
 
@@ -138,10 +140,12 @@
   items:
     - text: Overview
       url: /dev-portal/
+    - text: Create a Dev Portal
+      url: /dev-portal/create-dev-portal/
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
-    - text: Productize a Service
-      url: /dev-portal/publish-service/ 
+    - text: Publish an API to Dev Portal
+      url: /dev-portal/publish-service/
     - text: Access and Approval
       items:
         - text: Manage Developer Access
@@ -158,16 +162,12 @@
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
         - text: Azure OIDC
           url: /dev-portal/access-and-approval/azure/
+    - text: Register and create an application as a developer
+      url: /dev-portal/register-and-create-app/
+    - text: Enable and Disable App Registration for API Product Versions
+      url: /dev-portal/applications/enable-app-reg/
     - text: Application Lifecycle
-      items:
-        - text: Overview
-          url: /dev-portal/applications/application-overview/
-        - text: Enable and Disable App Registration for API Product Versions
-          url: /dev-portal/applications/enable-app-reg/
-        - text: Create, Edit, and Delete an Application
-          url: /dev-portal/applications/dev-apps/
-        - text: Generate Credentials for an Application
-          url: /dev-portal/applications/dev-gen-creds/
+      url: /dev-portal/applications/application-overview/
     - text: Dynamic Client Registration
       items:
         - text: Overview
@@ -182,7 +182,7 @@
           url: /dev-portal/applications/dynamic-client-registration/azure/
         - text: Custom IdP
           url: /dev-portal/applications/dynamic-client-registration/custom/
-          
+
     - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
     - text: Portal Customization
@@ -307,7 +307,7 @@
           generate: false
           target_blank: true
     - text: Cloud Gateways API
-      items: 
+      items:
         - text: API Spec
           url: /konnect/api/cloud-gateways/latest/
           absolute_url: true
@@ -394,3 +394,5 @@
       url: /reference/custom-dns/
     - text: Konnect Search
       url: /reference/search/
+    - text: Terraform Provider
+      url: /reference/terraform/

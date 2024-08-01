@@ -16,7 +16,7 @@ In this guide, you will set up two developer teams and then enable Portal RBAC u
 ## Prerequisites
 * Two test [developer accounts registered](/konnect/dev-portal/dev-reg/)
 * A [configured control plane](/konnect/getting-started/configure-data-plane-node/)
-* A [personal access token](/konnect/getting-started/import/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
+* A [personal access token](/konnect/gateway-manager/declarative-config/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
 
 If you have existing registered developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC. If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. 
 
@@ -134,7 +134,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
   
     ```bash
     curl --request PATCH \
-      --url https://{region}.api.konghq.com/v2/api-products/{apiProductId} \
+      --url https://{region}.api.konghq.com/v2/api-products/{id} \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -166,7 +166,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 
     ```bash
     curl --request POST \
-      --url https://{region}.api.konghq.com/v2/api-products/{apiProductId}/product-versions \
+      --url https://{region}.api.konghq.com/v2/api-products/{id}/product-versions \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
