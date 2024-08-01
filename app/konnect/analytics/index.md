@@ -20,7 +20,7 @@ Konnect Advanced Analytics offers:
 
 ## Advanced Analytics capabilities
 
-{{site.konnect_short_name}} Analytics {% konnect_icon analytics %} provides different tools to help you track the performance and behavior of your APIs and data plane nodes. You can use these tools to access key statistics, monitor vitals, and pinpoint anomalies in real-time.
+{{site.konnect_short_name}} Advanced Analytics {% konnect_icon analytics %} provides different tools to help you track the performance and behavior of your APIs and data plane nodes. You can use these tools to access key statistics, monitor vitals, and pinpoint anomalies in real-time.
 
 The primary goal of {{site.konnect_short_name}} Advanced Analytics is to make important API usage and performance data easily accessible for both business users and platform and application teams. The interface is designed to be user-friendly and intuitive, ensuring that users can quickly find the information they need and derive valuable insights effortlessly.
 
