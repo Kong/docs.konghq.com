@@ -6,12 +6,12 @@ The AI Rate Limiting Advanced plugin provides rate limiting for the providers us
 AI Rate Limiting plugin extends the
 [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
 
-This token is using the tokens data returned by LLM provider to calculate the queries cost.
+This plugin uses the token data returned by the LLM provider to calculate the costs of queries.
 The same HTTP request can vary greatly in cost depending on the calculation of the 
 LLM providers.
 
-A common pattern to protect your AI API is then to analyze and
-assign costs to incoming  queries and rate limit the consumer's
+A common pattern to protect your AI API is to analyze and
+assign costs to incoming queries, then rate limit the consumer's
 cost for a given time window and providers.
 
 You can also create a generic prompt rate limit using the [request prompt provider](#request-prompt-function).
@@ -20,11 +20,11 @@ You can also create a generic prompt rate limit using the [request prompt provid
 > **Notes:**
   * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster datastore.
   * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
-    * Known limitation: The cost for `AI proxy` will be only reflected during the next request.
-    * Example: A request is made and `AI proxy` plugin is returning a token cost of `100` for the `OpenAI` provider:
-      - The request is made to the OpenAI provider and the response is returned to user
+    * Known limitation: The cost for `AI proxy` is only reflected during the next request.
+    * Example: A request is made and `AI proxy` plugin returns a token cost of `100` for the `OpenAI` provider:
+      - The request is made to the OpenAI provider and the response is returned to the user
       -  If the rate limit is reached, the next request will be blocked
-    * Known limitation: The disable penalty will only work for the `requestPrompt` provider.
+    * Known limitation: The disable penalty only works for the `requestPrompt` provider.
 
 
 ## Headers sent to the client

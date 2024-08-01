@@ -29,8 +29,8 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.11"
-  ce-version: "2.8.4"
+  ee-version: "2.8.4.12"
+  ce-version: "2.8.5"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
   dependencies:

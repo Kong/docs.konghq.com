@@ -2,18 +2,51 @@
 
 <!--vale off-->
 
-## Week 29
+## Week 30
 
-### [Update _local-testing-development.md](https://github.com/Kong/docs.konghq.com/pull/7646) (2024-07-17)
+### [Update: Add API instructions for finding Konnect hostnames](https://github.com/Kong/docs.konghq.com/pull/7681) (2024-07-25)
 
-Removed the "path" value from route created in step 2, as this would cause request in step 4 "Trigger certificate creation" to fail, and will not work with the "/.well-known/acme-challenge/x" path which would also need to be associated to this test route for the purpose of this walkthrough.
- 
-Noted in Support case: 00047179
+Adding API instructions to find control plane and telemetry hostnames for Konnect control planes. Tested both regular and KIC control planes.
+
+The headings on this page were also broken and didn't work as anchor links, as they were nested inside navtabs. This doesn't work, so I turned them into regular headings.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/6869.
 
 #### Modified
 
-- https://docs.konghq.com/hub/kong-inc/acme/how-to/
+- https://docs.konghq.com/konnect/network
 
+
+### [Fix: AI Proxy plugin: incorrect format in example](https://github.com/Kong/docs.konghq.com/pull/7677) (2024-07-25)
+
+The description of the example and the example itself don't refer to the same format: the description says `ollama` but the example uses `openai`. The correct format is `openai`, as the example also uses an Authorization header, which is required for `openai`.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/7609. 
+
+### Checklist 
+
+- [x] Review label added <!-- (see below) -->
+- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
+
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+
+
+### [Provide link to limitations of dynamic plugin ordering](https://github.com/Kong/docs.konghq.com/pull/7656) (2024-07-22)
+
+Users are not warned about the limitations of Dynamic plugin ordering, particularly in relation to consumer scoped plugins.  This change informs of the limitation and provides a link to the details.
+
+
+ Users are not warned about the limitations of Dynamic plugin ordering in this page, particularly in relation to consumer scoped plugins. This change informs of the limitation and provides a link to the details. There have been cases of customers implementing dynamic ordering and then realise it is incompatible with consumer scoped plugins.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/plugins
+
+
+## Week 29
 
 ### [Feat: Azure support in dedicated cloud gateways](https://github.com/Kong/docs.konghq.com/pull/7634) (2024-07-15)
 

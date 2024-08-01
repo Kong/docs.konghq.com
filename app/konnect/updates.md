@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## July 2024
 
+**New refresh button in Advanced Analytics**
+: We've introduced a refresh button on selected analytics pages such as API Requests and Explorer, allowing users to view updated data without triggering a full site reload. This feature also preserves applied filters and provides a more seamless user experience.
+
 **Dedicated Cloud Gateways on Azure <span class="badge alpha"></span>**
 
 : You can now run Dedicated Cloud Gateways on Azure in the following regions: Frankfurt, Ireland, UK South, Virginia, and Washington.
