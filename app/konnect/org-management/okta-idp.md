@@ -16,10 +16,10 @@ To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need ac
 
 Optionally, if you want to use team mappings, you must configure Okta to include group attributes.
 
+
+## Prepare the Okta application
 {% navtabs %}
 {% navtab OIDC %}
-### Prepare the Okta application
-
 Create a new application in Okta to manage {{site.konnect_saas}} account integration.
 
 1. Sign in to your [Okta admin account](https://okta.com/login/).
@@ -41,11 +41,7 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
 
     Leave this page open. You'll need the connection details here to configure your {{site.konnect_saas}} account.
 
-
-### (Optional) Set up claims in Okta
-
-
-The connection between {{site.konnect_short_name}} and Okta uses OpenID Connect tokens. To have Okta send the correct information to your {{site.konnect_short_name}} org, set up claims to extract that information.
+**Optionally** set up claims in Okta to have Okta send the correct information to your {{site.konnect_short_name}} org, set up claims to extract that information.
 
 1. Open your Okta account in a new browser tab.
 
@@ -81,49 +77,8 @@ for troubleshooting:
 * [Adding a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/add-groups-claim-custom-as/)
 * [Adding a custom claim](https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/add-custom-claim/)
 
-### Add a user to your application
-
-1. In the sidebar of your Okta account, click **Applications > Applications**.
-
-1. Select the {{site.konnect_short_name}} application.
-
-1. Click the **Assignments** tab.
-
-1. Click **Assign > Assign to People**, and then click **Assign** next to the name of the users you want to add.
-
-1. Optional: In the dialog, enter additional information about the user.
-
-1. Click **Save and Go Back**.
-
-1. Click **Done**.
-
-### Test claims and find groups for mapping
-
-1. In the sidebar of your Okta account, click **Security > API**.
-
-1. Select the authorization server that you want to configure.
-
-1. Click the **Token Preview** tab.
-
-1. Enter your client in the **OAuth/OIDC client** box. This is the name you created previously for your Okta application.
-
-1. In the **Grant Type** menu, select **Authorization Code**.
-
-1. In the **User** menu, select an Okta user that is assigned to the {{site.konnect_short_name}} application to test the claim with.
-
-1. In the **Scope** box, enter `openid`, `email`, and `profile`.
-
-1. Click **Preview Token**.
-
-1. In the generated preview, ensure that the `groups`
-value is present.
-
-1. From the list of groups in the preview, identify groups that you want to use in
-{{site.konnect_short_name}}. Take note of these groups.
-
 {% endnavtab %}
 {% navtab SAML %}
-### Prepare the Okta application
 
 Create a new application in Okta to manage the {{site.konnect_saas}} account integration.
 
@@ -154,8 +109,52 @@ Create a new application in Okta to manage the {{site.konnect_saas}} account int
        | groups  | Unspecified  | Matches regex   | .*           |
     1. Click **Next**.
     1. On the **Feedback** page, select **I’m an Okta customer adding an internal app** and click **Finish**
+{% endnavtab %}
+{% endnavtabs %}
 
-### Add a user to your application
+## Add a user to your application
+{% navtabs %}
+{% navtab OIDC %}
+1. In the sidebar of your Okta account, click **Applications > Applications**.
+
+1. Select the {{site.konnect_short_name}} application.
+
+1. Click the **Assignments** tab.
+
+1. Click **Assign > Assign to People**, and then click **Assign** next to the name of the users you want to add.
+
+1. Optional: In the dialog, enter additional information about the user.
+
+1. Click **Save and Go Back**.
+
+1. Click **Done**.
+
+Test claims and find mapping groups: 
+
+1. In the sidebar of your Okta account, click **Security > API**.
+
+1. Select the authorization server that you want to configure.
+
+1. Click the **Token Preview** tab.
+
+1. Enter your client in the **OAuth/OIDC client** box. This is the name you created previously for your Okta application.
+
+1. In the **Grant Type** menu, select **Authorization Code**.
+
+1. In the **User** menu, select an Okta user that is assigned to the {{site.konnect_short_name}} application to test the claim with.
+
+1. In the **Scope** box, enter `openid`, `email`, and `profile`.
+
+1. Click **Preview Token**.
+
+1. In the generated preview, ensure that the `groups`
+value is present.
+
+1. From the list of groups in the preview, identify groups that you want to use in
+{{site.konnect_short_name}}. Take note of these groups.
+
+{% endnavtab %}
+{% navtab SAML %}
 
 1. In the sidebar of your Okta account, click **Applications > Applications**.
 
@@ -253,7 +252,7 @@ application into {{site.konnect_saas}}.
 {% endnavtab %}
 {% endnavtabs %}
 
-### Map {{site.konnect_short_name}} teams to Okta groups {#map-teams-to-groups}
+### Map {{site.konnect_short_name}} teams to Okta groups
 
 
 By mapping Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/),
@@ -335,7 +334,7 @@ in with your Okta credentials.
     previous user and the team that they were assigned to.
 
 {:.note}
-> **Note**:  If you need to find your login path, go to** My Account**, locate the Login Path, and append it to `cloud.konghq.com/login/`.
+> **Note**:  If you need to find your login path, go to **My Account**, locate the Login Path, and append it to `cloud.konghq.com/login/`.
 
 ## (Optional) Enable {{site.konnect_saas}} as a dashboard app in Okta
 

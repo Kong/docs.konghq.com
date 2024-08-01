@@ -38,28 +38,6 @@ If you want to configure Okta, please see the [Okta configuration guide](/konnec
     * The path does not require a slash (`/`).
 
 1. After clicking Save, close the configuration dialog and click Enable on your OIDC provider.
-
-## Test and apply the configuration
-
-{:.important}
-> **Important:** Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
-
-You can test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `https://cloud.konghq.com/login/examplepath`, where `examplepath` is the unique login path string set in the steps above. 
-
-If your configuration is set up correctly, you will see the IdP sign-in page.
-
-You can now manage your organization's user permissions entirely from the IdP
-application.
-
-## Advanced settings
-
-You can configure custom IdP-specific behaviors in the **Advanced Settings** of the OIDC configuration form. The following options are available:
-
-1. **Scopes**: Specify the list of scopes {{site.konnect_short_name}} requests from the IdP. By default, {{site.konnect_short_name}} requests the `openid`, `email`, and `profile` scopes. The `openid` scope is required and cannot be removed.
-2. **Claim Mappings**: Customize the mapping of required attributes to a different claim in the `id_token` {{site.konnect_short_name}} receives from the IdP. By default, {{site.konnect_short_name}} requires three attributes: Name, Email, and Groups. The values in these attributes are mapped as follows:
-    - `name`: Used as the {{site.konnect_short_name}} account's `full_name`.
-    - `email`: Used as the {{site.konnect_short_name}} account's `email`.
-    - `groups`: Used to map users to teams defined in the team mappings upon login.
 {% endnavtab %}
 {% navtab SAML %}
 
@@ -88,18 +66,31 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
     * The path does not require a slash (`/`).
 
 1. After clicking **Save**, configure the SP Entity ID and Login URL on your SAML IdP.
-
+{% endnavtab %}
+{% endnavtabs %}
 ## Test and apply the configuration
+{% navtabs %}
+{% navtab OIDC%}
+{:.important}
+> **Important:** Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
 
+You can test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `https://cloud.konghq.com/login/examplepath`, where `examplepath` is the unique login path string set in the steps above. 
+
+If your configuration is set up correctly, you will see the IdP sign-in page.
+
+You can now manage your organization's user permissions entirely from the IdP
+application.
+{% endnavtab %}
+{% navtab SAML %}
 {:.important}
 > **Important:** Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
 
 Test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `https://cloud.konghq.com/login/examplepath`, where `examplepath` is the unique login path string set in the previous steps.
 
 If the configuration is correct, you will see the IdP sign-in page. You can now manage your organization's user permissions entirely from the IdP application.
-
 {% endnavtab %}
 {% endnavtabs %}
+
 ## Troubleshooting 
 
 ### Provider specific SAML configuration
@@ -118,10 +109,10 @@ Attribute mapping for Azure configuration:
 | Identifier (Entity ID)                      | `sp_entity_id`           |
 | Reply URL (Assertion Consumer Service URL)  | `callback_url`           |
 | App Federation Metadata Url                 | `idp_metadata_url`       |
-| email                                       | `user.email`             |
-| firstname                                   | `user.givenname`         |
-| lastname                                    | `user.surname`           |
-| groups                                      | `user.groups`            |
+| `email`                                       | `user.email`             |
+| `firstname`                                   | `user.givenname`         |
+| `lastname`                                    | `user.surname`           |
+| `groups`                                      | `user.groups`            |
 | Unique user identifier                      | `user.principalname`     |
 
 
@@ -162,6 +153,17 @@ Attribute mapping for KeyCloak configuration:
 
 {% endnavtab %}
 {% endnavtabs %}
+
+
+### Advanced OIDC settings
+
+You can configure custom IdP-specific behaviors in the **Advanced Settings** of the OIDC configuration form. The following options are available:
+
+1. **Scopes**: Specify the list of scopes {{site.konnect_short_name}} requests from the IdP. By default, {{site.konnect_short_name}} requests the `openid`, `email`, and `profile` scopes. The `openid` scope is required and cannot be removed.
+2. **Claim Mappings**: Customize the mapping of required attributes to a different claim in the `id_token` {{site.konnect_short_name}} receives from the IdP. By default, {{site.konnect_short_name}} requires three attributes: Name, Email, and Groups. The values in these attributes are mapped as follows:
+    - `name`: Used as the {{site.konnect_short_name}} account's `full_name`.
+    - `email`: Used as the {{site.konnect_short_name}} account's `email`.
+    - `groups`: Used to map users to teams defined in the team mappings upon login.
 
 ### Authentication issues with large numbers of groups
 
