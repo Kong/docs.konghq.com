@@ -212,12 +212,12 @@
   },
   {
     "id": "51eda0ea-74ca-48c9-bf6e-80a413d620b4",
-    "title": "Konnect API Requests (Beta)",
+    "title": "Konnect API Request",
     "latestVersion": {
       "name": "v2",
       "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1"
     },
-    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time.\n\nThis API is released as beta.",
+    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
