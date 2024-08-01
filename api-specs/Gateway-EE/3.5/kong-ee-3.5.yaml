@@ -1813,7 +1813,7 @@ components:
                         example: 1638918560
                       custom_id:
                         type: string
-                        description: Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
+                        description: Field for storing an existing unique ID for the consumer. Useful for mapping Kong Gateway with users in your existing database. You must send either this field or `username` with the request.
                         nullable: true
                       id:
                         type: string
@@ -1828,7 +1828,7 @@ components:
                         example: 0
                       username:
                         type: string
-                        description: The unique username of the Consumer. You must send either this field or `custom_id` with the request.
+                        description: The unique username of the consumer. You must send either this field or `custom_id` with the request.
                       username_lower:
                         type: string
                         description: A lowercase representation of the username
@@ -1848,7 +1848,7 @@ components:
                           description: The name of the consumer group
                         tags:
                           type: object
-                          description: An optional set of strings associated with consumer group for grouping and filtering.
+                          description: An optional set of strings associated with the consumer group for grouping and filtering.
                           nullable: true
               examples:
                 Example:
