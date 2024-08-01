@@ -88,6 +88,7 @@
 /konnect/analytics/reference/   /konnect/analytics/explorer/
 /konnect/analytics/use-cases/latency/   /konnect/analytics/explorer/#diagnosing-latency-issues-example
 /konnect/analytics/custom-reports/  /konnect/analytics/use-cases/
+/konnect/analytics/troubleshoot/    /konnect/analytics/
 
 # Konnect Dev Portal rework
 
