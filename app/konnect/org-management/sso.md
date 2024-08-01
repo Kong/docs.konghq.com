@@ -51,7 +51,7 @@ If your configuration is set up correctly, you will see the IdP sign-in page.
 You can now manage your organization's user permissions entirely from the IdP
 application.
 
-## Advanced Settings
+## Advanced settings
 
 You can configure custom IdP-specific behaviors in the **Advanced Settings** of the OIDC configuration form. The following options are available:
 
@@ -104,15 +104,14 @@ If the configuration is correct, you will see the IdP sign-in page. You can now 
 
 ### Provider specific SAML configuration
 
-The following section contains provider specific information and attribute mapping tables neccessary for configuring SSO. 
+The following section contains provider specific information and attribute mapping tables necessary for configuring SSO. 
 {% navtabs %}
 {% navtab Azure %}
-* **OIDC uses app registration**: When adding an enterprise application, note that OIDC uses app registration.
-* **Remove namespace from claim name**: Remove the namespace from the claim name in Azure.
-* **Using groups maps to the Group ID by default**.
-* **Remove Namespace by checking **Customize** on the group claim**.
+* When adding an enterprise application, note that OIDC uses app registration.
+* Remove the namespace from the claim name in Azure. You can do this by checking **Customize** on the group claim.
+* Using groups maps to the Group ID by default.
 
-**Attribute mapping table for Azure configuration**
+Attribute mapping for Azure configuration:
 
 | Azure                                       | Konnect                  |
 |---------------------------------------------|--------------------------|
@@ -130,11 +129,11 @@ The following section contains provider specific information and attribute mappi
 {% navtab Oracle Cloud %}
 
 
-* **Set name ID format to transient**: When configuring the Name ID format in Oracle Cloud, make sure to set it to `transient`.
-* **manually upload signing certificate**: You will need to manually upload the Signing certificate from `sp_metadata_url`.
+* When configuring the Name ID format in Oracle Cloud, make sure to set it to `transient`.
+* You will need to manually upload the signing certificate from `sp_metadata_url`.
    - `cert.pem` must use the `X509Certificate` value for signing.
 
-**Attribute mapping table for Oracle Cloud configuration**
+Attribute mapping for Oracle Cloud configuration:
 
 | Oracle Cloud                                | Konnect                  |
 |---------------------------------------------|--------------------------|
@@ -149,11 +148,11 @@ The following section contains provider specific information and attribute mappi
 {% endnavtab %}
 {% navtab KeyCloak %}
 
-* **manually upload signing certificate**: You will need to manually upload the Signing certificate from `sp_metadata_url`.
+* You will need to manually upload the signing certificate from `sp_metadata_url`.
    - `cert.pem` must use the `X509Certificate` value for signing.
-* **Find your metadata endpoint**: Go to Realm Settings in Keycloak to locate your metadata endpoint. The `sp_metadata_url` for Konnect will be:`http://<keycloak-url>/realms/konnect/protocol/saml/descriptor`
+* Go to **Realm Settings** in Keycloak to locate your metadata endpoint. The `sp_metadata_url` for {{site.konnect_short_name}} will be:`http://<keycloak-url>/realms/konnect/protocol/saml/descriptor`
 
-**Attribute mapping table for KeyCloak configuration**
+Attribute mapping for KeyCloak configuration:
 
 | KeyCloak                                    | Konnect                  |
 |---------------------------------------------|--------------------------|
@@ -168,7 +167,7 @@ The following section contains provider specific information and attribute mappi
 
 If users are assigned a very large number of groups (over 150 in most cases), the IdP may send the groups claim in a non-standard manner, causing authentication issues. 
 
-To work around this limitation at the IdP, we recommend using group filtering functions provided by the IdP for this purpose. 
+To work around this limitation in the IdP, we recommend using group filtering functions provided by the IdP for this purpose. 
 Here are some quick reference guides for common IdPs:
 * [Azure group filtering](https://learn.microsoft.com/en-us/azure/active-directory/hybrid/connect/how-to-connect-fed-group-claims#group-filtering) 
 * [Okta group filtering](https://support.okta.com/help/s/article/How-to-send-certain-groups-that-the-user-is-assigned-to-in-one-Group-attribute-statement)
