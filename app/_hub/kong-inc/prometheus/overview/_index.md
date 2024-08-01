@@ -99,7 +99,7 @@ When `ai_llm_metrics` is set to true:
   These are available per provider, model, cache, database name (if cached),
   embeddings provider (if cached), embeddings model (if cached), and workspace.
 
-Please find more details on [AI Metrics](/gateway/{{ page.release }}/production/monitoring/ai-metrics).
+For more details, see [AI Metrics](/gateway/{{ page.release }}/production/monitoring/ai-metrics/).
 {% endif_version %}
 
 

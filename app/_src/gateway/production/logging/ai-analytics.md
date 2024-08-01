@@ -69,7 +69,7 @@ Property | Description
 `ai.[$plugin_name].meta.response_model` | Model used for the AI response.
 `ai.[$plugin_name].meta.plugin_id` | Unique identifier of the plugin.
 `ai.[$plugin_name].meta.llm_latency` | The time in ms it took the llm provider to generate the full response.
-`ai.[$plugin_name].cache.cache_status` | The cache status, balie could be Hit, Miss. Bypass or Refresh.
+`ai.[$plugin_name].cache.cache_status` | The cache status could be Hit, Miss. Bypass or Refresh.
 `ai.[$plugin_name].cache.fetch_latency` | The time in ms it took the return a cache response.
 `ai.[$plugin_name].cache.embeddings_provider` | For semantic caching, the provider used to generate the embeddings.
 `ai.[$plugin_name].cache.embeddings_model` | For semantic caching, the model used to generate the embeddings.
