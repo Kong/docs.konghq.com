@@ -41,11 +41,23 @@ dashboard: [https://grafana.com/grafana/dashboards/21162-kong-cx-ai/](https://gr
 ## Available metrics
 
 - **AI Requests**: AI request sent to LLM providers.
-  These are available per provider, model, cache, database name (if cached), and workspace.
+  These are available per provider, model, cache, database name (if cached),
+  embeddings provider (if cached), embeddings model (if cached), and workspace.
 - **AI Cost:**: AI Cost charged by LLM providers.
-  These are available per provider, model, cache, database name (if cached), and workspace.
+  These are available per provider, model, cache, database name (if cached),
+  embeddings provider (if cached), embeddings model (if cached), and workspace.
 - **AI Tokens** AI Tokens counted by LLM providers.
-  These are available per provider, model, cache, database name (if cached), token type, and workspace.
+  These are available per provider, model, cache, database name (if cached),
+  embeddings provider (if cached), embeddings model (if cached), token type, and workspace.
+- **AI LLM Latency** Time taken to return a response by LLM providers.
+  These are available per provider, model, cache, database name (if cached),
+  embeddings provider (if cached), embeddings model (if cached), and workspace.
+- **AI Cache Fetch Latency** Time taken to return a response from the cache.
+  These are available per provider, model, cache, database name (if cached),
+  embeddings provider (if cached), embeddings model (if cached), and workspace.
+- **AI Cache Embeddings Latency** Time taken to generate embedding during the cache.
+  These are available per provider, model, cache, database name (if cached),
+  embeddings provider (if cached), embeddings model (if cached), and workspace.
 
 AI metrics are disabled by default as it may create high cardinality of metrics and may
 cause performance issues:
@@ -67,16 +79,29 @@ Connection: keep-alive
 Access-Control-Allow-Origin: *
 
 {% if_version gte:3.0.x %}
-# HELP ai_requests_total AI requests total per ai_provider in Kong
-# TYPE ai_requests_total counter
-ai_requests_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1"} 100
-# HELP ai_cost_total AI requests cost per ai_provider/cache in Kong
-# TYPE ai_cost_total counter
-ai_cost_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1"} 50
-# HELP ai_tokens_total AI tokens total per ai_provider/cache in Kong
-# TYPE ai_tokens_total counter
-ai_tokens_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",token_type="input",workspace="workspace1"} 1000
-ai_tokens_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",token_type="output",workspace="workspace1"} 2000
+# HELP ai_llm_requests_total AI requests total per ai_provider in Kong
+# TYPE ai_llm_requests_total counter
+ai_llm_requests_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1"} 100
+# HELP ai_llm_cost_total AI requests cost per ai_provider/cache in Kong
+# TYPE ai_llm_cost_total counter
+ai_llm_cost_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1"} 50
+# HELP ai_llm_provider_latency AI latencies per ai_provider in Kong
+# TYPE ai_llm_provider_latency bucket
+ai_llm_provider_latency_ms_bucket{ai_provider="provider1",ai_model="model1",cache_status="",vector_db="",embeddings_provider="",embeddings_model="",workspace="workspace1",le="+Inf"} 2
+# HELP ai_llm_tokens_total AI tokens total per ai_provider/cache in Kong
+# TYPE ai_llm_tokens_total counter
+ai_llm_tokens_total{ai_provider="provider1",ai_model="model1",cache_status="",vector_db="",embeddings_provider="",embeddings_model="",token_type="prompt_tokens",workspace="workspace1"} 1000
+ai_llm_tokens_total{ai_provider="provider1",ai_model="model1",cache_status="",vector_db="",embeddings_provider="",embeddings_model="",token_type="completion_tokens",workspace="workspace1"} 2000
+ai_llm_tokens_total{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",token_type="total_tokens",workspace="workspace1"} 3000
+# HELP ai_cache_fetch_latency AI cache latencies per ai_provider/database in Kong
+# TYPE ai_cache_fetch_latency bucket
+ai_cache_fetch_latency{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1",le="+Inf"} 2
+# HELP ai_cache_embeddings_latency AI cache latencies per ai_provider/database in Kong
+# TYPE ai_cache_embeddings_latency bucket
+ai_cache_embeddings_latency{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1",le="+Inf"} 2
+# HELP ai_llm_provider_latency AI cache latencies per ai_provider/database in Kong
+# TYPE ai_llm_provider_latency bucket
+ai_llm_provider_latency{ai_provider="provider1",ai_model="model1",cache_status="hit",vector_db="redis",embeddings_provider="openai",embeddings_model="text-embedding-3-large",workspace="workspace1",le="+Inf"} 2
 {% endif_version %}
 ```
 
