@@ -7,11 +7,28 @@ content_type: reference
 You can change the log level of {{site.base_gateway}} dynamically, without restarting {{site.base_gateway}}, using the Admin API's `/debug` endpoints.
 This set of endpoints can be protected using [RBAC](/gateway/api/admin-ee/latest/#/rbac/post-rbac-roles-name_or_id-endpoints) and changes in log level are reflected in the [audit log](/gateway/{{page.release}}/kong-enterprise/audit-log/).
 
-The log level change is propagated to all NGINX worker nodes in a traditional cluster, including the newly spawned workers.
+{% if_version gte:3.8.x %} 
+You can dynamically change the following log levels in traditional and hybrid clusters:
+* The control plane
+* A single data plane nodes in a cluster 
+* All the data plane nodes in a cluster (without affecting the control plane log level)
+
+In addition, {{site.base_gateway}} saves and preserves the log level settings of each data plane node as part of its configuration. Changes to the log level for a specific data plane node are remembered and applied consistently, even across reboots or state changes.
+{% endif_version %}
+
+The log level change is propagated to all NGINX worker nodes{% if_version lte:3.7.x %}in a traditional cluster{% endif_version %}, including the newly spawned workers.
+
+{% if_version gte:3.8.x %} 
+Dynamic log levels can help in the following use cases:
+* Troubleshoot {{site.base_gateway}} during incidents by enabling debug level logging as you narrow down the issue
+* In the event of data plane nodes behaving badly and entering a crash loop, you can use stateful setting to ensure the control plane is passing the appropriate log setting  
+* Enable verbose logging during upgrades or major production roll out
+* API teams can temporarily enable verbose logging to identify potential issues
+{% endif_version %}
 
 {:.note}
 > **Notes:**
-> * The `debug` endpoints **do not** work for hybrid mode data planes. They can only be used for [control plane nodes](#manage-new-nodes-in-the-cluster).
+> {% if_version lte:3.7.x %}* The `debug` endpoints **do not** work for hybrid mode data planes. They can only be used for [control plane nodes](#manage-new-nodes-in-the-cluster).{% endif_version %}
 > * Changing the log level to `debug` in a production environment can rapidly fill up the disk.
 > After finishing debug logging, switch back to a higher level like `notice` or use a `timeout` parameter in the request query string.
 > **The default timeout for dynamically set log levels is 60 seconds**.
@@ -35,7 +52,7 @@ If you have the appropriate permissions, this request returns information about 
 ```
 
 {:.important}
-> It is not possible to change the log level of the data plane or DB-less nodes.
+> It is not possible to change the log level of the{% if_version lte:3.7.x %} data plane or{% endif_version %} DB-less nodes.
 
 ## Modify the log level for an individual {{site.base_gateway}} node
 
