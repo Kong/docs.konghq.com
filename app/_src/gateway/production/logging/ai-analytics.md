@@ -55,6 +55,7 @@ All log entries include the following attributes:
 
 Each log entry includes the following details:
 
+<!--vale off-->
 Property | Description
 ---------|-------------
 `ai.payload.request` | The request payload.
@@ -74,7 +75,7 @@ Property | Description
 `ai.[$plugin_name].cache.embeddings_provider` | For semantic caching, the provider used to generate the embeddings.
 `ai.[$plugin_name].cache.embeddings_model` | For semantic caching, the model used to generate the embeddings.
 `ai.[$plugin_name].cache.embeddings_latency` | For semantic caching, the time taken to generate the embeddings.
-
+<!--vale on-->
 
 ### Caches Logging
 
