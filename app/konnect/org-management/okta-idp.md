@@ -108,7 +108,7 @@ Create a new application in Okta to manage the {{site.konnect_saas}} account int
        |---------|--------------|-----------------|--------------|
        | groups  | Unspecified  | Matches regex   | .*           |
     1. Click **Next**.
-    1. On the **Feedback** page, select **I’m an Okta customer adding an internal app** and click **Finish**
+    1. On the **Feedback** page, select **I’m an Okta customer adding an internal app** and click **Finish**.
 {% endnavtab %}
 {% endnavtabs %}
 

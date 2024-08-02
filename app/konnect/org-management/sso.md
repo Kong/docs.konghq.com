@@ -61,7 +61,6 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
 
    Requirements:
     * The path must be unique across all {{site.konnect_short_name}} organizations.
-      If your desired path is already taken, you must choose another one.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 
