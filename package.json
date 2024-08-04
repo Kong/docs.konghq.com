@@ -32,7 +32,7 @@
     "lodash": "4.17.21",
     "netlify-cli": "17.33.4",
     "node-fetch": "2.7.0",
-    "postcss-custom-properties": "^13.3.6",
+    "postcss-custom-properties": "^14.0.0",
     "prettier": "3.3.3",
     "sass": "^1.63.6",
     "skeleton-css": "2.0.4",
