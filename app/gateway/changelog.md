@@ -35,7 +35,7 @@ Kong is no longer providing official support for any Kong version running on the
 ### Dependencies
 
 * Bumped `lua-resty-events` to 0.3.0 to fix race condition issues in event delivery at startup.
-* Bumped `lua-resty-healthcheck` to 3.1.0 to fix memory leak issues by reusing a timer for the same target instead of running many timers.
+* Bumped `lua-resty-healthcheck` to 3.1.0 to remove version checks of the `lua-resty-events` lib.
 
 ## 3.7.1.1
 **Release Date** 2024/06/22
@@ -92,7 +92,7 @@ It now ignores records when the RR type differs from that of the query when pars
 ### Dependencies
 
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 * Bumped `lua-resty-jsonschema-rs` to 0.1.5.
 
 ## 3.7.0.0
@@ -541,7 +541,7 @@ _Backported from 3.7.1.2_
 ### Dependencies
 
 * Bumped `lua-resty-events` to 0.3.0 to fix race condition issues in event delivery at startup.
-* Bumped `lua-resty-healthcheck` to 3.1.0 to fix memory leak issues by reusing a timer for the same target instead of running many timers.
+* Bumped `lua-resty-healthcheck` to 3.1.0 to remove version checks of the `lua-resty-events` lib.
 
 ## 3.6.1.6
 **Release Date** 2024/06/22
@@ -620,7 +620,7 @@ _Backported from 3.7.0.0_
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 3.0.1 to 3.0.2 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 * Improved the robustness of `lua-cjson` when handling unexpected input.
 
 ## 3.6.1.4
@@ -922,6 +922,7 @@ using all the upstreams than before.
 pertaining to model and provider usage.
  [#12495](https://github.com/Kong/kong/issues/12495)
 * Added the `ngx_brotli` module to kong prebuild nginx.
+  See the [documentation](/gateway/latest/production/performance/brotli/) to learn how to enable Brotli compression for Kong Gateway.
  [#12367](https://github.com/Kong/kong/issues/12367)
 * You can now pass a primary key as a full entity to DAO functions.
  [#11695](https://github.com/Kong/kong/issues/11695)
@@ -1001,12 +1002,15 @@ Learn more about these plugins in the [AI Gateway quickstart](/gateway/latest/ge
 **Existing plugins**:
 
 * **Consumer groups support**: The following plugins can now be scoped to consumer groups:
-  * ACL
   * IP Restriction
   * Rate Limiting
   * Request Termination
   * Proxy Cache
   * Proxy Cache Advanced
+
+* [**ACL**](/hub/kong-inc/acl/) (`acl`)
+  * The plugin now includes the configuration parameter `include_consumer_groups`, which lets you specify whether
+    Kong consumer groups can be added to allow and deny lists.
 
 * [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
   * This plugin now supports using self-signed certificates via the `CONTROLLER_CERTIFICATE_FILE`
@@ -1347,7 +1351,7 @@ The API now only shows workspaces that a user has access to.
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
 * Bumped `lua-resty-events` to 0.2.1.
-* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 
 ## 3.5.0.4 
 **Release Date** 05/20/2024
@@ -1661,7 +1665,7 @@ both in the Admin API and in Kong Manager.
 - Fixed an issue where the dataplane's log serializer output has workspace name under Hybrid mode.
 
 #### Default
-- Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature.
+- Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availability detection feature.
 
 #### Configuration
 - Respect custom `proxy_access_log`. [#7435](https://github.com/Kong/kong/issues/7435)
@@ -2038,7 +2042,7 @@ _Backported from 3.7.1.0_
 ### Dependencies
 
 * Bumped `lua-resty-azure` from 1.4.1 to 1.5.0 to refine some error logging.
-* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to reduce active healthcheck timer usage.
+* Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
  
 ## 3.4.3.8
 **Release Date** 2024/05/16
@@ -2419,7 +2423,7 @@ and Kong Gateway will try to control the concurrency when exporting the config.
  [#7483](https://github.com/Kong/kong/issues/7483)
 * Correctly invalidate caches based on names and IDs for consumer groups.
 * Eliminated the asynchronous timer in syncQuery() to prevent hang risk.
-* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature.
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availability detection feature.
 
 #### Admin API
 
@@ -5374,6 +5378,21 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+## 2.8.4.12
+**Release Date** 2024/07/29
+
+### Breaking changes and deprecations
+
+* Debian 10 and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
+As of this patch, Kong is not building Kong Gateway 2.8.x installation packages or Docker images for these operating systems.
+Kong is no longer providing official support for any Kong version running on these systems.
+
+### Fixes
+
+* AWS2 x86_64 is now cross-built.
+* Cleaned up build code for deprecated packages.
+* Made the RPM package relocatable.
 
 ## 2.8.4.11
 **Release Date** 2024/06/22
