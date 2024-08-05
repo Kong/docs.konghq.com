@@ -4,26 +4,13 @@
 
 ## Week 31
 
-### [Add clarifying statement about private dev portals](https://github.com/Kong/docs.konghq.com/pull/7708) (2024-07-31)
+### [Fix: Add clarifying statement about private dev portals](https://github.com/Kong/docs.konghq.com/pull/7708) (2024-07-31)
 
 The prior sentence states that `and are discoverable on the internet` for Public Dev Portals. It seems like it would be good to  explicit that private are not (which is just an assumption I made)
 
 #### Modified
 
 - https://docs.konghq.com/konnect/dev-portal/create-dev-portal
-
-
-### [typo fix: availibilty to availability](https://github.com/Kong/docs.konghq.com/pull/7706) (2024-07-31)
-
-<!-- What did you change and why? -->
-
-Changed typo `availibilty` to `availability`.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-#### Modified
-
-- https://docs.konghq.com/gateway/changelog
 
 
 ### [Fix: Hardcode gateway version in centos doc](https://github.com/Kong/docs.konghq.com/pull/7703) (2024-07-31)
@@ -35,7 +22,7 @@ As of 2.8.4.12, we are no longer building Centos packages for Gateway 2.8. Chang
 - https://docs.konghq.com/gateway/2.8.x/install-and-run/centos
 
 
-### [(feat/refresh): added release notes for new refresh button](https://github.com/Kong/docs.konghq.com/pull/7701) (2024-07-30)
+### [Feat: added release notes for new refresh button](https://github.com/Kong/docs.konghq.com/pull/7701) (2024-07-30)
 
 API Requests and Explorer now have a refresh button that allows users to manually refresh/fetch data without a full page site reload. It also preserves all filters.
 
@@ -76,11 +63,9 @@ Addresses https://konghq.atlassian.net/browse/DOCU-3911.
 - https://docs.konghq.com/gateway/changelog
 
 
-### [Docs(ai): Add Cost strategy to Ai Rate Limiting plugin ](https://github.com/Kong/docs.konghq.com/pull/7690) (2024-08-02)
+### [Feat: Add Cost strategy to Ai Rate Limiting plugin ](https://github.com/Kong/docs.konghq.com/pull/7690) (2024-08-02)
 
 Add Cost strategy to Ai Rate Limiting plugin 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
