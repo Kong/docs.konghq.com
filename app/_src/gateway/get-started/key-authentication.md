@@ -22,7 +22,7 @@ Common authentication methods include:
 
 With {{site.base_gateway}} controlling authentication, requests won't reach upstream services unless the client has successfully
 authenticated. This means upstream services process pre-authorized requests, freeing them from the 
-cost of authentication, which is a savings in compute time *and* development effort.
+cost of authentication, which reduces computing time *and* development effort.
 
 {{site.base_gateway}} has visibility into all authentication attempts, which provides the ability to build 
 monitoring and alerting capabilities supporting service availability and compliance. 
