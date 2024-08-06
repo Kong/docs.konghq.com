@@ -922,6 +922,7 @@ using all the upstreams than before.
 pertaining to model and provider usage.
  [#12495](https://github.com/Kong/kong/issues/12495)
 * Added the `ngx_brotli` module to kong prebuild nginx.
+  See the [documentation](/gateway/latest/production/performance/brotli/) to learn how to enable Brotli compression for Kong Gateway.
  [#12367](https://github.com/Kong/kong/issues/12367)
 * You can now pass a primary key as a full entity to DAO functions.
  [#11695](https://github.com/Kong/kong/issues/11695)
@@ -1664,7 +1665,7 @@ both in the Admin API and in Kong Manager.
 - Fixed an issue where the dataplane's log serializer output has workspace name under Hybrid mode.
 
 #### Default
-- Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature.
+- Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availability detection feature.
 
 #### Configuration
 - Respect custom `proxy_access_log`. [#7435](https://github.com/Kong/kong/issues/7435)
@@ -2422,7 +2423,7 @@ and Kong Gateway will try to control the concurrency when exporting the config.
  [#7483](https://github.com/Kong/kong/issues/7483)
 * Correctly invalidate caches based on names and IDs for consumer groups.
 * Eliminated the asynchronous timer in syncQuery() to prevent hang risk.
-* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature.
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availability detection feature.
 
 #### Admin API
 

@@ -2,6 +2,11 @@
 title: AI Gateway
 ---
 
+{% assign gatewayApiVersion = "v1beta1" %}
+{% if_version gte:1.1.x %}
+{% assign gatewayApiVersion = "v1" %}
+{% endif_version %}
+
 The `AIGateway` CRD is an opinionated CRD to simplify getting started with [Kong's AI capabilities](https://konghq.com/products/kong-ai-gateway).
 
 `AIGateway` allows you to configure `largeLanguageModels` and will translate the configuration in to `Gateway`, `HTTPRoute` and `KongPlugin` resources automatically. 
@@ -36,7 +41,7 @@ After providing authentication credentials, create a `GatewayClass` and `AIGatew
 echo '
 ---
 kind: GatewayClass
-apiVersion: gateway.networking.k8s.io/v1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 metadata:
   name: kong-ai-gateways
 spec:

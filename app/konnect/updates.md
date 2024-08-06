@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
+## August 2024
+**General Availability of API Requests**
+: Announcing the general availability of [API Requests](/konnect/analytics/api-requests/). API Requests provide detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
+
 ## July 2024
 
 
@@ -29,10 +34,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : {{site.konnect_short_name}} now supports multiple Dev Portals. Users can create multiple Dev Portals with the same functionality to better segment their customers, brands, and API product experiences. For more information, see [Create Dev Portal](/konnect/dev-portal/create-dev-portal).
 
 **Manage control plane analytics data ingestion**
-: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
+: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending on the Konnect Advanced Analytics app. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
 
-: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Analytics** toggle.
-
+: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Advanced Analytics** toggle.
 
 ## May 2024
 
@@ -50,8 +54,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2024
 
-
 **Dedicated Cloud Gateways**
+
 : You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
 
 : Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.

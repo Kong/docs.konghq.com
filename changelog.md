@@ -2,6 +2,75 @@
 
 <!--vale off-->
 
+## Week 31
+
+### [Fix: Add clarifying statement about private dev portals](https://github.com/Kong/docs.konghq.com/pull/7708) (2024-07-31)
+
+The prior sentence states that `and are discoverable on the internet` for Public Dev Portals. It seems like it would be good to  explicit that private are not (which is just an assumption I made)
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/create-dev-portal
+
+
+### [Fix: Hardcode gateway version in centos doc](https://github.com/Kong/docs.konghq.com/pull/7703) (2024-07-31)
+
+As of 2.8.4.12, we are no longer building Centos packages for Gateway 2.8. Changing the variables on the 2.8 page to hardcoded so that they don't pick up a version of a package that doesn't exist. The version no longer needs to change dynamically with releases.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/2.8.x/install-and-run/centos
+
+
+### [Feat: added release notes for new refresh button](https://github.com/Kong/docs.konghq.com/pull/7701) (2024-07-30)
+
+API Requests and Explorer now have a refresh button that allows users to manually refresh/fetch data without a full page site reload. It also preserves all filters.
+
+![image](https://github.com/user-attachments/assets/cd96d91b-1c24-4a86-89c2-072e10243085)
+
+![image](https://github.com/user-attachments/assets/b1ee98fb-83f5-425f-b3d7-1f4eb685b71f)
+
+Aha ticket: https://konghq.aha.io/features/KP-506
+
+#### Modified
+
+- https://docs.konghq.com/konnect/updates
+
+
+### [Release: Gateway 2.8.4.12](https://github.com/Kong/docs.konghq.com/pull/7693) (2024-07-30)
+
+Changelog and version bump for 2.8.4.12.
+
+Do not merge until the patch goes out.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: Brotli support](https://github.com/Kong/docs.konghq.com/pull/7692) (2024-07-31)
+
+We added Brotli compression support in 3.6 but it was never documented. Adding a short doc on how to enable it.
+
+Notes:
+* I considered adding it to the Nginx directives doc, but there's nothing in there about configuring specific groups of directives for a goal - that topic is a more general thing. 
+* I'm also not sure about putting this under "reference", but honestly, we don't really have a place for content like this at the moment.
+
+Addresses https://konghq.atlassian.net/browse/DOCU-3911.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: Add Cost strategy to Ai Rate Limiting plugin ](https://github.com/Kong/docs.konghq.com/pull/7690) (2024-08-02)
+
+Add Cost strategy to Ai Rate Limiting plugin 
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/overview/
+
 ## Week 30
 
 ### [Update: Add API instructions for finding Konnect hostnames](https://github.com/Kong/docs.konghq.com/pull/7681) (2024-07-25)

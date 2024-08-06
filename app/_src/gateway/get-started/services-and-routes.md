@@ -12,7 +12,7 @@ desired traffic management policies. Two important objects in that model are
 coordinated manner to define the routing path that requests and responses will take 
 through the system.
 
-The high level overview below shows requests arriving at routes and being forward to services,
+The high level overview below shows requests arriving at routes and being forwarded to services,
 with responses taking the opposite pathway:
   
 <!--vale off-->
