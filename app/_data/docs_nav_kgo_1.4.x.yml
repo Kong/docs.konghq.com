@@ -87,6 +87,8 @@ items:
             url: /customization/sidecars/
           - text: Customizing PodTemplateSpec
             url: /customization/pod-template-spec/
+          - text: Defining PodDisruptionBudget for DataPlane
+            url: /customization/pod-disruption-budget/
       - text: Autoscaling Kong Gateway
         url: /guides/autoscaling-kong/
       - text: Autoscaling Workloads
