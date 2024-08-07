@@ -90,7 +90,7 @@ If the configuration is correct, you will see the IdP sign-in page. You can now 
 {% endnavtab %}
 {% endnavtabs %}
 
-## Troubleshooting 
+## Reference
 
 ### Provider specific SAML configuration
 
