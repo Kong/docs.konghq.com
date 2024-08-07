@@ -16,6 +16,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## July 2024
 
+
+**SAML Login support**
+: {{site.konnect_short_name}} now supports [SAML authentication protocol](/konnect/org-management/sso/) for logging in. SAML is an open standard that allows {{site.konnect_short_name}} to delegate authentication to an identity provider (IdP).
+
 **New refresh button in Advanced Analytics**
 : We've introduced a refresh button on selected analytics pages such as API Requests and Explorer, allowing users to view updated data without triggering a full site reload. This feature also preserves applied filters and provides a more seamless user experience.
 

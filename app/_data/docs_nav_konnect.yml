@@ -239,9 +239,9 @@
           url: /org-management/social-identity-login/
         - text: Org Switcher
           url: /org-management/org-switcher/
-        - text: Set up SSO with OIDC
-          url: /org-management/oidc-idp/
-        - text: Set up SSO with Okta
+        - text: Configure Generic SSO
+          url: /org-management/sso/
+        - text: Configure Okta
           url: /org-management/okta-idp/
         - text: Login Sessions Reference
           url: /org-management/sessions-reference/

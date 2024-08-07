@@ -22,6 +22,10 @@
 
 ######################################################################
 
+## Saml SSO
+
+/konnect/org-management/oidc-idp/   /konnect/org-management/sso/
+/konnect/org-management/saml-idp/   /konnect/org-management/sso/
 
 ## Kong Manager
 
