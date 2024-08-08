@@ -2,9 +2,13 @@
 title: Defining PodDisruptionBudget for DataPlane
 ---
 
-`DataPlane` resources can be configured with a `PodDisruptionBudget` to control the number of pods that can be unavailable
-during maintenance. This is useful when you want to ensure that a certain number of pods are always available. See the
-[Specifying a Disruption Budget for your Application](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) guide
+`DataPlane` resources can be configured with a `PodDisruptionBudget` to control:
+- The number or percentage of pods that can be unavailable during maintenance (e.g. rollout).
+- The number or percentage of pods that has to be available during maintenance (e.g. rollout).
+
+This is useful when you want to ensure that a certain number or percentage of pods are always available.
+
+See the [Specifying a Disruption Budget for your Application](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) guide
 for more details on `PodDisruptionBudget` API itself.
 
 ## Creating DataPlane with PodDisruptionBudget
