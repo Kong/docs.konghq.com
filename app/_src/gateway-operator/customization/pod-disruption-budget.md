@@ -31,7 +31,7 @@ spec:
       spec:
         containers:
         - name: proxy
-          image: kong/kong-gateway:3.7
+          image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
 ```
 
 If you leave the `resources.podDisruptionBudget` field empty, {{ site.kgo_product_name }} will not create a
