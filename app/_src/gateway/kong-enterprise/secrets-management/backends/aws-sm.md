@@ -92,7 +92,8 @@ In the following example, `AWSCURRENT` refers to the latest secret version and `
 > **Note:** The slash symbol (`/`) is a valid character for the secret name in AWS SecretsManager. If you want to reference a secret name that starts with a slash or has two consecutive slashes, transform one of the slashes in the name into URL-encoded format. For example:
  *  A secret named `/secret/key` should be referenced as `{vault://aws/%2Fsecret/key}`
  *  A secret named `secret/path//aaa/key` should be referenced as `{vault://aws/secret/path/%2Faaa/key}`
- Since {{site.base_gateway}} tries to resolve the secret reference as a valid URL, using a slash instead of a URL-encoded slash will result in unexpected secret name fetching.
+>
+> Since {{site.base_gateway}} tries to resolve the secret reference as a valid URL, using a slash instead of a URL-encoded slash will result in unexpected secret name fetching.
 
 
 ## Configuration via vaults entity
