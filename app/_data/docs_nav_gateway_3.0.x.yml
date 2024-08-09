@@ -79,6 +79,8 @@ items:
         items:
           - text: Overview
             url: /production/deployment-topologies/
+          - text: Kubernetes Topologies
+            url: /production/deployment-topologies/kubernetes/
           - text: Hybrid Mode
             items:
               - text: Overview
