@@ -1,8 +1,10 @@
 {%- assign path = include.path | default: '/echo' %}
 {%- assign hostname = include.hostname | default: 'kong.example' %}
 {%- assign name = include.name | default: 'echo' %}
+{%- assign namespace = include.namespace | default: '' %}
 {%- assign service = include.service | default: 'echo' %}
 {%- assign port = include.port | default: '1027' %}
+{%- assign ingress_class = include.ingress_class | default: 'kong' %}
 
 {% capture the_code %}
 {% navtabs api %}
@@ -17,12 +19,14 @@ apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
 kind: HTTPRoute
 metadata:
   name: {{ name }}
+  {% unless .namespace == '' %}namespace: {{ namespace }}   {% endunless %}
   annotations:{% if include.annotation_rewrite %}
     konghq.com/rewrite: '{{ include.annotation_rewrite }}'{% endif %}
     konghq.com/strip-path: 'true'
 spec:
   parentRefs:
   - name: kong
+    {% unless .namespace == '' %}namespace: {{ namespace }}{% endunless %}
 {% unless include.skip_host %}  hostnames:
   - '{{ hostname }}'
 {% endunless %}  rules:
@@ -48,7 +52,7 @@ metadata:
     konghq.com/rewrite: '{{ include.annotation_rewrite }}'{% endif %}
     konghq.com/strip-path: 'true'
 spec:
-  ingressClassName: kong
+  ingressClassName: {{ ingress_class }}
   rules:
   - {% unless include.skip_host %}host: {{ hostname }}
     {% endunless %}http:
