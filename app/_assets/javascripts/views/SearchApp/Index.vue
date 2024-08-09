@@ -92,6 +92,14 @@
       </div>
 
       <section class="search-container-results">
+
+        <KAlert
+          show-icon
+          v-if="pageI18n"
+          class="missing-translation-banner"
+          :message=pageI18n.banner
+        />
+
         <ais-hits :class-names="{ 'ais-Hits-item': 'card default' }" >
           <template #item="{ item }">
             <article class="hit">
@@ -154,6 +162,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import {
   AisInstantSearch,
   AisClearRefinements,
@@ -163,6 +172,9 @@ import {
   AisHits,
   AisPagination,
 } from 'vue-instantsearch/vue3/es';
+
+import { KAlert } from '@kong/kongponents'
+import '@kong/kongponents/dist/style.css'
 
 import algoliasearch from 'algoliasearch/lite';
 import NoResults from './NoResults.vue';
@@ -182,7 +194,14 @@ export default {
     AisSearchBox,
     AisHits,
     AisPagination,
-    NoResults
+    NoResults,
+    KAlert
+  },
+  setup() {
+    const pageI18n = ref(window.pageI18n)
+    return {
+      pageI18n
+    }
   },
   data() {
     return {
@@ -241,3 +260,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.missing-translation-banner {
+  background-color: #f2f6fe !important;
+  border-left: solid 3px #3972d5;
+  color: inherit !important;
+  margin-bottom: 1em;
+  padding: 15px;
+  border-radius: 2px;
+}
+
+.missing-translation-banner :deep(.alert-icon-container) {
+  color: #3972d5;
+}
+</style>

@@ -16,7 +16,8 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.metadata['name']} API reference"
+        @page_title ||= I18n.t('hub.page_title.api_reference', locale: translate_to,
+                                                               plugin_name: @release.metadata['name'])
       end
 
       def dropdown_url
@@ -34,7 +35,8 @@ module PluginSingleSource
       end
 
       def breadcrumb_title
-        page_title
+        @breadcrumb_title ||= I18n.t('hub.breadcrumbs.api_reference', locale: translate_to,
+                                                                      plugin_name: @release.metadata['name'])
       end
 
       private
