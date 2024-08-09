@@ -950,6 +950,10 @@ pertaining to model and provider usage.
 * Kong Gateway now uses the values provided by the Request ID header for all request ID fields, for better consistency.
 * Dot keys (for example, `a.b.c`) are now excluded from both audit requests and audit objects, 
 and singular keys (for example, `password`) are excluded recursively.
+* Kong Gateway Enterprise container images are now produced with build provenance and signed using cosign. 
+Signatures and attestations are published to the Docker Hub repository. 
+Build provenance can be [verified by cosign/slsa-verifier](/gateway/3.6.x/kong-enterprise/provenance-verification/) 
+using the published attestations.
 
 #### Kong Manager Enterprise
 
@@ -1970,6 +1974,54 @@ was called multiple times in a request lifecycle.
 * Kong CLI dependencies:
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
+
+
+## 3.4.3.12
+
+### Features
+**Release Date** 2024/08/08
+
+### Deprecations
+
+* Debian 10, CentOS 7, and RHEL 7 reached their End of Life (EOL) dates on June 30, 2024. 
+As of this patch, Kong is not building Kong Gateway 3.7.x installation packages or Docker images for these operating systems.
+Kong is no longer providing official support for any Kong version running on these systems.
+
+### Features
+#### Core
+
+_Backported from 3.6.0.0_
+* Kong Gateway Enterprise container images are now produced with build provenance and signed using cosign. 
+Signatures and attestations are published to the Docker Hub repository. 
+Build provenance can be [verified by cosign/slsa-verifier](/gateway/3.4.x/kong-enterprise/provenance-verification/) 
+using the published attestations.
+
+### Fixes
+#### Core
+
+* The `kong.logrotate` configuration file is no longer overwritten during upgrade.
+
+  This change presents an additional prompt for Debian users upgrading via `apt` and `deb` packages.
+  To accept the defaults provided by Kong in the package, use the following command, adjusting it to 
+  your architecture and the version you're upgrading to: 
+
+  ```sh
+  DEBIAN_FRONTEND=noninteractive apt upgrade kong-enterprise-edition_3.4.3.11_arm64.deb
+  ```
+
+_Backported from 3.7.0.0_
+* Fixed an issue where a new data plane couldn't resolve a Vault reference after the first configuration push. 
+This was happening due to issues with license pre-loading.
+
+#### Plugins
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where, if the `window_size` in a consumer group's overriding config was different from the 
+  `window_size` in the plugin's default config, the rate limiting of that consumer group would fall back to the local strategy.
+
+_Backported from 3.7.0.0_
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed an issue where an exception would be thrown when LDAP search failed.
 
 ## 3.4.3.11
 **Release Date** 2024/06/22
