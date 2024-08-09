@@ -122,7 +122,7 @@
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
-      url: /servicehub/
+      url: /service-catalog/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
