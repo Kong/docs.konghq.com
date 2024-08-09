@@ -1979,7 +1979,7 @@ was called multiple times in a request lifecycle.
 ## 3.4.3.12
 
 ### Features
-**Release Date** 2024/08/09
+**Release Date** 2024/08/08
 
 ### Deprecations
 
