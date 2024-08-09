@@ -4,7 +4,7 @@ content_type: how-to
 ---
 
 To grant developers access to [register an application](/konnect/dev-portal/applications/dev-apps/), you must apply an authentication strategy and enable application registration for an API product version. 
-When you apply an auth strategy, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
+When you apply an authentication strategy, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
 These plugins run inside the data plane to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
 
@@ -33,14 +33,6 @@ Auth Configs are independently configured entities, meaning they can be used by 
 
 Developers are limited to using a single auth strategy per application. For example, they can create an application to register for both Weather v2 and Maps v2, as both employ `okta-oidc`, however, registering for Weather v1 and Weather v2 within the same application isn't possible due to their differing auth configurations.
 
-## Support for any control plane
-
-App registration is fully supported in the `default` control plane when using the application `consumers` and the `acl` plugin. The `default` control plane is the one that is first created in each geo when you create an organization.
-For non-`default` control planes, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
-
-{:.note}
-> **Note:**  Although it can be renamed, the [`default` control plane group](/konnect/gateway-manager/control-plane-groups/) will always be the first and oldest control plane group in each geo.
-
 ## Prerequisites
 
 - [An API product that is versioned and published to a {{site.konnect_short_name}} Dev Portal](/konnect/dev-portal/publish-service).
@@ -55,11 +47,11 @@ For non-`default` control planes, app registration is supported using the `konne
 1. In {% konnect_icon api-product %} **API Products**, select an API product.
 
 1. Click **Product Versions** and select a product version.
-
-  {:.note}
-  > **Note:** If the API product version is in the `default` control plane group, it will
-  instead receive read-only entries for the `acl` and `key-auth` plugins to provide
-  support for {{site.base_gateway}} versions less than 3.0.
+    
+    {:.note}
+    > **Note:** If the API product version is in the `default` control plane group, it will
+    instead receive read-only entries for the `acl` and `key-auth` plugins to provide
+    support for {{site.base_gateway}} versions less than 3.0.
 
 1. From the **Dev Portals** tab, click **Publish to Dev Portals**.
 
@@ -69,7 +61,7 @@ For non-`default` control planes, app registration is supported using the `konne
 
 1. Enable **Accept application registrations** for each Dev Portal to allow developers to register their applications to consume this API.
 
-5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) checkbox if you want to automatically approve all application registration requests.
+5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
 
 1. Click **Save**.
 
@@ -89,7 +81,7 @@ If you already have an OIDC Auth Strategy created in the **Application Auth**:
 
 1. Enable **Accept application registrations** for each Dev Portal to allow developers to register their applications to consume this API.
 
-5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) checkbox if you want to automatically approve all application registration requests.
+5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
 
 1. Click **Save**.
 
@@ -120,7 +112,7 @@ If you do _not_ already have an OIDC Auth Strategy created, we will first create
 
 1. Enable **Accept application registrations** for each Dev Portal to allow developers to register their applications to consume this API.
 
-5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) checkbox if you want to automatically approve all application registration requests.
+5. Optional: Click the [**Auto Approve**](/konnect/dev-portal/create-dev-portal/) checkbox if you want to automatically approve all application registration requests.
 
 1. Click **Save**.
 
@@ -153,7 +145,7 @@ In the `default` control plane group, **Credential claim** is used as a **Consum
 
 In {{site.konnect_short_name}} can configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
 
-This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API, you can manage multiple APIs and configure a different DCR on a per API product basis.
+This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API, you can manage multiple APIs and configure a different DCR on a per API product basis. DCR is one type of strategy for application auth, where {{site.konnect_short_name}} is integrated directly with the IdP to outsource, link, and automate the credential management using that IDP.
 
 Using the [`product-versions`](/konnect/api/portal-management/latest/#/Portal%product%version/#/create-portal-product-version) endpoint, you can link authentication strategies with your API products. 
 
@@ -198,56 +190,3 @@ Executing this request does the following:
 
 {:.note}
 >**Note**: If your API Products are not yet published, you will need to publish the API Product itself in order for the API Product versions to be published to your Dev Portal.
-
-## Disable application registration for an API Product version {#disable}
-
-Disabling application registration ensures Dev Portal developers can no longer request new registrations for the API product version. Existing registrations are not affected.
-To remove a plugin by disabling application registration, follow these steps:
-
-1. Select an API Product from the **API Product** menu
-
-2. Select **Product Versions** to display all of relevant versions
-
-3. Click the version you intend to disable
-
-4. Select **Enabled** under **App Registration**
-
-5. Toggle the **Application Registration Enabled** button to be **False**
-
-6. Click **Save** to apply your changes
-
-## Remove an Auth Strategy from an API Product Version
-
-Removing an auth strategy from a product version removes the plugins that were initially applied when adding the auth strategy to the version. This opens the API traffic directly to any upstream if there are no other plugins to control request traffic.
-
-To remove the auth strategy and open up API traffic, follow these steps:
-
-1. Select an API Product from the **API Product** menu
-
-2. Select **Product Versions** to display all of relevant versions
-
-3. Click the version you intend to remove the auth strategy from
-
-4. Select **Enabled** under **App Registration**
-
-5. Remove any auth strategy selection
-
-6. Click **Save** to apply your changes. Note: removing the auth strategy will also disable application registration for the product version.
-
-You can
-[re-enable application registration](/konnect/dev-portal/applications/enable-app-reg)
-at any time.
-
-### Differences between control plane groups
-
-The `konnect-application-auth` plugin manages access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is used in every non-`default` control plane group. 
-
-In the `default` control plane group, applications are linked to {{site.base_gateway}} consumers and use the `acl` plugin to control access between an application’s consumers and an API product version. For all other control planes, applications are not linked to {{site.base_gateway}} consumers.
-
-### Known limitations
-
-The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0 or later. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your API product version that is linked to a Gateway service in the `default` group, which still supports consumer mapping with the `acl` plugin.
-
-The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default control plane group won't support rate limiting plugins. This will be addressed in a future release.
-
-If you don't use any rate limiting plugins, we recommend upgrading your data plane nodes to {{site.base_gateway}} version 3.0 or later to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.
