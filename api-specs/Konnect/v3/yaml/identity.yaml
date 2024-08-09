@@ -1426,6 +1426,10 @@ components:
                 type: boolean
                 example: false
                 description: The organization has OIDC disabled.
+              saml_auth_enabled:
+                type: boolean
+                example: false
+                description: The organization has SAML disabled.
               idp_mapping_enabled:
                 type: boolean
                 example: true
@@ -1456,9 +1460,9 @@ components:
               $ref: '#/components/examples/400-systems-team-modified'
             Password Complexity:
               $ref: '#/components/examples/400-password-complexity'
-            Authentication Settings cannot be both Disabled:
+            Authentication Settings cannot be all Disabled:
               $ref: >-
-                #/components/examples/400-authentication-settings-cannot-be-both-disabled
+                #/components/examples/400-authentication-settings-cannot-be-all-disabled
             OIDC needs an IdP configuration:
               $ref: '#/components/examples/400-oidc-auth-enabled-needs-idp'
             IdP configuration is required:
@@ -2870,6 +2874,10 @@ components:
                 type: boolean
                 example: false
                 description: The organization has OIDC disabled.
+              saml_auth_enabled:
+                type: boolean
+                example: false
+                description: The organization has SAML disabled.
               idp_mapping_enabled:
                 type: boolean
                 example: true
@@ -3717,16 +3725,21 @@ components:
         invalid_parameters:
           - field: teamID
             reason: system teams cannot be modified
-    400-authentication-settings-cannot-be-both-disabled:
+    400-authentication-settings-cannot-be-all-disabled:
       value:
         status: 400
         title: Bad Request
         instance: konnect:trace:6644808935508571943
         invalid_parameters:
           - field: oidc_auth_enabled
-            reason: cannot be disabled when basic auth is also disabled
+            reason: cannot be disabled when both basic auth and SAML are also disabled
           - field: basic_auth_enabled
-            reason: cannot be disabled when OIDC is also disabled
+            reason: cannot be disabled when both OIDC and SAML are also disabled
+          - field: saml_auth_enabled
+            reason: cannot be disabled when both OIDC and basic auth are also disabled
+        detail: >-
+          Atleast one of the authentication schemes from basic, oidc or saml
+          needs to be enabled
     400-oidc-auth-enabled-needs-idp:
       value:
         status: 400
@@ -3927,12 +3940,14 @@ components:
     Get-Authentication-Settings:
       value:
         oidc_auth_enabled: true
+        saml_auth_enabled: false
         basic_auth_enabled: false
         idp_mapping_enabled: false
         konnect_mapping_enabled: true
     Update-Authentication-Settings:
       value:
         oidc_auth_enabled: false
+        saml_auth_enabled: false
         basic_auth_enabled: true
         idp_mapping_enabled: false
         konnect_mapping_enabled: true
