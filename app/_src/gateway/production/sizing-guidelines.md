@@ -7,8 +7,13 @@ This document discusses the performance characteristics of
 resource allocation based on expected {{site.base_gateway}} configuration and
 traffic patterns.
 
-These recommendations are a baseline guide only. Specific tuning or
-benchmarking efforts should be undertaken for performance-critical environments.
+These recommendations are a baseline guide only. 
+{% if_version gte:3.4.x %}
+Specific [tuning or benchmarking efforts](/gateway/{{page.release}}/production/performance/benchmark/) 
+should be undertaken for performance-critical environments.
+{% else %}
+Specific tuning or benchmarking efforts should be undertaken for performance-critical environments.
+{% endif_version %}
 
 ## General resource guidelines
 
