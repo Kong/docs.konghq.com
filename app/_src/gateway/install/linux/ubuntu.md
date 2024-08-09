@@ -92,23 +92,28 @@ You will need to set one up after installation.
 {% navtabs %}
 {% navtab Package %}
 
-Install {{site.base_gateway}} on Ubuntu from the command line.
-
-1. Download the Kong package.
-
-    {% if_version gte:3.4.x %}
-    We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. The following command assumes you're running `jammy`. 
-    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
-    {% endif_version %}
-    {% if_version lte:3.3.x %}
-    We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. The following command assumes you're running `jammy`. 
-    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
-    {% endif_version %}
-
 {% assign ubuntu_flavor = "jammy" %}
 {% if page.release == "3.0.x" %}
 {% assign ubuntu_flavor = "bionic" %}
 {% endif %}
+
+Install {{site.base_gateway}} on Ubuntu from the command line.
+
+1. Download the Kong package.
+
+    {% if_version gte:3.7.x %}
+    {% assign ubuntu_flavor = "noble" %}
+    We currently package {{ site.base_gateway }} for Ubuntu Focal, Jammy, and Noble. The following command assumes you're running `{{ubuntu_flavor}}`. 
+    If you are using a different release, replace `{{ubuntu_flavor}}` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% endif_version %}
+    {% if_version gte:3.4.x lte:3.6.x %}
+    We currently package {{ site.base_gateway }} for Ubuntu Focal, and Jammy. The following command assumes you're running `{{ubuntu_flavor}}`. 
+    If you are using a different release, replace `{{ubuntu_flavor}}` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% endif_version %}
+    {% if_version lte:3.3.x %}
+    We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. The following command assumes you're running `{{ubuntu_flavor}}`. 
+    If you are using a different release, replace `{{ubuntu_flavor}}` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% endif_version %}
 
 {% capture download_package %}
 {% navtabs_ee codeblock %}
@@ -158,13 +163,17 @@ Install the APT repository from the command line.
 
 1. Set up the Kong APT repository.
 
-    {% if_version gte:3.4.x %}
-    We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. The following command assumes you're running `jammy`. 
-    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% if_version gte:3.7.x %}
+    We currently package {{ site.base_gateway }} for Ubuntu Focal, Jammy, and Noble. The following command assumes you're running `{{ubuntu_flavor}}`. 
+    If you are using a different release, replace `{{ubuntu_flavor}}` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% endif_version %}
+    {% if_version gte:3.4.x lte:3.6.x %}
+    We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. The following command assumes you're running `{{ubuntu_flavor}}`. 
+    If you are using a different release, replace `{{ubuntu_flavor}}` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
     {% endif_version %}
     {% if_version lte:3.3.x %}
-    We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. The following command assumes you're running `jammy`. 
-    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. The following command assumes you're running `{{ubuntu_flavor}}`. 
+    If you are using a different release, replace `{{ubuntu_flavor}}` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
     {% endif_version %}
     
     ```bash

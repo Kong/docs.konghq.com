@@ -40,6 +40,11 @@ distributions:
     graviton: true
     docker: true
     fips: true
+  - <<: *ubuntu2404
+    arm: true
+    graviton: true
+    docker: true
+    fips: true
 
 third-party:
   datastore:
