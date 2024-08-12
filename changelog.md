@@ -4,37 +4,11 @@
 
 ## Week 32
 
-### [Update key-auth request behaviour matrix](https://github.com/Kong/docs.konghq.com/pull/7737) (2024-08-09)
+### [Fix: Update key-auth request behaviour matrix](https://github.com/Kong/docs.konghq.com/pull/7737) (2024-08-09)
 
 I've read and re-read this section a few times - and I'm pretty sure there's a typo! But my apologies in advance if I've misunderstood the situation.
 
 Kong will return a 401 when the API key is **not** known.
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
-
-<!-- For example, if this change is for an upcoming 3.6 release, enclose your content in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags. 
-
-Use any of the following keys:
-* `gte:<version>` - greater than or equal to a specific version
-* `lte:<version>` - less than or equal to a specific version
-* `eq:<version>` - exactly equal to a specific version
-
-You can do the same for older versions. -->
-
-<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
-
-<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
-
-    review:copyedit: Request for writer review.
-    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-    review:tech: Request for technical review for a docs platform change.
-    review:sme: Request for review from an SME (engineer, PM, etc).
-
-At least one of these labels must be applied to a PR or the build will fail.
--->
 
 #### Modified
 
@@ -79,10 +53,6 @@ https://konghq.atlassian.net/browse/DOCU-4012
 
 ### [chore: add more explanations about aws secret with slash in kong gateway](https://github.com/Kong/docs.konghq.com/pull/7728) (2024-08-09)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 This PR adds a note to show a correct way of referencing secrets that has special slash symbols.
 
 https://konghq.atlassian.net/browse/KAG-5054
@@ -109,13 +79,9 @@ Changelog and version bump for 3.4.3.12
 - https://docs.konghq.com/gateway/changelog
 
 
-### [docs(mesh): document caCert for cert-manager](https://github.com/Kong/docs.konghq.com/pull/7718) (2024-08-06)
+### [Feat: document caCert for cert-manager](https://github.com/Kong/docs.konghq.com/pull/7718) (2024-08-06)
 
 Missing docs for existing feature
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -128,17 +94,6 @@ Missing docs for existing feature
 - https://docs.konghq.com/gateway/3.6.x/get-started/
 - https://docs.konghq.com/gateway/3.7.x/get-started/
 - https://docs.konghq.com/gateway/unreleased/get-started/
-
-
-### [fix: Minor formatting and language changes](https://github.com/Kong/docs.konghq.com/pull/7707) (2024-08-07)
-
-- Added missing word.
-- Added missing space.
-- Fixed wording on time frame
-
-#### Modified
-
-- https://docs.konghq.com/konnect/dev-portal/
 
 ## Week 31
 
