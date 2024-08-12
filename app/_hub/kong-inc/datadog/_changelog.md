@@ -1,5 +1,9 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.8.x
+* Added route name to metrics, and allow route-name tag to be customized through the configuration parameter `route_name_tag`.
+ [#13494](https://github.com/Kong/kong/pull/13494)
+
 ### {{site.base_gateway}} 3.6.x
 * Fixed a bug where the plugin wasn't triggered for serviceless routes. 
   The Datadog plugin is now always triggered, and the value of tag `name`(`service_name`) is set as an empty value.
