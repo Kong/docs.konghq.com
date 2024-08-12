@@ -2,6 +2,82 @@
 
 <!--vale off-->
 
+## Week 32
+
+### [Fix: Update key-auth request behaviour matrix](https://github.com/Kong/docs.konghq.com/pull/7737) (2024-08-09)
+
+I've read and re-read this section a few times - and I'm pretty sure there's a typo! But my apologies in advance if I've misunderstood the situation.
+
+Kong will return a 401 when the API key is **not** known.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/key-auth/overview/
+
+
+### [Fix: decK select tag examples](https://github.com/Kong/docs.konghq.com/pull/7735) (2024-08-08)
+
+Fixing the select-tag examples in the decK docs to match real behavior. 
+
+https://konghq.atlassian.net/browse/DOCU-4012
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/get-started/
+- https://docs.konghq.com/gateway/3.1.x/get-started/
+- https://docs.konghq.com/gateway/3.2.x/get-started/
+- https://docs.konghq.com/gateway/3.3.x/get-started/
+- https://docs.konghq.com/gateway/3.4.x/get-started/
+- https://docs.konghq.com/gateway/3.5.x/get-started/
+- https://docs.konghq.com/gateway/3.6.x/get-started/
+- https://docs.konghq.com/gateway/3.7.x/get-started/
+- https://docs.konghq.com/gateway/unreleased/get-started/
+
+
+### [chore: add more explanations about aws secret with slash in kong gateway](https://github.com/Kong/docs.konghq.com/pull/7728) (2024-08-09)
+
+This PR adds a note to show a correct way of referencing secrets that has special slash symbols.
+
+https://konghq.atlassian.net/browse/KAG-5054
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/get-started/
+- https://docs.konghq.com/gateway/3.1.x/get-started/
+- https://docs.konghq.com/gateway/3.2.x/get-started/
+- https://docs.konghq.com/gateway/3.3.x/get-started/
+- https://docs.konghq.com/gateway/3.4.x/get-started/
+- https://docs.konghq.com/gateway/3.5.x/get-started/
+- https://docs.konghq.com/gateway/3.6.x/get-started/
+- https://docs.konghq.com/gateway/3.7.x/get-started/
+- https://docs.konghq.com/gateway/unreleased/get-started/
+
+
+### [Release: Gateway 3.4.3.12](https://github.com/Kong/docs.konghq.com/pull/7727) (2024-08-09)
+
+Changelog and version bump for 3.4.3.12
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: document caCert for cert-manager](https://github.com/Kong/docs.konghq.com/pull/7718) (2024-08-06)
+
+Missing docs for existing feature
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/get-started/
+- https://docs.konghq.com/gateway/3.1.x/get-started/
+- https://docs.konghq.com/gateway/3.2.x/get-started/
+- https://docs.konghq.com/gateway/3.3.x/get-started/
+- https://docs.konghq.com/gateway/3.4.x/get-started/
+- https://docs.konghq.com/gateway/3.5.x/get-started/
+- https://docs.konghq.com/gateway/3.6.x/get-started/
+- https://docs.konghq.com/gateway/3.7.x/get-started/
+- https://docs.konghq.com/gateway/unreleased/get-started/
+
 ## Week 31
 
 ### [Fix: Add clarifying statement about private dev portals](https://github.com/Kong/docs.konghq.com/pull/7708) (2024-07-31)
