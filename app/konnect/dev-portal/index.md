@@ -45,7 +45,4 @@ Each application has its own dashboard, which provides a high-level summary of t
 
 All of these metrics can be viewed within a selected time frame of up to **30 days**, over a period of the last 90 days.
 
-{:.note}
-> Free accounts only have access to a time frame of 24 hours.
-
 
