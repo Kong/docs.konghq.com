@@ -6,7 +6,7 @@ title: Using templates as values
 ## Using templates as values
 
 You can use any of the current request headers, query parameters, captured
-URI groups and shared variables as templates to populate supported config fields.
+URI groups, and shared variables as templates to populate supported config fields.
 
 | Request Parameter | Template
 | ------------- | -----------
