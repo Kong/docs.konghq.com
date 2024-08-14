@@ -109,6 +109,90 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/JWKS'
+  /audit-log-destinations:
+    get:
+      summary: Get Audit Log Destinations
+      description: Returns configuration for the audit log destinations.
+      operationId: get-audit-log-destinations
+      tags: [ Audit Logs ]
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditLogDestinationCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      summary: Create Audit Log Destination
+      description: Creates a configuration for the audit log destination.
+      operationId: create-audit-log-destination
+      tags: [ Audit Logs ]
+      requestBody:
+        $ref: '#/components/requestBodies/CreateAuditLogDestination'
+      responses:
+        '201':
+          $ref: '#/components/responses/AuditLogDestinationSingle'
+        '400':
+          $ref: '#/components/responses/AuditLogDestinationBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /audit-log-destination/{auditLogDestinationId}:
+    parameters:
+      - name: auditLogDestinationId
+        in: path
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: ID of the audit log destination.
+    get:
+      summary: Get Audit Log Destination
+      description: Returns configuration for the audit log destination.
+      operationId: get-audit-log-destination
+      tags: [Audit Logs]
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditLogDestinationSingle'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      summary: Update Audit Log Destination
+      description: Updates configuration for the audit log destination.
+      operationId: update-audit-log-destination
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateAuditLogDestination'
+      tags: [ Audit Logs ]
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditLogDestinationSingle'
+        '400':
+          $ref: '#/components/responses/AuditLogDestinationBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete Audit Log Destination
+      description: Deletes configuration for the audit log destination.
+      operationId: delete-audit-log-destination
+      tags: [ Audit Logs ]
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
   responses:
     AuditLogReplayJob:
@@ -204,7 +288,7 @@ components:
                   - inactive
                 description: >-
                   Current status of a webhook. `active` indicates the webhook is
-                  sending or ready to send requests. 
+                  sending or ready to send requests.
 
                   `inactive` indicates the webhook has been turned off due to
                   failed attempts.
@@ -213,7 +297,7 @@ components:
                 example: true
                 description: >-
                   Configured status of a webhook. `enabled` indicates the client
-                  will accept requests. 
+                  will accept requests.
 
                   `disabled` indicates the client will not accept requests.
               last_attempt_at:
@@ -236,6 +320,30 @@ components:
           examples:
             Get Audit Log Webhook Status:
               $ref: '#/components/examples/Get-Audit-Log-Webhook-Status'
+    AuditLogDestinationSingle:
+      description: Get response for audit log destination
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuditLogDestination'
+          examples:
+            Get Audit Log Destination:
+              $ref: '#/components/examples/Get-Audit-Log-Destination'
+    AuditLogDestinationCollection:
+      description: Get response for audit log destinations
+      content:
+        application/json:
+          schema:
+            type: object
+            title: Audit Log Destinations Response
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditLogDestination'
+          examples:
+            Audit Log Destination Collection:
+              $ref: '#/components/examples/Get-Audit-Log-Destination'
     JWKS:
       description: Get response for the audit log JSON Web Keys
       content:
@@ -251,6 +359,21 @@ components:
             JWKS:
               $ref: '#/components/examples/JWKS'
     WebhookBadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+          examples:
+            Request Format is Invalid:
+              $ref: '#/components/examples/400-request-format-is-invalid'
+            Authorization Cannot be Blank:
+              $ref: '#/components/examples/400-authorization-cannot-be-blank'
+            Endpoint Cannot be Blank:
+              $ref: '#/components/examples/400-endpoint-cannot-be-blank'
+            Endpoint Must be a valid URL:
+              $ref: '#/components/examples/400-endpoint-must-be-valid-url'
+    AuditLogDestinationBadRequest:
       description: Bad Request
       content:
         application/problem+json:
@@ -298,6 +421,15 @@ components:
           examples:
             UnauthorizedExample:
               $ref: '#/components/examples/ForbiddenExample'
+    NotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            NotFoundExample:
+              $ref: '#/components/examples/NotFoundExample'
   requestBodies:
     ReplaceAuditLogReplayJob:
       description: The request schema to replace an audit log replay job.
@@ -375,6 +507,70 @@ components:
               $ref: '#/components/examples/Enable-Audit-Log-Webhook'
             Update Webhook:
               $ref: '#/components/examples/Update-Audit-Log-Webhook'
+    CreateAuditLogDestination:
+      description: The request schema to create an audit log destination.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              endpoint:
+                type: string
+                example: 'https://example.com/audit-logs'
+                description: The endpoint that will receive audit log messages.
+              authorization:
+                type: string
+                example: 'Bearer sometoken'
+                description: The value to include in the `Authorization` header when sending audit logs to the webhook.
+              log_format:
+                type: string
+                example: cef
+                enum: [ cef, json ]
+                description: The output format of each log message.
+                default: cef
+              skip_ssl_verification:
+                type: boolean
+                example: false
+                description: |-
+                  Indicates if the SSL certificate verification of the host endpoint should be skipped when delivering payloads.
+                  We strongly recommend not setting this to 'true' as you are subject to man-in-the-middle and other attacks.
+                  This option should be considered only for self-signed SSL certificates used in a non-production environment.
+                default: false
+          examples:
+            Create Audit Log Destination:
+              $ref: '#/components/examples/Create-Audit-Log-Destination'
+    UpdateAuditLogDestination:
+      description: The request schema to modify an audit log destination.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              endpoint:
+                type: string
+                example: 'https://example.com/audit-logs'
+                description: The endpoint that will receive audit log messages.
+              authorization:
+                type: string
+                example: 'Bearer sometoken'
+                description: The value to include in the `Authorization` header when sending audit logs to the webhook.
+              log_format:
+                type: string
+                example: cef
+                enum: [ cef, json ]
+                description: The output format of each log message.
+                default: cef
+              skip_ssl_verification:
+                type: boolean
+                example: false
+                description: |-
+                  Indicates if the SSL certificate verification of the host endpoint should be skipped when delivering payloads.
+                  We strongly recommend not setting this to 'true' as you are subject to man-in-the-middle and other attacks.
+                  This option should be considered only for self-signed SSL certificates used in a non-production environment.
+                default: false
+          examples:
+            Update Audit Log Destination:
+              $ref: '#/components/examples/Update-Audit-Log-Destination'
   securitySchemes:
     personalAccessToken:
       type: http
@@ -456,6 +652,40 @@ components:
         endpoint: https://example.com/audit-log-json
         log_format: json
         skip_ssl_verification: false
+    Get-Audit-Log-Destinations:
+      value:
+        data:
+          - id: 07ec3858-066b-4629-bdc5-d4aa893b424d
+            endpoint: https://example.com/audit-log
+            log_format: cef
+            skip_ssl_verification: false
+            created_at: '2023-03-20T09:29:14.52Z'
+            updated_at: '2023-03-21T09:29:14.52Z'
+          - id: e4374fdc-1f15-4da9-b2e8-7f13d822efe8
+            endpoint: https://example.com/audit-log
+            log_format: cef
+            skip_ssl_verification: false
+            created_at: '2023-03-20T09:29:14.52Z'
+            updated_at: '2023-03-21T09:29:14.52Z'
+    Get-Audit-Log-Destination:
+      value:
+        id: 07ec3858-066b-4629-bdc5-d4aa893b424d
+        endpoint: https://example.com/audit-log
+        log_format: cef
+        skip_ssl_verification: false
+        created_at: '2023-03-20T09:29:14.52Z'
+        updated_at: '2023-03-21T09:29:14.52Z'
+    Create-Audit-Log-Destination:
+      value:
+        endpoint: https://example.com/audit-log
+        authorization: 'Bearer token'
+        log_format: cef
+        skip_ssl_verification: false
+    Update-Audit-Log-Destination:
+      value:
+        endpoint: https://example.com/audit-log-json
+        log_format: json
+        skip_ssl_verification: false
     Disable-Audit-Log-Webhook:
       value:
         enabled: false
@@ -496,7 +726,47 @@ components:
         title: Forbidden
         instance: kong:trace:2723154947768991354
         detail: You do not have permission to perform this action
+    NotFoundExample:
+      value:
+        status: 404
+        title: Not Found
+        instance: kong:trace:6816496025408232265
+        detail: Not Found
   schemas:
+    AuditLogDestination:
+      title: AuditLogDestination
+      type: object
+      description: Audit Log Destination Schema
+      properties:
+        endpoint:
+          type: string
+          example: 'https://example.com/audit-logs'
+          description: The endpoint that will receive audit log messages.
+        log_format:
+          type: string
+          example: cef
+          enum: [ cef, json ]
+          description: The output format of each log messages.
+          default: cef
+        skip_ssl_verification:
+          type: boolean
+          example: false
+          description: |-
+            Indicates if the SSL certificate verification of the host endpoint should be skipped when delivering payloads.
+          default: false
+        created_at:
+          type: string
+          description: Timestamp when this webhook was created.
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          description: Timestamp when this webhook was last updated. Initial value is 0001-01-01T00:00:0Z.
+          format: date-time
+          readOnly: true
+      example:
+        Get Audit Log Destination:
+          $ref: '#/components/examples/Get-Audit-Log-Destination'
     JWK:
       title: JWK
       type: object
@@ -787,3 +1057,18 @@ components:
               example: kong:trace:1234567890
             detail:
               example: Conflict
+    NotFoundError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 404
+            title:
+              example: Not Found
+            type:
+              example: https://httpstatuses.com/404
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Not found

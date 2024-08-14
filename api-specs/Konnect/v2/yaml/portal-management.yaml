@@ -43,7 +43,7 @@ tags:
     description: >
       Portal Product Versions hold metadata that describes how a Product Version
       is configured for a specific portal.
-        
+
         They contain:
         - Lifecyle and deprecation statuses
         - Application registration settings like auto approve or whether application registration is enabled
@@ -1491,8 +1491,159 @@ paths:
           $ref: '#/components/responses/Forbidden'
       tags:
         - Portal Team Roles
+  /portals/{portalId}/audit-log-replay-job:
+    parameters:
+      - $ref: '#/components/parameters/parameters-PortalId'
+    put:
+      summary: Update Portal Audit Log Replay Job
+      description: Updates a job to re-send audit logs to an portal's webhook.
+      operationId: update-portal-audit-log-replay-job
+      requestBody:
+        $ref: '#/components/requestBodies/ReplacePortalAuditLogReplayJob'
+      tags: [ Portal Audit Logs ]
+      responses:
+        '202':
+          $ref: '#/components/responses/PortalAuditLogReplayJob'
+        '400':
+          $ref: '#/components/responses/PortalReplayJobBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/PortalReplayJobConflict'
+    get:
+      summary: Get Portal Audit Log Replay Job
+      description: Returns the audit log replay job's configuration and status.
+      operationId: get-portal-audit-log-replay-job
+      tags: [ Portal Audit Logs ]
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalAuditLogReplayJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /portals/{portalId}/audit-log-webhook:
+    parameters:
+      - $ref: '#/components/parameters/parameters-PortalId'
+    patch:
+      summary: Update Portal Audit Log Webhook
+      description: Updates the configuration for a webhook to receive audit logs.
+      operationId: update-portal-audit-log-webhook
+      requestBody:
+        $ref: '#/components/requestBodies/UpdatePortalAuditLogWebhook'
+      tags: [ Portal Audit Logs ]
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalAuditLogWebhook'
+        '400':
+          $ref: '#/components/responses/PortalWebhookBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      summary: Get Portal Audit Log Webhook
+      description: Returns configuration for the audit log webhook.
+      operationId: get-portal-audit-log-webhook
+      tags: [ Portal Audit Logs ]
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalAuditLogWebhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /portals/{portalId}/audit-log-webhook/status:
+    parameters:
+      - $ref: '#/components/parameters/parameters-PortalId'
+    get:
+      summary: Get Portal Audit Log Webhook Status
+      description: Returns status of the audit log webhook.
+      operationId: get-portal-audit-log-webhook-status
+      tags: [ Portal Audit Logs ]
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalAuditLogWebhookStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
 components:
   examples:
+    400-request-format-is-invalid:
+      value:
+        status: 400
+        title: Bad Request
+        detail: Could not parse request body
+        instance: 'konnect:trace:3674017986744198214'
+        invalid_parameters:
+          - field: body
+            reason: request format is invalid
+    400-authorization-cannot-be-blank:
+      value:
+        status: 400
+        title: Bad Request
+        detail: Required field missing
+        instance: 'konnect:trace:6644808935508571943'
+        invalid_parameters:
+          - field: authorization
+            reason: cannot be blank
+    400-endpoint-cannot-be-blank:
+      value:
+        status: 400
+        title: Bad Request
+        detail: Required field missing
+        instance: 'konnect:trace:6644808935508571943'
+        invalid_parameters:
+          - field: endpoint
+            reason: cannot be blank
+    400-endpoint-must-be-valid-url:
+      value:
+        status: 400
+        title: Bad Request
+        detail: Invalid endpoint
+        instance: 'konnect:trace:6644808935508571943'
+        invalid_parameters:
+          - field: endpoint
+            reason: must be a valid URL
+    409-job-running:
+      value:
+        status: 409
+        title: Resource Conflict
+        instance: 'konnect:trace:6644808935508571943'
+        detail: A replay job is currently running
+    Update-Portal-Audit-Log-Webhook:
+      value:
+        audit_log_destination_id: 9cb77dc2-ff99-4d47-84ab-7c5c1b3ef939
+    Disable-Portal-Audit-Log-Webhook:
+      value:
+        enabled: false
+    Enable-Portal-Audit-Log-Webhook:
+      value:
+        enabled: true
+    Get-Portal-Audit-Log-Webhook:
+      value:
+        enabled: true
+        audit_log_destination_id: 9cb77dc2-ff99-4d47-84ab-7c5c1b3ef939
+    Get-Portal-Audit-Log-Webhook-Status:
+      value:
+        webhook_enabled: true
+        webhook_status: inactive
+        last_attempt_at: '2023-03-21T09:29:14.52Z'
+        last_response_code: 401
+        last_response_message: Unauthorized
     UpdateTeamExample1:
       value:
         name: IDM - Developers
@@ -3228,6 +3379,51 @@ components:
         instance: kong:trace:6816496025408232265
         detail: Not Found
   requestBodies:
+    ReplacePortalAuditLogReplayJob:
+      description: The request schema to replace a portal audit log replay job.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - start_at
+              - end_at
+            properties:
+              start_at:
+                type: string
+                format: date-time
+                description: |-
+                  The start of a date-time range in RFC3339 format e.g. 2017-07-21T17:32:28Z.
+                  Must be within the last 7 days.
+              end_at:
+                type: string
+                format: date-time
+                description: |-
+                  The end of a date-time range in RFC3339 format e.g. 2017-07-21T17:32:28Z.
+                  Must be within the last 7 days.
+    UpdatePortalAuditLogWebhook:
+      description: The request schema to modify an portal audit log webhook.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                example: true
+                description: Indicates if the data should be sent to the configured destination.
+                default: false
+              audit_log_destination_id:
+                type: string
+                format: uuid
+                description: ID of the audit log destination.
+          examples:
+            Disable Webhook:
+              $ref: '#/components/examples/Disable-Portal-Audit-Log-Webhook'
+            Enable Webhook:
+              $ref: '#/components/examples/Enable-Portal-Audit-Log-Webhook'
+            Update Webhook:
+              $ref: '#/components/examples/Update-Portal-Audit-Log-Webhook'
     PortalUpdateTeam:
       description: Update a team in a portal.
       content:
@@ -3621,6 +3817,118 @@ components:
       in: path
       required: true
   responses:
+    PortalAuditLogReplayJob:
+      description: Response from fetching or updating an portal audit log replay job
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              start_at:
+                type: string
+                format: date-time
+                example: '2017-07-21T17:32:28Z'
+                description: The start of a date-time range. Initial value is 0001-01-01T00:00:0Z.
+              end_at:
+                type: string
+                format: date-time
+                example: '2017-07-21T17:32:28Z'
+                description: The end of a date-time range. Initial value is 0001-01-01T00:00:0Z.
+              status:
+                type: string
+                enum:
+                  [unconfigured, accepted, pending, running, completed, failed]
+                readOnly: true
+              updated_at:
+                type: string
+                description: Timestamp when this job was last updated. Initial value is 0001-01-01T00:00:0Z.
+                format: date-time
+                readOnly: true
+    PortalAuditLogWebhook:
+      description: Get response for portal audit log webhook
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+                example: true
+                description: Indicates if the data should be sent to the configured audit log destination.
+                default: false
+              audit_log_destination_id:
+                type: string
+                format: uuid
+                description: ID of the audit log destination.
+          examples:
+            Get Portal Audit Log Webhook:
+              $ref: '#/components/examples/Get-Portal-Audit-Log-Webhook'
+    PortalAuditLogWebhookStatus:
+      description: Get response for portal audit log webhook status
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              webhook_status:
+                type: string
+                example: active
+                enum: [active, inactive]
+                description: |-
+                  Current status of a webhook. `active` indicates the webhook is sending or ready to send requests.
+                  `inactive` indicates the webhook has been turned off due to failed attempts.
+              webhook_enabled:
+                type: boolean
+                example: true
+                description: |-
+                  Configured status of a webhook. `enabled` indicates the client will accept requests.
+                  `disabled` indicates the client will not accept requests.
+              last_attempt_at:
+                type: string
+                format: date-time
+                example: '2023-03-21T09:29:14.52Z'
+                description: The last time a request was made to the webhook, regardless of outcome.
+              last_response_code:
+                type: integer
+                example: 401
+                description: The last response code received from the webhook.
+              last_response_message:
+                type: string
+                example: Unauthenticated
+                description: The last message received from the webhook. Useful for debugging.
+          examples:
+            Get Audit Log Webhook Status:
+              $ref: '#/components/examples/Get-Portal-Audit-Log-Webhook-Status'
+    PortalWebhookBadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+          examples:
+            Request Format is Invalid:
+              $ref: '#/components/examples/400-request-format-is-invalid'
+            Authorization Cannot be Blank:
+              $ref: '#/components/examples/400-authorization-cannot-be-blank'
+            Endpoint Cannot be Blank:
+              $ref: '#/components/examples/400-endpoint-cannot-be-blank'
+            Endpoint Must be a valid URL:
+              $ref: '#/components/examples/400-endpoint-must-be-valid-url'
+    PortalReplayJobBadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+    PortalReplayJobConflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            Job Running:
+              $ref: '#/components/examples/409-job-running'
     PortalTeamGroupMappingCollection:
       description: A paginated collection of mappings grouped by team ID.
       content:
@@ -6909,7 +7217,7 @@ components:
       maxProperties: 50
       description: >
         Labels store metadata of an entity that can be used for filtering an
-        entity list or for searching across entity types. 
+        entity list or for searching across entity types.
 
 
         Keys must be of length 1-63 characters, and cannot start with "kong",
@@ -7188,7 +7496,7 @@ components:
       nullable: true
       description: >
         Labels store metadata of an entity that can be used for filtering an
-        entity list or for searching across entity types. 
+        entity list or for searching across entity types.
 
 
         Keys must be of length 1-63 characters, and cannot start with "kong",
