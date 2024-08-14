@@ -114,7 +114,7 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 
 ## Configure SSO in {{site.konnect_short_name}}
 
-From the [{{site.konnect_short_name}} portal identity page](https://cloud.konghq.com/portal/portal-settings#identity), click **Configure provider** for **OIDC**, and enter the values from your IdP application.
+From the [{{site.konnect_short_name}} Dev Portal settings](https://cloud.konghq.com/portal/portal-settings), click the **Identity** tab and then click **Configure provider** for **OIDC**. Enter the values from your IdP application.
 
 This table maps the {{site.konnect_short_name}} values to the corresponding IdP values:
 
