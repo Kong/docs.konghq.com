@@ -25,7 +25,7 @@ Keep the following in mind when configuring SSO for Dev Portal:
 {% navtabs %}
 {% navtab Azure %}
 
-1. In [Azure](https://portal.azure.com/), [create an application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate) for {{site.konnect_short_name}}. 
+1. In [Azure](https://portal.azure.com/), [register an application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate) for {{site.konnect_short_name}}. 
 
 1. Enter the Dev Portal [Redirect URI](/konnect/dev-portal/access/) for the **Redirect URI**. 
 
@@ -70,7 +70,7 @@ Keep the following in mind when configuring SSO for Dev Portal:
     re-create them directly in Okta. They can do this by exporting the group in
     question in CSV format, then importing the CSV file to populate the new group.
 
-1. [Add users to the application](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-assign-apps.htm).
+1. [Add users to the Okta application](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-assign-apps.htm).
 
 1. [Test ID token claims](https://developer.okta.com/docs/guides/customize-authz-server/main/#create-claims) and find groups for mapping. Configure the following claims settings:
     * **OAuth/OIDC client**: Enter the client name you previously created for your Okta application
@@ -95,7 +95,7 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
     * **Allowed Callback URLs**: `https://cloud.konghq.com/login`
     * **Grant Types**: Authorization Code
 
-1. [Create a login action in Auth0](https://auth0.com/docs/customize/actions/write-your-first-action#create-an-action) and enter the following in the Actions Code Editor:
+1. Create a login [action in Auth0](https://auth0.com/docs/customize/actions/write-your-first-action#create-an-action) and enter the following in the Actions Code Editor:
     
     ```js
     exports.onExecutePostLogin = async (event, api) => {
