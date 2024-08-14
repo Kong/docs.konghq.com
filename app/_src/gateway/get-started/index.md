@@ -13,7 +13,7 @@ chapter: 1
 [{{site.base_gateway}}](/gateway/latest/) is a lightweight, fast, and flexible cloud-native API gateway. 
 {{site.base_gateway}} sits in front of your service applications, dynamically controlling, analyzing, and 
 routing requests and responses. {{site.base_gateway}} implements your API traffic policies 
-by using a flexible, low-code, plug-in based approach. 
+by using a flexible, low-code, plugin-based approach. 
 
 This tutorial will help you get started with {{site.base_gateway}} by setting up a local installation
 and walking through some common API management tasks. 

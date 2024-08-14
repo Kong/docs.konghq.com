@@ -13,5 +13,13 @@
     {% for item in include.sidenav.nav_items %}
       {% include_cached sidebar/item.html item=item id=forloop.index %}
     {% endfor %}
+    {% if page.extn_publisher == "kong-inc" %}
+      <li>
+        <a id="konnect-cta" href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ page.extn_slug }}" class="sidebar-button" target="_blank">
+          Try it in {{site.konnect_short_name}}
+        </a>
+      </li>
+    {% endif %}
   </ul>
+
 </aside>

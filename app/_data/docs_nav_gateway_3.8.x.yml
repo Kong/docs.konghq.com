@@ -236,12 +236,14 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Performance Testing
+      - text: Performance
         items:
         - text: Performance Testing Benchmarks
           url: /production/performance/performance-testing
         - text: Establish a Performance Benchmark
           url: /production/performance/benchmark
+        - text: Improve performance with Brotli compression
+          url: /production/performance/brotli/
       - text: Logging and Debugging
         items:
           - text: Log Reference
@@ -477,7 +479,7 @@ items:
       - text: Getting Started
         items:
           - text: Introduction
-            url: /plugin-development/get-started/index
+            url: /plugin-development/get-started/
           - text: Set up the Plugin Project
             url: /plugin-development/get-started/setup
           - text: Add Plugin Testing

@@ -44,8 +44,6 @@ paths:
           $ref: '#/components/responses/SearchResponse'
         '400':
           $ref: '#/components/responses/SearchBadRequest'
-      servers:
-        - url: https://global.api.konghq.com/
   /search/types:
     get:
       operationId: get-search-types
@@ -56,8 +54,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/SearchTypesResponse'
-      servers:
-        - url: https://global.api.konghq.com/
 components:
   responses:
     SearchResponse:

@@ -4,13 +4,14 @@ title: Create a Dev Portal
 
 The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services.
 
-You can create both public and private Dev Portals, depending on your use case. Public Dev Portals don't require users to login to see published APIs, and are discoverable on the internet. Private Dev Portals require users to create an account and log in to see published APIs. <!-- commenting out for now: Coming soon, Konnect will support Dev Portals that contain pages that are public _and_ private, allowing the public to browse the publicly available catalog, but requiring users to login to see a full catalog, and begin consuming those APIs.-->
+You can create both public and private Dev Portals, depending on your use case. Public Dev Portals don't require users to login to see published APIs, and are discoverable on the internet. Private Dev Portals require users to create an account and log in to see published APIs, and are not discoverable on the internet. <!-- commenting out for now: Coming soon, Konnect will support Dev Portals that contain pages that are public _and_ private, allowing the public to browse the publicly available catalog, but requiring users to login to see a full catalog, and begin consuming those APIs.-->
 
 When Dev Portal admins require developers to create an account and log in to use the Dev Portal, developers can "self serve" their API consumption. Developers can create applications, register them to their target APIs, and generate credentials to start consuming those APIs.
 
 ## Prerequisites
 
-Configure an [authentication strategy](/konnect/dev-portal/applications/enable-app-reg/) if you plan to use one. This auth strategy will be how developers authenticate when they use your APIs. 
+* Be familiar with the general settings you plan to configure based on the [Dev Portal configuration preparation guide](/konnect/dev-portal/configuration-prep/)
+* Configure an [authentication strategy](/konnect/dev-portal/applications/enable-app-reg/) for your APIs if you plan to use one. This auth strategy will be how developers authenticate when they make API requests. 
 
 ## Steps
 {% navtabs %}

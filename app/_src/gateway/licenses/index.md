@@ -61,9 +61,7 @@ Licenses expire at 00:00 on the date of expiration, relative to the time zone th
 Kong Manager displays a banner with a license expiration warning starting at 15 days before expiration.
 Expiration warnings also appear in [{{site.base_gateway}} logs](#license-expiration-logs).
 
-After the license expires, there's a 30 day grace period. During the grace period, the full functionality of the license is available, but a message will be logged once a day, which includes information on when the functionality will no longer be available.
-
-After the grace period, {{site.base_gateway}} behaves as follows:
+After the license expires, {{site.base_gateway}} behaves as follows:
 
 * Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.release}}/kong-enterprise/) become read-only.
 * The Admin API allows OSS features to continue working and configured {{site.ee_product_name}} features to continue operating in read-only mode.

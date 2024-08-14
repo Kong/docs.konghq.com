@@ -68,8 +68,6 @@ services:
   protocol: http
   read_timeout: 60000
   retries: 5
-  tags:
-  - team-svc1
   write_timeout: 60000
 ```
 
@@ -100,8 +98,6 @@ services:
   protocol: http
   read_timeout: 60000
   retries: 5
-  tags:
-  - team-svc2
   write_timeout: 60000
 ```
 

@@ -63,7 +63,7 @@ complete the following steps to upgrade to version v1.1 of the CRD:
    ```
 
    `--force=true` is necessary because upstream updated the CRD directly for the alpha stage
-   [without preserving the definition of the old version](gwapi-alpha-version-update).
+   [without preserving the definition of the old version][gwapi-alpha-version-update].
 
 2. Update all your manifests to use `v1` instead of `v1alpha2`.
 3. [Upgrade to {{ site.kic_product_name }} v3.2](#upgrade).
