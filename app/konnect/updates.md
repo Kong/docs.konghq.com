@@ -12,6 +12,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## August 2024
 
+**You can now delete the default control plane**
+: In {{site.konnect_saas}}, it is now possible to delete the default control plane.
+
 **SAML Login support**
 : {{site.konnect_short_name}} now supports [SAML authentication protocol](/konnect/org-management/sso/) for logging in. SAML is an open standard that allows {{site.konnect_short_name}} to delegate authentication to an identity provider (IdP). You can choose between OIDC or SAML protocols while setting up Single Sign On for your organization.
 
