@@ -28,6 +28,7 @@ for each node.
 
 ## Control planes
 
+Every region in every organization starts with one default control plane.
 {{site.konnect_short_name}} manages data plane configuration via control planes. 
 
 Control planes come in three types:
@@ -166,8 +167,6 @@ Data plane nodes that are still active when the control plane is deleted will no
 terminated, but they will be orphaned. They will continue processing traffic
 using the last configuration they received until they are either connected to
 a new control plane or manually shut down.
-
-You cannot delete the default control plane.
 
 ## Data plane nodes
 
