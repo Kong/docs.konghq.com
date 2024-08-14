@@ -56,9 +56,6 @@ entity-specific permissions. For more information, see [Administer teams](/konne
 
 ### {{site.base_gateway}} control planes
 
-Every region in every organization starts with one default control plane.
-This control plane can't be deleted, and its status as the default can't be changed.
-
 With {{site.konnect_short_name}} you can configure additional {{site.base_gateway}}
 control planes, each of which will have isolated configuration.
 Use multiple control planes in one {{site.konnect_short_name}} organization to
