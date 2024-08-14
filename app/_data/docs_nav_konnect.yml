@@ -158,8 +158,8 @@
           url: /dev-portal/access-and-approval/add-teams/
         - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
-        - text: Azure OIDC
-          url: /dev-portal/access-and-approval/azure/
+        - text: Configure SSO for Dev Portal
+          url: /dev-portal/access-and-approval/sso/
     - text: Application Lifecycle
       url: /dev-portal/applications/application-overview/
     - text: Register and create an application as a developer
