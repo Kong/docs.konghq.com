@@ -28,7 +28,6 @@ for each node.
 
 ## Control planes
 
-Every region in every organization starts with one default control plane.
 {{site.konnect_short_name}} manages data plane configuration via control planes. 
 
 Control planes come in three types:
@@ -57,6 +56,7 @@ entity-specific permissions. For more information, see [Administer teams](/konne
 
 ### {{site.base_gateway}} control planes
 
+Every region in every organization starts with one default control plane.
 With {{site.konnect_short_name}} you can configure additional {{site.base_gateway}}
 control planes, each of which will have isolated configuration.
 Use multiple control planes in one {{site.konnect_short_name}} organization to
