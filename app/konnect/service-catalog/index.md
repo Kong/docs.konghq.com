@@ -4,15 +4,16 @@ subtitle: Track every service across your architecture
 content-type: explanation
 ---
 
-{{site.konnect_saas}}'s Service Catalog offers a comprehensive catalog of all services running in your organization, both {{site.base_gateway}} services and external services. This catalog is the single source of truth for your organization’s service inventory and their dependencies.
+{{site.konnect_saas}}'s Service Catalog offers a comprehensive catalog of all services running in your organization, both {{site.base_gateway}} services and external integration resources. This catalog is the single source of truth for your organization’s service inventory and their dependencies.
 
 Specifically, Service Catalog addresses the following problems:
 
 * **Service discovery:** Gain visibility into all your services, including unrecognized or undiscovered APIs that live in your organization’s fragmented ecosystems. 
 * **Service ownership:** Keep track of your organization's service ownership by mapping teams and services. 
-* **Service health:** The Service Catalog consolidates key service health metrics into a single view, so you no longer need to check multiple tools (like GitHub and PagerDuty) for recent activity and status. It also helps you quickly identify and reuse existing services, reducing duplication and effort.
+* **Service health:** Consolidate key service health metrics into a single view, so you no longer need to check multiple tools (like GitHub and PagerDuty) for recent activity and status. It also helps you quickly identify and reuse existing services, reducing duplication and effort.
 * **Service governance and policy enforcement:** Enables governance in how services are created and maintained across your company to ensure you adhere to security, compliance, and engineering best practices.
 
+<!-- vale off-->
 {% mermaid %}
 graph LR
   %% Define styles for icons and nodes
@@ -59,6 +60,7 @@ graph LR
   class BillingService serviceCatalog
   class InventoryService serviceCatalog
 {% endmermaid %}
+<!-- vale on-->
 
 > Figure 1: This diagram shows how you can use both external integrations, like GitHub and PagerDuty, as well as built-in integrations like {{site.base_gateway}} to pull resources into Service Catalog. You can then map those resources (like GitHub repositories, PagerDuty services, and {{site.base_gateway}} services) to Service Catalog Services.
 
@@ -67,15 +69,15 @@ graph LR
 | Term | Definition |
 | ---- | ---------- |
 | Service Catalog | The canonical system of record for your organization's services in {{site.konnect_short_name}}. This includes all the interactions between them and with external APIs. |
-| [Service](/gateway/latest/key-concepts/services/) | A service is the top-level entity in the Service Catalog. It typically represents an external upstream API or microservice that's owned by a singular team in your organization. For example, a data transformation microservice, a billing API, and so on. |
-| Integration | These are application integrations, either internal {{site.konnect_short_name}} applications or external applications. When enabled, an integration serves one of two purposes:<ul><li>Allows you to discover new Resources and subsequently create new services based on them. For example: creating a new {{site.konnect_short_name}} service called “Billing” from a GitHub Repository called “billing-repo-public”. In this case, the integration is GitHub and the Resource is the GitHub Repository called “billing-repo-public”.</li><li>Allows you to add helpful contextual information to a service that already exists in your catalog. For example: binding a {{site.base_gateway}} service called “trigger-payment” to a Service Catalog service. In this case, the integration is “Gateway Manager” and the Resource is the “trigger-payment” {{site.base_gateway}} service.</li> |
-| Resource | A Resource represents an entity discovered from an integration that can be mapped to any number of services. For example: a {{site.base_gateway}} or GitHub service. |
+| Service | A Service is the top-level entity in the Service Catalog. It represents what you might consider a “service”, typically defined as an independent system delivering specific capabilities and owned by a singular team in your organization. It is *not* the same as a {{site.base_gateway}} [service](/gateway/latest/key-concepts/services/). |
+| Integration | These are applications, either internal {{site.konnect_short_name}} applications or external applications, that act as sources from which you can ingest Resources. |
+| Resource | Resources are entities that are injested from Integrations. They can range from infrastructure (for example, a database or a cache) to external services (for example, a code repository, CI/CD infrastructure, an on-call system, documentation, or an API spec). Resources can be mapped to one or more Services. |
 
 ## FAQs
 
-<details><summary>How do services map to API products? What is the relationship there?</summary>
+<details><summary>How do Services map to API products? What is the relationship there?</summary>
 {% capture service_mapping %}
-info here 
+Service Catalog Services do not directly map to API products. Rather, a {{site.base_gateway}} service can be mapped to a Service Catalog Service and you can then map the {{site.base_gateway}} service to an API product version in Service Catalog.
 {% endcapture %}
 
 {{ konnect_concepts | markdownify }}
@@ -91,9 +93,9 @@ Navigate to **Resources** in the Service Catalog and click on the service you wa
 
 </details>
 
-<details><summary>How can I identify and reuse existing services?</summary>
+<details><summary>How can I identify and reuse existing Resources?</summary>
 {% capture service_mapping %}
-Service Catalog will pull in any services that match your specified criteria when you enable integrations. 
+Service Catalog will pull in any Resources that match your specified criteria when you enable integrations. 
 {% endcapture %}
 
 {{ konnect_concepts | markdownify }}
@@ -109,7 +111,7 @@ Check the Service Catalog integration settings and data sources for any issues. 
 
 </details>
 
-<details><summary>Can I control who has access to specific services or data in the Service Catalog?</summary>
+<details><summary>Can I control who has access to specific Services or data in the Service Catalog?</summary>
 {% capture service_mapping %}
 Yes, you can configure access controls and manage permissions to Service Catalog by configuring [teams](/konnect/org-management/teams-and-roles/manage/) and [roles](/konnect/org-management/teams-and-roles/roles-reference/).
 {% endcapture %}
