@@ -24,24 +24,34 @@ Use the following diagram to help you determine which Dev Portal settings you'll
 
 {% mermaid %}
 flowchart TD
-    A{Do you want your users to consume your APIs?} --> B(Yes)
-    B --> C{Are your users internal or external?}
-    C --> |internal| D(Use SSO to allow developers to log in)
-    C --> |external| J(Assign roles to developers after they register)
-    C --> |both| K(Multi-portal with roles for external and SSO for internal)
-    A --> E(No)
-    A --> F(Some)
-    E --> G(Assign a view only role)
-    F --> |they can't consume| G
-    F --> |they can consume| C
-    D --> H{How will you manage developer apps?}
+    A{"Do you want your 
+    users to consume 
+    your APIs?"} --> B("Yes") & E("No") & F("Some")
+    B --> C{"Are your users 
+    internal or external?"}
+    C -- internal --> D("Use SSO to allow 
+    developers to 
+    log in")
+    C -- external --> J("Assign roles 
+    to developers 
+    after they register")
+    C -- both --> K("Multi-portal with roles 
+    for external and 
+    SSO for internal")
+    E --> G("Assign a view only role")
+    F -- they can't consume --> G
+    F -- they can consume ---> C
+    D --> H{"How will 
+    you manage 
+    developer apps?"}
     J --> H
     K --> H
-    H --> I(Manually approve or deny apps)
-    H --> L(Automatically approve all apps)
-    I --> M{How will developers authenticate their apps?}
-    M --> N(Dynamic client registration)
-    M --> O(Use default authentication strategy in Konnect)
+    H --> I("Manually approve or deny apps") & L("Automatically approve all apps")
+    I --> M{"How will developers 
+    authenticate 
+    their apps?"}
+    M --> N("Dynamic client registration") & O("Use default authentication 
+    strategy in Konnect")
 
     %% this section defines node interactions
     click D "/konnect/dev-portal/access-and-approval/azure/"
@@ -52,7 +62,3 @@ flowchart TD
     click N "/konnect/dev-portal/applications/dynamic-client-registration/"
     click O "/konnect/dev-portal/applications/enable-app-reg/"
 {% endmermaid %}
-
-## Next steps
-
-Now that you know what your use cases are and which settings you'll need to configure, you can [create your Dev Portal or Dev Portals](/konnect/dev-portal/create-dev-portal). 
