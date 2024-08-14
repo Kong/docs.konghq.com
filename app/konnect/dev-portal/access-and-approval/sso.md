@@ -25,11 +25,9 @@ Keep the following in mind when configuring SSO for Dev Portal:
 {% navtabs %}
 {% navtab Azure %}
 
-1. In [Azure](https://portal.azure.com/), [register an application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate) for {{site.konnect_short_name}}. 
-
-1. Enter the Dev Portal [Redirect URI](/konnect/dev-portal/access/) for the **Redirect URI**. 
-
-1. [Create a client secret](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=client-secret) and save the secret value to configure {{site.konnect_short_name}}.
+1. In [Azure](https://portal.azure.com/), [register an application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate) for {{site.konnect_short_name}}. Configure the following settings:
+    * **Redirect URI**: `https://cloud.konghq.com/login`
+    * Create a client secret and save the secret value.
 
 1. [Use the OIDC well-known discovery endpoint](https://learn.microsoft.com/en-us/azure/active-directory-b2c/secure-api-management?tabs=app-reg-ga#get-a-token-issuer-endpoint) to find and save the `issuer` value. 
     The `issuer` value will be used as the provider URL when configuring SSO in {{site.konnect_short_name}}.
@@ -72,7 +70,7 @@ Keep the following in mind when configuring SSO for Dev Portal:
 
 1. [Add users to the Okta application](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-assign-apps.htm).
 
-1. [Test ID token claims](https://developer.okta.com/docs/guides/customize-authz-server/main/#create-claims) and find groups for mapping. Configure the following claims settings:
+1. Test ID token claims and find groups for mapping. Configure the following claims settings:
     * **OAuth/OIDC client**: Enter the client name you previously created for your Okta application
     * **Grant Type**: Authorization Code
     * **User**: Select an Okta user that is assigned to the {{site.konnect_short_name}} application to test the claim with
@@ -110,7 +108,7 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
    {:.note}
    > **Important:** This section is required because the Auth0 API implementation isn't inline with the OIDC standard for the `updated_at` token claim value.
 
-1. Deploy the action by dragging it from the Start to Complete step in the [Login Flow](https://auth0.com/docs/customize/actions/flows-and-triggers/login-flow).
+1. Deploy the action by dragging it from the Start to Complete step in the [Login Flow](https://auth0.com/docs/customize/actions/write-your-first-action#deploy-the-action).
 {% endnavtab %}
 {% endnavtabs %}
 
