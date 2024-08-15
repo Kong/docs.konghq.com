@@ -121,5 +121,4 @@ Yes, you can configure access controls and manage permissions to Service Catalog
 </details>
 
 ## More information
-* [Publish an API to Dev Portal](/konnect/api-products/productize-service/) - Learn how to create an API product, associate it with your service, and publish it to the Dev Portal.
-* [Create a Dev Portal](/konnect/dev-portal/create-dev-portal/) - Learn more about Dev Portal and how to create one.
+* [Publish an API to Dev Portal](/konnect/api-products/productize-service/) - Learn how to create an API product, associate it with your {{site.base_gateway}} service, and publish it to the Dev Portal.
