@@ -196,6 +196,10 @@ Parameter | Field name                     | Description
 `vaults.config.role_session_name` | **Role Session Name** | The role session name used for role assuming. The default value is `KongVault`.
 {% endif_version -%}
 
+{% if_version gte:3.8.x -%}
+`vaults.config.sts_endpoint_url` | **AWS STS Endpoint URL** | The custom STS endpoint URL used for IAM assume role in AWS Vault. You can specify a complete URL(including the `http/https` scheme). Note that this value will override the default STS endpoint URL, which sould be `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if `AWS_STS_REGIONAL_ENDPOINTS` is set to `regional`(by default). If you are not using private VPC endpoint for STS service, you should not specify this value.
+{% endif_version -%}
+
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
 `vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs.
 `vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired ( using `config.ttl` as the stopping point). This is useful when a vault becomes unreachable, or when a secret is deleted from the vault and isn't replaced immediately. In both cases, gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. Assigning a sufficiently high value to this configuration option is recommended to ensure a seamless transition in case there are unexpected issues with the vault. The default value for `resurrect_ttl` is 1^e8 seconds, which is about 3 years.

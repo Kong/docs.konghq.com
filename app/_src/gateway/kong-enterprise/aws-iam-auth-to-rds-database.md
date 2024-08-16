@@ -83,9 +83,19 @@ If you want to [assume a role](https://docs.aws.amazon.com/STS/latest/APIReferen
 KONG_PG_IAM_AUTH_ASSUME_ROLE_ARN=<role_arn>
 KONG_PG_IAM_AUTH_ROLE_SESSION_NAME=<role_session_name>
 
+# Optional, specify the custom STS endpoint URL used for IAM assume role
+# This value will override the default STS endpoint URL, which sould be
+# `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if
+# `AWS_STS_REGIONAL_ENDPOINTS` is set to `regional`(by default).
+# If you are not using private VPC endpoint for STS service, you should
+# not specify this value
+KONG_PG_IAM_AUTH_STS_ENDPOINT_URL=https://your.endpoint.to.aws.sts.service.amazonaws.com
+
 # For read-only connections, if you need a different role than for read-write
 KONG_PG_RO_IAM_AUTH_ASSUME_ROLE_ARN=<role_arn>
 KONG_PG_RO_IAM_AUTH_ROLE_SESSION_NAME=<role_session_name>
+# Optional, same as KONG_PG_IAM_AUTH_STS_ENDPOINT_URL
+KONG_PG_RO_IAM_AUTH_STS_ENDPOINT_URL=https://your.endpoint.to.aws.sts.service.amazonaws.com
 ```
 
 {% endif_version %}
@@ -113,10 +123,19 @@ If you want to [assume a role](https://docs.aws.amazon.com/STS/latest/APIReferen
 # For read-write connections
 pg_iam_auth_assume_role_arn=<role_arn>
 pg_iam_auth_role_session_name=<role_session_name>
+# Optional, specify the custom STS endpoint URL used for IAM assume role
+# This value will override the default STS endpoint URL, which sould be
+# `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if
+# `AWS_STS_REGIONAL_ENDPOINTS` is set to `regional`(by default).
+# If you are not using private VPC endpoint for STS service, you should
+# not specify this value
+pg_iam_auth_sts_endpoint_url=https://your.endpoint.to.aws.sts.service.amazonaws.com
 
 # For read-only connections, if you need a different role than for read-write
 pg_ro_iam_auth_assume_role_arn=<role_arn>
 pg_ro_iam_auth_role_session_name=<role_session_name>
+# Optional, same as pg_iam_auth_sts_endpoint_url
+pg_ro_iam_auth_sts_endpoint_url=https://your.endpoint.to.aws.sts.service.amazonaws.com
 ```
 
 {% endif_version %}
