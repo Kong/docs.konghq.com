@@ -12,76 +12,35 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 
+
+
+
+## August 2024
+
+**[This is a post  223](https://app.getbeamer.com/kongsandbox/en/this-is-a-post-Oak8Xcyq)**
+: Kong Gateway runs in front of any RESTful API and can be extended through modules and plugins. It’s designed to run on decentralized architectures, including hybrid-cloud and multi-cloud deployments.
+: {:.badge .new}
+: {:.badge .new}
+
+**[GDocs Test: Announcing Kong Insomnia 9.2 with Faker API Support and More](https://app.getbeamer.com/kongsandbox/en/gdocs-test-announcing-kong-insomnia-92-with-faker-api-support-and-more)**
+: Gaby BeitlerSr. Technical PMM We're pleased to announce the general availability of Kong Insomnia 9.2.
+: {:.badge .new}
+
 ## July 2024
-<br>
-<div class="changelog-entries">
-  <div class="changelog-date">July 03</div>
-  <div class="changelog-entry">
-      <div class="changelog-title">
-        <a href="https://app.getbeamer.com/kongsandbox/en/test-badges-post-in-july">Test badges post in July</a>
-      </div>
-      <div class="changelog-description">You can now quickly spin up a dedicated AWS cloud gateway data plane node in Konnect. 
-With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway 
-infrastructure ...</div>
-      <div class="changelog-badges">
-        <span class="badge new"></span>
-        <span class="badge dev-portal"></span>
-  </div>
-  </div>
-</div>
 
+**[This is a post ](https://app.getbeamer.com/kongsandbox/en/this-is-a-post)**
+: Atlassian uses cookies to improve your browsing experience, perform analytics and research, and conduct advertising. Accept all cookies to indicate that you agree to our use of cookies on your device.
+: {:.badge .new}
 
-<div class="changelog-entries">
-  <div class="changelog-date">July 01</div>
-  <div class="changelog-entry">
-      <div class="changelog-title">
-        <a href="https://app.getbeamer.com/kongsandbox/en/test-badges-post-in-july">Test badges post in July</a>
-      </div>
-      <div class="changelog-description">You can now quickly spin up a dedicated AWS cloud gateway data plane node in Konnect. 
-With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway 
-infrastructure ...</div>
-      <div class="changelog-badges">
-        <span class="badge update"></span>
-        <span class="badge dev-portal"></span>
-  </div>
-  </div>
-</div>
-
-
+**[test badges post in July](https://app.getbeamer.com/kongsandbox/en/test-badges-post-in-july)**
+: local hour = os.date("*t").hour if hour >= 8 and hour <= 17 then kong.service.request.set_header("X-Peak","true") else kong.service.request.set_header("X-Off-Peak","true") end
+: {:.badge .deprecation} {:.badge .new} {:.badge .update}
 
 ## June 2024
 
-June 24 **[Announcing Kong Insomnia 9.2 with Faker API Support and More](https://app.getbeamer.com/kongsandbox/en/announcing-kong-insomnia-92-with-faker-api-support-and-more)**
-: Gaby BeitlerSr. Technical PMM We're pleased to ann...
-: {:.badge .new} {:.badge .insomnia} {:.badge .konnect}
+**[Hello World! Love, Konnect + Beamer](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer)**
+: {:.badge .new}
 
-June 05 **[Hello World! Love, Konnect + Beamer](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer)**
-: {:.badge .new} {:.badge .konnect}
-
-
-## June 2024
-
-June 24 **[Announcing Kong Insomnia 9.2 with Faker API Support and More](https://app.getbeamer.com/kongsandbox/en/announcing-kong-insomnia-92-with-faker-api-support-and-more)**
-: Gaby BeitlerSr. Technical PMM We're pleased to ann...
-: {:.badge .new} {:.badge .insomnia} {:.badge .konnect}
-
-June 05 **[Hello World! Love, Konnect + Beamer](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer)**
-: {:.badge .new} {:.badge .konnect}
-
-
-## May 2024
-
-**Gateway 3.7 Support**
-: {{site.konnect_short_name}} now supports the latest {{site.base_gateway}} release version of 3.7.
-: Additionally, the expression router is fully supported in the {{site.konnect_short_name}}. You can now define your routes via expressions, and perform CRUD operations on them.
-
-: See the [Gateway 3.7.0.0 changelog](/gateway/changelog/#3700) for all changes in the {{site.base_gateway}} release.
-
-
-**{{site.konnect_short_name}} Konnect Search Enhancements**
-: The new {{site.konnect_saas}} search enhancements now allows you to to search across 29 entities in {{site.konnect_short_name}}. The search enhancement is made up of an advanced search syntax coupled with a refreshed search bar in the UI and a [Konnect Search API](/konnect/api/search/latest/). 
-
-: For more information, syntax description and use cases, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/reference/search/).
 
 ## April 2024
 

@@ -1,6 +1,7 @@
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const nlp = require('compromise'); // Import the compromise library
 
 
 const apiKey = process.env.BEAMER_API_KEY;
@@ -23,20 +24,35 @@ const monthNames = [
 function cleanHTML(contentHtml) {
     if (!contentHtml) return '';
     return contentHtml
-        .replace(/<[^>]*>/g, '') // Remove HTML taags
-        .replace(/\s+/g, ' ')    // Replace multiple spaces/ newlines with a single space
+        .replace(/<[^>]*>/g, '') // Remove HTML tags
+        .replace(/\s+/g, ' ')    // Replace multiple spaces/newlines with a single space
         .trim();                 // Trim leading and trailing spaces
 }
 
-// Function to clean content and remove newlines
+// Function to summarize content using compromise
+function summarizeContent(content, maxSentences = 2) {
+    const doc = nlp(content);
+    const sentences = doc.sentences().out('array');
+    
+    // Extract and join the first 'maxSentences' sentences
+    const summary = sentences.slice(0, maxSentences).join(' ').trim();
+    return summary;
+}
+
+// Function to clean and summarize content
 function cleanContent(content) {
-    return content.replace(/\s+/g, ' ').trim();
+    const cleanedContent = content.replace(/\s+/g, ' ').trim();
+    return summarizeContent(cleanedContent); // Summarize the cleaned content
 }
 
 function convertCategoryToBadges(category) {
     if (!category) return '';
+    
+    const allowedBadges = ['new', 'update', 'deprecation'];
+    
     return category
         .split(';')
+        .filter(cat => allowedBadges.includes(cat.trim().toLowerCase())) // Filter only allowed categories
         .map(cat => `{:.badge .${cat.trim().replace(/\s+/g, '-').toLowerCase()}}`) // Trim, replace spaces, and convert to lowercase
         .join(' ');
 }
@@ -66,9 +82,9 @@ const req = https.request(options, (res) => {
                 }
 
                 post.translations.forEach(translation => {
-                    if (translation.category.includes('Konnect')) {
+                    // Check if 'konnect' is part of the category
+                    if (translation.category.split(';').some(cat => cat.trim().toLowerCase() === 'konnect')) {
                         let contentPreview = translation.content ? cleanContent(translation.content) : cleanHTML(translation.contentHtml);
-                        contentPreview = contentPreview.slice(0, 50) + (contentPreview.length > 50 ? '...' : '');
                         groupedPosts[monthYear].push({
                             date: formattedDate,
                             title: translation.title,
@@ -85,7 +101,7 @@ const req = https.request(options, (res) => {
             for (const [monthYear, posts] of Object.entries(groupedPosts)) {
                 updatesContent += `## ${monthYear}\n\n`;
                 posts.forEach(post => {
-                    updatesContent += `${post.date} **[${post.title}](${post.postUrl})**\n`;
+                    updatesContent += `**[${post.title}](${post.postUrl})**\n`;
                     if (post.content) {
                         updatesContent += `: ${post.content}\n`;
                     }
