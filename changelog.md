@@ -2,6 +2,27 @@
 
 <!--vale off-->
 
+## Week 33
+
+### [Update _templates.md](https://github.com/Kong/docs.konghq.com/pull/7750) (2024-08-13)
+
+Update the template documentation to add details for using shared variables: 
+https://docs.konghq.com/gateway/latest/plugin-development/pdk/kong.ctx/#kongctxshared
+
+
+This looks to have been added here, https://github.com/Kong/kong-plugin-request-transformer/pull/7, but we lack documentation on how to reference it. Using the documented convention, kong.ctx.shared.foo,  results in errors with "kong" being a nil value.
+
+Tests have shown it successful  using this with the request transformer plugin and route transformer advanced, i.e:
+
+x-name:$((function()     return shared["gruber"] end)())
+
+Where "gruber" has been previously defined as
+kong.ctx.shared.gruber = "myHeader"
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
+
 ## Week 32
 
 ### [Fix: Update key-auth request behaviour matrix](https://github.com/Kong/docs.konghq.com/pull/7737) (2024-08-09)
