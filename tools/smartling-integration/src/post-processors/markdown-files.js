@@ -78,8 +78,75 @@ function processHeadings(fileContent) {
   return modifiedContent;
 }
 
+function processLists(input) {
+  // Split the input into lines
+  let lines = input.split('\n');
+  let ifVersionResult = [];
+  let result = [];
+
+  // Regular expression to match list items with '{% if_version ... -%}' at the end
+  const ifVersionRegex = /^(\s*[*]\s.*)\s+({%\s*if_version\s.*-%\})(\n|\s)?$/;
+  const endIfVersionRegex = /^(\s*[*]\s.*)\s+({%\s*endif_version\s*-%\})(\n|\s)?$/;
+  // Regular expression to match list items (considering possible leading spaces)
+  const listItemRegex = /^(\s*)[*]\s/;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const match = line.match(ifVersionRegex);
+
+    if (match) {
+      ifVersionResult.push(match[1].trimEnd()); // Push the content of the list item
+      // Check the next line to determine indentation
+      const nextLine = lines[i + 1] || '';
+      const nextLineMatch = nextLine.match(listItemRegex);
+
+      if (nextLineMatch) {
+        const indentation = nextLineMatch[1]; // Capture indentation from the next list item
+        ifVersionResult.push(indentation + match[2].trim()); // Apply the indentation to the version tag
+      } else {
+        // If the next line isn't a list item, move the tag to the next line without indentation
+        ifVersionResult.push(match[2].trim());
+      }
+    } else {
+      // Push the line as is if no match is found
+      ifVersionResult.push(line);
+    }
+  }
+
+  lines = ifVersionResult;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const match = line.match(endIfVersionRegex);
+
+    if (match) {
+      result.push(match[1].trimEnd()); // Push the content of the list item
+
+      // Check the next line to determine indentation
+      const nextLine = lines[i + 1] || '';
+      let nextLineMatch = nextLine.match(listItemRegex);
+      if (!nextLineMatch) {
+        nextLineMatch = nextLine.match(/^(\s*){%\s*if_version\s.*-%\}(\n|\s)?$/);
+      }
+
+      if (nextLineMatch) {
+        const indentation = nextLineMatch[1]; // Capture indentation from the next list item
+        result.push(indentation + match[2].trim()); // Apply the indentation to the version tag
+      } else {
+        // If the next line isn't a list item, move the tag to the next line without indentation
+        result.push(match[2].trim());
+      }
+    } else {
+      // Push the line as is if no match is found
+      result.push(line);
+    }
+  }
+  // Join the result array back into a string
+  return result.join('\n');
+}
+
 module.exports = function processMarkdown(fileContent) {
   let processedContent = processHeadings(fileContent);
   processedContent = processTables(processedContent);
+  processedContent = processLists(processedContent);
   return processedContent;
 }
