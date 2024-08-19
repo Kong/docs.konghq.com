@@ -1440,6 +1440,7 @@ components:
           type: string
           description: The name of the API product version specification
           example: oas.yaml
+          pattern: .+(\.yaml|\.yml|\.json)
         content:
           type: string
           description: The contents of the API product version specification

@@ -12,7 +12,7 @@ resources using teams and roles.
 admin can view all registered users in {{site.konnect_short_name}}, but cannot
 edit their team membership from the {{site.konnect_short_name}} side. To manage
 automatically-created users, adjust user permissions through Okta, or
-[adjust team mapping](/konnect/org-management/okta-idp/#map-teams-to-groups).
+[adjust team mapping](/konnect/org-management/okta-idp/).
 
 ### Create a team
 

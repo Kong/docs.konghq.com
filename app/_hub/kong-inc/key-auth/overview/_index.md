@@ -300,7 +300,7 @@ Description | Proxied to upstream service? | Response status code
 --------|-----------------------------|---------------------
 The request has a valid API key. | Yes | 200
 No API key is provided. | No | 401
-The API key is known to {{site.base_gateway}} | No | 401
+The API key is not known to {{site.base_gateway}} | No | 401
 A runtime error occurred. | No | 500
 
 

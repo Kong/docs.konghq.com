@@ -177,4 +177,3 @@ If you want to continue learning about ways to use {{site.konnect_short_name}} t
 
 * [Explorer](/konnect/analytics/explorer/)
 * [Teams reference](/konnect/org-management/teams-and-roles/teams-reference)
-* [Troubleshoot reports](/konnect/analytics/troubleshoot/)

@@ -3,6 +3,11 @@ title: Horizontally autoscale workloads
 badge: enterprise
 ---
 
+{% assign gatewayApiVersion = "v1beta1" %}
+{% if_version gte:1.1.x %}
+{% assign gatewayApiVersion = "v1" %}
+{% endif_version %}
+
 {{ site.kgo_product_name }} can scrape {{ site.base_gateway }} and enrich it with Kubernetes metadata so that it can be used by users to autoscale their workloads.
 
 {% include md/kgo/prerequisites.md version=page.version release=page.release enterprise=true %}
@@ -139,7 +144,7 @@ spec:
       name: kong
 ---
 kind: GatewayClass
-apiVersion: gateway.networking.k8s.io/v1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 metadata:
   name: kong
 spec:
@@ -151,7 +156,7 @@ spec:
     namespace: default
 ---
 kind: Gateway
-apiVersion: gateway.networking.k8s.io/v1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 metadata:
   name: kong
   namespace: default
@@ -162,7 +167,7 @@ spec:
     protocol: HTTP
     port: 80
 ---
-apiVersion: gateway.networking.k8s.io/v1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 kind: HTTPRoute
 metadata:
   name: httproute-echo
@@ -204,7 +209,7 @@ Nevertheless you can follow our guides to integrate {{ site.kgo_product_name }} 
 {{ site.kgo_product_name }} is not able to provide accurate measurements for multi backend Kong services e.g. `HTTPRoute`s that have more than 1 `backendRef`:
 
 ```yaml
-apiVersion: gateway.networking.k8s.io/v1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 kind: HTTPRoute
 metadata:
   name: httproute-testing

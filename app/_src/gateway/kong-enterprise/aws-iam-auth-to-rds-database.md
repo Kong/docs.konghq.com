@@ -36,6 +36,9 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
    
    {:.warning}
    > **Warning:** You **can't** change the value of the environment variables you used to provide the AWS credential after booting {{site.base_gateway}}. Any changes are ignored.
+{% if_version gte:3.8.x %}
+   - If you want to assume a role, make sure the original IAM role that Kong uses has the correct permission to assume the role of the target IAM role, and the target IAM role has the correct permission to connect to the database using IAM authentication.
+{% endif_version %}
 
 - **Assign an IAM policy to the {{site.base_gateway}} IAM role**. For more information, see [Creating and using an IAM policy for IAM database access](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html) in the Amazon RDS documentation.
 
@@ -72,6 +75,21 @@ KONG_PG_IAM_AUTH=off # This line can be omitted because off is the default value
 KONG_PG_RO_IAM_AUTH=on
 ```
 
+{% if_version gte:3.8.x %}
+If you want to [assume a role](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html), also set the following environment variables:
+
+```bash
+# For read-write connections
+KONG_PG_IAM_AUTH_ASSUME_ROLE_ARN=<role_arn>
+KONG_PG_IAM_AUTH_ROLE_SESSION_NAME=<role_session_name>
+
+# For read-only connections, if you need a different role than for read-write
+KONG_PG_RO_IAM_AUTH_ASSUME_ROLE_ARN=<role_arn>
+KONG_PG_RO_IAM_AUTH_ROLE_SESSION_NAME=<role_session_name>
+```
+
+{% endif_version %}
+
 ### Enable AWS IAM authentication in the configuration file
 
 The [`kong.conf` file](/gateway/{{page.release}}/production/kong-conf/) contains the `pg_iam_auth` and `pg_ro_iam_auth` properties.
@@ -87,6 +105,22 @@ To enable AWS IAM authentication in read-only mode, set `pg_ro_iam_auth` to `on`
 ```text
 pg_ro_iam_auth=on
 ```
+
+{% if_version gte:3.8.x %}
+If you want to [assume a role](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html), also set the following configuration parameters:
+
+```bash
+# For read-write connections
+pg_iam_auth_assume_role_arn=<role_arn>
+pg_iam_auth_role_session_name=<role_session_name>
+
+# For read-only connections, if you need a different role than for read-write
+pg_ro_iam_auth_assume_role_arn=<role_arn>
+pg_ro_iam_auth_role_session_name=<role_session_name>
+```
+
+{% endif_version %}
+
 
 {:.note}
 > **Note:** If you enable AWS IAM authentication in the configuration file, you must specify the configuration file with the feature property on when you run the migrations command. For example, `kong migrations bootstrap -c /path/to/kong.conf`.

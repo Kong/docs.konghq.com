@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Portal Management
-  version: 2.1.0
+  version: 2.2.0
   description: The management API for Portals
   contact:
     name: Kong
@@ -151,7 +151,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /portals/{portalId}:
     parameters:
-      - $ref: '#/components/parameters/parameters-PortalId'
+      - name: portalId
+        in: path
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: ID of the portal.
     get:
       summary: Get Portal
       description: >-
@@ -5690,7 +5696,7 @@ components:
         default_application_auth_strategy_id:
           $ref: '#/components/schemas/DefaultApplicationAuthStratID'
         labels:
-          $ref: '#/components/schemas/PortalsLabels'
+          $ref: '#/components/schemas/Labels'
         application_count:
           type: number
           description: Number of applications created in the portal.
@@ -5792,7 +5798,7 @@ components:
         default_application_auth_strategy_id:
           $ref: '#/components/schemas/DefaultApplicationAuthStratID'
         labels:
-          $ref: '#/components/schemas/PortalsLabelsNullable'
+          $ref: '#/components/schemas/Labels'
       example:
         name: DevPortal
         is_public: false
@@ -5878,7 +5884,7 @@ components:
         default_application_auth_strategy_id:
           $ref: '#/components/schemas/DefaultApplicationAuthStratID'
         labels:
-          $ref: '#/components/schemas/PortalsLabelsNullable'
+          $ref: '#/components/schemas/LabelsUpdate'
       example:
         name: Aperture
         is_public: false
@@ -6734,42 +6740,6 @@ components:
         - dark_mode
         - custom
       example: mint_rocket
-    PortalsLabels:
-      title: Labels
-      type: object
-      description: >
-        description: A maximum of 50 user-defined labels are allowed on this
-        resource.
-
-        Keys must not start with kong, konnect, insomnia, mesh, kic or _, which
-        are reserved for Kong.
-
-        Keys are case-sensitive.
-      additionalProperties:
-        type: string
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-._]*[a-z0-9A-Z]+)?$
-        minLength: 1
-        maxLength: 63
-      default: {}
-    PortalsLabelsNullable:
-      nullable: true
-      title: Labels
-      type: object
-      description: >
-        description: A maximum of 50 user-defined labels are allowed on this
-        resource.
-
-        Keys must not start with kong, konnect, insomnia, mesh, kic or _, which
-        are reserved for Kong.
-
-        Keys are case-sensitive.
-      additionalProperties:
-        type: string
-        nullable: true
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-._]*[a-z0-9A-Z]+)?$
-        minLength: 1
-        maxLength: 63
-      default: {}
     StringFieldEqualsFilter:
       title: StringFieldEqualsFilter
       description: Filters on the given string field value by exact match.
@@ -6931,6 +6901,24 @@ components:
       example: '2022-11-04T20:10:06.927Z'
       description: An ISO-8601 timestamp representation of entity update date.
       readOnly: true
+    Labels:
+      title: Labels
+      type: object
+      example:
+        env: test
+      maxProperties: 50
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
     BaseError:
       type: object
       title: Error
@@ -7195,6 +7183,26 @@ components:
               example: kong:trace:1234567890
             detail:
               example: Not found
+    LabelsUpdate:
+      type: object
+      nullable: true
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      example:
+        env: test
+      maxProperties: 50
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
+        nullable: true
+      writeOnly: true
     ConflictError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -7210,24 +7218,6 @@ components:
               example: kong:trace:1234567890
             detail:
               example: Conflict
-    Labels:
-      title: Labels
-      type: object
-      example:
-        env: test
-      maxProperties: 50
-      description: >
-        Labels store metadata of an entity that can be used for filtering an
-        entity list or for searching across entity types. 
-
-
-        Keys must be of length 1-63 characters, and cannot start with "kong",
-        "konnect", "mesh", "kic", or "_".
-      additionalProperties:
-        type: string
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
-        minLength: 1
-        maxLength: 63
     schemas-UUID:
       type: string
       format: uuid
@@ -7375,26 +7365,6 @@ components:
             - self_managed_client_credentials
         auth_methods:
           $ref: '#/components/schemas/AuthMethods'
-    LabelsUpdate:
-      type: object
-      nullable: true
-      description: >
-        Labels store metadata of an entity that can be used for filtering an
-        entity list or for searching across entity types. 
-
-
-        Keys must be of length 1-63 characters, and cannot start with "kong",
-        "konnect", "mesh", "kic", or "_".
-      example:
-        env: test
-      maxProperties: 50
-      additionalProperties:
-        type: string
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
-        minLength: 1
-        maxLength: 63
-        nullable: true
-      writeOnly: true
     ImageDataUri:
       title: ImageDataUri
       type: string
