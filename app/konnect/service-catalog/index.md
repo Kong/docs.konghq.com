@@ -4,11 +4,11 @@ subtitle: Track every service across your architecture
 content-type: explanation
 ---
 
-{{site.konnect_saas}}'s Service Catalog offers a comprehensive catalog of all services running in your organization, both {{site.base_gateway}} services and external integration resources. This catalog is the single source of truth for your organization’s service inventory and their dependencies.
+{{site.konnect_saas}}'s Service Catalog offers a comprehensive catalog of all services running in your organization, both {{site.base_gateway}} services and external integration resources.
 
 Specifically, Service Catalog addresses the following problems:
 
-* **Service discovery:** Gain visibility into all your services, including unrecognized or undiscovered APIs that live in your organization’s fragmented ecosystems. 
+* **Service discovery:** Gain visibility into all your services, including unrecognized or undiscovered APIs in your organization. 
 * **Service ownership:** Keep track of your organization's service ownership by mapping teams and services. 
 * **Service health:** Consolidate key service health metrics into a single view, so you no longer need to check multiple tools (like GitHub and PagerDuty) for recent activity and status. It also helps you quickly identify and reuse existing services, reducing duplication and effort.
 * **Service governance and policy enforcement:** Enables governance in how services are created and maintained across your company to ensure you adhere to security, compliance, and engineering best practices.
@@ -68,10 +68,10 @@ graph LR
 
 | Term | Definition |
 | ---- | ---------- |
-| Service Catalog | The canonical system of record for your organization's services in {{site.konnect_short_name}}. This includes all the interactions between them and with external APIs. |
+| Service Catalog | A comprehensive catalog of all services running in your organization. |
 | Service | A Service is the top-level entity in the Service Catalog. It represents what you might consider a “service”, typically defined as an independent system delivering specific capabilities and owned by a singular team in your organization. It is *not* the same as a {{site.base_gateway}} [service](/gateway/latest/key-concepts/services/). |
-| Integration | These are applications, either internal {{site.konnect_short_name}} applications or external applications, that act as sources from which you can ingest Resources. |
-| Resource | Resources are entities that are injested from Integrations. They can range from infrastructure (for example, a database or a cache) to external services (for example, a code repository, CI/CD infrastructure, an on-call system, documentation, or an API spec). Resources can be mapped to one or more Services. |
+| Integration | These are applications, either internal {{site.konnect_short_name}} applications or external applications, from which you can ingest data. For example, GitHub. |
+| Resource | Resources are entities that are injested from integrations. For example, a GitHub repository. |
 
 ## FAQs
 
