@@ -4,7 +4,7 @@ const path = require('path');
 const nlp = require('compromise'); // Import the compromise library
 
 
-const apiKey = process.env.BEAMER_API_KEY;
+const apiKey = process.env.BEAMER_API_KEY; 
 //const filePath = process.env.FILE_PATH;
 const filePath = __dirname + "/../../app/konnect/updates.md";
 const options = {
@@ -50,11 +50,12 @@ function convertCategoryToBadges(category) {
     
     const allowedBadges = ['new', 'update', 'deprecation'];
     
-    return category
+    const categories = category
         .split(';')
         .filter(cat => allowedBadges.includes(cat.trim().toLowerCase())) // Filter only allowed categories
-        .map(cat => `{:.badge .${cat.trim().replace(/\s+/g, '-').toLowerCase()}}`) // Trim, replace spaces, and convert to lowercase
-        .join(' ');
+        .map(cat => cat.trim().replace(/\s+/g, '-').toLowerCase()); // Trim, replace spaces, and convert to lowercase
+    
+    return categories.map(cat => `<span class="badge ${cat}"></span>`).join(' ');
 }
 
 const req = https.request(options, (res) => {
