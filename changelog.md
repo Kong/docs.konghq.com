@@ -4,7 +4,7 @@
 
 ## Week 33
 
-### [Update _templates.md](https://github.com/Kong/docs.konghq.com/pull/7750) (2024-08-13)
+### [Feat: Document shared variables](https://github.com/Kong/docs.konghq.com/pull/7750) (2024-08-13)
 
 Update the template documentation to add details for using shared variables: 
 https://docs.konghq.com/gateway/latest/plugin-development/pdk/kong.ctx/#kongctxshared
