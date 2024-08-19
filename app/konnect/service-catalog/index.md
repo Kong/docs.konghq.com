@@ -6,13 +6,6 @@ content-type: explanation
 
 {{site.konnect_saas}}'s Service Catalog offers a comprehensive catalog of all services running in your organization, both {{site.base_gateway}} services and external integration resources.
 
-Specifically, Service Catalog addresses the following problems:
-
-* **Service discovery:** Gain visibility into all your services, including unrecognized or undiscovered APIs in your organization. 
-* **Service ownership:** Keep track of your organization's service ownership by mapping teams and services. 
-* **Service health:** Consolidate key service health metrics into a single view, so you no longer need to check multiple tools (like GitHub and PagerDuty) for recent activity and status. It also helps you quickly identify and reuse existing services, reducing duplication and effort.
-* **Service governance and policy enforcement:** Enables governance in how services are created and maintained across your company to ensure you adhere to security, compliance, and engineering best practices.
-
 <!-- vale off-->
 {% mermaid %}
 graph LR
@@ -64,14 +57,23 @@ graph LR
 
 > Figure 1: This diagram shows how you can use both external integrations, like GitHub and PagerDuty, as well as built-in integrations like {{site.base_gateway}} to pull resources into Service Catalog. You can then map those resources (like GitHub repositories, PagerDuty services, and {{site.base_gateway}} services) to Service Catalog Services.
 
+## Service Catalog use cases
+
+| You want to... | Then use... |
+| -------------- | ----------- |
+| Keep track of your organization's service ownership by mapping teams to services. | [{{site.konnect_short_name}} Organization Teams](https://cloud.konghq.comorganization/teams) |
+| Gain visibility into all your services, including unrecognized or undiscovered APIs in your organization.  | [Service Catalog integrations](https://cloud.konghq.com/servicehub/integrations) |
+| Consolidate key service health metrics into a single dashboard, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/servicehub) |
+| Govern how services are created and maintained across your company to adhere to security, compliance, and engineering best practices. | ? |
+
 ## Service Catalog terminology
 
 | Term | Definition |
 | ---- | ---------- |
-| Service Catalog | A comprehensive catalog of all services running in your organization. |
-| Service | A Service is the top-level entity in the Service Catalog. It represents what you might consider a “service”, typically defined as an independent system delivering specific capabilities and owned by a singular team in your organization. It is *not* the same as a {{site.base_gateway}} [service](/gateway/latest/key-concepts/services/). |
 | Integration | These are applications, either internal {{site.konnect_short_name}} applications or external applications, from which you can ingest data. For example, GitHub. |
 | Resource | Resources are entities that are injested from integrations. For example, a GitHub repository. |
+| Service | A Service is a collection of resources in the Service Catalog. It represents what you might consider a “service”, typically defined as an independent system delivering specific capabilities and owned by a singular team in your organization. It is *not* the same as a {{site.base_gateway}} [service](/gateway/latest/key-concepts/services/). For example, a Service Catalog Service could have 10 {{site.base_gateway}} services, a GitHub repository, and several PagerDuty services mapped to it. |
+| Service Catalog | A comprehensive catalog of all resources and Services running in your organization. |
 
 ## FAQs
 
@@ -121,4 +123,4 @@ Yes, you can configure access controls and manage permissions to Service Catalog
 </details>
 
 ## More information
-* [Publish an API to Dev Portal](/konnect/api-products/productize-service/) - Learn how to create an API product, associate it with your {{site.base_gateway}} service, and publish it to the Dev Portal.
+* [Service Catalog integrations](/konnect/service-catalog/integrations)
