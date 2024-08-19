@@ -101,7 +101,7 @@ async function createJobAndSendFiles () {
     if (!jobId) {
       // Create job
       const createJobParams = new CreateJobParameters()
-        .setName(`Docs Translaton job ${Date.now()}`)
+        .setName(`Docs Translaton job ${Date.now()} - ${JSON.stringify(productsConfig)}`)
         .setDescription(`Translating plugin files to ${locale}`);
 
       console.log("Creating the job...");
