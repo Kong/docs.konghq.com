@@ -98,8 +98,8 @@ async function createJobAndSendFiles () {
     if (!jobId) {
       // Create job
       const createJobParams = new CreateJobParameters()
-        .setName(`Docs Translaton job ${Date.now()}`)
-        .setDescription(`Translating files to ${locale}`);
+        .setName(`Docs Translaton job ${Date.now()} - ${JSON.stringify(productsConfig)}`)
+        .setDescription(`Translating docs files to ${locale}`);
 
       console.log("Creating the job...");
       const job = await jobsApi.createJob(projectId, createJobParams);
