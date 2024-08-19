@@ -164,7 +164,7 @@ import {
   AisPagination,
 } from 'vue-instantsearch/vue3/es';
 
-import algoliasearch from 'algoliasearch/lite';
+import { liteClient as algoliasearch } from 'algoliasearch/lite';
 import NoResults from './NoResults.vue';
 import { routing } from './routing.js';
 
