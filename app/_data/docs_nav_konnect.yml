@@ -245,6 +245,13 @@
       url: /analytics/use-cases/
     - text: Requests
       url: /analytics/api-requests/
+
+- title: PrivateLink
+  icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
+  items:
+    - text: Setup
+      url: /privatelink/
+
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
