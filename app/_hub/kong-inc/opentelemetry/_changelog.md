@@ -2,7 +2,13 @@
 ### {{site.base_gateway}} 3.7.x
 * The propagation module has been reworked. The new
 options allow better control over the configuration of tracing header propagation.
- [#12670](https://github.com/Kong/kong/issues/12670)
+ [#12670](https://github.com/Kong/kong/issues/12670).
+
+  As part of the rework, the following parameters have been deprecated and will be removed in a future major version: 
+  * `config.header_type`  is deprecated, use `config.propagation` instead.
+  * `config.batch_span_count` is deprecated, use `config.queue.max_batch_size` instead.
+  * `config.batch_flush_deplay` is deprecated, use `config.queue.max_coalescing_delay` instead.
+    
 * Fixed an OTEL sampling mode Lua panic bug, which happened 
 when the `http_response_header_for_traceid` option was enabled.
  [#12544](https://github.com/Kong/kong/issues/12544)
