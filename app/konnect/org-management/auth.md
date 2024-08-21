@@ -6,7 +6,8 @@ content_type: explanation
 Secure your {{site.konnect_saas}} organization by setting up teams and roles,
 or enable an external authenticator to manage
 {{site.konnect_saas}} authentication and authorization from your own identity
-provider.
+provider. {{site.konnect_saas}} offers multiple options for authentication. The [generic SSO](/konnect/org-management/sso/) with SAML and OIDC allow you to configure authentication with any identity provider that supports these protocols. 
+The [Okta](/konnect/org-management/okta-idp/) specific setup offers an integrated approach for Okta users, supporting both OIDC and SAML, and includes features like team mappings and dashboard integration.
 
 ## Native authentication through {{site.konnect_short_name}}
 
@@ -26,7 +27,7 @@ organization
 
 {{site.konnect_saas}} supports single sign-on (SSO) access through
 [Okta](https://developer.okta.com/docs/guides/) with
-[OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect).
+[OpenID Connect](https://developer.okta.com/docs/concepts/oauth-openid/#openid-connect) and [SAML](https://developer.okta.com/docs/concepts/saml/)
 
 * Set up [Okta integration](/konnect/org-management/okta-idp/)
 * View {{site.konnect_saas}} [teams and roles](/konnect/org-management/teams-and-roles/)

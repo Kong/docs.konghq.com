@@ -51,7 +51,7 @@ Screenshots are used to support documentation and do not _replace_ documentation
 - Screenshots of UI elements should include only the relevant **panel**. Panels are a container within a UI window which contain multiple related elements.
 - Mouse should not be visible.
 - **Emphasis on elements in the screenshot:** Create a **rectangular** border around the point of interest. 
-The border must use the color <span style="color:#0788ad">`#0788ad`</span> from the [colors style guide](https://kongponents.netlify.app/guide/styles/colors.html).
+The border must use the color <span style="color:#0788ad">`#0788ad`</span> from the [@kong/design-tokens in the style guide](https://kongponents.netlify.app/guide/theming.html).
 - **Screenshot border:** Set the `image-border` class if your screenshot requires a border. You might need to set a border when:
     * Panels have a white background and will therefore blend into the surrounding area
     * You want to separate the screenshot clearly from another image

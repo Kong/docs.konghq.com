@@ -32,7 +32,21 @@ module Jekyll
       options.split("\n").map { |line| "      #{line}" }.join("\n").strip
     end
 
-    def gateway_config_example(gateway_config_api_version, dataplane, controlplane, release)
+    def release_to_version(release)
+      # Extract the major and minor version numbers from the release string
+      major, minor = release.split('.').map(&:to_i)[0, 2]
+      # Determine the return value based on the extracted version numbers
+      if major == 1 && minor == 1
+        'v1beta1'
+      else
+        # Use v1 as both the default fallback and the return value for 1.1.x and up.
+        'v1'
+      end
+    end
+
+    def gateway_config_example(gateway_config_api_version, dataplane, controlplane, release) # rubocop:disable Metrics/MethodLength
+      gateway_api_version = release_to_version(release)
+
       <<~TEXT
 
         ### Using GatewayConfiguration
@@ -61,7 +75,7 @@ module Jekyll
 
             ```yaml
             kind: GatewayClass
-            apiVersion: gateway.networking.k8s.io/v1beta1
+            apiVersion: gateway.networking.k8s.io/#{gateway_api_version}
             metadata:
               name: kong
             spec:
@@ -77,7 +91,7 @@ module Jekyll
 
             ```yaml
             kind: Gateway
-            apiVersion: gateway.networking.k8s.io/v1
+            apiVersion: gateway.networking.k8s.io/#{gateway_api_version}
             metadata:
               name: kong
               namespace: default

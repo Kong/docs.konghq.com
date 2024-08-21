@@ -20,16 +20,13 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /gateway/latest/kong-enterprise/dev-portal/
 
-      - name: Analytics
-        description: View granular analytics with Analytics to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
+      - name: Advanced Analytics
+        description: View granular analytics with Konnect Advanced Analytics to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
         icon: /assets/images/landing-page/card-icons/analytics.svg
         links:
-          - text: Overview (cloud)
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
             url: /konnect/vitals/
-          - text: Self-managed
-            icon: /assets/images/icons/icn-doc.svg
-            url: /gateway/latest/kong-enterprise/analytics/
 
       - name: Gateway Manager
         description: Provision and manage Kong Gateway data planes and services in your environment and platform of choice.
