@@ -9,10 +9,11 @@ You can use any of the current request headers, query parameters, and captured U
 groups as templates to populate supported configuration fields.
 
 | Request Parameter | Template
-| ------------- | -----------
-| header        | `$(headers.<header_name>)`, `$(headers["<Header-Name>"])` or `$(headers["<header-name>"])`)
-| querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
-| captured URIs | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`)
+| -------------- | -----------
+| header         | `$(headers.<header_name>)`, `$(headers["<Header-Name>"])` or `$(headers["<header-name>"])`
+| querystring    | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`
+| captured URIs  | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`
+| shared context | `$(shared.<context-key>)` or  `$(shared["<context-key>"])`
 
 To escape a template, wrap it inside quotes and pass inside another template.
 For example:
