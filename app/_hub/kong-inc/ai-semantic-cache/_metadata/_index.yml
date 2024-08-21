@@ -1,6 +1,6 @@
-name: AI Semantic Caching
+name: AI Semantic Cache
 search_aliases:
-  - ai-semantic-caching
+  - ai-semantic-cache
 konnect_examples: true
 dbless_compatible: yes
 free: false
