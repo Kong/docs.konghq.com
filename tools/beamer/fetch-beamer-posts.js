@@ -3,9 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const nlp = require('compromise'); // Import the compromise library
 
-
-const apiKey = process.env.BEAMER_API_KEY; 
-//const filePath = process.env.FILE_PATH;
+const apiKey = process.env.BEAMER_API_KEY;
+// const filePath = process.env.FILE_PATH;
 const filePath = __dirname + "/../../app/konnect/updates.md";
 const options = {
     hostname: 'api.getbeamer.com',
@@ -45,19 +44,6 @@ function cleanContent(content) {
     return summarizeContent(cleanedContent); // Summarize the cleaned content
 }
 
-function convertCategoryToBadges(category) {
-    if (!category) return '';
-    
-    const allowedBadges = ['new', 'update', 'deprecation'];
-    
-    const categories = category
-        .split(';')
-        .filter(cat => allowedBadges.includes(cat.trim().toLowerCase())) // Filter only allowed categories
-        .map(cat => cat.trim().replace(/\s+/g, '-').toLowerCase()); // Trim, replace spaces, and convert to lowercase
-    
-    return categories.map(cat => `<span class="badge ${cat}"></span>`).join(' ');
-}
-
 const req = https.request(options, (res) => {
     let data = '';
 
@@ -91,7 +77,6 @@ const req = https.request(options, (res) => {
                             title: translation.title,
                             postUrl: translation.postUrl,
                             content: contentPreview,
-                            category: convertCategoryToBadges(translation.category)
                         });
                     }
                 });
@@ -100,13 +85,23 @@ const req = https.request(options, (res) => {
             let updatesContent = '';
 
             for (const [monthYear, posts] of Object.entries(groupedPosts)) {
+                // Add the month and year heading before the posts for that month
                 updatesContent += `## ${monthYear}\n\n`;
+
                 posts.forEach(post => {
-                    updatesContent += `**[${post.title}](${post.postUrl})**\n`;
+                    updatesContent += `<div class="changelog-entries">\n`;
+                    updatesContent += `<div class="changelog-date">${post.date}</div>\n`;
+                    updatesContent += `<div class="changelog-entry">\n`;
+                    updatesContent += `<div class="changelog-title">\n`;
+                    updatesContent += `<a href="${post.postUrl}">${post.title}</a>\n`;
+                    updatesContent += `</div>\n`;
+                    
                     if (post.content) {
-                        updatesContent += `: ${post.content}\n`;
+                        updatesContent += `<div class="changelog-description">${post.content}</div>\n`;
                     }
-                    updatesContent += `: ${post.category}\n\n`;
+                    
+                    updatesContent += `</div>\n`;
+                    updatesContent += `</div>\n`;
                 });
             }
 
@@ -116,7 +111,6 @@ const req = https.request(options, (res) => {
                     return;
                 }
 
-                // Find the index of the first month heading
                 const match = data.match(/## \w+ \d{4}/);
                 if (!match) {
                     console.error('First month heading not found in file.');
@@ -124,7 +118,6 @@ const req = https.request(options, (res) => {
                 }
                 const insertIndex = match.index;
 
-                // Combine the parts with the new updates inserted before the first month heading
                 const newContent = `${data.slice(0, insertIndex)}${updatesContent}\n${data.slice(insertIndex)}`;
 
                 fs.writeFile(filePath, newContent, 'utf8', (err) => {
