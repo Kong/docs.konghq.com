@@ -275,13 +275,6 @@ components:
           items:
             type: string
             example: '["user-level", "low-priority"]'
-        snis:
-          description: >
-            A list of SNIs associated with the certificate.
-          type: array
-          items:
-            type: string
-            format: host
     Consumer:
       description: The Consumer object represents a consumer - or a user - of a service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
       example:

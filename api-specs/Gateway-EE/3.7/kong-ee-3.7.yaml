@@ -326,13 +326,6 @@ components:
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
-        snis:
-          description: >
-            A list of SNIs associated with the certificate.
-          type: array
-          items:
-            type: string
-            format: hostname
       type: object
     Consumer:
       description: The Consumer object represents a consumer - or a user - of a Service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
@@ -7137,9 +7130,7 @@ paths:
       - $ref: '#/components/parameters/key_id_or_name'
   /plugins:
     get:
-      description: |
-        List all plugins
-
+      description: List all plugins
       operationId: list-plugin
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -13531,9 +13522,6 @@ paths:
         Where `*` replaces exactly one segment between slashes (or the end of the path).
 
         Note that wildcards can be nested. For example, `/rbac/*`, `/rbac/*/*`, `/rbac/*/*/*` would refer to all paths under `/rbac/`.
-        <br><br>
-         For the `admin` role in the default workspace, CRUD actions on `/groups` and `/groups/*` endpoints are disallowed.
-         For the `workspace-admin` role in non-default workspaces, CRUD actions on `/groups` and `/groups/*` endpoints are disallowed.
       requestBody:
         content:
           application/json:
@@ -15432,13 +15420,6 @@ tags:
       When adding a plugin configuration to a service, the plugin will run on every request made by a client to that service. If a plugin needs to be tuned to different values for some specific consumers, you can do so by creating a separate plugin instance that specifies both the service and the consumer, through the service and consumer fields.
       <br><br>
       Plugins can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
-      <br><br>
-        **Bracket Syntax for Keys with Dots:**
-        When submitting form data, keys that contain dots (e.g., `service.name`) should be enclosed in square brackets to avoid ambiguity:
-        
-        - Example: `config.resource_attributes[service.name]=kong-dev`
-        
-        - If necessary, URL encode the square brackets: `%5Bservice.name%5D`.
     name: Plugins
   - description: |
       The consumer object represents a consumer - or a user - of a service. 
@@ -15525,8 +15506,6 @@ tags:
       * `role_source`: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
       * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
       * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
-      For the admin role in the default workspace, CRUD actions on /groups and /groups/* endpoints are disallowed. 
-      For the workspace-admin role in non-default workspaces, CRUD actions on /groups and /groups/* endpoints are disallowed.
     name: RBAC
   - description: |
       A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
