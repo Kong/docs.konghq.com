@@ -8,11 +8,11 @@ Semantic caching enhances data retrieval efficiency by focusing on the meaning o
 
 When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing differs. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience. 
 
-By using the AI Semantic Cache plugin, the plugin can handle the caching for you. You can also configure the plugin to ?
+By using the AI Semantic Cache plugin, the plugin can handle the caching for you. You can also configure the vector database, caching mechanism, as well as embeddings.
 
-## Why should I use the AI Semantic Cache plugin?
-
-<!--use case table?-->
+The AI Semantic Cache plugin might not be the best fit for you if following apply to you:
+* Storing semantic vectors or embeddings and performing similarity searches can require significant storage and computational resources. If you have limited hardware or budget constraints, this might be a concern.
+* If your application data isn't inherently semantic or exact matches are sufficient, the benefits of semantic caching might be minimal. Simple keyword-based or traditional caching might be more appropriate and efficient.
 
 ## How it works
 
@@ -37,11 +37,65 @@ sequenceDiagram
     end
 {% endmermaid %}
 
-> Figure 1: This diagram shows how 
+> Figure 1: This diagram shows how the AI Semantic Cache plugin uses cached responses to respond to semantically similar requests from users.
 
-<!--detailed explanation of the tech-->
+The AI Semantic Cache plugin uses a vector database and cache to store responses to requests. The plugin can then retrieve a cached response if a new request matches the semantics of a previous request, or it can tell the vector database to store a new response if there are no matches. 
 
-### Caching mechanisms
+{% mermaid %}
+graph LR
+    %% Define the color for subgraphs
+    style UserInteraction fill:#f9f,stroke:#333,stroke-width:2px
+    style APIGateway fill:#ccf,stroke:#333,stroke-width:2px
+    style AISemanticCache fill:#cfc,stroke:#333,stroke-width:2px
+    style DataStorageRedis fill:#fcf,stroke:#333,stroke-width:2px
+
+    subgraph UserInteraction["User Interaction"]
+        User[User]
+    end
+
+    subgraph APIGateway["API Gateway"]
+        Kong[Kong Gateway]
+    end
+
+    subgraph AISemanticCache["AI Semantic Cache"]
+        Plugin[AI Semantic Cache Plugin]
+    end
+
+    subgraph DataStorageRedis["Data Storage (Redis)"]
+        VectorDB[Vector Database Role]
+        Cache[Cache Role]
+    end
+
+    User -->|Request| Kong
+    Kong -->|Forward Request| Plugin
+    Plugin -->|Check Cache| Cache
+    Cache -->|Cache Hit| Plugin
+    Cache -->|Cache Miss| VectorDB
+    VectorDB -->|Retrieve Embedding| Plugin
+    Plugin -->|Generate Response| Kong
+    Kong -->|Send Response| User
+{% endmermaid %}
+
+### Vector databases
+
+A vector database can be used to store vector embeddings, or numerical representations, of data items. For example, a response would be converted to a numerical representation and stored in the vector database so that it can compare new requests against the stored vectors to find relevant cached items.
+
+Currently, the AI Semantic Cache plugin supports the following vector databases:
+
+* Redis (beta)
+* Qdrant (alpha)
+* PGVector (alpha)
+* Supabase (alpha)
+
+For more information, see [Deploy and manage a vector database](/hub/kong-inc/ai-semantic-cache/vector-database/).
+
+### Cache management
+
+With the AI Semantic Cache plugin, you can configure a cache of your choice to store the responses from the LLM.
+
+For more information, see [Cache management](/hub/kong-inc/ai-semantic-cache/cache-management/).
+
+#### Caching mechanisms
 
 The AI Semantic Cache plugin improves how AI systems provide responses by using two kinds of caching mechanisms:
 
@@ -50,26 +104,23 @@ The AI Semantic Cache plugin improves how AI systems provide responses by using 
 
 Together, these caching methods enhance the efficiency and relevance of AI responses, making interactions faster and more contextually accurate.
 
+### Configuration parameters
 
+You can configure the following required parameters for the AI Semantic Cache plugin:
 
+* `vectordb`: Specifies the vector database strategy and settings
+* `embeddings`: Defines the embeddings provider, model, and configuration
+* `cache_control`: Enables or disables Cache-Control header handling
+* `storage_ttl`: Sets the time-to-live for cached responses
+* `exact_caching`: Enables or disables exact caching
+* `message_countback`: Specifies how many messages to consider for context
+* `ignore_system_prompts`: Ignores system messages if set to `true`
+* `ignore_assistant_prompts`: Ignores assistant messages if set to `true`
+* `stop_on_failure`: Stops processing if an error occurs, otherwise continues
 
-<!-- content to use
-## Configuration
+### Headers sent to the client
 
-To use the Semantic Caching plugin, configure the following parameters:
-* vectordb: Specifies the vector database strategy and settings.
-* embeddings: Defines the embeddings provider, model, and configuration.
-* cache_control: Enables or disables Cache-Control header handling.
-* storage_ttl: Sets the time-to-live for cached responses.
-* exact_caching: Enables or disables exact caching.
-* message_countback: Specifies how many messages to consider for context.
-* ignore_system_prompts: Ignores system messages if set to true.
-* ignore_assistant_prompts: Ignores assistant messages if set to true.
-* stop_on_failure: Stops processing if an error occurs, otherwise continues.
-
-## Headers sent to the client
-
-When the Semantic Caching plugin is active, Kong sends additional headers 
+When the AI Semantic Cache plugin is active, Kong sends additional headers 
 indicating the cache status and other relevant information:
 
 ```plaintext
@@ -85,16 +136,14 @@ Age: <age>
 These headers help clients understand whether a response was served from the cache,
 the cache key used, the remaining time-to-live, and the age of the cached response.
 
-### Cache Control
+### Cache control headers
 
-The plugin respects Cache-Control headers to determine the cacheability of requests 
-and responses. It supports the following directives:
+The plugin respects cache control headers to determine if requests and responses should be cached or not. It supports the following directives:
 
-* no-store: Prevents caching of the request or response.
-* no-cache: Forces validation with the origin server before serving the cached response.
-* private: Ensures the response is not cached by shared caches.
-* max-age and s-maxage: Sets the maximum age of the cached response.
--->
+* `no-store`: Prevents caching of the request or response
+* `no-cache`: Forces validation with the origin server before serving the cached response
+* `private`: Ensures the response is not cached by shared caches
+* `max-age` and `s-maxage`: Sets the maximum age of the cached response
 
 ## Get started with the AI Semantic Caching plugin
 

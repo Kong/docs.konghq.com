@@ -1,6 +1,12 @@
 name: AI Semantic Cache
 search_aliases:
   - ai-semantic-cache
+  - ai
+  - llm
+  - artificial
+  - intelligence
+  - language
+  - model
 konnect_examples: true
 dbless_compatible: yes
 free: false
