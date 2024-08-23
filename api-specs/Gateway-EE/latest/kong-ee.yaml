@@ -15433,7 +15433,7 @@ tags:
       <br><br>
       Plugins can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
       <br><br>
-        **Bracket Syntax for Keys with Dots:**
+        **Bracket syntax for keys with periods:**
         When submitting form data, keys that contain dots (e.g., `service.name`) should be enclosed in square brackets to avoid ambiguity:
         
         - Example: `config.resource_attributes[service.name]=kong-dev`
