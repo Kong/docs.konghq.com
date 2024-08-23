@@ -95,6 +95,7 @@ All log entries include the following attributes:
 Each log entry includes the following details:
 
 <!--vale off-->
+
 | Property | Description |
 | --------- | ------------- |
 | `ai.payload.request` | The request payload. |
@@ -121,6 +122,7 @@ Each log entry includes the following details:
 | `ai.[$plugin_name].cache.embeddings_model` | For semantic caching, the model used to generate the embeddings. |
 | `ai.[$plugin_name].cache.embeddings_latency` | For semantic caching, the time taken to generate the embeddings. |
 {% endif_version %}
+
 <!--vale on-->
 
 {% if_version gte:3.8.x %}
