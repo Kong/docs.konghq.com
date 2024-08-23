@@ -1,7 +1,6 @@
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
-const nlp = require('compromise'); // Import the compromise library
 
 const apiKey = process.env.BEAMER_API_KEY;
 // const filePath = process.env.FILE_PATH;
@@ -28,10 +27,10 @@ function cleanHTML(contentHtml) {
         .trim();                 // Trim leading and trailing spaces
 }
 
-// Function to summarize content using compromise
+// Function to summarize content by extracting the first two sentences
 function summarizeContent(content, maxSentences = 2) {
-    const doc = nlp(content);
-    const sentences = doc.sentences().out('array');
+    const sentenceRegex = /[^.!?]*[.!?]/g;  // Regex to capture sentences
+    const sentences = content.match(sentenceRegex) || []; // Match all sentences in the content
     
     // Extract and join the first 'maxSentences' sentences
     const summary = sentences.slice(0, maxSentences).join(' ').trim();
@@ -69,8 +68,8 @@ const req = https.request(options, (res) => {
                 }
 
                 post.translations.forEach(translation => {
-                    // Check if 'konnect' is part of the category
-                    if (translation.category.split(';').some(cat => cat.trim().toLowerCase() === 'konnect')) {
+                    // Check if 'changelog' is part of the category
+                    if (translation.category.split(';').some(cat => cat.trim().toLowerCase() === 'changelog')) {
                         let contentPreview = translation.content ? cleanContent(translation.content) : cleanHTML(translation.contentHtml);
                         groupedPosts[monthYear].push({
                             date: formattedDate,
