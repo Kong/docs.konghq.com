@@ -37,24 +37,27 @@ dashboard](https://grafana.com/grafana/dashboards/21162-kong-cx-ai/):
 
 ## Available metrics
 
+{% if_version lte: 3.7.x %}
+- **AI Requests**: AI requests sent to LLM providers.
+  These are available per provider, model, cache, database name (if cached), and workspace.
+- **AI Cost**: AI costs charged by LLM providers.
+  These are available per provider, model, cache, database name (if cached), and workspace.
+- **AI Tokens**: AI tokens counted by LLM providers.
+  These are available per provider, model, cache, database name (if cached), token type, and workspace.
+{% endif_version %}
+
+{% if_version gte: 3.8.x %}
+All the following AI LLM metrics are available per provider, model, cache, database name (if cached), embeddings provider (if cached), embeddings model (if cached), and workspace.
+
+When `ai_llm_metrics` is set to true:
 - **AI Requests**: AI request sent to LLM providers.
-  These are available per provider, model, cache, database name (if cached),
-  embeddings provider (if cached), embeddings model (if cached), and workspace.
-- **AI Cost:**: AI Cost charged by LLM providers.
-  These are available per provider, model, cache, database name (if cached),
-  embeddings provider (if cached), embeddings model (if cached), and workspace.
-- **AI Tokens** AI Tokens counted by LLM providers.
-  These are available per provider, model, cache, database name (if cached),
-  embeddings provider (if cached), embeddings model (if cached), token type, and workspace.
-- **AI LLM Latency** Time taken to return a response by LLM providers.
-  These are available per provider, model, cache, database name (if cached),
-  embeddings provider (if cached), embeddings model (if cached), and workspace.
-- **AI Cache Fetch Latency** Time taken to return a response from the cache.
-  These are available per provider, model, cache, database name (if cached),
-  embeddings provider (if cached), embeddings model (if cached), and workspace.
-- **AI Cache Embeddings Latency** Time taken to generate embedding during the cache.
-  These are available per provider, model, cache, database name (if cached),
-  embeddings provider (if cached), embeddings model (if cached), and workspace.
+- **AI Cost**: AI Cost charged by LLM providers.
+- **AI Tokens**: AI Tokens counted by LLM providers.
+  These are also available per token type in addition to the options listed previously.
+- **AI LLM Latency**: Time taken to return a response by LLM providers.
+- **AI Cache Fetch Latency**: Time taken to return a response from the cache.
+- **AI Cache Embeddings Latency**: Time taken to generate embedding during the cache.
+{% endif_version %}
 
 AI metrics are disabled by default as it may create high cardinality of metrics and may
 cause performance issues. To enable them, set `ai_metrics` to true in the Prometheus plugin configuration.
