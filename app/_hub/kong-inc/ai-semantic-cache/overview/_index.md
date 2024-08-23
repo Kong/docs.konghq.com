@@ -4,7 +4,7 @@ nav_title: Overview
 
 ## What is semantic caching?
 
-Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made. For example, if a user asks, "how to integrate our API with a mobile app" and later asks "what are the steps for connecting our API to a smartphone application?", the LLM recognizes that both queries are seeking similar information about the steps to integrate an API with an app. It can then retrieve and reuse previously cached responses if they are contextually relevant, even if they are phrased differently. By leveraging semantic caching, the LLM can reduce redudant processing and speeds up the response times.
+Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made. For example, if a user asks, "how to integrate our API with a mobile app" and later asks "what are the steps for connecting our API to a smartphone application?", the LLM recognizes that both queries are seeking similar information about the steps to integrate an API with an app. It can then retrieve and reuse previously cached responses if they are contextually relevant, even if they are phrased differently. By leveraging semantic caching, the LLM can reduce redundant processing and speeds up the response times.
 
 When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing differs. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience. 
 
@@ -19,21 +19,21 @@ The AI Semantic Cache plugin might not be the best fit for you if following appl
 {% mermaid %}
 sequenceDiagram
     actor User
-    participant Kong Gateway
+    participant {{site.base_gateway}}
     participant CachePlugin as AI Semantic Cache plugin
     participant LLM
 
-    User->>KongGateway: Make API request
-    KongGateway->>CachePlugin: Check cache
+    User->>{{site.base_gateway}}: Make API request
+    {{site.base_gateway}}->>CachePlugin: Check cache
     alt Cached Response Available
-        CachePlugin-->>KongGateway: Return cached response
-        KongGateway-->>User: Return cached response
+        CachePlugin-->>{{site.base_gateway}}: Return cached response
+        {{site.base_gateway}}-->>User: Return cached response
     else No Cached Response
         CachePlugin->>LLM: Forward request
         LLM-->>CachePlugin: Generate and return response
         CachePlugin-->>CachePlugin: Store response in cache
-        CachePlugin-->>KongGateway: Return response
-        KongGateway-->>User: Return response
+        CachePlugin-->>{{site.base_gateway}}: Return response
+        {{site.base_gateway}}-->>User: Return response
     end
 {% endmermaid %}
 
@@ -41,6 +41,7 @@ sequenceDiagram
 
 The AI Semantic Cache plugin uses a vector database and cache to store responses to requests. The plugin can then retrieve a cached response if a new request matches the semantics of a previous request, or it can tell the vector database to store a new response if there are no matches. 
 
+<!--vale off-->
 {% mermaid %}
 graph LR
     %% Define the color for subgraphs
@@ -54,7 +55,7 @@ graph LR
     end
 
     subgraph APIGateway["API Gateway"]
-        Kong[Kong Gateway]
+        Kong[{{site.base_gateway}}]
     end
 
     subgraph AISemanticCache["AI Semantic Cache"]
@@ -75,6 +76,9 @@ graph LR
     Plugin -->|Generate Response| Kong
     Kong -->|Send Response| User
 {% endmermaid %}
+<!--vale on-->
+
+> Figure 2: This diagram shows how the AI Semantic Cache plugin works with a vector database, cache, and {{site.base_gateway}}.
 
 ### Vector databases
 
@@ -84,7 +88,7 @@ Currently, the AI Semantic Cache plugin supports the following vector databases:
 
 * Redis (beta)
 * Qdrant (alpha)
-* PGVector (alpha)
+* pgvector (alpha)
 * Supabase (alpha)
 
 For more information, see [Deploy and manage a vector database](/hub/kong-inc/ai-semantic-cache/vector-database/).
