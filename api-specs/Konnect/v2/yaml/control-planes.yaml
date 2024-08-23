@@ -52,6 +52,7 @@ paths:
         - $ref: '#/components/parameters/FilterByClusterTypeEqualityShort'
         - $ref: '#/components/parameters/FilterByClusterTypeNotEquals'
         - $ref: '#/components/parameters/FilterByLabels'
+        - $ref: '#/components/parameters/ControlPlaneSort'
       tags:
         - Control Planes
     parameters: []
@@ -423,6 +424,15 @@ components:
       schema:
         type: string
         example: test
+    ControlPlaneSort:
+      name: sort
+      description: |
+        Sorts a collection of control-planes. Supported sort attributes are:
+          - created_at
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/SortQuery'
     PageSize:
       name: page[size]
       description: >-
@@ -732,6 +742,7 @@ components:
             - CLUSTER_TYPE_HYBRID
             - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
             - CLUSTER_TYPE_CONTROL_PLANE_GROUP
+            - CLUSTER_TYPE_SERVERLESS
         auth_type:
           type: string
           description: >-
@@ -1068,6 +1079,19 @@ components:
         - host: example.com
           port: 443
           protocol: https
+    SortQuery:
+      title: SortQuery
+      type: string
+      example: name,created_at desc
+      description: >
+        The `asc` suffix is optional as the default sort order is ascending.
+
+        The `desc` suffix is used to specify a descending order.
+
+        Multiple sort attributes may be provided via a comma separated list.
+
+        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar
+        desc').
     PageMeta:
       type: object
       description: >-

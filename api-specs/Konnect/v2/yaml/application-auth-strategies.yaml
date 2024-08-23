@@ -741,6 +741,12 @@ components:
       description: >-
         This flag disables all the event-hooks on the application flow for the
         DCR provider.
+    DcrConfigPropertyDisableRefreshSecret:
+      title: DcrConfigPropertyDisableRefreshSecret
+      type: boolean
+      description: >-
+        This flag disable the refresh-secret endpoint on the application flow
+        for the DCR provider.
     DcrConfigAuth0InResponse:
       title: DcrConfigAuth0InResponse
       type: object
@@ -890,6 +896,8 @@ components:
           format: url
         disable_event_hooks:
           $ref: '#/components/schemas/DcrConfigPropertyDisableEventHooks'
+        disable_refresh_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyDisableRefreshSecret'
     CreateDcrConfigHttpInRequest:
       title: CreateDcrConfigHttpInRequest
       type: object
@@ -905,6 +913,8 @@ components:
           $ref: '#/components/schemas/DcrConfigPropertyApiKey'
         disable_event_hooks:
           $ref: '#/components/schemas/DcrConfigPropertyDisableEventHooks'
+        disable_refresh_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyDisableRefreshSecret'
     UpdateDcrConfigHttpInRequest:
       title: CreateDcrConfigHttpInRequest
       type: object
@@ -917,6 +927,8 @@ components:
           $ref: '#/components/schemas/DcrConfigPropertyApiKey'
         disable_event_hooks:
           $ref: '#/components/schemas/DcrConfigPropertyDisableEventHooks'
+        disable_refresh_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyDisableRefreshSecret'
     DcrProviderType:
       title: DcrProviderType
       type: string
@@ -1395,6 +1407,8 @@ components:
           items:
             type: string
             maxLength: 64
+        labels:
+          $ref: '#/components/schemas/Labels'
     AppAuthStrategyKeyAuthRequest:
       title: AppAuthStrategyKeyAuthRequest
       description: Request for creating a Key Auth Application Auth Strategy
@@ -1423,6 +1437,8 @@ components:
           properties:
             key-auth:
               $ref: '#/components/schemas/AppAuthStrategyConfigKeyAuth'
+        labels:
+          $ref: '#/components/schemas/Labels'
     AppAuthStrategyKeyAuthResponse:
       title: AppAuthStrategyKeyAuthResponse
       description: >-
@@ -1438,6 +1454,7 @@ components:
         - configs
         - active
         - dcr_provider
+        - labels
         - created_at
         - updated_at
       properties:
@@ -1480,6 +1497,8 @@ components:
               $ref: '#/components/schemas/DcrProviderDisplayName'
             provider_type:
               $ref: '#/components/schemas/DcrProviderType'
+        labels:
+          $ref: '#/components/schemas/Labels'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -1516,6 +1535,8 @@ components:
           nullable: true
           type: string
           format: uuid
+        labels:
+          $ref: '#/components/schemas/Labels'
     AppAuthStrategyOpenIDConnectResponse:
       title: AppAuthStrategyOpenIDConnectResponse
       description: Response payload from creating an OIDC Application Auth Strategy
@@ -1529,6 +1550,7 @@ components:
         - configs
         - active
         - dcr_provider
+        - labels
         - created_at
         - updated_at
       properties:
@@ -1571,6 +1593,8 @@ components:
               $ref: '#/components/schemas/DcrProviderDisplayName'
             provider_type:
               $ref: '#/components/schemas/DcrProviderType'
+        labels:
+          $ref: '#/components/schemas/Labels'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -1612,6 +1636,8 @@ components:
           $ref: '#/components/schemas/AuthStrategyName'
         display_name:
           $ref: '#/components/schemas/AuthStrategyDisplayName'
+        labels:
+          $ref: '#/components/schemas/LabelsUpdate'
         dcr_provider_id:
           nullable: true
           type: string
@@ -2406,6 +2432,7 @@ components:
           name: DCR provider 1
           display_name: Credentials
           provider_type: http
+        labels: {}
         created_at: '2023-01-01T00:00:00.000Z'
         updated_at: '2023-01-01T00:00:00.000Z'
     ListAppAuthStrategyResponseExample1:
@@ -2431,6 +2458,7 @@ components:
               name: DCR provider 1
               display_name: Credentials
               provider_type: http
+            labels: {}
             created_at: '2023-01-01T00:00:00.000Z'
             updated_at: '2023-01-01T00:00:00.000Z'
         meta:

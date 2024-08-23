@@ -281,6 +281,10 @@ paths:
         - $ref: '#/components/parameters/FilterByIdEqualityShort'
         - $ref: '#/components/parameters/FilterByStatusEquality'
         - $ref: '#/components/parameters/FilterByStatusEqualityShort'
+        - $ref: '#/components/parameters/FilterByProductNameEquality'
+        - $ref: '#/components/parameters/FilterByProductNameEqualityShort'
+        - $ref: '#/components/parameters/FilterByProductVersionNameEquality'
+        - $ref: '#/components/parameters/FilterByProductVersionNameEqualityShort'
       responses:
         '200':
           $ref: '#/components/responses/ListRegistrations'
@@ -2485,7 +2489,11 @@ components:
       type: object
       additionalProperties: false
       required:
+        - id
         - name
+        - credential_type
+        - registration_enabled
+        - registration_auto_approve
       properties:
         id:
           $ref: '#/components/schemas/UUID'
@@ -2502,6 +2510,14 @@ components:
           type: string
         available_scopes:
           $ref: '#/components/schemas/AvailableScopes'
+        registration_enabled:
+          type: boolean
+          description: If true, application registration is allowed for this configuration.
+          example: true
+        registration_auto_approve:
+          type: boolean
+          description: If true, applications are automatically approved for registration.
+          example: false
     CredentialType:
       type: string
       enum:
@@ -4316,6 +4332,46 @@ components:
       schema:
         type: string
         format: uuid
+    FilterByProductNameEquality:
+      name: filter[product_name][eq]
+      description: >-
+        Filter by direct equality comparison of the product_name property with a
+        supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: good service
+    FilterByProductNameEqualityShort:
+      name: filter[product_name]
+      description: >-
+        Filter by direct equality comparison (short-hand) of the product_name
+        property with a supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: good service
+    FilterByProductVersionNameEquality:
+      name: filter[product_version_name][eq]
+      description: >-
+        Filter by direct equality comparison of the product_version_name
+        property with a supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: good service
+    FilterByProductVersionNameEqualityShort:
+      name: filter[product_version_name]
+      description: >-
+        Filter by direct equality comparison (short-hand) of the
+        product_version_name property with a supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: good service
     SearchQuery:
       name: q
       description: Determines how to filter search results

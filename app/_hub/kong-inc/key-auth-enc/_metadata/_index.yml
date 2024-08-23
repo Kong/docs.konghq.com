@@ -16,7 +16,11 @@ enterprise: true
 konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
-  The time-to-live (ttl) does not work in Konnect or hybrid mode. This setting
+  This plugin is not available in Konnect, and has limitations in hybrid mode:
+  - Konnect automatically encrypts key authentication credentials at rest, so 
+  encryption via this plugin is not necessary. 
+  Use the regular [Key Auth](/hub/kong-inc/key-auth/) plugin instead.
+  - The time-to-live (ttl) does not work in hybrid mode. This setting
   determines the length of time a credential remains valid.
 categories:
   - authentication

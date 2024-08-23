@@ -10,42 +10,42 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
-
-
-
-
-
 ## August 2024
 
-**[This is a post  223](https://app.getbeamer.com/kongsandbox/en/this-is-a-post-Oak8Xcyq)**
-: Kong Gateway runs in front of any RESTful API and can be extended through modules and plugins. It’s designed to run on decentralized architectures, including hybrid-cloud and multi-cloud deployments.
-: {:.badge .new}
-: {:.badge .new}
+**You can now delete the default control plane**
+: In {{site.konnect_saas}}, it is now possible to delete the default control plane.
 
-**[GDocs Test: Announcing Kong Insomnia 9.2 with Faker API Support and More](https://app.getbeamer.com/kongsandbox/en/gdocs-test-announcing-kong-insomnia-92-with-faker-api-support-and-more)**
-: Gaby BeitlerSr. Technical PMM We're pleased to announce the general availability of Kong Insomnia 9.2.
-: {:.badge .new}
+**SAML Login support**
+: {{site.konnect_short_name}} now supports [SAML authentication protocol](/konnect/org-management/sso/) for logging in. SAML is an open standard that allows {{site.konnect_short_name}} to delegate authentication to an identity provider (IdP). You can choose between OIDC or SAML protocols while setting up Single Sign On for your organization.
+
+**General Availability of API Requests**
+: Announcing the general availability of [API Requests](/konnect/analytics/api-requests/). API Requests provide detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
 
 ## July 2024
 
-**[This is a post ](https://app.getbeamer.com/kongsandbox/en/this-is-a-post)**
-: Atlassian uses cookies to improve your browsing experience, perform analytics and research, and conduct advertising. Accept all cookies to indicate that you agree to our use of cookies on your device.
-: {:.badge .new}
+**New refresh button in Advanced Analytics**
+: We've introduced a refresh button on selected analytics pages such as API Requests and Explorer, allowing users to view updated data without triggering a full site reload. This feature also preserves applied filters and provides a more seamless user experience.
 
-**[test badges post in July](https://app.getbeamer.com/kongsandbox/en/test-badges-post-in-july)**
-: local hour = os.date("*t").hour if hour >= 8 and hour <= 17 then kong.service.request.set_header("X-Peak","true") else kong.service.request.set_header("X-Off-Peak","true") end
-: {:.badge .deprecation} {:.badge .new} {:.badge .update}
+**Dedicated Cloud Gateways on Azure <span class="badge alpha"></span>**
 
-## June 2024
+: You can now run Dedicated Cloud Gateways on Azure in the following regions: Frankfurt, Ireland, UK South, Virginia, and Washington.
 
-**[Hello World! Love, Konnect + Beamer](https://app.getbeamer.com/kongsandbox/en/hello-world-love-konnect-beamer)**
-: {:.badge .new}
+: ![Azure regions](/assets/images/products/konnect/gateway-manager/konnect-azure-cgw.png)
+> _You can select Azure from the list of cloud providers when configuring your cluster._
+
+**Multi-portal**
+: {{site.konnect_short_name}} now supports multiple Dev Portals. Users can create multiple Dev Portals with the same functionality to better segment their customers, brands, and API product experiences. For more information, see [Create Dev Portal](/konnect/dev-portal/create-dev-portal).
+
+**Manage control plane analytics data ingestion**
+: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending on the Konnect Advanced Analytics app. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
+
+: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Advanced Analytics** toggle.
 
 
 ## April 2024
 
-
 **Dedicated Cloud Gateways**
+
 : You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
 
 : Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
@@ -58,10 +58,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : For more information, see [About Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/).
 
 : ![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
-: > _**Figure 1:** Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._
+: > _Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._
 
 **Improved UI/UX for Plugins**
 : We are happy to announce that a polished UI/UX experience for plugins is now available to our customers on Konnect. Required configuration settings are now grouped together, and indicated as required on the forms, improved tooltips and default fields are present on plugin forms, and a "most popular" plugins section is now available.
+
 : ![Improved UI/UX for plugins](/assets/images/products/konnect/changelog/improved-plugins-ui.png)
 
 
@@ -71,7 +72,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * Rendering UML diagrams and flowcharts via Mermaid and PlantUML
 * Emojis
 
-![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
+: ![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
 
 **PKI Cert Mode Improvements**
 : Konnect now defaults to PKI Cert mode for CP/DP connections. As a result, you can now specify your own CA certs during the creation of control planes. In addition, you can now upload your own Kong Cluster Cert/Key pairs to sign off using the CA cert that you uploaded, or continue to have Konnect generate Kong Cluster Cert/Key pairs for you. 
@@ -90,7 +91,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Enhanced error notification**
 : Customers now have the ability to view detailed error notifications for their data plane directly within {{site.konnect_short_name}}. The enhanced logging feature categorizes errors for improved clarity, distinguishing between configuration errors, transient configuration reload errors, and general exceptions. This update empowers users to diagnose and resolve CP/DP connection issues more efficiently.
 
-![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
+: ![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
 
 **New Analytics Explorer page**
 : You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).
@@ -99,7 +100,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : A new version of the Analytics summary dashboard is now available for all {{site.konnect_short_name}} users. This new version displays all analytics information on one page, which allows you to focus on your most critical API usage data.
 
 : ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
-: > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
+: > _Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
 
 ## February 2024
 
@@ -131,7 +132,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Autogenerated YAML and JSON configuration files for {{site.konnect_short_name}}**
 : You can now export configuration of core Gateway Manager objects, like services, routes, and plugins, to YAML or JSON. This allows you to import the file to APIOps tooling, like decK. For more information, see [Manage Control Plane Configuration with decK](/konnect/gateway-manager/declarative-config/).
 
-![Konnect-config-export](/assets/images/products/konnect/gateway-manager/konnect-config-export.png)
+: ![Konnect-config-export](/assets/images/products/konnect/gateway-manager/konnect-config-export.png)
 
 ## January 2024
 
@@ -654,7 +655,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
 
-: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/import/).
+: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/migration/).
 
 : The minimum supported {{site.base_gateway}} version for this environment is 2.5.0.1.
 

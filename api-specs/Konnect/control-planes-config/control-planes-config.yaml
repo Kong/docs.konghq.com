@@ -500,6 +500,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/ACL'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -510,7 +512,7 @@ paths:
       tags:
         - ACLs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/core-entities/basic-auths:
     get:
       description: List all Basic-auth credentials
@@ -529,6 +531,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/BasicAuth'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -539,7 +543,7 @@ paths:
       tags:
         - Basic-auth credentials
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/core-entities/ca_certificates:
     get:
       description: List all CA Certificates
@@ -558,6 +562,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/CACertificate'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -568,7 +574,7 @@ paths:
       tags:
         - CA Certificates
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new CA Certificate
       operationId: create-ca_certificate
@@ -608,8 +614,6 @@ paths:
     get:
       description: Get a CA Certificate using ID.
       operationId: get-ca_certificate
-      parameters:
-        - $ref: '#/components/parameters/CACertificateId'
       responses:
         '200':
           content:
@@ -625,12 +629,11 @@ paths:
       tags:
         - CA Certificates
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/CACertificateId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update CA Certificate using ID.
       operationId: upsert-ca_certificate
-      parameters:
-        - $ref: '#/components/parameters/CACertificateId'
       requestBody:
         content:
           application/json:
@@ -668,6 +671,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Certificate'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -678,7 +683,7 @@ paths:
       tags:
         - Certificates
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Certificate
       operationId: create-certificate
@@ -718,8 +723,6 @@ paths:
     get:
       description: Get a Certificate using ID.
       operationId: get-certificate
-      parameters:
-        - $ref: '#/components/parameters/CertificateId'
       responses:
         '200':
           content:
@@ -735,12 +738,11 @@ paths:
       tags:
         - Certificates
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/CertificateId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Certificate using ID.
       operationId: upsert-certificate
-      parameters:
-        - $ref: '#/components/parameters/CertificateId'
       requestBody:
         content:
           application/json:
@@ -779,6 +781,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/SNI'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -787,7 +791,7 @@ paths:
       tags:
         - SNIs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new SNI associated with a Certificate
       operationId: create-sni-with-certificate
@@ -842,7 +846,7 @@ paths:
       tags:
         - SNIs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update an SNI associated with a Certificate using ID or name.
       operationId: upsert-sni-with-certificate
@@ -884,6 +888,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/ConsumerGroup'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -894,7 +900,7 @@ paths:
       tags:
         - Consumer Groups
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Consumer Group
       operationId: create-consumer_group
@@ -934,14 +940,12 @@ paths:
     get:
       description: Get a Consumer Group using ID.
       operationId: get-consumer_group
-      parameters:
-        - $ref: '#/components/parameters/ConsumerGroupId'
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConsumerGroup'
+                $ref: '#/components/schemas/ConsumerGroupInsideWrapper'
           description: Successfully fetched Consumer Group
         '401':
           $ref: '#/components/responses/HTTP401Error'
@@ -951,12 +955,11 @@ paths:
       tags:
         - Consumer Groups
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/ConsumerGroupId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Consumer Group using ID.
       operationId: upsert-consumer_group
-      parameters:
-        - $ref: '#/components/parameters/ConsumerGroupId'
       requestBody:
         content:
           application/json:
@@ -976,6 +979,57 @@ paths:
       summary: Upsert a Consumer Group
       tags:
         - Consumer Groups
+  /control-planes/{controlPlaneId}/core-entities/consumer_groups/{ConsumerGroupId}/consumers:
+    parameters:
+      - $ref: '#/components/parameters/ConsumerGroupIdManageConsumers'
+      - $ref: '#/components/parameters/controlPlaneId'
+    post:
+      description: Add a consumer to a consumer group
+      operationId: add-consumer-to-group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                consumer:
+                  example: cf4c7e60-11db-49dd-b300-7c7e5f0f7e6b
+                  type: string
+              type: object
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                properties:
+                  consumer_group:
+                    $ref: '#/components/schemas/ConsumerGroup'
+                  consumers:
+                    items:
+                      $ref: '#/components/schemas/Consumer'
+                    type: array
+                type: object
+          description: Consumer added to group
+      summary: Add consumer to consumer group
+      tags:
+        - Consumer Groups
+  /control-planes/{controlPlaneId}/core-entities/consumer_groups/{ConsumerGroupId}/consumers/{ConsumerId}:
+    delete:
+      description: Remove a consumer from a consumer group
+      operationId: remove-consumer-from-group
+      responses:
+        '204':
+          description: Consumer removed from group
+      summary: Remove consumer from consumer group
+      tags:
+        - Consumer Groups
+    parameters:
+      - $ref: '#/components/parameters/ConsumerGroupIdManageConsumers'
+      - in: path
+        name: ConsumerId
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/core-entities/consumers:
     get:
       description: List all Consumers
@@ -994,6 +1048,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Consumer'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1004,7 +1060,7 @@ paths:
       tags:
         - Consumers
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Consumer
       operationId: create-consumer
@@ -1044,8 +1100,6 @@ paths:
     get:
       description: Get a Consumer using ID or username.
       operationId: get-consumer
-      parameters:
-        - $ref: '#/components/parameters/ConsumerId'
       responses:
         '200':
           content:
@@ -1061,12 +1115,11 @@ paths:
       tags:
         - Consumers
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/ConsumerId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Consumer using ID or username.
       operationId: upsert-consumer
-      parameters:
-        - $ref: '#/components/parameters/ConsumerId'
       requestBody:
         content:
           application/json:
@@ -1105,6 +1158,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/ACL'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1113,7 +1168,7 @@ paths:
       tags:
         - ACLs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new ACL associated with a Consumer
       operationId: create-acl-with-consumer
@@ -1168,7 +1223,7 @@ paths:
       tags:
         - ACLs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update an ACL associated with a Consumer using ID.
       operationId: upsert-acl-with-consumer
@@ -1211,6 +1266,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/BasicAuth'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1219,7 +1276,7 @@ paths:
       tags:
         - Basic-auth credentials
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Basic-auth credential associated with a Consumer
       operationId: create-basic-auth-with-consumer
@@ -1276,7 +1333,7 @@ paths:
       tags:
         - Basic-auth credentials
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: >-
         Create or Update a Basic-auth credential associated with a Consumer
@@ -1321,6 +1378,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/HMACAuth'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1329,7 +1388,7 @@ paths:
       tags:
         - HMAC-auth credentials
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new HMAC-auth credential associated with a Consumer
       operationId: create-hmac-auth-with-consumer
@@ -1386,7 +1445,7 @@ paths:
       tags:
         - HMAC-auth credentials
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: >-
         Create or Update a HMAC-auth credential associated with a Consumer using
@@ -1431,6 +1490,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/JWT'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1439,7 +1500,7 @@ paths:
       tags:
         - JWTs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new JWT associated with a Consumer
       operationId: create-jwt-with-consumer
@@ -1494,7 +1555,7 @@ paths:
       tags:
         - JWTs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update a JWT associated with a Consumer using ID.
       operationId: upsert-jwt-with-consumer
@@ -1537,6 +1598,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/KeyAuth'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1545,7 +1608,7 @@ paths:
       tags:
         - API-keys
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new API-key associated with a Consumer
       operationId: create-key-auth-with-consumer
@@ -1600,7 +1663,7 @@ paths:
       tags:
         - API-keys
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update an API-key associated with a Consumer using ID.
       operationId: upsert-key-auth-with-consumer
@@ -1642,6 +1705,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/HMACAuth'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1652,7 +1717,7 @@ paths:
       tags:
         - HMAC-auth credentials
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/core-entities/jwts:
     get:
       description: List all JWTs
@@ -1671,6 +1736,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/JWT'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1681,7 +1748,7 @@ paths:
       tags:
         - JWTs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/core-entities/key-auths:
     get:
       description: List all API-keys
@@ -1700,6 +1767,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/KeyAuth'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1710,7 +1779,7 @@ paths:
       tags:
         - API-keys
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/core-entities/key-sets:
     get:
       description: List all KeySets
@@ -1729,6 +1798,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/KeySet'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1739,7 +1810,7 @@ paths:
       tags:
         - KeySets
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new KeySet
       operationId: create-key-set
@@ -1779,8 +1850,6 @@ paths:
     get:
       description: Get a KeySet using ID or name.
       operationId: get-key-set
-      parameters:
-        - $ref: '#/components/parameters/KeySetId'
       responses:
         '200':
           content:
@@ -1796,12 +1865,11 @@ paths:
       tags:
         - KeySets
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/KeySetId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update KeySet using ID or name.
       operationId: upsert-key-set
-      parameters:
-        - $ref: '#/components/parameters/KeySetId'
       requestBody:
         content:
           application/json:
@@ -1839,6 +1907,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Key'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1849,7 +1919,7 @@ paths:
       tags:
         - Keys
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Key
       operationId: create-key
@@ -1889,8 +1959,6 @@ paths:
     get:
       description: Get a Key using ID or name.
       operationId: get-key
-      parameters:
-        - $ref: '#/components/parameters/KeyId'
       responses:
         '200':
           content:
@@ -1906,12 +1974,11 @@ paths:
       tags:
         - Keys
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/KeyId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Key using ID or name.
       operationId: upsert-key
-      parameters:
-        - $ref: '#/components/parameters/KeyId'
       requestBody:
         content:
           application/json:
@@ -1949,6 +2016,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Plugin'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -1959,7 +2028,7 @@ paths:
       tags:
         - Plugins
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Plugin
       operationId: create-plugin
@@ -1999,8 +2068,6 @@ paths:
     get:
       description: Get a Plugin using ID.
       operationId: get-plugin
-      parameters:
-        - $ref: '#/components/parameters/PluginId'
       responses:
         '200':
           content:
@@ -2016,12 +2083,11 @@ paths:
       tags:
         - Plugins
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/PluginId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Plugin using ID.
       operationId: upsert-plugin
-      parameters:
-        - $ref: '#/components/parameters/PluginId'
       requestBody:
         content:
           application/json:
@@ -2059,6 +2125,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Route'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2069,7 +2137,7 @@ paths:
       tags:
         - Routes
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Route
       operationId: create-route
@@ -2109,8 +2177,6 @@ paths:
     get:
       description: Get a Route using ID or name.
       operationId: get-route
-      parameters:
-        - $ref: '#/components/parameters/RouteId'
       responses:
         '200':
           content:
@@ -2126,12 +2192,11 @@ paths:
       tags:
         - Routes
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/RouteId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Route using ID or name.
       operationId: upsert-route
-      parameters:
-        - $ref: '#/components/parameters/RouteId'
       requestBody:
         content:
           application/json:
@@ -2170,6 +2235,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Plugin'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2178,7 +2245,7 @@ paths:
       tags:
         - Plugins
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Plugin associated with a Route
       operationId: create-plugin-with-route
@@ -2233,7 +2300,7 @@ paths:
       tags:
         - Plugins
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update a Plugin associated with a Route using ID.
       operationId: upsert-plugin-with-route
@@ -2257,6 +2324,34 @@ paths:
       summary: Upsert a Plugin associated with a Route
       tags:
         - Plugins
+  /control-planes/{controlPlaneId}/core-entities/schemas/plugins/{pluginName}:
+    get:
+      description: Get the schema for a plugin
+      operationId: fetch-plugin-schema
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  fields:
+                    items:
+                      additionalProperties: true
+                      type: object
+                    type: array
+                type: object
+          description: The schema for the plugin
+      summary: Fetch plugin schema
+      tags:
+        - Plugins
+    parameters:
+      - description: The name of the plugin
+        in: path
+        name: pluginName
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/core-entities/services:
     get:
       description: List all Services
@@ -2275,6 +2370,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Service'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2285,7 +2382,7 @@ paths:
       tags:
         - Services
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Service
       operationId: create-service
@@ -2325,8 +2422,6 @@ paths:
     get:
       description: Get a Service using ID or name.
       operationId: get-service
-      parameters:
-        - $ref: '#/components/parameters/ServiceId'
       responses:
         '200':
           content:
@@ -2342,12 +2437,11 @@ paths:
       tags:
         - Services
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/ServiceId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Service using ID or name.
       operationId: upsert-service
-      parameters:
-        - $ref: '#/components/parameters/ServiceId'
       requestBody:
         content:
           application/json:
@@ -2386,6 +2480,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Plugin'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2394,7 +2490,7 @@ paths:
       tags:
         - Plugins
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Plugin associated with a Service
       operationId: create-plugin-with-service
@@ -2449,7 +2545,7 @@ paths:
       tags:
         - Plugins
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update a Plugin associated with a Service using ID.
       operationId: upsert-plugin-with-service
@@ -2492,6 +2588,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Route'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2500,7 +2598,7 @@ paths:
       tags:
         - Routes
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Route associated with a Service
       operationId: create-route-with-service
@@ -2555,7 +2653,7 @@ paths:
       tags:
         - Routes
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update a Route associated with a Service using ID or name.
       operationId: upsert-route-with-service
@@ -2597,6 +2695,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/SNI'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2607,7 +2707,7 @@ paths:
       tags:
         - SNIs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new SNI
       operationId: create-sni
@@ -2647,8 +2747,6 @@ paths:
     get:
       description: Get an SNI using ID or name.
       operationId: get-sni
-      parameters:
-        - $ref: '#/components/parameters/SNIId'
       responses:
         '200':
           content:
@@ -2664,12 +2762,11 @@ paths:
       tags:
         - SNIs
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/SNIId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update SNI using ID or name.
       operationId: upsert-sni
-      parameters:
-        - $ref: '#/components/parameters/SNIId'
       requestBody:
         content:
           application/json:
@@ -2707,6 +2804,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Upstream'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2717,7 +2816,7 @@ paths:
       tags:
         - Upstreams
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Upstream
       operationId: create-upstream
@@ -2757,8 +2856,6 @@ paths:
     get:
       description: Get an Upstream using ID or name.
       operationId: get-upstream
-      parameters:
-        - $ref: '#/components/parameters/UpstreamId'
       responses:
         '200':
           content:
@@ -2774,12 +2871,11 @@ paths:
       tags:
         - Upstreams
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/UpstreamId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Upstream using ID or name.
       operationId: upsert-upstream
-      parameters:
-        - $ref: '#/components/parameters/UpstreamId'
       requestBody:
         content:
           application/json:
@@ -2818,6 +2914,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Target'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2826,7 +2924,7 @@ paths:
       tags:
         - Targets
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Target associated with an Upstream
       operationId: create-target-with-upstream
@@ -2881,7 +2979,7 @@ paths:
       tags:
         - Targets
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: >-
         Create or Update a Target associated with an Upstream using ID or
@@ -2925,6 +3023,8 @@ paths:
                     items:
                       $ref: '#/components/schemas/Vault'
                     type: array
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
                 type: object
@@ -2935,7 +3035,7 @@ paths:
       tags:
         - Vaults
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/controlPlaneId'
     post:
       description: Create a new Vault
       operationId: create-vault
@@ -2975,8 +3075,6 @@ paths:
     get:
       description: Get a Vault using ID or prefix.
       operationId: get-vault
-      parameters:
-        - $ref: '#/components/parameters/VaultId'
       responses:
         '200':
           content:
@@ -2992,12 +3090,11 @@ paths:
       tags:
         - Vaults
     parameters:
-      - $ref: '#/components/parameters/ControlPlaneId'
+      - $ref: '#/components/parameters/VaultId'
+      - $ref: '#/components/parameters/controlPlaneId'
     put:
       description: Create or Update Vault using ID or prefix.
       operationId: upsert-vault
-      parameters:
-        - $ref: '#/components/parameters/VaultId'
       requestBody:
         content:
           application/json:
@@ -3094,6 +3191,12 @@ components:
       required: true
       schema:
         type: string
+    ConsumerGroupIdManageConsumers:
+      in: path
+      name: ConsumerGroupId
+      required: true
+      schema:
+        type: string
     ConsumerId:
       description: ID of the Consumer to lookup
       example: c1059869-6fa7-4329-a5f5-5946d14ca2c5
@@ -3109,17 +3212,6 @@ components:
       name: ConsumerIdForNestedEntities
       required: true
       schema:
-        type: string
-    ControlPlaneId:
-      description: >-
-        The UUID of your control plane. This variable is available in the
-        Konnect manager.
-      example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
-      in: path
-      name: controlPlaneId
-      required: true
-      schema:
-        format: uuid
         type: string
     HMACAuthId:
       description: ID of the HMAC-auth credential to lookup
@@ -3376,6 +3468,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     Certificate:
       properties:
@@ -3431,6 +3527,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     Consumer:
       properties:
@@ -3454,6 +3554,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
         username:
           description: >-
             The unique username of the Consumer. You must send either this field
@@ -3475,6 +3579,15 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
+      type: object
+    ConsumerGroupInsideWrapper:
+      properties:
+        consumer_group:
+          $ref: '#/components/schemas/ConsumerGroup'
       type: object
     GatewayUnauthorizedError:
       properties:
@@ -3541,6 +3654,11 @@ components:
             - RS512
             - ES256
             - ES384
+            - ES512
+            - PS256
+            - PS384
+            - PS512
+            - EdDSA
           type: string
         created_at:
           description: Unix epoch when the resource was created.
@@ -3654,6 +3772,9 @@ components:
           readOnly: true
           type: integer
       type: object
+    PaginationNextResponse:
+      description: URI to the next page (may be null)
+      type: string
     PaginationOffsetResponse:
       description: >-
         Offset is used to paginate through the API. Provide this value to the
@@ -3670,6 +3791,13 @@ components:
                 specified has been authenticated. (Note that some plugins can
                 not be restricted to consumers this way.). Leave unset for the
                 plugin to activate regardless of the authenticated Consumer.
+              properties:
+                id:
+                  type: string
+              type: object
+              x-foreign: true
+            consumer_group:
+              additionalProperties: false
               properties:
                 id:
                   type: string
@@ -3702,6 +3830,7 @@ components:
     PluginWithoutParents:
       properties:
         config:
+          additionalProperties: true
           description: >-
             The configuration properties for the Plugin which can be found on
             the plugins documentation page in the [Kong
@@ -3717,6 +3846,8 @@ components:
           type: boolean
         id:
           readOnly: true
+          type: string
+        instance_name:
           type: string
         name:
           description: >-
@@ -3758,6 +3889,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     Route:
       allOf:
@@ -3981,6 +4116,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
       type: object
     Service:
       properties:
@@ -4133,6 +4272,10 @@ components:
             resolves to an SRV record, the `port` value will be overridden by
             the value from the DNS record.
           type: string
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: number
         weight:
           default: 100
           description: >-
@@ -4150,6 +4293,7 @@ components:
             - consistent-hashing
             - least-connections
             - round-robin
+            - latency
           type: string
         client_certificate:
           additionalProperties: false
@@ -4407,6 +4551,10 @@ components:
           items:
             type: string
           type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          readOnly: true
+          type: integer
         use_srv_name:
           default: false
           description: >-

@@ -19,7 +19,7 @@ that will be created, updated, or deleted.
 ## Syntax
 
 ```
-deck gateway diff [command-specific flags] [global flags]
+deck gateway diff [filename] [command-specific flags] [global flags]
 ```
 
 ## Flags

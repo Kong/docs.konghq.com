@@ -160,6 +160,7 @@ body_filter
 bool
 boolean
 booleans
+brotli
 burstable
 CAs
 certificate_admin
@@ -276,6 +277,7 @@ http
 httpbin
 HTTPie
 https
+IdPs
 impactful
 Imperva
 inbounds

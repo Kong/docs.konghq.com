@@ -1,23 +1,73 @@
 <!-- shared with the Plugin Hub: Plugin Overview, Kong Gateway: Developing Plugins Overview, and Kong Gateway: Understanding Kong: Plugins -->
 ## What are plugins?
 
-{{site.base_gateway}} is a Lua application designed to load and execute Lua or Go modules, which
-we commonly refer to as _plugins_. Kong provides a set of
+{{site.base_gateway}} is a Lua application designed to load and execute modules, which
+we commonly refer to as _plugins_. Plugins provide advanced functionality and extend the 
+use of the {{site.base_gateway}}, allowing you to add more features to your implementation.
+
+Kong provides a set of
 [standard Lua plugins](/hub/?support=kong-inc) that get bundled with {{site.base_gateway}} and
 {{site.konnect_short_name}}. The set of plugins you
 have access to depends on your [license tier](/hub/plugins/license-tiers/).
 
-Custom plugins can also be developed by the Kong Community and are supported
-and maintained by the plugin creators. If they are published on the Kong Plugin
-Hub, they are called Community or Third-Party plugins.
+You can also [develop custom plugins](#developing-custom-plugins), adding your own custom functionality to {{site.base_gateway}}.
 
-## Why use plugins?
+## Scoping plugins
 
-Plugins provide advanced functionality and extend the use of the {{site.base_gateway}},
-which allows you to add new features to your implementation. Plugins can be configured to run in
-a variety of contexts, ranging from a specific route to all upstreams, and can
-execute actions inside Kong before or after a request has been proxied to the
-upstream API, as well as on any incoming responses.
+You can run plugins in various contexts, depending on your environment needs.
+Each plugin can run globally, or be scoped to some combination of the following:
+* Services
+* Routes
+* Consumers
+* Consumer groups
+
+Using scopes, you can customize how Kong handles functions in your environment, 
+either before a request is sent to your backend services or after it receives a response.
+For example, if you apply a plugin to a single [**route**](/gateway/latest/key-concepts/routes/), that plugin will trigger only on the specific path requests take through your system.
+On the other hand, if you apply the plugin [**globally**](#global-scope), it will run on every request, regardless of any other configuration.
+
+### Global scope
+A global plugin is not associated to any service, route, consumer, or consumer group is considered global, and will be run on every request,
+regardless of any other configuration.
+
+* In self-managed {{site.ee_product_name}}, the plugin applies to every entity in a given workspace.
+* In self-managed {{site.ce_product_name}}, the plugin applies to your entire environment.
+* In {{site.konnect_short_name}}, the plugin applies to every entity in a given control plane.
+
+Every plugin supports a subset of these scopes.
+
+See the [scope compatibility](/hub/plugins/compatibility/#scopes) reference for all supported scopes for each plugin.
+
+### Precedence
+
+A single plugin instance always runs _once_ per request. The
+configuration with which it runs depends on the entities it has been
+configured for.
+Plugins can be configured for various entities, combinations of entities, or even globally.
+This is useful, for example, when you want to configure a plugin a certain way for most requests but make _authenticated requests_ behave slightly differently.
+
+Therefore, there is an order of precedence for running a plugin when it has been applied to different entities with different configurations. The number of entities configured to a specific plugin directly correlates to its priority. The more entities a plugin is configured for, the higher its order of precedence.
+
+The complete order of precedence for plugins configured to multiple entities is:
+
+1. **Consumer** + **route** + **service**: Highest precedence, affecting authenticated requests that match a specific consumer on a particular route and service.
+1. **Consumer group** + **service** + **route**: Affects groups of authenticated users across specific services and routes.
+1. **Consumer** + **route**: Targets authenticated requests from a specific consumer on a particular route.
+1. **Consumer** + **service**: Applies to authenticated requests from a specific consumer accessing any route within a given service.
+1. **Consumer group** + **route**: Affects groups of authenticated users on specific routes.
+1. **Consumer group** + **service**: Applies to all routes within a specific service for groups of authenticated users.
+1. **Route** + **service**: Targets all consumers on a specific route and service.
+1. **Consumer**: Applies to all requests from a specific, authenticated consumer across all routes and services.
+1. **Consumer group**: Affects all routes and services for a designated group of authenticated users.
+1. **Route**: Specific to given route.
+1. **Service**: Specific to given service. 
+1. **Globally configured plugins**: Lowest precedence, applies to all requests across all services and routes regardless of consumer status.
+
+{:.note}
+> **Note on precedence for consumer groups**:
+When a consumer is a member of two consumer groups, each with a scoped plugin, 
+{{site.base_gateway}} ensures deterministic behavior by executing only one of these plugins. 
+However, the specific rules that govern this behavior are not defined and are subject to change in future releases.
 
 ## Plugin compatibility with deployment types
 
@@ -25,98 +75,44 @@ upstream API, as well as on any incoming responses.
 are fully compatible with each mode. See [Plugin Compatibility](/hub/plugins/compatibility#plugin-compatibility)
 for a comparison.
 
-## Precedence
+## Custom plugins
 
-A single plugin instance always runs _once_ per request. The
-configuration with which it runs depends on the entities it has been
-configured for.
-Plugins can be configured for various entities, combinations of entities, or
-even globally. This is useful, for example, when you want to configure a plugin
-a certain way for most requests, but make _authenticated requests_ behave
-slightly differently.
-
-Therefore, there is an order of precedence for running a plugin when it has
-been applied to different entities with different configurations. The amount of entities configured to a specific plugin directly correlate to its priority. The more entities configured to a plugin the higher its order of precedence is.
-The complete order of precedence for plugins configured to multiple entities is:
-
-1. Plugins configured on a combination of a consumer, a route, and a service.
-    (Consumer means the request must be authenticated).
-2. Plugins configured on a combination of a consumer group, service, and a route.
-    (Consumer group means the request must be authenticated).
-3. Plugins configured on a combination of a consumer and a route.
-    (Consumer means the request must be authenticated).
-4. Plugins configured on a combination of a consumer and a service.
-5. Plugins configured on a consumer group and route.
-6. Plugins configured on a consumer group and service.
-7. Plugins configured on a route and service.
-8. Plugins configured on a consumer.
-9. Plugins configured on a consumer group.
-10. Plugins configured on a route.
-11. Plugins configured on a service.
-12. Plugins configured globally.
-
-### Precedence for consumer groups
-
-When a consumer is a member of two consumer groups, each with a scoped plugin, {{site.base_gateway}} ensures deterministic behavior by executing only one of these plugins. However, the specific rules that govern this behavior are not defined and are subject to change in future releases.
-
-## Terminology
-**Plugin**
-: An extension to the {{site.base_gateway}}.
-
-: For plugins developed and maintained by Kong, plugin versioning generally has
-no impact on your implementation, other than to find out which versions of Kong
-contain which plugin features. Kong plugins are bundled with the
-{{site.base_gateway}}, so compatible plugin versions are already associated
-with the correct version of Kong.
-
-**Kong plugin** or **Kong bundled plugin**
-: A plugin developed, maintained, and [supported by Kong](/hub/?support=kong-inc).
-
-: Because third-party plugins are not maintained by Kong and are not bundled with
-the {{site.base_gateway}}, version compatibility is a bigger concern. See each
-individual plugin's page for its tested compatibility.
-
-: If the versions on the plugin page are outdated, contact the maintainer directly.
-
-**Plugin supported by 3rd party**
-: A plugin in the category "Contact 3rd party for support".
-This is a custom plugin developed, tested, and maintained by an external developer,
-not by Kong.
-Unless the plugin is explicitly labelled as a technical partner,
-Kong does not test these plugins, or update their version
-compatibility.
-
-**Technical partner plugin**
-: A 3rd party custom plugin that has been carefully validated by Kong and
-has met certain standards.
-These plugins are still developed, tested, and maintained by an external developer,
-not by Kong. The plugin owner also maintains the plugin's version compatibility with
-{{site.base_gateway}}.
-
-## Developing custom plugins
+### Developing custom plugins
 
 Kong provides an entire development environment for developing plugins,
-including Lua and Go SDKs, database abstractions, migrations, and more.
+including Plugin Development Kits (or PDKs), database abstractions, migrations, and more.
 
 Plugins consist of modules interacting with the request/response objects or
-streams via a Plugin Development Kit (or PDK) to implement arbitrary logic.
-Kong provides PDKs for two languages: Lua and Go. Both of these PDKs are sets
-of functions that a plugin can use to facilitate interactions between plugins
+streams via a PDK to implement arbitrary logic.
+Kong provides PDKs in the following languages:
+* [Lua](/gateway/latest/plugin-development/)
+* [Go](/gateway/latest/plugin-development/pluginserver/go/)
+* [Python](/gateway/latest/plugin-development/pluginserver/python/)
+* [JavaScript](/gateway/latest/plugin-development/pluginserver/javascript/)
+
+These PDKs are sets of functions that a plugin can use to facilitate interactions between plugins
 and the core (or other components) of Kong.
 
-To start creating your own plugins, check out the PDK documentation:
-* [Plugin Development Guide](/gateway/latest/plugin-development/)
+To start creating your own plugins, review the [Getting Started documentation](/gateway/latest/plugin-development/get-started/),
+or see the following references:
 * [Plugin Development Kit reference](/gateway/latest/plugin-development/pdk/)
 * [Other Language Support](/gateway/latest/plugin-development/pluginserver/go/)
 
-## Contributing custom plugins
+### Third-party plugins
 
-If you are interested in sharing your custom plugin with other Kong users, you
-must also submit plugin reference documentation to the Kong Plugin Hub. See the
-[contribution guidelines](/contributing/plugin-docs/)
-for adding documentation.
+Through partnerships with third parties, Kong lists some [third-party custom plugins](/hub/?support=third-party-partner%2Ccommunity) on the Kong Plugin Hub. 
+These plugins are maintained by Kong partners. 
+If you would like to have your plugin featured on the Kong Plugin Hub, we encourage you to become a [Kong Partner](https://konghq.com/partners/).
 
-## Other key concepts
+## See also
 
-* For more information about available plugins, see the [Plugin Hub](/hub/).
-* [Stages of software availability](/gateway/latest/stability/)
+* [Kong Plugin Hub](/hub/): All Kong bundled plugins and partner plugins
+
+References:
+* [Supported scopes for each plugin](/hub/plugins/compatibility/#scopes)
+* [Supported topologies for each plugin](/hub/plugins/compatibility/)
+* [Supported protocols for each plugin](/hub/plugins/compatibility/#protocols)
+
+License or pricing tiers for plugins:
+* [Self-managed {{site.base_gateway}} license tiers](/hub/plugins/license-tiers/)
+* [{{site.konnect_short_name}} pricing tiers](/konnect/compatibility/#plugin-compatibility)

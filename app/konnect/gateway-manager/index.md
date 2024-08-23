@@ -57,8 +57,6 @@ entity-specific permissions. For more information, see [Administer teams](/konne
 ### {{site.base_gateway}} control planes
 
 Every region in every organization starts with one default control plane.
-This control plane can't be deleted, and its status as the default can't be changed.
-
 With {{site.konnect_short_name}} you can configure additional {{site.base_gateway}}
 control planes, each of which will have isolated configuration.
 Use multiple control planes in one {{site.konnect_short_name}} organization to
@@ -170,8 +168,6 @@ terminated, but they will be orphaned. They will continue processing traffic
 using the last configuration they received until they are either connected to
 a new control plane or manually shut down.
 
-You cannot delete the default control plane.
-
 ## Data plane nodes
 
 A data plane node is a single {{site.base_gateway}} instance. 
@@ -185,7 +181,7 @@ The following table can help you decide which data plane node strategy to use ba
 
 | Use case | Data plane node strategy |Solution |
 | ------- | ----------- | ----------- |
-| Reducing latency is important to your organization.  | [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | Supports multiple AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. |
+| Reducing latency is important to your organization.  | [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | Supports multiple regions on AWS and Azure: <br><br>- AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. <br>- Azure regions: Frankfurt, Ireland, UK South, Virginia, Washington |
 | Your organization operates in an industry with strict data protection and privacy requirements. |  [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | Using the private gateway option, Kong provisions a private network load balancer and only exposes the IP address in the UI. |
 | Your organization needs high availability with zero downtime when upgrading data plane nodes. | [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | There's no downtime when upgrading your data plane nodes. Additionally, you can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up. |
 | You have infrastructure in multiple clouds. | [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | Dedicated Cloud Gateways allows you to run a multi-cloud solution that allows you to standardize API operations across the board to reduce complexity and increase agility. |

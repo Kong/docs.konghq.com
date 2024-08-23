@@ -68,7 +68,7 @@ curl -X POST http://localhost:8001/services/ai-proxy/routes \
   --data "paths[]=~/mistral-chat$"
 ```
 
-Enable and configure the AI Proxy plugin for Mistral (using `ollama` format in this example):
+Enable and configure the AI Proxy plugin for Mistral (using `openai` format in this example):
 
 ```bash
 curl -X POST http://localhost:8001/routes/mistral-chat/plugins \
@@ -99,8 +99,9 @@ plugins:
       model:
         provider: "mistral"
         name: "mistral-tiny"
-        mistral_format: "openai"
-        upstream_url: "https://api.mistral.ai/v1/chat/completions"
+        options:
+          mistral_format: "openai"
+          upstream_url: "https://api.mistral.ai/v1/chat/completions"
 ```
 {% endnavtab %}
 {% endnavtabs %}

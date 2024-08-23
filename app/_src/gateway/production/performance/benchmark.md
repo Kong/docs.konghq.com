@@ -296,11 +296,8 @@ env:
 
 resources:
   requests:
-    cpu: 4
-    memory: ""
-  limits:
-    cpu: 4
-    memory: ""
+    cpu: 1
+    memory: "2Gi"
 ```
 {% endnavtab %}
 {% endnavtabs %}

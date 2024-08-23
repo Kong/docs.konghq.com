@@ -75,7 +75,7 @@ URL: /?details=true
 ```
 ### Set the Host header explicitly
 
-{% if_version gte 3.2.0 %}
+{% if_version gte:3.2.0 %}
 #### Using Gateway API
 
 You can set the Host header explicitly when using Gateway API's HTTPRoute with [`URLRewrite`](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2fv1.HTTPURLRewriteFilter) 
@@ -122,7 +122,7 @@ You can set the Host header explicitly if needed by disabling `konghq.com/preser
 
 Users have the following options to rewrite the default path handling behavior:
 
-{% if_version gte 3.2.0 %}* Rewrite using Gateway API's `URLRewrite` filter {% endif_version %}
+{% if_version gte:3.2.0 %}* Rewrite using Gateway API's `URLRewrite` filter {% endif_version %}
 * Rewrite using regular expressions
 * Remove the path prefix using `strip-path`
 * Add a path prefix using the `path` annotation
@@ -131,7 +131,7 @@ Users have the following options to rewrite the default path handling behavior:
 
 {% navtabs rewrite %}
 
-{% if_version gte 3.2.0 %}
+{% if_version gte:3.2.0 %}
 {% navtab Gateway API %}
 You can replace the full path for a request by adding the `URLRewrite` filter with `path.replaceFullPath` to your `HTTPRoute`.
 

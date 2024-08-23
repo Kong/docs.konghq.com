@@ -119,13 +119,20 @@ vaults:
     - env-vault
 ```
 
-When updating the vault, `deck dump` the configuration with the `--select-tag` flag:
+When updating the vault, `dump` the configuration with the `--select-tag` flag:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck dump --select-tag env-vault
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway dump -o kong.yaml --select-tag env-vault
+```
+{% endif_version %}
 
-Make your changes to the vault, then push it back up with `deck sync`.
+Make your changes to the vault, then push it back up with `sync`.
 You don't need to specify `--select-tag` in this case, as decK recognizes the
 tag in the declarative configuration file that you're syncing and updates
 those entities accordingly.
