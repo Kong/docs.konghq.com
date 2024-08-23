@@ -10,6 +10,10 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
+## September 2024
+**Cloud Launchers Deprecated**
+: Cloud Launchers will be deprecated on November 30th, 2024. From this date you will no longer be able to use pre-populated templates to launch dataplanes in AWS, Azure, or GCP using Cloud Launchers
+
 ## August 2024
 
 **You can now delete the default control plane**
