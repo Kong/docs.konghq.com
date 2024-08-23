@@ -108,11 +108,11 @@ Attribute mapping for Azure configuration:
 | Identifier (Entity ID)                      | `sp_entity_id`           |
 | Reply URL (Assertion Consumer Service URL)  | `callback_url`           |
 | App Federation Metadata Url                 | `idp_metadata_url`       |
-| `email`                                       | `user.email`             |
-| `firstname`                                   | `user.givenname`         |
-| `lastname`                                    | `user.surname`           |
-| `groups`                                      | `user.groups`            |
-| Unique user identifier                      | `user.principalname`     |
+| `user.email`                                        |     `email        |
+| `user.givenname`                                   | `firstname`         |
+| `user.surname`                                    |      `lastname`      |
+| `user.groups`                                      | `groups`            |
+| `user.principalname`                   |   Unique user identifier      |
 
 
 {% endnavtab %}
