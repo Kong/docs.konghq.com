@@ -5,97 +5,80 @@ info:
   description: The search API for Kong Konnect.
   contact:
     name: Kong
-    url: https://konghq.com
+    url: 'https://konghq.com'
 servers:
-  - url: https://global.api.konghq.com/v1
+  - url: 'https://global.api.konghq.com/v1'
     description: Global Base URL
-  - url: https://us.api.konghq.com/v1
+  - url: 'https://us.api.konghq.com/v1'
     description: US Region Base URL
-  - url: https://eu.api.konghq.com/v1
+  - url: 'https://eu.api.konghq.com/v1'
     description: EU Region Base URL
-  - url: https://au.api.konghq.com/v1
+  - url: 'https://au.api.konghq.com/v1'
     description: AU Region Base URL
-security:
-  - personalAccessToken: []
-  - systemAccountAccessToken: []
-  - konnectAccessToken: []
-tags:
-  - name: Search
 paths:
   /search:
     get:
       operationId: get-search
       summary: Search Konnect
       description: Retrieves a list of Konnect entities matching the search query provided.
-      tags:
-        - Search
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageAfter'
-        - in: query
-          name: q
+        - name: q
+          in: query
           description: The query that defines the search criteria.
-          example: name:"John Smith"
+          required: true
           schema:
             type: string
-          required: true
+          example: 'name:"John Smith"'
       responses:
         '200':
           $ref: '#/components/responses/SearchResponse'
         '400':
           $ref: '#/components/responses/SearchBadRequest'
+      tags:
+        - Search
   /search/types:
     get:
       operationId: get-search-types
       summary: List Search Types
       description: Retrieves a list of searchable Konnect entity types.
-      tags:
-        - Search
       responses:
         '200':
           $ref: '#/components/responses/SearchTypesResponse'
+      tags:
+        - Search
 components:
-  responses:
-    SearchResponse:
-      description: Search response for containing all matched Konnect entities.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SearchResponse'
-          examples:
-            Successful Search Response:
-              $ref: '#/components/examples/Successful-Search-Example'
-    SearchBadRequest:
-      description: Bad Request
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/BadRequestError'
-          examples:
-            Request Format is Invalid:
-              $ref: '#/components/examples/400-query-is-invalid'
-    SearchTypesResponse:
-      description: Search response for containing all searchable Konnect types.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SearchTypesResponse'
-          examples:
-            Searchable Entity Types:
-              $ref: '#/components/examples/Searchable-Entity-Types'
+  parameters:
+    PageAfter:
+      name: 'page[after]'
+      description: 'Request the next page of data, starting with the item after this parameter.'
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: string
+        example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
+    PageSize:
+      name: 'page[size]'
+      description: The maximum number of items to include per page. The last page of a collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
   schemas:
     SearchCursorMeta:
-      type: object
       description: Pagination metadata.
-      required:
-        - page
+      type: object
       properties:
         page:
           $ref: '#/components/schemas/SearchCursorMetaPage'
+      required:
+        - page
     SearchCursorMetaPage:
       type: object
-      required:
-        - size
       properties:
         next:
           description: URI to the next page
@@ -106,8 +89,9 @@ components:
           description: Requested page size
           type: number
           example: 10
+      required:
+        - size
     SearchResponse:
-      title: SearchResponse
       description: Search response schema.
       type: object
       properties:
@@ -117,8 +101,8 @@ components:
             $ref: '#/components/schemas/SearchResultItem'
         meta:
           $ref: '#/components/schemas/SearchCursorMeta'
+      title: SearchResponse
     SearchTypesResponse:
-      title: SearchableEntityTypesResponse
       description: The collection of searchable entity types.
       type: object
       properties:
@@ -128,158 +112,149 @@ components:
             type: object
             properties:
               type:
-                type: string
                 description: The entity type.
+                type: string
               name:
-                type: string
                 description: The human-readable entity name.
-              description:
                 type: string
+              description:
                 description: A short description of the entity.
+                type: string
               attributes:
-                type: object
                 description: The entity's searchable attributes.
+                type: object
                 additionalProperties:
                   $ref: '#/components/schemas/SearchTypesAttribute'
               regions:
+                description: The regions the entity is available.
                 type: array
                 items:
                   type: string
-                description: The regions the entity is available.
             required:
               - type
               - name
               - description
               - regions
+      title: SearchableEntityTypesResponse
     SearchTypesAttribute:
-      title: SearchableEntityAttributesResponse
       description: Searchable attribute for the entity type.
       type: object
       properties:
         type:
+          description: The attribute type.
           type: string
           enum:
             - string
             - number
             - boolean
             - array
-          description: The attribute type.
         format:
+          description: An optional hint at the contents and format of string types.
           type: string
           enum:
             - date-time
             - uuid
             - email
-          description: An optional hint at the contents and format of string types.
         items:
+          description: An optional hint at the type of content in array types.
           type: object
           nullable: true
           properties:
             type:
+              description: The attribute items' type.
               type: string
               enum:
                 - string
                 - number
                 - boolean
-              description: The attribute items' type.
           required:
             - type
-          description: An optional hint at the type of content in array types.
         name:
-          type: string
           description: The human-readable attribute name.
-        description:
           type: string
+        description:
           description: A short description of the attribute.
+          type: string
       required:
         - type
         - name
         - description
+      title: SearchableEntityAttributesResponse
     SearchResultItem:
-      title: SearchResultItem
       description: Item included in the list of search results.
       type: object
+      properties:
+        id:
+          description: Unique identifier for the record.
+          type: string
+        type:
+          description: Konnect entity type.
+          type: string
+        name:
+          description: Name of the entity.
+          type: string
+        description:
+          description: Description of the entity.
+          type: string
+        labels:
+          description: Labels for the entity.
+          type: object
+        relations:
+          description: Relations for the entity.
+          type: object
+        attributes:
+          description: Attributes for the entity.
+          type: object
       required:
         - id
         - type
         - name
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the record.
-        type:
-          type: string
-          description: Konnect entity type.
-        name:
-          type: string
-          description: Name of the entity.
-        description:
-          type: string
-          description: Description of the entity.
-        labels:
-          type: object
-          description: Labels for the entity.
-        relations:
-          type: object
-          description: Relations for the entity.
-        attributes:
-          type: object
-          description: Attributes for the entity.
+      title: SearchResultItem
     BaseError:
-      type: object
-      title: Error
       description: standard error
+      type: object
+      properties:
+        status:
+          description: |
+            The HTTP status code of the error. Useful when passing the response
+            body to child properties in a frontend UI. Must be returned as an integer.
+          type: integer
+          readOnly: true
+        title:
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          type: string
+          readOnly: true
+        type:
+          description: The error type.
+          type: string
+          readOnly: true
+        instance:
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          type: string
+          readOnly: true
+        detail:
+          description: |
+            A human readable explanation specific to this occurence of the problem.
+            This field may contain request/entity data to help the user understand
+            what went wrong. Enclose variable values in square brackets. Should be
+            provided as "Sentence case" for direct use in the UI.
+          type: string
+          readOnly: true
       required:
         - status
         - title
         - instance
         - detail
-      properties:
-        status:
-          type: integer
-          description: >
-            The HTTP status code of the error. Useful when passing the response
-
-            body to child properties in a frontend UI. Must be returned as an
-            integer.
-          readOnly: true
-        title:
-          type: string
-          description: |
-            A short, human-readable summary of the problem. It should not
-            change between occurences of a problem, except for localization.
-            Should be provided as "Sentence case" for direct use in the UI.
-          readOnly: true
-        type:
-          type: string
-          description: The error type.
-          readOnly: true
-        instance:
-          type: string
-          description: |
-            Used to return the correlation ID back to the user, in the format
-            kong:trace:<correlation_id>. This helps us find the relevant logs
-            when a customer reports an issue.
-          readOnly: true
-        detail:
-          type: string
-          description: >
-            A human readable explanation specific to this occurence of the
-            problem.
-
-            This field may contain request/entity data to help the user
-            understand
-
-            what went wrong. Enclose variable values in square brackets. Should
-            be
-
-            provided as "Sentence case" for direct use in the UI.
-          readOnly: true
+      title: Error
     InvalidRules:
       description: invalid parameters rules
       type: string
-      readOnly: true
-      nullable: true
       enum:
         - required
         - max_length
@@ -302,9 +277,10 @@ components:
         - is_supported_network_availability_zone_list
         - is_supported_network_cidr_block
         - is_supported_provider_region
+      nullable: true
+      readOnly: true
     InvalidParameterStandard:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -319,12 +295,12 @@ components:
           type: string
           example: is a required field
           readOnly: true
+      additionalProperties: false
       required:
         - field
         - reason
     InvalidParameterMinimumLength:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -333,14 +309,14 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
-          nullable: false
           enum:
             - min_length
             - min_digits
             - min_lowercase
             - min_uppercase
             - min_symbols
+          nullable: false
+          readOnly: true
         minimum:
           type: integer
           example: 8
@@ -351,6 +327,7 @@ components:
           type: string
           example: is a required field
           readOnly: true
+      additionalProperties: false
       required:
         - field
         - reason
@@ -358,7 +335,6 @@ components:
         - minimum
     InvalidParameterChoiceItem:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -367,24 +343,25 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
-          nullable: false
           enum:
             - enum
+          nullable: false
+          readOnly: true
         reason:
           type: string
           example: is a required field
           readOnly: true
         choices:
           type: array
-          uniqueItems: true
-          readOnly: true
-          nullable: false
-          minimum: 1
           items: {}
+          minimum: 1
+          nullable: false
+          readOnly: true
+          uniqueItems: true
         source:
           type: string
           example: body
+      additionalProperties: false
       required:
         - field
         - reason
@@ -392,7 +369,6 @@ components:
         - choices
     InvalidParameterDependentItem:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -401,40 +377,41 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
-          nullable: true
           enum:
             - dependent_fields
+          nullable: true
+          readOnly: true
         reason:
           type: string
           example: is a required field
           readOnly: true
         dependents:
           type: array
-          uniqueItems: true
-          nullable: true
           items: {}
+          nullable: true
           readOnly: true
+          uniqueItems: true
         source:
           type: string
           example: body
+      additionalProperties: false
       required:
         - field
         - rule
         - reason
         - dependents
     InvalidParameters:
-      type: array
-      nullable: false
-      uniqueItems: true
-      minItems: 1
       description: invalid parameters
+      type: array
       items:
         oneOf:
           - $ref: '#/components/schemas/InvalidParameterStandard'
           - $ref: '#/components/schemas/InvalidParameterMinimumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
+      minItems: 1
+      nullable: false
+      uniqueItems: true
     BadRequestError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -444,53 +421,13 @@ components:
           properties:
             invalid_parameters:
               $ref: '#/components/schemas/InvalidParameters'
-  securitySchemes:
-    systemAccountAccessToken:
-      type: http
-      scheme: bearer
-      bearerFormat: Token
-      description: >
-        The system account access token is meant for automations and
-        integrations that are not directly associated with a human identity.
-
-        You can generate a system account Access Token by creating a system
-        account and then obtaining a system account access token for that
-        account.
-
-        The access token must be passed in the header of a request, for example:
-
-        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
-        'Authorization: Bearer spat_i2Ej...'`
-    personalAccessToken:
-      type: http
-      scheme: bearer
-      bearerFormat: Token
-      description: >
-        The personal access token is meant to be used as an alternative to
-        basic-auth when accessing Konnect via APIs.
-
-        You can generate a Personal Access Token (PAT) from the [personal access
-        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
-        dashboard.
-
-        The PAT token must be passed in the header of a request, for example:
-
-        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
-        'Authorization: Bearer kpat_xgfT...'`
-    konnectAccessToken:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: >
-        The Konnect access token is meant to be used by the Konnect dashboard
-        and the decK CLI authenticate with.
   examples:
     400-query-is-invalid:
       value:
         status: 400
         title: Bad Request
         detail: Invalid query.
-        instance: konnect:trace:3674017986744198214
+        instance: 'konnect:trace:3674017986744198214'
         invalid_parameters:
           - field: q
             reason: invalid query
@@ -525,7 +462,7 @@ components:
         meta:
           page:
             size: 3
-            next: /search?q=son&page[after]=ewogICJpZCI6ICJoZWysbyB3b3JsZCIKgZ
+            next: '/search?q=son&page[after]=ewogICJpZCI6ICJoZWysbyB3b3JsZCIKgZ'
     Searchable-Entity-Types:
       value:
         data:
@@ -566,26 +503,62 @@ components:
               - us
               - eu
               - au
-  parameters:
-    PageSize:
-      name: page[size]
-      description: >-
-        The maximum number of items to include per page. The last page of a
-        collection may include fewer items.
-      required: false
-      in: query
-      allowEmptyValue: true
-      schema:
-        type: integer
-        example: 10
-    PageAfter:
-      name: page[after]
-      description: >-
-        Request the next page of data, starting with the item after this
-        parameter.
-      required: false
-      in: query
-      allowEmptyValue: true
-      schema:
-        type: string
-        example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
+  responses:
+    SearchResponse:
+      description: Search response for containing all matched Konnect entities.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchResponse'
+          examples:
+            Successful Search Response:
+              $ref: '#/components/examples/Successful-Search-Example'
+    SearchBadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+          examples:
+            Request Format is Invalid:
+              $ref: '#/components/examples/400-query-is-invalid'
+    SearchTypesResponse:
+      description: Search response for containing all searchable Konnect types.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchTypesResponse'
+          examples:
+            Searchable Entity Types:
+              $ref: '#/components/examples/Searchable-Entity-Types'
+  securitySchemes:
+    systemAccountAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: |
+        The system account access token is meant for automations and integrations that are not directly associated with a human identity.
+        You can generate a system account Access Token by creating a system account and then obtaining a system account access token for that account.
+        The access token must be passed in the header of a request, for example:
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer spat_i2Ej...'`
+    personalAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: |
+        The personal access token is meant to be used as an alternative to basic-auth when accessing Konnect via APIs.
+        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/tokens/) in the Konnect dashboard.
+        The PAT token must be passed in the header of a request, for example:
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT...'`
+    konnectAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        The Konnect access token is meant to be used by the Konnect dashboard and the decK CLI authenticate with.
+tags:
+  - name: Search
+security:
+  - personalAccessToken: []
+  - systemAccountAccessToken: []
+  - konnectAccessToken: []
