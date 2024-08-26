@@ -5,23 +5,23 @@ info:
   version: 0.0.1
   contact:
     name: Kong
-    url: https://konghq.com
+    url: 'https://konghq.com'
 servers:
-  - url: https://us.api.konghq.com/v1
+  - url: 'https://us.api.konghq.com/v1'
     description: US Public API
-  - url: https://eu.api.konghq.com/v1
+  - url: 'https://eu.api.konghq.com/v1'
     description: EU Public API
-  - url: https://au.api.konghq.com/v1
+  - url: 'https://au.api.konghq.com/v1'
     description: AU Public API
-security:
-  - personalAccessToken: []
-  - systemAccountAccessToken: []
-tags:
-  - name: Mesh
 paths:
   /mesh/control-planes:
     get:
+      operationId: list-mesh-control-planes
       summary: List Control Planes
+      description: Returns an array of control planes objects.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
       responses:
         '200':
           $ref: '#/components/responses/ListMeshControlPlanesResponse'
@@ -29,19 +29,12 @@ paths:
           $ref: '#/components/responses/MeshControlPlaneUnauthorizedError'
         '403':
           $ref: '#/components/responses/MeshControlPlaneForbiddenError'
-      operationId: list-mesh-control-planes
-      description: Returns an array of control planes objects.
-      parameters:
-        - $ref: '#/components/parameters/PageSize'
-        - $ref: '#/components/parameters/PageNumber'
       tags:
         - Mesh
     post:
+      operationId: create-cp
       summary: Create a new control plane
       description: Create a new control plane
-      operationId: create-cp
-      tags:
-        - Mesh
       requestBody:
         required: true
         content:
@@ -60,22 +53,22 @@ paths:
           $ref: '#/components/responses/MeshControlPlaneUnauthorizedError'
         '403':
           $ref: '#/components/responses/MeshControlPlaneForbiddenError'
-  /mesh/control-planes/{cpId}:
+      tags:
+        - Mesh
+  '/mesh/control-planes/{cpId}':
     parameters:
       - name: cpId
         in: path
-        required: true
         description: Id of the Konnect resource
-        example: bf138ba2-c9b1-4229-b268-04d9d8a6410b
+        required: true
         schema:
           type: string
           format: uuid
+        example: bf138ba2-c9b1-4229-b268-04d9d8a6410b
     get:
+      operationId: get-mesh-control-plane
       summary: Get the control plane
       description: Get the control plane
-      operationId: get-mesh-control-plane
-      tags:
-        - Mesh
       responses:
         '200':
           $ref: '#/components/responses/RetrieveMeshControlPlaneResponse'
@@ -85,12 +78,12 @@ paths:
           $ref: '#/components/responses/MeshControlPlaneForbiddenError'
         '404':
           $ref: '#/components/responses/MeshControlPlaneNotFoundError'
-    delete:
-      summary: Delete the control plane
-      description: Delete the control plane
-      operationId: delete-mesh-control-plane
       tags:
         - Mesh
+    delete:
+      operationId: delete-mesh-control-plane
+      summary: Delete the control plane
+      description: Delete the control plane
       responses:
         '204':
           description: No Content
@@ -100,11 +93,21 @@ paths:
           $ref: '#/components/responses/MeshControlPlaneForbiddenError'
         '404':
           $ref: '#/components/responses/MeshControlPlaneNotFoundError'
-    patch:
-      summary: Update control plane
-      operationId: update-mesh-control-plane
       tags:
         - Mesh
+    patch:
+      operationId: update-mesh-control-plane
+      summary: Update control plane
+      description: Update an individual control plane.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMeshControlPlaneRequest'
+            examples:
+              Example Request Body:
+                $ref: '#/components/examples/UpdateMeshControlPlaneRequestExample'
       responses:
         '200':
           $ref: '#/components/responses/UpdateMeshControlPlaneResponse'
@@ -116,87 +119,57 @@ paths:
           $ref: '#/components/responses/MeshControlPlaneForbiddenError'
         '404':
           $ref: '#/components/responses/MeshControlPlaneNotFoundError'
-      description: Update an individual control plane.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateMeshControlPlaneRequest'
-            examples:
-              Example Request Body:
-                $ref: '#/components/examples/UpdateMeshControlPlaneRequestExample'
+      tags:
+        - Mesh
 components:
-  securitySchemes:
-    personalAccessToken:
-      type: http
-      scheme: bearer
-      bearerFormat: Token
-      description: >
-        The personal access token is meant to be used as an alternative to
-        basic-auth when accessing Konnect via APIs.
-
-        You can generate a Personal Access Token (PAT) from the [personal access
-        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
-        dashboard.
-
-        The PAT token must be passed in the header of a request, for example:
-
-        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
-        'Authorization: Bearer kpat_xgfT...'`
-    systemAccountAccessToken:
-      type: http
-      scheme: bearer
-      bearerFormat: Token
-      description: >
-        The system account access token is meant for automations and
-        integrations that are not directly associated with a human identity.
-
-        You can generate a system account Access Token by creating a system
-        account and then obtaining a system account access token for that
-        account.
-
-        The access token must be passed in the header of a request, for example:
-
-        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
-        'Authorization: Bearer spat_i2Ej...'`
+  parameters:
+    PageNumber:
+      name: 'page[number]'
+      description: Determines which page of the entities to retrieve.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 1
+    PageSize:
+      name: 'page[size]'
+      description: The maximum number of items to include per page. The last page of a collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
   schemas:
     MeshControlPlaneLabels:
-      title: Labels
+      description: Labels to facilitate tagged search on control planes. Keys must be of length 1-63 characters.
       type: object
-      nullable: true
       example:
         test: 'true'
-      description: >-
-        Labels to facilitate tagged search on control planes. Keys must be of
-        length 1-63 characters.
-      maxProperties: 10
       additionalProperties:
         type: string
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-\.\_]*[a-z0-9A-Z]+)?$
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z\-\.\_]*[a-z0-9A-Z]+)?$'
         minLength: 1
         maxLength: 63
         nullable: true
+      maxProperties: 10
+      nullable: true
+      title: Labels
     MeshControlPlane:
-      type: object
-      title: ControlPlane
       description: a control plane
-      required:
-        - id
-        - name
-        - updated_at
-        - created_at
+      type: object
       properties:
         id:
+          description: ID of the control plane.
           type: string
           format: uuid
-          description: ID of the control plane.
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
           readOnly: true
         name:
+          description: The name of the control plane.
           type: string
           example: Test control plane
-          description: The name of the control plane.
           maxLength: 100
         description:
           type: string
@@ -212,35 +185,40 @@ components:
           type: string
           format: date-time
           example: '2023-01-11T02:30:42.227Z'
+      required:
+        - id
+        - name
+        - updated_at
+        - created_at
+      title: ControlPlane
     CreateMeshControlPlaneRequest:
-      type: object
-      title: CreateMeshControlPlaneRequest
       description: a payload to create a control plane
+      type: object
+      properties:
+        name:
+          description: The name of the control plane.
+          type: string
+          example: Test control plane
+          maxLength: 100
+          minLength: 1
+        description:
+          type: string
+          example: A control plane to handle traffic on development environment.
+          maxLength: 250
+        labels:
+          $ref: '#/components/schemas/MeshControlPlaneLabels'
+      additionalProperties: false
       required:
         - name
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-          example: Test control plane
-          description: The name of the control plane.
-          minLength: 1
-          maxLength: 100
-        description:
-          type: string
-          example: A control plane to handle traffic on development environment.
-          maxLength: 250
-        labels:
-          $ref: '#/components/schemas/MeshControlPlaneLabels'
+      title: CreateMeshControlPlaneRequest
     UpdateMeshControlPlaneRequest:
-      type: object
-      title: UpdateMeshControlPlaneRequest
       description: a payload to update the control plane
+      type: object
       properties:
         name:
+          description: The name of the control plane.
           type: string
           example: Test control plane
-          description: The name of the control plane.
           maxLength: 100
         description:
           type: string
@@ -248,15 +226,10 @@ components:
           maxLength: 250
         labels:
           $ref: '#/components/schemas/MeshControlPlaneLabels'
+      title: UpdateMeshControlPlaneRequest
     PageMeta:
+      description: Contains pagination query parameters and the total number of objects returned.
       type: object
-      description: >-
-        Contains pagination query parameters and the total number of objects
-        returned.
-      required:
-        - number
-        - size
-        - total
       properties:
         number:
           type: number
@@ -267,65 +240,61 @@ components:
         total:
           type: number
           example: 100
+      required:
+        - number
+        - size
+        - total
     PaginatedMeta:
-      type: object
-      title: PaginatedMeta
       description: returns the pagination information
+      type: object
       properties:
         page:
           $ref: '#/components/schemas/PageMeta'
       required:
         - page
+      title: PaginatedMeta
     BaseError:
-      type: object
-      title: Error
       description: standard error
+      type: object
+      properties:
+        status:
+          description: |
+            The HTTP status code of the error. Useful when passing the response
+            body to child properties in a frontend UI. Must be returned as an integer.
+          type: integer
+          readOnly: true
+        title:
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          type: string
+          readOnly: true
+        type:
+          description: The error type.
+          type: string
+          readOnly: true
+        instance:
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          type: string
+          readOnly: true
+        detail:
+          description: |
+            A human readable explanation specific to this occurence of the problem.
+            This field may contain request/entity data to help the user understand
+            what went wrong. Enclose variable values in square brackets. Should be
+            provided as "Sentence case" for direct use in the UI.
+          type: string
+          readOnly: true
       required:
         - status
         - title
         - instance
         - detail
-      properties:
-        status:
-          type: integer
-          description: >
-            The HTTP status code of the error. Useful when passing the response
-
-            body to child properties in a frontend UI. Must be returned as an
-            integer.
-          readOnly: true
-        title:
-          type: string
-          description: |
-            A short, human-readable summary of the problem. It should not
-            change between occurences of a problem, except for localization.
-            Should be provided as "Sentence case" for direct use in the UI.
-          readOnly: true
-        type:
-          type: string
-          description: The error type.
-          readOnly: true
-        instance:
-          type: string
-          description: |
-            Used to return the correlation ID back to the user, in the format
-            kong:trace:<correlation_id>. This helps us find the relevant logs
-            when a customer reports an issue.
-          readOnly: true
-        detail:
-          type: string
-          description: >
-            A human readable explanation specific to this occurence of the
-            problem.
-
-            This field may contain request/entity data to help the user
-            understand
-
-            what went wrong. Enclose variable values in square brackets. Should
-            be
-
-            provided as "Sentence case" for direct use in the UI.
-          readOnly: true
+      title: Error
     UnauthorizedError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -336,9 +305,9 @@ components:
             title:
               example: Unauthorized
             type:
-              example: https://httpstatuses.com/401
+              example: 'https://httpstatuses.com/401'
             instance:
-              example: kong:trace:1234567890
+              example: 'kong:trace:1234567890'
             detail:
               example: Invalid credentials
     ForbiddenError:
@@ -351,16 +320,14 @@ components:
             title:
               example: Forbidden
             type:
-              example: https://httpstatuses.com/403
+              example: 'https://httpstatuses.com/403'
             instance:
-              example: kong:trace:1234567890
+              example: 'kong:trace:1234567890'
             detail:
               example: Forbidden
     InvalidRules:
       description: invalid parameters rules
       type: string
-      readOnly: true
-      nullable: true
       enum:
         - required
         - max_length
@@ -383,9 +350,10 @@ components:
         - is_supported_network_availability_zone_list
         - is_supported_network_cidr_block
         - is_supported_provider_region
+      nullable: true
+      readOnly: true
     InvalidParameterStandard:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -400,12 +368,12 @@ components:
           type: string
           example: is a required field
           readOnly: true
+      additionalProperties: false
       required:
         - field
         - reason
     InvalidParameterMinimumLength:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -414,14 +382,14 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
-          nullable: false
           enum:
             - min_length
             - min_digits
             - min_lowercase
             - min_uppercase
             - min_symbols
+          nullable: false
+          readOnly: true
         minimum:
           type: integer
           example: 8
@@ -432,6 +400,7 @@ components:
           type: string
           example: is a required field
           readOnly: true
+      additionalProperties: false
       required:
         - field
         - reason
@@ -439,7 +408,6 @@ components:
         - minimum
     InvalidParameterChoiceItem:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -448,24 +416,25 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
-          nullable: false
           enum:
             - enum
+          nullable: false
+          readOnly: true
         reason:
           type: string
           example: is a required field
           readOnly: true
         choices:
           type: array
-          uniqueItems: true
-          readOnly: true
-          nullable: false
-          minimum: 1
           items: {}
+          minimum: 1
+          nullable: false
+          readOnly: true
+          uniqueItems: true
         source:
           type: string
           example: body
+      additionalProperties: false
       required:
         - field
         - reason
@@ -473,7 +442,6 @@ components:
         - choices
     InvalidParameterDependentItem:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -482,40 +450,41 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
-          nullable: true
           enum:
             - dependent_fields
+          nullable: true
+          readOnly: true
         reason:
           type: string
           example: is a required field
           readOnly: true
         dependents:
           type: array
-          uniqueItems: true
-          nullable: true
           items: {}
+          nullable: true
           readOnly: true
+          uniqueItems: true
         source:
           type: string
           example: body
+      additionalProperties: false
       required:
         - field
         - rule
         - reason
         - dependents
     InvalidParameters:
-      type: array
-      nullable: false
-      uniqueItems: true
-      minItems: 1
       description: invalid parameters
+      type: array
       items:
         oneOf:
           - $ref: '#/components/schemas/InvalidParameterStandard'
           - $ref: '#/components/schemas/InvalidParameterMinimumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
+      minItems: 1
+      nullable: false
+      uniqueItems: true
     BadRequestError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -535,11 +504,33 @@ components:
             title:
               example: Not Found
             type:
-              example: https://httpstatuses.com/404
+              example: 'https://httpstatuses.com/404'
             instance:
-              example: kong:trace:1234567890
+              example: 'kong:trace:1234567890'
             detail:
               example: Not found
+  examples:
+    ControlPlaneExample:
+      value:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        name: Test Control Plane
+        description: A test control plane for exploration.
+        labels:
+          test: 'true'
+        created_at: '2022-11-04T20:10:06.927Z'
+        updated_at: '2022-11-04T20:10:06.927Z'
+    CreateMeshControlPlaneRequestExample:
+      value:
+        name: Test Control Plane
+        description: A test control plane for exploration.
+        labels:
+          test: 'true'
+    UpdateMeshControlPlaneRequestExample:
+      value:
+        name: Test Control Plane
+        description: A test control plane for exploration.
+        labels:
+          test: 'true'
   responses:
     RetrieveMeshControlPlaneResponse:
       description: A response to creating a control plane.
@@ -569,9 +560,9 @@ components:
             Missing Field:
               value:
                 status: 400
-                type: https://kongapi.info/konnect/bad-request
+                type: 'https://kongapi.info/konnect/bad-request'
                 title: Bad Request
-                instance: konnect:trace:6480643114111646299
+                instance: 'konnect:trace:6480643114111646299'
                 detail: ''
                 invalid_parameters:
                   - field: name
@@ -580,9 +571,9 @@ components:
             Empty Field:
               value:
                 status: 400
-                type: https://kongapi.info/konnect/bad-request
+                type: 'https://kongapi.info/konnect/bad-request'
                 title: Bad Request
-                instance: konnect:trace:6480643114111646299
+                instance: 'konnect:trace:6480643114111646299'
                 detail: ''
                 invalid_parameters:
                   - field: name
@@ -599,8 +590,8 @@ components:
               value:
                 status: 400
                 title: Bad Request
-                type: https://kongapi.info/konnect/bad-request
-                instance: konnect:trace:6480643114111646299
+                type: 'https://kongapi.info/konnect/bad-request'
+                instance: 'konnect:trace:6480643114111646299'
                 detail: ''
                 invalid_parameters:
                   - field: name
@@ -616,9 +607,9 @@ components:
             Invalid token:
               value:
                 status: 403
-                type: https://kongapi.info/konnect/unauthorized
+                type: 'https://kongapi.info/konnect/unauthorized'
                 title: Forbidden
-                instance: konnect:trace:881615734723181661
+                instance: 'konnect:trace:881615734723181661'
                 detail: Permission denied
     MeshControlPlaneUnauthorizedError:
       description: Unauthorized Error
@@ -630,9 +621,9 @@ components:
             Invalid token:
               value:
                 status: 401
-                type: https://kongapi.info/konnect/unauthenticated
+                type: 'https://kongapi.info/konnect/unauthenticated'
                 title: Unauthenticated
-                instance: konnect:trace:4497422055499297627
+                instance: 'konnect:trace:4497422055499297627'
                 detail: A valid token is required
     MeshControlPlaneNotFoundError:
       description: Not found
@@ -644,9 +635,9 @@ components:
             Invalid token:
               value:
                 status: 404
-                type: https://kongapi.info/konnect/not-found
+                type: 'https://kongapi.info/konnect/not-found'
                 title: Not Found
-                instance: konnect:trace:369660938739689085
+                instance: 'konnect:trace:369660938739689085'
                 detail: The requested requested entity was not found was not found
     UpdateMeshControlPlaneResponse:
       description: A response to updating a control plane.
@@ -662,7 +653,6 @@ components:
       content:
         application/json:
           schema:
-            title: ListMeshControlPlanesResponse
             type: object
             properties:
               meta:
@@ -671,6 +661,7 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/MeshControlPlane'
+            title: ListMeshControlPlanesResponse
           examples:
             Control Plane Collection:
               value:
@@ -687,46 +678,27 @@ components:
                       test: 'true'
                     created_at: '2022-11-04T20:10:06.927Z'
                     updated_at: '2022-11-04T20:10:06.927Z'
-  examples:
-    ControlPlaneExample:
-      value:
-        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-        name: Test Control Plane
-        description: A test control plane for exploration.
-        labels:
-          test: 'true'
-        created_at: '2022-11-04T20:10:06.927Z'
-        updated_at: '2022-11-04T20:10:06.927Z'
-    CreateMeshControlPlaneRequestExample:
-      value:
-        name: Test Control Plane
-        description: A test control plane for exploration.
-        labels:
-          test: 'true'
-    UpdateMeshControlPlaneRequestExample:
-      value:
-        name: Test Control Plane
-        description: A test control plane for exploration.
-        labels:
-          test: 'true'
-  parameters:
-    PageSize:
-      name: page[size]
-      description: >-
-        The maximum number of items to include per page. The last page of a
-        collection may include fewer items.
-      required: false
-      in: query
-      allowEmptyValue: true
-      schema:
-        type: integer
-        example: 10
-    PageNumber:
-      name: page[number]
-      description: Determines which page of the entities to retrieve.
-      required: false
-      in: query
-      allowEmptyValue: true
-      schema:
-        type: integer
-        example: 1
+  securitySchemes:
+    personalAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: |
+        The personal access token is meant to be used as an alternative to basic-auth when accessing Konnect via APIs.
+        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/tokens/) in the Konnect dashboard.
+        The PAT token must be passed in the header of a request, for example:
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT...'`
+    systemAccountAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: |
+        The system account access token is meant for automations and integrations that are not directly associated with a human identity.
+        You can generate a system account Access Token by creating a system account and then obtaining a system account access token for that account.
+        The access token must be passed in the header of a request, for example:
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer spat_i2Ej...'`
+tags:
+  - name: Mesh
+security:
+  - personalAccessToken: []
+  - systemAccountAccessToken: []
