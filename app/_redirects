@@ -30,10 +30,7 @@
 
 ## Service Catalog rename
 
-/konnect/servicehub/*  /konnect/service-catalog/:splat
-/konnect/servicehub/service-documentation/ /konnect/service-catalog/
-/konnect/servicehub/service-versions/  /konnect/service-catalog/
-/konnect/servicehub/plugins/  /konnect/service-catalog/
+/konnect/servicehub/ /konnect/service-catalog/
 
 ## Kong Manager
 
@@ -457,7 +454,7 @@
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
 /konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
-/konnect/servicehub/dev-portal/service-documentation/   /konnect/service-catalog/
+/konnect/servicehub/dev-portal/service-documentation/  /konnect/api-products/service-documentation/
 /konnect/servicehub/dev-portal/publish/              /konnect/service-catalog/
 /konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/
@@ -486,7 +483,6 @@
 /konnect/analytics/services-and-routes/              /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
-/konnect/servicehub/plugins/                          /konnect/runtime-manager/plugins/
 
 /konnect/getting-started/configure-service/           /konnect/getting-started/productize-service/
 /konnect/getting-started/implement-service/           /konnect/getting-started/deploy-service
