@@ -31,9 +31,9 @@
 ## Service Catalog rename
 
 /konnect/servicehub/*  /konnect/service-catalog/:splat
-/konnect/servicehub/service-documentation/*  /konnect/service-catalog/
-/konnect/servicehub/service-versions/*  /konnect/service-catalog/
-/konnect/servicehub/plugins/*  /konnect/service-catalog/
+/konnect/servicehub/service-documentation/ /konnect/service-catalog/
+/konnect/servicehub/service-versions/  /konnect/service-catalog/
+/konnect/servicehub/plugins/  /konnect/service-catalog/
 
 ## Kong Manager
 
