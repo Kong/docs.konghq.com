@@ -3,7 +3,7 @@ nav_title: Overview
 title: Overview
 ---
 
-Inigo offers complete visibility, control and security over your production GraphQL APIs, enabling you to confidently adopt and scale GraphQL with the Inigo Kong plugin. Designed specifically for GraphQL APIs, this plugin provides:
+Inigo offers complete visibility, control, and security for your production GraphQL APIs, enabling you to confidently adopt and scale GraphQL with the Inigo Kong plugin. Designed specifically for GraphQL APIs, this plugin provides:
 - Deep API analytics
 - Schema-based role-based access control (RBAC)
 - Performance and error monitoring
@@ -34,7 +34,7 @@ installs Lua modules.
 2. Download the Inigo library:
 
     Find the [library](https://github.com/inigolabs/artifacts/releases/latest) for your architecture. Library file names start with *inigo-*.
-    Download and copy the library into your kong run directory. 
+    Download and copy the library into your `kong run` directory. 
 
 
 3. Update your loaded plugins list in {{site.base_gateway}}.
@@ -48,10 +48,10 @@ installs Lua modules.
                                             # loaded via the `bundled` keyword.
     ```
 
-4. Obtain and set Inigo Service Token
+4. Obtain and set the Inigo Service Token.
 
-    Create and service and token in [Inigo](https://app.inigo.io]
-    Set the INIGO_SERVICE_TOKEN env variable with the token's value.
+    Create a service and token in [Inigo](https://app.inigo.io].
+    Set the `INIGO_SERVICE_TOKEN` environment variable with the token's value.
 
 4. Restart {{site.base_gateway}}:
 
@@ -61,7 +61,7 @@ installs Lua modules.
 
 ## Using the plugin
 
-- Go to [Inigo App](https://app.inigo.io) to monitor your API observability.
+- Go to the [Inigo App](https://app.inigo.io) to monitor your API observability.
 - Refer to the [Inigo Docs](https://docs.inigo.io) for detailed information on feature usage and policy configurations.
 
 
