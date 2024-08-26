@@ -27,7 +27,7 @@ requested route or service:
 The plugin can be configured to only accept certificates from trusted IP addresses, as specified by the [`trusted_ips`](/gateway/{{page.release}}/reference/configuration/#trusted_ips) config option. This ensures that Kong can trust the header sent from the source and provides L4 level of security.
 
 {:.important}
-> **Important:** Misconfiguring or misusing the Header Cert Authentication plugin can compromise the security of your API.
+> **Important:** Incomplete or improper configuration of the Header Cert Authentication plugin can compromise the security of your API.
 <br><br>
 > For instance, enabling the option to bypass origin verification can allow malicious actors to inject fake certificates, as Kong will not be able to verify the authenticity of the header. This can downgrade the security level of the plugin, making your API vulnerable to attacks. Ensure you carefully evaluate and configure the plugin according to your specific use case and security requirements.
 
@@ -35,7 +35,7 @@ Additionally, the plugin has a [static priority](/konnect/reference/plugins/) co
 
 ### Client certificate request
 
-Send_ca_dn is not supported in this plugin. This is used in mutual TLS authentication, where the server sends the list of trusted CAs to the client, and the client then uses this list to select the appropriate certificate to present. In this case since the plugin does not do TLS handshakes and only parses the client certificate from the header, it is not applicable.
+The `send_ca_dn` option is not supported in this plugin. This is used in mutual TLS authentication, where the server sends the list of trusted CAs to the client, and the client then uses this list to select the appropriate certificate to present. In this case since the plugin does not do TLS handshakes and only parses the client certificate from the header, it is not applicable.
 
 The same applies to SNI functionality. The plugin can verify the certificate without needing to know the specific hostname or domain being accessed. The plugin's authentication logic is decoupled from the TLS handshake and SNI, so it doesn't need to rely on SNI to function correctly (pretty much anything that deals with the actual TLS handshake is not needed for the plugin to work).
 

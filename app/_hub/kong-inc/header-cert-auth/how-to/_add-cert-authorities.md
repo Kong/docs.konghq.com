@@ -47,4 +47,4 @@ The `id` value returned can now be used for the header-cert-auth plugin configur
 {:.important}
 > **Important:** To ensure proper certificate validation, it is important to upload all required Certificate Authorities (CAs) and their intermediates into the Kong CA store.
 <br><br>
-> Failure to do so may result in incomplete certificate validation, as some WAFs and load balancer providers only send the end-leaf certificate in their header, rather than encoding the entire certificate chain sent by the client. This is especially crucial when using the `base64_encoded` format.
+> Failure to do so may result in incomplete certificate validation, as some WAF and load balancer providers only send the end-leaf certificate in their header, rather than encoding the entire certificate chain sent by the client. This is especially crucial when using the `base64_encoded` format.
