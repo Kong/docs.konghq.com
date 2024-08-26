@@ -13,11 +13,9 @@ Issue reported on slack: certain parameters in the OTEL plugin are marked deprec
 - https://docs.konghq.com/hub/kong-inc/opentelemetry/
 
 
-### [Feat/add ai metrics docs](https://github.com/Kong/docs.konghq.com/pull/7691) (2024-08-23)
+### [Feat: add ai metrics docs](https://github.com/Kong/docs.konghq.com/pull/7691) (2024-08-23)
 
 Doc on AI metrics and Prometheus
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
