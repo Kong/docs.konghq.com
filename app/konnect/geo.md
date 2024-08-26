@@ -43,7 +43,7 @@ When you create a {{site.konnect_saas}} account, you select a geographic region 
 
 The following objects are geo-specific and are not shared between geos:
 
-* [Services](/konnect/servicehub/)
+* [Services](/konnect/service-catalog/)
 * [API products](/konnect/api-products/)
 * [Service meshes and mesh zones](/konnect/mesh-manager/)
 * [Routes](/konnect/getting-started/implement-service/)
