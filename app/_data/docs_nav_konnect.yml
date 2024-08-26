@@ -118,7 +118,7 @@
     - text: Migrate a self-managed zone control plane to Konnect
       url: /mesh-manager/migrate-zone/
 
-- title: Service Hub
+- title: Service Catalog
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
