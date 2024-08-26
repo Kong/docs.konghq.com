@@ -84,12 +84,7 @@ graph LR
 
 A vector database can be used to store vector embeddings, or numerical representations, of data items. For example, a response would be converted to a numerical representation and stored in the vector database so that it can compare new requests against the stored vectors to find relevant cached items.
 
-Currently, the AI Semantic Cache plugin supports the following vector databases:
-
-* Redis (beta)
-* Qdrant (alpha)
-* pgvector (alpha)
-* Supabase (alpha)
+Currently, the AI Semantic Cache plugin supports Redis as vector databases.
 
 For more information, see [Deploy and manage a vector database](/hub/kong-inc/ai-semantic-cache/vector-database/).
 
