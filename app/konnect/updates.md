@@ -11,8 +11,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 ## September 2024
-**Cloud Launchers Deprecated**
-: Cloud Launchers will be deprecated on November 30th, 2024. From this date you will no longer be able to use pre-populated templates to launch dataplanes in AWS, Azure, or GCP using Cloud Launchers
+**Cloud Launchers deprecated**
+: Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.
 
 ## August 2024
 
