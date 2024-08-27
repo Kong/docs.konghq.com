@@ -19,21 +19,22 @@ The AI Semantic Cache plugin might not be the best fit for you if following appl
 {% mermaid %}
 sequenceDiagram
     actor User
-    participant {{site.base_gateway}}
-    participant CachePlugin as AI Semantic Cache plugin
-    participant LLM
+    participant {{site.base_gateway}}/AI Semantic Cache plugin
+    participant Vector database
+    participant Embeddings LLM
+    participant Prompt/Chat LLM
 
-    User->>{{site.base_gateway}}: Make API request
-    {{site.base_gateway}}->>CachePlugin: Check cache
-    alt Cached Response Available
-        CachePlugin-->>{{site.base_gateway}}: Return cached response
-        {{site.base_gateway}}-->>User: Return cached response
-    else No Cached Response
-        CachePlugin->>LLM: Forward request
-        LLM-->>CachePlugin: Generate and return response
-        CachePlugin-->>CachePlugin: Store response in cache
-        CachePlugin-->>{{site.base_gateway}}: Return response
-        {{site.base_gateway}}-->>User: Return response
+    User->>{{site.base_gateway}}/AI Semantic Cache plugin: LLM chat request
+    {{site.base_gateway}}/AI Semantic Cache plugin->>Embeddings LLM: Generate embeddings for `config.message_countback` messages
+    Embeddings LLM-->>{{site.base_gateway}}/AI Semantic Cache plugin: Return embeddings
+    {{site.base_gateway}}/AI Semantic Cache plugin->>Vector database: Query for semantically similar previous requests
+    Vector database-->>User: If response, return it or stream it back
+    alt If not cached response
+        {{site.base_gateway}}/AI Semantic Cache plugin->>Prompt/Chat LLM: Make LLM request
+        Prompt/Chat LLM-->>{{site.base_gateway}}/AI Semantic Cache plugin: Receive response
+        {{site.base_gateway}}/AI Semantic Cache plugin->>Vector database: Store vectors
+        {{site.base_gateway}}/AI Semantic Cache plugin->>Vector database: Store response message options
+        {{site.base_gateway}}/AI Semantic Cache plugin-->>User: Return realtime response
     end
 {% endmermaid %}
 
@@ -112,9 +113,9 @@ You can configure the following required parameters for the AI Semantic Cache pl
 * `cache_control`: Enables or disables Cache-Control header handling
 * `storage_ttl`: Sets the time-to-live for cached responses
 * `exact_caching`: Enables or disables exact caching
-* `message_countback`: Specifies how many messages to consider for context
-* `ignore_system_prompts`: Ignores system messages if set to `true`
-* `ignore_assistant_prompts`: Ignores assistant messages if set to `true`
+* `message_countback`: Specifies how many messages in the incoming array from the user will be vectorized. The whole response will still be cached. This only counts how many messages back in the chat history to turn into embeddings and query to the vector database.
+* `ignore_system_prompts`: Ignores system messages (`role = system`) in the chat history when sending the embeddings (to generate vectors) if set to `true`. 
+* `ignore_assistant_prompts`: Ignores assistant messages (`role = assistant`) in the chat history when sending the embeddings (to generate vectors) if set to `true`. 
 * `stop_on_failure`: Stops processing if an error occurs, otherwise continues
 
 ### Headers sent to the client
@@ -142,7 +143,7 @@ The plugin respects cache control headers to determine if requests and responses
 * `no-store`: Prevents caching of the request or response
 * `no-cache`: Forces validation with the origin server before serving the cached response
 * `private`: Ensures the response is not cached by shared caches
-* `max-age` and `s-maxage`: Sets the maximum age of the cached response
+* `max-age` and `s-maxage`: Sets the maximum age of the cached response. This causes the vector database to drop and delete the cached response message after expiration, so it’s never seen again. 
 
 ## Get started with the AI Semantic Caching plugin
 

@@ -30,33 +30,29 @@ For this provider, the following should be used for the [`config.model.options.m
 | Self-Hosted GGUF | `openai`                      | Not required by default |
 
 
-## Things
+## Prerequisites 
 
-1. You need a service to contain the route for the LLM provider. Create a service first:
-```sh
-curl -X POST http://localhost:8001/services \
- --data "name=ai-semantic-cache" \
- --data "url=http://localhost:32000"
-```
+* Mistral's API key
+* [Redis configured as a vector database](https://redis.io/docs/latest/develop/get-started/vector-database/) and cache
+* You need a service to contain the route for the LLM provider. Create a service **first**:
+  ```sh
+  curl -X POST http://localhost:8001/services \
+  --data "name=ai-semantic-cache" \
+  --data "url=http://localhost:32000"
+  ```
   Remember that the upstream URL can point anywhere empty, as it won’t be used by the plugin.
 
-1. 
+## Steps
+1. Create a route:
+```sh
+curl -X POST http://localhost:8001/services/ai-semantic-cache/routes \
+  --data "name=mistral-semantic-cache" \
+  --data "paths[]=~/mistral-semantic-cache$"
+```
 
-
-
-Here's the Semantic Cache Plugin configuration for Mistral's mistral-embed embedding model:
-
-The Mistral's API Key is
-MISTRAL_API_KEY=tfgDqTqCQiuRoajvBqzYjFMjygPo3okv
-
-Get your Route Id:
-ROUTE_ID=$(curl -s  http://admin-ai-gateway.kong-demo.com:8001/routes/bedrock-chat | jq -r '.id')
-
-
-Set the Semantic Cache plugin with the following request. Note we're using the Mistral's API Key explicitly. You can use an env variable instead, if you want.
-
-The "threshold" parameter defines the similarity between for accepting semantic search results.
-curl -s -X POST http://admin-ai-gateway.kong-demo.com:8001/routes/$ROUTE_ID/plugins \
+1. Set the AI Semantic Cache plugin. This uses Mistral's API Key explicitly, but you can use an environment variable instead if you want.
+```sh
+curl -s -X POST http://localhost:8001/routes/$ROUTE_ID/plugins \
   --header 'Content-Type: application/json' \
   --header 'accept: application/json' \
   --data '{
@@ -66,15 +62,14 @@ curl -s -X POST http://admin-ai-gateway.kong-demo.com:8001/routes/$ROUTE_ID/plug
    "embeddings": {
      "auth": {
        "header_name": "Authorization",
-       "header_value": "Bearer tfgDqTqCQiuRoajvBqzYjFMjygPoST2x"
+       "header_value": "Bearer tfgDqTqCQiuRoajvBqzYjFMjygPote4"
      },
-     "model": {
-       "provider": "mistral",
-       "name": "mistral-embed",
-       "options": {
-         "upstream_url": "https://api.mistral.ai/v1/embeddings"
-       }
+     "provider": "mistral",
+     "name": "mistral-embed",
+     "options": {
+       "upstream_url": "https://api.mistral.ai/v1/embeddings"
      }
+   }
    },
    "vectordb": {
      "dimensions": 1024,
@@ -87,4 +82,7 @@ curl -s -X POST http://admin-ai-gateway.kong-demo.com:8001/routes/$ROUTE_ID/plug
      }
    }
  }
-}' | jq
+}'
+```
+The "threshold" parameter defines the similarity between for accepting semantic search results.
+
