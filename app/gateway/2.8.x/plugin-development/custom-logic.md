@@ -279,17 +279,12 @@ regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
 The following list includes all plugins bundled with open-source
 {{site.base_gateway}} or {{site.base_gateway}} running in Free mode.
 
-{:.note}
-> **Note:** The correlation-id plugin's execution order is different depending
-on whether you're running {{site.base_gateway}} in Free mode or using the
-open-source package.
-
 The current order of execution for the bundled plugins is:
 
 Plugin                      | Priority
 ----------------------------|----------
 pre-function                | `+inf`
-correlation-id <span class="badge free"></span> | 100001
+correlation-id              | 100001
 zipkin                      | 100000
 bot-detection               | 2500
 cors                        | 2000
@@ -321,7 +316,6 @@ loggly                      | 6
 syslog                      | 4
 grpc-web                    | 3
 request-termination         | 2
-correlation-id <span class="badge oss"></span> | 1
 post-function               | -1000
 
 {% endnavtab %}
@@ -334,7 +328,7 @@ The current order of execution for the bundled plugins is:
 Plugin                      | Priority
 ----------------------------|----------
 pre-function                | `+inf`
-correlation-id              | 100001 <!--  CE priority is 1, EE priority is 100001 -->
+correlation-id              | 100001
 zipkin                      | 100000
 exit-transformer            | 9999
 bot-detection               | 2500
