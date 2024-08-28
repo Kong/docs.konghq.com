@@ -33,7 +33,8 @@ For this provider, the following should be used for the [`config.model.options.m
 ## Prerequisites 
 
 * Mistral's API key
-* [Redis configured as a vector database](https://redis.io/docs/latest/develop/get-started/vector-database/) and cache
+* [Redis configured as a vector database](https://redis.io/docs/latest/develop/get-started/vector-database/)
+* [Redis configured as a cache](https://redis.io/docs/latest/operate/oss_and_stack/management/config/#configuring-redis-as-a-cache)
 * You need a service to contain the route for the LLM provider. Create a service **first**:
   ```sh
   curl -X POST http://localhost:8001/services \
@@ -52,7 +53,7 @@ curl -X POST http://localhost:8001/services/ai-semantic-cache/routes \
 
 1. Set the AI Semantic Cache plugin. This uses Mistral's API Key explicitly, but you can use an environment variable instead if you want.
 ```sh
-curl -s -X POST http://localhost:8001/routes/$ROUTE_ID/plugins \
+curl -s -X POST http://localhost:8001/routes/mistral-semantic-cache/plugins \
   --header 'Content-Type: application/json' \
   --header 'accept: application/json' \
   --data '{
@@ -62,7 +63,7 @@ curl -s -X POST http://localhost:8001/routes/$ROUTE_ID/plugins \
    "embeddings": {
      "auth": {
        "header_name": "Authorization",
-       "header_value": "Bearer tfgDqTqCQiuRoajvBqzYjFMjygPote4"
+       "header_value": "Bearer MISTRAL_API_KEY"
      },
      "provider": "mistral",
      "name": "mistral-embed",
@@ -84,5 +85,14 @@ curl -s -X POST http://localhost:8001/routes/$ROUTE_ID/plugins \
  }
 }'
 ```
-The "threshold" parameter defines the similarity between for accepting semantic search results.
+This configures the following:
+* `vectordb.dimensions`: The dimensionality for the vectors. This configuration uses `1024` since it's the [example Mistral uses in their documentation](https://docs.mistral.ai/capabilities/embeddings/#mistral-embed-api).
+* `vectordb.distance_metric`: The distance metric to use for for vectors. This example uses `cosine`.
+* `vectordb.strategy`: Defines the vector database, in this case, Redis.
+* `vectordb.threshold`: Defines the similarity threshold for accepting semantic search results. In the example, this is configured to as a low threshold, meaning it would include results that are only somewhat similar.
+* `vectordb.redis.host`: The host of your vector database.
+* `vectordb.redis.port`: The port to use for your vector database.
 
+## More information
+* *Redis Documentation:* [Vectors](https://redis.io/docs/latest/develop/interact/search-and-query/advanced-concepts/vectors/) - Learn how to use vector fields and perform vector searches in Redis
+* *Redis Documentation:* [How to Perform Vector Similarity Search Using Redis in NodeJS](https://redis.io/learn/howtos/solutions/vector/getting-started-vector)
