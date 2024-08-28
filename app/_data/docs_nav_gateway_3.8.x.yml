@@ -283,6 +283,8 @@ items:
             url: /migrate-ce-to-ke/
           - text: Migration Guidelines Cassandra to PostgreSQL
             url: /migrate-cassandra-to-postgres/
+          - text: Migrate to the new DNS client
+            url: /migrate-to-new-dns-client/
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
