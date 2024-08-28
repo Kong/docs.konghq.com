@@ -1116,14 +1116,8 @@ components:
                             items:
                                 type: string
                         portal_developer_meta_fields:
-                            default:
-                                properties:
-                                    - label: Full Name
-                                      title: full_name
-                                      validator:
-                                        required: true
-                                        type: string
-                            type: object
+                            default: '[{"label":"Full Name","title":"full_name","validator":{"required":true,"type":"string"}}]'
+                            type: string
                         portal_emails_from:
                             type: string
                         portal_emails_reply_to:
@@ -1174,12 +1168,8 @@ components:
                         portal_auto_approve: true
                         portal_cors_origins:
                             - string
-                        portal_developer_meta_fields:
-                            - label: Full Name
-                              title: full_name
-                              validator:
-                                required: true
-                                type: string
+                        portal_developer_meta_fields: >-
+                          [{"label":"Full Name","title":"full_name","validator":{"required":true,"type":"string"}}]
                         portal_emails_from: string
                         portal_emails_reply_to: string
                         portal_invite_email: true
@@ -11906,7 +11896,7 @@ paths:
             description: |
                 Retrieve the current log level of a node.
 
-                See the [Nginx Documentation](ttp://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
+                See the [Nginx Documentation](https://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
     '/debug/node/log-level/{log_level}':
         parameters:
             - schema:

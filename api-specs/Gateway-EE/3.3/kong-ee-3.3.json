@@ -1472,20 +1472,8 @@
                 }
               },
               "portal_developer_meta_fields": {
-                "default": [
-                  {
-                    "label": "Full Name",
-                    "title": "full_name",
-                    "validator": {
-                      "required": true,
-                      "type": "string"
-                    }
-                  }
-                ],
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+                "default": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
+                "type": "string"
               },
               "portal_emails_from": {
                 "type": "string"
@@ -1558,16 +1546,7 @@
               "portal_cors_origins": [
                 "string"
               ],
-              "portal_developer_meta_fields": [
-                {
-                  "label": "Full Name",
-                  "title": "full_name",
-                  "validator": {
-                    "required": true,
-                    "type": "string"
-                  }
-                }
-              ],
+              "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
               "portal_emails_from": "string",
               "portal_emails_reply_to": "string",
               "portal_invite_email": true,
@@ -2179,7 +2158,12 @@
                       "example": "my_group"
                     },
                     "tags": {
-                      "description": "An optional set of strings associated with consumer group for grouping and filtering."
+                      "type": "array",
+                      "description": "An optional set of strings associated with consumer group for grouping and filtering.",
+                      "items": {
+                        "type": "string",
+                        "example": "admin"
+                      }
                     }
                   }
                 }
@@ -5407,7 +5391,7 @@
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
     "title": "Enterprise Kong Admin API",
-    "version": "0.0.2"
+    "version": "3.3.0"
   },
   "openapi": "3.0.0",
   "paths": {
@@ -13608,7 +13592,7 @@
         "tags": [
           "Debug"
         ],
-        "description": "Change the log level of all nodes in a cluster.\n\nBe careful when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level, such as notice.\nIt’s currently not possible to change the log level of data plane and DB-less nodes.\n\nThis endpoint can be protected with RBAC, and changes will be reflected in the audit logs. \nThe log level change is propagated to all Nginx workers of a node, including to newly spawned workers.\n\nLog levels are set in Kong’s configuration. Possible log levels in increasing order of severity: `debug`, `info`, `notice`, `warn`, `error`, and `crit`. For more information, review the [logging reference](https://docs.konghq.com/gateway/latest/production/logging/).\n\nCurrently, when a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup `kong.conf` setting [`KONG_LOG_LEVEL`](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level)."
+        "description": "Change the log level of all nodes in a cluster.\n\nBe careful when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level, such as notice.\nIt’s currently not possible to change the log level of data plane and DB-less nodes.\n\nThis endpoint can be protected with RBAC, and changes will be reflected in the audit logs. \nThe log level change is propagated to all Nginx workers of a node, including to newly spawned workers.\n\nLog levels are set in Kong’s configuration. Possible log levels in increasing order of severity: `debug`, `info`, `notice`, `warn`, `error`, and `crit`. For more information, review the [logging reference](https://docs.konghq.com/gateway/3.3.x/production/logging/).\n\nCurrently, when a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup `kong.conf` setting [`KONG_LOG_LEVEL`](https://docs.konghq.com/gateway/3.3.x/reference/configuration/#log_level)."
       }
     },
     "/debug/node/log-level": {
@@ -13647,7 +13631,7 @@
           }
         },
         "operationId": "get-debug-node-log-level",
-        "description": "Retrieve the current log level of a node.\n\nSee the [Nginx Documentation](ttp://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.\n"
+        "description": "Retrieve the current log level of a node.\n\nSee the [Nginx Documentation](https://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.\n"
       }
     },
     "/debug/node/log-level/{log_level}": {
@@ -13740,7 +13724,7 @@
           "RBAC"
         ],
         "requestBody": {
-           "$ref": "#/components/requestBodies/rbac-request"
+          "$ref": "#/components/requestBodies/rbac-request"
         },
         "description": "Add a User"
       }
@@ -16160,7 +16144,7 @@
           }
         },
         "operationId": "get-audit-requests",
-        "description": "You can access request and database audit logs through the Admin API.\nThe default order of audit log is by request timestamp - latest to oldest.\nFor usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/)."
+        "description": "You can access request and database audit logs through the Admin API.\nThe default order of audit log is by request timestamp - latest to oldest.\nFor usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/3.3.x/kong-enterprise/audit-log/)."
       }
     },
     "/audit/objects": {
