@@ -5,7 +5,7 @@ type: plugin
 categories: 
   - traffic-control
 search_aliases:
-desc: Validate that incoming webhooks adhere to the Standard Webhooks specification
+desc: Validate that incoming webhooks adhere to the Standard Webhooks specification, to which Kong is a contributor
 free: true
 enterprise: true
 konnect: true
