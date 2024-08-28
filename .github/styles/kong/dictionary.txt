@@ -204,6 +204,7 @@ denylist
 deployer
 dereference
 dereferenced
+dereferencing
 deserialization
 deserialize
 deserialized
