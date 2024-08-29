@@ -7,6 +7,50 @@ The Upstream OAuth plugin lets you manage OAuth flows between {{site.base_gatewa
 
 The plugin is designed to support storing tokens issued by the IdP in different backend formats.
 
+## How it works
+
+The upstream OAuth2 credential flow works similarly to the [client credentials grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials/) used by the OpenID Connect plugin. However, instead of Kong verifying the access token, the verification is passed along to the upstream API, which then validates the token against the IdP.
+
+<!--vale off-->
+
+{% mermaid %}
+sequenceDiagram
+    autonumber
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as API Gateway <br>(Kong)
+    participant idp as IDP <br>(e.g. Keycloak)
+    participant httpbin as Upstream API <br>(backend service,<br> e.g. httpbin)
+    activate client
+    activate kong
+    client->>kong: request to Kong<br>with any supported<br> authentication method
+    deactivate client
+    kong->>kong: load authentication<br> credentials
+    activate idp
+    kong->>idp: request access token <br>from IdP using <br>client ID and client secret
+    deactivate kong
+    idp->>idp: authenticate client
+    activate kong
+    idp->>kong: return access token
+    deactivate idp
+    activate httpbin
+    kong->>httpbin: request with access token in <br>Authorization header, body, or JWT
+    deactivate kong
+    activate idp
+    httpbin->>idp: Upstream API validates <br> access token via IdP
+    idp->>httpbin: Grants access
+    deactivate idp
+    activate kong
+    httpbin->>kong: response
+    deactivate httpbin
+    activate client
+    kong->>client: response
+    deactivate client
+    deactivate kong
+{% endmermaid %}
+
+<!--vale on-->
+
+
 ## Authentication methods
 
 This plugin supports the following authentication methods:
