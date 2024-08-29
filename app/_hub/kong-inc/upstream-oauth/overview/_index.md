@@ -3,7 +3,7 @@ nav_title: Overview
 title: Overview
 ---
 
-The Upstream OAuth plugin lets you manage OAuth flows between Kong Gateway and an upstream service.
+The Upstream OAuth plugin lets you manage OAuth flows between {{site.base_gateway}} and an upstream service.
 
 The plugin is designed to support storing tokens issued by the IdP in different backend formats.
 
