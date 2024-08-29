@@ -46,12 +46,12 @@ Example log entry:
 {% navtab CEF %}
 ```
 2023-05-19T00:03:39Z
-konghq.com CEF:0|ExamplePortal|Dev-Portal|1.0|AUTHENTICATION_OUTCOME_SUCCESS|0|rt=3958q3097698 
+konghq.com CEF:0|KongInc|Dev-Portal|1.0|AUTHENTICATION_OUTCOME_SUCCESS|0|rt=3958q3097698 
 src=127.0.0.1 
 request=/api/v1/authenticate 
 success=true
 org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b
-portal_id=6e04452b-99ce-4bef-ae4f-3e3dc035e070
+portal_id=22771e88-e364-45d2-93f1-db18770599b0
 principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b 
 trace_id=3895213347334635099 
 user_agent=grpc-go/1.51.0
@@ -69,7 +69,7 @@ sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB
     "event_version": "1.0",
     "name": "AUTHENTICATION_OUTCOME_SUCCESS",
     "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
-    "portal_id": "6e04452b-99ce-4bef-ae4f-3e3dc035e070",
+    "portal_id": "22771e88-e364-45d2-93f1-db18770599b0",
     "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
     "request": "/api/v1/authenticate",
     "rt": "1684524079524",
@@ -102,12 +102,12 @@ Example log entry:
 {% navtab CEF %}
 ```
 2023-05-19T00:03:39Z
-konghq.com CEF:0|ExamplePortal|Dev-Portal|1.0|Dev-Portal|Authz.applications|1|rt=16738287345642 
+konghq.com CEF:0|KongInc|Dev-Portal|1.0|Dev-Portal|Authz.applications|1|rt=16738287345642 
 src=127.0.0.6 
 action=retrieve 
 granted=true 
 org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b
-portal_id=6e04452b-99ce-4bef-ae4f-3e3dc035e070
+portal_id=22771e88-e364-45d2-93f1-db18770599b0
 principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b 
 actor_id= 
 trace_id=8809518331550410226 
@@ -128,7 +128,7 @@ sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB
     "granted": true,
     "name": "Authz.applications",
     "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
-    "portal_id": "6e04452b-99ce-4bef-ae4f-3e3dc035e070",
+    "portal_id": "22771e88-e364-45d2-93f1-db18770599b0",
     "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
     "rt": "1684196881193",
     "severity": 1,
@@ -158,12 +158,13 @@ Example log entry:
 {% navtab CEF %}
 ```
 2023-05-16T20:09:54Z 
-konghq.com CEF:0|KongInc|Dev-Portal|1.0|PortalApplication|Ingress|1|rt=1684267794226 
+konghq.com CEF:0|KongInc|Dev-Portal|1.0|KongGateway|Ingress|1|rt=1684267794226 
 src=127.0.0.6
 request=/portal-api/api/applications
 act=POST 
 status=200 
 org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b 
+portal_id=22771e88-e364-45d2-93f1-db18770599b0 
 principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b 
 user_agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 
 trace_id=1146381705542353508 
@@ -183,6 +184,7 @@ sig=JxJaQG3Bozrb5WdHE_Y0HaOsim2F1Xsq_bCfk71VgsfldkLAD_SF234cnKNS
     "event_version": "1.0",
     "name": "Ingress",
     "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
+    "portal_id": "22771e88-e364-45d2-93f1-db18770599b0",
     "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
     "query": "{}",
     "request": "/portal-api/api/applications",
