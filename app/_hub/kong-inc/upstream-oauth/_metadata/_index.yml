@@ -2,6 +2,7 @@ name: Upstream OAuth
 search_aliases:
   - upstream-oauth
   - upstream authentication
+  - oauth2
 dbless_compatible: 'yes'
 free: false
 enterprise: true
@@ -11,5 +12,5 @@ notes: --
 categories:
   - authentication
 publisher: Kong Inc.
-desc: Manage OAuth flows between Kong Gateway and an upstream service
+desc: Configure Kong Gateway to obtain an OAuth2 token to consume an upstream API
 
