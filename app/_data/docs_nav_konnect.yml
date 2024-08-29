@@ -183,6 +183,18 @@
 
     - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
+    - text: Audit Logging
+      items:
+        - text: Overview
+          url: /dev-portal/audit-logging/
+        - text: Set up an Audit Log Webhook
+          url: /dev-portal/audit-logging/webhook/
+        - text: Set up an Audit Log Replay Job
+          url: /dev-portal/audit-logging/replay-job/
+        - text: Verify Audit Log Signatures
+          url: /dev-portal/audit-logging/verify-signatures/
+        - text: Log Reference
+          url: /dev-portal/audit-logging/reference/
     - text: Portal Customization
       items:
         - text: Overview

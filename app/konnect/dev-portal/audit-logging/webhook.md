@@ -4,7 +4,7 @@ content_type: how-to
 badge: enterprise
 ---
 
-You can use the {{site.dev-portal_short_name}} UI or the Audit Logs API to configure webhooks for [audit logging](/konnect/org-management/audit-logging/).
+You can use the {{site.dev-portal_short_name}} UI or the Audit Logs API to configure webhooks for [audit logging](/konnect/dev-portal/audit-logging/).
 
 Webhooks are invoked via an HTTPS request using the following retry rules:
 
@@ -50,7 +50,7 @@ curl -i -X PATCH https://global.api.konghq.com/v2/portals/{portalId}/audit-log-w
 Replace the following placeholders with your own data:
 * `global.api.konghq.com`: The region your org is in. Can be `global` to target all regions, `us`, or `eu`.
 * `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or
-  [system account token](/konnect/org-management/system-accounts/).
+  [system account token](/konnect/dev-portal/system-accounts/).
 * `audit_log_destination_id`: The ID of the audit log destination that you want to use.
 
 If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details:
@@ -142,8 +142,8 @@ false           | `unconfigured` | The webhook for this region has not been conf
 
 
 ## More information
-* [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
-* [Audit log event reference](/konnect/org-management/audit-logging/reference/)
-* [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
-* [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
+* [Audit logging in {{site.konnect_short_name}}](/konnect/dev-portal/audit-logging/)
+* [Audit log event reference](/konnect/dev-portal/audit-logging/reference/)
+* [Set up an audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+* [Verify audit log signatures](/konnect/dev-portal/audit-logging/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)

@@ -28,7 +28,7 @@ Only {{site.dev-portal_short_name}} org admins and portal admins can configure a
 
 Audit information includes authentication attempts and authorization requests.
 Each of the audit events contains a trace ID that allows events to be correlated to specific actions. 
-See the [audit log reference](/konnect/org-management/audit-logging/reference/) for details on what is logged.
+See the [audit log reference](/konnect/dev-portal/audit-logging/reference/) for details on what is logged.
 
 {:.note}
 > **Note:** You can't customize the events that {{site.dev-portal_short_name}} sends to the logs.

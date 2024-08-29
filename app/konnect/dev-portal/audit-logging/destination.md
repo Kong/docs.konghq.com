@@ -4,7 +4,7 @@ content_type: how-to
 badge: enterprise
 ---
 
-You can use the {{site.dev-portal_short_name}} UI or the Audit Logs API to configure destinations for [audit logging](/konnect/org-management/audit-logging/).
+You can use the {{site.dev-portal_short_name}} UI or the Audit Logs API to configure destinations for [audit logging](/konnect/dev-portal/audit-logging/).
   
 ## Prerequisites
 
@@ -113,8 +113,8 @@ You will receive a `200` response code and the following data. Note that the `au
 
 
 ## More information
-* [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
-* [Audit log event reference](/konnect/org-management/audit-logging/reference/)
-* [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
-* [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
+* [Audit logging in {{site.konnect_short_name}}](/konnect/dev-portal/audit-logging/)
+* [Audit log event reference](/konnect/dev-portal/audit-logging/reference/)
+* [Set up an audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+* [Verify audit log signatures](/konnect/dev-portal/audit-logging/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)
