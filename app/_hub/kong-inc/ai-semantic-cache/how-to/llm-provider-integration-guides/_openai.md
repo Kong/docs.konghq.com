@@ -30,35 +30,37 @@ curl -s -X POST http://localhost:8001/routes/openai-semantic-cache/plugins \
   --header 'Content-Type: application/json' \
   --header 'accept: application/json' \
   --data '{
- "name": "ai-semantic-cache",
- "instance_name": "ai-semantic-cache",
- "config": {
-   "embeddings": {
-     "auth": {
-       "header_name": "Authorization",
-       "header_value": "Bearer OPENAI_API_KEY"
-     },
-      "provider": "openai",
-      "name": "text-embedding-3-large",
-      "options": {
-        "upstream_url": "https://api.openai.com/v1/embeddings"
+    "name": "ai-semantic-cache",
+    "instance_name": "ai-semantic-cache",
+    "config": {
+      "embeddings": {
+        "auth": {
+          "header_name": "Authorization",
+          "header_value": "Bearer OPENAI_API_KEY"
+        },
+        "model": {
+          "provider": "openai",
+          "name": "text-embedding-3-large",
+          "options": {
+            "upstream_url": "https://api.openai.com/v1/embeddings"
+          }
+        }
+      },
+      "vectordb": {
+        "dimensions": 3072,
+        "distance_metric": "cosine",
+        "strategy": "redis",
+        "threshold": 0.1,
+        "redis": {
+          "host": "redis-stack.redis.svc.cluster.local",
+          "port": 6379
+        }
       }
     }
-   },
-   "vectordb": {
-     "dimensions": 3072,
-     "distance_metric": "cosine",
-     "strategy": "redis",
-     "threshold": 0.1,
-     "redis": {
-       "host": "redis-stack.redis.svc.cluster.local",
-       "port": 6379
-     }
-   }
- }
-}'
+  }'
 ```
 This configures the following:
+* `embeddings.model.name`: The AI model to use for generating embeddings. This example is configured with `text-embedding-3-large`, but you can also choose `text-embedding-3-small` for OpenAI.
 * `vectordb.dimensions`: The dimensionality for the vectors. Since this example uses `text-embedding-3-large`, OpenAI uses `3072` as the [default embedding dimension](https://platform.openai.com/docs/guides/embeddings/how-to-get-embeddings).
 * `vectordb.distance_metric`: The distance metric to use for vectors. This example uses `cosine` because [OpenAI recommends it](https://platform.openai.com/docs/guides/embeddings/which-distance-function-should-i-use).
 * `vectordb.strategy`: Defines the vector database, in this case, Redis.

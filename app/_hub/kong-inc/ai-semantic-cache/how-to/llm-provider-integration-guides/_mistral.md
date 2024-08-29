@@ -57,35 +57,37 @@ curl -s -X POST http://localhost:8001/routes/mistral-semantic-cache/plugins \
   --header 'Content-Type: application/json' \
   --header 'accept: application/json' \
   --data '{
- "name": "ai-semantic-cache",
- "instance_name": "ai-semantic-cache",
- "config": {
-   "embeddings": {
-     "auth": {
-       "header_name": "Authorization",
-       "header_value": "Bearer MISTRAL_API_KEY"
-     },
-     "provider": "mistral",
-     "name": "mistral-embed",
-     "options": {
-       "upstream_url": "https://api.mistral.ai/v1/embeddings"
-     }
-   }
-   },
-   "vectordb": {
-     "dimensions": 1024,
-     "distance_metric": "cosine",
-     "strategy": "redis",
-     "threshold": 0.1,
-     "redis": {
-       "host": "redis-stack.redis.svc.cluster.local",
-       "port": 6379
-     }
-   }
- }
-}'
+    "name": "ai-semantic-cache",
+    "instance_name": "ai-semantic-cache",
+    "config": {
+      "embeddings": {
+        "auth": {
+          "header_name": "Authorization",
+          "header_value": "Bearer MISTRAL_API_KEY"
+        },
+        "model": {
+          "provider": "mistral",
+          "name": "mistral-embed",
+          "options": {
+            "upstream_url": "https://api.mistral.ai/v1/embeddings"
+          }
+        }
+      },
+      "vectordb": {
+        "dimensions": 1024,
+        "distance_metric": "cosine",
+        "strategy": "redis",
+        "threshold": 0.1,
+        "redis": {
+          "host": "redis-stack.redis.svc.cluster.local",
+          "port": 6379
+        }
+      }
+    }
+  }'
 ```
 This configures the following:
+* `embeddings.model.name`: The AI model to use for generating embeddings. This example is configured with `mistral-embed` because it's the only option available for Mistral AI.
 * `vectordb.dimensions`: The dimensionality for the vectors. This configuration uses `1024` since it's the [example Mistral uses in their documentation](https://docs.mistral.ai/capabilities/embeddings/#mistral-embed-api).
 * `vectordb.distance_metric`: The distance metric to use for vectors. This example uses `cosine`.
 * `vectordb.strategy`: Defines the vector database, in this case, Redis.
