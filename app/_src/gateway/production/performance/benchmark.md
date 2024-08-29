@@ -230,7 +230,7 @@ For more information, see the [migration docs](/gateway/{{page.release}}/migrate
 **Action:** Increase `dns_stale_ttl` to `300` or up to `86400`.
 {% endif_version %}
 {% if_version gte:3.8.x %}
-**Action:** Increase `resolver_stale_ttl` to `300` or up to `86400`.
+**Action:** Increase `<dns|resolver>_stale_ttl` to `300` or up to `86400`.
 {% endif_version %}
 
 **Explanation:** DNS servers can bottleneck {{site.base_gateway}} since {{site.base_gateway}} depends on DNS to determine 
@@ -241,7 +241,7 @@ In the case of Kubernetes, DNS TTLs are 5 seconds long and can cause problems.
 You can increase `dns_stale_ttl` to `300` or up to `86400` to rule out DNS as the issue.
 {% endif_version %}
 {% if_version gte:3.8.x %}
-You can increase `resolver_stale_ttl` to `300` or up to `86400` to rule out DNS as the issue.
+You can increase `dns_stale_ttl` or `resolver_stale_ttl`, depending on the DNS client you are using, to `300` or up to `86400` to rule out DNS as the issue.
 {% endif_version %}
 
 If DNS servers are the root cause, you will see `coredns` pods creating a bottleneck on the CPU.
