@@ -89,15 +89,6 @@ If the request is successful, you will receive a `200` response code, and a resp
 }
 ```
 
-{% endnavtab %}
-{% endnavtabs %}
-
-
-![Audit log webhook](/assets/images/products/konnect/audit-logs/konnect-audit-log-webhook.png)
-
-{% endnavtab %}
-{% navtab API %}
-
 View your audit log destination configuration by running the following command:
 
 ```sh
@@ -116,6 +107,9 @@ You will receive a `200` response code and the following data. Note that the `au
     "updated_at":"2023-04-01T00:00:01Z"
 }
 ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 
 ## More information
