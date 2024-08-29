@@ -4,16 +4,16 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.1
-  name: meshtrafficpermissions.kuma.io
+  name: meshtlses.kuma.io
 spec:
   group: kuma.io
   names:
     categories:
     - kuma
-    kind: MeshTrafficPermission
-    listKind: MeshTrafficPermissionList
-    plural: meshtrafficpermissions
-    singular: meshtrafficpermission
+    kind: MeshTLS
+    listKind: MeshTLSList
+    plural: meshtlses
+    singular: meshtls
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
@@ -45,8 +45,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: Spec is the specification of the Kuma MeshTrafficPermission
-              resource.
+            description: Spec is the specification of the Kuma MeshTLS resource.
             properties:
               from:
                 description: From list makes a match between clients and corresponding
@@ -58,14 +57,51 @@ spec:
                         Default is a configuration specific to the group of clients referenced in
                         'targetRef'
                       properties:
-                        action:
-                          description: 'Action defines a behavior for the specified
-                            group of clients:'
+                        mode:
+                          description: Mode defines the behavior of inbound listeners
+                            with regard to traffic encryption.
                           enum:
-                          - Allow
-                          - Deny
-                          - AllowWithShadowDeny
+                          - Permissive
+                          - Strict
                           type: string
+                        tlsCiphers:
+                          description: TlsCiphers section for providing ciphers specification.
+                          items:
+                            enum:
+                            - ECDHE-ECDSA-AES128-GCM-SHA256
+                            - ECDHE-ECDSA-AES256-GCM-SHA384
+                            - ECDHE-ECDSA-CHACHA20-POLY1305
+                            - ECDHE-RSA-AES128-GCM-SHA256
+                            - ECDHE-RSA-AES256-GCM-SHA384
+                            - ECDHE-RSA-CHACHA20-POLY1305
+                            type: string
+                          type: array
+                        tlsVersion:
+                          description: Version section for providing version specification.
+                          properties:
+                            max:
+                              default: TLSAuto
+                              description: Max defines maximum supported version.
+                                One of `TLSAuto`, `TLS10`, `TLS11`, `TLS12`, `TLS13`.
+                              enum:
+                              - TLSAuto
+                              - TLS10
+                              - TLS11
+                              - TLS12
+                              - TLS13
+                              type: string
+                            min:
+                              default: TLSAuto
+                              description: Min defines minimum supported version.
+                                One of `TLSAuto`, `TLS10`, `TLS11`, `TLS12`, `TLS13`.
+                              enum:
+                              - TLSAuto
+                              - TLS10
+                              - TLS11
+                              - TLS12
+                              - TLS13
+                              type: string
+                          type: object
                       type: object
                     targetRef:
                       description: |-
@@ -137,7 +173,7 @@ spec:
                 description: |-
                   TargetRef is a reference to the resource the policy takes an effect on.
                   The resource could be either a real store object or virtual resource
-                  defined inplace.
+                  defined in-place.
                 properties:
                   kind:
                     description: Kind of the referenced resource

@@ -2,6 +2,34 @@
 
 <!--vale off-->
 
+## Week 34
+
+### [Fix: Add changelog entry for deprecated OTEL parameters in 3.7](https://github.com/Kong/docs.konghq.com/pull/7774) (2024-08-23)
+
+Issue reported on slack: certain parameters in the OTEL plugin are marked deprecated, but there is no changelog entry noting when the deprecation happened.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/
+
+
+### [Feat: add ai metrics docs](https://github.com/Kong/docs.konghq.com/pull/7691) (2024-08-23)
+
+Doc on AI metrics and Prometheus
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/prometheus/overview/
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/
+- https://docs.konghq.com/gateway/unreleased/production/tracing/
+
 ## Week 33
 
 ### [Feat: Document shared variables](https://github.com/Kong/docs.konghq.com/pull/7750) (2024-08-13)
