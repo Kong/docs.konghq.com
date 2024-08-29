@@ -75,9 +75,10 @@ a provider-agnostic API. This normalized API layer affords developers and organi
 {% if_version lte:3.7.x %}
 This core AI Gateway feature is enabled with the [AI Proxy](/hub/kong-inc/ai-proxy/) plugin, which is
 deployed by default in the getting started script referenced above. 
-{% elseif_version gte:3.8.x %}
+{% endif_version %}
+{% if_version gte:3.8.x %}
 This core AI Gateway feature is enabled with the [AI Proxy](/hub/kong-inc/ai-proxy/) and [AI Proxy Advanced](/hub/kong-inc/ai-proxy-advanced/) plugins. The quickstart script referenced above uses the basic AI Proxy plugin. For load balancing and semantic routing capabilities, check out the AI Proxy Advanced plugin instead.
-{% endif %}
+{% endif_version %}
 
 The AI Proxy supports two types of LLM requests: 
 

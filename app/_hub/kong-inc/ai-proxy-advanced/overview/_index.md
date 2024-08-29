@@ -44,9 +44,9 @@ This plugin currently only supports REST-based full text responses.
 ## Load balancing
 
 This plugin supports following load balancing alogrithms:
-* lowest-usage 
-* round-robin (weighted) 
-* consistent-hashing (sticky-session on given header value)
+* Lowest-usage 
+* [Round-robin (weighted)](/gateway/latest/how-kong-works/load-balancing/#round-robin)
+* [Consistent-hashing (sticky-session on given header value)](/gateway/latest/how-kong-works/load-balancing/#consistent-hashing)
 
 ## Semantic routing
 
