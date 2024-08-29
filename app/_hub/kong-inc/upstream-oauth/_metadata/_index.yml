@@ -1,0 +1,15 @@
+name: Upstream OAuth
+search_aliases:
+  - upstream-oauth
+  - upstream authentication
+dbless_compatible: 'yes'
+free: false
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - authentication
+publisher: Kong Inc.
+desc: Manage OAuth flows between Kong Gateway and an upstream service
+
