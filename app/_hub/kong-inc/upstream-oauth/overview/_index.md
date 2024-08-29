@@ -20,7 +20,7 @@ This plugin supports the following authentication methods:
 The Upstream OAuth plugin caches tokens returned by the IdP.  
 Cache entries expire based on the `expires_in` indicated by the IdP in the response to the token endpoint.
 
-Tokens are cached using a hash of all values configured under the `config.oauth` key.
+Tokens are cached using a hash of all values configured under the [`config.oauth`](/hub/kong-inc/upstream-oauth/configuration/#config-oauth) key.
 This means that if two instances of the plugin (for example, configured on different routes and services) use identical values under the `config.oauth` section,
 then these will share cached tokens.
 
