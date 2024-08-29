@@ -50,7 +50,7 @@ curl -i -X PATCH https://global.api.konghq.com/v2/portals/{portalId}/audit-log-w
 Replace the following placeholders with your own data:
 * `global.api.konghq.com`: The region your org is in. Can be `global` to target all regions, `us`, or `eu`.
 * `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or
-  [system account token](/konnect/dev-portal/system-accounts/).
+  [system account token](/konnect/org-management/system-accounts/).
 * `audit_log_destination_id`: The ID of the audit log destination that you want to use.
 
 If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details:
