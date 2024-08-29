@@ -60,7 +60,7 @@ curl -s -X POST http://localhost:8001/routes/openai-semantic-cache/plugins \
 ```
 This configures the following:
 * `vectordb.dimensions`: The dimensionality for the vectors. Since this example uses `text-embedding-3-large`, OpenAI uses `3072` as the [default embedding dimension](https://platform.openai.com/docs/guides/embeddings/how-to-get-embeddings).
-* `vectordb.distance_metric`: The distance metric to use for for vectors. This example uses `cosine` because [OpenAI recommends it](https://platform.openai.com/docs/guides/embeddings/which-distance-function-should-i-use).
+* `vectordb.distance_metric`: The distance metric to use for vectors. This example uses `cosine` because [OpenAI recommends it](https://platform.openai.com/docs/guides/embeddings/which-distance-function-should-i-use).
 * `vectordb.strategy`: Defines the vector database, in this case, Redis.
 * `vectordb.threshold`: Defines the similarity threshold for accepting semantic search results. In the example, this is configured to as a low threshold, meaning it would include results that are only somewhat similar.
 * `vectordb.redis.host`: The host of your vector database.

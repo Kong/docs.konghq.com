@@ -87,7 +87,7 @@ curl -s -X POST http://localhost:8001/routes/mistral-semantic-cache/plugins \
 ```
 This configures the following:
 * `vectordb.dimensions`: The dimensionality for the vectors. This configuration uses `1024` since it's the [example Mistral uses in their documentation](https://docs.mistral.ai/capabilities/embeddings/#mistral-embed-api).
-* `vectordb.distance_metric`: The distance metric to use for for vectors. This example uses `cosine`.
+* `vectordb.distance_metric`: The distance metric to use for vectors. This example uses `cosine`.
 * `vectordb.strategy`: Defines the vector database, in this case, Redis.
 * `vectordb.threshold`: Defines the similarity threshold for accepting semantic search results. In the example, this is configured to as a low threshold, meaning it would include results that are only somewhat similar.
 * `vectordb.redis.host`: The host of your vector database.
