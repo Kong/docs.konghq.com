@@ -46,7 +46,7 @@ Therefore, in block mode, if the `Content-Length` header is missing or its value
 In tap mode, only the body size is checked, and logs are recorded.
 
 {:.note}
-> **Note**: max_body_size and nginx_http_client_max_body_size are independent of each other. Therefore, users should be aware that if nginx_http_client_max_body_size is set to a larger value while max_body_size is smaller and block mode is enabled, any request with a body size greater than max_body_size but less than nginx_http_client_max_body_size will be terminated.
+> **Note**: `max_body_size` and `nginx_http_client_max_body_size` are independent of each other. Therefore, if `nginx_http_client_max_body_size` is set to a larger value while `max_body_size` is smaller and block mode is enabled, any request with a body size greater than `max_body_size` but less than `nginx_http_client_max_body_size` will be terminated.
 
 
 ## Using the plugin
