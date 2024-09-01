@@ -2,6 +2,19 @@
 
 <!--vale off-->
 
+## Week 35
+
+### [docs(traceableai) - Add timeout config, specify konnect compatibility, add kong versions](https://github.com/Kong/docs.konghq.com/pull/7760) (2024-08-26)
+
+- Add timeout config for latest version of our plugin
+- Specify konnect compatibility
+- Add kong support versions
+
+#### Modified
+
+- https://docs.konghq.com/hub/traceableai/traceableai/_metadata/_index.yml
+- https://docs.konghq.com/hub/traceableai/traceableai/schemas/_index.json
+
 ## Week 34
 
 ### [Fix: Add changelog entry for deprecated OTEL parameters in 3.7](https://github.com/Kong/docs.konghq.com/pull/7774) (2024-08-23)
