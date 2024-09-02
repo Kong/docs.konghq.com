@@ -45,7 +45,7 @@ proxy in front of the applications (because it uses HTTP path-based routing).
 The Kong proxy can be used for this. The second option requires more
 configuration in kong.conf, but can be used without proxying the applications.
 
-{% if_version lte:3.8.x %}
+{% if_version gte:3.8.x %}
 ### DNS clients
 
 Two different DNS clients are available:
