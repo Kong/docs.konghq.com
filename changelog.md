@@ -4,7 +4,7 @@
 
 ## Week 35
 
-### [docs(traceableai) - Add timeout config, specify konnect compatibility, add kong versions](https://github.com/Kong/docs.konghq.com/pull/7760) (2024-08-26)
+### [Fix: Add timeout config, specify konnect compatibility, add kong versions](https://github.com/Kong/docs.konghq.com/pull/7760) (2024-08-26)
 
 - Add timeout config for latest version of our plugin
 - Specify konnect compatibility
