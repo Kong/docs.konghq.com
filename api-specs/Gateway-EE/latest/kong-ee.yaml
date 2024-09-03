@@ -194,6 +194,13 @@ components:
         type: string
         example: 30b4edb7-0847-4f65-af90-efbed8b0161f
       description: The license's unique ID.
+    admin_id_or_name:
+        schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The admin’s username or ID
     workspace_id_or_name:
       name: workspace_id_or_name
       in: path
@@ -12267,12 +12274,7 @@ paths:
         - admins
   '/admins/{name_or_id}':
     parameters:
-      - schema:
-          type: string
-        name: name_or_id
-        in: path
-        required: true
-        description: The admin’s username or ID.
+      - $ref: '#/components/parameters/admin_id_or_name'
     get:
       summary: Retrieve an Admin
       tags:
@@ -12369,12 +12371,7 @@ paths:
       description: Delete an admin by specifying the admin's username or ID.
   '/admins/{name_or_id}/roles':
     parameters:
-      - schema:
-          type: string
-        name: name_or_id
-        in: path
-        required: true
-        description: The admin’s username or ID
+      - $ref: '#/components/parameters/admin_id_or_name'
     get:
       summary: List an Admin’s Roles
       tags:
@@ -12522,12 +12519,7 @@ paths:
       description: Delete an admin's roles by passing a comma-separated string of names of specific roles to remove from an admin.
   '/admins/{name_or_id}/workspaces':
     parameters:
-      - schema:
-          type: string
-        name: name_or_id
-        in: path
-        required: true
-        description: The admin’s username or ID
+      - $ref: '#/components/parameters/admin_id_or_name'
     get:
       summary: List an Admin’s Workspaces
       tags:
@@ -12539,6 +12531,19 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-admins-name_or_id-workspaces
       description: Return workspaces associated with an admin.
+  '/admins/{name_or_id}/workspaces/{workspaces}':
+    parameters:
+      - $ref: '#/components/parameters/admin_id_or_name'
+      - $ref: '#/components/parameters/workspace_id_or_name'
+    patch:
+      summary: Update the admin's belong workspace.
+      tags:
+        - admins
+      responses:
+        '200':
+          $ref: '#/components/responses/workspace-response'
+      operationId: update-admins-name_or_id-belong_workspaces
+      description: Update the admin's belong workspace.
   /groups:
     get:
       summary: List Groups
