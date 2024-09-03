@@ -35,10 +35,12 @@ You can view your certificate listed in the **Certificates** tab.
 
 To add a certificate via curl, you need:
 * {{site.konnect_short_name}} ID
-* A generated access cookie
+* [A personal access token](/konnect/api/)
 
 ```bash
-curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certificates -F cert=@testCACert.pem --cookie '[generated access cookie]'
+curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certificates \
+  -F cert=@testCACert.pem \
+  --header "Authorization: Bearer TOKEN"
 ```
 {% endnavtab %}
 {% endnavtabs %}
