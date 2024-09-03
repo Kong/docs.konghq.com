@@ -2,10 +2,9 @@
 nav_title: Overview
 ---
 
-The Header Cert Authentication plugin authenticates API calls using client certificates received in HTTP headers,
-rather than through traditional TLS termination.
-This is necessary in scenarios where TLS traffic is not terminated at {{site.base_gateway}}, but rather at an external CDN or load balancer,
-and the client certificate is preserved in an HTTP header for further validation.
+The Header Cert Authentication plugin authenticates API calls by using client certificates provided in HTTP headers,
+instead of relying on traditional TLS termination.
+This approach is particularly useful in scenarios where TLS traffic is terminated outside of {{site.base_gateway}} such as at an external CDN or load balancer and the client certificate is passed along in an HTTP header for subsequent validation.
 
 ## How it works
 
@@ -22,10 +21,10 @@ The plugin validates the certificate provided against the configured CA list bas
 requested route or service:
 * If the certificate is not trusted or has expired, the response is
   `HTTP 401 TLS certificate failed verification`.
-* If consumer did not present a valid certificate (this includes requests not
-  sent to the HTTPS port), then the response is `HTTP 401 No required TLS certificate was sent`.
-  The exception is if the `config.anonymous` option is configured on the plugin, in which
-  case the anonymous consumer is used and the request is allowed to proceed.
+* If a valid certificate is not presented (including when requests are not sent to the HTTPS port),
+  the response is HTTP 401 No required TLS certificate was sent.
+* However, if the config.anonymous option is configured on the plugin,
+  an anonymous consumer is used, and the request is allowed to proceed.
 
 The plugin can be configured to only accept certificates from trusted IP addresses, as specified by the [`trusted_ips`](/gateway/{{page.release}}/reference/configuration/#trusted_ips) config option. This ensures that Kong can trust the header sent from the source and provides L4 level of security.
 
@@ -42,11 +41,11 @@ The `send_ca_dn` option is not supported in this plugin. This is used in mutual 
 
 The same applies to SNI functionality. The plugin can verify the certificate without needing to know the specific hostname or domain being accessed. The plugin's authentication logic is decoupled from the TLS handshake and SNI, so it doesn't need to rely on SNI to function correctly (pretty much anything that deals with the actual TLS handshake is not needed for the plugin to work).
 
-### Troubleshooting
+## Troubleshooting
 
 When authentication fails, the client does not have access to any details that explain the failure. The security reason for this omission is to prevent malicious reconnaissance. Instead, the details are recorded inside Kong's error logs under the `[header-cert-auth]` filter.
 
-### FAQ
+### FAQs
 
 **Q: Will the client need to encrypt the message with a private key and certificate when passing the certificate in the header?**
 

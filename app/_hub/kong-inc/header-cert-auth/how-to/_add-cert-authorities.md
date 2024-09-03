@@ -6,32 +6,27 @@ title: Add Certificate Authorities
 To use this plugin, you must add certificate authority (CA) certificates. These are
 stored in a separate `ca_certificates` store rather than the main certificates store because
 they do not require private keys. To add one, obtain a PEM-encoded copy of your CA certificate
-and POST it to `/ca_certificates`:
+and pass it to the `/ca_certificates` endpoint in a `POST` request:
 
 {% navtabs %}
 {% navtab Kong Admin API %}
 ```bash
-curl -sX POST https://localhost:8001/ca_certificates -F cert=@cert.pem
-{
-  "tags": null,
-  "created_at": 1566597621,
-  "cert": "-----BEGIN CERTIFICATE-----\FullPEMOmittedForBrevity==\n-----END CERTIFICATE-----\n",
-  "id": "322dce96-d434-4e0d-9038-311b3520f0a3"
-}
+curl -X POST https://localhost:8001/ca_certificates -F cert=@cert.pem
 ```
+
+The response will contain an `id` value that can now be used for the Header Cert Auth plugin configurations or consumer mappings.
+
 {% endnavtab %}
 
 {% navtab Konnect %}
 
 Go through the Gateway Manager:
-1. In {{site.konnect_short_name}}, click {% konnect_icon runtimes %} **Gateway Manager**.
-2. Select the control plane you want to add the CA certificate to.
-3. Click **Certificates**.
-4. Select the **CA Certificates** tab.
-5. Click **+ Add CA Certificate**
-6. Copy and paste your certificate information and click **Save**.
+1. From the {{site.konnect_short_name}} [{% konnect_icon runtimes %} **Gateway Manager**](https://cloud.konghq.com/us/gateway-manager/).
+1. Select a control plane and click **Certificates**
+1. Select the **CA Certificates** tab and **Add CA Certificate**
+1. Copy and paste your certificate information and click **Save**.
 
-You can view your certificate listed in the **Certificates** tab.
+You can view the certificate listed in the **Certificates** tab.
 
 To add a certificate via the {{site.konnect_short_name}} API, you need:
 * {{site.konnect_short_name}} control plane ID
