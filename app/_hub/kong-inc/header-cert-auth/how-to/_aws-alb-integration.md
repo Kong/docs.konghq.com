@@ -3,9 +3,11 @@ nav_title: AWS ALB Integration
 title: AWS ALB Integration
 ---
 
-AWS has support for mutually authenticating clients that present X509 certificates to Application Load Balancer (ALB). More information: https://aws.amazon.com/blogs/networking-and-content-delivery/introducing-mtls-for-application-load-balancer/
+AWS has support for mutually authenticating clients that present X509 certificates to Application Load Balancer (ALB). 
+You can learn more about mTLS with ALB in [AWS's blog post](https://aws.amazon.com/blogs/networking-and-content-delivery/introducing-mtls-for-application-load-balancer/).
 
-To make sure AWS/ALB works with the header-cert-auth plugin with mTLS enabled we first need to generate the required certificates. For development certificates, you can use OpenSSL to generate certificates or tools such as `mkcert`.
+To make sure AWS/ALB works with the Header Cert Auth plugin with mTLS enabled, we first need to generate the required certificates. 
+For development certificates, you can use OpenSSL to generate certificates or tools such as `mkcert`.
 
 ## Add HTTPS listener to the ALB
 
@@ -22,7 +24,7 @@ Make sure to upload your certificates to ACM and use them in the ALB.
   * Certificate (from ACM): Select the certificate that you want to use
   * Client certificate handling: Select Mutual authentication (mTLS) with Passthrough
 
-## Configure Kong Gateway with certs and plugin
+## Configure {{site.base_gateway}} with certificate and plugin
 
 Next, configure {{site.base_gateway}}.
 

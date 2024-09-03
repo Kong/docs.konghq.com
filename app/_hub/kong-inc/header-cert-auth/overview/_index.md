@@ -9,11 +9,14 @@ and the client certificate is preserved in an HTTP header for further validation
 
 ## How it works
 
-This plugin addresses the inability of the Kong API Gateway to authenticate API calls using client certificates received in HTTP headers, rather than through traditional TLS termination. This occurs in scenarios where TLS traffic is not terminated at the Kong API Gateway, but rather at an external CDN or load balancer, and the client certificate is preserved in an HTTP header for further validation.
+This plugin addresses the inability of the {{site.base_gateway}} to authenticate API calls using client certificates received in HTTP headers, rather than through traditional TLS termination. 
+This occurs in scenarios where TLS traffic is not terminated at the {{site.base_gateway}}, but rather at an external CDN or load balancer, and the client certificate is preserved in an HTTP header for further validation.
 
-Existing options, such as the mtls-auth plugin, are not sufficient as they are designed for traditional TLS termination and do not support receiving client certificates in HTTP headers. Additionally, these plugins do not provide the necessary flexibility and configurability to accommodate the varying requirements of different customers and use cases.
+The Header Cert Authentication plugin is similar to the [mTLS Auth plugin](/hub/kong-inc/mtls-auth).
+However, the mTLS plugin is only designed for traditional TLS termination, while the Header Cert Auth plugin also provides support for client certificates in headers. 
 
-The plugin extracts the client certificate from the HTTP header and validates it against the configured CA list. If the certificate is valid, the plugin maps the certificate to a consumer based on the common name field.
+The Header Cert Auth plugin extracts the client certificate from the HTTP header and validates it against the configured CA list. 
+If the certificate is valid, the plugin maps the certificate to a consumer based on the common name field.
 
 The plugin validates the certificate provided against the configured CA list based on the
 requested route or service:
@@ -47,13 +50,13 @@ When authentication fails, the client does not have access to any details that e
 
 **Q: Will the client need to encrypt the message with a private key and certificate when passing the certificate in the header?**
 
-A: No, the client only needs to send the target's certificate encoded in a header. Kong will validate the certificate, but it requires a high level of trust that the WAF/LB is the only entrypoint to the Kong proxy. The header-cert-auth plugin will provide an option to secure the source, but additional layers of security are always preferable. Network level security (so that Kong only accepts requests from WAF - ip allow/deny mechanisms) and Application level security (basic-auth authentication or key-auth authentication plugins to authenticate the source first) are examples of multiple layers of security that can be applied.
+**A:** No, the client only needs to send the target's certificate encoded in a header. Kong will validate the certificate, but it requires a high level of trust that the WAF/LB is the only entrypoint to the Kong proxy. The Header Cert Auth plugin will provide an option to secure the source, but additional layers of security are always preferable. Network level security (so that Kong only accepts requests from WAF - IP allow/deny mechanisms) and application-level security (Basic Auth or Key Auth plugins to authenticate the source first) are examples of multiple layers of security that can be applied.
 
 ## Get started with the Header Cert Authentication plugin
 
 * [Add certificate authorities](/hub/kong-inc/header-cert-auth/how-to/add-cert-authorities/):
-To use this plugin, you must add certificate authority (CA) certificates.
-Set them up before configuring the plugin.
+    To use this plugin, you must add certificate authority (CA) certificates.
+    Set them up before configuring the plugin.
 * [Configuration reference](/hub/kong-inc/header-cert-auth/configuration/)
 * [Basic configuration example](/hub/kong-inc/header-cert-auth/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/header-cert-auth/how-to/)
