@@ -1,7 +1,7 @@
 ---
 title: Migrate to the new DNS client
 ---
-This guide walks you through migrating from the old DNS client to the new one. The new DNS client introduces and new standardized way to configure a service, and helps improve performance.
+This guide walks you through migrating from the old DNS client to the new one. The new DNS client introduces a new standardized way to configure a service, and helps improve performance.
 
 ## Migrate the DNS client configuration
 
