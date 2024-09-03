@@ -29,6 +29,10 @@ The following table describes which providers and requests the AI Proxy plugin s
 | Llama2 (raw, OLLAMA, and OpenAI formats) | ✅ | ✅ | ✅ |
 | Llama3 (OLLAMA and OpenAI formats) | ✅ | ✅ | ✅ |
 {% endif_version %}
+{% if_version gte:3.8.x %}
+| Amazon Bedrock | ✅ | ✅ | ✅ |
+| Gemini | ✅ | ✅ | ✅ |
+{% endif_version %}
 
 ## How it works
 
@@ -77,6 +81,13 @@ The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-
 | Mistral       | User-defined                                             | `llm/v1/chat`        | User-defined           |
 | Mistral       | User-defined                                             | `llm/v1/completions` | User-defined           |
 
+{% if_version gte:3.8.x %}
+| Amazon Bedrock     | Use the LLM `chat` upstream path                    | `llm/v1/chat`        | [Use the model name for the specific LLM provider](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html)            |
+| Amazon Bedrock     | Use the LLM `completions` upstream path             | `llm/v1/completions` | [Use the model name for the specific LLM provider](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html)             |
+| Gemini     | Use the LLM `chat` upstream path                            | `llm/v1/chat`        | `gemini-1.5-flash` or `gemini-1.5-pro`           |
+| Gemini     | Use the LLM `completions` upstream path                     | `llm/v1/completions` | `gemini-1.5-flash` or `gemini-1.5-pro`            |
+{% endif_version %}
+
 The following upstream URL patterns are used:
 
 | Provider  | URL                                                                                                    |
@@ -88,6 +99,10 @@ The following upstream URL patterns are used:
 | Llama2    | As defined in `config.model.options.upstream_url`                                                      |
 | Mistral   | As defined in  `config.model.options.upstream_url`                                                     |
 
+{% if_version gte:3.8.x %}
+| Amazon Bedrock   | Use the specific LLM upstream URL                                                   |
+| Gemini  | Use the specific LLM upstream URL                                                     |
+{% endif_version %}
 
 {:.important}
 > While only the **Llama2** and **Mistral** models are classed as self-hosted, the target URL can be overridden for any of the supported providers.
