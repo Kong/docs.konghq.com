@@ -45,6 +45,35 @@ export KONG_KEYRING_RECOVERY_PUBLIC_KEY=/path/to/generated/cert.pem
 All nodes in the Kong cluster should share the same `keyring_enabled` and `keyring_strategy` configuration values.
 The generated private key `key.pem` is not required to configure Kong, or to start Kong. Please refer to the [disaster recovery](#disaster-recovery) section for more information on how to use private keys in keyring management.
 
+{% if_version gte:3.8.x %}
+#### (Optional): Configure license payload encryption
+
+By default, {{site.base_gateway}} does not encrypt license data within the
+database. If this is required for your deployment, it can be enabled by adding
+the following to `kong.conf`:
+
+```
+keyring_encrypt_license = on
+```
+
+Or via environmental variable:
+
+```
+export KONG_KEYRING_ENCRYPT_LICENSE=on
+```
+
+This feature is not enabled by default because it may not be suitable for all
+deployments and must be activated with care. Without license encryption enabled,
+licenses stored in the database can be activated at startup, before
+{{site.base_gateway}} starts serving traffic. If license encryption is enabled,
+license activation is delayed until after keyring activation completes (either
+via cluster/vault strategy or manual recovery), so there will be a latency
+between when {{site.base_gateway}} starts and when all enterprise features are
+fully activates. This limitation can be avoided by providing the node a valid 
+license at startup via `KONG_LICENSE_DATA` or `KONG_LICENSE_PATH` environment 
+variables.
+{% endif_version %}
+
 ### Start Kong
 
 Once all Kong nodes in the cluster have been configured, start each node:
