@@ -1,7 +1,7 @@
 name: Header Cert Authentication
 search_aliases:
   - header cert auth
-  - hmac-cert-auth
+  - header-cert-auth
   - authentication
 dbless_compatible:
 dbless_explanation:
