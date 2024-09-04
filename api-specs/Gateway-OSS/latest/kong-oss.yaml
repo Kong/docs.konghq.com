@@ -7225,6 +7225,50 @@ paths:
         Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node's memory usage.
 
         If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
+  /status/dns:
+    get:
+      summary: DNS Status
+      tags:
+        - Information
+      operationId: getDnsStatus
+      description: |
+        Retrieve DNS worker and stats information. If the legacy DNS client is in use, it returns a 501 status with a message.
+      responses:
+        '200':
+          description: DNS worker and stats information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  worker:
+                    type: object
+                    description: Worker information.
+                    properties:
+                      id:
+                        type: integer
+                        description: The worker ID.
+                        example: 1
+                      count:
+                        type: integer
+                        description: The total number of workers.
+                        example: 4
+                  stats:
+                    type: object
+                    description: DNS stats information (specific details depend on the Kong instance).
+        '501':
+          description: Legacy DNS client in use
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Message indicating that the endpoint is not implemented with the legacy DNS client.
+                    example: "not implemented with the legacy DNS client"
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
   /tags:
     get:
       summary: List all tags

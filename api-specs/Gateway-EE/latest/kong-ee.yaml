@@ -11748,6 +11748,50 @@ paths:
         If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
         '401': 
           $ref: '#/components/responses/HTTP401Error'
+  /status/dns:
+    get:
+      summary: DNS Status
+      tags:
+        - Information
+      operationId: getDnsStatus
+      description: |
+        Retrieve DNS worker and stats information. If the legacy DNS client is in use, it returns a 501 status with a message.
+      responses:
+        '200':
+          description: DNS worker and stats information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  worker:
+                    type: object
+                    description: Worker information.
+                    properties:
+                      id:
+                        type: integer
+                        description: The worker ID.
+                        example: 1
+                      count:
+                        type: integer
+                        description: The total number of workers.
+                        example: 4
+                  stats:
+                    type: object
+                    description: DNS stats information (specific details depend on the Kong instance).
+        '501':
+          description: Legacy DNS client in use
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Message indicating that the endpoint is not implemented with the legacy DNS client.
+                    example: "not implemented with the legacy DNS client"
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
   /keyring/generate:
     post:
       summary: Generate key
@@ -12531,7 +12575,7 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-admins-name_or_id-workspaces
       description: Return workspaces associated with an admin.
-  '/admins/{name_or_id}/workspaces/{workspaces}':
+  '/admins/{name_or_id}/workspaces/{workspace_id_or_name}':
     parameters:
       - $ref: '#/components/parameters/admin_id_or_name'
       - $ref: '#/components/parameters/workspace_id_or_name'
