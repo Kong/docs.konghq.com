@@ -46,6 +46,16 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Creator | Access to create a new mesh control plane in Mesh Manager. The creator becomes the owner of the control plane they create, gaining admin access to the new control plane. <br><br>This role does not grant access to _existing_ control planes or their configurations. See the mesh control plane `Admin` role. |
 | Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} mesh control plane, including zones, Zone Ingress and Egress, meshes, and RBAC. |
 
+## Service Catalog
+
+| Role                        | Description  |
+|-----------------------------|--------------|
+| Integration Admin | Can view and edit all integrations (install/ authorize)|
+| Service Viewer | Can view a select list of services and all resources and discovery rules|
+| Service Admin | Can view and edit a select list of services, map resources to those services, and manage all resources and discovery rules. | 
+| Service Creator | Can create new services, becomes the service admin for any service they create, and can view, edit, and create all resources and discovery rules.
+
+
 ## Administration
 
 | Role                        | Description  |
