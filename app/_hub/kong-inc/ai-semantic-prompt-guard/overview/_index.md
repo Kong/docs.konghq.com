@@ -14,7 +14,13 @@ Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) t
 
 ## How it works
 
+The plugin matches lists of prompts to requests through AI Proxy.
 
+The matching behavior is as follows:
+* If any `deny` prompts are set, and the request matches prompt in the `deny` list, the caller receives a 400 response.
+* If any `allow` prompts are set, but the request matches none of the allowed prompts, the caller also receives a 400 response.
+* If any `allow` prompts are set, and the request matches one of the `allow` prompts, the request passes through to the LLM.
+* If there are both `deny` and `allow` prompts set, any request that doesn't match an entry on the `deny` list must then also match one `allow` prompt to be passed through to the LLM.
 
 ## Get started with the AI Prompt Guard plugin
 
