@@ -29,7 +29,7 @@ the plugin accepts
 plugin's global configuration
 
 For all possible requests, see the
-[Consumer Groups reference](/gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups).
+[Consumer Groups reference](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups).
 
 ## Set up a consumer group with consumers
 

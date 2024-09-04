@@ -160,7 +160,7 @@
 
 /gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
-/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups
+/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups
 /konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
 
 # 3.3
