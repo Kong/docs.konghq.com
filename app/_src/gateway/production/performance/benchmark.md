@@ -220,7 +220,7 @@ If this is the case, scale Redis vertically by giving it an additional CPU.
 
 **Action:** Migrate to the new DNS client.
 
-**Explanation:** The new DNS client is designed to be more performant than the old one, so migrating should improve performance.
+**Explanation:** The new DNS client is designed to be more performant than the old one, so migrating will improve performance.
 For more information, see the [migration docs](/gateway/{{page.release}}/migrate-to-new-dns-client).
 
 {% endif_version %}

@@ -7,17 +7,17 @@ This guide walks you through migrating from the old DNS client to the new one. T
 
 ### Record types
 
-The new DNS client introduces some changes in the support for different record types. To avoid issues, make sure to check your configuration before migrating.
+The new DNS client introduces some changes in the support for different record types. To avoid issues, make sure that your SRV records configuration is compatible with the new client before migrating.
 
 #### SRV
 
 If you enable SRV support with the `resolver_family` directive, the client will only query SRV records if the domain name follows the RFC 2782 format (`_<service>._<proto>.<name>`). If the SRV record query fails, the client will not attempt to query the domain's IP addresses (A and AAAA records) again.
 
-Before enabling SRV support with the new DNS client, make sure that the domain name is registered with your DNS service provider in the supported format.
+Before enabling SRV support with the new DNS client, make sure that the domain name is registered with your DNS service provider in the supported format. This standard format also works with the old DNS. Once you change the SRV format, it will continue to work with the old client; there will no downtime during migration.
 
 #### CNAME
 
-The DNS client does not offer CNAME dereferencing, this task is entirely handled by the DNS server.
+CNAME dereferencing is not needed with the new DNS client. This task is entirely handled by the DNS server, as is the industry standard.
 
 {:.note}
 > The new DNS client does not consider the order of record types when querying a domain. It only queries either IP addresses (A and AAAA records) or SRV records, but not both.
