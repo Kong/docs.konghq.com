@@ -17,7 +17,7 @@ Before enabling SRV support with the new DNS client, make sure that the domain n
 
 #### CNAME
 
-The new DNS client no longer performs CNAME dereferencing; this task is entirely handled by the DNS server.
+The DNS client does not offer CNAME dereferencing, this task is entirely handled by the DNS server.
 
 {:.note}
 > The new DNS client does not consider the order of record types when querying a domain. It only queries either IP addresses (A and AAAA records) or SRV records, but not both.
