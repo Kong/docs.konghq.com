@@ -37,18 +37,12 @@ To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible ve
 | {{site.mesh_product_name}} 2.4.x | <i class="fa fa-check"></i> | 2.4.1
 | {{site.mesh_product_name}} 2.3.x or earlier | <i class="fa fa-times"></i> | -
 
-
 ## Plugin compatibility
 
-There are three tiers of plugins available in {{site.konnect_saas}}:
+Most {{site.base_gateway}} plugins are compatible with {{site.konnect_short_name}}.
+You can find details on specific plugin support at:
+* [Plugin Compatibility](/hub/plugins/compatibility/): supported network protocols and entity scopes
 
-* [**Free tier**](/hub/?tier=free&compatibility=konnect)
-* [**Paid tier**](/hub/?tier=paid&compatibility=konnect)
-* [**Premium tier**](/hub/?tier=premium&compatibility=konnect)
-
-The tiers denote plugin pricing. See the [{{site.konnect_short_name}} pricing page](https://konghq.com/pricing) for more detail. 
-
-If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 
 ### Considerations for Dedicated Cloud Gateways
 
@@ -59,78 +53,4 @@ There are some limitations for plugins with Dedicated Cloud Gateways:
 * Any plugins or functionality that depend on AWS IAM `AssumeRole` need to be configured differently. 
 This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-handling/).
 
-See the following table for details on each plugin.
-
-### Plugin tiers
-
-{% assign hub = site.data.ssg_hub %}
-{% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
-{% assign categories = site.extensions.categories %}
-{% assign plugins = site.data.ssg_hub | where: "extn_publisher", "kong-inc" %}
-
-{% for category in categories %}
-<h3 id="{{ category.slug }}">
-  {{ category.name }}
-</h3>
-
-<table>
-  <thead>
-      <th style="text-align: left; width: 10%">Plugin</th>
-      <th style="text-align: center">Free</th>
-      <th style="text-align: center">Paid</th>
-      <th style="text-align: center">Premium</th>
-
-      <th style="text-align: left; width: 35%">Notes</th>
-  </thead>
-  <tbody>
-    {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.categories contains category.slug" %}
-    {% for plugin in plugins_for_category %}
-      <tr>
-        <td>
-          <a href="{{plugin.url}}">{{ plugin.name }}</a>
-        </td>
-        <td style="text-align: center">
-        {% if plugin.konnect == false %}
-         <span></span>
-        {% elsif plugin.free == true %}
-          <i class="fa fa-check"></i>
-        {% endif %}
-        </td>
-        <td style="text-align: center">
-          {% unless plugin.konnect %}
-            <span>Not available in {{site.konnect_short_name}}</span>
-          {% else %}
-            {% unless plugin.free %}
-              {% unless plugin.premium %}
-                {% if plugin.paid == true %}
-                  <i class="fa fa-check"></i>
-                {% endif %}
-              {% endunless %}
-            {% endunless %}
-          {% endunless %}
-        </td>
-        <td style="text-align: center">
-          {% unless plugin.konnect %}
-            <span></span>
-          {% else %}
-            {% unless plugin.free %}
-              {% unless plugin.paid %}
-                {% if plugin.premium == true %}
-                  <i class="fa fa-check"></i>
-                {% endif %}
-              {% endunless %}
-            {% endunless %}
-          {% endunless %}
-        </td>
-    
-        <td>
-          {{ plugin.notes | markdownify }}
-        </td>
-      </tr>
-
-    {% endfor %}
-  </tbody>
-</table>
-
-{% endfor %}
 
