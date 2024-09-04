@@ -10,12 +10,10 @@ Kong also provides Kafka Log and Kafka Upstream plugins for publishing logs and 
 * See [Kafka Log](/hub/kong-inc/kafka-log/)
 * See [Kafka Upstream](/hub/kong-inc/kafka-upstream/)
 
-## Known issues and limitations
-
-Known limitations:
-
-1. Message compression is not supported.
-2. The message format is not customizable.
+{:.note} 
+> **Note**: This plugin has the following known limitations:
+> * Message compression is not supported.
+> * The message format is not customizable.
 
 ## Quickstart
 
