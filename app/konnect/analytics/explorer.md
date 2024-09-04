@@ -2,28 +2,33 @@
 title: Explorer
 ---
 
-Explorer is an intuitive web-based interface that displays API usage data gathered by {{site.konnect_short_name}} Analytics from your data plane nodes. You can use this tool to promptly diagnose performance issues or capture essential usage metrics. Explorer also provides the option to save the output as custom reports.
+Explorer is an intuitive web-based interface that displays API usage data gathered by {{site.konnect_short_name}} Analytics from your data plane nodes. You can use this tool to promptly diagnose performance issues, monitor LLM token consumption and costs, or capture essential usage metrics. Explorer also provides the option to save the output as custom reports.
 
 ![Explorer Dashboard](/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png){:.image-border}
 
-To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} section and select [**Explorer**](https://cloud.konghq.com/analytics/explorer). 
+To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} section and select [**Explorer**](https://cloud.konghq.com/analytics/explorer). You can select from **API Usage** or **LLM Usage** from the dashboard options. 
+
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 
-This is an overview of the different grouping and filtering categories available: 
+This is an overview of the different grouping and filtering categories available for either **API usage** or **LLM usage** : 
 
-* **None** 
-* **API Product**
-* **API Product Version** 
-* **Route** 
-* **Application**
-* **Status Code** (status codes can range from 100 to 599)
-* **Status Code Group** (1XX, 2XX, 3XX, 4XX, and 5XX)
-* **Control Plane**
-* **Control Plane Group**
-* **Data Plane Node** 
-* **Gateway Services** 
-* **Consumer** 
+| **API Usage**                                                    | **LLM Usage**                                                 |
+|-------------------------------------------------------------------|---------------------------------------------------------------|
+| **None**                                                          | **Provider**                                                  |
+| **API Product**                                                   | **Request Model**                                             |
+| **API Product Version**                                           | **Response Model**                                            |
+| **Route**                                                         | **Cache Status**                                              |
+| **Application**                                                   | **Embeddings Provider**                                       |
+| **Status Code**                                                   | **Embeddings Name**                                           |
+| **Status Code Group**                                             | **Control Plane**                                             |
+| **Control Plane**                                                 | **Control Plane Group**                                       |
+| **Control Plane Group**                                           | **Route**                                                     |
+| **Data Plane Node**                                               | **Consumer**                                                  |
+| **Gateway Services**                                              | **Application**                                               |
+| **Consumer**                                                      |                                                               |
+
+
 {% endnavtab %}
 {% navtab Metrics %}
 
