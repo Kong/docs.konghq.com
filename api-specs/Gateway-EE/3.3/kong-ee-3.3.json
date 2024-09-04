@@ -2924,7 +2924,7 @@
                 "value": {
                   "data": [
                     {
-                      "comment": "null",
+                      "comment": null,
                       "created_at": 1557512629,
                       "enabled": true,
                       "id": "f035f120-a95e-4327-b2ae-8fa264601d75",
@@ -2933,7 +2933,7 @@
                       "user_token_ident": "88ea3"
                     },
                     {
-                      "comment": "null",
+                      "comment": null,
                       "created_at": 1557522650,
                       "enabled": true,
                       "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
@@ -2942,7 +2942,7 @@
                       "user_token_ident": "4d870"
                     }
                   ],
-                  "next": "null"
+                  "next": null
                 }
               }
             }
@@ -3214,7 +3214,7 @@
                   "data": [
                     {
                       "config": {
-                        "body": "null",
+                        "body": null,
                         "body_format": true,
                         "headers": {
                           "content-type": "string"
@@ -3225,7 +3225,7 @@
                           "text": "string"
                         },
                         "payload_format": true,
-                        "secret": "null",
+                        "secret": null,
                         "ssl_verify": true,
                         "url": "string",
                         "functions": [
@@ -3241,7 +3241,7 @@
                       "source": "string"
                     }
                   ],
-                  "next": "null"
+                  "next": null
                 }
               }
             }
@@ -13886,13 +13886,13 @@
                           "name": "super-admin"
                         },
                         {
-                          "comment": "null",
+                          "comment": null,
                           "created_at": 1557532241,
                           "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
                           "name": "doc_lord"
                         }
                       ],
-                      "next": "null"
+                      "next": null
                     }
                   }
                 }
@@ -13943,7 +13943,7 @@
                 "examples": {
                   "New role response body": {
                     "value": {
-                      "comment": "null",
+                      "comment": null,
                       "created_at": 1557532241,
                       "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
                       "is_default": false,
@@ -15359,7 +15359,7 @@
                         }
                       ],
                       "user": {
-                        "comment": "null",
+                        "comment": null,
                         "created_at": 1557772232,
                         "enabled": true,
                         "id": "b65ca712-7ceb-4114-87f4-5c310492582c",
@@ -15464,7 +15464,7 @@
                         }
                       ],
                       "user": {
-                        "comment": "null",
+                        "comment": null,
                         "created_at": 1557772232,
                         "enabled": true,
                         "id": "b65ca712-7ceb-4114-87f4-5c310492582c",
