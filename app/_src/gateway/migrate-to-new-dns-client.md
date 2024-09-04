@@ -11,7 +11,7 @@ The new DNS client introduces some changes in the support for different record t
 
 #### SRV
 
-The new DNS client handles SRV records differently than the previous one. If you enable SRV support with the `resolver_family` directive, the client will only query SRV records if the domain name follows the RFC 2782 format (`_<service>._<proto>.<name>`). If the SRV record query fails, the client will not attempt to query the domain's IP addresses (A and AAAA records) again.
+If you enable SRV support with the `resolver_family` directive, the client will only query SRV records if the domain name follows the RFC 2782 format (`_<service>._<proto>.<name>`). If the SRV record query fails, the client will not attempt to query the domain's IP addresses (A and AAAA records) again.
 
 Before enabling SRV support with the new DNS client, make sure that the domain name is registered with your DNS service provider in the supported format.
 
