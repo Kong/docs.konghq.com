@@ -25,7 +25,8 @@ The same definitions of `feature gates` and `feature stages` from upstream Kuber
 | SanitizeKonnectConfigDumps | `true`  | Beta  | 3.1.0  | TBD   |
 {% if_version gte:3.2.x %}
 | FallbackConfiguration      | `false` | Alpha | 3.2.0  | TBD   |
-| KongCustomEntity           | `false` | Alpha | 3.2.0  | TBD   |
+| KongCustomEntity           | `false` | Alpha | 3.2.0  | 3.3.0 |
+| KongCustomEntity           | `true`  | Beta  | 3.3.0  | TBD   |
 {% endif_version %}
 
 ## Using feature gates

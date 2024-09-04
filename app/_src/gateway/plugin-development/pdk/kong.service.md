@@ -62,12 +62,21 @@ end
 
 ## kong.service.set_target(host, port)
 
+{% if_version gte:3.8.x %}
+Sets the host and port on which to connect to for proxying the request.
+ Using this method is equivalent to ask Kong to not run the load-balancing
+ phase for this request, and consider it manually overridden.
+ Load-balancing components such as retries and health-checks will also be
+ ignored for this request. Use `kong.service.set_retries` to overwrite
+ retries count.
+{% endif_version %}
+{% if_version lte:3.7.x %}
 Sets the host and port on which to connect to for proxying the request.
  Using this method is equivalent to ask Kong to not run the load-balancing
  phase for this request, and consider it manually overridden.
  Load-balancing components such as retries and health-checks will also be
  ignored for this request.
-
+{% endif_version %}
  The `host` argument expects the hostname or IP address of the upstream
  server, and the `port` expects a port number.
 
@@ -87,7 +96,57 @@ Sets the host and port on which to connect to for proxying the request.
 kong.service.set_target("service.local", 443)
 kong.service.set_target("192.168.130.1", 80)
 ```
+{% if_version gte:3.8.x %}
+## kong.service.set_retries(retries)
 
+Sets the retries count for the current request.  This will override the
+ default retries count set in the Upstream entity.
+
+ The `retries` argument expects an integer between 0 and 32767.
+
+
+**Phases**
+
+* access
+
+**Parameters**
+
+* **retries** (`number`):
+
+**Usage**
+
+``` lua
+kong.service.set_retries(233)
+```
+
+
+
+## kong.service.set_timeouts(connect_timeout, write_timeout, read_timeout)
+
+Sets the timeouts for the current request.  This will override the
+ default timeouts set in the Upstream entity.
+
+ The `connect_timeout`, `write_timeout`, and `read_timeout` arguments expect
+ an integer between 1 and 2147483646.
+
+
+**Phases**
+
+* access
+
+**Parameters**
+
+* **connect_timeout** (`number`):
+* **write_timeout** (`number`):
+* **read_timeout** (`number`):
+
+**Usage**
+
+``` lua
+kong.service.set_timeouts(233, 233, 233)
+```
+
+{% endif_version %}
 
 
 ## kong.service.set_tls_cert_key(chain, key)
