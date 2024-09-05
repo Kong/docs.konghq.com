@@ -14927,9 +14927,35 @@ paths:
         POST any data to `/event-hooks/:id-of-hook/test`, and the `/test` endpoint executes the with the provided data as the event payload.
       tags:
         - Event-hooks
-  '/event-hooks/{event-hook-id/ping':
+  '/event-hooks/{event-hook-id}':
+      delete:
+        summary: Delete an event hook
+        description: Deletes a specific event hook by its ID.
+        operationId: deleteEventHook
+        parameters:
+          - name: event-hook-id
+            in: path
+            required: true
+            description: The ID of the event hook to delete.
+            schema:
+              type: string
+        responses:
+          '204':
+            description: Event hook successfully deleted.
+          '404':
+            description: Event hook not found.
+        tags:
+        - Event-hooks
+  '/event-hooks/{event-hook-id}/ping':
     get:
       summary: Ping a webhook event hook
+      parameters:
+        - name: event-hook-id
+          in: path
+          required: true
+          description: The ID of the event hook to delete.
+          schema:
+            type: string
       tags:
         - Event-hooks
       responses:
