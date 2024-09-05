@@ -123,6 +123,8 @@
   items:
     - text: Overview
       url: /service-catalog/
+    - text: Integrations
+      url: /service-catalog/integrations/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
