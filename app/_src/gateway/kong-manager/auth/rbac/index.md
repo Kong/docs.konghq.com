@@ -15,6 +15,9 @@ create new roles and customize permissions.
 In Kong Manager, RBAC affects how admins are able to navigate
 through the application.
 
+{:.important}
+> **Important:** RBAC authorization is not compatible with DB-less mode while enabling RBAC with `enforce_rbac`.
+
 ## Default roles
 
 Kong includes Role-Based Access Control (RBAC). Every admin using Kong Manager
