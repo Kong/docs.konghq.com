@@ -1150,14 +1150,8 @@ components:
               items:
                 type: string
             portal_developer_meta_fields:
-              default:
-                properties:
-                  - label: Full Name
-                    title: full_name
-                    validator:
-                      required: true
-                      type: string
-              type: object
+              default: '[{"label":"Full Name","title":"full_name","validator":{"required":true,"type":"string"}}]'
+              type: string
             portal_emails_from:
               type: string
             portal_emails_reply_to:
@@ -1208,12 +1202,8 @@ components:
             portal_auto_approve: true
             portal_cors_origins:
               - string
-            portal_developer_meta_fields:
-              - label: Full Name
-                title: full_name
-                validator:
-                  required: true
-                  type: string
+            portal_developer_meta_fields: >-
+              [{"label":"Full Name","title":"full_name","validator":{"required":true,"type":"string"}}]
             portal_emails_from: string
             portal_emails_reply_to: string
             portal_invite_email: true
@@ -3612,21 +3602,21 @@ components:
             Returned user:
               value:
                 data:
-                  - comment: 'null'
+                  - comment: null
                     created_at: 1557512629
                     enabled: true
                     id: f035f120-a95e-4327-b2ae-8fa264601d75
                     name: doc_lord
                     user_token: $2b$09$TIMneYcTosdG9WbzRsqcweAS2zote8g6I8HqXAtbFHR1pds2ymsh6
                     user_token_ident: 88ea3
-                  - comment: 'null'
+                  - comment: null
                     created_at: 1557522650
                     enabled: true
                     id: fa6881b2-f49f-4007-9475-577cd21d34f4
                     name: doc_knight
                     user_token: $2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG
                     user_token_ident: 4d870
-                next: 'null'
+                next: null
     audit-objects-response:
       description: Example response generated for checking the `/status` endpoint without RBAC enabled.
       content:
@@ -12972,7 +12962,7 @@ paths:
       description: |
         Retrieve the current log level of a node.
 
-        See the [Nginx Documentation](ttp://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
+        See the [Nginx Documentation](https://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
   '/debug/node/log-level/{log_level}':
     parameters:
       - schema:
@@ -13150,11 +13140,11 @@ paths:
                         created_at: 1557506249
                         id: 888117e0-f2b3-404d-823b-dee595423505
                         name: super-admin
-                      - comment: 'null'
+                      - comment: null
                         created_at: 1557532241
                         id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                         name: doc_lord
-                    next: 'null'
+                    next: null
       operationId: get-rbac-roles
       description: List all roles.
     post:
@@ -13188,7 +13178,7 @@ paths:
               examples:
                 New role response body:
                   value:
-                    comment: 'null'
+                    comment: null
                     created_at: 1557532241
                     id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                     is_default: false
@@ -14235,7 +14225,7 @@ paths:
                         id: aae80073-095f-4553-ba9a-bee5ed3b8b91
                         name: doc-knight
                     user:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557772232
                       enabled: true
                       id: b65ca712-7ceb-4114-87f4-5c310492582c
@@ -14306,7 +14296,7 @@ paths:
                         id: aae80073-095f-4553-ba9a-bee5ed3b8b91
                         name: doc-knight
                     user:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557772232
                       enabled: true
                       id: b65ca712-7ceb-4114-87f4-5c310492582c
@@ -15016,11 +15006,11 @@ paths:
                         created_at: 1557506249
                         id: 888117e0-f2b3-404d-823b-dee595423505
                         name: super-admin
-                      - comment: 'null'
+                      - comment: null
                         created_at: 1557532241
                         id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                         name: doc_lord
-                    next: 'null'
+                    next: null
       operationId: get-rbac-roles-by-workspace
       description: List all roles by workspace
     post: 
@@ -15054,7 +15044,7 @@ paths:
                 examples:
                   New role response body:
                     value:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557532241
                       id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                       is_default: false
