@@ -43,14 +43,18 @@ This plugin currently only supports REST-based full text responses.
 
 ## Load balancing
 
-This plugin supports following load balancing algorithms:
-* Lowest-usage 
+This plugin supports several load-balancing algorithms, similar to those used for Kong upstreams, allowing efficient distribution of requests across different AI models. The supported algorithms include:
+* **Lowest-usage**: The lowest-usage algorithm in AI Proxy Advanced is based on the volume of usage for each model. It balances the load by distributing requests to models with the lowest usage, measured by factors such as prompt token counts, response token counts, or other resource metrics.
 * [Round-robin (weighted)](/gateway/latest/how-kong-works/load-balancing/#round-robin)
 * [Consistent-hashing (sticky-session on given header value)](/gateway/latest/how-kong-works/load-balancing/#consistent-hashing)
 
+Additionally, semantic routing works similarly to load-balancing algorithms like lowest-usage or least-connections, but instead of volume or connection metrics, it uses the similarity score between the incoming prompt and the descriptions of each model. This allows Kong to automatically choose the model best suited for handling the request, based on performance in similar contexts.
+
 ## Semantic routing
 
-Info about semantic routing?
+The AI Proxy Advanced plugin supports semantic routing, which enables distribution of requests based on the similarity between the prompt and the description of each model. This allows Kong to automatically select the model that is best suited for the given domain or use case.
+
+By analyzing the content of the request, the plugin can match it to the most appropriate model that is known to perform better in similar contexts. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.
 
 ## Request and response formats
 
