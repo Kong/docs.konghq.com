@@ -85,6 +85,9 @@ for more information about the configuration parameters.
 | `KONG_CONTROLLER_CERTIFICATE_FILE` | Path to a self-signed certificate file. For example, `/etc/kong/certs/ca-certs.pem`. | String | | 
 | `KONG_CONTROLLER_CERTIFICATE_DIR` | Path to a certificate directory. For example, `/etc/kong/certs/`. | String | | 
 {% endif_version %}
+{% if_version gte:3.8.x %}
+| `KONG_ANALYTICS_ENABLE` | Whether to enable sending analytics to AppDynamics. | Boolean | `false` | 
+{% endif_version %}
 
 #### Possible values for the `KONG_APPD_LOGGING_LEVEL` parameter
 
