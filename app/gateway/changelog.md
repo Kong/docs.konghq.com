@@ -39,6 +39,8 @@ Kong is no longer providing official support for any Kong version running on the
     * GraphQL Rate Limiting Advanced
     * Proxy Cache Advanced
     * Rate limiting Advanced
+    
+  For more information about the Redis standardization changes, see the [3.8 Breaking Changes](/gateway/3.8.x/breaking-changes/).
 
 ### Features
 
@@ -68,7 +70,7 @@ Kong is no longer providing official support for any Kong version running on the
 response `Via` header if it is present in the [`headers`](/gateway/3.8.x/configuration/reference/#headers) config of `kong.conf`, in the format `2 kong/3.8.0`.
 This follows standards defined in [RFC7230](https://datatracker.ietf.org/doc/html/rfc7230) and [RFC9110](https://datatracker.ietf.org/doc/html/rfc9110).
  [#12733](https://github.com/Kong/kong/issues/12733)
-* Starting from this version, a new DNS client library has been implemented and added into Kong. 
+* Kong Gateway 3.8.x adds a new DNS client library. 
   This library is disabled by default, and can be enabled by setting the [`new_dns_client`](/gateway/3.8.x/configuration/reference/#new_dns_client) parameter to `on`.
   The new DNS client library provides the following:
   * Global caching for DNS records across workers, significantly reducing the query load on DNS servers.
@@ -79,8 +81,8 @@ This follows standards defined in [RFC7230](https://datatracker.ietf.org/doc/htm
 * **Analytics**:
   * Added support for sending AI analytics about latency and caching to Konnect.
   * Added support for sending cache data of AI analytics to Konnect.
-* Added connection support via Redis Proxy (for example, Envoy Redis proxy or Twemproxy) via the configuration field [`connection_is_proxied`](/gateway/3.8.x/configuration/reference/#connection_is_proxied).
-* Added support for AWS IAM role assuming in AWS IAM Database Authentication, with the following new configuration fields: `pg_iam_auth_assume_role_arn`, `pg_iam_auth_role_session_name`, `pg_ro_iam_auth_assume_role_arn`, and `pg_ro_iam_auth_role_session_name`. 
+* Added connection support via Redis Proxy (for example, Envoy Redis proxy or twemproxy) via the configuration field [`connection_is_proxied`](/gateway/3.8.x/configuration/reference/#connection_is_proxied).
+* Added support for assuming an AWS IAM role in AWS IAM Database Authentication, with the following new configuration fields: `pg_iam_auth_assume_role_arn`, `pg_iam_auth_role_session_name`, `pg_ro_iam_auth_assume_role_arn`, and `pg_ro_iam_auth_role_session_name`. 
 See the [PostgreSQL settings section](/gateway/3.8.x/configuration/reference/#postgres-settings) in the Kong configuration reference for details.
 * Added keyring encryption support to [license database entity payloads](/gateway/3.8.x/kong-enterprise/db-encryption/#configure-license-payload-encryption).
 * Added support for a configurable STS endpoint for RDS IAM Authentication with the following new configuration fields: `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_endpoint_url`.
@@ -90,15 +92,12 @@ See the [PostgreSQL settings section](/gateway/3.8.x/configuration/reference/#po
 #### Kong Manager
 
 * Improved accessibility in Kong Manager.
- [#13522](https://github.com/Kong/kong-manager/issues/13522)
 * Enhanced entity lists so that you can resize or hide list columns.
- [#13522](https://github.com/Kong/kong-manager/issues/13522)
 * Added an SNIs field to the certificate form.
- [#264](https://github.com/Kong/kong-manager/issues/264)
 * **Kong Manager Enterprise**: 
   * While deleting a workspace, Kong Manager now lists admins that prevent the operation.
   * Kong Manager now shows scoping entities as links in the plugin detail page.
-  * Added UI components for building the vault reference easily while configuring referenceable fields for plugins.
+  * Added UI components for building the vault reference while configuring referenceable fields for plugins.
 * Kong Manager now shows input boxes that allow optionally creating SNIs while creating a certificate.
 
 #### PDK
@@ -179,7 +178,7 @@ key length, and string length, then log or terminate violating requests.
   * This plugin now supports decoding an empty sequence or set represented in long form length.
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
-  * Added support for Redis caching for introspection result with the new fields `cluster_cache_strategy` and `cluster_cache_redis`. 
+  * Added support for Redis caching introspection results with the new fields `cluster_cache_strategy` and `cluster_cache_redis`. 
   When configured, the plugin will share the token introspection response cache across nodes configured to use the same Redis database.
   * Added the `claims_forbidden` property to restrict access.
 
@@ -247,7 +246,7 @@ messages in the buffer.
   * Fixed an issue with deprecated shorthand fields so that they don't take precedence over replacement fields when both are specified.
   [#13486](https://github.com/Kong/kong/issues/13486)
   * Changed the way deprecated shorthand fields are used with new fields.
-  If the new field contains null, the deprecated field will overwrite it if both are present in the request.
+  If the new field contains `null`, the deprecated field will overwrite it if both are present in the request.
   [#13592](https://github.com/Kong/kong/issues/13592)
   * If both fields are sent in the request and their values mismatch, the request will be rejected.
    [#13594](https://github.com/Kong/kong/issues/13594)
@@ -377,7 +376,7 @@ were reset to `null` if the deprecated `timeout` was `null`.
    [#13334](https://github.com/Kong/kong/issues/13334)
 
 * [**Correlation ID**](/hub/kong-inc/correlation-id/) (`correlation-id`)
-  * Fixed an issue where the plugin would not work if we explicitly set the `generator` to `null`.
+  * Fixed an issue where the plugin would not work if you explicitly set the `generator` to `null`.
    [#13439](https://github.com/Kong/kong/issues/13439)
 
 * [**gRPC-Gateway**](/hub/kong-inc/grpc-gateway/) (`grpc-gateway`)
@@ -399,7 +398,7 @@ were reset to `null` if the deprecated `timeout` was `null`.
   * Fixed an issue where the plugin couldn't obtain the value when the path parameter name contained hyphen characters.
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
-  * Fixed an issue where migration failed when upgrading from below version 3.3 to 3.7.
+  * Fixed an issue where migration failed when upgrading from versions earlier than 3.3.x to 3.7.x.
    [#13391](https://github.com/Kong/kong/issues/13391)
   * Removed redundant deprecation warnings.
    [#13220](https://github.com/Kong/kong/issues/13220)
@@ -418,13 +417,13 @@ were reset to `null` if the deprecated `timeout` was `null`.
   [#13358](https://github.com/Kong/kong/issues/13358)
 
 * [**Basic Auth**](/hub/kong-inc/basic-auth/) (`basic-auth`)
-  * Fixed an issue where the realm field wasn't recognized for older Kong Gateway versions (before 3.6).
+  * Fixed an issue where the realm field wasn't recognized for older Kong Gateway versions (earlier than 3.6.x).
    [#13042](https://github.com/Kong/kong/issues/13042)
    * Added WWW-Authenticate headers to all 401 responses and realm option.
    [#11833](https://github.com/Kong/kong/issues/11833)
 
 * [**Key Auth**](/hub/kong-inc/key-auth/) (`key-auth`)
-  * Fixed an issue where the realm field wasn't recognized for older Kong Gateway versions (before 3.7).
+  * Fixed an issue where the realm field wasn't recognized for older Kong Gateway versions (earlier than 3.7).
    [#13042](https://github.com/Kong/kong/issues/13042)
 
 * [**Request Size Limiting**](/hub/kong-inc/request-size-limiting/) (`request-size-limiting`)
@@ -459,11 +458,11 @@ were reset to `null` if the deprecated `timeout` was `null`.
 
 
 * [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)
-  * Edited the logic for the window adjustment and fixed missing passing window to shm.
+  * Edited the logic for the window adjustment and fixed missing passing window to shared memory.
 
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
   * Fixed an issue where parameter serialization didn't behave the same as in the OpenAPI specification.
-  * Fixed an issue where the non-string primitive types passed via URL query were unexpectedly cast to string when OpenAPI spec version was v3.1.0.
+  * Fixed an issue where the non-string primitive types passed via URL query were unexpectedly cast to string when the OpenAPI spec version was v3.1.0.
 
 * [TLS Metadata Headers](/hub/kong-inc/tls-metadata-headers/) (`tls-metadata-headers`)
   * Fixed an issue where the intermediate certificate's details were not added to request headers.
@@ -514,7 +513,7 @@ were reset to `null` if the deprecated `timeout` was `null`.
  [#12665](https://github.com/Kong/kong/issues/12665)
 - Bumped OpenResty to 1.25.3.2
  [#12327](https://github.com/Kong/kong/issues/12327)
-- Bumped PCRE2 to 10.44 to fix some bugs and tidy up the release.
+- Bumped PCRE2 to 10.44 to fix some bugs and organize the release.
  [#12366](https://github.com/Kong/kong/issues/12366)
 - Introduced a yieldable JSON library `lua-resty-simdjson`,
 which significantly improves latency.
