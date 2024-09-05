@@ -24,8 +24,12 @@ Enables buffered proxying, which allows plugins to access Service body and
 
 **Phases**
 
+{% if_version gte:3.8.x %}
+* `rewrite`, `access`, `balancer`
+{% endif_version %}
+{% if_version lte:3.7.x %}
 * `rewrite`, `access`
-
+{% endif_version %}
 **Returns**
 
 *  Nothing.
@@ -45,8 +49,13 @@ Sets the protocol to use when proxying the request to the Service.
 
 **Phases**
 
-* `access`
+{% if_version gte:3.8.x %}
+* `access`, `rewrite`, `balancer`
+{% endif_version %}
 
+{% if_version lte:3.7.x %}
+* `access`
+{% endif_version %}
 **Parameters**
 
 * **scheme** (`string`):  The scheme to be used. Supported values are `"http"` or `"https"`.
@@ -76,8 +85,12 @@ Sets the path component for the request to the service.
 
 **Phases**
 
+{% if_version gte:3.8.x %}
+* `access`, `rewrite`, `balancer`
+{% endif_version %}
+{% if_version lte:3.7.x %}
 * `access`
-
+{% endif_version %}
 **Parameters**
 
 * **path** (`string`):  The path string. Special characters and UTF-8
@@ -368,8 +381,12 @@ Sets the body of the request to the Service.
 
 **Phases**
 
-* `rewrite`, `access`
-
+{% if_version gte:3.8.x %}
+* `access`, `rewrite`, `balancer`
+{% endif_version %}
+{% if_version lte:3.7.x %}
+* `access`, `rewrite`
+{% endif_version %}
 **Parameters**
 
 * **body** (`string`):  The raw body.
@@ -419,8 +436,12 @@ Sets the body of the request to the Service.  Unlike
 
 **Phases**
 
-* `rewrite`, `access`
-
+{% if_version gte:3.8.x %}
+* `access`, `rewrite`, `balancer`
+{% endif_version %}
+{% if_version lte:3.7.x %}
+* `access`, `rewrite`
+{% endif_version %}
 **Parameters**
 
 * **args** (`table`):  A table with data to be converted to the appropriate format

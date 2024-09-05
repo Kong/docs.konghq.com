@@ -135,7 +135,23 @@ Returns the PEM encoded downstream client certificate chain with the
 
 1.  `nil|err`:  Returns `nil` if successful, or an error message if it fails.
 
+{% if_version gte:3.8.x %}
+**Usage**
 
+``` lua
+local cert, err = kong.client.tls.get_full_client_certificate_chain()
+if err then
+  -- do something with err
+end
+
+if not cert then
+  -- client did not complete mTLS
+end
+
+-- do something with cert
+```
+{% endif_version %}
+{% if_version lte:3.7.x %}
 **Usage**
 
 ``` lua
@@ -150,7 +166,7 @@ end
 
 -- do something with cert
 ```
-
+{% endif_version %}
 
 
 ## kong.client.tls.set_client_verify()

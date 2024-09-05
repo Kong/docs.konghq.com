@@ -552,6 +552,8 @@ items:
           url: /plugin-development/pdk/kong.service.response
         - text: kong.table
           url: /plugin-development/pdk/kong.table
+        - text: kong.telemetry.log
+          url: /plugin-development/pdk/kong.telemetry.log
         - text: kong.tracing
           url: /plugin-development/pdk/kong.tracing
         - text: kong.vault

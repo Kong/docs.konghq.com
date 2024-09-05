@@ -631,12 +631,24 @@ headers["X-Another"][2] -- "baz"
 
 Returns the plain request body.
 
+{% if_version lte:3.7.x %}
  If the body has no size (empty), this function returns an empty string.
 
  If the size of the body is greater than the Nginx buffer size (set by
  `client_body_buffer_size`), this function fails and returns an error
  message explaining this limitation.
+{% endif_version %}
 
+{% if_version gte:3.8.x %}
+ If the body has no size (empty), this function returns an empty string.
+
+ If the size of the body is greater than the Nginx buffer size (set by
+ `client_body_buffer_size`), this function fails and returns an error
+ message explaining this limitation, unless `max_allowed_file_size`
+ is set and equal to 0 or larger than the body size buffered to disk.
+ Use of `max_allowed_file_size` requires Kong to read data from filesystem
+ and has performance implications.
+{% endif_version %}
 
 **Phases**
 
@@ -661,8 +673,61 @@ Returns the plain request body.
 kong.request.get_raw_body():gsub("Earth", "Mars") -- "Hello, Mars!"
 ```
 
+{% if_version gte:3.8.x %}
+## kong.request.get_body([mimetype[, max_args[, max_allowed_file_size]]])
+
+Returns the request data as a key/value table.
+ A high-level convenience function.
+
+ The body is parsed with the most appropriate format:
+
+ * If `mimetype` is specified, it decodes the body with the requested
+   content type (if supported). This takes precedence over any content type
+   present in the request.
+
+   The optional argument `mimetype` can be one of the following strings:
+     * `application/x-www-form-urlencoded`
+     * `application/json`
+     * `multipart/form-data`
+
+ Whether `mimetype` is specified or a request content type is otherwise
+ present in the request, each content type behaves as follows:
+
+ * If the request content type is `application/x-www-form-urlencoded`:
+   * Returns the body as form-encoded.
+ * If the request content type is `multipart/form-data`:
+   * Decodes the body as multipart form data
+     (same as `multipart(kong.request.get_raw_body(),
+     kong.request.get_header("Content-Type")):get_all()` ).
+ * If the request content type is `application/json`:
+   * Decodes the body as JSON
+     (same as `json.decode(kong.request.get_raw_body())`).
+   * JSON types are converted to matching Lua types.
+ * If the request contains none of the above and the `mimetype` argument is
+   not set, returns `nil` and an error message indicating the
+   body could not be parsed.
+
+ The optional argument `max_args` can be used to set a limit on the number
+ of form arguments parsed for `application/x-www-form-urlencoded` payloads,
+ which is by default **100** (or what has been configured using `lua_max_post_args`).
+
+ The third return value is string containing the mimetype used to parsed
+ the body (as per the `mimetype` argument), allowing the caller to identify
+ what MIME type the body was parsed as.
 
 
+**Phases**
+
+* rewrite, access, response, admin_api
+
+**Parameters**
+
+* **mimetype** (`string`, _optional_):  The MIME type.
+* **max_args** (`number`, _optional_):  Sets a limit on the maximum number of parsed
+* **max_allowed_file_size** (`number`, _optional_):  the max allowed file size to be read from
+ arguments.
+{% endif_version %}
+{% if_version lte:3.7.x %}
 ## kong.request.get_body([mimetype[, max_args]])
 
 Returns the request data as a key/value table.
@@ -713,7 +778,7 @@ Returns the request data as a key/value table.
 * **mimetype** (`string`, _optional_):  The MIME type.
 * **max_args** (`number`, _optional_):  Sets a limit on the maximum number of parsed
  arguments.
-
+{% endif_version %}
 **Returns**
 
 1.  `table|nil`:  A table representation of the body.
