@@ -261,6 +261,7 @@ grpcurl
 gui
 guis
 gzip
+gzipped
 hackathon
 hackathons
 hardcoded
