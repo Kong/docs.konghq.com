@@ -325,7 +325,7 @@ were reset to `null` if the deprecated `timeout` was `null`.
   * Fixed an issue where using OpenAI Function inference requests would log a request error, and then hang until timeout.
   * Fixed an issue where AI Proxy would still allow callers to specify their own model, ignoring the plugin-configured model name.
   * Fixed an issue where AI Proxy would not take precedence of the plugin's configured model tuning options over those in the user's LLM request.
-  * Fixed an issue where setting OpenAI SDK model parameter "null" caused analytics to not be written to the logging plugin(s).
+  * Fixed an issue where setting OpenAI SDK model parameter `null` caused analytics to not be written to the logging plugin(s).
  
   [#13000](https://github.com/Kong/kong/issues/13000)
 
@@ -383,7 +383,7 @@ were reset to `null` if the deprecated `timeout` was `null`.
   * When there is a JSON decoding error, the plugin now responds with status 400 and error information in the body instead of status 500.
    [#12971](https://github.com/Kong/kong/issues/12971)
 
-* [**HMAC Authentication**](/hub/kong-inc/hmac-auth/) (`hmac-auth`), JWT, LDAP Authentication, and OAuth2
+* [**HMAC Authentication**](/hub/kong-inc/hmac-auth/) (`hmac-auth`), [**JWT**](/hub/kong-inc/jwt/) (`jwt`), [**LDAP Authentication**](/hub/kong-inc/ldap-auth/) (`ldap-auth`), and [**OAuth2**](/hub/kong-inc/oauth2/) (`oauth2`)
   * Added WWW-Authenticate headers to 401 responses.
    [#11791](https://github.com/Kong/kong/issues/11791)
    [#11792](https://github.com/Kong/kong/issues/11792)
@@ -396,6 +396,8 @@ were reset to `null` if the deprecated `timeout` was `null`.
 
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
   * Fixed an issue where the plugin couldn't obtain the value when the path parameter name contained hyphen characters.
+  * Fixed an issue where parameter serialization didn't behave the same as in the OpenAPI specification.
+  * Fixed an issue where the non-string primitive types passed via URL query were unexpectedly cast to string when the OpenAPI spec version was v3.1.0.
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
   * Fixed an issue where migration failed when upgrading from versions earlier than 3.3.x to 3.7.x.
@@ -419,7 +421,7 @@ were reset to `null` if the deprecated `timeout` was `null`.
 * [**Basic Auth**](/hub/kong-inc/basic-auth/) (`basic-auth`)
   * Fixed an issue where the realm field wasn't recognized for older Kong Gateway versions (earlier than 3.6.x).
    [#13042](https://github.com/Kong/kong/issues/13042)
-   * Added WWW-Authenticate headers to all 401 responses and realm option.
+  * Added WWW-Authenticate headers to all 401 responses and realm option.
    [#11833](https://github.com/Kong/kong/issues/11833)
 
 * [**Key Auth**](/hub/kong-inc/key-auth/) (`key-auth`)
@@ -454,17 +456,12 @@ were reset to `null` if the deprecated `timeout` was `null`.
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed an issue where anonymous consumers could be cached as nil under a certain condition.
   * Updated the rediscovery to use a short lifetime (5s) if the last discovery failed.
-  * Fixed an issue where `using_pseudo_issuer` didn't work when sending `PATCH` request.
-
+  * Fixed an issue where `using_pseudo_issuer` didn't work when sending `PATCH` requests.
 
 * [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)
   * Edited the logic for the window adjustment and fixed missing passing window to shared memory.
 
-* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
-  * Fixed an issue where parameter serialization didn't behave the same as in the OpenAPI specification.
-  * Fixed an issue where the non-string primitive types passed via URL query were unexpectedly cast to string when the OpenAPI spec version was v3.1.0.
-
-* [TLS Metadata Headers](/hub/kong-inc/tls-metadata-headers/) (`tls-metadata-headers`)
+* [**TLS Metadata Headers**](/hub/kong-inc/tls-metadata-headers/) (`tls-metadata-headers`)
   * Fixed an issue where the intermediate certificate's details were not added to request headers.
 
 * [**Key Authentication Encrypted**](/hub/kong-inc/key-auth-enc/) (`key-auth-enc`)

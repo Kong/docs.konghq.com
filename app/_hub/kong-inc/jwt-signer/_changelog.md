@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.8.x
+* This plugin now supports using the `/jwt-signer/jwks/:jwt_signer_jwks` endpoint in DB-less mode.
+
 ### {{site.base_gateway}} 3.7.x
 * Added support for basic authentication and mTLS authentication to external JWKS services.
 * The plugin now supports periodically rotating the JWKS. For example, to automatically rotate `access_token_jwks_uri`, you can set the configuration option [`access_token_jwks_uri_rotate_period`](/hub/kong-inc/jwt-signer/configuration/#config-access_token_jwks_uri_rotate_period).

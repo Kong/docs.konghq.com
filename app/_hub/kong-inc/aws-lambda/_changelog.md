@@ -1,5 +1,16 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.8.x**
+* Added support for a configurable STS endpoint with the new configuration field `aws_sts_endpoint_url`.
+[#13388](https://github.com/Kong/kong/issues/13388)
+* Added the configuration field `empty_arrays_mode` to control whether Kong should send `[]` empty arrays 
+(returned by Lambda function) as `[]` empty arrays or `{}` empty objects in JSON responses.
+[#13084](https://github.com/Kong/kong/issues/13084)
+* Fixed an issue where the plugin didn't work with `multiValueHeaders` defined in proxy integration and legacy `empty_arrays_mode`.
+  [#13381](https://github.com/Kong/kong/issues/13381)
+* Fixed an issue where the `version` field wasn't set in the request payload when `awsgateway_compatible` was enabled.
+  [#13018](https://github.com/Kong/kong/issues/13018)
+
 **{{site.base_gateway}} 3.7.x**
 * Fixed an issue where the latency attributed to AWS Lambda API requests was counted as part of the latency in {{site.base_gateway}}.
  [#12835](https://github.com/Kong/kong/issues/12835)

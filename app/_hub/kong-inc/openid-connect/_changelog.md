@@ -1,5 +1,13 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.8.x
+* Added support for Redis caching introspection results with the new fields `cluster_cache_strategy` and `cluster_cache_redis`. 
+  When configured, the plugin will share the token introspection response cache across nodes configured to use the same Redis database.
+* Added the `claims_forbidden` property to restrict access.
+* Fixed an issue where anonymous consumers could be cached as nil under a certain condition.
+* Updated the rediscovery to use a short lifetime (5s) if the last discovery failed.
+* Fixed an issue where `using_pseudo_issuer` didn't work when sending `PATCH` requests.
+
 ### {{site.base_gateway}} 3.7.x
 
 * Added support for [DPoP (Demonstrating Proof-of-Possession) token validation](/hub/kong-inc/openid-connect/how-to/demonstrating-proof-of-possession/). 

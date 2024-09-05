@@ -1,5 +1,11 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.8.x
+* Fixed an issue where the realm field wasn't recognized for older Kong Gateway versions (earlier than 3.6.x).
+   [#13042](https://github.com/Kong/kong/issues/13042)
+* Added WWW-Authenticate headers to all 401 responses and realm option.
+   [#11833](https://github.com/Kong/kong/issues/11833)
+
 ### {{site.base_gateway}} 3.6.x
 * Added missing `WWW-Authenticate` headers to 401 responses.
  [#11795](https://github.com/Kong/kong/issues/11795)

@@ -1,4 +1,9 @@
 ## Changelog
+
+### {{site.base_gateway}} 3.8.x
+* This plugin now supports decoding an empty sequence or set represented in long form length.
+* Added WWW-Authenticate headers to all 401 responses.
+
 ### {{site.base_gateway}} 3.7.x
 * Fixed an issue where, if the credential was encoded with no username, {{site.base_gateway}} threw an error and returned a 500 code.
 * Fixed an issue where an exception would be thrown when LDAP search failed.
