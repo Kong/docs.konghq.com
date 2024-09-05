@@ -1,7 +1,7 @@
 ## Changelog
 
 ### {{site.base_gateway}} 3.8.x
-* Fixed an issue where the realm field wasn't recognized for older Kong Gateway versions (earlier than 3.7).
+* Fixed an issue where the realm field wasn't recognized for older {{site.base_gateway}} versions (earlier than 3.7).
    [#13042](https://github.com/Kong/kong/issues/13042)
 
 ### {{site.base_gateway}} 3.7.x
