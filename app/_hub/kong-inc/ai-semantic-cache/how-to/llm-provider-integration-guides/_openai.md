@@ -67,10 +67,8 @@ This configures the following:
 * `vectordb.threshold`: Defines the similarity threshold for accepting semantic search results. In the example, this is configured to as a low threshold, meaning it would include results that are only somewhat similar.
 * `vectordb.redis.host`: The host of your vector database.
 * `vectordb.redis.port`: The port to use for your vector database.
-
-
-`config.embeddings.name`: which AI model to use for generating embeddings. This example is configured with `text-embedding-3-large`, but you can also choose `text-embedding-3-small` for OpenAI.
-The "threshold" parameter defines the similarity between for accepting semantic search results.
+* `config.embeddings.name`: The AI model to use for generating embeddings. This example is configured with `text-embedding-3-large`, but you can also choose `text-embedding-3-small` for OpenAI.
+The `threshold` parameter defines the similarity between for accepting semantic search results.
 
 ## More information
 * *Redis Documentation:* [Vectors](https://redis.io/docs/latest/develop/interact/search-and-query/advanced-concepts/vectors/) - Learn how to use vector fields and perform vector searches in Redis

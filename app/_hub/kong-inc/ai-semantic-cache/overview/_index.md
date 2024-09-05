@@ -4,15 +4,17 @@ nav_title: Overview
 
 ## What is semantic caching?
 
-Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made. For example, if a user asks, "how to integrate our API with a mobile app" and later asks "what are the steps for connecting our API to a smartphone application?", the LLM recognizes that both queries are seeking similar information about the steps to integrate an API with an app. It can then retrieve and reuse previously cached responses if they are contextually relevant, even if they are phrased differently. By leveraging semantic caching, the LLM can reduce redundant processing and speeds up the response times.
+Semantic caching enhances data retrieval efficiency by focusing on the meaning or context of queries rather than just exact matches. It stores responses based on the underlying intent and semantic similarities between different queries and can then retrieve those cached queries when a similar request is made.
 
-When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing differs. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience. 
+When a new request is made, the system can retrieve and reuse previously cached responses if they are contextually relevant, even if the phrasing is different. This method reduces redundant processing, speeds up response times, and ensures that answers are more relevant to the user’s intent, ultimately improving overall system performance and user experience. 
 
-By using the AI Semantic Cache plugin, the plugin can handle the caching for you. You can also configure the vector database, caching mechanism, as well as embeddings.
+For example, if a user asks, "how to integrate our API with a mobile app" and later asks, "what are the steps for connecting our API to a smartphone application?", the system understands that both questions are asking for the same information. It can then retrieve and reuse previously cached responses, even if the wording is different. This approach reduces processing time and speeds up responses.
 
-The AI Semantic Cache plugin might not be the best fit for you if following apply to you:
-* Storing semantic vectors or embeddings and performing similarity searches can require significant storage and computational resources. If you have limited hardware or budget constraints, this might be a concern.
-* If your application data isn't inherently semantic or exact matches are sufficient, the benefits of semantic caching might be minimal. Simple keyword-based or traditional caching might be more appropriate and efficient.
+
+The AI Semantic Cache plugin may not be ideal for you if:
+
+* If you have limited hardware or budget. Storing semantic vectors and running similarity searches require a lot of storage and computing power, which could be an issue.
+* If your data doesn’t rely on semantics, or exact matches work fine, semantic caching may offer little benefit. Traditional or keyword-based caching might be more efficient.
 
 ## How it works
 
@@ -108,12 +110,12 @@ Together, these caching methods enhance the efficiency and relevance of AI respo
 
 You can configure the following required parameters for the AI Semantic Cache plugin:
 
-* `vectordb`: Specifies the vector database strategy and settings
+* `vectordb`: Defines the vector database strategy and settings.
 * `embeddings`: Defines the embeddings provider, model, and configuration
-* `cache_control`: Enables or disables Cache-Control header handling
-* `storage_ttl`: Sets the time-to-live for cached responses
+* `cache_control`: Enables or disables the `cache-control` header handling
+* `storage_ttl`: Sets the `time-to-live` for cached responses
 * `exact_caching`: Enables or disables exact caching
-* `message_countback`: Specifies how many messages in the incoming array from the user will be vectorized. The whole response will still be cached. This only counts how many messages back in the chat history to turn into embeddings and query to the vector database.
+* `message_countback`: Specifies how many of the user's recent messages will be vectorized for querying the vector database. The entire response is still cached, this setting only determines how many past messages are turned into embeddings.
 * `ignore_system_prompts`: Ignores system messages (`role = system`) in the chat history when sending the embeddings (to generate vectors) if set to `true`. 
 * `ignore_assistant_prompts`: Ignores assistant messages (`role = assistant`) in the chat history when sending the embeddings (to generate vectors) if set to `true`. 
 * `stop_on_failure`: Stops processing if an error occurs, otherwise continues
