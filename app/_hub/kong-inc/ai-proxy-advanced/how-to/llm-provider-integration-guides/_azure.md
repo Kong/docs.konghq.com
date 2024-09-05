@@ -1,15 +1,15 @@
 ---
 nav_title: Azure
-title: Set up AI Proxy with Azure OpenAI Service
+title: Set up AI Proxy Advanced with Azure OpenAI Service
 ---
 
-This guide walks you through setting up the AI Proxy plugin with [Azure OpenAI Service](https://azure.microsoft.com/en-us/products/ai-services/openai-service).
+This guide walks you through setting up the AI Proxy Advanced plugin with [Azure OpenAI Service](https://azure.microsoft.com/en-us/products/ai-services/openai-service).
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='intro' %}
+{% include_cached /md/plugins-hub/ai-providers-prereqs-advanced.md snippet='intro' %}
 
 ## Prerequisites
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='service' provider='Azure OpenAI Service' %}
+{% include_cached /md/plugins-hub/ai-providers-prereqs-advanced.md snippet='service' provider='Azure OpenAI Service' %}
 
 ## Provider configuration
 
@@ -28,7 +28,7 @@ Record its name as your `azure_deployment_id`:
 
 ### Set up route and plugin
 
-Now you can create an AI Proxy route and plugin configuration:
+Now you can create an AI Proxy Advanced route and plugin configuration:
 
 {% navtabs %}
 {% navtab Kong Admin API %}
@@ -36,16 +36,16 @@ Now you can create an AI Proxy route and plugin configuration:
 Create the route:
 
 ```bash
-curl -X POST http://localhost:8001/services/ai-proxy/routes \
+curl -X POST http://localhost:8001/services/ai-proxy-advanced/routes \
   --data "name=azure-chat" \
   --data "paths[]=~/azure-chat$"
 ```
 
-Enable and configure the AI Proxy plugin for Azure, replacing the `<azure_ai_access_key>` with your own API key:
+Enable and configure the AI Proxy Advanced plugin for Azure, replacing the `<azure_ai_access_key>` with your own API key:
 
 ```bash
 curl -X POST http://localhost:8001/routes/azure-chat/plugins \
-  --data "name=ai-proxy" \
+  --data "name=ai-proxy-advanced" \
   --data "config.route_type=llm/v1/chat" \
   --data "config.auth.header_name=api-key" \
   --data "config.auth.header_value=<azure_ai_access_key>" \
@@ -64,7 +64,7 @@ paths:
 methods:
   - POST
 plugins:
-  - name: ai-proxy
+  - name: ai-proxy-advanced
     config:
       route_type: "llm/v1/chat"
       auth:
