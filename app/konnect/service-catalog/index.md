@@ -1,5 +1,5 @@
 ---
-title: Service catalog
+title: Service Catalog
 subtitle: Track every service across your architecture
 content-type: explanation
 ---
@@ -61,9 +61,10 @@ graph LR
 
 | You want to... | Then use... |
 | -------------- | ----------- |
-| Keep track of your organization's service ownership by mapping teams to services. | Add the Service's owner when you [create a new Service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
-| Gain visibility into all your services, including unrecognized or undiscovered APIs in your organization.  | [Service Catalog integrations](https://cloud.konghq.com/servicehub/integrations) |
-| Consolidate key service health metrics, documentation, and API specs into a single dashboard, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/servicehub) |
+| Keep track of your organization's service ownership by mapping teams to Services. | Add the Service's owner when you [create a new Service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
+| Gain visibility into all your Services, including unrecognized or undiscovered APIs in your organization.  | [Service Catalog integrations](https://cloud.konghq.com/service-catalog/integrations) |
+| Consolidate key Service health metrics, documentation, and API specs into a single dashboard, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/service-catalog/) |
+
 <!-- commenting this out until it's released:
 | Govern how services are created and maintained across your company to adhere to security, compliance, and engineering best practices. | Scorecards |-->
 
@@ -72,7 +73,7 @@ graph LR
 | Term | Definition |
 | ---- | ---------- |
 | Integration | These are applications, either {{site.konnect_short_name}}-internal or external, that act as sources from which you can ingest resources. For example, GitHub. |
-| Resource | An umbrella term that denotes entities ingested by Service Catalog from enabled integrations. A resource can range from an infrastructural component (like gateway services, mesh services, databases, caches) to an external application or tool (like code repositories, CI/CD infrastructure, on-call systems) to a piece of documentation (like API specs). Resources can be mapped to one or more Services. |
+| Resource | An umbrella term that denotes entities ingested by Service Catalog from enabled integrations. A resource can range from an infrastructural component (like Gateway services, mesh services, databases, and caches) to an external application or tool (like code repositories, CI/CD infrastructure, and on-call systems) to a piece of documentation (like API specs). Resources can be mapped to one or more Services. |
 | Service | A Service is a collection of resources in the Service Catalog. It is what a developer may regard as a "unit of software," typically a backend service exposing an API |
 | Service Catalog | A comprehensive catalog of all resources and Services running in your organization. |
 
@@ -98,10 +99,10 @@ Navigate to **Resources** in the Service Catalog and click on the service you wa
 
 </details>
 
-<details><summary>How can I identify and reuse existing Resources?</summary>
+<details><summary>How can I identify and reuse existing resources?</summary>
 
 {% capture reuse_resources %}
-Service Catalog will pull in any Resources that match your specified criteria when you enable integrations. 
+Service Catalog will pull in any resources that match your specified criteria when you enable integrations. 
 {% endcapture %}
 
 {{ reuse_resources | markdownify }}
