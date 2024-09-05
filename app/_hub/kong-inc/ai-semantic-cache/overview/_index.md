@@ -18,84 +18,59 @@ The AI Semantic Cache plugin may not be ideal for you if:
 
 ## How it works
 
+Semantic caching with the AI Semantic Cache plugin involves three parts: request handling, embedding generation, and response caching. 
+
+First, a user starts a chat request with the LLM. The AI Semantic Cache plugin queries the vector database to see if there are any semantically similar requests that have already been cached. If there is a match, the vector database returns the cached response to the user.
+
 {% mermaid %}
 sequenceDiagram
     actor User
     participant {{site.base_gateway}}/AI Semantic Cache plugin
     participant Vector database
-    participant Embeddings LLM
-    participant Prompt/Chat LLM
 
     User->>{{site.base_gateway}}/AI Semantic Cache plugin: LLM chat request
-    {{site.base_gateway}}/AI Semantic Cache plugin->>Embeddings LLM: Generate embeddings for `config.message_countback` messages
-    Embeddings LLM-->>{{site.base_gateway}}/AI Semantic Cache plugin: Return embeddings
     {{site.base_gateway}}/AI Semantic Cache plugin->>Vector database: Query for semantically similar previous requests
     Vector database-->>User: If response, return it or stream it back
-    alt If not cached response
-        {{site.base_gateway}}/AI Semantic Cache plugin->>Prompt/Chat LLM: Make LLM request
-        Prompt/Chat LLM-->>{{site.base_gateway}}/AI Semantic Cache plugin: Receive response
-        {{site.base_gateway}}/AI Semantic Cache plugin->>Vector database: Store vectors
-        {{site.base_gateway}}/AI Semantic Cache plugin->>Vector database: Store response message options
-        {{site.base_gateway}}/AI Semantic Cache plugin-->>User: Return realtime response
-    end
 {% endmermaid %}
 
-> Figure 1: This diagram shows how the AI Semantic Cache plugin uses cached responses to respond to semantically similar requests from users.
+If there isn't a match, the AI Semantic Cache plugin prompts the embeddings LLM to generate an embedding for the response.
+
+{% mermaid %}
+sequenceDiagram
+    participant {{site.base_gateway}}/AI Semantic Cache plugin
+    participant Embeddings LLM
+
+    {{site.base_gateway}}/AI Semantic Cache plugin->>Embeddings LLM: Generate embeddings for `config.message_countback` messages
+    Embeddings LLM-->>{{site.base_gateway}}/AI Semantic Cache plugin: Return embeddings
+{% endmermaid %}
 
 The AI Semantic Cache plugin uses a vector database and cache to store responses to requests. The plugin can then retrieve a cached response if a new request matches the semantics of a previous request, or it can tell the vector database to store a new response if there are no matches. 
 
-<!--vale off-->
 {% mermaid %}
-graph LR
-    %% Define the color for subgraphs
-    style UserInteraction fill:#f9f,stroke:#333,stroke-width:2px
-    style APIGateway fill:#ccf,stroke:#333,stroke-width:2px
-    style AISemanticCache fill:#cfc,stroke:#333,stroke-width:2px
-    style DataStorageRedis fill:#fcf,stroke:#333,stroke-width:2px
+sequenceDiagram
+    participant {{site.base_gateway}}/AI Semantic Cache plugin
+    participant Prompt/Chat LLM
+    participant Vector database
+    actor User
 
-    subgraph UserInteraction["User Interaction"]
-        User[User]
-    end
-
-    subgraph APIGateway["API Gateway"]
-        Kong[{{site.base_gateway}}]
-    end
-
-    subgraph AISemanticCache["AI Semantic Cache"]
-        Plugin[AI Semantic Cache Plugin]
-    end
-
-    subgraph DataStorageRedis["Data Storage (Redis)"]
-        VectorDB[Vector Database Role]
-        Cache[Cache Role]
-    end
-
-    User -->|Request| Kong
-    Kong -->|Forward Request| Plugin
-    Plugin -->|Check Cache| Cache
-    Cache -->|Cache Hit| Plugin
-    Cache -->|Cache Miss| VectorDB
-    VectorDB -->|Retrieve Embedding| Plugin
-    Plugin -->|Generate Response| Kong
-    Kong -->|Send Response| User
+    {{site.base_gateway}}/AI Semantic Cache plugin->>Prompt/Chat LLM: Make LLM request
+    Prompt/Chat LLM-->>{{site.base_gateway}}/AI Semantic Cache plugin: Receive response
+    {{site.base_gateway}}/AI Semantic Cache plugin->>Vector database: Store vectors
+    {{site.base_gateway}}/AI Semantic Cache plugin->>Vector database: Store response message options
+    {{site.base_gateway}}/AI Semantic Cache plugin-->>User: Return realtime response
 {% endmermaid %}
-<!--vale on-->
-
-> Figure 2: This diagram shows how the AI Semantic Cache plugin works with a vector database, cache, and {{site.base_gateway}}.
 
 ### Vector databases
 
 A vector database can be used to store vector embeddings, or numerical representations, of data items. For example, a response would be converted to a numerical representation and stored in the vector database so that it can compare new requests against the stored vectors to find relevant cached items.
 
-Currently, the AI Semantic Cache plugin supports Redis as vector databases.
-
-For more information, see [Deploy and manage a vector database](/hub/kong-inc/ai-semantic-cache/vector-database/).
+Currently, the AI Semantic Cache plugin supports Redis as a vector database.
 
 ### Cache management
 
 With the AI Semantic Cache plugin, you can configure a cache of your choice to store the responses from the LLM.
 
-For more information, see [Cache management](/hub/kong-inc/ai-semantic-cache/cache-management/).
+Currently, the AI Semantic Cache plugin supports Redis as a cache.
 
 #### Caching mechanisms
 
