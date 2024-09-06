@@ -10,6 +10,10 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
+## September 2024
+**Cloud Launchers deprecated**
+: Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.
+
 ## August 2024
 
 **You can now delete the default control plane**
@@ -41,6 +45,19 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Advanced Analytics** toggle.
 
+## May 2024
+
+**Gateway 3.7 Support**
+: {{site.konnect_short_name}} now supports the latest {{site.base_gateway}} release version of 3.7.
+: Additionally, the expression router is fully supported in the {{site.konnect_short_name}}. You can now define your routes via expressions, and perform CRUD operations on them.
+
+: See the [Gateway 3.7.0.0 changelog](/gateway/changelog/#3700) for all changes in the {{site.base_gateway}} release.
+
+
+**{{site.konnect_short_name}} Konnect Search Enhancements**
+: The new {{site.konnect_saas}} search enhancements now allows you to to search across 29 entities in {{site.konnect_short_name}}. The search enhancement is made up of an advanced search syntax coupled with a refreshed search bar in the UI and a [Konnect Search API](/konnect/api/search/latest/). 
+
+: For more information, syntax description and use cases, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/reference/search/).
 
 ## April 2024
 
@@ -316,7 +333,8 @@ You can upload a plugin schema to Konnect and get started with custom plugins in
 : A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/latest/)
 
 **API Products**
-: Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+: Introducing a new Service Hub module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in the Service Hub have been seamlessly moved to the new API Products UI & API experience.
+
 
 : **Note:** Tagging your Gateway services with `_KonnectService` doesn't automatically create an API product and API product version.
 
@@ -1009,4 +1027,3 @@ for Dev Portal access.
 
 : For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.
-
