@@ -60,6 +60,8 @@
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
         - text: Transit Gateways
           url: /gateway-manager/data-plane-nodes/transit-gateways
+        - text: Azure Peering
+          url: /gateway-manager/data-plane-nodes/azure-peering
     - text: Provision a Dedicated Cloud Gateway
       url: /gateway-manager/provision-cloud-gateway/
     - text: Control Plane Groups
