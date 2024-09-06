@@ -25,3 +25,6 @@ In {{site.base_gateway}}, these callbacks can be defined using one of the follow
   `rate-limiting-advanced` sources will log on the data plane logs.
 
 - **lambda:** This handler runs specified Lua code after an event is triggered.
+
+{:.note}
+> Event hooks are exclusive to {{site.base_gateway}} and are not availble in {{site.konnect_short_name}}
