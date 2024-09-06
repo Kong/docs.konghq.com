@@ -86,7 +86,7 @@ for more information about the configuration parameters.
 | `KONG_CONTROLLER_CERTIFICATE_DIR` | Path to a certificate directory. For example, `/etc/kong/certs/`. | String | | 
 {% endif_version %}
 {% if_version gte:3.8.x %}
-| `KONG_ANALYTICS_ENABLE` | Whether to enable sending analytics to AppDynamics. | Boolean | `false` | 
+| `KONG_ANALYTICS_ENABLE` | Enable or disable Analytics Agent reporting. When disabled (default), Analytics-related logging messages are suppressed. | Boolean | `false` | 
 {% endif_version %}
 
 #### Possible values for the `KONG_APPD_LOGGING_LEVEL` parameter
