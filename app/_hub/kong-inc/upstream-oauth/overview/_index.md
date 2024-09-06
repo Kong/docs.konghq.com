@@ -3,9 +3,9 @@ nav_title: Overview
 title: Overview
 ---
 
-The Upstream OAuth plugin lets you manage OAuth flows between {{site.base_gateway}} and an upstream service.
+The Upstream OAuth plugin allows {{site.base_gateway}} to consume third-party or external APIs to initiate OAuth flows, which lets you use {{site.base_gateway}} in egress workflows.
 
-The plugin is designed to support storing tokens issued by the IdP in different backend formats.
+The plugin supports storing tokens issued by the IdP in different backend formats.
 
 ## How it works
 
@@ -70,9 +70,9 @@ then these will share cached tokens.
 
 ### Caching strategies
 
-The plugin supports the following caching [strategies](/hub/kong-inc/upstream-oauth/configuration/#config-stategy) are provided:
+The plugin supports the following caching [strategies](/hub/kong-inc/upstream-oauth/configuration/#config-stategy):
 
-* `memory`: A `lua_shared_dict`. Note that the default dictionary, `kong_db_cache`, is also used by other plugins and elements of Kong to store unrelated database cache entities.
+* `memory`: A locally stored `lua_shared_dict`. Note that the default dictionary, `kong_db_cache`, is also used by other plugins and elements of Kong to store unrelated database cache entities.
 * `redis`: Supports Redis, Redis Cluster, and Redis Sentinel deployments.
 
 ## Get started with the Upstream OAuth plugin
