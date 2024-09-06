@@ -18,8 +18,8 @@ sequenceDiagram
     autonumber
     participant client as Client <br>(e.g. mobile app)
     participant kong as API Gateway <br>(Kong)
+    participant api as 3rd Party API
     participant idp as IDP <br>(e.g. Keycloak)
-    participant httpbin as Upstream API <br>(backend service,<br> e.g. httpbin)
     activate client
     activate kong
     client->>kong: request to Kong<br>with any supported<br> authentication method
@@ -32,16 +32,16 @@ sequenceDiagram
     activate kong
     idp->>kong: return access token
     deactivate idp
-    activate httpbin
-    kong->>httpbin: request with access token in <br>Authorization header, body, or JWT
+    activate api
+    kong->>api: request with access token in <br>Authorization header
     deactivate kong
     activate idp
-    httpbin->>idp: Upstream API validates <br> access token via IdP
-    idp->>httpbin: Grants access
+    api->>idp: validates <br> access token via IdP
+    idp->>api: grants access
     deactivate idp
     activate kong
-    httpbin->>kong: response
-    deactivate httpbin
+    api->>kong: response
+    deactivate api
     activate client
     kong->>client: response
     deactivate client
