@@ -55,15 +55,15 @@ graph LR
 {% endmermaid %}
 <!-- vale on-->
 
-> Figure 1: This diagram shows how you can use both external integrations, like GitHub and PagerDuty, as well as built-in integrations like Gateway Manager to pull resources into Service Catalog. You can then map those resources (like GitHub repositories, PagerDuty services, and Gateway services) to Service Catalog Services.
+> Figure 1: This diagram shows how you can use both external integrations, like GitHub and PagerDuty, as well as built-in integrations like Gateway Manager to pull resources into Service Catalog. You can then map those resources (like GitHub repositories, PagerDuty services, and Gateway services) to Service Catalog services.
 
 ## Service Catalog use cases
 
 | You want to... | Then use... |
 | -------------- | ----------- |
-| Keep track of your organization's service ownership by mapping teams to Services. | Add the Service's owner when you [create a new Service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
+| Keep track of your organization's resource ownership by mapping teams to Service Catalog services. | Add the Service Catalog service's owner when you [create a new Service Catalog service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
 | Gain visibility into all your Services, including unrecognized or undiscovered APIs in your organization.  | [Service Catalog integrations](https://cloud.konghq.com/service-catalog/integrations) |
-| Consolidate key Service health metrics, documentation, and API specs into a single dashboard, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/service-catalog/) |
+| Consolidate key Service Catalog service health metrics, documentation, and API specs into a single dashboard, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/service-catalog/) |
 
 <!-- commenting this out until it's released:
 | Govern how services are created and maintained across your company to adhere to security, compliance, and engineering best practices. | Scorecards |-->
@@ -74,15 +74,15 @@ graph LR
 | ---- | ---------- |
 | Integration | These are applications, either {{site.konnect_short_name}}-internal or external, that act as sources from which you can ingest resources. For example, GitHub. |
 | Resource | An umbrella term that denotes entities ingested by Service Catalog from enabled integrations. A resource can range from an infrastructural component (like Gateway services, mesh services, databases, and caches) to an external application or tool (like code repositories, CI/CD infrastructure, and on-call systems) to a piece of documentation (like API specs). Resources can be mapped to one or more Services. |
-| Service | A Service is a collection of resources in the Service Catalog. It is what a developer may regard as a "unit of software," typically a backend service exposing an API |
-| Service Catalog | A comprehensive catalog of all resources and Services running in your organization. |
+| Service Catalog service | A unit of software that is typically owned by a single team, exposes one or more APIs, and may be dependent on other Service Catalog services (as either upstream or downstream). A Service Catalog service can be thought of as a collection of one or more resources. |
+| Service Catalog | A comprehensive catalog of all resources and Service Catalog services running in your organization. |
 
 ## FAQs
 
-<details><summary>How do Services map to API products? What is the relationship there?</summary>
+<details><summary>How do Service Catalog services map to API products? What is the relationship there?</summary>
 
 {% capture service_mapping %}
-Service Catalog Services do not directly map to API products. Rather, a {{site.base_gateway}} service can be mapped to a Service Catalog Service and you can then map the {{site.base_gateway}} service to an API product version in Service Catalog.
+Service Catalog services do not directly map to API products. Rather, a Gateway service can be mapped to a Service Catalog service and you can then map the Gateway service to an API product version in Service Catalog.
 {% endcapture %}
 
 {{ service_mapping | markdownify }}
@@ -92,7 +92,7 @@ Service Catalog Services do not directly map to API products. Rather, a {{site.b
 <details><summary>How do I view the health and status of my services in the Service Catalog?</summary>
 
 {% capture service_health %}
-Navigate to **Resources** in the Service Catalog and click on the service you want to view the health and status of.
+Navigate to **Resources** in the Service Catalog and click on the Service Catalog service you want to view the health and status of.
 {% endcapture %}
 
 {{ service_health | markdownify }}
@@ -119,7 +119,7 @@ Check the Service Catalog integration settings and data sources for any issues. 
 
 </details>
 
-<details><summary>Can I control who has access to specific Services or data in the Service Catalog?</summary>
+<details><summary>Can I control who has access to specific Service Catalog service or data?</summary>
 
 {% capture service_access %}
 Yes, you can configure access controls and manage permissions to Service Catalog by configuring [teams](/konnect/org-management/teams-and-roles/manage/) and [roles](/konnect/org-management/teams-and-roles/roles-reference/).
