@@ -37,7 +37,8 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
    {:.warning}
    > **Warning:** You **can't** change the value of the environment variables you used to provide the AWS credential after booting {{site.base_gateway}}. Any changes are ignored.
 {% if_version gte:3.8.x %}
-   - If you want to assume a role, make sure the original IAM role that Kong uses has the correct permission to assume the role of the target IAM role, and the target IAM role has the correct permission to connect to the database using IAM authentication.
+   - If you want to assume a role, make sure the original IAM role that Kong uses has the correct permission to assume the role of the target IAM role, and the target IAM role has the correct permission to connect to the database using IAM authentication. 
+   - If you have users with non-public VPC networks and private VPC endpoints (without private DNS names enabled), you can configure a AWS Service Token Service (STS) globally with `vault_aws_sts_endpoint_url` or on a custom AWS Vault entity with `sts_endpoint_url`.
 {% endif_version %}
 
 - **Assign an IAM policy to the {{site.base_gateway}} IAM role**. For more information, see [Creating and using an IAM policy for IAM database access](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html) in the Amazon RDS documentation.
