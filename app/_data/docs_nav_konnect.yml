@@ -125,6 +125,11 @@
       url: /service-catalog/
     - text: Integrations
       url: /service-catalog/integrations/
+      items:
+        - text: GitHub
+          url: /service-catalog/integrations/github/
+        - text: PagerDuty
+          url: /service-catalog/integrations/pagerduty/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
