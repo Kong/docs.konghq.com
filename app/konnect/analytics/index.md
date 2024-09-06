@@ -36,17 +36,7 @@ You can use the following table to help you determine which analytics tools are 
 | Understand LLM usage, tokens and costs | [Explorer](/konnect/analytics/explorer/) | 
 
 
-## LLM usage reporting
 
-Advanced Analytics allows you to monitor and optimize your LLM usage by providing detailed insights into objects such as token consumption, costs, and latency. 
-
-With LLM usage reporting, you can:
-
-* Track token consumption: MOnitor the number of tokens processed by the different LLM models you have configured. 
-* Understand costs: Gain visibility into the costs associated with your LLM providers. 
-* Measure Latency: Analyze the latency involved in processing LLM requests. 
-
-To use this feature, navigate to the [Explorer dashboard](https://cloud.konghq.com/us/analytics/explorer) and switch between API usage and LLM usage using the new dataset dropdown. Metrics and groupings will dynamically adjust based on the selected dataset. 
 
 ### Charts and limitations
 

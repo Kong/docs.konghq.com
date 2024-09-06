@@ -8,25 +8,26 @@ Explorer is an intuitive web-based interface that displays API usage data gather
 
 To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} section and select [**Explorer**](https://cloud.konghq.com/analytics/explorer). You can select from **API Usage** or **LLM Usage** from the dashboard options. 
 
+
+## API usage reporting
+
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 
 This is an overview of the different grouping and filtering categories available for either **API usage** or **LLM usage** : 
 
-| **API Usage**                                                    | **LLM Usage**                                                 |
-|-------------------------------------------------------------------|---------------------------------------------------------------|
-| **None**                                                          | **Provider**                                                  |
-| **API Product**                                                   | **Request Model**                                             |
-| **API Product Version**                                           | **Response Model**                                            |
-| **Route**                                                         | **Cache Status**                                              |
-| **Application**                                                   | **Embeddings Provider**                                       |
-| **Status Code**                                                   | **Embeddings Name**                                           |
-| **Status Code Group**                                             | **Control Plane**                                             |
-| **Control Plane**                                                 | **Control Plane Group**                                       |
-| **Control Plane Group**                                           | **Route**                                                     |
-| **Data Plane Node**                                               | **Consumer**                                                  |
-| **Gateway Services**                                              | **Application**                                               |
-| **Consumer**                                                      |                                                               |
+* **None**                                                         
+* **API Product**                                                   
+* **API Product Version**                                          
+* **Route**                                                         
+* **Application**                                                  
+* **Status Code**                                                   
+* **Status Code Group**                                            
+* **Control Plane**                                              
+* **Control Plane Group**                                          
+* **Data Plane Node**                                            
+* **Gateway Services**                                            
+* **Consumer**                                                     
 
 
 {% endnavtab %}
@@ -44,6 +45,101 @@ Upstream Latency | Latency | The amount of time, in milliseconds, that {{site.ba
 Kong latency | Latency | The amount of time, in milliseconds, that {{site.base_gateway}} was waiting for the first byte of the upstream service response. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from the time the {{site.base_gateway}} received the request up to when it sends it back to the upstream service.
 Request Size | Size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
 Response Size | Size | The size of the response payload returned to the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
+
+{% endnavtab %}
+{% navtab Time intervals %}
+
+The time frame selector controls the time frame of data visualized, which indirectly controls the
+granularity of the data. For example, the “5M” selection displays five minutes in
+one-second resolution data, while longer time frames display minute, hour, or days resolution data.
+
+All time interval presets are **relative**. 
+For custom reports, you can also choose a **custom** date range.
+
+* **Relative** time frames are dynamic and the report captures a snapshot of data
+relative to when a user views the report.
+* **Custom** time frames are static and the report captures a snapshot of data
+during the specified time frame. You can see the exact range below
+the time frame selector. For example:
+
+    ```
+    Jan 26, 2023 12:00 AM - Feb 01, 2023 12:00 AM (PST)
+    ```
+
+Interval | Description  
+---------|-------------
+Last 15 minutes | Data is aggregated in one minute increments.
+Last hour| Data is aggregated in one minute increments.
+Last six hours | Data is aggregated in one minute increments.
+Last 12 hours| Data is aggregated in one hour increments.
+Last 24 hours| Data is aggregated in one hour increments.
+Last seven days | Data is aggregated in one hour increments.
+Last 30 days | Data is aggregated in daily increments.
+Current week | Data is aggregated in one hour increments. Logs any traffic in the current calendar week. 
+Current month | Data is aggregated in one hour increments. Logs any traffic in the current calendar month. 
+Previous week | Data is aggregated in one hour increments. Logs any traffic in the previous calendar week.
+Previous month | Data is aggregated in daily increments. Logs any traffic in the previous calendar month. 
+
+{% endnavtab %}
+{% endnavtabs %}
+
+## LLM usage reporting
+
+Advanced Analytics allows you to monitor and optimize your LLM usage by providing detailed insights into objects such as token consumption, costs, and latency. 
+
+With LLM usage reporting, you can:
+
+* Track token consumption: Monitor the number of tokens processed by the different LLM models you have configured. 
+* Understand costs: Gain visibility into the costs associated with your LLM providers. 
+* Measure Latency: Analyze the latency involved in processing LLM requests. 
+
+To use this feature, navigate to the [Explorer dashboard](https://cloud.konghq.com/us/analytics/explorer) and switch between API usage and LLM usage using the new dataset dropdown. Metrics and groupings will dynamically adjust based on the selected dataset. 
+
+{% navtabs %}
+{% navtab Grouping and Filtering %}
+
+This is an overview of the different grouping and filtering categories available for either **API usage** or **LLM usage** : 
+
+* **Provider**                                                         
+* **Request Model**                                                   
+* **Response Model**                                          
+* **Cache Status**                                                         
+* **Embeddings Provider**                                                  
+* **Embeddings Name**                                                   
+* **Control Plane**                                                                                      
+* **Control Plane Group**                                          
+* **Route**                                            
+* **Consumer**                                            
+* **Application**                                                     
+
+
+{% endnavtab %}
+{% navtab Metrics %}
+
+
+Traffic metrics provide insight into which of your services are being used and how they are responding. Within a single report, you have the flexibility to choose one or multiple metrics from the same category.
+
+| Attribute            | Unit          | Description                                                                                                                                                                                                                                                                           |
+|----------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Completion Tokens     | count         | Completion tokens are any tokens that the model generates in response to the input                                                                                                                                                                                                   |
+| Prompt Tokens         | count         | Prompt tokens are the tokens that you input into the model                                                                                                                                                                                                                           |
+| Total Tokens          | count         | Sum of all tokens used in a single request to the model. It includes both the tokens in the input (prompt) and the tokens generated by the model (completion)                                                                                                                         |
+| Time per Tokens       | number  | Average Time in ms to generate a token. Calculated as LLM latency divided by # of tokens                                                                                                                                                                                             |
+| Costs                 | cost  | Represents the resulting costs for the request. Final costs = (Total number of prompt tokens × Input cost per token) + (Total number of completion tokens × Output cost per token) + (Total number of prompt tokens × embedding cost per token). Set to zero in 3.8. [Link](https://github.com/Kong/kong-ee/pull/10081) |
+| Response Model        | string        | Represents which AI model was used to process the prompt by the AI provider                                                                                                                                                                                                          |
+| Request Model         | string        | Represents which AI model was used to process the prompt                                                                                                                                                                                                                            |
+| Provider Name         | string        | Represents which AI provider was used to process the prompt                                                                                                                                                                                                                          |
+| Plugin ID             | string        | Represents the UUID of the plugin configuration                                                                                                                                                                                                                                      |
+| LLM Latency           | latency  | Total time taken to receive a full response after request sent from Kong (LLM latency + connection time). Not populated for cache hits. Empty “{}” if no semantic cache plugin is enabled                                                                                            |
+| Embeddings Latency    | latency  | Time taken to generate the vector for the prompt string. Embedding = get vector from AI provider for a prompt, which is cheap/fast. The vector is retrieved from AI providers to do semantic comparison (e.g., prompt A is “100011” and prompt B is “100010”, hence they are very similar, and we can serve cached response).  |
+| Fetch Latency         | latency | Total time taken to return a cache (embedding + DB latencies + vector calculation)                                                                                                                                                                                                   |
+| Cache Status          | string        | Shows if the response comes directly from the upstream or not. Possible values: “Hit” or “Miss”                                                                                                                                                                                     |
+| Embeddings Model      | string        | AI providers may have multiple embedding models. This represents the model used for the embeddings                                                                                                                                                                                   |
+| Embeddings Provider   | string        | Provider used for generating embeddings                                                                                                                                                                                                                                             |
+| Embeddings Token      | count         | Prompt tokens are the tokens that you input into the model for embeddings                                                                                                                                                                                                            |
+| Embeddings Cost       | cost  | Cost of caching (embedding cost)                                                                                                                                                                                                                                                     |
+| Cost Savings          | cost  | Cost saving by the cache (usage cost)                                                                                                                                                                                                                                               |
+
 
 {% endnavtab %}
 {% navtab Time intervals %}
