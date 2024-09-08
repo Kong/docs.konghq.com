@@ -2,6 +2,159 @@
 
 <!--vale off-->
 
+## Week 36
+
+### [Feat: AppD analytics_enable](https://github.com/Kong/docs.konghq.com/pull/7861) (2024-09-06)
+
+Adding ANALYTICS_ENABLE env variable to the AppDynamics env variables table.
+
+Discovered via changelog entry.
+
+@oowl what kind of analytics get logged via this variable, and _is_ it sending the data to AppD?
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
+
+### [Fix: Add a third option to close your Plus or Enterprise account](https://github.com/Kong/docs.konghq.com/pull/7860) (2024-09-05)
+
+Add a third option to close your Plus or Enterprise account
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/deactivation
+
+
+### [docs(rbac): updates rbac's docs in DB-less mode.](https://github.com/Kong/docs.konghq.com/pull/7852) (2024-09-05)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/rbac
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/rbac
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/rbac
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/rbac
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/rbac
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/rbac
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/rbac
+- https://docs.konghq.com/gateway/3.7.x/kong-manager/auth/rbac
+- https://docs.konghq.com/gateway/unreleased/kong-manager/auth/rbac
+
+
+### [Fix: AWS Lambda plugin changelog entry for base64_encode_body](https://github.com/Kong/docs.konghq.com/pull/7850) (2024-09-05)
+
+Adding a missing changelog entry for `base64_encode_body` (tracked down via blame in https://github.com/Kong/kong/commit/5853f9d0c0bb6afce4b6d3165cacbd86bb46b8d2). 
+Since we no longer have specific docs for version 2.5.x, we don't need to update the config reference.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/5544.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/
+
+
+### [Fix: Exit Transformer plugin handle_unknown description](https://github.com/Kong/docs.konghq.com/pull/7848) (2024-09-05)
+
+Correcting the description of `handle_unknown`, which is currently misleading and doesn't provide enough context.
+
+Fixes https://konghq.atlassian.net/browse/FTI-6080
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/overview/
+
+
+### [fix: Remove AI RLA plugin from traffic control category on plugin hub](https://github.com/Kong/docs.konghq.com/pull/7845) (2024-09-04)
+
+The plugin currently appears twice because it's listed under two categories, and it should only be under AI: 
+
+<img src="https://github.com/user-attachments/assets/d7b0fca6-16a6-40a0-b637-58bc75caf7a1" width="300px"/>
+
+Issue reported by on Slack by Marco.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/_metadata/_index.yml
+
+
+### [Fix: Links to Konnect APIs](https://github.com/Kong/docs.konghq.com/pull/7844) (2024-09-04)
+
+The links on this page currently point to the on-prem EE Admin API, where they should be pointing to the Konnect Control Plane Config API.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/7812.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/
+
+
+### [Fix: HMAC signing string in plugin example](https://github.com/Kong/docs.konghq.com/pull/7841) (2024-09-04)
+
+Fixes https://konghq.atlassian.net/browse/FTI-6211.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/hmac-auth/overview/
+
+
+### [Fix: Errors in mTLS Auth examples](https://github.com/Kong/docs.konghq.com/pull/7830) (2024-09-03)
+
+Fixing mTLS auth examples:
+* Incorrect URL in Konnect example
+* Split response out from Admin API example to reduce confusion
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/how-to/
+
+
+### [Fix: Konnect example in mtls plugin](https://github.com/Kong/docs.konghq.com/pull/7829) (2024-09-03)
+
+The mTLS plugin doc contains an example of using the Konnect API with a generated cookie, which hasn't been possible for a long time. Fixing the example to reference a PAT instead.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/how-to/
+
+
+### [docs[confluent]: add docs for new confluent plugin](https://github.com/Kong/docs.konghq.com/pull/7773) (2024-09-04)
+
+This is a DRAFT PR that needs fill-in from @silvolu.
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/confluent/
+- https://docs.konghq.com/hub/kong-inc/confluent/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/confluent/overview/
+- https://docs.konghq.com/hub/kong-inc/confluent/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_confluent.png
+
+
+### [docs(json-threat-protection): add docs for json-threat-protection plugin](https://github.com/Kong/docs.konghq.com/pull/7747) (2024-09-03)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/json-threat-protection/
+- https://docs.konghq.com/hub/kong-inc/json-threat-protection/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/json-threat-protection/overview/
+- https://docs.konghq.com/hub/kong-inc/json-threat-protection/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_json-threat-protection.png
+
 ## Week 35
 
 ### [Fix: Add timeout config, specify konnect compatibility, add kong versions](https://github.com/Kong/docs.konghq.com/pull/7760) (2024-08-26)
