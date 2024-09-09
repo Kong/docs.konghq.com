@@ -2,7 +2,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-// const apiKey = process.env.BEAMER_API_KEY;
+const apiKey = process.env.BEAMER_API_KEY;
 // const filePath = process.env.FILE_PATH;
 const filePath = __dirname + "/../../app/konnect/updates.md";
 const options = {
