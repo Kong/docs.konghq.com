@@ -3,6 +3,7 @@ search_aliases:
   - otlp
   - otel
   - open telemetry
+  - dynatrace
 dbless_compatible: 'yes'
 free: true
 enterprise: true
@@ -12,5 +13,4 @@ notes: --
 categories:
   - analytics-monitoring
 publisher: Kong Inc.
-version: 0.1.0
 desc: Propagate spans and report space to a backend server through OTLP protocol.
