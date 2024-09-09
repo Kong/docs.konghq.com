@@ -111,10 +111,12 @@ experiences for your users.
 
 #### Data governance
 
-AI Gateway provides the ability to govern outgoing AI prompts via the 
-[AI Prompt Guard](/hub/kong-inc/ai-prompt-guard). This plugin allows the configuration of regular expressions
-following an allow/deny list configuration. Denied prompts result in `4xx` HTTP code responses to clients preventing
+AI Gateway provides the ability to govern outgoing AI prompts via an allow/deny list configuration. Denied prompts result in `4xx` HTTP code responses to clients preventing
 the egress of offending requests.
+
+* The [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard) plugin allows the configuration of allow/deny lists using regular expressions. 
+
+* The [AI Semantic Prompt Guard](/hub/kong-inc/ai-semantic-prompt-guard) plugin allows the configuration of allow/deny lists using semantically similar prompts. 
 
 #### Prompt engineering
 
