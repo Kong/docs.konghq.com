@@ -21,23 +21,12 @@ Discovered via changelog entry.
 
 Add a third option to close your Plus or Enterprise account
 
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/org-management/deactivation
 
 
-### [docs(rbac): updates rbac's docs in DB-less mode.](https://github.com/Kong/docs.konghq.com/pull/7852) (2024-09-05)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+### [Fix: updates rbac's docs in DB-less mode.](https://github.com/Kong/docs.konghq.com/pull/7852) (2024-09-05)
 
 #### Modified
 
@@ -75,7 +64,7 @@ Fixes https://konghq.atlassian.net/browse/FTI-6080
 - https://docs.konghq.com/hub/kong-inc/exit-transformer/overview/
 
 
-### [fix: Remove AI RLA plugin from traffic control category on plugin hub](https://github.com/Kong/docs.konghq.com/pull/7845) (2024-09-04)
+### [Fix: Remove AI RLA plugin from traffic control category on plugin hub](https://github.com/Kong/docs.konghq.com/pull/7845) (2024-09-04)
 
 The plugin currently appears twice because it's listed under two categories, and it should only be under AI: 
 
@@ -128,7 +117,7 @@ The mTLS plugin doc contains an example of using the Konnect API with a generate
 - https://docs.konghq.com/hub/kong-inc/mtls-auth/how-to/
 
 
-### [docs[confluent]: add docs for new confluent plugin](https://github.com/Kong/docs.konghq.com/pull/7773) (2024-09-04)
+### [Feat: add docs for new confluent plugin](https://github.com/Kong/docs.konghq.com/pull/7773) (2024-09-04)
 
 This is a DRAFT PR that needs fill-in from @silvolu.
 
@@ -141,11 +130,7 @@ This is a DRAFT PR that needs fill-in from @silvolu.
 - https://docs.konghq.com/assets/images/icons/hub/kong-inc_confluent.png
 
 
-### [docs(json-threat-protection): add docs for json-threat-protection plugin](https://github.com/Kong/docs.konghq.com/pull/7747) (2024-09-03)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+### [Feat: add docs for json-threat-protection plugin](https://github.com/Kong/docs.konghq.com/pull/7747) (2024-09-03)
 
 #### Added
 
