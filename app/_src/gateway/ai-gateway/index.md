@@ -172,6 +172,15 @@ and you can specify an array set of pre-configured blocklist IDs from your Azure
 
 {% endif_version %}
 
+{% if_version gte:3.8.x %}
+#### Semantic caching
+{:.badge .enterprise}
+
+Kong's AI Gateway allows you to configure semantic caching.
+
+* The [AI Semantic Cache plugin](/hub/kong-inc/ai-semantic-cache/) allows you to semantically cache responses from LLMs.
+{% endif_version %}
+
 {% if_version gte:3.7.x %}
 ### AI observability
 
