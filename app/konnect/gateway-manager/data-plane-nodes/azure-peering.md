@@ -29,7 +29,7 @@ Grant access to your Azure AD Tenant:
 
     `https://login.microsoftonline.com/<tenant-id>/adminconsent?client_id=207b296f-cf25-4d23-9eba-9a2c41dc62ca`
 
-1. Input the following command into the Azure CLI  making sure to replace `<subscription-id>` with your Azure VNET subscription ID
+1. Input the following command into the Azure CLI making sure to replace `<subscription-id>` with your Azure VNET subscription ID
     
     ```bash
     az role definition create --output none --role-definition '{
