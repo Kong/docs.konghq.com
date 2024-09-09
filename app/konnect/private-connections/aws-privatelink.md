@@ -1,6 +1,6 @@
 ---
 title: Create a private connection with AWS PrivateLink
-subtitle: Connect your Data Plane to your Konnect Control Plane with a private connection through PrivateLink to stay compliant and save data transfer costs.
+subtitle: Connect your data plane to your Konnect control plane with a private connection to stay compliant and save data transfer costs.
 content-type: reference
 ---
 
@@ -69,7 +69,7 @@ If you want to create a connection with a different AWS region, contact [Kong Su
 
 <li>Create the VPC endpoint and wait for its status to change to available. It is recommended to wait for 10 minutes before attempting to use it.</li>
 
-<li>Update your data plane configuration to connect to the control plane through the private connection. Use the private DNS name that matches your control plane geo in the tables above. For the US {{site.konnect_short_name}} geo, the updated data plane configuration looks like this:
+<li>Update your data plane configuration to connect to the control plane through the private connection. Use the private DNS name that matches your control plane geo in the tables above. For the US {{site.konnect_short_name}} geo, the updated Kong data plane configuration looks like this:
 <pre>
 cluster_control_plane = us.svc.konghq.com/cp/{cluster_prefix}
 cluster_server_name = us.svc.konghq.com
