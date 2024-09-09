@@ -11,6 +11,20 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 ## September 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">September 03</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/dedicated-cloud-gateways-deploy-fully-featured-kong-gateways-anywhere-now-with-azure-support">Kong Konnect Dedicated Cloud Gateways: Deploy Fully Featured Kong Gateways Anywhere, Now With Azure Support</a>
+</div>
+<div class="changelog-description">It’s no secret that building global API infrastructure is a daunting task.  In April, we announced the general availability of Kong Konnect Dedicated Cloud Gateways — a fully managed, multi-region API management solution that makes setting up global API infrastructure fast and easy.</div>
+</div>
+</div>
+## August 2024
+
+
+## September 2024
 **Cloud Launchers deprecated**
 : Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.
 
