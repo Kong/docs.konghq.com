@@ -1,9 +1,6 @@
-name: Generate Changelog
+name: Update Konnect Changelog
 
-on:
-  workflow_dispatch: ~
-  schedule:
-    - cron: "0 0 * * 0"
+on: workflow_dispatch
 
 concurrency:
   cancel-in-progress: true
@@ -14,31 +11,33 @@ permissions:
   pull-requests: write
 
 jobs:
-  build-changelog:
+  update-changelog:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT }}
       - name: Run changelog script
-        working-directory: tools/changelog-generator
+        working-directory: tools/beamer
+        env:
+          BEAMER_API_KEY: ${{ secrets.BEAMER_API_KEY }}
         run: |
           npm ci
-          node changelog.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node fetch-beamer-posts.js
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          title: Automated Changelog update [skip-ci]
+          title: Automated Konnect changelog update [skip-ci]
           body: |
-            This is a scheduled pull request to update the changelog.
-          labels: skip-changelog,review:copyedit
+            Latest Konnect changelog entries from beamer
+          labels: skip-changelog,review:general
           base: main
-          branch: automated-changelog-update
+          branch: automated-konnect-changelog-update
           token: ${{ secrets.PAT }}
           committer: kong-docs[bot] <team-docs@konghq.com>
           author: kong-docs[bot] <team-docs@konghq.com>
           delete-branch: true
-          commit-message: "Automated changelog update"
+          commit-message: "Automated Konnect changelog update"

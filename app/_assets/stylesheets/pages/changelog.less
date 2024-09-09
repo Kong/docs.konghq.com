@@ -1,32 +1,30 @@
-.page-changelog {
-  .version-select {
-    ul {
-      li {
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: left;
-        }
-        &.active {
-          a {
-            color: @blue;
-          }
-        }
-      }
-    }
+.changelog-entries {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+
+  .changelog-date {
+    display: block;
+    font-weight: 200;
+    font-size: 18px;
   }
 
-  .content {
-    h2 {
-      margin-top: none;
-    }
-    ul {
-      margin-left: 1.5rem;
-      font-size: 100%;
+  .changelog-entry {
+    flex-direction: column;
+    margin-left: 35px;
 
-      li {
-        margin-bottom: 2rem;
-      }
+    .changelog-title {
+      display: inline-block;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .changelog-description {
+      margin-top: 8px;
+
+    }
+    .changelog-badges {
+      margin-top: 8px;
     }
   }
 }
