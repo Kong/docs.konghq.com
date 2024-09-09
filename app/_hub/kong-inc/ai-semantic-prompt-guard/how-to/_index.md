@@ -4,7 +4,7 @@ title: Using the AI Semantic Prompt Guard plugin
 ---
 
 The AI Semantic Prompt Guard configuration takes two arrays of objects: one for `allow` prompts, and
-one for `deny` prompts.
+one for `deny` prompts, which it uses to determine which prompts are permitted or blocked.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ The following examples show how to configure allow and deny prompts, and the exp
 
 ### Allow only
 
-To allow only message related to Kong, you can configure the following prompt:
+For example, to allow only message related to the topic Kong, configure the `allow_prompt` like this:
 
 ```yaml
 allow_prompts:

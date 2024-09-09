@@ -2,15 +2,14 @@
 nav_title: Overview
 ---
 
-The AI Semantic Prompt Guard plugin is an enhancement of the AI Prompt Guard plugin; it lets you to allow or block prompts based on a list of similar prompts, to guard against misuse of `llm/v1/chat` or `llm/v1/completions` requests.
+The AI Semantic Prompt Guard plugin enhances the AI Prompt Guard plugin by allowing you to permit or block prompts based on a list of similar prompts, helping to prevent misuse of `llm/v1/chat` or `llm/v1/completions` requests.
 
-It does this by scanning all chat messages for the specific expressions set.
 
-You can use a combination of `allow` and `deny` rules to preserve integrity and compliance when serving an LLM service using {{site.base_gateway}}.
+You can use a combination of `allow` and `deny` rules to maintain integrity and compliance when serving an LLM service using {{site.base_gateway}}.
 
 {:.note}
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 
-Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
+Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes.
 
 ## How it works
 
