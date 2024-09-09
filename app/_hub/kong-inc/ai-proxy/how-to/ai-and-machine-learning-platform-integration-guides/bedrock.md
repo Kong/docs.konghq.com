@@ -10,10 +10,10 @@ title: Set up AI Proxy with Amazon Bedrock
 ## Configure Amazon Bedrock
 
 1. From the [AWS Management Console](https://aws.amazon.com/console/), navigate to Amazon Bedrock.
-1. Create an [Amazon Bedrock Model](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html). You will need to select a model type, configure model parameters, and deploy it. <!-- what kind of model do I want? custom? foundational? does it matter or can I choose what I want to use?-->
+1. Create an [Amazon Bedrock Model](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html). You will need to select a model type, configure model parameters, and deploy it. For more information about the supported model types, see Amazon's [Model support by AWS Region](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) documentation.
 1. Configure any necessary settings such as model parameters, input/output formats, and resource requirements. The configuration details can be found in the [Amazon Bedrock API Reference](https://docs.aws.amazon.com/bedrock/latest/APIReference/). <!-- are there any that we recommend configuring? If so, what guidance can we provide users so they know what to exactly put in the configuration, like example or actual values?-->
 1. Navigate to the IAM (Identity and Access Management) section in the AWS Console to create or manage API keys and permissions. You will need to save your API key and endpoint URL.
-1. Ensure that the IAM roles and policies associated with your Bedrock models have the correct permissions to allow access and interaction. For more information, see [Amazon's IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/). <!-- which do we recommend or need, or is this entirely up to the user?-->
+1. Ensure that the IAM roles and policies associated with your Bedrock models have the correct permissions to allow access and interaction. For more information, see [How Amazon Bedrock works with IAM](https://docs.aws.amazon.com/bedrock/latest/userguide/security_iam_service-with-iam.html) in Amazon's documentation. <!-- which do we recommend or need, or is this entirely up to the user?-->
 
 ## Configure the AI Proxy plugin
 
