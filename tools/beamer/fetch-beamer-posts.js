@@ -2,7 +2,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const apiKey = process.env.BEAMER_API_KEY;
+// const apiKey = process.env.BEAMER_API_KEY;
 // const filePath = process.env.FILE_PATH;
 const filePath = __dirname + "/../../app/konnect/updates.md";
 const options = {
@@ -61,7 +61,7 @@ const req = https.request(options, (res) => {
                 const year = date.getFullYear();
                 const day = String(date.getDate()).padStart(2, '0');
                 const monthYear = `${month} ${year}`;
-                const formattedDate = `${month} ${day}`;
+                const formattedDate = `${month}<br>${day}`;
 
                 if (!groupedPosts[monthYear]) {
                     groupedPosts[monthYear] = [];
@@ -81,43 +81,56 @@ const req = https.request(options, (res) => {
                 });
             });
 
-            let updatesContent = '';
-
-            for (const [monthYear, posts] of Object.entries(groupedPosts)) {
-                // Add the month and year heading before the posts for that month
-                updatesContent += `## ${monthYear}\n\n`;
-
-                posts.forEach(post => {
-                    updatesContent += `<div class="changelog-entries">\n`;
-                    updatesContent += `<div class="changelog-date">${post.date}</div>\n`;
-                    updatesContent += `<div class="changelog-entry">\n`;
-                    updatesContent += `<div class="changelog-title">\n`;
-                    updatesContent += `<a href="${post.postUrl}">${post.title}</a>\n`;
-                    updatesContent += `</div>\n`;
-                    
-                    if (post.content) {
-                        updatesContent += `<div class="changelog-description">${post.content}</div>\n`;
-                    }
-                    
-                    updatesContent += `</div>\n`;
-                    updatesContent += `</div>\n`;
-                });
-            }
-
-            fs.readFile(filePath, 'utf8', (err, data) => {
+            fs.readFile(filePath, 'utf8', (err, fileContent) => {
                 if (err) {
                     console.error('Error reading file:', err);
                     return;
                 }
 
-                const match = data.match(/## \w+ \d{4}/);
-                if (!match) {
-                    console.error('First month heading not found in file.');
-                    return;
-                }
-                const insertIndex = match.index;
+                let newContent = fileContent;
 
-                const newContent = `${data.slice(0, insertIndex)}${updatesContent}\n${data.slice(insertIndex)}`;
+                for (const [monthYear, posts] of Object.entries(groupedPosts)) {
+                    const monthHeaderRegex = new RegExp(`##\\s*${monthYear}`, 'i');
+                    let monthSection = '';
+
+                    posts.forEach(post => {
+                        monthSection += `<div class="changelog-entries">\n`;
+                        monthSection += `<div class="changelog-date">${post.date}</div>\n`;
+                        monthSection += `<div class="changelog-entry">\n`;
+                        monthSection += `<div class="changelog-title">\n`;
+                        monthSection += `<a href="${post.postUrl}">${post.title}</a>\n`;
+                        monthSection += `</div>\n`;
+                        
+                        if (post.content) {
+                            monthSection += `<div class="changelog-description">${post.content}</div>\n`;
+                        }
+                        
+                        monthSection += `</div>\n`;
+                        monthSection += `</div>\n`;
+                    });
+
+                    if (monthHeaderRegex.test(fileContent)) {
+                        // Month heading exists, append the new content under that section
+                        const headerIndex = newContent.search(monthHeaderRegex);
+                        const nextHeaderIndex = newContent.slice(headerIndex + 1).search(/## \w+ \d{4}/); // Find the next month header
+                        const endOfSectionIndex = nextHeaderIndex === -1 
+                            ? newContent.length // If no next header, append to the end
+                            : headerIndex + nextHeaderIndex + 1;
+
+                        newContent = newContent.slice(0, endOfSectionIndex) + `\n` + monthSection + `\n` + newContent.slice(endOfSectionIndex);
+                    } else {
+                        // Month heading does not exist, find the appropriate place to insert it (above the existing headers)
+                        const firstHeaderRegex = /##\s*\w+\s+\d{4}/;
+                        const firstHeaderIndex = newContent.search(firstHeaderRegex);
+                        if (firstHeaderIndex === -1) {
+                            // No headings exist, append to the top
+                            newContent = `## ${monthYear}\n\n${monthSection}\n\n${newContent}`;
+                        } else {
+                            // Insert above the first header, ensuring spacing between new and existing sections
+                            newContent = `${newContent.slice(0, firstHeaderIndex)}## ${monthYear}\n\n${monthSection}\n\n${newContent.slice(firstHeaderIndex)}`;
+                        }
+                    }
+                }
 
                 fs.writeFile(filePath, newContent, 'utf8', (err) => {
                     if (err) {
