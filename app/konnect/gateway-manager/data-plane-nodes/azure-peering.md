@@ -5,10 +5,9 @@ title: How to configure Azure VNET Peering
 
 
 ## How does VNET Peering Work
-Add a diagram
 
-In this diagram, the User Azure Cloud represents Azure Subscription you are running your microservices in, APIs, or applications. You can connect your infrastructure securely to {{site.konnect_short_name}} through Azure VNET Peering. On the Kong side, the Kong Azure Cloud is the azure subscription running your Dedicated Cloud Gateways, which ingests traffic coming in from the User VNET and securely exposes it to the internet.
-
+{% include_cached /md/konnect/azure-peering.md %}
+> _**Figure 1:** In this diagram, the User Azure Cloud represents Azure subscription you are running your microservices in. You can connect your infrastructure securely to {{site.konnect_short_name}} using Azure VNET Peering. The Kong Azure Cloud is the Azure subscription running your Dedicated Cloud Gateways, which ingests traffic coming in from the user VNET and securely exposing it to the internet._
 
 ## Prerequisites
 
