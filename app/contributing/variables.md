@@ -31,9 +31,9 @@ Variable | Output | Definition
 
 Variable | Output | Definition
 ---------|--------|-----------
-{% raw %}`{{site.links.learn}}`{% endraw %} | https://education.konghq.com | Link to the current location of Kong Academy or a similar education site.
-{% raw %}`{{site.links.download}}`{% endraw %} | https://cloudsmith.io/~kong/repos | Kong's product download site.
-{% raw %}`{{site.links.web}}`{% endraw %} | https://docs.konghq.com | Kong Docs website.
+{% raw %}`{{site.links.learn}}`{% endraw %} | {{site.links.learn}} | Link to the current location of Kong Academy or a similar education site.
+{% raw %}`{{site.links.download}}`{% endraw %} | {{site.links.download}} | Kong's product download site.
+{% raw %}`{{site.links.web}}`{% endraw %} | {{site.links.web}} | Kong Docs website.
 
 <!-- vale on -->
 
