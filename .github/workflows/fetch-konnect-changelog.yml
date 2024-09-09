@@ -1,7 +1,6 @@
 name: Update Konnect Changelog
 
-on:
-  workflow_dispatch: ~
+on: workflow_dispatch
 
 concurrency:
   cancel-in-progress: true
