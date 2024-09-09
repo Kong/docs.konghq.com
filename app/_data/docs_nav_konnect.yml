@@ -130,6 +130,8 @@
           url: /service-catalog/integrations/github/
         - text: PagerDuty
           url: /service-catalog/integrations/pagerduty/
+        - text: Traceable
+          url: /service-catalog/integrations/traceable/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
