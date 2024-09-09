@@ -7,10 +7,6 @@ The AI Semantic Prompt Guard plugin enhances the AI Prompt Guard plugin by allow
 
 You can use a combination of `allow` and `deny` rules to maintain integrity and compliance when serving an LLM service using {{site.base_gateway}}.
 
-{:.note}
-> This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 
-Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes.
-
 ## How it works
 
 The plugin matches lists of prompts to requests through AI Proxy.
