@@ -9,6 +9,10 @@
       url: /network-resiliency/
     - text: Port and Network Requirements
       url: /network/
+    - text: Private Connections to Other Cloud Providers
+      items:
+        - text: Create a private connection with AWS PrivateLink
+          url: /private-connections/aws-privatelink/
     - text: Geographic Regions
       url: /geo/
     - text: Compatibility
@@ -245,12 +249,6 @@
       url: /analytics/use-cases/
     - text: Requests
       url: /analytics/api-requests/
-
-- title: PrivateLink
-  icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
-  items:
-    - text: Setup
-      url: /privatelink/
 
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
