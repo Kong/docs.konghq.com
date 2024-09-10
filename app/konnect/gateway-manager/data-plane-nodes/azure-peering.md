@@ -4,7 +4,7 @@ title: How to configure Azure Virtual Network Peering
 
 {{site.konnect_short_name}} can leverage [Azure Virtual Network Peering](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) to create virtual networks, and ingest data from your Azure services and expose them to the internet via {{site.konnect_short_name}}. 
 
-## How does virtual network peering Work
+## How virtual network peering works
 
 {% include_cached /md/konnect/azure-peering.md %}
 > _**Figure 1:** In this diagram, the "User Azure Cloud", represents the Azure infrastructure that runs your microservices. The "Kong Azure Cloud", powers your Kong data planes. Using virtual network peering, you can ingest traffic from your Azure environment and expose it to the internet._
@@ -65,7 +65,7 @@ Grant access to your Azure AD Tenant:
     * Azure Tenant ID 
     * Azure VNET Subscription ID
     * Azure VNET Resource Group Name
-    * Azure VNET Name.
+    * Azure VNET Name
 1. For DNS configuration, add the IP addresses of DNS servers that will resolve to your private domains, along with any domains you want associated with your DNS. {{site.konnect_short_name}} supports the following mappings:
 
     * 1-1 Mapping
