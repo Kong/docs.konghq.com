@@ -35,6 +35,21 @@ The plugin can be configured to only accept certificates from trusted IP address
 
 Additionally, the plugin has a [static priority](/konnect/reference/plugins/) configured so that it runs after all authentication plugins, allowing other auth plugins (e.g. basic-auth) to secure the source first. This ensures that the source is secured by multiple layers of authentication by providing L7 level of security.
 
+### Header size
+
+Sending certificates in headers may exceed header size limits in some environments. 
+You can tune {{site.base_gateway}} to accept larger headers by configuring the [Nginx header buffer parameter in `kong.conf`](/gateway/latest/reference/configuration/#nginx_http_large_client_header_buffers). 
+For example:
+
+```
+nginx_proxy_large_client_header_buffers=8 24k
+```
+
+Or via an environment variable:
+```
+KONG_NGINX_PROXY_LARGE_CLIENT_HEADER_BUFFERS=8 24k
+```
+
 ### Client certificate request
 
 The `send_ca_dn` option is not supported in this plugin. This is used in mutual TLS authentication, where the server sends the list of trusted CAs to the client, and the client then uses this list to select the appropriate certificate to present. In this case since the plugin does not do TLS handshakes and only parses the client certificate from the header, it is not applicable.
