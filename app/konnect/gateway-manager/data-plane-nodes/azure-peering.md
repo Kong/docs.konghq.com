@@ -47,7 +47,7 @@ Grant access to your Azure AD Tenant:
         ]
     }'
     ```
-1. Run this command with your Azure VNET Subscription ID `<subscription-id>`, Azure VNET resource group name `<resource-group>`, and Azure VNET Name `<vnet-name>` specified to assign the role to the service principal:
+1. Run the following command with your Azure VNET Subscription ID `<subscription-id>`, Azure VNET resource group name `<resource-group>`, and Azure VNET Name `<vnet-name>` specified to assign the role to the service principal:
 
     ```bash
     az role assignment create
@@ -61,7 +61,7 @@ Grant access to your Azure AD Tenant:
 ### Configure {{site.konnect_short_name}}
 
 1. From {{site.konnect_short_name}}, navigate to the **Gateway Manager**.
-1. Within the **Networks** tab, select the desired network, then select **Configure VNET Peering**.
+1. On the **Networks** tab, select the desired network, then select **Configure VNET Peering**.
 1. In the form that appears, enter the following values: 
     * Azure Tenant ID 
     * Azure VNET Subscription ID
@@ -74,15 +74,15 @@ Grant access to your Azure AD Tenant:
         * For example: `example.com` -> `192.168.1.1`
     * N-1 Mapping
         * Multiple domains are mapped to a single IP address.
-        * `example.com`, `example2.com` -> `192.168.1.1`
+        * For example: `example.com`, `example2.com` -> `192.168.1.1`
     * M-N Mapping
         * Multiple domains are mapped to multiple IP addresses, not necessarily in a one-to-one relationship.
-        * `example.com`, `example2.com` -> `192.168.1.1`, `192.168.1.2`
-        * `example3.com` -> `192.168.1.1`
+        * For example: `example.com`, `example2.com` -> `192.168.1.1`, `192.168.1.2`
+        * For example: `example3.com` -> `192.168.1.1`
 
 1. Click **Next** and move on to configuring Azure in the next section.
 
 
 
-After the VNET Peering is successfully established, set up a route for the upstream services and configure it to forward all traffic from the {{site.konnect_short_name}} managed VNET through the VNET Peering. This guarantees that traffic from the {{site.konnect_short_name}} data plane reaches the services and that response packets are routed back properly.
+After the VNET Peering is successfully established, [set up a route](/konnect/api/control-plane-configuration/latest/#/Routes/list-route) for the upstream services and configure it to forward all traffic from the {{site.konnect_short_name}} managed VNET through the VNET Peering. This guarantees that traffic from the {{site.konnect_short_name}} data plane reaches the services and that response packets are routed back properly.
 
