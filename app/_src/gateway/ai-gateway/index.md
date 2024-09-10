@@ -116,7 +116,9 @@ the egress of offending requests.
 
 * The [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard) plugin allows the configuration of allow/deny lists using regular expressions. 
 
-* The [AI Semantic Prompt Guard](/hub/kong-inc/ai-semantic-prompt-guard) plugin allows the configuration of allow/deny lists using semantically similar prompts. 
+{% if_version gte:3.8.x %}
+* The [AI Semantic Prompt Guard](/hub/kong-inc/ai-semantic-prompt-guard) plugin allows the configuration of allow/deny lists using semantically similar prompts.
+{% endif_version %}
 
 #### Prompt engineering
 
