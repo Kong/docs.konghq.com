@@ -19,7 +19,7 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 
 1. In the AWS Console, connect to your data plane region, open the Endpoints section of the VPC dashboard and [create a new endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws).
 
-1. Enter a name tag for the endpoint that includes the {{site.konnect_short_name}} control plane geo that you want to connect to. For example: `konnect-us-go`.
+1. Enter a name tag for the endpoint that includes the {{site.konnect_short_name}} control plane geo that you want to connect to. For example: `konnect-us-geo`.
 
 1. Select the **Other endpoint services** service category.
 
