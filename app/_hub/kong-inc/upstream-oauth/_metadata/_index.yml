@@ -1,0 +1,16 @@
+name: Upstream OAuth
+search_aliases:
+  - upstream-oauth
+  - upstream authentication
+  - oauth2
+dbless_compatible: 'yes'
+free: false
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - authentication
+publisher: Kong Inc.
+desc: Configure Kong Gateway to obtain an OAuth2 token to consume an upstream API
+
