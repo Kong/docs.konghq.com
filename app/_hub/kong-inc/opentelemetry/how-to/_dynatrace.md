@@ -1,8 +1,14 @@
 ---
 title: Set up Dynatrace with OpenTelemetry
-nav_title: Dynatrace
+nav_title: Using Dynatrace
 minimum_version: 3.8.x
 ---
+
+Set up the OpenTelemetry plugin to send logs and metrics to Dynatrace.
+
+## Prerequisites
+* Install the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/)
+* {{site.base_gateway}} 3.8+
 
 ## Configure Kong Gateway
 
@@ -13,7 +19,7 @@ tracing_instrumentations = all
 tracing_sampling_rate = 1.0
 ```
 
-## Configure OpenTelemetry plugin
+## Configure the OpenTelemetry plugin
 
 Adjust the `{OPENTELEMETRY_COLLECTOR}` variable with your own Collector endpoint:
 
@@ -39,10 +45,9 @@ formats:
 {% endplugin_example %}
 <!--vale on-->
 
-## Configure OpenTelemetry Collector
+## Configure the OpenTelemetry Collector
 
-Configure your [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector) to 
-send data to your Dynatrace environment. 
+Configure your OpenTelemetry Collector to send data to your Dynatrace environment. 
 
 The following example shows how to export traces and logs:
 
@@ -71,7 +76,7 @@ service:
       exporters: [otlphttp]
 ```
 
-## Export Application Span Metrics
+## Export application span metrics
 
 To include span metrics for application traces, configure the collector exporters section of 
 the OpenTelemetry Collector configuration:
@@ -101,3 +106,10 @@ service:
       processors: []
       exporters: [otlphttp]
 ```
+
+## More information
+
+* [Troubleshooting](/hub/kong-inc/opentelemetry/#troubleshooting)
+* [How logging works in the OpenTelemetry plugin](/hub/kong-inc/opentelemetry/#logging)
+* [How tracing works in the OpenTelemetry plugin](/hub/kong-inc/opentelemetry/#tracing)
+* [Dynatrace documentation](https://docs.dynatrace.com/docs/setup-and-configuration/technology-support/application-software/nginx/kong-gateway#kong-observability-opentelemetry)
