@@ -81,20 +81,6 @@ The AI Semantic Cache plugin improves how AI systems provide responses by using 
 
 Together, these caching methods enhance the efficiency and relevance of AI responses, making interactions faster and more contextually accurate.
 
-### Configuration parameters
-
-You can configure the following required parameters for the AI Semantic Cache plugin:
-
-* `vectordb`: Defines the vector database strategy and settings.
-* `embeddings`: Defines the embeddings provider, model, and configuration
-* `cache_control`: Enables or disables the `cache-control` header handling
-* `storage_ttl`: Sets the `time-to-live` for cached responses
-* `exact_caching`: Enables or disables exact caching
-* `message_countback`: Specifies how many of the user's recent messages will be vectorized for querying the vector database. The entire response is still cached, this setting only determines how many past messages are turned into embeddings.
-* `ignore_system_prompts`: Ignores system messages (`role = system`) in the chat history when sending the embeddings (to generate vectors) if set to `true`. 
-* `ignore_assistant_prompts`: Ignores assistant messages (`role = assistant`) in the chat history when sending the embeddings (to generate vectors) if set to `true`. 
-* `stop_on_failure`: Stops processing if an error occurs, otherwise continues
-
 ### Headers sent to the client
 
 When the AI Semantic Cache plugin is active, Kong sends additional headers 
