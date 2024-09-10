@@ -13,19 +13,17 @@ If you want to create a connection with a different AWS region, contact [Kong Su
 
 ## Prerequisites
 
-- Create a VPC, subnets, and a security group in AWS. For more information, see the [AWS documentation](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
+Create a VPC, subnets, and a security group in AWS. For more information, see the [AWS documentation](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
 
 ## Steps
 
-<ol>
+1. In the AWS Console, connect to your data plane region, open the Endpoints section of the VPC dashboard and [create a new endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws).
 
-<li>In the AWS Console, connect to your data plane region, open the Endpoints section of the VPC dashboard and create a new endpoint.</li>
+1. Enter a name tag for the endpoint that includes the {{site.konnect_short_name}} control plane geo that you want to connect to. For example: `konnect-us-go`.
 
-<li>Enter a name tag for the endpoint that includes the {{site.konnect_short_name}} control plane geo that you want to connect to. For example: <code>konnect-us-go</code>.</li>
+1. Select the **Other endpoint services** service category.
 
-<li>Select the <b>Other endpoint services</b> service category.</li>
-
-<li>Find the correct service name for your region in the tables below. Open the tab that matches your AWS region and use the PrivateLink service name for your {{site.konnect_short_name}} geo. For example, <code>com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db</code> for the us-east-2 AWS region and US {{site.konnect_short_name}} geo.
+1. Find the correct service name for your region in the tables below. Open the tab that matches your AWS region and use the PrivateLink service name for your {{site.konnect_short_name}} geo. For example, `com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db` for the us-east-2 AWS region and US {{site.konnect_short_name}} geo.
 
 {% navtabs %}
 
@@ -56,18 +54,13 @@ If you want to create a connection with a different AWS region, contact [Kong Su
 | US | com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db | us.svc.konghq.com
 {% endnavtab %}
 {% endnavtabs %}
-</li>
+1. Verify the service. If the service name cannot be verified, contact [Kong Support](https://support.konghq.com/support/s/).
 
-<li>Verify the service. If the service name cannot be verified, contact <a href="https://support.konghq.com/support/s/">Kong Support</a>.</li>
+1. Once the service name is verified, select the VPC, subnets, and security groups to associate with this endpoint. Make sure that:
+  * The security group accepts inbound traffic on TCP port 443.
+  * The DNS name parameter in the additional settings is enabled.
 
-<li>Once the service name is verified, select the VPC, subnets, and security groups to associate with this endpoint. Make sure that:
-<ul>
-<li>The security group accepts inbound traffic on TCP port 443.</li>
-<li>The DNS name parameter in the additional settings is enabled.</li>
-</ul>
-</li>
-
-<li>Create the VPC endpoint and wait for its status to change to available. It is recommended to wait for 10 minutes before attempting to use it.</li>
+1. Create the VPC endpoint and wait for its status to change to available. It is recommended to wait for 10 minutes before using it.
 
 <li>Update your data plane configuration to connect to the control plane through the private connection. Use the private DNS name that matches your control plane geo in the tables above. For the US {{site.konnect_short_name}} geo, the updated Kong data plane configuration looks like this:
 <pre>
