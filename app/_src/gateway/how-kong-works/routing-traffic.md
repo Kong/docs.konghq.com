@@ -980,7 +980,7 @@ There are two configurable elements here:
    server, passing a request to it, or reading the response headers.
 
 The second option is based on Nginx's 
-[proxy_next_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive. This option is not
+[`proxy_next_upstream`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive. This option is not
 directly configurable through {{site.base_gateway}}, but can be added using a custom Nginx
 configuration. See the [configuration reference][configuration-reference] for
 more details.
