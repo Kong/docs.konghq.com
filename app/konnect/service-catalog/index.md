@@ -10,13 +10,12 @@ content-type: explanation
 {% mermaid %}
 graph LR
   %% Define styles for icons and nodes
-  classDef resource fill:#E6D0F0
-  classDef konnect fill:#d0e5f3
-  classDef serviceCatalog fill:#e1f7d5
+  classDef konnect stroke-dasharray:3,rx:10,ry:10
+  classDef serviceCatalog fill:#d0e5f3,rx:10,ry:10
   %% Define the resources
-  ExternalIntegration1[External Integration 1]:::resource
-  ExternalIntegration2[External Integration 2</div>]:::resource
-  GatewayManager[<div style="text-align:center;"><img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-height:50px; max-width:50px; display:block; margin:0 auto;" class="no-image-expand"/> Gateway Manager</div>]:::resource
+  ExternalIntegration1(External Integration 1):::resource
+  ExternalIntegration2(External Integration 2</div>):::resource
+  GatewayManager(<div style="text-align:center;"><img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/> Gateway Manager</div>):::resource
 
   %% Define the Konnect Service Catalog and its subgraphs
   subgraph KonnectServiceCatalog[Konnect Service Catalog]
@@ -25,17 +24,17 @@ graph LR
     %% Define the Billing Service subgraph inside Konnect Service Catalog
     subgraph BillingService[Billing Service]
       direction LR
-      KongGatewayService[Gateway service 1]
-      ExternalResourceMapping1[External resource]
-      ExternalResourceMapping2[External resource]
+      KongGatewayService(Gateway service 1)
+      ExternalResourceMapping1(External resource)
+      ExternalResourceMapping2(External resource)
     end
 
     %% Define the Inventory Service Catalog Service subgraph inside Konnect Service Catalog
     subgraph InventoryService[Inventory Service]
       direction LR
-      SomeOtherService[Gateway service 2]
-      AnotherService[External resource]
-      DifferentRepo[External resource]
+      SomeOtherService(Gateway service 2)
+      AnotherService(External resource)
+      DifferentRepo(External resource)
     end
 
   end
