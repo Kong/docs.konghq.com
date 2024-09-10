@@ -29,7 +29,7 @@ You can use the following table to help you determine which analytics tools are 
 | You want to... | Then use... |
 | -------------- | ----------- |
 | Quickly understand API usage and performance at a glance, and gain insights across your entire organization. | [Summary dashboard](/konnect/analytics/dashboard/) |
-| Browse API usage data to gain access to key performance and health statistics. Visualize, slice, and dice API usage data you’ve stored in only a few clicks. | [Explorer](/konnect/analytics/explorer/) |
+| Browse API usage data to gain access to key performance and health statistics. Visualize, slice, and dice API usage data you’ve stored in only a few clicks. | [Explorer](/konnect/analytics/explorer/#api-usage-reporting) |
 | Communicate insights across teams or departments and share important KPIs. | [Custom reports](/konnect/analytics/custom-reports/) |
 | Understand user behavior or pin point where issues occur. See detailed information about each individual request made to your APIs. | [Requests](/konnect/analytics/api-requests/)  |
 | Manage Analytics cost for individual control planes| [Data ingestion](/konnect/analytics/#data-ingestion) |
