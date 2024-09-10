@@ -21,7 +21,7 @@ tracing_sampling_rate = 1.0
 
 ## Configure the OpenTelemetry plugin
 
-Adjust the `{OPENTELEMETRY_COLLECTOR}` variable with your own Collector endpoint:
+Adjust the `{OPENTELEMETRY_COLLECTOR}` variable with your own collector endpoint:
 
 <!--vale off-->
 {% plugin_example %}
@@ -47,9 +47,9 @@ formats:
 
 ## Configure the OpenTelemetry Collector
 
-Configure your OpenTelemetry Collector to send data to your Dynatrace environment. 
+Configure your OpenTelemetry Collector to send data to the Dynatrace environment. 
 
-The following example shows how to export traces and logs:
+The following example OpenTelemetry configuration shows how to export traces and logs:
 
 ```yaml
 receivers:
@@ -79,7 +79,7 @@ service:
 ## Export application span metrics
 
 To include span metrics for application traces, configure the collector exporters section of 
-the OpenTelemetry Collector configuration:
+the OpenTelemetry Collector configuration file: 
 
 ```yaml
 connectors:
