@@ -3,33 +3,6 @@ nav_title: Mistral
 title: Set up AI Semantic Cache with Mistral
 ---
 
-This guide walks you through setting up the AI Semantic Cache plugin with [Mistral](https://mistral.ai/).
-
-{:.important}
-> Mistral is a self-hosted model. As such, it requires setting model option 
-> [`upstream_url`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-upstream_url) to point to the absolute
-> HTTP(S) endpoint for this model implementation.
-
-There are a number of hosting/format options for running this LLM. Mistral offers a cloud-hosted service for consuming
-the LLM, available at [Mistral.ai](https://mistral.ai/)
-
-Self-hosted options include:
-* [OLLAMA](https://ollama.com/)
-* [Hosting the GGUF model yourself, with an e.g. Python Web Server](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
-
-## Upstream Formats
-
-The "upstream" request and response formats are different between various implementations of Mistral, and/or its accompanying web-server.
-
-For this provider, the following should be used for the [`config.model.options.mistral_format`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-mistral_format) parameter:
-
-| Mistral Hosting  | `mistral_format` Config Value | Auth Header             |
-|------------------|-------------------------------|-------------------------|
-| Mistral.ai       | `openai`                      | `Authorization`         |
-| OLLAMA           | `ollama`                      | Not required by default |
-| Self-Hosted GGUF | `openai`                      | Not required by default |
-
-
 ## Prerequisites 
 
 * Mistral's API key

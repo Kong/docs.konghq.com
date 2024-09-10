@@ -1,6 +1,6 @@
 ---
 nav_title: OpenAI
-title: Configure OpenAI for AI Semantic Cache
+title: Set up AI Semantic Cache with OpenAI
 ---
 
 ## Prerequisites 
