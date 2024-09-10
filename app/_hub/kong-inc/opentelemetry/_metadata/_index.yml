@@ -4,6 +4,10 @@ search_aliases:
   - otel
   - open telemetry
   - dynatrace
+  - tracing
+  - logging
+  - analytics
+  - monitoring
 dbless_compatible: 'yes'
 free: true
 enterprise: true
