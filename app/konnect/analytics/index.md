@@ -33,7 +33,7 @@ You can use the following table to help you determine which analytics tools are 
 | Communicate insights across teams or departments and share important KPIs. | [Custom reports](/konnect/analytics/custom-reports/) |
 | Understand user behavior or pin point where issues occur. See detailed information about each individual request made to your APIs. | [Requests](/konnect/analytics/api-requests/)  |
 | Manage Analytics cost for individual control planes| [Data ingestion](/konnect/analytics/#data-ingestion) |
-| Understand LLM usage, tokens and costs | [Explorer](/konnect/analytics/explorer/#llm-usage-reporting) | 
+| Understand LLM usage, tokens, and costs | [Explorer](/konnect/analytics/explorer/#llm-usage-reporting) | 
 
 
 

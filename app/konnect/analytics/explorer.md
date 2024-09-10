@@ -51,12 +51,9 @@ The time frame selector controls the time frame of data visualized, which indire
 granularity of the data. For example, the “5M” selection displays five minutes in
 one-second resolution data, while longer time frames display minute, hour, or days resolution data.
 
-All time interval presets are **relative**. 
-For custom reports, you can also choose a **custom** date range.
-
-* **Relative** time frames are dynamic and the report captures a snapshot of data
+All time interval presets are **relative**. This means that time frames are dynamic and the report captures a snapshot of data
 relative to when a user views the report.
-* **Custom** time frames are static and the report captures a snapshot of data
+For custom reports, you can also choose a **custom** date range. Custom means that time frames are static and the report captures a snapshot of data
 during the specified time frame. You can see the exact range below
 the time frame selector. For example:
 
