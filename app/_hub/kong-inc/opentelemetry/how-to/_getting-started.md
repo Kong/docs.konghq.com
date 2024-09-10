@@ -114,6 +114,7 @@ See the [OpenTelemetry Collector documentation](https://opentelemetry.io/docs/co
 
 ## Configure the OpenTelemetry plugin
 
+<!--vale off-->
 {% if_version lte:3.7.x %}
 {% plugin_example %}
 plugin: kong-inc/opentelemetry
@@ -156,7 +157,7 @@ formats:
   - kubernetes
 {% endplugin_example %}
 {% endif_version %}
-
+<!--vale on-->
 
 ## More information
 
