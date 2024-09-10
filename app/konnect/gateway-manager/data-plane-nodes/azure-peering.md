@@ -7,7 +7,7 @@ title: How to configure Azure Virtual Network Peering
 ## How does virtual network peering Work
 
 {% include_cached /md/konnect/azure-peering.md %}
-> _**Figure 1:** In this diagram, the "User Azure Cloud", represents the Azure infrastructure that runs your microservices. The "Kong Azure Cloud", powers your Kong data planes. Using virtual network peering, you can ingest traffic from your Azure enviroment and expose it to the internet._
+> _**Figure 1:** In this diagram, the "User Azure Cloud", represents the Azure infrastructure that runs your microservices. The "Kong Azure Cloud", powers your Kong data planes. Using virtual network peering, you can ingest traffic from your Azure environment and expose it to the internet._
 
 ## Prerequisites
 
@@ -85,5 +85,5 @@ Grant access to your Azure AD Tenant:
 1. Click **Next** and move on to configuring Azure in the next section.
 
 
-After VNET Peering is successfully established you will be able to configure a [route](/konnect/api/control-plane-configuration/latest/#/Routes/list-route) for the upstream service and forward all traffic throgh the virtual network to the data plane. This guarantees that traffic from the {{site.konnect_short_name}} data plane reaches the services and that response packets are routed back properly.
+After VNET Peering is successfully established you will be able to configure a [route](/konnect/api/control-plane-configuration/latest/#/Routes/list-route) for the upstream service and forward all traffic through the virtual network to the data plane. This guarantees that traffic from the {{site.konnect_short_name}} data plane reaches the services and that response packets are routed back properly.
 
