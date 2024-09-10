@@ -3,13 +3,13 @@ nav_title: Overview
 title: Overview
 ---
 
-The Upstream OAuth plugin allows {{site.base_gateway}} to consume third-party or external APIs to initiate OAuth flows, which lets you use {{site.base_gateway}} in egress workflows.
+The Upstream OAuth plugin allows {{site.base_gateway}} to support OAuth flows between Kong and the upstream API.
 
 The plugin supports storing tokens issued by the IdP in different backend formats.
 
 ## How it works
 
-The upstream OAuth2 credential flow works similarly to the [client credentials grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials/) used by the OpenID Connect plugin. However, instead of Kong verifying the access token, the verification is passed along to the upstream API, which then validates the token against the IdP.
+The upstream OAuth2 credential flow works similarly to the [client credentials grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials/) used by the OpenID Connect plugin. If a cached access token isn't found, Kong issues a request to the IdP token endpoint to obtain a new token, which is cached, and then passed to the upstream API via a configurable header (`Authorization` by default).
 
 <!--vale off-->
 
@@ -18,15 +18,14 @@ sequenceDiagram
     autonumber
     participant client as Client <br>(e.g. mobile app)
     participant kong as API Gateway <br>(Kong)
-    participant api as 3rd Party API
     participant idp as IDP <br>(e.g. Keycloak)
+    participant api as 3rd Party API
     activate client
     activate kong
-    client->>kong: request to Kong<br>with any supported<br> authentication method
+    client->>kong: request to Kong
     deactivate client
-    kong->>kong: load authentication<br> credentials
     activate idp
-    kong->>idp: request access token <br>from IdP using <br>client ID and client secret
+    kong->>idp: request access token <br>from IdP using <br>client ID and client secret (if IdP auth is set)
     deactivate kong
     idp->>idp: authenticate client
     activate kong
@@ -35,10 +34,6 @@ sequenceDiagram
     activate api
     kong->>api: request with access token in <br>Authorization header
     deactivate kong
-    activate idp
-    api->>idp: validates <br> access token via IdP
-    idp->>api: grants access
-    deactivate idp
     activate kong
     api->>kong: response
     deactivate api
