@@ -10,7 +10,7 @@ Set up the OpenTelemetry plugin to send logs and metrics to Dynatrace.
 * Install the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/)
 * {{site.base_gateway}} 3.8+
 
-## Configure Kong Gateway
+## Configure {{site.base_gateway}}
 
 Set the following parameters in your [`kong.conf`](/gateway/latest/production/kong-conf/) file:
 

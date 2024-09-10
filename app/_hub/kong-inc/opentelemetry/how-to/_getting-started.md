@@ -16,9 +16,9 @@ nav_title: Get Started with the OpenTelemetry plugin
 The OpenTelemetry plugin is fully compatible with the OpenTelemetry specification and can be used with any OpenTelemetry compatible backend.
 
 There are two ways to set up an OpenTelemetry backend:
-* Using a OpenTelemetry compatible backend directly, like Jaeger (v1.35.0+)
+* Using a [OpenTelemetry compatible backend](#set-up-an-opentelemetry-compatible-backend) directly, like Jaeger (v1.35.0+)
    All the vendors supported by OpenTelemetry are listed in the [OpenTelemetry's Vendor support](https://opentelemetry.io/vendors/).
-* Using the OpenTelemetry Collector, which is middleware that can be used to proxy OpenTelemetry spans to a compatible backend.
+* Using the [OpenTelemetry Collector](#set-up-an-opentelemetry-collector), which is middleware that can be used to proxy OpenTelemetry spans to a compatible backend.
    You can view all the available OpenTelemetry Collector exporters at [open-telemetry/opentelemetry-collector-contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter).
 
 ## Set up {{site.base_gateway}}
@@ -62,7 +62,7 @@ docker run --name jaeger \
 
 * The `4318` port is the OTLP/HTTP port and the `4317` port is the OTLP/GRPC port that isn't supported by the OpenTelemetry plugin yet.
 
-## Set up a OpenTelemetry Collector
+## Set up an OpenTelemetry Collector
 
 This section is required if you are using an incompatible OpenTelemetry APM vendor.
 
