@@ -1,13 +1,13 @@
 ---
-title: How to configure Azure VNET Peering
+title: How to configure Azure Virtual Network Peering
 ---
 
+{{site.konnect_short_name}} can leverage [Azure Virtual Network Peering](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview) to create virtual networks, and ingest data from your Azure services and expose them to the internet via {{site.konnect_short_name}}. 
 
-
-## How does VNET Peering Work
+## How does virtual network peering Work
 
 {% include_cached /md/konnect/azure-peering.md %}
-> _**Figure 1:** In this diagram, the User Azure Cloud represents Azure subscription you are running your microservices in. You can connect your infrastructure securely to {{site.konnect_short_name}} using Azure VNET Peering. The Kong Azure Cloud is the Azure subscription running your Dedicated Cloud Gateways, which ingests traffic coming in from the user VNET and securely exposing it to the internet._
+> _**Figure 1:** In this diagram, the "User Azure Cloud", represents the Azure infrastructure that runs your microservices. The "Kong Azure Cloud", powers your Kong data planes. Using virtual network peering, you can ingest traffic from your Azure enviroment and expose it to the internet._
 
 ## Prerequisites
 
@@ -18,18 +18,17 @@ title: How to configure Azure VNET Peering
   * Azure VNET resource group name
   * Azure VNET name
 
-
 ## Configure VNET Peering
 
 ### Configure Azure
 
 Grant access to your Azure AD Tenant: 
 
-1. Navigate to the following URL makign sure to replace `<tenant-id>` with your own Azure tenant ID and approve? Approve what?
+1. Navigate to the following URL making sure to replace `<tenant-id>` with your own Azure tenant ID and approve the `kong-cgw-azure-vnet-peering-app`. 
 
     `https://login.microsoftonline.com/<tenant-id>/adminconsent?client_id=207b296f-cf25-4d23-9eba-9a2c41dc62ca`
 
-1. Input the following command into the Azure CLI making sure to replace `<subscription-id>` with your Azure VNET subscription ID
+1. Input the following command into the Azure CLI making sure to replace `<subscription-id>` with your Azure VNET subscription ID:
     
     ```bash
     az role definition create --output none --role-definition '{
@@ -80,9 +79,11 @@ Grant access to your Azure AD Tenant:
         * For example: `example.com`, `example2.com` -> `192.168.1.1`, `192.168.1.2`
         * For example: `example3.com` -> `192.168.1.1`
 
+    {:.note}
+    > **Note**: You will need to create an inbound endpoint for private DNS zone within your tenant. The IP of the inbound endpoint should the IP of the DNS server.
+
 1. Click **Next** and move on to configuring Azure in the next section.
 
 
-
-After the VNET Peering is successfully established, [set up a route](/konnect/api/control-plane-configuration/latest/#/Routes/list-route) for the upstream services and configure it to forward all traffic from the {{site.konnect_short_name}} managed VNET through the VNET Peering. This guarantees that traffic from the {{site.konnect_short_name}} data plane reaches the services and that response packets are routed back properly.
+After VNET Peering is successfully established you will be able to configure a [route](/konnect/api/control-plane-configuration/latest/#/Routes/list-route) for the upstream service and forward all traffic throgh the virtual network to the data plane. This guarantees that traffic from the {{site.konnect_short_name}} data plane reaches the services and that response packets are routed back properly.
 
