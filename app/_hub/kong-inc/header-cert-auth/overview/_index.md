@@ -38,7 +38,7 @@ Additionally, the plugin has a [static priority](/konnect/reference/plugins/) co
 ### Header size
 
 Sending certificates in headers may exceed header size limits in some environments. 
-You can tune {{site.base_gateway}} to accept larger headers by configuring the [Nginx header buffer parameter in `kong.conf`](/gateway/latest/reference/configuration/#nginx_http_large_client_header_buffers). 
+You can configure {{site.base_gateway}} to accept larger headers by configuring the [Nginx header buffer parameter in `kong.conf`](/gateway/latest/reference/configuration/#nginx_http_large_client_header_buffers). 
 For example:
 
 ```
