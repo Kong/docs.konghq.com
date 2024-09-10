@@ -22,6 +22,15 @@
 
 ######################################################################
 
+## Saml SSO
+
+/konnect/org-management/oidc-idp/   /konnect/org-management/sso/
+/konnect/org-management/saml-idp/   /konnect/org-management/sso/
+
+
+## Service Catalog rename
+
+/konnect/servicehub/ /konnect/service-catalog/
 
 ## Kong Manager
 
@@ -95,6 +104,10 @@
 /konnect/dev-portal/dev-reg/    /konnect/dev-portal/register-and-create-app/
 /konnect/dev-portal/applications/dev-apps/    /konnect/dev-portal/register-and-create-app/
 /konnect/dev-portal/applications/dev-gen-creds/    /konnect/dev-portal/register-and-create-app/
+/dev-portal/access-and-approval/azure/  /dev-portal/access-and-approval/sso/
+/konnect/dev-portal/access-and-approval/azure/    /konnect/dev-portal/access-and-approval/sso/
+/konnect/dev-portal/access-and-approval/manage-app-reg-requests/    /konnect/dev-portal/access-and-approval/manage-app-connections/
+/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/ /konnect/dev-portal/create-dev-portal/
 
 # API markdown doc deprecation
 
@@ -147,7 +160,7 @@
 
 /gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
-/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups
+/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups
 /konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
 
 # 3.3
@@ -428,9 +441,6 @@
 # KONNECT
 
 /konnect/api/audit-logs/webhook/                    /konnect/org-management/audit-logging/webhook/
-/konnect/service-hub                                /konnect/servicehub/
-/konnect/service-hub/*                              /konnect/servicehub/:splat
-/konnect/service-hub/manage-services                /konnect/servicehub/
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/key-concepts-and-terms/                    /konnect/
 /konnect/reference/konnect-api/                     /konnect/
@@ -444,8 +454,8 @@
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
 /konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
-/konnect/servicehub/dev-portal/service-documentation/   /konnect/servicehub/service-documentation/
-/konnect/servicehub/dev-portal/publish/              /konnect/servicehub/service-documentation/
+/konnect/servicehub/dev-portal/service-documentation/  /konnect/api-products/service-documentation/
+/konnect/servicehub/dev-portal/publish/              /konnect/service-catalog/
 /konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/
@@ -473,7 +483,6 @@
 /konnect/analytics/services-and-routes/              /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
-/konnect/servicehub/plugins/                          /konnect/runtime-manager/plugins/
 
 /konnect/getting-started/configure-service/           /konnect/getting-started/productize-service/
 /konnect/getting-started/implement-service/           /konnect/getting-started/deploy-service

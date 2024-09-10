@@ -270,8 +270,42 @@ Sets the authenticated consumer and/or credential for the current request.
 -- assuming `credential` and `consumer` have been set by some authentication code
 kong.client.authenticate(consumer, credentials)
 ```
-{% if_version gte:3.5.x %}
-## _CLIENT.set_authenticated_consumer_groups(group)
+{% if_version gte:3.8.x %}
+## kong.client.set_authenticated_consumer_groups(groups)
+
+Explicitly sets the authenticated consumer groups for the current request.
+ Throws an error if the `groups` parameter is neither a table nor `nil`.
+
+**Phases**
+
+* auth_and_later
+
+**Parameters**
+
+* **groups** (`table|nil`):  The consumer groups to set. If no
+ value is provided, then any existing value will be cleared.
+ This value should be a sequence-like table of tables, with each item
+ having at least an `id` and a `name`.
+
+**Usage**
+
+``` lua
+kong.client.set_authenticated_consumer_groups({
+  {
+    id = "fed2bf38-10c4-404e-8d45-a2b0f521464d",
+    name = "my-group",
+  },
+  {
+    id = "736bb9d9-98f2-46d5-97fc-d7361d9488ee",
+    name = "my-other-group",
+  }
+})
+```
+
+{% endif_version %}
+
+{% if_version gte:3.5.x lte:3.7.x %}
+## kong.client.set_authenticated_consumer_groups(group)
 
 Explicitly sets the authenticated consumer group for the current request.
  Throws an error if the `group` is neither a table nor `nil`.
@@ -291,12 +325,12 @@ Explicitly sets the authenticated consumer group for the current request.
 
 ``` lua
 -- assuming `group` is provided by some code
-_CLIENT.set_authenticated_consumer_groups(group)
+kong.client.set_authenticated_consumer_groups(group)
 ```
 
 
 
-## _CLIENT.set_authenticated_consumer_group(group)
+## kong.client.set_authenticated_consumer_group(group)
 
 This function is deprecated in favor of `set_authenticated_consumer_groups`.
  Explicitly sets the authenticated consumer group for the current request.
@@ -316,12 +350,12 @@ This function is deprecated in favor of `set_authenticated_consumer_groups`.
 
 ``` lua
 -- assuming `group` is provided by some code
-_CLIENT.set_authenticated_consumer_group(group)
+kong.client.set_authenticated_consumer_group(group)
 ```
 
 
 
-## _CLIENT.get_consumer_groups()
+## kong.client.get_consumer_groups()
 
 Retrieves the authenticated consumer groups for the current request.
 
@@ -338,14 +372,15 @@ Retrieves the authenticated consumer groups for the current request.
 **Usage**
 
 ``` lua
-local groups = _CLIENT.get_consumer_groups()
+local groups = kong.client.get_consumer_groups()
 ```
 {% endif_version %}
+
 
 {% if_version gte:3.4.x %}
 
 
-## _CLIENT.get_consumer_group()
+## kong.client.get_consumer_group()
 
 This function is deprecated in favor of `get_consumer_groups`. Retrieves the authenticated consumer group for the current request.
 
@@ -362,11 +397,11 @@ This function is deprecated in favor of `get_consumer_groups`. Retrieves the aut
 **Usage**
 
 ``` lua
-local group = _CLIENT.get_consumer_group()
+local group = kong.client.get_consumer_group()
 ```
 {% endif_version %}
 {% if_version gte:3.5.x %}
-## _CLIENT.authenticate_consumer_group_by_consumer_id(consumer_id)
+## kong.client.authenticate_consumer_group_by_consumer_id(consumer_id)
 
 Sets the consumer group for the current request based on the provided consumer id.
  If the consumer_id is neither a string nor nil, it throws an error.
@@ -389,7 +424,7 @@ Sets the consumer group for the current request based on the provided consumer i
 
 ``` lua
 -- assuming `consumer_id` is provided by some code
-_CLIENT.authenticate_consumer_group_by_consumer_id(consumer_id)
+kong.client.authenticate_consumer_group_by_consumer_id(consumer_id)
 ```
 {% endif_version %}
 

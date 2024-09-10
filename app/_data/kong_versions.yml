@@ -101,7 +101,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.4.x"
-  ee-version: "3.4.3.11"
+  ee-version: "3.4.3.12"
   ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -293,23 +293,22 @@
   version: "2.11.1"
   edition: "kubernetes-ingress-controller"
 - release: "2.12.x"
-  version: "2.12.3"
+  version: "2.12.6"
   edition: "kubernetes-ingress-controller"
   lts: true
 - release: "3.0.x"
   version: "3.0.2"
   edition: "kubernetes-ingress-controller"
 - release: "3.1.x"
-  version: "3.1.3"
+  version: "3.1.6"
   edition: "kubernetes-ingress-controller"
 - release: "3.2.x"
-  version: "3.2.0"
+  version: "3.2.4"
+  edition: "kubernetes-ingress-controller"
+- release: "3.3.x"
+  version: "3.3.1"
   edition: "kubernetes-ingress-controller"
   latest: true
-- release: "3.3.x"
-  version: "3.3.0"
-  edition: "kubernetes-ingress-controller"
-  label: unreleased
 - edition: gateway-operator
   version: 1.0.3
   release: 1.0.x

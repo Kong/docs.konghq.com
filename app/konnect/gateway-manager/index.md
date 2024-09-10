@@ -57,8 +57,6 @@ entity-specific permissions. For more information, see [Administer teams](/konne
 ### {{site.base_gateway}} control planes
 
 Every region in every organization starts with one default control plane.
-This control plane can't be deleted, and its status as the default can't be changed.
-
 With {{site.konnect_short_name}} you can configure additional {{site.base_gateway}}
 control planes, each of which will have isolated configuration.
 Use multiple control planes in one {{site.konnect_short_name}} organization to
@@ -169,8 +167,6 @@ Data plane nodes that are still active when the control plane is deleted will no
 terminated, but they will be orphaned. They will continue processing traffic
 using the last configuration they received until they are either connected to
 a new control plane or manually shut down.
-
-You cannot delete the default control plane.
 
 ## Data plane nodes
 

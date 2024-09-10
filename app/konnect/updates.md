@@ -10,7 +10,18 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
+## September 2024
+**Cloud Launchers deprecated**
+: Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.
+
 ## August 2024
+
+**You can now delete the default control plane**
+: In {{site.konnect_saas}}, it is now possible to delete the default control plane.
+
+**SAML Login support**
+: {{site.konnect_short_name}} now supports [SAML authentication protocol](/konnect/org-management/sso/) for logging in. SAML is an open standard that allows {{site.konnect_short_name}} to delegate authentication to an identity provider (IdP). You can choose between OIDC or SAML protocols while setting up Single Sign On for your organization.
+
 **General Availability of API Requests**
 : Announcing the general availability of [API Requests](/konnect/analytics/api-requests/). API Requests provide detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
 
@@ -322,7 +333,8 @@ You can upload a plugin schema to Konnect and get started with custom plugins in
 : A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/latest/)
 
 **API Products**
-: Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+: Introducing a new Service Hub module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in the Service Hub have been seamlessly moved to the new API Products UI & API experience.
+
 
 : **Note:** Tagging your Gateway services with `_KonnectService` doesn't automatically create an API product and API product version.
 

@@ -1,5 +1,5 @@
 ---
-title: Service Catalog
+title: The Konnect Service Catalog
 subtitle: Track every service across your architecture
 content-type: explanation
 ---
@@ -127,3 +127,4 @@ Yes, you can configure access controls and manage permissions to Service Catalog
 
 ## More information
 * [Service Catalog integrations](/konnect/service-catalog/integrations)
+

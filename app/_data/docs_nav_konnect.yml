@@ -118,7 +118,7 @@
     - text: Migrate a self-managed zone control plane to Konnect
       url: /mesh-manager/migrate-zone/
 
-- title: Service Hub
+- title: Service Catalog
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
@@ -140,6 +140,8 @@
   items:
     - text: Overview
       url: /dev-portal/
+    - text: Dev Portal Configuration Preparation
+      url: /dev-portal/configuration-prep/
     - text: Create a Dev Portal
       url: /dev-portal/create-dev-portal/
     - text: Sign Up for a Dev Portal Account
@@ -154,20 +156,16 @@
           url: /dev-portal/access-and-approval/manage-teams/
         - text: Add Developer Teams from IdPs
           url: /dev-portal/access-and-approval/add-teams/
-        - text: Manage Application Registration Requests
-          url: /dev-portal/access-and-approval/manage-app-reg-requests/
         - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
-        - text: Auto Approve Dev and App Registrations
-          url: /dev-portal/access-and-approval/auto-approve-devs-apps/
-        - text: Azure OIDC
-          url: /dev-portal/access-and-approval/azure/
+        - text: Configure SSO for Dev Portal
+          url: /dev-portal/access-and-approval/sso/
+    - text: Application Lifecycle
+      url: /dev-portal/applications/application-overview/
     - text: Register and create an application as a developer
       url: /dev-portal/register-and-create-app/
     - text: Enable and Disable App Registration for API Product Versions
       url: /dev-portal/applications/enable-app-reg/
-    - text: Application Lifecycle
-      url: /dev-portal/applications/application-overview/
     - text: Dynamic Client Registration
       items:
         - text: Overview
@@ -239,9 +237,9 @@
           url: /org-management/social-identity-login/
         - text: Org Switcher
           url: /org-management/org-switcher/
-        - text: Set up SSO with OIDC
-          url: /org-management/oidc-idp/
-        - text: Set up SSO with Okta
+        - text: Configure Generic SSO
+          url: /org-management/sso/
+        - text: Configure Okta
           url: /org-management/okta-idp/
         - text: Login Sessions Reference
           url: /org-management/sessions-reference/

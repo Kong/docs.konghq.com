@@ -27,6 +27,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 
 | Version    | Release Date   | End of Support |
 |------------|----------------|----------------|
+| 3.3.x      | 2024-08-26     | 2025-08-26     |
 | 3.2.x      | 2024-06-12     | 2025-06-12     |
 | 3.1.x      | 2024-02-07     | 2025-02-07     |
 | 3.0.x      | 2023-11-03     | 2024-11-03     |

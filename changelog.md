@@ -2,6 +2,144 @@
 
 <!--vale off-->
 
+## Week 35
+
+### [Fix: Add timeout config, specify konnect compatibility, add kong versions](https://github.com/Kong/docs.konghq.com/pull/7760) (2024-08-26)
+
+- Add timeout config for latest version of our plugin
+- Specify konnect compatibility
+- Add kong support versions
+
+#### Modified
+
+- https://docs.konghq.com/hub/traceableai/traceableai/_metadata/_index.yml
+- https://docs.konghq.com/hub/traceableai/traceableai/schemas/_index.json
+
+## Week 34
+
+### [Fix: Add changelog entry for deprecated OTEL parameters in 3.7](https://github.com/Kong/docs.konghq.com/pull/7774) (2024-08-23)
+
+Issue reported on slack: certain parameters in the OTEL plugin are marked deprecated, but there is no changelog entry noting when the deprecation happened.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/
+
+
+### [Feat: add ai metrics docs](https://github.com/Kong/docs.konghq.com/pull/7691) (2024-08-23)
+
+Doc on AI metrics and Prometheus
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/prometheus/overview/
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/
+- https://docs.konghq.com/gateway/unreleased/production/tracing/
+
+## Week 33
+
+### [Feat: Document shared variables](https://github.com/Kong/docs.konghq.com/pull/7750) (2024-08-13)
+
+Update the template documentation to add details for using shared variables: 
+https://docs.konghq.com/gateway/latest/plugin-development/pdk/kong.ctx/#kongctxshared
+
+
+This looks to have been added here, https://github.com/Kong/kong-plugin-request-transformer/pull/7, but we lack documentation on how to reference it. Using the documented convention, kong.ctx.shared.foo,  results in errors with "kong" being a nil value.
+
+Tests have shown it successful  using this with the request transformer plugin and route transformer advanced, i.e:
+
+x-name:$((function()     return shared["gruber"] end)())
+
+Where "gruber" has been previously defined as
+kong.ctx.shared.gruber = "myHeader"
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
+
+## Week 32
+
+### [Fix: Update key-auth request behaviour matrix](https://github.com/Kong/docs.konghq.com/pull/7737) (2024-08-09)
+
+I've read and re-read this section a few times - and I'm pretty sure there's a typo! But my apologies in advance if I've misunderstood the situation.
+
+Kong will return a 401 when the API key is **not** known.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/key-auth/overview/
+
+
+### [Fix: decK select tag examples](https://github.com/Kong/docs.konghq.com/pull/7735) (2024-08-08)
+
+Fixing the select-tag examples in the decK docs to match real behavior. 
+
+https://konghq.atlassian.net/browse/DOCU-4012
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/get-started/
+- https://docs.konghq.com/gateway/3.1.x/get-started/
+- https://docs.konghq.com/gateway/3.2.x/get-started/
+- https://docs.konghq.com/gateway/3.3.x/get-started/
+- https://docs.konghq.com/gateway/3.4.x/get-started/
+- https://docs.konghq.com/gateway/3.5.x/get-started/
+- https://docs.konghq.com/gateway/3.6.x/get-started/
+- https://docs.konghq.com/gateway/3.7.x/get-started/
+- https://docs.konghq.com/gateway/unreleased/get-started/
+
+
+### [chore: add more explanations about aws secret with slash in kong gateway](https://github.com/Kong/docs.konghq.com/pull/7728) (2024-08-09)
+
+This PR adds a note to show a correct way of referencing secrets that has special slash symbols.
+
+https://konghq.atlassian.net/browse/KAG-5054
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/get-started/
+- https://docs.konghq.com/gateway/3.1.x/get-started/
+- https://docs.konghq.com/gateway/3.2.x/get-started/
+- https://docs.konghq.com/gateway/3.3.x/get-started/
+- https://docs.konghq.com/gateway/3.4.x/get-started/
+- https://docs.konghq.com/gateway/3.5.x/get-started/
+- https://docs.konghq.com/gateway/3.6.x/get-started/
+- https://docs.konghq.com/gateway/3.7.x/get-started/
+- https://docs.konghq.com/gateway/unreleased/get-started/
+
+
+### [Release: Gateway 3.4.3.12](https://github.com/Kong/docs.konghq.com/pull/7727) (2024-08-09)
+
+Changelog and version bump for 3.4.3.12
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: document caCert for cert-manager](https://github.com/Kong/docs.konghq.com/pull/7718) (2024-08-06)
+
+Missing docs for existing feature
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/get-started/
+- https://docs.konghq.com/gateway/3.1.x/get-started/
+- https://docs.konghq.com/gateway/3.2.x/get-started/
+- https://docs.konghq.com/gateway/3.3.x/get-started/
+- https://docs.konghq.com/gateway/3.4.x/get-started/
+- https://docs.konghq.com/gateway/3.5.x/get-started/
+- https://docs.konghq.com/gateway/3.6.x/get-started/
+- https://docs.konghq.com/gateway/3.7.x/get-started/
+- https://docs.konghq.com/gateway/unreleased/get-started/
+
 ## Week 31
 
 ### [Fix: Add clarifying statement about private dev portals](https://github.com/Kong/docs.konghq.com/pull/7708) (2024-07-31)

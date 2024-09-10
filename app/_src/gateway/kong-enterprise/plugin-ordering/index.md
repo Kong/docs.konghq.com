@@ -61,7 +61,7 @@ PluginA:
 
 Dynamic plugin ordering cannot coexist with consumer-scoped plugins, 
 even if they are applied to entirely different service and route pairs or are running globally.
-If you have consumer-scoped plugins anywhere in your environment, you can't use
+If you have consumer-scoped plugins anywhere in your workspace, you can't use
 dynamic plugin ordering.
 
 Consumer mapping and dynamic plugin ordering both run in the access phase, but the order of the 
