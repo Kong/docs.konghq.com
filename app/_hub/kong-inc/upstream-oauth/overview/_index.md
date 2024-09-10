@@ -18,7 +18,7 @@ sequenceDiagram
     autonumber
     participant client as Client <br>(e.g. mobile app)
     participant kong as API Gateway <br>(Kong)
-    participant idp as IDP <br>(e.g. Keycloak)
+    participant idp as IdP <br>(e.g. Keycloak)
     participant api as 3rd Party API
     activate client
     activate kong
@@ -32,7 +32,7 @@ sequenceDiagram
     idp->>kong: return access token
     deactivate idp
     activate api
-    kong->>api: request with access token in <br>Authorization header
+    kong->>api: request with access token <br>in Authorization header
     deactivate kong
     activate kong
     api->>kong: response
@@ -57,7 +57,7 @@ This plugin supports the following authentication methods:
 ## Caching
 
 The Upstream OAuth plugin caches tokens returned by the IdP.  
-Cache entries expire based on the `expires_in` indicated by the IdP in the response to the token endpoint.
+Cached entries expire based on the `expires_in` indicated by the IdP in the response to the token endpoint.
 
 Tokens are cached using a hash of all values configured under the [`config.oauth`](/hub/kong-inc/upstream-oauth/configuration/#config-oauth) key.
 This means that if two instances of the plugin (for example, configured on different routes and services) use identical values under the `config.oauth` section,
@@ -67,7 +67,7 @@ then these will share cached tokens.
 
 The plugin supports the following caching [strategies](/hub/kong-inc/upstream-oauth/configuration/#config-stategy):
 
-* `memory`: A locally stored `lua_shared_dict`. Note that the default dictionary, `kong_db_cache`, is also used by other plugins and elements of Kong to store unrelated database cache entities.
+* `memory`: A locally stored `lua_shared_dict`. The default dictionary, `kong_db_cache`, is also used by other plugins and {{site.base_gateway}} elements to store unrelated database cache entities.
 * `redis`: Supports Redis, Redis Cluster, and Redis Sentinel deployments.
 
 ## Get started with the Upstream OAuth plugin
