@@ -27,6 +27,12 @@
               "type": "string",
               "description": "Descriptive name of service, if unset defaults to \"kong\""
             }
+          },
+          {
+            "timeout": {
+              "type": "number",
+              "description": "Max timeout in milliseconds of calls to Traceable Module Extension"
+            }
           }
         ],
         "type": "record",
