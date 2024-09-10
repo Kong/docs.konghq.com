@@ -1,6 +1,11 @@
 ---
 title: Traceable Integration
 content-type: reference
+config:
+    discovery_support: true
+    discovery_default: true
+    bindable_entities: "Traceable Service"
+    mechanism: "pull/ingestion model"
 ---
 
 _Type: External_
@@ -19,14 +24,9 @@ Entity | Binding Level | Description
 -------|---------------|-------------
 Traceable Service | Service | [Traceable Service](https://docs.traceable.ai/docs/domains-services-backends) which holds group of Traceable API endpoint resource
 
-## Discovery FAQs
+## Discovery information
 
-| **Question**                                     | **Answer**                     |
-|--------------------------------------------------|--------------------------------|
-| Is discovery supported by this integration?      | Yes                            |
-| Is discovery enabled by default?                 | Yes                            |
-| What bindable entities can be discovered?        | Traceable Service              |
-| What mechanism is used for discovery?            | Pull/Ingestion model           |
+{% include_cached service-catalog-discovery.html %}
 
 
 

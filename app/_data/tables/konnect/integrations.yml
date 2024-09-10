@@ -12,7 +12,6 @@ integrations:
     slug: traceable
     description: Manage and secure services that Traceable discovers by analyzing API traffic across your entire application landscape
 
-
 ##### Using this file ######
   # - name: Name of the integration
   #   icon: The filename + extension of the icon for the integration, e.g. pagerduty.svg

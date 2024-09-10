@@ -1,6 +1,11 @@
 ---
 title: GitHub Integration
 content-type: reference
+config:
+    discovery_support: true
+    discovery_default: true
+    bindable_entities: "Repositories"
+    mechanism: "pull/ingestion model"
 ---
 
 _Type: External_
@@ -25,16 +30,6 @@ Entity | Binding Level | Description
 -------|---------------|-------------
 Repository | Service | A GitHub repository relating to the service
 
+## Discovery information
 
-## Discovery FAQs
-
-| **Question**                                     | **Answer**                     |
-|--------------------------------------------------|--------------------------------|
-| Is discovery supported by this integration?      | Yes                            |
-| Is discovery enabled by default?                 | Yes                            |
-| What bindable entities can be discovered?        | Repositories                   |
-| What mechanism is used for discovery?            | Pull/Ingestion model           |
-
-
-
-
+{% include_cached service-catalog-discovery.html %}

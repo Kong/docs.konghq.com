@@ -1,6 +1,11 @@
 ---
 title: PagerDuty Integration
 content-type: reference
+config:
+    discovery_support: true
+    discovery_default: true
+    bindable_entities: "PagerDuty Service"
+    mechanism: "pull/ingestion model"
 ---
 
 _Type: External_
@@ -24,14 +29,6 @@ Entity | Binding Level | Description
 -------|---------------|-------------
 PagerDuty Service | Service | A PagerDuty service is any entity that can have incidents opened on it. In practice it could be a service, but could also be a group of services or an organization/team.
 
-## Discovery FAQs
+## Discovery information
 
-| **Question**                                     | **Answer**                     |
-|--------------------------------------------------|--------------------------------|
-| Is discovery supported by this integration?      | Yes                            |
-| Is discovery enabled by default?                 | Yes                            |
-| What bindable entities can be discovered?        | PagerDuty Services             |
-| What mechanism is used for discovery?            | Pull/Ingestion model           |
-
-
-
+{% include_cached service-catalog-discovery.html %}
