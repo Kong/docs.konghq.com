@@ -105,7 +105,7 @@ This is an overview of the different grouping and filtering categories available
 * **Response Model**                                          
 * **Cache Status**                                                         
 * **Embeddings Provider**                                                  
-* **Embeddings Name**                                                   
+* **Embeddings Model**                                                   
 * **Control Plane**                                                                                      
 * **Control Plane Group**                                          
 * **Route**                                            
