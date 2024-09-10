@@ -7,10 +7,10 @@ integrations:
     icon: github.svg
     slug: github
     description: Associate a service to one or more GitHub repositories
-  # - name: Traceable.io
-  #   icon: 
-  #   slug:
-  #   description:
+  - name: Traceable.io
+    icon: traceable.svg
+    slug: traceable
+    description: Manage and secure services that Traceable discovers by analyzing API traffic across your entire application landscape
 
 
 ##### Using this file ######

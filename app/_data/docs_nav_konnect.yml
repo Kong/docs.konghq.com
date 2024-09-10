@@ -124,8 +124,9 @@
     - text: Overview
       url: /service-catalog/
     - text: Integrations
-      url: /service-catalog/integrations/
       items:
+        - text: Overview
+          url: /service-catalog/integrations/
         - text: GitHub
           url: /service-catalog/integrations/github/
         - text: PagerDuty
