@@ -14,8 +14,6 @@ To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} se
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 
-This is an overview of the different grouping and filtering categories available for either **API usage** or **LLM usage** : 
-
 * **None**                                                         
 * **API Product**                                                   
 * **API Product Version**                                          
@@ -98,7 +96,6 @@ To use this feature, navigate to the [Explorer dashboard](https://cloud.konghq.c
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 
-This is an overview of the different grouping and filtering categories available for either **API usage** or **LLM usage** : 
 
 * **Provider**                                                         
 * **Request Model**                                                   
