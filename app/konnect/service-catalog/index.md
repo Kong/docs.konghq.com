@@ -10,16 +10,13 @@ content-type: explanation
 {% mermaid %}
 graph LR
   %% Define styles for icons and nodes
-  classDef integration fill:#f7f7f7,stroke:#333,stroke-width:2px;
-  classDef resource fill:#e1f7d5,stroke:#333,stroke-width:2px;
-  classDef konnect fill:#d0e5ff,stroke:#333,stroke-width:2px;
-  classDef serviceCatalog fill:#e1f7d5,stroke:#333,stroke-width:2px;
-  classDef billingInventory fill:#f0f0f0,stroke:#333,stroke-width:2px;
-
+  classDef resource fill:#E6D0F0
+  classDef konnect fill:#d0e5f3
+  classDef serviceCatalog fill:#e1f7d5
   %% Define the resources
-  GitHub[<img src="https://img.icons8.com/ios/50/000000/github.png" width="24" height="24"/> GitHub]:::resource
-  PagerDuty[<img src="https://play-lh.googleusercontent.com/E-zhAf4KJ6JDDXmQfQxBprn2sATGYUMkOEqLQX5HAQQtiwDZJg4c8sQd7deb6nCZCwU=w480-h960-rw" width="24" height="24"/> PagerDuty]:::resource
-  GatewayManager[<img src="https://raw.githubusercontent.com/Kong/docs.konghq.com/main/app/assets/images/icons/kong-gradient.svg" width="15" height="15"/> Gateway Manager]:::resource
+  ExternalIntegration1[External Integration 1]:::resource
+  ExternalIntegration2[External Integration 2</div>]:::resource
+  GatewayManager[<div style="text-align:center;"><img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-height:50px; max-width:50px; display:block; margin:0 auto;" class="no-image-expand"/> Gateway Manager</div>]:::resource
 
   %% Define the Konnect Service Catalog and its subgraphs
   subgraph KonnectServiceCatalog[Konnect Service Catalog]
@@ -29,23 +26,23 @@ graph LR
     subgraph BillingService[Billing Service]
       direction LR
       KongGatewayService[Gateway service 1]
-      PagerDutyServiceMapping[PagerDuty service 1]
-      GitHubRepoMapping[GitHub repository 1]
+      ExternalResourceMapping1[External resource]
+      ExternalResourceMapping2[External resource]
     end
 
     %% Define the Inventory Service Catalog Service subgraph inside Konnect Service Catalog
     subgraph InventoryService[Inventory Service]
       direction LR
       SomeOtherService[Gateway service 2]
-      AnotherService[PagerDuty service 2]
-      DifferentRepo[GitHub repository 2]
+      AnotherService[External resource]
+      DifferentRepo[External resource]
     end
 
   end
 
   %% Connect the resources to the Konnect Service Catalog
-  GitHub -- "GitHub repositories" --> KonnectServiceCatalog
-  PagerDuty -- "PagerDuty services" --> KonnectServiceCatalog
+  ExternalIntegration1 -- "External resource" --> KonnectServiceCatalog
+  ExternalIntegration2 -- "External resource" --> KonnectServiceCatalog
   GatewayManager -- "Gateway services" --> KonnectServiceCatalog
 
   %% Style the subgraphs
@@ -55,7 +52,7 @@ graph LR
 {% endmermaid %}
 <!-- vale on-->
 
-> Figure 1: This diagram shows how you can use both external integrations, like GitHub and PagerDuty, as well as built-in integrations like Gateway Manager to pull resources into Service Catalog. You can then map those resources (like GitHub repositories, PagerDuty services, and Gateway services) to Service Catalog services.
+> *Figure 1: This diagram shows how you can use both external integrations, like GitHub and PagerDuty, as well as built-in integrations like Gateway Manager to pull resources into Service Catalog. You can then map those resources (like GitHub repositories, PagerDuty services, and Gateway services) to Service Catalog services.*
 
 ## Service Catalog use cases
 
@@ -63,7 +60,7 @@ graph LR
 | -------------- | ----------- |
 | Keep track of your organization's resource ownership by mapping teams to Service Catalog services. | Add the Service Catalog service's owner when you [create a new Service Catalog service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
 | Gain visibility into all your Services, including unrecognized or undiscovered APIs in your organization.  | [Service Catalog integrations](https://cloud.konghq.com/service-catalog/integrations) |
-| Consolidate key Service Catalog service health metrics, documentation, and API specs into a single dashboard, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/service-catalog/) |
+| Consolidate key Service Catalog service health metrics, documentation, and API specs into a single list, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/service-catalog/) |
 
 <!-- commenting this out until it's released:
 | Govern how services are created and maintained across your company to adhere to security, compliance, and engineering best practices. | Scorecards |-->
@@ -92,17 +89,17 @@ Service Catalog services do not directly map to API products. Rather, a Gateway 
 <details><summary>How do I view the health and status of my services in the Service Catalog?</summary>
 
 {% capture service_health %}
-Navigate to **Resources** in the Service Catalog and click on the Service Catalog service you want to view the health and status of.
+Navigate to **Services** in the Service Catalog and click on the Service Catalog service you want to view the health and status of.
 {% endcapture %}
 
 {{ service_health | markdownify }}
 
 </details>
 
-<details><summary>How can I identify and reuse existing resources?</summary>
+<details><summary>How can I identify which resources are available for mapping to my Service Catalog services?</summary>
 
 {% capture reuse_resources %}
-Service Catalog will pull in any resources that match your specified criteria when you enable integrations. 
+Navigate to the **Resources** page in the Service Catalog to view a list of all available resources. These are ingested by Service Catalog from the integrations that have been installed and authorized, which are found on the **Integrations** page. 
 {% endcapture %}
 
 {{ reuse_resources | markdownify }}
