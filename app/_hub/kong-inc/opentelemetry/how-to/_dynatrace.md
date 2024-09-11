@@ -4,6 +4,8 @@ nav_title: Using Dynatrace
 minimum_version: 3.8.x
 ---
 
+<span class="badge premiumpartner"></span>
+
 Set up the OpenTelemetry plugin to send logs and metrics to Dynatrace.
 
 ## Prerequisites

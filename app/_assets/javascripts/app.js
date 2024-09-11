@@ -561,6 +561,9 @@ jQuery(function () {
     $(".badge.techpartner").append(
       '<div class="tooltip"><span class="tooltiptext">Verified Kong technical partner</span></div>'
     );
+    $(".badge.premiumpartner").append(
+      '<div class="tooltip"><span class="tooltiptext">Verified Kong premium partner</span></div>'
+    );
     $(".badge.paid").append(
       '<div class="tooltip"><span class="tooltiptext">Available with Konnect Paid subscription </span></div>'
     );

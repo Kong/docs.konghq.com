@@ -10,5 +10,7 @@ network_config_opts: All
 notes: --
 categories:
   - transformations
+  - premium-partner
 publisher: Kong Inc.
 desc: Transform requests into Kafka messages in a Confluent topic.
+premiumpartner: true

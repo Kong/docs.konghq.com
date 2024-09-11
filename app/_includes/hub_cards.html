@@ -17,6 +17,9 @@
 {%- if badges.techpartner? -%}
   {%- assign css_classes =  css_classes | append: " techpartner" -%}
 {%- endif -%}
+{%- if badges.premiumpartner? -%}
+  {%- assign css_classes =  css_classes | append: " premiumpartner" -%}
+{%- endif -%}
 {%- if badges.oss? -%}
   {%- assign css_classes =  css_classes | append: " oss" -%}
 {%- endif -%}
@@ -55,6 +58,9 @@
           {% endif %}
           {% if badges.techpartner? %}
             <span class="badge techpartner"></span>
+          {% endif %}
+          {% if badges.premiumpartner? %}
+          <span class="badge premiumpartner"></span>
           {% endif %}
           {% if badges.oss? %}
             <span class="badge oss"></span>
