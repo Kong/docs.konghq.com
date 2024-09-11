@@ -20,7 +20,7 @@ module Jekyll
         end
 
         def enterprise?
-          !!@metadata['enterprise'] && !!!@metadata['free']
+          !!@metadata['enterprise']
         end
 
         def techpartner?
