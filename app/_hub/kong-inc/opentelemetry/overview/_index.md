@@ -23,7 +23,7 @@ There are two ways to set up an OpenTelemetry backend:
 Metrics are enabled using the `contrib` version of the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/).
 
 The `spanmetrics` connector allows you to aggregate traces and provide metrics to any third party observability platform. 
-For an example configuration, see the [Basic config examples](/hub/opentelemetry/how-to/basic-examples/).
+For an example configuration, see the [Basic config examples](/hub/kong-inc/opentelemetry/how-to/basic-example/).
 {% endif_version %}
 
 ### Tracing
