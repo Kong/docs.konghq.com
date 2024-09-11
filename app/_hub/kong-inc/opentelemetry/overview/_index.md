@@ -22,8 +22,36 @@ There are two ways to set up an OpenTelemetry backend:
 ### Metrics
 Metrics are enabled using the `contrib` version of the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/).
 
-The `spanmetrics` connector allows you to aggregate traces and provide metrics to any third party observability platform. 
-For an example configuration, see the [Basic config examples](/hub/kong-inc/opentelemetry/how-to/basic-example/).
+The `spanmetrics` connector allows you to aggregate traces and provide metrics to any third party observability platform.
+
+To include span metrics for application traces, configure the collector exporters section of 
+the OpenTelemetry Collector configuration file: 
+
+```yaml
+connectors:
+  spanmetrics:
+    dimensions:
+      - name: http.method
+        default: GET
+      - name: http.status_code
+      - name: http.route
+    exclude_dimensions:
+      - status.code
+    metrics_flush_interval: 15s
+    histogram:
+      disable: false
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: []
+      exporters: [spanmetrics]
+    metrics:
+      receivers: [spanmetrics]
+      processors: []
+      exporters: [otlphttp]
+```
 {% endif_version %}
 
 ### Tracing
