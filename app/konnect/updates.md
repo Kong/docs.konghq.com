@@ -12,14 +12,35 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2024
 
-**Plugin pricing updated**
-: Plugins are no longer priced are Free, Plus, and Premium tiers separate from the {{site.konnect_short_name}} subscription.
-There is no more extra fee to use any particular plugin. 
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+Plugin pricing updated
+</div>
+<div class="changelog-description">Plugins are no longer priced are Free, Plus, and Premium tiers separate from the Konnect subscription. There is no more extra fee to use any particular plugin. Plugins now follow the same tier scheme as in self-managed {{site.kong_gateway}}, where you have access to free or Enterprise plugins, depending on your subscription level.
+ </div>
+</div>
+</div>
 
-: Plugins now follow the same tier scheme as in self-managed {{site.kong_gateway}}, where you have access to free or Enterprise plugins, depending on your subscription level.
-
-**Cloud Launchers deprecated**
-: Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+Announcing Beamer Integration with Konnect
+</div>
+<div class="changelog-description">With Beamer, customers can easily stay up-to-date on the latest Konnect announcements without having to navigate across multiple websites.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>03</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+Cloud Launchers deprecated
+</div>
+<div class="changelog-description">Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.</div>
+</div>
+</div>
 
 ## August 2024
 
