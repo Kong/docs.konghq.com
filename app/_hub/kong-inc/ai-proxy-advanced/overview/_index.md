@@ -58,7 +58,7 @@ By analyzing the content of the request, the plugin can match it to the most app
 
 ## Request and response formats
 
-The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-route_type) should be set based on the target upstream endpoint and model, based on this capability matrix:
+The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-route_type) should be set based on the target upstream endpoint and model, based on this capability matrix:
 
 | Provider Name | Provider Upstream Path                                   | Kong `route_type`    | Example Model Name     |
 |---------------|----------------------------------------------------------|----------------------|------------------------|
@@ -96,11 +96,11 @@ The following upstream URL patterns are used:
 
 {:.important}
 > While only the **Llama2** and **Mistral** models are classed as self-hosted, the target URL can be overridden for any of the supported providers.
-> For example, a self-hosted or otherwise OpenAI-compatible endpoint can be called by setting the same [`config.model.options.upstream_url`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-upstream_url) plugin option.
+> For example, a self-hosted or otherwise OpenAI-compatible endpoint can be called by setting the same [`config.model.options.upstream_url`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings-model-options-upstream_url) plugin option.
 
 ### Input formats
 
-Kong will mediate the request and response format based on the selected [`config.provider`](/hub/kong-inc/ai-proxy/configuration/#config-provider) and [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-route_type), as outlined in the table above.
+Kong will mediate the request and response format based on the selected [`config.provider`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings-model-provider) and [`config.route_type`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-route_type), as outlined in the table above.
 
 The Kong AI Proxy accepts the following inputs formats, standardized across all providers; the `config.route_type` must be configured respective to the required request and response format examples:
 
@@ -195,7 +195,12 @@ See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/
 * [Configuration reference](/hub/kong-inc/ai-proxy-advanced/configuration/)
 * [Basic configuration example](/hub/kong-inc/ai-proxy-advanced/how-to/basic-example/)
 * Learn how to use the plugin with different providers:
-  * [something](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/)
+  * [OpenAI](/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/openai/)
+  * [Cohere](/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/cohere/)
+  * [Azure](/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/azure/)
+  * [Anthropic](/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/anthropic/)
+  * [Mistral](/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/mistral/)
+  * [Llama2](/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/llama2/)
 
 ### All AI Gateway plugins
 
