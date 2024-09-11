@@ -18,6 +18,7 @@ curl -X POST http://localhost:8001/services \
  --data "name=bedrock-service" \
  --data "url=https://bedrock-runtime.us-east-1.amazonaws.com"
 ```
+Be sure to replace `us-east-1` with the region for your environment.
 
 1. Create a route that maps to the service you defined:
 ```sh
