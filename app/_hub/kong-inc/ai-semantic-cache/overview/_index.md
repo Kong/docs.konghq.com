@@ -112,8 +112,8 @@ The plugin respects cache control headers to determine if requests and responses
 
 * [Configuration reference](/hub/kong-inc/ai-semantic-cache/configuration/)
 * [Basic configuration example](/hub/kong-inc/ai-semantic-cache/how-to/basic-example/)
-* [Set up AI Semantic Cache with Mistral]/hub/kong-inc/ai-semantic-cache/how-to/llm-provider-integration-guides/mistral/)
-* [Set up AI Semantic Cache with OpenAI]/hub/kong-inc/ai-semantic-cache/how-to/llm-provider-integration-guides/openai/)
+* [Set up AI Semantic Cache with Mistral](/hub/kong-inc/ai-semantic-cache/how-to/llm-provider-integration-guides/mistral/)
+* [Set up AI Semantic Cache with OpenAI](/hub/kong-inc/ai-semantic-cache/how-to/llm-provider-integration-guides/openai/)
 
 ### All AI Gateway plugins
 
