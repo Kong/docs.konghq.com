@@ -395,7 +395,7 @@ items:
       - text: AI Platform Integration Guides
         items:
           - text: Gemini
-            url: /hub/kong-inc/ai-proxy/how-to/ai-and-machine-learning-platform-integration-guides/gemini/
+            url: /hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integrations/gemini/
             generate: false
             absolute_url: true
       - text: AI Gateway Analytics
