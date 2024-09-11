@@ -42,6 +42,17 @@ Cloud Launchers deprecated
 </div>
 </div>
 
+
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/shine-a-light-on-shadow-apis-lurking-in-your-it-infrastructure">Shine a Light on Shadow APIs Lurking in Your IT Infrastructure</a>
+</div>
+<div class="changelog-description">Discover and manage shadow APIs with Konnect Service Catalog, a single source of truth for all your services and APIs The service catalog is an essential tool that all organizations invested in effective IT management should own and maintain.  Without an up-to-date system of record of all services and APIs, organizations run the risk of having what we call “Shadow APIs” — or APIs that are undiscovered, unmanaged, and pose significant security risks to the entire company.</div>
+</div>
+</div>
+
 ## August 2024
 
 **You can now delete the default control plane**
