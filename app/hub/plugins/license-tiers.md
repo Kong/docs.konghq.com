@@ -28,7 +28,7 @@ If you're looking for plugin deployment topology compatibility, supported networ
   {{ category.name }}
 </h3>
 
-<table>
+<table style="max-width: 700px">
   <thead>
       <th style="text-align: left; width: 10%">Plugin</th>
       <th style="text-align: center">Free</th>
