@@ -178,8 +178,6 @@ hub-filters:
       slug: free
     - name: Kong Gateway Enterprise
       slug: enterprise
-    - name: Konnect Enterprise
-      slug: konnect-enterprise
   support:
     - name: Kong
       slug: kong-inc
