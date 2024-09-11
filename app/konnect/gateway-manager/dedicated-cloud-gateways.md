@@ -46,6 +46,14 @@ Dedicated Cloud Gateways support public and private networking on AWS.
  
 You can set up private networking for Dedicated Cloud Gateways with [AWS Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/).
 
+## Plugin considerations for Dedicated Cloud Gateways
+There are some limitations for plugins with Dedicated Cloud Gateways:
+
+* Any plugins that depend on a local agent will not work with Dedicated Cloud Gateways.
+* Any plugins that depend on the Status API or on Admin API endpoints will not work.
+* Any plugins or functionality that depend on AWS IAM `AssumeRole` need to be configured differently. 
+This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-handling/).
+
 ## More information
 
 * [Networking and Peering information](/konnect/network-resiliency/#how-does-network-peering-work-with-dedicated-cloud-gateway-nodes)

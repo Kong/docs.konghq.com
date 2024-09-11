@@ -32,7 +32,6 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'publisher' => 'Kong Inc.',
           'desc' => 'Verify and sign one or two tokens in a request',
           'enterprise' => true,
-          'paid' => true,
           'kong_version_compatibility' => { 'community_edition' => { 'compatible' => nil }, 'enterprise_edition' => { 'compatible' => true } }
         )
       end
@@ -73,7 +72,6 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'publisher' => 'Kong Inc.',
           'desc' => 'Verify and (re-)sign one or two tokens in a request',
           'enterprise' => true,
-          'paid' => true,
           'kong_version_compatibility' => { 'community_edition' => { 'compatible' => nil }, 'enterprise_edition' => { 'compatible' => true } }
         )
       end

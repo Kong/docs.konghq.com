@@ -12,6 +12,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2024
 
+**Plugin pricing updated**
+: Plugins are no longer priced are Free, Plus, and Premium tiers separate from the {{site.konnect_short_name}} subscription.
+There is no more extra fee to use any particular plugin. 
+
+: Plugins now follow the same tier scheme as in self-managed {{site.kong_gateway}}, where you have access to free or Enterprise plugins, depending on your subscription level.
+
 **Cloud Launchers deprecated**
 : Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.
 

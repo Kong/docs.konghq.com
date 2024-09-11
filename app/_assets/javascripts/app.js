@@ -561,12 +561,6 @@ jQuery(function () {
     $(".badge.techpartner").append(
       '<div class="tooltip"><span class="tooltiptext">Verified Kong technical partner</span></div>'
     );
-    $(".badge.paid").append(
-      '<div class="tooltip"><span class="tooltiptext">Available with Konnect Paid subscription </span></div>'
-    );
-    $(".badge.premium").append(
-      '<div class="tooltip"><span class="tooltiptext">Available with Konnect Premium subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
-    );
   }
 });
 
