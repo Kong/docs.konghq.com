@@ -1,5 +1,9 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.8.x
+* Added the Redis `cluster_max_redirections` configuration option.
+* Fixed an issue where the Age header was not being updated correctly when serving cached requests.
+
 ### {{site.base_gateway}} 3.6.x
 * This plugin can now be scoped to consumer groups.
 * Removed the undesired `proxy-cache-advanced/migrations/001_035_to_050.lua` file, which blocked migration from OSS to Enterprise. 
