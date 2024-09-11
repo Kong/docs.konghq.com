@@ -19,6 +19,8 @@ The following table describes which providers and requests the AI Proxy Advanced
 | Mistral (mistral.ai, OpenAI, raw, and OLLAMA formats) | ✅ | ✅ | ✅ |
 | Llama2 (raw, OLLAMA, and OpenAI formats) | ✅ | ✅ | ✅ |
 | Llama3 (OLLAMA and OpenAI formats) | ✅ | ✅ | ✅ |
+| Amazon Bedrock | ✅ | ✅ | ✅ |
+| Gemini | ✅ | ✅ | ✅ |
 
 ## How it works
 
@@ -81,6 +83,11 @@ The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy-advanced/configuration
 | Llama2        | User-defined                                             | `llm/v1/completions` | User-defined           |
 | Mistral       | User-defined                                             | `llm/v1/chat`        | User-defined           |
 | Mistral       | User-defined                                             | `llm/v1/completions` | User-defined           |
+| Amazon Bedrock     | Use the LLM `chat` upstream path                    | `llm/v1/chat`        | [Use the model name for the specific LLM provider](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html)            |
+| Amazon Bedrock     | Use the LLM `completions` upstream path             | `llm/v1/completions` | [Use the model name for the specific LLM provider](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html)             |
+| Gemini     | `llm/v1/chat`                            | `llm/v1/chat`        | `gemini-1.5-flash` or `gemini-1.5-pro`           |
+| Gemini     | `llm/v1/completions`                     | `llm/v1/completions` | `gemini-1.5-flash` or `gemini-1.5-pro`            |
+
 
 The following upstream URL patterns are used:
 
@@ -92,7 +99,8 @@ The following upstream URL patterns are used:
 | Anthropic | `https://api.anthropic.com:443/{route_type_path}`                                                      |
 | Llama2    | As defined in `config.model.options.upstream_url`                                                      |
 | Mistral   | As defined in  `config.model.options.upstream_url`                                                     |
-
+| Amazon Bedrock   | `https://bedrock-runtime.{region}.amazonaws.com`                                                   |
+| Gemini  | `https://generativelanguage.googleapis.com`                                                     |
 
 {:.important}
 > While only the **Llama2** and **Mistral** models are classed as self-hosted, the target URL can be overridden for any of the supported providers.
