@@ -49,10 +49,10 @@ Grant access to your Azure AD Tenant:
 1. Run the following command with your Azure VNET Subscription ID `<subscription-id>`, Azure VNET resource group name `<resource-group>`, and Azure VNET Name `<vnet-name>` specified to assign the role to the service principal:
 
     ```bash
-    az role assignment create
-        --role "Kong Cloud Gateway Peering Creator"
-        --assignee "$(az ad sp list --filter "appId eq '207b296f-cf25-4d23-9eba-9a2c41dc62ca'"
-        --output tsv --query '[0].id')"
+    az role assignment create \
+        --role "Kong Cloud Gateway Peering Creator" \
+        --assignee "$(az ad sp list --filter "appId eq '207b296f-cf25-4d23-9eba-9a2c41dc62ca'" \
+        --output tsv --query '[0].id')" \
         --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Network/virtualNetworks/<vnet-name>"
     ```
 
