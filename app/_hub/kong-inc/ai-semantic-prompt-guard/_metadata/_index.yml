@@ -1,4 +1,4 @@
-name: AI Prompt Template
+name: AI Semantic Prompt Guard
 search_aliases:
   - ai
   - llm
@@ -6,14 +6,16 @@ search_aliases:
   - intelligence
   - language
   - model
+  - semantic
 dbless_compatible: yes
 free: true
 enterprise: true
-konnect: true
+paid: true
+konnect: false
 network_config_opts: All
 notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: Provide fill-in-the-blank AI prompts to users
+desc: Semantically and intelligently create allow and deny lists of topics that can be requested across every LLM.
 type: plugin

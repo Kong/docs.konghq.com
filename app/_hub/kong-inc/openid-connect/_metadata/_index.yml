@@ -8,7 +8,6 @@ search_aliases:
 dbless_compatible: 'yes'
 free: false
 enterprise: true
-premium: true
 konnect: true
 network_config_opts: All
 notes: --

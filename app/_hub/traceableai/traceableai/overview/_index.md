@@ -1,6 +1,5 @@
 ---
 nav_title: Overview
-title: Overview
 ---
 
 Traceable's Kong plugin lets Traceable capture a copy of the API traffic that is flowing through {{site.base_gateway}}.
