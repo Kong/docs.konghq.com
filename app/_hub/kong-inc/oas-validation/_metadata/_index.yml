@@ -8,7 +8,6 @@ dbless_compatible: 'yes'
 konnect_examples: true
 free: false
 enterprise: true
-paid: true
 konnect: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 categories:

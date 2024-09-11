@@ -12,7 +12,9 @@ Your organization is considered inactive when:
 
 To close a Plus or Enterprise account, you can:
 * Go to [**My Account**](https://cloud.konghq.com/global/account) > **Delete Account**. 
-* Request deactivation from [Kong Support](https://support.konghq.com/). 
+* Go to Organization > Settings > General > **Deactivate Organization**
+* Request deactivation from [Kong Support](https://support.konghq.com/).
+
 
 ## What happens if an organization is deactivated?
 
@@ -47,4 +49,4 @@ Contact [Kong Support](https://support.konghq.com/) to do any of the following:
 
 ## Right To Be Forgotten
 
-If you want to exercise your data subject rights, including the right to be forgotten (RTBF) under GDPR review the [Privacy Policy](https://konghq.com/privacy) and start the request process.
+If you want to exercise your data subject rights, including the right to be forgotten (RTBF) under GDPR review the [Privacy Policy](https://konghq.com/legal/privacy-policy) and start the request process.

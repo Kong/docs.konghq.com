@@ -45,6 +45,14 @@ proxy in front of the applications (because it uses HTTP path-based routing).
 The Kong proxy can be used for this. The second option requires more
 configuration in kong.conf, but can be used without proxying the applications.
 
+{% if_version gte:3.8.x %}
+### DNS clients
+
+Two different DNS clients are available:
+- The legacy DNS client: This is the client enabled by default, its configuration is under `DNS RESOLVER` in `kong.conf`.
+- The new DNS client: This client follows the industry standard and is more performant. Its configuration is under `New DNS RESOLVER`. For more information, see [Migrate to the new DNS client](/gateway/{{page.release}}/migrate-to-new-dns-client).
+{% endif_version %} 
+
 ## CORS
 
 ### Understanding CORS

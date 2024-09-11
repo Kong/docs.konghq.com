@@ -283,6 +283,8 @@ items:
             url: /migrate-ce-to-ke/
           - text: Migration Guidelines Cassandra to PostgreSQL
             url: /migrate-cassandra-to-postgres/
+          - text: Migrate to the new DNS client
+            url: /migrate-to-new-dns-client/
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
@@ -552,6 +554,8 @@ items:
           url: /plugin-development/pdk/kong.service.response
         - text: kong.table
           url: /plugin-development/pdk/kong.table
+        - text: kong.telemetry.log
+          url: /plugin-development/pdk/kong.telemetry.log
         - text: kong.tracing
           url: /plugin-development/pdk/kong.tracing
         - text: kong.vault
@@ -736,7 +740,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
-        src: /gateway/reference/configuration/configuration-3.7.x
+        src: /gateway/reference/configuration/configuration-3.8.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

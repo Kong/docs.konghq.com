@@ -59,6 +59,20 @@ The performance tests cover a number of baseline configurations and common use c
 | Rate limit and basic auth   | 100 routes, 100 consumers   | 92372.6                   | 10.17    | 5.31     |
 {% endif_version %}
 
+{% if_version eq:3.8.x %}
+
+| Test type                   | Number of routes/consumers  | Requests per second (RPS) | P99 (ms) | P95 (ms) |
+| --------------------------- | --------------------------- | ------------------------- | -------- | -------- |
+| Kong proxy with no plugins  | 1 route, 0 consumers       | 142443.4                  | 6.24     | 3.55     |
+| Kong proxy with no plugins  | 100 routes, 0 consumers    | 137561.7                  | 6.36     | 3.58     |
+| Rate limit and no auth      | 1 route, 0 consumers       | 120897.4                  | 8.08     | 3.60     |
+| Rate limit and no auth      | 100 routes, 0 consumers    | 116867.2                  | 8.51     | 3.78     |
+| Rate limit and key auth     | 1 route, 1 consumer         | 105657.4                  | 8.62     | 4.38     |
+| Rate limit and key auth     | 100 routes, 100 consumers   | 100047.6                  | 9.12     | 4.45     |
+| Rate limit and basic auth   | 1 route, 1 consumer         | 98031.6                   | 10.47    | 5.02     |
+| Rate limit and basic auth   | 100 routes, 100 consumers   | 92548.2                   | 9.80     | 5.25     |
+{% endif_version %}
+
 
 ### Test environment
 

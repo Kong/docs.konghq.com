@@ -11,7 +11,12 @@ and POST it to `/ca_certificates`:
 {% navtabs %}
 {% navtab Kong Admin API %}
 ```bash
-curl -sX POST https://localhost:8001/ca_certificates -F cert=@cert.pem
+curl -X POST https://localhost:8001/ca_certificates \
+  -F cert=@cert.pem
+```
+
+The response will contain an `id` value that can now be used for the mTLS plugin configurations or consumer mappings:
+```
 {
   "tags": null,
   "created_at": 1566597621,
@@ -34,11 +39,11 @@ Go through the Gateway Manager:
 You can view your certificate listed in the **Certificates** tab.
 
 To add a certificate via curl, you need:
-* {{site.konnect_short_name}} ID
+* {{site.konnect_short_name}} control plane ID
 * [A personal access token](/konnect/api/)
 
 ```bash
-curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certificates \
+curl -X POST https://konnect.konghq.com/api/control_planes/{controlPlaneID}/ca_certificates \
   -F cert=@testCACert.pem \
   --header "Authorization: Bearer TOKEN"
 ```

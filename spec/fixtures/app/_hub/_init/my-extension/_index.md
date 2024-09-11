@@ -105,19 +105,11 @@ cloud: # (Kong Inc plugins only) Boolean
 
 # SUBSCRIPTION TIERS (KONG INC PLUGINS ONLY)
 # Set the subscription tiers that your plugin is restricted to.
-# If your plugin is free/open-source, set `false` for the enterprise, paid, and premium tiers.
+# If your plugin is free/open-source, set `false` for the enterprise tier.
 
 enterprise: # (Kong Gateway; Kong Inc plugins only) Boolean
   # Specifies if your plugin is an Enterprise-tier plugin in Kong Gateway (on-prem).
   # Set true if only available in Enterprise, or false if available for free.
-
-paid: # (Konnect tier; Kong Inc plugins only) Boolean
-  # Specifies if your plugin is a paid-tier plugin in Konnect.
-  # Set true if the plugin is available in the paid Konnect tier.
-
-premium: # (Konnect tier; Kong Inc plugins only) Boolean
-  # Specifies if your plugin is a premium-tier plugin in Konnect.
-  # Set true if the plugin is available _only_ in the premium Konnect tier.
 
 
 #########################
