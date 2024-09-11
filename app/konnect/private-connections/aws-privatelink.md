@@ -21,21 +21,12 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 
 1. Enter a name tag for the endpoint that includes the {{site.konnect_short_name}} control plane geo that you want to connect to. For example: `konnect-us-geo`.
 
-1. Select the **Other endpoint services** service category.
+1. Select the **Endpoint services that use NLBs and GWLBs** service category.
 
 1. Find the correct service name for your region in the tables below. Open the tab that matches your AWS region and use the PrivateLink service name for your {{site.konnect_short_name}} geo. For example, `com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db` for the us-east-2 AWS region and US {{site.konnect_short_name}} geo.
 
 {% capture tabs %}
 {% navtabs %}
-
-{% navtab ap-southeast-2 %}
-| {{site.konnect_short_name}} Geographical Region | PrivateLink service name | Private DNS name |
-| ------ | ------------ |
-| AP | com.amazonaws.vpce.ap-southeast-2.vpce-svc-05526f43d36cc10e1 | ap.svc.konghq.com |
-| EU | com.amazonaws.vpce.ap-southeast-2.vpce-svc-02392dc520d2d9ad9 | eu.svc.konghq.com |
-| ME | com.amazonaws.vpce.ap-southeast-2.vpce-svc-013380defe9ad33b6 | me.svc.konghq.com |
-| US | com.amazonaws.vpce.ap-southeast-2.vpce-svc-0d986920a41ab0b80 | us.svc.konghq.com |
-{% endnavtab %}
 
 {% navtab eu-central-1 %}
 | {{site.konnect_short_name}} Geographical Region | PrivateLink service name | Private DNS name |
@@ -54,6 +45,15 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 | ME | com.amazonaws.vpce.us-east-2.vpce-svc-0f1c86fb6399d4fe5 | me.svc.konghq.com |
 | US | com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db | us.svc.konghq.com |
 {% endnavtab %}
+
+{% navtab eu-west-1 %}
+| {{site.konnect_short_name}} Geographical Region | PrivateLink service name | Private DNS name |
+| ------ | ------------ |
+| AP | com.amazonaws.vpce.eu-west-1.vpce-svc-08edf59f8bc1d2262 | ap.svc.konghq.com |
+| EU | com.amazonaws.vpce.eu-west-1.vpce-svc-037bd988d9a9d4e3a | eu.svc.konghq.com |
+| ME | com.amazonaws.vpce.eu-west-1.vpce-svc-0978fbaf50bfc67d9 | me.svc.konghq.com |
+| US | com.amazonaws.vpce.eu-west-1.vpce-svc-01070d7c2137e0ee1 | us.svc.konghq.com |
+{% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
 {{ tabs | indent }}
@@ -70,4 +70,6 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 ```sh
 cluster_control_plane = us.svc.konghq.com/cp/{cluster_prefix}
 cluster_server_name = us.svc.konghq.com
+cluster_telemetry_endpoint = us.svc.konghq.com:443/tp/{cluster_prefix}
+cluster_telemetry_server_name = us.svc.konghq.com
 ```
