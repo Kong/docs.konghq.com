@@ -3,6 +3,16 @@ nav_title: Gemini
 title: Set up AI Proxy with Gemini
 ---
 
+This guide walks you through setting up the AI Proxy plugin with [Gemini](https://gemini.google.com/).
+
+For all providers, the Kong AI Proxy plugin attaches to route entities.
+
+It can be installed into one route per operation, for example:
+
+* OpenAI `chat` route
+* Cohere `chat` route
+* Cohere `completions` route
+
 ## Prerequisites
 * [{{site.base_gateway}} is installed and running](/gateway/latest/get-started/)
 * [Create or retrieve an API key](https://ai.google.dev/gemini-api/docs/api-key) on the Google Cloud API Credentials Page to access Google’s AI services
