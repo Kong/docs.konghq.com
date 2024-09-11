@@ -42,6 +42,17 @@ Cloud Launchers deprecated
 </div>
 </div>
 
+
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-service-catalog-launches-into-public-beta">Konnect Service Catalog launches into Public Beta</a>
+</div>
+<div class="changelog-description">The Konnect Service Catalog is now available to all Konnect users in Public Beta.  Service Catalog allows you to discover your organization's "Shadow APIs" through its integrations with Gateway Manager, Mesh Manager, and Traceable.</div>
+</div>
+</div>
+
 ## August 2024
 
 **You can now delete the default control plane**
