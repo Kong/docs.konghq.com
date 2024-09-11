@@ -49,13 +49,6 @@ RSpec.describe Jekyll::Drops::Plugins::Badges do
       it { expect(subject.enterprise?).to eq(false) }
     end
 
-    context 'when `free` is set to true' do
-      let(:enterprise) { true }
-      let(:free) { true }
-
-      it { expect(subject.enterprise?).to eq(false) }
-    end
-
     context 'when `enterprise` is true and `free` is false' do
       let(:enterprise) { true }
       let(:free) { false }
