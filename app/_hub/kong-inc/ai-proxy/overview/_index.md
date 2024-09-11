@@ -101,7 +101,7 @@ The following upstream URL patterns are used:
 
 {% if_version gte:3.8.x %}
 | Amazon Bedrock   | `https://bedrock-runtime.{region}.amazonaws.com`                                                   |
-| Gemini  | https://generativelanguage.googleapis.com                                                     |
+| Gemini  | `https://generativelanguage.googleapis.com`                                                    |
 {% endif_version %}
 
 {:.important}

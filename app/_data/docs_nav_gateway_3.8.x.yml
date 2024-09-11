@@ -394,10 +394,6 @@ items:
             absolute_url: true
       - text: AI Platform Integration Guides
         items:
-          - text: Amazon Bedrock
-            url: /hub/kong-inc/ai-proxy/how-to/ai-and-machine-learning-platform-integration-guides/bedrock/
-            generate: false
-            absolute_url: true
           - text: Gemini
             url: /hub/kong-inc/ai-proxy/how-to/ai-and-machine-learning-platform-integration-guides/gemini/
             generate: false
