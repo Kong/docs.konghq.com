@@ -6,6 +6,13 @@ title: Using the AI Semantic Prompt Guard plugin
 The AI Semantic Prompt Guard configuration takes two arrays of objects: one for `allow` prompts, and
 one for `deny` prompts, which it uses to determine which prompts are permitted or blocked.
 
+## Prerequisites
+
+- Create a service and a route
+- Start a [Redis](https://redis.io/docs/latest/) instance in your environment
+
+You can now create the AI Semantic Prompt Guard plugin at the global, service, or route level, using the following examples.
+
 ## Examples
 
 The following examples show how to configure allow and deny prompts, and the expected behavior when making requests.
