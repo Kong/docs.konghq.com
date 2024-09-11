@@ -29,7 +29,7 @@
   distros:
     - amazon-linux
     - ubuntu
-    - rhel:7
+    - rhel:9
     - debian
   arch:
     - linux/amd64
@@ -43,15 +43,11 @@
       - enterprise
   distros:
     - ubuntu
-    - rhel:7
+    - rhel:8
     - amazon-linux
     - debian
-    - centos
   arch:
     - linux/amd64
-  skip:
-    - 2.8.x/centos/oss/package # No OSS package for 2.8
-    - 2.8.x/centos/oss/repository # No OSS package for 2.8
   outputs:
     enterprise: "Kong Enterprise {{ version }}"
     oss: "{{ version }}"

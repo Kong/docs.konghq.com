@@ -134,34 +134,8 @@ async function runSingleJob(distro, job, arch, installOption, conditions) {
     );
 
     if (expected !== version) {
-      // Check if the package exists on download.konghq.com
-      // Only supports RHEL at the moment
-      let existsOnOldSite = "❓";
-      const expectedParts = expected.split(" ");
-      const expectedVersion = expectedParts[expectedParts.length - 1];
-      let packageArch = arch.replace("linux/", "");
-
-      let packageName = "kong";
-      if (installOption.package == "enterprise") {
-        packageName = "kong-enterprise-edition";
-      }
-
-      if (distro === "rhel") {
-        // 2.x packages are noarch for enterprise on RHEL
-        if (
-          installOption.package == "enterprise" &&
-          expectedVersion[0] == "2"
-        ) {
-          packageArch = "noarch";
-        }
-        url = `https://download.konghq.com/gateway-${expectedVersion[0]}.x-rhel-7/Packages/k/${packageName}-${expectedVersion}.rhel7.${packageArch}.rpm`;
-
-        const response = await fetch(url, { method: "HEAD" });
-        existsOnOldSite = response.status != 404 ? "✅" : "❌";
-      }
-
       console.log(
-        `❌ ${summary} Expected: ${expected}, Got: ${version}, Exists on download.konghq.com: ${existsOnOldSite}`,
+        `❌ ${summary} Expected: ${expected}, Got: ${version}`,
       );
       process.exitCode = 1;
 

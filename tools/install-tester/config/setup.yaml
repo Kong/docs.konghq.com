@@ -14,8 +14,8 @@ debian:
     - useradd tester -m -p password
     - usermod -aG sudo tester
     - "echo 'ALL            ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/tester"
-"rhel:7":
-  image: "registry.access.redhat.com/ubi7/ubi-init:latest"
+"rhel:8":
+  image: "registry.access.redhat.com/ubi8/ubi-init:latest"
   setup:
     - yum install -y curl gpg sudo
     - useradd tester -m -p password
@@ -30,11 +30,5 @@ amazon-linux:
   image: "amazonlinux:2"
   setup:
     - yum install -y curl gpg sudo shadow-utils util-linux
-    - useradd tester -m -p password
-    - "echo 'ALL            ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/tester"
-centos:
-  image: "centos:centos7"
-  setup:
-    - yum install -y curl gpg sudo
     - useradd tester -m -p password
     - "echo 'ALL            ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/tester"
