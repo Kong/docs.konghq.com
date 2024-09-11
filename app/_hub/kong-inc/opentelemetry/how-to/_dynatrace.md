@@ -9,7 +9,8 @@ minimum_version: 3.8.x
 Set up the OpenTelemetry plugin to send logs and metrics to Dynatrace.
 
 ## Prerequisites
-* Install the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/)
+* Install the `contrib` version of the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/).
+  The `contrib` version is necessary for generating metrics.
 * {{site.base_gateway}} 3.8+
 
 ## Configure {{site.base_gateway}}
@@ -30,8 +31,8 @@ Adjust the `{OPENTELEMETRY_COLLECTOR}` variable with your own collector endpoint
 plugin: kong-inc/opentelemetry
 name: opentelemetry
 config:
-  traces_endpoint: "http://{OPENTELEMETRY_COLLECTOR}:4318/v1/traces"
-  logs_endpoint: "http://{OPENTELEMETRY_COLLECTOR}:4318/v1/logs"
+  traces_endpoint: "https://{your-environment-id}.live.dynatrace.com/api/v2/otlp/v1/traces"
+  logs_endpoint: "https://{your-environment-id}.live.dynatrace.com/api/v2/otlp/v1/logs"
   resource_attributes:
     service.name: kong-dev
 targets:
@@ -62,9 +63,9 @@ receivers:
 
 exporters:
   otlphttp:
-    endpoint: "${env:DT_BASEURL}/api/v2/otlp"
-    headers:
-      "Authorization": "Api-Token ${env:DT_API_TOKEN}"
+    endpoint: "https://{your-environment-id}.live.dynatrace.com/api/v2/otlp"
+    headers: 
+      "Authorization": "Api-Token <your-api-token>"
 
 service:
   pipelines:
