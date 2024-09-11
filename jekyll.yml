@@ -183,6 +183,8 @@ hub-filters:
       slug: kong-inc
     - name: Technical partner
       slug: third-party-partner
+    - name: Premium partner
+      slug: premium-partner
     - name: Support by 3rd party
       slug: community
   compatibility:

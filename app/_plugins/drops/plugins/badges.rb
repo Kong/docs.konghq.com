@@ -27,11 +27,16 @@ module Jekyll
           !!@metadata['techpartner'] && @publisher != KONG_INC
         end
 
+        def premiumpartner?
+          !!@metadata['premiumpartner']
+        end
+
         def hash
           "publisher:#{@publisher}-" \
             "konnect:#{konnect?}-" \
             "enterprise:#{enterprise?}-" \
             "techpartner:#{techpartner?}-" \
+            "premiumpartner:#{premiumpartner?}-" \
             "oss:#{oss?}"
         end
       end
