@@ -12,26 +12,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2024
 
-
-<div class="changelog-entries">
-<div class="changelog-date">September<br>12</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-Announcing Beamer Integration with Konnect
-</div>
-<div class="changelog-description">With Beamer, customers can easily stay up-to-date on the latest Konnect announcements without having to navigate across multiple websites.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">September<br>03</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-Cloud Launchers deprecated
-</div>
-<div class="changelog-description">Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.</div>
-</div>
-</div>
-
+**Cloud Launchers deprecated**
+: Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.
 
 ## August 2024
 
