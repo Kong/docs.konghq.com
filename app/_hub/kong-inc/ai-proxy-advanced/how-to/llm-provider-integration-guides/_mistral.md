@@ -57,9 +57,6 @@ as defined in its [API documentation](https://github.com/ollama/ollama/blob/main
 After installing and starting your Mistral instance, you can then create an
 AI Proxy Advanced route and plugin configuration.
 
-{% navtabs %}
-{% navtab Kong Admin API %}
-
 Create the route:
 
 ```bash
@@ -68,43 +65,33 @@ curl -X POST http://localhost:8001/services/ai-proxy-advanced/routes \
   --data "paths[]=~/mistral-chat$"
 ```
 
-Enable and configure the AI Proxy Advanced plugin for Mistral (using `openai` format in this example):
+Enable and configure the AI Proxy Advanced plugin for Mistral (using `openai` format in this example).
 
-```bash
-curl -X POST http://localhost:8001/routes/mistral-chat/plugins \
-  --data "name=ai-proxy-advanced" \
-  --data "config.route_type=llm/v1/chat" \
-  --data "config.auth.header_name=Authorization" \
-  --data "config.auth.header_value=Bearer <MISTRAL_AI_KEY>" \
-  --data "config.model.provider=mistral" \
-  --data "config.model.name=mistral-tiny" \
-  --data "config.model.options.mistral_format=openai" \
-  --data "config.model.options.upstream_url=https://api.mistral.ai/v1/chat/completions" \ 
-```
-{% endnavtab %}
-{% navtab YAML %}
-```yaml
-name: mistral-chat
-paths:
-  - "~/mistral-chat$"
-methods:
-  - POST
-plugins:
-  - name: ai-proxy-advanced
-    config:
-      route_type: "llm/v1/chat"
-      auth:
-        header_name: "Authorization"
-        header_value: "Bearer <MISTRAL_AI_KEY>"
-      model:
-        provider: "mistral"
-        name: "mistral-tiny"
-        options:
-          mistral_format: "openai"
-          upstream_url: "https://api.mistral.ai/v1/chat/completions"
-```
-{% endnavtab %}
-{% endnavtabs %}
+<!--vale off-->
+{% plugin_example %}
+plugin: kong-inc/ai-proxy-advanced
+name: ai-proxy-advanced
+config:
+  targets:
+  - route_type: "llm/v1/chat"
+    auth:
+      header_name: "Authorization"
+      header_value: "Bearer <MISTRAL_AI_KEY>"
+    model:
+      provider: mistral
+      name: "mistral-tiny"
+      options:
+        mistral_format: openai
+        upstream_url: "https://api.mistral.ai/v1/chat/completions"
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on-->
 
 ### Test the configuration
 

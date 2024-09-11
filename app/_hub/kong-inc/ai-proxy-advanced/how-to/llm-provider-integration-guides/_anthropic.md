@@ -18,9 +18,6 @@ AI Proxy Advanced route and plugin configuration.
 
 ### Set up route and plugin
 
-{% navtabs %}
-{% navtab Kong Admin API %}
-
 Create the route:
 
 ```bash
@@ -29,49 +26,35 @@ curl -X POST http://localhost:8001/services/ai-proxy-advanced/routes \
   --data "paths[]=~/anthropic-chat$"
 ```
 
-Enable and configure the AI Proxy Advanced plugin for Anthropic, replacing the `<anthropic_key>` with your own API key:
+Enable and configure the AI Proxy Advanced plugin for Anthropic, replacing the `<anthropic_key>` with your own API key.
 
-```bash
-curl -X POST http://localhost:8001/routes/anthropic-chat/plugins \
-  --data "name=ai-proxy-advanced" \
-  --data "config.route_type=llm/v1/chat" \
-  --data "config.auth.header_name=apikey" \
-  --data "config.auth.header_value=<anthropic_key>" \ 
-  --data "config.model.provider=anthropic" \
-  --data "config.model.name=claude-2.1" \
-  --data "config.model.options.max_tokens=512" \
-  --data "config.model.options.temperature=1.0" \
-  --data "config.model.options.top_p=256" \
-  --data "config.model.options.top_k=0.5"
-```
-
-{% endnavtab %}
-{% navtab YAML %}
-```yaml
-name: anthropic-chat
-paths:
-  - "~/anthropic-chat$"
-methods:
-  - POST
-plugins:
-  - name: ai-proxy-advanced
-    config:
-      route_type: "llm/v1/chat"
-      auth:
-        header_name: "apikey"
-        header_value: "<anthropic_key>"  # add your own Anthropic API key
-      model:
-        provider: "anthropic"
-        name: "claude-2.1"
-        options:
-          max_tokens: 512
-          temperature: 1.0
-          top_p: 256
-          top_k: 0.5
-```
-
-{% endnavtab %}
-{% endnavtabs %}
+<!--vale off-->
+{% plugin_example %}
+plugin: kong-inc/ai-proxy-advanced
+name: ai-proxy-advanced
+config:
+  targets:
+  - route_type: "llm/v1/chat"
+    auth:
+      header_name: apikey
+      header_value: "<anthropic_key>"
+    model:
+      provider: anthropic
+      name: claude-2.1
+      options:
+        max_tokens: 512
+        temperature: 1.0
+        top_p: 256
+        top_k: 0.5
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on-->
 
 ### Test the configuration
 

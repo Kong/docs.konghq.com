@@ -28,10 +28,7 @@ Record its name as your `azure_deployment_id`:
 
 ### Set up route and plugin
 
-Now you can create an AI Proxy Advanced route and plugin configuration:
-
-{% navtabs %}
-{% navtab Kong Admin API %}
+Now you can create an AI Proxy Advanced route and plugin configuration.
 
 Create the route:
 
@@ -41,44 +38,34 @@ curl -X POST http://localhost:8001/services/ai-proxy-advanced/routes \
   --data "paths[]=~/azure-chat$"
 ```
 
-Enable and configure the AI Proxy Advanced plugin for Azure, replacing the `<azure_ai_access_key>` with your own API key:
+Enable and configure the AI Proxy Advanced plugin for Azure, replacing the `<azure_ai_access_key>` with your own API key.
 
-```bash
-curl -X POST http://localhost:8001/routes/azure-chat/plugins \
-  --data "name=ai-proxy-advanced" \
-  --data "config.route_type=llm/v1/chat" \
-  --data "config.auth.header_name=api-key" \
-  --data "config.auth.header_value=<azure_ai_access_key>" \
-  --data "config.model.provider=azure" \
-  --data "config.model.name=gpt-35-turbo" \
-  --data "config.model.options.azure_instance=ai-proxy-regression" \
-  --data "config.model.options.azure_deployment_id=kong-gpt-3-5"
-```
+<!--vale off-->
+{% plugin_example %}
+plugin: kong-inc/ai-proxy-advanced
+name: ai-proxy-advanced
+config:
+  targets:
+  - route_type: "llm/v1/chat"
+    auth:
+      header_name: "api-key"
+      header_value: "<azure_ai_access_key>"
+    model:
+      provider: azure
+      name: "gpt-35-turbo"
+      options:
+        azure_instance: "ai-proxy-regression"
+        azure_deployment_id: "kong-gpt-3-5"
 
-{% endnavtab %}
-{% navtab YAML %}
-```yaml
-name: azure-chat
-paths:
-  - "~/azure-chat$"
-methods:
-  - POST
-plugins:
-  - name: ai-proxy-advanced
-    config:
-      route_type: "llm/v1/chat"
-      auth:
-        header_name: "api-key"
-        header_value: "<azure_ai_access_key>"  # add your own 'Azure OpenAI' access key
-      model:
-        provider: "azure"
-        name: "gpt-35-turbo"
-        options:
-          azure_instance: "ai-proxy-regression"
-          azure_deployment_id: "kong-gpt-3-5"
-```
-{% endnavtab %}
-{% endnavtabs %}
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on-->
 
 ### Test the configuration
 

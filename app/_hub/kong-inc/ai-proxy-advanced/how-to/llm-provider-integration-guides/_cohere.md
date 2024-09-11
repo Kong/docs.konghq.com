@@ -18,9 +18,6 @@ AI Proxy Advanced route and plugin configuration.
 
 ### Set up route and plugin
 
-{% navtabs %}
-{% navtab Kong Admin API %}
-
 Create the route:
 
 ```bash
@@ -31,41 +28,31 @@ curl -X POST http://localhost:8001/services/ai-proxy-advanced/routes \
 
 Enable and configure the AI Proxy Advanced plugin for Cohere, replacing the `<cohere_key>` with your own API key:
 
-```bash
-curl -X POST http://localhost:8001/routes/cohere-chat/plugins \
-  --data "name=ai-proxy-advanced" \
-  --data "config.route_type=llm/v1/chat" \
-  --data "config.auth.header_name=Authorization" \
-  --data "config.auth.header_value=Bearer <cohere_key>" \
-  --data "config.model.provider=cohere" \
-  --data "config.model.name=command" \
-  --data "config.model.options.max_tokens=512" \
-  --data "config.model.options.temperature=1.0"
-```
-{% endnavtab %}
-{% navtab YAML %}
-```yaml
-name: cohere-chat
-paths:
-  - "~/cohere-chat$"
-methods:
-  - POST
-plugins:
-  - name: ai-proxy-advanced
-    config:
-      route_type: "llm/v1/chat"
-      auth:
-        header_name: "Authorization"
-        header_value: "Bearer <cohere_key>"  # add your own Cohere API key
-      model:
-        provider: "cohere"
-        name: "command"
-        options:
-          max_tokens: 512
-          temperature: 1.0
-```
-{% endnavtab %}
-{% endnavtabs %}
+<!--vale off-->
+{% plugin_example %}
+plugin: kong-inc/ai-proxy-advanced
+name: ai-proxy-advanced
+config:
+  targets:
+  - route_type: "llm/v1/chat"
+    auth:
+      header_name: "Authorization"
+      header_value: "Bearer <cohere_key>"
+    model:
+      provider: cohere
+      name: "command"
+      options:
+        max_tokens: 512
+        temperature: 1.0
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on-->
 
 ### Test the configuration
 

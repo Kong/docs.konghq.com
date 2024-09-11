@@ -69,9 +69,6 @@ The `openai` format option follows the same upstream formats as the equivalent
 After installing and starting your Llama2 instance, you can then create an
 AI Proxy Advanced route and plugin configuration.
 
-{% navtabs %}
-{% navtab Kong Admin API %}
-
 Create the route:
 
 ```bash
@@ -82,37 +79,28 @@ curl -X POST http://localhost:8001/services/ai-proxy-advanced/routes \
 
 Enable and configure the AI Proxy Advanced plugin for Llama2:
 
-```bash
-curl -X POST http://localhost:8001/routes/llama2-chat/plugins \
-  --data "name=ai-proxy-advanced" \
-  --data "config.route_type=llm/v1/chat" \
-  --data "config.model.provider=llama2" \
-  --data "config.model.name=llama2" \
-  --data "config.model.options.llama2_format=ollama" \
-  --data "config.model.options.upstream_url=http://ollama-server.local:11434/api/chat"
-```
-
-{% endnavtab %}
-{% navtab YAML %}
-```yaml
-name: llama2-chat
-paths:
-  - "~/llama2-chat$"
-methods:
-  - POST
-plugins:
-  - name: ai-proxy-advanced
-    config:
-      route_type: "llm/v1/chat"
-      model:
-        provider: "llama2"
-        name: "llama2"
-        options:
-          llama2_format: "ollama"
-          upstream_url: "http://llama2-server.local:11434/api/chat"
-```
-{% endnavtab %}
-{% endnavtabs %}
+<!--vale off-->
+{% plugin_example %}
+plugin: kong-inc/ai-proxy-advanced
+name: ai-proxy-advanced
+config:
+  targets:
+  - route_type: "llm/v1/chat"
+    model:
+      provider: llama2
+      name: "llama2"
+      options:
+        llama2_format: ollama
+        upstream_url: "http://ollama-server.local:11434/api/chat"
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on-->
 
 ### Test the configuration
 
