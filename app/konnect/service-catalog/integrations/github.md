@@ -1,11 +1,11 @@
 ---
 title: GitHub Integration
 content-type: reference
-config:
-    discovery_support: true
-    discovery_default: true
-    bindable_entities: "Repositories"
-    mechanism: "pull/ingestion model"
+
+discovery_support: true
+discovery_default: true
+bindable_entities: "Repositories"
+mechanism: "pull/ingestion model"
 ---
 
 _Type: External_
@@ -32,4 +32,8 @@ Repository | A GitHub repository relating to the service
 
 ## Discovery information
 
-{% include_cached service-catalog-discovery.html %}
+{% include_cached service-catalog-discovery.html 
+   discovery_support=page.discovery_support
+   discovery_default=page.discovery_default
+   bindable_entities=page.bindable_entities
+   mechanism=page.mechanism %}

@@ -1,11 +1,11 @@
 ---
 title: Traceable Integration
 content-type: reference
-config:
-    discovery_support: true
-    discovery_default: true
-    bindable_entities: "Traceable Service"
-    mechanism: "pull/ingestion model"
+
+discovery_support: true
+discovery_default: true
+bindable_entities: "Traceable Service"
+mechanism: "pull/ingestion model"
 ---
 
 _Type: External_
@@ -26,7 +26,11 @@ Traceable Service | [Traceable Service](https://docs.traceable.ai/docs/domains-s
 
 ## Discovery information
 
-{% include_cached service-catalog-discovery.html %}
+{% include_cached service-catalog-discovery.html 
+   discovery_support=page.discovery_support
+   discovery_default=page.discovery_default
+   bindable_entities=page.bindable_entities
+   mechanism=page.mechanism %}
 
 
 
