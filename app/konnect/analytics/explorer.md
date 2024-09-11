@@ -90,6 +90,9 @@ With LLM usage reporting, you can:
 
 To use this feature, navigate to the [Explorer dashboard](https://cloud.konghq.com/us/analytics/explorer) and switch between API usage and LLM usage using the new dataset dropdown. Metrics and groupings will dynamically adjust based on the selected dataset. 
 
+{:.note}
+>**Note**: LLM requires {{site.base_gateway}} version 3.8. 
+
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 

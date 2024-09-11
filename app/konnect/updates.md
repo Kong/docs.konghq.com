@@ -13,6 +13,18 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## September 2024
 
 <div class="changelog-entries">
+<div class="changelog-date">September<br>12</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+Introducing LLM Analytics in Kong Konnect for GenAI traffic
+</div>
+<div class="changelog-description">We’re pleased to announce the new LLM Usage reporting feature in Advanced Analytics with the release of Kong Gateway 3.8. This release aims to help organizations better manage their large language model (LLM) usage. This feature offers insights into token consumption, costs, and latency, allowing businesses to optimize their AI investments. By enabling comparisons across different LLM providers and models, organizations can make better-informed decisions and improve budget management.
+ </div>
+</div>
+</div>
+
+
+<div class="changelog-entries">
 <div class="changelog-date">September<br>11</div>
 <div class="changelog-entry">
 <div class="changelog-title">
