@@ -28,11 +28,11 @@ If you're looking for plugin deployment topology compatibility, supported networ
   {{ category.name }}
 </h3>
 
-<table style="max-width: 700px">
+<table style="max-width:700px;">
   <thead>
-      <th style="text-align: left; width: 10%">Plugin</th>
-      <th style="text-align: center">Free</th>
-      <th style="text-align: center">Enterprise</th>
+      <th style="text-align: left">Plugin</th>
+      <th style="text-align: center; width:20%">Free</th>
+      <th style="text-align: center; width:20%">Enterprise</th>
   </thead>
   <tbody>
     {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.categories contains category.slug" %}
