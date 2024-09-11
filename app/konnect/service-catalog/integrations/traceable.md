@@ -18,11 +18,11 @@ The Traceable integration lets you connect Traceable entities directly to your S
 2. Select **Traceable**, then **Install Traceable**.
 3. Select **Authorize**. 
 
-## Bindable entities
+## Resources
 
-Entity | Binding Level | Description
--------|---------------|-------------
-Traceable Service | Service | [Traceable Service](https://docs.traceable.ai/docs/domains-services-backends) which holds group of Traceable API endpoint resource
+Entity | Description
+-------|-------------
+Traceable Service | [Traceable Service](https://docs.traceable.ai/docs/domains-services-backends) which holds group of Traceable API endpoint resource
 
 ## Discovery information
 
