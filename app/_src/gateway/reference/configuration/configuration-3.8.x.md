@@ -1672,7 +1672,7 @@ name   | description  | default
 **pg_iam_auth** | Determines whether the AWS IAM database Authentication will be used. When switch to `on`, the username defined in `pg_user` will be used as the database account, and the database connection will be forced to using TLS. `pg_password` will not be used when the switch is `on`. Note that the corresponding IAM policy must be correct, otherwise connecting will fail. | `off`
 **pg_iam_auth_assume_role_arn** | The target AWS IAM role ARN that will be assumed when using AWS IAM database authentication. Typically this is used for operating between multiple roles or cross-accounts. If you are not using assume role you should not specify this value. | none
 **pg_iam_auth_role_session_name** | The role session name used for role assuming in AWS IAM Database Authentication. The default value is `KongPostgres`. | `KongPostgres`
-**pg_iam_auth_sts_endpoint_url** | The custom STS endpoint URL used for role assuming in AWS IAM Database Authentication. Note that this value will override the default STS endpoint URL(which should be `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if you have `AWS_STS_REGIONAL_ENDPOINTS` set to `regional`). If you are not using private VPC endpoint for STS service, you should not specify this value. | none
+**pg_iam_auth_sts_endpoint_url** | The custom STS endpoint URL used for role assuming in AWS IAM Database Authentication. Note that this value will override the default STS endpoint URL (which should be `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if you have `AWS_STS_REGIONAL_ENDPOINTS` set to `regional`). If you are not using private VPC endpoint for STS service, you should not specify this value. | none
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
@@ -1692,7 +1692,7 @@ name   | description  | default
 **pg_ro_user** | Same as `pg_user`, but for the read-only connection. | `<pg_user>`
 **pg_ro_password** | Same as `pg_password`, but for the read-only connection. | `<pg_password>`
 **pg_ro_iam_auth** | Same as `pg_iam_auth`, but for the read-only connection. | `<pg_iam_auth>`
-**pg_ro_iam_auth_assume_role_arn** | Same as `pg_iam_auth_assume_role_arn', but for the read-only connection. | none
+**pg_ro_iam_auth_assume_role_arn** | Same as `pg_iam_auth_assume_role_arn`, but for the read-only connection. | none
 **pg_ro_iam_auth_role_session_name** | Same as `pg_iam_auth_role_session_name`, but for the read-only connection. | `KongPostgres`
 **pg_ro_iam_auth_sts_endpoint_url** | Same as `pg_iam_auth_sts_endpoint_url`, but for the read-only connection. | none
 **pg_ro_database** | Same as `pg_database`, but for the read-only connection. | `<pg_database>`

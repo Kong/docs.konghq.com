@@ -7,7 +7,6 @@ dbless_explanation: |
 examples: true
 free: false
 enterprise: true
-paid: true
 konnect: true
 network_config_opts: All
 notes: --

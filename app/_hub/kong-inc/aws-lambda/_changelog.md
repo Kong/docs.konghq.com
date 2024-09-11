@@ -59,6 +59,7 @@ removed in 3.x.x.
 
 **{{site.base_gateway}} 2.6.x**
 * The AWS region can now be set with the environment variables: `AWS_REGION` or `AWS_DEFAULT_REGION`.
+* Added support for configurable body base64 encoding via the `base64_encode_body` parameter, which is `true` by default. 
 
 **{{site.base_gateway}} 2.2.x**
 * Added support for `isBase64Encoded` flag in Lambda function responses.

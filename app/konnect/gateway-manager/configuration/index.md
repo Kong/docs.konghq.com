@@ -176,3 +176,5 @@ The following entity resource limits apply to each control plane for the configu
 | Target | 10,000 |
 | Upstream | 10,000 |
 | Vault | 1,000 |
+
+If you need any of the {{site.konnect_short_name}} entity resource limits increased, contact [Kong Support](https://support.konghq.com). 

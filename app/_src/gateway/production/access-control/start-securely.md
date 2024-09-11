@@ -19,6 +19,8 @@ After [installing {{site.base_gateway}}](/gateway/{{page.release}}/install/),
 either modify the configuration file or set environment variables for
 the following properties:
 
+* Enabling RBAC authorization and authentication, add the following settings to `kong.conf`: `database=postgres` and `enforce_rbac=on`.
+
 * `enforce_rbac` will force all Admin API requests to require a
 `Kong-Admin-Token`. The Admin associated with the `Kong-Admin-Token`
 must have adequate Permissions in order for the request to succeed.
@@ -34,6 +36,7 @@ Configure RBAC with basic authentication:
 {% include_cached /md/admin-listen.md desc='long' release=page.release %}
 
 ```
+database = postgres
 enforce_rbac = on
 admin_gui_auth = basic-auth
 admin_gui_session_conf = {"secret":"secret","storage":"kong","cookie_secure":false}

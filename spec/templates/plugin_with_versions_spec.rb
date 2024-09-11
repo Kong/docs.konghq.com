@@ -18,7 +18,6 @@ RSpec.describe 'Plugin page with multiple versions' do
     it 'renders metadata in the header' do
       expect(html).to have_css('.page-header--info-icon')
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
-      expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
     end
   end
@@ -34,7 +33,6 @@ RSpec.describe 'Plugin page with multiple versions' do
     it 'renders metadata in the header' do
       expect(html).to have_css('.page-header--info-icon')
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
-      expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
     end
 
