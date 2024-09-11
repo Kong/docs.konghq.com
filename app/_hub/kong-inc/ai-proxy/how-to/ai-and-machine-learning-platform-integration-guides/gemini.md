@@ -5,11 +5,7 @@ title: Set up AI Proxy with Gemini
 
 ## Prerequisites
 * [{{site.base_gateway}} is installed and running](/gateway/latest/get-started/)
-
-## Step 1: Configure Google Gemini Models
-1. Set up or select the Google Gemini model you want to use. You must configure the [model parameters](https://cloud.google.com/vertex-ai/generative-ai/docs/samples/generativeaionvertexai-gemini-pro-config-example) and ensure it's ready for deployment. <!-- is there any additional guidance here about what to configure? something we could put in a table with mapping the parameter to the value?-->
-1. [Create or retrieve an API key](https://ai.google.dev/gemini-api/docs/api-key) on the Google Cloud API Credentials Page to access Google’s AI services.
-1. Auth?
+* [Create or retrieve an API key](https://ai.google.dev/gemini-api/docs/api-key) on the Google Cloud API Credentials Page to access Google’s AI services
 
 ## Configure the AI Proxy plugin
 
@@ -17,7 +13,7 @@ title: Set up AI Proxy with Gemini
 ```sh
 curl -i -X POST http://localhost:8001/services \
     --data "name=gemini-service" \
-    --data "url=https://language.googleapis.com"
+    --data "url=https://generativelanguage.googleapis.com"
 ```
 1. Create a route that maps to the service you defined:
 ```sh
@@ -28,13 +24,23 @@ curl -i -X POST http://localhost:8001/routes \
 1. Use the Kong Admin API to configure the AI Proxy Plugin to route requests to Google Gemini:
 ```sh
 curl -i -X POST http://localhost:8001/services/gemini-service/plugins \
-    --data 'name=ai-proxy' \
-    --data 'config.route_type=preserve' \
-    --data 'config.auth.header_name=Authorization' \
-    --data 'config.auth.header_value=Bearer <GEMINI_API_TOKEN>' \
-    --data 'config.model.provider=gemini' \
-    --data 'config.model.options.gemini.api_endpoint=YOUR_REGIONAL_API_ENDPOINT' \
-    --data 'config.model.options.gemini.project_id=YOUR_PROJECT_ID' \
-    --data 'config.model.options.gemini.location_id=YOUR_LOCATION_ID'
+--data 'name=ai-proxy' \
+--data 'config.auth.param_name=key' \
+--data 'config.auth.param_value=<GEMINI_API_TOKEN>' \
+--data 'config.auth.param_location=query' \
+--data 'config.route_type=llm/v1/chat' \
+--data 'config.model.provider=gemini' \
+--data 'config.model.name=gemini-1.5-flash'
 ```
-<!-- I'm confused about the entity_checks. Looks like it needs to be false for Gemini/Bedrock. It's false by default, so I don't think I need to specify it in the config. But does that then mean I should remove the auth headers from the config? is the auth then replaced by the gemini/bedrock config?-->
+
+Be sure to replace `GEMINI_API_TOKEN` with your API token.
+
+### Test the configuration
+
+Make an `llm/v1/chat` type request to test your new endpoint:
+
+```sh
+curl -X POST http://localhost:8000/gemini \
+ -H 'Content-Type: application/json' \
+ --data-raw '{ "messages": [ { "role": "system", "content": "You are a mathematician" }, { "role": "user", "content": "What is 1+1?"} ] }'
+```
