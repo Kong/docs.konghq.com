@@ -21,22 +21,47 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 
 ### Dedicated Cloud Gateways
 
+{% navtabs %}
+{% navtab AWS %}
 {{site.konnect_saas}} Dedicated Cloud Gateways support the following AWS geos: 
 
 
 * North America:
-    * Ohio (us-east-2)
-    * Oregon (us-west-2)
+    * Ohio (`us-east-2`)
+    * Oregon (`us-west-2`)
+    * California, USA (`us-west-1`)
+    * Montreal (`ca-central-1`)
 * Europe:
-    * Frankfurt (eu-central-1)
-    * Ireland (eu-west-1)
-    * London (eu-west-2)
+    * Frankfurt (`eu-central-1`)
+    * Ireland (`eu-west-1`)
+    * London (`eu-west-2`)
+    * Paris (`eu-west-3`)
+    * Zurich (`eu-central-2`)
 * Asia Pacific:
-    * Tokyo (ap-northeast-1)
-    * Singapore (ap-southeast-1)
-    * Sydney (ap-southeast-2)
-    * Mumbai (ap-south-1)
+    * Tokyo (`ap-northeast-1`)
+    * Singapore (`ap-southeast-1`)
+    * Sydney (`ap-southeast-2`)
+    * Mumbai (`ap-south-1`)
+    * Hyderabad (`ap-south-2`)
+    * Seoul (`ap-northeast-2`)
+    * Jakarta (`ap-southeast-3`)
+* Middle East, and Africa
+    * United Arab Emirates (`me-central-1`)
 
+{% endnavtab %}
+{% navtab Azure %}
+{{site.konnect_saas}} Dedicated Cloud Gateways support the following Azure geos: 
+
+* North America:
+    * Virginia (`eastus2`)
+    * Washington (`westus2`)
+* Europe:
+    * Frankfurt (`germanywestcentral`)
+    * Ireland (`northeurope`)
+    * UK South (`uksouth`)
+
+{% endnavtab %}
+{% endnavtabs %}
 ## Geo management
 
 When you create a {{site.konnect_saas}} account, you select a geographic region for your instance. Geos are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are geo-specific. Only authentication, billing, and usage is shared between {{site.konnect_short_name}} geos.
