@@ -1,6 +1,6 @@
 ---
 title: Create a private connection with AWS PrivateLink
-subtitle: Connect your data plane to your Konnect control plane with a private connection to stay compliant and save data transfer costs.
+subtitle: Connect your data plane to your Konnect control plane with a private connection to stay compliant and save data transfer costs
 content-type: reference
 ---
 
@@ -58,13 +58,13 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 {% endcapture %}
 {{ tabs | indent }}
 
-1. Verify the service. If the service name cannot be verified, contact [Kong Support](https://support.konghq.com/support/s/).
+1. Verify the service. If the service name can't be verified, contact [Kong Support](https://support.konghq.com/support/s/).
 
 1. Once the service name is verified, select the VPC, subnets, and security groups to associate with this endpoint. Make sure that:
   * The security group accepts inbound traffic on TCP port 443.
   * The DNS name parameter in the additional settings is enabled.
 
-1. Create the VPC endpoint and wait for its status to change to available. It is recommended to wait for 10 minutes before using it.
+1. Create the VPC endpoint and wait for its status to change to available. We recommend waiting for 10 minutes before using it.
 
 1. Update your data plane configuration to connect to the control plane through the private connection. Use the private DNS name that matches your control plane geo in the tables above. For the US {{site.konnect_short_name}} geo, the updated Kong data plane configuration in `kong.conf` looks like this:
 ```sh
