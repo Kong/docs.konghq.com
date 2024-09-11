@@ -30,8 +30,12 @@ PagerDuty Service | A PagerDuty service is any entity that can have incidents op
 
 ## Discovery information
 
+<!-- vale off-->
+
 {% include_cached service-catalog-discovery.html 
    discovery_support=page.discovery_support
    discovery_default=page.discovery_default
    bindable_entities=page.bindable_entities
    mechanism=page.mechanism %}
+
+<!-- vale on-->
