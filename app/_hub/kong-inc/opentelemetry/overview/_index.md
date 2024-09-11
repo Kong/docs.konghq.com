@@ -18,6 +18,14 @@ There are two ways to set up an OpenTelemetry backend:
 * Using the OpenTelemetry Collector, which is middleware that can be used to proxy OpenTelemetry spans to a compatible backend.
    You can view all the available OpenTelemetry Collector exporters at [open-telemetry/opentelemetry-collector-contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter).
 
+{% if_version gte:3.8.x %}
+### Metrics
+Metrics are enabled using the `contrib` version of the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/).
+
+The `spanmetrics` connector allows you to aggregate traces and provide metrics to any third party observability platform. 
+For an example configuration, see the [Basic config examples](/hub/opentelemetry/how-to/basic-examples/).
+{% endif_version %}
+
 ### Tracing
 
 #### Built-in tracing instrumentations
