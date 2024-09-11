@@ -5,12 +5,10 @@ title: Set up AI Proxy Advanced with Bedrock
 
 This guide walks you through setting up the AI Proxy Advanced plugin with [Amazon Bedrock](https://aws.amazon.com/bedrock/).
 
-For all providers, the Kong AI Proxy plugin attaches to route entities.
-
 ## Prerequisites
 * [{{site.base_gateway}} is installed and running](/gateway/latest/get-started/)
 * An AWS account
-* Any keys?
+* An [AWS access key ID and AWS secret access key](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) 
 
 ## Configure the AI Proxy plugin
 
@@ -41,10 +39,10 @@ curl -X POST http://localhost:8001/services/bedrock-service/plugins \
         {
           "route_type": "llm/v1/chat",
           "auth": {
-            "allow_override": false
-          }
-        },
-        {
+            "allow_override": false,
+            "aws_access_key_id": "<YOUR_AWS_ACCESS_KEY_ID>",
+            "aws_secret_access_key": "<YOUR_AWS_SECRET_ACCESS_KEY>"
+          },
           "model": {
             "provider": "bedrock",
             "name": "meta.llama3-70b-instruct-v1:0",
@@ -58,5 +56,18 @@ curl -X POST http://localhost:8001/services/bedrock-service/plugins \
       ]
     }
   }'
+```
+Be sure to replace the following:
+* `YOUR_AWS_ACCESS_KEY_ID`
+* `YOUR_AWS_SECRET_ACCESS_KEY`
+* Configure the correct provider model (`config.model.name`) and AWS region (`config.model.options.bedrock.aws_region`) for your environment.
 
+## Test the configuration
+
+Make an `llm/v1/chat` type request to test your new endpoint:
+
+```sh
+curl -X POST http://localhost:8000/bedrock \
+-H 'Content-Type: application/json' \
+--data-raw '{ "messages": [ { "role": "system", "content": "You are a mathematician" }, { "role": "user", "content": "What is 1+1?"} ] }'
 ```
