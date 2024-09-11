@@ -22,7 +22,7 @@ The Traceable integration lets you connect Traceable entities directly to your S
 
 Entity | Description
 -------|-------------
-Traceable Service | [Traceable Service](https://docs.traceable.ai/docs/domains-services-backends) which holds group of Traceable API endpoint resource
+Traceable Service | A [Traceable Service](https://docs.traceable.ai/docs/domains-services-backends), which holds groups of Traceable API endpoint resources.
 
 ## Discovery information
 
