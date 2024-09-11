@@ -80,7 +80,7 @@ Grant access to your Azure AD Tenant:
         * For example: `example3.com` -> `192.168.1.1`
 
     {:.note}
-    > **Note**: You will need to create an inbound endpoint for private DNS zone within your tenant. The IP of the inbound endpoint should the IP of the DNS server.
+    > **Note**: You will need to create an inbound endpoint for private DNS zone within your tenant. The IP of the inbound endpoint should be the IP of the DNS server.
 
 1. Click **Next** and move on to configuring Azure in the next section.
 
