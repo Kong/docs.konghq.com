@@ -16,6 +16,16 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-date">September<br>11</div>
 <div class="changelog-entry">
 <div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-service-catalog-launches-into-public-beta">Konnect Service Catalog launches into Public Beta</a>
+</div>
+<div class="changelog-description">The Konnect Service Catalog is now available to all Konnect users in Public Beta.  Service Catalog allows you to discover your organization's "Shadow APIs" through its integrations with Gateway Manager, Mesh Manager, and Traceable.</div>
+</div>
+</div>
+
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
 Plugin pricing updated
 </div>
 <div class="changelog-description">Plugins are no longer priced are Free, Plus, and Premium tiers separate from the Konnect subscription. There is no more extra fee to use any particular plugin. Plugins now follow the same tier scheme as in self-managed {{site.kong_gateway}}, where you have access to free or Enterprise plugins, depending on your subscription level.
@@ -42,16 +52,6 @@ Cloud Launchers deprecated
 </div>
 </div>
 
-
-<div class="changelog-entries">
-<div class="changelog-date">September<br>11</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/konnect-service-catalog-launches-into-public-beta">Konnect Service Catalog launches into Public Beta</a>
-</div>
-<div class="changelog-description">The Konnect Service Catalog is now available to all Konnect users in Public Beta.  Service Catalog allows you to discover your organization's "Shadow APIs" through its integrations with Gateway Manager, Mesh Manager, and Traceable.</div>
-</div>
-</div>
 
 ## August 2024
 
