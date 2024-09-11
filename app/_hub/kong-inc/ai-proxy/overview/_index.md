@@ -100,7 +100,7 @@ The following upstream URL patterns are used:
 | Mistral   | As defined in  `config.model.options.upstream_url`                                                     |
 
 {% if_version gte:3.8.x %}
-| Amazon Bedrock   | Use the specific LLM upstream URL                                                   |
+| Amazon Bedrock   | `https://bedrock-runtime.{region}.amazonaws.com`                                                   |
 | Gemini  | https://generativelanguage.googleapis.com                                                     |
 {% endif_version %}
 

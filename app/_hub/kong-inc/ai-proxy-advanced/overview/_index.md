@@ -99,7 +99,7 @@ The following upstream URL patterns are used:
 | Anthropic | `https://api.anthropic.com:443/{route_type_path}`                                                      |
 | Llama2    | As defined in `config.model.options.upstream_url`                                                      |
 | Mistral   | As defined in  `config.model.options.upstream_url`                                                     |
-| Amazon Bedrock   | Use the specific LLM upstream URL                                                   |
+| Amazon Bedrock   | `https://bedrock-runtime.{region}.amazonaws.com`                                                   |
 | Gemini  | `https://generativelanguage.googleapis.com`                                                     |
 
 {:.important}
