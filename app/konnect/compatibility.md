@@ -40,9 +40,7 @@ To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible ve
 ## Plugin compatibility
 
 Most {{site.base_gateway}} plugins are compatible with {{site.konnect_short_name}}.
-You can find details on specific plugin support at:
-* [Plugin Compatibility](/hub/plugins/compatibility/): supported network protocols and entity scopes
-
+See the [Kong Plugin Hub](/hub/?compatibility=konnect) for all compatible plugins.
 
 ### Considerations for Dedicated Cloud Gateways
 
