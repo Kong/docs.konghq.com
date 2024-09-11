@@ -153,6 +153,7 @@ backporting
 backtrace
 Bagdi
 bcc
+bindable
 Bintray
 Bitnami
 blockquote

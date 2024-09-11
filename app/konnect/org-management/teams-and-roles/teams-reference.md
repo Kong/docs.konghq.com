@@ -20,5 +20,6 @@ Keywords:
 | Data Plane Node Admin                  | Users can configure data plane nodes for the organization. They can also manage global configuration of the following entities: Gateway services, routes, plugins, upstreams, SNIs, and certificates.
 | API Product Admin                  | Users can create and manage API products, including publishing API product versions to Dev Portal and enabling application registration.|  
 | API Product Developer              | Users can create and manage versions of API products. |
+| Service Admin | Users can view and edit a select list of services, map resources to those services, and manage all resources and discovery rules. | 
 
 To set up a custom team, see [Manage Teams and Roles](/konnect/org-management/teams-and-roles/).
