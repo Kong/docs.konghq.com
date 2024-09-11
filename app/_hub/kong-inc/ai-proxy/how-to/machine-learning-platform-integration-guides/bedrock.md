@@ -55,7 +55,7 @@ curl -X POST http://localhost:8001/services/bedrock-service/plugins \
   }'
 ```
 
-Be sure to replace the following:
+Be sure to replace the following values:
 * `YOUR_AWS_ACCESS_KEY_ID`
 * `YOUR_AWS_SECRET_ACCESS_KEY`
 * Configure the correct provider model (`config.model.name`) and AWS region (`config.model.options.bedrock.aws_region`) for your environment.
