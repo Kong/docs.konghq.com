@@ -24,11 +24,11 @@ This will take you to GitHub where you can grant {{site.konnect_product_name}} a
 
 The {{site.konnect_product_name}} application can be managed from GitHub as a [GitHub Application](https://docs.github.com/en/apps/using-github-apps/authorizing-github-apps).
 
-## Bindable entities
+## Resources
 
-Entity | Binding Level | Description
--------|---------------|-------------
-Repository | Service | A GitHub repository relating to the service
+Entity  | Description
+-------|-------------
+Repository | A GitHub repository relating to the service
 
 ## Discovery information
 

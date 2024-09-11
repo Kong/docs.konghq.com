@@ -4,7 +4,7 @@ subtitle: Track every service across your architecture
 content-type: explanation
 ---
 
-{{site.konnect_saas}}'s Service Catalog offers a comprehensive catalog of all services running in your organization. This catalog gives you insight into your organization's services and their dependencies. It includes both {{site.base_gateway}} services and external integration resources.
+{{site.konnect_saas}}'s {{site.service_catalog_name}} offers a comprehensive catalog of all services running in your organization. By integrating with both Konnect-internal applications, like Gateway Manager and Mesh Manager, as well as external applications like Github and PagerDuty, {{site.service_catalog_name}} provides you with a 360 overview into each of your organization's services. It presents you with information that include who the service's owner is, its upstream and downstream dependencies, its code repositories, its CI/CD pipelines, and whether it is fronted by an API gateway or is part of a service mesh.
 
 <!-- vale off-->
 {% mermaid %}
@@ -51,14 +51,14 @@ graph LR
 {% endmermaid %}
 <!-- vale on-->
 
-> *Figure 1: This diagram shows how you can use both external integrations, like GitHub and PagerDuty, as well as built-in integrations like Gateway Manager to pull resources into Service Catalog. You can then map those resources (like GitHub repositories, PagerDuty services, and Gateway services) to Service Catalog services.*
+> *Figure 1: This diagram shows how you can use both external integrations, like GitHub and PagerDuty, as well as internal integrations like Gateway Manager to pull resources into Service Catalog. You can then map those resources (like GitHub repositories, PagerDuty services, and Gateway services) to Service Catalog services.*
 
 ## Service Catalog use cases
 
 | You want to... | Then use... |
 | -------------- | ----------- |
 | Keep track of your organization's resource ownership by mapping teams to Service Catalog services. | Add the Service Catalog service's owner when you [create a new Service Catalog service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
-| Gain visibility into all your Services, including unrecognized or undiscovered APIs in your organization.  | [Service Catalog integrations](https://cloud.konghq.com/service-catalog/integrations) |
+| Gain visibility into all your services, including unrecognized or undiscovered APIs in your organization.  | [Service Catalog integrations](https://cloud.konghq.com/service-catalog/integrations) |
 | Consolidate key Service Catalog service health metrics, documentation, and API specs into a single list, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/service-catalog/) |
 
 <!-- commenting this out until it's released:
@@ -69,7 +69,7 @@ graph LR
 | Term | Definition |
 | ---- | ---------- |
 | Integration | These are applications, either {{site.konnect_short_name}}-internal or external, that act as sources from which you can ingest resources. For example, GitHub. |
-| Resource | An umbrella term that denotes entities ingested by Service Catalog from enabled integrations. A resource can range from an infrastructural component (like Gateway services, mesh services, databases, and caches) to an external application or tool (like code repositories, CI/CD infrastructure, and on-call systems) to a piece of documentation (like API specs). Resources can be mapped to one or more Services. |
+| Resource | An umbrella term that denotes entities ingested by Service Catalog from enabled integrations. A resource can range from an infrastructural component (like Gateway services, mesh services, databases, and caches) to an external application or tool (like code repositories, CI/CD infrastructure, and on-call systems) to a piece of documentation (like API specs). Resources can be mapped to one or more Service Catalog services. |
 | Service Catalog service | A unit of software that is typically owned by a single team, exposes one or more APIs, and may be dependent on other Service Catalog services (as either upstream or downstream). A Service Catalog service can be thought of as a collection of one or more resources. |
 | Service Catalog | A comprehensive catalog of all resources and Service Catalog services running in your organization. |
 
@@ -78,7 +78,7 @@ graph LR
 <details><summary>How do Service Catalog services map to API products? What is the relationship there?</summary>
 
 {% capture service_mapping %}
-Service Catalog services do not directly map to API products. Rather, a Gateway service can be mapped to a Service Catalog service and you can then map the Gateway service to an API product version in Service Catalog.
+Service Catalog services do not directly map to API products. Rather, a Gateway service can be linked to a Service Catalog service and you can then map the Gateway service to an API product version in Service Catalog.
 {% endcapture %}
 
 {{ service_mapping | markdownify }}
