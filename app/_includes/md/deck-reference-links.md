@@ -24,7 +24,7 @@ File subcommands:
 {% if_version gte:1.35.x -%}
 * [deck file kong2kic](/deck/{{page.release}}/reference/deck_file_kong2kic)	 - Convert decK state files to Kong Ingress Controller kubernetes manifests.
 {% endif_version -%}
-{% if_version gte:1.39.x -%}
+{% if_version gte:1.40.x -%}
 * [deck file kong2tf](/deck/{{page.release}}/reference/deck_file_kong2tf)	 - Convert decK state files to Terraform resources.
 {% endif_version -%}
 {% if_version gte:1.28.x -%}
