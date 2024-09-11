@@ -84,8 +84,8 @@ The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-
 {% if_version gte:3.8.x %}
 | Amazon Bedrock     | Use the LLM `chat` upstream path                    | `llm/v1/chat`        | [Use the model name for the specific LLM provider](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html)            |
 | Amazon Bedrock     | Use the LLM `completions` upstream path             | `llm/v1/completions` | [Use the model name for the specific LLM provider](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html)             |
-| Gemini     | Use the LLM `chat` upstream path                            | `llm/v1/chat`        | `gemini-1.5-flash` or `gemini-1.5-pro`           |
-| Gemini     | Use the LLM `completions` upstream path                     | `llm/v1/completions` | `gemini-1.5-flash` or `gemini-1.5-pro`            |
+| Gemini     | `llm/v1/chat`                            | `llm/v1/chat`        | `gemini-1.5-flash` or `gemini-1.5-pro`           |
+| Gemini     | `llm/v1/completions`                     | `llm/v1/completions` | `gemini-1.5-flash` or `gemini-1.5-pro`            |
 {% endif_version %}
 
 The following upstream URL patterns are used:
@@ -101,7 +101,7 @@ The following upstream URL patterns are used:
 
 {% if_version gte:3.8.x %}
 | Amazon Bedrock   | Use the specific LLM upstream URL                                                   |
-| Gemini  | Use the specific LLM upstream URL                                                     |
+| Gemini  | https://generativelanguage.googleapis.com                                                     |
 {% endif_version %}
 
 {:.important}
