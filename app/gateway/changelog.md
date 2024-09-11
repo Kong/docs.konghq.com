@@ -12,7 +12,7 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.8.0.0
-**Release Date** TBD
+**Release Date** 2024/09/11
 
 ### Breaking changes and deprecations
 
@@ -62,16 +62,16 @@ Kong is no longer providing official support for any Kong version running on the
 
 #### Core
 
-* Added the new configuration parameter [`concurrency_limit`](/gateway/3.8.x/configuration/reference/#concurrency_limit)
+* Added the new configuration parameter [`concurrency_limit`](/gateway/3.8.x/reference/configuration/#concurrency_limit)
  (integer, defaults to 1), which lets you specify the number of delivery timers in the queue.
   Note that setting `concurrency_limit` to `-1` means no limit at all, and each HTTP log entry would create an individual timer for sending.
  [#13332](https://github.com/Kong/kong/issues/13332)
 * Kong Gateway now appends gateway info to the upstream `Via` header in the format `1.1 kong/3.8.0`, and optionally to the
-response `Via` header if it is present in the [`headers`](/gateway/3.8.x/configuration/reference/#headers) config of `kong.conf`, in the format `2 kong/3.8.0`.
+response `Via` header if it is present in the [`headers`](/gateway/3.8.x/reference/configuration/#headers) config of `kong.conf`, in the format `2 kong/3.8.0`.
 This follows standards defined in [RFC7230](https://datatracker.ietf.org/doc/html/rfc7230) and [RFC9110](https://datatracker.ietf.org/doc/html/rfc9110).
  [#12733](https://github.com/Kong/kong/issues/12733)
 * Kong Gateway 3.8.x adds a new DNS client library. 
-  This library is disabled by default, and can be enabled by setting the [`new_dns_client`](/gateway/3.8.x/configuration/reference/#new_dns_client) parameter to `on`.
+  This library is disabled by default, and can be enabled by setting the [`new_dns_client`](/gateway/3.8.x/reference/configuration/#new_dns_client) parameter to `on`.
   The new DNS client library provides the following:
   * Global caching for DNS records across workers, significantly reducing the query load on DNS servers.
   * Observable statistics for the new DNS client, and a new Status API `/status/dns` to retrieve them.
@@ -81,13 +81,13 @@ This follows standards defined in [RFC7230](https://datatracker.ietf.org/doc/htm
 * **Analytics**:
   * Added support for sending AI analytics about latency and caching to Konnect.
   * Added support for sending cache data of AI analytics to Konnect.
-* Added connection support via Redis Proxy (for example, Envoy Redis proxy or twemproxy) via the configuration field [`connection_is_proxied`](/gateway/3.8.x/configuration/reference/#connection_is_proxied).
+* Added connection support via Redis Proxy (for example, Envoy Redis proxy or twemproxy) via the configuration field [`connection_is_proxied`](/gateway/3.8.x/reference/configuration/#connection_is_proxied).
 * Added support for assuming an AWS IAM role in AWS IAM Database Authentication, with the following new configuration fields: `pg_iam_auth_assume_role_arn`, `pg_iam_auth_role_session_name`, `pg_ro_iam_auth_assume_role_arn`, and `pg_ro_iam_auth_role_session_name`. 
-See the [PostgreSQL settings section](/gateway/3.8.x/configuration/reference/#postgres-settings) in the Kong configuration reference for details.
+See the [PostgreSQL settings section](/gateway/3.8.x/reference/configuration/#postgres-settings) in the Kong configuration reference for details.
 * Added keyring encryption support to [license database entity payloads](/gateway/3.8.x/kong-enterprise/db-encryption/#configure-license-payload-encryption).
 * Added support for a configurable STS endpoint for RDS IAM Authentication with the following new configuration fields: `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_endpoint_url`.
-See the [PostgreSQL settings section](/gateway/3.8.x/configuration/reference/#postgres-settings) in the Kong configuration reference for details.
-* Added support for a configurable STS endpoint for AWS Vault. This can either be configured by [`vault_aws_sts_endpoint_url`](/gateway/3.8.x/configuration/reference/#vault_aws_sts_endpoint_url) as a global configuration, or [`sts_endpoint_url`](/gateway/3.8.x/kong-enterprise/secrets-management/backends/aws-sm/) on a custom AWS vault entity.
+See the [PostgreSQL settings section](/gateway/3.8.x/reference/configuration/#postgres-settings) in the Kong configuration reference for details.
+* Added support for a configurable STS endpoint for AWS Vault. This can either be configured by [`vault_aws_sts_endpoint_url`](/gateway/3.8.x/reference/configuration/#vault_aws_sts_endpoint_url) as a global configuration, or [`sts_endpoint_url`](/gateway/3.8.x/kong-enterprise/secrets-management/backends/aws-sm/) on a custom AWS vault entity.
 
 #### Kong Manager
 
