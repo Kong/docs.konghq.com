@@ -335,7 +335,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Plugin entity](/gateway/latest/admin-api/#plugin-object)
+      [Plugins entity](/gateway/api/admin-ee/latest/#/Plugins)
   - ID: D131
     Severity: error
     Description: |
@@ -345,7 +345,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Service entity](/gateway/latest/admin-api/#service-object)
+      [Services entity](/gateway/api/admin-ee/latest/#/Services)
   - ID: D132
     Severity: error
     Description: |
@@ -355,7 +355,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Route entity](/gateway/latest/admin-api/#route-object)
+      [Routes entity](/gateway/api/admin-ee/latest/#/Routes)
   - ID: D133
     Severity: error
     Description: |
@@ -365,7 +365,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Plugin entity](/gateway/latest/admin-api/#plugin-object)
+      [Plugins entity](/gateway/api/admin-ee/latest/#/Plugins)
   - ID: D134
     Severity: error
     Description: |
@@ -486,7 +486,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: D147
     Severity: error
     Description: |
@@ -495,7 +495,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `2.8.0.0` or above.
     DocumentationURL: |
-      [Consumer Groups entity](/gateway/latest/admin-api/consumer-groups/reference/)
+      [Consumer Groups entity](/gateway/api/admin-ee/latest/#/consumer_groups)
   - ID: D148
     Severity: error
     Description: |
@@ -506,7 +506,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `2.8.0.0` or above.
     DocumentationURL: |
-      [Consumer Groups entity](/gateway/latest/admin-api/consumer-groups/reference/)
+      [Consumer Groups entity](/gateway/api/admin-ee/latest/#/consumer_groups)
   - ID: D149
     Severity: error
     Description: |
@@ -517,7 +517,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `2.8.0.0` or above.
     DocumentationURL: |
-      [Consumer Groups entity](/gateway/latest/admin-api/consumer-groups/reference/)
+      [Consumer Groups entity](/gateway/api/admin-ee/latest/#/consumer_groups)
   - ID: D150
     Severity: error
     Description: |
@@ -603,18 +603,18 @@ messages:
       For the `openid-connect` plugin, one or more `config` fields are set but Kong
       Gateway versions < 3.2.0.0 do not support these fields. The plugin configuration
       has been updated and these fields have been mapped to their old names:
-      `session_memcached_prefix` => `session_memcache_prefix`,
-      `session_memcached_socket` => `session_memcache_socket`,
-      `session_memcached_host` => `session_memcache_host`,
-      `authorization_rolling_timeout` => `authorization_cookie_lifetime`,
-      `authorization_cookie_same_site` => `authorization_cookie_samesite`,
-      `session_idling_timeout` => `session_cookie_idletime`,
-      `session_cookie_same_site` => `session_cookie_samesite`,
-      `session_redis_cluster_max_redirections` => `session_redis_cluster_maxredirections`,
-      `authorization_cookie_http_only` => `authorization_cookie_httponly`,
       `session_rolling_timeout` => `session_cookie_lifetime`,
       `session_cookie_http_only` => `session_cookie_httponly`,
-      `session_memcached_port` => `session_memcache_port`
+      `session_memcached_prefix` => `session_memcache_prefix`,
+      `session_memcached_host` => `session_memcache_host`,
+      `session_redis_cluster_max_redirections` => `session_redis_cluster_maxredirections`,
+      `authorization_cookie_same_site` => `authorization_cookie_samesite`,
+      `authorization_cookie_http_only` => `authorization_cookie_httponly`,
+      `session_idling_timeout` => `session_cookie_idletime`,
+      `session_cookie_same_site` => `session_cookie_samesite`,
+      `session_memcached_socket` => `session_memcache_socket`,
+      `session_memcached_port` => `session_memcache_port`,
+      `authorization_rolling_timeout` => `authorization_cookie_lifetime`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -678,14 +678,14 @@ messages:
       For the `saml` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
       been updated and these fields have been mapped to their old names:
-      `session_idling_timeout` => `session_cookie_idletime`,
+      `session_rolling_timeout` => `session_cookie_lifetime`,
       `session_cookie_same_site` => `session_cookie_samesite`,
       `session_cookie_http_only` => `session_cookie_httponly`,
-      `session_memcached_port` => `session_memcache_port`,
-      `session_rolling_timeout` => `session_cookie_lifetime`,
       `session_memcached_prefix` => `session_memcache_prefix`,
       `session_memcached_socket` => `session_memcache_socket`,
       `session_memcached_host` => `session_memcache_host`,
+      `session_idling_timeout` => `session_cookie_idletime`,
+      `session_memcached_port` => `session_memcache_port`,
       `session_redis_cluster_max_redirections` => `session_redis_cluster_maxredirections`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
@@ -755,7 +755,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [Service entity](/gateway/latest/admin-api/#service-object)
+      [Services entity](/gateway/api/admin-ee/latest/#/Services)
   - ID: D170
     Severity: error
     Description: |
@@ -778,7 +778,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [Service entity](/gateway/latest/admin-api/#service-object)
+      [Services entity](/gateway/api/admin-ee/latest/#/Services)
   - ID: D172
     Severity: error
     Description: |
@@ -800,7 +800,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [DeGraphQL](/hub/kong-inc/degraphql)
+      [DeGraphQL plugin](/hub/kong-inc/degraphql/)
   - ID: D174
     Severity: error
     Description: |
@@ -809,7 +809,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [DeGraphQL](/hub/kong-inc/degraphql)
+      [DeGraphQL plugin](/hub/kong-inc/degraphql/)
   - ID: D175
     Severity: error
     Description: |
@@ -818,7 +818,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [DeGraphQL](/hub/kong-inc/degraphql)
+      [DeGraphQL plugin](/hub/kong-inc/degraphql/)
   - ID: D176
     Severity: error
     Description: |
@@ -1721,7 +1721,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.8.0.0` or above.
     DocumentationURL: |
-      [Graphql Proxy Cache Advanced plugin](/hub/kong-inc/graphql-proxy-cache-advanced/)
+      [Graphql Rate Limiting Advanced plugin](/hub/kong-inc/graphql-rate-limiting-advanced/)
   - ID: D261
     Severity: warning
     Description: |
@@ -1788,13 +1788,14 @@ messages:
   - ID: D267
     Severity: warning
     Description: |
-      For the `graphql-proxy-cache-advanced` plugin, conflicting redis configurations
-      are set. This is not supported in Kong Gateway versions < 3.8. The plugin
-      configuration has been updated to remove the conflicting redis configurations.
+      For the `graphql-rate-limiting-advanced` plugin, conflicting redis
+      configurations are set. This is not supported in Kong Gateway versions < 3.8.
+      The plugin configuration has been updated to remove the conflicting redis
+      configurations.
     Resolution: |
       Please upgrade Kong Gateway to version `3.8.0.0` or above.
     DocumentationURL: |
-      [Graphql Proxy Cache Advanced plugin](/hub/kong-inc/graphql-proxy-cache-advanced/)
+      [Graphql Rate Limiting Advanced plugin](/hub/kong-inc/graphql-rate-limiting-advanced/)
   - ID: E999
     Severity: error
     Description: |
@@ -2076,7 +2077,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `2.7.0.0` or above.
     DocumentationURL: |
-      [Service entity](/gateway/latest/admin-api/#service-object)
+      [Services entity](/gateway/api/admin-ee/latest/#/Services)
   - ID: P120
     Severity: error
     Description: |
@@ -2151,7 +2152,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
+      [Upstreams entity](/gateway/api/admin-ee/latest/#/Upstreams)
   - ID: P127
     Severity: error
     Description: |
@@ -2163,7 +2164,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
+      [Upstreams entity](/gateway/api/admin-ee/latest/#/Upstreams)
   - ID: P128
     Severity: warning
     Description: |
@@ -2175,7 +2176,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Route entity](/gateway/latest/admin-api/#route-object)
+      [Routes entity](/gateway/api/admin-ee/latest/#/Routes)
   - ID: P129
     Severity: warning
     Description: |
@@ -2186,7 +2187,7 @@ messages:
       To define a regular expression based path for routing, please prefix the path
       with ~ character.
     DocumentationURL: |
-      [Route entity](/gateway/latest/admin-api/#route-object)
+      [Routes entity](/gateway/api/admin-ee/latest/#/Routes)
   - ID: P130
     Severity: error
     Description: |
@@ -2243,7 +2244,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Tags](/gateway/latest/admin-api/#tags)
+      [Tags](/gateway/api/admin-ee/latest/#/Tags)
   - ID: P135
     Severity: error
     Description: |
@@ -2252,7 +2253,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: P136
     Severity: error
     Description: |
@@ -2318,7 +2319,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [Keys entity](/gateway/latest/admin-api/#keys-object)
+      [Keys entity](/gateway/api/admin-ee/latest/#/Keys)
   - ID: P142
     Severity: error
     Description: |
@@ -2327,7 +2328,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [Key Sets entity](/gateway/latest/admin-api/#key-sets-entity)
+      
   - ID: P144
     Severity: error
     Description: |
@@ -2390,7 +2391,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [Plugin entity](/gateway/latest/admin-api/#plugin-object)
+      [Plugins entity](/gateway/api/admin-ee/latest/#/Plugins)
   - ID: P150
     Severity: error
     Description: |
@@ -2411,7 +2412,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
-      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
+      [Upstreams entity](/gateway/api/admin-ee/latest/#/Upstreams)
   - ID: P152
     Severity: error
     Description: |
@@ -2460,11 +2461,11 @@ messages:
       For the `session` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
       been updated and these fields have been mapped to their old names:
+      `stale_ttl` => `cookie_discard`,
       `cookie_same_site` => `cookie_samesite`,
       `cookie_http_only` => `cookie_httponly`,
       `rolling_timeout` => `cookie_lifetime`,
-      `idling_timeout` => `cookie_idletime`,
-      `stale_ttl` => `cookie_discard`
+      `idling_timeout` => `cookie_idletime`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -2748,7 +2749,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.1.0.0` or above.
     DocumentationURL: |
-      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
+      [Upstreams entity](/gateway/api/admin-ee/latest/#/Upstreams)
   - ID: P183
     Severity: error
     Description: |
@@ -2758,7 +2759,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Upstream entity](/gateway/latest/admin-api/#upstream-object)
+      [Upstreams entity](/gateway/api/admin-ee/latest/#/Upstreams)
   - ID: P184
     Severity: error
     Description: |
@@ -2768,7 +2769,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.4.0.0` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: P185
     Severity: error
     Description: |
@@ -2836,7 +2837,7 @@ messages:
       Update prefix values to use underscores instead of hyphens, or upgrade to Kong
       Gateway versions >= 3.3.0.0 which automatically convert hyphens to underscores.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: P191
     Severity: error
     Description: |
@@ -3053,7 +3054,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.4.3.5` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: P210
     Severity: error
     Description: |
@@ -3063,7 +3064,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.4.3.5` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: P211
     Severity: error
     Description: |
@@ -3083,7 +3084,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.4.3.4` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: P213
     Severity: warning
     Description: |
@@ -3093,7 +3094,7 @@ messages:
     Resolution: |
       Remove underscores in services `host` field.
     DocumentationURL: |
-      [Service entity](/gateway/latest/admin-api/#service-object)
+      [Services entity](/gateway/api/admin-ee/latest/#/Services)
   - ID: P214
     Severity: warning
     Description: |
@@ -3121,7 +3122,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.5.0.0` or above.
     DocumentationURL: |
-      [Filter Chain entity](/gateway/latest/admin-api/#filter-chain-object)
+      [Filter Chain entity](/gateway/api/admin-ee/latest/#/filter-chains)
   - ID: P217
     Severity: error
     Description: |
@@ -3222,7 +3223,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.6.0.0` or above.
     DocumentationURL: |
-      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: P227
     Severity: error
     Description: |
@@ -3327,12 +3328,12 @@ messages:
       For the `rate-limiting` plugin, one or more `config` fields are set but Kong
       Gateway versions < 3.6.0.0 do not support these fields. The plugin configuration
       has been updated and these fields have been mapped to their old names:
-      `redis.database` => `redis_database`,
       `redis.host` => `redis_host`,
-      `redis.port` => `redis_port`,
       `redis.ssl_verify` => `redis_ssl_verify`,
       `redis.server_name` => `redis_server_name`,
       `redis.timeout` => `redis_timeout`,
+      `redis.database` => `redis_database`,
+      `redis.port` => `redis_port`,
       `redis.password` => `redis_password`,
       `redis.username` => `redis_username`,
       `redis.ssl` => `redis_ssl`
@@ -3347,14 +3348,14 @@ messages:
       Kong Gateway versions < 3.6.0.0 do not support these fields. The plugin
       configuration has been updated and these fields have been mapped to their old
       names:
-      `redis.ssl_verify` => `redis_ssl_verify`,
-      `redis.timeout` => `redis_timeout`,
       `redis.host` => `redis_host`,
-      `redis.password` => `redis_password`,
-      `redis.username` => `redis_username`,
-      `redis.ssl` => `redis_ssl`,
       `redis.port` => `redis_port`,
+      `redis.username` => `redis_username`,
+      `redis.ssl_verify` => `redis_ssl_verify`,
       `redis.server_name` => `redis_server_name`,
+      `redis.timeout` => `redis_timeout`,
+      `redis.password` => `redis_password`,
+      `redis.ssl` => `redis_ssl`,
       `redis.database` => `redis_database`
     Resolution: |
       Please upgrade Kong Gateway to version `3.6.0.0` or above.
@@ -3404,7 +3405,7 @@ messages:
       field for the routes to remain compatible with Kong Gateway versions < 3.6.0.0.
       The configuration has not been synced to the Data Plane nodes.
     DocumentationURL: |
-      [Routes](/gateway/api/admin-oss/latest/#/Routes)
+      [Routes entity](/gateway/api/admin-ee/latest/#/Routes)
   - ID: P244
     Severity: error
     Description: |
@@ -3417,7 +3418,7 @@ messages:
       3.6.0.0 and < 3.7.0.0. The configuration has not been synced to the Data Plane
       nodes.
     DocumentationURL: |
-      [Routes](/gateway/api/admin-oss/latest/#/Routes)
+      [Routes entity](/gateway/api/admin-ee/latest/#/Routes)
   - ID: P245
     Severity: error
     Description: |
@@ -3430,7 +3431,7 @@ messages:
       routes with the `expression` field. The configuration has not been synced to the
       Data Plane nodes.
     DocumentationURL: |
-      [Routes](/gateway/api/admin-oss/latest/#/Routes)
+      [Routes entity](/gateway/api/admin-ee/latest/#/Routes)
   - ID: P246
     Severity: error
     Description: |
@@ -3452,7 +3453,7 @@ messages:
       Remove any `sni` elements with unsupported wildcard formats, or upgrade to Kong
       version >= 3.7.0.0.
     DocumentationURL: |
-      [Routes](/gateway/api/admin-oss/latest/#/Routes)
+      [Routes entity](/gateway/api/admin-ee/latest/#/Routes)
   - ID: P251
     Severity: error
     Description: |
