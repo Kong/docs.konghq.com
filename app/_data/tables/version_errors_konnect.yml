@@ -2244,7 +2244,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Tags](/gateway/api/admin-ee/latest/#/tags)
+      [Tags](/gateway/api/admin-ee/latest/#/Tags)
   - ID: P135
     Severity: error
     Description: |
@@ -3122,7 +3122,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.5.0.0` or above.
     DocumentationURL: |
-      [Filter Chain entity](/gateway/api/admin-ee/latest/#/filter_chains)
+      [Filter Chain entity](/gateway/api/admin-ee/latest/#/filter-chains)
   - ID: P217
     Severity: error
     Description: |
