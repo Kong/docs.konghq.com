@@ -16,7 +16,7 @@ desc: Apply size checks on JSON payload and minimize risk of content-level attac
 
 enterprise: true
 
-konnect: false
+konnect: true
 
 network_config_opts: All
 
