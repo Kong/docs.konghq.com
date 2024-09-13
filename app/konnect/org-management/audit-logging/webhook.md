@@ -1,40 +1,12 @@
 ---
-title: Set up an audit log webhook
+title: Set up an audit log webhook for a Konnect org
 content_type: how-to
 badge: enterprise
 ---
 
 You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configure webhooks for [audit logging](/konnect/org-management/audit-logging/). 
 
-Webhooks are invoked via an HTTPS request using the following retry rules:
-
-- Minimum retry wait time: 1 second
-- Maximum retry wait time: 30 seconds
-- Maximum number of retries: 4
-
-A retry is performed on connection error, server error (`500` HTTP status code), or too many requests (`429` HTTP status code).
-
-{:.note}
-> **Notes:**
-  Only supports HTTPS Webhook endpoints.
-  
-## Prerequisites
-
-You must have **Org Admin** permissions to set up audit log webhooks.
-
-Before you can push {{site.konnect_short_name}} audit logs to an external service, you also need to configure the service to receive logs. 
-This configuration is specific to your vendor.
-
-You can configure a webhook into any application that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or raw JSON.
-
-1. Check your SIEM documentation to find out where to send CEF or raw JSON data.
-
-1. In your log collection service, configure a data collection endpoint to push logs to.
-
-1. Take note of the authorization credentials that you need to access this endpoint. {{site.konnect_short_name}} supports any HTTP authorization header type.
-
-1. Configure your firewall settings to allow traffic through the port that you're going to use. 
-See the [Konnect ports and network requirements](/konnect/network/).
+{% include_cached /md/konnect/audit-logging/webhook-overview-prereq-siem-config.md %}
 
 ## Create a webhook
 
