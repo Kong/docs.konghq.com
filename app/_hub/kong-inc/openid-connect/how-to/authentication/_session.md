@@ -75,6 +75,7 @@ formats:
   - curl
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 <!--vale on -->
 

@@ -155,6 +155,7 @@ formats:
   - konnect
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 {% endif_version %}
 <!--vale on-->
