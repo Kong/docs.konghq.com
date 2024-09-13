@@ -267,6 +267,12 @@
 - release: "1.39.x"
   version: "1.39.0"
   edition: "deck"
+- release: "1.40.x"
+  version: "1.40.0"
+  edition: "deck"
+- release: "1.41.x"
+  version: "1.41.0"
+  edition: "deck"
   label: unreleased
 - edition: "konnect"
 - edition: "contributing"
