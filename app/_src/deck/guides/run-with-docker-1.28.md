@@ -5,6 +5,8 @@ content_type: how-to
 
 If you used the `kong/deck` Docker image to install decK, you can use the Docker image to manage decK. 
 
+Adjust `localhost` and the port `8001` in the following examples to the host and port of your own {{site.base_gateway}} instance.
+
 ## Prerequisites
 decK must be installed using a [Docker image](/deck/latest/installation/#docker-image).
 
@@ -14,7 +16,7 @@ Run this command to export the `kong.yaml` file:
 ```bash
 docker run -i \
 -v $(pwd):/deck \
-kong/deck --kong-addr http://KONG_ADMIN_HOST:KONG_ADMIN_PORT --headers kong-admin-token:KONG_ADMIN_TOKEN -o /deck/kong.yaml gateway dump
+kong/deck --kong-addr http://localhost:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN -o /deck/kong.yaml gateway dump
 ```
 Where `$(pwd)/kong.yaml` is the path to a `kong.yaml` file.
 
@@ -25,7 +27,7 @@ Run this command to export objects from all the workspaces:
 docker run -i \
 -v $(pwd):/deck \
 --workdir /deck \
-kong/deck --kong-addr http://KONG_ADMIN_HOST:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN -o /deck/kong.yaml gateway dump --all-workspaces
+kong/deck --kong-addr http://localhost:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN -o /deck/kong.yaml gateway dump --all-workspaces
 ```
 
 ## Reset the configuration
@@ -34,7 +36,7 @@ Run this command to initialize Kong objects:
 ```bash
 docker run -i \
 -v $(pwd):/deck \
-kong/deck --kong-addr http://KONG_ADMIN_HOST:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN gateway reset
+kong/deck --kong-addr http://localhost:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN gateway reset
 ```
 
 ## Import the configuration
@@ -43,7 +45,7 @@ Run this command to import `kong.yaml`:
 ```bash
 docker run -i \
 -v $(pwd):/deck \
-kong/deck --kong-addr http://KONG_ADMIN_HOST:KONG_ADMIN_PORT:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN /deck/kong.yaml gateway sync
+kong/deck --kong-addr http://localhost:8001 --headers kong-admin-token:KONG_ADMIN_TOKEN /deck/kong.yaml gateway sync
 ```
 In this example, `kong.yaml` is in `$(pwd)/kong.yaml`.
 
