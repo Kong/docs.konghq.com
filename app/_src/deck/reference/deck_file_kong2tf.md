@@ -1,6 +1,5 @@
 ---
 title: deck file kong2tf
-source_url: https://github.com/Kong/deck/tree/main/cmd/file_kong2tf.go
 content_type: reference
 ---
 
