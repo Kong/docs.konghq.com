@@ -539,6 +539,14 @@ to be set for the Kafka client.
   * Fixed a memory leak issue where the master nodes cache expanded infinitely upon refresh.
   * Fixed an issue where multiple cluster instances were accidentally flushed.
 
+### Known issues
+
+* In the [JSON Threat Protection plugin](/hub/kong-inc/json-threat-protection/configuration/), the default value of `-1`
+for any of the `max_*` parameters indicates unlimited.
+In some environments (such as ARM64-based environments), the default value is interpreted incorrectly.
+The plugin can erroneously block valid requests if any of the parameters continue with the default values.
+To mitigate this issue, configure the JSON Threat Protection plugin with limits for all of the `max_*` parameters.
+
 ## 3.7.1.2
 **Release Date** 2024/07/09
 
