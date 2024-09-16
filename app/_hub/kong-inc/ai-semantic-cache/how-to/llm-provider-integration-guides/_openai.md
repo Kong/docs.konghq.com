@@ -25,40 +25,34 @@ curl -X POST http://localhost:8001/services/ai-semantic-cache/routes \
 ```
 
 1. Set the AI Semantic Cache plugin. This uses Mistral's API Key explicitly, but you can use an environment variable instead if you want.
-```sh
-curl -s -X POST http://localhost:8001/routes/openai-semantic-cache/plugins \
-  --header 'Content-Type: application/json' \
-  --header 'accept: application/json' \
-  --data '{
-    "name": "ai-semantic-cache",
-    "instance_name": "ai-semantic-cache",
-    "config": {
-      "embeddings": {
-        "auth": {
-          "header_name": "Authorization",
-          "header_value": "Bearer OPENAI_API_KEY"
-        },
-        "model": {
-          "provider": "openai",
-          "name": "text-embedding-3-large",
-          "options": {
-            "upstream_url": "https://api.openai.com/v1/embeddings"
-          }
-        }
-      },
-      "vectordb": {
-        "dimensions": 3072,
-        "distance_metric": "cosine",
-        "strategy": "redis",
-        "threshold": 0.1,
-        "redis": {
-          "host": "redis-stack.redis.svc.cluster.local",
-          "port": 6379
-        }
-      }
-    }
-  }'
-```
+{% plugin_example %}
+title: OpenAI Example
+plugin: kong-inc/ai_semantic-cache
+name: ai_semantic-cache
+config:
+  embeddings:
+    auth:
+      header_name: Authorization
+      header_value: Bearer OPENAI_API_KEY
+  model:
+    provider: openai
+    name: text-embedding-3-large
+    options:
+      upstream_url: https://api.openai.com/v1/embeddings
+  vectordb:
+    dimensions: 3072
+    distance_metric: cosine
+    strategy: redis
+    threshold: 0.1
+    redis:
+      host: redis-stack.redis.svc.cluster.local
+      port: 6379
+targets:
+  - route
+formats:
+  - curl
+  - kubernetes
+{% endplugin_example %}
 This configures the following:
 * `embeddings.model.name`: The AI model to use for generating embeddings. This example is configured with `text-embedding-3-large`, but you can also choose `text-embedding-3-small` for OpenAI.
 * `vectordb.dimensions`: The dimensionality for the vectors. Since this example uses `text-embedding-3-large`, OpenAI uses `3072` as the [default embedding dimension](https://platform.openai.com/docs/guides/embeddings/how-to-get-embeddings).
