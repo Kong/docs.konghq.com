@@ -16,7 +16,12 @@ Before using the plugin, download and install the [AppDynamics C/C++ Application
 
 ### Platform support
 
-The AppDynamics C SDK supports Linux distributions based on glibc 2.5+. MUSL-based distributions like the Alpine distribution, which is popular for container usage, are not supported. {{site.base_gateway}} must be running on a glibc-based distribution like RHEL, CentOS, Debian, or Ubuntu to support this plugin. 
+The AppDynamics C SDK supports Linux distributions based on glibc 2.5+. 
+{{site.base_gateway}} must be running on a glibc-based distribution like RHEL, CentOS, Debian, or Ubuntu to support this plugin.
+
+The AppDynamics C/C++ SDK **does not** support the following:
+* MUSL-based distributions like the Alpine distribution, which is popular for container usage
+* ARM64 architecture
 
 See the [AppDynamics C/C++ SDK Supported Environments](https://docs.appdynamics.com/appd/21.x/21.12/en/application-monitoring/install-app-server-agents/c-c++-sdk/c-c++-sdk-supported-environments) document for more information.
 
