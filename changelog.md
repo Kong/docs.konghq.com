@@ -76,7 +76,7 @@ Traceable overview page had "Overview" as title instead of "Traceable.io" becaus
 - https://docs.konghq.com/hub/traceableai/traceableai/overview/
 
 
-### [Documentation for new deck command kong2tf](https://github.com/Kong/docs.konghq.com/pull/7899) (2024-09-13)
+### [Feat: Documentation for new deck command kong2tf](https://github.com/Kong/docs.konghq.com/pull/7899) (2024-09-13)
 
 Reference documentation for the new deck command kong2tf expected to be release as part of deck 1.40.0.
 
@@ -246,16 +246,9 @@ https://konghq.atlassian.net/browse/DOCU-4041
 - https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/azure-peering
 
 
-### [Add docker copy command to move cert and key into container before restarting the gateway](https://github.com/Kong/docs.konghq.com/pull/7859) (2024-09-12)
+### [Update: Add docker copy command to move cert and key into container before restarting the gateway](https://github.com/Kong/docs.konghq.com/pull/7859) (2024-09-12)
 
 added docker copy command to move cert and key ointo container before restarting the gateway
-
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -286,10 +279,9 @@ https://konghq.atlassian.net/browse/DOCU-4050
 
 ### [feat: Gemini and Bedrock for AI Proxy ](https://github.com/Kong/docs.konghq.com/pull/7831) (2024-09-11)
 
-<!-- What did you change and why? -->
  - Added support for Gemini and Bedrock to tables
  - Added rough draft tutorials for Gemini and Bedrock
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 DOCU-3863
 
 #### Added
@@ -423,17 +415,13 @@ https://deploy-preview-7770--kongdocs.netlify.app/hub/kong-inc/ai-semantic-promp
 - https://docs.konghq.com/hub/kong-inc/ai-prompt-guard/overview/
 
 
-### [feat(aws): add custom sts endpoint configuration field for various aws features in kong gateway](https://github.com/Kong/docs.konghq.com/pull/7762) (2024-09-09)
+### [Feat: add custom sts endpoint configuration field for various aws features in kong gateway](https://github.com/Kong/docs.konghq.com/pull/7762) (2024-09-09)
 
 This is a new feature in kong gateway 3.8. The original PR is here: https://github.com/Kong/kong-ee/pull/9654
 
 The feature covers the update for three parts of the AWS-related features inside Kong gateway: the aws-lambda plugin, the aws vault backend, and the IAM authentication for RDS database.
 
 KAG-4599
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -443,7 +431,7 @@ KAG-4599
 - https://docs.konghq.com/gateway/unreleased/ai-gateway/
 
 
-### [Feat/add ai semantic caching plugin](https://github.com/Kong/docs.konghq.com/pull/7713) (2024-09-10)
+### [Feat: add ai semantic caching plugin](https://github.com/Kong/docs.konghq.com/pull/7713) (2024-09-10)
 
 Feat/add ai semantic caching plugin
  
