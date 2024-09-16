@@ -41,10 +41,10 @@ Now that you have an external endpoint and authorization credentials, you can se
 Create a destination by sending a request to the `/audit-log-destinations` endpoint with the connection details for your SIEM vendor:
 
 ```sh
-curl -i -X PATCH https://global.api.konghq.com/v2/audit-log-destinations \
+curl -i -X POST https://global.api.konghq.com/v2/audit-log-destinations \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
-    --data '{"endpoint":"https://example.com/audit-logs","authorization":"Bearer example-token","log_format":"cef"}'
+    --data '{"endpoint":"https://example.com/audit-logs","authorization":"Bearer example-token","log_format":"cef","name":"example destinations name"}'
 ```
 
 Replace the following placeholders with your own data:
@@ -61,6 +61,7 @@ Replace the following placeholders with your own data:
     For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`.
 
 * `log_format`: The output format of each log message. Can be `cef` or `json`.
+* `name`: A unique human-readable name to identify this destination.
 * `skip_ssl_verification`: (Optional) Set to `true` to skip SSL verification of the host endpoint when delivering payloads.
 
   {:.note}
@@ -71,9 +72,11 @@ If the request is successful, you will receive a `200` response code, and a resp
 ```json
 {
     "id": "07ec3858-066b-4629-bdc5-d4aa893b424d",
+    "name": "example destinations name",
     "endpoint":"https://example.com/audit-logs",
     "log_format":"cef",
     "skip_ssl_verification":false,
+    "created_at":"2023-04-01T00:00:01Z",
     "updated_at":"2023-04-01T00:00:01Z"
 }
 ```
@@ -88,26 +91,30 @@ curl https://global.api.konghq.com/v2/audit-log-destinations \
 You will receive a `200` response code and the following data. Note that the `authorization` property is not included in any responses:
 
 ```json
-{
+[
+  {
     "id": "07ec3858-066b-4629-bdc5-d4aa893b424d",
+    "name": "example destinations name",
     "endpoint":"https://example.com/audit-logs",
     "log_format":"cef",
     "skip_ssl_verification":false,
+    "created_at":"2023-04-01T00:00:01Z",
     "updated_at":"2023-04-01T00:00:01Z"
-}
+  }
+]
 ```
 
 Create a webhook by sending a request to the `/audit-log-webhook` endpoint with the connection details for your SIEM vendor:
 
 ```sh
-curl -i -X PATCH https://global.api.konghq.com/v2/portals/{portalId}/audit-log-webhook \
+curl -i -X PATCH https://us.api.konghq.com/v2/portals/{portalId}/audit-log-webhook \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
     --data '{"audit_log_destination_id":"09bbf3f2-9d07-4e46-8115-c58ca703d00e","enabled":true}'
 ```
 
 Replace the following placeholders with your own data:
-* `global.api.konghq.com`: The region your org is in. Can be `global` to target all regions, `us`, or `eu`.
+* `us.api.konghq.com`: The region your portal is located in. Can be `us`, `ap` or `eu`.
 * `TOKEN`: A {{site.konnect_short_name}} [personal access token](https://cloud.konghq.com/global/tokens) or
   [system account token](/konnect/org-management/system-accounts/).
 * `audit_log_destination_id`: The ID of the audit log destination that you want to use.
@@ -146,7 +153,7 @@ To find the last attempt timestamp and the last response code, use the audit log
 View your audit log webhook configuration by running the following command:
 
 ```sh
-curl global.api.konghq.com/v2/portals/{portalId}/audit-log-webhook \
+curl us.api.konghq.com/v2/portals/{portalId}/audit-log-webhook \
     --header "Authorization: Bearer TOKEN"
 ```
 
@@ -164,7 +171,7 @@ You will receive a `200` response code and the following data. Note that the `au
 View your audit log webhook status by running the following command:
 
 ```sh
-curl global.api.konghq.com/v2/portals/{portalId}/audit-log-webhook/status \
+curl us.api.konghq.com/v2/portals/{portalId}/audit-log-webhook/status \
     --header "Authorization: Bearer TOKEN"
 ```
 
