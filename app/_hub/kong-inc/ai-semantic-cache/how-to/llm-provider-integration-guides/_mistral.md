@@ -25,10 +25,12 @@ curl -X POST http://localhost:8001/services/ai-semantic-cache/routes \
 ```
 
 1. Set the AI Semantic Cache plugin. This uses Mistral's API Key explicitly, but you can use an environment variable instead if you want.
+
+<!--vale off-->
 {% plugin_example %}
 title: Mistral Example
-plugin: kong-inc/ai_semantic-cache
-name: ai_semantic-cache
+plugin: kong-inc/ai-semantic-cache
+name: ai-semantic-cache
 config:
   embeddings:
     auth:
@@ -51,8 +53,12 @@ targets:
   - route
 formats:
   - curl
+  - konnect
+  - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
+<!--vale on-->
 
 This configures the following:
 * `embeddings.model.name`: The AI model to use for generating embeddings. This example is configured with `mistral-embed` because it's the only option available for Mistral AI.
