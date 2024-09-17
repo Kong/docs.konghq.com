@@ -54,6 +54,7 @@ multiple control planes.
 ## Supported vaults in {{site.konnect_short_name}}
 
 Konnect supports the following vault backends:
+* Konnect Config Store
 * AWS Secrets Manager
 * HashiCorp Vault
 * GCP Secret Manager
@@ -68,6 +69,7 @@ Check out the example use case for [storing certificates in a vault](/konnect/ga
 
 For detailed vault configuration references and guides, see the {{site.base_gateway}}
 documentation:
+* [Konnect Config Store](<<needs the link for the new Konnect ConfigStore page>>)
 * [AWS Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/)
 * [GCP Secret Manager](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [HashiCorp Vault](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/)
