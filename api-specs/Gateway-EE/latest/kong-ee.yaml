@@ -16043,6 +16043,75 @@ paths:
                     example: This endpoint is only available when Kong is configured to run as Control Plane for the cluster.
       tags:
       - clustering
+  '/cache/{key}':
+    get:
+      summary: Get cache value by key
+      description: >
+        Retrieve the cached value for a specific key. This endpoint probes both `kong.cache` and `kong.core_cache`. 
+        If the key exists, it returns the associated value and TTL. If not found, it returns a 404.
+      operationId: getCacheByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The cache key to retrieve.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cached value found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ttl:
+                    type: integer
+                    description: Time-to-live (TTL) of the cached entry.
+                  message:
+                    type: string
+                    description: Cached value or a message.
+        '404':
+          description: Cache key not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Not found
+      tags:
+      - cache
+    delete:
+      summary: Invalidate cache by key
+      description: >
+        Invalidate the cache for a specific key in both `kong.cache` and `kong.core_cache`.
+      operationId: deleteCacheByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The cache key to invalidate.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cache invalidated successfully.
+      tags:
+      - cache
+  
+  '/cache':
+    delete:
+      summary: Purge all cache entries
+      description: >
+        Purge all cache entries in both `kong.cache` and `kong.core_cache`.
+      operationId: purgeAllCache
+      responses:
+        '204':
+          description: All cache entries purged successfully.
+      tags:
+      - cache
 
 servers:
   - description: Default Admin API URL
@@ -16227,3 +16296,6 @@ tags:
   - description: |
       Retreieve information about the status of data planes when Kong is configured in Hybrid Mode.
     name: clustering
+  - description: |
+      Querying and managing cache entries.
+    name: cache
