@@ -16,15 +16,12 @@ title: Set up AI Semantic Cache with OpenAI
   ```
   Remember that the upstream URL can point anywhere empty, as it won’t be used by the plugin.
 
-## Steps
-1. Create a route:
-```sh
-curl -X POST http://localhost:8001/services/ai-semantic-cache/routes \
+  Then, create a route:
+  ```sh
+  curl -X POST http://localhost:8001/services/ai-semantic-cache/routes \
   --data "name=openai-semantic-cache" \
   --data "paths[]=~/openai-semantic-cache$"
-```
-
-1. Set the AI Semantic Cache plugin. This uses Mistral's API Key explicitly, but you can use an environment variable instead if you want.
+  ```
 
 <!--vale off-->
 {% plugin_example %}
@@ -61,7 +58,10 @@ formats:
 <!--vale on-->
 
 This configures the following:
-* `embeddings.model.name`: The AI model to use for generating embeddings. This example is configured with `text-embedding-3-large`, but you can also choose `text-embedding-3-small` for OpenAI.
+* `embeddings.auth.header_value`: The API key for OpenAI. This uses OpenAI's API Key explicitly, but you can use an environment variable instead if you want.
+* `model.provider`: The model provider you want to use. In this example, OpenAI.
+* `model.name`: The AI model to use for generating embeddings. This example is configured with `text-embedding-3-large`, but you can also choose `text-embedding-3-small` for OpenAI.
+* `model.options.upstream_url`: The upstream URL for the LLM provider.
 * `vectordb.dimensions`: The dimensionality for the vectors. Since this example uses `text-embedding-3-large`, OpenAI uses `3072` as the [default embedding dimension](https://platform.openai.com/docs/guides/embeddings/how-to-get-embeddings).
 * `vectordb.distance_metric`: The distance metric to use for vectors. This example uses `cosine` because [OpenAI recommends it](https://platform.openai.com/docs/guides/embeddings/which-distance-function-should-i-use).
 * `vectordb.strategy`: Defines the vector database, in this case, Redis.
@@ -69,7 +69,8 @@ This configures the following:
 * `vectordb.redis.host`: The host of your vector database.
 * `vectordb.redis.port`: The port to use for your vector database.
 * `config.embeddings.name`: The AI model to use for generating embeddings. This example is configured with `text-embedding-3-large`, but you can also choose `text-embedding-3-small` for OpenAI.
-The `threshold` parameter defines the similarity between for accepting semantic search results.
+
+This uses OpenAI's API Key explicitly, but you can use an environment variable instead if you want.
 
 ## More information
 * *Redis Documentation:* [Vectors](https://redis.io/docs/latest/develop/interact/search-and-query/advanced-concepts/vectors/) - Learn how to use vector fields and perform vector searches in Redis

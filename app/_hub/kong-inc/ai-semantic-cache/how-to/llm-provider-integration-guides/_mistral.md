@@ -15,16 +15,14 @@ title: Set up AI Semantic Cache with Mistral
   --data "url=http://localhost:32000"
   ```
   Remember that the upstream URL can point anywhere empty, as it won’t be used by the plugin.
+  
+  Then, create a route:
+  ```sh
+  curl -X POST http://localhost:8001/services/ai-semantic-cache/routes \
+    --data "name=mistral-semantic-cache" \
+    --data "paths[]=~/mistral-semantic-cache$"
+  ```
 
-## Steps
-1. Create a route:
-```sh
-curl -X POST http://localhost:8001/services/ai-semantic-cache/routes \
-  --data "name=mistral-semantic-cache" \
-  --data "paths[]=~/mistral-semantic-cache$"
-```
-
-1. Set the AI Semantic Cache plugin. This uses Mistral's API Key explicitly, but you can use an environment variable instead if you want.
 
 <!--vale off-->
 {% plugin_example %}
@@ -61,7 +59,10 @@ formats:
 <!--vale on-->
 
 This configures the following:
-* `embeddings.model.name`: The AI model to use for generating embeddings. This example is configured with `mistral-embed` because it's the only option available for Mistral AI.
+* `embeddings.auth.header_value`: The API key for Mistral. This uses Mistral's API Key explicitly, but you can use an environment variable instead if you want.
+* `model.provider`: The model provider you want to use. In this example, Mistral.
+* `model.name`: The AI model to use for generating embeddings. This example is configured with `mistral-embed` because it's the only option available for Mistral AI.
+* `model.options.upstream_url`: The upstream URL for the LLM provider.
 * `vectordb.dimensions`: The dimensionality for the vectors. This configuration uses `1024` since it's the [example Mistral uses in their documentation](https://docs.mistral.ai/capabilities/embeddings/#mistral-embed-api).
 * `vectordb.distance_metric`: The distance metric to use for vectors. This example uses `cosine`.
 * `vectordb.strategy`: Defines the vector database, in this case, Redis.
