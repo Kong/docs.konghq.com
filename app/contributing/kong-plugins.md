@@ -92,6 +92,86 @@ If you have any diagrams or screenshots that you want to add to your plugin docu
     > *Figure 1: Diagram showing an OAuth2 authentication flow with Keycloak.*
     ```
 
+## Adding plugin examples
+
+You can use `plugin_example` to easily define and format examples using the plugin. 
+
+Here's an example of how to format `plugin_example` using OpenAI and AI Semantic Cache:
+
+<!-- vale off -->
+{% raw %}
+```
+{% plugin_example %}
+title: OpenAI Example
+plugin: kong-inc/ai-semantic-cache
+name: ai-semantic-cache
+config:
+  embeddings:
+    auth:
+      header_name: Authorization
+      header_value: Bearer OPENAI_API_KEY
+  model:
+    provider: openai
+    name: text-embedding-3-large
+    options:
+      upstream_url: https://api.openai.com/v1/embeddings
+  vectordb:
+    dimensions: 3072
+    distance_metric: cosine
+    strategy: redis
+    threshold: 0.1
+    redis:
+      host: redis-stack.redis.svc.cluster.local
+      port: 6379
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+  - terraform
+{% endplugin_example %}
+```
+{% endraw %}
+<!-- vale on -->
+
+And here's how that example would render:
+
+<!--vale off-->
+{% plugin_example %}
+title: OpenAI Example
+plugin: kong-inc/ai-semantic-cache
+name: ai-semantic-cache
+config:
+  embeddings:
+    auth:
+      header_name: Authorization
+      header_value: Bearer OPENAI_API_KEY
+  model:
+    provider: openai
+    name: text-embedding-3-large
+    options:
+      upstream_url: https://api.openai.com/v1/embeddings
+  vectordb:
+    dimensions: 3072
+    distance_metric: cosine
+    strategy: redis
+    threshold: 0.1
+    redis:
+      host: redis-stack.redis.svc.cluster.local
+      port: 6379
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+  - terraform
+{% endplugin_example %}
+<!--vale on-->
+
 ## Test and submit plugin
 
 1. Run the docs site locally per the instructions in
