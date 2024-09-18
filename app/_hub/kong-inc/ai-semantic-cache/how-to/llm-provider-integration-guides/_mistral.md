@@ -8,7 +8,7 @@ title: Set up AI Semantic Cache with Mistral
 * Mistral's API key
 * [Redis configured as a vector database](https://redis.io/docs/latest/develop/get-started/vector-database/)
 * [Redis configured as a cache](https://redis.io/docs/latest/operate/oss_and_stack/management/config/#configuring-redis-as-a-cache)
-* You need a service to contain the route for the LLM provider. Create a service **first**:
+* A service and a route for the LLM provider. You need a service to contain the route for the LLM provider. Create a service **first**:
   ```sh
   curl -X POST http://localhost:8001/services \
   --data "name=ai-semantic-cache" \
@@ -34,11 +34,11 @@ config:
     auth:
       header_name: Authorization
       header_value: Bearer MISTRAL_API_KEY
-  model:
-    provider: mistral
-    name: mistral-embed
-    options:
-      upstream_url: https://api.mistral.ai/v1/embeddings
+    model:
+      provider: mistral
+      name: mistral-embed
+      options:
+        upstream_url: https://api.mistral.ai/v1/embeddings
   vectordb:
     dimensions: 1024
     distance_metric: cosine

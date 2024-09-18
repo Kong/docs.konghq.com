@@ -8,7 +8,7 @@ title: Set up AI Semantic Cache with OpenAI
 * OpenAI account and subscription
 * [Redis configured as a vector database](https://redis.io/docs/latest/develop/get-started/vector-database/)
 * [Redis configured as a cache](https://redis.io/docs/latest/operate/oss_and_stack/management/config/#configuring-redis-as-a-cache)
-* You need a service to contain the route for the LLM provider. Create a service **first**:
+* A service and a route for the LLM provider. You need a service to contain the route for the LLM provider. Create a service **first**:
   ```sh
   curl -X POST http://localhost:8001/services \
   --data "name=ai-semantic-cache" \
@@ -33,11 +33,11 @@ config:
     auth:
       header_name: Authorization
       header_value: Bearer OPENAI_API_KEY
-  model:
-    provider: openai
-    name: text-embedding-3-large
-    options:
-      upstream_url: https://api.openai.com/v1/embeddings
+    model:
+      provider: openai
+      name: text-embedding-3-large
+      options:
+        upstream_url: https://api.openai.com/v1/embeddings
   vectordb:
     dimensions: 3072
     distance_metric: cosine
