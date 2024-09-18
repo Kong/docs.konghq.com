@@ -95,6 +95,8 @@
           items:
             - text: Overview
               url: /gateway-manager/configuration/vaults/
+            - text: Konnect Config Store
+              url: /gateway-manager/configuration/config-store/
             - text: Set Up and Use a Vault in Konnect
               url: /gateway-manager/configuration/vaults/how-to/
         - text: Manage Control Plane Configuration with decK
