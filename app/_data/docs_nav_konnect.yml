@@ -60,6 +60,8 @@
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
         - text: Transit Gateways
           url: /gateway-manager/data-plane-nodes/transit-gateways
+        - text: Azure VNET Peering
+          url: /gateway-manager/data-plane-nodes/azure-peering
     - text: Provision a Dedicated Cloud Gateway
       url: /gateway-manager/provision-cloud-gateway/
     - text: Control Plane Groups
@@ -123,6 +125,16 @@
   items:
     - text: Overview
       url: /service-catalog/
+    - text: Integrations
+      items:
+        - text: Overview
+          url: /service-catalog/integrations/
+        - text: GitHub
+          url: /service-catalog/integrations/github/
+        - text: PagerDuty
+          url: /service-catalog/integrations/pagerduty/
+        - text: Traceable
+          url: /service-catalog/integrations/traceable/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg

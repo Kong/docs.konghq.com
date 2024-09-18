@@ -7,7 +7,7 @@ module Jekyll
         class Terraform < Base
           def render
             output(
-              { 'config' => @example.fetch('config') },
+              { 'config' => @example.fetch('config', {}) },
               1,
               true,
               "\n"
@@ -30,7 +30,7 @@ module Jekyll
             s = ''
             s += "\n" unless is_root
             s += line("#{key} = {", depth, eol)
-            s += output(input, (depth + 1), false, eol)
+            s += output(input, (depth + 1), true, eol)
             s += line('}', depth, eol)
             s
           end

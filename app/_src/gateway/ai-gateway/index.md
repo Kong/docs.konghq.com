@@ -72,8 +72,13 @@ a provider-agnostic API. This normalized API layer affords developers and organi
 * Request routing can be dynamic, allowing AI usage to be optimized based on various metrics: cost, usage, response accuracy, and so on.
 * AI services can be used by other {{site.base_gateway}} plugins to augment non-AI API traffic 
 
+{% if_version lte:3.7.x %}
 This core AI Gateway feature is enabled with the [AI Proxy](/hub/kong-inc/ai-proxy/) plugin, which is
 deployed by default in the getting started script referenced above. 
+{% endif_version %}
+{% if_version gte:3.8.x %}
+This core AI Gateway feature is enabled with the [AI Proxy](/hub/kong-inc/ai-proxy/) and [AI Proxy Advanced](/hub/kong-inc/ai-proxy-advanced/) plugins. The quickstart script referenced above uses the basic AI Proxy plugin. For load balancing and semantic routing capabilities, check out the AI Proxy Advanced plugin instead.
+{% endif_version %}
 
 The AI Proxy supports two types of LLM requests: 
 
@@ -111,10 +116,14 @@ experiences for your users.
 
 #### Data governance
 
-AI Gateway provides the ability to govern outgoing AI prompts via the 
-[AI Prompt Guard](/hub/kong-inc/ai-prompt-guard). This plugin allows the configuration of regular expressions
-following an allow/deny list configuration. Denied prompts result in `4xx` HTTP code responses to clients preventing
+AI Gateway provides the ability to govern outgoing AI prompts via an allow/deny list configuration. Denied prompts result in `4xx` HTTP code responses to clients preventing
 the egress of offending requests.
+
+* The [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard) plugin allows the configuration of allow/deny lists using regular expressions. 
+
+{% if_version gte:3.8.x %}
+* The [AI Semantic Prompt Guard](/hub/kong-inc/ai-semantic-prompt-guard) plugin allows the configuration of allow/deny lists using semantically similar prompts.
+{% endif_version %}
 
 #### Prompt engineering
 
@@ -170,6 +179,15 @@ for all requests handled by the AI Proxy plugin.
 The plugin enables configurable thresholds for the different moderation categories 
 and you can specify an array set of pre-configured blocklist IDs from your Azure Content Safety instance.
 
+{% endif_version %}
+
+{% if_version gte:3.8.x %}
+#### Semantic caching
+{:.badge .enterprise}
+
+Kong's AI Gateway allows you to configure semantic caching.
+
+* The [AI Semantic Cache plugin](/hub/kong-inc/ai-semantic-cache/) allows you to semantically cache responses from LLMs.
 {% endif_version %}
 
 {% if_version gte:3.7.x %}

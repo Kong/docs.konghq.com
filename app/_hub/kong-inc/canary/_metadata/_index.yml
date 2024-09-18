@@ -4,7 +4,6 @@ free: false
 plus: false
 enterprise: true
 k8s_examples: false
-premium: true
 konnect: true
 network_config_opts: All
 notes: |

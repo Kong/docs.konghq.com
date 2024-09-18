@@ -34,6 +34,7 @@ DNs
 DPP
 DPPs
 Datadog
+Dynatrace
 Dex
 ElastiCache
 Entra
@@ -152,6 +153,7 @@ backporting
 backtrace
 Bagdi
 bcc
+bindable
 Bintray
 Bitnami
 blockquote
@@ -204,6 +206,7 @@ denylist
 deployer
 dereference
 dereferenced
+dereferencing
 deserialization
 deserialize
 deserialized
@@ -261,6 +264,7 @@ grpcurl
 gui
 guis
 gzip
+gzipped
 hackathon
 hackathons
 hardcoded
@@ -417,6 +421,7 @@ perf
 performant
 petstore
 pgdump
+pgvector
 pipeline
 pipelined
 pipelines
@@ -444,6 +449,7 @@ Protobuf
 protobuf
 proxied
 proxying
+Qdrant
 querystring
 ratelimit
 rbac
@@ -520,6 +526,7 @@ subtables
 subtree
 subtrees
 sudo
+Supabase
 superset
 svg
 svgs

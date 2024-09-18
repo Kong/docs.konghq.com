@@ -78,12 +78,6 @@ extensions:
     # - name: dev portal extension
     #   slug: dev-mod
 
-# Pricing
-pricing:
-  konnect:
-    paid_plugin: $5
-    premium_plugin: $10
-
 exclude:
   - app/assets
 
@@ -182,10 +176,6 @@ hub-filters:
   tiers:
     - name: Free
       slug: free
-    - name: Konnect Paid
-      slug: paid
-    - name: Konnect Premium
-      slug: premium
     - name: Kong Gateway Enterprise
       slug: enterprise
   support:
@@ -193,6 +183,8 @@ hub-filters:
       slug: kong-inc
     - name: Technical partner
       slug: third-party-partner
+    - name: Premium partner
+      slug: premium-partner
     - name: Support by 3rd party
       slug: community
   compatibility:

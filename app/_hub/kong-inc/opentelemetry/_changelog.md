@@ -1,4 +1,16 @@
 ## Changelog
+
+### {{site.base_gateway}} 3.8.x
+* Added support for OpenTelemetry-formatted logs.
+[#13291](https://github.com/Kong/kong/issues/13291)
+* Fixed an issue where migration failed when upgrading from versions earlier than 3.3.x to 3.7.x.
+   [#13391](https://github.com/Kong/kong/issues/13391)
+* Removed redundant deprecation warnings.
+  [#13220](https://github.com/Kong/kong/issues/13220)
+* Improved the accuracy of sampling decisions.
+  [#13275](https://github.com/Kong/kong/issues/13275)
+
+
 ### {{site.base_gateway}} 3.7.x
 * The propagation module has been reworked. The new
 options allow better control over the configuration of tracing header propagation.
@@ -14,7 +26,7 @@ when the `http_response_header_for_traceid` option was enabled.
  [#12544](https://github.com/Kong/kong/issues/12544)
 
 ### {{site.base_gateway}} 3.6.x
-* Tracing sampling rate can now be set via the [`config.sampling_rate`](/hub/kong-inc/opentelemetry/configuration/#configsampling_rate) property of the OpenTelemetry plugin 
+* The tracing sampling rate can now be set via the [`config.sampling_rate`](/hub/kong-inc/opentelemetry/configuration/#configsampling_rate) property of the OpenTelemetry plugin 
 instead of just being a global setting for {{site.base_gateway}}.
 [#12054](https://github.com/Kong/kong/issues/12054)
 
