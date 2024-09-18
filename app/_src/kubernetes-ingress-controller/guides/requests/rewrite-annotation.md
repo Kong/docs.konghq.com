@@ -13,7 +13,7 @@ This definition creates a route that matches the path `/users/(\w+)` and rewrite
 
 ## Prerequisite
 
-The `RewriteURIs` [feature gate](https://docs.konghq.com/kubernetes-ingress-controller/latest/reference/feature-gates/) must be enabled.
+The `RewriteURIs` [feature gate](/kubernetes-ingress-controller/{{page.release}}/reference/feature-gates/) must be enabled.
 
 ##  Rewriting the path
 
