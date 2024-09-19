@@ -109,6 +109,10 @@
 /konnect/dev-portal/access-and-approval/manage-app-reg-requests/    /konnect/dev-portal/access-and-approval/manage-app-connections/
 /konnect/dev-portal/access-and-approval/auto-approve-devs-apps/ /konnect/dev-portal/create-dev-portal/
 
+# Konnect Dev Portal audit logs
+/konnect/dev-portal/audit-logging/reference/    /konnect/reference/audit-logs/
+/konnect/org-management/audit-logging/reference/    /konnect/reference/audit-logs/
+
 # API markdown doc deprecation
 
 /gateway/latest/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/

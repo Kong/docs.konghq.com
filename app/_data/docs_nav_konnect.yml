@@ -193,8 +193,6 @@
           url: /dev-portal/audit-logging/replay-job/
         - text: Verify Audit Log Signatures
           url: /dev-portal/audit-logging/verify-signatures/
-        - text: Log Reference
-          url: /dev-portal/audit-logging/reference/
     - text: Portal Customization
       items:
         - text: Overview
@@ -267,8 +265,6 @@
           url: /org-management/audit-logging/replay-job/
         - text: Verify Audit Log Signatures
           url: /org-management/audit-logging/verify-signatures/
-        - text: Log Reference
-          url: /org-management/audit-logging/reference/
     - text: Account and Org Deactivation
       url: /org-management/deactivation/
 
@@ -404,3 +400,5 @@
       url: /reference/search/
     - text: Terraform Provider
       url: /reference/terraform/
+    - text: Audit Logs
+      url: /reference/audit-logs/

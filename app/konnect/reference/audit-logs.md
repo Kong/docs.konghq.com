@@ -6,12 +6,36 @@ content_type: reference
 
 {{site.konnect_short_name}} captures three types of events:
 
-* **Authentication**: Triggered when a user attempts to log into the {{site.konnect_short_name}} web application or use the {{site.konnect_short_name}} API via a personal access token. Also triggered when a system account access token is used.
-* **Authorization**: Triggered when a permission check is made for a user or system account against a resource.
-* **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API.
+| Event type | Org audit logs | Dev Portal audit logs |
+| ---------- | ---------- | ---------- |
+| Authentication | This is triggered when a user attempts to log into the {{site.konnect_short_name}} web application or use the {{site.konnect_short_name}} API via a personal access token. Also triggered when a system account access token is used. | Triggered when a user logs in to the Dev Portal. |
+| Authorization | Triggered when a permission check is made for a user or system account against a resource. | Not currently supported |
+| Access logs | Triggered when a request is made to the {{site.konnect_short_name}} API. | Not currently supported |
 
-## Data Retention Period
 {{site.konnect_short_name}} retains audit logs for 7 days. 
+
+## Audit log webhook status
+
+You can view the webhook status in the UI or via the API for the [{{site.konnect_short_name}} org audit logs](/konnect/dev-portal/org-management/webhook/) and [Dev Portal audit logs](/konnect/dev-portal/audit-logging/webhook/).
+
+The following table describes the webhook statuses:
+
+| Attribute | Description |
+| --------- | ---------- |
+| `last_attempt at` | The last time {{site.konnect_short_name}} tried to send data to your webhook |
+| `last_response_code` | The last response code from your webhook |
+| `webhook_enabled` | The desired status of the webhook (from `audit-log-webhook.enabled`) |
+| `webhook_status` | The actual status {{site.konnect_short_name}} of the webhook |
+
+A combination of `webhook_enabled` and `webhook_status` give a full picture of webhook status.
+
+| `webhook_enabled` | `webhook_status` | Description |
+| --------------- | -------------- | ---------- |
+| true            | `active`       | {{site.konnect_short_name}} is ready to send data to the webhook. Either no attempts have been made yet (`last_attempt_at` is not set), or the last attempt was successful. |
+| true            | `inactive`     | Last attempt to send data failed, but the webhook is still enabled. This usually means that there was an error in the endpoint or the SIEM provider went down that caused the logs to stop streaming. |
+| false           | `active`       | Webhook config is saved. {{site.konnect_short_name}} is not shipping data to it per webhook configuration. |
+| false           | `inactive`     |Last attempt to send data failed, and customer has turned off the webhook. |
+| false           | `unconfigured` | The webhook for this region has not been configured yet. |
 
 ## Log formats
 
@@ -93,6 +117,9 @@ Property | Description
 
 Authorization log entries are created for every permission check in {{site.konnect_short_name}}.
 
+{:. note}
+> **Note:** This is not currently supported for Dev Portal audit logs.
+
 Example log entry:
 
 {% navtabs codeblock %}
@@ -153,6 +180,9 @@ Property | Description
 ## Access logs
 
 Access logs include information about create, update, and delete requests to the {{site.konnect_short_name}} API.
+
+{:. note}
+> **Note:** This is not currently supported for Dev Portal audit logs.
 
 Example log entry:
 
