@@ -5969,24 +5969,24 @@ openid-connect
 
 
 ## 2.8.4.13
-**Release Date** 2024/09/19
+**Release Date** 2024/09/20
 
 ### Breaking Changes
 
 #### Dependencies
 
-* Fixed an issue with resty which prevented an rpm install from being re-locatable.
+* Fixed RPM relocation by setting the default prefix to `/`, and added a symbolic
+  link for `resty` to handle missing `/usr/local/bin` in `PATH`.
 
 ### Fixes
 #### Core
 
-* Fixed an issue where luarocks-admin was not available in /usr/local/bin.
+* Fixed an issue where `luarocks-admin` was not available in `/usr/local/bin`.
 
 #### Plugins
 
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Fixed an issue where the sync timer could stop working due to a race condition.
-
 
 ## 2.8.4.12
 **Release Date** 2024/07/29
