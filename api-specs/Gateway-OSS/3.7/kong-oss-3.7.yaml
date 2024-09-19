@@ -7280,7 +7280,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       description: |
-        Change the log level of all Control Plane nodes deployed in Hybrid (CP/DP) cluster.
+        Change the log level of all control plane nodes deployed in a hybrid (CP/DP) cluster.
 
         See the [NGINX docs](http://nginx.org/en/docs/ngx_core_module.html#error_log) for a list of accepted values.
 
@@ -7720,9 +7720,9 @@ paths:
         - filter-chains
   '/clustering/data-planes':
     get:
-      summary: Retrieve connected Data Planes
+      summary: Retrieve connected data planes
       description: >
-        Retrieve a list of all data planes connected to the control plane. This endpoint is only accessible when Kong is configured in Hybrid Mode
+        Retrieve a list of all data planes connected to the control plane. This endpoint is only accessible when Kong Gateway is configured in hybrid mode
       operationId: getDataPlanes
       responses:
         '200':
@@ -7781,7 +7781,7 @@ paths:
                               type: integer
                               description: Timestamp for when the certificate expires.
         '400':
-          description: Kong is not running as a Control Plane.
+          description: Kong is not running as a control plane.
           content:
             application/json:
               schema:
@@ -7789,16 +7789,16 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: This endpoint is only available when Kong is configured to run as Control Plane for the cluster.
+                    example: This endpoint is only available when Kong is configured to run as control plane for the cluster.
       tags:
         - clustering
 
   '/clustering/status':
     get:
-      summary: Retrieve the status of connected Data Planes
+      summary: Retrieve the status of connected data planes
       description: >
         Retrieve a status report for all data planes connected to the control plane. It includes information like the config hash, hostname, IP address, and last seen timestamp.
-        This endpoint is only accessible when Kong is configured in Hybrid Mode
+        This endpoint is only accessible when Kong Gateway is configured in hybrid mode
       operationId: getDataPlaneStatus
       responses:
         '200':
@@ -7829,7 +7829,7 @@ paths:
                       type: integer
                       description: Unix timestamp of the last interaction between the data plane and control plane.
         '400':
-          description: Kong is not running as a Control Plane.
+          description: Kong Gateway is not running as a control plane.
           content:
             application/json:
               schema:
@@ -7837,7 +7837,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: This endpoint is only available when Kong is configured to run as Control Plane for the cluster.
+                    example: This endpoint is only available when Kong Gateway is configured to run as control plane for the cluster.
       tags:
       - clustering
   '/cache/{key}':
@@ -8025,7 +8025,7 @@ tags:
       Most core entities can be tagged via the tags attribute upon creation or modification.
     name: Tags
   - description: |
-      Retreieve information about the status of data planes when Kong is configured in Hybrid Mode.
+      Retreieve information about the status of data planes when Kong Gateway is configured in hybrid mode.
     name: clustering
   - description: |
       Querying and managing cache entries.
