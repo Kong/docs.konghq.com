@@ -136,7 +136,7 @@ This plugin supports the following authentication mechanisms:
   [Read more on how to create, renew, and revoke delegation tokens.](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_delegation.html#authentication-using-delegation-tokens)
 
 {% if_version gte:3.4.x %}
-## Custom Fields by Lua
+## Custom fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
 
