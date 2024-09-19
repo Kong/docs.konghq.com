@@ -96,6 +96,22 @@ If you have any diagrams or screenshots that you want to add to your plugin docu
 
 You can use `plugin_example` to easily define and format examples using the plugin. 
 
+The example accepts all plugin config, and you can configure it to output any combination of targets and formats that you need.
+
+Possible targets:
+* `service`
+* `route`
+* `consumer`
+* `consumer_group`
+* `global`
+
+Possible formats:
+* `curl`
+* `konnect`
+* `yaml`
+* `kubernetes`
+* `terrafrom`
+
 Here's an example of how to format `plugin_example` using OpenAI and AI Semantic Cache:
 
 <!-- vale off -->
