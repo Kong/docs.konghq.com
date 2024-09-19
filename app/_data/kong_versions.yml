@@ -278,10 +278,10 @@
   version: "1.38.1"
   edition: "deck"
 - release: "1.39.x"
-  version: "1.39.0"
+  version: "1.39.6"
   edition: "deck"
 - release: "1.40.x"
-  version: "1.40.0"
+  version: "1.40.2"
   edition: "deck"
   latest: true
 - release: "1.41.x"
