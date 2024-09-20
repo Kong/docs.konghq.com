@@ -42,6 +42,7 @@ formats:
   - curl
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 {% endif_version %}
 
