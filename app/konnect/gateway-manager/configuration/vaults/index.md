@@ -44,8 +44,7 @@ Vaults have several use cases:
 * Encryption of secrets at rest
 
 {{site.konnect_short_name}} **does not**:
-* Store credentials to access the vault itself.
-You must provide those credentials to the {{site.base_gateway}} data plane directly.
+
 * Update or modify the secrets in 3rd party vaults.
 
 Vaults are configurable per control plane. You can't use the same vault across
@@ -69,7 +68,7 @@ Check out the example use case for [storing certificates in a vault](/konnect/ga
 
 For detailed vault configuration references and guides, see the {{site.base_gateway}}
 documentation:
-* [Konnect Config Store](<<needs the link for the new Konnect ConfigStore page>>)
+* [Konnect Config Store](/gateway-manager/configuration/config-store/)
 * [AWS Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/)
 * [GCP Secret Manager](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [HashiCorp Vault](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/)
