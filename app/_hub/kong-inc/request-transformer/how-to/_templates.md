@@ -13,7 +13,7 @@ groups as templates to populate supported configuration fields.
 | header         | `$(headers.<header_name>)`, `$(headers["<Header-Name>"])` or `$(headers["<header-name>"])`
 | querystring    | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`
 | captured URIs  | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`
-| shared context | `$(shared.<context-key>)` or  `$(shared["<context-key>"])`
+| shared variables | `$(shared.<variable-name>)` or `$(shared["<variable-name>"])`)
 
 To escape a template, wrap it inside quotes and pass inside another template.
 For example:
