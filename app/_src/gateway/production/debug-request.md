@@ -13,6 +13,9 @@ Request debugging provides the following insights:
 {:.note}
 > **Note:** This feature is meant for live debugging. The JSON schema of the header containing the timing should never be considered static and is always subject to change.
 
+{:.warning}
+> **Warning:** Debug requests originating from loopback addresses are not secured by `X-Kong-Request-Debug-Token`. Deploying {{site.base_gateway}} behind other proxies will be dangerous for exposing the debug interface to the public without any authentication.
+
 ## Enable request debugging
 
 Request debugging is enabled by default and has the following configurations in [`kong.conf`](/gateway/{{page.release}}/reference/configuration/):
@@ -57,7 +60,7 @@ If the `X-Kong-Request-Debug-Log` header is set to true, timing information will
 
 ### X-Kong-Request-Debug-Token header
 
-The `X-Kong-Request-Debug-Token` is a token for authenticating the client and making the debug request to prevent abuse. Debug requests originating from loopback addresses don't require this header.
+The `X-Kong-Request-Debug-Token` is a token for authenticating the client and making the debug request to prevent abuse. **Debug requests originating from loopback addresses don't require this header.**
 
 {% if_version gte:3.5.x %}
 ### X-Kong-Request-Id header
