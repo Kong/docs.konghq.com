@@ -108,6 +108,8 @@
 /konnect/dev-portal/access-and-approval/azure/    /konnect/dev-portal/access-and-approval/sso/
 /konnect/dev-portal/access-and-approval/manage-app-reg-requests/    /konnect/dev-portal/access-and-approval/manage-app-connections/
 /konnect/dev-portal/access-and-approval/auto-approve-devs-apps/ /konnect/dev-portal/create-dev-portal/
+/konnect/dev-portal/access-and-approval/manage-teams    /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
+/konnect/api/portal-auth/portal-rbac-guide/   /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
 
 # API markdown doc deprecation
 
