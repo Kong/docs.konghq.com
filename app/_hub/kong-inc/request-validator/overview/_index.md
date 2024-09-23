@@ -181,7 +181,10 @@ validations:
 
 **Note**: To learn more, see [Lua patterns][lua-patterns].
 
-#### Semantic validation for `format` attribute (only supported in draft4 version)
+#### Semantic validation for `format` attribute
+
+{:.important}
+> This feature is only supported in JSON Schema Draft 4.
 
 Structural validation alone may be insufficient to validate that an instance
 meets all the requirements of an application. The `format` keyword is defined
