@@ -13,5 +13,5 @@ content_type: concept
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Audit log event reference](/konnect/reference/audit-logs/)
-* [Verify audit log signatures](/reference/verify-signatures/)
+* [Verify audit log signatures](/konnect/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)

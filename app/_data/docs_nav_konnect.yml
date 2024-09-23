@@ -191,8 +191,6 @@
           url: /dev-portal/audit-logging/webhook/
         - text: Set up an Audit Log Replay Job
           url: /dev-portal/audit-logging/replay-job/
-        - text: Verify Audit Log Signatures
-          url: /dev-portal/audit-logging/verify-signatures/
     - text: Portal Customization
       items:
         - text: Overview
@@ -263,8 +261,6 @@
           url: /org-management/audit-logging/webhook/
         - text: Set up an Audit Log Replay Job
           url: /org-management/audit-logging/replay-job/
-        - text: Verify Audit Log Signatures
-          url: /org-management/audit-logging/verify-signatures/
     - text: Account and Org Deactivation
       url: /org-management/deactivation/
 

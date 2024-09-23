@@ -14,7 +14,7 @@ A retry is performed on connection error, server error (`500` HTTP status code),
 
 ## Prerequisites
 
-* A SIEM provider that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or raw JSON
+A SIEM provider that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or raw JSON
 
 ## Configure your SIEM provider
 

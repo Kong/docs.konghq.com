@@ -114,6 +114,8 @@
 /konnect/org-management/audit-logging/reference/    /konnect/reference/audit-logs/
 /konnect/dev-portal/audit-logging/verify-signatures/  /reference/verify-signatures/
 /konnect/org-management/audit-logging/verify-signatures/    /reference/verify-signatures/
+/konnect/dev-portal/audit-logging/webhook-status/   /konnect/dev-portal/audit-logging/webhook/#view-audit-log-webhook-status
+
 
 # API markdown doc deprecation
 
