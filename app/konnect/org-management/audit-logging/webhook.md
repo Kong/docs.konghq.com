@@ -141,7 +141,7 @@ You will receive a `200` response code and a response body with information abou
 
 ## More information
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
-* [Audit log event reference](/konnect/org-management/audit-logging/reference/)
+* [Audit log event reference](/konnect/reference/audit-logs/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
-* [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
+* [Verify audit log signatures](/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)

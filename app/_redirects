@@ -112,6 +112,8 @@
 # Konnect Dev Portal audit logs
 /konnect/dev-portal/audit-logging/reference/    /konnect/reference/audit-logs/
 /konnect/org-management/audit-logging/reference/    /konnect/reference/audit-logs/
+/konnect/dev-portal/audit-logging/verify-signatures/  /reference/verify-signatures/
+/konnect/org-management/audit-logging/verify-signatures/    /reference/verify-signatures/
 
 # API markdown doc deprecation
 

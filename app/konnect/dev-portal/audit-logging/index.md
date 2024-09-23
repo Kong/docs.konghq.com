@@ -13,6 +13,6 @@ content_type: concept
 * [Set up an audit log destination](/konnect/dev-portal/audit-logging/destination/)
 * [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
 * [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
-* [Portal Audit log event reference](/konnect/dev-portal/audit-logging/reference/)
-* [Verify audit log signatures](/konnect/dev-portal/audit-logging/verify-signatures/)
+* [Portal Audit log event reference](/konnect/reference/audit-logs/)
+* [Verify audit log signatures](/reference/verify-signatures/)
 * [Dev Portal Audit Logs API](/konnect/api/audit-logs/latest/)

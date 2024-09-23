@@ -402,3 +402,5 @@
       url: /reference/terraform/
     - text: Audit Logs
       url: /reference/audit-logs/
+    - text: Verify audit log signatures
+      url: /reference/verify-signatures/

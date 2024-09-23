@@ -41,6 +41,37 @@ A combination of `webhook_enabled` and `webhook_status` give a full picture of w
 
 {{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or JSON. You may specify which format to use in the [audit log webhook](/konnect/org-management/audit-logging/webhook/) endpoint.
 
+The following are example audit logs in both formats:
+{% navtabs codeblock %}
+{% navtab CEF %}
+```
+Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=1681450748406 src=127.0.0.6 action=retrieve granted=true org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b trace_id=3895213347334635099 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges)
+```
+{% endnavtab %}
+{% navtab JSON %}
+```json
+{
+    "action": "read",
+    "cef_version": "0",
+    "event_class_id": "identity",
+    "event_product": "Konnect",
+    "event_ts": "2023-04-28T20:52:09Z",
+    "event_vendor": "KongInc",
+    "event_version": "1.0",
+    "granted": true,
+    "name": "Authz.identity-provider",
+    "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
+    "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
+    "rt": 1682715129807,
+    "severity": 1,
+    "src": "127.0.0.6",
+    "trace_id": 3895213347334635000,
+    "user_agent": "grpc-go/1.54.0"
+}
+```
+{% endnavtab %}
+{% endnavtabs %}
+
 Webhook calls include a batch of events. Each event is formatted in either CEF or JSON and separated by a newline. The `Content-Type` is `text/plain`.
 
 To minimize payload size, the message body is compressed. The `Content-Encoding` is `application/gzip`.
@@ -59,7 +90,7 @@ Timestamp | Time and date of the event in UTC.
 `user_agent` | The user agent of the request: application, operating system, vendor, and version.
 `sig` | An ED25519 signature.
 
-## Authentication logs
+### Authentication logs
 
 Authentication attempts and their outcomes are logged whenever a user logs in to the Konnect application or uses the Konnect API.
 
@@ -113,11 +144,11 @@ Property | Description
 `AUTHENTICATION_OUTCOME` | Can be one of the following: <br> - `AUTHENTICATION_OUTCOME_SUCCESS`: authentication is successful<br> - `AUTHENTICATION_OUTCOME_NOT_FOUND`: user was not found<br> - `AUTHENTICATION_OUTCOME_INVALID_PASSWORD`: invalid password specified <br> - `AUTHENTICATION_OUTCOME_LOCKED`: user account is locked<br> - `AUTHENTICATION_OUTCOME_DISABLED`: user account has been disabled
 `success` | `true` or `false`, depending on whether authentication was successful or not.
 
-## Authorization logs
+### Authorization logs
 
 Authorization log entries are created for every permission check in {{site.konnect_short_name}}.
 
-{:. note}
+{:.note}
 > **Note:** This is not currently supported for Dev Portal audit logs.
 
 Example log entry:
@@ -177,11 +208,11 @@ Property | Description
 >  - From `Authz.runtimegroups` to `Authz.control-planes`
 >  - From `Authz.services` to `Authz.api-products`
 
-## Access logs
+### Access logs
 
 Access logs include information about create, update, and delete requests to the {{site.konnect_short_name}} API.
 
-{:. note}
+{:.note}
 > **Note:** This is not currently supported for Dev Portal audit logs.
 
 Example log entry:
@@ -241,8 +272,13 @@ Property | Description
 
 
 ## See also
-* [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
-* [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
-* [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
-* [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
+* Dev Portal audit logs:
+    * [Audit logging in Dev Portal](/konnect/dev-portal/audit-logging/)
+    * [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
+    * [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+* Global {{site.konnect_short_name}} audit logs:
+    * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
+    * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
+    * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
+* [Verify audit log signatures](/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)

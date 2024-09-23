@@ -6,7 +6,7 @@ badge: enterprise
 
 You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configure webhooks for [audit logging](/konnect/dev-portal/audit-logging/). 
 
-{.:note}
+{:.note}
 > **Note:** Currently, Dev Portal audit logs only support authorization logs, which are triggered when a user logs in to Dev Portal.
 
 {% include_cached /md/konnect/audit-logging/webhook-overview-prereq-siem-config.md %}
@@ -17,7 +17,7 @@ You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configur
 {% navtabs %}
 {% navtab Konnect UI %}
 1. From the navigation menu, open {% konnect_icon organizations %} **Organization**, then **Audit Logs Setup** and **Destinations**
-1. Fill in the fields in the **Destinations** tab. <!--explain why-->
+1. Fill in the fields in the **Destinations** tab. This allows you to set your audit log destination (the endpoint URL for your SIEM provider) and reuse it. 
    * **Region endpoint**: The external endpoint that will receive audit log messages. 
    * **Authorization Header**: The authorization type and credential to pass to your log collection endpoint. 
     {{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint.
@@ -139,7 +139,7 @@ You will receive a `200` response code and a response body with information abou
 ## More information
 * [Audit logging in {{site.konnect_short_name}}](/konnect/dev-portal/audit-logging/)
 * [Dev Portal audit log status](/konnect/dev-portal/audit-logging/webhook-status/)
-* [Audit log event reference](/konnect/dev-portal/audit-logging/reference/)
+* [Audit log event reference](/konnect/reference/audit-logs/)
 * [Set up an audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
-* [Verify audit log signatures](/konnect/dev-portal/audit-logging/verify-signatures/)
+* [Verify audit log signatures](/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)
