@@ -38,9 +38,8 @@ curl -i -X POST http://localhost:8001/services/gemini-service/plugins \
       {
         "route_type": "llm/v1/chat",
         "auth": {
-          "param_name": "key",
-          "param_value": "<GEMINI_API_TOKEN>",
-          "param_location": "query"
+          "header_name": "key",
+          "header_value": "<GEMINI_API_TOKEN>",
         },
         "model": {
           "provider": "gemini",
@@ -54,6 +53,8 @@ curl -i -X POST http://localhost:8001/services/gemini-service/plugins \
 ```
 
 Be sure to replace `GEMINI_API_TOKEN` with your API token.
+
+**To use Gemini with a GCP Service Account or workload identity** (i.e. in [Vertex AI Studio](https://cloud.google.com/vertex-ai?hl=en)), follow [the integration guide](/hub/kong-inc/ai-proxy/how-to/cloud-provider-authentication), and adjust your plugin configuration accordingly.
 
 ### Test the configuration
 
