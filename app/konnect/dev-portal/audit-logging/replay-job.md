@@ -41,7 +41,10 @@ The following example creates an `audit-log-replay-job`:
 curl -i -X PUT https://us.api.konghq.com/v2/portals/{portalId}/audit-log-replay-job \
     --header "Content-Type: application/json" \
     --header "Authorization: Bearer TOKEN" \
-    --data '{"start_at":"2023-03-27T20:00:00Z","end_at":"2023-03-27T20:00:00Z"}'
+    --data '{
+        "start_at": "2023-03-27T20:00:00Z",
+        "end_at": "2023-03-27T20:00:00Z"
+    }'
 ```
 
 Replace the following placeholders with your own data:
@@ -82,7 +85,7 @@ You can view the audit log replay job in a given region by issuing a GET request
 The following example retrieves an `audit-log-replay-job` for a portal:
 
 ```sh
-curl https://us.api.konghq.com/v2/portals/{portalId}/audit-log-replay-job \
+curl -i -X GET https://us.api.konghq.com/v2/portals/{portalId}/audit-log-replay-job \
     --header "Authorization: Bearer TOKEN"
 ```
 
