@@ -43,7 +43,7 @@ Dedicated Cloud Gateways support public and private networking on AWS.
 * **Public networking:** Easy access to services and APIs, but low security. We recommend only using this option for testing.
 * **Private networking:** A secure way to expose your APIs to the internet.
  
-You can set up private networking for Dedicated Cloud Gateways with [AWS Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/).
+You can set up private networking for Dedicated Cloud Gateways with [AWS Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/).
 
 ## Plugin considerations for Dedicated Cloud Gateways
 There are some limitations for plugins with Dedicated Cloud Gateways:
@@ -57,7 +57,7 @@ This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-
 
 * [Networking and Peering information](/konnect/network-resiliency/#how-does-network-peering-work-with-dedicated-cloud-gateway-nodes)
 * [Supported regions](/konnect/geo/#dedicated-cloud-gateways)
-* [Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/)
+* [Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/)
 * [How to upgrade data planes](/konnect/gateway-manager/data-plane-nodes/upgrade/)
 * [Custom Domains](/konnect/reference/custom-dns/)
 * [Cloud Gateways API](/konnect/api/cloud-gateways/latest/)
