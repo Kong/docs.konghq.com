@@ -26,7 +26,7 @@ If you already have some standard control planes in your org that you want to ad
 {% navtab Konnect UI %}
 
 1. From the navigation menu, open {% konnect_icon runtimes %} **Gateway Manager**.
-1. Click the **New Control Plane** button and select **{{site.base_gateway}}**.
+1. Click the **New Gateway* button and select **{{site.base_gateway}}**.
    
    Kong Ingress Controller control planes can't be part of control plane groups. One control plane group cannot be a member of another control plane group. 
 
@@ -67,7 +67,7 @@ Next, create a control plane group with the control planes `CP1` and `CP2` as it
 {% navtab Konnect UI %}
 
 1. From the navigation menu, open {% konnect_icon runtimes %} **Gateway Manager**.
-1. Click the **New Control Plane** button and select **Control Plane Group**.
+1. Click the **New Gateway* button and select **Control Plane Group**.
 1. Set up the group. The name of the group must be unique.
 
     In the **Control Planes** field, add the `CP1` and `CP2` control planes.
