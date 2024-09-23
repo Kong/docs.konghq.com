@@ -16,7 +16,7 @@ content_type: reference
 
 ## Audit log webhook status
 
-You can view the webhook status in the UI or via the API for the [{{site.konnect_short_name}} org audit logs](/konnect/dev-portal/org-management/webhook/) and [Dev Portal audit logs](/konnect/dev-portal/audit-logging/webhook/).
+You can view the webhook status in the UI or via the API for the [{{site.konnect_short_name}} org audit logs](/konnect/org-management/audit-logging/webhook/) and [Dev Portal audit logs](/konnect/dev-portal/audit-logging/webhook/).
 
 The following table describes the webhook statuses:
 
@@ -280,5 +280,5 @@ Property | Description
     * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
     * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
     * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
-* [Verify audit log signatures](/reference/verify-signatures/)
+* [Verify audit log signatures](/konnect/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)
