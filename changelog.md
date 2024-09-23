@@ -34,10 +34,8 @@ Some of the newer parameters for the AppDynamics plugin are missing the `_APPD` 
 
 ### [fix: Convert to AI Semantic Cache LLM examples to `plugin_example`](https://github.com/Kong/docs.konghq.com/pull/7932) (2024-09-19)
 
-<!-- What did you change and why? -->
 Converting the LLM examples to use `plugin_example` instead for better consistency.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 DOCU-4060
 
 #### Modified
