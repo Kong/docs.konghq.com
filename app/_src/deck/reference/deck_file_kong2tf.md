@@ -7,8 +7,7 @@ content_type: reference
 The `kong2tf` subcommand transforms Kong's configuration files, written in the decK format, into Terraform resources. This tool serves as a bridge for deploying API configurations from decK files directly to {{site.konnect_product_name}}, facilitating integration into the final stages of an APIOps pipeline. Essentially, `kong2tf` translates the desired API configurations into a format that Terraform can deploy, ensuring that the API's intended state is accurately reflected in the {{site.konnect_short_name}} environment.
 
 
-Let's see an example of how the following decK state file is converted to Ingress API Kubernetes 
-manifests and Gateway API Kubernetes manifests. 
+Let's see an example of how the following decK state file is converted to Terraform resources. 
 
 {% navtabs %}
 {% navtab decK state file %}
