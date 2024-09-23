@@ -5,29 +5,37 @@ title: Konnect Config Store
 
 You can store your sensitive data directly in {{site.konnect_short_name}} via the {{site.konnect_short_name}} Config Store. {{site.konnect_short_name}} Config Store is scoped to a control plane today and works directly with Gateway’s Vaults entity in Gateway Manager to easily manage security and governance policies. {{site.konnect_short_name}} Config Store is built with security in mind such that once a secret is stored in {{site.konnect_short_name}}, you cannot view the value again. This ensures that sensitive data is not visible in plain text anywhere. 
 
+
 ## Configure the {{site.konnect_short_name}} config store
-
-Create a config store entity in {{site.konnect_short_name}} and save the `config_store_id` from the response body.
-```sh 
-curl -i -X POST http://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/config-stores  \
---data name="Default-Config-Store"
-```
-
-> Creating a config store can only be accomplished using the [config-store](/konnect/api/control-planes/latest/#/Control%20Planes/config-store) endpoint.
-
-
-## Connect the config store entity to the vault
 
 {% navtabs %}
 {% navtab API %}
 
+Create a config store entity in {{site.konnect_short_name}} and save the `config_store_id` from the response body.
+
+```sh 
+curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/core-entities/vaults/ \
+  --header 'Authorization: Bearer{kpat_token}' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"name": "konnect"
+}'
+```
+
 Using the `config_store_id` create a `POST` request to associate the config store with the vault.
     
 ```sh
-curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/core-entities/vaults/konnect-vault   \
-  --data name=konnect \
-  --data description="Storing secrets in Konnect Config Store" \
-  --data config.config_store_id="ee62068e-1843-49f8-ac22-40293b0a949d"
+curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/core-entities/vaults/  \
+  --header 'Authorization: Bearer {kpat_token}' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"config":{
+		"config_store_id": "7f1daa91-d386-4eb8-83c9-a78099f9c9d5"
+	},
+	"description": "Description of your vault",
+	"name": "konnect",
+	"prefix": "mysecretvault"
+}'
 ```
 
 {% endnavtab %}
