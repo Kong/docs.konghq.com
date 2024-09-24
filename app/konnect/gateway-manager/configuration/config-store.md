@@ -62,6 +62,8 @@ vaults:
 {% endnavtab %}
 {% endnavtabs %}
 
+## Reference {{site.konnect_short_name}} Config Store secrets
+
 You can now store secrets in the {{site.konnect_short_name}} Config Store and reference them throughout the control plane. For instance, a secret in the {{site.konnect_short_name}} Config Store named `secret-name` can hold multiple key-value pairs:
 
 ```json

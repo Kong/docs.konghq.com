@@ -68,7 +68,7 @@ Check out the example use case for [storing certificates in a vault](/konnect/ga
 
 For detailed vault configuration references and guides, see the {{site.base_gateway}}
 documentation:
-* [Konnect Config Store](/gateway-manager/configuration/config-store/)
+* [Konnect Config Store](/konnect/gateway-manager/configuration/config-store/)
 * [AWS Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/)
 * [GCP Secret Manager](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [HashiCorp Vault](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/)
