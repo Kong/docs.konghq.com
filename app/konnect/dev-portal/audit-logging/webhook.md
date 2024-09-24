@@ -7,7 +7,7 @@ badge: enterprise
 You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configure webhooks for [audit logging](/konnect/dev-portal/audit-logging/). 
 
 {:.note}
-> **Note:** Currently, Dev Portal audit logs only support authorization logs, which are triggered when a user logs in to Dev Portal.
+> **Note:** Currently, Dev Portal audit logs only support authentication logs, which are triggered when a user logs in to Dev Portal.
 
 {% include_cached /md/konnect/audit-logging/webhook-overview-prereq-siem-config.md %}
 
@@ -26,10 +26,7 @@ You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configur
      `"authorization":"Splunk example-token12234352535235"`.
         
     * **Log Format**: The output format of each log message. Can be CEF or JSON.
-    * **Skip SSL Verification**: Skip SSL verification of the host endpoint when delivering payloads.
-
-     {:.note}
-     > We strongly recommend not setting this to `true` as you are subject to man-in-the-middle and other attacks. This option should be considered only when using self-signed SSL certificates in a non-production environment.
+    * **Skip SSL Verification**: Skip SSL verification of the host endpoint when delivering payloads. We recommend skipping SSL verification only when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
 1. From the navigation menu, open {% konnect_icon Dev-portal %} **Settings**, then **Audit Logs Setup**.
 1. Fill in the fields in the **Setup** tab.
     * **Audit log Destination**: select the destination that you want to use from the drop down list
@@ -63,7 +60,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     {{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint. For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`.
     * `log_format`: The output format of each log message. Can be `cef` or `json`.
     * `name`: A unique human-readable name to identify this destination.
-    * `skip_ssl_verification`: (Optional) Set to `true` to skip SSL verification of the host endpoint when delivering payloads. We recommend only using this when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
+    * `skip_ssl_verification`: (Optional) Set to `true` to skip SSL verification of the host endpoint when delivering payloads. We recommend skipping SSL verification only when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
 
     If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details. Be sure to save the audit log destination `id` for the next step. 
 
@@ -79,8 +76,9 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
      }'
     ```
 
-    Replace the following placeholders with your own data:
+    Be sure to replace the PAT token and the following placeholder values:
     * `{region}.api.konghq.com`: The region your Dev Portal is located in. Can be `us`, `au`, or `eu`.
+    * `{portalId}`: The ID of the Dev Portal with your webhook.
     * `audit_log_destination_id`: The ID of the audit log destination that you want to use.
 
     If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details.
@@ -96,13 +94,9 @@ Your webhook should now start receiving audit logs.
 {% navtab Konnect UI %}
 
 You can view the status of your webhook through the **Audit Logs Setup** page under
-{% konnect_icon organizations %} **Organization**.
+{% konnect_icon organizations %} **Organization**. A badge will display next to the title of the webhook with the status of the webhook.
 
-Notice the status badge next to title of the webhook. For example, the following webhook is active:
-
-![Audit log webhook](/assets/images/products/konnect/audit-logs/konnect-audit-log-webhook.png)
-
-To find the last attempt timestamp and the last response code, use the audit log API.
+To see the last attempt timestamp and the last response code, use the audit log API.
 
 {% endnavtab %}
 {% navtab API %}
@@ -115,6 +109,9 @@ View your audit log webhook status by sending a GET request to the `/audit-log-w
 curl -i -X GET https://{region}.api.konghq.com/v2/portals/{portalId}/audit-log-webhook/status \
     --header "Authorization: Bearer <personal-access-token>"
 ```
+
+Be sure to replace the PAT token and the following placeholder values:
+* `{portalId}`: The ID of the Dev Portal with your webhook.
 
 You will receive a `200` response code and a response body with information about the webhook status:
 

@@ -21,7 +21,7 @@ A replay job in a region will resend data for the requested timeframe to the web
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. From the navigation menu, open {% konnect_icon Dev-Portal %} **Settings**, then **Audit Logs Setup**.
+1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click **Settings**, and then click **Audit Logs Setup**.
 1. Switch to the **Replay** tab.
 1. Choose a timeframe for which you want to replay the logs. 
 
@@ -70,7 +70,7 @@ If the request is successful, you will receive a `202` response code and a respo
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. From the navigation menu, open {% konnect_icon Dev-Portal %} **Settings**, then **Audit Logs Setup**.
+1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click **Settings**, then **Audit Logs Setup**.
 1. Switch to the **Replay** tab.
 1. Check the status table below the configuration field.
 
@@ -83,7 +83,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 You can view the audit log replay job in a given region by issuing a GET request to the `audit-log-replay-job` endpoint:
 
 ```sh
-curl -i -X GET https://us.api.konghq.com/v2/portals/{portalId}/audit-log-replay-job \
+curl -i -X GET https://{region}.api.konghq.com/v2/portals/{portalId}/audit-log-replay-job \
     --header "Authorization: Bearer TOKEN"
 ```
 

@@ -18,7 +18,7 @@ A SIEM provider that supports the [ArcSight CEF Format](https://docs.centrify.co
 
 ## Configure your SIEM provider
 
-Before you can push {{site.konnect_short_name}} audit logs to an external service, you also need to configure the service to receive logs. 
+Before you can push audit logs to your SIEM provider, you also need to configure the service to receive logs. 
 This configuration is specific to your vendor.
 
 1. Check your SIEM documentation to find out where to send CEF or raw JSON data.

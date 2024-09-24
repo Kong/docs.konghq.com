@@ -41,37 +41,6 @@ A combination of `webhook_enabled` and `webhook_status` give a full picture of w
 
 {{site.konnect_short_name}} delivers log events in [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or JSON. You may specify which format to use in the [audit log webhook](/konnect/org-management/audit-logging/webhook/) endpoint.
 
-The following are example audit logs in both formats:
-{% navtabs codeblock %}
-{% navtab CEF %}
-```
-Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=1681450748406 src=127.0.0.6 action=retrieve granted=true org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b trace_id=3895213347334635099 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges)
-```
-{% endnavtab %}
-{% navtab JSON %}
-```json
-{
-    "action": "read",
-    "cef_version": "0",
-    "event_class_id": "identity",
-    "event_product": "Konnect",
-    "event_ts": "2023-04-28T20:52:09Z",
-    "event_vendor": "KongInc",
-    "event_version": "1.0",
-    "granted": true,
-    "name": "Authz.identity-provider",
-    "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
-    "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
-    "rt": 1682715129807,
-    "severity": 1,
-    "src": "127.0.0.6",
-    "trace_id": 3895213347334635000,
-    "user_agent": "grpc-go/1.54.0"
-}
-```
-{% endnavtab %}
-{% endnavtabs %}
-
 Webhook calls include a batch of events. Each event is formatted in either CEF or JSON and separated by a newline. The `Content-Type` is `text/plain`.
 
 To minimize payload size, the message body is compressed. The `Content-Encoding` is `application/gzip`.
@@ -92,12 +61,13 @@ Timestamp | Time and date of the event in UTC.
 
 ### Authentication logs
 
-Authentication attempts and their outcomes are logged whenever a user logs in to the Konnect application or uses the Konnect API.
+Authentication attempts and their outcomes are logged whenever a user logs in to the {{site.konnect_short_name}} application or the Dev Portal either through the UI or the Konnect API.
 
-Example log entry:
+{% navtabs %}
+{% navtab Konnect audit logs %}
 
-{% navtabs codeblock %}
-{% navtab CEF %}
+Example CEF log entry:
+
 ```
 2023-05-19T00:03:39Z
 konghq.com CEF:0|ExampleOrg|Konnect|1.0|AUTHENTICATION_TYPE_PAT|AUTHENTICATION_OUTCOME_SUCCESS|0|rt=3958q3097698 
@@ -110,8 +80,9 @@ trace_id=3895213347334635099
 user_agent=grpc-go/1.51.0
 sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg
 ```
-{% endnavtab %}
-{% navtab JSON %}
+
+Example JSON log entry:
+
 ```json
 {
     "cef_version": 0,
@@ -133,6 +104,49 @@ sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB
     "user_agent": "grpc-node-js/1.8.10"
 }
 ```
+{% endnavtab %}
+{% navtab Dev Portal audit logs %}
+Example CEF log entry:
+
+```
+2023-05-19T00:03:39Z
+konghq.com CEF:0|KongInc|Dev-Portal|1.0|AUTHENTICATION_OUTCOME_SUCCESS|0|rt=3958q3097698 
+src=127.0.0.1 
+request=/api/v1/authenticate 
+success=true
+org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b
+portal_id=22771e88-e364-45d2-93f1-db18770599b0
+principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b 
+trace_id=3895213347334635099 
+user_agent=grpc-go/1.51.0
+sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg
+```
+
+Example JSON log entry:
+
+```json
+{
+    "action": "list",
+    "cef_version": 0,
+    "event_class_id": "Dev-Portal",
+    "event_product": "Dev-Portal",
+    "event_ts": "2023-05-16T00:28:01Z",
+    "event_vendor": "KongInc",
+    "event_version": "1.0",
+    "granted": true,
+    "name": "Authz.applications",
+    "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
+    "portal_id": "22771e88-e364-45d2-93f1-db18770599b0",
+    "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
+    "rt": "1684196881193",
+    "severity": 1,
+    "sig": "N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg",
+    "src": "127.0.0.6",
+    "trace_id": 6891110586028963295,
+    "user_agent": "grpc-node-js/1.8.10"
+}
+```
+
 {% endnavtab %}
 {% endnavtabs %}
 
