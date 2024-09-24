@@ -593,7 +593,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
 ## Verify that nodes are connected
 
-Use the control plane’s [Cluster Status API](/gateway/api/admin-ee/latest/#/) to monitor your data planes. 
+Use the control plane’s [Cluster Status API](/gateway/api/admin-ee/latest/#/clustering) to monitor your data planes. 
 It provides:
 * The name of the node
 * The last time the node synced with the control plane

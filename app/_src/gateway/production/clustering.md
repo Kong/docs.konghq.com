@@ -247,7 +247,7 @@ restart will be required to discover any changes to the Cassandra cluster topolo
 
 If for some reason, you want to investigate the cached values, or manually
 invalidate a value cached by Kong (a cached hit or miss), you can do so via the
-Admin API [`/cache`](/gateway/api/admin-ee/latest/#/) endpoint.
+Admin API [`/cache`](/gateway/api/admin-ee/latest/#/cache) endpoint.
 
 ## Read more
 
