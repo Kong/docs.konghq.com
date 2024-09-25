@@ -302,8 +302,9 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'accept: application/json' \
       --data '{
       "role_name": "API Consumer",
-      "entity_id": "GATEWAY_SERVICE_ID",
-      "entity_type_name": "Services"
+      "entity_id": "API_PRODUCT_ID",
+      "entity_type_name": "Services",
+      "entity_region": "us"
       }'
     ```
 
@@ -329,7 +330,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'accept: application/json' \
       --data '{
       "role_name": "API Viewer",
-      "entity_id": "GATEWAY_SERVICE_ID",
+      "entity_id": "API_PRODUCT_ID",
       "entity_type_name": "Services",
       "entity_region": "us"
       }'
