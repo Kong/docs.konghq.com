@@ -70,7 +70,7 @@ body_id: page-hub
             <h4 class="page-hub--category-title">Contact 3rd party for support</h4>
             <div class="page-hub--category-cards">
               {% for extn in third_party_extns  %}
-                {% unless extn.techpartner %}
+                {% unless extn.techpartner or extn.premiumpartner %}
                   {% include hub_cards.html header_icon=page.header_icon %}
                 {% endunless %}
               {% endfor %}

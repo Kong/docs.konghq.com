@@ -11,8 +11,53 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 ## September 2024
-**Cloud Launchers deprecated**
-: Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.
+
+
+<div class="changelog-entries">
+<div class="changelog-date">September<br>12</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-llm-analytics-in-kong-konnect-for-genai-traffic">Introducing LLM Analytics in Kong Konnect for GenAI traffic</a>
+</div>
+<div class="changelog-description">We’re pleased to announce the new LLM Usage reporting feature in Advanced Analytics with the release of Kong Gateway 3. 8.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-service-catalog-launches-into-public-beta">Konnect Service Catalog launches into Public Beta</a>
+</div>
+<div class="changelog-description">The Konnect Service Catalog is now available to all Konnect users in Public Beta.  Service Catalog allows you to discover your organization's "Shadow APIs" through its integrations with Gateway Manager, Mesh Manager, and Traceable.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/plugin-pricing-updated-2v7GPow0">Plugin pricing updated</a>
+</div>
+<div class="changelog-description">Plugins are no longer priced are Free, Plus, and Premium tiers separate from the Konnect subscription.  There is no more extra fee to use any particular plugin.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/nnouncing-beamer-integration-with-konnect">Announcing Beamer Integration with Konnect</a>
+</div>
+<div class="changelog-description">With Beamer, customers can easily stay up-to-date on the latest Konnect announcements without having to navigate across multiple websites.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>03</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+Cloud Launchers deprecated
+</div>
+<div class="changelog-description">Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.</div>
+</div>
+</div>
 
 ## August 2024
 
@@ -407,7 +452,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 : {{site.konnect_saas}} received a new navigation and layout update designed to provide a more intuitive and user-friendly experience. With this update, you will find the **Region Switcher** has moved to the bottom-left corner of the {{site.konnect_saas}} manager closer to region-specific features. 
 
 **Right To Be Forgotten (RTBF) in {{site.konnect_saas}}**
-: Kong's [privacy policy](https://konghq.com/privacy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
+: Kong's [privacy policy](https://konghq.com/legal/privacy-policy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
 
 **Version picker in Runtime Manager Quickstart**
 : {{site.konnect_short_name}} now allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version. For more information, see [Supported Installation Options](/konnect/gateway-manager/data-plane-nodes/).

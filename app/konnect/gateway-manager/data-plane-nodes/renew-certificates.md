@@ -153,6 +153,10 @@ command:
 
 In your Docker container, replace any existing certificates on your data plane nodes
 with the new files and restart the Gateway:
+```sh
+docker cp {PATH_TO_FILE}/tls.cert {CONTAINER_ID}:{PATH_TO_FILE}
+docker cp {PATH_TO_FILE}/tls.key {CONTAINER_ID}:{PATH_TO_FILE}
+```
 
 ```sh
 echo "KONG_CLUSTER_CERT=/{PATH_TO_FILE}/tls.crt \

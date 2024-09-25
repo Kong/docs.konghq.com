@@ -7,7 +7,7 @@ badge: enterprise
 
 By default, Kong Manager starts up without authentication (see
 [`admin_gui_auth`]), and it assumes that the Admin API is available
-on port 8001 (see [Default Ports](/gateway/{{page.release}}/production/networking/default-ports/) of the same host that serves Kong Manager.
+on [port 8001](/gateway/{{page.release}}/production/networking/default-ports/) of the same host that serves Kong Manager.
 
 ## Custom configuration
 

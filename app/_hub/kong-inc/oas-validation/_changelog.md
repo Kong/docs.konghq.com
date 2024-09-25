@@ -1,4 +1,10 @@
 ## Changelog
+
+### {{site.base_gateway}} 3.8.x
+* Fixed an issue where the plugin couldn't obtain the value when the path parameter name contained hyphen characters.
+* Fixed an issue where parameter serialization didn't behave the same as in the OpenAPI specification.
+* Fixed an issue where the non-string primitive types passed via URL query were unexpectedly cast to string when the OpenAPI spec version was v3.1.0.
+
 ### {{site.base_gateway}} 3.7.x
 * Added the new field [`api_spec_encoded`](/hub/kong-inc/oas-validation/configuration/#config-api_spec_encoded) to indicate whether the `api_spec` is URI-Encoded.
 * Add the [`custom_base_path`](/hub/kong-inc/oas-validation/configuration/#config-custom_base_path) field to specify a custom base path. 

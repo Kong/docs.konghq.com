@@ -9,7 +9,13 @@ purpose: |
 
 The annotation can be used on `Ingress` and `HTTPRoute` resources, and configures a [request-transformer](/hub/kong-inc/request-transformer/) plugin within Kong when added to a route.
 
-This definition creates a route that matches the path `/users/(\w+)` and rewrites it to `/requests/users_svc/$1` before sending the request upstream.
+This definition creates a route that matches the path `/users/(\w+)` and rewrites it to `/requests/users_svc/$1` before sending the request upstream. 
+
+## Prerequisite
+
+The `RewriteURIs` [feature gate](/kubernetes-ingress-controller/{{page.release}}/reference/feature-gates/) must be enabled.
+
+##  Rewriting the path
 
 {% include /md/kic/http-test-routing-resource.md release=page.release path='/users/(\w+)' name='user' service='users' port='80' skip_host=true route_type='RegularExpression' no_results=true annotation_rewrite="/requests/users_svc/$1" %}
 

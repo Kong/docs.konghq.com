@@ -1,0 +1,21 @@
+integrations:
+  - name: PagerDuty
+    icon: pagerduty.svg
+    slug: pagerduty
+    description: Alert service teams via PagerDuty alerts and provide information on current open incidents
+  - name: GitHub
+    icon: github.svg
+    slug: github
+    description: Associate a service to one or more GitHub repositories
+  - name: Traceable.io
+    icon: traceable.svg
+    slug: traceable
+    description: Manage and secure services that Traceable discovers by analyzing API traffic across your entire application landscape
+
+##### Using this file ######
+  # - name: Name of the integration
+  #   icon: The filename + extension of the icon for the integration, e.g. pagerduty.svg
+  #         Put icon in /assets/images/icons/third-party/<file>.
+  #   slug: The filename of the integration page itself, used for links. Don't include the file extension (e.g. .md)
+  #         E.g. if the page is at /konnect/service-catalog/integrations/pagerduty, the slug is pagerduty
+  #   description: Short description (100 char max) of the integration

@@ -1,8 +1,11 @@
 name: Traceable.ai
 publisher: Traceable.ai
 categories:
-  - community
+  - premium-partner
+  - security
 type: plugin
+
+premiumpartner: true
 
 desc: API security with inline request blocking and data capture
 

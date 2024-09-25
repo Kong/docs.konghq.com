@@ -15,17 +15,16 @@ This guide walks you through setting up the AI Proxy plugin with [Azure OpenAI S
 
 ### Create or locate OpenAI instance
 
-Log in to your Azure Subscription, and (if necessary) create your OpenAI instance. 
-Record its name as your `azure_instance`, and record one of the access keys as its `header_value`:
+Log in to your Azure account, and (if necessary) create an OpenAI instance with the following values: 
 
-![Azure setup 1](/assets/images/products/plugins/ai-proxy/ai-proxy-azure-1.png)
+* Name: `azure_instance`
+* Access key as the `header_value`
+
 
 ### Create or locate model deployment
 
 Once it has instantiated, create (if necessary) a model deployment in this instance. 
 Record its name as your `azure_deployment_id`:
-
-![Azure setup 2](/assets/images/products/plugins/ai-proxy/ai-proxy-azure-2.png)
 
 ### Set up route and plugin
 

@@ -4,61 +4,13 @@ nav_title: Overview
 
 Propagate distributed tracing spans and report low-level spans to a OTLP-compatible server.
 
-{% if_version gte:3.3.x %}
-## Queueing
-
-The OpenTelemetry plugin uses a queue to decouple the production and
-consumption of data. This reduces the number of concurrent requests
-made to the upstream server under high load situations and provides
-buffering during temporary network or upstream outages.
-
-You can set several parameters to configure the behavior and capacity
-of the queues used by the plugin. For more information about how to
-use these parameters, see
-[Plugin Queuing Reference](/gateway/latest/kong-plugins/queue/reference/)
-in the {{site.base_gateway}} documentation.
-
-The queue parameters all reside in a record under the key `queue` in
-the `config` parameter section of the plugin.
-
-Queues are not shared between workers and queueing parameters are
-scoped to one worker.  For whole-system capacity planning, the number
-of workers need to be considered when setting queue parameters.
-{% endif_version %}
-
-{% if_version gte:3.5.x %}
-## Trace IDs in serialized logs
-
-When the OpenTelemetry plugin is configured along with a plugin that uses the 
-[Log Serializer](/gateway/latest/plugin-development/pdk/kong.log/#konglogserialize),
-the trace ID of each request is added to the key `trace_id` in the serialized log output.
-
-The value of this field is an object that can contain different formats
-of the current request's trace ID. In case of multiple tracing headers in the
-same request, the `trace_id` field includes one trace ID format
-for each different header format, as in the following example:
-
-```
-"trace_id": {
-  "w3c": "4bf92f3577b34da6a3ce929d0e0e4736",
-  "datadog": "11803532876627986230"
-},
-```
-{% endif_version %}
-
-## Usage
-
-{% if_version gte:3.2.x %}
-{:.note}
-> **Note**: The OpenTelemetry plugin's tracing capabilities only work when {{site.base_gateway}}'s `tracing_instrumentations` configuration is enabled.
-{% endif_version %}
-
-{% if_version lte:3.1.x %}
-{:.note}
-> **Note**: The OpenTelemetry plugin only works when {{site.base_gateway}}'s `opentelemetry_tracing` configuration is enabled.
-{% endif_version %}
-
 The OpenTelemetry plugin is fully compatible with the OpenTelemetry specification and can be used with any OpenTelemetry compatible backend.
+
+## How it works
+
+This section describes how the OpenTelemetry plugin works.
+
+### Collecting telemetry data
 
 There are two ways to set up an OpenTelemetry backend:
 * Using a OpenTelemetry compatible backend directly, like Jaeger (v1.35.0+)
@@ -66,121 +18,41 @@ There are two ways to set up an OpenTelemetry backend:
 * Using the OpenTelemetry Collector, which is middleware that can be used to proxy OpenTelemetry spans to a compatible backend.
    You can view all the available OpenTelemetry Collector exporters at [open-telemetry/opentelemetry-collector-contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter).
 
-### Set up {{site.base_gateway}}
-
 {% if_version gte:3.8.x %}
-The OpenTelemetry tracing capability supported by this plugin requires the following {{site.base_gateway}}'s configuration:
-{% endif_version %}
-{% if_version lte:3.7.x %}
-Enable the OpenTelemetry tracing capability in {{site.base_gateway}}'s configuration:
-{% endif_version %}
-{% if_version lte:3.1.x %}
-- `opentelemetry_tracing = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#tracing_instrumentations).
-- `opentelemetry_tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
-  Tracer samples a fixed percentage of all spans following the sampling rate.
-  Set the sampling rate to a lower value to reduce the impact of the instrumentation on {{site.base_gateway}}'s proxy performance in production.
-{% endif_version %}
-{% if_version gte:3.2.x lte:3.7.x %}
-- `tracing_instrumentations = all`, Valid values can be found in the [Kong's configuration](/gateway/latest/reference/configuration/#tracing_instrumentations).
-- `tracing_sampling_rate = 1.0`: Tracing instrumentation sampling rate.
-  Tracer samples a fixed percentage of all spans following the sampling rate.
-  Set the sampling rate to a lower value to reduce the impact of the instrumentation on {{site.base_gateway}}'s proxy performance in production.
-{% endif_version %}
-### Set up an OpenTelemetry compatible backend
+### Metrics
+Metrics are enabled using the `contrib` version of the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/).
 
-This section is optional if you are using a OpenTelemetry compatible APM vendor.
-All the supported vendors are listed in the [OpenTelemetry's Vendor support](https://opentelemetry.io/vendors/).
+The `spanmetrics` connector allows you to aggregate traces and provide metrics to any third party observability platform.
 
-Jaeger [natively supports OpenTelemetry](https://www.jaegertracing.io/docs/features/#native-support-for-opentracing-and-opentelemetry) starting with v1.35 and can be used with the OpenTelemetry plugin.
-
-Deploy a Jaeger instance with Docker:
-
-```bash
-docker run --name jaeger \
-  -e COLLECTOR_OTLP_ENABLED=true \
-  -p 16686:16686 \
-  -p 4317:4317 \
-  -p 4318:4318 \
-  jaegertracing/all-in-one:1.36
-```
-
-* The `COLLECTOR_OTLP_ENABLED` environment variable must be set to `true` to enable the OpenTelemetry Collector.
-
-* The `4318` port is the OTLP/HTTP port and the `4317` port is the OTLP/GRPC port that isn't supported by the OpenTelemetry plugin yet.
-
-### Set up a OpenTelemetry Collector
-
-This section is required if you are using an incompatible OpenTelemetry APM vendor.
-
-Create a config file (`otelcol.yaml`) for the OpenTelemetry Collector:
+To include span metrics for application traces, configure the collector exporters section of 
+the OpenTelemetry Collector configuration file: 
 
 ```yaml
-receivers:
-  otlp:
-    protocols:
-      grpc:
-      http:
-
-processors:
-  batch:
-
-exporters:
-  logging:
-    loglevel: debug
-  zipkin:
-    endpoint: "http://some.url:9411/api/v2/spans"
-    tls:
-      insecure: true
+connectors:
+  spanmetrics:
+    dimensions:
+      - name: http.method
+        default: GET
+      - name: http.status_code
+      - name: http.route
+    exclude_dimensions:
+      - status.code
+    metrics_flush_interval: 15s
+    histogram:
+      disable: false
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [logging, zipkin]
-    {% if_version gte:3.8.x %}logs:
-      receivers: [otlp]
-      processors: [batch]
-      exporters: [logging]{% endif_version %}
+      processors: []
+      exporters: [spanmetrics]
+    metrics:
+      receivers: [spanmetrics]
+      processors: []
+      exporters: [otlphttp]
 ```
-
-Run the OpenTelemetry Collector with Docker:
-
-```bash
-docker run --name opentelemetry-collector \
-  -p 4317:4317 \
-  -p 4318:4318 \
-  -p 55679:55679 \
-  -v $(pwd)/otelcol.yaml:/etc/otel-collector-config.yaml \
-  otel/opentelemetry-collector-contrib:0.52.0 \
-  --config=/etc/otel-collector-config.yaml
-```
-
-See the [OpenTelemetry Collector documentation](https://opentelemetry.io/docs/collector/configuration/) for more information.
-
-### Configure the OpenTelemetry plugin
-
-Enable the plugin:
-
-```bash
-curl -X POST http://localhost:8001/plugins \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "name": "opentelemetry",
-      "config": {
-        {% if_version lte:3.7.x %}"endpoint": "http://<opentelemetry-backend>:4318/v1/traces",{% endif_version -%}
-        {% if_version gte:3.8.x %}"traces_endpoint": "http://<opentelemetry-backend>:4318/v1/traces",
-        "logs_endpoint": "http://<opentelemetry-backend>:4318/v1/logs",{% endif_version %}
-        "resource_attributes": {
-          "service.name": "kong-dev"
-        }
-      }
-    }'
-```
-
-## How the OpenTelemetry plugin functions
-
-This section describes how the OpenTelemetry plugin works.
+{% endif_version %}
 
 ### Tracing
 
@@ -290,43 +162,47 @@ In addition to the above, when **tracing** is enabled, request-scoped logs inclu
 - `TraceFlags`: W3C trace flag.
 {% endif_version %}
 
-## Customize OpenTelemetry spans as a developer
+{% if_version gte:3.3.x %}
+## Queueing
 
-<!-- TODO: link to Gateway 3.0 tracing pdk docs for reference -->
+The OpenTelemetry plugin uses a queue to decouple the production and
+consumption of data. This reduces the number of concurrent requests
+made to the upstream server under high load situations and provides
+buffering during temporary network or upstream outages.
 
-The OpenTelemetry plugin is built on top of the {{site.base_gateway}} tracing PDK.
+You can set several parameters to configure the behavior and capacity
+of the queues used by the plugin. For more information about how to
+use these parameters, see
+[Plugin Queuing Reference](/gateway/latest/kong-plugins/queue/reference/)
+in the {{site.base_gateway}} documentation.
 
-It's possible to customize the spans and add your own spans through the universal tracing PDK.
+The queue parameters all reside in a record under the key `queue` in
+the `config` parameter section of the plugin.
 
-The following is an example for adding a custom span using {{site.base_gateway}}'s serverless plugin:
+Queues are not shared between workers and queueing parameters are
+scoped to one worker.  For whole-system capacity planning, the number
+of workers need to be considered when setting queue parameters.
+{% endif_version %}
 
-1. Create a file named `custom-span.lua` with the following content:
+{% if_version gte:3.5.x %}
+## Trace IDs in serialized logs
 
-    ```lua
-      -- Modify the root span
-      local root_span = kong.tracing.active_span()
-      root_span:set_attribute("custom.attribute", "custom value")
+When the OpenTelemetry plugin is configured along with a plugin that uses the 
+[Log Serializer](/gateway/latest/plugin-development/pdk/kong.log/#konglogserialize),
+the trace ID of each request is added to the key `trace_id` in the serialized log output.
 
-      -- Create a custom span
-      local span = kong.tracing.start_span("custom-span")
+The value of this field is an object that can contain different formats
+of the current request's trace ID. In case of multiple tracing headers in the
+same request, the `trace_id` field includes one trace ID format
+for each different header format, as in the following example:
 
-      -- Append attributes
-      span:set_attribute("custom.attribute", "custom value")
-      
-      -- Close the span
-      span:finish()
-    ```
-
-2. Apply the Lua code using the `post-function` plugin using a cURL file upload:
-
-    ```bash
-    curl -i -X POST http://localhost:8001/plugins \
-      -F "name=post-function" \
-      -F "config.access[1]=@custom-span.lua"
-
-    HTTP/1.1 201 Created
-    ...
-    ```
+```
+"trace_id": {
+  "w3c": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "datadog": "11803532876627986230"
+},
+```
+{% endif_version %}
 
 ## Troubleshooting
 
@@ -360,3 +236,12 @@ Span #6 name=balancer try #1 duration=0.99328ms attributes={"net.peer.ip":"104.2
   It's recommended to set the sampling rate (`opentelemetry_tracing_sampling_rate`)
   via Kong configuration file when using the OpenTelemetry plugin.
 {% endif_version %}
+
+
+## More information
+
+* [Configuration reference](/hub/kong-inc/opentelemetry/configuration/)
+* [Basic configuration example](/hub/kong-inc/opentelemetry/how-to/basic-example/)
+* [Get started with the OpenTelemetry plugin](/hub/kong-inc/opentelemetry/how-to/getting-started/)
+* [Set up Dynatrace with OpenTelemetry](/hub/kong-inc/opentelemetry/how-to/dynatrace/)
+* [Customize OpenTelemetry spans as a developer](/hub/kong-inc/opentelemetry/how-to/spans/)

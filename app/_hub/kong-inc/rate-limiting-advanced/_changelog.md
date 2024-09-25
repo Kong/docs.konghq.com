@@ -1,4 +1,12 @@
 ## Changelog
+
+### {{site.base_gateway}} 3.8.x
+* Added the Redis `cluster_max_redirections` configuration option.
+* Timer spikes no longer occur when there is network instability with the central data store.
+* Fixed an issue where, if the `window_size` in the consumer group overriding config was different 
+  from the `window_size` in the default config, the rate limiting of that consumer group would fall back to local strategy.
+* Fixed an issue where the sync timer could stop working due to a race condition.
+
 ### {{site.base_gateway}} 3.7.x
 * Refactored `kong/tools/public/rate-limiting`, adding the new interface `new_instance` to provide isolation between different plugins. 
   The original interfaces remain unchanged for backward compatibility. 
