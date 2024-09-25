@@ -19,7 +19,9 @@
 # formats:
 #   - curl
 #   - yaml
+#   - konnect
 #   - kubernetes
+#   - terraform
 # {% endplugin_example %}
 
 module Jekyll

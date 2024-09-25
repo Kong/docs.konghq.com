@@ -1,9 +1,12 @@
 ## Changelog
 
-**{{site.base_gateway}} 3.2.x**
+### {{site.base_gateway}} 3.8.x
+* [**StatsD**](/hub/kong-inc/statsd/) (`statsd`)
+
+### {{site.base_gateway}} 3.2.x
 * Added the `tag_style` configuration parameter. This allows you to send metrics with [tags](https://github.com/prometheus/statsd_exporter#tagging-extensions). Defaults to `nil`, which doesn't add any tags to the metrics.
 
-**{{site.base_gateway}} 3.1.x**
+### {{site.base_gateway}} 3.1.x
 * Added support for managing queues and connection retries when sending messages to the upstream with 
 the `queue_size`,`flush_timeout`, and `retry_count` configuration parameters. 
 

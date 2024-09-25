@@ -6,7 +6,6 @@ dbless_explanation: |
   emitted in DB-less mode.
 free: true
 enterprise: true
-paid: true
 konnect: true
 cloud_gateways: false
 network_config_opts: traditional, hybrid, konnect hybrid, and db-less

@@ -12,8 +12,7 @@ Dedicated Cloud Gateways offer the following benefits:
 * {{site.konnect_short_name}} handles gateway upgrades for you
 * A public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. 
 * Automatic scaling of data plane nodes to meet changing demand with Autopilot mode
-* Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
-* <span class="badge alpha"></span> Supported on the following Azure regions: Frankfurt, Ireland, UK South, Virginia, Washington
+* Support for AWS and Azure in the following [regions](/konnect/geo)
 
 You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
@@ -44,13 +43,21 @@ Dedicated Cloud Gateways support public and private networking on AWS.
 * **Public networking:** Easy access to services and APIs, but low security. We recommend only using this option for testing.
 * **Private networking:** A secure way to expose your APIs to the internet.
  
-You can set up private networking for Dedicated Cloud Gateways with [AWS Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/).
+You can set up private networking for Dedicated Cloud Gateways with [AWS Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/).
+
+## Plugin considerations for Dedicated Cloud Gateways
+There are some limitations for plugins with Dedicated Cloud Gateways:
+
+* Any plugins that depend on a local agent will not work with Dedicated Cloud Gateways.
+* Any plugins that depend on the Status API or on Admin API endpoints will not work.
+* Any plugins or functionality that depend on AWS IAM `AssumeRole` need to be configured differently. 
+This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-handling/).
 
 ## More information
 
 * [Networking and Peering information](/konnect/network-resiliency/#how-does-network-peering-work-with-dedicated-cloud-gateway-nodes)
 * [Supported regions](/konnect/geo/#dedicated-cloud-gateways)
-* [Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/)
+* [Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/)
 * [How to upgrade data planes](/konnect/gateway-manager/data-plane-nodes/upgrade/)
 * [Custom Domains](/konnect/reference/custom-dns/)
 * [Cloud Gateways API](/konnect/api/cloud-gateways/latest/)

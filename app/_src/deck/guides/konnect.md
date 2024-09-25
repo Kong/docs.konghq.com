@@ -13,7 +13,7 @@ You _cannot_ use decK to publish content to the Dev Portal, manage application r
 
 ## {{site.konnect_short_name}} flags
 
-You can use decK commands such as `ping`, `diff`, or `sync` with `--konnect` flags to interact with {{site.konnect_short_name}}.
+You can use decK commands such as `ping`, `diff`, or `sync` with `--konnect-*` flags to interact with {{site.konnect_short_name}}.
 
 If you don't pass a {{site.konnect_short_name}} flag to decK, decK looks for a local {{site.base_gateway}} instance instead.
 

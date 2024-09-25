@@ -39,6 +39,19 @@ This metric provides these labels:
 This metric provides the `success` label. `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.
 If `success` is `true`, the translation succeeded with no errors.
 
+{% if_version gte:3.3.x %}
+
+### ingress_controller_translation_duration_milliseconds
+
+`ingress_controller_translation_duration_milliseconds` (type: `histogram`) is the amount of time, in milliseconds, that
+it takes to translate the Kubernetes state to the {{site.base_gateway}} state.
+
+This metric provides the `success` label:
+
+* `success` logs the status of the translation. If `success` is `false`, an unrecoverable error occurs. If `success` is `true`, the translation succeeded without errors.
+
+{% endif_version %}
+
 ### ingress_controller_configuration_push_duration_milliseconds
 
 `ingress_controller_configuration_push_duration_milliseconds` (type: `histogram`) is the amount of time, in milliseconds, that it takes to push the configuration to {{site.base_gateway}}.
@@ -83,6 +96,19 @@ This metric provides these labels:
 This metric provides the `success` label:
 
 * `success` logs the status of the translation. If `success` is `false`, an unrecoverable error occurs. If `success` is `true`, the translation succeeded without errors.
+
+{% if_version gte:3.3.x %}
+
+### ingress_controller_fallback_translation_duration_milliseconds
+
+`ingress_controller_fallback_translation_duration_milliseconds` (type: `histogram`) provides the amount of time, in milliseconds, 
+that it takes to translate the Kubernetes state to the {{site.base_gateway}} state in fallback mode.
+
+This metric provides the `success` label:
+
+* `success` logs the status of the translation. If `success` is `false`, an unrecoverable error occurs. If `success` is `true`, the translation succeeded without errors.
+
+{% endif_version %}
 
 ### ingress_controller_fallback_translation_broken_resource_count
 

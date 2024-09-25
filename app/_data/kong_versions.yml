@@ -29,7 +29,7 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.12"
+  ee-version: "2.8.4.13"
   ce-version: "2.8.5"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -157,10 +157,24 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  latest: true
 - release: "3.8.x"
   ee-version: "3.8.0.0"
   ce-version: "3.8.0"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+  latest: true
+- release: "3.9.x"
+  ee-version: "3.9.0.0"
+  ce-version: "3.9.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -263,9 +277,15 @@
 - release: "1.38.x"
   version: "1.38.1"
   edition: "deck"
-  latest: true
 - release: "1.39.x"
-  version: "1.39.0"
+  version: "1.39.6"
+  edition: "deck"
+- release: "1.40.x"
+  version: "1.40.2"
+  edition: "deck"
+  latest: true
+- release: "1.41.x"
+  version: "1.41.0"
   edition: "deck"
   label: unreleased
 - edition: "konnect"

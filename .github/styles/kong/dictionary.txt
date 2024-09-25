@@ -153,6 +153,7 @@ backporting
 backtrace
 Bagdi
 bcc
+bindable
 Bintray
 Bitnami
 blockquote
@@ -263,6 +264,7 @@ grpcurl
 gui
 guis
 gzip
+gzipped
 hackathon
 hackathons
 hardcoded

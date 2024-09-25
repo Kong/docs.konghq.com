@@ -23,7 +23,7 @@ dashboard: [https://grafana.com/grafana/dashboards/7424-kong-official/](https://
 ## Available metrics
 
 {% if_version lte:2.8.x %}
-- **Status codes**: HTTP status codes returned by upstream services.
+- **Status codes**: HTTP status codes returned by Kong.
   These are available per service, across all services, and per route per consumer.
 - **Latencies Histograms**: Latency (in ms), as measured at Kong:
    - **Request**: Total time taken by Kong and upstream services to serve
@@ -57,9 +57,10 @@ Following metrics are disabled by default as it may create high cardinality of m
 cause performance issues:
 
 #### Status code metrics
-When `status_code_metrics` is set to true:
-- **Status codes**: HTTP status codes returned by upstream services.
-  These are available per service, across all services, and per route per consumer.
+When `status_code_metrics` is set to true `http_requests_total`, `stream_sessions_total` metrics will be exported.
+- **Status codes**: HTTP status codes returned by Kong.
+  - **`http_requests_total`**: HTTP status codes per consumer/service/route at Kong.
+  - **`stream_session_total`**: Stream status codes per service/route in Kong.
 
 #### Latency metrics
 When `latency_metrics` is set to true:
