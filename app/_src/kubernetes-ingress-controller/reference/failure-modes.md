@@ -11,8 +11,8 @@ When you run {{site.kic_product_name}}, you can encounter the following failures
 |-----------------------------------|-----------------------------------------|
 | `Reconciler error` in logs                                     | [Errors in reconciling Kubernetes resources](#errors-in-reconciling-kubernetes-resources)     |
 | Non-existent service referenced by an `Ingress`. <br>Example: `Ingress` with a non-existent backend service        | [Failures in translating configuration](#failures-in-translating-configuration)          |
-| {{site.base_gateway}} rejected configuration <br> Example: `Ingress` with invalid regex in the path      | [Failures in applying configuration to {{site.base_gateway}}](#failures-in-applying-configuration-to-sitebasegateway) |
-| Errors when sending configuration to {{site.konnect_product_name}} <br> Example: Failed request logs       | [Failures in uploading configuration to {{site.konnect_short_name}}](#failures-in-uploading-configuration-to-sitekonnectproductname) |
+| {{site.base_gateway}} rejected configuration <br> Example: `Ingress` with invalid regex in the path      | [Failures in applying configuration to {{site.base_gateway}}](#failures-in-applying-configuration-to-kong-gateway) |
+| Errors when sending configuration to {{site.konnect_product_name}} <br> Example: Failed request logs       | [Failures in uploading configuration to {{site.konnect_short_name}}](#failures-in-uploading-configuration-to-konnect) |
 
 {{site.kic_product_name}} uses different methods to process each failure type, and creates error logs or other evidence, like Prometheus metrics and Kubernetes events, so you can observe and track the failures.
 
