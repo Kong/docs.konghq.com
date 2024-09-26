@@ -219,3 +219,5 @@ items:
         url: /reference/ingress-to-gateway-migration
       - text: Required Permissions for Installation
         url: /reference/required-permissions
+      - text: Categories of Failures
+        url: /reference/failure-modes
