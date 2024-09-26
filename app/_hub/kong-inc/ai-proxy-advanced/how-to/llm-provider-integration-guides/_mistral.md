@@ -103,3 +103,4 @@ curl -X POST http://localhost:8000/mistral-chat \
   -H 'Content-Type: application/json' \
   --data-raw '{ "messages": [ { "role": "system", "content": "You are a mathematician" }, { "role": "user", "content": "What is 1+1?"} ] }'
 ```
+{% include_cached /md/plugins-hub/ai-custom-model-advanced.md %}
