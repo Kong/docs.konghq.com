@@ -2,6 +2,64 @@
 
 <!--vale off-->
 
+## Week 38
+
+### [Fix: Logging plugins log format + descriptions](https://github.com/Kong/docs.konghq.com/pull/7948) (2024-09-20)
+
+The log format example and descriptions were missing some changes from 3.6, and had incorrectly tagged versions. 
+Tested this out via the File Log plugin and compared the output to any log serializer [changelog entries](https://docs.konghq.com/gateway/changelog/). 
+
+"JSON object considerations" was also a strange title that didn't describe the contents, which are just descriptions of each log item, so updated that to be clearer.
+
+Issue reported on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/file-log/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-log/overview/
+- https://docs.konghq.com/hub/kong-inc/loggly/overview/
+- https://docs.konghq.com/hub/kong-inc/syslog/overview/
+- https://docs.konghq.com/hub/kong-inc/tcp-log/overview/
+- https://docs.konghq.com/hub/kong-inc/udp-log/overview/
+
+
+### [Fix: Add missing `_APPD` to env variables](https://github.com/Kong/docs.konghq.com/pull/7945) (2024-09-20)
+
+Some of the newer parameters for the AppDynamics plugin are missing the `_APPD` section of the prefix. They should all be `KONG_APPD_*`.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
+
+### [fix: Convert to AI Semantic Cache LLM examples to `plugin_example`](https://github.com/Kong/docs.konghq.com/pull/7932) (2024-09-19)
+
+Converting the LLM examples to use `plugin_example` instead for better consistency.
+ 
+DOCU-4060
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-semantic-cache/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/hub/kong-inc/ai-semantic-cache/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/contributing/kong-plugins
+
+
+### [Fix: AppD plugin missing info + broken collapsible note](https://github.com/Kong/docs.konghq.com/pull/7921) (2024-09-16)
+
+* Documenting the ARM64 limitation for the C/C++ AppD SDK
+* Fixing the collapsible note
+
+https://konghq.atlassian.net/browse/DOCU-4061
+
+Collapsible note with broken styling: https://docs.konghq.com/hub/kong-inc/app-dynamics/
+
+![Screenshot 2024-09-12 at 1 35 15 PM](https://github.com/user-attachments/assets/7bb1e367-76eb-4ae8-ba36-fcc54b4954a4)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
 ## Week 37
 
 ### [Update: 3.8 known issue for JSON threat protection plugin](https://github.com/Kong/docs.konghq.com/pull/7924) (2024-09-13)

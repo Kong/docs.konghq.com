@@ -5967,6 +5967,27 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+
+## 2.8.4.13
+**Release Date** 2024/09/20
+
+### Breaking Changes
+
+#### Dependencies
+
+* Fixed RPM relocation by setting the default prefix to `/`, and added a symbolic
+  link for `resty` to handle missing `/usr/local/bin` in `PATH`.
+
+### Fixes
+#### Core
+
+* Fixed an issue where `luarocks-admin` was not available in `/usr/local/bin`.
+
+#### Plugins
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where the sync timer could stop working due to a race condition.
+
 ## 2.8.4.12
 **Release Date** 2024/07/29
 

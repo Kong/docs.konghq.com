@@ -54,6 +54,11 @@ Item | Description
 **Summary** | This section displays the traffic and error rate of your KIC data plane node.  
 **Analytics** | Analytics data for the KIC data plane node. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/). 
 
+### Optimize performance of synchronizing configuration
+
+When your environment has many `KongConsumer`s, they can slow down your configuration synchronization with {{site.konnect_short_name}}. {{site.kic_product_name}} 3.3 and later provides a `--disable-consumer-sync` flag to disable synchronizing consumers with {{site.konnect_short_name}}. You can enable this flag to make the synchronization faster. See [{{site.kic_product_name}} CLI arguments](/kubernetes-ingress-controller/latest/reference/cli-arguments/) for more details.
+
+
 ## KIC analytics compatibility
 
 The following table describes which {{site.base_gateway}} versions are compatible with the KIC analytics feature in {{site.konnect_short_name}}:
