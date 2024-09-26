@@ -47,16 +47,17 @@ This plugin currently only supports REST-based full text responses.
 
 This plugin supports several load-balancing algorithms, similar to those used for Kong upstreams, allowing efficient distribution of requests across different AI models. The supported algorithms include:
 * **Lowest-usage**: The lowest-usage algorithm in AI Proxy Advanced is based on the volume of usage for each model. It balances the load by distributing requests to models with the lowest usage, measured by factors such as prompt token counts, response token counts, or other resource metrics.
+* **Lowest-latency**: The lowest-latency algorithm is based on the response time for each model. It distributes requests to models with the lowest response time.
+* **Semantic**: The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.
 * [Round-robin (weighted)](/gateway/latest/how-kong-works/load-balancing/#round-robin)
 * [Consistent-hashing (sticky-session on given header value)](/gateway/latest/how-kong-works/load-balancing/#consistent-hashing)
 
-Additionally, semantic routing works similarly to load-balancing algorithms like lowest-usage or least-connections, but instead of volume or connection metrics, it uses the similarity score between the incoming prompt and the descriptions of each model. This allows Kong to automatically choose the model best suited for handling the request, based on performance in similar contexts.
 
-## Semantic routing
+## Retry and fallback
 
-The AI Proxy Advanced plugin supports semantic routing, which enables distribution of requests based on the similarity between the prompt and the description of each model. This allows Kong to automatically select the model that is best suited for the given domain or use case.
+The load balancer has customizable retries and timeouts for requests, and can redirect a request to a different model in case of failure. This allows to have a fallback in case one of your targets is unavailable.
 
-By analyzing the content of the request, the plugin can match it to the most appropriate model that is known to perform better in similar contexts. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.
+This plugin does not support fallback over targets with different formats. For example, you can have a load balancer containing targets with different OpenAI models, but you can't have one target with an OpenAI model and another with an Ollama model. However, you use can an OpenAI model alongside a Mistral model compatible with the OpenAI format.
 
 ## Request and response formats
 
