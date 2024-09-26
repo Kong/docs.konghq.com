@@ -41,8 +41,6 @@ The following fields are required:
 
 After enabling the portal, configure your hosting provider to serve your Dev Portal. You can host it with Netlify using our [instructions](/konnect/dev-portal/customization/netlify/).
 
-{:.note}
-> **Note:** Enabling the self-hosted Dev Portal disables the {{site.konnect_short_name}}-hosted Dev Portal. Only one can be enabled at a time.
 
 ## More information
 
