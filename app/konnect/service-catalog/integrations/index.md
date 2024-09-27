@@ -2,6 +2,7 @@
 title: Service Catalog Integrations
 subtitle: Integrate third-party applications into your Konnect organization
 content-type: reference
+beta: true
 ---
 
 Integrations are applications - either {{site.konnect_short_name}}-internal applications or external 
