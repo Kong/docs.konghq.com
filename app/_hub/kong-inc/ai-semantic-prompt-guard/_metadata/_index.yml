@@ -11,7 +11,7 @@ dbless_compatible: yes
 free: true
 enterprise: true
 paid: true
-konnect: false
+konnect: true
 network_config_opts: All
 notes: --
 categories:
