@@ -1,6 +1,7 @@
 ---
 title: GitHub Integration
 content-type: reference
+beta: true
 
 discovery_support: true
 discovery_default: true
