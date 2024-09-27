@@ -183,6 +183,9 @@ validations:
 
 #### Semantic validation for `format` attribute
 
+{:.important}
+> This feature is only supported in JSON Schema Draft 4.
+
 Structural validation alone may be insufficient to validate that an instance
 meets all the requirements of an application. The `format` keyword is defined
 to allow interoperable semantic validation for a fixed subset of values that
