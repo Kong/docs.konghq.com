@@ -2,6 +2,56 @@
 
 <!--vale off-->
 
+## Week 39
+
+### [Fix: Mention Azure in last table entry](https://github.com/Kong/docs.konghq.com/pull/7974) (2024-09-27)
+
+Azure has now launched as a CGW region (see first row in the same table), so this note should say "other than AWS or Azure" instead of just AWS.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/
+
+
+### [Chore: Move CGW docs ](https://github.com/Kong/docs.konghq.com/pull/7962) (2024-09-23)
+
+Moves Cloud Gateways docs into their own dedicated cloud gateways section
+
+#### Modified
+
+- https://docs.konghq.com/contributing/style-guide
+- https://docs.konghq.com/konnect/getting-started/
+
+
+### [Release: Gateway 2.8.4.13](https://github.com/Kong/docs.konghq.com/pull/7942) (2024-09-23)
+
+Changelog and version bump for 2.8.4.13.
+
+Don't merge until release goes out.
+
+See https://kongstrong.slack.com/archives/C02GZ0CGJNT/p1726668953815289 for release status.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: mention format keyword only supported in draft4 version](https://github.com/Kong/docs.konghq.com/pull/7928) (2024-09-27)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-validator/overview/
+
+
+### [Feat: add introduction of --disable-consumer-sync in konnect KIC section](https://github.com/Kong/docs.konghq.com/pull/7898) (2024-09-26)
+
+Add introduction of `--disable-consumer-sync` CLI argument to speedup KIC's synchronization of configurations to Konnect when there are a lot of consumers.
+Fixes https://github.com/Kong/kubernetes-ingress-controller/issues/6319.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/kic
+
 ## Week 38
 
 ### [Fix: Logging plugins log format + descriptions](https://github.com/Kong/docs.konghq.com/pull/7948) (2024-09-20)
