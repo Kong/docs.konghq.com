@@ -36,24 +36,17 @@ See https://kongstrong.slack.com/archives/C02GZ0CGJNT/p1726668953815289 for rele
 - https://docs.konghq.com/gateway/changelog
 
 
-### [fix(gateway/request-validator): mention format keyword only supported in draft4 version](https://github.com/Kong/docs.konghq.com/pull/7928) (2024-09-27)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+### [Fix: mention format keyword only supported in draft4 version](https://github.com/Kong/docs.konghq.com/pull/7928) (2024-09-27)
 
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/request-validator/overview/
 
 
-### [add introduction of --disable-consumer-sync in konnect KIC section](https://github.com/Kong/docs.konghq.com/pull/7898) (2024-09-26)
+### [Feat: add introduction of --disable-consumer-sync in konnect KIC section](https://github.com/Kong/docs.konghq.com/pull/7898) (2024-09-26)
 
-<!-- What did you change and why? -->
 Add introduction of `--disable-consumer-sync` CLI argument to speedup KIC's synchronization of configurations to Konnect when there are a lot of consumers.
 Fixes https://github.com/Kong/kubernetes-ingress-controller/issues/6319.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
