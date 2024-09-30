@@ -16,9 +16,12 @@ You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configur
 
 {% navtabs %}
 {% navtab Konnect UI %}
-1. From the navigation menu, open {% konnect_icon organizations %} **Organization**, then **Audit Logs Setup** and **Destinations**
-1. Fill in the fields in the **Destinations** tab. This allows you to set your audit log destination (the endpoint URL for your SIEM provider) and reuse it. 
-   * **Region endpoint**: The external endpoint that will receive audit log messages. 
+Before you configure the webhook, you must first create an audit log destination. This allows you to set your audit log destination (the endpoint URL for your SIEM provider) and reuse it. 
+
+1. From {% konnect_icon organizations %} **Organization** in the sidebar, click **Audit Logs Setup**.
+1. On the **Webhook Destination** tab, click **New Webhook** and configure the following:
+   * **Name**: The name you want to display for the audit log destination.
+   * **Endpoint**: The external endpoint that will receive audit log messages. 
    * **Authorization Header**: The authorization type and credential to pass to your log collection endpoint. 
     {{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint.
 
@@ -26,12 +29,12 @@ You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configur
      `"authorization":"Splunk example-token12234352535235"`.
         
     * **Log Format**: The output format of each log message. Can be CEF or JSON.
-    * **Skip SSL Verification**: Skip SSL verification of the host endpoint when delivering payloads. We recommend skipping SSL verification only when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
-1. From the navigation menu, open {% konnect_icon Dev-portal %} **Settings**, then **Audit Logs Setup**.
-1. Fill in the fields in the **Setup** tab.
-    * **Audit log Destination**: select the destination that you want to use from the drop down list
-    * 
-1. Switch the toggle to `Enabled`, then save your webhook configuration.
+    * **Disable SSL Verification**: Disables SSL verification of the host endpoint when delivering payloads. We recommend disabling SSL verification only when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
+1. To configure the Dev Portal audit log webhook, navigate to {% konnect_icon Dev-portal %} Dev Portal in the sidebar.
+1. Click the Dev Portal you want to configure the webhook for and then click **Settings**.
+1. Click the **Audit Logs** tab.
+1. Enable the webhook and then select the SIEM provider endpoint from the **Endpoint** drop down menu. 
+1. Click **Save**.
 
 {% endnavtab %}
 {% navtab API %}
