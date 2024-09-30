@@ -8,7 +8,7 @@ search_aliases:
   - model
   - semantic
 dbless_compatible: yes
-free: true
+free: false
 enterprise: true
 paid: true
 konnect: true
