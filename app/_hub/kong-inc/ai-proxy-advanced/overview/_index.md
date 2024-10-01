@@ -62,6 +62,9 @@ This plugin does not support fallback over targets with different formats. You c
 * OpenAI models and Mistral models with the OpenAI format
 * Mistral models with the OLLAMA format and Llama models with the OLLAMA format
 
+{:.note}
+> Some errors, such as client errors, result in a failure and don't failover to another target.
+
 ## Request and response formats
 
 The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-route_type) should be set based on the target upstream endpoint and model, based on this capability matrix:
