@@ -5,7 +5,7 @@ nav_title: Overview
 The AI Proxy Advanced plugin lets you transform and proxy requests to multiple AI providers and models at the same time. 
 This lets you set up load balancing between targets.
 
-The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
+The plugin accepts requests in one of a few defined and standardized formats, translates them to the configured target format, and then transforms the response back into a standard format.
 
 The following table describes which providers and requests the AI Proxy Advanced plugin supports:
 
@@ -55,9 +55,12 @@ This plugin supports several load-balancing algorithms, similar to those used fo
 
 ## Retry and fallback
 
-The load balancer has customizable retries and timeouts for requests, and can redirect a request to a different model in case of failure. This allows to have a fallback in case one of your targets is unavailable.
+The load balancer has customizable retries and timeouts for requests, and can redirect a request to a different model in case of failure. This allows you to have a fallback in case one of your targets is unavailable.
 
-This plugin does not support fallback over targets with different formats. For example, you can have a load balancer containing targets with different OpenAI models, but you can't have one target with an OpenAI model and another with an Ollama model. However, you use can an OpenAI model alongside a Mistral model compatible with the OpenAI format.
+This plugin does not support fallback over targets with different formats. You can use different providers as long as the formats are compatible.For example, load balancers with these combinations of targets are supported:
+* Different OpenAI models
+* OpenAI models and Mistral models with the OpenAI format
+* Mistral models with the OLLAMA format and Llama models with the OLLAMA format
 
 ## Request and response formats
 
