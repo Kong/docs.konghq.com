@@ -2467,7 +2467,7 @@ action items when certain conditions are met.
   * Plugin-level proxy configuration now takes effect when fetching IAM credentials in an EKS environment with IRSA. 
   This improvement allows the EKS IRSA credential provider (`TokenFileWebIdentityCredentials`) to correctly route requests through the plugin-level proxy configuration when obtaining credentials from the AWS STS service. 
   [#11551](https://github.com/Kong/kong/pull/11551)
-  * The plugin now caches the AWS ambda service by lambda service related fields. 
+  * The plugin now caches the AWS Lambda service by lambda service related fields. 
   [#11821](https://github.com/kong/kong/pulls/11821)
 
 #### PDK
