@@ -27,7 +27,7 @@ You need to specify the following values:
 - `vault_URI`
 - Azure Client Secret: This value can only be configured as an environment variable.
 
-You can configure these values with environment variables before starting {{site.base_gateway}}. If you are using `Instance Managed Identity Token`, setting the environment variables isn't necessary.
+You can configure these values with environment variables before starting {{site.base_gateway}}. If you are using an Instance Managed Identity Token, setting the environment variables isn't necessary.
 
 ```bash
 export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
@@ -38,7 +38,7 @@ export AZURE_CLIENT_SECRET=client_secret
 
 {:.note}
 > Secrets management via Azure Vault is supported on Azure Instance (VM) and the Azure Function App.
-It is not currently supported on Azure Container App 
+> It is not currently supported on Azure Container App.
 
 
 
