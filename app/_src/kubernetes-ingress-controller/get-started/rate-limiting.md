@@ -13,7 +13,7 @@ Rate limiting is used to control the rate of requests sent to an upstream servic
 
 ## Create a rate-limiting KongPlugin
 
-Configuring plugins with {{ site.kic_product_name }} is different compared to how you'd do it with {{ kic.base_gateway }}. Rather than attaching a configuration directly to a service or route, you create a `KongPlugin` definition and then annotate your Kubernetes resource with the `konghq.com/plugins` annotation.
+Configuring plugins with {{ site.kic_product_name }} is different compared to how you'd do it with {{ site.base_gateway }}. Rather than attaching a configuration directly to a service or route, you create a `KongPlugin` definition and then annotate your Kubernetes resource with the `konghq.com/plugins` annotation.
 
 {:.note}
 > This tutorial uses the [Rate Limiting](/hub/kong-inc/rate-limiting/) <span class="badge free"></span> plugin. The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> plugin is also available. The advanced version provides additional features such as support for the sliding window algorithm and advanced Redis support for greater performance.
