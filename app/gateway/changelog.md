@@ -581,7 +581,7 @@ Kong is no longer providing official support for any Kong version running on the
 * Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
 
 ## 3.7.1.0
-**Release Date** 06/18/2024
+**Release Date** 2024/06/18
 
 ### Known issues
 * There is an issue with the DNS client fix, where the DNS client incorrectly uses the content `ADDITIONAL SECTION` in DNS responses.
@@ -632,7 +632,7 @@ It now ignores records when the RR type differs from that of the query when pars
 * Bumped `lua-resty-jsonschema-rs` to 0.1.5.
 
 ## 3.7.0.0
-**Release Date** 05/28/2024
+**Release Date** 2024/05/28
 
 ### Breaking changes and deprecations
 
@@ -1087,7 +1087,7 @@ _Backported from 3.7.1.2_
 * Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
 
 ## 3.6.1.5
-**Release Date** 06/18/2024
+**Release Date** 2024/06/18
 
 ### Known issues
 
@@ -1160,7 +1160,7 @@ _Backported from 3.7.0.0_
 * Improved the robustness of `lua-cjson` when handling unexpected input.
 
 ## 3.6.1.4
-**Release Date** 05/14/2024
+**Release Date** 2024/05/14
 
 ### Features
 #### Plugins
@@ -1214,7 +1214,7 @@ It now correctly returns a number.
 * Bumped `lua-protobuf` to 0.5.1.
 
 ## 3.6.1.3
-**Release Date** 04/16/2024
+**Release Date** 2024/04/16
 
 ### Fixes
 
@@ -1226,7 +1226,7 @@ It now correctly returns a number.
   * Improved robustness of parsing for short trace IDs.
 
 ## 3.6.1.2
-**Release Date** 04/08/2024
+**Release Date** 2024/04/08
 
 ### Features
 
@@ -1285,7 +1285,7 @@ Kong Gateway will now only print warning logs if `"openid"` is missing from `adm
 
 
 ## 3.6.1.1
-**Release Date** 03/05/2024
+**Release Date** 2024/03/05
 
 ### Fixes
 
@@ -1311,7 +1311,7 @@ Kong Gateway will now only print warning logs if `"openid"` is missing from `adm
   * The plugin now creates counter syncing timers during plugin execution instead of plugin creation to reduce some meaningless error logs.
 
 ## 3.6.1.0
-**Release Date** 02/26/2024
+**Release Date** 2024/02/26
 
 ### Features
 
@@ -1351,7 +1351,7 @@ _Backported from 3.7.0.0_
   * Fixed an issue where, if the credential was encoded with no username, Kong Gateway threw an error and returned a 500 code.
 
 ## 3.6.0.0
-**Release Date** 02/12/2024
+**Release Date** 2024/02/12
 
 ### Breaking changes and deprecations
 
@@ -1832,7 +1832,7 @@ _Backported from 3.7.1.2_
 * Fixed an issue where the DNS client was incorrectly using the content of the `ADDITIONAL SECTION` in DNS responses.
 
 ## 3.5.0.5
-**Release Date** 06/18/2024
+**Release Date** 2024/06/18
 
 ### Known issues
 
@@ -1894,7 +1894,7 @@ The API now only shows workspaces that a user has access to.
 * Bumped `lua-resty-healthcheck` from 1.6.4 to 1.6.5 to fix memory leak issues by reusing a timer for the same active healthcheck target instead of running many timers.
 
 ## 3.5.0.4 
-**Release Date** 05/20/2024
+**Release Date** 2024/05/20
 
 ### Breaking Changes
 
