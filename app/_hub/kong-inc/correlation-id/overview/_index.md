@@ -110,6 +110,10 @@ To edit your Nginx parameters, do the following:
 
    You should now see Correlation ID entries in the access log.
 
+
+{:.note}
+> **Note**: The `log_format` directive must be added inside the HTTP context of the Nginx configuration file. Failing to do so may cause Kong to fail on startup due to invalid Nginx configuration.
+
 Learn more in [Custom Nginx templates & embedding Kong](/gateway/latest/reference/configuration/#custom-nginx-templates--embedding-kong).
 
 You can also use this plugin along with one of the [logging plugins](/hub/#logging), or store the ID on your backend.
