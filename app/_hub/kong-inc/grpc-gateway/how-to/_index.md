@@ -69,7 +69,7 @@ service HelloService {
       }
       post: "/v1/messages/"
       body: "*"
-    }
+    };
   }
 }
 
