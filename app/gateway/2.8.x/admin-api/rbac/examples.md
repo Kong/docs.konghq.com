@@ -690,7 +690,7 @@ http :8001/teamA/services Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG
   "next": null,
   "data": [
     {
-      "host": "httpbin.org",
+      "host": "httpbin.konghq.com",
       "created_at": 1531066074,
       "connect_timeout": 60000,
       "id": "3ed24101-19a7-4a0b-a10f-2f47bcd4ff43",
@@ -856,7 +856,7 @@ http :8001/teamA/rbac/workspaces/ Kong-Admin-Token:sUnv6uBehM91amYRNWESsgX3HzqoB
 ```
 http :8001/teamA/services/service1 Kong-Admin-Token:sUnv6uBehM91amYRNWESsgX3HzqoBnR5
 {
-  "host": "httpbin.org",
+  "host": "httpbin.konghq.com",
   "created_at": 1531066074,
   "connect_timeout": 60000,
   "id": "3ed24101-19a7-4a0b-a10f-2f47bcd4ff43",

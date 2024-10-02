@@ -95,7 +95,7 @@ and in-memory, on the node:
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: httpbin.org
+    - host: httpbin.konghq.com
       name: example_service
       port: 80
       protocol: http

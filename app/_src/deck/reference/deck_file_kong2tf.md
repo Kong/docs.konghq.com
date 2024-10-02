@@ -247,7 +247,7 @@ routes:
 services:
   - connect_timeout: 60000
     enabled: true
-    host: httpbin.org
+    host: httpbin.konghq.com
     id: 0cc39546-f5c9-4aae-898c-c63ef5b4a33b
     name: httpbin
     plugins:
@@ -426,7 +426,7 @@ resource "konnect_gateway_service" "httpbin" {
   enabled = true
   name = "httpbin"
   connect_timeout = 60000
-  host = "httpbin.org"
+  host = "httpbin.konghq.com"
   port = 443
   protocol = "https"
   read_timeout = 60000

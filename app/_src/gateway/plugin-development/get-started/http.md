@@ -58,7 +58,7 @@ Add the following to the top of the `MyPluginHandler:response` function inside t
 ```lua
 local httpc = http.new()
 
-local res, err = httpc:request_uri("http://httpbin.org/anything", {
+local res, err = httpc:request_uri("https://httpbin.konghq.com/anything", {
   method = "GET",
 })
 ```
@@ -165,7 +165,7 @@ function MyPluginHandler:response(conf)
 
   local httpc = http.new()
 
-  local res, err = httpc:request_uri("http://httpbin.org/anything", {
+  local res, err = httpc:request_uri("https://httpbin.konghq.com/anything", {
     method = "GET",
   })
 
@@ -197,13 +197,13 @@ return MyPluginHandler
 At this stage, if you re-run the `pongo run` command to execute
 the integration tests previously built, you will receive errors. The
 expected value in the header has changed from `response` to 
-`http://httpbin.org/anything`. Update the 
+`https://httpbin.konghq.com/anything`. Update the 
 `spec/my-plugin/01-integration_spec.lua` file to assert the new
 value in the header.
 
 ```lua
 -- validate the value of that header
-assert.equal("http://httpbin.org/anything", header_value)
+assert.equal("https://httpbin.konghq.com/anything", header_value)
 ```
 
 Re-run the test with `pongo run` and verify success:

@@ -38,7 +38,7 @@ Leave the process running.
     ```bash
     curl http://localhost:8001/services \
       --data "name=acme-test" \
-      --data "url=http://httpbin.org"
+      --data "url=https://httpbin.konghq.com"
     ```
 
 1. Configure a route:

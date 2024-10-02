@@ -58,7 +58,7 @@ click the **default** workspace.
 2. Scroll down to **Services** and click **Add a Service**.
 
 3. In the **Create Service** dialog, enter the name `example_service` and the
-URL `http://httpbin.org`.
+URL `https://httpbin.konghq.com`.
 
 4. Click **Create**.
 
@@ -73,14 +73,14 @@ The service is created, and the page automatically redirects back to the
 ```sh
 curl -i -X POST http://localhost:8001/services \
   --data name=example_service \
-  --data url='http://httpbin.org'
+  --data url='https://httpbin.konghq.com'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
 http POST :8001/services \
   name=example_service \
-  url='http://httpbin.org'
+  url='https://httpbin.konghq.com'
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -111,12 +111,12 @@ http :8001/services/example_service
 1. In the `kong.yaml` file you exported in
 [Prepare to Administer {{site.base_gateway}}](/gateway/{{page.release}}/get-started/comprehensive/prepare/#verify-the-kong-gateway-configuration),
 define a Service with the name `example_service` and the URL
-`http://httpbin.org`:
+`https://httpbin.konghq.com`:
 
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: httpbin.org
+    - host: httpbin.konghq.com
       name: example_service
       port: 80
       protocol: http
@@ -216,7 +216,7 @@ A `201` message indicates the Route was created successfully.
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: httpbin.org
+    - host: httpbin.konghq.com
       name: example_service
       port: 80
       protocol: http
@@ -253,7 +253,7 @@ A `201` message indicates the Route was created successfully.
     ``` yaml
     services:
     - connect_timeout: 60000
-      host: httpbin.org
+      host: httpbin.konghq.com
       name: example_service
       port: 80
       protocol: http
@@ -321,11 +321,11 @@ http :8000/mock/anything
 
 In this section, you:
 
-* Added a Service named `example_service` with a URL of `http://httpbin.org`.
+* Added a Service named `example_service` with a URL of `https://httpbin.konghq.com`.
 * Added a Route named `/mock`.
 * This means if an HTTP request is sent to the {{site.base_gateway}} node on
 port `8000`(the proxy port) and it matches route `/mock`, then that request is
-sent to `http://httpbin.org`.
+sent to `https://httpbin.konghq.com`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 

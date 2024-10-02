@@ -45,7 +45,7 @@ consumers:
 - username: example-user2
 services:
 - connect_timeout: 60000
-    host: httpbin.org
+    host: httpbin.konghq.com
     name: MyService
     tags:
     - _KonnectService:example_service

@@ -110,7 +110,7 @@ curl --request PUT \
 ```bash
 curl --request PUT \
   --url http://localhost:8001/services/saml-service \
-  --data url=https://httpbin.org/anything
+  --data url=https://httpbin.konghq.com/anything
 ```
 
 ```json
@@ -118,7 +118,7 @@ curl --request PUT \
     "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd",
     "name": "saml-service",
     "protocol": "https",
-    "host": "httpbin.org",
+    "host": "httpbin.konghq.com",
     "port": 443,
     "path": "/anything"
 }
@@ -192,7 +192,7 @@ curl --request POST \
 
 1. Using a browser, go to the URL (https://kong:8443/saml)
 2. The browser is redirected to the AzureAD Sign in page. Enter the user credentials of a user configured in AzureAD
-3. If user credentials are valid, the browser will be redirected to https://httpbin.org/anything
+3. If user credentials are valid, the browser will be redirected to https://httpbin.konghq.com/anything
 4. If the user credentials are invalid, a `401` unauthorized HTTP status code is returned
 
 ## Troubleshooting

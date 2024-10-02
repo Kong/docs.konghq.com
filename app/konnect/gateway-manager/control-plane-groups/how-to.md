@@ -28,7 +28,7 @@ If you already have some standard control planes in your org that you want to ad
 1. From the navigation menu, open {% konnect_icon runtimes %} **Gateway Manager**.
 1. Click the **New Control Plane** button and select **{{site.base_gateway}}**.
    
-   Kong Ingress Controller control planes can't be part of control plane groups. One control plane group cannot be a member of another control plane group. 
+   {{site.kic_product_name}} control planes can't be part of control plane groups. One control plane group cannot be a member of another control plane group. 
 
 1. Set up your control plane and save. For the purpose of this example, its name will be CP1.
 1. Create another {{site.base_gateway}} control plane, this time calling it CP2.
@@ -193,7 +193,7 @@ Create a service and route in `CP1`. This will let you test the connection betwe
 1. Click the **New Gateway Service** button and set up the service. 
 For this example, you can use the following values:
    * Name: `example_service`
-   * Host: `httpbin.org`
+   * Host: `httpbin.konghq.com`
 
 1. Next, create a route. From the side menu, open **Routes**.
 1. Click the **New Route** button and set up the route. For this example, you can enter `/mock` in the paths field.
@@ -270,7 +270,7 @@ For this example, you can use the following values:
     curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "name=example_service" \
-        --data "host=httpbin.org"
+        --data "host=httpbin.konghq.com"
     ```
 
     ```sh

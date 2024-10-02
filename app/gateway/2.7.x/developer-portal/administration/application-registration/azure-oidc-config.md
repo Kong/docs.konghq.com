@@ -29,7 +29,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 ```bash
 curl -i -X PUT http://localhost:8001/services/httpbin-service-azure \
-  --data 'url=https://httpbin.org/anything'
+  --data 'url=https://httpbin.konghq.com/anything'
 ```
 
 {% endnavtab %}
@@ -37,7 +37,7 @@ curl -i -X PUT http://localhost:8001/services/httpbin-service-azure \
 
 ```bash
 http PUT :8001/services/httpbin-service-azure \
-  url=https://httpbin.org/anything
+  url=https://httpbin.konghq.com/anything
 ```
 {% endnavtab %}
 {% endnavtabs %}

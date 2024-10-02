@@ -297,13 +297,13 @@ In this example, use the plugin to validate a request's path parameter.
     ```
     curl -i -X POST http://localhost:8001/services \
       --data name=httpbin \
-      --data url=http://httpbin.org
+      --data url=https://httpbin.konghq.com
 
     HTTP/1.1 201 Created
     ..
 
     {
-      "host":"httpbin.org",
+      "host":"httpbin.konghq.com",
       "created_at":1563479714,
       "connect_timeout":60000,
       "id":"0a7f3795-bc92-43b5-aada-258113b7c4ed",

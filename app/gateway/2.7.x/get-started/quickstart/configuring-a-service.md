@@ -31,7 +31,7 @@ to Kong:
 curl -i -X POST \
   --url http://localhost:8001/services/ \
   --data 'name=example-service' \
-  --data 'url=http://httpbin.org'
+  --data 'url=https://httpbin.konghq.com'
 ```
 
 You should receive a response similar to:
@@ -42,7 +42,7 @@ Content-Type: application/json
 Connection: keep-alive
 
 {
-   "host":"httpbin.org",
+   "host":"httpbin.konghq.com",
    "created_at":1519130509,
    "connect_timeout":60000,
    "id":"92956672-f5ea-4e9a-b096-667bf55bc40c",
@@ -129,4 +129,4 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 [API]: /gateway/{{page.release}}/admin-api
 [enabling-plugins]: /gateway/{{page.release}}/get-started/quickstart/enabling-plugins
 [proxy-port]: /gateway/{{page.release}}/reference/configuration/#nginx-section
-[httpbin]: https://httpbin.org/
+[httpbin]: https://httpbin.konghq.com/
