@@ -60,6 +60,9 @@ use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
     The spec must be in YAML or JSON format. To test this functionality, you
     can use [vitalsSpec.yaml](/konnect/vitalsSpec.yaml) as a sample spec.
 
+    {:.note}
+    > **Note:** Supported version fields are `swagger: "2.0"` and those that match `openapi: x.y.z` (for example: `openapi: 3.1.0`). OpenAPI spec versions 2.0 or later are supported.
+
 This OpenAPI spec will be shown under the version name when this service is
 published to the Dev Portal.
 
