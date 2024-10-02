@@ -15,7 +15,7 @@ own certificate.
 
 ## Supported storage types
 
-You can set the backend storage for the plugin using the [`config.storage`](/) parameter.
+You can set the backend storage for the plugin using the [`config.storage`](/hub/kong-inc/acme/configuration/#config-storage) parameter.
 The backend storage available depends on the [topology](/gateway/latest/production/deployment-topologies/) of your {{site.base_gateway}} environment: 
 
 Storage type | Description   | Traditional mode | Hybrid mode | DB-less | {{site.konnect_short_name}}
@@ -45,7 +45,7 @@ response.
 
 ## Workflow
 
-A `http-01` challenge workflow between the {{site.base_gateway}} and the ACME server is described below:
+An `http-01` challenge workflow between the {{site.base_gateway}} and the ACME server is described below:
 
 1. The client sends a proxy or Admin API request that triggers certificate generation for `mydomain.com`.
 2. The {{site.base_gateway}} sends a request to the ACME server to start the validation process.
@@ -69,11 +69,11 @@ A `http-01` challenge workflow between the {{site.base_gateway}} and the ACME se
 8. The Kong control plane propagates the new certificates to the Kong data plane.
 9. The Kong data plane uses the new certificate to serve TLS requests.
 
-All external storage types work as usual in hybrid mode. Note both the control plane and data planes
+All external storage types work as usual in hybrid mode. Both the control plane and data planes
 need to connect to the same external storage cluster. It's also a good idea to set up replicas to avoid
 connecting to same node directly for external storage.
 
-External storage in hybrid mode (`redis`, `consul`, or `vault`) works in following flow:
+External storage in hybrid mode (`redis`, `consul`, or `vault`) works in the following way:
 
 1. The client send a proxy or Admin API request that triggers certificate generation for `mydomain.com`.
 2. The Kong control plane or data plane requests the ACME server to start the validation process.
@@ -88,7 +88,7 @@ External storage in hybrid mode (`redis`, `consul`, or `vault`) works in followi
 
 ## EAB support
 
-External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
+External account binding (EAB) is supported as long as the `eab_kid` and `eab_hmac_key` values are provided.
 
 The following CA provider's external account can be registered automatically, without specifying
 the `eab_kid` or `eab_hmac_key`:
