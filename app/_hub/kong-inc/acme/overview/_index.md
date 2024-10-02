@@ -13,9 +13,39 @@ IP and a resolvable DNS. Kong also needs to accept proxy traffic from port `80`.
 > * A wildcard or star (`*`) certificate is not supported. Each domain must have its
 own certificate.
 
+## Supported storage types
+
+You can set the backend storage for the plugin using the [`config.storage`](/hub/kong-inc/acme/configuration/#config-storage) parameter.
+The backend storage available depends on the [topology](/gateway/latest/production/deployment-topologies/) of your {{site.base_gateway}} environment: 
+
+Storage type | Description   | Traditional mode | Hybrid mode | DB-less | {{site.konnect_short_name}}
+-------------|---------------|------------------|-------------|---------|----------------------------
+`shm` | Lua shared dict storage. <br> This storage is volatile between Nginx restarts (not reloads). | ✅ | ❌ | ✅ | ❌
+`kong`| Kong database storage. | ✅ | ✅ <sup>1</sup> | ❌ | ❌
+`redis` | [Redis-based](https://redis.io/docs/latest/) storage.    | ✅ | ✅ | ✅ | ✅
+`consul` | [HashiCorp Consul](https://www.consul.io/) storage.    | ✅ | ✅ | ✅ | ✅
+`vault` | [HashiCorp Vault](https://www.vaultproject.io/) storage. <br> Only the [KV V2](https://www.vaultproject.io/api/secret/kv/kv-v2.html) backend is supported. | ✅ | ✅ | ✅ | ✅
+
+{:.note .no-icon}
+> **\[1\]**: Due to current the limitations of hybrid mode, `kong` storage only supports certificate generation from
+the Admin API but not the proxy side, as the data planes don't have access to the Kong database. 
+See the [hybrid mode workflow](#hybrid-mode-workflow) for details. 
+
+To configure a storage type other than `kong`, see [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters) for example configurations.
+
+## Running with or without a database
+
+In a database-backed deployment, the plugin creates an SNI and certificate entity in Kong to
+serve the certificate. If the SNI or certificate for the current request is already set
+in the database, it will be overwritten.
+
+In DB-less mode, the plugin takes over certificate handling. If the SNI or
+certificate entity is already defined in Kong, it will be overridden by the
+response.
+
 ## Workflow
 
-A `http-01` challenge workflow between the {{site.base_gateway}} and the ACME server is described below:
+An `http-01` challenge workflow between the {{site.base_gateway}} and the ACME server is described below:
 
 1. The client sends a proxy or Admin API request that triggers certificate generation for `mydomain.com`.
 2. The {{site.base_gateway}} sends a request to the ACME server to start the validation process.
@@ -27,53 +57,38 @@ A `http-01` challenge workflow between the {{site.base_gateway}} and the ACME se
 
 ### Hybrid mode workflow
 
-`"shm"` storage type is not available in Hybrid Mode.
-
-Due to current the limitations of Hybrid Mode, `"kong"` storage only supports certificate generation from
-the Admin API but not the proxy side.
-
-`"kong"` storage in Hybrid Mode works in following flow:
+`kong` storage in hybrid mode works in following flow:
 
 1. The client sends an Admin API request that triggers certificate generation for `mydomain.com`.
-2. The Kong Control Plane requests the ACME server to start the validation process.
-3. The ACME server returns a challenge response detail to the Kong Control Plane.
-4. The Kong Control Plane propagates the challenge response detail to the Kong Data Plane.
-5. `mydomain.com` is publicly resolvable to the Kong Data Plane that serves the challenge response.
+2. The Kong control plane requests the ACME server to start the validation process.
+3. The ACME server returns a challenge response detail to the Kong control plane.
+4. The Kong control plane propagates the challenge response detail to the Kong data plane.
+5. `mydomain.com` is publicly resolvable to the Kong data plane that serves the challenge response.
 6. The ACME server checks if the previous challenge has a response at `mydomain.com`.
-7. The Kong Control Plane checks the challenge status and if passed, downloads the certificate from the ACME server.
-8. The Kong Control Plane propagates the new certificates to the Kong Data Plane.
-9. The Kong Data Plane uses the new certificate to serve TLS requests.
+7. The Kong control plane checks the challenge status and if passed, downloads the certificate from the ACME server.
+8. The Kong control plane propagates the new certificates to the Kong data plane.
+9. The Kong data plane uses the new certificate to serve TLS requests.
 
-All external storage types work as usual in Hybrid Mode. Note both the Control Plane and Data Planes
-need to connect to the same external storage cluster. It's also a good idea to setup replicas to avoid
+All external storage types work as usual in hybrid mode. Both the control plane and data planes
+need to connect to the same external storage cluster. It's also a good idea to set up replicas to avoid
 connecting to same node directly for external storage.
 
-External storage in Hybrid Mode works in following flow:
+External storage in hybrid mode (`redis`, `consul`, or `vault`) works in the following way:
 
 1. The client send a proxy or Admin API request that triggers certificate generation for `mydomain.com`.
-2. The Kong Control Plane or Data Plane requests the ACME server to start the validation process.
+2. The Kong control plane or data plane requests the ACME server to start the validation process.
 3. The ACME server returns a challenge response detail to the {{site.base_gateway}}.
-4. The Kong Control Plane or Data Plane stores the challenge response detail in external storage.
-5. `mydomain.com` is publicly resolvable to the Kong Data Plane that reads and serves the challenge response from external storage.
+4. The Kong control plane or data plane stores the challenge response detail in external storage.
+5. `mydomain.com` is publicly resolvable to the Kong data plane that reads and serves the challenge response from external storage.
 6. The ACME server checks if the previous challenge has a response at `mydomain.com`.
-7. The Kong Control Plane or Data Plane checks the challenge status and if passed, downloads the certificate from the ACME server.
-8. The Kong Control Plane or Data Plane stores the new certificates in external storage.
-9. The Kong Data Plane reads from external storage and uses the new certificate to serve TLS requests.
+7. The Kong control plane or data plane checks the challenge status and if passed, downloads the certificate from the ACME server.
+8. The Kong control plane or data plane stores the new certificates in external storage.
+9. The Kong data plane reads from external storage and uses the new certificate to serve TLS requests.
 
-
-## Running with or without a database
-
-In database mode, the plugin creates an SNI and Certificate entity in Kong to
-serve the certificate. If SNI or Certificate for the current request is already set
-in the database, they will be overwritten.
-
-In DB-less mode, the plugin takes over certificate handling. If the SNI or
-Certificate entity is already defined in Kong, they will be overridden by the
-response.
 
 ## EAB support
 
-External account binding (EAB) is supported as long as `eab_kid` and `eab_hmac_key` are provided.
+External account binding (EAB) is supported as long as the `eab_kid` and `eab_hmac_key` values are provided.
 
 The following CA provider's external account can be registered automatically, without specifying
 the `eab_kid` or `eab_hmac_key`:
@@ -125,7 +140,6 @@ the `eab_kid` or `eab_hmac_key`:
     }
 ```
 
-To configure a storage type other than `kong`, refer to [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters).
 
 ## Get started with the ACME plugin
 

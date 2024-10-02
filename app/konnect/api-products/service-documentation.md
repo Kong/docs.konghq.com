@@ -39,6 +39,9 @@ You can insert Mermaid and PlantUML diagrams by using a language-specific identi
 API specifications, or specs, can be uploaded and attached to a specific API product version within API products.
 {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.
 
+{:.note}
+> **Note:** Supported version fields are `swagger: "2.0"` and those that match `openapi: x.y.z` (for example: `openapi: 3.1.0`). OpenAPI spec versions 2.0 or later are supported.
+
 Once you've uploaded the spec, you can also preview the way the spec will render, including the methods available, endpoint descriptions, and example values. You'll also be able to filter by tag when in full-page view. 
 
 
