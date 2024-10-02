@@ -35,7 +35,7 @@ This allows you to reference the secrets separately:
 ```
 
 {:.note}
-> When adding an environment variable with Helm, ensure that the variable being passed has `kong-` appended to it. 
+> When adding an environment variable with Helm, ensure that the variable being passed has `kong-` prepended to it. 
 
 ## Configuration via vaults entity
 
