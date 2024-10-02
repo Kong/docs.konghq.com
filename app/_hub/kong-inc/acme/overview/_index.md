@@ -21,7 +21,7 @@ The backend storage available depends on the [topology](/gateway/latest/producti
 Storage type | Description   | Traditional mode | Hybrid mode | DB-less | {{site.konnect_short_name}}
 -------------|---------------|------------------|-------------|---------|----------------------------
 `shm` | Lua shared dict storage. <br> This storage is volatile between Nginx restarts (not reloads). | ✅ | ❌ | ✅ | ❌
-`kong`| Kong database storage. | ✅ | ✅ <sup>1</sup> | ❌ | ✅ <sup>1</sup>
+`kong`| Kong database storage. | ✅ | ✅ <sup>1</sup> | ❌ | ❌
 `redis` | [Redis-based](https://redis.io/docs/latest/) storage.    | ✅ | ✅ | ✅ | ✅
 `consul` | [HashiCorp Consul](https://www.consul.io/) storage.    | ✅ | ✅ | ✅ | ✅
 `vault` | [HashiCorp Vault](https://www.vaultproject.io/) storage. <br> Only the [KV V2](https://www.vaultproject.io/api/secret/kv/kv-v2.html) backend is supported. | ✅ | ✅ | ✅ | ✅

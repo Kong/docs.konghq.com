@@ -60,7 +60,7 @@ Leave the process running.
     ```
 
     This example uses `kong` storage for demo purposes, which stores the certificate in the Kong database.
-    `kong` storage is not supported in DB-less mode, use one of the other [storage options](/hub/kong-inc/acme/#storage-options) instead.
+    `kong` storage is not supported in DB-less mode or {{site.konnect_short_name}}, use one of the other [storage options](/hub/kong-inc/acme/#storage-options) instead.
 
 ## Validate
 
