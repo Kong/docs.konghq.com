@@ -60,7 +60,7 @@ containing the initial migrations. We'll see how this is done in a minute.
 Sometimes it is necessary to introduce changes after a version of a plugin has already been
 released. A new functionality might be needed. A database table row might need changing.
 
-When this happens, *you must* create a new migrations file. You *must not* of modify the
+When this happens, *you must* create a new migrations file. You *must not* modify the
 existing migration files once they are published (you can still make them more robust and
 bulletproof if you want, e.g. always try to write the migrations reentrant).
 
