@@ -40,18 +40,16 @@ You now have a very basic {{site.mesh_product_name}} service mesh added to {{sit
 
 Now that you've added a global control plane and a zone to your service mesh in {{site.konnect_short_name}}, you can add services to your mesh. 
 
-In this tutorial, we will use the services from the demo app as an easy way to see how {{site.mesh_product_name}} services can be managed with Mesh Manager. The {{site.mesh_product_name}} Kubernetes demo app sets up four services so you can see how {{site.mesh_product_name}} can be used to control services, monitor traffic, and track resource status:
+In this tutorial, we will use the services from the demo app as an easy way to see how {{site.mesh_product_name}} services can be managed with Mesh Manager. The {{site.mesh_product_name}} Kubernetes demo app sets up two services so you can see how {{site.mesh_product_name}} can be used to control services, monitor traffic, and track resource status:
 
-
-* `frontend`: A web application that lets you browse an online clothing store
-* `backend`: A Node.js API for querying and filtering clothing items
-* `postgres`: A database for storing clothing item reviews
-* `redis`: A data store for the clothing item star ratings 
+* `demo-app`: A web application that lets you increment a numeric counter. It listens on port 5000.
+* `redis`: A data store for the counter.
 
 To add the services to your mesh using the demo app, run the following command:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kumahq/kuma-demo/master/kubernetes/kuma-demo-aio.yaml
+kubectl apply -f https://raw.githubusercontent.com/kumahq/kuma-counter-demo/master/demo.yaml
+kubectl wait -n kuma-demo --for=condition=ready pod --selector=app=demo-app --timeout=90s
 ```
 
 You can see the services the Kubernetes demo app added by navigating to **Mesh Manager** in the sidebar of {{site.konnect_short_name}}, selecting the `example-cp` and clicking **Meshes** in the sidebar. You can view the services associated with that mesh by clicking **Default** and the **Services** tab.
@@ -63,12 +61,12 @@ For more information about the Kubernetes demo app, see [Explore {{site.mesh_pro
 `kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode. Since we are deploying {{site.mesh_product_name}} in Kubernetes mode for this tutorial, `kumactl` is read-only. Instead, `kubectl` is used to apply changes to {{site.mesh_product_name}}. Although we don't use `kumactl` in this tutorial because we are using Kubernetes, it's still best practice to configure it to connect to your global control plane.
 
 1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
-1. Select **Configure kumactl** from the **Global Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
+1. From the **Actions** dropdown menu, select **Configure kumactl** and follow the steps in the wizard to connect `kumactl` to the control plane.
 1. Verify that the services you added from the previous section with the Kubernetes demo app are running correctly:
   ```bash
   kumactl get dataplanes
   ```
-If your data planes were configured correctly with the demo app, the output should return all four data planes: `frontend`, `backend`, `postgres`, and `redis`.
+If your data planes were configured correctly with the demo app, the output should return two data planes: `demo-app` and `redis`.
 
 You can now issue commands to your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/explore/cli/#kumactl) for more information about the commands you can use.
 
