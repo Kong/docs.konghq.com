@@ -93,7 +93,7 @@ Add a test service:
 ```sh
 curl -i -s -X POST http://localhost:8001/services \
     --data name=example_service \
-    --data url='http://httpbin.org'
+    --data url='https://httpbin.konghq.com'
 ```
 
 Associate the custom plugin with the `example_service` service:
@@ -132,7 +132,7 @@ Access-Control-Allow-Credentials: true
 Date: Tue, 12 Mar 2024 14:44:22 GMT
 Access-Control-Allow-Origin: *
 Server: gunicorn/19.9.0
-X-MyPlugin: http://httpbin.org/anything
+X-MyPlugin: https://httpbin.konghq.com/anything
 X-Kong-Upstream-Latency: 97
 X-Kong-Proxy-Latency: 1
 Via: kong/3.6.1

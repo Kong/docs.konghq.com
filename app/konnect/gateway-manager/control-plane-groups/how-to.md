@@ -193,7 +193,7 @@ Create a service and route in `CP1`. This will let you test the connection betwe
 1. Click the **New Gateway Service** button and set up the service. 
 For this example, you can use the following values:
    * Name: `example_service`
-   * Host: `httpbin.org`
+   * Host: `httpbin.konghq.com`
 
 1. Next, create a route. From the side menu, open **Routes**.
 1. Click the **New Route** button and set up the route. For this example, you can enter `/mock` in the paths field.
@@ -270,7 +270,7 @@ For this example, you can use the following values:
     curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "name=example_service" \
-        --data "host=httpbin.org"
+        --data "host=httpbin.konghq.com"
     ```
 
     ```sh

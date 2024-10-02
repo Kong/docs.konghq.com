@@ -100,7 +100,7 @@ Every request is logged separately in a JSON object, separated by a new line `\n
         "write_timeout": 60000,
         "read_timeout": 60000,
         "updated_at": 1726782459,
-        "host": "httpbin.org",
+        "host": "httpbin.konghq.com",
         "name": "example_service",
         "id": "fb4eecf8-dec2-40ef-b779-16de7e2384c7",
         "port": 80,

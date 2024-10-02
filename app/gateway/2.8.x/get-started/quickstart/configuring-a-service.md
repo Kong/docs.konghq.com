@@ -25,13 +25,13 @@ You have installed and started {{site.base_gateway}}, either through the [Docker
 ## 1. Add a Service using the Admin API
 
 Issue the following `POST` request to add your first Service to Kong.
-This instructs Kong to create a new Service named `example-service` which will accept traffic at `http://httpbin.org`.
+This instructs Kong to create a new Service named `example-service` which will accept traffic at `https://httpbin.konghq.com`.
 
 ```bash
 curl -i -X POST \
   --url http://localhost:8001/services/ \
   --data 'name=example-service' \
-  --data 'url=http://httpbin.org'
+  --data 'url=https://httpbin.konghq.com'
 ```
 
 You should receive a response similar to:
@@ -42,7 +42,7 @@ Content-Type: application/json
 Connection: keep-alive
 
 {
-   "host":"httpbin.org",
+   "host":"httpbin.konghq.com",
    "created_at":1519130509,
    "connect_timeout":60000,
    "id":"92956672-f5ea-4e9a-b096-667bf55bc40c",
@@ -125,4 +125,4 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 [API]: /gateway/{{page.release}}/admin-api
 [enabling-plugins]: /gateway/{{page.release}}/get-started/quickstart/enabling-plugins
 [proxy-port]: /gateway/{{page.release}}/reference/configuration/#nginx-section
-[httpbin]: https://httpbin.org/
+[httpbin]: https://httpbin.konghq.com/

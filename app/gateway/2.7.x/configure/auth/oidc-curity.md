@@ -32,7 +32,7 @@ Create a service that can be used to test the integration.
 curl -i -X POST http://localhost:8001/services/ \
   --data name="httpbin" \
   --data protocol="http" \
-  --data url="http://httpbin.org"
+  --data url="https://httpbin.konghq.com"
 ```
 
 #### Create a route
@@ -95,7 +95,7 @@ Kong introspects the opaque token and receives the JWT in the response. The JWT 
     "args": {},
     "headers": {
         ...
-        "Host": "httpbin.org",
+        "Host": "httpbin.konghq.com",
         "Phantom-Token": "eyJraWQiOiIxN...",
         "X-Forwarded-Host": "localhost",
         "X-Forwarded-Path": "/httpbin/get",

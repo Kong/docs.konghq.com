@@ -26,7 +26,7 @@ On the Workspaces tab in Kong Manager:
 2. From the **Services** section, click **New Service**.
 
 3. In the **Create service** dialog, enter the name `example_service` and the
-URL `http://httpbin.org`.
+URL `https://httpbin.konghq.com`.
 
 4. Click **Create**.
 
