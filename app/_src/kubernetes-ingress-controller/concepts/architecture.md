@@ -14,7 +14,17 @@ The {{site.kic_product_name}} configures {{site.base_gateway}} using Ingress or 
 
 The figure illustrates how {{site.kic_product_name}} works:
 
-![high-level-design](/assets/images/products/kubernetes-ingress-controller/high-level-design.png "High Level Design")
+<!--vale off-->
+{% mermaid %}
+flowchart TD
+    subgraph Kubernetes cluster
+        direction LR
+        A(<div style="text-align:center;"><img src="/assets/images/icons/third-party/kubernetes-logo.png" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/> API server) --> |events| B(<div style="text-align:center;"><img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/>Controller)
+        B --> |configuration| C(<div style="text-align:center;"><img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/>Kong)
+        C --> D(services)
+    end
+{% endmermaid %}
+<!--vale on-->
 
 The Controller listens for the changes inside the Kubernetes cluster and updates Kong in response to those changes. So that it can correctly proxy all the traffic. Kong is updated dynamically to respond to changes around scaling, configuration, and failures that occur inside a Kubernetes cluster.
 
@@ -60,7 +70,46 @@ An [Ingress][ingress] resource in Kubernetes defines a set of rules for proxying
 
 This image describes the relationship between Kubernetes concepts and Kong's Ingress configuration.
 
-![translating Kubernetes to Kong](/assets/images/products/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
+<!--vale off-->
+{% mermaid %}
+flowchart LR
+    subgraph Pods
+        direction LR
+        E(Target)
+        F(Target)
+        G(Target)
+    end
+
+    subgraph Kubernetes service
+        direction TB
+        C(Service)
+        D(Upstream)
+    end
+    
+    subgraph Ingress rules
+        direction LR
+        A(Route)
+        B(Route)
+    end
+
+    A --> C
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+
+    classDef lightBlue fill:#cce7ff;
+    classDef lightGreen fill:#c4e1c4;
+    classDef lightPurple fill:#e6d8eb;
+    classDef lightGrey fill:#f5f5f5;
+
+    class A,B lightGreen;
+    class C lightBlue;
+    class D lightPurple;
+    class E,F,G lightGrey;
+{% endmermaid %}
+<!--vale on-->
 
 [gateway-api]: https://gateway-api.sigs.k8s.io/
 [gateway-api-gateway]: https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway

@@ -66,7 +66,21 @@ when attached to an Ingress.
 
 This diagram shows how the resources are linked with one another.
 
-![Associating Kong Ingress](/assets/images/products/kubernetes-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
+<!--vale off-->
+{% mermaid %}
+flowchart TD
+    A(apiVersion: configuration.konghq.com/v1<br>kind: KongIngress<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: demo-kong-ingress<br>route: <br>&nbsp;&nbsp;&nbsp;# various route properties can be overridden):::left -->|konghq.com/override annotation-based association| B(apiVersion: extensions/v1beta1<br>kind: Ingress<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: demo-api<br>&nbsp;&nbsp;&nbsp;annotations:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;konghq.com/override: demo-kong-ingress):::left
+    B --> C(apiVersion: v1<br>kind: Service<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: echo-svc<br>&nbsp;&nbsp;&nbsp;annotations:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;konghq.com/override: https-upstream):::left
+    D(apiVersion: configuration.konghq.com/v1<br>kind: KongIngress<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: https-upstream<br>proxy:<br>&nbsp;&nbsp;&nbsp;protocol: https<br>upstream:<br>&nbsp;&nbsp;&nbsp;# load-balancing and health-check behaviors can be tuned):::left --> C
+
+    classDef left text-align:left;
+    classDef lightBlue fill:#cce7ff;
+    classDef lightGreen fill:#c4e1c4;
+
+    class B lightGreen;
+    class C lightBlue;
+{% endmermaid %}
+<!--vale on-->
 
 ## KongPlugin
 
@@ -82,9 +96,38 @@ Ingress, Service, HTTPRoute, KongConsumer or KongConsumerGroup resource in Kuber
 This diagram shows how you can link a KongPlugin resource to an
 Ingress, Service, or KongConsumer.
 
-|  |  |
-:-:|:-:
-![](/assets/images/products/kubernetes-ingress-controller/kong-plugin-association1.png)|![](/assets/images/products/kubernetes-ingress-controller/kong-plugin-association2.png)
+<!--vale off-->
+{% mermaid %}
+flowchart TD
+    subgraph Link to consumer
+        direction TB
+        E(apiVersion: configuration.konghq.com/v1<br>kind: KongPlugin<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: custom-api-limit<br>plugin: rate-limiting<br>config:<br>&nbsp;&nbsp;&nbsp;minute: 10):::left
+        F(apiVersion: configuration.konghq.com<br>kind: KongConsumer<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: demo-api<br>&nbsp;&nbsp;&nbsp;annotations:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;konghq.com/plugins: custom-api-limit<br>username: special-client):::left
+    end
+    
+    subgraph Link to Ingress and service
+        direction TB
+        A(apiVersion: configuration.konghq.com/v1<br>kind: KongPlugin<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: reports-api-limit<br>plugin: rate-limiting<br>config: <br>&nbsp;&nbsp;&nbsp;minute: 5):::left 
+        B(apiVersion: extensions/v1beta1<br>kind: Ingress<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: demo-api<br>&nbsp;&nbsp;&nbsp;annotations:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;konghq.com/plugins: reports-api-limit):::left
+        C(apiVersion: v1<br>kind: Service<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: billing-api<br>&nbsp;&nbsp;&nbsp;annotations:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;konghq.com/plugins: billing-auth):::left
+        D(apiVersion: configuration.konghq.com/v1<br>kind: KongPlugin<br>metadata:<br>&nbsp;&nbsp;&nbsp;name: billing-auth<br>plugin: basic auth):::left
+    end
+
+    A --> |execute the plugin for any request that matches a rule in the following ingress resource|B
+    B --> C
+    D --> |execute the plugin for any request that is forwarded to the billing-api service in k8s|C
+    E --> |Associated using konghq.com/plugins annotation|F
+
+    classDef left text-align:left;
+    classDef lightBlue fill:#cce7ff;
+    classDef lightGreen fill:#c4e1c4;
+    classDef lightPurple fill:#e6d8eb;
+
+    class B lightGreen;
+    class C lightBlue;
+    class F lightPurple;
+{% endmermaid %}
+<!--vale on-->
 
 ## KongClusterPlugin
 
