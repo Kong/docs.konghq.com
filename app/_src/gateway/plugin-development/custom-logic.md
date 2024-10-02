@@ -42,7 +42,7 @@ of {{site.base_gateway}}'s execution life-cycle:
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
 {% if_version lte: 3.3.x %}
 
-| Function name       | Phase             | Request Protocol        | Description
+| Function name       | Directive             | Request Protocol        | Description
 |---------------------|-------------------|-------------------------|------------
 | `init_worker`       | [init_worker]     | *                        | Executed upon every Nginx worker process's startup.
 | `certificate`       | [ssl_certificate] | `https`, `grpcs`, `wss`  | Executed during the SSL certificate serving phase of the SSL handshake.
@@ -64,7 +64,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 
 - **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
 
-| Function name   | Phase                                                                        | Description
+| Function name   | Directive                                                                        | Description
 |-----------------|------------------------------------------------------------------------------|------------
 | `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
 | `preread`       | [preread]                                                                    | Executed once for every connection.
@@ -74,7 +74,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 {% endif_version %}
 
 {% if_version gte: 3.4.x %}
-| Function name       | Phase               | Request Protocol              | Description
+| Function name       | Directive               | Request Protocol              | Description
 |---------------------|---------------------|-------------------------------|------------
 | `init_worker`       | [init_worker]       | *                             | Executed upon every Nginx worker process's startup.
 | `configure`         | [init_worker]/timer | *                             | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
@@ -97,7 +97,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 
 - **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
 
-| Function name   | Phase                                                                        | Description
+| Function name   | Directive                                                                        | Description
 |-----------------|------------------------------------------------------------------------------|------------
 | `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
 | `configure`     | [init_worker]/timer                                                         | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
