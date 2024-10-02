@@ -109,7 +109,7 @@ will potentially be cached.
    |State| Description                                                                                                                                          |
    |---|------------------------------------------------------------------------------------------------------------------------------------------------------|
    |Miss| The request could be satisfied in cache, but an entry for the resource was not found in cache, and the request was proxied upstream.                 |
-   |Hit| The request was satisfied. The resource was found in cache,                                                                                              |
+   |Hit| The request was satisfied. The resource was found in cache.                                                                                            |
    |Refresh| The resource was found in cache, but could not satisfy the request, due to Cache-Control behaviors or reaching its hard-coded `cache_ttl` threshold. |
    |Bypass| The request could not be satisfied from cache based on plugin configuration.                                                                         |
 
