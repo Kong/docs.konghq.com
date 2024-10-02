@@ -28,7 +28,7 @@ If you already have some standard control planes in your org that you want to ad
 1. From the navigation menu, open {% konnect_icon runtimes %} **Gateway Manager**.
 1. Click the **New Control Plane** button and select **{{site.base_gateway}}**.
    
-   Kong Ingress Controller control planes can't be part of control plane groups. One control plane group cannot be a member of another control plane group. 
+   {{site.kic_product_name}} control planes can't be part of control plane groups. One control plane group cannot be a member of another control plane group. 
 
 1. Set up your control plane and save. For the purpose of this example, its name will be CP1.
 1. Create another {{site.base_gateway}} control plane, this time calling it CP2.
