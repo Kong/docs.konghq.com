@@ -560,7 +560,7 @@ docker run --read-only -d --name kong-dbless \
 
 For troubleshooting license issues, see:
 * [Deployment options for licenses](/gateway/{{page.release}}/licenses/deploy/)
-* [`/licenses` API reference](/gateway/{{page.release}}/admin-api/licenses/reference/)
+* [`/licenses` API reference](/gateway/api/admin-ee/latest/#/licenses)
 * [`/licenses` API examples](/gateway/{{page.release}}/licenses/examples/)
 
 If you did not receive a `200 OK` status code or need assistance completing
