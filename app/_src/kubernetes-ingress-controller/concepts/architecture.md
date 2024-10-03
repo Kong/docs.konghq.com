@@ -19,8 +19,8 @@ The figure illustrates how {{site.kic_product_name}} works:
 flowchart TD
     subgraph Kubernetes cluster
         direction LR
-        A(<div style="text-align:center;"><img src="/assets/images/icons/third-party/kubernetes-logo.png" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/> API server) --> |events| B(<div style="text-align:center;"><img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/>Controller)
-        B --> |configuration| C(<div style="text-align:center;"><img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/>Kong)
+        A(<img src="/assets/images/icons/third-party/kubernetes-logo.png" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/> API server) --> |events| B(<img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/>Controller)
+        B --> |configuration| C(<img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/>Kong)
         C --> D(services)
     end
 {% endmermaid %}
