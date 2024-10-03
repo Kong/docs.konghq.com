@@ -11,6 +11,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong-ee/tree/master/kong/pdk/websocket/upstream.lua
 enterprise: true
+badge: enterprise
 ---
 
 <!-- vale off -->
