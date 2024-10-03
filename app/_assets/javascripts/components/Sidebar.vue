@@ -100,6 +100,11 @@ function onSelectedVersion (event) {
   }
   const currentPath = window.location.pathname;
   let versionSegment = versionToRelease(version.name);
+  const latestVersion = props.product.latest_version.name;
+
+  if (version.name === latestVersion && currentPath.includes('/latest/')) {
+    return;
+  }
 
   let newPathname = currentPath.split('/').slice(0, -2).concat(versionSegment).join('/').concat('/')
   if (newPathname !== window.location.pathname) {
