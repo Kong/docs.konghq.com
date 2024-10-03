@@ -1,7 +1,7 @@
-const convertNavFileToUrl = require("./lib/nav-to-index-page");
-const convertSrcFileToUrls = require("./lib/src-to-urls");
+import convertNavFileToUrl from "./lib/nav-to-index-page.mjs";
+import convertSrcFileToUrls from "./lib/src-to-urls.mjs";
 
-module.exports = async function (files, options = {}) {
+export default async function (files, options = {}) {
   files = files.map((f) => {
     return {
       filename: f.filename,

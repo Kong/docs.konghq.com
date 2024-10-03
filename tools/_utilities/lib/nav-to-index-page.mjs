@@ -3,7 +3,7 @@ Accepts a navigation file + converts it to the index page for that product.
 This is enough to start spidering URLs using the sidebar for broken links
 */
 
-module.exports = function (filename) {
+export default function(filename) {
   const lookup = {
     deck: "deck",
     kgo: "gatway-operator",

@@ -1,11 +1,14 @@
-const { Octokit } = require("@octokit/rest");
-const github = require("@actions/github");
-const argv = require("minimist")(process.argv.slice(2));
-const fg = require("fast-glob");
+import { Octokit } from "@octokit/rest";
+import { context } from "@actions/github";
 
-const convertFilePathsToUrls = require("../_utilities/path-to-url");
-const checkUrls = require("./lib/check-url-list");
-const srcToUrls = require("../_utilities/lib/src-to-urls");
+import fg from "fast-glob";
+import minimist from "minimist";
+const argv = minimist(process.argv.slice(2));
+
+import srcToUrls from "../_utilities/lib/src-to-urls.mjs";
+import convertFilePathsToUrls from "../_utilities/path-to-url.mjs";
+import { checkUrls } from "./lib/check-url-list.js";
+import ignoredPaths from "./config/ignored_paths.json?type=json" assert { type: "json" };
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
@@ -37,11 +40,11 @@ async function main() {
   let changes; // This will be set by one of the implementations
 
   if (type == "pr") {
-    options.pull_number = argv.pr || github.context.issue.number;
+    options.pull_number = argv.pr || context.issue.number;
     options.is_fork =
       argv.is_fork !== undefined
         ? argv.is_fork
-        : github.context.payload.pull_request.head.repo.fork;
+        : context.payload.pull_request.head.repo.fork;
     console.log(
       `Loading changed files for PR ${options.pull_number} (fork: ${options.is_fork})`,
     );
@@ -60,11 +63,10 @@ async function main() {
   // Run the check
   if (changes.length) {
     // Remove any ignored paths
-    const ignoredPaths = require("./config/ignored_paths.json").map(
-      (r) => new RegExp(r),
-    );
+    const ignoredPathsRegexes = ignoredPaths.map((r) => new RegExp(r));
+
     const ignoredUrls = [];
-    for (let item of ignoredPaths) {
+    for (let item of ignoredPathsRegexes) {
       changes = changes.filter((u) => {
         const shouldIgnore = u.url.match(item);
         if (shouldIgnore) {
@@ -116,9 +118,9 @@ async function main() {
 }
 
 // Implementations for each mode
-async function buildPrUrls(options) {
-  if (github.context.repo.owner) {
-    options = { ...github.context.repo, ...options };
+export async function buildPrUrls(options) {
+  if (context.repo.owner) {
+    options = { ...context.repo, ...options };
   }
 
   // Get pages that have changed in the PR
@@ -153,11 +155,4 @@ async function buildPluginUrls(options) {
   return navEntries;
 }
 
-// If module main run directly, otherwise export for testing
-if (require.main === module) {
-  main();
-}
-
-module.exports = Object.assign(main, {
-  buildPrUrls,
-});
+main();

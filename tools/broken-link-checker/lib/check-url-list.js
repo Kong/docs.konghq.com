@@ -1,9 +1,12 @@
-const { HtmlUrlChecker } = require("broken-link-checker");
-module.exports = function (changes, opts) {
+import pkg from "broken-link-checker";
+const { HtmlUrlChecker } = pkg;
+
+import ignoredTargets from "../config/ignored_targets.json?type=json" assert { type: "json" };
+
+export function checkUrls(changes, opts) {
   return new Promise((resolve) => {
     // These are URLs that we might link to, but we don't want to
     // check for validity
-    const ignoredTargets = require("../config/ignored_targets.json");
     const brokenLinks = new Set();
     const checker = new HtmlUrlChecker(
       {
@@ -24,7 +27,7 @@ module.exports = function (changes, opts) {
             }
 
             // Ignore any broken links in the opts.ignore list
-            for (b of opts.ignore) {
+            for (const b of opts.ignore) {
               if (result.url.resolved.match(b)) {
                 return;
               }

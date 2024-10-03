@@ -32,6 +32,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "21"
       - name: Wait for Pages changed to be neutral
         uses: fountainhead/action-wait-for-check@v1.2.0
         id: waitForCheck
@@ -48,7 +51,9 @@ jobs:
           max_timeout: 120
       - name: Run link checker
         run: |
-          cd tools/broken-link-checker
+          cd tools/_utilities
+          npm ci
+          cd ../tools/broken-link-checker
           npm ci
           node run.js pr \
             --base_url https://deploy-preview-${{ github.event.pull_request.number }}--kongdocs.netlify.app \
