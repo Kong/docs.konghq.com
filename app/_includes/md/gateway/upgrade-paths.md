@@ -3,15 +3,15 @@
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), then upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, then upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 2.x–2.7.x | DB-less | No | Upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 2.8.x | Traditional | No | Upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 2.8.x | Hybrid | No | Upgrade to 3.0.x, and then upgrade to 3.1.1.3. |
-| 2.8.x | DB-less | No | Upgrade to 3.0.x, and then upgrade to 3.1.x. |
-| 3.0.x | Traditional | Yes | Upgrade to 3.1.x. |
-| 3.0.x | Hybrid | Yes | Upgrade to 3.1.x. |
-| 3.0.x | DB-less | Yes | Upgrade to 3.1.x. |
+| 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), upgrade to 3.0.x, and then upgrade to 3.1.1.3 or later 3.1.x patches. |
+| 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, then upgrade to 3.0.x, and then upgrade to 3.1.1.3 or later 3.1.x patches. |
+| 2.x–2.7.x | DB-less | No | Upgrade to 2.8.x, and then upgrade to 3.1.1.3 or later 3.1.x patches. |
+| 2.8.x | Traditional | Yes | Upgrade to 3.1.1.3 or later 3.1.x patches.|
+| 2.8.x | Hybrid | Yes | Upgrade to 3.1.1.3 or later 3.1.x patches. |
+| 2.8.x | DB-less | Yes | Upgrade to 3.1.1.3 or later 3.1.x patches. |
+| 3.0.x | Traditional | Yes | Upgrade to 3.1.1.3 or later 3.1.x patches.|
+| 3.0.x | Hybrid | Yes | Upgrade to 3.1.1.3 or later 3.1.x patches. |
+| 3.0.x | DB-less | Yes | Upgrade to 3.1.1.3 or later 3.1.x patches. |
 
 {% endif_version %}
 
