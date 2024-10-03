@@ -2,11 +2,7 @@
   <div class=" spec mt-6 api-documentation">
     <div v-if="loading" class="spec-loading-container">
       <div>
-        <KIcon
-          icon="spinner"
-          size="96"
-          color="var(--steel-300)"
-        />
+        <KSkeleton type="spinner" />
       </div>
     </div>
 
