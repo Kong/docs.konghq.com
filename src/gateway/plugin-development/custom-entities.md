@@ -1,18 +1,18 @@
 ---
-title: Plugin Development - Storing Custom Entities
+title: Storing Custom Entities
 book: plugin_dev
-chapter: 6
+chapter: 7
 ---
 
 While not all plugins need it, your plugin might need to store more than
 its configuration in the database. In that case, Kong provides you with
-an abstraction on top of its primary datastores which allows you to store
+an abstraction on top of its primary data stores which allows you to store
 custom entities.
 
-As explained in the [previous chapter]({{page.book.previous}}), Kong interacts
+As explained in the [previous chapter]({{page.book.previous.url}}), Kong interacts
 with the model layer through classes we refer to as "DAOs", and available on a
 singleton often referred to as the "DAO Factory". This chapter will explain how
-to to provide an abstraction for your own entities.
+to provide an abstraction for your own entities.
 
 ## Modules
 
@@ -30,12 +30,12 @@ Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
 entity will be stored.
 
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
-
-If your plugin is intended to support both Cassandra and Postgres, then both
+{% if_version lte:3.3.x %}
+If your plugin is intended to support both Cassandra and PostgreSQL, then both
 migrations must be written.
+
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
+{% endif_version %}
 
 If your plugin doesn't have it already, you should add a `<plugin_name>/migrations`
 folder to it. If there is no `init.lua` file inside already, you should create one.
@@ -60,7 +60,7 @@ containing the initial migrations. We'll see how this is done in a minute.
 Sometimes it is necessary to introduce changes after a version of a plugin has already been
 released. A new functionality might be needed. A database table row might need changing.
 
-When this happens, *you must* create a new migrations file. You *must not* of modify the
+When this happens, *you must* create a new migrations file. You *must not* modify the
 existing migration files once they are published (you can still make them more robust and
 bulletproof if you want, e.g. always try to write the migrations reentrant).
 
@@ -82,10 +82,95 @@ return {
 }
 ```
 
+{% if_version gte:3.4.x %}
+
 ## Migration file syntax
 
+A migration file is a Lua file which returns a table with the following structure:
 
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
+``` lua
+-- `<plugin_name>/migrations/000_base_my_plugin.lua`
+return {
+  postgres = {
+    up = [[
+      CREATE TABLE IF NOT EXISTS "my_plugin_table" (
+        "id"           UUID                         PRIMARY KEY,
+        "created_at"   TIMESTAMP WITHOUT TIME ZONE,
+        "col1"         TEXT
+      );
+
+      DO $$
+      BEGIN
+        CREATE INDEX IF NOT EXISTS "my_plugin_table_col1"
+                                ON "my_plugin_table" ("col1");
+      EXCEPTION WHEN UNDEFINED_COLUMN THEN
+        -- Do nothing, accept existing state
+      END$$;
+    ]],
+  }
+}
+
+-- `<plugin_name>/migrations/001_100_to_110.lua`
+return {
+  postgres = {
+    up = [[
+      DO $$
+      BEGIN
+        ALTER TABLE IF EXISTS ONLY "my_plugin_table" ADD "cache_key" TEXT UNIQUE;
+      EXCEPTION WHEN DUPLICATE_COLUMN THEN
+        -- Do nothing, accept existing state
+      END;
+    $$;
+    ]],
+    teardown = function(connector, helpers)
+      assert(connector:connect_migrations())
+      assert(connector:query([[
+        DO $$
+        BEGIN
+          ALTER TABLE IF EXISTS ONLY "my_plugin_table" DROP "col1";
+        EXCEPTION WHEN UNDEFINED_COLUMN THEN
+          -- Do nothing, accept existing state
+        END$$;
+      ]])
+    end,
+  }
+}
+```
+
+Each strategy section has two parts, `up` and `teardown`.
+
+* `up` is an optional string of raw SQL statements. Those statements are executed
+  when `kong migrations up` is executed. 
+  
+  We recommend that all the non-destructive 
+  operations, such as creation of new tables and addition of new records, 
+  are done on the `up` sections.
+
+* `teardown` is an optional Lua function, which takes a `connector` parameter. The connector
+  can invoke the `query` method to execute SQL queries. Teardown is triggered by
+  `kong migrations finish`. 
+  
+  We recommend that destructive operations, such as
+  removal of data, changing row types, and insertion of new data, are done on 
+  the `teardown` sections.
+
+All SQL statements should be written so that they are as reentrant as possible. 
+For example, use `DROP TABLE IF EXISTS` instead of `DROP TABLE`,
+`CREATE INDEX IF NOT EXIST` instead of `CREATE INDEX`, and so on. If a migration fails for some
+reason, it is expected that the first attempt at fixing the problem will be simply
+re-running the migrations.
+
+{:.important}
+> If your `schema` uses a `unique` constraint, you must set this constraint in
+the migrations for PostgreSQL.
+
+To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations/).
+
+{% endif_version %}
+
+{% if_version lte:3.3.x %}
+
+## Migration file syntax
 
 While Kong's core migrations support both Postgres and Cassandra, custom plugins
 can choose to support either both of them or just one.
@@ -95,7 +180,7 @@ A migration file is a Lua file which returns a table with the following structur
 ``` lua
 -- `<plugin_name>/migrations/000_base_my_plugin.lua`
 return {
-  postgresql = {
+  postgres = {
     up = [[
       CREATE TABLE IF NOT EXISTS "my_plugin_table" (
         "id"           UUID                         PRIMARY KEY,
@@ -128,7 +213,7 @@ return {
 
 -- `<plugin_name>/migrations/001_100_to_110.lua`
 return {
-  postgresql = {
+  postgres = {
     up = [[
       DO $$
       BEGIN
@@ -183,17 +268,20 @@ as reentrant as possible. `DROP TABLE IF EXISTS` instead of `DROP TABLE`,
 reason, it is expected that the first attempt at fixing the problem will be simply
 re-running the migrations.
 
-While Postgres does, Cassandra does not support constraints such as "NOT
+While PostgreSQL does, Cassandra does not support constraints such as "NOT
 NULL", "UNIQUE" or "FOREIGN KEY", but Kong provides you with such features when
 you define your model's schema. Bear in mind that this schema will be the same
-for both Postgres and Cassandra, hence, you might trade-off a pure SQL schema
+for both PostgreSQL and Cassandra, hence, you might trade-off a pure SQL schema
 for one that works with Cassandra too.
 
-**IMPORTANT**: if your `schema` uses a `unique` constraint, then Kong will
-enforce it for Cassandra, but for Postgres you must set this constraint in
+{:.important}
+> If your `schema` uses a `unique` constraint, then Kong will
+enforce it for Cassandra, but for PostgreSQL you must set this constraint in
 the migrations.
 
 To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations/).
+
+{% endif_version %}
 
 
 ## Define a schema
@@ -285,8 +373,11 @@ Here is a description of some top-level properties:
   <td>
     Field names forming the entity's primary key.
     Schemas support composite keys, even if most Kong core entities currently use an UUID named
-    <code>id</code>. If you are using Cassandra and need a composite key, it should have the same
+    <code>id</code>. 
+    {% if_version lte:3.3.x %}
+    If you are using Cassandra and need a composite key, it should have the same
     fields as the partition key.
+    {% endif_version %}
   </td>
 </tr>
 <tr>
@@ -346,7 +437,7 @@ Here is a description of some top-level properties:
   <td><code>table</code></td>
   <td>
     Each field definition is a table with a single key, which is the field's name. The table value is
-    a subtable containing the field's <em>attributes</em>, some of which will be explained below.
+    a sub-table containing the field's <em>attributes</em>, some of which will be explained below.
   </td>
 </tr>
 </tbody>
@@ -373,7 +464,7 @@ Here's a non-exhaustive explanation of some of the field attributes available:
     <code>"boolean"</code>. Compound types like <code>"array"</code>, <code>"record"</code>, or <code>"set"</code> are
     also supported.<br><br>
 
-    In additon to these values, the <code>type</code> attribute can also take the special <code>"foreign"</code> value,
+    In addition to these values, the <code>type</code> attribute can also take the special <code>"foreign"</code> value,
     which denotes a foreign relationship.<br><br>
 
     Each field will need to be backed by database fields of appropriately similar types, created via migrations.<br><br>
@@ -406,7 +497,10 @@ Here's a non-exhaustive explanation of some of the field attributes available:
     but another entity already has the given value on said field.</p>
 
   <p>This attribute <em>must</em> be backed up by declaring fields as <code>UNIQUE</code> in migrations when using
-    PostgreSQL. The Cassandra strategy does a check in Lua before attempting inserts, so it doesn't require any special treatment.
+    PostgreSQL. 
+    {% if_version lte:3.3.x %}
+    The Cassandra strategy does a check in Lua before attempting inserts, so it doesn't require any special treatment.
+    {% endif_version %}
   </p>
   </td>
 </tr>
@@ -448,8 +542,14 @@ Here's a non-exhaustive explanation of some of the field attributes available:
     </ul>
 
     <br><br>
+    {% if_version lte:3.3.x %}
     In Cassandra this is handled with pure Lua code, but in PostgreSQL it will be necessary to declare the references
     as <code>ON DELETE CASCADE/NULL/RESTRICT</code> in a migration.
+    {% endif_version %}
+    {% if_version gte:3.4.x %}
+    In PostgreSQL, you must declare the references
+    as <code>ON DELETE CASCADE/NULL/RESTRICT</code> in a migration.
+    {% endif_version %}
   </td>
 </tr>
 </tbody>
@@ -458,12 +558,12 @@ Here's a non-exhaustive explanation of some of the field attributes available:
 
 To learn more about schemas, see:
 
-* The source code of [typedefs.lua](https://github.com/Kong/kong/blob/{{page.kong_version | replace: "x", "0"}}/kong/db/schema/typedefs.lua)
+* The source code of [typedefs.lua](https://github.com/Kong/kong/blob/release/3.0.x/kong/db/schema/typedefs.lua)
   to get an idea of what's provided there by default.
-* [The Core Schemas](https://github.com/Kong/kong/tree/{{page.kong_version | replace: "x", "0"}}/kong/db/schema/entities)
+* [The Core Schemas](https://github.com/Kong/kong/tree/release/3.0.x/kong/db/schema/entities)
   to see examples of some other field attributes not discussed here.
 * [All the `daos.lua` files for embedded plugins](https://github.com/search?utf8=%E2%9C%93&q=repo%3Akong%2Fkong+path%3A%2Fkong%2Fplugins+filename%3Adaos.lua),
-  especially [the key-auth one](https://github.com/Kong/kong/blob/{{page.kong_version | replace: "x", "0"}}/kong/plugins/key-auth/daos.lua),
+  especially [the key-auth one](https://github.com/Kong/kong/blob/release/3.0.x/kong/plugins/key-auth/daos.lua),
   which was used for this guide as an example.
 
 
@@ -662,20 +762,16 @@ end
 ## Cache custom entities
 
 Sometimes custom entities are required on every request/response, which in turn
-triggers a query on the datastore every time. This is very inefficient because
-querying the datastore adds latency and slows the request/response down, and
-the resulting increased load on the datastore could affect the datastore
+triggers a query on the data stores every time. This is very inefficient because
+querying the data stores adds latency and slows the request/response down, and
+the resulting increased load on the data stores could affect the data stores
 performance itself and, in turn, other Kong nodes.
 
 When a custom entity is required on every request/response it is good practice
 to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 
 The next chapter will focus on caching custom entities, and invalidating them
-when they change in the datastore: [Caching custom entities]({{page.book.next}}).
+when they change in the data stores: [Caching custom entities]({{page.book.next.url}}).
 
----
-
-Next: [Caching custom entities &rsaquo;]({{page.book.next}})
-
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
+[Admin API]: /gateway/{{page.release}}/admin-api/
+[Plugin Development Kit]: /gateway/{{page.release}}/plugin-development/pdk

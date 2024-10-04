@@ -1,7 +1,60 @@
 ---
 title: Kong Gateway
+breadcrumb: Overview
 subtitle: API gateway built for hybrid and multi-cloud, optimized for microservices and distributed architectures
+description: Kong Gateway is a lightweight, fast, and flexible cloud-native API gateway. Kong is a reverse proxy that lets you manage, configure, and route requests
+konnect_cta_card: true
 ---
+
+<blockquote class="note">
+  <p><strong>Set up your Gateway in under 5 minutes with {{ site.konnect_product_name }}:</strong></p>
+  <p>
+    <a href="/konnect/">{{ site.konnect_product_name }}</a> is an API lifecycle management platform that lets you build modern applications better, faster, and more securely.
+  </p>
+  <p><a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=install-gateway" class="no-link-icon">Start for Free &rarr;</a></p>
+</blockquote>
+
+## How to get started
+
+<div class="docs-grid-install max-3">
+
+  <a href="/konnect/getting-started/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/kong-gradient.svg" alt="">
+    <div class="install-text">Start with Konnect <br> <span class="badge recommended"></span></div>
+  </a>
+
+  <a href="/gateway/{{page.release}}/get-started/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/third-party/docker.svg" alt="">
+    <div class="install-text">Start locally with Docker</div>
+  </a>
+
+  <a href="/gateway/{{page.release}}/install/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
+    <div class="install-text">Install on your platform</div>
+  </a>
+</div>
+
+<div class="docs-grid-install docs-grid-install__bottom max-2">
+  <a href="/hub/" class="docs-grid-install-block docs-grid-install-block__bottom">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-api-plugins-color.svg" alt="">
+    <div class="install-block-column">
+      <div class="install-text">Kong Plugin Hub</div>
+      <div class="install-description">Extend your gateway with powerful plugins</div>
+    </div>
+  </a>
+
+  <a href="/gateway/{{page.release}}/admin-api/" class="docs-grid-install-block docs-grid-install-block__bottom">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
+    <div class="install-block-column">
+      <div class="install-text">API Reference Documentation</div>
+      <div class="install-description">Set up an internal REST API for admin purposes</div>
+    </div>
+  </a>
+</div>
+
+To learn more about what you can do with {{site.base_gateway}}, see [Features](#features).
+
+## Introducing {{ site.base_gateway }}
 
 {{site.base_gateway}} is a lightweight, fast, and flexible cloud-native API
 gateway. An API gateway is a reverse proxy that lets you manage, configure, and route
@@ -18,9 +71,17 @@ With {{site.base_gateway}}, users can:
 * Create a thriving API developer ecosystem
 * Proactively identify API-related anomalies and threats
 * Secure and govern APIs/services, and improve API visibility across the
-entire organization
+entire organization.
 
-## Extending the Kong Gateway
+<blockquote class="note no-icon" id="nurture-signup">
+  <p>Looking for additional help? Free training and curated content, just for you:</p>
+  <form action="https://go.konghq.com/l/392112/2022-09-19/cfr97r" method="post">
+    <input class="button" name="email" placeholder="you@yourcompany.com" />
+    <button class="button" type="submit">Sign up now</button>
+  </form>
+</blockquote>
+
+## Extending the {{site.base_gateway}}
 
 {{site.base_gateway}} is a Lua application running in Nginx. {{site.base_gateway}}
 is distributed along with [OpenResty](https://openresty.org/), which is a bundle
@@ -35,43 +96,69 @@ into the request lifecycle, all with a few lines of code.
 Kong provides many [plugins](#kong-gateway-plugins) for you to use in your
 Gateway deployments. You can also create your own custom plugins. For more
 information, see the
-[plugin development guide](/gateway/{{page.kong_version}}/plugin-development),
-the [PDK reference](/gateway/{{page.kong_version}}/pdk), and the guide on
-[creating plugins with other languages](/gateway/{{page.kong_version}}/reference/external-plugins).
+[plugin development guide](/gateway/{{page.release}}/plugin-development),
+the [PDK reference](/gateway/{{page.release}}/plugin-development/pdk/), and the guide on creating plugins with other languages ([JavaScript](/gateway/{{page.release}}/plugin-development/pluginserver/javascript), [Go](/gateway/{{page.release}}/plugin-development/pluginserver/go), and [Python](/gateway/{{page.release}}/plugin-development/pluginserver/python/)).
 
 ## Packages and modes
 
-{{site.base_gateway}} is available in the following modes:
+There are two ways to deploy {{site.base_gateway}}: Managed with {{ site.konnect_saas }}, and self-managed. If you're trying
+out {{site.base_gateway}} for the first time, we recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
 
-**Kong Gateway (OSS)**: an open-source package containing the basic API gateway
+### {{site.konnect_short_name}}
+
+{{site.konnect_short_name}} provides the easiest way to get started 
+with {{site.base_gateway}}. 
+The global control plane is hosted in the cloud by Kong, and you manage the 
+individual data plane nodes within your preferred network environment.
+
+{{site.konnect_short_name}} offers two pricing packages: 
+* **Plus**: Our self-serve pay-as-you-go pricing model, giving you access to the 
+{{site.konnect_short_name}} platform in its entirety while offering the flexibility 
+to only pay for the services your organization uses. 
+
+* **Enterprise**: With an Enterprise subscription,
+  you have access to the entire {{ site.konnect_saas }} suite and: 
+
+  * 24x7x365 technical support
+  * Professional Services to create a purpose-built solution for your environment
+
+For more information, visit the [pricing page](https://konghq.com/pricing).
+
+![Introduction to {{site.base_gateway}} in {{site.konnect_short_name}}](/assets/images/products/konnect/gateway-manager/konnect-control-planes-example.png)
+> _Figure 1: Diagram of {{site.base_gateway}} data planes connected to a {{site.konnect_short_name}} control plane._
+> <br>
+> _Requests flow from an API client into the
+Gateway data planes, are modified and managed by the proxy based on your control plane
+configuration, and are forwarded to upstream services._
+
+### Self-managed
+
+{{site.base_gateway}} is available in two different packages: Open Source (OSS) and Enterprise.
+
+**{{site.ce_product_name}}**: An open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
-with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#deck).
+with Kong's [Admin API](#kong-admin-api){% if_version gte:3.4.x %}, [Kong Manager Open Source](/gateway/{{page.release}}/kong-manager/),{% endif_version %} or with [declarative configuration](#deck).
 
-**Kong Gateway** (available in
-[Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
+**{{site.ee_product_name}}** (available in
+[Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
-* In **Free mode** <span class="badge free"></span>,
+* <span class="badge free"></span> In **Free mode**,
   this package adds [Kong Manager](#kong-manager) to the basic open-source functionality.
-* In **Plus mode** <span class="badge plus"></span>, you have access to more
-{{site.base_gateway}} features, but only through {{site.konnect_saas}}.
-See the [{{site.konnect_saas}} documentation](/konnect/) and the
-**Plus**-labelled plugins on the [Plugin Hub](/hub/) for more information.
-* With an **Enterprise** subscription <span class="badge enterprise"></span>,
+* <span class="badge enterprise"></span> With an **Enterprise** subscription,
   it also includes:
+    {% if_version lte:3.4.x -%}
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals)
-    * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference)
+    {% endif_version -%}
+    * [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users)
     * [Enterprise plugins](/hub/)
 
-You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
+You can manage {{site.ee_product_name}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
 
-This package is also available as part of
-[{{site.konnect_product_name}}](/konnect/).
-
-![Introduction to {{site.base_gateway}}](/assets/images/docs/gateway/gateway_overview.png)
-> _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
-foundational Gateway components._
+![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/kong-gateway-features.png)
+> _Figure 2: Diagram of {{site.base_gateway}} key features. {{site.ce_product_name}} provides basic functionality, 
+while {{site.ee_product_name}} builds on top of the open-source foundation with advanced proxy features._
 > <br>
 > _Requests flow from an API client into the
 Gateway, are modified and managed by the proxy based on your Gateway
@@ -79,44 +166,56 @@ configuration, and forwarded to upstream services._
 
 ## Features
 
+{% include_cached feature-table.html config=site.data.tables.features.gateway %}
+
 ### Kong Admin API
 
-[Kong Admin API](/gateway/{{page.kong_version}}/admin-api) provides a RESTful
-interface for administration and configuration of Services, Routes, Plugins, and
-Consumers. All of the tasks you can perform against the Gateway can be automated
-using the Kong Admin API.
+[Kong Admin API](/gateway/{{page.release}}/admin-api) provides a RESTful
+interface for administration and configuration of Gateway entities such as services, 
+routes, plugins, consumers, and more. All of the tasks you can perform against the 
+Gateway can be automated using the Kong Admin API.
 
 ### Kong Manager
 {:.badge .free}
 
-[Kong Manager](/gateway/{{page.kong_version}}/configure/auth/kong-manager) is
+{:.note}
+> **Note**: If you are running Kong in traditional mode, increased traffic could
+> lead to potential performance with Kong Proxy.
+> Server-side sorting and filtering large quantities of entities will also cause increased CPU usage in both Kong CP and database.
+
+
+[Kong Manager](/gateway/{{page.release}}/kong-manager/) is
 the graphical user interface (GUI) for {{site.base_gateway}}. It uses the Kong
 Admin API under the hood to administer and control {{site.base_gateway}}.
 
 Here are some of the things you can do with Kong Manager:
 
-* Create new Routes and Services
+* Create new routes and services
 * Activate or deactivate plugins with a couple of clicks
 * Group your teams, services, plugins, consumer management, and everything else
 exactly how you want them
+{% if_version lte:3.4.x -%}
 * Monitor performance: visualize cluster-wide, workspace-level, or
 object-level health using intuitive, customizable dashboards
+{% endif_version %}
 
+{% if_version lte:3.4.x %}
 ### Kong Dev Portal
 {:.badge .enterprise}
 
-[Kong Dev Portal](/gateway/{{page.kong_version}}/developer-portal) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access.
+[Kong Dev Portal](/gateway/{{page.release}}/kong-enterprise/dev-portal/) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access.
 
 ### Kong Vitals
 {:.badge .enterprise}
 
-[Kong Vitals](/gateway/{{page.kong_version}}/vitals) provides useful metrics about the health and performance of your {{site.base_gateway}} nodes, as well as metrics about the usage of your proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI.
+[Kong Vitals](/gateway/{{page.release}}/kong-enterprise/analytics/) provides useful metrics about the health and performance of your {{site.base_gateway}} nodes, as well as metrics about the usage of your proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI.
+{% endif_version %}
 
 ### Kubernetes
 
 {{site.base_gateway}} can run natively on Kubernetes with its custom [ingress controller](/kubernetes-ingress-controller/), Helm chart, and Operator. A Kubernetes ingress controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, ReplicaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an ingress controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.
 
-### Kong Gateway plugins
+### {{site.base_gateway}} plugins
 
 [{{site.base_gateway}} plugins](/hub/) provide advanced functionality to better manage your API and microservices. With turnkey capabilities to meet the most challenging use cases, {{site.base_gateway}} plugins ensure maximum control and minimizes unnecessary overhead. Enable features like authentication, rate-limiting, and transformations by enabling {{site.base_gateway}} plugins through Kong Manager or the Admin API.
 
@@ -128,44 +227,37 @@ Kong also provides API lifecycle management tools that you can use with {{site.b
 [Insomnia](https://docs.insomnia.rest) enables spec-first development for all REST and GraphQL services. With Insomnia, organizations can accelerate design and test workflows using automated testing, direct Git sync, and inspection of all response types. Teams of all sizes can use Insomnia to increase development velocity, reduce deployment risk, and increase collaboration.
 
 ### decK
-[decK](/deck) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
-This means that a developer can define the desired state of Kong Gateway or
-Konnect &ndash; services, routes, plugins, and more &ndash; and let decK handle
+[decK](/deck/) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
+This means that a developer can define the desired state of {{site.base_gateway}} or
+{{site.konnect_short_name}} &ndash; services, routes, plugins, and more &ndash; and let decK handle
 implementation without needing to execute each step manually, as you would with
 the Kong Admin API.
 
 
-## Get started with Kong Gateway
+## Get started with {{site.base_gateway}}
 
-[Download and install Kong Gateway](/gateway/{{page.kong_version}}/install-and-run).
+[Download and install {{site.base_gateway}}](/gateway/{{page.release}}/install/).
 To test it out, you can choose either the open-source package, or
-run Kong Gateway in free mode and also try out Kong Manager.
+run {{site.ee_product_name}} in free mode and also try out Kong Manager.
 
-After installation, get started with one of our introductory guides:
-* **[Quickstart](/gateway/{{page.kong_version}}/get-started/quickstart)**: An introduction to
-{{site.base_gateway}}, common objects, and basic Admin API commands.
-* **[Getting started guide](/gateway/{{page.kong_version}}/get-started/comprehensive)**:
-The complete {{site.base_gateway}}
-getting started guide provides in-depth examples, explanations, and step-by-step
-instructions, and explores Kong's many available tools for managing the gateway.
+After installation, get started with the introductory [quickstart guide](/gateway/{{page.release}}/get-started/).
 
-### Try in Konnect
+### Try in {{site.konnect_short_name}}
 
 [{{site.konnect_product_name}}](/konnect/) can manage {{site.base_gateway}}
 instances. With this setup, Kong hosts the control plane and you host your
 own data planes.
 
-There are a few ways to test out the Gateway's Plus or Enterprise features:
+There are a few ways to test out the Gateway's Enterprise features:
 
-* Sign up for a [free trial of {{site.konnect_product_name}} Plus](https://konnect.konghq.com/register).
+* Sign up for [{{site.konnect_product_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-overview).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally,
 [request a demo](https://konghq.com/get-started/#request-demo) and a Kong
 representative will reach out with details to get you started.
 
 ## Support policy
-Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
-model for its products.
+Kong follows a structured approach to versioning its products.
 
 For the latest version support information for {{site.ee_product_name}} and
-{{site.mesh_product_name}}, see our [version support policy](/konnect-platform/support-policy).
+{{site.mesh_product_name}}, see the [version support policy](/gateway/{{page.release}}/support-policy/).

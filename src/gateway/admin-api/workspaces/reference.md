@@ -5,25 +5,25 @@ badge: enterprise
 workspace_body: |
     Attribute | Description
     ---:| ---
-    `name` | The **Workspace** name.
+    `name` | The workspace name.
 ---
 
 
-{{site.base_gateway}}'s Workspaces feature is configurable through Kong's
+{{site.base_gateway}}'s workspaces feature is configurable through Kong's
 Admin API.
 
-## Workspace Object
-
-The **Workspace** object describes the **Workspace** entity, which has an ID
+The workspace object describes the workspace entity, which has an ID
 and a name.
 
-### Add Workspace
+For workspace use cases and configuration examples, see [Workspace Examples](/gateway/{{page.release}}/kong-enterprise/workspaces/).
+
+## Add workspace
 
 **Endpoint**
 
 <div class="endpoint post">/workspaces/</div>
 
-#### Request Body
+**Request body**
 
 {{ page.workspace_body }}
 
@@ -63,7 +63,7 @@ HTTP 201 Created
 }
 ```
 
-### List Workspaces
+## List workspaces
 
 **Endpoint**
 
@@ -137,7 +137,7 @@ HTTP 200 OK
 }
 ```
 
-### Update or Create a Workspace
+## Update or create a workspace
 
 **Endpoint**
 
@@ -145,20 +145,21 @@ HTTP 200 OK
 
 Attributes | Description
 ---:| ---
-`id`<br>**conditional** | The **Workspace's** unique ID, if replacing it.*
+`id`<br>**conditional** | The **workspaces'** unique ID, if replacing it.*
+
 
 * The behavior of `PUT` endpoints is the following: if the request payload **does
-not** contain an entity's primary key (`id` for Workspaces), the entity will be
+not** contain an entity's primary key (`id` for workspaces), the entity will be
 created with the given payload. If the request payload **does** contain an
 entity's primary key, the payload will "replace" the entity specified by the
 given primary key. If the primary key is **not** that of an existing entity, `404
 NOT FOUND` will be returned.
 
-#### Request Body
+**Request body**
 
 Attribute | Description
 ---:| ---
-`name` | The **Workspace** name.
+`name` | The workspace name.
 
 **Response**
 
@@ -204,7 +205,7 @@ HTTP 200 OK
 }
 ```
 
-### Retrieve a Workspace
+## Retrieve a workspace
 
 **Endpoint**
 
@@ -212,7 +213,7 @@ HTTP 200 OK
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to retrieve
+`name or id`<br>**required** | The unique identifier **or** the name of the workspace to retrieve
 
 **Response**
 
@@ -233,17 +234,17 @@ HTTP 200 OK
 }
 ```
 
-### Retrieve Workspace Metadata
+## Retrieve workspace metadata
 
-#### Endpoint
+**Endpoint**
 
 <div class="endpoint get">/workspaces/{name or id}/meta</div>
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to retrieve
+`name or id`<br>**required** | The unique identifier **or** the name of the workspace to retrieve
 
-#### Response
+**Response**
 
 ```
 HTTP 200 OK
@@ -253,7 +254,6 @@ HTTP 200 OK
 {
   "counts": {
     "acls": 1,
-    "apis": 1,
     "basicauth_credentials": 1,
     "consumers": 1234,
     "files": 41,
@@ -276,18 +276,30 @@ HTTP 200 OK
 }
 ```
 
-### Delete a Workspace
+## Delete a workspace
 
 **Endpoint**
 
 <div class="endpoint delete">/workspaces/{name or id}</div>
 
+{% if_version lte:3.3.x %}
+
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to delete
+`name or id`<br>**required** | The unique identifier **or** the name of the workspace to delete
 
-**Note:** All entities within a **Workspace** must be deleted before the
-**Workspace** itself can be.
+{:.note}
+> **Note:** All entities within a workspace must be deleted before the
+workspace itself can be.
+
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the workspace to delete
+`cascade` | The `cascade` option lets you delete a workspace and all of its entities in one request.
+
 
 **Response**
 
@@ -295,7 +307,14 @@ Attributes | Description
 HTTP 204 No Content
 ```
 
-### Update a Workspace
+
+Perform a cascading delete. Normally, deleting a workspace requires its entities to be deleted first. The `cascade` option lets you delete a workspace and all of its entities in one request.
+
+```
+DELETE /workspaces/{name or id}?cascade=true
+```
+{% endif_version %}
+## Update a workspace
 
 **Endpoint**
 
@@ -303,15 +322,15 @@ HTTP 204 No Content
 
 Attributes | Description
 ---:| ---
-`name or id`<br>**required** | The unique identifier **or** the name of the **Workspace** to patch
+`name or id`<br>**required** | The unique identifier **or** the name of the workspace to patch
 
-#### Request Body
+**Request body**
 
 Attributes | Description
 ---:| ---
-`comment` | A string describing the **Workspace**
+`comment` | A string describing the workspace
 
-The behavior of `PATCH` endpoints prevents the renaming of a **Workspace**.
+The behavior of `PATCH` endpoints prevents the renaming of a workspace.
 
 **Response**
 
@@ -348,6 +367,31 @@ HTTP 200 OK
   "name": "green-team"
 }
 ```
+
+## Access an endpoint within a workspace
+
+**Endpoint**
+
+<div class="endpoint">/{name or id}/{endpoint}</div>
+
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the workspace to target.
+
+Can be used with any request method.
+
+Target entities within a specified workspace by adding the workspace name or ID prefix before any entity endpoint.
+
+```sh
+http://localhost:8001/<WORKSPACE_NAME|WORKSPACE_ID>/<ENDPOINT>
+```
+
+For example, to target `services` in the workspace `SRE`:
+
+```sh
+http://localhost:8001/SRE/services
+```
+
 ---
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.release}}/admin-api/

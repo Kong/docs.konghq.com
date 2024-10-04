@@ -1,5 +1,5 @@
 ---
-title: Keyring & Data Encryption
+title: Keyring and Data Encryption Reference
 badge: enterprise
 ---
 
@@ -110,6 +110,40 @@ HTTP 201 Created
 
 ```
 HTTP 201 Created
+```
+
+## Recover Keyring from Database
+
+*This endpoint is only available with the `cluster` keyring strategy.*
+
+*The endpoint requires that the `keyring_recovery_public_key` Kong configuration value is defined.*
+
+**Endpoint**
+
+<div class="endpoint post">/keyring/recover</div>
+
+**Request Body**
+
+| Attribute                 | Description    |
+| ---------                 | -----------    |
+| `recovery_private_key`    | The content of the private key.   |
+
+**Response**
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+    "message": "successfully recovered 1 keys",
+    "recovered": [
+        "RfsDJ2Ol"
+    ],
+    "not_recovered": [
+        "xSD219lH"
+    ]
+}
 ```
 
 ## Generate New Key

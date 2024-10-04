@@ -3,15 +3,12 @@ title: Rate Limiting Library
 badge: enterprise
 ---
 
-## Overview
-
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
-
 This library is designed to provide an efficient, scalable, eventually-consistent sliding window rate limiting library. It relies on atomic operations in shared ngx memory zones to track window counters within a given node, periodically syncing this data to a central data store.
 
-A sliding window rate limiting implementation tracks the number of hits assigned to a specific key (such as an IP address, Consumer, Credential, etc) within a given time window, taking into account previous hit rates to smooth out a calculated rate, while still providing a familiar windowing interface that modern developers are used to (e.g., n hits per second/minute/hour). This is similar to a fixed window implementation, in which request rates reset at the beginning of the window, but without the "reset bump" from which fixed window implementations suffer, while providing a more intuitive interface beyond what leaky bucket or token bucket implementations can offer. Note that we use the term "hit" instead of "request" when referring to incrementing values for rate limit keys, because this library provides an abstract rate limiting interface; a sliding window implementation may have uses outside of HTTP request rate limiting, thus, we describe this library in a more abstract sense.
+A sliding window rate limiting implementation tracks the number of hits assigned to a specific key (such as an IP address, Consumer, Credential, etc) within a given time window, taking into account previous hit rates to smooth out a calculated rate, while still providing a familiar windowing interface that modern developers are used to (e.g., n hits per second/minute/hour). This is similar to a fixed window implementation, in which request rates reset at the beginning of the window, but without the "reset bump" from which fixed window implementations suffer, while providing a more intuitive interface beyond what leaky bucket or token bucket implementations can offer. 
+
+{:.note}
+> **Note:** This library provides an abstract rate limiting interface. Therefore, the term "hit" is used instead of "request" when referring to incrementing values for rate limit keys. A sliding window implementation may have uses outside of HTTP request rate limiting, so "hit" is a broader term that applies to other scenarios.
 
 A sliding window takes into account a weighted value of the previous window when calculating the current rate for a given key. A window is defined as a period of time, starting at a given "floor" timestamp, where the floor is calculated based on the size of the window. For window sizes of 60 seconds, the floor always falls at the 0th second (e.g., at the beginning of any given minute). Likewise, windows with a size of 30 seconds will begin at the 0th and 30th seconds of each minute.
 
@@ -36,11 +33,11 @@ Strictly speaking, the formula used to define the weighting percentage is as fol
 
 Where `time()` is the value of the current Unix timestamp.
 
-Each node in the Kong cluster relies on its own in-memory data store as the source of truth for rate limiting counters. Periodically, each node pushes a counter increment for each key it saw to the cluster, which is expected to atomically apply this diff to the appropriate key. The node then retrieves this key's value from the data store, along with other relevant keys for this data sync cycle. In this manner, each node shares the relevant portions of data with the cluster, while relying on a very high-performance method of tracking data during each request. This cycle of converge -> diverge -> reconverge among nodes in the cluster provides our eventually-consistent model.
+Each node in the Kong cluster relies on its own in-memory data store as the source of truth for rate limiting counters. Periodically, each node pushes a counter increment for each key it saw to the cluster, which is expected to atomically apply this diff to the appropriate key. The node then retrieves this key's value from the data store, along with other relevant keys for this data sync cycle. In this manner, each node shares the relevant portions of data with the cluster, while relying on a very high-performance method of tracking data during each request. This cycle of converge -> diverge -> reconverge among nodes in the cluster provides an eventually-consistent model.
 
-The periodic rate at which nodes converge is configurable; shorter sync intervals will result in less divergence of data points when traffic is spread across multiple nodes in the cluster (e.g., when sitting behind a round robin balancer), whereas longer sync intervals put less r/w pressure on the datastore, and less overhead on each node to calculate diffs and fetch new synced values. The desirable value here depends on use case; when using cluster syncing to refresh nodes periodically (e.g., to inform new cluster nodes of counter data), a value of 10-30 seconds may be desirable, to minimize data store traffic. Contrarily, environments demanding stronger consistency between nodes (such as orchestrated deployments involving a high churn rate among cluster membership, or cases where strict rate limiting policies must be applied to node sitting behind a non-hashing load balancer) should use a lower sync period, on the order of milliseconds. The minimum possible value is 0.001 (1 millisecond), though practically this value is limited by network performance between Kong nodes and the configured data store.
+The periodic rate at which nodes converge is configurable; shorter sync intervals will result in less divergence of data points when traffic is spread across multiple nodes in the cluster (e.g., when sitting behind a round robin balancer), whereas longer sync intervals put less r/w pressure on the data store, and less overhead on each node to calculate diffs and fetch new synced values. The desirable value here depends on use case; when using cluster syncing to refresh nodes periodically (e.g., to inform new cluster nodes of counter data), a value of 10-30 seconds may be desirable, to minimize data store traffic. Contrarily, environments demanding stronger consistency between nodes (such as orchestrated deployments involving a high churn rate among cluster membership, or cases where strict rate limiting policies must be applied to node sitting behind a non-hashing load balancer) should use a lower sync period, on the order of milliseconds. The minimum possible value is 0.001 (1 millisecond), though practically this value is limited by network performance between Kong nodes and the configured data store.
 
-In addition to periodic data sync behavior, this library can implement rate limiting counter in a synchronous pattern by defining its `sync_rate` as `0`. In such a case, the given counter will be applied directly to the datastore. This behavior is desirable in cases where stronger consistency among the cluster is desired; such a configuration comes with the cost of needing to communicate with the datastore (or Redis) on every request, which can induce noticeable latency into the request ("noticeable" being a relative term of typically a few milliseconds, depending on the performance of the storage mechanism in question; for comparison, Kong typically processes requests on the order of tens of microseconds).
+In addition to periodic data sync behavior, this library can implement rate limiting counter in a synchronous pattern by defining its `sync_rate` as `0`. In such a case, the given counter will be applied directly to the data store. This behavior is desirable in cases where stronger consistency among the cluster is desired; such a configuration comes with the cost of needing to communicate with the data store (or Redis) on every request, which can induce noticeable latency into the request ("noticeable" being a relative term of typically a few milliseconds, depending on the performance of the storage mechanism in question; for comparison, Kong typically processes requests on the order of tens of microseconds).
 
 This library can also forgo syncing counter data entirely, and only apply incremental counters to its local memory zone, by defining a `sync_rate` value of less than `0`. This behavior is useful when cluster-wide syncing of data is unnecessary, such as environments using only a single Kong node, or where Kong nodes live behind a hashing load balancer and are treated as isolated instances.
 
@@ -50,59 +47,80 @@ Module configuration data, such as sync rate, shared dictionary name, storage po
 ### Public Functions
 The following public functions are provided by this library:
 
+{% if_version gte:3.4.x %}
+
+`ratelimiting.new_instance`
+
+_syntax: ratelimiting = ratelimiting.new_instance(instance_name)_
+
+Previously, this library used a module level global table `config`, which lacked the necessary data isolation between plugins. When two or more different plugins used the library at the same time, {{site.base_gateway}} couldn't distinguish which namespaces belong to which plugin. When the `reconfigure` event happened, the plugin deleted all the namespaces it didn't use anymore, but those deleted namespaces could have belonged to other plugins.
+
+The `ratelimiting.new_instance` interface provides the necessary isolation without changing the original interfaces. Every returned instance has its own `ratelimiting.config` which don't interfere with each other. See the following usage example: `local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("rate-limiting-foo")`.
+
+If the library is used in the old way, the behavior is as before. In this case, it will return a default instance which may be shared with other plugins: `local ratelimiting = require("kong.tools.public.rate-limiting")`
+{% endif_version %}
+
 `ratelimiting.new`
 
 _syntax: ok = ratelimiting.new(opts)_
 
 Define configurations for a new namespace. The following options are accepted:
 
-- dict: Name of the shared dictionary to use
-- sync_rate: Rate, in seconds, to sync data diffs to the storage server.
-- strategy: Storage strategy to use. currently cassandra, postgres, and redis are supported. Strategies must provide several public—functions defined below.
-- strategy_opts: A table of options used by the storage strategy. Currently only applicable for the 'redis' strategy.
-- namespace: String defining these config values. A namespace may only be defined once; if a namespace has already been defined on this worker, an error is thrown. If no namespace is defined, the literal string "default" will be used.
-- window_sizes: A list of window sizes used by this configuration.
+- `dict`: Name of the shared dictionary to use
+- `sync_rate`: Rate, in seconds, to sync data diffs to the storage server.
+{% if_version lte:3.3.x -%}
+- `strategy`: Storage strategy to use. Cassandra, PostgresSQL, and Redis are supported. Strategies must provide several public—functions defined below.
+
+    {% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
+  
+{% endif_version -%}
+{% if_version gte:3.4.x -%}
+- `strategy`: Storage strategy to use. PostgresSQL and Redis are supported. Strategies must provide several public—functions defined below.
+{% endif_version -%}
+- `strategy_opts`: A table of options used by the storage strategy. Currently only applicable for the 'redis' strategy.
+- `namespace`: String defining these config values. A namespace may only be defined once; if a namespace has already been defined on this worker, an error is thrown. If no namespace is defined, the literal string "default" will be used.
+- `window_sizes`: A list of window sizes used by this configuration.
 
 `ratelimiting.increment`
 
-_syntax: rate = ratelimiting.increment(key, window_size, value, namespace?)_
+`_syntax: rate = ratelimiting.increment(key, window_size, value, namespace?)_`
 
-Increment a given key for window_size by value. If namespace is undefined, the "default" namespace is used. value can be any number Lua type (but ensure that the storage strategy in use for this namespace can support decimal values if a non-integer value is provided). This function returns the sliding rate for this key/window_size after the increment of value has been applied.
+Increment a given key for `window_size` by value. If namespace is undefined, the "default" namespace is used. value can be any number Lua type (but ensure that the storage strategy in use for this namespace can support decimal values if a non-integer value is provided). This function returns the sliding rate for this key or `window_size` after the increment of value has been applied.
 
 `ratelimit.sliding_window`
 
-_syntax: rate = ratelimit.sliding_window(key, window_size, cur_diff?, namespace?)_
+`_syntax: rate = ratelimit.sliding_window(key, window_size, cur_diff?, namespace?)_`
 
-Return the current sliding rate for this key/window_size. An optional cur_diff value can be provided that overrides the current stored diff for this key. If `namespace` is undefined, the "default" namespace is used.
+Return the current sliding rate for this key/window_size. An optional `cur_diff` value can be provided that overrides the current stored diff for this key. If `namespace` is undefined, the "default" namespace is used.
 
 `ratelimiting.sync`
 
-_syntax: ratelimiting.sync(premature, namespace?)_
+`_syntax: ratelimiting.sync(premature, namespace?)_`
 
-Sync all currently stored key diffs in this worker with the storage server, and retrieve the newly synced value. If namespace is undefined, the "default" `namespace` is used. Before the diffs are pushed, another sync call for the given namespace is scheduled at `sync_rate` seconds in the future. Given this, this function should typically be called during the `init_worker` phase to initialize the recurring timer. This function is intended to be called in an `ngx.timer` context; hence, the first variable represents the injected `premature` param.
+Sync all currently stored key diffs in this worker with the storage server, and retrieve the newly synced value. If namespace is undefined, the "default" `namespace` is used. Before the diffs are pushed, another sync call for the given namespace is scheduled at `sync_rate` seconds in the future. Given this, this function should typically be called during the `init_worker` phase to initialize the recurring timer. This function is intended to be called in an `ngx.timer` context; hence, the first variable represents the injected `premature` parameter.
 
 `ratelimiting.fetch`
 
-_syntax: ratelimiting.fetch(premature, namespace, time, timeout?)_
+`_syntax: ratelimiting.fetch(premature, namespace, time, timeout?)_`
 
 Retrieve all relevant counters for the given namespace at the given time. This
 function establishes a shm mutex such that only one worker will fetch and
 populate the shm per execution. If timeout is defined, the mutex will expire
 based on the given timeout value; otherwise, the mutex is unlocked immediately
 following the dictionary update. This function can be called in an `ngx.timer`
-context; hence, the first variable represents the injected `premature` param.
+context; hence, the first variable represents the injected `premature` parameter.
 
 ### Strategy Functions
 
 Storage strategies must provide the following interfaces:
 
 #### strategy_class.new
-_syntax: strategy = strategy_class.new(dao_factory, opts)_
+`_syntax: strategy = strategy_class.new(dao_factory, opts)_`
 
 Implement a new strategy object. `opts` is expected to be a table type, and can be used to pass opaque/arbitrary options to the strategy class.
 
 #### strategy:push_diffs
-_syntax: strategy:push_diffs(diffs)_
+`_syntax: strategy:push_diffs(diffs)_`
 
 Push a table of key diffs to the storage server. diffs is a table provided in the following format:
 
@@ -131,12 +149,12 @@ Push a table of key diffs to the storage server. diffs is a table provided in th
 
 #### strategy:get_counters
 
-_syntax: rows = strategy:get_counters(namespace, window_sizes, time?)_
+`_syntax: rows = strategy:get_counters(namespace, window_sizes, time?)_`
 
-Return an iterator for each key stored in the datastore/redis for a given `namepsace` and list of window sizes. 'time' is an optional unix second- precision timestamp; if not provided, this value will be set via `ngx.time()`. It is encouraged to pass this via a previous defined timestamp, depending on the context (e.g., if previous calls in the same thread took a nontrivial amount of time to run).
+Return an iterator for each key stored in the data store/redis for a given `namespace` and list of window sizes. 'time' is an optional unix second- precision timestamp; if not provided, this value will be set via `ngx.time()`. It is encouraged to pass this via a previous defined timestamp, depending on the context (e.g., if previous calls in the same thread took a nontrivial amount of time to run).
 
 #### strategy:get_window
 
-_syntax: window = strategy:get_window(key, namespace, window_start, window_size)_
+`_syntax: window = strategy:get_window(key, namespace, window_start, window_size)_`
 
 Retrieve a single key from the data store based on the values provided.

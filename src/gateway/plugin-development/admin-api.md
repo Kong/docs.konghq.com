@@ -1,7 +1,7 @@
 ---
-title: Plugin Development - Extending the Admin API
+title: Extending the Admin API
 book: plugin_dev
-chapter: 8
+chapter: 9
 ---
 
 {:.note}
@@ -61,7 +61,7 @@ Where:
   via `kong.db.<entity>.schema`. The schema is used to parse certain fields according to their
   types; for example if a field is marked as an integer, it will be parsed as such when it is
   passed to a function (by default form fields are all strings).
-- The `methods` subtable contains functions, indexed by a string.
+- The `methods` sub-table contains functions, indexed by a string.
   - The `before` key is optional and can hold a function. If present, the function will be executed
     on every request that hits `path`, before any other function is invoked.
   - One or more functions can be indexed with HTTP method names, like `GET` or `PUT`. These functions
@@ -107,7 +107,7 @@ the path, such as an Service's name or id, or a Consumer's username or id.
 If `endpoints`-provided are functions not enough, a regular Lua function can be used instead. From there you can use:
 
 - Several functions provided by the `endpoints` module.
-- All the functionality provided by the [PDK](../../pdk)
+- All the functionality provided by the [PDK](/gateway/{{page.release}}/plugin-development/pdk/)
 - The `self` parameter, which is the [Lapis request object](http://leafo.net/lapis/reference/actions.html#request-object).
 - And of course you can `require` any Lua modules if needed. Make sure they are compatible with OpenResty if you choose this route.
 
@@ -165,8 +165,4 @@ three functions:
 - The `PUT` function populates `self.args.post.consumer` before calling the `endpoints`-provided
   `put_entity_endpoint` function.
 
----
-
-Next: [Write tests for your plugin]({{page.book.next}})
-
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.release}}/admin-api/
