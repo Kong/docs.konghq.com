@@ -1,18 +1,25 @@
 ---
-title: Plugin Development - Accessing the Datastore
+title: Accessing the Datastore
 book: plugin_dev
-chapter: 5
+chapter: 6
 ---
 
 Kong interacts with the model layer through classes we refer to as "DAOs". This
 chapter will detail the available API to interact with the datastore.
 
-Kong supports two primary datastores: [Cassandra
-{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/)
-and [PostgreSQL
-{{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/).
+{% if_version lte:3.3.x %}
+Kong supports two primary data stores: [PostgreSQL
+{{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra
+{{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/).
 
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
+Kong supports [PostgreSQL
+{{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) as a data store.
+
+{% endif_version %}
 
 ## kong.db
 
@@ -46,15 +53,15 @@ available through `kong.db.*`.
 
 The DAO class is responsible for the operations executed on a given table in
 the datastore, generally mapping to an entity in Kong. All the underlying
-supported databases (currently Cassandra and Postgres) comply to the same
+supported databases comply to the same
 interface, thus making the DAO compatible with all of them.
 
 For example, inserting a Service and a Plugin is as easy as:
 
 ```lua
 local inserted_service, err = kong.db.services:insert({
-  name = "mockbin",
-  url  = "http://mockbin.org",
+  name = "httpbin",
+  url  = "https://httpbin.konghq.com",
 })
 
 local inserted_plugin, err = kong.db.plugins:insert({
@@ -66,8 +73,4 @@ local inserted_plugin, err = kong.db.plugins:insert({
 For a real-life example of the DAO being used in a plugin, see the
 [Key-Auth plugin source code](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua).
 
----
-
-Next: [Storing Custom Entities &rsaquo;]({{page.book.next}})
-
-[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
+[plugin development kit]: /gateway/{{page.release}}/plugin-development/pdk

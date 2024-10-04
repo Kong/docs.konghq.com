@@ -1,32 +1,32 @@
 ---
-title: Plugin Development - Caching Custom Entities
+title: Caching Custom Entities
 book: plugin_dev
-chapter: 7
+chapter: 8
 ---
 
 Your plugin may need to frequently access custom entities (explained in the
-[previous chapter]({{page.book.previous}})) on every request and/or response.
+[previous chapter]({{page.book.previous.url}})) on every request and/or response.
 Usually, loading them once and caching them in-memory dramatically improves
-the performance while making sure the datastore is not stressed with an
+the performance while making sure the data store is not stressed with an
 increased load.
 
 Think of an api-key authentication plugin that needs to validate the api-key on
-every request, thus loading the custom credential object from the datastore on
+every request, thus loading the custom credential object from the data store on
 every request. When the client provides an api-key along with the request,
-normally you would query the datastore to check if that key exists, and then
+normally you would query the data store to check if that key exists, and then
 either block the request or retrieve the Consumer ID to identify the user. This
 would happen on every request, and it would be very inefficient:
 
-* Querying the datastore adds latency on every request, making the request
+* Querying the data store adds latency on every request, making the request
   processing slower.
-* The datastore would also be affected by an increase of load, potentially
+* The data store would also be affected by an increase of load, potentially
   crashing or slowing down, which in turn would affect every Kong
   node.
 
-To avoid querying the datastore every time, we can cache custom entities
+To avoid querying the data store every time, we can cache custom entities
 in-memory on the node, so that frequent entity lookups don't trigger a
-datastore query every time (only the first time), but happen in-memory, which
-is much faster and reliable that querying it from the datastore (especially
+data store query every time (only the first time), but happen in-memory, which
+is much faster and reliable that querying it from the data store (especially
 under heavy load).
 
 ## Modules
@@ -38,7 +38,7 @@ kong.plugins.<plugin_name>.daos
 ## Cache custom entities
 
 Once you have defined your custom entities, you can cache them in-memory in
-your code by using the [kong.cache](/gateway/{{page.kong_version}}/pdk/#kong-cache)
+your code by using the [kong.cache](/gateway/{{page.release}}/plugin-development/pdk/#kong-cache)
 module provided by the [Plugin Development Kit]:
 
 ```
@@ -70,16 +70,18 @@ Function name                                 | Description
 `cache:invalidate(key)`                       | Evicts a value from the node's cache **and** propagates the eviction events to all other nodes in the cluster.
 `cache:purge()`                               | Evicts **all** values from the node's cache.
 
-Bringing back our authentication plugin example, to lookup a credential with a
-specific api-key, we would write something similar to:
+Bringing back our authentication plugin example, to look up a credential with a
+specific API key, we would write something similar to:
 
 ```lua
 -- handler.lua
-local BasePlugin = require "kong.plugins.base_plugin"
 
+local CustomHandler = {
+  VERSION  = "1.0.0",
+  PRIORITY = 10,
+}
 
 local kong = kong
-
 
 local function load_credential(key)
   local credential, err = kong.db.keyauth_credentials:select_by_key(key)
@@ -90,20 +92,7 @@ local function load_credential(key)
 end
 
 
-local CustomHandler = BasePlugin:extend()
-
-
-CustomHandler.VERSION  = "1.0.0"
-CustomHandler.PRIORITY = 1010
-
-
-function CustomHandler:new()
-  CustomHandler.super.new(self, "my-custom-plugin")
-end
-
-
 function CustomHandler:access(config)
-  CustomHandler.super.access(self)
 
   -- retrieve the apikey from the request querystring
   local key = kong.request.get_query_arg("apikey")
@@ -151,11 +140,11 @@ Give that file a look in order to see how an official plugin uses the cache.
 
 ### Update or delete a custom entity
 
-Every time a cached custom entity is updated or deleted in the datastore (i.e.
+Every time a cached custom entity is updated or deleted in the data store (i.e.
 using the Admin API), it creates an inconsistency between the data in the
-datastore, and the data cached in the Kong nodes' memory. To avoid this
+data store, and the data cached in the Kong nodes' memory. To avoid this
 inconsistency, we need to evict the cached entity from the in-memory store and
-force Kong to request it again from the datastore. We refer to this process as
+force Kong to request it again from the data store. We refer to this process as
 cache invalidation.
 
 
@@ -236,13 +225,13 @@ Where the arguments must be the attributes specified in your schema's
 `cache_key` property, in the order they were specified. This function then
 computes a string value `cache_key` that is ensured to be unique.
 
-For example, if we were to generate the cache_key of an API key:
+For example, if we were to generate the `cache_key` of an API key:
 
 ```lua
 local cache_key = kong.db.keyauth_credentials:cache_key("abcd")
 ```
 
-This would produce a cache_key for the API key `"abcd"` (retrieved from one
+This would produce a `cache_key` for the API key `"abcd"` (retrieved from one
 of the query's arguments) that we can the use to retrieve the key from the
 cache (or fetch from the database if the cache is a miss):
 
@@ -269,20 +258,20 @@ cache invalidation will be an automatic process: every CRUD operation that
 affects this API key will be make Kong generate the affected `cache_key`, and
 broadcast it to all of the other nodes on the cluster so they can evict
 that particular value from their cache, and fetch the fresh value from the
-datastore on the next request.
+data store on the next request.
 
 When a parent entity is receiving a CRUD operation (e.g. the Consumer owning
 this API key, as per our schema's `consumer_id` attribute), Kong performs the
 cache invalidation mechanism for both the parent and the child entity.
 
 **Note**: Be aware of the negative caching that Kong provides. In the above
-example, if there is no API key in the datastore for a given key, the cache
+example, if there is no API key in the data store for a given key, the cache
 module will store the miss just as if it was a hit. This means that a
 "Create" event (one that would create an API key with this given key) is also
 propagated by Kong so that all nodes that stored the miss can evict it, and
-properly fetch the newly created API key from the datastore.
+properly fetch the newly created API key from the data store.
 
-See the [Clustering Guide](/gateway/{{page.kong_version}}/reference/clustering/) to ensure
+See the [Clustering Guide](/gateway/{{page.release}}/production/deployment-topologies/traditional/) to ensure
 that you have properly configured your cluster for such invalidation events.
 
 ### Manual cache invalidation
@@ -330,7 +319,12 @@ kong.worker_events.register(function(data)
   end
 end, "crud", "consumers")
 ```
-
+{% if_version gte:3.5.x %}
+{:.note}
+> In many cases it is worth to check whether implementing `configure` with the plugin
+> solves the issue/need without having to use events. For examples events might work
+> differently depending on Kong node's role (traditional, DB-less, or data plane).
+{% endif_version %}
 ## Extending the Admin API
 
 As you are probably aware, the [Admin API] is where Kong users communicate with
@@ -338,11 +332,7 @@ Kong to setup their APIs and plugins. It is likely that they also need to be
 able to interact with the custom entities you implemented for your plugin (for
 example, creating and deleting API keys). The way you would do this is by
 extending the Admin API, which we will detail in the next chapter:
-[Extending the Admin API]({{page.book.next}}).
+[Extending the Admin API]({{page.book.next.url}}).
 
----
-
-Next: [Extending the Admin API &rsaquo;]({{page.book.next}})
-
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
+[Admin API]: /gateway/{{page.release}}/admin-api/
+[Plugin Development Kit]: /gateway/{{page.release}}/plugin-development/pdk

@@ -36,6 +36,19 @@ HTTP 200 OK
 }
 ```
 
+To query all admins, add a parameter `all_workspaces=true` to the `/admins` endpoint.
+
+The `status` field in the response indicates if the admin has accepted their invitation:
+
+| Code | Status     |
+|------|------------|
+| 0    | Approved   |
+| 1    | Pending    |
+| 2    | Rejected   |
+| 3    | Revoked    |
+| 4    | Invited    |
+| 5    | Unverified |
+
 ## Invite an Admin
 **Endpoint**
 
@@ -131,7 +144,7 @@ HTTP 200 OK
 **Notes:**
 * `generate_register_url` will only generate a URL if the **Admin**'s
 invitation status is 4 ("invited").
-* `generate_register_url` will override the preåvious registration URL
+* `generate_register_url` will override the previous registration URL
 for the particular **Admin** each time it is requested.
 
 **Response**
