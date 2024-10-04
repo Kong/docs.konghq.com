@@ -1,3 +1,4 @@
+<!-- DO NOT UPDATE THIS FILE, IT'S FOR ARCHIVED CONTENT ONLY -->
 
 ## Installation
 
@@ -30,7 +31,7 @@ To install from the command line
 $ curl -Lo kong-{{site.data.kong_latest.version}}.amd64.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-{{site.data.kong_latest.version}}.el%{centos_ver}.amd64.rpm")
 $ sudo yum install kong-{{site.data.kong_latest.version}}.amd64.rpm
 ```
-        
+
     {% endif %}
 
     {% if include.distribution == "rhel" %}
@@ -38,12 +39,21 @@ $ sudo yum install kong-{{site.data.kong_latest.version}}.amd64.rpm
 - [Red Hat 7]({{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel7.amd64.rpm)
 - [Red Hat 8]({{ site.links.download }}/gateway-2.x-rhel-8/Packages/k/kong-{{site.data.kong_latest.version}}.rhel8.amd64.rpm)
 
-To install from the command line
+To install from the command line using `yum`
 
 ```bash
 $ curl -Lo kong-{{site.data.kong_latest.version}}.amd64.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel%{rhel}.amd64.rpm")
 $ sudo yum kong-{{site.data.kong_latest.version}}.amd64.rpm
 ```
+
+To install from the command line using `rpm` directly (you will need Kong's dependencies installed separately)
+
+```bash
+$ curl -Lo kong.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-7/Packages/k/kong-{{site.data.kong_latest.version}}.rhel%{rhel}.amd64.rpm")
+rpm -iv kong.rpm
+```
+
+Installing directly using `rpm` is suitable for Red Hat's [Universal Base Image](https://developers.redhat.com/blog/2020/03/24/red-hat-universal-base-images-for-docker-users) "minimal" variant. You will need to install Kong's dependencies separately via `microdnf`
 
     {% endif %}
 
@@ -63,7 +73,7 @@ $ curl {{ site.links.download }}/gateway-2.x-amazonlinux-2/config.repo | sudo te
 $ sudo yum install -y kong
 ```
 
-    {% endif %}    
+    {% endif %}
 
     {% if include.distribution == "centos" %}
 
@@ -94,4 +104,4 @@ $ sudo yum install -y kong
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/installation.md kong_version=page.kong_version %}
+{% include_cached /md/installation.md release=page.release %}
