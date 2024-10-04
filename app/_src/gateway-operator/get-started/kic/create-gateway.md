@@ -21,9 +21,9 @@ Creating `GatewayClass` and `Gateway` resources in Kubernetes causes {{ site.kgo
 
 ## GatewayConfiguration
 
-You can customize your {{ site.kic_product_name }} and {{ site.base_gateway }} deployments using the `GatewayConfiguration` CRD. This allows you to control the image being used, and set any environment variables required.
+You can customize your {{ site.kic_product_name }} and {{ site.base_gateway }} deployments using the `GatewayConfiguration` CRD. This allows you to control the image being used, and set any required environment variables.
 {%- if_version gte:1.2.x %}
- If you are creating a KIC in Konnect deployment, you need to customize the deployment to contain your control plane ID and authentication certificate
+ If you are creating a KIC in {{site.konnect_short_name}} deployment, you need to customize the deployment to contain your control plane ID and authentication certificate.
 {%- endif_version %}
 
 {% navtabs gc %}
@@ -32,9 +32,11 @@ You can customize your {{ site.kic_product_name }} and {{ site.base_gateway }} d
 
 To get the endpoint and the authentication details of the data plane.
 1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
-1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager) and create a new `Kong Ingress Controller` Control Plane
-1. Provide a name for your new Control Plane
-1. Click **Generate Script** in the "Connect to KIC" section.
+1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), click **New Control Plane** and select **Kong Ingress Controller**. 
+1. Enter a name for your new control plane.
+1. Complete the prerequisites in step 1 in the {{site.konnect_short_name}} UI to get a load balanced Kubernetes cluster.
+1. Complete the Helm setup in step 2 in the {{site.konnect_short_name}} UI.
+1. In the Connect to KIC section, click **Generate Script**.
 1. Click **Generate Certificate** in step 3.
 1. Save the contents of **Cluster Certificate** in a file named `tls.crt`. Save the contents of **Cluster Key** in a file named `tls.key`.
 1. Create a Kubernetes secret containing the cluster certificate:
@@ -134,7 +136,7 @@ spec:
 {% endif_version %}
 {% navtab On-Prem %}
 
-This example shows how to customize the log level of {{ site.kic_product_name }}:
+Use the following example to customize the log level of {{ site.kic_product_name }}:
 
 ```yaml
 echo 'kind: GatewayConfiguration
