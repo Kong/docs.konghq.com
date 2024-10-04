@@ -79,9 +79,6 @@
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
           Version {{include.kong_version}}
-          {% if include.kong_version == include.kong_latest.release and include.edition != 'gateway-oss' and include.edition != 'enterprise' and include.edition != 'getting-started-guide' %}
-            <span>(latest)</span>
-          {% endif %}
         </span>
         <span class="caret"></span>
       </button>
@@ -106,8 +103,6 @@
             data-version-id="{{ver.release}}"
           >
             {{ver.release}}
-            {% if ver.release == include.kong_latest.release and include.edition != 'enterprise' and include.edition != 'gateway-oss' and include.edition != 'getting-started-guide' %} <em>(latest)</em>
-            {% endif %}
           </a>
         </li>
         {% endfor %}
