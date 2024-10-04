@@ -234,6 +234,7 @@ enum
 env
 Equinix
 Equinix
+etag
 etcd
 failover
 Fargate
@@ -282,6 +283,7 @@ httpbin
 HTTPie
 https
 IdPs
+If-Match
 impactful
 Imperva
 inbounds
