@@ -33,16 +33,14 @@ You can customize your {{ site.kic_product_name }} and {{ site.base_gateway }} d
 To get the endpoint and the authentication details of the data plane.
 1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
 1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), click **New Control Plane** and select **Kong Ingress Controller**. 
-1. Enter a name for your new control plane.
-1. Complete the prerequisites in step 1 in the {{site.konnect_short_name}} UI to get a load balanced Kubernetes cluster.
-1. Complete the Helm setup in step 2 in the {{site.konnect_short_name}} UI.
-1. In the Connect to KIC section, click **Generate Script**.
+1. Enter a name for your new control plane 
+1. In the _Connect to KIC_ section, click **Generate Script**.
 1. Click **Generate Certificate** in step 3.
 1. Save the contents of **Cluster Certificate** in a file named `tls.crt`. Save the contents of **Cluster Key** in a file named `tls.key`.
 1. Create a Kubernetes secret containing the cluster certificate:
 
     ```bash
-    kubectl create secret tls konnect-client-tls --cert=/{PATH_TO_FILE}/tls.crt --key=/{PATH_TO_FILE}/tls.key
+    kubectl create secret tls konnect-client-tls --cert=./tls.crt --key=./tls.key
     ```
 1. In the **Configuration parameters** step 4, find the value of `runtimeGroupID`. Replace `YOUR_CP_ID` with the control plane ID in the following manifest.
 1. In the **Configuration parameters** step 4, find the value of `cluster_telemetry_endpoint`. The first segment of that value is the control plane endpoint for your cluster. For example, if the value of `cluster_telemetry_endpoint` is `36fc5d01be.us.cp0.konghq.com`, then the control plane endpoint of the cluster is `36fc5d01be`. Replace `YOUR_CP_ENDPOINT` with your control plane ID in the following manifest.
@@ -212,12 +210,3 @@ The results should look like this:
 gatewayclass.gateway.networking.k8s.io/kong created
 gateway.gateway.networking.k8s.io/kong created
 ```
-
-Run `kubectl get gateway kong -n default` to get the IP address for the gateway and set that as the value for the variable `PROXY_IP`.
-
-```bash
-export PROXY_IP=$(kubectl get gateway kong -n default -o jsonpath='{.status.addresses[0].value}')
-```
-
-{:.note}
-> Note: if your cluster can not provision LoadBalancer type Services then the IP you receive may only be routable from within the cluster.
