@@ -32,7 +32,7 @@ You can customize your {{ site.kic_product_name }} and {{ site.base_gateway }} d
 
 To get the endpoint and the authentication details of the data plane.
 1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
-1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), click **New Control Plane** and select **Kong Ingress Controller**. 
+1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), click **New Control Plane** and select **{{ site.kic_product_name }}**.
 1. Enter a name for your new control plane 
 1. In the _Connect to KIC_ section, click **Generate Script**.
 1. Click **Generate Certificate** in step 3.
