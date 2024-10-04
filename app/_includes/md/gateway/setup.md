@@ -11,39 +11,48 @@ This configuration file is used for setting {{site.base_gateway}}’s configurat
 {{site.base_gateway}} offers two options for storing the configuration properties for all of
 {{site.base_gateway}}'s configured entities, a database or a yaml declarative configuration file.
 Before starting {{site.base_gateway}} you must update the `kong.conf.default` configuration property file with a reference
-to your datastore.
+to your data store.
 
 To alter the default properties listed in the `kong.conf.default` file and configure {{site.base_gateway}},
 make a copy of the file, rename it (for example `kong.conf`), make your updates, and save it to the same location.
 
-For more information on how to configure {{site.base_gateway}} to connect to your datastore, see the Datastore section of the
-[Configuration property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section).
-
 ### Using a database
 
-First, you must configure {{site.base_gateway}} using the `kong.conf` configuration file so it can connect to your database.
+First, configure {{site.base_gateway}} using the `kong.conf` configuration file so it can connect to your database.
+See the data store section of the [Configuration Property Reference](/gateway/{{ include.release}}/reference/configuration/#datastore-section) for all relevant configuration parameters.
 
-For more information on how to configure {{site.base_gateway}} to connect to your database, see the Datastore section of the
-[Configuration property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section).
-
-
-{% include_cached /md/enterprise/cassandra-deprecation.md %}
-
+{% if_version lte:2.6.x %}
 
 {{site.base_gateway}} supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/)
-and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
+and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its data store.
 
-If you are using Postgres, provision a database and a user before starting {{site.base_gateway}}, for example:
+{% endif_version %}
 
-```sql
-CREATE USER kong; CREATE DATABASE kong OWNER kong;
-```
+{% if_version gte:2.7.x lte:3.3.x %}
 
-Then, run the {{site.base_gateway}} migrations, using the following command:
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
 
-```bash
-kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
-```
+{% endif_version %}
+
+The following instructions use [PostgreSQL](http://www.postgresql.org/) as a database to store Kong configuration.
+
+1. Provision a database and a user before starting {{site.base_gateway}}:
+
+    ```sql
+    CREATE USER kong WITH PASSWORD 'super_secret'; CREATE DATABASE kong OWNER kong;
+    ```
+
+2. Run one of the following {{site.base_gateway}} migrations:
+    * <span class="badge enterprise"></span> In Enterprise environments, we strongly recommend seeding a password for the **Super Admin** user with the ```kong migrations``` command. This allows you to use RBAC (Role Based Access Control) at a later time, if needed. Create an environment variable with the desired **Super Admin** password and store the password in a safe place:
+    ```bash
+    KONG_PASSWORD={PASSWORD} kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
+    ```
+    > **Important**: Setting your Kong password (`KONG_PASSWORD`) using a value containing four ticks (for example, `KONG_PASSWORD="a''a'a'a'a"`) causes a PostgreSQL syntax error on bootstrap. To work around this issue, do not use special characters in your password.
+
+    * If you aren't using Enterprise, run the following:
+    ```bash
+    kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
+    ```
 
 {:.note}
 > **Note:** Older versions of PostgreSQL use `ident` authentication by default, newer versions (PSQL 10+)
@@ -74,21 +83,9 @@ database = off
 declarative_config = {PATH_TO_KONG.CONF_FILE}
 ```
 
-## Seed Super Admin
-{:.badge .enterprise}
+## Start {{site.base_gateway}}
 
-Setting a password for the **Super Admin** before initial start-up is strongly recommended. This will permit the use of RBAC (Role Based Access Control) at a later time, if needed.
-
-Create an environment variable with the desired **Super Admin** password and store the password in a safe place.
-Run migrations to prepare the Kong database, using the following command:
-
-```
-KONG_PASSWORD={PASSWORD} kong migrations bootstrap -c {PATH_TO_KONG.CONF_FILE}
-```
-
-## Start Kong Gateway
-
-{% include_cached /md/gateway/root-user-note.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/root-user-note.md release=page.release %}
 
 Start {{site.base_gateway}} using the following command:
 
@@ -143,20 +140,10 @@ quotes to be considered valid JSON (`'` and `"`, not `’` or `“`).
 The following license is only an example. You must use the following format,
 but provide your own content.
 
-{% navtabs codeblock %}
-{% navtab cURL %}
 ```bash
 curl -i -X POST http://localhost:8001/licenses \
   -d payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-http POST :8001/licenses \
-  payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
-```
-{% endnavtab %}
-{% endnavtabs %}
 
 {% endnavtab %}
 {% navtab Without a database %}
@@ -180,12 +167,24 @@ $ scp license.json /etc/kong/license.json
 {% endnavtab %}
 {% endnavtabs %}
 
-### Enable and configure Kong Manager
+{% if_version lte:3.3.x %}
+### Enable Kong Manager
 {:.badge .free}
+{% endif_version %}
+{% if_version gte:3.4.x %}
+### Enable Kong Manager
+{% endif_version %}
+
+{% if_version gte:3.0.x %}
 
 If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 (GUI), Kong Manager.
+
+See the [Kong Manager setup guide](/gateway/{{page.release}}/kong-manager/enable/){% if_version gte:3.4.x %} or the [Kong Manager OSS guide](/gateway/{{page.release}}/kong-manager-oss){% endif_version %} for more information.
+
+{% endif_version %}
+{% if_version lte:2.8.x %}
 
 1. Update the `admin_gui_url` property
    in the `kong.conf` configuration file to the DNS, or IP address, of your system. For example:
@@ -199,7 +198,7 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 2. Update the Admin API setting in the `kong.conf` file to listen on the needed network interfaces on the OS host.
    A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
 
-    {% include_cached /md/admin-listen.md desc='long' %}
+    {% include_cached /md/admin-listen.md release=page.release desc='long' %}
 
     Example configuration:
 
@@ -221,11 +220,15 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 
 5. Access Kong Manager on port `8002`.
 
+{% endif_version %}
+
+{% if_version lte:3.4.x %}
+
 ### Enable Dev Portal
 {:.badge .enterprise}
 
 If you're running {{site.base_gateway}} with a database (either in traditional
-or hybrid mode), you can enable the [Dev Portal](/gateway/{{page.kong_version}}/developer-portal/).
+or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gateway/{{page.release}}/developer-portal/).{% endif_version %}{% if_version gte:3.0.x lte:3.4.x %}[Dev Portal](/gateway/{{page.release}}/kong-enterprise/dev-portal/){% endif_version %}
 
 1. Enable the Dev Portal in the `kong.conf` file by setting the `portal` property to `on` and the
    `portal_gui_host` property to the DNS or IP address of the system.
@@ -256,14 +259,17 @@ or hybrid mode), you can enable the [Dev Portal](/gateway/{{page.kong_version}}/
     ```
     http://localhost:8003/default
     ```
+{% endif_version %}
 
 ## Troubleshooting and support
 {:.badge .enterprise}
 
+{% if_version gte:3.0.x %}
+
 For troubleshooting license issues, see:
-* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/)
-* [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples/)
+* [Deployment options for licenses](/gateway/{{page.release}}/licenses/deploy/)
+* [`/licenses` API reference](/gateway/{{page.release}}/admin-api/licenses/reference/)
+* [`/licenses` API examples](/gateway/{{page.release}}/licenses/examples/)
 
 If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 your setup, reach out to your Kong Support contact or go to the
@@ -272,5 +278,25 @@ your setup, reach out to your Kong Support contact or go to the
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
+[Getting Started](/gateway/{{include.release}}/get-started/) guides to get the most
 out of {{site.base_gateway}}.
+
+{% endif_version %}
+{% if_version lte:2.8.x %}
+
+For troubleshooting license issues, see:
+* [Deployment options for licenses](/gateway/{{page.release}}/plan-and-deploy/licenses/deploy-license/)
+* [`/licenses` API reference](/gateway/{{page.release}}/admin-api/licenses/reference/)
+* [`/licenses` API examples](/gateway/{{page.release}}/admin-api/licenses/examples/)
+
+If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
+your setup, reach out to your Kong Support contact or go to the
+[Support Portal](https://support.konghq.com/support/s/).
+
+## Next steps
+
+Check out {{site.base_gateway}}'s series of
+[Getting Started](/gateway/{{include.release}}/get-started/comprehensive/) guides to get the most
+out of {{site.base_gateway}}.
+
+{% endif_version %}

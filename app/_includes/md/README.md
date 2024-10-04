@@ -1,3 +1,5 @@
+<!--vale off-->
+
 # How to manage content in the _includes/md directory
 
 This directory contains text snippets that are shared across multiple docs files. Here's how to manage these files:
