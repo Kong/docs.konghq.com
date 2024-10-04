@@ -1,0 +1,9 @@
+browsers:
+  - name: Chrome
+    icon: chrome.svg
+  - name: Firefox
+    icon: firefox.svg
+  - name: Edge
+    icon: edge.svg
+  - name: Safari
+    icon: safari.svg
