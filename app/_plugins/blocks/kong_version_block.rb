@@ -1,61 +1,130 @@
 # frozen_string_literal: true
 
-# Generates a named anchor and wrapping tag from a string.
-
 module Jekyll
-  class VersionIs < Liquid::Block
-    def initialize(tag_name, markup, tokens)
-      @tag = markup
+  module GeneratorSingleSource
+    module Liquid
+      module Tags
+        class VersionIs < ::Liquid::Block
+          attr_reader :blocks
 
-      @params = {}
-      markup.scan(Liquid::TagAttributes) do |key, value|
-        @params[key.to_sym] = value
+          def initialize(tag_name, markup, options)
+            super
+            @blocks = []
+            push_block('if_version'.freeze, markup)
+          end
+
+          def nodelist
+            @blocks.map(&:attachment)
+          end
+
+          def parse(tokens)
+            while parse_body(@blocks.last.attachment, tokens)
+            end
+          end
+
+          def unknown_tag(tag, markup, tokens)
+            if 'else'.freeze == tag
+              push_block(tag, markup)
+            else
+              super
+            end
+          end
+
+          def render(context)
+            context.stack do
+              @blocks.each do |block|
+                if block.evaluate(context)
+                  return block.attachment.render(context)
+                end
+              end
+              ''.freeze
+            end
+          end
+
+          private
+
+          def push_block(tag, markup)
+            block = if tag == 'else'.freeze
+                      ::Liquid::ElseCondition.new
+                    else
+                      parse_with_selected_parser(markup)
+                    end
+
+            @blocks.push(block)
+            block.attach(::Liquid::BlockBody.new)
+          end
+
+          def lax_parse(markup)
+            parse_condition(markup)
+          end
+
+          def strict_parse(markup)
+            parse_condition(markup)
+          end
+
+          def parse_condition(markup)
+            IfVersionCondition.new(markup)
+          end
+
+          class IfVersionCondition < ::Liquid::Condition
+            # Extracted from:
+            # https://github.com/Shopify/liquid/blob/ae3057e94b7c4d657e6bc02e1d50398e34cc6ed7/lib/liquid.rb#L37
+            # and modified to support comma-separated values
+            TAG_ATTRIBUTES = /(\w+)\s*\:\s*((?-mix:(?-mix:"[^"]*"|'[^']*')|(?:[^\s\|'"]|(?-mix:"[^"]*"|'[^']*'))+))/o
+
+            def else?
+              false
+            end
+
+            def evaluate(context)
+              params = {}
+              @left.scan(TAG_ATTRIBUTES) do |key, value|
+                params[key.to_sym] = value
+              end
+
+              page = context.environments.first['page']
+
+              current_version = to_version(context.environments.first['page']['kong_version'])
+
+              if params.key? :eq
+                # If there's an exact match, check only that
+                versions = params[:eq].split(',').map { |v| to_version(v) }
+                return false unless versions.any? { |v| v == current_version }
+              end
+              if params.key? :gte
+                # If there's a greater than or equal to check, fail if it's lower
+                version = to_version(params[:gte])
+                return false unless current_version >= version
+              end
+              if params.key? :lte
+                # If there's a less than or equal to check, fail if it's higher
+                version = to_version(params[:lte])
+                return false unless current_version <= version
+              end
+              if params.key? :neq
+                # If there's a not-equal to check, fail if they are equal
+                version = to_version(params[:neq])
+                return false if current_version == version
+              end
+
+              true
+            end
+
+            def to_version(input)
+              Gem::Version.new(input.to_s.gsub(/\.x$/, '.0'))
+            end
+          end
+
+          class ParseTreeVisitor < ::Liquid::ParseTreeVisitor
+            def children
+              @node.blocks
+            end
+          end
+        end
+
       end
-      super
-    end
-
-    def render(context) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      contents = super
-
-      current_version = to_version(context.environments.first['page']['kong_version'])
-
-      # If there's an exact match, check only that
-      if @params.key?(:eq)
-        version = to_version(@params[:eq])
-        return '' unless current_version == version
-      end
-
-      # If there's a greater than or equal to check, fail if it's lower
-      if @params.key?(:gte)
-        version = to_version(@params[:gte])
-        return '' unless current_version >= version
-      end
-
-      # If there's a less than or equal to heck, fail if it's higher
-      if @params.key?(:lte)
-        version = to_version(@params[:lte])
-        return '' unless current_version <= version
-      end
-
-      # Remove the leading and trailing whitespace and return
-      # We can't use .strip as that removes all leading whitespace,
-      # including indentation
-      contents.gsub(/^\n/, '').gsub(/\n$/, '')
-    end
-
-    def to_version(input)
-      Gem::Version.new(input.gsub(/\.x$/, '.0'))
     end
   end
 end
 
-Liquid::Template.register_tag('if_version', Jekyll::VersionIs)
-
-Jekyll::Hooks.register :pages, :pre_render do |page|
-  # Replace double line breaks when using if_version when
-  # combined with <pre> blocks. This is usually in code samples
-  page.content = page.content.gsub(/\n(\s*{% if_version)/, '\1')
-
-  # Also allow for a newline after endif_version when in a table
-  page.content = page.content.gsub("{% endif_version %}\n\n|", "{% endif_version %}\n|")
-end
+::Liquid::Template.register_tag('if_version'.freeze, Jekyll::GeneratorSingleSource::Liquid::Tags::VersionIs)
