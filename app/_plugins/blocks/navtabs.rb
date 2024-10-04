@@ -39,7 +39,7 @@ module Jekyll
         @class = markup.strip
       end
 
-      def render(context)
+      def render(context) # rubocop:disable Metrics/MethodLength
         navtabs_id = SecureRandom.uuid
         environment = context.environments.first
         environment["navtabs-#{navtabs_id}"] = {}
@@ -49,13 +49,16 @@ module Jekyll
         super
         environment['navtabs-stack'].pop
 
+        environment['additional_classes'] = ''
+        environment['additional_classes'] = 'external-trigger' if @tag_name == 'navtabs_ee'
+
         template = ERB.new html
         template.result(binding)
       end
 
       def html
         <<~NAVTABS
-          <div class="navtabs <%= @class %>">
+          <div class="navtabs <%= @class %> <%= environment['additional_classes'] %>">
             <div class="navtab-titles" role="tablist">
             <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
               <% slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\\w-]/, '') %>
@@ -66,7 +69,8 @@ module Jekyll
             </div>
             <div class="navtab-contents">
             <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
-              <div data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content" role="tabpanel" id="navtab-id-<%= index %>" tabindex="0" aria-labelledby="navtab-id-<%= index %>" >
+              <% slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\\w-]/, '') %>
+              <div data-panel="<%= slug %>" data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content" role="tabpanel" id="navtab-id-<%= index %>" tabindex="0" aria-labelledby="navtab-id-<%= index %>" >
                 <%= value %>
               </div>
             <% end %>
@@ -86,7 +90,17 @@ module Jekyll
         @title = markup.strip
       end
 
-      def render(context)
+      def render(context) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+        # Add support for variable titles
+        path = @title.split('.')
+        # 0 is the page scope, 1 is the local scope
+        [0, 1].each do |k|
+          next unless context.scopes[k]
+
+          ref = context.scopes[k].dig(*path)
+          @title = ref if ref
+        end
+
         site = context.registers[:site]
         converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
         environment = context.environments.first
@@ -100,3 +114,4 @@ end
 
 Liquid::Template.register_tag('navtab', Jekyll::NavTabs::NavTabBlock)
 Liquid::Template.register_tag('navtabs', Jekyll::NavTabs::NavTabsBlock)
+Liquid::Template.register_tag('navtabs_ee', Jekyll::NavTabs::NavTabsBlock)
