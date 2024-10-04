@@ -115,9 +115,9 @@ entries:
   - area: Deployment
     category: 2
     description: |
-      Deprecated and stopped producing Debian 8 (Jessie) containers and packages.
+      Deprecated and stopped producing Debian 8 (Jessie) and Debian 10 (Buster) containers and packages.
     action: |
-      Debian 10 and 11 are available. Upgrade to one of these versions before 
+      Debian 11 and 12 are available. Upgrade to one of these versions before 
       upgrading to Kong 3.4.
 
   - area: Deployment
