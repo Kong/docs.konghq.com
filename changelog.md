@@ -2,6 +2,246 @@
 
 <!--vale off-->
 
+## Week 40
+
+### [chore: update konnect compatibility](https://github.com/Kong/docs.konghq.com/pull/8020) (2024-10-04)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/compatibility
+
+
+### [Adjust Request Transformer Advanced plugin link text](https://github.com/Kong/docs.konghq.com/pull/8011) (2024-10-03)
+
+Adjusting the link text in the plugin overview to be more descriptive.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/5593.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/overview/
+
+
+### [OAS Validation: headers](https://github.com/Kong/docs.konghq.com/pull/8009) (2024-10-04)
+
+Adding a troubleshooting entry for the OAS Validation plugin about header validation. 
+Fixes https://konghq.atlassian.net/browse/DOCU-4013
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/oas-validation/overview/
+
+
+### [Change the demo app used in the mesh manager example](https://github.com/Kong/docs.konghq.com/pull/8008) (2024-10-02)
+
+I updated our Mesh Manager tutorial so that it uses the same demo app as what they're using in the Kong Mesh docs. 
+
+I also verified that my changes worked by testing the full tutorial end-to-end.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Fixes #6625
+
+#### Modified
+
+- https://docs.konghq.com/konnect/mesh-manager/service-mesh
+
+
+### [fix: Change Gateway changelog dates to ISO 8601 format](https://github.com/Kong/docs.konghq.com/pull/8003) (2024-10-02)
+
+<!-- What did you change and why? -->
+Some dates weren't in the ISO 8601 format, this fixes that.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+DOCU-3877
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [fix: Add notes about OpenAPI spec version compatibility](https://github.com/Kong/docs.konghq.com/pull/8000) (2024-10-02)
+
+I updated our Dev Portal docs to state which versions of Swagger and OpenAPI are supported for uploaded API specs. 
+
+I tested this by trying to upload example OpenAPI specs created by ChatGPT:
+
+- 1.1 ❌ 
+- 2.0 ✅ 
+- 3.0 ✅ 
+- 3.2 ✅ 
+
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+DOCU-3594
+
+#### Modified
+
+- https://docs.konghq.com/konnect/api-products/service-documentation
+- https://docs.konghq.com/konnect/dev-portal/publish-service
+
+
+### [ACME plugin storage types](https://github.com/Kong/docs.konghq.com/pull/7996) (2024-10-02)
+
+* Added a table comparing the types of storage, what they are (info from [lua-resty-acme](https://github.com/fffonion/lua-resty-acme#storage-adapters)), and where they're available
+* Minor adjustments to the ACME overview page for better flow with the table
+* Tested the local storage guide and fixed it up to make it work + made the curl formatting consistent
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/7966 and https://konghq.atlassian.net/browse/DOCU-2910.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acme/how-to/
+- https://docs.konghq.com/hub/kong-inc/acme/how-to/
+- https://docs.konghq.com/hub/kong-inc/acme/overview/
+
+
+### [Fix: Protobuf structure issue](https://github.com/Kong/docs.konghq.com/pull/7993) (2024-10-02)
+
+Issue reported through docs feedback
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/grpc-gateway/how-to/
+
+
+### [Fix: AI rate limiting advanced example](https://github.com/Kong/docs.konghq.com/pull/7992) (2024-10-04)
+
+Fixes [Issue #7867](https://github.com/Kong/docs.konghq.com/issues/7867)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/how-to/
+
+
+### [Fix: Replace httpbin.org with httpbin.konghq.com](https://github.com/Kong/docs.konghq.com/pull/7991) (2024-10-02)
+
+[DOCU-4088](https://konghq.atlassian.net/browse/DOCU-4088)
+
+### Checklist 
+
+- [x] Review label added
+
+
+[DOCU-4088]: https://konghq.atlassian.net/browse/DOCU-4088?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acme/how-to/
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/overview/
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/jwt/overview/
+- https://docs.konghq.com/hub/kong-inc/mocking/overview/
+- https://docs.konghq.com/hub/kong-inc/oauth2/how-to/
+- https://docs.konghq.com/hub/kong-inc/opa/overview/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+- https://docs.konghq.com/hub/kong-inc/post-function/how-to/
+- https://docs.konghq.com/hub/kong-inc/pre-function/how-to/
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/request-transformer/how-to/
+- https://docs.konghq.com/hub/kong-inc/request-validator/overview/
+- https://docs.konghq.com/hub/kong-inc/saml/overview/
+- https://docs.konghq.com/hub/kong-inc/session/overview/
+- https://docs.konghq.com/gateway/3.0.x/install/docker
+- https://docs.konghq.com/gateway/3.1.x/install/docker
+- https://docs.konghq.com/gateway/3.2.x/install/docker
+- https://docs.konghq.com/gateway/3.3.x/install/docker
+- https://docs.konghq.com/gateway/3.4.x/install/docker
+- https://docs.konghq.com/gateway/3.5.x/install/docker
+- https://docs.konghq.com/gateway/3.6.x/install/docker
+- https://docs.konghq.com/gateway/3.7.x/install/docker
+- https://docs.konghq.com/gateway/3.8.x/install/docker
+- https://docs.konghq.com/gateway/unreleased/install/docker
+- https://docs.konghq.com/gateway/2.6.x/admin-api/rbac/examples
+- https://docs.konghq.com/gateway/2.6.x/configure/auth/
+- https://docs.konghq.com/gateway/2.6.x/configure/auth/oidc-curity
+- https://docs.konghq.com/gateway/2.6.x/developer-portal/administration/application-registration/azure-oidc-config
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/expose-services
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/improve-performance
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/load-balancing
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/protect-services
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/secure-services
+- https://docs.konghq.com/gateway/2.6.x/get-started/quickstart/configuring-a-service
+- https://docs.konghq.com/gateway/2.6.x/install-and-run/docker
+- https://docs.konghq.com/gateway/2.6.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/2.6.x/plugin-development/tests
+- https://docs.konghq.com/gateway/2.6.x/reference/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/2.7.x/admin-api/rbac/examples
+- https://docs.konghq.com/gateway/2.7.x/configure/auth/
+- https://docs.konghq.com/gateway/2.7.x/configure/auth/oidc-curity
+- https://docs.konghq.com/gateway/2.7.x/developer-portal/administration/application-registration/azure-oidc-config
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/expose-services
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/improve-performance
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/load-balancing
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/protect-services
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/secure-services
+- https://docs.konghq.com/gateway/2.7.x/get-started/quickstart/configuring-a-service
+- https://docs.konghq.com/gateway/2.7.x/install-and-run/docker
+- https://docs.konghq.com/gateway/2.7.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/2.7.x/plugin-development/tests
+- https://docs.konghq.com/gateway/2.7.x/reference/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/2.8.x/admin-api/developers/reference
+- https://docs.konghq.com/gateway/2.8.x/admin-api/rbac/examples
+- https://docs.konghq.com/gateway/2.8.x/configure/auth/
+- https://docs.konghq.com/gateway/2.8.x/configure/auth/oidc-curity
+- https://docs.konghq.com/gateway/2.8.x/developer-portal/administration/application-registration/azure-oidc-config
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/expose-services
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/improve-performance
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/load-balancing
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/protect-services
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/secure-services
+- https://docs.konghq.com/gateway/2.8.x/get-started/quickstart/configuring-a-service
+- https://docs.konghq.com/gateway/2.8.x/install-and-run/docker
+- https://docs.konghq.com/gateway/2.8.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/2.8.x/plugin-development/tests
+- https://docs.konghq.com/gateway/2.8.x/reference/db-less-and-declarative-config
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+- https://docs.konghq.com/konnect/gateway-manager/backup-restore
+- https://docs.konghq.com/konnect/gateway-manager/control-plane-groups/how-to
+- https://docs.konghq.com/konnect/gateway-manager/declarative-config
+- https://docs.konghq.com/konnect/getting-started/add-api
+- https://docs.konghq.com/konnect/reference/terraform
+
+
+### [Fix: Broken link in Konnect KIC page](https://github.com/Kong/docs.konghq.com/pull/7990) (2024-10-04)
+
+The link in the note on the Konnect KIC page redirects to the KIC landing page: https://docs.konghq.com/konnect/gateway-manager/kic/#kic-in-konnect-association 
+
+Replacing it with the latest real link.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/kic
+
+
+### [Fix: update konnect predefined teams](https://github.com/Kong/docs.konghq.com/pull/7986) (2024-10-01)
+
+The Data Plane Node Admin and Service Admin roles no longer exist.  Looks like that's been the case for at least a year: https://github.com/Kong/kong-api-tests/blob/main/fixtures/kauth/kauth_teams.ts
+
+Removed non-existent roles and added Control Plane Admin. Verified via UI and link above.
+
+Issue reported on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/teams-reference
+
+
+### [fix(plugins): ai semantic prompt guard is EE-only](https://github.com/Kong/docs.konghq.com/pull/7983) (2024-09-30)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-semantic-prompt-guard/_metadata/_index.yml
+
 ## Week 39
 
 ### [Fix: Mention Azure in last table entry](https://github.com/Kong/docs.konghq.com/pull/7974) (2024-09-27)
