@@ -7,6 +7,7 @@ gem 'jekyll-redirect-from'
 gem 'kramdown-parser-gfm'
 gem 'liquid-c'
 gem 'rouge', '3.26.1'
+gem 'activesupport'
 
 group :development do
   gem 'pry'
