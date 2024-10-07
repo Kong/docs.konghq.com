@@ -29,13 +29,7 @@ module Jekyll
         end
 
         def text
-          return @release unless @latest
-
-          if @release == @latest
-            "#{@release} <em>(latest)</em>"
-          else
-            @release
-          end
+          @release['release']
         end
 
         private
@@ -63,7 +57,7 @@ module Jekyll
         def current
           @current ||= gateway_releases
                        .detect { |r| r['release'] == @page.gateway_release || r['label'] == @page.gateway_release }
-                       .to_liquid
+                       ['release']
         end
 
         def latest
