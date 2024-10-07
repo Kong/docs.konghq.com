@@ -42,20 +42,20 @@ of {{site.base_gateway}}'s execution life-cycle:
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
 {% if_version lte: 3.3.x %}
 
-| Function name       | Directive             | Request Protocol        | Description
-|---------------------|-------------------|-------------------------|------------
-| `init_worker`       | [init_worker]     | *                        | Executed upon every Nginx worker process's startup.
-| `certificate`       | [ssl_certificate] | `https`, `grpcs`, `wss`  | Executed during the SSL certificate serving phase of the SSL handshake.
-| `rewrite`           | [rewrite]         | *                        | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
-| `access`            | [access]          | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
-| `ws_handshake`      | [access]          | `ws(s)`                  | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
-| `response`          | [access]          | `http(s)`, `grpc(s)`     | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
-| `header_filter`     | [header_filter]   | `http(s)`, `grpc(s)`     | Executed when all response headers bytes have been received from the upstream service.
-| `ws_client_frame`   | [content]         | `ws(s)`                  | Executed for each WebSocket message received from the client.
-| `ws_upstream_frame` | [content]         | `ws(s)`                  | Executed for each WebSocket message received from the upstream service.
-| `body_filter`       | [body_filter]     | `http(s)`, `grpc(s)`     | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
-| `log`               | [log]             | `http(s)`, `grpc(s)`     | Executed when the last response byte has been sent to the client.
-| `ws_close`          | [log]             | `ws(s)`                  | Executed after the WebSocket connection has been terminated.
+| Function name       | Kong Phase        | Nginx Directives         | Request Protocol              | Description
+|---------------------|-------------------|--------------------------|-------------------------------|------------
+| `init_worker`       | `init_worker`     | [`init_worker_by_*`]     | *                             | Executed upon every Nginx worker process's startup.
+| `certificate`       | `ssl_certificate` | [`ssl_certificate_by_*`] | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
+| `rewrite`           | `rewrite`         | [`rewrite_by_*`]         | *                             | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
+| `access`            | `access`          | [`access_by_*`]          | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
+| `ws_handshake`      | `access`          | [`access_by_*`]          | `ws(s)`                       | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
+| `response`          | `access`          | [`access_by_*`]          | `http(s)`, `grpc(s)`          | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `header_filter`     | `header_filter`   | [`header_filter_by_*`]   | `http(s)`, `grpc(s)`          | Executed when all response headers bytes have been received from the upstream service.
+| `ws_client_frame`   | `content`         | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the client.
+| `ws_upstream_frame` | `content`         | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the upstream service.
+| `body_filter`       | `body_filter`     | [`body_filter_by_*`]     | `http(s)`, `grpc(s)`          | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
+| `log`               | `log`             | [`log_by_*`]             | `http(s)`, `grpc(s)`          | Executed when the last response byte has been sent to the client.
+| `ws_close`          | `log`             | [`log_by_*`]             | `ws(s)`                       | Executed after the WebSocket connection has been terminated.
 
 {:.note}
 > **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
@@ -64,31 +64,31 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 
 - **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
 
-| Function name   | Directive                                                                        | Description
-|-----------------|------------------------------------------------------------------------------|------------
-| `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
-| `preread`       | [preread]                                                                    | Executed once for every connection.
-| `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
-| `certificate`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
+| Function name   | Kong Phase        | Nginx Directives         | Description
+|-----------------|-------------------|--------------------------|------------
+| `init_worker`   | `init_worker`     | [`init_worker_by_*`]     | Executed upon every Nginx worker process's startup.
+| `preread`       | `preread`         | [`preread_by_*`]         | Executed once for every connection.
+| `log`           | `log`             | [`log_by_*`]             | Executed once for each connection after it has been closed.
+| `certificate`   | `ssl_certificate` | [`ssl_certificate_by_*`] | Executed during the SSL certificate serving phase of the SSL handshake.
 
 {% endif_version %}
 
 {% if_version gte: 3.4.x %}
-| Function name       | Directive               | Request Protocol              | Description
-|---------------------|---------------------|-------------------------------|------------
-| `init_worker`       | [init_worker]       | *                             | Executed upon every Nginx worker process's startup.
-| `configure`         | [init_worker]/timer | *                             | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
-| `certificate`       | [ssl_certificate]   | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
-| `rewrite`           | [rewrite]           | *                             | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
-| `access`            | [access]            | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
-| `ws_handshake`      | [access]            | `ws(s)`                       | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
-| `response`          | [access]            | `http(s)`, `grpc(s)`          | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
-| `header_filter`     | [header_filter]     | `http(s)`, `grpc(s)`          | Executed when all response headers bytes have been received from the upstream service.
-| `ws_client_frame`   | [content]           | `ws(s)`                       | Executed for each WebSocket message received from the client.
-| `ws_upstream_frame` | [content]           | `ws(s)`                       | Executed for each WebSocket message received from the upstream service.
-| `body_filter`       | [body_filter]       | `http(s)`, `grpc(s)`          | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
-| `log`               | [log]               | `http(s)`, `grpc(s)`          | Executed when the last response byte has been sent to the client.
-| `ws_close`          | [log]               | `ws(s)`                       | Executed after the WebSocket connection has been terminated.
+| Function name       | Kong Phase            | Nginx Directives         | Request Protocol              | Description
+|---------------------|-----------------------|--------------------------|-------------------------------|------------
+| `init_worker`       | `init_worker`         | [`init_worker_by_*`]     | *                             | Executed upon every Nginx worker process's startup.
+| `configure`         | `init_worker`/`timer` | [`init_worker_by_*`]     | *                             | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
+| `certificate`       | `ssl_certificate`     | [`ssl_certificate_by_*`] | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
+| `rewrite`           | `rewrite`             | [`rewrite_by_*`]         | *                             | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
+| `access`            | `access`              | [`access_by_*`]          | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
+| `ws_handshake`      | `access`              | [`access_by_*`]          | `ws(s)`                       | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
+| `response`          | `access`              | [`access_by_*`]          | `http(s)`, `grpc(s)`          | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `header_filter`     | `header_filter`       | [`header_filter_by_*`]   | `http(s)`, `grpc(s)`          | Executed when all response headers bytes have been received from the upstream service.
+| `ws_client_frame`   | `content`             | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the client.
+| `ws_upstream_frame` | `content`             | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the upstream service.
+| `body_filter`       | `body_filter`         | [`body_filter_by_*`]     | `http(s)`, `grpc(s)`          | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
+| `log`               | `log`                 | [`log_by_*`]             | `http(s)`, `grpc(s)`          | Executed when the last response byte has been sent to the client.
+| `ws_close`          | `log`                 | [`log_by_*`]             | `ws(s)`                       | Executed after the WebSocket connection has been terminated.
 
 {:.note}
 > **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
@@ -97,13 +97,13 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 
 - **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
 
-| Function name   | Directive                                                                        | Description
-|-----------------|------------------------------------------------------------------------------|------------
-| `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
-| `configure`     | [init_worker]/timer                                                         | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
-| `preread`       | [preread]                                                                    | Executed once for every connection.
-| `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
-| `certificate`   | [ssl_certificate]                                                            | Executed during the SSL certificate serving phase of the SSL handshake.
+| Function name   | Kong Phase            | Nginx Directives         | Description
+|-----------------|-----------------------|--------------------------|------------
+| `init_worker`   | `init_worker`         | [`init_worker_by_*`]     |  Executed upon every Nginx worker process's startup.
+| `configure`     | `init_worker`/`timer` | [`init_worker_by_*`]     |  Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
+| `preread`       | `preread`             | [`preread_by_*`]         |  Executed once for every connection.
+| `log`           | `log`                 | [`log_by_*`]             | Executed once for each connection after it has been closed.
+| `certificate`   | `ssl_certificate`     | [`ssl_certificate_by_*`] | Executed during the SSL certificate serving phase of the SSL handshake.
 
 
 
@@ -476,15 +476,15 @@ The current order of execution for the bundled plugins is:
 [pdk]: /gateway/{{page.release}}/plugin-development/pdk
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
-[init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_block
-[ssl_certificate]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
-[rewrite]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
-[access]: https://github.com/openresty/lua-nginx-module#access_by_lua_block
-[header_filter]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua_block
-[body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
-[log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
-[preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
+[`init_worker_by_*`]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_block
+[`ssl_certificate_by_*`]: https://github.com/openresty/lua-nginx-module#ssl_certificate_by_lua_block
+[`rewrite_by_*`]: https://github.com/openresty/lua-nginx-module#rewrite_by_lua_block
+[`access_by_*`]: https://github.com/openresty/lua-nginx-module#access_by_lua_block
+[`header_filter_by_*`]: https://github.com/openresty/lua-nginx-module#header_filter_by_lua_block
+[`body_filter_by_*`]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
+[`log_by_*`]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
+[`preread_by_*`]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
 [enable_buffering]: /gateway/{{page.release}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
-[content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
+[`content_by_*`]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
 
 <!-- vale on -->
