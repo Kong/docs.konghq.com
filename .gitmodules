@@ -1,0 +1,3 @@
+[submodule "app/_src/.repos/kong-plugins"]
+	path = app/_src/.repos/kong-plugins
+	url = https://github.com/Kong/docs-plugin-toolkit.git
