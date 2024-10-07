@@ -1,0 +1,110 @@
+{%- assign hub_example = include.hub_example -%}
+{%- assign kong_manager_fields = hub_example.kong_manager.fields -%}
+
+{% if page.global == false %}
+  {:.important}
+  > This plugin cannot be enabled globally. Please select another tab.
+{% else %}
+
+{% if include.render_intro_text %}
+A plugin which is not associated to any service, route, consumer, or consumer group is
+considered _global_, and will be run on every request.
+
+* In self-managed {{site.ee_product_name}}, the plugin applies to every entity in a given workspace.
+* In self-managed {{site.ce_product_name}}, the plugin applies to your entire environment.
+{% unless page.konnect == false %}* In {{site.konnect_short_name}}, the plugin applies to every entity in a given control plane.
+{% endunless %}
+
+Read the
+[Plugin Reference](/gateway/api/admin-ee/latest/#/Plugins) and the [Plugin Precedence](/gateway/latest/kong-plugins/#precedence)
+sections for more information. 
+
+The following examples provide some typical configurations for enabling
+the <code>{{page.name}}</code> plugin globally.
+{% endif %}
+  {% navtabs %}
+    {% if hub_example.render_curl? %}
+    {% navtab Kong Admin API %}
+
+Make the following request:
+
+{% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
+
+{% include_cached plugins/create-consumer/curl.html hub_example=hub_example %}
+
+    {% endnavtab %}
+    {% endif %}
+
+    {% unless page.konnect == false %}
+    {% if hub_example.render_konnect? %}
+    {% navtab Konnect API %}
+
+Make the following request, substituting your own access token, region, and control plane ID:
+
+{% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
+
+See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
+
+{% include_cached plugins/create-consumer/konnect.html hub_example=hub_example %}
+
+    {% endnavtab %}
+    {% endif %}
+    {% endunless %}
+
+    {% unless page.k8s_examples == false %}
+      {% if hub_example.render_kubernetes? %}
+      {% navtab Kubernetes %}
+
+Create a [KongClusterPlugin](/kubernetes-ingress-controller/latest/references/custom-resources/#kongclusterplugin)
+resource and label it as global:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: <global-{{ hub_example.plugin_name }}>
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: "true"
+config:
+  {%- for line in hub_example.kubernetes.example_config %}
+  {{ line }}{%- endfor %}
+plugin: {{ hub_example.plugin_name }}
+```
+
+{% include_cached plugins/create-consumer/kubernetes.html hub_example=hub_example %}
+
+      {% endnavtab %}
+      {% endif %}
+    {% endunless %}
+
+    {% unless page.yaml_examples == false %}
+      {% if hub_example.render_yaml? %}
+      {% navtab Declarative (YAML) %}
+
+Add a <code>plugins</code> entry in the declarative
+configuration file:
+
+{% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
+
+{% include_cached plugins/create-consumer/yaml.html hub_example=hub_example %}
+
+      {% endnavtab %}
+      {% endif %}
+    {% endunless %}
+
+  {% unless page.terraform_examples == false %}
+    {% if hub_example.render_terraform? %}
+    {% navtab Konnect Terraform %}
+
+  {% include_cached plugins/hub-examples/terraform.html example=hub_example %}
+
+  {% include_cached plugins/create-consumer/terraform.html hub_example=hub_example %}
+
+    {% endnavtab %}
+    {% endif %}
+  {% endunless %}
+
+  {% endnavtabs %}
+{% endif %}

@@ -1,0 +1,10 @@
+```yaml
+plugins:
+- name: {{ include.example.plugin_name }}
+  {% if include.example.type_field -%}
+  {{ include.example.type_field }}
+  {% endif -%}
+  config:
+    {%- for line in include.example.example_config %}
+    {{ line }}{%- endfor %}
+```
