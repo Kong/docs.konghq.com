@@ -1,0 +1,13 @@
+name: TCP Log
+search_aliases:
+  - tcp-log
+dbless_compatible: 'yes'
+free: true
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - logging
+publisher: Kong Inc.
+desc: Send request and response logs to a TCP server

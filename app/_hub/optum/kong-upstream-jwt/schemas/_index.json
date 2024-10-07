@@ -1,0 +1,18 @@
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "consumer_group": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumer_groups"
+      }
+    }
+  ]
+}

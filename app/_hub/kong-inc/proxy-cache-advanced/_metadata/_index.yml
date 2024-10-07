@@ -1,0 +1,15 @@
+name: Proxy Caching Advanced
+search_aliases:
+  - proxy cache
+  - proxy cache advanced
+  - proxy-cache-advanced
+dbless_compatible: 'yes'
+free: false
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - traffic-control
+publisher: Kong Inc.
+desc: Cache and serve commonly requested responses in Kong

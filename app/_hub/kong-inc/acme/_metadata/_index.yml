@@ -1,0 +1,14 @@
+name: ACME
+search_aliases:
+  - let's encrypt
+  - certificates
+dbless_compatible: 'yes'
+free: true
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - security
+publisher: Kong Inc.
+desc: Let's Encrypt and ACMEv2 integration with Kong Gateway
