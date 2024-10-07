@@ -1,0 +1,89 @@
+---
+layout: default
+type: plugin
+---
+
+{% assign extn_versions = page.extn_data['releases'] %}
+
+<!-- BEGIN PAGE OUTPUT -->
+<div class="search-selector">Plugin Hub</div>
+
+<div class="page v2 hub" data-url={{ page.url | replace: '.html', '/' }}>
+  <div class="page--header-background"></div>
+  <div class="container">
+    {% include plugins/header.html
+                      id=page.id
+                      url=page.url
+                      breadcrumbs=page.breadcrumbs
+                      name=page.title
+                      img=page.extn_icon
+                      enterprise=page.enterprise
+                      free=page.free
+                      oss=page.oss
+                      konnect=page.konnect
+                      techpartner=page.techpartner
+                      premiumpartner=page.premiumpartner
+                      extn_publisher=page.extn_publisher
+                      extn_versions=extn_versions
+                      extn_data=page.extn_data
+                      release=page.release
+                      extn_latest=page.extn_latest
+                      versions_dropdown=page.versions_dropdown
+    %}
+
+    {% capture full_content %}
+      {% if extn_versions %}
+        {% unless page.is_latest %}
+            {% if page.release.label %}
+              <blockquote id="version-notice" class="warning no-icon">
+                You are browsing <strong>{{page.release.label}}</strong> documentation.
+            {% else %}
+              <blockquote id="version-notice" class="important">
+              You are browsing documentation for an outdated plugin version.
+            {% endif %}
+              {% capture canonical_exists %}{% page_exists {{ page.canonical_url }} %}{% endcapture %}
+              {% if canonical_exists == true %}
+                See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+              {% endif %}
+            </blockquote>
+        {% endunless %}
+      {% endif %}
+
+      {{ content }}
+    {% endcapture %}
+
+    {% include plugins/sidebar.html sidenav=page.sidenav %}
+
+    {% include plugins/right_nav.html full_content=full_content extn_publisher=page.extn_publisher %}
+
+    <div class="page-content-container v2" id="documentation">
+      <div class="page-content">
+        <div class="content show-anchor-links">
+          {% if page.alpha %}
+            <blockquote class="warning no-icon">
+              This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
+            </blockquote>
+          {% endif %}
+
+          {% if page.beta %}
+            <blockquote class="warning no-icon">
+              This plugin is released as <a href="/gateway/latest/availability-stages/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
+            </blockquote>
+          {% endif %}
+          {{ full_content }}
+          {% include book.html %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="scroll-to-top-button">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+  {% if page.feedback != false %}
+    {% include feedback-widget.html %}
+  {% endif %}
+</div>
+
+{% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
+
+<!-- {% include intercom.html %} -->

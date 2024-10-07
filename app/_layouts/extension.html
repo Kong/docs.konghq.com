@@ -1,480 +1,84 @@
 ---
-layout: default
+layout: plugins/show
 type: plugin
 permalink: :path
 breadcrumbs:
-  Hub: '/hub'
+  Hub: '/hub/'
 
 ---
 
-{% unless page.type == "concept" %}
-{% if page.type == "plugin" %}
-
-{% capture params_table %}
-<table>
-  <thead>
-    <tr>
-      <th style="width: 25%;">Form Parameter</th>
-      <th style="width: 75%;">Description </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>name</code>
-        <br><i>required</i>
-        <br><br><strong>Type: </strong>string</td>
-      <td>The name of the plugin, in this case <code>{{ page.params.name }}</code>.</td>
-    </tr>
-
-    {% if page.params.service_id %}
-      <tr>
-        <td><code>service.id</code>
-          <br><br><strong>Type: </strong>string</td>
-        <td>The ID of the Service the plugin targets.</td>
-      </tr>
-    {% endif %}
-    {% if page.params.route_id %}
-      <tr>
-        <td><code>route.id</code>
-          <br><br><strong>Type: </strong>string</td>
-        <td>The ID of the Route the plugin targets.</td>
-      </tr>
-    {% endif %}
-    {% if page.params.consumer_id %}
-      <tr>
-        <td><code>consumer.id</code>
-          <br><br><strong>Type: </strong>string</td>
-        <td>The ID of the Consumer the plugin targets.</td>
-      </tr>
-    {% endif %}
-      <tr>
-        <td><code>enabled</code>
-          <br><i>required</i>
-          <br><br><strong>Type: </strong>boolean
-          <br><br><strong>Default value: </strong><code>true</code></td>
-        <td>Whether this plugin will be applied.</td>
-      </tr>
-    {% if page.params.api_id %}
-    <tr>
-      <td><code>api_id</code>
-        <br><br><strong>Type: </strong>string</td>
-      <td>The ID of the API the plugin targets.
-        <br><br><strong>Note:</strong> The <a href="/0.13.x/admin-api/#api-object">API Entity</a> is deprecated in favor of Services since <a href="https://github.com/Kong/kong/blob/master/CHANGELOG.md#0130---20180322">CE 0.13.0</a> and <a href="https://docs.konghq.com/gateway/changelog/#0-32">EE 0.32</a>.</td>
-      </tr>
-    {% endif %}
-    {% for field in page.params.config %}
-      {% if_plugin_version gte:field.minimum_version %}
-      {% if field.group %}
-    <tr><td colspan="2"><strong><br><br>{{ field.group | markdownify | strip_html }} {% if field.description %}<br><small>{{ field.description | markdownify | strip_html }}</small>{% endif %}</strong></td></tr>
-      <tr><th>Form Parameter</th><th>Description</th></tr>
-      {% else %}
-      <tr>
-        <td><code>config.{{ field.name }}</code>
-          {% if field.required == true %}<br><em>required</em>{% endif %}
-          {% if field.required == false %}<br><em>optional</em>{% endif %}
-          {% if field.required == "semi" %}<br><em>semi-optional</em>{% endif %}
-          {% if field.datatype != nil %}<br><br><strong>Type: </strong>{{ field.datatype | markdownify | strip_html }}{% endif %}
-          {% if field.default != nil %}<br><br><strong>Default value: </strong><code>{{ field.default | markdownify | strip_html }}</code>{% endif %}
-        </td>
-        <td>
-          <br>{{ field.description | markdownify }}
-          <p>{% if field.encrypted == true %}If <a href="/gateway/latest/plan-and-deploy/security/db-encryption">keyring database encryption</a> is enabled, this value will be encrypted.{% endif %}</p>
-        </td>
-      </tr>
-      {% endif %}
-      {% endif_plugin_version %}
-    {% endfor %}
-  </tbody>
-</table>
-{% endcapture %}
-
-{% endif %}
-
-{% if page.kong_version_compatibility.community_edition %}
-  {% assign compat = true %}
-  {% assign ce_compatible = page.kong_version_compatibility.community_edition.compatible %}
-{% endif %}
-{% if page.kong_version_compatibility.enterprise_edition %}
-  {% assign compat = true %}
-  {% assign ee_compatible = page.kong_version_compatibility.enterprise_edition.compatible %}
-{% endif %}
-
-{% assign extn_type = site.extensions.types | where: "slug", page.type %}
-{% assign extn_type = extn_type[0]['name'] %}
-{% assign path_array = page.path | split: "/" %}
-{% assign extn_slug = path_array[2] %}
-{% assign extn_publisher = path_array[1] %}
-{% capture extn_id %}{{ extn_publisher }}_{{ extn_slug }}{% endcapture %}
-{% capture extn_icon %}/assets/images/icons/hub/{{ extn_id }}.png{% endcapture %}
-{% assign extn_filename = path_array | last %}
-{% assign extn_versions = site.data.extensions[extn_publisher][extn_slug]['versions'] %}
-{% if extn_versions %}
-  {% assign extn_version_latest = extn_versions | first %}
-  {% assign extn_latest = extn_version_latest['release'] %}
-  {% unless extn_filename == "index.md" %}
-    {% assign extn_release = extn_filename | remove: ".md" %}
-    {% assign extn_ver = extn_releases | where: "release", extn_release %}
-    {% assign extn_version = extn_ver[0] %}
-  {% else %}
-    {% assign extn_version = extn_versions | first %}
-    {% assign extn_release = extn_version['release'] %}
-  {% endunless %}
-{% endif %}
+{% unless page.konnect == true %}
+<blockquote class="compatibility">
+  <strong>This plugin is not compatible with Konnect</strong>
+</blockquote>
 {% endunless %}
 
-<!-- BEGIN PAGE OUTPUT -->
-<div class="search-selector">Plugin Hub</div>
-
-<div class="page page-extension-profile">
-  {% if page.header_icon or page.header_title %}
-    {% include_cached header.html is_latest=page.is_latest id=page.id url=page.url breadcrumbs=page.breadcrumbs type=extn_type name=page.header_title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
-  {% elsif page.type == concept %}
-    {% include_cached header.html is_latest=page.is_latest id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.title img=page.header_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
-  {% else %}
-    {% include_cached header.html is_latest=page.is_latest id=page.id url=page.url breadcrumbs=page.breadcrumbs name=page.name img=extn_icon plus=page.plus enterprise=page.enterprise publisher=page.publisher extn_filename=extn_filename extn_versions=extn_versions extn_publisher=extn_publisher extn_slug=extn_slug %}
-  {% endif %}
-
-  <div class="container">
-
-    {% capture full_content %}
-    {% if page.type == "plugin" or page.type == "integration" %}
-      {% unless path_array contains "kong-inc" %}
-        <div class="alert alert-info blue" role="alert">
-          Community {{ extn_type | capitalize }}: This plugin is <b>developed, tested, and maintained</b> by a third-party contributor.
-        </div>
-      {% endunless %}
+{% unless page.extn_publisher == "kong-inc" %}
+    {% if page.techpartner or page.premiumpartner %}
+      <blockquote class="partner-plugin no-icon">
+        <b>Partner Plugin:</b> This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
+    {% else %}
+      <blockquote class="community-plugin no-icon">
+        <b>Contact 3rd party for support:</b> This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
     {% endif %}
-      {% if page.alpha %}
-      <blockquote class="warning no-icon">
-        This plugin is released as a <a href="/konnect-platform/key-concepts/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
-      </blockquote>
-      {% endif %}
-      {% if page.beta %}
-      <blockquote class="warning no-icon">
-        This plugin is released as <a href="/konnect-platform/key-concepts/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
-      </blockquote>
-      {% endif %}
-
-      {{ page.description | markdownify }}
-
-      {% if page.installation %}
-        <hr>
-        <h2 id="installation">Installation</h2>
-
-        {{ page.installation | markdownify }}
-
-        <hr>
-      {% endif %}
-
-      {% unless extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
-
-      {% if page.type == "plugin" and page.params %}
-        <h2 id="configuration">Configuration Reference</h2>
-
-        {% if page.params.dbless_compatible == "yes" %}
-          <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
-        {% elsif page.params.dbless_compatible == "partially" %}
-          <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
-        {% elsif page.params.dbless_compatible != nil %}
-          <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
-        {% endif %}
-        {% if page.params.dbless_compatible == "partially" or page.params.dbless_compatible == "yes" %}
-          <p>In DB-less mode, you configure {{site.base_gateway}}
-            <a href="/gateway/latest/reference/db-less-and-declarative-config">declaratively</a>.
-            Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
-            related to handling the declarative config, including: </p>
-            <ul>
-              <li>Setting a target's health status in the load balancer</li>
-              <li>Validating configurations against schemas</li>
-              <li>Uploading the declarative configuration using the <code>/config</code> endpoint</li>
-            </ul>
-        {% endif %}
-
-        {% if page.params.dbless_explanation %}
-          {{ page.params.dbless_explanation | markdownify }}
-        {% endif %}
-
-        {% if page.params.examples != false %}
-          {% include_cached hub-examples.html version=page.version params=page.params publisher=page.publisher name=page.name %}
-        {% endif %}
-
-        <h3 id="parameters">Parameters</h3>
-
-        <p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
-
-        {{ params_table | markdownify }}
-
-      {% endif %}
-
-      {{ page.params.extra | markdownify }}
-
-      {% if extn_publisher == "kong-inc" %}{{ content }}{% endif %}
-
-      {% if page.terms_of_service %}
-        <h3 id="terms-of-service">Terms of Service</h3>
-        {{ page.terms_of_service | markdownify }}
-      {% endif %}
-
-      {% if page.privacy_policy %}
-        <h3 id="privacy-policy">Privacy Policy</h3>
-        {{ page.privacy_policy | markdownify }}
-      {% endif %}
-    {% endcapture %}
-
-    <aside class="docs-toc{% if extn_versions %} with-dropdown{% endif %}" id="plugin-toc" >
-
-    {% if extn_versions %}
-      <div class="versions-dropdown dropdown page-header-right">
-        <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-          {{extn_type | capitalize }} Version {{extn_release}}
-          {% if extn_release == extn_latest %}<em>(latest)</em>{% endif %}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
-          {% for ver in extn_versions %}
-            {% if ver.release == extn_latest %}
-              {% assign ver_path = "" %}
-            {% else %}
-              {% assign ver_path = ver.release | append: ".html" %}
-            {% endif %}
-            <li {% if extn_release == ver.release %} class="active" {% endif %}>
-              <a href="/hub/{{ extn_publisher }}/{{ extn_slug }}/{{ ver_path }}">
-                {{ver.release}} {% if ver.release == extn_latest %}<em>(latest)</em>{% endif %}
-              </a>
-            </li>
-          {% endfor %}
+        <ul>
+          {% if page.source_code %}<li><a href="{{page.source_code}}">Source code</a></li>{% endif %}
+          {% if page.support_url %}<li><a href="{{page.support_url}}">Support</a></li>{% endif %}
         </ul>
-      </div>
-    {% endif %}
+      </blockquote>
+{% endunless %}
 
-      <div class="github-links">
-        <p>
-          <a href="/hub"><i class="fa fa-chevron-left"></i>Back to Kong Plugin Hub</a>
-        </p>
-        <p>
-          <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{page.path}}" target="_blank">
-            <img src="/assets/images/logos/logo-github.svg" alt="github-edit-page"/>Edit this page</a>
-        </p>
-        <p>
-          <a href="https://github.com/Kong/docs.konghq.com/issues" target="_blank">
-            <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
-        </p>
-      </div>
-      {% unless page.toc == false %}
-        {% include_cached toc.html html=full_content anchor_class="scroll-to" h_min=2 h_max=3 %}
-      {% endunless %}
+{% if page.bundled == false or page.bundled == false %}
+  <blockquote class="important">
+    <details class="custom collapsible-note">
+    <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it</summary>
 
-      {% if page.type == "plugin" or page.type == "integration" %}
-      <div class="about-extn-table">
-      <table id="about-extn">
-        <tr>
-          <th colspan="2">About this {{ extn_type | capitalize }}</th>
-        </tr>
-        <tr class="publisher">
-          <td>Made by</td>
-          <td>
-          {% unless extn_publisher == "kong-inc" %}
-            {{ page.publisher }}
-          {% else %}
-            <img src="/assets/images/KogoBlue.svg" alt="Kong-logo"/> {{site.company_name}}
-          {% endunless %}
-          </td>
-        </tr>
-        <tr class="categories">
-          <td>Categories</td>
-          <td>
-            <ul class="categories">
-            {% for cat in page.categories %}
-              {% assign cat_meta = site.extensions.categories | where: "slug", cat %}
-              <li><a href="/hub/#{{ cat_meta[0].slug}}">{{ cat_meta[0].name }}</a>{% unless forloop.last %},{% endunless %}</li>
-            {% endfor %}
-            </ul>
-          </td>
-        </tr>
-        {% unless page.params.dbless_compatible == nil %}
-        <tr>
-          <td>DB-less compatible?</td>
-          <td>
-            <a href="/konnect-platform/compatibility/plugins">{% if page.params.dbless_compatible == "yes" or page.params.dbless_compatible == true %}Yes{% endif %}{%
-              if page.params.dbless_compatible == "no" or page.params.dbless_compatible == false %}No{% endif %}{%
-              if page.params.dbless_compatible == "partially" %}Partially{% endif %}</a>
-          </td>
-        </tr>
-        {% endunless %}
-        {% if extn_publisher == "kong-inc" %}
-        <tr>
-          <td>Konnect tier</td>
-          <td>
-            <a href="https://konghq.com/pricing" {%
-              if page.plus %}class="badge plus" aria-label="available with plus subscription"{%
-              elsif page.enterprise %}class="badge enterprise" aria-label="available with enterprise subscription"{%
-              elsif page.oss %}class="badge oss" aria-label="open-source only"{%
-              else %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>Konnect Cloud</td>
-          <td>
-            {% if page.cloud == false %} Not available{%
-            elsif extn_release == extn_latest %}Available{%
-              else %}See latest plugin version for availability{% endif %}
-          </td>
-        </tr>
-        {% endif %}
-        {% if page.params.protocols %}
-        <tr>
-          <td>Compatible protocols</td>
-          <td>
-              {% for protocol in page.params.protocols %}
-                <div class="protocol">
-                  <code>{{ protocol }}</code>
-                </div>
-              {% endfor %}
-          </td>
-        </tr>
-        {% endif %}
-        {% if page.support_url %}
-          {% assign support_dom = page.support_url | split: "/" %}
-          {% assign support_dom = support_dom[2] | remove: "www." | remove: "support." | remove: "help." | remove: "docs." %}
-          {% if support_dom.length > 20 %}{% assign support_dom = "Site" %}{% endif %}
-          <tr>
-            <td>Support</td>
-            <td><a href="{{ page.support_url }}">{{ support_dom | truncate: 15 }}</a></td>
-          </tr>
-        {% endif %}
-        {% if page.source_url or page.license_type %}
-          <tr class="source-code">
-            <td>Source</td>
-            <td>
-              <ul>
-              {% if page.source_url %}
-                <li>
-                  <a href="{{ page.source_url }}">Code</a>
-                </li>
-              {% endif %}
-              {% if page.license_type %}
-                <li>
-                  <a href="https://opensource.org/licenses/{{ page.license_type }}">License ({{ page.license_type }})</a>
-                </li>
-              {% endif %}
-              </ul>
-            </td>
-          </tr>
-        {% endif %}
-        {% if page.privacy_policy_url or page.privacy_policy or page.terms_of_service or page.terms_of_service_url %}
-          {% if page.privacy_policy_url %}
-            {% assign privacy = page.privacy_policy_url %}
-          {% elsif page.privacy_policy %}
-            {% assign privacy = "#privacy-policy" %}
-          {% endif %}
-          {% if page.terms_of_service_url %}
-            {% assign tos = page.terms_of_service_url %}
-          {% elsif page.terms_of_service %}
-            {% assign tos = "#terms-of-service" %}
-          {% endif %}
-          <tr class="legal">
-            <td>Legal</td>
-            <td>
-              <ul>
-                {% if privacy %}
-                  <li>
-                    <a href="{{privacy}}">Privacy</a>
-                  </li>
-                {% endif %}
-                {% if tos %}
-                  <li>
-                    <a href="{{tos}}">Terms of Service</a>
-                  </li>
-                {% endif %}
-              </ul>
-            </td>
-          </tr>
-        {% endif %}
-        {% if compat %}
-          <tr class="kong-editions">
-            <th colspan="2">
-                Version Compatibility
-            </th>
-          </tr>
-          <tr class="kong-compatibility">
-            <td colspan="2">
-              <ul class="compat-list">
-              {% for v in site.data.kong_versions_gateway reversed %}
-                {% if ee_compatible contains v.release %}
-                  {% unless first_ee %}
-                  <span class="compat-label">{{site.ee_product_name}}</span>{% assign first_ee = true %}
-                  {% endunless %}
-                  <li>
-                  {% if ee_compatible contains v.release %}
-                    <i class="fa fa-check"></i>
-                  {% endif %}{{ v.release }}
-                  </li>
-                {% endif %}
-              {% endfor %}
-              {% for v in site.data.kong_versions_ee reversed %}
-                {% if ee_compatible contains v.release %}
-                  {% unless first_ee %}
-                  <span class="compat-label">{{site.ee_product_name}}</span>{% assign first_ee = true %}
-                  {% endunless %}
-                  <li>
-                  {% if ee_compatible contains v.release %}
-                    <i class="fa fa-check"></i>
-                  {% endif %}{{ v.release }}
-                  </li>
-                {% endif %}
-              {% endfor %}
-              </ul><ul class="compat-list">
-              {% for v in site.data.kong_versions_gateway reversed %}
-                {% if ce_compatible contains v.release %}
-                  {% unless first_ce %}
-                    <span class="compat-label">{{site.ce_product_name}}</span>{% assign first_ce = true %}
-                  {% endunless %}
-                  <li>
-                  {% if ce_compatible contains v.release %}
-                    <i class="fa fa-check"></i>
-                  {% endif %}{{ v.release }}
-                  </li>
-                {% endif %}
-              {% endfor %}
-              {% for v in site.data.kong_versions_ce reversed %}
-                {% if ce_compatible contains v.release %}
-                  {% unless first_ce %}
-                    <span class="compat-label">{{site.ce_product_name}}</span>{% assign first_ce = true %}
-                  {% endunless %}
-                  <li>
-                  {% if ce_compatible contains v.release %}
-                    <i class="fa fa-check"></i>
-                  {% endif %}{{ v.release }}
-                  </li>
-                {% endif %}
-              {% endfor %}
-              </ul>
-            </td>
-          </tr>
-        {% endif %}
-      </table>
-      </div>
-      {% endif %}
-    </aside>
+    <ul>
+      <li>Package install: Set <strong>plugins=bundled,{{ page.extn_slug }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
+      <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.extn_slug }}</strong> in the environment</li>
+      <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.extn_slug }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
+    </ul>
+    </details>
+  </blockquote>
+{% endif %}
 
-    <div class="page-content-container">
-      <div class="page-content">
-        <div class="content show-anchor-links">
-          {{ full_content }}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="scroll-to-top-button">
-    <i class="fas fa-chevron-up"></i>
-  </div>
-  {% if page.feedback != false %}
-  {% include feedback-widget.html %}
-  {% endif %}
-</div>
+{% if page.extn_publisher == "kong-inc" and page.schema.defined? %}
+<blockquote>
+  <p>
+    <em>Looking for the plugin's configuration parameters? You can find them in the <a href="{{ page.configuration_url }}">{{page.name}} configuration reference</a> doc.</em>
+  </p>
+</blockquote>
+{% endif %}
 
-{% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
+{% if page.installation %}
+  <hr>
+  <h2 id="installation">Installation</h2>
 
-<!-- {% include intercom.html %} -->
+  {{ page.installation | markdownify }}
+
+  <hr>
+{% endif %}
+
+{% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
+
+{% if page.extn_publisher == "kong-inc" %}
+{{ content }}
+
+{% if page.kong_beta %}
+<p>
+  <em style="color: rgb(73, 78, 80)">
+  This plugin is in beta. <a href="https://github.com/Kong/kong/discussions">Let us know what you think</a> on GitHub.
+  </em>
+</p>
+{% endif %}
+{% endif %}
+
+{% if page.terms_of_service %}
+  <h3 id="terms-of-service">Terms of Service</h3>
+  {{ page.terms_of_service | markdownify }}
+{% endif %}
+
+{% if page.privacy_policy %}
+  <h3 id="privacy-policy">Privacy Policy</h3>
+  {{ page.privacy_policy | markdownify }}
+{% endif %}

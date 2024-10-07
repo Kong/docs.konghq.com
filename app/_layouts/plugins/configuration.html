@@ -1,0 +1,39 @@
+---
+layout: plugins/show
+type: plugin
+---
+
+<h2 id="configuration">Configuration</h2>
+
+{% if page.dbless_compatible == "yes" or page.dbless_compatible == true %}
+  <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
+{% elsif page.dbless_compatible == "partially" %}
+  <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
+{% elsif page.dbless_compatible != nil %}
+  <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
+{% endif %}
+
+{% if page.dbless_explanation %}
+  {{ page.dbless_explanation | markdownify }}
+{% endif %}
+
+{% if page.schema.protocols %}
+  {% assign protocols = page.schema.protocols %}
+  {% if protocols.elements %}
+    {% assign one_of = protocols.elements['one_of'] %}
+    {% if one_of %}
+      <h3>Compatible protocols</h3>
+      <p>The {{ page.name }} plugin is compatible with the following protocols:</p>
+      <p>
+        {%- for value in one_of %} <code>{{ value }}</code>{% unless forloop.last %},{% endunless %}{%- endfor -%}
+      </p>
+      </span>
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+<h3 id="parameters">Parameters</h3>
+
+<p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
+
+{% include plugins/schema.html %}
