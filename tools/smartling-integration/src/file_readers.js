@@ -85,6 +85,22 @@ async function docsNavFiles(productConfig) {
 }
 
 async function appSrcFiles(productConfig) {
+  const excludeFilePath = (filePath) => {
+    const excludedPatterns = [
+      path.join('app', '_src', 'gateway', 'reference', 'cli.md'),
+      path.join('app', '_src', 'gateway', 'reference', 'configuration') + '/*.md',
+      path.join('app', '_src', 'gateway', 'admin-api', 'admin-api-*.md'),
+    ];
+
+    return excludedPatterns.some(pattern => {
+      if (pattern.includes('*')) {
+        const regexPattern = new RegExp(pattern.replace(/\*/g, '.*'));
+        return regexPattern.test(filePath);
+      }
+      return filePath === pattern;
+    });
+  };
+
   try {
     let srcPath = 'app/_src';
     const { product, versions } = productConfig;
@@ -107,8 +123,11 @@ async function appSrcFiles(productConfig) {
       console.log(`   ${path.join(srcPath, dir)}`);
       let files = await fg('**/*', { cwd: path.resolve(__dirname, '../../../', srcPath, dir), onlyFiles: true });
       srcFiles.push(...files.map((file) => {
-        return path.join(srcPath, dir, file);
-      }));
+        const filePath = path.join(srcPath, dir, file);
+        if (!excludeFilePath(filePath)) {
+          return filePath;
+        }
+      }).filter(Boolean));
     }
     return srcFiles;
   } catch (e) {
