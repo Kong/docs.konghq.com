@@ -1,0 +1,34 @@
+<details markdown="1">
+  <summary><strong>Prerequisite:</strong> Configure your Personal Access Token</summary>
+
+```hcl
+terraform {
+  required_providers {
+    konnect = {
+      source  = "kong/konnect"
+    }
+  }
+}
+
+provider "konnect" {
+  personal_access_token = "kpat_YOUR_TOKEN"
+  server_url            = "https://us.api.konghq.com/"
+}
+```
+</details>
+
+Add the following to your Terraform configuration to create a Konnect Gateway Plugin:
+
+{% assign plugin_name = include.example.plugin_name | replace: "-","_" %}
+```hcl
+resource "konnect_gateway_plugin_{{ plugin_name }}" "my_{{ plugin_name }}" {
+  enabled = true
+
+  {{ include.example.terraform }}
+  control_plane_id = konnect_gateway_control_plane.my_konnect_cp.id{% if include.parent %}
+  {{ include.parent }} = {
+    id = konnect_gateway_{{ include.parent }}.my_{{ include.parent }}.id
+  }
+{%- endif %}
+}
+```

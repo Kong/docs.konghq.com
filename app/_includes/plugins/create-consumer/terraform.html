@@ -1,0 +1,27 @@
+{% if include.hub_example.auth_plugin? %}
+
+As this is an auth plugin, you need to create a consumer and attach a credential to it.
+
+Create a consumer:
+
+```bash
+resource "konnect_gateway_consumer" "alex" {
+  username         = "alex"
+  custom_id        = "alex-custom"
+  control_plane_id = konnect_gateway_control_plane.my_konnect_cp.id
+}
+```
+
+Create a {{ include.hub_example.plugin_name }} credential attached to this consumer:
+
+{% assign plugin_name = include.hub_example.plugin_name | replace: "-","_" %}
+```hcl
+resource "konnect_gateway_{{ plugin_name }}" "my_{{ plugin_name }}" {
+{%- for field in include.hub_example.auth_fields %}
+  {{ field[0] }} = {{ field[1] | quote }}{% endfor %}
+
+  consumer_id      = konnect_gateway_consumer.alex.id
+  control_plane_id = konnect_gateway_control_plane.my_konnect_cp.id
+}
+```
+{% endif %}
