@@ -1,4 +1,4 @@
-module PluginSingleSource
+module OldPluginHub
   class Generator < Jekyll::Generator
     priority :highest
     def generate(site)
@@ -13,8 +13,8 @@ module PluginSingleSource
       end
 
       # Add any files that did not have a corresponding versions.yml
-      Dir.glob('app/_hub/*/*/_index.md').each do|f|
-        name = f.gsub("app/_hub/", "").gsub("/_index.md","")
+      Dir.glob('app/_hub_old/*/*/_index.md').each do|f|
+        name = f.gsub("app/_hub_old/", "").gsub("/_index.md","")
         next if seen.include?(name)
         createPages([{'release' => "1.0.0"}], site, name) # If there's no version, assume it's 1.0.0
       end
@@ -39,7 +39,7 @@ module PluginSingleSource
         end
 
         plugin = name.split("/")
-        sourcePath = "app/_hub/#{name}/#{source}.md"
+        sourcePath = "app/_hub_old/#{name}/#{source}.md"
 
         # Add the index page rendering if we're on the latest release too
         permalink = v['release']
@@ -88,7 +88,7 @@ module PluginSingleSource
       @data['permalink'] = @dir + "/" + permalinkName + ".html"
 
       # Set the layout if it's not already provided
-      @data['layout'] = 'extension' unless self.data['layout']
+      @data['layout'] = 'extension-old' unless self.data['layout']
     end
   end
 end
