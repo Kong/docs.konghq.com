@@ -64,7 +64,7 @@ You can see your correlation ID in the Nginx access log if you edit your Nginx l
 To edit your Nginx parameters, do the following:
 
 1. Locate [{{site.base_gateway}}'s template files](/gateway/latest/reference/configuration/#custom-nginx-templates) and make a copy of `nginx_kong.lua`.
-1. Add a `log_format` section on the root level of the config file which includes the
+1. Add a `log_format` section inside the `http` context of the config file and include the
   `$http_Kong_Request_ID` variable.
 
    In the following example, we create a new log format named `customformat`.
@@ -75,11 +75,17 @@ To edit your Nginx parameters, do the following:
    [variables](http://nginx.org/en/docs/http/ngx_http_log_module.html):
 
    ```
-   log_format customformat '$remote_addr - $remote_user [$time_local] '
-                 '"$request" $status $body_bytes_sent  '
-                 '"$http_referer" "$http_user_agent" '
-                 'Kong-Request-ID="$http_Kong_Request_ID"';
+   http {
+      log_format customformat '$remote_addr - $remote_user [$time_local] '
+                  '"$request" $status $body_bytes_sent  '
+                  '"$http_referer" "$http_user_agent" '
+                  'Kong-Request-ID="$http_Kong_Request_ID"';
+   }
    ```
+
+   {:.note}
+   > **Note**: The `log_format` directive must be added inside the [HTTP context of the Nginx configuration file](/gateway/latest/production/logging/customize-gateway-logs/). 
+   Otherwise, {{site.base_gateway}} will fail on startup due to invalid configuration.
 
 1. Use your custom log format for the proxy access log phase. Locate the following line:
 
@@ -110,9 +116,6 @@ To edit your Nginx parameters, do the following:
 
    You should now see Correlation ID entries in the access log.
 
-
-{:.note}
-> **Note**: The `log_format` directive must be added inside the HTTP context of the Nginx configuration file. Failing to do so may cause Kong to fail on startup due to invalid Nginx configuration.
 
 Learn more in [Custom Nginx templates & embedding Kong](/gateway/latest/reference/configuration/#custom-nginx-templates--embedding-kong).
 
