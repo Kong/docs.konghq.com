@@ -2,7 +2,7 @@
 
 module Jekyll
   class Versions < Jekyll::Generator # rubocop:disable Metrics/ClassLength
-    priority :high
+    priority :highest
 
     def generate(site) # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/AbcSize
       ce_versions = site.data['kong_versions'].select do |elem|

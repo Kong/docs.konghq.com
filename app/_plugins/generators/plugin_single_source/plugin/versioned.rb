@@ -37,9 +37,8 @@ module PluginSingleSource
         min, max = data['releases'].values_at('minimum_version', 'maximum_version')
         raise ArgumentError, '`releases` must have a `minimum_version` version set' unless min
 
-        site.data.dig('editions', 'gateway')
-            .releases
-            .map(&:value)
+        site.data['kong_versions_gateway']
+            .map { |r| r['release'] }
             .select { |v| Gem::Version.new(v) >= Gem::Version.new(min) }
             .select { |v| max.nil? || Gem::Version.new(v) <= Gem::Version.new(max) }
       end
