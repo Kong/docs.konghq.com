@@ -55,7 +55,13 @@ module PluginSingleSource
       end
 
       def source_file
-        @source_file ||= i18n_file.relative_file_path
+        @source_file ||= if @site.config['locale'] == I18n.default_locale.to_s
+                           i18n_file.relative_file_path
+                         elsif @release.missing_translation? # rubocop:disable Lint/DuplicateBranch
+                           i18n_file.relative_file_path
+                         else
+                           i18n_file.full_file_path_in_locale
+                         end
       end
 
       def base_url
