@@ -43,7 +43,6 @@ module OldPluginHub
 
         # Add the index page rendering if we're on the latest release too
         permalink = v['release']
-        permalink = "index" if current_version == max_version
 
         page = SingleSourcePage.new(site, v['release'], plugin[0], plugin[1], source, sourcePath, permalink, set_version)
         site.pages << page
