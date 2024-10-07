@@ -16,9 +16,16 @@ module PluginSingleSource
       end
 
       def nav_title
-        @nav_title ||= ::Utils::FrontmatterParser
-                       .new(File.read(File.expand_path(@file, @source_path)))
-                       .frontmatter.fetch('nav_title', 'Missing nav_title')
+        @nav_title ||= begin
+          file_path = if @release.missing_translation?
+                        i18n_file.full_file_path_in_default_locale
+                      else
+                        i18n_file.full_file_path_in_locale
+                      end
+          ::Utils::FrontmatterParser
+            .new(File.read(file_path))
+            .frontmatter.fetch('nav_title', 'Missing nav_title')
+        end
       end
 
       def file_to_url_segment
