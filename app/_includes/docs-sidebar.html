@@ -20,7 +20,7 @@
           {% elsif include.edition == 'deck' %}decK
           {% elsif include.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
           {% elsif include.edition == 'gateway-oss' %}Kong Gateway OSS [ARCHIVE]
-          {% elsif include.edition == 'gateway' %}{{site.base_gateway}}
+          {% elsif include.edition == 'gateway' %}{{site.base_gateway}} [ARCHIVE]
           {% elsif include.edition == 'getting-started-guide' %}Get Started with Kong Gateway
           {% elsif include.edition == 'contributing' %}Contribution guidelines
           {% endif %}
@@ -29,11 +29,14 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-right with-submenu" id="module-list" role="menu" aria-labelledby="module-dropdown" aria-hidden="true">
 
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway' %}class="active"{% endif %}>
+          <a href="/gateway/3.0.x/" {% if include.edition == 'gateway' %}class="active"{% endif %}>Kong Gateway [ARCHIVE]</a>
+        </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'enterprise' %}class="active"{% endif %}>
-          <a href="/enterprise/2.5.x/" {% if include.edition == 'enterprise' %}class="active"{% endif %}>Kong Enterprise [ARCHIVE]</a>
+          <a href="/enterprise/2.5.x/" {% if include.edition == 'enterprise' %}class="active"{% endif %}>Kong Enterprise [ARCHIVE] pre-2.6</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>
-          <a href="/gateway-oss/2.5.x/" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>Kong Gateway OSS [ARCHIVE]</a>
+          <a href="/gateway-oss/2.5.x/" {% if include.edition == 'gateway-oss' %}class="active"{% endif %}>Kong Gateway OSS [ARCHIVE] pre-2.6</a>
         </li>
         <li role="menuitem" tabindex="-1">
           <a href="https://docs.konghq.com/gateway/">Latest Kong Gateway <br>documentation</a>
