@@ -45,32 +45,54 @@ jQuery(function () {
       });
   });
 
-// Function to close menus on pressing the "Escape" key
-  function closeDropdownOnEscape () {
-    if (event.key === 'Escape') {
-      $('#module-list').removeClass('open');
-      $('#version-list').removeClass('open');
-    }
-  };
-
   // MODULE DROPDOWN: dropdown menu functionality (handles main product dropdown)
-
-  // Actions that occur on click and escape button press
-  $('#module-dropdown').on('click', function (e) {
+  $('.dropdown-button').on('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
+    var dropdownMenu = $(e.currentTarget).next('.dropdown-menu')[0];
 
-    $('#module-list').toggleClass('open');
-    $('#version-list').removeClass('open');
-
-    $(document).one('click', function closeMenu(e) {
-      if ($('#module-list').has(e.target).length === 0) {
-        $('#module-list').removeClass('open');
-      } else {
-        $(document).one('click', closeMenu);
+    $(".dropdown-menu").each(function(_index, element) {
+      if (element !== dropdownMenu) {
+        $(element).removeClass("open");
       }
-    }).on('keypress keydown', function(e) {
-        closeDropdownOnEscape()
+    });
+    $(dropdownMenu).toggleClass("open");
+
+    $(document)
+      .one("click", function closeMenu(e) {
+        if ($(".dropdown-menu").has(e.currentTarget).length === 0) {
+          $(".dropdown-menu").removeClass("open");
+        } else {
+          $(document).one("click", closeMenu);
+        }
+      })
+      .on("keypress keydown", function (e) {
+        closeDropdownOnEscape();
+      });
+  });
+
+  // Function to close menus on pressing the "Escape" key
+  function closeDropdownOnEscape() {
+    if (event.key === "Escape") {
+      $(".dropdown-menu").removeClass("open");
+    }
+  }
+
+  // TODO: move this
+  // Enables tabbing through the version menu
+  $(".dropdown-button:not(#version-dropdown)").on("keypress keydown", function (e) {
+    if (e.keyCode == 13) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      $(e.currentTarget).next('.dropdown-menu')
+        .toggleClass("open")
+        .setAttribute("aria-hidden", "false")
+        .setAttribute("aria-expanded", "true");
+      return false;
+    }
+    $(document).on("keypress keydown", function (e) {
+      closeDropdownOnEscape();
     });
   });
 
@@ -108,41 +130,6 @@ jQuery(function () {
     });
   });
 
-  // VERSION DROPDOWN: dropdown menu functionality (handles plugin detail page, lua, and main versions dropdown)
-  $('#version-dropdown').on('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    $('#version-list').toggleClass('open');
-    $('#module-list').removeClass('open');
-
-    $(document).one('click', function closeMenu(e) {
-      if ($('#version-list').has(e.target).length === 0) {
-        $('#version-list').removeClass('open');
-      } else {
-        $(document).one('click', closeMenu);
-      }
-    }).on('keypress keydown', function(e) {
-        closeDropdownOnEscape()
-    });
-  });
-
-  // Enables tabbing through the version menu
-  $('#version-dropdown').on('keypress keydown', function(e) {
-    if(e.keyCode == 13) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    $('#version-list')
-      .toggleClass('open')
-      .setAttribute('aria-hidden', 'false')
-      .setAttribute('aria-expanded', 'true');
-    return false;
-    }
-    $(document).on('keypress keydown', function(e) {
-      closeDropdownOnEscape ()
-    });
-  });
 
   // COMPAT DROPDOWN: dropdown menu functionality (handles /konnect-platform/compatibility dropdown)
   $("#compat-dropdown").on("click", function(e) {
@@ -334,78 +321,6 @@ jQuery(function () {
       600
     ); // Adjust scroll speed
   }
-
-// Plugins filter on click
-$("a[data-filter]").on("click", function () {
-  $("html, body").animate({ scrollTop: 0 });
-  var target = $(this).data("filter");
-  console.log(this);
-
-  // Remove any active classes that may already be applied
-  $("a[data-filter]").removeClass("active");
-  // Add active class sidebar a
-  $(this).addClass("active");
-
-  // For all faded cards, replace href with data-href target
-  $(".card-group.fadeOut").each(function () {
-    var link = $(this).find("a");
-    link.attr("href", $(link).attr("data-href"));
-    link.removeAttr("data-href");
-  });
-
-  // Remove any fade states that may already be applied
-  $(".card-group").removeClass("fadeOut");
-
-  // If the target of the li is not all continue
-  if (target !== "all") {
-    // Fade all cards that don't have matching filter
-    $(".card-group")
-      .not("." + target)
-      .addClass("fadeOut");
-    // For each faded card, move href to data-href and remove href
-    $(".card-group.fadeOut").each(function () {
-      var link = $(this).find("a");
-      link.attr("data-href", $(link).attr("href"));
-      link.removeAttr("href");
-    });
-  }
-});
-
-// Plugin filter on keypress
-$("a[data-filter]").on("keypress", function(e) {
-  if (e.keyCode === 13) {
-    $("html, body").animate({ scrollTop: 0 });
-    var target = $(this).data("filter");
-
-    // Remove any active classes that may already be applied
-    $("a[data-filter]").removeClass("active");
-    // Add active class sidebar a
-    $(this).addClass("active");
-
-    // For all faded cards, replace href with data-href target
-    $(".card-group.fadeOut").each(function () {
-      var link = $(this).find("a");
-      link.attr("href", $(link).attr("data-href"));
-      link.removeAttr("data-href");
-    });
-
-    // Remove any fade states that may already be applied
-    $(".card-group").removeClass("fadeOut");
-
-    // If the target of the li is not all continue
-    if (target !== "all") {
-      // Fade all cards that don't have matching filter
-      $(".card-group")
-        .not("." + target)
-        .addClass("fadeOut");
-      // For each faded card, move href to data-href and remove href
-      $(".card-group.fadeOut").each(function () {
-        var link = $(this).find("a");
-        link.attr("data-href", $(link).attr("href"));
-        link.removeAttr("href");
-      });
-    }
-}});
 
   // Responsive Tables
   if ($window.width() <= 1099) {
