@@ -58,6 +58,22 @@ async function getFilesListForJob(projectId, jobId) {
   }
 }
 
+const excludeFileUri = (filePath) => {
+  const excludedPatterns = [
+    path.join('app', '_src', 'gateway', 'reference', 'cli.md'),
+    path.join('app', '_src', 'gateway', 'reference', 'configuration') + '/*.md',
+    path.join('app', '_src', 'gateway', 'admin-api', 'admin-api-*.md'),
+  ];
+
+  return excludedPatterns.some(pattern => {
+    if (pattern.includes('*')) {
+      const regexPattern = new RegExp(pattern.replace(/\*/g, '.*'));
+      return regexPattern.test(filePath);
+    }
+    return filePath === pattern;
+  });
+};
+
 // Run this only if the Job is Completed
 async function downloadFiles() {
   try {
@@ -65,29 +81,31 @@ async function downloadFiles() {
     const filesUris = await getFilesListForJob(projectId, jobId);
 
     for (let fileUri of filesUris) {
-      const downloadFileParams = new DownloadFileParameters()
-        .setRetrievalType(RetrievalType.PUBLISHED);
+      if (!excludeFileUri(fileUri)) {
+        const downloadFileParams = new DownloadFileParameters()
+          .setRetrievalType(RetrievalType.PUBLISHED);
 
-      let downloadedFileContent = await handleRateLimiting(filesApi.downloadFile.bind(filesApi), projectId, fileUri, locale, downloadFileParams);
+        let downloadedFileContent = await handleRateLimiting(filesApi.downloadFile.bind(filesApi), projectId, fileUri, locale, downloadFileParams);
 
-      // post-processing
-      if (path.extname(fileUri) === '.md') {
-        downloadedFileContent = processMarkdown(downloadedFileContent);
-      } else if (fileUri.startsWith('app/_data/tables/support/gateway/versions')) {
-        downloadedFileContent = processSupportedVersions(downloadedFileContent);
-      } else if (fileUri.endsWith('config/locales/en.yml')) {
-        fileUri = fileUri.replace('en.yml', `${locale}.yml`)
+        // post-processing
+        if (path.extname(fileUri) === '.md') {
+          downloadedFileContent = processMarkdown(downloadedFileContent);
+        } else if (fileUri.startsWith('app/_data/tables/support/gateway/versions')) {
+          downloadedFileContent = processSupportedVersions(downloadedFileContent);
+        } else if (fileUri.endsWith('config/locales/en.yml')) {
+          fileUri = fileUri.replace('en.yml', `${locale}.yml`)
+        }
+
+        const filePath = path.join(translatedContentPath, locale, fileUri);
+        const dir = path.dirname(filePath);
+
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
+        fs.writeFileSync(filePath, downloadedFileContent);
+
+        console.log(`Downloaded ${fileUri}`);
       }
-
-      const filePath = path.join(translatedContentPath, locale, fileUri);
-      const dir = path.dirname(filePath);
-
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-      fs.writeFileSync(filePath, downloadedFileContent);
-
-      console.log(`Downloaded ${fileUri}`);
     }
   } catch (e) {
     console.log(e);
