@@ -9,6 +9,7 @@ items:
       - text: Overview of Kong Gateway
         url: /gateway/3.0.x/
         absolute_url: true
+        src: /gateway/
       - text: Support
         items:
           - text: Version Support Policy
