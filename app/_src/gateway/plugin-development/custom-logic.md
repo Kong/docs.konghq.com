@@ -45,17 +45,17 @@ of {{site.base_gateway}}'s execution life-cycle:
 | Function name       | Kong Phase        | Nginx Directives         | Request Protocol              | Description
 |---------------------|-------------------|--------------------------|-------------------------------|------------
 | `init_worker`       | `init_worker`     | [`init_worker_by_*`]     | *                             | Executed upon every Nginx worker process's startup.
-| `certificate`       | `ssl_certificate` | [`ssl_certificate_by_*`] | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
+| `certificate`       | `certificate`     | [`ssl_certificate_by_*`] | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
 | `rewrite`           | `rewrite`         | [`rewrite_by_*`]         | *                             | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
 | `access`            | `access`          | [`access_by_*`]          | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
-| `ws_handshake`      | `access`          | [`access_by_*`]          | `ws(s)`                       | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
-| `response`          | `access`          | [`access_by_*`]          | `http(s)`, `grpc(s)`          | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `response`          | `response`        | [`header_filter_by_*`], [`body_filter_by_*`] | `http(s)`, `grpc(s)` | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
 | `header_filter`     | `header_filter`   | [`header_filter_by_*`]   | `http(s)`, `grpc(s)`          | Executed when all response headers bytes have been received from the upstream service.
-| `ws_client_frame`   | `content`         | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the client.
-| `ws_upstream_frame` | `content`         | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the upstream service.
 | `body_filter`       | `body_filter`     | [`body_filter_by_*`]     | `http(s)`, `grpc(s)`          | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
-| `log`               | `log`             | [`log_by_*`]             | `http(s)`, `grpc(s)`          | Executed when the last response byte has been sent to the client.
-| `ws_close`          | `log`             | [`log_by_*`]             | `ws(s)`                       | Executed after the WebSocket connection has been terminated.
+| `ws_handshake`      | `ws_handshake`     | [`access_by_*`]          | `ws(s)`                       | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
+| `ws_client_frame` <span class="badge enterprise"></span> | `ws_client_frame`  | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the client.
+| `ws_upstream_frame` <span class="badge enterprise"></span> | `ws_upstream_frame`| [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the upstream service.
+| `log`               | `log`              | [`log_by_*`]             | `http(s)`, `grpc(s)`          | Executed when the last response byte has been sent to the client.
+| `ws_close` <span class="badge enterprise"></span> | `ws_close`         | [`log_by_*`]             | `ws(s)`                       | Executed after the WebSocket connection has been terminated.
 
 {:.note}
 > **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
@@ -69,7 +69,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 | `init_worker`   | `init_worker`     | [`init_worker_by_*`]     | Executed upon every Nginx worker process's startup.
 | `preread`       | `preread`         | [`preread_by_*`]         | Executed once for every connection.
 | `log`           | `log`             | [`log_by_*`]             | Executed once for each connection after it has been closed.
-| `certificate`   | `ssl_certificate` | [`ssl_certificate_by_*`] | Executed during the SSL certificate serving phase of the SSL handshake.
+| `certificate`   | `certificate`     | [`ssl_certificate_by_*`] | Executed during the SSL certificate serving phase of the SSL handshake.
 
 {% endif_version %}
 
@@ -78,17 +78,17 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 |---------------------|-----------------------|--------------------------|-------------------------------|------------
 | `init_worker`       | `init_worker`         | [`init_worker_by_*`]     | *                             | Executed upon every Nginx worker process's startup.
 | `configure`         | `init_worker`/`timer` | [`init_worker_by_*`]     | *                             | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
-| `certificate`       | `ssl_certificate`     | [`ssl_certificate_by_*`] | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
+| `certificate`       | `certificate`         | [`ssl_certificate_by_*`] | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
 | `rewrite`           | `rewrite`             | [`rewrite_by_*`]         | *                             | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
 | `access`            | `access`              | [`access_by_*`]          | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
-| `ws_handshake`      | `access`              | [`access_by_*`]          | `ws(s)`                       | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
-| `response`          | `access`              | [`access_by_*`]          | `http(s)`, `grpc(s)`          | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `response`          | `response`            | [`header_filter_by_*`], [`body_filter_by_*`] | `http(s)`, `grpc(s)` | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
 | `header_filter`     | `header_filter`       | [`header_filter_by_*`]   | `http(s)`, `grpc(s)`          | Executed when all response headers bytes have been received from the upstream service.
-| `ws_client_frame`   | `content`             | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the client.
-| `ws_upstream_frame` | `content`             | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the upstream service.
 | `body_filter`       | `body_filter`         | [`body_filter_by_*`]     | `http(s)`, `grpc(s)`          | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
-| `log`               | `log`                 | [`log_by_*`]             | `http(s)`, `grpc(s)`          | Executed when the last response byte has been sent to the client.
-| `ws_close`          | `log`                 | [`log_by_*`]             | `ws(s)`                       | Executed after the WebSocket connection has been terminated.
+| `ws_handshake`      | `ws_handshake`     | [`access_by_*`]          | `ws(s)`                       | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
+| `ws_client_frame` <span class="badge enterprise"></span> | `ws_client_frame`  | [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the client.
+| `ws_upstream_frame` <span class="badge enterprise"></span> | `ws_upstream_frame`| [`content_by_*`]         | `ws(s)`                       | Executed for each WebSocket message received from the upstream service.
+| `log`               | `log`              | [`log_by_*`]             | `http(s)`, `grpc(s)`          | Executed when the last response byte has been sent to the client.
+| `ws_close` <span class="badge enterprise"></span> | `ws_close`         | [`log_by_*`]             | `ws(s)`                       | Executed after the WebSocket connection has been terminated.
 
 {:.note}
 > **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
@@ -103,7 +103,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 | `configure`     | `init_worker`/`timer` | [`init_worker_by_*`]     |  Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
 | `preread`       | `preread`             | [`preread_by_*`]         |  Executed once for every connection.
 | `log`           | `log`                 | [`log_by_*`]             | Executed once for each connection after it has been closed.
-| `certificate`   | `ssl_certificate`     | [`ssl_certificate_by_*`] | Executed during the SSL certificate serving phase of the SSL handshake.
+| `certificate`   | `certificate`         | [`ssl_certificate_by_*`] | Executed during the SSL certificate serving phase of the SSL handshake.
 
 
 
