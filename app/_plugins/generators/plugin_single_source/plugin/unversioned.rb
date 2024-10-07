@@ -8,7 +8,7 @@ module PluginSingleSource
                         ['1.0.0'] # If there's no version, assume it's 1.0.0
                       else
                         # If there's no version, assume it's latest
-                        [latest_release.to_semver]
+                        [Utils::Version.to_semver(latest_release)]
                       end
       end
 
@@ -23,7 +23,7 @@ module PluginSingleSource
       end
 
       def latest_release
-        @site.data.dig('editions', 'gateway').latest_release
+        @site.data['kong_latest_gateway']['release']
       end
     end
   end

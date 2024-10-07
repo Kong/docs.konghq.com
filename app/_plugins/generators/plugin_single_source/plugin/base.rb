@@ -49,17 +49,17 @@ module PluginSingleSource
       private
 
       def latest?(version)
-        max_release = gateway_releases.detect { |r| r.value == Utils::Version.to_release(max_version) }
+        max_release = gateway_releases.detect { |r| r['release'] == Utils::Version.to_release(max_version) }
         # Edge case for plugins that don't have releases
         # for which we still want to generate pages
         return true unless max_release
 
-        latest_release = gateway_releases.detect(&:latest?)
+        latest_release = gateway_releases.detect { |r| r['latest'] }
 
-        Utils::Version.to_semver(version) == if max_release&.label
-                                               latest_release.to_semver
+        Utils::Version.to_semver(version) == if max_release && max_release['label']
+                                               Utils::Version.to_semver(latest_release['release'])
                                              else
-                                               max_release.to_semver
+                                               Utils::Version.to_semver(max_release['release'])
                                              end
       end
 
@@ -70,9 +70,7 @@ module PluginSingleSource
       end
 
       def gateway_releases
-        @gateway_releases ||= Jekyll::GeneratorSingleSource::Product::Edition
-                              .new(edition: 'gateway', site:)
-                              .releases
+        @gateway_releases ||= @site.data['kong_versions_gateway']
       end
     end
   end

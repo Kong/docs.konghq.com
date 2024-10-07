@@ -89,10 +89,10 @@ module PluginSingleSource
 
       def release_data
         release = gateway_releases
-                  .detect { |r| r.value == Utils::Version.to_release(@release.version) }
+                  .detect { |r| r['release'] == Utils::Version.to_release(@release.version) }
 
         if release
-          { 'release' => release.to_liquid, 'versions' => release.versions }
+          { 'release' => release.to_liquid, 'versions' => Utils::Version.versions_for(release) }
         else
           {}
         end
@@ -100,9 +100,9 @@ module PluginSingleSource
 
       def extn_latest
         @extn_latest ||= gateway_releases
-                         .select { |r| @release.ext_data.fetch('releases', []).include?(r.value) }
-                         .select { |r| r.label.nil? }
-                         .max_by(&:value)
+                         .select { |r| @release.ext_data.fetch('releases', []).include?(r['release']) }
+                         .select { |r| r['label'].nil? }
+                         .max_by{ |r| r['release'] }
                          .to_liquid
       end
 
@@ -114,9 +114,7 @@ module PluginSingleSource
       end
 
       def gateway_releases
-        @gateway_releases ||= Jekyll::GeneratorSingleSource::Product::Edition
-                              .new(edition: 'gateway', site: @release.site)
-                              .releases
+        @gateway_releases ||= @release.site.data['kong_versions_gateway']
       end
     end
   end
