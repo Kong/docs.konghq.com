@@ -31,6 +31,7 @@ module PluginSingleSource
           'extn_slug' => @release.name,
           'extn_publisher' => @release.vendor,
           'extn_release' => @release.version,
+          'kong_version' => @release.version,
           'extn_latest' => extn_latest,
           'extn_icon' => extn_icon,
           'layout' => layout,

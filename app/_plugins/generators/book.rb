@@ -12,9 +12,11 @@ module Jekyll
         end
       end
 
-      books.each do |_name, pages|
-        # Sort pages by page number
-        pages.sort! { |a, b| a.data['chapter'] <=> b.data['chapter'] }
+      books.each do |name, pages|
+        unless name.start_with? '//plugins'
+          # Sort pages by page number
+          pages.sort! { |a, b| a.data['chapter'] <=> b.data['chapter'] }
+        end
 
         # Insert next and previous link
         pages.each_with_index do |page, idx|
@@ -22,14 +24,22 @@ module Jekyll
             'chapters' => {}
           }
 
-          page.data['book']['previous'] = pages[idx - 1].url if idx.positive?
-
-          page.data['book']['next'] = pages[idx + 1].url if idx < pages.size - 1
+          if page.data['page_type'] == 'plugin'
+            page.data['book']['previous'] = pages[idx - 1] if idx.positive?
+            page.data['book']['next'] = pages[idx + 1] if idx < pages.size - 1
+          else
+            page.data['book']['previous'] = pages[idx - 1].url if idx.positive?
+            page.data['book']['next'] = pages[idx + 1].url if idx < pages.size - 1
+          end
 
           # Add all existing pages links to this page
           pages.each do |p|
-            p_basename = p.basename
-            page.data['book']['chapters'][p_basename] = p.url if p_basename != page.basename
+            if p.data['page_type'] == 'plugin'
+              page.data['book']['chapters'][p.path] = p.url.gsub('.html', '/') if p.path != page.path
+            else
+              p_basename = p.basename
+              page.data['book']['chapters'][p_basename] = p.url if p_basename != page.basename
+            end
           end
         end
       end
