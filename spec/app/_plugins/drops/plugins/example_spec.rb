@@ -11,7 +11,6 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
   let(:example) { schema.example }
   let(:formats) { [:curl, :konnect, :yaml, :kubernetes, :terraform] }
 
-
   subject { described_class.new(schema:, type:, example:, formats:) }
 
   describe '#type' do
@@ -82,7 +81,8 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
         PluginSingleSource::Plugin::Schemas::Base.make_for(
           name: 'kong-plugin',
           vendor: 'acme',
-          version: '3.2.x'
+          version: '3.2.x',
+          site:
         )
       end
 
