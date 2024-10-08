@@ -1069,7 +1069,6 @@ Kong is no longer providing official support for any Kong version running on the
 
 #### Plugins
 
-_Backported from 3.7.1.2_
 * [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
   * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
   empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
@@ -1097,7 +1096,6 @@ To avoid this issue, install 3.6.1.6 instead of this patch.
 ### Features
 #### Admin API
 
-_Backported from 3.7.0.0_
 * Added LHS bracket filtering to search fields.
 * **Audit logs:**
   * Added `request_timestamp` to `audit_objects`.
@@ -1112,13 +1110,11 @@ _Backported from 3.7.0.0_
 ### Fixes
 #### Admin API
 
-_Backported from 3.7.0.0_
 * The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
 on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
 
 #### CLI
 
-_Backported from 3.7.0.0_
 * Fixed an issue where the `pg_timeout` was overridden to `60s` even if `--db-timeout`
 was not explicitly passed in CLI arguments.
 
@@ -1126,8 +1122,6 @@ was not explicitly passed in CLI arguments.
 
 * Built-in RBAC roles for admins (`admin` under the default workspace and `workspace-admin` 
 under non-default workspaces) now disallow CRUD actions to `/groups` and `/groups/*` endpoints.
-
-_Backported from 3.7.1.0_
 * **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
 It now ignores records when the RR type differs from that of the query when parsing answers.
 * Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
@@ -1143,11 +1137,9 @@ It now ignores records when the RR type differs from that of the query when pars
 * [**Request Validator**](/hub/kong-inc/request-validator/) (`request-validator`)
   * Fixed an issue where the plugin could fail to handle requests when `param_schema` was `$ref schema`.
 
-_Backported from 3.7.1.0_
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Timer spikes no longer occur when there is network instability with the central data store.
 
-_Backported from 3.7.0.0_
 * [**ACME**](/hub/kong-inc/acme/) (`acme`), [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`), and 
 [**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
   * Fixed migration of Redis configuration.
@@ -1169,7 +1161,6 @@ _Backported from 3.7.0.0_
   * Added support for accessing the service using consumer credential authentication. 
   To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
 
-_Backported from 3.7.0.0_
 * [**Mutual TLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
   * Added the `default_consumer` option, which lets you use a default consumer when the client certificate is valid 
   but doesn't match any existing consumers.
@@ -1321,7 +1312,6 @@ Kong Gateway will now only print warning logs if `"openid"` is missing from `adm
 
 #### Plugins
 
-_Backported from 3.7.0.0_
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
   * Increased queue max batch size to 200.
 
@@ -1335,7 +1325,6 @@ Decreased the concurrency range of the `lua-resty-timer-ng` library from `[512, 
 
 #### Configuration
 
-_Backported from 3.7.0.0_
 * Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
 
 #### Clustering
@@ -1819,7 +1808,6 @@ Kong is no longer providing official support for any Kong version running on the
 
 #### Plugins
 
-_Backported from 3.7.1.2_
 * [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
   * Added the new configuration parameter `empty_arrays_mode`, which lets you control whether Kong Gateway should send 
   empty arrays (`[]`) returned by the Lambda function as empty arrays (`[]`), or as empty objects (`{}`) in JSON responses.
@@ -1842,7 +1830,6 @@ To avoid this issue, install 3.5.0.6 instead of this patch.
 ### Features
 #### Admin API
 
-_Backported from 3.7.0.0_
 * Added LHS bracket filtering to search fields.
 * **Audit logs:**
   * Added `request_timestamp` to `audit_objects`.
@@ -1851,7 +1838,6 @@ _Backported from 3.7.0.0_
 
 #### Plugin
 
-_Backported from 3.6.1.4_
 * [**Portal Application Registration**](/hub/kong-inc/application-registration/) (`application-registration`)
   * Added support for accessing the service using consumer credential authentication. 
   To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
@@ -1859,7 +1845,6 @@ _Backported from 3.6.1.4_
 ### Fixes
 #### Core
 
-_Backported from 3.7.1.0_
 * **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain 
 and type when parsing answers.
 It now ignores records when the RR type differs from that of the query when parsing answers.
@@ -1870,7 +1855,6 @@ under non-default workspaces) now disallow CRUD actions to `/groups` and `/group
 
 #### Plugins
 
-_Backported from 3.7.1.0_
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
 
@@ -1879,11 +1863,8 @@ _Backported from 3.7.1.0_
 
 #### Admin API
 
-_Backported from 3.7.0.0_
 * The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
 on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
-
-_Backported from 3.6.0.0_
 * Fixed an issue with the workspace listing API, which showed workspaces that the user didn't have any roles in.
 The API now only shows workspaces that a user has access to.
 
@@ -1898,7 +1879,6 @@ The API now only shows workspaces that a user has access to.
 
 ### Breaking Changes
 
-_Backported from 3.6.1.0_
 * In OpenSSL 3.2, the default SSL/TLS security level has been changed from 1 to 2.
   This means the security level is set to 112 bits of security. 
   As a result, the following are prohibited:
@@ -1913,20 +1893,14 @@ If you still need to support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/3.5.
 ### Features
 #### Configuration
 
-_Backported from 3.7.0.0_
 * TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
-
-_Backported from 3.6.0.0_
 * Added resilience support for homogeneous data plane deployments. 
 Data planes can now act as importers and exporters at the same time, 
 and Kong Gateway will try to control the concurrency when exporting the config.
 
 #### Core
 
-_Backported from 3.6.1.0_
 * The HashiCorp Vault secrets management backend now supports the AppRole authentication method.
-
-_Backported from 3.6.0.0_
 * You can now use an RBAC token to authenticate while using 
 [group mapping with Kong Manager](/gateway/3.5.x/kong-manager/auth/oidc/mapping/) (for example, with OIDC or LDAP).
 * Expressions router:
@@ -1940,24 +1914,18 @@ _Backported from 3.6.0.0_
 
 #### Admin API
 
-_Backported from 3.7.0.0_
 * Changed the default ordering of `audit_requests` to sorted by `request_timestamp` in descending order.
-
-_Backported from 3.6.0.0_
 * Added the Kong Gateway edition to the root endpoint of the Admin API.
 
 #### Plugins
 
-_Backported from 3.7.0.0_
 * [**mTLS Auth**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
   * Added a `default_consumer` option, which allows a default consumer to be used when the 
   client certificate is valid but doesn't match any existing consumers.
 
-_Backported from 3.6.1.2_
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
   * Added the new field `api_spec_encoded` to indicate whether the `api_spec` is URI-encoded.
 
-_Backported from 3.6.0.0_
 [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
   * The plugin now supports decoding non-standard `asn1` integer and enumerated encoded with redundant leading padding.
 
@@ -1965,7 +1933,6 @@ _Backported from 3.6.0.0_
 
 #### Admin API
 
-_Backported from 3.6.0.0_
 * Fixed an issue where HTTP 500 errors were returned when paginating and sorting by timestamp fields
 (for example, `created_at`).
 * It is no longer possible for admins or RBAC users to update their own roles.
@@ -1974,20 +1941,13 @@ _Backported from 3.6.0.0_
 
 * Fixed an issue where event hooks were prematurely validated in hybrid mode. 
 The fix delays the validation of event hooks to the point where event hooks are emitted.
-
-_Backported from 3.6.1.2_
 * Adjusted the clustering compatible check related to AWS Secrets Manager
 to use `AK-SK` environment variables to grant IAM role permissions.
-
-_Backported from 3.6.1.0_
 * Adjusted a clustering compatibility check related to HCV Kubernetes authentication paths.
-
-_Backported from 3.6.0.0_
 * Reduce message push error logs when the `cluster_telemetry_endpoint` config is disabled.
 
 #### Configuration
 
-_Backported from 3.7.0.0_
 * Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
 apply a change to the plugin config via the Admin API.
 * Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
@@ -1996,10 +1956,7 @@ apply a change to the plugin config via the Admin API.
 
 * Fixed an issue with data planes in hybrid mode, where a certificate entity configured with a vault 
 reference was occasionally not refreshed on time.
-
 * Fixed an issue where external pluginservers would not start automatically with Kong Gateway.
-
-_Backported from 3.7.0.0_
 * Fixed vault initialization by postponing vault reference resolution to a timer in the `init_worker` phase.
 * Updated the file permission of `kong.logrotate` to 644.
 * Fixed the missing router section for the output of request debugging.
@@ -2007,8 +1964,6 @@ _Backported from 3.7.0.0_
   * Fixed an issue where the vault used the wrong (default) workspace identifier when retrieving a vault entity by prefix.
   * Fixed an issue where a new data plane couldn't resolve a Vault reference after the first configuration push. 
     This was happening due to issues with license pre-loading.
-
-_Backported from 3.6.0.0_
 * Header value matching (`http.headers.*`) in the `expressions` router flavor is now case sensitive.
 This change doesn't affect `traditional_compatible` mode
 where header value matching is always performed with the case ignored.
@@ -2021,23 +1976,18 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 
 #### Kong Manager Enterprise
 
-_Backported from 3.6.1.3_
 * Fixed an issue where the admin account profile page returned a 404 error if the `admin_gui_path` was not a slash.
-
-_Backported from 3.6.1.2_
 * Fixed the display of the remaining days for the license expiration date. 
 The number of days was inconsistent between the workspaces page and the top banner.
 * Updated the type of RBAC token for the RBAC user to `password`.
 
 #### PDK
 
-_Backported from 3.7.0.0_
 * Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_port`. 
 It now correctly returns a number.
 
 #### Plugins
 
-_Backported from 3.6.1.4_
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`), 
 [**WebSocket Size Limit**](/hub/kong-inc/websocket-size-limit/) (`websocket-size-limit`), 
 [**WebSocket Validator**](/hub/kong-inc/websocket-validator/) (`websocket-validator`),
@@ -2052,11 +2002,9 @@ _Backported from 3.6.1.4_
     `'local ratelimiting = require("kong.tools.public.rate-limiting").new_instance("custom-plugin-name")'`.
     The old interface will be removed in the upcoming major release.
 
-_Backported from 3.6.1.3_
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
   * Improved robustness of parsing for short trace IDs.
 
-_Backported from 3.6.1.2_
 * [**ACME**](/hub/kong-inc/acme/) (`acme`)
   * Fixed an issue where the certificate was not successfully renewed during ACME renewal.
 * [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
@@ -2065,7 +2013,6 @@ _Backported from 3.6.1.2_
   * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
   would interfere with each other and fail to synchronize counter data to the central data store.
 
-_Backported from 3.6.1.1_
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Fixed an issue with `sync_rate` setting being used with the `redis` strategy. 
   If the Redis connection is interrupted while `sync_rate = 0`, the plugin now accurately falls back to the `local` strategy.
@@ -2073,15 +2020,13 @@ _Backported from 3.6.1.1_
   * Fixed some timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
   * The plugin now creates counter syncing timers during plugin execution instead of plugin creation to reduce some meaningless error logs.
 
-_Backported from 3.6.1.0_
 * [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
   * Fixed an issue where, if the credential was encoded with no username, Kong Gateway would return a 500 error code.
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
-  * _Backported from 3.6.1.0_: Fixed an OTEL sampling mode Lua panic bug that occurred 
+  * Fixed an OTEL sampling mode Lua panic bug that occurred 
   when the `http_response_header_for_traceid` option was enabled.
 
-_Backported from 3.6.0.0_
 * [**Forward Proxy**](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
   * The plugin now falls back to the non-streaming proxy when the request body has already been read.
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
@@ -2102,7 +2047,6 @@ _Backported from 3.6.0.0_
 ### Performance
 #### Configuration
 
-_Backported from 3.6.0.0_
 * Bumped the default values of `nginx_http_keepalive_requests` and `upstream_keepalive_max_requests` to 10000.
 
 #### Core
@@ -2112,7 +2056,6 @@ _Backported from 3.6.0.0_
 
 #### Plugins
 
-_Backported from 3.7.0.0_
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
   * Increased queue max batch size to 200. 
 
@@ -2526,7 +2469,6 @@ Kong is no longer providing official support for any Kong version running on the
 ### Features
 #### Core
 
-_Backported from 3.6.0.0_
 * Kong Gateway Enterprise container images are now produced with build provenance and signed using cosign. 
 Signatures and attestations are published to the Docker Hub repository. 
 Build provenance can be [verified by cosign/slsa-verifier](/gateway/3.4.x/kong-enterprise/provenance-verification/) 
@@ -2545,7 +2487,6 @@ using the published attestations.
   DEBIAN_FRONTEND=noninteractive apt upgrade kong-enterprise-edition_3.4.3.11_arm64.deb
   ```
 
-_Backported from 3.7.0.0_
 * Fixed an issue where a new data plane couldn't resolve a Vault reference after the first configuration push. 
 This was happening due to issues with license pre-loading.
 
@@ -2555,7 +2496,6 @@ This was happening due to issues with license pre-loading.
   * Fixed an issue where, if the `window_size` in a consumer group's overriding config was different from the 
   `window_size` in the plugin's default config, the rate limiting of that consumer group would fall back to the local strategy.
 
-_Backported from 3.7.0.0_
 * [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
   * Fixed an issue where an exception would be thrown when LDAP search failed.
 
@@ -2577,7 +2517,6 @@ To avoid this issue, install 3.4.3.11 instead of this patch.
 ### Fixes
 #### Admin API
 
-_Backported from 3.7.0.0_
 * The `/<workspace>/admins` endpoint was incorrectly used to return admins associated with a workspace based 
 on their assigned RBAC roles. This has been fixed and now accurately returns admins according to their specific workspace associations.
 
@@ -2592,8 +2531,6 @@ on their assigned RBAC roles. This has been fixed and now accurately returns adm
 ### Features
 #### Admin API
 
-_Backported from 3.7.0.0_
-
 * Added LHS bracket filtering to search fields.
 * **Audit logs:**
   * Added `request_timestamp` to `audit_objects`.
@@ -2603,7 +2540,6 @@ _Backported from 3.7.0.0_
 ### Fixes
 #### Admin API
 
-_Backported from 3.6.0.0_
 * Fixed an issue with the workspace listing API, which showed workspaces that the user didn't have any roles in.
 The API now only shows workspaces that the user has access to.
 
@@ -2612,8 +2548,6 @@ The API now only shows workspaces that the user has access to.
 * Fixed an issue where `cluster_cert` or `cluster_ca_cert` was inserted into `lua_ssl_trusted_certificate` before being base64-decoded.
 * **Vitals**: Fixed an issue where each data plane connecting to the control plane would trigger the creation of a redundant 
 table rotater timer on the control plane.
-
-_Backported from 3.7.1.0_
 * **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
 It now ignores records when the RR type differs from that of the query when parsing answers.
 * Fixed an issue where the `host_header` attribute of the upstream entity wouldn't be set correctly as a Host header in requests to the upstream during connection retries.
@@ -2621,7 +2555,6 @@ It now ignores records when the RR type differs from that of the query when pars
 
 #### Plugins
 
-_Backported from 3.7.1.0_
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Fixed an issue where anonymous consumers were being cached as `nil` under a certain condition.
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
@@ -2638,22 +2571,15 @@ _Backported from 3.7.1.0_
 ### Features
 #### Admin API
 
-_Backported from 3.7.0.0_
-
 * Changed the default ordering of `audit_requests` to sort by `request_timestamp` in descending order.
 
 ### Fixes
-
 #### Admin API
-
-_Backported from 3.6.0.0_
 
 * Fixed an issue where HTTP 500 errors were returned when paginating and sorting by timestamp fields
 (for example, `created_at`).
 
 #### Plugins
-
-_Backported from 3.6.1.4_
 
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`), 
 [**WebSocket Size Limit**](/hub/kong-inc/websocket-size-limit/) (`websocket-size-limit`), 
@@ -2681,7 +2607,6 @@ _Backported from 3.6.1.4_
 ### Features
 #### Plugins
 
-_Backported from 3.6.1.4_
 * [**Portal Application Registration**](/hub/kong-inc/application-registration/) (`application-registration`)
   * Added support for accessing the service using consumer credential authentication. 
   To use this functionality, enable `enable_proxy_with_consumer_credential` (default is `false`).
@@ -2689,19 +2614,16 @@ _Backported from 3.6.1.4_
 ### Fixes
 #### Clustering
 
-_Backported from 3.6.1.4_
 * Fixed an issue where event hooks were prematurely validated in hybrid mode. 
 The fix delays the validation of event hooks to the point where event hooks are emitted.
 
 #### Core
 
-_Backported from 3.7.0.0_
 * Fixed an issue with data planes in hybrid mode, where a certificate entity configured with a vault 
 reference was occasionally not refreshed on time.
 
 #### PDK
 
-_Backported from 3.6.1.4_
 * Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_port`. 
 It now correctly returns a number.
 
@@ -2715,19 +2637,16 @@ It now correctly returns a number.
 ### Features
 #### Kong Manager Enterprise
 
-_Backported from 3.5.0.0_
 * Added support for Microsoft Azure's KeyVault Secrets Engine. 
 
 #### Plugins
 
-_Backported from 3.6.1.2_
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
   * Added the new field `api_spec_encoded` to indicate whether the `api_spec` is URI-encoded.
 
 ### Fixes
 #### Configuration
 
-_Backported from 3.7.0.0_
 * Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
 apply a change to the plugin config via the Admin API.
 
@@ -2735,14 +2654,11 @@ apply a change to the plugin config via the Admin API.
 
 * Fixed an issue where logging in failed when fields in the Developer Portal configuration 
 **Developer Meta Fields** tab contained characters outside the Latin1 range.
-
-_Backported from 3.6.1.3_
 * Fixed an issue where the admin account profile page returned a 404 error if 
 the `admin_gui_path` wasn't a slash.
 
 #### Plugins
 
-_Backported from 3.6.1.2_
 * [**ACME**](/hub/kong-inc/acme/) (`acme`)
   * Fixed an issue where the certificate was not successfully renewed during ACME renewal.
 
@@ -2753,7 +2669,6 @@ _Backported from 3.6.1.2_
   * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
   would interfere with each other and fail to synchronize counter data to the central data store.
 
-_Backported from 3.6.1.3_
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
   * Improved robustness of parsing for short trace IDs.
 
@@ -2761,7 +2676,6 @@ _Backported from 3.6.1.3_
 
 ### Dependencies
 
-_Backported from 3.6.1.2_
 * Bumped `lua-kong-nginx-module` to 0.8.1
 * Bumped `lua-resty-luasocket` to 1.1.2 to fix [luasocket#427](https://github.com/lunarmodules/luasocket/issues/427)
 
@@ -6025,17 +5939,13 @@ To avoid this issue, install 2.8.4.11 instead of this patch.
 ### Fixes
 #### Core
 
-_Backported from 3.7.1.0_
 * **DNS Client**: Fixed an issue where the Kong DNS client stored records with non-matching domain and type when parsing answers.
 It now ignores records when the RR type differs from that of the query when parsing answers.
-
-_Backported from 3.4.3.9_
 * **Vitals**: Fixed an issue where each data plane connecting to the control plane would trigger the creation of a redundant 
 table rotater timer on the control plane.
 
 #### Plugins
 
-_Backported from 3.7.0.0_
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
   * Refactored `kong/tools/public/rate-limiting`, adding the new interface `new_instance` to provide isolation between different plugins. 
     The original interfaces remain unchanged for backward compatibility. 
@@ -6054,17 +5964,14 @@ _Backported from 3.7.0.0_
 ### Fixes
 #### Core
 
-_Backported from 3.3.0.0_
 * Fixed an issue where vault configuration stayed sticky and cached even when configurations were changed.
 
 #### PDK
 
-_Backported from 3.7.0.0_
 * Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_portand`. It now correctly returns a number.
 
 #### Plugins
 
-_Backported from 3.6.1.2_
 * [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
   * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
 
