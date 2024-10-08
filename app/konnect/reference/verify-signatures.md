@@ -39,8 +39,9 @@ Calculating the signature is slightly different for these formats.
 1. Find an audit log from {{site.konnect_short_name}} in your SIEM provider and copy it. 
 
 1. Remove the signature (the `sig` value) from the audit log, but be sure to save the signature to decode later. 
+  
+  The adjusted entry will look slightly different depending on the format that you're using. The following {{site.konnect_short_name}} org audit log examples show what the entry will look like in each format after removing the signature:
 
-    The adjusted entry will look slightly different depending on the format that you're using. The following {{site.konnect_short_name}} org audit log examples show what the entry will look like in each format after removing the signature:
   {% navtabs codeblock %}
 {% navtab CEF %}
 ```
@@ -76,3 +77,14 @@ Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=16
 1. Verify the ED25519 signature with the public key, signature-less audit log entry, and decoded signature.
 
     If it's successful, you will see a `Signature is valid` response.
+
+## See also
+* Dev Portal audit logs:
+    * [Audit logging in Dev Portal](/konnect/dev-portal/audit-logging/)
+    * [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
+    * [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+* Global {{site.konnect_short_name}} audit logs:
+    * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
+    * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
+    * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
+* [Audit Logs API](/konnect/api/audit-logs/latest/)

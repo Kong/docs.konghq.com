@@ -4,7 +4,7 @@ content_type: how-to
 badge: enterprise
 ---
 
-You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configure webhooks for [audit logging](/konnect/dev-portal/audit-logging/). 
+You can use the {{site.konnect_short_name}} UI or the [Audit Logs](/konnect/api/audit-logs/latest/) and [Portal Management](/konnect/api/portal-management/latest/) APIs to configure webhooks for [audit logging](/konnect/dev-portal/audit-logging/). 
 
 {:.note}
 > **Note:** Currently, Dev Portal audit logs only support authentication logs, which are triggered when a user logs in to Dev Portal.
@@ -18,7 +18,7 @@ You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configur
 {% navtab Konnect UI %}
 Before you configure the webhook, you must first create an audit log destination. This allows you to set your audit log destination (the endpoint URL for your SIEM provider) and reuse it. 
 
-1. From {% konnect_icon organizations %} **Organization** in the sidebar, click **Audit Logs Setup**.
+1. From {% konnect_icon organizations %} [**Organization**](https://cloud.konghq.com/organization) in the sidebar, click **Audit Logs Setup**.
 1. On the **Webhook Destination** tab, click **New Webhook** and configure the following:
    * **Name**: The name you want to display for the audit log destination.
    * **Endpoint**: The external endpoint that will receive audit log messages. 
@@ -30,7 +30,7 @@ Before you configure the webhook, you must first create an audit log destination
         
     * **Log Format**: The output format of each log message. Can be CEF or JSON.
     * **Disable SSL Verification**: Disables SSL verification of the host endpoint when delivering payloads. We recommend disabling SSL verification only when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
-1. To configure the Dev Portal audit log webhook, navigate to {% konnect_icon Dev-portal %} Dev Portal in the sidebar.
+1. To configure the Dev Portal audit log webhook, navigate to {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal) in the sidebar.
 1. Click the Dev Portal you want to configure the webhook for and then click **Settings**.
 1. Click the **Audit Logs** tab.
 1. Enable the webhook and then select the SIEM provider endpoint from the **Endpoint** drop down menu. 
@@ -65,7 +65,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     * `name`: A unique human-readable name to identify this destination.
     * `skip_ssl_verification`: (Optional) Set to `true` to skip SSL verification of the host endpoint when delivering payloads. We recommend skipping SSL verification only when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
 
-    If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details. Be sure to save the audit log destination `id` for the next step. 
+    If the request is successful, you will receive a `200` response code, and a response body containing the audit log destination's configuration details. Be sure to save the audit log destination `id` for the next step. 
 
 1. Create a webhook by sending a PATCH request to the `/audit-log-webhook` endpoint with your configured audit log destination:
 
@@ -102,7 +102,7 @@ Your webhook should now start receiving audit logs.
 
 A badge will display next to the title of the webhook with the status of the webhook.
 
-To see the last attempt timestamp and the last response code, use the audit log API.
+To see the last attempt timestamp and the last response code, use the [audit log API](/konnect/api/audit-logs/latest/).
 
 {% endnavtab %}
 {% navtab API %}

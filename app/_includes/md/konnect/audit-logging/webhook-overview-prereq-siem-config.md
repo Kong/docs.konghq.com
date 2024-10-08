@@ -5,7 +5,7 @@ Webhooks are invoked via an HTTPS request using the following retry rules:
 - Maximum retry wait time: 30 seconds
 - Maximum number of retries: 4
 
-A retry is performed on connection error, server error (`500` HTTP status code), or too many requests (`429` HTTP status code).
+A retry is performed on a connection error, server error (`500` HTTP status code), or too many requests (`429` HTTP status code).
 
 {:.note}
 > **Notes:**
@@ -14,7 +14,7 @@ A retry is performed on connection error, server error (`500` HTTP status code),
 
 ## Prerequisites
 
-A SIEM provider that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or raw JSON
+A SIEM provider that supports the [ArcSight CEF Format](https://docs.centrify.com/Content/IntegrationContent/SIEM/arcsight-cef/arcsight-cef-format.htm) or raw JSON.
 
 ## Configure your SIEM provider
 
