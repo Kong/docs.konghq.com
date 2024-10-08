@@ -4039,7 +4039,7 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
 
 #### Core 
 * Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
-  lead to the corruption of chunk-encoded response data.
+  led to the corruption of chunk-encoded response data.
   [#10816](https://github.com/Kong/kong/pull/10816)
   [#10824](https://github.com/Kong/kong/pull/10824)
 * Fixed the UDP socket leak in `resty.dns.client` caused by frequent DNS queries.
@@ -4420,7 +4420,8 @@ This change is in direct response to the identified vulnerability
 * Fixed a bug where setting `anonymous_reports=false` would not silence anonymous reports.
 * Fixed an issue with hybrid mode where vitals and analytics could not communicate through the cluster telemetry endpoint.
 * Fixed the HTTP2 request handle in ARM artifacts.
-* Backported the openresty ngx.print chunk encoding buffer double free bug fix that was leading to the corruption of chunk-encoded response data. [#10816](https://github.com/Kong/kong/pull/10816)[#10824](https://github.com/Kong/kong/pull/10824)
+* Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
+  led to the corruption of chunk-encoded response data. [#10816](https://github.com/Kong/kong/pull/10816)[#10824](https://github.com/Kong/kong/pull/10824)
 * Fixed an issue where a crashing Go plugin server process would cause subsequent requests proxied through Kong to execute Go plugins with inconsistent configurations. The issue only affects scenarios where the same Go plugin is applied to different route or service entities.
 * Fixed the Dynatrace implementation.
 
@@ -4462,7 +4463,7 @@ This change is in direct response to the identified vulnerability
 * Hybrid mode: Fixed an issue where Vitals/Analytics couldn't communicate through the cluster telemetry endpoint.
 * Fixed an issue where `alpine` and `ubuntu` ARM64 artifacts incorrectly handled HTTP/2 requests, causing the protocol to fail.
 * Fixed the OpenResty `ngx.print` chunk encoding duplicate free buffer issue that
-  lead to the corruption of chunk-encoded response data.
+  led to the corruption of chunk-encoded response data.
   [#10816](https://github.com/Kong/kong/pull/10816)
   [#10824](https://github.com/Kong/kong/pull/10824)
 * Fixed the Dynatrace implementation. Due to a build system issue, Kong Gateway 3.1.x packages prior to 3.1.1.4 
