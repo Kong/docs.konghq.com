@@ -21,8 +21,9 @@ A replay job in a region will resend data for the requested timeframe to the web
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click **Settings**, and then click **Audit Logs Setup**.
-1. Switch to the **Replay** tab.
+1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click the Dev Portal you want to configure a replay job for.
+1. Click **Settings** in the sidebar, and then click the **Audit Logs** tab.
+1. Click the **Replay** tab.
 1. Choose a timeframe for which you want to replay the logs. 
 
    You can choose one of the preset relative increments for up to 24 hours, or 
@@ -70,11 +71,10 @@ If the request is successful, you will receive a `202` response code and a respo
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click **Settings**, then **Audit Logs Setup**.
-1. Switch to the **Replay** tab.
+1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click the Dev Portal you want to view the replay job for.
+1. Click **Settings** in the sidebar, then click the **Audit Logs** tab.
+1. Click the **Replay** tab.
 1. Check the status table below the configuration field.
-
-![Audit log replay](/assets/images/products/konnect/audit-logs/konnect-audit-log-replay.png)
 
 {% endnavtab %}
 {% navtab API %}

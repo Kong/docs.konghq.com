@@ -96,8 +96,11 @@ Your webhook should now start receiving audit logs.
 {% navtabs %}
 {% navtab Konnect UI %}
 
-You can view the status of your webhook through the **Audit Logs Setup** page under
-{% konnect_icon organizations %} **Organization**. A badge will display next to the title of the webhook with the status of the webhook.
+1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click the Dev Portal you want to view the webhook status job for.
+1. Click **Settings** in the sidebar, then click the **Audit Logs** tab.
+1. Click the **Status** tab.
+
+A badge will display next to the title of the webhook with the status of the webhook.
 
 To see the last attempt timestamp and the last response code, use the audit log API.
 
