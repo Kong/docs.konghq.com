@@ -305,7 +305,8 @@ KONG_DNS_STALE_TTL="3600"
 If applying configuration through a Helm chart, use the following:
 
 ```yaml
-# The value of 1 for nginx_worker_processes is a suggested value. Change nginx_worker_processes to a number matching the CPU limit. We recommend 4 or 8.
+# The value of 1 for nginx_worker_processes is a suggested value. 
+# Change nginx_worker_processes to a number matching the CPU limit. We recommend 4 or 8.
 # Allocate the same amount of CPU and appropriate memory to avoid OOM killer.
 env:
   nginx_worker_processes: "1"
