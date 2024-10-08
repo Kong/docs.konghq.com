@@ -6,10 +6,6 @@
 
 ### [chore: update konnect compatibility](https://github.com/Kong/docs.konghq.com/pull/8020) (2024-10-04)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/compatibility
@@ -41,8 +37,7 @@ Fixes https://konghq.atlassian.net/browse/DOCU-4013
 I updated our Mesh Manager tutorial so that it uses the same demo app as what they're using in the Kong Mesh docs. 
 
 I also verified that my changes worked by testing the full tutorial end-to-end.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 Fixes #6625
 
 #### Modified
@@ -52,10 +47,8 @@ Fixes #6625
 
 ### [fix: Change Gateway changelog dates to ISO 8601 format](https://github.com/Kong/docs.konghq.com/pull/8003) (2024-10-02)
 
-<!-- What did you change and why? -->
 Some dates weren't in the ISO 8601 format, this fixes that.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 DOCU-3877
 
 #### Modified
@@ -74,8 +67,6 @@ I tested this by trying to upload example OpenAPI specs created by ChatGPT:
 - 3.0 ✅ 
 - 3.2 ✅ 
 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 DOCU-3594
 
 #### Modified
@@ -121,12 +112,6 @@ Fixes [Issue #7867](https://github.com/Kong/docs.konghq.com/issues/7867)
 
 [DOCU-4088](https://konghq.atlassian.net/browse/DOCU-4088)
 
-### Checklist 
-
-- [x] Review label added
-
-
-[DOCU-4088]: https://konghq.atlassian.net/browse/DOCU-4088?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ
 
 #### Modified
 
@@ -234,10 +219,6 @@ Issue reported on Slack.
 
 ### [fix(plugins): ai semantic prompt guard is EE-only](https://github.com/Kong/docs.konghq.com/pull/7983) (2024-09-30)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/ai-semantic-prompt-guard/_metadata/_index.yml
@@ -266,8 +247,6 @@ Moves Cloud Gateways docs into their own dedicated cloud gateways section
 ### [Release: Gateway 2.8.4.13](https://github.com/Kong/docs.konghq.com/pull/7942) (2024-09-23)
 
 Changelog and version bump for 2.8.4.13.
-
-Don't merge until release goes out.
 
 See https://kongstrong.slack.com/archives/C02GZ0CGJNT/p1726668953815289 for release status.
 
