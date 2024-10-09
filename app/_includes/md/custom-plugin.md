@@ -1,7 +1,7 @@
 <!-- Shared between KIC and KGO plugin installation -->
 ## Create a custom plugin
 
-1. Create a directory with test plugin code.
+1. Create a directory with plugin code.
 
    {:.note}
    > If you already have a real plugin, you can skip this step.
@@ -35,7 +35,7 @@
     ' > myheader/schema.lua
     ```
 
-   After your plugin code available in a directory, the directory should look like this:
+   After your plugin code is available in a directory, the directory should look like this:
 
     ```bash
     tree myheader
