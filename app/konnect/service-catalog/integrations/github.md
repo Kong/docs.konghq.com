@@ -17,7 +17,7 @@ For each linked Repository, the UI can show a **Repository Summary** with simple
 
 ## Authorize the GitHub integration
 
-1. From {{site.konnect_product_name}} select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
+1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
 2. Select **GitHub**, then **Install Github**.
 3. Select **Authorize**. 
 
