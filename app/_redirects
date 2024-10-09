@@ -15,6 +15,10 @@
 /gateway/*          https://docs.konghq.com/gateway/:splat
 /hub/               https://docs.konghq.com/hub/
 /hub/*              https://docs.konghq.com/hub/:splat
+/dev-portal/api/*       https://docs.konghq.com/dev-portal/api/:splat
+/konnect-portal/api/*   https://docs.konghq.com/konnect-portal/api/:splat
+/konnect/api/*          https://docs.konghq.com/konnect/api/:splat
+/gateway/api/*          https://docs.konghq.com/gateway/api/:splat
 
 # FREE TRIALS, GENERAL LICENSING
 /free-trial/guide/                    https://konghq.com/install
