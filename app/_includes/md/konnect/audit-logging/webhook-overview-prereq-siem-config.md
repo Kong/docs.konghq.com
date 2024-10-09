@@ -1,5 +1,5 @@
 <!-- used in Org Audit Logging Set Up Webhook and Dev Portal Audit Logging Set Up Webhook-->
-Webhooks are invoked via an HTTPS request using the following retry rules:
+Webhooks are triggered via an HTTPS request using the following retry rules:
 
 - Minimum retry wait time: 1 second
 - Maximum retry wait time: 30 seconds
@@ -18,7 +18,7 @@ A SIEM provider that supports the [ArcSight CEF Format](https://docs.centrify.co
 
 ## Configure your SIEM provider
 
-Before you can push audit logs to your SIEM provider, you also need to configure the service to receive logs. 
+Before you can push audit logs to your SIEM provider, configure the service to receive logs. 
 This configuration is specific to your vendor.
 
 1. Check your SIEM documentation to find out where to send CEF or raw JSON data.

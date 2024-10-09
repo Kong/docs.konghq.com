@@ -17,8 +17,8 @@ Calculating the signature is slightly different for these formats.
     curl -i -X GET https://us.api.konghq.com/v2/audit-log-webhook/jwks.json
     ```
 
-    The response should look something like this, where the public key is 
-    the value in the `x` attribute:
+    The response should look like this, where the public key is stored in
+    the `x` attribute:
 
     ```json
     {

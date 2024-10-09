@@ -47,7 +47,7 @@ curl -i -X PUT https://{region}.api.konghq.com/v2/portals/{portalId}/audit-log-r
     }'
 ```
 
-Be sure to replace the PAT token and the following placeholder values:
+Be sure to replace the [PAT token ](https://docs.konghq.com/konnect/api/#authentication) and the following placeholder values:
 * `{region}.api.konghq.com`: The region your portal is located in. Can be `us`, `ap`, or `eu`.
 * `{portalId}`: The ID of the Dev Portal with your webhook.
 * `start_at` and `end_at`: Specify the timeframe for which you want to receive audit log events. `start_at` must be no more than seven days ago.
@@ -78,7 +78,6 @@ If the request is successful, you will receive a `202` response code and a respo
 
 {% endnavtab %}
 {% navtab API %}
-The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
 You can view the audit log replay job in a given region by issuing a GET request to the `audit-log-replay-job` endpoint:
 

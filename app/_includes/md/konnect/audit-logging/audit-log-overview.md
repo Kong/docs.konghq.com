@@ -1,5 +1,4 @@
 <!-- used in Org Audit Logging Overview and Dev Portal Audit Logging Overview-->
-Audit logging enables administrators to better spot security risks and maintain compliance of their core infrastructure. 
 
 Audit logs can help you detect and respond to potential security incidents when they occur. Monitoring audit logs proactively can reduce the risk of outages and ensure continuous service for your users. No system can ever be completely secure, but audit logs can be a key part of your incident prevention infrastructure.
 
