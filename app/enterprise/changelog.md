@@ -1,24 +1,26 @@
 ---
-title: Kong Gateway Changelog Archive
+title: Kong Gateway Enterprise Changelog Archive
 no_version: true
 ---
 
 <!-- vale off -->
 
-This changelog covers Kong Gateway versions that have reached end of sunset support.
+This changelog covers Kong Gateway Enterprise versions that have reached end of sunset support.
+For the archives of the combined Kong Gateway Enterprise and Kong Gateway OSS changelog, see the [Kong Gateway changelog for 2.6 onward](/gateway/changelog/).
 
 Looking for recent releases? See [https://docs.konghq.com/gateway/changelog/](https://docs.konghq.com/gateway/changelog/) for the latest changes.
 
 Archives:
-- [Kong Gateway 2.x](#kong-gateway-2x)
-- [Kong Gateway 1.x](#kong-gateway-1x)
-- [Kong Gateway 0.x](#kong-gateway-0x)
+- [Kong Gateway Enterprise 2.x](#kong-gateway-enterprise-2x)
+- [Kong Gateway Enterprise 1.x](#kong-gateway-enterprise-1x)
+- [Kong Gateway Enterprise 0.x](#kong-gateway-enterprise-0x)
 
 ---
 
-## Kong Gateway 2.x
+## Kong Gateway Enterprise 2.x
 
-Archived Kong Gateway versions in the 2.x series.
+Archived Kong Gateway Enterprise versions in the 2.x series from 2.5 and earlier. 
+For 2.x versions later than 2.5, see the merged [Kong Gateway changelog](/gateway/changelog/).
 
 ## 2.5.1.2
 **Release Date:** 2021/11/18
@@ -2433,7 +2435,7 @@ Kong Enterprise 2.1.3.0 version includes 2.1.0.0 (beta) features, fixes, known i
 
   * The ability to share an entity between Workspaces is no longer supported. The new method requires a copy of the entity to be created in the other Workspaces.
 
-## Kong Gateway 1.x
+## Kong Gateway Enterprise 1.x
 
 Archived Kong Gateway versions in the 1.x series.
 
@@ -3351,7 +3353,7 @@ repository will allow you to do both easily.
 - Fixes: centos and alpine images did not work on some OpenShift setups with relaxed anyuid SCC settings.
 
 
-## Kong Gateway 0.x
+## Kong Gateway Enterprise 0.x
 
 Archived Kong Gateway versions in the 0.x series.
 
