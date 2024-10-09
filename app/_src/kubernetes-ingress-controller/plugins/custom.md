@@ -7,6 +7,9 @@ purpose: |
 
 Install a custom plugin in Kong without using a Docker build.
 
+{:.note}
+> The recommended way to install custom plugins is with {{ site.kgo_product_name }}. See [Kong custom plugin distribution with KongPluginInstallation](/gateway-operator/unreleased/guides/plugin-distribution/) for more information.
+
 {% include md/custom-plugin.md %}
 
 2. Create a ConfigMap or Secret with the plugin code. If you're not sure which option is correct, use a `ConfigMap`.

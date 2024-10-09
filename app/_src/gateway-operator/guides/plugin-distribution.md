@@ -4,278 +4,279 @@ title: Kong custom plugin distribution with KongPluginInstallation
 
 
 
-{{ site.kgo_product_name }} can install Kong custom plugins packaged as container images. This guide shows how to install and use a custom plugin in {{site.base_gateway}} instances managed by the {{ site.kgo_product_name }}.
+{{ site.kgo_product_name }} can install Kong custom plugins packaged as container images. This guide shows how to package, install and use a custom plugin in {{site.base_gateway}} instances managed by the {{ site.kgo_product_name }}.
 
 {% include md/kgo/prerequisites.md version=page.version release=page.release kongplugininstallation=true %}
 
 {% include md/custom-plugin.md %}
 
-2. Build container image with the plugin code.
+2. Build a container image that includes the plugin code.
 
-  It is expected to have plugin related files in the root of the image. Thus for aforementioned plugin, the Dockerfile would look like this:
+   It is expected to have plugin-related files at the root of the image. Thus for the plugin as mentioned earlier, the Dockerfile would look like this:
 
-  ```bash
-  echo 'FROM scratch
+   ```bash
+   echo 'FROM scratch
 
-  COPY myheader /
-  ' > Dockerfile
-  ```
+   COPY myheader /
+   ' > Dockerfile
+   ```
 
-  where `myheader` is a directory that contains `handler.lua` and `schema.lua`.
+   where `myheader` is a directory that contains `handler.lua` and `schema.lua`.
 
-  Build the image:
+   Build the image:
 
-  ```bash
-  docker build -t myheader:1.0.0 .
-  ```
+   ```bash
+   docker build -t myheader:1.0.0 .
+   ```
 
-  next push it to a registry that is available to the Kubernetes cluster where {{ site.kgo_product_name }} is running.
+   next push it to a registry available to the Kubernetes cluster where {{ site.kgo_product_name }} is running. A private registry can be used as well in the `KongPluginInstallation` resource.  Read more about it in CRD documentation.
 
-  ```bash
-  docker tag myheader:1.0.0 <YOUR-REGISTRY-ADDRESS>/myheader:1.0.0
-  docker push <YOUR-REGISTRY-ADDRESS>/myheader:1.0.0
-  ```
+   ```bash
+   docker tag myheader:1.0.0 <YOUR-REGISTRY-ADDRESS>/myheader:1.0.0
+   docker push <YOUR-REGISTRY-ADDRESS>/myheader:1.0.0
+   ```
 
-  The plugin from the example above is available in public Docker Hub as `kong/plugin-example:1.0.0`. You can use it too to follow this guide.
+   The plugin from the example above is available in the public registry (Docker Hub) as `kong/plugin-example:1.0.0` for everyone. That source is used in the following steps.
 
-3. Install the plugin using the `KongPluginInstallation` resource. It makes it available to be referenced by `Gateway` resources.
+3. Install the plugin using the `KongPluginInstallation` resource. It makes it available for instances of {{site.base_gateway}} resources.
 
-  ```yaml
-  echo '
-  kind: KongPluginInstallation
-  apiVersion: gateway-operator.konghq.com/v1alpha1
-  metadata:
-    name: custom-plugin-myheader
-  spec:
-    image: kong/plugin-example:1.0.0
-  ' | kubectl apply -f -
-  ```
+   ```yaml
+   echo '
+   kind: KongPluginInstallation
+   apiVersion: gateway-operator.konghq.com/v1alpha1
+   metadata:
+     name: custom-plugin-myheader
+   spec:
+     image: kong/plugin-example:1.0.0
+   ' | kubectl apply -f -
+   ```
 
-  Verify that the plugin is fetched and available by examining the status of the `KongPluginInstallation` resource:
+   Learn more about the `KongPluginInstallation` resource in the CRD reference documentation.
 
-  ```bash
-  kubectl get kongplugininstallations.gateway-operator.konghq.com -o jsonpath-as-json='{.items[*].status}'
-  ```
+   Verify that the plugin is fetched and available by examining the status of the `KongPluginInstallation` resource:
 
-  The output should look like this:
+   ```bash
+   kubectl get kongplugininstallations.gateway-operator.konghq.com -o jsonpath-as-json='{.items[*].status}'
+   ```
 
-  ```json
-  [
-    {
-        "conditions": [
-            {
-                "lastTransitionTime": "2024-10-09T19:39:39Z",
-                "message": "plugin successfully saved in cluster as ConfigMap",
-                "observedGeneration": 1,
-                "reason": "Ready",
-                "status": "True",
-                "type": "Accepted"
-            }
-        ],
-        "underlyingConfigMapName": "custom-plugin-myheader-hnzf9"
-    }
-  ]
-  ```
+   The output should look like this:
 
-  in case of problems respective `conditions` will provide more information.
+   ```json
+   [
+     {
+         "conditions": [
+             {
+                 "lastTransitionTime": "2024-10-09T19:39:39Z",
+                 "message": "plugin successfully saved in cluster as ConfigMap",
+                 "observedGeneration": 1,
+                 "reason": "Ready",
+                 "status": "True",
+                 "type": "Accepted"
+             }
+         ],
+         "underlyingConfigMapName": "custom-plugin-myheader-hnzf9"
+     }
+   ]
+   ```
 
-  > `KonpluginInstalaltion` resource creates a ConfigMap with the plugin content. Some additional ConfigMaps are created
-  > when plugin is referenced by other resources. Lifecycle of all these ConfigMaps is managed automatically by the operator.
+   in case of problems respective `conditions` or respective resources will provide more information.
 
-4. Make plugin available in a `Gateway` resource by referencing it in the `spec.pluginsToInstall` field.
-   Plugins can be referenced cross-namespace without any additional configuration (for Secret used to authenticate
-   to container registry in case of cross-namespace `ReferenceGrant` in place is needed).
+   {:.note}
+    > `KongPluginInstalaltion` resource creates a `ConfigMap` with the plugin content. Additional `ConfigMap`s are created when a plugin is referenced by other resources. The operator automatically manages the lifecycle of all these `ConfigMap`s.
 
-  ```yaml
-  echo '
-  kind: GatewayConfiguration
-  apiVersion: gateway-operator.konghq.com/v1beta1
-  metadata:
-    name: kong
-    namespace: default
-  spec:
-    dataPlaneOptions:
-      deployment:
-        replicas: 2
-        podTemplateSpec:
-          spec:
-            containers:
-              - name: proxy
-                image: kong/kong-gateway:3.8
-                readinessProbe:
-                  initialDelaySeconds: 1
-                  periodSeconds: 1
-      pluginsToInstall:
-        - name: custom-plugin-myheader
-    controlPlaneOptions:
-      deployment:
-        podTemplateSpec:
-          spec:
-            containers:
-              - name: controller
-                image: kong/kubernetes-ingress-controller:3.3.1
-                readinessProbe:
-                  initialDelaySeconds: 1
-                  periodSeconds: 1
-  ---
-  apiVersion: gateway.networking.k8s.io/v1
-  kind: GatewayClass
-  metadata:
-    name: kong
-  spec:
-    controllerName: konghq.com/gateway-operator
-    parametersRef:
-      group: gateway-operator.konghq.com
-      kind: GatewayConfiguration
-      name: kong
-      namespace: default
-  ---
-  apiVersion: gateway.networking.k8s.io/v1
-  kind: Gateway
-  metadata:
-    name: kong
-    namespace: default
-  spec:
-    gatewayClassName: kong
-    listeners:
-      - name: http
-        protocol: HTTP
-        port: 80
-  ' | kubectl apply -f -
-  ```
+4. Make the plugin available in a `Gateway` resource by referencing it in the `spec.pluginsToInstall` field of the `GatewayConfiguration` resource.
+   Plugins can be referenced cross-namespace without any additional configuration.
 
-5. Deploy an example service and expose it by configuring`HTTPRoute` with custom plugin.
+   ```yaml
+   echo '
+   kind: GatewayConfiguration
+   apiVersion: gateway-operator.konghq.com/v1beta1
+   metadata:
+     name: kong
+     namespace: default
+   spec:
+     dataPlaneOptions:
+       deployment:
+         replicas: 2
+         podTemplateSpec:
+           spec:
+             containers:
+               - name: proxy
+                 image: kong/kong-gateway:3.8
+                 readinessProbe:
+                   initialDelaySeconds: 1
+                   periodSeconds: 1
+       pluginsToInstall:
+         - name: custom-plugin-myheader
+     controlPlaneOptions:
+       deployment:
+         podTemplateSpec:
+           spec:
+             containers:
+               - name: controller
+                 image: kong/kubernetes-ingress-controller:3.3.1
+                 readinessProbe:
+                   initialDelaySeconds: 1
+                   periodSeconds: 1
+   ---
+   apiVersion: gateway.networking.k8s.io/v1
+   kind: GatewayClass
+   metadata:
+     name: kong
+   spec:
+     controllerName: konghq.com/gateway-operator
+     parametersRef:
+       group: gateway-operator.konghq.com
+       kind: GatewayConfiguration
+       name: kong
+       namespace: default
+   ---
+   apiVersion: gateway.networking.k8s.io/v1
+   kind: Gateway
+   metadata:
+     name: kong
+     namespace: default
+   spec:
+     gatewayClassName: kong
+     listeners:
+       - name: http
+         protocol: HTTP
+         port: 80
+   ' | kubectl apply -f -
+   ```
 
-  Example service:
+5. Deploy an example service and expose it by configuring `HTTPRoute` with the s custom plugin.
 
-  ```yaml
-  echo '
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: echo
-  spec:
-    ports:
-      - protocol: TCP
-        name: http
-        port: 80
-        targetPort: http
-    selector:
-      app: echo
-  ---
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    labels:
-      app: echo
-    name: echo
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
-        app: echo
-    template:
-      metadata:
-        labels:
-          app: echo
-      spec:
-        containers:
-          - name: echo
-            image: registry.k8s.io/e2e-test-images/agnhost:2.40
-            command:
-              - /agnhost
-              - netexec
-              - --http-port=8080
-            ports:
-              - containerPort: 8080
-                name: http
-            env:
-              - name: NODE_NAME
-                valueFrom:
-                  fieldRef:
-                    fieldPath: spec.nodeName
-              - name: POD_NAME
-                valueFrom:
-                  fieldRef:
-                    fieldPath: metadata.name
-              - name: NAMESPACE
-                valueFrom:
-                  fieldRef:
-                    fieldPath: metadata.namespace
-              - name: POD_IP
-                valueFrom:
-                  fieldRef:
-                    fieldPath: status.podIP
-            resources:
-              requests:
-                cpu: 10m
-  ' | kubectl apply -f -
-  ```
+   Example service:
 
-  `HTTPRoute` with custom plugin, setting to a plugin are provided like for any other plugin with `KongPlugin` CRD where
-  field `plugin` is set to the name of the `KongPluginInstallation` resource.
+   ```yaml
+   echo '
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: echo
+   spec:
+     ports:
+       - protocol: TCP
+         name: http
+         port: 80
+         targetPort: http
+     selector:
+       app: echo
+   ---
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     labels:
+       app: echo
+     name: echo
+   spec:
+     replicas: 1
+     selector:
+       matchLabels:
+         app: echo
+     template:
+       metadata:
+         labels:
+           app: echo
+       spec:
+         containers:
+           - name: echo
+             image: registry.k8s.io/e2e-test-images/agnhost:2.40
+             command:
+               - /agnhost
+               - netexec
+               - --http-port=8080
+             ports:
+               - containerPort: 8080
+                 name: http
+             env:
+               - name: NODE_NAME
+                 valueFrom:
+                   fieldRef:
+                     fieldPath: spec.nodeName
+               - name: POD_NAME
+                 valueFrom:
+                   fieldRef:
+                     fieldPath: metadata.name
+               - name: NAMESPACE
+                 valueFrom:
+                   fieldRef:
+                     fieldPath: metadata.namespace
+               - name: POD_IP
+                 valueFrom:
+                   fieldRef:
+                     fieldPath: status.podIP
+             resources:
+               requests:
+                 cpu: 10m
+   ' | kubectl apply -f -
+   ```
 
-  ```yaml
-  echo '
-  apiVersion: configuration.konghq.com/v1
-  kind: KongPlugin
-  metadata:
-    name: myheader
-  plugin: custom-plugin-myheader
-  config:
-    header_value: "my-first-plugin"
-  ---
-  apiVersion: gateway.networking.k8s.io/v1
-  kind: HTTPRoute
-  metadata:
-    name: httproute-echo
-    namespace: default
-    annotations:
-      konghq.com/strip-path: "true"
-      konghq.com/plugins: myheader
-  spec:
-    parentRefs:
-      - name: kong
-    rules:
-      - matches:
-          - path:
-              type: PathPrefix
-              value: /echo
-        backendRefs:
-          - name: echo
-            kind: Service
-            port: 80
-  ' | kubectl apply -f -
-  ```
+   `HTTPRoute` with custom plugin, configuration of a plugin is provided with `KongPlugin` CRD where
+   field `plugin` is set to the name of the `KongPluginInstallation` resource.
 
-  The `HTTPRoute` above will route requests to the `echo` service and apply the plugin to respons.
+   ```yaml
+   echo '
+   apiVersion: configuration.konghq.com/v1
+   kind: KongPlugin
+   metadata:
+     name: myheader
+   plugin: custom-plugin-myheader
+   config:
+     header_value: my-first-plugin
+   ---
+   apiVersion: gateway.networking.k8s.io/v1
+   kind: HTTPRoute
+   metadata:
+     name: httproute-echo
+     namespace: default
+     annotations:
+       konghq.com/strip-path: "true"
+       konghq.com/plugins: myheader
+   spec:
+     parentRefs:
+       - name: kong
+     rules:
+       - matches:
+           - path:
+               type: PathPrefix
+               value: /echo
+         backendRefs:
+           - name: echo
+             kind: Service
+             port: 80
+   ' | kubectl apply -f -
+   ```
 
-  6. Ensure that everything is up and running and make a request to the service:
+   The `HTTPRoute` above routes requests to the `echo` service and applies the plugin to responses.
 
-  To call the API, fetch the PROXY_IP for the Gateway:
+6. Ensure that everything is up and running and make a request to the service:
 
-  ```bash
-  export PROXY_IP=$(kubectl get gateway kong -o jsonpath='{.status.addresses[0].value}')
-  ```
+   To call the API, fetch the PROXY_IP for the Gateway:
 
-  Finally, make a `curl` request to the service:
+   ```bash
+   export PROXY_IP=$(kubectl get gateway kong -o jsonpath='{.status.addresses[0].value}')
+   ```
 
-  ```bash
-  curl -I $PROXY_IP/echo
-  ```
+   Finally, make a `curl` request to the service:
 
-  The response should include the custom header set by the plugin:
+   ```bash
+   curl -I $PROXY_IP/echo
+   ```
 
-  ```txt
-  HTTP/1.1 200 OK
-  Content-Type: text/plain; charset=utf-8
-  Content-Length: 61
-  Connection: keep-alive
-  Date: Wed, 09 Oct 2024 20:21:23 GMT
-  Server: kong/3.8.0.0-enterprise-edition
-  myheader: my-first-plugin
-  X-Kong-Upstream-Latency: 3
-  X-Kong-Proxy-Latency: 0
-  Via: 1.1 kong/3.8.0.0-enterprise-edition
-  X-Kong-Request-Id: 6eec26150170fe3547bc1a4a20e93d74
-  ```
+   The response should include the custom header set by the plugin:
+
+   ```txt
+   HTTP/1.1 200 OK
+   Content-Type: text/plain; charset=utf-8
+   Content-Length: 61
+   Connection: keep-alive
+   Date: Wed, 09 Oct 2024 20:21:23 GMT
+   Server: kong/3.8.0.0-enterprise-edition
+   myheader: my-first-plugin
+   X-Kong-Upstream-Latency: 3
+   X-Kong-Proxy-Latency: 0
+   Via: 1.1 kong/3.8.0.0-enterprise-edition
+   X-Kong-Request-Id: 6eec26150170fe3547bc1a4a20e93d74
+   ```
