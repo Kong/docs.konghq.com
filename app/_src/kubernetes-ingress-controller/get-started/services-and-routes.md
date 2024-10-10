@@ -11,7 +11,46 @@ A Service inside Kubernetes is a way to abstract an application that is running 
 
 The service object in Kong holds the information of the protocol to use to talk to the upstream service and various other protocol specific settings. The Upstream object defines load-balancing and health-checking behavior.
 
-![translating Kubernetes to Kong](/assets/images/products/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
+<!--vale off-->
+{% mermaid %}
+flowchart LR
+    subgraph Pods
+        direction LR
+        E(Target)
+        F(Target)
+        G(Target)
+    end
+
+    subgraph Kubernetes service
+        direction TB
+        C(Service)
+        D(Upstream)
+    end
+    
+    subgraph Ingress rules
+        direction LR
+        A(Route)
+        B(Route)
+    end
+
+    A --> C
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+
+    classDef lightBlue fill:#cce7ff;
+    classDef lightGreen fill:#c4e1c4;
+    classDef lightPurple fill:#e6d8eb;
+    classDef lightGrey fill:#f5f5f5;
+
+    class A,B lightGreen;
+    class C lightBlue;
+    class D lightPurple;
+    class E,F,G lightGrey;
+{% endmermaid %}
+<!--vale on-->
 
 Routes are configured using Gateway API or Ingress resources, such as `HTTPRoute`, `TCPRoute`, `GRPCRoute`, `Ingress` and more.
 
