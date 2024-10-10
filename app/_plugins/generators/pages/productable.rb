@@ -9,7 +9,7 @@ module Jekyll
 
       def path
         # Remove the generated prefix if it's present
-        @path ||= if @page.relative_path.start_with?('_src')
+        @path ||= if @page.is_a?(Jekyll::GeneratorSingleSource::SingleSourcePage) || @page.data['is_latest']
                     @page.dir.delete_prefix('/')
                   else
                     @page.path

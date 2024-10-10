@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 
 set -e
-bundle exec jekyll build --config jekyll.yml --profile
+
+if [[ -v LOCALE && -v TRANSLATED_CONTENT_PATH && -v JEKYLL_CONFIG_FILES ]]; then
+    echo "Building site in $LOCALE..."
+    bundle exec jekyll build --config jekyll.yml${JEKYLL_CONFIG_FILES:+,$JEKYLL_CONFIG_FILES} --profile
+else
+    echo "Building site in english..."
+    bundle exec jekyll build --config jekyll.yml --profile
+fi

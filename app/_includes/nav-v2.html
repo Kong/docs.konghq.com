@@ -1,5 +1,5 @@
 <header class="navbar-v2 closed">
-  <a class="skip-main" href="#main">Skip to content</a>
+  <a class="skip-main" href="#main">{% t _includes.nav-v2.skip_main %}</a>
   <!-- uncomment the promo-banner div when adding a new promo banner-->
   <!--also uncomment the promo banner sections in app/assets/stylesheets/header.less and application.js-->
   <!-- <div id="promo-banner">
@@ -27,18 +27,18 @@
         <li id="top-module-list" aria-haspopup="true" role="menuitem" aria-expanded="false"
           class="navbar-item main-menu-item with-submenu {% if include.layout != 'landing-page' %} active{% endif %}"
         >
-          <span tabindex="0" id="docs-link" class="main-menu-item-title">Docs</span>
+          <span tabindex="0" id="docs-link" class="main-menu-item-title">{% t _includes.nav-v2.navbar.docs %}</span>
           <span class="caret"></span>
           <ul class="navbar-item-submenu" role="menu">
             <div class="submenu-section">
               <li role="menuitem" class="docs-dropdown-li">
                 <a href="/api/" class="docs-dropdown-li__link" tabindex="-1">
                   <div class="docs-dropdown-li__card">
-                    <span class="heading">Explore the API Specs</span>
+                    <span class="heading">{% t _includes.nav-v2.explore_the_api_specs %}</span>
                     <div class="docs-dropdown-li__card-link">
                       <img src="/assets/images/landing-page/view-all-api-specs.png" alt="View all API Specs">
                       <span class="docs-dropdown-li__card-image">
-                        View all API Specs
+                        {% t _includes.nav-v2.view_all_api_specs %}
                         <img src="/assets/images/landing-page/arrow-right.svg" alt="View all API Specs arrow image">
                       </span>
                     </div>
@@ -49,7 +49,7 @@
               <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
                 <div class="docs-dropdown-li__section">
                   <div class="docs-dropdown-li__section-title">
-                    <span class="heading">Documentation</span>
+                    <span class="heading">{% t _includes.nav-v2.documentation %}</span>
                   </div>
 
                   <div class="docs-dropdown-li__section-items">
@@ -58,6 +58,7 @@
                         <div class="item__description-title">API Specs</div>
                       </div>
                     </a>
+
                     {% for doc_menu_item in site.data.docs_top_nav %}
                       <a class="item" href="{{ doc_menu_item.url }}" tabindex="-1">
                         {% if doc_menu_item.icon %}
@@ -85,18 +86,18 @@
           aria-expanded="false"
           class="navbar-item main-menu-item with-submenu navbar-item-hub"
         >
-          <span id="plugin-link" class="main-menu-item-title" tabindex="0">Plugin Hub</span>
+          <span id="plugin-link" class="main-menu-item-title" tabindex="0">{% t _includes.nav-v2.navbar.plugin_hub %}</span>
           <span class="caret"></span>
           <ul class="navbar-item-submenu" role="menu">
             <div class="submenu-section">
               <li role="menuitem" class="docs-dropdown-li">
                 <a href="/hub/" class="docs-dropdown-li__link" tabindex="-1">
                   <div class="docs-dropdown-li__card">
-                    <span class="heading">Explore the Plugin Hub</span>
+                    <span class="heading">{% t _includes.nav-v2.explore_the_plugin_hub %}</span>
                     <div class="docs-dropdown-li__card-link">
                       <img src="/assets/images/landing-page/view-all-plugins.svg" alt="View all plugins">
                       <span class="docs-dropdown-li__card-image">
-                        View all plugins
+                        {% t _includes.nav-v2.view_all_plugins %}
                         <img src="/assets/images/landing-page/arrow-right.svg" alt="View all plugins arrow image">
                       </span>
                     </div>
@@ -107,9 +108,9 @@
               <li role="menuitem" class="docs-dropdown-li">
                 <div class="docs-dropdown-li__section">
                   <div class="docs-dropdown-li__section-title">
-                    <span class="heading">Functionality</span>
+                    <span class="heading">{% t _includes.nav-v2.functionality %}</span>
                     <a href="/hub/" class="view-all" tabindex="-1">
-                      View all
+                      {% t _includes.nav-v2.view_all %}
                       <img src="/assets/images/landing-page/arrow-right.svg" alt="View all arrow image">
                     </a>
                   </div>
@@ -117,11 +118,11 @@
                   <div class="docs-dropdown-li__section-items">
                     <a class="item item-all" href="/hub/" tabindex="-1">
                       <div class="item__description">
-                        <div class="item__description-title">View all plugins</div>
+                        <div class="item__description-title">{% t _includes.nav-v2.view_all_plugins %}</div>
                       </div>
                     </a>
 
-                    {% for category in site.extensions.categories %}
+                    {% for category in site.data.extensions.categories %}
                       <a class="item" href="/hub/?category={{ category.slug }}" tabindex="-1">
                         <div>
                           <img src="{{ category.icon }}" alt="{{ category.name }}'s icon">
@@ -140,20 +141,20 @@
           </ul>
         </li>
         <li role="menuitem" class="main-menu-item">
-          <a href="https://support.konghq.com/" class="navbar-item">Support</a>
+          <a href="https://support.konghq.com/" class="navbar-item">{% t _includes.nav-v2.navbar.support %}</a>
         </li>
         <li role="menuitem" class="main-menu-item">
-          <a href="https://konghq.com/community/" class="navbar-item" target="_blank" rel="noopener noreferrer" data-skip-external-links-hook=true>Community</a>
+          <a href="https://konghq.com/community/" class="navbar-item" target="_blank" rel="noopener noreferrer" data-skip-external-links-hook=true>{% t _includes.nav-v2.navbar.community %}</a>
         </li>
         <li role="menuitem" class="main-menu-item">
-          <a href="{{site.links.learn}}" class="navbar-item">Kong Academy</a>
+          <a href="{{site.links.learn}}" class="navbar-item">{% t _includes.nav-v2.navbar.kong_academy %}</a>
         </li>
       </ul>
       <a id="top-cta" href="https://konghq.com/contact-sales?utm_source=docs.konghq.com" class="navbar-button" target="_blank">
-        Get a Demo
+        {% t _includes.nav-v2.navbar.buttons.top_cta %}
       </a>
       <a id="konnect-cta" href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=top-nav" class="navbar-button" target="_blank">
-        Start Free Trial
+        {% t _includes.nav-v2.navbar.buttons.konnect_cta %}
       </a>
     </div>
     <div id="navbar-menu-toggle-button" class="small-screen-button" aria-label="Toggle navigation">

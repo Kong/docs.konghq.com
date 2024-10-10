@@ -1,0 +1,41 @@
+name: Upload Plugins for translation
+on:
+  workflow_dispatch:
+    inputs:
+      versions:
+        type: string
+        description: |
+          Comma-separated list of gateway versions to translate.
+          If not provided, the config file in tools/smartling-integration/config.yml will be used.
+      locale:
+        type: string
+        default: 'ja-JP'
+        description: "Target locale, it must match the same format that the Job has, e.g. `ja-JP`."
+      jobId:
+        type: string
+        description: "Smarting's JobUId in case we want to re-upload some files to an existing Job"
+
+jobs:
+  upload-plugins:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: |
+          cd tools/smartling-integration
+          npm ci
+      - name: Run upload tool
+        run: |
+          node tools/smartling-integration/upload_plugins.js
+        env:
+          PROJECT_ID: ${{ secrets.SMARTLING_PROJECT_ID }}
+          USER_IDENTIFIER: ${{ secrets.SMARTLING_USER_IDENTIFIER }}
+          USER_SECRET: ${{ secrets.SMARTLING_USER_SECRET }}
+          JOB_ID: ${{ github.event.inputs.jobId }}
+          LOCALE: ${{ github.event.inputs.locale }}
+          VERSIONS: ${{ github.event.inputs.versions }}

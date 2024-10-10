@@ -48,7 +48,7 @@ module PluginSingleSource
 
       def introduction
         {
-          'title' => 'Introduction',
+          'title' => I18n.t('hub.sidebar.introduction', locale: translate_to),
           'items' => items_for(@release.overviews),
           'icon' => '/assets/images/icons/hub-layout/icn-overview.svg'
         }
@@ -64,12 +64,12 @@ module PluginSingleSource
         }
       end
 
-      def configuration_examples # rubocop:disable Metrics/MethodLength
+      def configuration_examples # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         return unless @release.configuration_examples
 
         if @release.vendor == 'kong-inc'
           {
-            'title' => 'Using the plugin',
+            'title' => I18n.t('hub.sidebar.using_the_plugin', locale: translate_to),
             'items' => [
               { 'text' => @release.configuration_examples.nav_title,
                 'url' => @release.configuration_examples.permalink },
@@ -114,6 +114,10 @@ module PluginSingleSource
           'url' => @release.troubleshooting.permalink,
           'icon' => @release.troubleshooting.icon
         }
+      end
+
+      def translate_to
+        @translate_to ||= @release.missing_translation? ? I18n.default_locale : I18n.locale
       end
     end
   end
