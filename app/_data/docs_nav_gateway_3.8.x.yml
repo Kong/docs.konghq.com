@@ -408,6 +408,10 @@ items:
       - text: Expose and graph AI Metrics
         url: /ai-gateway/metrics/
         generate: false
+      - text: AI Gateway Load Balancing
+        url: /hub/kong-inc/ai-proxy-advanced/#load-balancing
+        generate: false
+        absolute_url: true
       - text: AI Gateway plugins
         url: /hub/?category=ai
         generate: false
