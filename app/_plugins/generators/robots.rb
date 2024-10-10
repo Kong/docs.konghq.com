@@ -17,7 +17,7 @@ module Robots
           "#{site.config.dig('links', 'web')}/sitemap-index/jp.xml"
         ]
       else
-        ["#{site.config.dig('links', 'web')}/sitemap-index/jp.xml"]
+        ["#{site.config.dig('links', 'locales', 'en')}/sitemap-index/jp.xml"]
       end
     end
   end
