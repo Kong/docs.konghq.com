@@ -25,13 +25,14 @@ module Sitemap
 
     def generate(site)
       return if ENV['JEKYLL_ENV'] == 'development'
-      return if site.config['locale'] != I18n.default_locale.to_s
 
       @site = site
 
       index = SEO::Index.new(@site)
       index.generate
       @site.data['sitemap_pages'] = SEO::Sitemap.generate(index)
+
+      return unless site.config['locale'] == I18n.default_locale.to_s
 
       @site.pages.concat(generate_sitemaps)
     end
