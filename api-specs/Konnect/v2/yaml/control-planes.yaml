@@ -188,6 +188,27 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
         - Control Plane Groups
+    put:
+      operationId: put-control-planes-id-group-memberships
+      summary: Upsert Control Plane Group Members
+      description: Adds one or more control planes as a member of a control plane group.
+      requestBody:
+        $ref: '#/components/requestBodies/GroupMemebershipUpsert'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      tags:
+        - Control Plane Groups
   '/control-planes/{id}/group-memberships/add':
     parameters:
       - name: id
@@ -758,6 +779,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ProxyURL'
+      format: set
       example:
         - host: example.com
           port: 443
@@ -942,7 +964,7 @@ components:
         choices:
           type: array
           items: {}
-          minimum: 1
+          minItems: 1
           nullable: false
           readOnly: true
           uniqueItems: true
@@ -1336,6 +1358,19 @@ components:
                   - id: 778a0474-687d-41af-8e51-a0488d790586
                   - id: fa85f8e8-2e5a-496e-b6d0-4e534eaab459
       description: Request body for removing a list of child control planes from a control plane group membership.
+    GroupMemebershipUpsert:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GroupMembership'
+          examples:
+            Example 1:
+              value:
+                members:
+                  - id: 1beb9ad3-d21b-4090-b6e3-574784d1166d
+                  - id: 778a0474-687d-41af-8e51-a0488d790586
+                  - id: fa85f8e8-2e5a-496e-b6d0-4e534eaab459
+      description: Request body for upserting a list of child control planes to a control plane group membership.
   responses:
     RetrieveControlPlaneResponse:
       description: A response to retrieving a single control plane.

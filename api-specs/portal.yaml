@@ -272,6 +272,8 @@ paths:
         - $ref: '#/components/parameters/FilterByProductNameEqualityShort'
         - $ref: '#/components/parameters/FilterByProductVersionNameEquality'
         - $ref: '#/components/parameters/FilterByProductVersionNameEqualityShort'
+        - $ref: '#/components/parameters/FilterByProductVersionNameContains'
+        - $ref: '#/components/parameters/FilterByProductNameContains'
       responses:
         '200':
           $ref: '#/components/responses/ListRegistrations'
@@ -1062,6 +1064,14 @@ components:
       schema:
         type: string
         example: good service
+    FilterByProductNameContains:
+      name: 'filter[product_name][contains]'
+      description: Filter by contains comparison of the product_name property with a supplied substring
+      in: query
+      required: false
+      schema:
+        type: string
+        example: good service
     FilterByProductNameEquality:
       name: 'filter[product_name][eq]'
       description: Filter by direct equality comparison of the product_name property with a supplied value.
@@ -1073,6 +1083,14 @@ components:
     FilterByProductNameEqualityShort:
       name: 'filter[product_name]'
       description: Filter by direct equality comparison (short-hand) of the product_name property with a supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: good service
+    FilterByProductVersionNameContains:
+      name: 'filter[product_version_name][contains]'
+      description: Filter by contains comparison of the product_version_name property with a supplied substring
       in: query
       required: false
       schema:
@@ -2119,7 +2137,7 @@ components:
         choices:
           type: array
           items: {}
-          minimum: 1
+          minItems: 1
           nullable: false
           readOnly: true
           uniqueItems: true
@@ -2484,8 +2502,12 @@ components:
         name:
           description: Name of the developer portal.
           type: string
+        canonical_domain:
+          description: The canonical domain of the developer portal.
+          type: string
       additionalProperties: false
       required:
+        - canonical_domain
         - portal_id
         - org_id
         - is_public
@@ -3411,6 +3433,7 @@ components:
           type: array
           items:
             type: string
+          deprecated: true
       additionalProperties: false
       required:
         - id
@@ -4276,3 +4299,9 @@ tags:
       all of the described endpoints will return a 404 error
   - name: search
     description: The API for Konnect Portal Search.
+x-errors:
+  granted-scopes-unavailable:
+    description: |
+      The IDP used does not support granted scopes.
+    resolution: |
+      Switch to an IDP that allows you to grant specific scopes.
