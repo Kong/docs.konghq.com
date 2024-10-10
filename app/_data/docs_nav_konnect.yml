@@ -198,6 +198,14 @@
 
     - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
+    - text: Audit Logging
+      items:
+        - text: Overview
+          url: /dev-portal/audit-logging/
+        - text: Set up an Audit Log Webhook
+          url: /dev-portal/audit-logging/webhook/
+        - text: Set up an Audit Log Replay Job
+          url: /dev-portal/audit-logging/replay-job/
     - text: Portal Customization
       items:
         - text: Overview
@@ -268,10 +276,6 @@
           url: /org-management/audit-logging/webhook/
         - text: Set up an Audit Log Replay Job
           url: /org-management/audit-logging/replay-job/
-        - text: Verify Audit Log Signatures
-          url: /org-management/audit-logging/verify-signatures/
-        - text: Log Reference
-          url: /org-management/audit-logging/reference/
     - text: Account and Org Deactivation
       url: /org-management/deactivation/
 
@@ -407,3 +411,7 @@
       url: /reference/search/
     - text: Terraform Provider
       url: /reference/terraform/
+    - text: Audit Logs
+      url: /reference/audit-logs/
+    - text: Verify audit log signatures
+      url: /reference/verify-signatures/

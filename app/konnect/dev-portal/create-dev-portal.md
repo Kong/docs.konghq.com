@@ -109,3 +109,6 @@ Your Dev Portal URL may vary. Keep the following in mind:
 ### Publish APIs to Dev Portals
 
 * [Add and publish API product documentation](/konnect/dev-portal/publish-service/)
+
+### Configure audit logs for Dev Portal
+* [Dev Portal audit logs](/konnect/dev-portal/audit-logging/): Keep track of Dev Portal authentication, authorization, and access logs in a SIEM provider

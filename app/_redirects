@@ -119,6 +119,14 @@
 /konnect/dev-portal/access-and-approval/manage-teams    /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
 /konnect/api/portal-auth/portal-rbac-guide/   /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
 
+# Konnect Dev Portal audit logs
+/konnect/dev-portal/audit-logging/reference/    /konnect/reference/audit-logs/
+/konnect/org-management/audit-logging/reference/    /konnect/reference/audit-logs/
+/konnect/dev-portal/audit-logging/verify-signatures/  /reference/verify-signatures/
+/konnect/org-management/audit-logging/verify-signatures/    /reference/verify-signatures/
+/konnect/dev-portal/audit-logging/webhook-status/   /konnect/dev-portal/audit-logging/webhook/#view-audit-log-webhook-status
+
+
 # API markdown doc deprecation
 
 /gateway/latest/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
