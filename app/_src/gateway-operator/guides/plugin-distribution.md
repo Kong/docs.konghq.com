@@ -255,3 +255,82 @@ title: Kong custom plugin distribution with KongPluginInstallation
    Via: 1.1 kong/3.8.0.0-enterprise-edition
    X-Kong-Request-Id: 6eec26150170fe3547bc1a4a20e93d74
    ```
+
+## Troubleshooting
+
+Everything needed to debug problematic `KongPluginInstallation` can be found in the `status` of the respective resource.
+
+For instance, if the plugin referenced in the `GatewayConfiguration` does not exist, by examining the status of the `Gateway` resource:
+
+```bash
+kubectl get gateway -o jsonpath-as-json='{.items[*].status.conditions}'
+```
+
+you can learn:
+
+```json
+[
+    [
+        {
+            "lastTransitionTime": "2024-10-10T15:58:52Z",
+            "message": "All listeners are accepted.",
+            "observedGeneration": 1,
+            "reason": "Accepted",
+            "status": "True",
+            "type": "Accepted"
+        },
+        {
+            "lastTransitionTime": "2024-10-10T15:58:52Z",
+            "message": "There are other conditions that are not yet ready",
+            "observedGeneration": 1,
+            "reason": "Pending",
+            "status": "False",
+            "type": "Programmed"
+        },
+        {
+            "lastTransitionTime": "2024-10-10T15:58:52Z",
+            "message": "Waiting for the resource to become ready",
+            "observedGeneration": 1,
+            "reason": "WaitingToBecomeReady",
+            "status": "False",
+            "type": "DataPlaneReady"
+        },
+        {
+            "lastTransitionTime": "2024-10-10T15:58:52Z",
+            "message": "Resource has been created",
+            "observedGeneration": 1,
+            "reason": "ResourceCreatedOrUpdated",
+            "status": "False",
+            "type": "ControlPlaneReady"
+        }
+    ]
+]
+```
+
+that `DataPlane` is not ready. So looking at the `DataPlane` status:
+
+```bash
+kubectl get dataplanes.gateway-operator.konghq.com -o jsonpath-as-json='{.items[*].status.conditions}'
+```
+
+provides more information:
+
+```json
+[
+    [
+        {
+            "lastTransitionTime": "2024-10-10T15:58:54Z",
+            "message": "referenced KongPluginInstallation default/additional-custom-plugin-4 not found",
+            "observedGeneration": 1,
+            "reason": "ReferencedResourcesNotAvailable",
+            "status": "False",
+            "type": "Ready"
+        }
+    ]
+]
+```
+
+that `KongPluginInstallation` in the namespace `default` with the name `additional-custom-plugin-4` is not found.
+
+Following the approach described above, you can troubleshoot any issues related to the `KongPluginInstallation` resource.
+Sometimes troubleshooting may lead to examining the `status` field of the `KongPluginInstallation` resource itself (e.g. referencing not existing image or an image that doesn't contain a valid plugin).
