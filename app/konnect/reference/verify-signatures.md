@@ -72,7 +72,7 @@ Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=16
 {% endnavtab %}
 {% endnavtabs %}
 
-1. Decode the signature and public key into bytes. Both the signature and the public key are Base64 URL-encoded.
+1. Decode the signature and public key into bytes. Both the signature and the public key are [Base64 URL-encoded](https://datatracker.ietf.org/doc/html/rfc4648).
 
 1. Verify the ED25519 signature with the public key, signature-less audit log entry, and decoded signature.
 
