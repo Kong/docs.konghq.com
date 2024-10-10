@@ -12,7 +12,7 @@ Install a custom plugin in Kong without using a Docker build.
 
 {% include md/custom-plugin.md %}
 
-2. Create a ConfigMap or Secret with the plugin code. If you're not sure which option is correct, use a `ConfigMap`.
+2. Create a `ConfigMap` or `Secret` with the plugin code. If you're not sure which option is correct, use a `ConfigMap`.
 
     If you would like to install a plugin which is available as a rock from Luarocks, then you need to download it, unzip it and create a ConfigMap or secret from all the Lua files of the plugin.
 
