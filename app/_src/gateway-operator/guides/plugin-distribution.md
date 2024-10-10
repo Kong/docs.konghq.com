@@ -99,7 +99,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
            spec:
              containers:
                - name: proxy
-                 image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ce-version }}
+                 image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
                  readinessProbe:
                    initialDelaySeconds: 1
                    periodSeconds: 1
