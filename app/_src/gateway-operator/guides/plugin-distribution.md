@@ -1,9 +1,6 @@
 ---
 title: Kong custom plugin distribution with KongPluginInstallation
 ---
-
-
-
 {{ site.kgo_product_name }} can install Kong custom plugins packaged as container images. This guide shows how to package, install and use a custom plugin in {{site.base_gateway}} instances managed by the {{ site.kgo_product_name }}.
 
 {% include md/kgo/prerequisites.md version=page.version release=page.release kongplugininstallation=true %}
@@ -102,7 +99,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
            spec:
              containers:
                - name: proxy
-                 image: kong/kong-gateway:3.8
+                 image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ce-version }}
                  readinessProbe:
                    initialDelaySeconds: 1
                    periodSeconds: 1
@@ -114,7 +111,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
            spec:
              containers:
                - name: controller
-                 image: kong/kubernetes-ingress-controller:3.3.1
+                 image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
                  readinessProbe:
                    initialDelaySeconds: 1
                    periodSeconds: 1
