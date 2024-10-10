@@ -12415,6 +12415,32 @@ paths:
                   recovery_private_key: /path/to/generated/<base64-encoded-contents-of-key.pem>
       tags:
         - Keyring
+  /keyring/remove:
+    post:
+      summary: Remove key
+      operationId: post-keyring-remove
+      responses:
+        '204':
+          description: No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Remove a key from the keyring.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  key: 3Rwvk223
+              properties:
+                key:
+                  type: string
+                  description: The key ID
+                  example: 3Rwvk223
+        description: The request body contains a key ID that can be generated from the `/keyring/generate` endpoint.
+      tags:
+        - Keyring
   /keyring/export:
     post:
       summary: Export keyring
