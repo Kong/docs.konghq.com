@@ -36,9 +36,11 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
    
    {:.warning}
    > **Warning:** You **can't** change the value of the environment variables you used to provide the AWS credential after booting {{site.base_gateway}}. Any changes are ignored.
-{% if_version gte:3.8.x %}
+{% if_version gte:3.4.x %}
+  {% unless page.release == "3.5.x" or page.release == "3.6.x" or page.release == "3.7.x" %}
    - If you want to assume a role, make sure the original IAM role that Kong uses has the correct permission to assume the role of the target IAM role, and the target IAM role has the correct permission to connect to the database using IAM authentication.
    - If you have users with non-public VPC networks and private VPC endpoints (without private DNS names enabled), you can configure an AWS Service Token Service (STS) endpoint globally with `vault_aws_sts_endpoint_url` or on a custom AWS Vault entity with `sts_endpoint_url`.
+  {% endunless %}
 {% endif_version %}
 
 - **Assign an IAM policy to the {{site.base_gateway}} IAM role**. For more information, see [Creating and using an IAM policy for IAM database access](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html) in the Amazon RDS documentation.
@@ -76,7 +78,8 @@ KONG_PG_IAM_AUTH=off # This line can be omitted because off is the default value
 KONG_PG_RO_IAM_AUTH=on
 ```
 
-{% if_version gte:3.8.x %}
+{% if_version gte:3.4.x %}
+{% unless page.release == "3.5.x" or page.release == "3.6.x" or page.release == "3.7.x" %}
 If you want to [assume a role](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html), also set the following environment variables:
 
 ```bash
@@ -98,7 +101,7 @@ KONG_PG_RO_IAM_AUTH_ROLE_SESSION_NAME=<role_session_name>
 # Optional, same as KONG_PG_IAM_AUTH_STS_ENDPOINT_URL
 KONG_PG_RO_IAM_AUTH_STS_ENDPOINT_URL=https://your.endpoint.to.aws.sts.service.amazonaws.com
 ```
-
+{% endunless %}
 {% endif_version %}
 
 ### Enable AWS IAM authentication in the configuration file
