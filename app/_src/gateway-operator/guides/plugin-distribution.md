@@ -26,7 +26,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
    docker build -t myheader:1.0.0 .
    ```
 
-   next push it to a registry available to the Kubernetes cluster where {{ site.kgo_product_name }} is running. A private registry can be used as well in the `KongPluginInstallation` resource.  Read more about it in CRD documentation.
+   next push it to a registry available to the Kubernetes cluster where {{ site.kgo_product_name }} is running. A private registry can be used as well. Learn how to us in the documentation of [KongPluginInstallation](/gateway-operator/{{page.release}}/reference/custom-resources/#kongplugininstallation) CRD.
 
    ```bash
    docker tag myheader:1.0.0 <YOUR-REGISTRY-ADDRESS>/myheader:1.0.0
@@ -48,7 +48,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
    ' | kubectl apply -f -
    ```
 
-   Learn more about the `KongPluginInstallation` resource in the CRD reference documentation.
+   Learn more about the `KongPluginInstallation` resource in the [CRD reference documentation](/gateway-operator/{{page.release}}/reference/custom-resources/#kongplugininstallation).
 
    Verify that the plugin is fetched and available by examining the status of the `KongPluginInstallation` resource:
 
@@ -164,8 +164,6 @@ title: Kong custom plugin distribution with KongPluginInstallation
    apiVersion: apps/v1
    kind: Deployment
    metadata:
-     labels:
-       app: echo
      name: echo
    spec:
      replicas: 1
@@ -187,26 +185,6 @@ title: Kong custom plugin distribution with KongPluginInstallation
              ports:
                - containerPort: 8080
                  name: http
-             env:
-               - name: NODE_NAME
-                 valueFrom:
-                   fieldRef:
-                     fieldPath: spec.nodeName
-               - name: POD_NAME
-                 valueFrom:
-                   fieldRef:
-                     fieldPath: metadata.name
-               - name: NAMESPACE
-                 valueFrom:
-                   fieldRef:
-                     fieldPath: metadata.namespace
-               - name: POD_IP
-                 valueFrom:
-                   fieldRef:
-                     fieldPath: status.podIP
-             resources:
-               requests:
-                 cpu: 10m
    ' | kubectl apply -f -
    ```
 

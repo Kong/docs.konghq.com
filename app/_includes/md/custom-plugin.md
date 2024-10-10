@@ -1,6 +1,9 @@
 <!-- Shared between KIC and KGO plugin installation -->
 ## Create a custom plugin
 
+{:.note}
+> To learn in details about plugin development for {{site.base_gateway}}, see the [Plugin Development](/gateway/{{page.release}}/plugin-development) guide.
+
 1. Create a directory with plugin code.
 
    {:.note}
@@ -35,7 +38,7 @@
     ' > myheader/schema.lua
     ```
 
-   After your plugin code is available in a directory, the directory should look like this:
+   After these steps, the directory should look like this:
 
     ```bash
     tree myheader
