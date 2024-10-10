@@ -48,6 +48,7 @@ Grafana
 HTTPie
 istioctl
 Imperva
+Inigo
 Istio
 Istio's
 Jira
