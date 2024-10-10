@@ -14,7 +14,7 @@ The Traceable integration lets you connect Traceable entities directly to your S
 
 ## Authenticate the Traceable integration
 
-1. From {{site.konnect_product_name}} select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
+1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
 2. Select **Traceable**, then **Install Traceable**.
 3. Select **Authorize**. 
 
