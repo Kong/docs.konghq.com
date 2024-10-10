@@ -7,7 +7,7 @@
     async () => {
       const sidebarItem = document.querySelector("#subnav-gateway-manager > li.sidebar-item-secondary.active > a");
       const prefixItem = getTestId('prefix');
-      const addItem = getTestId('toolbar-add-vault');
+      const addItem = getTestId('kui-icon-wrapper-book-icon');
       const menuItem = getTestId('overflow-actions-button');
 
       annotateNumber(sidebarItem, { number: 1, position: { left: "100px" } });
