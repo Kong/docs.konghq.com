@@ -19,7 +19,7 @@ describe("Canonical links", () => {
     },
      {
       title: "links to the product index when showing the index page for a specific version (gateway)",
-      src: "/gateway/2.7.x/",
+      src: "/gateway/3.7.x/",
       href: "/gateway/latest/",
     },
     {
@@ -41,11 +41,11 @@ describe("noindex links", () => {
   [
     {
       title: "contains a noindex tag if it's not the latest URL (index)",
-      src: "/gateway/2.7.x/",
+      src: "/gateway/2.8.x/",
     },
     {
       title: "contains a noindex tag if it's not the latest URL (nested)",
-      src: "/gateway/2.7.x/install-and-run/",
+      src: "/gateway/2.8.x/install-and-run/",
     },
     {
       title: "contains a noindex tag for old plugin versions",

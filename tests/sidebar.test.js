@@ -4,16 +4,16 @@ describe("Version Switcher", () => {
   [
     {
       title: "links to the same page if it exists in previous versions",
-      page: "/gateway/2.8.x/install-and-run/docker/",
-      selector: 'a[data-version-id="2.6.x"]',
-      href: "/gateway/2.6.x/install-and-run/docker/",
+      page: "/gateway/3.8.x/install/docker/",
+      selector: 'a[data-version-id="3.7.x"]',
+      href: "/gateway/3.7.x/install/docker/",
     },
     {
       title:
         "links to the root page if the page does not exist in previous versions",
-      page: "/gateway/2.8.x/admin-api/consumer-groups/examples/",
-      selector: 'a[data-version-id="2.6.x"]',
-      href: "/gateway/2.6.x/",
+      page: "/gateway/3.8.x/production/logging/ai-analytics/",
+      selector: 'a[data-version-id="3.6.x"]',
+      href: "/gateway/3.6.x/",
     },
   ].forEach((t) => {
     test(t.title, async () => {
@@ -38,12 +38,12 @@ describe("Older version documentation", () => {
   });
 
   test("links to the same page in a newer version", async () => {
-    const $ = await fetchPage(`/gateway/2.7.x/install-and-run/rhel/`);
+    const $ = await fetchPage(`/gateway/3.6.x/install/docker/`);
     const s = $(oldVersionSelector);
     await expect(s).toHaveCount(1);
     console.log(s.attr("href"))
     await expect(s.attr("href")).toMatch(
-      new RegExp(`^/gateway/latest/install/linux/rhel/$`)
+      new RegExp(`^/gateway/latest/install/docker/$`)
     );
   });
 });
@@ -80,9 +80,9 @@ describe("sidenav versions", () => {
     },
     {
       title: "Versioned root page links to the correct version",
-      src: "/gateway/2.7.x",
-      link_text: "Install and Run",
-      expected_url: "/gateway/2.7.x/install-and-run/",
+      src: "/gateway/3.7.x/",
+      link_text: "Using docker run",
+      expected_url: "/gateway/3.7.x/install/docker/",
     },
     {
       title: "Sub page links to latest",
