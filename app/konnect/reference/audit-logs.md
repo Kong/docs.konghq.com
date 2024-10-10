@@ -286,13 +286,15 @@ Property | Description
 
 
 ## See also
-* Dev Portal audit logs:
-    * [Audit logging in Dev Portal](/konnect/dev-portal/audit-logging/)
-    * [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
-    * [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
-* Global {{site.konnect_short_name}} audit logs:
-    * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
-    * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
-    * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Verify audit log signatures](/konnect/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)
+
+**Dev Portal audit logs:**
+* [Audit logging in Dev Portal](/konnect/dev-portal/audit-logging/)
+* [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
+* [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+
+**{{site.konnect_short_name}} audit logs:**
+* [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
+* [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
+* [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)

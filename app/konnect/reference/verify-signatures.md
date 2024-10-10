@@ -11,10 +11,10 @@ Calculating the signature is slightly different for these formats.
 
 ## Verify a signature
 
-1. Retrieve the public key from the audit log JWKS endpoint:
+1. Retrieve the public key from the [audit log JWKS endpoint](/konnect/api/audit-logs/latest/#/Audit%20Logs/get-audit-log-webhook):
 
     ```sh
-    curl -i -X GET https://us.api.konghq.com/v2/audit-log-webhook/jwks.json
+    curl -i -X GET https://{region}.api.konghq.com/v2/audit-log-webhook/jwks.json
     ```
 
     The response should look like this, where the public key is stored in
@@ -79,12 +79,16 @@ Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=16
     If it's successful, you will see a `Signature is valid` response.
 
 ## See also
-* Dev Portal audit logs:
-    * [Audit logging in Dev Portal](/konnect/dev-portal/audit-logging/)
-    * [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
-    * [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
-* Global {{site.konnect_short_name}} audit logs:
-    * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
-    * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
-    * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
+
 * [Audit Logs API](/konnect/api/audit-logs/latest/)
+* [Audit logs reference](/konnect/reference/audit-logs/)
+
+**Dev Portal audit logs:**
+* [Audit logging in Dev Portal](/konnect/dev-portal/audit-logging/)
+* [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
+* [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+
+**{{site.konnect_short_name}} audit logs:**
+* [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
+* [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
+* [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)

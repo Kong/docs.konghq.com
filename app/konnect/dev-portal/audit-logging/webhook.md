@@ -6,10 +6,7 @@ badge: enterprise
 
 You can use the {{site.konnect_short_name}} UI or the [Audit Logs](/konnect/api/audit-logs/latest/) and [Portal Management](/konnect/api/portal-management/latest/) APIs to configure webhooks for [audit logging](/konnect/dev-portal/audit-logging/). 
 
-{:.note}
-> **Note:** Currently, Dev Portal audit logs only support authentication logs, which are triggered when a user logs in to Dev Portal.
-
-{% include_cached /md/konnect/audit-logging/webhook-overview-prereq-siem-config.md %}
+{% include_cached /md/konnect/audit-logging/webhook-overview-prereq-siem-config.md desc='Dev Portal' %}
 
 
 ## Create a webhook
@@ -33,7 +30,7 @@ Before you configure the webhook, you must first create an audit log destination
 1. To configure the Dev Portal audit log webhook, navigate to {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal) in the sidebar.
 1. Click the Dev Portal you want to configure the webhook for and then click **Settings**.
 1. Click the **Audit Logs** tab.
-1. Enable the webhook and then select the SIEM provider endpoint from the **Endpoint** drop down menu. 
+1. Enable the webhook and then select the SIEM provider endpoint from the **Endpoint** drop down menu. You can't customize the events that {{site.konnect_short_name}} sends to the logs.
 1. Click **Save**.
 
 {% endnavtab %}
@@ -41,9 +38,7 @@ Before you configure the webhook, you must first create an audit log destination
 
 Now that you have an external endpoint and authorization credentials, you can set up an audit log destination in {{site.konnect_short_name}}. The `/audit_log_destinations` endpoint allows you to set your audit log destination, which includes the endpoint URL and access key for your SIEM provider, and reuse it. 
 
-The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
-
-1. Create an audit log destination by sending a request to the `/audit-log-destinations` endpoint with the connection details for your SIEM provider:
+1. Create an audit log destination by sending a request to the [`/audit-log-destinations`](/konnect/api/audit-logs/latest/) endpoint with the connection details for your SIEM provider:
 
     ```sh
     curl -i -X POST https://global.api.konghq.com/v2/audit-log-destinations \
@@ -57,7 +52,8 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     }'
     ```
 
-    Be sure to replace the PAT token and the following placeholder values:
+    Be sure to replace the following placeholder values:
+    * `<personal-access-token>`: Your {{site.konnect_short_name}} [personal access token (PAT)](/konnect/api/#authentication).
     * `endpoint`: The external endpoint that will receive audit log messages. Check your SIEM documentation to find out where to send CEF or JSON data.
     * `authorization`: The authorization type and credential to pass to your log collection endpoint. 
     {{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint. For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`.
@@ -67,7 +63,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 
     If the request is successful, you will receive a `200` response code, and a response body containing the audit log destination's configuration details. Be sure to save the audit log destination `id` for the next step. 
 
-1. Create a webhook by sending a PATCH request to the `/audit-log-webhook` endpoint with your configured audit log destination:
+1. Create a webhook by sending a PATCH request to the [`/audit-log-webhook`](/konnect/api/portal-management/latest/) endpoint with your configured audit log destination:
 
     ```sh
     curl -i -X PATCH https://{region}.api.konghq.com/v2/portals/{portalId}/audit-log-webhook \
@@ -79,10 +75,13 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
      }'
     ```
 
-    Be sure to replace the PAT token and the following placeholder values:
+    Be sure to replace the following placeholder values:
     * `{region}.api.konghq.com`: The region your Dev Portal is located in. Can be `us`, `au`, or `eu`.
+    * `<personal-access-token>`: Your {{site.konnect_short_name}} [personal access token (PAT)](/konnect/api/#authentication).
     * `{portalId}`: The ID of the Dev Portal with your webhook.
     * `audit_log_destination_id`: The ID of the audit log destination that you want to use.
+
+    You can't customize the events that {{site.konnect_short_name}} sends to the logs.
 
     If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details.
 
@@ -107,16 +106,16 @@ To see the last attempt timestamp and the last response code, use the [audit log
 {% endnavtab %}
 {% navtab API %}
 
-The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
-
-View your audit log webhook status by sending a GET request to the `/audit-log-webhook/status` endpoint:
+View your audit log webhook status by sending a GET request to the [`/audit-log-webhook/status`](/konnect/api/portal-management/latest/) endpoint:
 
 ```sh
 curl -i -X GET https://{region}.api.konghq.com/v2/portals/{portalId}/audit-log-webhook/status \
     --header "Authorization: Bearer <personal-access-token>"
 ```
 
-Be sure to replace the PAT token and the following placeholder values:
+Be sure to replace the following placeholder values:
+* `{region}.api.konghq.com`: The region your Dev Portal is located in. Can be `us`, `au`, or `eu`.
+* `<personal-access-token>`: Your {{site.konnect_short_name}} [personal access token (PAT)](/konnect/api/#authentication).
 * `{portalId}`: The ID of the Dev Portal with your webhook.
 
 You will receive a `200` response code and a response body with information about the webhook status:

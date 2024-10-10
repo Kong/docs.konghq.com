@@ -28,16 +28,14 @@ You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configur
      {:.note}
      > We strongly recommend not setting this to `true` as you are subject to man-in-the-middle and other attacks. This option should be considered only when using self-signed SSL certificates in a non-production environment.
 
-1. Switch the toggle to `Enabled`, then save your webhook configuration.
+1. Switch the toggle to `Enabled`, then save your webhook configuration. You can't customize the events that {{site.konnect_short_name}} sends to the logs.
 
 {% endnavtab %}
 {% navtab API %}
 
 Now that you have an external endpoint and authorization credentials, you can set up a webhook in {{site.konnect_short_name}}.
 
-The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
-
-Create a webhook by sending a request to the `/audit-log-webhook` endpoint with the connection details for your SIEM vendor:
+Create a webhook by sending a `PATCH` request to the [`/audit-log-webhook`](/konnect/api/audit-logs/latest/#/Audit%20Logs/update-audit-log-webhook) endpoint with the connection details for your SIEM vendor:
 
 ```sh
 curl -i -X PATCH https://{region}.api.konghq.com/v2/audit-log-webhook \
@@ -51,13 +49,16 @@ curl -i -X PATCH https://{region}.api.konghq.com/v2/audit-log-webhook \
     }'
 ```
 
-Be sure to replace the PAT token and the following placeholder values:
+Be sure to replace the following placeholder values:
 * `{region}.api.konghq.com`: The region your org is in. Can be `global` to target all regions, `us`, `au`, or `eu`.
+* `<personal-access-token>`: Your {{site.konnect_short_name}} [personal access token (PAT)](/konnect/api/#authentication).
 * `endpoint`: The external endpoint that will receive audit log messages. Check your SIEM documentation to find out where to send CEF or JSON data.
 * `authorization`: The authorization type and credential to pass to your log collection endpoint. 
     {{site.konnect_short_name}} will send this string in the `Authorization` header of requests to that endpoint. For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`.
 * `log_format`: The output format of each log message. Can be `cef` or `json`.
 * `skip_ssl_verification`: (Optional) Set to `true` to skip SSL verification of the host endpoint when delivering payloads. We recommend only using this when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
+
+You can't customize the events that {{site.konnect_short_name}} sends to the logs.
 
 If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details.
 
@@ -79,42 +80,30 @@ To see the last attempt timestamp and the last response code, use the audit log 
 {% endnavtab %}
 {% navtab API %}
 
-View your audit log webhook configuration by sending a GET request to the `/audit-log-webhook` endpoint:
+View your audit log webhook configuration by sending a `GET` request to the [`/audit-log-webhook`](/konnect/api/audit-logs/latest/#/Audit%20Logs/get-audit-log-webhook) endpoint:
 
 ```sh
 curl -i -X GET https://{region}.api.konghq.com/v2/audit-log-webhook \
     --header "Authorization: Bearer <personal-access-token>"
 ```
+Be sure to replace the following placeholder values:
+* `{region}.api.konghq.com`: The region your org is in. Can be `global` to target all regions, `us`, `au`, or `eu`.
+* `<personal-access-token>`: Your {{site.konnect_short_name}} [personal access token (PAT)](/konnect/api/#authentication).
 
-You will receive a `200` response code and the following data. Note that the `authorization` property is not included in any responses:
+You will receive a `200` response code and the following data. Note that the `authorization` property is not included in any responses.
 
-```json
-{
-    "endpoint":"https://example.com/audit-logs",
-    "log_format":"cef",
-    "enabled":true,
-    "skip_ssl_verification":false,
-    "updated_at":"2023-04-01T00:00:01Z"
-}
-```
-
-View your audit log webhook status by sending a GET request to the `/audit-log-webhook/status` endpoint:
+View your audit log webhook status by sending a `GET` request to the [`/audit-log-webhook/status`](/konnect/api/audit-logs/latest/#/Audit%20Logs/get-audit-log-webhook-status) endpoint:
 
 ```sh
 curl -i -X GET https://{region}.api.konghq.com/v2/audit-log-webhook/status \
     --header "Authorization: Bearer <personal-access-token>"
 ```
 
-You will receive a `200` response code and a response body with information about the webhook status:
+Be sure to replace the following placeholder values:
+* `{region}.api.konghq.com`: The region your org is in. Can be `global` to target all regions, `us`, `au`, or `eu`.
+* `<personal-access-token>`: Your {{site.konnect_short_name}} [personal access token (PAT)](/konnect/api/#authentication).
 
-```json
-{
-    "last_attempt_at": "2023-04-04T18:11:16Z",
-    "last_response_code": 200,
-    "webhook_enabled": true,
-    "webhook_status": "active"
-}
-```
+You will receive a `200` response code and a response body with information about the webhook status.
 
 {% endnavtab %}
 {% endnavtabs %}

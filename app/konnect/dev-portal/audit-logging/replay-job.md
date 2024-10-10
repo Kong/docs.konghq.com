@@ -33,9 +33,8 @@ A replay job in a region will resend data for the requested timeframe to the web
 
 {% endnavtab %}
 {% navtab API %}
-The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-Configure the replay job for a region by sending a `PUT` request to the `/audit-log-replay-job` endpoint:
+Configure the replay job for a region by sending a `PUT` request to the [`/audit-log-replay-job`](/konnect/api/portal-management/latest/) endpoint:
 
 ```sh
 curl -i -X PUT https://{region}.api.konghq.com/v2/portals/{portalId}/audit-log-replay-job \
@@ -47,21 +46,13 @@ curl -i -X PUT https://{region}.api.konghq.com/v2/portals/{portalId}/audit-log-r
     }'
 ```
 
-Be sure to replace the [PAT token ](https://docs.konghq.com/konnect/api/#authentication) and the following placeholder values:
+Be sure to replace the following placeholder values:
 * `{region}.api.konghq.com`: The region your portal is located in. Can be `us`, `ap`, or `eu`.
 * `{portalId}`: The ID of the Dev Portal with your webhook.
+* `<personal-access-token>`: Your {{site.konnect_short_name}} [personal access token (PAT)](/konnect/api/#authentication).
 * `start_at` and `end_at`: Specify the timeframe for which you want to receive audit log events. `start_at` must be no more than seven days ago.
 
-If the request is successful, you will receive a `202` response code and a response body containing the replay job details: 
-
-```json
-{
-    "start_at":"2023-03-27T20:00:00Z",
-    "end_at":"2023-03-27T20:00:00Z",
-    "updated_at":"2023-03-31T11:34:18Z",
-    "status":"accepted"
-}
-```
+If the request is successful, you will receive a `202` response code and a response body containing the replay job details.
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -79,27 +70,19 @@ If the request is successful, you will receive a `202` response code and a respo
 {% endnavtab %}
 {% navtab API %}
 
-You can view the audit log replay job in a given region by issuing a GET request to the `audit-log-replay-job` endpoint:
+You can view the audit log replay job in a given region by issuing a GET request to the [`audit-log-replay-job`](/konnect/api/portal-management/latest/) endpoint:
 
 ```sh
 curl -i -X GET https://{region}.api.konghq.com/v2/portals/{portalId}/audit-log-replay-job \
-    --header "Authorization: Bearer TOKEN"
+    --header "Authorization: Bearer <personal-access-token>"
 ```
 
-Be sure to replace the PAT token and the following placeholder values:
+Be sure to replace the following placeholder values:
 * `{region}.api.konghq.com`: The region your portal is located in. Can be `us`, `ap`, or `eu`.
 * `{portalId}`: The ID of the Dev Portal with your webhook.
+* `<personal-access-token>`: Your {{site.konnect_short_name}} [personal access token (PAT)](/konnect/api/#authentication).
 
-You will receive a `200` response code and the job details:
-
-```json
-{
-    "start_at":"2023-03-27T20:00:00Z",
-    "end_at":"2023-03-27T20:00:00Z",
-    "updated_at":"2023-03-31T11:34:18Z",
-    "status":"accepted"
-}
-```
+You will receive a `200` response code and the job details.
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -108,14 +91,14 @@ You will receive a `200` response code and the job details:
 
 A replay job can be in one of the following statuses:
 
-* `unconfigured`: Initial state. The job has not been set up.
-* `accepted`: The job has been accepted for scheduling.
-* `pending`: The job has been scheduled.
-* `running`: The job is in progress.
-* `completed`: The job has finished with no errors.
-* `failed`: The job has failed.
-
-When a replay job is `running`, a request to update the job will return a `409` response code until it has completed or failed.
+| Status | Description |
+| -------|-------------|
+| `unconfigured` | Initial state. The job has not been set up. |
+| `accepted` | The job has been accepted for scheduling. |
+| `pending` | The job has been scheduled. |
+| `running` | The job is in progress. When a replay job is `running`, a request to update the job will return a `409` response code until it has completed or failed. |
+| `completed` | The job has finished with no errors. |
+| `failed` | The job has failed. |
 
 ## More information
 * [Audit logging in {{site.konnect_short_name}}](/konnect/dev-portal/audit-logging/)

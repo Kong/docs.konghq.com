@@ -4,10 +4,9 @@ badge: enterprise
 content_type: concept
 ---
 
-{% include_cached /md/konnect/audit-logging/audit-log-overview.md %}
+Org-wide {{site.konnect_short_name}} audit logs are set up and managed separately from Dev Portal audit logs. For more information about how to configure audit logging for Dev Portal, see [Set up an audit log webhook for Dev Portal](/konnect/dev-portal/audit-logging/webhook/).
 
-{:.note}
-> **Note:** Org-wide {{site.konnect_short_name}} audit logs are set up and managed separately from Dev Portal audit logs. For more information about how to configure audit logging for Dev Portal, see [Set up an audit log webhook for Dev Portal](/konnect/dev-portal/audit-logging/webhook/).
+{% include_cached /md/konnect/audit-logging/audit-log-overview.md %}
 
 ## More information
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
