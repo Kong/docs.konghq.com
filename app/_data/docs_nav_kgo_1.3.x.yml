@@ -120,6 +120,9 @@ items:
           - text: DataPlane
             url: /reference/custom-resources/#dataplane
             generate: false
+      - text: Configuration Options
+        url: /reference/cli-arguments/
+        src: reference/cli-arguments/1.3.x
       - text: License
         url: /reference/license
       - text: Version Compatibility
