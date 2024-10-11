@@ -1,6 +1,5 @@
 ---
 title: Audit log reference
-badge: enterprise
 content_type: reference
 ---
 

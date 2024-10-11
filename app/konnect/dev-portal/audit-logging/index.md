@@ -1,6 +1,5 @@
 ---
 title: Audit Logging in Dev Portal
-badge: enterprise
 content_type: concept
 ---
 

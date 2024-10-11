@@ -1,7 +1,6 @@
 ---
 title: Set up an audit log webhook for Dev Portal
 content_type: how-to
-badge: enterprise
 ---
 
 You can use the {{site.konnect_short_name}} UI or the [Audit Logs](/konnect/api/audit-logs/latest/) and [Portal Management](/konnect/api/portal-management/latest/) APIs to configure webhooks for [audit logging](/konnect/dev-portal/audit-logging/). 

@@ -1,6 +1,5 @@
 ---
 title: Audit Logging in Konnect
-badge: enterprise
 content_type: concept
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Set up an audit log replay job
 content_type: how-to
-badge: enterprise
 ---
 
 You can use the {{site.dev-portal_short_name}} Audit Logs API to configure replay jobs for [audit logging](/konnect/dev-portal/audit-logging/). 

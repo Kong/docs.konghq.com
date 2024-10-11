@@ -1,7 +1,6 @@
 ---
 title: Verify audit log signatures
 content_type: how-to
-badge: enterprise
 ---
 
 {{site.konnect_short_name}} and Dev Portal use an [ED25519 signature](https://ed25519.cr.yp.to/) on the audit logs they produce. You can verify the signature in your audit logs to confirm that it's from {{site.konnect_short_name}} instead of a bad actor.
