@@ -2,6 +2,71 @@
 
 <!--vale off-->
 
+## Week 41
+
+### [Fix broken table in AI RLA plugin](https://github.com/Kong/docs.konghq.com/pull/8045) (2024-10-11)
+
+Issue reported on slack.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/overview/
+
+
+### [fix: fix capitalization of GitHub](https://github.com/Kong/docs.konghq.com/pull/8041) (2024-10-11)
+
+<!-- What did you change and why? -->
+Fixes capitalization of GitHub.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/service-catalog/
+- https://docs.konghq.com/konnect/service-catalog/integrations/github
+
+
+### [fix(docs): fix the quickstart help command](https://github.com/Kong/docs.konghq.com/pull/8031) (2024-10-09)
+
+We have to pass the `-s` command to the bash script in order to pass additional arguments to the quickstart script.
+
+
+
+
+<!-- What did you change and why? -->
+The original help command gives the following error:
+```
+$ curl -Ls https://get.konghq.com/quickstart | bash -- -h
+bash: -h: No such file or directory
+```
+
+
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/get-started/
+- https://docs.konghq.com/gateway/3.2.x/get-started/
+- https://docs.konghq.com/gateway/3.3.x/get-started/
+- https://docs.konghq.com/gateway/3.4.x/get-started/
+- https://docs.konghq.com/gateway/3.5.x/get-started/
+- https://docs.konghq.com/gateway/3.6.x/get-started/
+- https://docs.konghq.com/gateway/3.7.x/get-started/
+- https://docs.konghq.com/gateway/3.8.x/get-started/
+- https://docs.konghq.com/gateway/unreleased/get-started/
+
+
+### [Bug bash: Logging correlation IDs doc does not specify the nginx context ](https://github.com/Kong/docs.konghq.com/pull/8006) (2024-10-07)
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/5123
+
+Preview: https://deploy-preview-8006--kongdocs.netlify.app/hub/kong-inc/correlation-id/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/correlation-id/overview/
+
 ## Week 40
 
 ### [chore: update konnect compatibility](https://github.com/Kong/docs.konghq.com/pull/8020) (2024-10-04)
