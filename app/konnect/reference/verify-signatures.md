@@ -38,10 +38,11 @@ Calculating the signature is slightly different for these formats.
 1. Find an audit log from {{site.konnect_short_name}} in your SIEM provider and copy it. 
 
 1. Remove the signature (the `sig` value) from the audit log, but be sure to save the signature to decode later. 
-  
-  The adjusted entry will look slightly different depending on the format that you're using. The following {{site.konnect_short_name}} org audit log examples show what the entry will look like in each format after removing the signature:
+   
+   The adjusted entry will look slightly different depending on the format that you're using. The following {{site.konnect_short_name}} org audit log examples show what the entry will look like in each format after removing the signature:
 
-  {% navtabs codeblock %}
+{% capture the_code %}
+{% navtabs codeblock %}
 {% navtab CEF %}
 ```
 Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=1681450748406 src=127.0.0.6 action=retrieve granted=true org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b trace_id=3895213347334635099 user_agent=grpc-node/1.24.11 grpc-c/8.0.0 (linux; chttp2; ganges)
@@ -70,6 +71,8 @@ Apr 14 05:39:08 konghq.com CEF:0|KongInc|Konnect|1.0|konnect|Authz.usage|1|rt=16
 ```
 {% endnavtab %}
 {% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
 1. Decode the signature and public key into bytes. Both the signature and the public key are [Base64 URL-encoded](https://datatracker.ietf.org/doc/html/rfc4648).
 
