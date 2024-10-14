@@ -4,7 +4,7 @@
 
 ## Week 41
 
-### [Fix broken table in AI RLA plugin](https://github.com/Kong/docs.konghq.com/pull/8045) (2024-10-11)
+### [Fix: broken table in AI RLA plugin](https://github.com/Kong/docs.konghq.com/pull/8045) (2024-10-11)
 
 Issue reported on slack.
 
@@ -15,10 +15,7 @@ Issue reported on slack.
 
 ### [fix: fix capitalization of GitHub](https://github.com/Kong/docs.konghq.com/pull/8041) (2024-10-11)
 
-<!-- What did you change and why? -->
 Fixes capitalization of GitHub.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -26,23 +23,16 @@ Fixes capitalization of GitHub.
 - https://docs.konghq.com/konnect/service-catalog/integrations/github
 
 
-### [fix(docs): fix the quickstart help command](https://github.com/Kong/docs.konghq.com/pull/8031) (2024-10-09)
+### [fix: fix the quickstart help command](https://github.com/Kong/docs.konghq.com/pull/8031) (2024-10-09)
 
 We have to pass the `-s` command to the bash script in order to pass additional arguments to the quickstart script.
 
-
-
-
-<!-- What did you change and why? -->
 The original help command gives the following error:
 ```
 $ curl -Ls https://get.konghq.com/quickstart | bash -- -h
 bash: -h: No such file or directory
 ```
 
-
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
