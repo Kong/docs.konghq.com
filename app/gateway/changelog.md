@@ -1057,7 +1057,7 @@ when the `http_response_header_for_traceid` option was enabled.
 * Removed the `lua-resty-openssl-aux-module` dependency
 
 ## 3.6.1.8
-**Release Date** TBA
+**Release Date** 2024/10/11
 
 ### Features
 * Added support for AWS IAM role assuming in AWS IAM Database Authentication with the following new configuration fields: 
