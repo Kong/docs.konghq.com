@@ -27,6 +27,8 @@ Before you configure the webhook, you must first create an audit log destination
     * **Log Format**: The output format of each log message. Can be CEF or JSON.
     * **Disable SSL Verification**: Disables SSL verification of the host endpoint when delivering payloads. We recommend disabling SSL verification only when using self-signed SSL certificates in a non-production environment as this can subject you to man-in-the-middle and other attacks.
 1. To configure the Dev Portal audit log webhook, navigate to {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal) in the sidebar.
+   
+   You can alternatively configure these settings by navigating to [**Organization > Audit Logs Setup**](https://cloud.konghq.com/global/organization/audit-logs) under the **Dev Portal** tab.
 1. Click the Dev Portal you want to configure the webhook for and then click **Settings**.
 1. Click the **Audit Logs** tab.
 1. Enable the webhook and then select the SIEM provider endpoint from the **Endpoint** drop down menu. You can't customize the events that {{site.konnect_short_name}} sends to the logs.
