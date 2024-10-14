@@ -14,11 +14,11 @@ The SwaggerHub integration lets you connect SwaggerHub API specs directly to you
 
 ## Prerequisites
 
-You need a SwaggerHub API key to authenticate your SwaggerHub account with {{site.konnect_short_name}}.
+You need a [SwaggerHub API key](https://app.swaggerhub.com/settings/apiKey) to authenticate your SwaggerHub account with {{site.konnect_short_name}}.
 
 ## Authenticate the SwaggerHub integration
 
-1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
+1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/service-catalog/integrations)**. 
 2. Select **SwaggerHub**, then **Install SwaggerHub**.
 3. Select **Authorize**. 
 
@@ -33,7 +33,7 @@ You can map specs to a Service Catalog service and view them in {{site.konnect_s
 2. Select **Add API Spec**.
 3. Choose SwaggerHub as the **Source**, then pick your spec and name it.
 
-Once uploaded, you can view the rendered spec on the API Specs tab in structured, YAML, or JSON format, and download it in that format.
+Once it's uploaded, you can view the rendered spec on the API Specs tab in structured (UI), YAML, or JSON format, and download it in either YAML or JSON format.
 
 ## Resources
 
