@@ -97,6 +97,8 @@ Your webhook should now start receiving audit logs.
 {% navtab Konnect UI %}
 
 1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click the Dev Portal you want to view the webhook status job for.
+   
+   You can alternatively view your audit log webhook status by navigating to [**Organization > Audit Logs Setup**](https://cloud.konghq.com/global/organization/audit-logs). Under the **Dev Portal** tab, click the Dev Portal you want to view the log status for.
 1. Click **Settings** in the sidebar, then click the **Audit Logs** tab.
 1. Click the **Status** tab.
 

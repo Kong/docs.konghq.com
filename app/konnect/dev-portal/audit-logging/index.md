@@ -3,7 +3,7 @@ title: Audit Logging in Dev Portal
 content_type: concept
 ---
 
-Dev Portal audit logs are set up and managed separately from org-wide {{site.konnect_short_name}} audit logs. For more information about how to configure audit logging for {{site.konnect_short_name}}, see [Set up an audit log webhook for Dev Portal](/konnect/dev-portal/audit-logging/webhook/).
+Dev Portal audit logs are set up and managed separately from org-wide {{site.konnect_short_name}} audit logs. For more information about how to configure audit logging for {{site.konnect_short_name}}, see [Set up an audit log webhook for {{site.konnect_short_name}}](/konnect/org-management/audit-logging/webhook/).
 
 {% include_cached /md/konnect/audit-logging/audit-log-overview.md %}
     
