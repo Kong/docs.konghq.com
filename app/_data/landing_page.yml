@@ -2,7 +2,7 @@ features:
   - title: Key features
     items:
       - name: Service Catalog
-        description: Build a comprehensive catalog of all services running in your organization, both Konnect-internal applications (like Gateway Manager and Mesh Manager) as well as external applications (like Github and PagerDuty).
+        description: Build a comprehensive catalog of all services running in your organization, both Konnect-internal applications (like Gateway Manager and Mesh Manager) as well as external applications (like GitHub and PagerDuty).
         icon: /assets/images/landing-page/card-icons/service-hub.svg
         links:
           - text: Overview
