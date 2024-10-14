@@ -1588,11 +1588,11 @@ components:
       type: object
       properties:
         basic_auth_enabled:
-          description: The organization has basic auth enabled.
+          description: The portal has basic auth enabled or disabled.
           type: boolean
           example: true
         oidc_auth_enabled:
-          description: The organization has OIDC disabled.
+          description: The portal has OIDC enabled or disabled.
           type: boolean
           example: false
         oidc_team_mapping_enabled:
@@ -2691,6 +2691,7 @@ components:
             portal:
               id: 95606071-49c7-4c2e-ae49-8a86d72a8110
             dcr_provider: null
+            granted_scopes: null
             developer:
               id: 9cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
@@ -2708,6 +2709,8 @@ components:
               id: 95606071-49c7-4c2e-ae49-8a86d72a8110
             dcr_provider:
               id: 7ea06071-49c7-4c2e-ae49-8a86d72a8110
+            granted_scopes:
+              - openid
             developer:
               id: 9cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: John Dev
@@ -2998,6 +3001,12 @@ components:
             - email
         auth_strategy:
           $ref: '#/components/schemas/AuthStrategy'
+        granted_scopes:
+          description: List of granted scopes for the application. Null if application type does not support returning granted scopes.
+          type: array
+          items:
+            type: string
+          nullable: true
       example:
         id: b15e2460-ba40-431d-9df0-4957fcffacda
         labels:
@@ -3009,6 +3018,7 @@ components:
         portal:
           id: 95606071-49c7-4c2e-ae49-8a86d72a8110
         dcr_provider: null
+        granted_scopes: null
         developer:
           id: 9cd9feff-b4da-4a9f-ba49-cbe83c75ff22
           name: Jane Dev
@@ -3028,6 +3038,7 @@ components:
         - portal
         - developer
         - labels
+        - granted_scopes
       title: Application
     ApplicationRegistration:
       description: A application's registration for a specific version of a product.
@@ -3094,10 +3105,11 @@ components:
             - id
             - name
         granted_scopes:
-          description: List of granted scopes for the registration. Null if application type does not support returning granted scopes.
+          description: 'Cached list of granted scopes for the registration. Identical for all registrations of an applications, use `/portals/{portalId}/applications/{applicationId}` to get up to date granted scopes from the IDP. Null if application type does not support returning granted scopes.'
           type: array
           items:
             type: string
+          deprecated: true
           nullable: true
       example:
         id: c300cc33-2d33-4754-b086-a98e0fcd36fb
@@ -4470,7 +4482,7 @@ components:
         choices:
           type: array
           items: {}
-          minimum: 1
+          minItems: 1
           nullable: false
           readOnly: true
           uniqueItems: true
@@ -4585,6 +4597,8 @@ components:
     LabelsUpdate:
       description: |
         Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types. 
+
+        Labels are intended to store **INTERNAL** metadata.
 
         Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
       type: object
@@ -5382,6 +5396,7 @@ components:
             portal:
               id: 95606071-49c7-4c2e-ae49-8a86d72a8110
             dcr_provider: null
+            granted_scopes: null
             developer:
               id: 9cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
@@ -5399,6 +5414,8 @@ components:
               id: 95606071-49c7-4c2e-ae49-8a86d72a8110
             dcr_provider:
               id: 7ea06071-49c7-4c2e-ae49-8a86d72a8110
+            granted_scopes:
+              - openid
             developer:
               id: 9cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: John Dev
@@ -5417,6 +5434,7 @@ components:
         portal:
           id: 95606071-49c7-4c2e-ae49-8a86d72a8110
         dcr_provider: null
+        granted_scopes: null
         developer:
           id: 9cd9feff-b4da-4a9f-ba49-cbe83c75ff22
           name: Jane Dev
@@ -5436,6 +5454,8 @@ components:
           id: 95606071-49c7-4c2e-ae49-8a86d72a8110
         dcr_provider:
           id: 7ea06071-49c7-4c2e-ae49-8a86d72a8110
+        granted_scopes:
+          - openid
         developer:
           id: 9cd9feff-b4da-4a9f-ba49-cbe83c75ff22
           name: John Dev
