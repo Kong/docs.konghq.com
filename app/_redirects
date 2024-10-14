@@ -1015,6 +1015,8 @@
 /enterprise/2.3.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.3.x/:splat
 /enterprise/2.4.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.4.x/:splat
 /enterprise/2.5.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.5.x/:splat
+/enterprise/2.6.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.6.x/:splat
+/enterprise/2.7.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.7.x/:splat
 
 # COMMUNITY DOC ARCHIVES
 /gateway-oss/2.5.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.5.x/:splat
