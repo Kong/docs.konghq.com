@@ -516,7 +516,7 @@ paths:
     get:
       operationId: list-sni-with-certificate
       summary: List all SNIs associated with a Certificate
-      description: List all SNIs associated with a a Certificate
+      description: List all SNIs associated with a Certificate
       parameters:
         - $ref: '#/components/parameters/CertificateId'
         - $ref: '#/components/parameters/PaginationSize'
@@ -567,8 +567,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/certificates/{CertificateId}/snis/{SNIId}':
     delete:
       operationId: delete-sni-with-certificate
-      summary: Delete a an SNI associated with a a Certificate
-      description: Delete a an SNI associated with a a Certificate using ID or name.
+      summary: Delete a an SNI associated with a Certificate
+      description: Delete a an SNI associated with a Certificate using ID or name.
       parameters:
         - $ref: '#/components/parameters/CertificateId'
         - $ref: '#/components/parameters/SNIId'
@@ -889,11 +889,41 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       tags:
         - Consumers
+  '/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerId}/consumer_groups':
+    get:
+      operationId: list-consumer-groups-for-consumer
+      summary: List all Consumer Groups a Consumer belongs to
+      description: List all Consumer Groups a Consumer belongs to
+      parameters:
+        - $ref: '#/components/parameters/ConsumerId'
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+      responses:
+        '200':
+          description: A successful response listing consumer groups
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConsumerGroup'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+      tags:
+        - Consumer Groups
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerIdForNestedEntities}/acls':
     get:
       operationId: list-acl-with-consumer
       summary: List all ACLs associated with a Consumer
-      description: List all ACLs associated with a a Consumer
+      description: List all ACLs associated with a Consumer
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/PaginationSize'
@@ -944,8 +974,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerIdForNestedEntities}/acls/{ACLId}':
     delete:
       operationId: delete-acl-with-consumer
-      summary: Delete a an ACL associated with a a Consumer
-      description: Delete a an ACL associated with a a Consumer using ID.
+      summary: Delete a an ACL associated with a Consumer
+      description: Delete a an ACL associated with a Consumer using ID.
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/ACLId'
@@ -1001,7 +1031,7 @@ paths:
     get:
       operationId: list-basic-auth-with-consumer
       summary: List all Basic-auth credentials associated with a Consumer
-      description: List all Basic-auth credentials associated with a a Consumer
+      description: List all Basic-auth credentials associated with a Consumer
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/PaginationSize'
@@ -1052,8 +1082,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerIdForNestedEntities}/basic-auth/{BasicAuthId}':
     delete:
       operationId: delete-basic-auth-with-consumer
-      summary: Delete a a Basic-auth credential associated with a a Consumer
-      description: Delete a a Basic-auth credential associated with a a Consumer using ID.
+      summary: Delete a a Basic-auth credential associated with a Consumer
+      description: Delete a a Basic-auth credential associated with a Consumer using ID.
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/BasicAuthId'
@@ -1109,7 +1139,7 @@ paths:
     get:
       operationId: list-hmac-auth-with-consumer
       summary: List all HMAC-auth credentials associated with a Consumer
-      description: List all HMAC-auth credentials associated with a a Consumer
+      description: List all HMAC-auth credentials associated with a Consumer
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/PaginationSize'
@@ -1160,8 +1190,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerIdForNestedEntities}/hmac-auth/{HMACAuthId}':
     delete:
       operationId: delete-hmac-auth-with-consumer
-      summary: Delete a a HMAC-auth credential associated with a a Consumer
-      description: Delete a a HMAC-auth credential associated with a a Consumer using ID.
+      summary: Delete a a HMAC-auth credential associated with a Consumer
+      description: Delete a a HMAC-auth credential associated with a Consumer using ID.
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/HMACAuthId'
@@ -1217,7 +1247,7 @@ paths:
     get:
       operationId: list-jwt-with-consumer
       summary: List all JWTs associated with a Consumer
-      description: List all JWTs associated with a a Consumer
+      description: List all JWTs associated with a Consumer
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/PaginationSize'
@@ -1268,8 +1298,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerIdForNestedEntities}/jwt/{JWTId}':
     delete:
       operationId: delete-jwt-with-consumer
-      summary: Delete a a JWT associated with a a Consumer
-      description: Delete a a JWT associated with a a Consumer using ID.
+      summary: Delete a a JWT associated with a Consumer
+      description: Delete a a JWT associated with a Consumer using ID.
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/JWTId'
@@ -1325,7 +1355,7 @@ paths:
     get:
       operationId: list-key-auth-with-consumer
       summary: List all API-keys associated with a Consumer
-      description: List all API-keys associated with a a Consumer
+      description: List all API-keys associated with a Consumer
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/PaginationSize'
@@ -1376,8 +1406,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerIdForNestedEntities}/key-auth/{KeyAuthId}':
     delete:
       operationId: delete-key-auth-with-consumer
-      summary: Delete a an API-key associated with a a Consumer
-      description: Delete a an API-key associated with a a Consumer using ID.
+      summary: Delete a an API-key associated with a Consumer
+      description: Delete a an API-key associated with a Consumer using ID.
       parameters:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
         - $ref: '#/components/parameters/KeyAuthId'
@@ -1631,6 +1661,114 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       tags:
         - KeySets
+  '/control-planes/{controlPlaneId}/core-entities/key-sets/{KeySetId}/keys':
+    get:
+      operationId: list-key-with-key-set
+      summary: List all Keys associated with a KeySet
+      description: List all Keys associated with a KeySet
+      parameters:
+        - $ref: '#/components/parameters/KeySetId'
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+      responses:
+        '200':
+          description: A successful response listing Keys
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Key'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+      tags:
+        - Keys
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+    post:
+      operationId: create-key-with-key-set
+      summary: Create a new Key associated with a KeySet
+      description: Create a new Key associated with a KeySet
+      parameters:
+        - $ref: '#/components/parameters/KeySetId'
+      requestBody:
+        description: Description of new Key for creation
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyWithoutParents'
+      responses:
+        '201':
+          description: Successfully created Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Key'
+      tags:
+        - Keys
+  '/control-planes/{controlPlaneId}/core-entities/key-sets/{KeySetId}/keys/{KeyId}':
+    delete:
+      operationId: delete-key-with-key-set
+      summary: Delete a a Key associated with a KeySet
+      description: Delete a a Key associated with a KeySet using ID or name.
+      parameters:
+        - $ref: '#/components/parameters/KeySetId'
+        - $ref: '#/components/parameters/KeyId'
+      responses:
+        '204':
+          description: Successfully deleted Key or the resource didn't exist
+      tags:
+        - Keys
+    get:
+      operationId: get-key-with-key-set
+      summary: Fetch a Key associated with a KeySet
+      description: Get a Key associated with a KeySet using ID or name.
+      parameters:
+        - $ref: '#/components/parameters/KeySetId'
+        - $ref: '#/components/parameters/KeyId'
+      responses:
+        '200':
+          description: Successfully fetched Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Key'
+        '404':
+          description: Resource does not exist
+      tags:
+        - Keys
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+    put:
+      operationId: upsert-key-with-key-set
+      summary: Upsert a Key associated with a KeySet
+      description: Create or Update a Key associated with a KeySet using ID or name.
+      parameters:
+        - $ref: '#/components/parameters/KeySetId'
+        - $ref: '#/components/parameters/KeyId'
+      requestBody:
+        description: Description of the Key
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyWithoutParents'
+      responses:
+        '200':
+          description: Successfully upserted Key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Key'
+      tags:
+        - Keys
   '/control-planes/{controlPlaneId}/core-entities/keys':
     get:
       operationId: list-key
@@ -1962,7 +2100,7 @@ paths:
     get:
       operationId: list-plugin-with-route
       summary: List all Plugins associated with a Route
-      description: List all Plugins associated with a a Route
+      description: List all Plugins associated with a Route
       parameters:
         - $ref: '#/components/parameters/RouteId'
         - $ref: '#/components/parameters/PaginationSize'
@@ -2013,8 +2151,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/routes/{RouteId}/plugins/{PluginId}':
     delete:
       operationId: delete-plugin-with-route
-      summary: Delete a a Plugin associated with a a Route
-      description: Delete a a Plugin associated with a a Route using ID.
+      summary: Delete a a Plugin associated with a Route
+      description: Delete a a Plugin associated with a Route using ID.
       parameters:
         - $ref: '#/components/parameters/RouteId'
         - $ref: '#/components/parameters/PluginId'
@@ -2207,7 +2345,7 @@ paths:
     get:
       operationId: list-plugin-with-service
       summary: List all Plugins associated with a Service
-      description: List all Plugins associated with a a Service
+      description: List all Plugins associated with a Service
       parameters:
         - $ref: '#/components/parameters/ServiceId'
         - $ref: '#/components/parameters/PaginationSize'
@@ -2258,8 +2396,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/services/{ServiceId}/plugins/{PluginId}':
     delete:
       operationId: delete-plugin-with-service
-      summary: Delete a a Plugin associated with a a Service
-      description: Delete a a Plugin associated with a a Service using ID.
+      summary: Delete a a Plugin associated with a Service
+      description: Delete a a Plugin associated with a Service using ID.
       parameters:
         - $ref: '#/components/parameters/ServiceId'
         - $ref: '#/components/parameters/PluginId'
@@ -2315,7 +2453,7 @@ paths:
     get:
       operationId: list-route-with-service
       summary: List all Routes associated with a Service
-      description: List all Routes associated with a a Service
+      description: List all Routes associated with a Service
       parameters:
         - $ref: '#/components/parameters/ServiceId'
         - $ref: '#/components/parameters/PaginationSize'
@@ -2366,8 +2504,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/services/{ServiceId}/routes/{RouteId}':
     delete:
       operationId: delete-route-with-service
-      summary: Delete a a Route associated with a a Service
-      description: Delete a a Route associated with a a Service using ID or name.
+      summary: Delete a a Route associated with a Service
+      description: Delete a a Route associated with a Service using ID or name.
       parameters:
         - $ref: '#/components/parameters/ServiceId'
         - $ref: '#/components/parameters/RouteId'
@@ -2641,7 +2779,7 @@ paths:
     get:
       operationId: list-target-with-upstream
       summary: List all Targets associated with an Upstream
-      description: List all Targets associated with a an Upstream
+      description: List all Targets associated with an Upstream
       parameters:
         - $ref: '#/components/parameters/UpstreamIdForTarget'
         - $ref: '#/components/parameters/PaginationSize'
@@ -2692,8 +2830,8 @@ paths:
   '/control-planes/{controlPlaneId}/core-entities/upstreams/{UpstreamIdForTarget}/targets/{TargetId}':
     delete:
       operationId: delete-target-with-upstream
-      summary: Delete a a Target associated with a an Upstream
-      description: Delete a a Target associated with a an Upstream using ID or target.
+      summary: Delete a a Target associated with an Upstream
+      description: Delete a a Target associated with an Upstream using ID or target.
       parameters:
         - $ref: '#/components/parameters/UpstreamIdForTarget'
         - $ref: '#/components/parameters/TargetId'
@@ -3076,7 +3214,7 @@ components:
         type: string
         format: uuid
         example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
-      description: The UUID of your control plane. This variable is available in the Konnect manager
+      description: The UUID of your control plane. This variable is available in the Konnect manager.
     pagination-size:
       description: Number of resources to be returned.
       in: query
@@ -3113,17 +3251,37 @@ components:
               description: JSON escaped string of the certificate.
               type: string
     ACL:
-      allOf:
-        - $ref: '#/components/schemas/ACLWithoutParents'
-        - properties:
-            consumer:
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
+      type: object
+      properties:
+        consumer:
           type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        group:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      example:
+        consumer:
+          id: 84a73fb8-50fc-44a7-a4d5-aa17728ee83f
+        group: foo
+        id: b1f34145-0343-41a4-9602-4c69dec2f269
+      additionalProperties: false
     ACLWithoutParents:
       type: object
       properties:
@@ -3133,25 +3291,55 @@ components:
           readOnly: true
         group:
           type: string
+          nullable: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         tags:
           type: array
           items:
             type: string
+          nullable: true
+      example:
+        group: foo
+        id: b1f34145-0343-41a4-9602-4c69dec2f269
+      additionalProperties: false
     BasicAuth:
-      allOf:
-        - $ref: '#/components/schemas/BasicAuthWithoutParents'
-        - properties:
-            consumer:
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
+      type: object
+      properties:
+        consumer:
           type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        id:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        username:
+          type: string
+          nullable: true
+      example:
+        consumer:
+          id: 84a73fb8-50fc-44a7-a4d5-aa17728ee83f
+        id: b2f34145-0343-41a4-9602-4c69dec2f269
+        password: hashedsoopersecretvalue
+        username: darius
+      additionalProperties: false
     BasicAuthWithoutParents:
       type: object
       properties:
@@ -3161,16 +3349,25 @@ components:
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         password:
           type: string
+          nullable: true
         tags:
           type: array
           items:
             type: string
+          nullable: true
         username:
           type: string
+          nullable: true
+      example:
+        id: b2f34145-0343-41a4-9602-4c69dec2f269
+        password: hashedsoopersecretvalue
+        username: darius
+      additionalProperties: false
     CACertificate:
+      description: A CA certificate object represents a trusted CA. These objects are used by Kong to verify the validity of a client or server certificate.
       type: object
       properties:
         cert:
@@ -3179,23 +3376,35 @@ components:
         cert_digest:
           description: 'SHA256 hex digest of the public certificate. This field is read-only and it cannot be set by the caller, the value is automatically computed.'
           type: string
+          nullable: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         tags:
           description: An optional set of strings associated with the Certificate for grouping and filtering.
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
+      example:
+        cert: |-
+          -----BEGIN CERTIFICATE-----
+          certificate-content
+          -----END CERTIFICATE-----
+        id: b2f34145-0343-41a4-9602-4c69dec2f260
+      additionalProperties: false
+      required:
+        - cert
     Certificate:
+      description: 'A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service. Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames. If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string according to the following order: main certificate on the top, followed by any intermediates.'
       type: object
       properties:
         cert:
@@ -3204,29 +3413,47 @@ components:
         cert_alt:
           description: 'PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
           type: string
+          nullable: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         key:
           description: 'PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
           type: string
         key_alt:
           description: 'PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
           type: string
+          nullable: true
         tags:
           description: An optional set of strings associated with the Certificate for grouping and filtering.
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
+      example:
+        cert: |-
+          -----BEGIN CERTIFICATE-----
+          certificate-content
+          -----END CERTIFICATE-----
+        id: b2f34145-0343-41a4-9602-4c69dec2f269
+        key: |-
+          -----BEGIN PRIVATE KEY-----
+          private-key-content
+          -----END PRIVATE KEY-----
+      additionalProperties: false
+      required:
+        - cert
+        - key
     Consumer:
+      description: 'The Consumer object represents a consumer - or a user - of a Service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.'
       type: object
       properties:
         created_at:
@@ -3236,14 +3463,16 @@ components:
         custom_id:
           description: Field for storing an existing unique ID for the Consumer - useful for mapping Kong with users in your existing database. You must send either this field or `username` with the request.
           type: string
+          nullable: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         tags:
           description: An optional set of strings associated with the Consumer for grouping and filtering.
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
@@ -3251,6 +3480,14 @@ components:
         username:
           description: The unique username of the Consumer. You must send either this field or `custom_id` with the request.
           type: string
+          nullable: true
+      example:
+        custom_id: '4200'
+        id: 8a388226-80e8-4027-a486-25e4f7db5d21
+        tags:
+          - silver-tier
+        username: bob-the-builder
+      additionalProperties: false
     ConsumerGroup:
       type: object
       properties:
@@ -3260,17 +3497,21 @@ components:
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         name:
           type: string
         tags:
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
+      additionalProperties: false
+      required:
+        - name
     ConsumerGroupInsideWrapper:
       type: object
       properties:
@@ -3287,17 +3528,41 @@ components:
         - message
         - status
     HMACAuth:
-      allOf:
-        - $ref: '#/components/schemas/HMACAuthWithoutParents'
-        - properties:
-            consumer:
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
+      type: object
+      properties:
+        consumer:
           type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        id:
+          type: string
+          nullable: true
+        secret:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        username:
+          type: string
+          nullable: true
+      example:
+        consumer:
+          id: 84a73fb8-50fc-44a7-a4d5-aa17728ee83f
+        id: 75695322-e8a0-4109-aed4-5416b0308d85
+        secret: wQazJ304DW5huJklHgUfjfiSyCyTAEDZ
+        username: xerxes
+      additionalProperties: false
     HMACAuthWithoutParents:
       type: object
       properties:
@@ -3307,27 +3572,81 @@ components:
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         secret:
           type: string
+          nullable: true
         tags:
           type: array
           items:
             type: string
+          nullable: true
         username:
           type: string
+          nullable: true
+      example:
+        id: 75695322-e8a0-4109-aed4-5416b0308d85
+        secret: wQazJ304DW5huJklHgUfjfiSyCyTAEDZ
+        username: xerxes
+      additionalProperties: false
     JWT:
-      allOf:
-        - $ref: '#/components/schemas/JWTWithoutParents'
-        - properties:
-            consumer:
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
+      type: object
+      properties:
+        algorithm:
+          type: string
+          default: HS256
+          enum:
+            - HS256
+            - HS384
+            - HS512
+            - RS256
+            - RS384
+            - RS512
+            - ES256
+            - ES384
+            - ES512
+            - PS256
+            - PS384
+            - PS512
+            - EdDSA
+          nullable: true
+        consumer:
           type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        id:
+          type: string
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        rsa_public_key:
+          type: string
+          nullable: true
+        secret:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      example:
+        algorithm: HS256
+        consumer:
+          id: 84a73fb8-50fc-44a7-a4d5-aa17728ee83f
+        id: 75695322-e8a0-4109-aed4-5416b0308d85
+        key: YJdmaDvVTJxtcWRCvkMikc8oELgAVNcz
+        secret: C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X
+      additionalProperties: false
     JWTWithoutParents:
       type: object
       properties:
@@ -3348,24 +3667,36 @@ components:
             - PS384
             - PS512
             - EdDSA
+          nullable: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         key:
           type: string
+          nullable: true
         rsa_public_key:
           type: string
+          nullable: true
         secret:
           type: string
+          nullable: true
         tags:
           type: array
           items:
             type: string
+          nullable: true
+      example:
+        algorithm: HS256
+        id: 75695322-e8a0-4109-aed4-5416b0308d85
+        key: YJdmaDvVTJxtcWRCvkMikc8oELgAVNcz
+        secret: C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X
+      additionalProperties: false
     Key:
+      description: 'A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.'
       type: object
       properties:
         created_at:
@@ -3374,19 +3705,22 @@ components:
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         jwk:
           description: A JSON Web Key represented as a string.
           type: string
+          nullable: true
         kid:
           description: A unique identifier for a key.
           type: string
         name:
           description: The name to associate with the given keys.
           type: string
+          nullable: true
         pem:
           description: A keypair in PEM format.
           type: object
+          nullable: true
           properties:
             private_key:
               type: string
@@ -3396,6 +3730,7 @@ components:
           description: The id (an UUID) of the key-set with which to associate the key.
           type: object
           additionalProperties: false
+          nullable: true
           properties:
             id:
               type: string
@@ -3405,22 +3740,56 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
+      example:
+        id: d958f66b-8e99-44d2-b0b4-edd5bbf24658
+        jwk: '{"alg":"RSA",  "kid": "42",  ...}'
+        kid: '42'
+        name: a-key
+        pem:
+          private_key: '-----BEGIN'
+          public_key: '-----BEGIN'
+        set:
+          id: b86b331c-dcd0-4b3e-97ce-47c5a9543031
+      additionalProperties: false
+      required:
+        - kid
     KeyAuth:
-      allOf:
-        - $ref: '#/components/schemas/KeyAuthWithoutParents'
-        - properties:
-            consumer:
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
+      type: object
+      properties:
+        consumer:
           type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        id:
+          type: string
+          nullable: true
+        key:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      example:
+        consumer:
+          id: 84a73fb8-50fc-44a7-a4d5-aa17728ee83f
+        id: b2f34145-0343-41a4-9602-4c69dec2f269
+        key: IL1deIyHyQA40WpeLeA1bIUXuvTwlGjo
+      additionalProperties: false
     KeyAuthWithoutParents:
       type: object
       properties:
@@ -3430,13 +3799,19 @@ components:
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         key:
           type: string
+          nullable: true
         tags:
           type: array
           items:
             type: string
+          nullable: true
+      example:
+        id: b2f34145-0343-41a4-9602-4c69dec2f269
+        key: IL1deIyHyQA40WpeLeA1bIUXuvTwlGjo
+      additionalProperties: false
     KeySet:
       type: object
       properties:
@@ -3446,17 +3821,88 @@ components:
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         name:
           type: string
+          nullable: true
         tags:
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
+      example:
+        id: b58c7d9d-e54f-444c-b24d-cdfc4159f61e
+        name: example-key-set
+        tags:
+          - idp-keys
+      additionalProperties: false
+    KeyWithoutParents:
+      description: 'A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.'
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        id:
+          type: string
+          nullable: true
+        jwk:
+          description: A JSON Web Key represented as a string.
+          type: string
+          nullable: true
+        kid:
+          description: A unique identifier for a key.
+          type: string
+        name:
+          description: The name to associate with the given keys.
+          type: string
+          nullable: true
+        pem:
+          description: A keypair in PEM format.
+          type: object
+          nullable: true
+          properties:
+            private_key:
+              type: string
+            public_key:
+              type: string
+        set:
+          description: The id (an UUID) of the key-set with which to associate the key.
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        tags:
+          description: An optional set of strings associated with the Key for grouping and filtering.
+          type: array
+          items:
+            type: string
+          nullable: true
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+          readOnly: true
+      example:
+        id: d958f66b-8e99-44d2-b0b4-edd5bbf24658
+        jwk: '{"alg":"RSA",  "kid": "42",  ...}'
+        kid: '42'
+        name: a-key
+        pem:
+          private_key: '-----BEGIN'
+          public_key: '-----BEGIN'
+        set:
+          id: b86b331c-dcd0-4b3e-97ce-47c5a9543031
+      additionalProperties: false
+      required:
+        - kid
     PaginationNextResponse:
       description: URI to the next page (may be null)
       type: string
@@ -3464,48 +3910,30 @@ components:
       description: Offset is used to paginate through the API. Provide this value to the next list operation to fetch the next page
       type: string
     Plugin:
-      allOf:
-        - $ref: '#/components/schemas/PluginWithoutParents'
-        - properties:
-            consumer:
-              description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.'
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
-            consumer_group:
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
-            route:
-              description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.'
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
-            service:
-              description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.'
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
-          type: object
-    PluginWithoutParents:
+      description: 'A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionalities to Services that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/). When adding a Plugin Configuration to a Service, every request made by a client to that Service will run said Plugin. If a Plugin needs to be tuned to different values for some specific Consumers, you can do so by creating a separate plugin instance that specifies both the Service and the Consumer, through the `service` and `consumer` fields.'
       type: object
       properties:
         config:
           description: 'The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).'
           type: object
           additionalProperties: true
+        consumer:
+          description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.'
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        consumer_group:
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
@@ -3514,17 +3942,34 @@ components:
           description: Whether the plugin is applied.
           type: boolean
           default: true
+          nullable: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         instance_name:
           type: string
+          nullable: true
         name:
           description: 'The name of the Plugin that''s going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
           type: string
         ordering:
           type: object
-          additionalProperties: true
+          nullable: true
+          properties:
+            after:
+              type: object
+              properties:
+                access:
+                  type: array
+                  items:
+                    type: string
+            before:
+              type: object
+              properties:
+                access:
+                  type: array
+                  items:
+                    type: string
         protocols:
           description: 'A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.'
           type: array
@@ -3546,29 +3991,157 @@ components:
             - grpcs
             - http
             - https
+          nullable: true
+        route:
+          description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.'
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        service:
+          description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.'
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
         tags:
           description: An optional set of strings associated with the Plugin for grouping and filtering.
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
-    Route:
-      allOf:
-        - $ref: '#/components/schemas/RouteWithoutParents'
-        - properties:
-            service:
-              description: The Service this Route is associated to. This is where the Route proxies traffic to.
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
+      example:
+        config:
+          anonymous: null
+          hide_credentials: false
+          key_in_body: false
+          key_in_header: true
+          key_in_query: true
+          key_names:
+            - apikey
+          run_on_preflight: true
+        enabled: true
+        id: 3fd1eea1-885a-4011-b986-289943ff8177
+        name: key-auth
+        protocols:
+          - grpc
+          - grpcs
+          - http
+          - https
+      additionalProperties: false
+      required:
+        - name
+        - config
+    PluginWithoutParents:
+      description: 'A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionalities to Services that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/). When adding a Plugin Configuration to a Service, every request made by a client to that Service will run said Plugin. If a Plugin needs to be tuned to different values for some specific Consumers, you can do so by creating a separate plugin instance that specifies both the Service and the Consumer, through the `service` and `consumer` fields.'
+      type: object
+      properties:
+        config:
+          description: 'The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).'
           type: object
-    RouteWithoutParents:
+          additionalProperties: true
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        enabled:
+          description: Whether the plugin is applied.
+          type: boolean
+          default: true
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        instance_name:
+          type: string
+          nullable: true
+        name:
+          description: 'The name of the Plugin that''s going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
+          type: string
+        ordering:
+          type: object
+          nullable: true
+          properties:
+            after:
+              type: object
+              properties:
+                access:
+                  type: array
+                  items:
+                    type: string
+            before:
+              type: object
+              properties:
+                access:
+                  type: array
+                  items:
+                    type: string
+        protocols:
+          description: 'A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.'
+          type: array
+          items:
+            enum:
+              - grpc
+              - grpcs
+              - http
+              - https
+              - tcp
+              - tls
+              - tls_passthrough
+              - udp
+              - ws
+              - wss
+            type: string
+          default:
+            - grpc
+            - grpcs
+            - http
+            - https
+          nullable: true
+        tags:
+          description: An optional set of strings associated with the Plugin for grouping and filtering.
+          type: array
+          items:
+            type: string
+          nullable: true
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+          readOnly: true
+      example:
+        config:
+          anonymous: null
+          hide_credentials: false
+          key_in_body: false
+          key_in_header: true
+          key_in_query: true
+          key_names:
+            - apikey
+          run_on_preflight: true
+        enabled: true
+        id: 3fd1eea1-885a-4011-b986-289943ff8177
+        name: key-auth
+        protocols:
+          - grpc
+          - grpcs
+          - http
+          - https
+      additionalProperties: false
+      required:
+        - name
+        - config
+    Route:
+      description: 'Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.'
       type: object
       properties:
         created_at:
@@ -3585,15 +4158,19 @@ components:
               port:
                 type: integer
             type: object
+          nullable: true
         headers:
           description: 'One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.'
           type: object
-          additionalProperties: true
+          additionalProperties:
+            type: string
+          nullable: true
         hosts:
           description: A list of domain names that match this Route. Note that the hosts value is case sensitive.
           type: array
           items:
             type: string
+          nullable: true
         https_redirect_status_code:
           description: 'The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308. Note: This config applies only if the Route is configured to only accept the `https` protocol.'
           type: integer
@@ -3604,17 +4181,20 @@ components:
             - 302
             - 307
             - 308
+          nullable: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         methods:
           description: A list of HTTP methods that match this Route.
           type: array
           items:
             type: string
+          nullable: true
         name:
           description: 'The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".'
           type: string
+          nullable: true
         path_handling:
           description: 'Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.'
           type: string
@@ -3622,15 +4202,18 @@ components:
           enum:
             - v0
             - v1
+          nullable: true
         paths:
           description: A list of paths that match this Route.
           type: array
           items:
             type: string
+          nullable: true
         preserve_host:
           description: 'When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service''s `host`.'
           type: boolean
           default: false
+          nullable: true
         protocols:
           description: 'An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.'
           type: array
@@ -3650,23 +4233,37 @@ components:
           default:
             - http
             - https
+          nullable: true
         regex_priority:
           description: 'A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).'
           type: integer
           default: 0
+          nullable: true
         request_buffering:
           description: 'Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.'
           type: boolean
           default: true
+          nullable: true
         response_buffering:
           description: 'Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.'
           type: boolean
           default: true
+          nullable: true
+        service:
+          description: The Service this Route is associated to. This is where the Route proxies traffic to.
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
         snis:
           description: A list of SNIs that match this Route when using stream routing.
           type: array
           items:
             type: string
+          nullable: true
         sources:
           description: A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
           type: array
@@ -3677,42 +4274,204 @@ components:
               port:
                 type: integer
             type: object
+          nullable: true
         strip_path:
           description: 'When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.'
           type: boolean
           default: true
+          nullable: true
         tags:
           description: An optional set of strings associated with the Route for grouping and filtering.
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
-    SNI:
-      allOf:
-        - $ref: '#/components/schemas/SNIWithoutParents'
-        - properties:
-            certificate:
-              description: The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
-          type: object
-    SNIWithoutParents:
+      example:
+        hosts:
+          - foo.example.com
+          - foo.example.us
+        id: 56c4566c-14cc-4132-9011-4139fcbbe50a
+        name: example-route
+        paths:
+          - /v1
+          - /v2
+        service:
+          id: bd380f99-659d-415e-b0e7-72ea05df3218
+      additionalProperties: false
+    RouteWithoutParents:
+      description: 'Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.'
       type: object
       properties:
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
           readOnly: true
+        destinations:
+          description: A list of IP destinations of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
+          type: array
+          items:
+            properties:
+              ip:
+                type: string
+              port:
+                type: integer
+            type: object
+          nullable: true
+        headers:
+          description: 'One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.'
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+        hosts:
+          description: A list of domain names that match this Route. Note that the hosts value is case sensitive.
+          type: array
+          items:
+            type: string
+          nullable: true
+        https_redirect_status_code:
+          description: 'The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308. Note: This config applies only if the Route is configured to only accept the `https` protocol.'
+          type: integer
+          default: 426
+          enum:
+            - 426
+            - 301
+            - 302
+            - 307
+            - 308
+          nullable: true
         id:
           type: string
+          nullable: true
+        methods:
+          description: A list of HTTP methods that match this Route.
+          type: array
+          items:
+            type: string
+          nullable: true
+        name:
+          description: 'The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".'
+          type: string
+          nullable: true
+        path_handling:
+          description: 'Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.'
+          type: string
+          default: v0
+          enum:
+            - v0
+            - v1
+          nullable: true
+        paths:
+          description: A list of paths that match this Route.
+          type: array
+          items:
+            type: string
+          nullable: true
+        preserve_host:
+          description: 'When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service''s `host`.'
+          type: boolean
+          default: false
+          nullable: true
+        protocols:
+          description: 'An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.'
+          type: array
+          items:
+            enum:
+              - grpc
+              - grpcs
+              - http
+              - https
+              - tcp
+              - tls
+              - tls_passthrough
+              - udp
+              - ws
+              - wss
+            type: string
+          default:
+            - http
+            - https
+          nullable: true
+        regex_priority:
+          description: 'A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).'
+          type: integer
+          default: 0
+          nullable: true
+        request_buffering:
+          description: 'Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.'
+          type: boolean
+          default: true
+          nullable: true
+        response_buffering:
+          description: 'Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.'
+          type: boolean
+          default: true
+          nullable: true
+        snis:
+          description: A list of SNIs that match this Route when using stream routing.
+          type: array
+          items:
+            type: string
+          nullable: true
+        sources:
+          description: A list of IP sources of incoming connections that match this Route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
+          type: array
+          items:
+            properties:
+              ip:
+                type: string
+              port:
+                type: integer
+            type: object
+          nullable: true
+        strip_path:
+          description: 'When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.'
+          type: boolean
+          default: true
+          nullable: true
+        tags:
+          description: An optional set of strings associated with the Route for grouping and filtering.
+          type: array
+          items:
+            type: string
+          nullable: true
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
           readOnly: true
+      example:
+        hosts:
+          - foo.example.com
+          - foo.example.us
+        id: 56c4566c-14cc-4132-9011-4139fcbbe50a
+        name: example-route
+        paths:
+          - /v1
+          - /v2
+      additionalProperties: false
+    SNI:
+      description: 'An SNI object represents a many-to-one mapping of hostnames to a certificate. That is, a certificate object can have many hostnames associated with it; when Kong receives an SSL request, it uses the SNI field in the Client Hello to lookup the certificate object based on the SNI associated with the certificate.'
+      type: object
+      properties:
+        certificate:
+          description: The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.
+          type: object
+          additionalProperties: false
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        id:
+          type: string
+          nullable: true
         name:
           description: The SNI name to associate with the given certificate.
           type: string
@@ -3721,11 +4480,52 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
+      example:
+        certificate:
+          id: bd380f99-659d-415e-b0e7-72ea05df3218
+        id: 36c4566c-14cc-4132-9011-4139fcbbe50a
+        name: some.example.org
+      additionalProperties: false
+      required:
+        - name
+        - certificate
+    SNIWithoutParents:
+      description: 'An SNI object represents a many-to-one mapping of hostnames to a certificate. That is, a certificate object can have many hostnames associated with it; when Kong receives an SSL request, it uses the SNI field in the Client Hello to lookup the certificate object based on the SNI associated with the certificate.'
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        id:
+          type: string
+          nullable: true
+        name:
+          description: The SNI name to associate with the given certificate.
+          type: string
+        tags:
+          description: An optional set of strings associated with the SNIs for grouping and filtering.
+          type: array
+          items:
+            type: string
+          nullable: true
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+          readOnly: true
+      example:
+        id: 36c4566c-14cc-4132-9011-4139fcbbe50a
+        name: some.example.org
+      additionalProperties: false
+      required:
+        - name
     Service:
+      description: 'Service entities, as the name implies, are abstractions of each of your own upstream services. Examples of Services would be a data transformation microservice, a billing API, etc. The main attribute of a Service is its URL (where Kong should proxy traffic to), which can be set as a single string or by specifying its `protocol`, `host`, `port` and `path` individually. Services are associated to Routes (a Service can have many Routes associated with it). Routes are entry-points in Kong and define rules to match client requests. Once a Route is matched, Kong proxies the request to its associated Service. See the [Proxy Reference][proxy-reference] for a detailed explanation of how Kong proxies traffic.'
       type: object
       properties:
         ca_certificates:
@@ -3733,10 +4533,12 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         client_certificate:
           description: Certificate to be used as client certificate while TLS handshaking to the upstream server.
           type: object
           additionalProperties: false
+          nullable: true
           properties:
             id:
               type: string
@@ -3745,6 +4547,7 @@ components:
           description: The timeout in milliseconds for establishing a connection to the upstream server.
           type: integer
           default: 60000
+          nullable: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
@@ -3753,18 +4556,21 @@ components:
           description: 'Whether the Service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.'
           type: boolean
           default: true
+          nullable: true
         host:
           description: The host of the upstream server. Note that the host value is case sensitive.
           type: string
         id:
           type: string
-          readOnly: true
+          nullable: true
         name:
           description: The Service name.
           type: string
+          nullable: true
         path:
           description: The path to be used in requests to the upstream server.
           type: string
+          nullable: true
         port:
           description: The upstream server port.
           type: integer
@@ -3788,21 +4594,26 @@ components:
           description: The timeout in milliseconds between two successive read operations for transmitting a request to the upstream server.
           type: integer
           default: 60000
+          nullable: true
         retries:
           description: The number of retries to execute upon failure to proxy.
           type: integer
           default: 5
+          nullable: true
         tags:
           description: An optional set of strings associated with the Service for grouping and filtering.
           type: array
           items:
             type: string
+          nullable: true
         tls_verify:
           description: 'Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.'
           type: boolean
+          nullable: true
         tls_verify_depth:
           description: 'Maximum depth of chain while verifying Upstream server''s TLS certificate. If set to `null`, then the Nginx default is respected.'
           type: integer
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
@@ -3815,19 +4626,21 @@ components:
           description: The timeout in milliseconds between two successive write operations for transmitting a request to the upstream server.
           type: integer
           default: 60000
+          nullable: true
+      example:
+        host: example.internal
+        id: 49fd316e-c457-481c-9fc7-8079153e4f3c
+        name: example-service
+        path: /
+        port: 80
+        protocol: http
+      additionalProperties: false
+      required:
+        - protocol
+        - host
+        - port
     Target:
-      allOf:
-        - $ref: '#/components/schemas/TargetWithoutParents'
-        - properties:
-            upstream:
-              type: object
-              additionalProperties: false
-              properties:
-                id:
-                  type: string
-              x-foreign: true
-          type: object
-    TargetWithoutParents:
+      description: 'A target is an ip address/hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly. To disable a target, post a new one with `weight=0`; alternatively, use the `DELETE` convenience method to accomplish the same. The current target object definition is the one with the latest `created_at`.'
       type: object
       properties:
         created_at:
@@ -3836,15 +4649,62 @@ components:
           readOnly: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         tags:
           description: An optional set of strings associated with the Target for grouping and filtering.
           type: array
           items:
             type: string
+          nullable: true
         target:
           description: 'The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record.'
           type: string
+          nullable: true
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: number
+          readOnly: true
+        upstream:
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        weight:
+          description: 'The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.'
+          type: integer
+          default: 100
+          nullable: true
+      example:
+        id: 089292a7-ba3d-4d88-acf0-97b4b2e2621a
+        target: 203.0.113.42
+        upstream:
+          id: 5f1d7e76-2fed-4806-a6af-869984f025cb
+        weight: 100
+      additionalProperties: false
+    TargetWithoutParents:
+      description: 'A target is an ip address/hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly. To disable a target, post a new one with `weight=0`; alternatively, use the `DELETE` convenience method to accomplish the same. The current target object definition is the one with the latest `created_at`.'
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: number
+          readOnly: true
+        id:
+          type: string
+          nullable: true
+        tags:
+          description: An optional set of strings associated with the Target for grouping and filtering.
+          type: array
+          items:
+            type: string
+          nullable: true
+        target:
+          description: 'The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record.'
+          type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: number
@@ -3853,7 +4713,14 @@ components:
           description: 'The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.'
           type: integer
           default: 100
+          nullable: true
+      example:
+        id: 089292a7-ba3d-4d88-acf0-97b4b2e2621a
+        target: 203.0.113.42
+        weight: 100
+      additionalProperties: false
     Upstream:
+      description: 'The upstream object represents a virtual hostname and can be used to loadbalance incoming requests over multiple services (targets). So for example an upstream named `service.v1.xyz` for a Service object whose `host` is `service.v1.xyz`. Requests for this Service would be proxied to the targets defined within the upstream. An upstream also includes a [health checker][healthchecks], which is able to enable and disable targets based on their ability or inability to serve requests. The configuration for the health checker is stored in the upstream object, and applies to all of its targets.'
       type: object
       properties:
         algorithm:
@@ -3865,10 +4732,12 @@ components:
             - least-connections
             - round-robin
             - latency
+          nullable: true
         client_certificate:
           description: 'If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.'
           type: object
           additionalProperties: false
+          nullable: true
           properties:
             id:
               type: string
@@ -3890,15 +4759,19 @@ components:
             - path
             - query_arg
             - uri_capture
+          nullable: true
         hash_fallback_header:
           description: The header name to take the value from as hash input. Only required when `hash_fallback` is set to `header`.
           type: string
+          nullable: true
         hash_fallback_query_arg:
           description: The name of the query string argument to take the value from as hash input. Only required when `hash_fallback` is set to `query_arg`.
           type: string
+          nullable: true
         hash_fallback_uri_capture:
           description: The name of the route URI capture to take the value from as hash input. Only required when `hash_fallback` is set to `uri_capture`.
           type: string
+          nullable: true
         hash_on:
           description: What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing.
           type: string
@@ -3912,24 +4785,31 @@ components:
             - path
             - query_arg
             - uri_capture
+          nullable: true
         hash_on_cookie:
           description: 'The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.'
           type: string
+          nullable: true
         hash_on_cookie_path:
           description: The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`.
           type: string
           default: /
+          nullable: true
         hash_on_header:
           description: The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
           type: string
+          nullable: true
         hash_on_query_arg:
           description: The name of the query string argument to take the value from as hash input. Only required when `hash_on` is set to `query_arg`.
           type: string
+          nullable: true
         hash_on_uri_capture:
           description: The name of the route URI capture to take the value from as hash input. Only required when `hash_on` is set to `uri_capture`.
           type: string
+          nullable: true
         healthchecks:
           type: object
+          nullable: true
           properties:
             active:
               type: object
@@ -3939,7 +4819,8 @@ components:
                   default: 10
                 headers:
                   type: object
-                  additionalProperties: true
+                  additionalProperties:
+                    type: string
                 healthy:
                   type: object
                   properties:
@@ -4072,9 +4953,10 @@ components:
         host_header:
           description: The hostname to be used as `Host` header when proxying requests through Kong.
           type: string
+          nullable: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         name:
           description: 'This is a hostname, which must be equal to the `host` of a Service.'
           type: string
@@ -4082,11 +4964,13 @@ components:
           description: 'The number of slots in the load balancer algorithm. If `algorithm` is set to `round-robin`, this setting determines the maximum number of slots. If `algorithm` is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range `10`-`65536`.'
           type: integer
           default: 10000
+          nullable: true
         tags:
           description: An optional set of strings associated with the Upstream for grouping and filtering.
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
@@ -4095,12 +4979,87 @@ components:
           description: 'If set, the balancer will use SRV hostname(if DNS Answer has SRV record) as the proxy upstream `Host`.'
           type: boolean
           default: false
+          nullable: true
+      example:
+        algorithm: round-robin
+        hash_fallback: none
+        hash_on: none
+        hash_on_cookie_path: /
+        healthchecks:
+          active:
+            concurrency: 10
+            healthy:
+              http_statuses:
+                - 200
+                - 302
+              interval: 0
+              successes: 0
+            http_path: /
+            https_verify_certificate: true
+            timeout: 1
+            type: http
+            unhealthy:
+              http_failures: 0
+              http_statuses:
+                - 429
+                - 404
+                - 500
+                - 501
+                - 502
+                - 503
+                - 504
+                - 505
+              interval: 0
+              tcp_failures: 0
+              timeouts: 0
+          passive:
+            healthy:
+              http_statuses:
+                - 200
+                - 201
+                - 202
+                - 203
+                - 204
+                - 205
+                - 206
+                - 207
+                - 208
+                - 226
+                - 300
+                - 301
+                - 302
+                - 303
+                - 304
+                - 305
+                - 306
+                - 307
+                - 308
+              successes: 0
+            type: http
+            unhealthy:
+              http_failures: 0
+              http_statuses:
+                - 429
+                - 500
+                - 503
+              tcp_failures: 0
+              timeouts: 0
+          threshold: 0
+        id: 6eed5e9c-5398-4026-9a4c-d48f18a2431e
+        name: api.example.internal
+        slots: 10000
+      additionalProperties: false
+      required:
+        - name
     Vault:
+      description: 'Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.'
       type: object
       properties:
         config:
           description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
+          additionalProperties: true
+          nullable: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
@@ -4108,9 +5067,10 @@ components:
         description:
           description: The description of the Vault entity.
           type: string
+          nullable: true
         id:
           type: string
-          readOnly: true
+          nullable: true
         name:
           description: 'The name of the Vault that''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.'
           type: string
@@ -4122,10 +5082,25 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
           readOnly: true
+      example:
+        config:
+          prefix: ENV_PREFIX
+        description: environment variable based vault
+        id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
+        name: env
+        prefix: env
+        tags:
+          - foo
+          - bar
+      additionalProperties: false
+      required:
+        - name
+        - prefix
     BaseError:
       description: standard error
       type: object
@@ -4270,7 +5245,7 @@ components:
         choices:
           type: array
           items: {}
-          minimum: 1
+          minItems: 1
           nullable: false
           readOnly: true
           uniqueItems: true

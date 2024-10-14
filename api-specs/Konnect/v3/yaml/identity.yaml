@@ -1144,6 +1144,33 @@ paths:
           $ref: '#/components/responses/IdentityNotFound'
       tags:
         - System Accounts - Team Membership
+  /users/me:
+    get:
+      operationId: get-users-me
+      summary: Retrieve My User Account
+      description: Returns the user account for the user identified in the token of the request.
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingle'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+      security:
+        - personalAccessToken: []
+        - konnectAccessToken: []
+      tags:
+        - Me
+  /organizations/me:
+    get:
+      operationId: get-organizations-me
+      summary: Retrieve My Organization
+      description: Returns the organization of the user identified in the token of the request.
+      responses:
+        '200':
+          $ref: '#/components/responses/MeOrganization'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+      tags:
+        - Me
   '/authenticate/{organizationLoginPath}':
     get:
       operationId: authenticate-sso
@@ -1642,7 +1669,7 @@ components:
         choices:
           type: array
           items: {}
-          minimum: 1
+          minItems: 1
           nullable: false
           readOnly: true
           uniqueItems: true
@@ -1832,6 +1859,8 @@ components:
     LabelsUpdate:
       description: |
         Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types. 
+
+        Labels are intended to store **INTERNAL** metadata.
 
         Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
       type: object
@@ -3637,6 +3666,66 @@ components:
                 expires_at: '2019-08-24T14:15:22Z'
                 last_used_at: '2019-08-24T14:15:22Z'
                 token: npat_12345678901234567890123456789012345678901234567890
+    MeOrganization:
+      description: Me Organization
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                description: UUID of the organization.
+                type: string
+                format: uuid
+                readOnly: true
+              name:
+                description: Name of the organization.
+                type: string
+              owner_id:
+                description: Owner ID of the organization.
+                type: string
+              login_path:
+                description: Path to organization-specific login when single sign on (SSO) is enabled. Blank otherwise.
+                type: string
+              created_at:
+                description: Date the organization was created.
+                type: string
+                format: date-time
+                readOnly: true
+              updated_at:
+                description: Date the organization was last updated.
+                type: string
+                format: date-time
+                readOnly: true
+              state:
+                description: State of the organization
+                type: string
+                enum:
+                  - active
+                  - inactive
+              retention_period_days:
+                description: The number of days an organization spends inactive before being deleted.
+                type: integer
+            example:
+              id: d99c041a-c7cf-46a2-bf3a-44bb5f75400e
+              name: string
+              owner_id: 1c9c3848-5897-4f2c-beed-df6f3e3adb37
+              created_at: '2023-01-23T17:22:52.150Z'
+              updated_at: '2023-01-23T17:22:52.150Z'
+              state: active
+              retention_period_days: 90
+            title: Me Organization Response
+          examples:
+            Example:
+              value:
+                created_at: '2023-01-18T11:35:45.130Z'
+                id: 023bfa42-3513-4cbf-b059-a9ddb4ea995d
+                name: Acme Co.
+                owner_id: e02c829c-0e2d-44b5-9057-07714ea613a3
+                login_path: acme
+                updated_at: '2023-01-23T17:22:52.150Z'
+                state: active
+                retention_period_days: 90
     IdPConfiguration:
       description: A get action response of the IdP configuration.
       content:
@@ -3679,6 +3768,7 @@ tags:
   - name: System Accounts - Access Tokens
   - name: System Accounts - Roles
   - name: System Accounts - Team Membership
+  - name: Me
   - name: Authentication
   - name: Impersonation Settings
 security:
