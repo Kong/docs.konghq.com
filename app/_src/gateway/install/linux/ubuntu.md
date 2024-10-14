@@ -96,7 +96,11 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 
 1. Download the Kong package.
 
-    {% if_version gte:3.4.x %}
+    {% if_version gte:3.9.x %}
+    {% assign default_flavor = "noble" %}
+    {% assign available_flavors = "Focal, Jammy, and Noble" %}
+    {% endif_version %}
+    {% if_version gte:3.4.x lte:3.8.x %}
     {% assign default_flavor = "jammy" %}
     {% assign available_flavors = "Focal, and Jammy" %}
     {% endif_version %}
