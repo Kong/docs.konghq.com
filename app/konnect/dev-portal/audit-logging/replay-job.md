@@ -11,7 +11,7 @@ A replay job in a region will resend data for the requested timeframe to the web
 
 ## Prerequisites
 
-* [Org Admin or Portal Admin permissions](/konnect/org-management/teams-and-roles/teams-reference/)
+* [Org Admin permissions](/konnect/org-management/teams-and-roles/teams-reference/)
 * Your [audit log webhook](/konnect/dev-portal/audit-logging/webhook/) must be enabled and ready to receive data. 
 
 
