@@ -20,7 +20,7 @@ This guide explains how to provision a [Serverless Gateway](/konnect/gateway-man
 Your serverless gateway is now provisioned with data plane attached. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
 
 The URL where your serverless gateway can be accessed is shown in the top `Overview` section of the Control Plane page.
-<img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-serverless-gateway-proxy.png" alt="severless gateway proxy url" style="max-width: 600px;">
+<img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-serverless-gateway-proxy.png" alt="serverless gateway proxy url" style="max-width: 600px;">
 > _**Figure 1:** The Serverless Gateway overview and proxy URL {{site.konnect_short_name}} UI._
 {% endnavtab %}
 {% navtab API %}
@@ -46,8 +46,8 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 
     You should get a `201` response like the following:
 
-    ```bash
-   {
+    ```json
+	{
 		"id": "23be21c0-5984-4698-aa1f-ac258d77f0d1",
 		"name": "serverless-gateway-control-plane",
 		"description": "A test control plane for Serverless Gateways.",
@@ -91,8 +91,8 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 
     You should get a `201` response like the following:
 
-    ```sh
-   	{
+    ```json
+	{
 		"kind": "serverless.v0",
 		"id": "1ed33954-dd7f-40b5-8bd3-b2d91e4be99a",
 		"control_plane_id": "23be21c0-5984-4698-aa1f-ac258d77f0d1",
