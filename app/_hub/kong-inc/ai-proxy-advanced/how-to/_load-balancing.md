@@ -98,7 +98,7 @@ curl --request POST \
 
 The round-robin algorithm distributes requests to the different models on a rotation. By default, all models have the same weight and receive the same percentage of requests. However, this can be configured with the [`config.targets[].weight`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-weight) parameter.
 
-If you have three models and want to assign 70% of requests to the first one, 25% of requests to the second one, and 5% of requests to the third one, you can us the following configuration:
+If you have three models and want to assign 70% of requests to the first one, 25% of requests to the second one, and 5% of requests to the third one, you can use the following configuration:
 
 ```yaml
 _format_version: "3.0"
@@ -238,7 +238,7 @@ plugins:
 
 ## Lowest-usage
 
-The lowest-usage algorithm distributes requests to the model with the lowest usage volume. By default, the usage is calculated based on the total number of tokens in the prompt and in the response. However, you can customize this using the [`config.balancer.tokens_count_strategy`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-balancer-tokens_count_strategy) parameter. You cna use:
+The lowest-usage algorithm distributes requests to the model with the lowest usage volume. By default, the usage is calculated based on the total number of tokens in the prompt and in the response. However, you can customize this using the [`config.balancer.tokens_count_strategy`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-balancer-tokens_count_strategy) parameter. You can use:
 * `prompt-tokens` to count only the tokens in the prompt
 * `completion-tokens` to count only the tokens in the response
 
