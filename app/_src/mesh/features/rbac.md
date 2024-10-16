@@ -326,11 +326,8 @@ spec:
     access: ["CREATE", "DELETE", "UPDATE"]
     when:
     - targetRef:
-        kind: Mesh
-      to:
-        targetRef:
-          kind: MeshService
-          name: backend
+        kind: MeshService
+        name: backend
   - mesh: default
     types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
     access: ["CREATE", "DELETE", "UPDATE"]
@@ -339,8 +336,9 @@ spec:
         kind: Mesh
       from:
         targetRef:
-          kind: MeshService
-          name: backend
+          kind: MeshSubset
+          tags:
+            kuma.io/service: backend
     - targetRef:
         kind: Mesh
       to:
@@ -369,11 +367,8 @@ spec:
     access: ["CREATE", "DELETE", "UPDATE"]
     when:
     - targetRef:
-        kind: Mesh
-      to:
-        targetRef:
-          kind: MeshService
-          name: backend
+        kind: MeshService
+        name: backend
   - mesh: default
     types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
     access: ["CREATE", "DELETE", "UPDATE"]
@@ -382,8 +377,9 @@ spec:
         kind: Mesh
       from:
         targetRef:
-          kind: MeshService
-          name: backend
+          kind: MeshSubset
+          tags:
+            kuma.io/service: backend
     - targetRef:
         kind: Mesh
       to:
@@ -443,11 +439,8 @@ rules:
   access: ["CREATE", "DELETE", "UPDATE"]
   when:
   - targetRef:
-      kind: Mesh
-    to:
-      targetRef:
-        kind: MeshService
-        name: backend
+      kind: MeshService
+      name: backend
 - mesh: default
   types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
   access: ["CREATE", "DELETE", "UPDATE"]
@@ -456,8 +449,9 @@ rules:
       kind: Mesh
     from:
       targetRef:
-        kind: MeshService
-        name: backend
+        kind: MeshSubset
+        tags:
+          kuma.io/service: backend
   - targetRef:
       kind: Mesh
     to:
@@ -483,11 +477,8 @@ rules:
   access: ["CREATE", "DELETE", "UPDATE"]
   when:
   - targetRef:
-      kind: Mesh
-    to:
-      targetRef:
-        kind: MeshService
-        name: backend
+      kind: MeshService
+      name: backend
 - mesh: default
   types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
   access: ["CREATE", "DELETE", "UPDATE"]
@@ -496,8 +487,9 @@ rules:
       kind: Mesh
     from:
       targetRef:
-        kind: MeshService
-        name: backend
+        kind: MeshSubset
+        tags:
+          kuma.io/service: backend
   - targetRef:
       kind: Mesh
     to:

@@ -8,12 +8,7 @@ You can create both public and private Dev Portals, depending on your use case. 
 
 When Dev Portal admins require developers to create an account and log in to use the Dev Portal, developers can "self serve" their API consumption. Developers can create applications, register them to their target APIs, and generate credentials to start consuming those APIs.
 
-## Prerequisites
-
-* Be familiar with the general settings you plan to configure based on the [Dev Portal configuration preparation guide](/konnect/dev-portal/configuration-prep/)
-* Configure an [authentication strategy](/konnect/dev-portal/applications/enable-app-reg/) for your APIs if you plan to use one. This auth strategy will be how developers authenticate when they make API requests. 
-
-## Steps
+## Create a Dev Portal
 {% navtabs %}
 {% navtab Konnect UI %}
 1. In {% konnect_icon dev-portal %} [**Dev Portal**](https://cloud.konghq.com/portal), click **Dev Portal** on the top right.

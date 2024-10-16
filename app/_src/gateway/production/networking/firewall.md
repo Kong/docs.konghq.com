@@ -51,19 +51,6 @@ Below are the recommended firewall settings:
   For example, if you want Kong to manage traffic on port `4242`, your firewall will need to allow traffic
   on said port.
 
-#### Transparent Proxying
-
-It is worth mentioning that the `transparent` listen option may be applied to [proxy_listen]
-and [stream_listen] configuration. With packet filtering such as `iptables` (Linux) or `pf` (macOS/BSDs)
-or with hardware routers/switches, you can specify pre-routing or redirection rules for TCP packets that
-allow you to mangle the original destination address and port. For example a HTTP request with a destination
-address of `10.0.0.1`, and a destination port of `80` can be redirected to `127.0.0.1` at port `8000`.
-To make this work, you need (with Linux) to add the `transparent` listen option to Kong proxy,
-`proxy_listen=8000 transparent`. This allows Kong to see the original destination for the request
-(`10.0.0.1:80`) even when Kong didn't actually listen to it directly. With this information,
-Kong can route the request correctly. The `transparent` listen option should only be used with Linux.
-macOS/BSDs allow transparent proxying without `transparent` listen option. With Linux you may also need
-to start Kong as a `root` user or set the needed capabilities for the executable.
 
 
 [proxy_listen]: /gateway/{{page.release}}/reference/configuration/#proxy_listen

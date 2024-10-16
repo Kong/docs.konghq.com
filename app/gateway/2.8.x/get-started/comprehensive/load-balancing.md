@@ -10,7 +10,7 @@ If you are following the getting started workflow, make sure you have completed 
 
 An **Upstream Object** refers to your upstream API/service sitting behind {{site.base_gateway}}, to which client requests are forwarded. In {{site.base_gateway}}, an Upstream Object represents a virtual hostname and can be used to health check, circuit break, and load balance incoming requests over multiple services (targets).
 
-In this topic, you’ll configure the service created earlier (`example_service`) to point to an upstream instead of the host. For the purposes of our example, the upstream will point to two different targets, `httpbin.org` and `httpbun.com`. In a real environment, the upstream will point to the same service running on multiple systems.
+In this topic, you’ll configure the service created earlier (`example_service`) to point to an upstream instead of the host. For the purposes of our example, the upstream will point to two different targets, `httpbin.konghq.com` and `httpbun.com`. In a real environment, the upstream will point to the same service running on multiple systems.
 
 Here is a diagram illustrating the setup:
 
@@ -34,7 +34,7 @@ In this section, you will create an Upstream named `example_upstream` and add tw
 5. Scroll down and click **Create**.
 6. On the Upstreams page, find the new upstream service and click **View**.
 7. Scroll down and click **New Target**.
-8. In the target field, specify `httpbin.org` with port `80`, and click **Create**.
+8. In the target field, specify `httpbin.konghq.com` with port `80`, and click **Create**.
 9. Create another target, this time for `httpbun.com` with port `80`. Click **Create**.
 10. Open the **Services** page.
 11. Find your `example_service` and click **Edit**.
@@ -81,7 +81,7 @@ http PATCH :8001/services/example_service \
 <!-- end codeblock tabs -->
 
 Add two targets to the upstream, each with port 80: `httpbun.com:80` and
-`httpbin.org:80`:
+`httpbin.konghq.com:80`:
 
 <!-- codeblock tabs -->
 {% navtabs codeblock %}
@@ -91,7 +91,7 @@ curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
   --data target='httpbun.com:80'
 
 curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
-  --data target='httpbin.org:80'
+  --data target='httpbin.konghq.com:80'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}    
@@ -99,7 +99,7 @@ curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
 http POST :8001/upstreams/example_upstream/targets \
   target=httpbun.com:80
 http POST :8001/upstreams/example_upstream/targets \
-  target=httpbin.org:80
+  target=httpbin.konghq.com:80
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -109,13 +109,13 @@ http POST :8001/upstreams/example_upstream/targets \
 
 {% navtab Using decK (YAML) %}
 1. In your `kong.yaml` file, create an Upstream with two targets, each with port
-80: `httpbun.com:80` and `httpbin.org:80`.
+80: `httpbun.com:80` and `httpbin.konghq.com:80`.
 
     ``` yaml
     upstreams:
     - name: example_upstream
       targets:
-        - target: httpbin.org:80
+        - target: httpbin.konghq.com:80
           weight: 100
         - target: httpbun.com:80
           weight: 100
@@ -157,7 +157,7 @@ Upstream:
     upstreams:
     - name: example_upstream
       targets:
-        - target: httpbin.org:80
+        - target: httpbin.konghq.com:80
           weight: 100
         - target: httpbun.com:80
           weight: 100
@@ -182,7 +182,7 @@ Upstream:
 {% endnavtab %}
 {% endnavtabs %}
 
-You now have an Upstream with two targets, `httpbin.org` and `httpbun.com`, and a service pointing to that Upstream.
+You now have an Upstream with two targets, `httpbin.konghq.com` and `httpbun.com`, and a service pointing to that Upstream.
 
 ## Validate the Upstream Services
 
@@ -194,6 +194,6 @@ You now have an Upstream with two targets, `httpbin.org` and `httpbun.com`, and 
 In this topic, you:
 
 * Created an Upstream object named `example_upstream` and pointed the Service `example_service` to it.
-* Added two targets, `httpbin.org` and `httpbun.com`, with equal weight to the Upstream.
+* Added two targets, `httpbin.konghq.com` and `httpbun.com`, with equal weight to the Upstream.
 
 If you have a {{site.konnect_product_name}} subscription, go on to [Managing Administrative Teams](/gateway/{{page.release}}/get-started/comprehensive/manage-teams/).

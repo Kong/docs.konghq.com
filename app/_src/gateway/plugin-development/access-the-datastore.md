@@ -61,7 +61,7 @@ For example, inserting a Service and a Plugin is as easy as:
 ```lua
 local inserted_service, err = kong.db.services:insert({
   name = "httpbin",
-  url  = "http://httpbin.org",
+  url  = "https://httpbin.konghq.com",
 })
 
 local inserted_plugin, err = kong.db.plugins:insert({

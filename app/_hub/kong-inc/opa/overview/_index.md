@@ -126,7 +126,7 @@ The input to OPA has the following JSON structure:
     },
     "client_ip": "127.0.0.1",# client IP address as interpreted by Kong
     "service": {             # The Kong service resource to which this request will be forwarded to if OPA allows. Injected only if `include_service_in_opa_input` is set to `true`.
-      "host": "httpbin.org",
+      "host": "httpbin.konghq.com",
       "created_at": 1612819937,
       "connect_timeout": 60000,
       "id": "e6fd8b19-89e5-44e6-8a2a-79e8bf3c31a5",

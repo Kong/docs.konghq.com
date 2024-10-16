@@ -47,14 +47,14 @@ the corresponding Route:
 
 1. **Create an example Service and a Route**
 
-    Issue the following cURL request to create `example-service` pointing to `httpbin.org`, which will echo
+    Issue the following cURL request to create `example-service` pointing to `httpbin.konghq.com`, which will echo
     the request:
 
     ```bash
     curl -i -X POST \
       --url http://localhost:8001/services/ \
       --data 'name=example-service' \
-      --data 'url=http://httpbin.org/anything'
+      --data 'url=https://httpbin.konghq.com/anything'
     ```
 
     Add a Route to the Service:

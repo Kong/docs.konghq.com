@@ -22,6 +22,14 @@
 
 ######################################################################
 
+
+## DCG seperate section
+
+
+/konnect/gateway-manager/data-plane-nodes/azure-peering/     /konnect/gateway-manager/dedicated-cloud-gateways/azure-peering/
+/konnect/gateway-manager/data-plane-nodes/transit-gateways/ /konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/
+/konnect/gateway-manager/provision-cloud-gateway/            /konnect/gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
+/konnect/gateway-manager/dedicated-cloud-gateways/   /konnect/gateway-manager/dedicated-cloud-gateways/
 ## Saml SSO
 
 /konnect/org-management/oidc-idp/   /konnect/org-management/sso/
@@ -108,6 +116,8 @@
 /konnect/dev-portal/access-and-approval/azure/    /konnect/dev-portal/access-and-approval/sso/
 /konnect/dev-portal/access-and-approval/manage-app-reg-requests/    /konnect/dev-portal/access-and-approval/manage-app-connections/
 /konnect/dev-portal/access-and-approval/auto-approve-devs-apps/ /konnect/dev-portal/create-dev-portal/
+/konnect/dev-portal/access-and-approval/manage-teams    /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
+/konnect/api/portal-auth/portal-rbac-guide/   /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
 
 # API markdown doc deprecation
 
@@ -437,6 +447,7 @@
 /hub/smartparkingtechnology/*                      /hub/
 /hub/bitnami/*                                     /gateway/latest/install/
 /hub/kong-inc/kong-terraform-aws/                  https://github.com/kong/kong-terraform-aws
+/hub/:vendor/:plugin/3.0.x/*                                   https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
 
 # KONNECT
 
@@ -1004,6 +1015,8 @@
 /enterprise/2.3.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.3.x/:splat
 /enterprise/2.4.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.4.x/:splat
 /enterprise/2.5.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.5.x/:splat
+/enterprise/2.6.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.6.x/:splat
+/enterprise/2.7.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.7.x/:splat
 
 # COMMUNITY DOC ARCHIVES
 /gateway-oss/2.5.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.5.x/:splat
@@ -1047,6 +1060,10 @@
 /0.4.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.4.x/:splat
 /0.3.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.3.x/:splat
 /0.2.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.2.x/:splat
+
+# GATEWAY DOC ARCHIVES
+/gateway/3.0.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.0.x/:splat
+
 
 # COMMUNITY DOC REBRANDING
 /community   https://konghq.com/community-resources/

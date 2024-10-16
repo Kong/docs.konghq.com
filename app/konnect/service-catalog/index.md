@@ -2,9 +2,10 @@
 title: The Konnect Service Catalog
 subtitle: Track every service across your architecture
 content-type: explanation
+beta: true
 ---
 
-{{site.konnect_saas}}'s {{site.service_catalog_name}} offers a comprehensive catalog of all services running in your organization. By integrating with both Konnect-internal applications, like Gateway Manager and Mesh Manager, as well as external applications like Github and PagerDuty, {{site.service_catalog_name}} provides you with a 360 overview into each of your organization's services. It presents you with information that include who the service's owner is, its upstream and downstream dependencies, its code repositories, its CI/CD pipelines, and whether it is fronted by an API gateway or is part of a service mesh.
+{{site.konnect_saas}}'s {{site.service_catalog_name}} offers a comprehensive catalog of all services running in your organization. By integrating with both Konnect-internal applications, like Gateway Manager and Mesh Manager, as well as external applications like GitHub and PagerDuty, {{site.service_catalog_name}} provides you with a 360 overview into each of your organization's services. It presents you with information that include who the service's owner is, its upstream and downstream dependencies, its code repositories, its CI/CD pipelines, and whether it is fronted by an API gateway or is part of a service mesh.
 
 <!-- vale off-->
 {% mermaid %}

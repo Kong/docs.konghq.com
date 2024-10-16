@@ -64,6 +64,7 @@ formats:
   - konnect
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 <!--vale on-->
 

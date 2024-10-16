@@ -40,13 +40,13 @@ The following example uses the Session plugin together with the [Key Auth](/hub/
 1. Create an example service and a route:
 
    Issue the following cURL request to create `example-service` pointing to
-   httpbin.org, which echoes the request:
+   httpbin.konghq.com, which echoes the request:
 
    ```bash
    curl -i -X POST \
      --url http://localhost:8001/services/ \
      --data 'name=example-service' \
-     --data 'url=http://httpbin.org/anything'
+     --data 'url=https://httpbin.konghq.com/anything'
    ```
 
    Add a route to the service:
@@ -160,7 +160,7 @@ Add the following snippet to your declarative config file:
 ```yaml
 services:
   - name: example-service
-    url: http://httpbin.org/anything
+    url: https://httpbin.konghq.com/anything
 
 routes:
   - service: example-service

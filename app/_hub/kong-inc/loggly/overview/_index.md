@@ -14,7 +14,7 @@ logging level severity the same as or lower than the set `config.log_level` for 
 
 {% include /md/plugins-hub/log-format.md %}
 
-### JSON object considerations
+### Log format definitions 
 
 {% include /md/plugins-hub/json-object-log.md %}
 
@@ -22,6 +22,6 @@ logging level severity the same as or lower than the set `config.log_level` for 
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
-## Custom Fields by Lua
+## Custom fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}

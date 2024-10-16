@@ -188,7 +188,7 @@ The {{ site.base_gateway }} data plane is responsible for processing incoming tr
 1. Create a mock service and route
 
     ```bash
-    curl localhost:8001/services -d name=mock  -d url="http://httpbin.org"
+    curl localhost:8001/services -d name=mock  -d url="https://httpbin.konghq.com"
     curl localhost:8001/services/mock/routes -d "paths=/mock"
     ```
 

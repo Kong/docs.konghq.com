@@ -8,7 +8,7 @@ Log request and response data to a TCP server.
 
 {% include /md/plugins-hub/log-format.md %}
 
-### JSON object considerations
+### Log format definitions 
 
 {% include /md/plugins-hub/json-object-log.md %}
 
@@ -16,7 +16,7 @@ Log request and response data to a TCP server.
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
-## Custom Fields by Lua
+## Custom fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
 

@@ -21,7 +21,7 @@ Learn to expose a service located outside the Kubernetes cluster using an Ingres
       - protocol: TCP
         port: 80
       type: ExternalName
-      externalName: httpbin.org
+      externalName: httpbin.konghq.com
     " | kubectl apply -f -
     ```
     The results should look like this:
@@ -58,14 +58,14 @@ Via: kong/3.1.1
   "form": {},
   "headers": {
     "Accept": "*/*",
-    "Host": "httpbin.org",
+    "Host": "httpbin.konghq.com",
     "User-Agent": "curl/7.86.0",
     "X-Amzn-Trace-Id": "Root=1-639b9243-7cdb670008b8189a5948d619"
   },
   "json": null,
   "method": "GET",
   "origin": "136.25.153.9",
-  "url": "http://httpbin.org/anything"
+  "url": "https://httpbin.konghq.com/anything"
 }
 ```
 

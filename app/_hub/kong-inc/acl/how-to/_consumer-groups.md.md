@@ -99,6 +99,7 @@ formats:
   - konnect
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 <!--vale on-->
 
@@ -119,5 +120,6 @@ formats:
   - konnect
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 <!--vale on-->

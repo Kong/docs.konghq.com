@@ -291,7 +291,7 @@ In many cases, a link is enough, often as part of a step or a group of prerequis
   * [Add Developer Teams from Identity Providers](/konnect/dev-portal/access-and-approval/add-teams/)
   
 * **Include third-party instructions with integrations**: Provide instructions that involve switching between products, and include links to the official third-party documentation when possible. For example:
-  * [How to configure Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/)
+  * [How to configure Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/)
 
 ### Pitfalls to avoid
 

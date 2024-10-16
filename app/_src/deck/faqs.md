@@ -87,7 +87,7 @@ upgrading to decK 1.12 to take advantage of the new `--konnect` CLI flags.
 ### I use Cassandra as a data store for Kong, can I use decK?
 
 As of {{site.base_gateway}} 3.4, you can't use Cassandra as a data store, 
-as it is longer supported by Kong.
+as it is no longer supported by Kong.
 
 You can use decK with earlier versions of Kong backed by Cassandra.
 However, if you observe errors during a sync process, you will have to
