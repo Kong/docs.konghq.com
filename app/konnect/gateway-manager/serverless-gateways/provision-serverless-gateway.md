@@ -2,7 +2,7 @@
 title: Provision a Serverless Gateway
 ---
 
-This guide explains how to provision a [Serverless Gateway](/konnect/gateway-manager/serverless-gateways/) in {{site.konnect_short_name}}.
+This guide explains how to provision a [serverless gateway](/konnect/gateway-manager/serverless-gateways/) in {{site.konnect_short_name}}.
 
 ## Prerequisites
 
@@ -19,14 +19,12 @@ This guide explains how to provision a [Serverless Gateway](/konnect/gateway-man
 
 Your serverless gateway is now provisioned with the data plane attached. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
 
-The URL where your serverless gateway can be accessed is shown in the top `Overview` section of the Control Plane page.
-<img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-serverless-gateway-proxy.png" alt="serverless gateway proxy url" style="max-width: 600px;">
-> _**Figure 1:** The Serverless Gateway overview and proxy URL {{site.konnect_short_name}} UI._
+The URL where your serverless gateway can be accessed is shown in the `Overview` section of the Control Plane page.
 {% endnavtab %}
 {% navtab API %}
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-1. Create a Serverless Gateway control plane using the [`/control-planes` endpoint](/konnect/api/control-planes/latest/#/Control%20Planes/create-control-plane):
+1. Create a serverless gateway control plane using the [`/control-planes` endpoint](/konnect/api/control-planes/latest/#/Control%20Planes/create-control-plane):
     ```bash
     curl --request POST \
     --url https://{region}.api.konghq.com/v2/control-planes \
