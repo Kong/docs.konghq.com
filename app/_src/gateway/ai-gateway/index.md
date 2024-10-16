@@ -13,7 +13,7 @@ designed to help developers and organizations effectively adopt AI capabilities 
     <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-block-column">
       <div class="install-text">Get started</div>
-      <div class="install-description">Get started in one minute with our guide</div>
+      <div class="install-description">Get started in just a few minutes</div>
     </div>
   </a>
 
