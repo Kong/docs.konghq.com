@@ -9,7 +9,10 @@ free: false
 enterprise: true
 konnect: true
 network_config_opts: All
-notes: --
+serverless_gateways: false
+notes: | 
+   <b>Serverless Gateways</b>: This plugin is not supported in Serverless Gateways because the 
+   TLS handshake does not occur at the Kong layer in this setup. 
 categories:
   - authentication
 publisher: Kong Inc.
