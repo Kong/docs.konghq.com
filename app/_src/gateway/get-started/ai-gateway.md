@@ -11,7 +11,7 @@ Kong AI Gateway is a set of [AI plugins](/hub/?category=ai), which can be used b
 installing {{site.base_gateway}} and then by following the documented configuration instructions for each plugin. 
 The AI plugins are supported in all deployment modes, 
 including {{site.konnect_short_name}}, self-hosted traditional, hybrid, and DB-less, and on Kubernetes via the 
-[Kong Ingress Controller](/kubernetes-ingress-controller/latest/).
+[{{site.kic_product_name}}](/kubernetes-ingress-controller/latest/).
 
 The AI plugins are fully supported by {{site.konnect_short_name}} in both hybrid mode, 
 and as a [fully managed service](/konnect/gateway-manager/dedicated-cloud-gateways).
@@ -228,7 +228,7 @@ Write once, and use all LLMs.
 * Secure traffic with the [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/) and 
 [AI Semantic Prompt Guard](/hub/kong-inc/ai-semantic-prompt-guard/) plugins.
 * Provide prompt templates with [AI Prompt template](/hub/kong-inc/ai-prompt-template/).
-* Automatically inject system or assitant prompts on every incoming prompt via the 
+* Automatically inject system or assistant prompts on every incoming prompt via the 
 [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/).
 
 See all the [AI plugins](/hub/?category=ai) for more capabilities.
