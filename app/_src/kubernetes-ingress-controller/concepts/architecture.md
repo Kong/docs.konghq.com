@@ -16,13 +16,20 @@ The figure illustrates how {{site.kic_product_name}} works:
 
 <!--vale off-->
 {% mermaid %}
-flowchart TD
+flowchart LR
     subgraph Kubernetes cluster
         direction LR
         A(<img src="/assets/images/icons/third-party/kubernetes-logo.png" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/> API server) --> |events| B(<img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/>Controller)
         B --> |configuration| C(<img src="/assets/images/logos/konglogo-gradient-secondary.svg" style="max-width:25px; display:block; margin:0 auto;" class="no-image-expand"/>Kong)
         C --> D(services)
     end
+
+    E(Request traffic)
+    E --> C
+
+    %% Change the arrow colors
+    linkStyle 0,1 stroke:#d44324,color:#d44324  
+    linkStyle 2,3 stroke:#b6d7a8
 {% endmermaid %}
 <!--vale on-->
 
@@ -73,6 +80,7 @@ This image describes the relationship between Kubernetes concepts and Kong's Ing
 <!--vale off-->
 {% mermaid %}
 flowchart LR
+    H(Request traffic)
     subgraph Pods
         direction LR
         E(Target)
@@ -80,7 +88,7 @@ flowchart LR
         G(Target)
     end
 
-    subgraph Kubernetes service
+    subgraph Kubernetes Service
         direction TB
         C(Service)
         D(Upstream)
@@ -98,6 +106,7 @@ flowchart LR
     D --> E
     D --> F
     D --> G
+    H --> A
 
     classDef lightBlue fill:#cce7ff;
     classDef lightGreen fill:#c4e1c4;
@@ -108,6 +117,8 @@ flowchart LR
     class C lightBlue;
     class D lightPurple;
     class E,F,G lightGrey;
+
+    linkStyle 6 stroke:#b6d7a8
 {% endmermaid %}
 <!--vale on-->
 

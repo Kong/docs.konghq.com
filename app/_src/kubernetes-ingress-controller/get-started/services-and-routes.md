@@ -14,6 +14,7 @@ The service object in Kong holds the information of the protocol to use to talk 
 <!--vale off-->
 {% mermaid %}
 flowchart LR
+    H(Request traffic)
     subgraph Pods
         direction LR
         E(Target)
@@ -21,7 +22,7 @@ flowchart LR
         G(Target)
     end
 
-    subgraph Kubernetes service
+    subgraph Kubernetes Service
         direction TB
         C(Service)
         D(Upstream)
@@ -39,6 +40,7 @@ flowchart LR
     D --> E
     D --> F
     D --> G
+    H --> A
 
     classDef lightBlue fill:#cce7ff;
     classDef lightGreen fill:#c4e1c4;
@@ -49,6 +51,8 @@ flowchart LR
     class C lightBlue;
     class D lightPurple;
     class E,F,G lightGrey;
+
+    linkStyle 6 stroke:#b6d7a8
 {% endmermaid %}
 <!--vale on-->
 
