@@ -1056,6 +1056,59 @@ when the `http_response_header_for_traceid` option was enabled.
 * Bumped `msgpack-c` to 6.0.1
 * Removed the `lua-resty-openssl-aux-module` dependency
 
+## 3.6.1.8
+**Release Date** 2024/10/11
+
+### Features
+* Added support for AWS IAM role assuming in AWS IAM Database Authentication with the following new configuration fields: 
+`pg_iam_auth_assume_role_arn`, `pg_iam_auth_role_session_name`, `pg_ro_iam_auth_assume_role_arn`, and `pg_ro_iam_auth_role_session_name`.
+* Added support for a configurable STS endpoint for RDS IAM Authentication with the following new configuration fields:
+ `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_endpoint_url`.
+* Added support for a configurable STS endpoint for AWS Vault.
+This can either be configured by `vault_aws_sts_endpoint_url` as a global configuration, or `sts_endpoint_url` on a custom AWS vault entity.
+
+#### Plugins
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  * Added support for a configurable STS endpoint with the new configuration field `aws_sts_endpoint_url`.
+  [#13388](https://github.com/Kong/kong/issues/13388)
+
+### Fixes
+#### Core
+
+* The `kong.logrotate` configuration file is no longer overwritten during upgrade.
+
+  This change presents an additional prompt for Debian users upgrading via `apt` and `deb` packages.
+  To accept the defaults provided by Kong in the package, use the following command, adjusting it to 
+  your architecture and the version you're upgrading to: 
+
+  ```sh
+  DEBIAN_FRONTEND=noninteractive apt upgrade kong-enterprise-edition_3.4.3.11_arm64.deb
+  ```
+* **Vault**: 
+  * Fixed an issue where updating a vault entity in a non-default workspace didn't take effect.
+  * Fixed an issue where the Vault secret cache got refreshed during `resurrect_ttl` time and could not be fetched by other workers.
+* Moved internal Unix sockets to a subdirectory (`sockets`) of the Kong prefix.
+* Shortened names of internal Unix sockets to avoid exceeding the socket name limit.
+* Fixed an issue where `luarocks-admin` was not available in `/usr/local/bin`.
+ 
+#### Plugins
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
+  * Fixed an issue where `header_type` being `nil` caused a log message concatenation error.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) 
+  * Fixed an issue where the sync timer could stop working due to a race condition.
+  * Fixed an issue where, if the `window_size` in the consumer group overriding config was different 
+    from the `window_size` in the default config, the rate limiting of that consumer group would fall back to local strategy.
+
+* [LDAP Auth Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed an issue where an exception would be thrown when LDAP search failed.
+
+### Dependencies
+
+* Bumped `lua-resty-aws` to 1.5.3 to fix a bug related to the STS regional endpoint.
+* Made the RPM package relocatable with the default prefix set to `/`.
+
 ## 3.6.1.7
 **Release Date** 2024/07/09
 

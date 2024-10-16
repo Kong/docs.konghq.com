@@ -16,7 +16,7 @@ Serverless Gateways offer the following benefits:
 
 You can manage your Serverless Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
-<img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-serverless-gateway-overview.png" alt="severless gateway overview" style="max-width: 800px;">
+<img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-serverless-gateway-overview.png" alt="serverless gateway overview" style="max-width: 800px;">
 > _**Figure 1:** The Serverless Gateway wizard in the {{site.konnect_short_name}} UI._
 
 
@@ -39,7 +39,7 @@ Control planes in {{site.konnect_short_name}} **cannot** contain both Serverless
 
 ## Networking
 
-Serverless Gateways only support public networking. There are currently no capabilities for private networking between your datacenters and hosted Kong data planes. For use cases where private networking is required, [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways) with [AWS Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/) may be a better choice.
+Serverless Gateways only support public networking. There are currently no capabilities for private networking between your data centers and hosted Kong data planes. For use cases where private networking is required, [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways) with [AWS Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/) may be a better choice.
 
 ## Plugin considerations for Serverless Gateways
 There are some limitations for plugins with Serverless Gateways:

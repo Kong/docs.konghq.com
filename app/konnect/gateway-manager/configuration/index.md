@@ -159,6 +159,7 @@ The following entity resource limits apply to each control plane for the configu
 | Certificate | 1,000 |
 | Consumer | 50,000 |
 | Consumer Group | 1,000 |
+| Consumer Group Member | 50,000 |
 | Consumer Group Rate Limiting Advanced Configuration | 1,000 |
 | Custom Plugins | 100 |
 | Data Plane Client Certificate | 32 |

@@ -322,11 +322,6 @@ methods.
 ## WebSocket Plugin Development
 {:.badge .enterprise}
 
-{:.warning}
-> **Warning**: The WebSocket PDK is under active development and is
-considered unstable at this time. Backwards-incompatible changes may be made
-to these functions.
-
 ### Handler Functions
 
 Requests to services with the `ws` or `wss` protocol take a different path through
