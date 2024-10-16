@@ -13,32 +13,32 @@ The AI plugins are supported in all deployment modes,
 including {{site.konnect_short_name}}, self-hosted traditional, hybrid, and DB-less, and on Kubernetes via the 
 [{{site.kic_product_name}}](/kubernetes-ingress-controller/latest/).
 
-The AI plugins are fully supported by {{site.konnect_short_name}} in both hybrid mode, 
+AI plugins are fully supported by {{site.konnect_short_name}} in both hybrid mode, 
 and as a [fully managed service](/konnect/gateway-manager/dedicated-cloud-gateways).
 
 You can enable most {{site.base_gateway}} AI capabilities with one of the following plugins:
-* [AI Proxy](/hub/kong-inc/ai-proxy/) plugin (open-source)
-* [AI Proxy Advanced](/hub/kong-inc/ai-proxy-advanced/) (Enterprise): 
-More advanced load balancing, routing, and retries
+* [AI Proxy](/hub/kong-inc/ai-proxy/): The open source AI proxy plugin.
+* [AI Proxy Advanced](/hub/kong-inc/ai-proxy-advanced/): 
+The enterprise version offering more advanced load balancing, routing, and retries. 
 
 These plugins enable upstream connectivity to the LLMs and direct {{site.base_gateway}} to proxy
 traffic to the intended LLM models. 
 Once these plugins are installed and your AI traffic is being proxied, you can use any 
-other {{site.base_gateway}} plugin for more enhanced capabilities.
+other {{site.base_gateway}} plugin to add more enhanced capabilities.
 
-{:.note}
-> The main difference between simply adding an LLM's API behind {{site.base_gateway}} 
+
+The main difference between simply adding an LLM's API behind {{site.base_gateway}} 
 and using the AI plugins, is that with the former, you can only interact at the API 
-level with our traffic. With AI plugins, Kong can understand the prompts that are 
-being sent and the plugins introspect the body and provide more specific AI capabilities 
-to our traffic that go above and beyond simply treating the LLMs as "just APIs".
+level with internal traffic. With AI plugins, Kong can understand the prompts that are 
+being sent through the Gateway. The plugins can introspect the body and provide more specific AI capabilities 
+to your traffic, beyond treating the LLMs as "just APIs".
 
 ## Prerequisites
 
 Run {{site.base_gateway}} in {{site.konnect_short_name}}, or use your distribution of choice:
 * The easiest way to get started is to [run {{site.base_gateway}} for free on {{site.konnect_short_name}}](/konnect/getting-started/)
 * To run {{site.base_gateway}} locally, use the [quickstart script](/gateway/{{page.release}}/get-started/), or 
-[see all the installation options](/gateway/{{page.release}}/install/)
+[see all installation options](/gateway/{{page.release}}/install/)
 
 ## Set up AI Gateway
 
@@ -110,7 +110,7 @@ Adding this route entity creates an ingress rule on the `/openai` path.
 This is because the service upstream URL won't really matter, because after installing the AI Proxy plugin (or AI Proxy Advanced), 
 the upstream proxying destination will be determined dynamically based on your AI Proxy plugin configuration.
 
-### 2. Install an AI Proxy plugin
+### 2. Install the AI Proxy plugin
 
 Configure your destination LLM using either AI Proxy or AI Proxy Advanced so that all traffic 
 sent to your route is redirected to the correct LLM.
@@ -178,7 +178,7 @@ curl --http1.1 http://localhost:8000/openai \
    }'
 ```
 
-You should get a response that looks like this, containing the response `This is a test!`:
+The response body should contain the response `This is a test!`:
 
 ```json
 {
@@ -213,22 +213,22 @@ You should get a response that looks like this, containing the response `This is
 }
 ```
 
-And just like that, your traffic is now being properly proxied to OpenAI via {{site.base_gateway}} and its AI plugins!
+Now, your traffic is being properly proxied to OpenAI via {{site.base_gateway}} and the AI Proxy plugin.
 
-## Installing more AI plugins
+## Installing other AI plugins
 
-The AI Proxy and AI Proxy Advanced plugins are able to understand the incoming OpenAI protocol, 
-so you can now further apply deep capabilities like:
+The AI Proxy and AI Proxy Advanced plugins are able to understand the incoming OpenAI protocol.
+This allows you to:
 
-* Route to [all other LLMs](/hub/kong-inc/ai-proxy-advanced/) that we support, 
+* Route to [all supported LLMs](/hub/kong-inc/ai-proxy-advanced/), 
 even the ones that don't natively support the OpenAI specification, as Kong will automatically transform the request. 
 Write once, and use all LLMs.
 * Extract [observability metrics for AI](/gateway/latest/production/monitoring/ai-metrics/).
-* Accelerate traffic with the [AI Semantic cache plugin](/hub/kong-inc/ai-semantic-cache/) plugin.
+* Cache traffic using the [AI Semantic cache plugin](/hub/kong-inc/ai-semantic-cache/) plugin.
 * Secure traffic with the [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/) and 
 [AI Semantic Prompt Guard](/hub/kong-inc/ai-semantic-prompt-guard/) plugins.
 * Provide prompt templates with [AI Prompt template](/hub/kong-inc/ai-prompt-template/).
-* Automatically inject system or assistant prompts on every incoming prompt via the 
+* Programmatically inject system or assistant prompts to all incoming prompts with the 
 [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/).
 
 See all the [AI plugins](/hub/?category=ai) for more capabilities.
