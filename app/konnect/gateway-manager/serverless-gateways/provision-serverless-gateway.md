@@ -15,9 +15,9 @@ This guide explains how to provision a [Serverless Gateway](/konnect/gateway-man
 {% navtab UI %}
 1. From [Gateway Manager](https://cloud.konghq.com/gateway-manager), click the **New Gateway** button and select **Serverless**.
 
-1. Enter a name (and optional description and / or labels) for your serverless gateway and click **Create**.
+1. Enter a name, optionally a description or label, for your serverless gateway and click **Create**.
 
-Your serverless gateway is now provisioned with data plane attached. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
+Your serverless gateway is now provisioned with the data plane attached. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
 
 The URL where your serverless gateway can be accessed is shown in the top `Overview` section of the Control Plane page.
 <img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-serverless-gateway-proxy.png" alt="serverless gateway proxy url" style="max-width: 600px;">
@@ -89,35 +89,8 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 	* `control_plane_geo`: The geo of the control plane.
 	* `region`: The region you want to deploy the data plane in.
 
-    You should get a `201` response like the following:
+    You should get a `201` response which means your serverless gateway is now provisoned. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
 
-    ```json
-	{
-		"kind": "serverless.v0",
-		"id": "1ed33954-dd7f-40b5-8bd3-b2d91e4be99a",
-		"control_plane_id": "23be21c0-5984-4698-aa1f-ac258d77f0d1",
-		"control_plane_geo": "us",
-		"dataplane_group_config": [
-			{
-				"region": "na"
-			}
-		],
-		"dataplane_groups": [
-			{
-				"id": "e3d7bc7d-c0ff-4bdb-972a-9193d5c64d07",
-				"region": "na",
-				"state": "initializing",
-				"created_at": "2024-10-15T21:25:29.924Z",
-				"updated_at": "2024-10-15T21:25:29.924Z"
-			}
-		],
-		"created_at": "2024-10-15T21:25:29.924Z",
-		"updated_at": "2024-10-15T21:25:29.924Z",
-		"entity_version": 1
-	}
-    ```
-
-Your serverless gateway is now provisioned. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
 {% endnavtab %}
 {% endnavtabs %}
 
