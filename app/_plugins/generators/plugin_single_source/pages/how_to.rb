@@ -8,7 +8,7 @@ module PluginSingleSource
       include ::PluginSingleSource::Pages::Nestable
 
       def page_title
-        "Using the #{@release.metadata['name']} plugin"
+        @page_title ||= I18n.t('hub.page_title.how_to', locale: translate_to, plugin_name: @release.metadata['name'])
       end
 
       def breadcrumb_title
@@ -37,7 +37,7 @@ module PluginSingleSource
       end
 
       def index_file_exist?
-        File.exist?(File.expand_path('how-to/_index.md', @source_path))
+        File.exist?(File.expand_path('how-to/_index.md', @release.pages_source_path))
       end
 
       def base_section_url
