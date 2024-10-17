@@ -52,14 +52,14 @@ to define the ingress route to consume your LLMs.
 
 Create a Gateway service:
 ```sh
-curl -i -s -X POST http://localhost:8001/services \
+curl -i -X POST http://localhost:8001/services \
   --data name="llm_service" \
   --data url="http://fake.host.internal"
 ```
 
 Then, create a route for the service:
 ```sh
-curl -i -s -X POST http://localhost:8001/services/llm_service/routes \
+curl -i -X POST http://localhost:8001/services/llm_service/routes \
   --data name="openai-llm" \
   --data paths="/openai"
 ```
@@ -68,7 +68,7 @@ curl -i -s -X POST http://localhost:8001/services/llm_service/routes \
 
 Create a Gateway service:
 ```sh
-curl -X POST \
+curl -i -X POST \
 https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services/ \
   --header "accept: application/json" \
   --header "Content-Type: application/json" \
@@ -82,7 +82,7 @@ https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/
 
 Then, create a route for the service:
 ```sh
-curl -X POST \
+curl -i -X POST \
 https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services/{serviceID}/routes \
   --header "accept: application/json" \
   --header "Content-Type: application/json" \
@@ -120,7 +120,7 @@ This example uses the AI Proxy plugin.
 {% navtabs %}
 {% navtab Kong Gateway Admin API %}
 ```sh
-curl -X POST http://localhost:8001/routes/openai-llm/plugins \
+curl -i -X POST http://localhost:8001/routes/openai-llm/plugins \
   --header "accept: application/json" \
   --header "Content-Type: application/json" \
   --data '
@@ -170,9 +170,9 @@ Make your first request to OpenAI via {{site.base_gateway}}:
 
 ```sh
 curl --http1.1 http://localhost:8000/openai \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $OPENAI_API_KEY" \
-  -d '{
+  --header "Content-Type: application/json" \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --data '{
      "model": "gpt-4o-mini",
      "messages": [{"role": "user", "content": "Say this is a test!"}]
    }'
@@ -237,18 +237,18 @@ For example, you can rate limit AI traffic based on the number of tokens that ar
 (as opposed to the number of API requests) using the [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced/) plugin:
 
 ```sh
-curl -X POST http://localhost:8001/services/llm_service/plugins \
+curl -i -X POST http://localhost:8001/services/llm_service/plugins \
     --header "accept: application/json" \
     --header "Content-Type: application/json" \
     --data '
     {
-  "name": "ai-rate-limiting-advanced",
-  "config": {
-    "llm_providers": [
-      {
-        "name": "openai",
-        "limit": 5,
-        "window_size": 60
+    "name": "ai-rate-limiting-advanced",
+    "config": {
+      "llm_providers": [
+        {
+          "name": "openai",
+          "limit": 5,
+          "window_size": 60
       }
     ]
   }
