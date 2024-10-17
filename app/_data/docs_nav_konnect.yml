@@ -50,6 +50,14 @@
         url: /gateway-manager/dedicated-cloud-gateways/transit-gateways
       - text: Azure VNET Peering
         url: /gateway-manager/dedicated-cloud-gateways/azure-peering
+    - text: Serverless Gateways
+      items: 
+        - text: Overview
+          url: /gateway-manager/serverless-gateways/
+        - text: Provision a serverless Gateway
+          url: /gateway-manager/serverless-gateways/provision-serverless-gateway/
+        - text: Securing Backend Traffic
+          url: /gateway-manager/serverless-gateways/securing-backend-traffic/
     - text: Data Plane Nodes
       items:
         - text: Installation Options
