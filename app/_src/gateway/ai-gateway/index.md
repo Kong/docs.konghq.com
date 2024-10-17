@@ -218,22 +218,15 @@ For more information, see [AI Metrics](/gateway/{{ page.release }}/production/mo
 
 ## Quickstart script
 
-Kong provides an interactive AI quickstart script, which launches a demo instance of {{site.base_gateway}} running AI Proxy.
-This script deploys {{site.base_gateway}} in a local Docker container in traditional mode, or as a data plane instance for {{site.konnect_short_name}}.
-
-This option is for demo purposes only, and is not meant for production use.
-
-{:.note}
-> **Note:**
-> Running this script prompts you for AI Provider API Keys which are used to configure authentication with
-> hosted AI providers. These keys are only passed to the {{site.base_gateway}} Docker container and are 
-> not otherwise transmitted outside the host machine.
+Kong offers an interactive AI quickstart script that launches a demo instance of {{site.base_gateway}} running AI Proxy:
 
 ```sh
 curl -Ls https://get.konghq.com/ai | bash
 ```
 
-Follow the prompts to set up the AI Proxy plugin with the LLM provider of your choice. 
+The script can either run a {{site.base_gateway}} instance in traditional mode or as a data plane instance for {{site.konnect_short_name}}. You will be prompted to input an API key to configure authentication with an AI provider. 
+This key will not be exposed outside of the host machine.
+
 The script creates a service with two routes, and configures the AI Proxy plugin on those routes based on the provider that you specify.
 
 Check out the full script at [https://get.konghq.com/ai](https://get.konghq.com/ai) to see which entities 
