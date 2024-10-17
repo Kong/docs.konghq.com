@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [ubuntu, rhel, amazon-linux, debian, centos]
+        distro: [ubuntu, rhel, amazon-linux, debian]
         arch: ["linux/amd64", "linux/arm64"]
     runs-on: ubuntu-latest
     timeout-minutes: 60
