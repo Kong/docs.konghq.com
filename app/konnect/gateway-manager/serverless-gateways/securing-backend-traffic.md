@@ -7,7 +7,7 @@ This guide explains possible methods to configure [Serverless Gateways](/konnect
 
 ## Using a Shared Secret
 
-In this method, your web application is configured to only authorize traffic that contains a known shared API token / secret. We will configure Kong Gateway to inject this shared secret as a header into every request sent to the backend. Then Kong and the ecosystem of plugins can be leveraged to implement additional or alternative security measures, rate limiting, or other functionality on top of the web app, while ensuring that no unproxied traffic is authorized. 
+In this method, your web application is configured to only authorize traffic that contains a known shared API token / secret. We will configure {{site.base_gateway}} to inject this shared secret as a header into every request sent to the backend. Then Kong and the ecosystem of plugins can be leveraged to implement additional or alternative security measures, rate limiting, or other functionality on top of the web app, while ensuring that no unproxied traffic is authorized. 
 
 ### Prerequisites
 
@@ -116,7 +116,7 @@ Your Serverless gateway is now configured to add the pre-shared secret token in 
 {% endnavtab %}
 {% endnavtabs %}
 
-Upon completing the above you have secured the connection between your Serverless Kong gateway and the backend application. Now you can add as many other security methods or implement additional plugins and functionality in the Serverless gateway and have your users hit the Gateway and be protected rather than directly hitting your backend application.
+Upon completing the above you have secured the connection between your Serverless {{site.base_gateway}} and the backend application. Now you can add as many other security methods or implement additional plugins and functionality in the Serverless gateway and have your users hit the Gateway and be protected rather than directly hitting your backend application.
 
 ## More information
 
