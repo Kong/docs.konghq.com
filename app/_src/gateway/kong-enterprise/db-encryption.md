@@ -42,6 +42,8 @@ export KONG_KEYRING_STRATEGY=cluster
 export KONG_KEYRING_RECOVERY_PUBLIC_KEY=/path/to/generated/cert.pem
 ```
 
+If you are using a traditional Kong deployment, you need to add this configuration to both the control planes and data planes. If you are using a hybrid deployment, you only need this configuration on the control planes, since the data planes don't connect to the database.
+
 All nodes in the Kong cluster should share the same `keyring_enabled` and `keyring_strategy` configuration values.
 The generated private key `key.pem` is not required to configure Kong, or to start Kong. Please refer to the [disaster recovery](#disaster-recovery) section for more information on how to use private keys in keyring management.
 
