@@ -20,10 +20,11 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
   ```
 > Make sure that each domain has proper DNS records and that the Kong instance is accessible from all specified domains.
 
-{:.note}
-> **Note**: If your setup involves multiple domains or subdomains, it’s generally recommended to remove the `cookie_domain` that setting in the `admin_gui_session_conf` or `admin_gui_auth_conf`. When `cookie_domain` is not specified, cookies are set for the origin domain by default. This allows the browser to manage cookies correctly for each domain independently, avoiding conflicts or scope issues.
-
-> Example A: A request to `gui.konghq.com`/`other-gui.example.com` will only receive cookies for `gui.konghq.com`/`other-gui.example.com` instead of a broader `konghq.com`/`example.com domain` if `cookie_domain` is omitted
+{:.important}
+> **Important**: If your setup involves multiple domains or subdomains, it’s generally recommended to remove the `cookie_domain` that setting in the `admin_gui_session_conf` or `admin_gui_auth_conf`.
+> When `cookie_domain` is not specified, cookies are set for the origin domain by default. This allows the browser to manage cookies correctly for each domain independently, avoiding conflicts or scope issues. For example:
+>
+> Example A: A request to `gui.konghq.com`/`other-gui.example.com` will only receive cookies for `gui.konghq.com`/`other-gui.example.com` instead of a broader `konghq.com`/`example.com` domain if `cookie_domain` is omitted
   ```
   admin_gui_url = http://gui.konghq.com, http://other-gui.example.com
   admin_gui_session_conf = {"secret":"Y29vbGJlYW5z","storage":"kong","cookie_secure":false} # omitted `cookie_domain`
