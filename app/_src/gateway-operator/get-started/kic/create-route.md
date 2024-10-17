@@ -59,7 +59,16 @@ After you've installed all of the required components and configured a `GatewayC
 
 ## Test the configuration
 
-1. To test the configuration, make a call to the `$PROXY_IP` that you configured.
+1. Run `kubectl get gateway kong -n default` to get the IP address for the gateway and set that as the value for the variable `PROXY_IP`.
+
+    ```bash
+    export PROXY_IP=$(kubectl get gateway kong -n default -o jsonpath='{.status.addresses[0].value}')
+    ```
+
+    {:.note}
+    > Note: if your cluster can not provision LoadBalancer type Services then the IP you receive may only be routable from within the cluster.
+
+1. Make a call to the `$PROXY_IP` that you configured.
 
     ```bash
     curl $PROXY_IP/echo
