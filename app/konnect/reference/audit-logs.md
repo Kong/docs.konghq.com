@@ -1,17 +1,40 @@
 ---
 title: Audit log reference
-badge: enterprise
 content_type: reference
 ---
 
 {{site.konnect_short_name}} captures three types of events:
 
-* **Authentication**: Triggered when a user attempts to log into the {{site.konnect_short_name}} web application or use the {{site.konnect_short_name}} API via a personal access token. Also triggered when a system account access token is used.
-* **Authorization**: Triggered when a permission check is made for a user or system account against a resource.
-* **Access logs**: Triggered when a request is made to the {{site.konnect_short_name}} API.
+| Event type | Org audit logs | Dev Portal audit logs |
+| ---------- | ---------- | ---------- |
+| Authentication | This is triggered when a user attempts to log into the {{site.konnect_short_name}} web application or use the {{site.konnect_short_name}} API via a personal access token. Also triggered when a system account access token is used. | Triggered when a user logs in to the Dev Portal. |
+| Authorization | Triggered when a permission check is made for a user or system account against a resource. | Not currently supported |
+| Access logs | Triggered when a request is made to the {{site.konnect_short_name}} API. | Not currently supported |
 
-## Data Retention Period
 {{site.konnect_short_name}} retains audit logs for 7 days. 
+
+## Audit log webhook status
+
+You can view the webhook status in the UI or via the API for the [{{site.konnect_short_name}} org audit logs](/konnect/org-management/audit-logging/webhook/) and [Dev Portal audit logs](/konnect/dev-portal/audit-logging/webhook/).
+
+The following table describes the webhook statuses:
+
+| Attribute | Description |
+| --------- | ---------- |
+| `last_attempt at` | The last time {{site.konnect_short_name}} tried to send data to your webhook |
+| `last_response_code` | The last response code from your webhook |
+| `webhook_enabled` | The desired status of the webhook (from `audit-log-webhook.enabled`) |
+| `webhook_status` | The actual status {{site.konnect_short_name}} of the webhook |
+
+A combination of `webhook_enabled` and `webhook_status` give a full picture of webhook status.
+
+| `webhook_enabled` | `webhook_status` | Description |
+| --------------- | -------------- | ---------- |
+| true            | `active`       | {{site.konnect_short_name}} is ready to send data to the webhook. Either no attempts have been made yet (`last_attempt_at` is not set), or the last attempt was successful. |
+| true            | `inactive`     | Last attempt to send data failed, but the webhook is still enabled. This usually means that there was an error in the endpoint or the SIEM provider went down that caused the logs to stop streaming. |
+| false           | `active`       | Webhook config is saved. {{site.konnect_short_name}} is not shipping data to it per webhook configuration. |
+| false           | `inactive`     |Last attempt to send data failed, and customer has turned off the webhook. |
+| false           | `unconfigured` | The webhook for this region has not been configured yet. |
 
 ## Log formats
 
@@ -35,14 +58,15 @@ Timestamp | Time and date of the event in UTC.
 `user_agent` | The user agent of the request: application, operating system, vendor, and version.
 `sig` | An ED25519 signature.
 
-## Authentication logs
+### Authentication logs
 
-Authentication attempts and their outcomes are logged whenever a user logs in to the Konnect application or uses the Konnect API.
+Authentication attempts and their outcomes are logged whenever a user logs in to the {{site.konnect_short_name}} application or the Dev Portal either through the UI or the Konnect API.
 
-Example log entry:
+{% navtabs %}
+{% navtab Konnect audit logs %}
 
-{% navtabs codeblock %}
-{% navtab CEF %}
+Example CEF log entry:
+
 ```
 2023-05-19T00:03:39Z
 konghq.com CEF:0|ExampleOrg|Konnect|1.0|AUTHENTICATION_TYPE_PAT|AUTHENTICATION_OUTCOME_SUCCESS|0|rt=3958q3097698 
@@ -55,8 +79,9 @@ trace_id=3895213347334635099
 user_agent=grpc-go/1.51.0
 sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg
 ```
-{% endnavtab %}
-{% navtab JSON %}
+
+Example JSON log entry:
+
 ```json
 {
     "cef_version": 0,
@@ -79,6 +104,49 @@ sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB
 }
 ```
 {% endnavtab %}
+{% navtab Dev Portal audit logs %}
+Example CEF log entry:
+
+```
+2023-05-19T00:03:39Z
+konghq.com CEF:0|KongInc|Dev-Portal|1.0|AUTHENTICATION_OUTCOME_SUCCESS|0|rt=3958q3097698 
+src=127.0.0.1 
+request=/api/v1/authenticate 
+success=true
+org_id=b065b594-6afc-4658-9101-5d9cf3f36b7b
+portal_id=22771e88-e364-45d2-93f1-db18770599b0
+principal_id=87655c36-8d63-48fe-9a1e-53b28dfbc19b 
+trace_id=3895213347334635099 
+user_agent=grpc-go/1.51.0
+sig=N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg
+```
+
+Example JSON log entry:
+
+```json
+{
+    "action": "list",
+    "cef_version": 0,
+    "event_class_id": "Dev-Portal",
+    "event_product": "Dev-Portal",
+    "event_ts": "2023-05-16T00:28:01Z",
+    "event_vendor": "KongInc",
+    "event_version": "1.0",
+    "granted": true,
+    "name": "Authz.applications",
+    "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
+    "portal_id": "22771e88-e364-45d2-93f1-db18770599b0",
+    "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
+    "rt": "1684196881193",
+    "severity": 1,
+    "sig": "N_4q2pCgeg0Fg4oGJSfUWKScnTCiC79vq8PIX6Sc_rwaxdWKpVfPwkW45yK_oOFV9gHOmnJBffcB1NmTSwRRDg",
+    "src": "127.0.0.6",
+    "trace_id": 6891110586028963295,
+    "user_agent": "grpc-node-js/1.8.10"
+}
+```
+
+{% endnavtab %}
 {% endnavtabs %}
 
 In addition to the defaults, each authentication log entry also contains the following attributes:
@@ -89,9 +157,12 @@ Property | Description
 `AUTHENTICATION_OUTCOME` | Can be one of the following: <br> - `AUTHENTICATION_OUTCOME_SUCCESS`: authentication is successful<br> - `AUTHENTICATION_OUTCOME_NOT_FOUND`: user was not found<br> - `AUTHENTICATION_OUTCOME_INVALID_PASSWORD`: invalid password specified <br> - `AUTHENTICATION_OUTCOME_LOCKED`: user account is locked<br> - `AUTHENTICATION_OUTCOME_DISABLED`: user account has been disabled
 `success` | `true` or `false`, depending on whether authentication was successful or not.
 
-## Authorization logs
+### Authorization logs
 
 Authorization log entries are created for every permission check in {{site.konnect_short_name}}.
+
+{:.note}
+> **Note:** This is not currently supported for Dev Portal audit logs.
 
 Example log entry:
 
@@ -150,9 +221,12 @@ Property | Description
 >  - From `Authz.runtimegroups` to `Authz.control-planes`
 >  - From `Authz.services` to `Authz.api-products`
 
-## Access logs
+### Access logs
 
 Access logs include information about create, update, and delete requests to the {{site.konnect_short_name}} API.
+
+{:.note}
+> **Note:** This is not currently supported for Dev Portal audit logs.
 
 Example log entry:
 
@@ -211,8 +285,15 @@ Property | Description
 
 
 ## See also
+* [Verify audit log signatures](/konnect/reference/verify-signatures/)
+* [Audit Logs API](/konnect/api/audit-logs/latest/)
+
+**Dev Portal audit logs:**
+* [Audit logging in Dev Portal](/konnect/dev-portal/audit-logging/)
+* [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
+* [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+
+**{{site.konnect_short_name}} audit logs:**
 * [Audit logging in {{site.konnect_short_name}}](/konnect/org-management/audit-logging/)
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
-* [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
-* [Audit Logs API](/konnect/api/audit-logs/latest/)
