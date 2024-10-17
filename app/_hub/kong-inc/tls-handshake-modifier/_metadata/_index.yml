@@ -10,7 +10,7 @@ konnect: true
 serverless_gateways: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: | 
-   <b>Serverless Gateways</b>: This plugin is not supported in Serverless Gateways because the 
+   <b>Serverless Gateways</b>: This plugin is not supported in serverless gateways because the 
    TLS handshake does not occur at the Kong layer in this setup. 
 categories:
   - security
