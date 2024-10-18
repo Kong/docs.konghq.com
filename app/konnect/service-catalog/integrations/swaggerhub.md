@@ -14,7 +14,7 @@ The SwaggerHub integration lets you connect SwaggerHub API specs directly to you
 
 ## Prerequisites
 
-You need a [SwaggerHub API key](https://app.swaggerhub.com/settings/apiKey) to authenticate your SwaggerHub account with {{site.konnect_short_name}}.
+You need a SwaggerHub API key to authenticate your SwaggerHub account with {{site.konnect_short_name}}.
 
 ## Authenticate the SwaggerHub integration
 
