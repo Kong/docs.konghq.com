@@ -33,6 +33,7 @@ module OasDefinition
                   'algolia_docsearch_meta' => algolia_docsearch_meta
                 })
         .merge!(frontmatter_attrs)
+        .merge!(Jekyll::Pages::TranslationMissingData.new(@site).data)
     end
 
     private

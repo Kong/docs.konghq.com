@@ -18,6 +18,12 @@
 
       <div class="spec-content">
         <KAlert
+          show-icon
+          v-if="pageI18n"
+          class="deprecated-warning"
+          :message=pageI18n.banner
+        />
+        <KAlert
           v-if="deprecatedProductVersion"
           appearance="warning"
           class="deprecated-warning"
@@ -53,6 +59,8 @@ const activeProductVersionId = ref(null);
 const activeProductVersionName= ref(null);
 const productIdParam = ref(window.oas.product.id);
 const productVersionParam = ref(window.oas.version.id);
+const pageI18n = ref(window.pageI18n);
+
 const productsAPI = new ApiService().productsAPI;
 const versionsAPI = new ApiService().versionsAPI;
 const activeOperation = ref(null);
