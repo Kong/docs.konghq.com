@@ -12509,6 +12509,24 @@ paths:
                       username: string
                       email: string
                       rbac_token_enabled: true
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Detail about the conflict
+                    example: user already exists with same username, email, or custom_id
+                x-exmples:
+                  Example 1:
+                    message: user already exists with same username, email, or custom_id
+              examples:
+                Constraint violation:
+                  value:
+                    message: user already exists with same username, email, or custom_id
       tags:
         - admins
       description: Invite an admin to your organization.

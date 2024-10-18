@@ -21,6 +21,7 @@ For each linked Repository, the UI can show a **Repository Summary** with simple
 2. Select **GitHub**, then **Install Github**.
 3. Select **Authorize**. 
 
+
 This will take you to GitHub where you can grant {{site.konnect_product_name}} access to either **All Repositories** or **Select repositories**. 
 
 The {{site.konnect_product_name}} application can be managed from GitHub as a [GitHub Application](https://docs.github.com/en/apps/using-github-apps/authorizing-github-apps).
