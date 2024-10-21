@@ -8,13 +8,6 @@
 
 crated from Jira: https://konghq.atlassian.net/browse/FTI-6269?focusedCommentId=144703
 
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/request-validator/overview/
@@ -22,11 +15,13 @@ crated from Jira: https://konghq.atlassian.net/browse/FTI-6269?focusedCommentId=
 
 ### [Update: Rewrite AI Gateway Getting Started guide](https://github.com/Kong/docs.konghq.com/pull/8056) (2024-10-17)
 
-We've gotten feedback that the AI getting started script is difficult to use as it obfuscates what's actually happening in the setup. This changes the getting started guide to set up a service, route, and plugin manually, then test that the plugin is working. 
+We've gotten feedback that the AI getting started script is difficult to use as it obfuscates what's actually happening in the setup. 
+This changes the getting started guide to set up a service, route, and plugin manually, then test that the plugin is working. 
 
 Tested this locally, still need to test the Konnect instructions.
 
-I left the AI quickstart script in at the bottom of the page with a bit of info on how to use it, for those people that are still interested. This script is very useful for demos and testing and we don't want to lose it.
+I left the AI quickstart script in at the bottom of the page with a bit of info on how to use it, for those people that are still interested. 
+This script is very useful for demos and testing and we don't want to lose it.
 
 #### Modified
 
@@ -41,9 +36,8 @@ I left the AI quickstart script in at the bottom of the page with a bit of info 
 Relates to 
 https://github.com/Kong/docs.konghq.com/pull/7947
 
-<!-- What did you change and why? -->
- Add initial docs for Serverless Gateways
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Add initial docs for Serverless Gateways
+
 
 #### Added
 
