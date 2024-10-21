@@ -32,6 +32,17 @@ Entity  | Description
 -------|-------------
 Repository | A GitHub repository relating to the service
 
+## Supported events
+
+Supported events include the following actions:
+
+| Event Type                 |
+|----------------------------|
+| Pull request opened         |
+| Pull request merged         |
+| Pull request closed         |
+
+
 ## Discovery information
 
 <!-- vale off-->

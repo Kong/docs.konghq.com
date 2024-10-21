@@ -61,6 +61,7 @@ graph LR
 | Keep track of your organization's resource ownership by mapping teams to Service Catalog services. | Add the Service Catalog service's owner when you [create a new Service Catalog service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
 | Gain visibility into all your services, including unrecognized or undiscovered APIs in your organization.  | [Service Catalog integrations](https://cloud.konghq.com/service-catalog/integrations) |
 | Consolidate key Service Catalog service health metrics, documentation, and API specs into a single list, allowing you to interact with other tools from one place. | [Service Catalog dashboard](https://cloud.konghq.com/service-catalog/) |
+| View integration-related events (like pull requests, merges, or configuration changes) associated with your Service Catalog services. | Use the **Events** tab. |
 
 <!-- commenting this out until it's released:
 | Govern how services are created and maintained across your company to adhere to security, compliance, and engineering best practices. | Scorecards |-->
@@ -73,6 +74,8 @@ graph LR
 | Resource | An umbrella term that denotes entities ingested by Service Catalog from enabled integrations. A resource can range from an infrastructural component (like Gateway services, mesh services, databases, and caches) to an external application or tool (like code repositories, CI/CD infrastructure, and on-call systems) to a piece of documentation (like API specs). Resources can be mapped to one or more Service Catalog services. |
 | Service Catalog service | A unit of software that is typically owned by a single team, exposes one or more APIs, and may be dependent on other Service Catalog services (as either upstream or downstream). A Service Catalog service can be thought of as a collection of one or more resources. |
 | Service Catalog | A comprehensive catalog of all resources and Service Catalog services running in your organization. |
+| Events | An event is a captured unit of information logged by the Service Catalog. It includes a wide range of activities such as user-driven actions, configuration changes, and alerts. |
+
 
 ## FAQs
 
