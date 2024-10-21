@@ -47,6 +47,10 @@ See `db_update_propagation` in `kong.conf`. (Default: `0`)
 :  only entities matching tags specified via this flag are synced.
 When this setting has multiple tag values, entities must match every tag.
 
+: This flag will only look for decK files where `select_tags` matches the provided value.
+It _cannot_ filter a full configuration based on values found in `tags`, therefore you can't use this 
+flag to sync a subset of a decK file.
+
 {% if_version gte:1.8.x %}
 
 `--silence-events`
