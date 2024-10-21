@@ -22,17 +22,17 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 
 {:.important}
 > **Important**: If your setup involves multiple domains or subdomains, it’s generally recommended to remove the `cookie_domain` that setting in the `admin_gui_session_conf` or `admin_gui_auth_conf`.
-> When `cookie_domain` is not specified, cookies are set for the origin domain by default. This allows the browser to manage cookies correctly for each domain independently, avoiding conflicts or scope issues. For example:
+> When `cookie_domain` is not specified, cookies are set for the domain initiated the request, if `admin_gui_api_url` is not specified. This allows the browser to manage cookies correctly for each domain independently, avoiding conflicts or scope issues. For example:
 >
-> Example A: A request to `gui.konghq.com`/`other-gui.example.com` will only receive cookies for `gui.konghq.com`/`other-gui.example.com` instead of a broader `konghq.com`/`example.com` domain if `cookie_domain` is omitted
+> Example A: Requests to `gui.konghq.com` and `other-gui.example.com` will produce cookies for `gui.konghq.com` and `other-gui.example.com` respectively, instead ones of the root-level `konghq.com` domain when `cookie_domain` is not specified.
   ```
   admin_gui_url = http://gui.konghq.com, http://other-gui.example.com
   admin_gui_session_conf = {"secret":"Y29vbGJlYW5z","storage":"kong","cookie_secure":false} # omitted `cookie_domain`
   ```
-> Example B: A request to `gui.konghq.com`/`other-gui.konghq.com` will receive cookies for `konghq.com`. This allows the cookie to be shared across all subdomains, but be cautious since it increases the cookie’s scope, which may lead to unintended side effects or security risks.
+> Example B: Both requests to `gui.konghq.com` and `other-gui.konghq.com` will receive cookies for `konghq.com`, which makes the cookie shared across all subdomains besides `konghq.com` itself. Please be cautious since it increases the cookie's scope, which may lead to unintended side effects or security risks.
   ```
   admin_gui_url = http://gui.konghq.com, http://other-gui.konghq.com
-  admin_gui_session_conf = {"secret":"Y29vbGJlYW5z","storage":"kong","cookie_secure":false,"cookie_domain" : "konghq.com"}
+  admin_gui_session_conf = {"secret":"Y29vbGJlYW5z","storage":"kong","cookie_secure":false,"cookie_domain":"konghq.com"}
   ```
 {% endif_version %}
 {% navtabs %}
