@@ -11,7 +11,7 @@ mechanism: "pull/ingestion model"
 
 _Type: External_
 
-The GitHub integration allows you to associate your Service Catalog service to one or more GitHub repositories. 
+The GitHub integration allows you to associate your {{site.service_catalog_name}} service to one or more GitHub repositories. 
 
 For each linked Repository, the UI can show a **Repository Summary** with simple data pulled from the GitHub API, such as the number of open issues, open pull requests, most recently closed pull requests, languages, and more.
 
@@ -32,15 +32,15 @@ Entity  | Description
 -------|-------------
 Repository | A GitHub repository relating to the service
 
-## Supported events
+## Events
 
-Supported events include the following actions:
+The Eventing feature supports viewing the following event types for linked repositories from the {{site.konnect_product_name}} UI.
 
 | Event Type                 |
 |----------------------------|
-| Pull request opened         |
-| Pull request merged         |
-| Pull request closed         |
+| Open pull request       |
+| Merge pull request       |
+| Close pull request         |
 
 
 ## Discovery information

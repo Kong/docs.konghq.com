@@ -7,6 +7,9 @@
         <span style="font-size: 22px;display:block;margin-bottom:8px;">{{ i.name }}</span>
       </div>
       <div class="install-description">{{i.description}}</div>
+      {% if i.events == true %}
+      <span class="badge events"></span>
+      {% endif %}
     </div>
   </a>
   {% endfor %}
