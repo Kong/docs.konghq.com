@@ -75,6 +75,7 @@ components:
                   - $ref: '#/components/schemas/ControlPlaneFilterByField'
                   - $ref: '#/components/schemas/ControlPlaneGroupFilterByField'
                   - $ref: '#/components/schemas/DataPlaneNodeFilterByField'
+                  - $ref: '#/components/schemas/DataPlaneNodeVersionFilterByField'
                   - $ref: '#/components/schemas/GatewayServiceFilterByField'
                   - $ref: '#/components/schemas/HeaderHostFilterByField'
                   - $ref: '#/components/schemas/HeaderUserAgentFilterByField'
@@ -723,6 +724,23 @@ components:
         - type
         - values
       title: Filter by data_plane_node
+    DataPlaneNodeVersionFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - data_plane_node_version
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by data_plane_node_version
     GatewayServiceFilterByField:
       allOf:
         - type: object
@@ -1337,6 +1355,9 @@ components:
           data_plane_node:
             description: 'Data Plane Node ID associated with the request. In the format `control_plane_id:data_plane_node_id` if the node belongs to a control plane or `control_plane_group_id:data_plane_node_id` if the node belongs to a control plane group.'
             type: string
+          data_plane_node_version:
+            description: Version used by the Data Plane Node associated with the request.
+            type: string
           gateway_service:
             description: 'Gateway Service ID associated with the request. In the format `control_plane_id:gateway_service_id`.'
             type: string
@@ -1696,6 +1717,7 @@ components:
             control_plane: d5ac5d88-efed-4e10-9dfe-0b0a6646c219
             control_plane_group: cafe2d4f-95ec-458c-8c88-62417018678d
             data_plane_node: 'cafe2d4f-95ec-458c-8c88-62417018678d:122a0f86-029c-4292-82fd-f3b38e1cfa60'
+            data_plane_node_version: 3.8.0.1
             gateway_service: 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:523468b1-2e74-4b58-b30e-6f904e99e4d0'
             header_host: google.com
             header_user_agent: Mozilla/4.0 (compatible; Flight Explorer)
@@ -1748,6 +1770,7 @@ components:
             control_plane: d5ac5d88-efed-4e10-9dfe-0b0a6646c219
             control_plane_group: null
             data_plane_node: 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:a3e0692c-2351-4c8e-acbe-e7a5185147de'
+            data_plane_node_version: 3.8.0.1
             gateway_service: 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:523468b1-2e74-4b58-b30e-6f904e99e4d0'
             header_host: proxy-zyq.com
             header_user_agent: python-works
