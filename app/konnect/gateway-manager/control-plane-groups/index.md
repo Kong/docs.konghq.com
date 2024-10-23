@@ -61,7 +61,7 @@ In a control plane group setup, each team still administers their own control pl
 The following diagram illustrates using a control plane group for a federated platform administrator model. In this example:
 * Team Blue configures Control Plane Blue, which is then combined with the configuration from Team Green.
 * The control plane group also contains Control Plane Purple, which is managed by a central platform team.
-* The central team manages global plugin configuration in Control Plane Purple, which is added to any configuration that teams Blue and Green provide.
+* The central platform team manages global plugin configuration in Control Plane Purple, which is added to any configuration that teams Blue and Green provide.
 
 The data plane nodes in the cluster use the combined configuration from all three groups.
 
