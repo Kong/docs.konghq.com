@@ -7,7 +7,11 @@ This guide explains how to provision a [serverless gateway](/konnect/gateway-man
 ## Prerequisites
 
 * The following user permissions:
-	* Control plane admin role for the Dedicated Cloud Gateway control plane
+	* Control plane admin role for the Serverless control plane
+* A Konnect Plus account
+
+{:.note}
+**Note:** Serverless Gateways are currently only supported in {{site.konnect_short_name}} Plus. If you are enterprise tier customer and are interested in Serverless Gateways, please contact your account team.
 
 ## Provision your fully-managed data plane
 
@@ -91,6 +95,9 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 
 {% endnavtab %}
 {% endnavtabs %}
+
+{:.note}
+**Note:** Serverless Gateways do not currently support the `expressions` router flavor. 
 
 ## More information
 
