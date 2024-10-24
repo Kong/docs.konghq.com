@@ -53,4 +53,3 @@ There are some limitations for plugins with Dedicated Cloud Gateways:
 * Any plugins or functionality that depend on AWS IAM `AssumeRole` need to be configured differently.
 This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-handling/).
 
-

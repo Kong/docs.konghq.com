@@ -4,7 +4,7 @@ module OasDefinitionPages
   class Generator < Jekyll::Generator
     SOURCE_FILE = '_data/konnect_oas_data.json'
 
-    priority :highest
+    priority :low
 
     def generate(site)
       @site = site
@@ -43,8 +43,10 @@ module OasDefinitionPages
     end
 
     def index_page_data
-      { 'dir' => '/api/', 'permalink' => '/api/', 'canonical_url' => '/api/', 'layout' => 'oas/index',
-        'source_file' => 'oas/index', 'title' => 'OpenAPI Specifications' }
+      {
+        'dir' => '/api/', 'permalink' => '/api/', 'canonical_url' => '/api/', 'layout' => 'oas/index',
+        'source_file' => 'oas/index', 'title' => 'OpenAPI Specifications'
+      }.merge!(Jekyll::Pages::TranslationMissingData.new(@site).data)
     end
   end
 end

@@ -3,13 +3,13 @@
     <hr />
     {% if page.book.previous %}
       <div class="book-nav previous">
-        <span class="direction">Previous</span>
+        <span class="direction">{% t _includes.book.previous %}</span>
         <a href="{{ page.book.previous.url }}">{{ page.book.previous.title  }}</a>
       </div>
     {% endif %}
     {% if page.book.next %}
       <div class="book-nav next">
-        <span class="direction">Next</span>
+        <span class="direction">{% t _includes.book.next %}</span>
         <a href="{{ page.book.next.url }}">{{ page.book.next.title  }}</a>
       </div>
     {% endif %}

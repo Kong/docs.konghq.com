@@ -8,7 +8,8 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
     PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name: plugin_name,
       vendor: 'kong-inc',
-      version: version
+      version: version,
+      site:
     )
   end
 
@@ -92,7 +93,8 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
         PluginSingleSource::Plugin::Schemas::Kong.new(
           plugin_name: 'forward-proxy',
           vendor: 'kong-inc',
-          version: '3.7.0'
+          version: '3.7.0',
+          site:
         )
       end
 
@@ -113,7 +115,8 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
         PluginSingleSource::Plugin::Schemas::Kong.new(
           plugin_name: 'forward-proxy',
           vendor: 'kong-inc',
-          version: '3.7.0'
+          version: '3.7.0',
+          site:
         )
       end
       it 'returns the value of the `deprecation` key' do

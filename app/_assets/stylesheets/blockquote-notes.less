@@ -1,0 +1,161 @@
+.blockquote-notes() {
+  blockquote {
+    border: none;
+    display: block;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    opacity: 0.7;
+    font-size: 15px;
+
+    ol,
+    ul {
+      margin-top: 0.5em;
+      margin-bottom: 0;
+    }
+
+    pre,
+    code {
+      background-color: #fff;
+      border: none;
+      padding: 3px;
+    }
+
+    b,
+    strong {
+      padding: 0;
+      margin: 0;
+      display: inline;
+    }
+
+    p {
+      margin-bottom: 0;
+      padding: 0;
+      display: block;
+    }
+
+    &.warning,
+    &.important,
+    &.note,
+    &.install-banner,
+    &.partner-plugin,
+    &.community-plugin,
+    &.compatibility {
+      margin-bottom: 1em;   
+      opacity: 1;
+      font-style: normal;
+      font-size: 15px;
+      padding: 15px;
+      border-radius: 2px;
+
+      p {
+        margin-left: 24px;
+      }
+    }
+
+    &.no-icon {
+      p {
+        margin-left: unset;
+      }  
+    }
+
+    &.warning {
+      background-color: @red-100;
+      border-left: solid 3px @red-500;
+      padding-left: 8px;
+
+      &:not(.no-icon)::before {
+        content: "\f057";
+        font-family: "Font Awesome", FontAwesome;
+        color: @red-500;
+        font-weight: 600;
+        font-size: 15px;
+        margin: 0;
+        margin-right: 8px;
+        float: left;
+      }
+    }
+
+    &.important {
+      background-color: @yellow-100;
+      border-left: solid 3px @yellow-400;
+
+      &:not(.no-icon)::before {
+        content: "\f071";
+        font-family: "Font Awesome", FontAwesome;
+        color: @yellow-400;
+        font-weight: 600;
+        font-size: 15px;
+        margin: 0;
+        margin-right: 8px;
+        float: left;
+      }
+    }
+
+    &.note {
+      background-color: @blue-100;
+      border: none;
+      border-left: solid 3px @blue-400;
+
+      &:not(.no-icon)::before {
+        content: "\f05a";
+        font-family: "Font Awesome", FontAwesome;
+        color: @blue-400;
+        font-weight: bold;
+        font-size: 15px;
+        margin: 0;
+        margin-right: 8px;
+        float: left;
+      }
+
+      &.missing-translation-banner {
+        align-self: stretch;
+      }
+    }
+
+    &.partner-plugin {
+      background-color: @green-100;
+      color: @green-700;
+
+      a {
+        color: @green-700;
+      }
+    }
+
+    &.compatibility {
+      background-color: @grey-200;
+      color: @grey-500;
+      padding: 10px;
+    }
+
+    &.community-plugin {
+      border: 1px solid @grey-300;
+      border-radius: 5px;
+    }
+
+    &.install-banner {
+      background-color: @blue-100;
+      border: none;
+
+      &:not(.no-icon)::before {
+        content: "\f019";
+        font-family: "Font Awesome", FontAwesome;
+        color: @blue-600;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 0;
+        float: left;
+      }
+
+      > p,
+      ul,
+      li {
+        margin-left: 25px;
+      }
+
+      .install-subtitle {
+        opacity: 0.7;
+        font-style: italic;
+      }
+    }
+  }
+}
