@@ -62,5 +62,7 @@
   "https://www.moesif.com/solutions/metered-api-billing",
   "https://openai.com/",
   "https://openai.com/*",
-  "https://is.docs.wso2.com/en/latest/guides/identity-federation/configure-oauth2-openid-connect/"
+  "https://is.docs.wso2.com/en/latest/guides/identity-federation/configure-oauth2-openid-connect/",
+  "https://console.impartsecurity.net/orgs/_/integrations",
+  "https://docs.impartsecurity.net/docs/Quickstart/Integrations/Kong_lua"
 ]
