@@ -13,7 +13,7 @@ helm repo update kong
 Install {{ site.kgo_product_name }} with Helm:
 
 ```bash
-helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }}
+helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }} {{ if include.kconf-crds }}--set kubernetes-configuration-crds.enabled=true{{ endif }}
 ```
 
 You can wait for the operator to be ready using `kubectl wait`:

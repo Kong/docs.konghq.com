@@ -103,6 +103,10 @@ items:
             url: /guides/upgrade/data-plane/rolling/
           - text: Blue / Green Deployment
             url: /guides/upgrade/data-plane/blue-green/
+      - text: Konnect entities
+        items:
+          - text: Gateway Control Plane
+            url: /guides/konnect-entities/gatewaycontrolplane/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
