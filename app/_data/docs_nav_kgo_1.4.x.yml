@@ -105,6 +105,10 @@ items:
             url: /guides/upgrade/data-plane/blue-green/
       - text: Kong Custom Plugin Distribution
         url: guides/plugin-distribution/
+      - text: Konnect entities
+        items:
+          - text: Gateway Control Plane
+            url: /guides/konnect-entities/gatewaycontrolplane/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
