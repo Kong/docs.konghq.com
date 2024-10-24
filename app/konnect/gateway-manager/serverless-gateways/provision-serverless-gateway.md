@@ -97,7 +97,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 {% endnavtabs %}
 
 {:.note}
-**Note:** Serverless Gateways do not currently support the `expressions` router flavor. 
+> **Note:** Serverless Gateways do not currently support the `expressions` router flavor. 
 
 ## More information
 
