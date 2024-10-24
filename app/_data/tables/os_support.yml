@@ -191,6 +191,18 @@
   status: active
   deprecation_date: null
   eol_link: null
+- name: Ubuntu 24.04 (Noble)
+  enterprise: true
+  enterprise_versions:
+    first_version: 3.9.x
+    last_version: null
+  oss: true
+  oss_versions:
+    first_version: 3.9.x
+    last_version: null
+  status: active
+  deprecation_date: null
+  eol_link: null
 - name: Amazon Linux 2022
   enterprise: true
   enterprise_versions:
