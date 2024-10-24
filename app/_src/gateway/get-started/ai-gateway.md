@@ -101,6 +101,22 @@ https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/
 Take note of the route ID in the response.
 
 {% endnavtab %}
+{% navtab decK (YAML) %}
+
+Add a service and a route to your decK state file:
+
+```yaml
+services:
+  - name: llm_service
+    url: http://fake.host.internal
+routes:
+  - name: openai-llm
+    paths:
+    - "/openai"
+    service:
+      name: llm_service
+```
+{% endnavtab %}
 {% endnavtabs %}
 
 Adding this route entity creates an ingress rule on the `/openai` path. 
@@ -155,6 +171,20 @@ https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/
       }
     }
   }'
+```
+{% endnavtab %}
+{% navtab decK (YAML) %}
+
+Add an AI Proxy plugin entry to your decK state file:
+
+```yaml
+plugins:
+  - name: ai-proxy
+    route: openai-llm
+    config:
+      route_type: "llm/v1/chat"
+      model:
+        provider: openai
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -236,6 +266,8 @@ See all the [AI plugins](/hub/?category=ai) for more capabilities.
 For example, you can rate limit AI traffic based on the number of tokens that are being sent 
 (as opposed to the number of API requests) using the [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced/) plugin:
 
+{% navtabs %}
+{% navtab Kong Gateway Admin API %}
 ```sh
 curl -i -X POST http://localhost:8001/services/llm_service/plugins \
     --header "accept: application/json" \
@@ -254,5 +286,40 @@ curl -i -X POST http://localhost:8001/services/llm_service/plugins \
   }
 }'
 ```
+{% endnavtab %}
+{% navtab Konnect API %}
+```sh
+curl -X POST \
+https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services/{serviceId}/plugins \
+    --header "accept: application/json" \
+    --header "Content-Type: application/json" \
+    --data '
+    {
+    "name": "ai-rate-limiting-advanced",
+    "config": {
+      "llm_providers": [
+        {
+          "name": "openai",
+          "limit": 5,
+          "window_size": 60
+      }
+    ]
+  }
+}'
+```
+{% endnavtab %}
+{% navtab decK (YAML) %}
+```yaml
+plugins:
+  - name: ai-rate-limiting-advanced
+    service: llm_service
+    config:
+      llm_providers:
+      - name: openai
+        limit: 5
+        window_size: 60
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 Every other {{site.base_gateway}} plugin can also be used in addition to the AI plugins, for advanced access control, authorization and authentication, security, observability, and more.
