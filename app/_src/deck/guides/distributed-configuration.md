@@ -81,9 +81,16 @@ configuration of other teams. You no longer need to maintain Kong's
 configuration in a single repository, where multiple teams need to
 co-ordinate.
 
-The `--select-tag` flag is present on those two commands for use cases where
-the file cannot have `select_tags` defined inside it. It is strongly advised
-that you do not supply select-tags to sync and diff commands via flags.
+### Select-tag in sync and diff
+
+The `--select-tag` flag in `diff` and `sync` is meant only for use cases where
+the file cannot have `select_tags` defined inside it.
+
+This flag will only look for decK files where `select_tags` matches the provided value.
+It _cannot_ filter a full configuration based on values found in `tags`, therefore you can't use this 
+flag to sync a subset of a decK file.
+
+We strongly recommend not using select-tags to sync and diff commands via the `--select-tag` flag.
 This is because the tag information should be part of the declarative
 configuration file itself in order to provide a practical declarative file.
 The tagging information and entity definitions should be present in one place,
