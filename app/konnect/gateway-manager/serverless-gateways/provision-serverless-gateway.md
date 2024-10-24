@@ -11,7 +11,7 @@ This guide explains how to provision a [serverless gateway](/konnect/gateway-man
 * A Konnect Plus account
 
 {:.note}
-**Note:** Serverless Gateways are currently only supported in {{site.konnect_short_name}} Plus. If you are enterprise tier customer and are interested in Serverless Gateways, please contact your account team.
+> **Note:** Serverless Gateways are currently only supported in {{site.konnect_short_name}} Plus. If you are an enterprise tier customer and are interested in Serverless Gateways, please contact your account team.
 
 ## Provision your fully-managed data plane
 
