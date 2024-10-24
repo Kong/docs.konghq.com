@@ -242,6 +242,8 @@ favicon
 filepath
 filetype
 filetypes
+finalizer
+finalizers
 firewalled
 flamegraph
 full_name
@@ -470,6 +472,7 @@ remediation
 remediations
 repo
 requery
+Requeue
 Resty
 retryOn
 reusability
@@ -482,8 +485,8 @@ routable
 ruleset
 runloop
 runtime
-runtime_groups
 runtimes
+runtime_groups
 SAML
 sandboxed
 sandboxing
@@ -504,8 +507,8 @@ sni
 snis
 Splunk
 ssl
-ssl_cert_key
 ssl_certificate
+ssl_cert_key
 sso
 Stap
 stapxx
