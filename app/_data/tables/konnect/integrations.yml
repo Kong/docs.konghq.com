@@ -6,6 +6,7 @@ integrations:
   - name: GitHub
     icon: github.svg
     slug: github
+    events: true
     description: Associate a service to one or more GitHub repositories
   - name: Traceable.io
     icon: traceable.svg
@@ -22,4 +23,5 @@ integrations:
   #         Put icon in /assets/images/icons/third-party/<file>.
   #   slug: The filename of the integration page itself, used for links. Don't include the file extension (e.g. .md)
   #         E.g. if the page is at /konnect/service-catalog/integrations/pagerduty, the slug is pagerduty
+  #   events: True if the integration supports eventing. 
   #   description: Short description (100 char max) of the integration
