@@ -60,7 +60,7 @@ At this point, you should see the Consumer in the Gateway Manager UI.
 ## Associate the Consumer with Credentials
 
 Consumers can have credentials associated with them. You can create one of the supported credential types. Please refer
-to the below CRs documentation links to learn all the available fields for each credential type.
+to the below Custom Resource's documentation links to learn all the available fields for each credential type.
 
 - [KongCredentialBasicAuth](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongcredentialbasicauth)
 - [KongCredentialKeyAuth](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongcredentialkeyauth)

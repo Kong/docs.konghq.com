@@ -117,6 +117,8 @@ items:
             url: /guides/konnect-entities/key-and-keyset/
           - text: Upstream and Targets
             url: /guides/konnect-entities/upstream-and-target/
+          - text: Tagging and Labeling
+            url: /guides/konnect-entities/tagging-and-labeling/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
