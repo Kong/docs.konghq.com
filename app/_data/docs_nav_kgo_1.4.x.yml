@@ -109,6 +109,8 @@ items:
         items:
           - text: Gateway Control Plane
             url: /guides/konnect-entities/gatewaycontrolplane/
+          - text: Services and Routes
+            url: /guides/konnect-entities/service-and-route/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
