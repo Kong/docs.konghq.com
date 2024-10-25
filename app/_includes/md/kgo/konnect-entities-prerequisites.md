@@ -2,7 +2,7 @@
 <details class="custom" markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you create any Konnect entity, make sure you've <u>installed {{site.kgo_product_name}} and created a valid KonnectAPIAuthConfiguration</u> in your cluster.</p>
+  <p style="cursor: pointer">Before you create any Konnect entity, make sure you've <u>installed {{site.kgo_product_name}} and created a valid KonnectAPIAuthConfiguration{% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %}</u> in your cluster.</p>
 </blockquote>
 </summary>
 
@@ -18,7 +18,7 @@ You may create either a Personal Access Token (PAT) or a Service Account Token (
 to create a `KonnectAPIAuthConfiguration` object that will be used by the {{site.kgo_product_name}} to authenticate
 with Konnect APIs.
 
-### Create a `KonnectAPIAuthConfiguration` object
+### Create a Konnect API Auth Configuration
 
 Depending on your preferences, you might want to create a `KonnectAPIAuthConfiguration` object with the token specified
 directly in its spec or as a reference to a Kubernetes Secret. The `serverURL` field should be set to the Konnect API
@@ -84,6 +84,49 @@ The output should look like this:
 NAME               VALID   ORGID                                  SERVERURL
 konnect-api-auth   True    <your-konnect-org-id>                  https://eu.api.konghq.tech
 ```
+
+{% if include.with-control-plane %}
+### Create a Gateway Control Plane
+
+Creating the `KonnectGatewayControlPlane` object in your Kubernetes cluster will provision a Konnect Gateway
+Control Plane in your [Gateway Manager](/konnect/gateway-manager). The `KonnectGatewayControlPlane` CR
+[API](/gateway-operator/{{ page.release }}/reference/custom-resources/#konnectgatewaycontrolplane) allows you to
+explicitly set a type of the Gateway Control Plane, but if you don't specify it, the default type is
+a [Self-Managed Hybrid
+Gateway Control Plane](/konnect/gateway-manager/#kong-gateway-control-planes).
+
+You can create one by applying the following YAML manifest:
+
+```yaml
+echo '
+kind: KonnectGatewayControlPlane
+apiVersion: konnect.konghq.com/v1alpha1
+metadata:
+  name: gateway-control-plane
+  namespace: default
+spec:
+  name: gateway-control-plane # Name used to identify the Gateway Control Plane in Konnect
+  konnect:
+    authRef:
+      name: konnect-api-auth # Reference to the KonnectAPIAuthConfiguration object
+  ' | kubectl apply -f -
+```
+
+You can see the status of the Gateway Control Plane by running:
+
+```shell
+kubectl get konnectgatewaycontrolplanes.konnect.konghq.com gateway-control-plane
+```
+
+If the Gateway Control Plane is successfully created, you should see the following output:
+
+```shell
+NAME                    PROGRAMMED   ID                                     ORGID
+gateway-control-plane   True         <konnect-control-plane-id>             <your-konnect-ord-id>
+```
+
+Having that in place, you will be able to reference the `gateway-control-plane` in your Konnect entities as their parent.
+{% endif %}
 
 {% unless include.disable_accordian %}
 </details>
