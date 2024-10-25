@@ -115,6 +115,8 @@ items:
             url: /guides/konnect-entities/consumer-and-consumergroup/
           - text: Key and Key Set
             url: /guides/konnect-entities/key-and-keyset/
+          - text: Upstream and Targets
+            url: /guides/konnect-entities/upstream-and-target/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
