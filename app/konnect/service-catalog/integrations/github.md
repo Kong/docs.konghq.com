@@ -36,11 +36,11 @@ Repository | A GitHub repository relating to the service
 
 The Eventing feature supports viewing the following event types for linked repositories from the {{site.konnect_product_name}} UI.
 
-| Event Type                 |
-|----------------------------|
-| Open pull request       |
-| Merge pull request       |
-| Close pull request         |
+Event types: 
+
+* Open pull request
+* Merge pull request
+* Close pull request
 
 
 ## Discovery information
