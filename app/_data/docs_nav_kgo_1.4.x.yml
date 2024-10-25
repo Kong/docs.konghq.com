@@ -109,8 +109,10 @@ items:
         items:
           - text: Gateway Control Plane
             url: /guides/konnect-entities/gatewaycontrolplane/
-          - text: Services and Routes
+          - text: Service and Route
             url: /guides/konnect-entities/service-and-route/
+          - text: Consumer, Credentials and Consumer Groups
+            url: /guides/konnect-entities/consumer-and-consumergroup/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
