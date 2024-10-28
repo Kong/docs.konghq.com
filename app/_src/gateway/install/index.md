@@ -25,6 +25,7 @@ Or you can set up {{site.base_gateway}} on your own self-managed system:
 {% endif_version %}
 
 {:.note}
-> Kong images are published on *Docker Hub*
+> Kong images are published on Docker Hub
+> 
 > *Kong Gateway (Open Source)* images are in the form `kong/kong:<version>` and published on [Docker Hub kong/kong](https://hub.docker.com/r/kong/kong/tags/) repository
 > *Kong Gateway Enterprise* images are in the form `kong/kong-gateway:<version>` and published on [Docker Hub kong/kong-gateway](https://hub.docker.com/r/kong/kong-gateway/tags/) repository
