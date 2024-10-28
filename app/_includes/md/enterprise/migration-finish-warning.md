@@ -1,0 +1,1 @@
+When adding new plugins to the existing installation (either manually or via the extension of `bundled` plugins), the `kong migrations finish` command must be run with `-f` flag to forcely upgrade the plugin schemas.

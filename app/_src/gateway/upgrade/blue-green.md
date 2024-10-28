@@ -138,3 +138,6 @@ Write updates to {{site.base_gateway}} can now be performed, though we suggest y
 {:.note}
 > **Note**: This upgrade strategy is not the same thing as the [Blue-green (Canary) Deployment](/gateway/{{page.release}}/production/canary/). 
 That process is meant for upgrading your upstream services and is not related to {{site.base_gateway}} upgrades.
+
+{:.important}
+> **Caution**: {% include /md/enterprise/migration-finish-warning.md %}

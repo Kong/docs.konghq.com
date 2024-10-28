@@ -96,3 +96,5 @@ Prioritize the database-level restoration method over the application-level meth
 Write updates to {{site.base_gateway}} can now be performed, though we suggest you keep monitoring metrics for a while.
 
 
+{:.important}
+> **Caution**: {% include /md/enterprise/migration-finish-warning.md %}
