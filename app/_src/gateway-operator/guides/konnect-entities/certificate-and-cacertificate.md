@@ -164,7 +164,7 @@ spec:
     type: konnectNamespacedRef # This indicates that an in cluster reference is used
     konnectNamespacedRef:
       name: gateway-control-plane # Reference to the KonnectGatewayControlPlane object
-  cert: |
+  cert: | # Sample CA certificate in PEM format, replace with your own
       -----BEGIN CERTIFICATE-----
       MIIB4TCCAYugAwIBAgIUAenxUyPjkSLCe2BQXoBMBacqgLowDQYJKoZIhvcNAQEL
       BQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM

@@ -119,6 +119,12 @@ items:
             url: /guides/konnect-entities/key-and-keyset/
           - text: Upstream and Targets
             url: /guides/konnect-entities/upstream-and-target/
+          - text: Certificate and CA Certificate
+            url: /guides/konnect-entities/certificate-and-cacertificate/
+          - text: Vault
+            url: /guides/konnect-entities/vault/
+          - text: Data Plane Client Certificate
+            url: /guides/konnect-entities/dpcertificate/
           - text: Tagging and Labeling
             url: /guides/konnect-entities/tagging-and-labeling/
   - title: Reference
