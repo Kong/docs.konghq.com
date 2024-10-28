@@ -6,20 +6,7 @@ If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 (GUI), Kong Manager.
 
-{% if_version gte:3.9.x %}
 
-{:.note}
-> **Note**: To configure Kong Manager to be accessible from multiple domains, you can list the domains as comma-separated values in the `admin_gui_url` parameter in your Kong configuration. For example:
-  ```
-  admin_gui_url = http://localhost:8002, http://127.0.0.1:8002
-  ```
-> If the `admin_gui_path` is also set, please update the Kong configuration:
-  ```
-  admin_gui_url = http://localhost:8002/manager, http://127.0.0.1:8002/manager
-  admin_gui_path = /manager
-  ```
-> Make sure that each domain has proper DNS records and that the Kong instance is accessible from all specified domains.
-{% endif_version %}
 {% navtabs %}
 {% navtab Docker %}
 
@@ -55,6 +42,35 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 
 {% endnavtab %}
 {% endnavtabs %}
+
+{% if_version gte:3.9.x %}
+
+## Multiple domains 
+To configure Kong Manager to be accessible from multiple domains, you can list the domains as comma-separated values in the `admin_gui_url` parameter in your Kong configuration. For example:
+  ```
+  admin_gui_url = http://localhost:8002, http://127.0.0.1:8002
+  ```
+If the `admin_gui_path` is also set, please update the Kong configuration:
+```
+admin_gui_url = http://localhost:8002/manager, http://127.0.0.1:8002/manager
+admin_gui_path = /manager
+```
+Make sure that each domain has proper DNS records and that the Kong instance is accessible from all specified domains.
+
+If your setup involves multiple domains or subdomains, it’s generally recommended to remove the `cookie_domain` that setting in the `admin_gui_session_conf` or `admin_gui_auth_conf`.
+When `cookie_domain` is not specified, cookies are set for the domain initiated the request, if `admin_gui_api_url` is not specified. This allows the browser to manage cookies correctly for each domain independently, avoiding conflicts or scope issues. For example:
+
+a requests to `gui.konghq.com` and `other-gui.example.com` will produce cookies for `gui.konghq.com` and `other-gui.example.com` respectively, instead ones of the root-level `konghq.com` domain when `cookie_domain` is not specified.
+  ```
+  admin_gui_url = http://gui.konghq.com, http://other-gui.example.com
+  admin_gui_session_conf = {"secret":"Y29vbGJlYW5z","storage":"kong","cookie_secure":false} # omitted `cookie_domain`
+  ```
+or both requests to `gui.konghq.com` and `other-gui.konghq.com` will receive cookies for `konghq.com`, which makes the cookie shared across all subdomains besides `konghq.com` itself. This increases the cookie's scope, which may lead to unintended side effects or security risks. 
+  ```
+  admin_gui_url = http://gui.konghq.com, http://other-gui.konghq.com
+  admin_gui_session_conf = {"secret":"Y29vbGJlYW5z","storage":"kong","cookie_secure":false,"cookie_domain":"konghq.com"}
+  ```
+{% endif_version %}
 
 ## Next steps
 
