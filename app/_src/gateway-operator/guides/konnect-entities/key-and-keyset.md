@@ -34,9 +34,9 @@ metadata:
   namespace: default
 spec:
   controlPlaneRef:
-    type: konnectNamespacedRef
+    type: konnectNamespacedRef # This indicates that an in cluster reference is used
     konnectNamespacedRef:
-      name: gateway-control-plane # KonnectGatewayControlPlane reference
+      name: gateway-control-plane # Reference to the KonnectGatewayControlPlane object
   kid: key-id
   name: key
   pem:
@@ -98,7 +98,7 @@ metadata:
   namespace: default
 spec:
   controlPlaneRef:
-    type: konnectNamespacedRef
+    type: konnectNamespacedRef # This indicates that an in cluster reference is used
     konnectNamespacedRef:
       name: gateway-control-plane # KonnectGatewayControlPlane reference
   name: key-set
@@ -138,7 +138,7 @@ metadata:
   namespace: default
 spec:
   controlPlaneRef:
-    type: konnectNamespacedRef
+    type: konnectNamespacedRef # This indicates that an in cluster reference is used
     konnectNamespacedRef:
       name: gateway-control-plane # KonnectGatewayControlPlane reference
   kid: key-id

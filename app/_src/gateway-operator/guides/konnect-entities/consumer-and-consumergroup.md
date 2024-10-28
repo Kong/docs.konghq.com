@@ -34,7 +34,7 @@ spec:
   controlPlaneRef:
     type: konnectNamespacedRef
     konnectNamespacedRef:
-      name: gateway-control-plane # KonnectGatewayControlPlane reference
+      name: gateway-control-plane # Reference to the KonnectGatewayControlPlane object
   ' | kubectl apply -f -
 ```
 
@@ -80,7 +80,7 @@ metadata:
   namespace: default
 spec:
   consumerRef:
-    name: consumer
+    name: consumer # Reference to the KongConsumer object
   password: pass
   username: username
   ' | kubectl apply -f -
@@ -126,7 +126,7 @@ spec:
   controlPlaneRef:
     type: konnectNamespacedRef
     konnectNamespacedRef:
-      name: gateway-control-plane # KonnectGatewayControlPlane reference
+      name: gateway-control-plane # Reference to the KonnectGatewayControlPlane object
 ' | kubectl apply -f -
 ```
 
@@ -167,12 +167,12 @@ metadata:
 username: consumer
 custom_id: 08433C12-2B81-4738-B61D-3AA2136F0212 # Optional
 consumerGroups:
-  - consumer-group # KongConsumerGroup reference
+  - consumer-group # Reference to the KongConsumerGroup object
 spec:
   controlPlaneRef:
     type: konnectNamespacedRef
     konnectNamespacedRef:
-      name: gateway-control-plane # KonnectGatewayControlPlane reference
+      name: gateway-control-plane # Reference to the KonnectGatewayControlPlane object
   ' | kubectl apply -f -
 ```
 

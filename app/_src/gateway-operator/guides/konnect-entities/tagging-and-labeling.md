@@ -71,7 +71,7 @@ spec:
   controlPlaneRef:
     type: konnectNamespacedRef
     konnectNamespacedRef:
-      name: gateway-control-plane
+      name: gateway-control-plane # Reference to the KonnectGatewayControlPlane object
   ' | kubectl apply -f -
 ```
 

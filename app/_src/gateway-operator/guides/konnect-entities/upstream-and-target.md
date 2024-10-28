@@ -31,7 +31,7 @@ metadata:
 spec:
   name: upstream
   controlPlaneRef:
-    type: konnectNamespacedRef
+    type: konnectNamespacedRef # This indicates that an in cluster reference is used
     konnectNamespacedRef:
       name: gateway-control-plane # KonnectGatewayControlPlane reference
   ' | kubectl apply -f -
@@ -75,7 +75,7 @@ metadata:
   namespace: default
 spec:
   upstreamRef:
-    name: upstream # KongUpstream reference
+    name: upstream # Reference to the KongUpstream object
   target: "10.0.0.1"
   weight: 30
 ---
@@ -86,7 +86,7 @@ metadata:
   namespace: default
 spec:
   upstreamRef:
-    name: upstream # KongUpstream reference
+    name: upstream # Reference to the KongUpstream object
   target: "10.0.0.2"
   weight: 70
   ' | kubectl apply -f - 

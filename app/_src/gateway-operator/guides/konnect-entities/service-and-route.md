@@ -32,9 +32,9 @@ spec:
   name: service
   host: example.com
   controlPlaneRef:
-    type: konnectNamespacedRef
+    type: konnectNamespacedRef # This indicates that an in cluster reference is used
     konnectNamespacedRef:
-      name: gateway-control-plane
+      name: gateway-control-plane # Reference to the KonnectGatewayControlPlane object
   ' | kubectl apply -f -
 ```
 
@@ -131,7 +131,7 @@ spec:
   controlPlaneRef:
     type: konnectNamespacedRef
     konnectNamespacedRef:
-      name: gateway-control-plane # KonnectGatewayControlPlane reference
+      name: gateway-control-plane # Reference to the KonnectGatewayControlPlane object
 ' | kubectl apply -f -
 ```
 
