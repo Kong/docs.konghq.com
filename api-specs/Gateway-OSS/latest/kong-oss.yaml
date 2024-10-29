@@ -22,6 +22,7 @@ components:
       name: tags
       schema:
         type: string
+        minLength: 1
     service_id_or_name:
       name: service_id_or_name
       description: ID **or** name of the service to lookup
