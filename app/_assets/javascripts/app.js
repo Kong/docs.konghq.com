@@ -558,9 +558,6 @@ jQuery(function () {
     $(".badge.konnect").append(
       '<div class="tooltip"><span class="tooltiptext">Available in the Kong Konnect app</span></div>'
     );
-    $(".badge.techpartner").append(
-      '<div class="tooltip"><span class="tooltiptext">Verified Kong technical partner</span></div>'
-    );
     $(".badge.premiumpartner").append(
       '<div class="tooltip"><span class="tooltiptext">Verified Kong premium partner</span></div>'
     );
