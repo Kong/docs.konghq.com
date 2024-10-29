@@ -1,7 +1,7 @@
 ---
 title: Kong custom plugin distribution with KongPluginInstallation
 ---
-{{ site.kgo_product_name }} can install Kong custom plugins packaged as container images. This guide shows how to package, install and use a custom plugin in {{site.base_gateway}} instances managed by the {{ site.kgo_product_name }}.
+{{ site.kgo_product_name }} can install Kong custom plugins packaged as container images. This guide shows how to package, install, and use a custom plugin in {{site.base_gateway}} instances managed by the {{ site.kgo_product_name }}.
 
 {% include md/kgo/prerequisites.md version=page.version release=page.release kongplugininstallation=true %}
 
@@ -9,7 +9,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
 
 2. Build a container image that includes the plugin code.
 
-   It is expected to have plugin-related files at the root of the image. Thus for the plugin as mentioned earlier, the Dockerfile would look like this:
+   Plugin-related files should be at the root of the image, so the Dockerfile for the plugin would look like this:
 
    ```bash
    echo 'FROM scratch
@@ -26,16 +26,16 @@ title: Kong custom plugin distribution with KongPluginInstallation
    docker build -t myheader:1.0.0 .
    ```
 
-   next push it to a registry available to the Kubernetes cluster where {{ site.kgo_product_name }} is running. A private registry can be used as well. Learn how to us in the documentation of [KongPluginInstallation](/gateway-operator/{{page.release}}/reference/custom-resources/#kongplugininstallation) CRD.
+   Next, push the image to a public or private registry available to the Kubernetes cluster where {{ site.kgo_product_name }} is running. 
 
    ```bash
    docker tag myheader:1.0.0 <YOUR-REGISTRY-ADDRESS>/myheader:1.0.0
    docker push <YOUR-REGISTRY-ADDRESS>/myheader:1.0.0
    ```
 
-   The plugin from the example above is available in the public registry (Docker Hub) as `kong/plugin-example:1.0.0` for everyone. That source is used in the following steps.
+   In this example, the plugin is available in the public registry (Docker Hub) as `kong/plugin-example:1.0.0`. The following steps use the same source.
 
-3. Install the plugin using the `KongPluginInstallation` resource. It makes it available for instances of {{site.base_gateway}} resources.
+3. Install the plugin using the `KongPluginInstallation` resource. This resource makes the plugin available for instances of {{site.base_gateway}} resources.
 
    ```yaml
    echo '
@@ -76,10 +76,10 @@ title: Kong custom plugin distribution with KongPluginInstallation
    ]
    ```
 
-   in case of problems respective `conditions` or respective resources will provide more information.
+   In case of problems, respective `conditions` or respective resources will provide more information.
 
    {:.note}
-    > `KongPluginInstalaltion` resource creates a `ConfigMap` with the plugin content. Additional `ConfigMap`s are created when a plugin is referenced by other resources. The operator automatically manages the lifecycle of all these `ConfigMap`s.
+    > The `KongPluginInstallation` resource creates a `ConfigMap` with the plugin content. Additional `ConfigMap`s are created when a plugin is referenced by other resources. The operator automatically manages the lifecycle of all these `ConfigMap`s.
 
 4. Make the plugin available in a `Gateway` resource by referencing it in the `spec.pluginsToInstall` field of the `GatewayConfiguration` resource.
    Plugins can be referenced cross-namespace without any additional configuration.
@@ -142,7 +142,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
    ' | kubectl apply -f -
    ```
 
-5. Deploy an example service and expose it by configuring `HTTPRoute` with the s custom plugin.
+5. Deploy an example service and expose it by configuring `HTTPRoute` with the custom plugin:
 
    Example service:
 
@@ -188,7 +188,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
    ' | kubectl apply -f -
    ```
 
-   `HTTPRoute` with custom plugin, configuration of a plugin is provided with `KongPlugin` CRD where
+   Next, add the `HTTPRoute` with the custom plugin. The configuration of the plugin is provided with the `KongPlugin` CRD, where the 
    field `plugin` is set to the name of the `KongPluginInstallation` resource.
 
    ```yaml
@@ -224,17 +224,17 @@ title: Kong custom plugin distribution with KongPluginInstallation
    ' | kubectl apply -f -
    ```
 
-   The `HTTPRoute` above routes requests to the `echo` service and applies the plugin to responses.
+   This example `HTTPRoute` routes requests to the `echo` service and applies the plugin to responses.
 
-6. Ensure that everything is up and running and make a request to the service:
+6. Ensure that everything is up and running and make a request to the service.
 
-   To call the API, fetch the PROXY_IP for the Gateway:
+   To call the API, fetch the `PROXY_IP` for the Gateway:
 
    ```bash
    export PROXY_IP=$(kubectl get gateway kong -o jsonpath='{.status.addresses[0].value}')
    ```
 
-   Finally, make a `curl` request to the service:
+   Make a `curl` request to the service:
 
    ```bash
    curl -I $PROXY_IP/echo
@@ -258,15 +258,15 @@ title: Kong custom plugin distribution with KongPluginInstallation
 
 ## Troubleshooting
 
-Everything needed to debug problematic `KongPluginInstallation` can be found in the `status` of the respective resource.
+Everything needed to debug problematic `KongPluginInstallation`s can be found in the `status` of the respective resource.
 
-For instance, if the plugin referenced in the `GatewayConfiguration` does not exist, by examining the status of the `Gateway` resource:
+For instance, if the plugin referenced in the `GatewayConfiguration` does not exist, examine the status of the `Gateway` resource:
 
 ```bash
 kubectl get gateway -o jsonpath-as-json='{.items[*].status.conditions}'
 ```
 
-you can learn:
+Pay attention to the status of the resources:
 
 ```json
 [
@@ -307,13 +307,14 @@ you can learn:
 ]
 ```
 
-that `DataPlane` is not ready. So looking at the `DataPlane` status:
+In this case, the `DataPlane` is not ready. 
+You can now look at the `DataPlane`'s status:
 
 ```bash
 kubectl get dataplanes.gateway-operator.konghq.com -o jsonpath-as-json='{.items[*].status.conditions}'
 ```
 
-provides more information:
+This provides more information about the specific resource:
 
 ```json
 [
@@ -330,7 +331,7 @@ provides more information:
 ]
 ```
 
-that `KongPluginInstallation` in the namespace `default` with the name `additional-custom-plugin-4` is not found.
+In this case, you can see that `KongPluginInstallation` in the namespace `default` with the name `additional-custom-plugin-4` is not found.
 
 Following the approach described above, you can troubleshoot any issues related to the `KongPluginInstallation` resource.
-Sometimes troubleshooting may lead to examining the `status` field of the `KongPluginInstallation` resource itself (e.g. referencing not existing image or an image that doesn't contain a valid plugin).
+Sometimes troubleshooting may lead to examining the `status` field of the `KongPluginInstallation` resource itself (for example, referencing a non-existent image or an image that doesn't contain a valid plugin).

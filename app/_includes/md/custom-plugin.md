@@ -2,7 +2,7 @@
 ## Create a custom plugin
 
 {:.note}
-> To learn in details about plugin development for {{site.base_gateway}}, see the [Plugin Development](/gateway/{{page.release}}/plugin-development) guide.
+> For details about plugin development for {{site.base_gateway}}, see the [Plugin Development](/gateway/{{page.release}}/plugin-development) guide.
 
 1. Create a directory with plugin code.
 
@@ -38,7 +38,7 @@
     ' > myheader/schema.lua
     ```
 
-   After these steps, the directory should look like this:
+   The directory should now look like this:
 
     ```bash
     tree myheader

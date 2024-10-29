@@ -2,7 +2,7 @@
 <details class="custom" markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>installed the {{site.kgo_product_name}}</u> in your Kubernetes cluster {% if include.aiGateway %}with AI Gateway support enabled{% endif %}{% if include.kongplugininstallation %}with KongPluginInstallation support enabled{% endif %}. {% if include.enterprise %}This guide requires an enterprise license.{% endif %}</p>
+  <p style="cursor: pointer">Before you begin, ensure that you have <u>installed the {{site.kgo_product_name}}</u> in your Kubernetes cluster{% if include.aiGateway %} with AI Gateway support enabled{% endif %}{% if include.kongplugininstallation %} with KongPluginInstallation support enabled{% endif %}. {% if include.enterprise %}This guide requires an enterprise license.{% endif %}</p>
 </blockquote>
 </summary>
 
@@ -51,7 +51,7 @@ kubectl set env -n kong-system deployments/kgo-gateway-operator-controller-manag
 
 ### Enable the KongPluginInstallation controller
 
-As this guide uses the experimental KongPluginInstallation feature, we need to explicitly enable it.
+As this guide uses the experimental KongPluginInstallation feature, we need to explicitly enable it:
 
 ```bash
 kubectl set env -n kong-system deployments/kgo-gateway-operator-controller-manager -c manager GATEWAY_OPERATOR_ENABLE_CONTROLLER_KONGPLUGININSTALLATION="true"
