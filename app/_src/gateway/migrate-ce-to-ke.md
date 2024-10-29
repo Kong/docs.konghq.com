@@ -34,7 +34,7 @@ to be up to date on any pending migration:
    ```
 
    {:.important}
-   > **Caution**: {% include /md/enterprise/migration-finish-warning.md %}
+   > **Caution**: {% include_cached /md/enterprise/migration-finish-warning.md %}
 
 2. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.

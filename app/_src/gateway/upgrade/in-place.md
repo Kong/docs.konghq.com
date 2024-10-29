@@ -97,4 +97,4 @@ Write updates to {{site.base_gateway}} can now be performed, though we suggest y
 
 
 {:.important}
-> **Caution**: {% include /md/enterprise/migration-finish-warning.md %}
+> **Caution**: {% include_cached /md/enterprise/migration-finish-warning.md %}

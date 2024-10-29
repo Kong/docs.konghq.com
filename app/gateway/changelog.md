@@ -3511,7 +3511,7 @@ hang when attempting to expand an API.
   of the `http-log` plugin and the `endpoint` field of the `opentelemetry` plugin,
   do not accept reference values due to incorrect field validation.
 
-* {% include /md/enterprise/migration-finish-warning.md %}
+* {% include_cached /md/enterprise/migration-finish-warning.md %}
 
 ## 3.3.1.1
 **Release Date** 2023/10/12

@@ -140,4 +140,4 @@ Write updates to {{site.base_gateway}} can now be performed, though we suggest y
 That process is meant for upgrading your upstream services and is not related to {{site.base_gateway}} upgrades.
 
 {:.important}
-> **Caution**: {% include /md/enterprise/migration-finish-warning.md %}
+> **Caution**: {% include_cached /md/enterprise/migration-finish-warning.md %}

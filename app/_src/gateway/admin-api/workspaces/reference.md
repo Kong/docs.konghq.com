@@ -301,7 +301,7 @@ Attributes | Description
 `cascade` | The `cascade` option lets you delete a workspace and all of its entities in one request.
 
 {:.important}
-> **Caution**: If deleting with the `cascade` option fails with `foreign key violation`, you may need to upgrade schema with `kong migrations -f finish`.
+> **Caution**: If deleting with the `cascade` option fails with a `foreign key violation` error, you may need to upgrade the schema with `kong migrations -f finish`.
 
 
 **Response**

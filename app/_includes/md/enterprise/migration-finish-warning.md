@@ -1,1 +1,1 @@
-When adding new plugins to the existing installation (either manually or via the extension of `bundled` plugins), the `kong migrations finish` or `kong migrations up` must be run with `-f` flag to forcely upgrade the plugin schemas.
+When adding new plugins to the existing installation (either manually or via the extension of `bundled` plugins), the `kong migrations finish` or `kong migrations up` must be run with the `-f` flag to forcefully upgrade the plugin schemas.
