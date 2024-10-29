@@ -11,7 +11,7 @@ The `kong/ingress` chart is a wrapper around `kong/kong` that manages separate {
 
 You can use any of the [configuration options](https://github.com/Kong/charts/blob/main/charts/kong/README.md#configuration) available in the `kong/kong` chart when using the `kong/ingress` chart.
 
-*  To configure the {{ site.kic_product_name }} deployment, place the keys from `kong/kong` under a `controller` key in the values.yaml` file.
+*  To configure the {{ site.kic_product_name }} deployment, place the keys from `kong/kong` under a `controller` key in the `values.yaml` file.
 
 ```yaml
 controller:
