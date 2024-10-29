@@ -2,6 +2,21 @@
 
 <!--vale off-->
 
+## Week 43
+
+### [Fix: Konnect roles reference](https://github.com/Kong/docs.konghq.com/pull/8065) (2024-10-21)
+
+Update the Konnect roles reference to the most recent actual state of Konnect.
+Includes the new serverless roles.
+
+Entries pulled from UI text with very light editing. Eventually, I expect we'll be generating this, so we won't want to manually edit.
+
+Issue reported on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/roles-reference
+
 ## Week 42
 
 ### [Update request-validator content-type validation](https://github.com/Kong/docs.konghq.com/pull/8057) (2024-10-16)
