@@ -9,7 +9,7 @@
 ## Prerequisites
 {% endunless %}
 
-{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release kconf-crds=true %}
+{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release mode=konnect %}
 
 ### Create an access token in Konnect
 

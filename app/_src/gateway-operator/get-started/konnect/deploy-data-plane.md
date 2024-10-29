@@ -8,22 +8,29 @@ chapter: 2
 To attach a {{ site.kgo_product_name }} data plane to {{ site.konnect_short_name }} the data plane needs to know which endpoint to connect to, and how to authenticate the requests.
 
 To get the endpoint and the authentication details of the data plane.
-1.  [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
-1.  Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), choose the control plane, and click **Create a New Data Plane Node**.
-1.  In the **Create a Data Plane Node** page select *Kubernetes* as the **Platform**.
-1.  Create a namespace named `kong` in the Kubernetes cluster
-    ```bash
-    kubectl create namespace kong
-    ```
-1.  Click **Generate Certificate**  in step 3.
+
+1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
+1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), choose the control plane, and click **New DataPlane Node**.
+1. In the **Create a Data Plane Node** page select *Kubernetes* as the **Platform** and choose assign it a name. Do not complete the steps therein defined, as we'll use a different procedure.
+1. Create a namespace named `kong` in the Kubernetes cluster
+
+   ```bash
+   kubectl create namespace kong
+   ```
+
+1. Click **Generate Certificate**  in step 3.
 1. Save the contents of **Cluster Certificate** in a file named `tls.crt`. Save the contents of **Cluster Key** in a file named `tls.key`.
-1.  Create a Kubernetes secret containing the cluster certificate:
+1. Create a Kubernetes secret containing the cluster certificate:
 
     ```bash
-    kubectl create secret tls kong-cluster-cert -n kong --cert=/{PATH_TO_FILE}/tls.crt --key=/{PATH_TO_FILE}/tls.key
+    kubectl create secret tls konnect-client-tls -n kong --cert=/{PATH_TO_FILE}/tls.crt --key=/{PATH_TO_FILE}/tls.key
     ```
-1. In the **Configuration parameters** step 4, find the value of  `cluster_server_name`. The first segment of that value is the control plane ID for your cluster. For example, if the value of `cluster_server_name` is `36fc5d01be.us.cp0.konghq.com`, then the control plane ID of the cluster is `36fc5d01be`.
-1.  Replace `YOUR_CP_ID` with your control plane ID in the following manifest and deploy the data plane with `kubectl apply`:
+
+{% if_version lte:1.3.x %}
+
+1. In the **Configuration parameters** step 4, find the value of `cluster_server_name`. The first segment of that value is the control plane ID for your cluster. For example, if the value of `cluster_server_name` is `36fc5d01be.us.cp0.konghq.com`, then the control plane ID of the cluster is `36fc5d01be`.
+
+1. Replace `YOUR_CP_ID` with your control plane ID in the following manifest and deploy the data plane with `kubectl apply`:
 
     ```yaml
     echo '
@@ -67,19 +74,90 @@ To get the endpoint and the authentication details of the data plane.
               volumeMounts:
                 - name: cluster-certificate
                   mountPath: /var/cluster-certificate
-                - name: kong-cluster-cert
-                  mountPath: /etc/secrets/kong-cluster-cert/
+                - name: konnect-client-tls
+                  mountPath: /etc/secrets/konnect-client-tls/
                   readOnly: true
             volumes:
               - name: cluster-certificate
-              - name: kong-cluster-cert
+              - name: konnect-client-tls
                 secret:
-                  secretName: kong-cluster-cert
+                  secretName: konnect-client-tls
                   defaultMode: 420
     ' | kubectl apply -f -
     ```
-    The results should look like this:
+
+    The result should look like this:
 
     ```text
     dataplane.gateway-operator.konghq.com/dataplane-example configured
     ```
+
+{% endif_version %}
+
+{% if_version gt:1.3.x %}
+
+1. Extract the following values from the **Configuration parameters** step 4:
+   1. `CP_ID`: find the value of `cluster_server_name`. The first segment of that value is the control plane ID for your cluster. For example, if the value of `cluster_server_name` is `36fc5d01be.us.cp0.konghq.com`, then the control plane ID of the cluster is `36fc5d01be`
+   1. `REGION`:  find the value in the bottom left corner of the screen.
+   1. `HOSTNAME`:  the server you are connected to (e.g. `konghq.tech`, `konghq.com`).
+
+1. Replace the values above in the following manifest and deploy it with `kubectl apply`
+
+   ```yaml
+    echo '
+    kind: KonnectExtension
+    apiVersion: gateway-operator.konghq.com/v1alpha1
+    metadata:
+      name: example-konnect-config
+      namespace: kong
+    spec:
+      controlPlaneRef:
+        type: konnectID
+        konnectID: <CP_ID>
+      controlPlaneRegion: <REGION>
+      serverHostname: <HOSTNAME>
+      konnectControlPlaneAPIAuthConfiguration:
+        clusterCertificateSecretRef:
+          name: konnect-client-tls
+    ' | kubectl apply -f -
+    ```
+
+    The result should look like this:
+
+    ```text
+    konnectextension.gateway-operator.konghq.com/example-konnect-config created
+    ```
+
+1. Deploy your data plane that references such a `KonnectExtension` with `kubectl apply`:
+
+    ```yaml
+    echo '
+    apiVersion: gateway-operator.konghq.com/v1beta1
+    kind: DataPlane
+    metadata:
+      name: dataplane-example
+      namespace: kong
+    spec:
+      extensions:
+      - kind: KonnectExtension
+        name: example-konnect-config
+        group: gateway-operator.konghq.com
+      deployment:
+        podTemplateSpec:
+          spec:
+            containers:
+            - name: proxy
+              image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+              env:
+              - name: KONG_LOG_LEVEL
+                value: debug
+    ' | kubectl apply -f -
+    ```
+
+    The result should look like this:
+
+    ```text
+    dataplane.gateway-operator.konghq.com/dataplane-example created
+    ```
+
+{% endif_version %}

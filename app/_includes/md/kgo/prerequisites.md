@@ -33,19 +33,7 @@ kubectl apply -f {{site.links.web}}/assets/gateway-operator/ai-gateway-crd.yaml 
 
 ### Install {{ site.kgo_product_name }}
 
-{% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release kconf-crds=include.kconf-crds %}
-
-
-{%- if include.aiGateway %}
-
-### Enable the AI Gateway controller
-
-As this guide uses the experimental AI Gateway feature, we need to explicitly enable it.
-
-```bash
-kubectl set env -n kong-system deployments/kgo-gateway-operator-controller-manager -c manager GATEWAY_OPERATOR_ENABLE_CONTROLLER_AIGATEWAY="true"
-```
-{% endif %}
+{% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release mode=include.mode %}
 
 {%- if include.kongplugininstallation %}
 
