@@ -82,7 +82,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
     > The `KongPluginInstallation` resource creates a `ConfigMap` with the plugin content. Additional `ConfigMap`s are created when a plugin is referenced by other resources. The operator automatically manages the lifecycle of all these `ConfigMap`s.
 
 4. Make the plugin available in a `Gateway` resource by referencing it in the `spec.pluginsToInstall` field of the `GatewayConfiguration` resource.
-   Plugins can be referenced cross-namespace without any additional configuration.
+   Plugins can be referenced across namespaces without any additional configuration.
 
    ```yaml
    echo '
