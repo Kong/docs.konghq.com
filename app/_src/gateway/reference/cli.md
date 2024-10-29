@@ -284,6 +284,8 @@ Options:
 
 ```
 
+{:.important}
+> **Caution**: {% include_cached /md/enterprise/migration-finish-warning.md %}
 ---
 
 
