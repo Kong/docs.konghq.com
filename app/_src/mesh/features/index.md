@@ -1,6 +1,7 @@
 ---
 title: Enterprise Features
 content_type: explanation
+badge: enterprise
 ---
 
 {{site.mesh_product_name}} builds on top of Kuma with the following Enterprise features:

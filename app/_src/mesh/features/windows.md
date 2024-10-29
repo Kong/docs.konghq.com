@@ -2,7 +2,7 @@
 title: Kong Mesh with Windows
 ---
 
-{% if_version gte:2.4.x %}
+{% if_version gte:2.4.x lt:2.11.x %}
 
 To install and run {{site.mesh_product_name}} on Windows:
 
