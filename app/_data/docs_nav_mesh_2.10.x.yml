@@ -32,6 +32,11 @@ inherit:
       url: /support-policy/
       action: insert
       index: -3
+    - path: [ Introduction ]
+      text: Vulnerability patching process
+      url: /vulnerability-patching-process/
+      action: insert
+      index: -3
     - path: [ Introduction, Release notes]
       url: /mesh/changelog
       src: /mesh/changelog
