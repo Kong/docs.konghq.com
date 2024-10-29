@@ -59,22 +59,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongKey` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongkey key -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")' 
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='key' kind='KongKey' %}
 
 At this point, you should see the Key in the Gateway Manager UI.
 
@@ -105,22 +90,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongKeySet` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongkeyset key-set -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='key-set' kind='KongKeySet' %}
 
 At this point, you should see the Key Set in the Gateway Manager UI.
 

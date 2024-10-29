@@ -62,22 +62,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongCertificate` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongcertificate cert -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='cert' kind='KongCertificate' %}
 
 At this point, you should see the Certificate in the Gateway Manager UI.
 
@@ -107,37 +92,9 @@ spec:
 
 You can ensure the `KongCertificate` reference is valid by checking the `KongSNI`'s `KongCertificateRefValid` condition.
 
-```shell
-kubectl get kongsni example-sni -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "KongCertificateRefValid")'
-```
+{% include md/kgo/check-condition.md name='example-sni' kind='KongSNI' conditionType='KongCertificateRefValid' reason='Valid' disableDescription=true %}
 
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Valid",
-  "status": "True",
-  "type": "KongCertificateRefValid"
-}
-```
-
-You can verify the `KongSNI` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongsni example-sni -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='example-sni' kind='KongSNI' %}
 
 At this point, you should see the SNI in the Certificate's SNIs in the Gateway Manager UI.
 
@@ -181,21 +138,6 @@ spec:
 ' | kubectl apply -f -
 ```
 
-You can verify the `KongCACertificate` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongcacertificate ca-cert -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='ca-cert' kind='KongCACertificate' %}
 
 At this point, you should see the CA Certificate in the Gateway Manager UI.

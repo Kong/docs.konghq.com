@@ -38,22 +38,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongConsumer` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongconsumer consumer -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='consumer' kind='KongConsumer' %}
 
 At this point, you should see the Consumer in the Gateway Manager UI.
 
@@ -86,22 +71,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongCredentialBasicAuth` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongcredentialbasicauth basic-auth-cred -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='basic-auth-cred' kind='KongCredentialBasicAuth' %}
 
 At this point, you should see the Credential in the Consumer's Credentials in the Gateway Manager UI.
 
@@ -130,22 +100,7 @@ spec:
 ' | kubectl apply -f -
 ```
 
-You can verify the `KongConsumerGroup` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongconsumergroup consumer-group -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='consumer-group' kind='KongConsumerGroup' %}
 
 At this point, you should see the Consumer Group in the Gateway Manager UI.
 
@@ -178,19 +133,6 @@ spec:
 
 You can verify the `KongConsumer`'s `consumerGroups` field was reconciled successfully by checking its `KongConsumerGroupRefsValid` condition.
 
-```shell
-kubectl get kongconsumer consumer -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "KongConsumerGroupRefsValid")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 2,
-  "reason": "Valid",
-  "status": "True",
-  "type": "KongConsumerGroupRefsValid"
-}
-```
+{% include md/kgo/check-condition.md name='consumer' kind='KongConsumer' conditionType='KongConsumerGroupRefsValid' reason='Valid' disableDescription=true %}
 
 At this point, you should see the `consumer` Consumer in the Consumer Group members in the Gateway Manager UI.

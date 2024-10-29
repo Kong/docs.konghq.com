@@ -37,22 +37,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongUpstream` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongkey key -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")' 
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='upstream' kind='KongUpstream' %}
 
 At this point, you should see the Upstream in the Gateway Manager UI.
 
@@ -95,50 +80,14 @@ spec:
 You can verify both `KongTarget`s successfully were associated with the `KongUpstream` by checking their
 `KongUpstreamRefValid` condition.
 
-```shell
-kubectl get kongtarget target-a -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "KongUpstreamRefValid")'
-kubectl get kongtarget target-b -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "KongUpstreamRefValid")'
-```
+{% include md/kgo/check-condition.md name='target-a' kind='KongTarget' conditionType='KongUpstreamRefValid' reason='Valid' disableDescription=true %}
 
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Valid",
-  "status": "True",
-  "type": "KongUpstreamRefValid"
-}
-{
-  "observedGeneration": 1,
-  "reason": "Valid",
-  "status": "True",
-  "type": "KongUpstreamRefValid"
-}
-```
+{% include md/kgo/check-condition.md name='target-b' kind='KongTarget' conditionType='KongUpstreamRefValid' reason='Valid' disableDescription=true %}
 
 You can also verify both `KongTarget`s were reconciled successfully by checking their `Programmed` condition.
 
-```shell
-kubectl get kongtarget target-a -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-kubectl get kongtarget target-b -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
+{% include md/kgo/check-condition.md name='target-a' kind='KongTarget' disableDescription=true %}
 
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='target-b' kind='KongTarget' disableDescription=true %}
 
 At this point, you should see both Targets in the `upstream` Upstream in the Gateway Manager UI.

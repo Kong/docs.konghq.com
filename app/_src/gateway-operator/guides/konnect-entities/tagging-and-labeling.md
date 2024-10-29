@@ -75,21 +75,6 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongService` was reconciled successfully by checking its `Programmed` condition.
-
-```shell
-kubectl get kongservice service -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='service' kind='KongService' %}
 
 At this point, tags should be visible in the Gateway Manager UI.

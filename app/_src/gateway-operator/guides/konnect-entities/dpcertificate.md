@@ -48,21 +48,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongDataPlaneClientCertificate` was reconciled successfully by checking its `Programmed` condition.
 
-```shell
-kubectl get kongdataplaneclientcertificate dp-cert -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "Programmed")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 1,
-  "reason": "Programmed",
-  "status": "True",
-  "type": "Programmed"
-}
-```
+{% include md/kgo/check-condition.md name='dp-cert' kind='KongDataPlaneClientCertificate' %}
 
 At this point, you should see the Data Plane Client Certificate in the Gateway Manager UI.
