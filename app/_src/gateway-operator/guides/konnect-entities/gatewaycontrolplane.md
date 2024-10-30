@@ -8,7 +8,7 @@ Planes](/konnect/gateway-manager/#control-planes) natively from your Kubernetes 
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release %}
 
-## Create a Self-Managed Hybrid Gateway Control Plane
+## Create a self-managed hybrid gateway control plane
 
 Creating the `KonnectGatewayControlPlane` object in your Kubernetes cluster will provision a {{site.konnect_short_name}} Gateway
 control plane in your [Gateway Manager](/konnect/gateway-manager). The `KonnectGatewayControlPlane` CR
@@ -47,7 +47,7 @@ NAME                    PROGRAMMED   ID                                     ORGI
 gateway-control-plane   True         <konnect-control-plane-id>             <your-konnect-ord-id>
 ```
 
-## Create a Control Plane Group
+## Create a control plane group
 
 Gateway Manager allows you to group multiple Gateway control planes. You can create
 a [Control Plane Group](/konnect/gateway-manager/#control-plane-groups) by setting the `cluster_type`
@@ -82,7 +82,7 @@ NAME                    PROGRAMMED   ID                                     ORGI
 control-plane-group     True         <konnect-control-plane-id>             <your-konnect-ord-id>
 ```
 
-### Add a Gateway Control Plane to a Control Plane Group
+### Add a gateway control plane to a control plane group
 
 To assign Gateway control planes to a control plane group, you need to specify the `members` field in the `spec` section of the `KonnectGatewayControlPlane` object.
 
@@ -106,7 +106,7 @@ spec:
 
 You can check in your Gateway Manager to see if the Gateway control plane was successfully added to the control plane group.
 
-## Create a Kubernetes Ingress Controller Control Plane
+## Create a Kubernetes ingress controller control plane
 
 To create a [Kubernetes Ingress Controller Control Plane](/konnect/gateway-manager/kic/), you need to specify the
 `cluster_type` field in the `spec` section of

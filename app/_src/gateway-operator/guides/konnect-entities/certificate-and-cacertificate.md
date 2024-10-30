@@ -9,7 +9,7 @@ and CA Certificates natively from your Kubernetes cluster.
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
-## Create a Certificate
+## Create a certificate
 
 Creating the `KongCertificate` object in your Kubernetes cluster will provision a Konnect Certificate in
 your [Gateway Manager](/konnect/gateway-manager).
@@ -66,7 +66,7 @@ spec:
 
 At this point, you should see the certificate in the Gateway Manager UI.
 
-### Assign an SNI to the Certificate
+### Assign an SNI to the certificate
 
 You can assign multiple SNIs to a `KongCertificate`. To do so, you need to create a `KongSNI` object and associate it
 with

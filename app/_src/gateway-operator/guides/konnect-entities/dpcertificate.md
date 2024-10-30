@@ -8,7 +8,7 @@ Konnect [Vault](/konnect/gateway-manager/configuration/#vaults) natively from yo
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
-## Create a Data Plane Client Certificate 
+## Create a data plane client certificate
 
 Creating the `KongDataPlaneClientCertificate` object in your Kubernetes cluster will provision a data plane client certificate in
 your [Gateway Manager](/konnect/gateway-manager). You can refer to the CR [API](/gateway-operator/{{ page.release

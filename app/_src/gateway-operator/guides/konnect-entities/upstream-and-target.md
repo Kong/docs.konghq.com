@@ -9,7 +9,7 @@ and their targets natively from your Kubernetes cluster.
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
-## Create an Upstream
+## Create an upstream
 
 Creating the `KongUpstream` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} key in
 your [Gateway Manager](/konnect/gateway-manager).
@@ -41,7 +41,7 @@ spec:
 
 At this point, you should see the Upstream in the Gateway Manager UI.
 
-## Create a Target
+## Create a target
 
 Each `KongTarget` must be associated with a `KongUpstream` it's meant to be a backend for. For this reason, you must
 specify the `upstreamRef` field in the `spec` section of the `KongTarget` object. Please refer to the CR [API](

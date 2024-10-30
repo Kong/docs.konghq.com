@@ -9,7 +9,7 @@ and consumer groups natively from your Kubernetes cluster.
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
-## Create a Consumer
+## Create a consumer
 
 Creating the `KongConsumer` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} Consumer in
 your [Gateway Manager](/konnect/gateway-manager).
@@ -42,7 +42,7 @@ spec:
 
 At this point, you should see the consumer in the Gateway Manager UI.
 
-## Associate the Consumer with Credentials
+## Associate the consumer with credentials
 
 Consumers can have credentials associated with them. You can create one of the supported credential types. Please refer
 to the below custom resource's documentation links to learn all the available fields for each credential type.
@@ -75,7 +75,7 @@ spec:
 
 At this point, you should see the credential in the consumer's credentials in the Gateway Manager UI.
 
-## Create a Consumer Group
+## Create a consumer group
 
 Creating the `KongConsumerGroup` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} consumer group in
 your [Gateway Manager](/konnect/gateway-manager). Please refer to the
@@ -104,7 +104,7 @@ spec:
 
 At this point, you should see the consumer group in the Gateway Manager UI.
 
-### Associate a Consumer with a Consumer Group
+### Associate a consumer with a consumer group
 
 You can associate a `KongConsumer` with a `KongConsumerGroup` by modifying the `KongConsumer` object and adding the
 `consumerGroups` field. This field is a list of `KongConsumerGroup` names.

@@ -63,7 +63,7 @@ spec:
 
 At this point, you should see the key in the Gateway Manager UI.
 
-## Create a Key Set
+## Create a key set
 
 Creating the `KongKeySet` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} key set in
 your [Gateway Manager](/konnect/gateway-manager). You can refer to the CR [API](/gateway-operator/{{ page.release
@@ -94,7 +94,7 @@ spec:
 
 At this point, you should see the key set in the Gateway Manager UI.
 
-### Associate the Key with the Key Set
+### Associate the key with the key set
 
 A single `KongKey` can be associated with only one `KongKeySet`. To associate a `KongKey` with a `KongKeySet`, you need
 to update the `KongKey` object with the `keySetRef` field. You can do this by applying the following YAML manifest:

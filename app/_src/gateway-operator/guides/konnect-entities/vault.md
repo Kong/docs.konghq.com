@@ -8,7 +8,7 @@ In this guide you'll learn how to use the `KongVault` custom resource to manage
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
-## Create a Vault
+## Create a vault
 
 Creating the `KongVault` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} Vault in
 your [Gateway Manager](/konnect/gateway-manager). You can refer to the CR [API](/gateway-operator/{{ page.release

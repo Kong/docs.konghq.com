@@ -18,7 +18,7 @@ You may create either a Personal Access Token (PAT) or a Service Account Token (
 to create a `KonnectAPIAuthConfiguration` object that will be used by the {{site.kgo_product_name}} to authenticate
 with Konnect APIs.
 
-### Create a {{site.konnect_product_name}} API Auth Configuration
+### Create a {{site.konnect_product_name}} API auth configuration
 
 Depending on your preferences, you can create a `KonnectAPIAuthConfiguration` object with the token specified
 directly in its spec or as a reference to a Kubernetes Secret. The `serverURL` field should be set to the Konnect API
@@ -86,7 +86,7 @@ konnect-api-auth   True    <your-konnect-org-id>                  https://eu.api
 ```
 
 {% if include.with-control-plane %}
-### Create a {{site.base_gateway}} Control Plane
+### Create a {{site.base_gateway}} control plane
 
 Creating the `KonnectGatewayControlPlane` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} Gateway
 control plane in your [Gateway Manager](/konnect/gateway-manager). The `KonnectGatewayControlPlane` CR
