@@ -9,12 +9,12 @@ title: Defining PodDisruptionBudget for DataPlane
 This is useful to ensure that a certain number or percentage of pods are always available.
 
 See the [Specifying a Disruption Budget for your Application](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) guide
-for more details on `PodDisruptionBudget` API itself.
+for more details on the `PodDisruptionBudget` API itself.
 
-## Creating DataPlane with PodDisruptionBudget
+## Creating a DataPlane with PodDisruptionBudget
 
 For `DataPlane` resources, you can define a `PodDisruptionBudget` in the `spec.resources.podDisruptionBudget` field.
-`DataPlane`'s `spec.resources.podDisruptionBudget.spec` matches the `PodDisruptionBudget` API, excluding
+The `DataPlane`'s `spec.resources.podDisruptionBudget.spec` matches the `PodDisruptionBudget` API, excluding
 the `selector` field, which is automatically set by {{ site.kgo_product_name }} to match the `DataPlane` pods.
 
 Here is an example of a `DataPlane` resource with a `PodDisruptionBudget`:
