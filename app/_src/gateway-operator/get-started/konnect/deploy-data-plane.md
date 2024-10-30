@@ -11,7 +11,7 @@ To get the endpoint and the authentication details of the data plane:
 
 1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
 1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), choose the control plane, and click **New DataPlane Node**.
-1. In the **Create a Data Plane Node** page select *Kubernetes* as the **Platform** and choose assign it a name. Do not complete the steps therein defined, as we'll use a different procedure.
+1. In the **Create a Data Plane Node** page select *Kubernetes* as the **Platform** and choose assign it a name.
 1. Create a namespace named `kong` in the Kubernetes cluster:
 
    ```bash
