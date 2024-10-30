@@ -3,21 +3,21 @@ title: Service and Route
 ---
 
 In this guide you'll learn how to use the `KongService` and `KongRoute` custom resources to
-manage Konnect [Services](/konnect/gateway-manager/configuration/#gateway-services)
-and [Routes](/konnect/gateway-manager/configuration/#routes) natively from your Kubernetes cluster.
+manage {{site.konnect_product_name}} [services](/konnect/gateway-manager/configuration/#gateway-services)
+and [routes](/konnect/gateway-manager/configuration/#routes) natively from your Kubernetes cluster.
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
 ## Create a Service
 
-Creating the `KongService` object in your Kubernetes cluster will provision a Konnect Service in
+Creating the `KongService` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} service in
 your [Gateway Manager](/konnect/gateway-manager).
 You can refer to the CR [API](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongservice)
 to see all the available fields.
 
 Your `KongService` must be associated with a `KonnectGatewayControlPlane` object that you've created in your cluster.
-It will make it part of the Gateway Control Plane's configuration.
+It will make it part of the Gateway control plane's configuration.
 
 You can create a `KongService` by applying the following YAML manifest:
 
@@ -44,7 +44,7 @@ At this point, you should see the Service in the Gateway Manager UI.
 
 ## Create a Route
 
-Creating the `KongRoute` object in your Kubernetes cluster will provision a Konnect Route in
+Creating the `KongRoute` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} route in
 your [Gateway Manager](/konnect/gateway-manager).
 You can refer to the CR [API](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongroute) to see all the available fields.
 
@@ -82,7 +82,7 @@ At this point, you should see the Route in the Gateway Manager UI.
 ### Associate a Route with a Gateway Control Plane
 
 You can also create a `KongRoute` that won't refer any `KongService`. In that case, you must associate it with a 
-`KonnectGatewayControlPlane` so that {{site.kgo_product_name}} knows what Gateway Control Plane it should be created in.
+`KonnectGatewayControlPlane` so that {{site.kgo_product_name}} knows what Gateway control plane it should be created in.
 You can do so by applying the following YAML manifest:
 
 ```yaml
@@ -107,4 +107,4 @@ spec:
 
 {% include md/kgo/check-condition.md name='route-without-service' kind='KongRoute' %}
 
-At this point, you should see the Route in the Gateway Manager UI.
+At this point, you should see the route in the Gateway Manager UI.

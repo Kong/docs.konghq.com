@@ -2,17 +2,17 @@
 title: Architecture
 ---
 
-In this guide you'll learn how your Kubernetes resources are synchronized against Konnect.
+In this guide you'll learn how your Kubernetes resources are synchronized against {{site.konnect_product_name}}.
 
 ## Overview
 
-{{site.kgo_product_name}} 1.4.0 introduced support for managing Konnect entities.
+{{site.kgo_product_name}} 1.4.0 introduced support for managing {{site.konnect_product_name}} entities.
 It is designed to allow users drive their {{site.konnect_short_name}} configuration through Kubernetes [CRDs][k8s_crds].
 
 [k8s_crds]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 
 {:.note}
-> **Note:** Konnect entities management is an opt-in feature. You must
+> **Note:** {{site.konnect_product_name}} entities management is an opt-in feature. You must
 > enable it by setting `GATEWAY_OPERATOR_ENABLE_CONTROLLER_KONNECT` environment variable to `true`.
 
 At a high level {{site.kgo_product_name}}, watches for changes in the Kubernetes cluster and synchronizes them against {{site.konnect_product_name}}.
@@ -131,9 +131,9 @@ Each Kubernetes resource that is mapped to a {{site.konnect_short_name}} entity 
 
 Objects that are native to {{site.konnect_short_name}} - they exist only in {{site.konnect_short_name}} - have the following `status` fields:
 
-- `id` is the unique identifier of the Konnect entity as assigned by Konnect API. If it's unset (empty string), it means the Konnect entity hasn't been created yet.
-- `serverURL` is the URL of the Konnect server in which the entity exists.
-- `organizationID` is ID of Konnect Org that this entity has been created in.
+- `id` is the unique identifier of the Konnect entity as assigned by {{site.konnect_product_name}} API. If it's unset (empty string), it means the {{site.konnect_product_name}} entity hasn't been created yet.
+- `serverURL` is the URL of the {{site.konnect_product_name}} server in which the entity exists.
+- `organizationID` is ID of {{site.konnect_product_name}} Org that this entity has been created in.
 
 You can observe these fields by running:
 
@@ -163,9 +163,9 @@ They can also be used in other contexts like for instance: be used for reconcili
 These objects have their {{site.konnect_short_name}} status related fields nested under `konnect` field. These fields are:
 
 - `controlPlaneID` is the ID of the Control Plane this entity is associated with.
-- `id` is the unique identifier of the Konnect entity as assigned by Konnect API. If it's unset (empty string), it means the Konnect entity hasn't been created yet.
-- `serverURL` is the URL of the Konnect server in which the entity exists.
-- `organizationID` is ID of Konnect Org that this entity has been created in.
+- `id` is the unique identifier of the Konnect entity as assigned by {{site.konnect_product_name}} API. If it's unset (empty string), it means the {{site.konnect_product_name}} entity hasn't been created yet.
+- `serverURL` is the URL of the {{site.konnect_product_name}} server in which the entity exists.
+- `organizationID` is ID of {{site.konnect_product_name}} Org that this entity has been created in.
 
 You can observe these fields by running:
 

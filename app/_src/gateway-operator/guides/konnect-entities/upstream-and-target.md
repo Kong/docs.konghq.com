@@ -4,14 +4,14 @@ title: Upstream and Target
 
 In this guide you'll learn how to use the `KongUpstream` and `KongTarget` custom resources to
 manage Konnect [Upstream](/konnect/gateway-manager/configuration/#upstreams)
-and their Targets natively from your Kubernetes cluster.
+and their targets natively from your Kubernetes cluster.
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
 ## Create an Upstream
 
-Creating the `KongUpstream` object in your Kubernetes cluster will provision a Konnect Key in
+Creating the `KongUpstream` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} key in
 your [Gateway Manager](/konnect/gateway-manager).
 You can refer to the CR [API](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongupstream)
 to see all the available fields.

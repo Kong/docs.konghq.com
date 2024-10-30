@@ -32,7 +32,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the Control Plane was reconciled successfully by checking its status.
+You can verify the control plane was reconciled successfully by checking its status.
 
 ```shell
 kubectl get konnectgatewaycontrolplanes.konnect.konghq.com gateway-control-plane
@@ -49,7 +49,7 @@ At this point, labels should be visible in the Gateway Manager UI.
 
 ## Tagging
 
-Tags are values that you can attach to objects. All the Konnect entities that can be attached to a
+Tags are values that you can attach to objects. All the {{site.konnect_product_name}} entities that can be attached to a
 `KonnectGatewayControlPlane` object support tagging. You can add tags to those entities by specifying the `tags` field
 in their `spec` section.
 

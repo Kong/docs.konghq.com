@@ -10,12 +10,12 @@ with-control-plane=true %}
 
 ## Create a Data Plane Client Certificate 
 
-Creating the `KongDataPlaneClientCertificate` object in your Kubernetes cluster will provision a Data Plane Client Certificate in
+Creating the `KongDataPlaneClientCertificate` object in your Kubernetes cluster will provision a data plane client certificate in
 your [Gateway Manager](/konnect/gateway-manager). You can refer to the CR [API](/gateway-operator/{{ page.release
 }}/reference/custom-resources/#kongdataplaneclientcertificate) to see all the available fields.
 
 Your `KongDataPlaneClientCertificate` must be associated with a `KonnectGatewayControlPlane` object that you've created in your cluster.
-It will make it part of the Gateway Control Plane's configuration.
+It will make it part of the gateway control plane's configuration.
 
 To create a `KongDataPlaneClientCertificate`, you can apply the following YAML manifest:
 

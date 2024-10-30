@@ -3,15 +3,15 @@ title: Consumer, Credentials and Consumer Group
 ---
 
 In this guide you'll learn how to use the `KongConsumer` and `KongConsumerGroup` custom resources to
-manage Konnect [Consumers](/konnect/gateway-manager/configuration/#consumers)
-and Consumer Groups natively from your Kubernetes cluster.
+manage {{site.konnect_product_name}} [Consumers](/konnect/gateway-manager/configuration/#consumers)
+and consumer groups natively from your Kubernetes cluster.
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
 ## Create a Consumer
 
-Creating the `KongConsumer` object in your Kubernetes cluster will provision a Konnect Consumer in
+Creating the `KongConsumer` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} Consumer in
 your [Gateway Manager](/konnect/gateway-manager).
 You can refer to the CR [API](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongconsumer)
 to see all the available fields.
@@ -40,12 +40,12 @@ spec:
 
 {% include md/kgo/check-condition.md name='consumer' kind='KongConsumer' %}
 
-At this point, you should see the Consumer in the Gateway Manager UI.
+At this point, you should see the consumer in the Gateway Manager UI.
 
 ## Associate the Consumer with Credentials
 
 Consumers can have credentials associated with them. You can create one of the supported credential types. Please refer
-to the below Custom Resource's documentation links to learn all the available fields for each credential type.
+to the below custom resource's documentation links to learn all the available fields for each credential type.
 
 - [KongCredentialBasicAuth](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongcredentialbasicauth)
 - [KongCredentialKeyAuth](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongcredentialkeyauth)
@@ -73,11 +73,11 @@ spec:
 
 {% include md/kgo/check-condition.md name='basic-auth-cred' kind='KongCredentialBasicAuth' %}
 
-At this point, you should see the Credential in the Consumer's Credentials in the Gateway Manager UI.
+At this point, you should see the credential in the consumer's credentials in the Gateway Manager UI.
 
 ## Create a Consumer Group
 
-Creating the `KongConsumerGroup` object in your Kubernetes cluster will provision a Konnect Consumer Group in
+Creating the `KongConsumerGroup` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} consumer group in
 your [Gateway Manager](/konnect/gateway-manager). Please refer to the
 `KongConsumerGroup` CR [API](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongconsumergroup) to see
 all the available fields.
@@ -102,7 +102,7 @@ spec:
 
 {% include md/kgo/check-condition.md name='consumer-group' kind='KongConsumerGroup' %}
 
-At this point, you should see the Consumer Group in the Gateway Manager UI.
+At this point, you should see the consumer group in the Gateway Manager UI.
 
 ### Associate a Consumer with a Consumer Group
 

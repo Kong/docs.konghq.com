@@ -8,12 +8,12 @@ Planes](/konnect/gateway-manager/#control-planes) natively from your Kubernetes 
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release %}
 
-## Creating a Self-Managed Hybrid Gateway Control Plane
+## Create a Self-Managed Hybrid Gateway Control Plane
 
-Creating the `KonnectGatewayControlPlane` object in your Kubernetes cluster will provision a Konnect Gateway
-Control Plane in your [Gateway Manager](/konnect/gateway-manager). The `KonnectGatewayControlPlane` CR
+Creating the `KonnectGatewayControlPlane` object in your Kubernetes cluster will provision a {{site.konnect_short_name}} Gateway
+control plane in your [Gateway Manager](/konnect/gateway-manager). The `KonnectGatewayControlPlane` CR
 [API](/gateway-operator/{{ page.release }}/reference/custom-resources/#konnectgatewaycontrolplane) allows you to
-explicitly set a type of the Gateway Control Plane, but if you don't specify it, the default type is
+explicitly set a type of the Gateway control plane, but if you don't specify it, the default type is
 a [Self-Managed Hybrid
 Gateway Control Plane](/konnect/gateway-manager/#kong-gateway-control-planes).
 
@@ -34,13 +34,13 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can see the status of the Gateway Control Plane by running:
+You can see the status of the Gateway control plane by running:
 
 ```shell
 kubectl get konnectgatewaycontrolplanes.konnect.konghq.com gateway-control-plane
 ```
 
-If the Gateway Control Plane is successfully created, you should see the following output:
+If the Gateway control plane is successfully created, you should see the following output:
 
 ```shell
 NAME                    PROGRAMMED   ID                                     ORGID
@@ -49,7 +49,7 @@ gateway-control-plane   True         <konnect-control-plane-id>             <you
 
 ## Creating a Control Plane Group
 
-Gateway Manager allows you to group multiple Gateway Control Planes. You can create
+Gateway Manager allows you to group multiple Gateway control planes. You can create
 a [Control Plane Group](/konnect/gateway-manager/#control-plane-groups) by setting the `cluster_type`
 field in the `spec` section of the `KonnectGatewayControlPlane` object to `CLUSTER_TYPE_CONTROL_PLANE_GROUP`.
 
@@ -82,9 +82,9 @@ NAME                    PROGRAMMED   ID                                     ORGI
 control-plane-group     True         <konnect-control-plane-id>             <your-konnect-ord-id>
 ```
 
-### Adding a Gateway Control Plane to a Control Plane Group
+### Add a Gateway Control Plane to a Control Plane Group
 
-To assign Gateway Control Planes to a Control Plane Group, you need to specify the `members` field in the `spec` section of the `KonnectGatewayControlPlane` object.
+To assign Gateway control planes to a control plane group, you need to specify the `members` field in the `spec` section of the `KonnectGatewayControlPlane` object.
 
 ```yaml
 echo '
@@ -104,7 +104,7 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can check in your Gateway Manager to see if the Gateway Control Plane was successfully added to the Control Plane Group.
+You can check in your Gateway Manager to see if the Gateway control plane was successfully added to the control plane group.
 
 ## Creating a Kubernetes Ingress Controller Control Plane
 
@@ -128,13 +128,13 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can see the status of the Gateway Control Plane by running:
+You can see the status of the Gateway control plane by running:
 
 ```shell
 kubectl get konnectgatewaycontrolplane kic-control-plane
 ```
 
-If the Control Plane is successfully created, you should see the following output:
+If the control plane is successfully created, you should see the following output:
 
 ```shell
 NAME                    PROGRAMMED   ID                                     ORGID

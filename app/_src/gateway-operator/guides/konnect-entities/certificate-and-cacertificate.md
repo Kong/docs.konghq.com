@@ -18,7 +18,7 @@ to see all the available fields.
 
 Your `KongCertificate` must be associated with a `KonnectGatewayControlPlane` object that you've created in your
 cluster.
-It will make it part of the Gateway Control Plane's configuration.
+It will make it part of the Gateway control plane's configuration.
 
 You can create a `KongCertificate` by applying the following YAML manifest:
 
@@ -64,7 +64,7 @@ spec:
 
 {% include md/kgo/check-condition.md name='cert' kind='KongCertificate' %}
 
-At this point, you should see the Certificate in the Gateway Manager UI.
+At this point, you should see the certificate in the Gateway Manager UI.
 
 ### Assign an SNI to the Certificate
 

@@ -3,21 +3,21 @@ title: Key and Key Set
 ---
 
 In this guide you'll learn how to use the `KongKey` and `KongKeySet` custom resources to
-manage Konnect [Keys](/konnect/gateway-manager/configuration/#keys)
-and Key Sets natively from your Kubernetes cluster.
+manage {{site.konnect_product_name}} [keys](/konnect/gateway-manager/configuration/#keys)
+and key sets natively from your Kubernetes cluster.
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=true %}
 
 ## Create a Key
 
-Creating the `KongKey` object in your Kubernetes cluster will provision a Konnect Key in
+Creating the `KongKey` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} key in
 your [Gateway Manager](/konnect/gateway-manager).
 You can refer to the CR [API](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongkey)
 to see all the available fields.
 
 Your `KongKey` must be associated with a `KonnectGatewayControlPlane` object that you've created in your cluster.
-It will make it part of the Gateway Control Plane's configuration.
+It will make it part of the Gateway control plane's configuration.
 
 `KongKey` supports two types of keys: JWK and PEM. You can create a PEM `KongKey` by providing `spec.pem.private_key`
 and `spec.pem.public_key` fields. For JWK keys, you should provide `spec.jwk` field with the JWK key string
@@ -61,11 +61,11 @@ spec:
 
 {% include md/kgo/check-condition.md name='key' kind='KongKey' %}
 
-At this point, you should see the Key in the Gateway Manager UI.
+At this point, you should see the key in the Gateway Manager UI.
 
 ## Create a Key Set
 
-Creating the `KongKeySet` object in your Kubernetes cluster will provision a Konnect Key Set in
+Creating the `KongKeySet` object in your Kubernetes cluster will provision a {{site.konnect_product_name}} key set in
 your [Gateway Manager](/konnect/gateway-manager). You can refer to the CR [API](/gateway-operator/{{ page.release
 }}/reference/custom-resources/#kongkeyset)
 to see all the available fields.
@@ -92,7 +92,7 @@ spec:
 
 {% include md/kgo/check-condition.md name='key-set' kind='KongKeySet' %}
 
-At this point, you should see the Key Set in the Gateway Manager UI.
+At this point, you should see the key set in the Gateway Manager UI.
 
 ### Associate the Key with the Key Set
 
@@ -155,4 +155,4 @@ The output should look similar to this:
 }
 ```
 
-At this point, you should see the Key associated with the Key Set in the Gateway Manager UI.
+At this point, you should see the key associated with the key set in the Gateway Manager UI.
