@@ -107,6 +107,28 @@ items:
             url: /guides/upgrade/data-plane/blue-green/
       - text: Kong Custom Plugin Distribution
         url: guides/plugin-distribution/
+      - text: Managing Konnect entities
+        items:
+          - text: Architecture overview
+            url: /guides/konnect-entities/architecture/
+          - text: Gateway Control Plane
+            url: /guides/konnect-entities/gatewaycontrolplane/
+          - text: Service and Route
+            url: /guides/konnect-entities/service-and-route/
+          - text: Consumer, Credentials and Consumer Groups
+            url: /guides/konnect-entities/consumer-and-consumergroup/
+          - text: Key and Key Set
+            url: /guides/konnect-entities/key-and-keyset/
+          - text: Upstream and Targets
+            url: /guides/konnect-entities/upstream-and-target/
+          - text: Certificate and CA Certificate
+            url: /guides/konnect-entities/certificate-and-cacertificate/
+          - text: Vault
+            url: /guides/konnect-entities/vault/
+          - text: Data Plane Client Certificate
+            url: /guides/konnect-entities/dpcertificate/
+          - text: Tagging and Labeling
+            url: /guides/konnect-entities/tagging-and-labeling/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
