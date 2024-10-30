@@ -47,7 +47,7 @@ NAME                    PROGRAMMED   ID                                     ORGI
 gateway-control-plane   True         <konnect-control-plane-id>             <your-konnect-ord-id>
 ```
 
-## Creating a Control Plane Group
+## Create a Control Plane Group
 
 Gateway Manager allows you to group multiple Gateway control planes. You can create
 a [Control Plane Group](/konnect/gateway-manager/#control-plane-groups) by setting the `cluster_type`
@@ -106,7 +106,7 @@ spec:
 
 You can check in your Gateway Manager to see if the Gateway control plane was successfully added to the control plane group.
 
-## Creating a Kubernetes Ingress Controller Control Plane
+## Create a Kubernetes Ingress Controller Control Plane
 
 To create a [Kubernetes Ingress Controller Control Plane](/konnect/gateway-manager/kic/), you need to specify the
 `cluster_type` field in the `spec` section of

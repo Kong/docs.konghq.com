@@ -3,7 +3,7 @@ title: Upstream and Target
 ---
 
 In this guide you'll learn how to use the `KongUpstream` and `KongTarget` custom resources to
-manage Konnect [Upstream](/konnect/gateway-manager/configuration/#upstreams)
+manage {{site.konnect_product_name}} [upstreams](/konnect/gateway-manager/configuration/#upstreams)
 and their targets natively from your Kubernetes cluster.
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
