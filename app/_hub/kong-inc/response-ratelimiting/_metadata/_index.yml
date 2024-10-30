@@ -18,7 +18,7 @@ notes: |
   <br><br>
   For DB-less mode, use one of <code>redis</code> or <code>local</code>;
   for Konnect and hybrid mode, use <code>redis</code>, or <code>local</code> for data
-  planes only.
+  planes only. In Serverless gateways only the <code>local</code> config policy is supported.
 categories:
   - traffic-control
 publisher: Kong Inc.

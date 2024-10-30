@@ -3,12 +3,11 @@ publisher: Okta
 
 categories:
   - authentication
-  - third-party-partner
+  - community
 
 type: integration
 
 enterprise: true
-techpartner: true
 
 desc: Integrate Okta's API Access Management (OAuth as a Service) with Kong API Gateway
 

@@ -16,6 +16,7 @@ You can use the following table to help you determine which Dev Portal configura
 | Determine which users can see which APIs in Dev Portal | [Assign different APIs and permissions with RBAC Teams](/konnect/api/portal-auth/portal-rbac-guide/#main) |
 | Self-host or visually customize your Dev Portal | [Self-hosted Dev Portal](/konnect/dev-portal/customization/self-hosted-portal/) |
 | Publish documentation for your APIs | [Add and publish API product documentation](/konnect/dev-portal/publish-service/) |
+| Keep track of Dev Portal authentication, authorization, and access logs in a SIEM provider | [Dev Portal audit logs](/konnect/dev-portal/audit-logging/) |
 
 To see guidance on all Dev Portal configuration options for your situation, see the [Dev Portal configuration preparation guide](/konnect/dev-portal/configuration-prep/).
 

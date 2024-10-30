@@ -930,7 +930,7 @@ endpoint-level validation comes before entity-level.
     Response:
     ```json
     {
-      "host": "httpbin.org",
+      "host": "httpbin.konghq.com",
       "created_at": 1531066074,
       "updated_at": 1531066074,
       "connect_timeout": 60000,

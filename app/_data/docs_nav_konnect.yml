@@ -41,7 +41,23 @@
     - text: Overview
       url: /gateway-manager/
     - text: Dedicated Cloud Gateways
-      url: /gateway-manager/dedicated-cloud-gateways/
+      items: 
+      - text: Overview
+        url: /gateway-manager/dedicated-cloud-gateways/
+      - text: Provision a Dedicated Cloud Gateway
+        url: /gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
+      - text: Transit Gateways
+        url: /gateway-manager/dedicated-cloud-gateways/transit-gateways
+      - text: Azure VNET Peering
+        url: /gateway-manager/dedicated-cloud-gateways/azure-peering
+    - text: Serverless Gateways
+      items: 
+        - text: Overview
+          url: /gateway-manager/serverless-gateways/
+        - text: Provision a serverless Gateway
+          url: /gateway-manager/serverless-gateways/provision-serverless-gateway/
+        - text: Securing Backend Traffic
+          url: /gateway-manager/serverless-gateways/securing-backend-traffic/
     - text: Data Plane Nodes
       items:
         - text: Installation Options
@@ -58,12 +74,6 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
-        - text: Transit Gateways
-          url: /gateway-manager/data-plane-nodes/transit-gateways
-        - text: Azure VNET Peering
-          url: /gateway-manager/data-plane-nodes/azure-peering
-    - text: Provision a Dedicated Cloud Gateway
-      url: /gateway-manager/provision-cloud-gateway/
     - text: Control Plane Groups
       items:
         - text: Overview
@@ -110,6 +120,7 @@
     - text: Troubleshooting
       url: /gateway-manager/troubleshoot/
 
+
 - title: Mesh Manager
   icon: /assets/images/icons/konnect/icn-mesh-manager-nav.svg
   items:
@@ -135,6 +146,8 @@
           url: /service-catalog/integrations/github/
         - text: PagerDuty
           url: /service-catalog/integrations/pagerduty/
+        - text: SwaggerHub
+          url: /service-catalog/integrations/swaggerhub/
         - text: Traceable
           url: /service-catalog/integrations/traceable/
 
@@ -197,6 +210,14 @@
 
     - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
+    - text: Audit Logging
+      items:
+        - text: Overview
+          url: /dev-portal/audit-logging/
+        - text: Set up an Audit Log Webhook
+          url: /dev-portal/audit-logging/webhook/
+        - text: Set up an Audit Log Replay Job
+          url: /dev-portal/audit-logging/replay-job/
     - text: Portal Customization
       items:
         - text: Overview
@@ -267,10 +288,6 @@
           url: /org-management/audit-logging/webhook/
         - text: Set up an Audit Log Replay Job
           url: /org-management/audit-logging/replay-job/
-        - text: Verify Audit Log Signatures
-          url: /org-management/audit-logging/verify-signatures/
-        - text: Log Reference
-          url: /org-management/audit-logging/reference/
     - text: Account and Org Deactivation
       url: /org-management/deactivation/
 
@@ -406,3 +423,7 @@
       url: /reference/search/
     - text: Terraform Provider
       url: /reference/terraform/
+    - text: Audit Logs
+      url: /reference/audit-logs/
+    - text: Verify audit log signatures
+      url: /reference/verify-signatures/

@@ -247,68 +247,7 @@ restart will be required to discover any changes to the Cassandra cluster topolo
 
 If for some reason, you want to investigate the cached values, or manually
 invalidate a value cached by Kong (a cached hit or miss), you can do so via the
-Admin API `/cache` endpoint.
-
-{:.note}
-> **Note**: Retrieving the `cache_key` for each entity being cached by Kong is
-currently an undocumented process. Future versions of the Admin API will make
-this process easier.
-
-### Inspect a cached value
-
-**Endpoint**
-
-<div class="endpoint get">/cache/{cache_key}</div>
-
-**Response**
-
-If a value with that key is cached:
-
-```
-HTTP 200 OK
-...
-{
-    ...
-}
-```
-
-Else:
-
-```
-HTTP 404 Not Found
-```
-
-### Purge a cached value
-
-**Endpoint**
-
-<div class="endpoint delete">/cache/{cache_key}</div>
-
-**Response**
-
-```
-HTTP 204 No Content
-...
-```
-
-### Purge a node's cache
-
-**Endpoint**
-
-<div class="endpoint delete">/cache</div>
-
-**Response**
-
-```
-HTTP 204 No Content
-```
-
-{:.note}
-> **Note**: Be wary of using this endpoint on a node running in production with warm cache.
-If the node is receiving a lot of traffic, purging its cache at the same time
-will trigger many requests to your database, and could cause a
-[dog-pile effect](https://en.wikipedia.org/wiki/Cache_stampede).
-
+Admin API [`/cache`](/gateway/api/admin-ee/latest/#/cache) endpoint.
 
 ## Read more
 

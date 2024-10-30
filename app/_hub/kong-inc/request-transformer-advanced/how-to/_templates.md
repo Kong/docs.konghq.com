@@ -88,12 +88,12 @@ above).
 
 ### Examples using template as value
 
-1. Add a service named `test` which routes requests to the httpbin.org upstream service:
+1. Add a service named `test` which routes requests to the httpbin.konghq.com upstream service:
 
     ```bash
     curl -X POST http://localhost:8001/services \
         --data 'name=test' \
-        --data 'url=http://httpbin.org/anything'
+        --data 'url=https://httpbin.konghq.com/anything'
     ```
 
 2. Create a route for the `test` service, capturing a `user_id` field from the 

@@ -10,6 +10,19 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
+## October 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">October<br>18</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/swaggerhub-integration-in-service-catalog-4gP88uzg">SwaggerHub Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">Service Catalog now supports importing API specifications directly from SwaggerHub.  This integration enhances Service Catalog's ability to serve as your organization's central repository for all APIs.</div>
+</div>
+</div>
+
+
 ## September 2024
 
 
@@ -58,6 +71,7 @@ Cloud Launchers deprecated
 <div class="changelog-description">Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.</div>
 </div>
 </div>
+
 
 ## August 2024
 

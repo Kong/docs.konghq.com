@@ -29,28 +29,32 @@ If not, add a route and a dummy service to catch this route.
 
     ```sh
     curl http://localhost:8001/services \
-      -d name=acme-example \
-      -d url=http://127.0.0.1:65535
+      --data "name=acme-example" \
+      --data "url=http://127.0.0.1:65535"
     ```
 
 2. Add a sample route if needed:
 
-    ```
+    ```bash
     curl http://localhost:8001/routes \
-      -d name=acme-example \
-      -d paths[]=/.well-known/acme-challenge \
-      -d service.name=acme-example
+      --data "name=acme-example" \
+      --data "paths[]=/.well-known/acme-challenge" \
+      --data "service.name=acme-example"
     ```
 
 3. Enable the plugin:
 
     ```sh
     curl http://localhost:8001/plugins \
-      -d name=acme \
-      -d config.account_email=yourname@yourdomain.com \
-      -d config.tos_accepted=true \
-      -d config.domains[]=my.secret.domains.com
+      --data "name=acme" \
+      --data "config.account_email=yourname@yourdomain.com" \
+      --data "config.tos_accepted=true" \
+      --data "config.domains[]=my.secret.domains.com" \
+      --data "config.storage=kong"
     ```
+
+This example uses `kong` storage for demo purposes, which stores the certificate in the Kong database.
+`kong` storage is not supported in DB-less mode or {{site.konnect_short_name}}, use one of the other [storage options](/hub/kong-inc/acme/#storage-options) instead.
 
 Setting `tos_accepted` to *true* implies that you have read and accepted
 [terms of service](https://letsencrypt.org/repository/).
@@ -68,8 +72,8 @@ Assume Kong proxy is accessible via http://mydomain.com and https://mydomain.com
 
     ```sh
     curl http://localhost:8001/acme \
-    -d host=mydomain.com \
-    -d test_http_challenge_flow=true
+      --data "host=mydomain.com" \
+      --data "test_http_challenge_flow=true"
     ```
 
 1. Trigger certificate creation:

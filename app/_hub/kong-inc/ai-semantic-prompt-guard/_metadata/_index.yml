@@ -8,10 +8,10 @@ search_aliases:
   - model
   - semantic
 dbless_compatible: yes
-free: true
+free: false
 enterprise: true
 paid: true
-konnect: false
+konnect: true
 network_config_opts: All
 notes: --
 categories:

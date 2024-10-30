@@ -83,15 +83,15 @@ for more information about the configuration parameters.
 | `KONG_APPD_CONTROLLER_HTTP_PROXY_USERNAME` | Username to use to identify to proxy. This value is a string that is never shown in logs. This value can be specified as a vault reference.| String |  |
 | `KONG_APPD_CONTROLLER_HTTP_PROXY_PASSWORD` | Password to use to identify to proxy. This value is a string that is never shown in logs. This value can be specified as a vault reference.| String |  |
 {% if_version eq:3.4.x %}
-| `KONG_CONTROLLER_CERTIFICATE_FILE` | Path to a self-signed certificate file. For example, `/etc/kong/certs/ca-certs.pem`. <br><br>_Available starting in {{site.base_gateway}} 3.4.3.3_ | String | | 
-| `KONG_CONTROLLER_CERTIFICATE_DIR` | Path to a certificate directory. For example, `/etc/kong/certs/`. <br><br> _Available starting in {{site.base_gateway}} 3.4.3.3_ | String | | 
+| `KONG_APPD_CONTROLLER_CERTIFICATE_FILE` | Path to a self-signed certificate file. For example, `/etc/kong/certs/ca-certs.pem`. <br><br>_Available starting in {{site.base_gateway}} 3.4.3.3_ | String | | 
+| `KONG_APPD_CONTROLLER_CERTIFICATE_DIR` | Path to a certificate directory. For example, `/etc/kong/certs/`. <br><br> _Available starting in {{site.base_gateway}} 3.4.3.3_ | String | | 
 {% endif_version %}
 {% if_version gte:3.6.x %}
-| `KONG_CONTROLLER_CERTIFICATE_FILE` | Path to a self-signed certificate file. For example, `/etc/kong/certs/ca-certs.pem`. | String | | 
-| `KONG_CONTROLLER_CERTIFICATE_DIR` | Path to a certificate directory. For example, `/etc/kong/certs/`. | String | | 
+| `KONG_APPD_CONTROLLER_CERTIFICATE_FILE` | Path to a self-signed certificate file. For example, `/etc/kong/certs/ca-certs.pem`. | String | | 
+| `KONG_APPD_CONTROLLER_CERTIFICATE_DIR` | Path to a certificate directory. For example, `/etc/kong/certs/`. | String | | 
 {% endif_version %}
 {% if_version gte:3.8.x %}
-| `KONG_ANALYTICS_ENABLE` | Enable or disable Analytics Agent reporting. When disabled (default), Analytics-related logging messages are suppressed. | Boolean | `false` | 
+| `KONG_APPD_ANALYTICS_ENABLE` | Enable or disable Analytics Agent reporting. When disabled (default), Analytics-related logging messages are suppressed. | Boolean | `false` | 
 {% endif_version %}
 
 #### Possible values for the `KONG_APPD_LOGGING_LEVEL` parameter

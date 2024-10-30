@@ -491,7 +491,7 @@ spec:
     kuma.io/service: httpbin
     kuma.io/protocol: http 
   networking:
-    address: httpbin.org:443
+    address: httpbin.konghq.com:443
     tls:
       enabled: true
 ```
@@ -507,7 +507,7 @@ tags:
   kuma.io/service: httpbin
   kuma.io/protocol: http
 networking:
-  address: httpbin.org:443
+  address: httpbin.konghq.com:443
   tls:
     enabled: true
 ```

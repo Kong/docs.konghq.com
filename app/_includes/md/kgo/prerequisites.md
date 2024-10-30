@@ -2,7 +2,7 @@
 <details class="custom" markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>installed the {{site.kgo_product_name}}</u> in your Kubernetes cluster {% if include.aiGateway %}with AI Gateway support enabled{% endif %}. {% if include.enterprise %}This guide requires an enterprise license.{% endif %}</p>
+  <p style="cursor: pointer">Before you begin, ensure that you have <u>installed the {{site.kgo_product_name}}</u> in your Kubernetes cluster{% if include.aiGateway %} with AI Gateway support enabled{% endif %}{% if include.kongplugininstallation %} with KongPluginInstallation support enabled{% endif %}{% if include.kconf-crds %} with Kong's Kubernetes Configuration CRDs enabled{% endif %}. {% if include.enterprise %}This guide requires an enterprise license.{% endif %}</p>
 </blockquote>
 </summary>
 
@@ -33,7 +33,7 @@ kubectl apply -f {{site.links.web}}/assets/gateway-operator/ai-gateway-crd.yaml 
 
 ### Install {{ site.kgo_product_name }}
 
-{% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release %}
+{% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release kconf-crds=include.kconf-crds %}
 
 
 {%- if include.aiGateway %}
@@ -44,6 +44,17 @@ As this guide uses the experimental AI Gateway feature, we need to explicitly en
 
 ```bash
 kubectl set env -n kong-system deployments/kgo-gateway-operator-controller-manager -c manager GATEWAY_OPERATOR_ENABLE_CONTROLLER_AIGATEWAY="true"
+```
+{% endif %}
+
+{%- if include.kongplugininstallation %}
+
+### Enable the KongPluginInstallation controller
+
+As this guide uses the experimental KongPluginInstallation feature, we need to explicitly enable it:
+
+```bash
+kubectl set env -n kong-system deployments/kgo-gateway-operator-controller-manager -c manager GATEWAY_OPERATOR_ENABLE_CONTROLLER_KONGPLUGININSTALLATION="true"
 ```
 {% endif %}
 

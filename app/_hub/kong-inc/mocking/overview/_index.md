@@ -330,7 +330,7 @@ This example creates a service named `Stock-Service`.
 ```bash
 curl -i -X POST http://localhost:8001/services \
   --data name=Stock-Service \
-  --data url='http://httpbin.org/anything'
+  --data url='https://httpbin.konghq.com/anything'
 ```
 
 Response:

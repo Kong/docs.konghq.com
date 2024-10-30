@@ -34,7 +34,7 @@ info:
   description: Simple API for testing purposes
   version: 1.0.0
 servers:
-  - url: http://httpbin.org
+  - url: https://httpbin.konghq.com
 paths:
   /request:
     get:
@@ -57,7 +57,7 @@ Which produces a complete decK configuration file:
 ```yaml
 _format_version: "3.0"
 services:
-- host: httpbin.org
+- host: httpbin.konghq.com
   id: de7107e7-a39c-5574-9e8c-e66787ae50e7
   name: httpbin-api
   path: /
@@ -134,7 +134,7 @@ following configuration into a file named `another-httpbin.yaml`:
 ```yaml
 _format_version: "3.0"
 services:
-- host: httpbin.org
+- host: httpbin.konghq.com
   id: 7cc31086-3837-4e7e-bbe9-271e51c1f614 
   name: another-httpbin-api
   path: /

@@ -1,35 +1,5 @@
-- release: "2.6.x"
-  ee-version: "2.6.1.0"
-  ce-version: "2.6.1"
-  edition: "gateway"
-  luarocks_version: "2.5.1-0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.8.0"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.19.9.1"
-    openssl: "1.1.1n"
-    libyaml: "0.2.5"
-    pcre: "8.44"
-  lua_doc: true
-- release: "2.7.x"
-  ee-version: "2.7.2.0"
-  ce-version: "2.7.2"
-  edition: "gateway"
-  luarocks_version: "2.5.1-0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.8.0"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.19.9.1"
-    openssl: "1.1.1n"
-    libyaml: "0.2.5"
-    pcre: "8.45"
-  lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.12"
+  ee-version: "2.8.4.13"
   ce-version: "2.8.5"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -44,20 +14,6 @@
     pcre: "8.45"
   lua_doc: true
   lts: true
-- release: "3.0.x"
-  ee-version: "3.0.2.0"
-  ce-version: "3.0.2"
-  edition: "gateway"
-  luarocks_version: "3.0.0-0"
-  dependencies:
-    luajit: "2.1-20220411"
-    luarocks: "3.9.1"
-    postgres: "9.5+"
-    openresty: "1.21.4.1"
-    openssl: "1.1.1.q"
-    libyaml: "0.2.5"
-    pcre: 8.45
-  lua_doc: true
 - release: "3.1.x"
   ee-version: "3.1.1.6"
   ce-version: "3.1.1"
@@ -130,7 +86,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.6.x"
-  ee-version: "3.6.1.7"
+  ee-version: "3.6.1.8"
   ce-version: "3.6.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -277,13 +233,13 @@
 - release: "1.38.x"
   version: "1.38.1"
   edition: "deck"
-  latest: true
 - release: "1.39.x"
-  version: "1.39.0"
+  version: "1.39.6"
   edition: "deck"
 - release: "1.40.x"
-  version: "1.40.0"
+  version: "1.40.2"
   edition: "deck"
+  latest: true
 - release: "1.41.x"
   version: "1.41.0"
   edition: "deck"
@@ -351,6 +307,12 @@
   releaseDate: "2024-06-24"
   endOfLifeDate: "2025-06-24"
   latest: true
+- edition: gateway-operator
+  version: 1.4.0
+  release: 1.4.x
+  releaseDate: "2024-10-28"
+  endOfLifeDate: "2025-10-28"
+  label: unreleased
 - edition: mesh
   version: 1.2.6
   release: 1.2.x
@@ -430,33 +392,39 @@
   endOfLifeDate: "2024-08-29"
   branch: release-2.4
 - edition: mesh
-  version: 2.5.10
+  version: 2.5.11
   release: 2.5.x
   releaseDate: "2023-11-15"
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: 2.6.11
+  version: 2.6.12
   release: 2.6.x
   releaseDate: "2024-02-01"
   endOfLifeDate: "2025-02-01"
   branch: release-2.6
 - edition: mesh
-  version: 2.7.7
+  version: 2.7.8
   release: 2.7.x
   releaseDate: "2024-04-19"
   endOfLifeDate: "2026-04-19"
   branch: release-2.7
   lts: true
 - edition: mesh
-  version: 2.8.3
+  version: 2.8.4
   release: 2.8.x
-  latest: true
   releaseDate: "2024-06-24"
   endOfLifeDate: "2025-06-24"
   branch: release-2.8
 - edition: mesh
-  version: preview
+  version: 2.9.0
   release: 2.9.x
+  latest: true
+  releaseDate: "2024-10-22"
+  endOfLifeDate: "2025-10-22"
+  branch: release-2.9
+- edition: mesh
+  version: preview
+  release: 2.10.x
   branch: master
   label: dev

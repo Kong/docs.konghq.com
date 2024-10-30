@@ -1,7 +1,7 @@
 ---
 title: PagerDuty Integration
 content-type: reference
-
+beta: true
 discovery_support: true
 discovery_default: true
 bindable_entities: "PagerDuty Service"
@@ -16,7 +16,7 @@ For each linked PagerDuty service, a summary will be provided on the Service Cat
 
 ## Authenticate the PagerDuty integration
 
-1. From {{site.konnect_product_name}} select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
+1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
 2. Select **PagerDuty**, then **Install PagerDuty**.
 3. Select **Authorize**. 
 

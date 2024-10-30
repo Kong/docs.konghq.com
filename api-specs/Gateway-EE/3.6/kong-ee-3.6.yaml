@@ -12509,6 +12509,24 @@ paths:
                       username: string
                       email: string
                       rbac_token_enabled: true
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Detail about the conflict
+                    example: user already exists with same username, email, or custom_id
+                x-exmples:
+                  Example 1:
+                    message: user already exists with same username, email, or custom_id
+              examples:
+                Constraint violation:
+                  value:
+                    message: user already exists with same username, email, or custom_id
       tags:
         - admins
       description: Invite an admin to your organization.
@@ -15192,6 +15210,198 @@ paths:
                 fips_disabled:
                   value: {"active": false, "version": "unknown"}
                   summary: FIPS mode is disabled or not supported. This may be the default state or result from a license configuration that does not enable FIPS mode.
+  '/clustering/data-planes':
+    get:
+      summary: Retrieve connected data planes
+      description: >
+        Retrieve a list of all data planes connected to the control plane. This endpoint is only accessible when Kong Gateway is running in hybrid mode.
+      operationId: getDataPlanes
+      responses:
+        '200':
+          description: A list of connected data planes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ip:
+                          type: string
+                          description: The IP address of the data plane.
+                        updated_at:
+                          type: integer
+                          description: Unix timestamp of the last update.
+                        config_hash:
+                          type: string
+                          description: The hash of the current configuration on the data plane.
+                        sync_status:
+                          type: string
+                          description: The sync status of the data plane.
+                        version:
+                          type: string
+                          description: The version of Kong running on the data plane.
+                        id:
+                          type: string
+                          description: Unique identifier of the data plane.
+                        hostname:
+                          type: string
+                          description: The hostname of the data plane.
+                        ttl:
+                          type: integer
+                          description: Time-to-live for the connection.
+                        last_seen:
+                          type: integer
+                          description: Unix timestamp when the data plane was last seen by the control plane.
+                        labels:
+                          type: object
+                          description: Metadata labels attached to the data plane.
+                          properties:
+                            deployment:
+                              type: string
+                              description: The deployment name.
+                            region:
+                              type: string
+                              description: The region of the data plane.
+                        cert_details:
+                          type: object
+                          properties:
+                            expiry_timestamp:
+                              type: integer
+                              description: Timestamp for when the certificate expires.
+        '400':
+          description: Kong is not running as a control plane.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: This endpoint is only available when Kong is configured to run as a control plane for the cluster.
+      tags:
+        - clustering
+
+  '/clustering/status':
+    get:
+      summary: Retrieve the status of connected data planes
+      description: >
+        Retrieve a status report for all data planes connected to the control plane. It includes information like the config hash, hostname, IP address, and last seen timestamp.
+        This endpoint is only accessible when Kong Gateway is running in hybrid mode.
+      operationId: getDataPlaneStatus
+      responses:
+        '200':
+          description: The status of all connected data planes.
+          headers:
+            Deprecation:
+              description: >
+                Indicates that the endpoint may be deprecated in the future.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    config_hash:
+                      type: string
+                      description: Hash of the configuration running on the data plane.
+                    hostname:
+                      type: string
+                      description: Hostname of the data plane.
+                    ip:
+                      type: string
+                      description: The IP address of the data plane.
+                    last_seen:
+                      type: integer
+                      description: Unix timestamp of the last interaction between the data plane and control plane.
+        '400':
+          description: Kong is not running as a control plane.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: This endpoint is only available when Kong is configured to run as a control plane for the cluster.
+      tags:
+      - clustering
+  '/cache/{key}':
+    get:
+      summary: Get cache value by key
+      description: >
+        Retrieve the cached value for a specific key. This endpoint probes both `kong.cache` and `kong.core_cache`. 
+        If the key exists, it returns the associated value and TTL. If not found, it returns a 404.
+      operationId: getCacheByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The cache key to retrieve.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cached value found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ttl:
+                    type: integer
+                    description: Time-to-live (TTL) of the cached entry.
+                  message:
+                    type: string
+                    description: Cached value or a message.
+        '404':
+          description: Cache key not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Not found
+      tags:
+      - cache
+    delete:
+      summary: Invalidate cache by key
+      description: >
+        Invalidate the cache for a specific key in both `kong.cache` and `kong.core_cache`.
+      operationId: deleteCacheByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The cache key to invalidate.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cache invalidated successfully.
+      tags:
+      - cache
+  
+  '/cache':
+    delete:
+      summary: Purge all cache entries
+      description: >
+        Purge all cache entries in both `kong.cache` and `kong.core_cache`.
+      operationId: purgeAllCache
+      responses:
+        '204':
+          description: All cache entries purged successfully.
+      tags:
+      - cache
+
 
 servers:
   - description: Default Admin API URL
@@ -15360,3 +15570,9 @@ tags:
       Event hooks do not work with Konnect yet.
       <br><br>
     name: Event-hooks
+  - description: |
+      Retrieve information about the status of data planes when Kong Gateway is running in hybrid mode.
+    name: clustering
+  - description: |
+      Querying and managing cache entries.
+    name: cache
