@@ -8,7 +8,7 @@ chapter: 1
 {{ site.kgo_product_name }} can deploy and manage data planes attached to a {{ site.konnect_short_name }} control plane.
 All the services, routes, and plugins are configured in {{ site.konnect_short_name }} and sent to the data planes automatically.
 
-{% if_version gt:1.3.x %}
+{% if_version gte:1.4.x %}
 {% assign mode = "konnect" %}
 {% endif_version %}
 

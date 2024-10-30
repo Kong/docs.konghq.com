@@ -10,7 +10,7 @@ helm repo add kong https://charts.konghq.com
 helm repo update kong
 ```
 
-Install {{ site.kgo_product_name == "true"}} with Helm:
+Install {{ site.kgo_product_name }} with Helm:
 
 {% if include.mode == "konnect" %}
 

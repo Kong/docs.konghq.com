@@ -7,12 +7,12 @@ chapter: 2
 
 To attach a {{ site.kgo_product_name }} data plane to {{ site.konnect_short_name }} the data plane needs to know which endpoint to connect to, and how to authenticate the requests.
 
-To get the endpoint and the authentication details of the data plane.
+To get the endpoint and the authentication details of the data plane:
 
 1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
 1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), choose the control plane, and click **New DataPlane Node**.
 1. In the **Create a Data Plane Node** page select *Kubernetes* as the **Platform** and choose assign it a name. Do not complete the steps therein defined, as we'll use a different procedure.
-1. Create a namespace named `kong` in the Kubernetes cluster
+1. Create a namespace named `kong` in the Kubernetes cluster:
 
    ```bash
    kubectl create namespace kong
@@ -94,14 +94,14 @@ To get the endpoint and the authentication details of the data plane.
 
 {% endif_version %}
 
-{% if_version gt:1.3.x %}
+{% if_version gte:1.4.x %}
 
 1. Extract the following values from the **Configuration parameters** step 4:
-   1. `CP_ID`: find the value of `cluster_server_name`. The first segment of that value is the control plane ID for your cluster. For example, if the value of `cluster_server_name` is `36fc5d01be.us.cp0.konghq.com`, then the control plane ID of the cluster is `36fc5d01be`
-   1. `REGION`:  find the value in the bottom left corner of the screen.
-   1. `HOSTNAME`:  the server you are connected to (e.g. `konghq.tech`, `konghq.com`).
+   1. `CP_ID`: Find the value of `cluster_server_name`. The first segment of that value is the control plane ID for your cluster. For example, if the value of `cluster_server_name` is `36fc5d01be.us.cp0.konghq.com`, then the control plane ID of the cluster is `36fc5d01be`
+   1. `REGION`:  Find the value in the bottom left corner of the screen.
+   1. `HOSTNAME`:  The server you are connected to (e.g. `konghq.tech`, `konghq.com`).
 
-1. Replace the values above in the following manifest and deploy it with `kubectl apply`
+1. In the following manifest, replace the placeholders for `CP_ID`, `REGION`, and `HOSTNAME` with the values you just noted, and deploy it with `kubectl apply`:
 
    ```yaml
     echo '
