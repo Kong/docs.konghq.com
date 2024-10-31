@@ -25,7 +25,7 @@ You can directly create a `KongPluginBinding` to bind your plugin to a Konnect e
 
 First, create a service and a plugin by `KongService` and `KongPlugin` CRD:
 
-```bash
+```shell
 echo '
 kind: KongService
 apiVersion: configuration.konghq.com/v1alpha1
@@ -43,7 +43,7 @@ spec:
 
 Then, create a `KongPlugin`:
 
-```bash
+```shell
 echo '
 kind: KongPlugin
 apiVersion: configuration.konghq.com/v1
@@ -59,7 +59,7 @@ config:
 
 And you can create a `KongPluginBinding` to bind them together.
 
-```bash
+```shell
 echo '
 kind: KongPluginBinding
 apiVersion: configuration.konghq.com/v1alpha1
@@ -100,7 +100,7 @@ For example, we can configure a `rate-limiting` plugin to a service and a consum
 
 Create a service:
 
-```bash
+```shell
 echo '
 kind: KongService
 apiVersion: configuration.konghq.com/v1alpha1
@@ -118,7 +118,7 @@ spec:
 
 Create a consumer:
 
-```bash
+```shell
 echo '
 kind: KongConsumer
 apiVersion: configuration.konghq.com/v1
@@ -136,7 +136,7 @@ spec:
 
 Create a plugin:
 
-```bash
+```shell
 echo '
 kind: KongPlugin
 apiVersion: configuration.konghq.com/v1
@@ -152,7 +152,7 @@ config:
 
 Then, you can create a `KongPluginBinding` including both references to the `KongService` and the `KongCosumer` to attach the plugin to the service and the consumer:
 
-```bash
+```shell
 echo '
 kind: KongPluginBinding
 apiVersion: configuration.konghq.com/v1alpha1
@@ -188,7 +188,7 @@ The {{ site.kgo_product_name }} will create `KongPluginBinding` resources for th
 
 In the example above, you can create a `KongPlugin` and a `KongService` like this:
 
-```bash
+```shell
 echo '
 kind: KongPlugin
 apiVersion: configuration.konghq.com/v1
@@ -202,7 +202,7 @@ config:
 ' | kubectl apply -f - 
 ```
 
-```bash
+```shell
 echo '
 kind: KongService
 apiVersion: configuration.konghq.com/v1alpha1
@@ -224,13 +224,13 @@ At this point you can see the plugin is attached to the service in {{ site.konne
 
 You can also check the `KongPluginBinding` resource by running.
 
-```bash
+```shell
 kubectl get kongpluginbinding
 ```
 
 You can see the created `KongPluginBinding` like this:
 
-```bash
+```shell
 NAME                            PLUGIN-KIND   PLUGIN-NAME                  PROGRAMMED
 rate-limiting-minute-10-a0z1x   KongPlugin    rate-limiting-minute-10      True
 ```
@@ -247,7 +247,7 @@ Similar to those introduced above, you can also attach a plugin to multiple enti
 If a plugin appears in the `konghq.com/plugins` annotation of multiple entities, a `KongPluginBinding` will be created for the binding relationship between the plugin and the combination of these entities.
 Taking the example above where a plugin is attached to a service and a consumer:
 
-```bash
+```shell
 echo '
 kind: KongPlugin
 apiVersion: configuration.konghq.com/v1
@@ -261,7 +261,7 @@ config:
 ' | kubectl apply -f -
 ```
 
-```bash
+```shell
 echo '
 kind: KongService
 apiVersion: configuration.konghq.com/v1alpha1
@@ -279,7 +279,7 @@ spec:
 ' | kubectl apply -f -
 ```
 
-```bash
+```shell
 echo '
 kind: KongConsumer
 apiVersion: configuration.konghq.com/v1
