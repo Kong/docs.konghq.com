@@ -17,6 +17,8 @@ This CRD has two parts for the binding description in its specification:
 * `spec.targets`: Refers to the entity or combination of entities that the plugin is attached to.
 The `spec.controlPlaneRef` refers to the {{site.konnect_product_name}} control plane this `KongPluginBinding` is associated with.
 
+Each `KongPluginBinding` represents a plugin on {{ site.konnect_short_name }}.
+
 ## Using an unmanaged `KongPluginBinding`
 
 You can directly create a `KongPluginBinding` to bind your plugin to a Konnect entity. Assume that you have an existing and programmed `KonnectGatewayControlPlane` with the name `cp` in the `default` namespace.
@@ -222,13 +224,13 @@ At this point you can see the plugin is attached to the service in {{ site.konne
 
 You can also check the `KongPluginBinding` resource by running.
 
-```terminal
+```bash
 kubectl get kongpluginbinding
 ```
 
 You can see the created `KongPluginBinding` like this:
 
-```terminal
+```bash
 NAME                            PLUGIN-KIND   PLUGIN-NAME                  PROGRAMMED
 rate-limiting-minute-10-a0z1x   KongPlugin    rate-limiting-minute-10      True
 ```
