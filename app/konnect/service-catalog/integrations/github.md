@@ -34,9 +34,9 @@ Repository | A GitHub repository relating to the service
 
 ## Events
 
-The Eventing feature supports viewing the following event types for linked repositories from the {{site.konnect_product_name}} UI.
+This integration supports events.
 
-Event types: 
+You can view the following event types for linked repositories from the {{site.konnect_product_name}} UI:
 
 * Open pull request
 * Merge pull request
