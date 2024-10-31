@@ -3,7 +3,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
 ---
 {{ site.kgo_product_name }} can install Kong custom plugins packaged as container images. This guide shows how to package, install, and use a custom plugin in {{site.base_gateway}} instances managed by the {{ site.kgo_product_name }}.
 
-{% include md/kgo/prerequisites.md version=page.version release=page.release kongplugininstallation=true %}
+{% include md/kgo/prerequisites.md version=page.version release=page.release kongPluginInstallation=true %}
 
 {% include md/custom-plugin.md %}
 
