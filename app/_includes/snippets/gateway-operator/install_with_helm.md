@@ -15,7 +15,9 @@ Install {{ site.kgo_product_name }} with Helm:
 {% if include.mode == "konnect" %}
 
 ```bash
-helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }} --set env.ENABLE_CONTROLLER_KONNECT="true" --set kubernetes-configuration-crds.enabled="true"
+helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }} \
+--set env.ENABLE_CONTROLLER_KONNECT="true" \
+--set kubernetes-configuration-crds.enabled="true"
 ```
 
 {% endif %}
@@ -23,7 +25,8 @@ helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespa
 {% if include.mode == "aigateway" %}
 
 ```bash
-helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }} --set env.ENABLE_CONTROLLER_AIGATEWAY="true"
+helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }} \
+--set env.ENABLE_CONTROLLER_AIGATEWAY="true"
 ```
 
 {% endif %}

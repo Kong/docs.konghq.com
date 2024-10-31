@@ -10,7 +10,7 @@ To attach a {{ site.kgo_product_name }} data plane to {{ site.konnect_short_name
 To get the endpoint and the authentication details of the data plane:
 
 1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
-1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), choose the control plane, and click **New DataPlane Node**.
+1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager), choose the control plane, and click **New DataPlane Node**.
 1. In the **Create a Data Plane Node** page select *Kubernetes* as the **Platform** and choose assign it a name.
 1. Create a namespace named `kong` in the Kubernetes cluster:
 
@@ -101,7 +101,7 @@ To get the endpoint and the authentication details of the data plane:
    1. `REGION`:  Find the value in the bottom left corner of the screen.
    1. `HOSTNAME`:  The server you are connected to (e.g. `konghq.tech`, `konghq.com`).
 
-1. In the following manifest, replace the placeholders for `CP_ID`, `REGION`, and `HOSTNAME` with the values you just noted, and deploy it with `kubectl apply`:
+2. Now, create a [`KonnectExtension` resource](/gateway-operator/{{ page.release }}/reference/custom-resources#konnectextension). In the following manifest, replace the placeholders for `CP_ID`, `REGION`, and `HOSTNAME` with the values you just noted, and deploy it with `kubectl apply`:
 
    ```yaml
     echo '
@@ -128,7 +128,7 @@ To get the endpoint and the authentication details of the data plane:
     konnectextension.gateway-operator.konghq.com/example-konnect-config created
     ```
 
-1. Deploy your data plane that references such a `KonnectExtension` with `kubectl apply`:
+3. Deploy your data plane that references such a `KonnectExtension` with `kubectl apply`:
 
     ```yaml
     echo '
