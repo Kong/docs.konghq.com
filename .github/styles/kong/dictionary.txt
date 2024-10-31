@@ -377,6 +377,7 @@ mimetype
 minifier
 minikube
 minio
+misconfigurations
 misconfigured
 Moesif
 MongoDB
