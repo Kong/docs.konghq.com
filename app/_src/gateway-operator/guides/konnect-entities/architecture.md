@@ -148,7 +148,7 @@ conditions:
   ...
 id: 7dcf6756-b2e7-4067-a19b-111111111111
 organizationID: 5ca26716-02f7-4430-9117-111111111111
-serverURL: https://eu.api.konghq.com
+serverURL: https://us.api.konghq.com
 ```
 
 These objects are defined under `konnect.konghq.com` API group.
@@ -179,5 +179,5 @@ You should see the following output:
 controlPlaneID: 7dcf6756-b2e7-4067-a19b-111111111111
 id: 7dcf6756-b2e7-4067-a19b-111111111111
 organizationID: 5ca26716-02f7-4430-9117-111111111111
-serverURL: https://eu.api.konghq.com
+serverURL: https://us.api.konghq.com
 ```

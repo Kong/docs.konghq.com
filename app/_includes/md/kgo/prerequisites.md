@@ -58,6 +58,17 @@ kubectl set env -n kong-system deployments/kgo-gateway-operator-controller-manag
 ```
 {% endif %}
 
+{%- if include.konnectcrds %}
+
+### Enable the Konnect CRD controllers
+
+As this guide uses the experimental Konnect CRDs feature, we need to explicitly enable it:
+
+```bash
+kubectl set env -n kong-system deployments/kgo-gateway-operator-controller-manager -c manager GATEWAY_OPERATOR_ENABLE_CONTROLLER_KONNECT="true"
+```
+{% endif %}
+
 {% if include.enterprise %}
 
 ### Enterprise License

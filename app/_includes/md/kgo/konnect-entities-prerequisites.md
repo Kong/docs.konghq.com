@@ -9,7 +9,7 @@
 ## Prerequisites
 {% endunless %}
 
-{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release kconf-crds=true %}
+{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release kconf-crds=true konnectcrds=true %}
 
 ### Create an access token in Konnect
 
@@ -37,7 +37,7 @@ metadata:
 spec:
   type: token
   token: kpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  serverURL: eu.api.konghq.com
+  serverURL: us.api.konghq.com
 ' | kubectl apply -f -
 ```
 {% endnavtab %}
@@ -56,7 +56,7 @@ spec:
   type: secretRef
   secretRef:
     name: konnect-api-auth-secret
-  serverURL: eu.api.konghq.com
+  serverURL: us.api.konghq.com
 ---
 kind: Secret
 apiVersion: v1
@@ -82,7 +82,7 @@ The output should look like this:
 
 ```console
 NAME               VALID   ORGID                                  SERVERURL
-konnect-api-auth   True    <your-konnect-org-id>                  https://eu.api.konghq.tech
+konnect-api-auth   True    <your-konnect-org-id>                  https://us.api.konghq.tech
 ```
 
 {% if include.with-control-plane %}
