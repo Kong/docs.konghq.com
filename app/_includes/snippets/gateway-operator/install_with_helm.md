@@ -12,32 +12,13 @@ helm repo update kong
 
 Install {{ site.kgo_product_name }} with Helm:
 
-{% if include.mode == "konnect" %}
-
 ```bash
-helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }} \
---set env.ENABLE_CONTROLLER_KONNECT="true" \
---set kubernetes-configuration-crds.enabled="true"
+helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }}{% if include.kconfCRDs %} \
+  --set kubernetes-configuration-crds.enabled=true{% endif %}{% if include.konnectEntities %} \
+  --set env.enable_controller_konnect=true{% endif %}{% if include.aiGateway %} \
+  --set env.enable_controller_aigateway=true{% endif %}{% if include.kongPluginInstallation %} \
+  --set env.enable_controller_kongplugininstallation=true{% endif %}
 ```
-
-{% endif %}
-
-{% if include.mode == "aigateway" %}
-
-```bash
-helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }} \
---set env.ENABLE_CONTROLLER_AIGATEWAY="true"
-```
-
-{% endif %}
-
-{% if include.mode == "default" %}
-
-```bash
-helm upgrade --install kgo kong/gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }}
-```
-
-{% endif %}
 
 You can wait for the operator to be ready using `kubectl wait`:
 

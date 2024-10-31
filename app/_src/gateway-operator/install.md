@@ -6,4 +6,4 @@ title: Install
 
 [kgochart]: https://github.com/Kong/charts/tree/main/charts/gateway-operator
 
-{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release mode="default" %}
+{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release %}
