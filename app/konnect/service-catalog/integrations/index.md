@@ -10,7 +10,7 @@ Integrations are applications - either {{site.konnect_short_name}}-internal appl
 When enabled, an integration gives you and your teams the ability to:
 * Discover new resources
 * Create new services based on existing resources
-* View key events associated with the integration directly in the event tab in {{site.konnect_short_name}}. 
+* View key events associated with the integration directly in the event tab in {{site.konnect_short_name}}
 
 ## Integrations
 
