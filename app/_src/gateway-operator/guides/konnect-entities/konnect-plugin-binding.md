@@ -12,7 +12,9 @@ with-control-plane=true %}
 
 The `KongPluginBinding` is the CRD used to manage the binding relationship between plugins and attached {{site.konnect_short_name}} entities, including services, routes, consumers, and consumer groups, or a supported combination of these entities.
 
-It has two parts for the binding description in its specification: `spec.pluginRef` to refer to a `KongPlugin` resource which contains the plugin name and configuration of the plugin, and `spec.targets` to refer to the entity or combination of entities that the plugin attached to.
+This CRD has two parts for the binding description in its specification: 
+* `spec.pluginRef`: Refers to a `KongPlugin` resource which contains the plugin name and configuration of the plugin.
+* `spec.targets`: Refers to the entity or combination of entities that the plugin is attached to.
 The `spec.controlPlaneRef` refers to the {{site.konnect_product_name}} control plane this `KongPluginBinding` is associated with.
 
 ## Using an unmanaged `KongPluginBinding`
@@ -82,8 +84,8 @@ Then the plugin will be successfully attached to the service in {{ site.konnect_
 
 ### Attaching plugins to multiple entities
 
-{{ site.kgo_product_name }} also supports to attach plugins to combination of multiple entities by `KongPluginBinding`.
-Supported combinations includes:
+{{ site.kgo_product_name }} also supports attaching plugins to a combination of entities by `KongPluginBinding`.
+Supported combinations include:
 
 * `Service` and `Route`
 * `Service` and `Consumer`
