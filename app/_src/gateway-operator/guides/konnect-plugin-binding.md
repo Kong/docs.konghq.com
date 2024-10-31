@@ -211,7 +211,7 @@ NAME                            PLUGIN-KIND   PLUGIN-NAME                  PROGR
 rate-limiting-minute-10-a0z1x   KongPlugin    rate-limiting-minute-10      True
 ```
 
-#### Attaching Plugins to Multiple Entities
+#### Attaching plugins to multiple entities
 
 Similar to those introduced above, you can also attach a plugin to multiple entities by configuring annotations of attached entities. If a plugin appears in the `konghq.com/plugins` annotation of multiple entities, a `KongPluginBinding` will be created for the binding relationship between the plugin and the combination of these entities. Taking the example above where a plugin is attached to a service and a consumer:
 
