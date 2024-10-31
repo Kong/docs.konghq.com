@@ -8,6 +8,7 @@ Amal
 Amberflo
 apiVersion
 Arya
+auditability
 Autonegotiation
 autoscale
 autoscales
