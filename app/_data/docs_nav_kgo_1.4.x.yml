@@ -129,6 +129,8 @@ items:
             url: /guides/konnect-entities/dpcertificate/
           - text: Tagging and Labeling
             url: /guides/konnect-entities/tagging-and-labeling/
+          - text: FAQ
+            url: /guides/konnect-entities/faq/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:

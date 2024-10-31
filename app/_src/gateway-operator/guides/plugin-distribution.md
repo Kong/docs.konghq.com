@@ -81,7 +81,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
    {:.note}
     > The `KongPluginInstallation` resource creates a `ConfigMap` with the plugin content. Additional `ConfigMap`s are created when a plugin is referenced by other resources. The operator automatically manages the lifecycle of all these `ConfigMap`s.
 
-4. Make the plugin available in a `Gateway` resource by referencing it in the `spec.pluginsToInstall` field of the `GatewayConfiguration` resource.
+4. Make the plugin available in a `Gateway` resource by referencing it in the `spec.dataPlaneOptions.spec.pluginsToInstall` field of the `GatewayConfiguration` resource.
    Plugins can be referenced across namespaces without any additional configuration.
 
    ```yaml
@@ -144,48 +144,8 @@ title: Kong custom plugin distribution with KongPluginInstallation
 
 5. Deploy an example service and expose it by configuring `HTTPRoute` with the custom plugin:
 
-   Example service:
-
-   ```yaml
-   echo '
-   apiVersion: v1
-   kind: Service
-   metadata:
-     name: echo
-   spec:
-     ports:
-       - protocol: TCP
-         name: http
-         port: 80
-         targetPort: http
-     selector:
-       app: echo
-   ---
-   apiVersion: apps/v1
-   kind: Deployment
-   metadata:
-     name: echo
-   spec:
-     replicas: 1
-     selector:
-       matchLabels:
-         app: echo
-     template:
-       metadata:
-         labels:
-           app: echo
-       spec:
-         containers:
-           - name: echo
-             image: registry.k8s.io/e2e-test-images/agnhost:2.40
-             command:
-               - /agnhost
-               - netexec
-               - --http-port=8080
-             ports:
-               - containerPort: 8080
-                 name: http
-   ' | kubectl apply -f -
+   ```bash
+   kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
    ```
 
    Next, add the `HTTPRoute` with the custom plugin. The configuration of the plugin is provided with the `KongPlugin` CRD, where the 
@@ -220,7 +180,7 @@ title: Kong custom plugin distribution with KongPluginInstallation
          backendRefs:
            - name: echo
              kind: Service
-             port: 80
+             port: 1027
    ' | kubectl apply -f -
    ```
 
