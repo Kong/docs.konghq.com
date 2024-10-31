@@ -129,6 +129,8 @@ items:
             url: /guides/konnect-entities/dpcertificate/
           - text: Tagging and Labeling
             url: /guides/konnect-entities/tagging-and-labeling/
+          - text: Managing Plugin Bindings by CRD
+            url: /guides/konnect-entities/konnect-plugin-binding/
           - text: FAQ
             url: /guides/konnect-entities/faq/
   - title: Reference

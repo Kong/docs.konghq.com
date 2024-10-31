@@ -48,7 +48,6 @@ spec:
   ' | kubectl apply -f -
 ```
 
-
 {% include md/kgo/check-condition.md name='dp-cert' kind='KongDataPlaneClientCertificate' %}
 
 At this point, you should see the Data Plane Client Certificate in the Gateway Manager UI.
