@@ -22,7 +22,7 @@ To get the endpoint and the authentication details of the data plane:
 1. Create a Kubernetes secret containing the cluster certificate:
 
     ```bash
-    kubectl create secret tls konnect-client-tls -n kong --cert=./tls.crt --key=.`/tls.key
+    kubectl create secret tls konnect-client-tls -n kong --cert=./tls.crt --key=./tls.key
     ```
 
 {% if_version lte:1.3.x %}
