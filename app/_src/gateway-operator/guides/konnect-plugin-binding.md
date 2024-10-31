@@ -2,17 +2,17 @@
 title: Managing Plugin Bindings by CRD
 ---
 
-The `KongPluginBinding` is the CRD used to manage binding relationship between plugins and attached Konnect entities, including services, routes, consumers and consumer groups, or supported combination of these entities.
+The `KongPluginBinding` is the CRD used to manage the binding relationship between plugins and attached Konnect entities, including services, routes, consumers, and consumer groups, or a supported combination of these entities.
 
 ### Introduction of `KongPluginBinding` CRD
 
-A `KongPluginBinding` resource describes a binding relationship of a plugin and an attached entity or a combination of possible entities. It has two parts for describing the binding in its specification: `spec.pluginRef` to refer to a `KongPlugin` resource which contains the plugin name and configuration of the plugin, and `spec.targets` to refer to the entity or combination of entities that the plugin attached to. The `spec.controlPlaneRef` refers to the Konnect ControlPlane this KongPluginBinding is associated with.
+A `KongPluginBinding` resource describes a binding relationship between a plugin and an attached entity or a combination of possible entities. It has two parts for the binding description in its specification: `spec.pluginRef` to refer to a `KongPlugin` resource which contains the plugin name and configuration of the plugin, and `spec.targets` to refer to the entity or combination of entities that the plugin attached to. The `spec.controlPlaneRef` refers to the {{site.konnect_product_name}} control plane this `KongPluginBinding` is associated with.
 
 ### Using an Unmanaged `KongPluginBinding`
 
-You can directly create a `KongPluginBinding` to bind your plugin to a Konnect entity. Assume that you have an existing and programmed `KonnectGatewayControlPlane` with name `cp` in the `default` namespace.
+You can directly create a `KongPluginBinding` to bind your plugin to a Konnect entity. Assume that you have an existing and programmed `KonnectGatewayControlPlane` with the name `cp` in the `default` namespace.
 
-First, Create a service and a plugin by `KongService` and `KongPlugin` CRD:
+First, create a service and a plugin by `KongService` and `KongPlugin` CRD:
 
 ```bash
 # Create a KongService for a service in Konnect
@@ -75,9 +75,16 @@ spec:
 
 Then the plugin will be successfully attached to the service in {{ site.konnect_short_name }}.
 
-#### Attaching Plugins to Multiple Entities
+#### Attaching plugins to multiple entities
 
-{{ site.kgo_product_name }} also supports to attach plugins to combination of multiple entities by `KongPluginBinding`. Supported combinations includes: `Service` and `Route`; `Service` and `Consumer`; `Service` and `ConsumerGroup`; `Service`, `Route` and `Consumer`; `Service`, `Route` and `ConsumerGroup`; `Consumer` and `ConsumerGroup`. For example, we can configure a `rate-limiting` plugin to a service and a consumer like this:
+{{ site.kgo_product_name }} also supports to attach plugins to combination of multiple entities by `KongPluginBinding`. Supported combinations includes: 
+* `Service` and `Route`; 
+* Service` and `Consumer`
+* Service` and `ConsumerGroup`
+* `Service`, `Route` and `Consumer`
+* `Service`, `Route` and `ConsumerGroup` 
+* `Consumer` and `ConsumerGroup`. 
+For example, we can configure a `rate-limiting` plugin to a service and a consumer like this:
 
 Create a service:
 
@@ -158,11 +165,11 @@ spec:
 ' | kubectl apply -f - 
 ```
 
-### Using Annotations to Bind Plugins to Other Entities
+### Using annotations to bind plugins to other entities
 
 You can also use the `konghq.com/plugins` annotation to attach plugins to other entities like what we used in {{ site.kic_product_name }}. The {{ site.kgo_product_name }} will create `KongPluginBinding` resources for the annotations and configure them in {{ site.konnect_short_name }}.
 
-For the example above, you can create a `KongPlugin` and a `KongService` like this:
+In the example above, you can create a `KongPlugin` and a `KongService` like this:
 
 ```bash
 echo '
@@ -206,7 +213,7 @@ rate-limiting-minute-10-a0z1x   KongPlugin    rate-limiting-minute-10      True
 
 #### Attaching Plugins to Multiple Entities
 
-Similar to introduced above, you can also attach a plugin to multiple entities by configuring annotations of attached entities. If a plugin appeared in the `konghq.com/plugins` annotation of multiple entities, a `KongPluginBinding` will be created for the binding relationship between the plugin and the combination of these entities. Taking the example above where a plugin is attached to a service and a consumer:
+Similar to those introduced above, you can also attach a plugin to multiple entities by configuring annotations of attached entities. If a plugin appears in the `konghq.com/plugins` annotation of multiple entities, a `KongPluginBinding` will be created for the binding relationship between the plugin and the combination of these entities. Taking the example above where a plugin is attached to a service and a consumer:
 
 ```bash
 echo '
