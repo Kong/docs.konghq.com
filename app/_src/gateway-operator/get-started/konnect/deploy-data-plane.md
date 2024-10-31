@@ -11,19 +11,18 @@ To get the endpoint and the authentication details of the data plane:
 
 1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
 1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager), choose the control plane, and click **New DataPlane Node**.
-1. In the **Create a Data Plane Node** page select *Kubernetes* as the **Platform** and choose assign it a name.
+1. In the **Create a Data Plane Node** page select *Kubernetes* as the **Platform**.
+1. Click **Generate Certificate**  in step 3.
+1. Save the contents of **Cluster Certificate** in a file named `tls.crt`. Save the contents of **Cluster Key** in a file named `tls.key`.
 1. Create a namespace named `kong` in the Kubernetes cluster:
 
    ```bash
    kubectl create namespace kong
    ```
-
-1. Click **Generate Certificate**  in step 3.
-1. Save the contents of **Cluster Certificate** in a file named `tls.crt`. Save the contents of **Cluster Key** in a file named `tls.key`.
 1. Create a Kubernetes secret containing the cluster certificate:
 
     ```bash
-    kubectl create secret tls konnect-client-tls -n kong --cert=/{PATH_TO_FILE}/tls.crt --key=/{PATH_TO_FILE}/tls.key
+    kubectl create secret tls konnect-client-tls -n kong --cert=./tls.crt --key=.`/tls.key
     ```
 
 {% if_version lte:1.3.x %}
