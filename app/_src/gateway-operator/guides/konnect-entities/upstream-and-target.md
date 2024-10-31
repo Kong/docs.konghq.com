@@ -1,5 +1,5 @@
 ---
-title: Upstream and Target 
+title: Upstream and Target
 ---
 
 In this guide you'll learn how to use the `KongUpstream` and `KongTarget` custom resources to

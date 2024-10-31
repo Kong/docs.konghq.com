@@ -14,7 +14,7 @@ kubectl get {{ kind | downcase }} {{ name }} -o=jsonpath='{.status.conditions[?(
 
 The output should look similar to this:
 
-```console
+```json
 {
   "observedGeneration": {{ generation }},
   "reason": "{{ reason }}",

@@ -137,22 +137,6 @@ spec:
   ' | kubectl apply -f -
 ```
 
-You can verify the `KongKey` was successfully associated with the `KongKeySet` by checking its `KeySetRefValid`
-condition.
-
-```shell
-kubectl get kongkey key -o=jsonpath='{.status.conditions}' | jq '.[] | select(.type == "KeySetRefValid")'
-```
-
-The output should look similar to this:
-
-```console
-{
-  "observedGeneration": 2,
-  "reason": "Valid",
-  "status": "True",
-  "type": "KeySetRefValid"
-}
-```
+{% include md/kgo/check-condition.md name='key' kind='KongKey' conditionType='KeySetRefValid' reason='Valid' %}
 
 At this point, you should see the key associated with the key set in the Gateway Manager UI.

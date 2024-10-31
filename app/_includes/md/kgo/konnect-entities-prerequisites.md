@@ -2,7 +2,7 @@
 <details class="custom" markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you create any Konnect entity, make sure you've <u>installed {{site.kgo_product_name}} and created a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and `KonnectGatewayControlPlane`{% endif %}</u> in your cluster.</p>
+  <p style="cursor: pointer">Before you create any Konnect entity, make sure you've <u>installed {{site.kgo_product_name}} and created a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %}</u> in your cluster.</p>
 </blockquote>
 </summary>
 
