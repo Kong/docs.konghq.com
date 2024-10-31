@@ -90,8 +90,8 @@ Supported combinations include:
 * `Service` and `Route`
 * `Service` and `Consumer`
 * `Service` and `ConsumerGroup`
-* `Service`, `Route` and `Consumer`
-* `Service`, `Route` and `ConsumerGroup`
+* `Service`, `Route`, and `Consumer`
+* `Service`, `Route`, and `ConsumerGroup`
 * `Consumer` and `ConsumerGroup`
 
 For example, we can configure a `rate-limiting` plugin to a service and a consumer like this:
