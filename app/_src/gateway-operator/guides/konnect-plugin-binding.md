@@ -79,8 +79,8 @@ Then the plugin will be successfully attached to the service in {{ site.konnect_
 
 {{ site.kgo_product_name }} also supports to attach plugins to combination of multiple entities by `KongPluginBinding`. Supported combinations includes: 
 * `Service` and `Route`; 
-* Service` and `Consumer`
-* Service` and `ConsumerGroup`
+* `Service` and `Consumer`
+* `Service` and `ConsumerGroup`
 * `Service`, `Route` and `Consumer`
 * `Service`, `Route` and `ConsumerGroup` 
 * `Consumer` and `ConsumerGroup`. 
