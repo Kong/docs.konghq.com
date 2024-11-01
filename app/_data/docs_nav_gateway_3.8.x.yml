@@ -392,7 +392,7 @@ items:
             url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
             generate: false
             absolute_url: true
-          - text: Gemini
+          - text: Vertex/Gemini
             url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
             generate: false
             absolute_url: true
