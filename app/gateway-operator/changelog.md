@@ -7,7 +7,7 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 ## 1.4.0
 
-**Release Date** TBA
+**Release Date** 2024/10/31
 
 ### Added
 
