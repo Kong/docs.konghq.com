@@ -1,5 +1,5 @@
 ---
-nav_title: Gemini
+nav_title: "Gemini/Vertex"
 title: Set up AI Proxy Advanced with Gemini
 ---
 

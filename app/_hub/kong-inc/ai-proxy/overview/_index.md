@@ -215,7 +215,7 @@ See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/
   * [Anthropic](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/)
   * [Mistral](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/)
   * [Llama2](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/)
-  * [Gemini](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/)
+  * [Gemini/Vertex](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/)
   * [Amazon Bedrock](/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/)
 
 ### All AI Gateway plugins
