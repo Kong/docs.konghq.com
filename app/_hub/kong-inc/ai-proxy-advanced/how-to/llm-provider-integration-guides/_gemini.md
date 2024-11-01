@@ -1,17 +1,17 @@
 ---
-nav_title: Gemini
-title: Set up AI Proxy with Gemini
+nav_title: "Gemini/Vertex"
+title: Set up AI Proxy Advanced with Gemini
 ---
 
-This guide walks you through setting up the AI Proxy plugin with [Gemini](https://gemini.google.com/).
+This guide walks you through setting up the AI Proxy Advanced plugin with [Gemini](https://gemini.google.com/).
 
-For all providers, the Kong AI Proxy plugin attaches to route entities.
+For all providers, the Kong AI Proxy Advanced plugin attaches to route entities.
 
 ## Prerequisites
 * [{{site.base_gateway}} is installed and running](/gateway/latest/get-started/)
 * [Create or retrieve an API key](https://ai.google.dev/gemini-api/docs/api-key) on the Google Cloud API Credentials Page to access Google’s AI services
 
-## Configure the AI Proxy plugin
+## Configure the AI Proxy Advanced plugin
 
 1. Create a service in {{site.base_gateway}} that will represent the Google Gemini API:
 ```sh
@@ -25,16 +25,32 @@ curl -i -X POST http://localhost:8001/routes \
     --data "paths[]=/gemini" \
     --data "service.id=$(curl -s http://localhost:8001/services/gemini-service | jq -r '.id')"
 ```
-1. Use the Kong Admin API to configure the AI Proxy Plugin to route requests to Google Gemini:
+1. Use the Kong Admin API to configure the AI Proxy Advanced plugin to route requests to Google Gemini:
 ```sh
 curl -i -X POST http://localhost:8001/services/gemini-service/plugins \
---data 'name=ai-proxy' \
---data 'config.auth.param_name=key' \
---data 'config.auth.param_value=<GEMINI_API_TOKEN>' \
---data 'config.auth.param_location=query' \
---data 'config.route_type=llm/v1/chat' \
---data 'config.model.provider=gemini' \
---data 'config.model.name=gemini-1.5-flash'
+--header "accept: application/json" \
+--header "Content-Type: application/json" \
+--data '
+{
+  "name": "ai-proxy-advanced",
+  "config": {
+    "targets": [
+      {
+        "route_type": "llm/v1/chat",
+        "auth": {
+          "param_name": "key",
+          "param_value": "<GEMINI_API_TOKEN>",
+          "param_location": "query"
+        },
+        "model": {
+          "provider": "gemini",
+          "name": "gemini-1.5-flash"
+        }
+      }
+    ]
+  }
+}
+'
 ```
 
 Be sure to replace `GEMINI_API_TOKEN` with your API token.

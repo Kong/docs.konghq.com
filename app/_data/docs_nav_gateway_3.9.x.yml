@@ -392,14 +392,12 @@ items:
             url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
             generate: false
             absolute_url: true
-      - text: AI Platform Integration Guides
-        items:
-          - text: Gemini
-            url: /hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/gemini/
+          - text: Vertex/Gemini
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
             generate: false
             absolute_url: true
           - text: Amazon Bedrock
-            url: /hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/bedrock/
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
             generate: false
             absolute_url: true
       - text: AI Gateway Analytics
