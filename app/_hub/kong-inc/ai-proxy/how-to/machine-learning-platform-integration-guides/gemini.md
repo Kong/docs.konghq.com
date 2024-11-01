@@ -29,9 +29,8 @@ curl -i -X POST http://localhost:8001/routes \
 ```sh
 curl -i -X POST http://localhost:8001/services/gemini-service/plugins \
 --data 'name=ai-proxy' \
---data 'config.auth.param_name=key' \
---data 'config.auth.param_value=<GEMINI_API_TOKEN>' \
---data 'config.auth.param_location=query' \
+--data 'config.auth.header_name=x-goog-api-key' \
+--data 'config.auth.header_value=<GEMINI_API_TOKEN>' \
 --data 'config.route_type=llm/v1/chat' \
 --data 'config.model.provider=gemini' \
 --data 'config.model.name=gemini-1.5-flash'
