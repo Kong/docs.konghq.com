@@ -15,7 +15,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-date">November<br>04</div>
 <div class="changelog-entry">
 <div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/swaggerhub-integration-in-service-catalog-4gP88uzg">Enhanced API Request Filtering Experience</a>
+<a href="https://app.getbeamer.com/kongreleases/en/enhanced-api-request-filtering-experience">Enhanced API Request Filtering Experience</a>
 </div>
 <div class="changelog-description">We're excited to announce two important updates to our API Requests filtering capabilities:
 </div>
@@ -24,6 +24,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <li>The API request slideout window now allows users to add filters directly by clicking on displayed metadata items.</li>
 </ul>
 <div>These features work together to significantly streamline your investigation process. By providing more granular filtering options and an intuitive, one-click filter addition from the context of individual requests, you can quickly narrow down to the most relevant API requests.
+</div>
+<br>
+<div><b>Deprecation Notice:</b>
+We have deprecated the old method of filtering requests via the API in favor of the new, more powerful filter options, which are now included in the updated <a href="https://docs.konghq.com/konnect/api/api-requests/latest/">API endpoint</a>. While both old and new filtering methods will continue to work, we recommend users transition to the new fields so that they can leverage the new enhanced functionality.
 </div>
 </div>
 </div>
