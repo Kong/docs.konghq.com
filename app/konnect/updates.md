@@ -9,6 +9,24 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">November<br>04</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/swaggerhub-integration-in-service-catalog-4gP88uzg">Enhanced API Request Filtering Experience</a>
+</div>
+<div class="changelog-description">We're excited to announce two important updates to our API Requests filtering capabilities:
+</div>
+<ul>
+<li>Konnect users can now filter API requests by any attribute, including HTTP verb, IP, path, and more.</li>
+<li>The API request slideout window now allows users to add filters directly by clicking on displayed metadata items.</li>
+</ul>
+<div>These features work together to significantly streamline your investigation process. By providing more granular filtering options and an intuitive, one-click filter addition from the context of individual requests, you can quickly narrow down to the most relevant API requests.
+</div>
+</div>
+</div>
 
 ## October 2024
 
