@@ -1,6 +1,6 @@
 ---
 nav_title: Overview
-title: Overview
+title: Impart Security
 ---
 
 Impart's API Protection and WAF platform delivers comprehensive protection for APIs, microservices, and serverless applications in cloud-native environments.
