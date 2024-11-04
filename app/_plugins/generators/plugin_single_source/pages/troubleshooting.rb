@@ -4,7 +4,7 @@ module PluginSingleSource
   module Pages
     class Troubleshooting < Base
       def page_title
-        'Troubleshooting'
+        @page_title ||= I18n.t('hub.sidebar.troubleshooting', locale: translate_to)
       end
 
       def breadcrumb_title

@@ -20,13 +20,15 @@
     </script>
     <!-- OneTrust Cookies Consent Notice end for konghq.com -->
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NL48VKT');</script>
-    <!-- End Google Tag Manager -->
+    {% if site.gtm_id != empty %}
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer', '{{ site.gtm_id }}');</script>
+      <!-- End Google Tag Manager -->
+    {% endif %}
   {% endif %}
 
   <meta charset="utf-8" />
@@ -42,7 +44,7 @@
   <meta property="og:url" content="{{ site.links.share }}" />
   <meta property="og:description" content="{{ page_description }}" />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content="{{ site.locale | replace: '-', '_' }}" />
   <meta
     property="og:image"
     content="{{ site.links.web }}/assets/images/share.png"
@@ -91,8 +93,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
 
   {% if include.canonical_url %}
-    <link rel="canonical" href="{{site.links.web}}{{ include.canonical_url }}" />
+    <link rel="canonical" href="{{ site.links.web }}{{ include.canonical_url }}" />
   {% endif %}
+
+  <link rel="alternate" hreflang="x-default" href="{{ site.links.locales['en'] }}">
+  <link rel="alternate" hreflang="ja" href="{{ site.links.locales['ja'] }}">
 
   {% if include.seo_noindex %}
     <meta name="robots" content="follow,noindex" />

@@ -1,0 +1,16 @@
+ja-JP:
+  gateway:
+    - 3.7.x
+
+  plugins:
+    kong-inc:
+      - key-auth
+      - cors
+      - rate-limiting
+      - acl
+      - basic-auth
+      - openid-connect
+      - request-transformer
+      - jwt
+      - proxy-cache
+      - prometheus

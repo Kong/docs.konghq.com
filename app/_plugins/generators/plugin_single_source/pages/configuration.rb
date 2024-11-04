@@ -3,8 +3,6 @@
 module PluginSingleSource
   module Pages
     class Configuration < Base
-      TITLE = 'Configuration'
-
       def canonical_url
         "#{base_url}configuration/"
       end
@@ -18,15 +16,12 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.metadata['name']} #{TITLE}"
+        @page_title ||= I18n.t('hub.page_title.configuration', locale: translate_to,
+                                                               plugin_name: @release.metadata['name'])
       end
 
       def dropdown_url
         @dropdown_url ||= "#{base_url}VERSION/configuration/"
-      end
-
-      def source_file
-        @file.gsub('app/', '')
       end
 
       def content
@@ -34,11 +29,11 @@ module PluginSingleSource
       end
 
       def nav_title
-        'Configuration reference'
+        @nav_title ||= I18n.t('hub.sidebar.configuration', locale: translate_to)
       end
 
       def breadcrumb_title
-        TITLE
+        @breadcrumb_title ||= I18n.t('hub.breadcrumbs.configuration', locale: translate_to)
       end
 
       def icon; end
@@ -47,7 +42,7 @@ module PluginSingleSource
         if @release.vendor == 'kong-inc'
           kong_edit_link
         elsif @release.schema
-          "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/#{@release.schema.file_path}"
+          "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/#{source_file}"
         end
       end
 

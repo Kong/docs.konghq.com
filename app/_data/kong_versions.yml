@@ -306,6 +306,11 @@
   release: 1.3.x
   releaseDate: "2024-06-24"
   endOfLifeDate: "2025-06-24"
+- edition: gateway-operator
+  version: 1.4.0
+  release: 1.4.x
+  releaseDate: "2024-10-31"
+  endOfLifeDate: "2025-10-31"
   latest: true
 - edition: mesh
   version: 1.2.6

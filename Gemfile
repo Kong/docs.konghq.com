@@ -2,17 +2,19 @@
 
 source 'https://rubygems.org'
 gem 'jekyll'
-gem 'jekyll-include-cache'
-gem 'jekyll-redirect-from'
-gem 'jekyll-generator-single-source'
 gem 'kramdown-parser-gfm'
 gem 'liquid-c'
 gem 'rouge', '4.4.0'
 gem 'activesupport'
 gem 'nokogiri'
-gem 'jekyll-kuma-plugins', path: './app/_src/.repos/kuma/jekyll-kuma-plugins'
 gem 'jekyll-vite'
+gem 'i18n'
 
+group :jekyll_plugins do
+  gem 'jekyll-include-cache'
+  gem 'jekyll-redirect-from'
+  gem 'jekyll-generator-single-source'
+end
 
 group :development do
   gem 'pry'

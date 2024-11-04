@@ -14,7 +14,6 @@ support_url: https://docs.datadome.co/docs/support
 dbless_compatible: yes
 
 enterprise: false
-techpartner: false
 konnect: true
 
 kong_version_compatibility:
