@@ -658,6 +658,8 @@ components:
           $ref: '#/components/schemas/StringFieldFilter'
         publish_status:
           $ref: '#/components/schemas/StringFieldFilter'
+        gateway_service_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
       title: APIProductVersionFilterParameters
     SortQuery:
       description: |
@@ -2142,6 +2144,21 @@ components:
       required:
         - checked
         - type
+    UuidFieldFilter:
+      description: Filters on the given UUID field value by exact match.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      title: UuidFieldFilter
+      x-examples:
+        example-1: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-2:
+          eq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-3:
+          oeq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-4:
+          neq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
     ConflictError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
