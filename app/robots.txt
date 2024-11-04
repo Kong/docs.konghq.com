@@ -6,7 +6,10 @@ User-agent: *
 {% comment %}We disallow deck pre-1.7 as canonical generation doesn't work for non-semver releases{% endcomment %}
 Disallow: /deck/pre-1.7*
 
-Sitemap: {{site.links.web}}/sitemap.xml
+{% for sitemap in site.data['robots']['sitemaps'] %}
+Sitemap: {{ sitemap }}
+{% endfor %}
+
 {% else %}
 User-agent: *
 Disallow: /

@@ -28,6 +28,9 @@ links:
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
   learn: https://education.konghq.com # kong academy
   archive: https://legacy-gateway--kongdocs.netlify.app
+  locales:
+    ja: https://docs.jp.konghq.com
+    en: https://docs.konghq.com
 repos:
   kong: https://github.com/Kong/kong
   docs: https://github.com/Kong/docs.konghq.com
@@ -90,7 +93,6 @@ plugins:
   - jekyll-redirect-from
   - jekyll-include-cache
   - jekyll-generator-single-source
-  - jekyll-kuma-plugins
   - jekyll/vite
 
 defaults:
@@ -191,7 +193,6 @@ hub-filters:
   categories:
     *plugin_categories
 
-
 # product name vars
 ee_product_name: Kong Gateway Enterprise
 ce_product_name: Kong Gateway (OSS)
@@ -228,3 +229,10 @@ mesh_install_archive_name: kong-mesh
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
+
+locale: en-US
+
+# Analytics
+gtm_id: 'GTM-NL48VKT'
+vwo_account_id: '125292'
+segment_key: 'X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ'

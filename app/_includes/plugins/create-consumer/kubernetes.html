@@ -1,6 +1,6 @@
 {% if include.hub_example.auth_plugin? %}
 
-As this is an auth plugin, you need to create a credential for the plugin. Create a secret with the following command:
+{% t _includes.plugins.create-consumer.kubernetes.auth_plugin_description %}
 
 ```bash
 echo '
@@ -16,7 +16,7 @@ stringData:
 ' | kubectl apply -f -
 ```
 
-Finally, create a consumer that will use this credential:
+{% t _includes.plugins.create-consumer.kubernetes.create_a_consumer %}
 
 ```bash
 echo "apiVersion: configuration.konghq.com/v1
@@ -31,7 +31,8 @@ credentials:
 " | kubectl apply -f -
 ```
 
-You can now authenticate as <code>alex</code> when making your request. See the <a href="/hub/kong-inc/{{ include.hub_example.plugin_name }}{{ include.hub_example.auth_next_steps_url }}">documentation</a> for more information.
+{% capture link %}<a href="/hub/kong-inc/{{ include.hub_example.plugin_name }}{{ include.hub_example.auth_next_steps_url }}">{% t _includes.plugins.create-consumer.kubernetes.documentation %}</a>{% endcapture %}
+{% t _includes.plugins.create-consumer.kubernetes.you_can_now_authenticate username="alex" documentation_link=link %}
 
 {% else %}
 {% endif %}

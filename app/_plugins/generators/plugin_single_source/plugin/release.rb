@@ -20,12 +20,7 @@ module PluginSingleSource
       end
 
       def metadata
-        @metadata ||= SafeYAML.load(
-          Utils::SafeFileReader.read(
-            file_name: Utils::SingleSourceFileFinder.find(file_path: "#{pages_source_path}/_metadata/", version:),
-            source_path: pages_source_path
-          )
-        ) || {}
+        @metadata ||= Metadata.new(release: self, site:).metadata
       end
 
       def latest?
@@ -57,8 +52,8 @@ module PluginSingleSource
 
         @configuration ||= Pages::Configuration.new(
           release: self,
-          file: schema.file_path,
-          source_path: pages_source_path
+          file: schema.relative_file_path,
+          source_path: ''
         )
       end
 
@@ -67,8 +62,8 @@ module PluginSingleSource
 
         @configuration_examples ||= Pages::ConfigurationExamples.new(
           release: self,
-          file: schema.example_file_path,
-          source_path: pages_source_path
+          file: schema.example_file_path.gsub('app/', ''),
+          source_path: ''
         )
       end
 
@@ -116,11 +111,20 @@ module PluginSingleSource
       end
 
       def schema
-        @schema ||= Schemas::Base.make_for(vendor:, name:, version:)
+        @schema ||= Schemas::Base.make_for(vendor:, name:, version:, site:)
       end
 
       def enterprise_plugin?
         !!metadata['enterprise'] && !!!metadata['free']
+      end
+
+      def missing_translation?
+        return @missing_translation if defined? @missing_translation
+
+        @missing_translation = Jekyll::GeneratorSingleSource::GeneratorConfig
+                               .new(@site)
+                               .build_docs_nav(edition: 'gateway', release: Utils::Version.to_release(@version))
+                               .missing_translation?
       end
     end
   end
