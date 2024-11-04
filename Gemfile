@@ -13,7 +13,7 @@ gem 'i18n'
 group :jekyll_plugins do
   gem 'jekyll-include-cache'
   gem 'jekyll-redirect-from'
-  gem 'jekyll-generator-single-source', github: 'kong/jekyll-generator-single-source', branch: 'i18n-spike'
+  gem 'jekyll-generator-single-source'
 end
 
 group :development do

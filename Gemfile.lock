@@ -1,12 +1,3 @@
-GIT
-  remote: https://github.com/kong/jekyll-generator-single-source.git
-  revision: 8e4e5e4bcd8d198b295454ee3bef5ec69a53c6e6
-  branch: i18n-spike
-  specs:
-    jekyll-generator-single-source (0.0.14)
-      i18n (~> 1)
-      jekyll (>= 4.2, < 5.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,6 +88,9 @@ GEM
       safe_yaml (~> 1.0)
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
+    jekyll-generator-single-source (0.0.15)
+      i18n (~> 1)
+      jekyll (>= 4.2, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
     jekyll-redirect-from (0.16.0)
@@ -227,7 +221,7 @@ DEPENDENCIES
   foreman
   i18n
   jekyll
-  jekyll-generator-single-source!
+  jekyll-generator-single-source
   jekyll-include-cache
   jekyll-redirect-from
   jekyll-vite
