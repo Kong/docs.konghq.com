@@ -1,8 +1,20 @@
 ---
-title: Configure SSO for Dev Portal
+title: Configure generic SSO for Dev Portal
 content_type: how-to
 ---
 
+You can configure single sign-on (SSO) for {{site.konnect_short_name}} Dev Portal with OIDC. This allows developers to log in to Dev Portals by using their IdP credentials, without needing a separate login. This topic covers configuring SSO for use with various identity providers.
+
+If you want to configure Okta, please see the [Okta configuration guide](/konnect/dev-portal/okta-idp/).
+
+{% include_cached /md/konnect/generic-sso.md desc='Dev Portal' %}
+
+## Related links
+
+* [Configure generic SSO for a Konnect Org](/konnect/org-management/sso/)
+* [IdP SSO attribute mapping reference](/konnect/reference/sso)
+
+<!--
 You can configure single sign-on (SSO) for {{site.konnect_short_name}} Dev Portal with OIDC. This allows developers to log in to Dev Portals by using their SSO credentials. This guide provides information about how to configure SSO for Okta, Azure AD, and Auth0, but you can use IdPs other than the ones listed as long as they follow the OIDC standard for SSO.
 
 Keep the following in mind when configuring SSO for Dev Portal:
@@ -125,3 +137,4 @@ This table maps the {{site.konnect_short_name}} values to the corresponding IdP 
 | Client Secret | Azure client secret.| The **Client Secret** in your Okta application. | Your Auth0 application's **Client Secret** value. |
 
 You can test your configuration by navigating to the Dev Portal and using your IdP credentials to log in. 
+-->
