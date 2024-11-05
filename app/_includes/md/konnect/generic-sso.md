@@ -11,7 +11,7 @@
 {% navtabs %}
 {% navtab OIDC%}
 {% if include.desc == "Konnect Org" %}
-1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
+1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization** > **Settings**, and then click the **Authentication Scheme** tab.
 {% endif %}
 {% if include.desc == "Dev Portal" %}
 1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
@@ -57,7 +57,7 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
 * Keycloak
 
 {% if include.desc == "Konnect Org" %}
-1. Log in to {{site.konnect_saas}}, click {% konnect_icon organizations %} **Organization**, and then select **Auth Settings**.
+1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization** > **Settings**, and then click the **Authentication Scheme** tab.
 {% endif %}
 {% if include.desc == "Dev Portal" %}
 1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
