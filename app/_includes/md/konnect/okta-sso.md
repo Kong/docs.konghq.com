@@ -1,7 +1,8 @@
 <!-- used in the Dev Portal Okta SSO how to and the Org Okta SSO how to -->
 ## Prerequisites
-
+{% if include.desc == "Dev Portal" %}
 * Ensure that any users that need to use the Dev Portal SSO have been added to your IdP tenant
+{% endif %}
 * To set up Okta single sign-on (SSO) for {{site.konnect_short_name}}, you need access to an Okta admin account and a {{site.konnect_short_name}} admin account, which you will access concurrently.
 
 Optionally, if you want to use team mappings, you must configure Okta to include group attributes.
@@ -19,15 +20,17 @@ Optionally, if you want to use team mappings, you must configure Okta to include
 
     Leave this page open. You'll need the connection details here to configure your {{site.konnect_saas}} account.
 
+{% if include.desc == "Dev Portal" %}
 1. Optional: If you want to use group claims for Konnect [developer team mappings](/konnect/dev-portal/access-and-approval/add-teams/), click the **Sign On** tab in Okta for your application to [configure a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/main/#add-a-groups-claim-for-the-org-authorization-server) and configure the following fields:
 
     | Field | Value |
     | ---|--- |
     | Group claims type | Filter |
     | Group claims filter | `groups`, select **Matches regex** from the drop-down, then enter `.*` in the field.
+{% endif %}
 
-This claim tells Okta to reference a subset of Okta groups.
-In this case, the wildcard (`.*`) value tells Okta to make all groups available for team mapping.
+    This claim tells Okta to reference a subset of Okta groups.
+    In this case, the wildcard (`.*`) value tells Okta to make all groups available for team mapping.
 
     {:.important}
     > If the authorization server is pulling in additional groups from
@@ -173,6 +176,7 @@ Any changes to the mapped Okta groups on the Okta side are reflected in
 to align with the new group-to-team mapping.
 
 1. [Configure a custom authorization server](https://help.okta.com/en-us/content/topics/security/api-config-auth-server.htm). 
+    
     {:.important}
     > **Important:** Using the Okta API to set up group claims with a custom authorization server is an additional paid Okta feature.
 1. [Navigate to the Token Preview tab](https://help.okta.com/en-us/content/topics/security/api-config-test.htm) of your authorization server and configure the following:
