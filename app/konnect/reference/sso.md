@@ -54,6 +54,9 @@ Attribute mapping for KeyCloak configuration:
 | App Federation Metadata Url                 | `idp_metadata_url`       |
 
 {% endnavtab %}
+{% navtab Auth0 %}
+
+{% endnavtab %}
 {% endnavtabs %}
 
 ## Related links
