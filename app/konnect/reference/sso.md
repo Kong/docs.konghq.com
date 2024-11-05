@@ -62,4 +62,4 @@ Attribute mapping for KeyCloak configuration:
 ## Related links
 
 * [Configure generic SSO for a Konnect Org](/konnect/org-management/sso/)
-* [Configure generic SSO for Dev Portal](/konnect/dev-portal/sso/)
+* [Configure generic SSO for Dev Portal](/konnect/dev-portal/access-and-approval/sso/)

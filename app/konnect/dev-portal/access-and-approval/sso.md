@@ -3,7 +3,7 @@ title: Configure generic SSO for Dev Portal
 content_type: how-to
 ---
 
-You can configure single sign-on (SSO) for {{site.konnect_short_name}} Dev Portal with OIDC. This allows developers to log in to Dev Portals by using their IdP credentials, without needing a separate login. This topic covers configuring SSO for use with various identity providers. If you want to configure Okta, please see the [Okta configuration guide](/konnect/dev-portal/okta-idp/).
+You can configure single sign-on (SSO) for {{site.konnect_short_name}} Dev Portal with OIDC. This allows developers to log in to Dev Portals by using their IdP credentials, without needing a separate login. This topic covers configuring SSO for use with various identity providers. If you want to configure Okta, please see the [Okta configuration guide](/konnect/dev-portal/access-and-approval/okta-idp/).
 
 Keep the following in mind when configuring SSO for Dev Portal:
 
