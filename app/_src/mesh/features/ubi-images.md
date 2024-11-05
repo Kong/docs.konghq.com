@@ -1,5 +1,6 @@
 ---
 title: Red Hat Universal Base Images
+badge: enterprise
 ---
 
 In addition to the standard {{site.mesh_product_name}} images built on Alpine Linux, {{site.mesh_product_name}} also ships with images based on the [Red Hat Universal Base Image (UBI)](https://developers.redhat.com/products/rhel/ubi).

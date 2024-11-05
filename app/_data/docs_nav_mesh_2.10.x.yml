@@ -32,6 +32,11 @@ inherit:
       url: /support-policy/
       action: insert
       index: -3
+    - path: [ Introduction ]
+      text: Vulnerability patching process
+      url: /vulnerability-patching-process/
+      action: insert
+      index: -3
     - path: [ Introduction, Release notes]
       url: /mesh/changelog
       src: /mesh/changelog
@@ -157,6 +162,8 @@ inherit:
               url: /features/ubi-images
             - text: Red Hat OpenShift Quickstart
               url: /features/openshift-quickstart
+        - text: Windows Support
+          url: /features/windows
         - text: ECS Support
           url: /installation/ecs
         - text: Auditing

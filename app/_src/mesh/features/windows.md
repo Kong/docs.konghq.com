@@ -2,7 +2,12 @@
 title: Kong Mesh with Windows
 ---
 
-{% if_version gte:2.4.x %}
+{% if_version gte:1.7.x lt:2.11.x %}
+{% if_version gte:2.9.x %}
+{:.important}
+> **Deprecation notice:** Windows support in {{site.mesh_product_name}} has 
+been deprecated as of v2.9.0 and will be removed in v2.11.0.
+{% endif_version %}
 
 To install and run {{site.mesh_product_name}} on Windows:
 

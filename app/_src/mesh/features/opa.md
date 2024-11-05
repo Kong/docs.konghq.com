@@ -1,5 +1,6 @@
 ---
 title: OPA Policy Integration
+badge: enterprise
 ---
 
 ## OPA policy plugin

@@ -1,5 +1,6 @@
 ---
 title: Vault Policy
+badge: enterprise
 ---
 
 ## Vault CA Backend
