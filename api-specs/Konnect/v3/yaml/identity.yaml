@@ -2384,6 +2384,7 @@ components:
                 type: string
                 example: Control Planes
                 enum:
+                  - APIs
                   - API Products
                   - Application Auth Strategies
                   - Audit Logs
