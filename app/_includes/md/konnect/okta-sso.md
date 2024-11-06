@@ -59,7 +59,7 @@
     | `email`      | Unspecified  | user.email     |
 
 {% if include.desc == "Dev Portal" %}
-1. Optional: If you want to use group claims for Konnect [developer team mappings](/konnect/dev-portal/access-and-approval/add-teams/), click the **Claims** tab in Okta to [configure a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/main/#add-a-groups-claim-for-a-custom-authorization-server) and fill in the following fields:
+1. Optional: If you want to use group claims for Konnect [developer team mappings](/konnect/dev-portal/access-and-approval/add-teams/), [configure a groups attribute claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/main/#add-a-groups-claim-for-a-custom-authorization-server) and fill in the following fields:
 
     | Name    | Name format  | Filter          | Filter Value |
     |---------|--------------|-----------------|--------------|
@@ -82,7 +82,7 @@
 1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization** > **Settings**, and then click the **Authentication Scheme** tab.
 {% endif %}
 {% if include.desc == "Dev Portal" %}
-1. In a separate browser tab, open [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
+1. In a separate browser tab, open [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portals/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
 {% endif %}
 
 1. Click **Configure** for OIDC.
@@ -119,7 +119,7 @@ application into {{site.konnect_saas}}.
 1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization** > **Settings**, and then click the **Authentication Scheme** tab.
 {% endif %}
 {% if include.desc == "Dev Portal" %}
-1. In a separate browser tab, open [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
+1. In a separate browser tab, open [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portals/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
 {% endif %}
 1. Click **Configure** for SAML.
 
@@ -138,7 +138,7 @@ application into {{site.konnect_saas}}.
 {% endif %}
 1. Click **Save**.
 1. Copy the **Single Sign-On URL** and **Audience URI** that display after you configured SAML SSO.
-1. In Okta, update the placeholder **Single Sign-On URL** and **Audience URI (SP Entity ID)** values that you set in the previous section with the {% if include.desc == "Dev Portal" %}Dev Portal callback URL{% endif %}{% if include.desc == "Konnect Org" %}{{site.konnect_short_name}} login URI{% endif %}.
+1. In Okta, update the placeholder **Single Sign-On URL** and **Audience URI (SP Entity ID)** values that you set in the previous section with the Single sign-on URL and Audience URI that display in the SAML config in {% if include.desc == "Dev Portal" %}Dev Portal{% endif %}{% if include.desc == "Konnect Org" %}{{site.konnect_short_name}}{% endif %}.
 1. In {{site.konnect_short_name}}, close the configuration dialog and click **Enable SAML** from the context menu.
 
 {% endnavtab %}
@@ -228,7 +228,7 @@ in Okta to locate the Okta groups you want to map.
 in with your Okta credentials. 
     
     If a group-to-team mapping exists, the user is automatically provisioned with a {{site.konnect_saas}} Dev Portal developer account with the relevant team membership.
-1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you configured SSO for and click **Developers** in the sidebar.
+1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portals/), click the Dev Portal you configured SSO for and click **Developers** in the sidebar.
     
     You should see a list of users in this org, including a new entry for the user you used to log in.
 {% endif %}

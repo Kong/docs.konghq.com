@@ -14,7 +14,7 @@
 1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization** > **Settings**, and then click the **Authentication Scheme** tab.
 {% endif %}
 {% if include.desc == "Dev Portal" %}
-1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
+1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portals/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
 {% endif %}
 
 1. Click **Configure** for OIDC.
@@ -60,7 +60,7 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
 1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization** > **Settings**, and then click the **Authentication Scheme** tab.
 {% endif %}
 {% if include.desc == "Dev Portal" %}
-1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
+1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portals/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
 {% endif %}
 
 1. Click **Configure** for SAML. 
