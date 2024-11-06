@@ -12,4 +12,4 @@ If you want to configure Okta, please see the [Okta configuration guide](/konnec
 ## Related links
 
 * [Configure generic SSO for Dev Portal](/konnect/dev-portal/access-and-approval/sso/)
-* [IdP SSO attribute mapping reference](/konnect/reference/sso)
+* [IdP SSO attribute mapping reference](/konnect/reference/sso): Learn how Azure, Oracle Cloud, and KeyCloak attributes map to {{site.konnect_short_name}}.

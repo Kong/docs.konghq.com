@@ -17,13 +17,13 @@
 1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
 {% endif %}
 
-1. Click **Configure provider** for **OIDC**.
+1. Click **Configure** for OIDC.
 
-1. Paste the issuer URI from your IdP in the **Issuer URI** box. 
+1. Paste the issuer URI from your IdP in the **Issuer URI** field. 
 
-1. Paste the client ID from your IdP in the **Client ID** box.
+1. Paste the client ID from your IdP in the **Client ID** field.
 
-1. Paste the client secret from your IdP in the **Client Secret** box.
+1. Paste the client secret from your IdP in the **Client Secret** field.
 
 {% if include.desc == "Konnect Org" %}
 1. In the **Organization Login Path** box, enter a unique string. For example: `examplepath`.
@@ -45,7 +45,7 @@
         * `email`: Used as the {{site.konnect_short_name}} account's `email`.
         * `groups`: Used to map users to teams defined in the team mappings upon login.
 
-1. After clicking **Save**, close the configuration dialog and click **Enable on your OIDC provider**.
+1. After clicking **Save**, close the configuration dialog and from the OIDC context menu, click **Enable OIDC**.
 {% endnavtab %}
 {% navtab SAML %}
 
@@ -63,10 +63,11 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
 1. In [{{site.konnect_short_name}} Dev Portal](https://cloud.konghq.com/portal/), click the Dev Portal you want to configure SSO for, click **Settings** in the sidebar and then click the **Identity** tab.
 {% endif %}
 
-1. Click **Configure provider** under **SAML**. 
+1. Click **Configure** for SAML. 
 
 1. Enter the **Metadata URL** from your IdP in the **IDP Metadata URL** field.
 
+{% if include.desc == "Konnect Org" %}
 1. In the **Login Path** field, enter the unique string that matches the one in your IdP. For example: `examplepath`.
 
    {{site.konnect_short_name}} uses this string to generate a custom login
@@ -76,8 +77,10 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
     * The path must be unique across all {{site.konnect_short_name}} organizations.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
+{% endif %}
 
 1. After clicking **Save**, configure the SP Entity ID and Login URL on your SAML IdP.
+1. In {{site.konnect_short_name}}, close the configuration dialog and click **Enable SAML** from the context menu.
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -91,7 +94,7 @@ Test the SSO configuration by navigating to the login URI based on the organizat
 {% endif %}
 
 {% if include.desc == "Dev Portal" %}
-Test the SSO configuration by navigating to the callback URL for your Dev Portal. For example: `https://9963d2bcc58e.us.portal.konghq.com/login`.
+Test the SSO configuration by navigating to the callback URL for your Dev Portal. For example: `https://{portalId}.{region}.portal.konghq.com/login`.
 {% endif %}
 
 If the configuration is correct, you will see the IdP sign-in page. 

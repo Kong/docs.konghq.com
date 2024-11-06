@@ -54,12 +54,9 @@ Attribute mapping for KeyCloak configuration:
 | App Federation Metadata Url                 | `idp_metadata_url`       |
 
 {% endnavtab %}
-{% navtab Auth0 %}
-
-{% endnavtab %}
 {% endnavtabs %}
 
 ## Related links
 
-* [Configure generic SSO for a Konnect Org](/konnect/org-management/sso/)
-* [Configure generic SSO for Dev Portal](/konnect/dev-portal/access-and-approval/sso/)
+* [Configure generic SSO for a {{site.konnect_short_name}} org](/konnect/org-management/sso/)
+* [Configure generic SSO for a Dev Portal](/konnect/dev-portal/access-and-approval/sso/)
