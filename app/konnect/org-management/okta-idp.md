@@ -306,12 +306,9 @@ in Okta to locate the Okta groups you want to map.
 
 1. Click **Save**.
 
-## Test and apply the configuration {#test-the-integration}
+## Verify via SSO Login {#test-the-integration}
 
-{:.important}
-> **Important:** Keep built-in authentication enabled while you are testing Okta authentication. Only disable built-in authentication after successfully testing Okta authentication.
-
-You can test the Okta configuration by navigating to the login URI based on the Organization Login Path you set earlier. For example: `cloud.konghq.com/login/examplepath`. You will see the Okta sign in window if your configuration is set up correctly.
+You can verify the Okta configuration by navigating to the login URI based on the organization login path you set earlier. For example: `cloud.konghq.com/login/examplepath`. You will see the Okta sign in window if your configuration is set up correctly.
 
 You can now manage your organization's user permissions entirely from the Okta
 application.
