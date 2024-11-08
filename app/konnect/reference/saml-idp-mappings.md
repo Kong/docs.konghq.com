@@ -1,8 +1,8 @@
 ---
-title: IdP SSO attribute mapping reference
+title: IdP SAML attribute mapping reference
 ---
 
-This reference doc contains provider specific information and attribute mapping tables necessary for configuring SSO.
+This reference doc contains provider specific information and attribute mapping tables necessary for configuring SSO with SAML.
 
 {% navtabs %}
 {% navtab Azure %}

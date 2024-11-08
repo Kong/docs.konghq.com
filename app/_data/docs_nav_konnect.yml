@@ -427,5 +427,5 @@
       url: /reference/audit-logs/
     - text: Verify audit log signatures
       url: /reference/verify-signatures/
-    - text: IdP SSO attribute mapping
-      url: /reference/sso/
+    - text: IdP SAML attribute mapping
+      url: /reference/saml-idp-mappings/

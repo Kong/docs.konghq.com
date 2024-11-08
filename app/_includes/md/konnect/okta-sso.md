@@ -50,7 +50,7 @@
     * **Single Sign-On URL**: `https://global.api.konghq.com/v2/authenticate/login_path/saml/acs`
     * **Audience URI (SP Entity ID)**: `https://cloud.konghq.com/sp/SP_ID`
 
-1. Optional: In the **Attribute Statements**, add the following three attributes:
+1. Optional: To include additional user attributes beyond authentication, add the following three attributes in the **Attribute Statements**:
  
     | Name       | Name format  | Value          |
     |------------|--------------|----------------|
@@ -101,16 +101,16 @@ application into {{site.konnect_saas}}.
     See the [Okta developer documentation](https://developer.okta.com/docs/guides/find-your-app-credentials/findcreds/)
     to learn more about client credentials in Okta.
 {% if include.desc == "Konnect Org" %}
-1. In the **Organization Login Path** box, enter a unique string. For example: `examplepath`.
-
-    {{site.konnect_short_name}} uses this string to generate a custom login
-    URL for your organization.
+1. In the **Organization Login Path** box, enter a unique string that will be used in the URL your users use to log in. For example: `examplepath`.
 
     Requirements:
     * The path must be unique *across all {{site.konnect_short_name}} organizations*.
     If your desired path is already taken, you must to choose another one.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
+{% endif %}
+{% if include.desc == "Dev Portal" %}
+1. Optional: [Map existing developer teams from Okta groups to {{site.konnect_short_name}} Dev Portal teams](/konnect/dev-portal/access-and-approval/add-teams/).
 {% endif %}
 1. After clicking **Save**, close the configuration dialog and from the OIDC context menu, click **Enable OIDC**.
 {% endnavtab %}
@@ -125,10 +125,7 @@ application into {{site.konnect_saas}}.
 
 1. In Okta, go to **Sign On** page in the Okta application created in the previous step and copy the **IDP Metadata URL** under the Settings section. It should look like: `https://<your-okta-domain>.okta.com/app/exkgzjkl0kUZB06Ky5d7/sso/saml/metadata`
 {% if include.desc == "Konnect Org" %}
-1. In the **Login Path** box, enter a unique string. For example: `examplepath`.
-
-   {{site.konnect_short_name}} Dev Portal uses this string to generate a custom login
-   URL for your Dev Portal.
+1. In the **Login Path** box, enter a unique string that will be used in the URL your users use to log in. For example: `examplepath`.
 
    Requirements:
     * The path must be unique *across all {{site.konnect_short_name}} organizations*.
@@ -139,16 +136,13 @@ application into {{site.konnect_saas}}.
 1. Click **Save**.
 1. Copy the **Single Sign-On URL** and **Audience URI** that display after you configured SAML SSO.
 1. In Okta, update the placeholder **Single Sign-On URL** and **Audience URI (SP Entity ID)** values that you set in the previous section with the Single sign-on URL and Audience URI that display in the SAML config in {% if include.desc == "Dev Portal" %}Dev Portal{% endif %}{% if include.desc == "Konnect Org" %}{{site.konnect_short_name}}{% endif %}.
+{% if include.desc == "Dev Portal" %}
+1. Optional: [Map existing developer teams from Okta groups to {{site.konnect_short_name}} Dev Portal teams](/konnect/dev-portal/access-and-approval/add-teams/).
+{% endif %}
 1. In {{site.konnect_short_name}}, close the configuration dialog and click **Enable SAML** from the context menu.
 
 {% endnavtab %}
 {% endnavtabs %}
-
-{% if include.desc == "Dev Portal" %}
-### (Optional) Map {{site.konnect_short_name}} Dev Portal teams to Okta groups
-
-In the {{site.konnect_short_name}} Dev Portal, you can map existing developer teams from a third-party identity provider (IdP) and their permissions to elements in {{site.konnect_short_name}}. With teams mapped from an IdP, the developers and permissions are mapped automatically in {{site.konnect_short_name}} so you don’t have to manually copy over each team of developers. For more information about how to configure this, see [Add Developer Teams from Identity Providers](/konnect/dev-portal/access-and-approval/add-teams/).
-{% endif %}
 {% if include.desc == "Konnect Org" %}
 ### (Optional) Map {{site.konnect_short_name}} teams to Okta groups
 

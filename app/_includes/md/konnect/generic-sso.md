@@ -10,6 +10,13 @@
 ## Set up SSO in {{site.konnect_short_name}}
 {% navtabs %}
 {% navtab OIDC%}
+The {{site.konnect_short_name}} OIDC integration allows you to configure various identity providers. While technically any OIDC-compliant provider can be used, the following have been verified:
+
+* Okta 
+* Azure Active Directory
+* Oracle Identity Cloud Service 
+* Keycloak
+
 {% if include.desc == "Konnect Org" %}
 1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization** > **Settings**, and then click the **Authentication Scheme** tab.
 {% endif %}
@@ -26,10 +33,7 @@
 1. Paste the client secret from your IdP in the **Client Secret** field.
 
 {% if include.desc == "Konnect Org" %}
-1. In the **Organization Login Path** box, enter a unique string. For example: `examplepath`.
-
-    {{site.konnect_short_name}} uses this string to generate a custom login
-    URL for your organization.
+1. In the **Organization Login Path** box, enter a unique string that will be used in the URL your users use to log in. For example: `examplepath`.
 
     Requirements:
     * The path must be unique *across all {{site.konnect_short_name}} organizations*.
@@ -44,7 +48,29 @@
         * `name`: Used as the {{site.konnect_short_name}} account's `full_name`.
         * `email`: Used as the {{site.konnect_short_name}} account's `email`.
         * `groups`: Used to map users to teams defined in the team mappings upon login.
+{% if include.desc == "Dev Portal" %}
+1. Optional: [Map existing developer teams from IdP groups to {{site.konnect_short_name}} Dev Portal teams](/konnect/dev-portal/access-and-approval/add-teams/).
+{% endif %}
+{% if include.desc == "Konnect Org" %}
+1. Optional: To map existing teams from IdP groups to {{site.konnect_short_name}}, do the following:
+    1. Configure group claims in your IdP application. Be sure to add the following to the scope: `openid`, `email`, `profile`
+    1. In {{site.konnect_saas}}, go to {% konnect_icon organizations %} **Organization** > **Settings**, click the **Team Mappings** tab and do at least one of the following:
 
+        * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
+        * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
+
+        Each {{site.konnect_short_name}} team can be mapped to **one** Okta group.
+
+        For example, if you have a `service_admin` group in Okta, you might map it
+        to the `Service Admin` team in {{site.konnect_short_name}}. You can hover
+        over the info (`i`) icon beside each field to learn more about the team, or
+        see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
+        for more information.
+
+        You must have at least one group mapped to save configuration changes.
+
+    1. Click **Save**.
+{% endif %}
 1. After clicking **Save**, close the configuration dialog and from the OIDC context menu, click **Enable OIDC**.
 {% endnavtab %}
 {% navtab SAML %}
@@ -68,10 +94,7 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
 1. Enter the **Metadata URL** from your IdP in the **IDP Metadata URL** field.
 
 {% if include.desc == "Konnect Org" %}
-1. In the **Login Path** field, enter the unique string that matches the one in your IdP. For example: `examplepath`.
-
-   {{site.konnect_short_name}} uses this string to generate a custom login
-   URL for your organization.
+1. In the **Login Path** field, enter a unique string that will be used in the URL your users use to log in. For example: `examplepath`.
 
    Requirements:
     * The path must be unique across all {{site.konnect_short_name}} organizations.
@@ -80,6 +103,29 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
 {% endif %}
 
 1. After clicking **Save**, configure the SP Entity ID and Login URL on your SAML IdP.
+{% if include.desc == "Dev Portal" %}
+1. Optional: [Map existing developer teams from IdP groups to {{site.konnect_short_name}} Dev Portal teams](/konnect/dev-portal/access-and-approval/add-teams/).
+{% endif %}
+{% if include.desc == "Konnect Org" %}
+1. Optional: To map existing teams from IdP groups to {{site.konnect_short_name}}, do the following:
+    1. Configure group claims in your IdP application. Be sure to add the following to the scope: `openid`, `email`, `profile`
+    1. In {{site.konnect_saas}}, go to {% konnect_icon organizations %} **Organization** > **Settings**, click the **Team Mappings** tab and do at least one of the following:
+
+        * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
+        * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
+
+        Each {{site.konnect_short_name}} team can be mapped to **one** Okta group.
+
+        For example, if you have a `service_admin` group in Okta, you might map it
+        to the `Service Admin` team in {{site.konnect_short_name}}. You can hover
+        over the info (`i`) icon beside each field to learn more about the team, or
+        see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
+        for more information.
+
+        You must have at least one group mapped to save configuration changes.
+
+    1. Click **Save**.
+{% endif %}
 1. In {{site.konnect_short_name}}, close the configuration dialog and click **Enable SAML** from the context menu.
 {% endnavtab %}
 {% endnavtabs %}

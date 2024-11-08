@@ -17,4 +17,4 @@ Keep the following in mind when configuring SSO for Dev Portal:
 ## Related links
 
 * [Configure generic SSO for a Konnect Org](/konnect/org-management/sso/)
-* [IdP SSO attribute mapping reference](/konnect/reference/sso)
+* [IdP SAML attribute mapping reference](/konnect/reference/saml-idp-mappings/)
