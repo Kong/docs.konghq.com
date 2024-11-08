@@ -18,7 +18,7 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
   --header 'Authorization: Bearer{kpat_token}' \
   --header 'Content-Type: application/json' \
   --data '{
-	"name": "konnect",
+	"name": "konnect"
 }'
 ```
 
