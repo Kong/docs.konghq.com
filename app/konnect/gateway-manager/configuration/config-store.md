@@ -18,7 +18,7 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
   --header 'Authorization: Bearer{kpat_token}' \
   --header 'Content-Type: application/json' \
   --data '{
-	"name": "konnect"
+	"name": "konnect",
 }'
 ```
 
@@ -57,7 +57,7 @@ vaults:
     config_store_id: ee62068e-1843-49f8-ac22-40293b0a949d
   description: Storing secrets in Konnect
   name: konnect
-  prefix: konnect-vault
+  prefix: mysecretvault
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -76,8 +76,8 @@ You can now store secrets in the {{site.konnect_short_name}} Config Store and re
 To make these secrets accessible to {{site.base_gateway}}, reference the environment variables using a specific URL format. For the example above, the references would be:
 
 ```sh
-{vault://konnect/secret-name/foo}
-{vault://konnect/secret-name/snip}
+{vault://mysecretvault/secret-name/foo}
+{vault://mysecretvault/secret-name/snip}
 ```
 
 This allows {{site.base_gateway}} to recognize and retrieve the stored secrets.
