@@ -347,7 +347,7 @@ In this example, use the plugin to validate a request's path parameter.
 
     ```sh
     curl -i -X POST \
-    --url http://localhost:8000/status/123 \
+    --url http://localhost:8000/status/abc \
     --header 'Content-Type: application/json' \
     --data '{ "name": "foo" }'
     ```
