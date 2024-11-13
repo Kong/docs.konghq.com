@@ -50,7 +50,7 @@ module KumaToKongMesh
     def replace_kuma_base_url(page)
       page.content = page
                      .content
-                     .gsub(%r{/docs/{{\s*page.version\s*}}}, '/mesh/{{ page.release }}')
+                     .gsub(%r{/docs/{{\s*page.release\s*}}}, '/mesh/{{ page.release }}')
     end
 
     def replace_edit_url(page)
