@@ -21,11 +21,6 @@ fixes #6156
 
 Adds a CVE policy for Kong Mesh
 
-@lahabana please review
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
