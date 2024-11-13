@@ -9,8 +9,8 @@ dbless_explanation: |
 free: false
 plus: false
 enterprise: true
-premium: true
 konnect: true
+serverless_gateways: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
   In DB-less, hybrid mode, and Konnect, the <code>cluster</code> config strategy

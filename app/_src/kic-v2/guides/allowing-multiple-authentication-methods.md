@@ -10,7 +10,7 @@ for all requests even if a request has been authenticated through another plugin
 
 ## Create a Kubernetes service
 
-Create a Kubernetes service setup an [httpbin](https://httpbin.org)
+Create a Kubernetes service setup an [httpbin](https://httpbin.konghq.com)
 service in the cluster and proxy it.
 
 ```bash

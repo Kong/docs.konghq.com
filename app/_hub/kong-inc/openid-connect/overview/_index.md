@@ -58,7 +58,7 @@ before implementing any flows or grants.
 ### Authentication flows and grants
 
 We use [HTTPie](https://httpie.org/) to execute the examples. The output is stripped
-for better readability. [httpbin.org](https://httpbin.org/) is used as an upstream service.
+for better readability. [httpbin.konghq.com](https://httpbin.konghq.com/) is used as an upstream service.
 
 Using the Admin API is convenient when testing the plugin, but you can set up similar configs 
 in declarative format as well.

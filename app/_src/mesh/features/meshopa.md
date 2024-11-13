@@ -1,6 +1,7 @@
 ---
 title: MeshOPA - OPA Policy Integration
 content_type: reference
+badge: enterprise
 ---
 
 

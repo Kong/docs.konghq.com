@@ -28,6 +28,9 @@ links:
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
   learn: https://education.konghq.com # kong academy
   archive: https://legacy-gateway--kongdocs.netlify.app
+  locales:
+    ja: https://docs.jp.konghq.com
+    en: http://localhost:4000
 repos:
   kong: https://github.com/Kong/kong
   docs: https://github.com/Kong/docs.konghq.com
@@ -78,13 +81,6 @@ extensions:
     # - name: dev portal extension
     #   slug: dev-mod
 
-
-# Pricing
-pricing:
-  konnect:
-    paid_plugin: $5
-    premium_plugin: $10
-
 exclude:
   - node_modules
   - jekyll-cache
@@ -99,7 +95,6 @@ plugins:
   - jekyll-redirect-from
   - jekyll-include-cache
   - jekyll-generator-single-source
-  - jekyll-kuma-plugins
   - jekyll/vite
 
 defaults:
@@ -197,17 +192,13 @@ hub-filters:
   tiers:
     - name: Free
       slug: free
-    - name: Konnect Paid
-      slug: paid
-    - name: Konnect Premium
-      slug: premium
     - name: Kong Gateway Enterprise
       slug: enterprise
   support:
     - name: Kong
       slug: kong-inc
-    - name: Technical partner
-      slug: third-party-partner
+    - name: Premium partner
+      slug: premium-partner
     - name: Support by 3rd party
       slug: community
   compatibility:
@@ -230,6 +221,7 @@ company_name: Kong Inc.
 mesh_product_name: Kong Mesh
 deck_product_name: decK
 contributing_product_name: Contribution Guidelines
+service_catalog_name: Service Catalog
 # Mesh specific config
 mesh_namespace: kong-mesh-system
 mesh_cp_name: kong-mesh-control-plane
@@ -251,3 +243,5 @@ mesh_install_archive_name: kong-mesh
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
+
+locale: en-US

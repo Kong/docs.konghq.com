@@ -21,7 +21,7 @@ title: Get started with Konnect
     <td style="border-bottom:none">
         <p><b>I know how to get started</b></p>
         <p><a href="/konnect/getting-started/add-api/"><i class="fas fa-plus"></i> Add an API &rarr;</a></p>
-        <p><a href="/konnect/getting-started/import/"><i class="fas fa-file-import"></i> Import {{site.base_gateway}} entities &rarr;</a></p>
+        <p><a href="/konnect/getting-started/migration/"><i class="fas fa-file-import"></i> Import {{site.base_gateway}} entities &rarr;</a></p>
     </td>
   </tr>
 </table>
@@ -58,7 +58,7 @@ These gateways provide:
 You can run Dedicated Cloud Gateways in [autopilot mode](/konnect/gateway-manager/dedicated-cloud-gateways/#autopilot-mode) to streamline the management of your API gateway resources by automatically adjusting to traffic and volume. 
 This mode ensures that your infrastructure is prepared to handle traffic as it arrives, scaling resources to maintain consistent performance without manual intervention. 
 
-Dedicated Cloud Gateways also support [private networking](/konnect/gateway-manager/data-plane-nodes/transit-gateways). 
+Dedicated Cloud Gateways also support [private networking](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways). 
 Integration with [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/), allows you to connect your networks in a way that supports your organization's security requirements, enabling your {{site.konnect_short_name}}-powered API infrastructure to interact with your internal networks and cloud resources securely.
 
 

@@ -32,7 +32,7 @@ Create a service that can be used to test the integration.
 curl -i -X POST http://localhost:8001/services/ \
   --data name="httpbin" \
   --data protocol="http" \
-  --data url="http://httpbin.org"
+  --data url="https://httpbin.konghq.com"
 ```
 
 #### Create a route
@@ -95,7 +95,7 @@ Kong introspects the opaque token and receives the JWT in the response. The JWT 
     "args": {},
     "headers": {
         ...
-        "Host": "httpbin.org",
+        "Host": "httpbin.konghq.com",
         "Phantom-Token": "eyJraWQiOiIxN...",
         "X-Forwarded-Host": "localhost",
         "X-Forwarded-Path": "/httpbin/get",
@@ -161,8 +161,6 @@ Below is an example configuration object that is used to configure the OIDC plug
 }
 ```
 
-![Enable OIDC in Kong Dev Portal](/assets/images/products/gateway/dev-portal/kong-dev-portal.png)
-
 ### Curity Authentication Action
 
 An Authentication Action to automatically provision the user to the Kong Developer Portal is available in the Curity GitHub repository. Using the Action is not mandatory as the user could be provisioned in other ways, such as manually through the Kong Developer portal login page. However, using the Authentication Action would streamline the user flow since the Action takes the user's full name and the email from the Curity Authenticator and automatically provision that to the Kong Developer Portal using the exposed API.
@@ -174,8 +172,6 @@ The [Kong Developer Portal User Provisioner][curity-kong-dev-portal-user-provisi
 This Action is straightforward to configure. An HTTP Client is needed to communicate with the Kong Dev Portal API. By default, the **HTTP Authentication** can be left out. Only a correct scheme needs to be configured (HTTP or HTTPS).
 
 The Action also configures the URL to the registration endpoint of the Kong Developer Portal. Here the scheme needs to match what's configured in the HTTP Client used.
-
-![Kong Dev Portal User Provisioner](/assets/images/products/gateway/dev-portal/kong-dev-portal-action.png)
 
 When the action is created, it can be assigned to the Authenticators used in the client configured in the Curity Identity Server as described above.
 

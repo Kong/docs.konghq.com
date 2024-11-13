@@ -141,7 +141,9 @@ The available commands are:
                                         default: 60
 
   log_level get                         Get the logging level.
-
+{% if_version gte:3.8.x %}
+  status                                Get the status of the Kong node.
+{% endif_version %}
 
 Options:
  --pid            (optional number)     The worker’s PID for profiling.
@@ -282,6 +284,8 @@ Options:
 
 ```
 
+{:.important}
+> **Caution**: {% include_cached /md/enterprise/migration-finish-warning.md %}
 ---
 
 

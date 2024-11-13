@@ -197,7 +197,7 @@ items:
         url: /reference/annotations
       - text: Configuration Options
         url: /reference/cli-arguments/
-        src: reference/cli-arguments-3.2.x
+        src: reference/cli-arguments-3.3.x
       - text: Beta Feature Gates
         url: /reference/feature-gates
       - text: FAQ
@@ -211,7 +211,7 @@ items:
             url: /reference/faq/nginx.conf
       - text: Custom Resource Definitions
         url: /reference/custom-resources
-        src: reference/custom-resources-3.2.x
+        src: reference/custom-resources-3.3.x
       - text: Resources Requiring Setting Ingress Class
         url: /reference/resource-requiring-ingress-class
         src: reference/ingress-class-requirement
@@ -219,3 +219,5 @@ items:
         url: /reference/ingress-to-gateway-migration
       - text: Required Permissions for Installation
         url: /reference/required-permissions
+      - text: Categories of Failures
+        url: /reference/failure-modes

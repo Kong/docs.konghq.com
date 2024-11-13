@@ -1,17 +1,17 @@
 RSpec.describe Jekyll::Drops::Plugins::Example do
   let(:type) { 'consumer' }
   let(:schema) do
-    PluginSingleSource::Plugin::Schemas::Kong.new(
-      plugin_name: 'opentelemetry',
+    PluginSingleSource::Plugin::Schemas::Base.make_for(
+      name: 'opentelemetry',
       vendor: 'kong-inc',
-      version: '3.2.x'
+      version: '3.2.x',
+      site:
     )
   end
   let(:example) { schema.example }
-  let(:formats) { [:curl, :konnect, :yaml, :kubernetes] }
+  let(:formats) { [:curl, :konnect, :yaml, :kubernetes, :terraform] }
 
-
-  subject { described_class.new(type:, example:, formats:) }
+  subject { described_class.new(schema:, type:, example:, formats:) }
 
   describe '#type' do
     it { expect(subject.type).to eq(type) }
@@ -62,6 +62,37 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
       let(:formats) { [:curl] }
 
       it { expect(subject.render_kubernetes?).to eq(false) }
+    end
+  end
+
+  describe '#render_terraform?' do
+    context 'when :terraform is included in the targets' do
+      it { expect(subject.render_terraform?).to eq(true) }
+    end
+
+    context 'when :terraform is not included in the targets' do
+      let(:formats) { [:curl] }
+
+      it { expect(subject.render_terraform?).to eq(false) }
+    end
+
+    context 'when the vendor is not kong-inc' do
+      let(:schema) do
+        PluginSingleSource::Plugin::Schemas::Base.make_for(
+          name: 'kong-plugin',
+          vendor: 'acme',
+          version: '3.2.x',
+          site:
+        )
+      end
+
+      it { expect(subject.render_terraform?).to eq(false) }
+    end
+
+    context 'when the sample config is empty' do
+      let(:example) { return {} }
+
+      it { expect(subject.render_terraform?).to eq(false) }
     end
   end
 

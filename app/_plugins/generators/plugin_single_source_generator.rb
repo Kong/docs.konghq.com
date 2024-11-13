@@ -2,7 +2,7 @@
 
 module PluginSingleSource
   class Generator < Jekyll::Generator
-    priority :high
+    priority :normal
 
     PLUGINS_FOLDER = '_hub'
     SAMPLE_PLUGIN = '_init/my-extension'

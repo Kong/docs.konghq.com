@@ -305,10 +305,10 @@ Retrieve a [consumer][consumer-object] associated with an API
 key by making the following request:
 
 ```bash
-curl -X GET http://localhost:8001/key-auths-enc/{key or id}/consumer
+curl -X GET http://localhost:8001/key-auths-enc/{key_id}/consumer
 ```
 
-`key or id`: The `id` or `key` property of the API key for which to get the
+`key_id`: The `id` property of the API key for the
 associated consumer.
 
 ```json

@@ -236,12 +236,14 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Performance Testing
+      - text: Performance
         items:
         - text: Performance Testing Benchmarks
           url: /production/performance/performance-testing
         - text: Establish a Performance Benchmark
           url: /production/performance/benchmark
+        - text: Improve performance with Brotli compression
+          url: /production/performance/brotli/
       - text: Logging and Debugging
         items:
           - text: Log Reference
@@ -281,6 +283,8 @@ items:
             url: /migrate-ce-to-ke/
           - text: Migration Guidelines Cassandra to PostgreSQL
             url: /migrate-cassandra-to-postgres/
+          - text: Migrate to the new DNS client
+            url: /migrate-to-new-dns-client/
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
@@ -388,12 +392,24 @@ items:
             url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
             generate: false
             absolute_url: true
+          - text: Vertex/Gemini
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
+            generate: false
+            absolute_url: true
+          - text: Amazon Bedrock
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
+            generate: false
+            absolute_url: true
       - text: AI Gateway Analytics
         url: /ai-gateway/ai-analytics/
         generate: false
       - text: Expose and graph AI Metrics
         url: /ai-gateway/metrics/
         generate: false
+      - text: AI Gateway Load Balancing
+        url: /hub/kong-inc/ai-proxy-advanced/#load-balancing
+        generate: false
+        absolute_url: true
       - text: AI Gateway plugins
         url: /hub/?category=ai
         generate: false
@@ -550,6 +566,8 @@ items:
           url: /plugin-development/pdk/kong.service.response
         - text: kong.table
           url: /plugin-development/pdk/kong.table
+        - text: kong.telemetry.log
+          url: /plugin-development/pdk/kong.telemetry.log
         - text: kong.tracing
           url: /plugin-development/pdk/kong.tracing
         - text: kong.vault
@@ -734,7 +752,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
-        src: /gateway/reference/configuration/configuration-3.7.x
+        src: /gateway/reference/configuration/configuration-3.8.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

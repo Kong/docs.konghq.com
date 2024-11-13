@@ -5,17 +5,11 @@
 {%- if badges.konnect? -%}
   {%- assign css_classes =  css_classes | append: " konnect" -%}
 {%- endif -%}
-{%- if badges.paid? == true -%}
-  {%- assign css_classes = css_classes | append: " paid" -%}
-{%- endif -%}
-{%- if badges.premium? == true -%}
-  {%- assign css_classes = css_classes | append: " premium" -%}
-{%- endif -%}
 {%- if badges.enterprise? -%}
   {%- assign css_classes =  css_classes | append: " enterprise" -%}
 {%- endif -%}
-{%- if badges.techpartner? -%}
-  {%- assign css_classes =  css_classes | append: " techpartner" -%}
+{%- if badges.premiumpartner? -%}
+  {%- assign css_classes =  css_classes | append: " premiumpartner" -%}
 {%- endif -%}
 {%- if badges.oss? -%}
   {%- assign css_classes =  css_classes | append: " oss" -%}
@@ -28,9 +22,6 @@
 {%- endif -%}
 {%- if extn_publisher == 'kong-inc' -%}
   {%- assign css_classes = css_classes | append: " gateway" | append: " kong-inc" -%}
-{%- elsif extn.techpartner -%}
-  {%- assign third_party_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' third-party ' -%}
-  {%- assign css_classes = css_classes | append: third_party_classes -%}
 {%- else -%}
   {%- assign unsupported_plugin_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' none ' -%}
   {%- assign css_classes = css_classes | append: unsupported_plugin_classes -%}
@@ -44,17 +35,14 @@
           <p>{{ extn.name }}</p>
         </div>
         <div class="plugin-card--meta__badges">
-          {% if badges.paid? %}
-              <span class="badge paid"></span>
-          {% endif %}
-          {% if badges.premium? %}
-              <span class="badge premium"></span>
+          {% if badges.konnect? %}
+            <span class="badge konnect"></span>
           {% endif %}
           {% if badges.enterprise? %}
             <span class="badge enterprise"></span>
           {% endif %}
-          {% if badges.techpartner? %}
-            <span class="badge techpartner"></span>
+          {% if badges.premiumpartner? %}
+          <span class="badge premiumpartner"></span>
           {% endif %}
           {% if badges.oss? %}
             <span class="badge oss"></span>

@@ -288,7 +288,7 @@ backed up by a Redis cluster).
     _transform: true
 
     services:
-    - host: httpbin.org
+    - host: httpbin.konghq.com
       name: example_service
       port: 80
       protocol: http

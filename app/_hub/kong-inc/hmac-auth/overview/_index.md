@@ -248,13 +248,12 @@ The HMAC plugin can be enabled on a service or a route. This example uses a serv
     hash the digest:
 
     ```
-    signing_string="date: Thu, 22 Jun 2017 17:15:21 GMT\nGET /requests HTTP/1.1"
+    signing_string="date: Thu, 22 Jun 2017 17:15:21 GMT\nget /requests"
     digest=HMAC-SHA256(<signing_string>, "secret")
     base64_digest=base64(<digest>)
     ```
 
     So the final value of the `Authorization` header would look like:
-
 
     ```
     Authorization: hmac username="alice123", algorithm="hmac-sha256", headers="date @request-target", signature=<base64_digest>"

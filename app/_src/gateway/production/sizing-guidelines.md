@@ -7,8 +7,13 @@ This document discusses the performance characteristics of
 resource allocation based on expected {{site.base_gateway}} configuration and
 traffic patterns.
 
-These recommendations are a baseline guide only. Specific tuning or
-benchmarking efforts should be undertaken for performance-critical environments.
+These recommendations are a baseline guide only. 
+{% if_version gte:3.4.x %}
+Specific [tuning or benchmarking efforts](/gateway/{{page.release}}/production/performance/benchmark/) 
+should be undertaken for performance-critical environments.
+{% else %}
+Specific tuning or benchmarking efforts should be undertaken for performance-critical environments.
+{% endif_version %}
 
 ## General resource guidelines
 
@@ -68,6 +73,7 @@ the following resource allocations as a starting point:
 
 | Size  | CPU  | RAM  | Typical Cloud Instance Sizes |
 |---|---|---|---|---|
+| Development | 1-2 cores  | 2-4 GB   | **AWS**: t3.medium<br/>**GCP**: n1-standard-1<br/>**Azure**: Standard A1 v2  |
 | Small  | 1-2 cores  | 2-4 GB   | **AWS**: t3.medium<br/>**GCP**: n1-standard-1<br/>**Azure**: Standard A1 v2  |
 | Medium | 2-4 cores  | 4-8 GB   | **AWS**: m5.large<br/>**GCP**: n1-standard-4<br/>**Azure**: Standard A1 v4  |
 | Large  | 8-16 cores | 16-32 GB | **AWS**: c5.xlarge<br/>**GCP**: n1-highcpu-16<br/>**Azure**: F8s v2  |

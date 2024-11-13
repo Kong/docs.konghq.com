@@ -8,6 +8,7 @@ Amal
 Amberflo
 apiVersion
 Arya
+auditability
 Autonegotiation
 autoscale
 autoscales
@@ -34,6 +35,7 @@ DNs
 DPP
 DPPs
 Datadog
+Dynatrace
 Dex
 ElastiCache
 Entra
@@ -152,6 +154,7 @@ backporting
 backtrace
 Bagdi
 bcc
+bindable
 Bintray
 Bitnami
 blockquote
@@ -160,6 +163,7 @@ body_filter
 bool
 boolean
 booleans
+brotli
 burstable
 CAs
 certificate_admin
@@ -203,6 +207,7 @@ denylist
 deployer
 dereference
 dereferenced
+dereferencing
 deserialization
 deserialize
 deserialized
@@ -226,10 +231,12 @@ ElastiCache
 elbs
 enablement
 enqueued
+enqueues
 enum
 env
 Equinix
 Equinix
+etag
 etcd
 failover
 Fargate
@@ -237,6 +244,8 @@ favicon
 filepath
 filetype
 filetypes
+finalizer
+finalizers
 firewalled
 flamegraph
 full_name
@@ -260,6 +269,7 @@ grpcurl
 gui
 guis
 gzip
+gzipped
 hackathon
 hackathons
 hardcoded
@@ -276,6 +286,8 @@ http
 httpbin
 HTTPie
 https
+IdPs
+If-Match
 impactful
 Imperva
 inbounds
@@ -366,6 +378,7 @@ mimetype
 minifier
 minikube
 minio
+misconfigurations
 misconfigured
 Moesif
 MongoDB
@@ -415,6 +428,7 @@ perf
 performant
 petstore
 pgdump
+pgvector
 pipeline
 pipelined
 pipelines
@@ -442,6 +456,7 @@ Protobuf
 protobuf
 proxied
 proxying
+Qdrant
 querystring
 ratelimit
 rbac
@@ -460,6 +475,7 @@ remediation
 remediations
 repo
 requery
+Requeue
 Resty
 retryOn
 reusability
@@ -472,8 +488,8 @@ routable
 ruleset
 runloop
 runtime
-runtime_groups
 runtimes
+runtime_groups
 SAML
 sandboxed
 sandboxing
@@ -494,8 +510,8 @@ sni
 snis
 Splunk
 ssl
-ssl_cert_key
 ssl_certificate
+ssl_cert_key
 sso
 Stap
 stapxx
@@ -518,6 +534,7 @@ subtables
 subtree
 subtrees
 sudo
+Supabase
 superset
 svg
 svgs
@@ -571,6 +588,7 @@ unnormalized
 unpackage
 unparsed
 unprocessable
+unproxied
 unpublish
 unpublishing
 unregister

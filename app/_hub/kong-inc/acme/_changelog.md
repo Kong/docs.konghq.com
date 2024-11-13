@@ -1,4 +1,11 @@
 ## Changelog
+
+### {{site.base_gateway}} 3.8.x
+* Fixed an issue where the DP would report that deprecated config fields were used when configuration was pushed from the CP.
+  [#13069](https://github.com/Kong/kong/issues/13069)
+* Fixed an issue where username and password were not accepted as valid authentication methods.
+  [#13496](https://github.com/Kong/kong/issues/13496)
+  
 ### {{site.base_gateway}} 3.7.x
 * Fixed an issue where the certificate was not successfully renewed during ACME renewal.
 [#12773](https://github.com/Kong/kong/issues/12773)

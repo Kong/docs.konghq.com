@@ -1118,14 +1118,8 @@ components:
               items:
                 type: string
             portal_developer_meta_fields:
-              default:
-                properties:
-                  - label: Full Name
-                    title: full_name
-                    validator:
-                      required: true
-                      type: string
-              type: object
+              default: '[{"label":"Full Name","title":"full_name","validator":{"required":true,"type":"string"}}]'
+              type: string
             portal_emails_from:
               type: string
             portal_emails_reply_to:
@@ -1176,12 +1170,8 @@ components:
             portal_auto_approve: true
             portal_cors_origins:
               - string
-            portal_developer_meta_fields:
-              - label: Full Name
-                title: full_name
-                validator:
-                  required: true
-                  type: string
+            portal_developer_meta_fields: >-
+              [{"label":"Full Name","title":"full_name","validator":{"required":true,"type":"string"}}]
             portal_emails_from: string
             portal_emails_reply_to: string
             portal_invite_email: true
@@ -3537,21 +3527,21 @@ components:
             Returned user:
               value:
                 data:
-                  - comment: 'null'
+                  - comment: null
                     created_at: 1557512629
                     enabled: true
                     id: f035f120-a95e-4327-b2ae-8fa264601d75
                     name: doc_lord
                     user_token: $2b$09$TIMneYcTosdG9WbzRsqcweAS2zote8g6I8HqXAtbFHR1pds2ymsh6
                     user_token_ident: 88ea3
-                  - comment: 'null'
+                  - comment: null
                     created_at: 1557522650
                     enabled: true
                     id: fa6881b2-f49f-4007-9475-577cd21d34f4
                     name: doc_knight
                     user_token: $2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG
                     user_token_ident: 4d870
-                next: 'null'
+                next: null
     audit-objects-response:
       description: Example response generated for checking the `/status` endpoint without RBAC enabled.
       content:
@@ -10378,7 +10368,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/workspace'
       - $ref: '#/components/parameters/vault_id_or_prefix'
-  /consumer_groups:
+  '/consumer_groups':
     get:
       summary: List consumer groups
       tags:
@@ -10858,6 +10848,498 @@ paths:
         $ref: '#/components/requestBodies/plugin-request'
       operationId: upsert-plugin-for-customer-group
     parameters:
+      - $ref: '#/components/parameters/consumer_group_name_or_id'
+      - $ref: '#/components/parameters/plugin_id'
+  '/{workspace}/consumer_groups':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+    get:
+      summary: List consumer groups
+      tags:
+        - consumer_groups
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-consumer_groups_with_workspace
+      description: |
+        List all consumer groups
+
+        Use consumer groups to manage consumer affiliation.
+    post:
+      summary: Create a consumer group
+      operationId: post-consumer_groups_with_workspace
+      responses:
+        '201':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Create a new consumer group.
+      requestBody:
+        $ref: '#/components/requestBodies/consumer_group_request'
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{group_name_or_id}':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/group_name_or_id'
+    get:
+      summary: List a specific consumer group
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-consumer_groups-group_name_with_workspace
+      description: Returns a consumer group by passing either the `group_name` or `group_id` as a path parameter.
+      tags:
+        - consumer_groups
+    put:
+      summary: Create consumer group
+      operationId: put-consumer_groups-group_name_or_id_with_workspace
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Create a consumer group by passing a new group name as the path parameter
+      requestBody:
+        $ref: '#/components/requestBodies/consumer_group_request'
+      tags:
+        - consumer_groups
+    delete:
+      summary: Delete a consumer group
+      operationId: delete-consumer_groups-group_name_or_id_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Delete a consumer group. Deleting a consumer group removes all consumers from that group. This operation does not delete existing consuemrs.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumers/{consumer_username_or_id}/consumer_groups':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/Gatewayapi_Consumer_username_or_id'
+    get:
+      summary: List consumer groups for a consumer
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-consumers-consumer_name_or_id-consumer_groups_with_workspace
+      description: |
+        View all consumer groups that a consumer is assigned to.
+      tags:
+        - consumer_groups
+      parameters:
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-size'
+    post:
+      summary: Add a consumer to a specific consumer group.
+      operationId: post-consumers-consumer_username_or_id-consumer_groups_with_workspace
+      responses:
+        '200':
+          $ref: '#/components/responses/add_consumer_to_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Add a consumer to a specific consumer group.
+
+        If you add a consumer to multiple groups:
+
+        If all groups are allowed by the Rate Limiting Advanced plugin, only the first group's settings will apply.
+        Otherwise, whichever group is specified in the Rate Limiting Advanced plugin will be active.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group:
+                  type: string
+                  description: |
+                    The name or ID of the group to add the consumer to.
+                  example: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
+              required:
+                - group
+            examples:
+              Example request body:
+                value:
+                  group: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
+        description: The request body contains the group ID for the group that you are adding a consumer into.
+      tags:
+        - consumer_groups
+    delete:
+      summary: Remove a consumer from all groups
+      operationId: delete-consumers-consumer_username_or_id-consumer_groups_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+      description: Remove a consumer from all groups.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{group_name_or_id}/consumers':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/group_name_or_id'
+    get:
+      summary: List all consumers in a consumer group
+      tags:
+        - consumer_groups
+      operationId: get-consumer_groups-group_name_or_id-consumers_with_workspace
+      description: List all consumers in a consumer group
+      parameters:
+        - $ref: '#/components/parameters/Gatewayapi_Pagination-tags-filter'
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+    post:
+      summary: Add a consumer to a group
+      operationId: post-consumer_groups-group_name_or_id-consumers_with_workspace
+      responses:
+        '200':
+          $ref: '#/components/responses/add_consumer_to_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: |-
+        Add a consumer to a specific consumer group.
+
+        If you add a consumer to multiple groups:
+
+        If all groups are allowed by the Rate Limiting Advanced plugin, only the first group's settings will apply.
+        Otherwise, whichever group is specified in the Rate Limiting Advanced plugin will be active.
+      tags:
+        - consumer_groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consumer:
+                  type: string
+                  description: |
+                    The name or ID of the consumer to add to this group.
+                  example: 8a4bba3c-7f82-45f0-8121-ed4d2847c4a4
+    delete:
+      summary: Remove all consumers from a consumer group
+      operationId: delete-consumer_groups-group_name_or_id-consumers_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Removes all consumers from a specified consumer group.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumers/{consumer_name_or_id}/consumer_groups/{group_name_or_id}':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/consumer_name_or_id'
+      - $ref: '#/components/parameters/group_name_or_id'
+    delete:
+      summary: Remove a consumer from a consumer group
+      operationId: delete-consumers-consumer_name_or_id-consumer_groups-group_name_or_id_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Removes a consumer from a consumer group. This operation does not delete the consumer group.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{group_name_or_id}/consumers/{consumer_username_or_id}':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/group_name_or_id'
+      - $ref: '#/components/parameters/consumer_username_or_id'
+    delete:
+      summary: Remove a consumer from a consumer group
+      operationId: delete-consumer_groups-group_name_or_id-consumers-consumer_name_or_id_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: The consumer groups endpoint for removing a consumer from a specified consumer group.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{group_name_or_id}/overrides/plugins/rate-limiting-advanced':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/group_name_or_id'
+    put:
+      summary: Configure rate limiting for a consumer group.
+      operationId: put-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced_with_workspace
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    config:
+                      limit:
+                        - 10
+                      retry_after_jitter_max: 0
+                      window_size:
+                        - 10
+                      window_type: sliding
+                    group: test-group
+                    plugin: rate-limiting-advanced
+                properties:
+                  config:
+                    type: object
+                    properties:
+                      limit:
+                        type: array
+                        description: |
+                          An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified. 
+                        items:
+                          type: integer
+                          example: 10
+                      retry_after_jitter_max:
+                        type: integer
+                        description: |
+                          The upper bound of a jitter (random delay) in seconds to be added to the Retry-After header of denied requests (status = 429) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is 0; in this case, the Retry-After header is equal to the RateLimit-Reset header.
+                      window_size:
+                        type: array
+                        description: |
+                          An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.
+                        items:
+                          type: integer
+                          example: 10
+                      window_type:
+                        type: string
+                        description: |
+                          Set the time window type to either sliding (default) or fixed.
+                        example: sliding
+                  group:
+                    type: string
+                    description: The consumer group
+                    example: test-group
+                  plugin:
+                    type: string
+                    description: The name of the plugin
+                    example: rate-limiting-advanced
+              examples:
+                'Example ':
+                  value:
+                    config:
+                      limit:
+                        - 10
+                      retry_after_jitter_max: 0
+                      window_size:
+                        - 10
+                      window_type: sliding
+                    group: test-group
+                    plugin: rate-limiting-advanced
+      description: |
+        Define custom rate limiting settings for a consumer group. This endpoint overrides the settings of the Rate Limiting Advanced plugin. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config.limit:
+                  type: string
+                  description: |
+                    An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified.
+                config.window_size:
+                  type: string
+                  description: |
+                    An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.
+                  example: ' 10'
+                config.window_type:
+                  type: string
+                  description: |
+                    Set the time window type to either sliding (default) or fixed.
+                  default: sliding
+                  enum:
+                    - sliding
+                    - fixed
+                config.retry_after_jitter_max:
+                  type: string
+                  description: The upper bound of a jitter (random delay) in seconds to be added to the Retry-After header of denied requests (status = 429) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is 0; in this case, the Retry-After header is equal to the RateLimit-Reset header.
+              required:
+                - config.limit
+                - config.window_size
+            examples:
+              Request body:
+                value:
+                  config.limit: string
+                  config.window_size: ' 10'
+                  config.window_type: sliding
+                  config.retry_after_jitter_max: string
+        description: |
+          Request Body
+      tags:
+        - consumer_groups
+    delete:
+      summary: Delete the configurations for a consumer group
+      operationId: delete-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Delete custom rate limiting settings for a consumer group. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{consumer_username_or_id}/plugins':
+    get:
+      description: Retrieve a list of all plugins associated with a consumer group.
+      parameters:
+        - $ref: '#/components/parameters/pagination-size'
+        - $ref: '#/components/parameters/pagination-offset'
+        - $ref: '#/components/parameters/pagination-tags-filter'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Plugin'
+                    type: array
+                  offset:
+                    $ref: '#/components/schemas/pagination-offset-response'
+          description: A successful response listing plugins
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      summary: List all plugins associated with a consumer group
+      tags:
+        - Plugins
+      operationId: list-plugins-consumer-group_with_workspace
+    post:
+      description: Create a new plugin associated with a Consumer Group
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+          description: Successfully created plugin
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      summary: Create a new plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: create-plugin-for-consumer-group_with_workspace
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/consumer_username_or_id'
+  '/{workspace}/consumer_groups/{consumer_group_name_or_id}/plugins/{plugin_id}':
+    delete:
+      description: Delete a plugin associated with a a consumer group using ID.
+      responses:
+        '204':
+          description: Successfully deleted plugin or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      summary: Delete a plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: delete-plugin-for-consumer-group_with_workspace
+    get:
+      description: Get a plugin associated with a Consumer Group using ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    message: Not found
+                properties:
+                  message:
+                    type: string
+                    example: Not Found
+                    description: 404 Not Found
+              examples:
+                Not Found:
+                  value:
+                    message: Not Found
+      summary: Fetch a plugin associated with a Consumer Group
+      tags:
+        - Plugins
+      operationId: fetch-plugin-with-consumer-group_with_workspace
+    patch:
+      description: Update a plugin associated with a consumer group using the consumergroup name or ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      summary: Update a plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: update-plugin-with-consumer-group_with_workspace
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+    put:
+      description: Create or Update a plugin associated with a Consumer Group using ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      summary: Upsert a plugin associated with a Consumer Group
+      tags:
+        - Plugins
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+      operationId: upsert-plugin-for-customer-group_with_workspace
+    parameters:
+      - $ref: '#/components/parameters/workspace'
       - $ref: '#/components/parameters/consumer_group_name_or_id'
       - $ref: '#/components/parameters/plugin_id'
   /licenses:
@@ -12027,6 +12509,24 @@ paths:
                       username: string
                       email: string
                       rbac_token_enabled: true
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Detail about the conflict
+                    example: user already exists with same username, email, or custom_id
+                x-exmples:
+                  Example 1:
+                    message: user already exists with same username, email, or custom_id
+              examples:
+                Constraint violation:
+                  value:
+                    message: user already exists with same username, email, or custom_id
       tags:
         - admins
       description: Invite an admin to your organization.
@@ -12532,7 +13032,7 @@ paths:
       description: |
         Retrieve the current log level of a node.
 
-        See the [Nginx Documentation](ttp://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
+        See the [Nginx Documentation](https://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
   '/debug/node/log-level/{log_level}':
     parameters:
       - schema:
@@ -12710,11 +13210,11 @@ paths:
                         created_at: 1557506249
                         id: 888117e0-f2b3-404d-823b-dee595423505
                         name: super-admin
-                      - comment: 'null'
+                      - comment: null
                         created_at: 1557532241
                         id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                         name: doc_lord
-                    next: 'null'
+                    next: null
       operationId: get-rbac-roles
       description: List all roles.
     post:
@@ -12748,7 +13248,7 @@ paths:
               examples:
                 New role response body:
                   value:
-                    comment: 'null'
+                    comment: null
                     created_at: 1557532241
                     id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                     is_default: false
@@ -13753,7 +14253,7 @@ paths:
                         id: aae80073-095f-4553-ba9a-bee5ed3b8b91
                         name: doc-knight
                     user:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557772232
                       enabled: true
                       id: b65ca712-7ceb-4114-87f4-5c310492582c
@@ -13824,7 +14324,7 @@ paths:
                         id: aae80073-095f-4553-ba9a-bee5ed3b8b91
                         name: doc-knight
                     user:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557772232
                       enabled: true
                       id: b65ca712-7ceb-4114-87f4-5c310492582c
@@ -14443,9 +14943,35 @@ paths:
         POST any data to `/event-hooks/:id-of-hook/test`, and the `/test` endpoint executes the with the provided data as the event payload.
       tags:
         - Event-hooks
-  '/event-hooks/{event-hook-id/ping':
+  '/event-hooks/{event-hook-id}':
+      delete:
+        summary: Delete an event hook
+        description: Deletes a specific event hook by its ID.
+        operationId: deleteEventHook
+        parameters:
+          - name: event-hook-id
+            in: path
+            required: true
+            description: The ID of the event hook to delete.
+            schema:
+              type: string
+        responses:
+          '204':
+            description: Event hook successfully deleted.
+          '404':
+            description: Event hook not found.
+        tags:
+        - Event-hooks
+  '/event-hooks/{event-hook-id}/ping':
     get:
       summary: Ping a webhook event hook
+      parameters:
+        - name: event-hook-id
+          in: path
+          required: true
+          description: The ID of the event hook to delete.
+          schema:
+            type: string
       tags:
         - Event-hooks
       responses:
@@ -14527,11 +15053,11 @@ paths:
                         created_at: 1557506249
                         id: 888117e0-f2b3-404d-823b-dee595423505
                         name: super-admin
-                      - comment: 'null'
+                      - comment: null
                         created_at: 1557532241
                         id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                         name: doc_lord
-                    next: 'null'
+                    next: null
       operationId: get-rbac-roles-by-workspace
       description: List all roles by workspace
     post: 
@@ -14565,7 +15091,7 @@ paths:
                 examples:
                   New role response body:
                     value:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557532241
                       id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                       is_default: false
@@ -14684,6 +15210,198 @@ paths:
                 fips_disabled:
                   value: {"active": false, "version": "unknown"}
                   summary: FIPS mode is disabled or not supported. This may be the default state or result from a license configuration that does not enable FIPS mode.
+  '/clustering/data-planes':
+    get:
+      summary: Retrieve connected data planes
+      description: >
+        Retrieve a list of all data planes connected to the control plane. This endpoint is only accessible when Kong Gateway is running in hybrid mode.
+      operationId: getDataPlanes
+      responses:
+        '200':
+          description: A list of connected data planes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ip:
+                          type: string
+                          description: The IP address of the data plane.
+                        updated_at:
+                          type: integer
+                          description: Unix timestamp of the last update.
+                        config_hash:
+                          type: string
+                          description: The hash of the current configuration on the data plane.
+                        sync_status:
+                          type: string
+                          description: The sync status of the data plane.
+                        version:
+                          type: string
+                          description: The version of Kong running on the data plane.
+                        id:
+                          type: string
+                          description: Unique identifier of the data plane.
+                        hostname:
+                          type: string
+                          description: The hostname of the data plane.
+                        ttl:
+                          type: integer
+                          description: Time-to-live for the connection.
+                        last_seen:
+                          type: integer
+                          description: Unix timestamp when the data plane was last seen by the control plane.
+                        labels:
+                          type: object
+                          description: Metadata labels attached to the data plane.
+                          properties:
+                            deployment:
+                              type: string
+                              description: The deployment name.
+                            region:
+                              type: string
+                              description: The region of the data plane.
+                        cert_details:
+                          type: object
+                          properties:
+                            expiry_timestamp:
+                              type: integer
+                              description: Timestamp for when the certificate expires.
+        '400':
+          description: Kong is not running as a control plane.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: This endpoint is only available when Kong is configured to run as a control plane for the cluster.
+      tags:
+        - clustering
+
+  '/clustering/status':
+    get:
+      summary: Retrieve the status of connected data planes
+      description: >
+        Retrieve a status report for all data planes connected to the control plane. It includes information like the config hash, hostname, IP address, and last seen timestamp.
+        This endpoint is only accessible when Kong Gateway is running in hybrid mode.
+      operationId: getDataPlaneStatus
+      responses:
+        '200':
+          description: The status of all connected data planes.
+          headers:
+            Deprecation:
+              description: >
+                Indicates that the endpoint may be deprecated in the future.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    config_hash:
+                      type: string
+                      description: Hash of the configuration running on the data plane.
+                    hostname:
+                      type: string
+                      description: Hostname of the data plane.
+                    ip:
+                      type: string
+                      description: The IP address of the data plane.
+                    last_seen:
+                      type: integer
+                      description: Unix timestamp of the last interaction between the data plane and control plane.
+        '400':
+          description: Kong is not running as a control plane.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: This endpoint is only available when Kong is configured to run as a control plane for the cluster.
+      tags:
+      - clustering
+  '/cache/{key}':
+    get:
+      summary: Get cache value by key
+      description: >
+        Retrieve the cached value for a specific key. This endpoint probes both `kong.cache` and `kong.core_cache`. 
+        If the key exists, it returns the associated value and TTL. If not found, it returns a 404.
+      operationId: getCacheByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The cache key to retrieve.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cached value found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ttl:
+                    type: integer
+                    description: Time-to-live (TTL) of the cached entry.
+                  message:
+                    type: string
+                    description: Cached value or a message.
+        '404':
+          description: Cache key not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Not found
+      tags:
+      - cache
+    delete:
+      summary: Invalidate cache by key
+      description: >
+        Invalidate the cache for a specific key in both `kong.cache` and `kong.core_cache`.
+      operationId: deleteCacheByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The cache key to invalidate.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cache invalidated successfully.
+      tags:
+      - cache
+  
+  '/cache':
+    delete:
+      summary: Purge all cache entries
+      description: >
+        Purge all cache entries in both `kong.cache` and `kong.core_cache`.
+      operationId: purgeAllCache
+      responses:
+        '204':
+          description: All cache entries purged successfully.
+      tags:
+      - cache
+
 
 servers:
   - description: Default Admin API URL
@@ -14852,3 +15570,9 @@ tags:
       Event hooks do not work with Konnect yet.
       <br><br>
     name: Event-hooks
+  - description: |
+      Retrieve information about the status of data planes when Kong Gateway is running in hybrid mode.
+    name: clustering
+  - description: |
+      Querying and managing cache entries.
+    name: cache

@@ -76,7 +76,7 @@ will be subject to rate limit enforcement.
 1. **Validate**
 
    After configuring rate limiting, you can verify that it was configured correctly and is working, 
-   by sending more requests then allowed in the configured time limit.
+   by sending more requests than allowed in the configured time limit.
 
 {% capture global_instructions %}
 {% navtabs %}

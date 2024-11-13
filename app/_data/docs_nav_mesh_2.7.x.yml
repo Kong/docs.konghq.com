@@ -157,6 +157,8 @@ inherit:
               url: /features/ubi-images
             - text: Red Hat OpenShift Quickstart
               url: /features/openshift-quickstart
+        - text: Windows Support
+          url: /features/windows
         - text: ECS Support
           url: /installation/ecs
         - text: Auditing

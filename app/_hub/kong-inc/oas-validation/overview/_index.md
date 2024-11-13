@@ -166,3 +166,18 @@ For the Validation plugin, event hook events can be enabled when a Validation fa
     "consumer": {}
     }
     ```
+
+## Troubleshooting
+
+### The plugin validates the ETag header with the If-Match header
+
+If a request contains the `If-Match` request header, the OAS Validation plugin follows [RFC 2616](https://www.ietf.org/rfc/rfc2616.txt) to validate the `Etag` response header.
+
+If you don't want the plugin to validate the `Etag` with the `If-Match` request header,
+send the `If-Match` header with a wildcard (`*`) to skip validation.
+
+For example:
+```sh
+curl http://localhost:8000/example-route \
+  -H 'If-Match:*'
+```

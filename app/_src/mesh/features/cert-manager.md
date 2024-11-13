@@ -1,5 +1,6 @@
 ---
 title: Kubernetes cert-manager CA Policy
+badge: enterprise
 ---
 
 ## cert-manager CA Backend
@@ -88,10 +89,19 @@ spec:
           name: my-ca-issuer
           kind: Issuer
           group: cert-manager.io
+        caCert: # can be used to specify the root CA
+          inlineString: | # or secret
+            -----BEGIN CERTIFICATE-----
+            ...
 ```
 
 In `issuerRef`, only `name` is strictly required.
 `group` and `kind` will default to cert-manager default values. See `issuerRef` in [cert-manager API](https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.CertificateRequestSpec) for details.
+
+If `caCert` is not provided, {{ site.mesh_product_name }} assumes that the
+issuer sets `status.CA` on `CertificateRequests`.
+Note that if `secret` is used,
+it must be [a {{ site.mesh_product_name }} Secret](/mesh/{{page.release}}/production/secure-deployment/secrets/).
 
 Apply the configuration with `kubectl apply -f [..]`.
 

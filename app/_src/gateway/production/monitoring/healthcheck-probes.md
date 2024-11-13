@@ -5,7 +5,7 @@ content_type: tutorial
 
 This tutorial guides you through the process of using the node readiness endpoint, which provides a reliable way to determine if {{site.base_gateway}} is ready to serve user requests.
 
-The readiness check endpoint returns a `200 OK` response when {{site.base_gateway}} is ready, or a `503 Service Temporarily Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances. When Kong is not ready, the endpoint responds back with a `message` field with the reason for unreadiness. This can be helpful to debug situations where the user expects that the node should be ready but is not.
+The readiness check endpoint returns a `200 OK` response when {{site.base_gateway}} is ready, or a `503 Service Temporarily Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of {{site.base_gateway}} instances. When {{site.base_gateway}} is not ready, the endpoint responds back with a `message` field with the reason for unreadiness. This can be helpful to debug situations where the user expects that the node should be ready but is not.
 
 {:.note}
 > **Note:** The readiness endpoint does not return detailed information about the node status.
@@ -14,7 +14,7 @@ The readiness check endpoint returns a `200 OK` response when {{site.base_gatewa
 
 For each {{site.base_gateway}} node, there are two distinct health checks (also known as "probes"):
 
-* **Liveness**: The `/status` endpoint responds with a `200 OK` status if Kong is running. The request will fail either with a `500 Internal Server Error` or no response if Kong is not running. You can send a GET request to check the liveness of your {{site.base_gateway}} instance:
+* **Liveness**: The `/status` endpoint responds with a `200 OK` status if {{site.base_gateway}} is running. The request will fail either with a `500 Internal Server Error` or no response if {{site.base_gateway}} is not running. You can send a GET request to check the liveness of your {{site.base_gateway}} instance:
   
   ```sh
   # Replace localhost:8100 with the appropriate host and port for
@@ -23,7 +23,7 @@ For each {{site.base_gateway}} node, there are two distinct health checks (also 
   curl -i http://localhost:8100/status
   ```
 
-* **Readiness**: The `/status/ready` endpoint responds with a `200 OK` status if Kong has successfully loaded a valid configuration and is ready to proxy traffic. The request will fail either with a `500 Internal Server Error` or no response if Kong is not ready to proxy traffic yet. You can send a GET request to check the readiness of your {{site.base_gateway}} instance:
+* **Readiness**: The `/status/ready` endpoint responds with a `200 OK` status if {{site.base_gateway}} has successfully loaded a valid configuration and is ready to proxy traffic. The request will fail either with a `503 Service Temporarily Unavailable` or no response if {{site.base_gateway}} is not ready to proxy traffic yet. You can send a GET request to check the readiness of your {{site.base_gateway}} instance:
   
   ```sh
   # Replace localhost:8100 with the appropriate host and port for
@@ -43,7 +43,7 @@ We recommend using the readiness probe over the liveness probe, especially in pr
 
 ## Understanding the node readiness endpoint
 
-Before diving into the steps, it's important to understand the purpose of the node readiness endpoint and how it determines whether a Kong instance is ready or not. The endpoint acts differently depending on the node type.
+Before diving into the steps, it's important to understand the purpose of the node readiness endpoint and how it determines whether a {{site.base_gateway}} instance is ready or not. The endpoint acts differently depending on the node type.
 
 {% navtabs %}
 {% navtab Traditional mode %}
@@ -51,7 +51,7 @@ Before diving into the steps, it's important to understand the purpose of the no
 In [traditional mode](/gateway/{{page.release}}/production/deployment-topologies/traditional/), the endpoint returns `200 OK` when all of the following conditions are met:
 
 1. Successful connection to the database
-2. All Kong workers are ready to route requests
+2. All {{site.base_gateway}} workers are ready to route requests
 3. All routes and services have their plugins ready to process requests
 
 {% endnavtab %}
@@ -59,8 +59,8 @@ In [traditional mode](/gateway/{{page.release}}/production/deployment-topologies
 
 In [hybrid mode](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/) (`data_plane` role) or [DB-less mode](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config/), the endpoint returns `200 OK` when the following conditions are met:
 
-1. Kong has loaded a valid and non-empty config (`kong.yaml`)
-2. All Kong workers are ready to route requests
+1. {{site.base_gateway}} has loaded a valid and non-empty config (`kong.yaml`)
+2. All {{site.base_gateway}} workers are ready to route requests
 3. All routes and services have their plugins ready to process requests
 
 {% endnavtab %}
@@ -187,7 +187,7 @@ A health check probe doesn't take the following into account:
 
 ## See also
 
-For more information on Kong and related topics, check out the following resources:
+For more information on {{site.base_gateway}} and related topics, check out the following resources:
 
 * [Health Check and Monitoring Overview](/gateway/latest/production/monitoring/)
 * [Kong Admin API Documentation](/gateway/latest/admin-api/)

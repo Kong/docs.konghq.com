@@ -88,6 +88,14 @@ In the following example, `AWSCURRENT` refers to the latest secret version and `
 {vault://aws/secret-name/foo#2}
 ```
 
+{:.note}
+> **Note:** The slash symbol (`/`) is a valid character for the secret name in AWS SecretsManager. If you want to reference a secret name that starts with a slash or has two consecutive slashes, transform one of the slashes in the name into URL-encoded format. For example:
+ *  A secret named `/secret/key` should be referenced as `{vault://aws/%2Fsecret/key}`
+ *  A secret named `secret/path//aaa/key` should be referenced as `{vault://aws/secret/path/%2Faaa/key}`
+>
+> Since {{site.base_gateway}} tries to resolve the secret reference as a valid URL, using a slash instead of a URL-encoded slash will result in unexpected secret name fetching.
+
+
 ## Configuration via vaults entity
 
 The vault entity can only be used once the database is initialized. Secrets for values that are used _before_ the database is initialized can't make use of the vaults entity.
@@ -186,6 +194,10 @@ Parameter | Field name                     | Description
 `vaults.config.endpoint_url` | **AWS Secrets Manager Endpoint URL** | The endpoint URL of the AWS Secrets Manager service. If not specified, the value used by vault will be the official AWS Secrets Manager service url which is `https://secretsmanager.{region}.amazonaws.com`. You can specify a complete URL(including the `http/https` scheme) to override the endpoint.
 `vaults.config.assume_role_arn` | **Assume AWS IAM role ARN** | The target IAM role ARN that will assume as the AWS Secrets Manager service. If specified, the vault backend will do additional role assuming based on your current runtime's IAM Role. If you are not using assume role, do not specify this value.
 `vaults.config.role_session_name` | **Role Session Name** | The role session name used for role assuming. The default value is `KongVault`.
+{% endif_version -%}
+
+{% if_version gte:3.8.x -%}
+`vaults.config.sts_endpoint_url` | **AWS STS Endpoint URL** | The custom STS endpoint URL used for the IAM assume role in AWS Vault. You can specify a complete URL, including the `http/https` scheme. This value will override the default STS endpoint URL, which should be `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if `AWS_STS_REGIONAL_ENDPOINTS` is set to `regional`(by default). If you are not using a private VPC endpoint for STS service, you should not specify this value.
 {% endif_version -%}
 
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.

@@ -9,7 +9,128 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">November<br>05</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-konnect-config-store">Introducing Konnect Config Store</a>
+</div>
+<div class="changelog-description">We are excited to announce the launch of Konnect Config Store!  You can now store your secrets and sensitive data for your gateways directly in Konnect Config Store and reference them in your gateway configuration.</div>
+</div>
+</div>
+
+<div class="changelog-entries">
+<div class="changelog-date">November<br>04</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/enhanced-api-request-filtering-experience">Enhanced API Request Filtering Experience</a>
+</div>
+<div class="changelog-description">We're excited to announce two important updates to our API Requests filtering capabilities:
+</div>
+<ul>
+<li>Konnect users can now filter API requests by any attribute, including HTTP verb, IP, path, and more.</li>
+<li>The API request slideout window now allows users to add filters directly by clicking on displayed metadata items.</li>
+</ul>
+<div>These features work together to significantly streamline your investigation process. By providing more granular filtering options and an intuitive, one-click filter addition from the context of individual requests, you can quickly narrow down to the most relevant API requests.
+</div>
+<br>
+<div><b>Deprecation Notice:</b>
+We have deprecated the old method of filtering requests via the API in favor of the new, more powerful filter options, which are now included in the updated <a href="https://docs.konghq.com/konnect/api/api-requests/latest/">API endpoint</a>. While both old and new filtering methods will continue to work, we recommend users transition to the new fields so that they can leverage the new enhanced functionality.
+</div>
+</div>
+</div>
+
+
+## October 2024
+
+
+<div class="changelog-entries">
+<div class="changelog-date">October<br>24</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/serverless-gateways-now-in-public-beta-QRE5uhad">Serverless Gateways now in Public Beta</a>
+</div>
+<div class="changelog-description">Serverless Gateways are now available to all Konnect Plus users in Public Beta.  Serverless Gateways allow you to provision lightweight, managed Kong Gateway instances within seconds.</div>
+</div>
+</div>
+
+<div class="changelog-entries">
+<div class="changelog-date">October<br>18</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/swaggerhub-integration-in-service-catalog-4gP88uzg">SwaggerHub Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">Service Catalog now supports importing API specifications directly from SwaggerHub.  This integration enhances Service Catalog's ability to serve as your organization's central repository for all APIs.</div>
+</div>
+</div>
+
+## September 2024
+
+
+<div class="changelog-entries">
+<div class="changelog-date">September<br>12</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-llm-analytics-in-kong-konnect-for-genai-traffic">Introducing LLM Analytics in Kong Konnect for GenAI traffic</a>
+</div>
+<div class="changelog-description">We’re pleased to announce the new LLM Usage reporting feature in Advanced Analytics with the release of Kong Gateway 3. 8.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-service-catalog-launches-into-public-beta">Konnect Service Catalog launches into Public Beta</a>
+</div>
+<div class="changelog-description">The Konnect Service Catalog is now available to all Konnect users in Public Beta.  Service Catalog allows you to discover your organization's "Shadow APIs" through its integrations with Gateway Manager, Mesh Manager, and Traceable.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/plugin-pricing-updated-2v7GPow0">Plugin pricing updated</a>
+</div>
+<div class="changelog-description">Plugins are no longer priced are Free, Plus, and Premium tiers separate from the Konnect subscription.  There is no more extra fee to use any particular plugin.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>11</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/nnouncing-beamer-integration-with-konnect">Announcing Beamer Integration with Konnect</a>
+</div>
+<div class="changelog-description">With Beamer, customers can easily stay up-to-date on the latest Konnect announcements without having to navigate across multiple websites.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">September<br>03</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+Cloud Launchers deprecated
+</div>
+<div class="changelog-description">Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.</div>
+</div>
+</div>
+
+
+## August 2024
+
+**You can now delete the default control plane**
+: In {{site.konnect_saas}}, it is now possible to delete the default control plane.
+
+**SAML Login support**
+: {{site.konnect_short_name}} now supports [SAML authentication protocol](/konnect/org-management/sso/) for logging in. SAML is an open standard that allows {{site.konnect_short_name}} to delegate authentication to an identity provider (IdP). You can choose between OIDC or SAML protocols while setting up Single Sign On for your organization.
+
+**General Availability of API Requests**
+: Announcing the general availability of [API Requests](/konnect/analytics/api-requests/). API Requests provide detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
+
 ## July 2024
+
+**New refresh button in Advanced Analytics**
+: We've introduced a refresh button on selected analytics pages such as API Requests and Explorer, allowing users to view updated data without triggering a full site reload. This feature also preserves applied filters and provides a more seamless user experience.
 
 **Dedicated Cloud Gateways on Azure <span class="badge alpha"></span>**
 
@@ -22,10 +143,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : {{site.konnect_short_name}} now supports multiple Dev Portals. Users can create multiple Dev Portals with the same functionality to better segment their customers, brands, and API product experiences. For more information, see [Create Dev Portal](/konnect/dev-portal/create-dev-portal).
 
 **Manage control plane analytics data ingestion**
-: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
+: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only control what data is important for Kong to keep, but also manage your overall spending on the Konnect Advanced Analytics app. If you disable analytics for a control plane, the data for that control plane will no longer display as part of the Analytics dashboard.
 
-: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Analytics** toggle.
-
+: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Advanced Analytics** toggle.
 
 ## May 2024
 
@@ -43,8 +163,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2024
 
-
 **Dedicated Cloud Gateways**
+
 : You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
 
 : Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
@@ -315,7 +435,8 @@ You can upload a plugin schema to Konnect and get started with custom plugins in
 : A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/latest/)
 
 **API Products**
-: Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
+: Introducing a new Service Hub module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in the Service Hub have been seamlessly moved to the new API Products UI & API experience.
+
 
 : **Note:** Tagging your Gateway services with `_KonnectService` doesn't automatically create an API product and API product version.
 
@@ -388,7 +509,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 : {{site.konnect_saas}} received a new navigation and layout update designed to provide a more intuitive and user-friendly experience. With this update, you will find the **Region Switcher** has moved to the bottom-left corner of the {{site.konnect_saas}} manager closer to region-specific features. 
 
 **Right To Be Forgotten (RTBF) in {{site.konnect_saas}}**
-: Kong's [privacy policy](https://konghq.com/privacy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
+: Kong's [privacy policy](https://konghq.com/legal/privacy-policy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
 
 **Version picker in Runtime Manager Quickstart**
 : {{site.konnect_short_name}} now allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version. For more information, see [Supported Installation Options](/konnect/gateway-manager/data-plane-nodes/).
@@ -654,7 +775,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Existing organizations will be automatically upgraded to the new {{site.konnect_short_name}} environment over the next 4-6 weeks. We will be contacting your organization administrator with more details on the upgrade process.
 
-: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/import/).
+: You can continue using your `konnect.konghq.com` account and wait until we migrate it, or create a new account and [manually migrate configuration to the new account](/konnect/getting-started/migration/).
 
 : The minimum supported {{site.base_gateway}} version for this environment is 2.5.0.1.
 

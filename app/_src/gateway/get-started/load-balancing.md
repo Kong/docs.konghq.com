@@ -20,7 +20,7 @@ used to health check, circuit break, and load balance incoming requests over mul
 
 In this section, you’ll re-configure the service created earlier, (`example_service`) to point to an upstream 
 instead of a specific host. For the purposes of our example, the upstream will point to two different targets, 
-`httpbin.org` and `httpbun.com`. More commonly, targets will be instances of the same backend service running on different host systems.
+`httpbin.konghq.com` and `httpbun.com`. More commonly, targets will be instances of the same backend service running on different host systems.
 
 Here is a diagram illustrating the setup:
 
@@ -33,7 +33,7 @@ flowchart LR
   B("`Service
   (example_service)`")
   C(Load balancer)
-  D(httpbin.org)
+  D(httpbin.konghq.com)
   E(httpbun.com)
   
   subgraph id1 ["`**KONG GATEWAY**`"]
@@ -87,7 +87,7 @@ If you haven't completed these steps already, complete them before proceeding.
    curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
      --data target='httpbun.com:80'
    curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
-     --data target='httpbin.org:80'
+     --data target='httpbin.konghq.com:80'
    ```
 
 1. **Update the service**
@@ -100,7 +100,7 @@ If you haven't completed these steps already, complete them before proceeding.
      --data host='example_upstream'
    ```
 
-   You now have an upstream with two targets, `httpbin.org` and `httpbun.com`, and a service pointing to that upstream.
+   You now have an upstream with two targets, `httpbin.konghq.com` and `httpbun.com`, and a service pointing to that upstream.
 
 1. **Validate**
 

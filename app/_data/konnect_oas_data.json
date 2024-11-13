@@ -45,12 +45,12 @@
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
     "title": "Gateway Admin - EE",
     "latestVersion": {
-      "name": "3.7.0.0",
-      "id": "7dad8169-6779-49bb-bb78-19f88b186d92"
+      "name": "3.8.0.0",
+      "id": "8a434890-9251-4f4b-a8cd-21fae85f4285"
     },
     "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes.",
     "documentCount": 2,
-    "versionCount": 5,
+    "versionCount": 6,
     "versions": [
       {
         "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
@@ -91,6 +91,14 @@
         "name": "3.7.0.0",
         "deprecated": false,
         "registration_configs": []
+      },
+      {
+        "id": "8a434890-9251-4f4b-a8cd-21fae85f4285",
+        "created_at": "2024-09-11T01:07:14.811Z",
+        "updated_at": "2024-09-11T01:07:14.811Z",
+        "name": "3.8.0.0",
+        "deprecated": false,
+        "registration_configs": []
       }
     ]
   },
@@ -98,12 +106,12 @@
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
     "title": "Gateway Admin - OSS",
     "latestVersion": {
-      "name": "3.7.0",
-      "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b"
+      "name": "3.8.0",
+      "id": "dcea0cfe-0d7e-4a91-a07a-5e358086d5dc"
     },
     "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes.",
     "documentCount": 0,
-    "versionCount": 5,
+    "versionCount": 6,
     "versions": [
       {
         "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
@@ -142,6 +150,14 @@
         "created_at": "2024-05-08T18:40:28.598Z",
         "updated_at": "2024-06-13T19:06:00.994Z",
         "name": "3.7.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "dcea0cfe-0d7e-4a91-a07a-5e358086d5dc",
+        "created_at": "2024-09-11T01:08:36.394Z",
+        "updated_at": "2024-09-11T01:08:36.394Z",
+        "name": "3.8.0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -212,12 +228,12 @@
   },
   {
     "id": "51eda0ea-74ca-48c9-bf6e-80a413d620b4",
-    "title": "Konnect API Requests (Beta)",
+    "title": "Konnect API Request",
     "latestVersion": {
       "name": "v2",
       "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1"
     },
-    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time.\n\nThis API is released as beta.",
+    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [

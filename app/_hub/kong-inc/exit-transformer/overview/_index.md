@@ -16,7 +16,7 @@ environment.
 ## Transforming 4xx and 5xx Responses
 
 By default, the Exit Transformer is only applied to requests that match its
-criteria (its Route or Service matching configuration) or globally within a Workspace.
+criteria (its route or service matching configuration) or globally within a workspace.
 
 ### Handling Unmatched 400 and 404 Responses
 
@@ -25,14 +25,16 @@ within any specific Workspace, and standard plugin criteria will never match tho
 responses. You can designate Exit Transformer configurations that _do_ handle these
 responses by enabling the `handle_unexpected` (400) and `handle_unknown` (404) settings:
 
-- The `handle_unknown` parameter should only be enabled on a single plugin configuration.
-- The `handle_unexpected` parameter can be enabled on as many plugin configurations
-as you want.
+- The `handle_unknown` parameter must be used on a
+  [globally configured instance of the plugin](/hub/kong-inc/exit-transformer/how-to/basic-example/?tab=enable-globally)
+  running in the default workspace, and only takes effect when a 404 error occurs.
+- The `handle_unexpected` parameter can be enabled for any plugin configuration -
+  on a service, on a route, and so on. It only takes effect when a 400 error occurs.
 
 It's not a prerequisite for `handle_unexpected` to also have `handle_unknown` set,
-if an unexpected error happened within some known Service or Route context. If a
+if an unexpected error happened within some known service or route context. If a
 configuration has both `handle_unknown` and `handle_unexpected` enabled, then an
-unexpected error on an _unknown_ Service or Route will pass through the Exit Transformer plugin.
+unexpected error on an _unknown_ service or route will pass through the Exit Transformer plugin.
 
 ### HTTP Response Status Codes {#http-msgs}
 
@@ -177,7 +179,7 @@ end
     ```bash
     curl -i -X POST http://localhost:8001/services \
       --data name=example.com \
-      --data url='http://httpbin.org'
+      --data url='https://httpbin.konghq.com'
     ```
 
 2. Create a route in Kong:

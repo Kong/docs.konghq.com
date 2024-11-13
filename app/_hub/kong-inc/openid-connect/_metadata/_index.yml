@@ -8,10 +8,10 @@ search_aliases:
 dbless_compatible: 'yes'
 free: false
 enterprise: true
-premium: true
 konnect: true
 network_config_opts: All
-notes: --
+notes: |
+  In Serverless gateways only the <code>cookie</code> config session storage is supported.
 categories:
   - authentication
 publisher: Kong Inc.

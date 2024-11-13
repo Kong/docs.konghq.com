@@ -31,13 +31,18 @@ module PluginSingleSource
                   .merge!(url_attributes)
                   .merge!(page_attributes)
                   .merge!(frontmatter_attributes)
+                  .merge!(i18n_attributes)
       end
 
       def content
-        @content ||= Utils::SafeFileReader.read(
-          file_name: @file,
-          source_path: @source_path
-        )
+        @content ||= begin
+          file_name = if @release.missing_translation?
+                        i18n_file.full_file_path_in_default_locale
+                      else
+                        i18n_file.full_file_path_in_locale
+                      end
+          Utils::SafeFileReader.read(file_name:, source_path: '')
+        end
       end
 
       def dir
@@ -50,10 +55,13 @@ module PluginSingleSource
       end
 
       def source_file
-        @source_file ||= File.expand_path(
-          @file,
-          @source_path
-        ).gsub("#{@site.source}/", '')
+        @source_file ||= if @site.config['locale'] == I18n.default_locale.to_s
+                           i18n_file.relative_file_path
+                         elsif @release.missing_translation? # rubocop:disable Lint/DuplicateBranch
+                           i18n_file.relative_file_path
+                         else
+                           i18n_file.full_file_path_in_locale
+                         end
       end
 
       def base_url
@@ -82,6 +90,10 @@ module PluginSingleSource
         return true if min.nil? && max.nil?
 
         Utils::Version.in_range?(@release.version, min:, max:)
+      end
+
+      def translate_to
+        @translate_to ||= @release.missing_translation? ? I18n.default_locale : I18n.locale
       end
 
       private
@@ -117,7 +129,7 @@ module PluginSingleSource
         categories = @release.metadata['categories']
         return nil if categories.nil? # This happens when the plugin is not categorized
 
-        @site_categories ||= @site.config['extensions']['categories']
+        @site_categories ||= @site.data['extensions']['categories']
 
         cat = @site_categories.detect { |category| category['slug'] == categories.first }
         return categories[0] if cat.nil?
@@ -131,11 +143,30 @@ module PluginSingleSource
 
       def frontmatter_attributes
         return {} if @file.nil?
-        return {} unless File.exist?(File.expand_path(@file, @source_path))
+        return {} unless File.exist?(i18n_file.full_file_path_in_locale)
 
         @frontmatter_attributes ||= Utils::FrontmatterParser.new(
-          File.read(File.expand_path(@file, @source_path))
+          File.read(i18n_file.full_file_path_in_locale)
         ).frontmatter
+      end
+
+      def i18n_attributes
+        return { 'locale' => I18n.default_locale.to_s } if @site.config['locale'] == I18n.default_locale.to_s
+
+        if !@release.missing_translation? && i18n_file.exists_in_locale?
+          { 'locale' => @site.config['locale'] }
+        else
+          Jekyll::Pages::TranslationMissingData.new(@site).data
+        end
+      end
+
+      def i18n_file
+        @i18n_file ||= Jekyll::GeneratorSingleSource::I18nFile.new(
+          file: @file,
+          src_path: @source_path.gsub("#{@site.source}/", ''),
+          locale: @site.config['locale'],
+          site: @site
+        )
       end
     end
   end

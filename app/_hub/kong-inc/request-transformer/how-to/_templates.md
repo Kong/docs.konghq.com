@@ -9,10 +9,11 @@ You can use any of the current request headers, query parameters, and captured U
 groups as templates to populate supported configuration fields.
 
 | Request Parameter | Template
-| ------------- | -----------
-| header        | `$(headers.<header_name>)`, `$(headers["<Header-Name>"])` or `$(headers["<header-name>"])`)
-| querystring   | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`)
-| captured URIs | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`)
+| -------------- | -----------
+| header         | `$(headers.<header_name>)`, `$(headers["<Header-Name>"])` or `$(headers["<header-name>"])`
+| querystring    | `$(query_params.<query-param-name>)` or `$(query_params["<query-param-name>"])`
+| captured URIs  | `$(uri_captures.<group-name>)` or `$(uri_captures["<group-name>"])`
+| shared variables | `$(shared.<variable-name>)` or `$(shared["<variable-name>"])`)
 
 To escape a template, wrap it inside quotes and pass inside another template.
 For example:
@@ -72,12 +73,12 @@ above).
 
 ## Examples using template as a value
 
-Add a Service named `test` which routes requests to the httpbin.org upstream service:
+Add a Service named `test` which routes requests to the httpbin.konghq.com upstream service:
 
 ```bash
 curl -X POST http://localhost:8001/services \
     --data 'name=test' \
-    --data 'url=http://httpbin.org/anything'
+    --data 'url=https://httpbin.konghq.com/anything'
 ```
 
 Create a route for the `test` service, capturing a `user_id` field from the third segment of the request path:

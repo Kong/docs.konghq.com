@@ -163,7 +163,7 @@ Still within the {{site.base_gateway}} container's shell, add a new service with
 ```sh
 curl -i -s -X POST http://localhost:8001/services \
     --data name=example_service \
-    --data url='http://httpbin.org'
+    --data url='https://httpbin.konghq.com'
 ```
 
 Associate the custom plugin with the `example_service` service:

@@ -16,7 +16,7 @@ In this guide, you will set up two developer teams and then enable Portal RBAC u
 ## Prerequisites
 * Two test [developer accounts registered](/konnect/dev-portal/dev-reg/)
 * A [configured control plane](/konnect/getting-started/configure-data-plane-node/)
-* A [personal access token](/konnect/getting-started/import/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
+* A [personal access token](/konnect/gateway-manager/declarative-config/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
 
 If you have existing registered developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC. If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. 
 
@@ -46,7 +46,7 @@ In {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us
 1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
 1. From the **Add a Gateway Service** dialog, enter the following to create a new service:
     * **Name:** `pizza_ordering`
-    * **Upstream URL:** `http://httpbin.org`
+    * **Upstream URL:** `https://httpbin.konghq.com`
     * Use the defaults for the remaining fields.
 1. Click **Save**. 
 1. To create an API product for your service, navigate to **API Products** in the sidebar, click **Add API Product** and enter `Pizza Ordering` in the **Product Name** field.
@@ -74,7 +74,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'accept: application/json' \
       --data '{
           "name": "pizza_ordering",
-          "host": "httpbin.org",
+          "host": "httpbin.konghq.com",
           "path": "/pizza_ordering"
       }'
     ```
@@ -87,7 +87,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
         "connect_timeout": 60000,
         "created_at": 1692885974,
         "enabled": true,
-        "host": "httpbin.org",
+        "host": "httpbin.konghq.com",
         "id": "06acc4f4-c6d8-4daf-bef6-79866e88ca86",
         "name": "pizza_ordering",
         "path": "/pizza_ordering",
@@ -302,8 +302,9 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'accept: application/json' \
       --data '{
       "role_name": "API Consumer",
-      "entity_id": "GATEWAY_SERVICE_ID",
-      "entity_type_name": "Services"
+      "entity_id": "API_PRODUCT_ID",
+      "entity_type_name": "Services",
+      "entity_region": "us"
       }'
     ```
 
@@ -329,7 +330,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'accept: application/json' \
       --data '{
       "role_name": "API Viewer",
-      "entity_id": "GATEWAY_SERVICE_ID",
+      "entity_id": "API_PRODUCT_ID",
       "entity_type_name": "Services",
       "entity_region": "us"
       }'
