@@ -423,7 +423,7 @@
   endOfLifeDate: "2025-10-22"
   branch: release-2.9
 - edition: mesh
-  version: 2.10.0
+  version: preview
   release: 2.10.x
   branch: master
   label: dev
