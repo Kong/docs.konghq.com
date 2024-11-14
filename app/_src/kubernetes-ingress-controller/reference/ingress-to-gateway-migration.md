@@ -35,7 +35,7 @@ Such a list is improved over time.
 | REQUIRED [`kubernetes.io/ingress.class`](#kubernetesioingressclass) | `gateway.spec.gatewayClassName` |
 | [`konghq.com/methods`](#konghqcommethods) | `httpRoute.spec.rules[*].matches[*].method` |
 | [`konghq.com/headers.*`](#konghqcomheaders) | `httpRoute.spec.rules[*].matches[*].headers` |
-| [`konghq.com/plugins`](#konghqcomplugins) | `httpRoute.spec.rules[*].matches[*].headers` |
+| [`konghq.com/plugins`](#konghqcomplugins) | `httpRoute.spec.rules[*].filters` |
 
 ## Features
 
