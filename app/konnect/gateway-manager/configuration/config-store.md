@@ -81,7 +81,7 @@ This allows {{site.base_gateway}} to recognize and retrieve the stored secrets. 
 }
 ```
 
-To make these secrets accessible to {{site.base_gateway}}, reference the valut using a specific URL format. For the example above, the references would be:
+To make these secrets accessible to {{site.base_gateway}}, reference the vault using a specific URL format. For the example above, the references would be:
 
 ```sh
 {vault://my-vault/secret-name/foo}
