@@ -136,7 +136,7 @@ After a rollback, if you run into issues in production, consider using a testing
     Helm does not upgrade CRDs automatically. You must apply the 3.x CRDs before you upgrade your releases.
 
     ```bash
-    kubectl kustomize https://github.com/Kong/kubernetes-ingress-controller//config/crd/?v3.0.0 | kubectl apply -f -
+    kubectl kustomize https://github.com/Kong/kubernetes-ingress-controller/config/crd/?ref=v3.0.0 | kubectl apply -f -
     ```
 
 1. **Convert `KongIngress` `route` and `service` fields to annotations.**
