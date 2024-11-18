@@ -2512,7 +2512,7 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 ## 3.4.3.13
-**Release Date** 2024/10/04
+**Release Date** 2024/11/15
 
 ### Features
 #### Core
@@ -2537,6 +2537,12 @@ was called multiple times in a request lifecycle.
 * Fixed an issue where the Vault secret cache got refreshed during `resurrect_ttl` time and could not be fetched by other workers.
 * Moved internal Unix sockets to a subdirectory (`sockets`) of the Kong prefix.
 * Shortened the names of internal Unix sockets to avoid exceeding the socket name limit.
+* Fixed an issue where AWS IAM assume role could not be used in AWS IAM database authentication by using the following fields: 
+  * `pg_iam_auth_assume_role_arn`
+  * `pg_iam_auth_role_session_name`
+  * `pg_ro_iam_auth_assume_role_arn`
+  * `pg_ro_iam_auth_role_session_name`
+* Fixed an issue where the STS endpoint could not be configured manually in RDS IAM Authentication, AWS Vault and AWS Lambda plugin. For RDS IAM authentication, it can be configured by `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_endpoint_url`. For AWS vault, it can be configured using `vault_aws_sts_endpoint_url` as a global configuration, or `sts_endpoint_url` on a custom AWS vault entity. For the AWS Lambda plugin, it can be configured using the `aws_sts_endpoint_url`. 
 * Fixed an issue where `luarocks-admin` was not available in `/usr/local/bin`.
 * Fixed an issue where analytics could break when the value type of rate limiting-related headers was not `integer`.
 * Fixed an issue where the IAM auth token was not refreshed when the underlying AWS credential expired.
@@ -2548,12 +2554,14 @@ was called multiple times in a request lifecycle.
 
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) 
   * Fixed an issue where the sync timer could stop working due to a race condition.
+  * Fixed an issue where when the sliding window and `window_size` was very small, the precision of the rate limit wasn't accurate enough.
 
 ### Dependencies
 
 * Bumped `LPEG` from 1.0.2 to 1.1.0 to keep the version consistent across all active branches. 
 The version bump includes fixes like UTF-8 ranges, a larger limit for rules and matches, accumulator capture, and more.
 * Bumped `lua-resty-aws` to 1.5.3 to fix a bug related to the STS regional endpoint.
+* Bumped `lua-resty-azure` to 1.6.1 to fix a `GET` request build issue.
 * Made the RPM package relocatable with the default prefix set to `/`.
 
 ## 3.4.3.12
