@@ -64,6 +64,20 @@ This metric provides these labels:
 {% endif_version -%}
 * `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors.
 
+{% if_version gte:3.4.x %}
+
+### ingress_controller_configuration_push_size
+
+`ingress_controller_configuration_push_size` (type: `gauge`) is the size of the configuration pushed to Kong, in bytes.
+
+This metric provides these labels:
+
+* `dataplane` describes the dataplane that was the target of the configuration push.
+* `protocol` describes the configuration protocol (metric is presented for `db-less`, for `deck` it doesn't exist) in use.
+* `success` describes whether there were unrecoverable errors (`false`) or not (`true`).
+
+{% endif_version -%}
+
 {% if_version gte:2.11.x %}
 ### ingress_controller_configuration_push_broken_resource_count
 
@@ -145,6 +159,20 @@ This metric provides these labels:
 * `dataplane` describes the data plane that was the target of the configuration push.
 * `protocol` describes the configuration protocol in use, which can be `db-less` or `deck`.
 * `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurs. If `success` is `true`, the push succeeded without errors.
+
+{% if_version gte:3.4.x %}
+
+### ingress_controller_fallback_configuration_push_size
+
+`ingress_controller_fallback_configuration_push_size` (type: `gauge`) is the size of the configuration pushed to Kong in fallback mode, in bytes.
+
+This metric provides these labels:
+
+* `dataplane` describes the dataplane that was the target of the configuration push.
+* `protocol` describes the configuration protocol (metric is presented for `db-less`, for `deck` it doesn't exist) in use.
+* `success` describes whether there were unrecoverable errors (`false`) or not (`true`).
+
+{% endif_version %}
 
 ### ingress_controller_fallback_configuration_push_broken_resource_count
 
