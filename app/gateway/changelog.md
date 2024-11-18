@@ -11,6 +11,83 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.8.1.0
+**Release Date** 2024/11/04
+
+### Features
+#### Plugins
+
+* [**Prometheus**](/hub/kong-inc/prometheus/) (`prometheus`) 
+  * Increased the upper limit of `KONG_LATENCY_BUCKETS` to 6000 to enhance latency tracking precision.
+
+### Fixes
+
+#### Clustering
+
+* Fixed the clustering compatibility logic for the RDS assume role and custom STS endpoint features.
+
+#### Core
+
+* **Vault**: Fixed an issue where updating a vault entity in a non-default workspace wouldn't take effect.
+
+#### Admin API
+
+* **Admin API** Fixed an issue where sending `tags=` as an empty parameter resulted in a 500 error. Now, Kong returns a 400 error because empty explicit tags are not allowed.
+
+#### Kong Manager
+
+* Fixed an issue where text was not centered in custom banners.
+* Fixed an issue where a workspace named "portal", but with different case letters, didn't render the correct overview page.
+
+#### Plugins
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed an issue where multi-modal requests were blocked on the Azure AI provider.
+  * Fixed an issue where AI Transformer plugins always returned a 404 error when using 'Google One' Gemini subscription.
+
+* [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
+  * Fixed an issue where the lowest-usage and lowest-latency strategies did not update data points correctly.
+  * Fixed an issue where stale plugin config was not updated in DB-less or hybrid mode.
+
+* [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)
+  * Fixed an issue where the plugin yielded an error when incrementing the rate limit counters in non-yieldable phases.
+
+* [**AI Request Transformer**](/hub/kong-inc/ai-request-transformer/) (`ai-request-transformer`) and 
+[**AI Response Transformer**](/hub/kong-inc/ai-response-transformer/) (`ai-response-transformer`)
+  * Fixed an issue where the correct LLM error message was not propagated to the caller.
+  * Fixed an issue where AI Transformer plugins always returned a 404 error when using Google One Gemini subscriptions.
+
+* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/)
+  * Fixed an issue where the plugin couldn't use the request-provided models.
+  * Fixed an issue where the plugin put the wrong type value in the metrics when using the Prometheus plugin.
+  * Fixed an issue where the plugin would abort in stream mode when another plugin enabled buffering proxy mode.
+
+* [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-prompt-guard/)
+  * Fixed an issue where stale plugin config was not updated in DB-less or hybrid mode.
+
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where the degraphql routes were updated from the control plane but not updated in the degraphql router on the data plane.
+
+* [**JSON Threat Protection**](/hub/kong-inc/json-threat-protection/)
+  * Fixed an issue where the length counting of escape sequences, non-ASCII characters, and object entry names in JSON strings was incorrect. The plugin now uses UTF-8 character count instead of bytes.
+  * Fixed an issue where certain default parameter values were incorrectly interpreted as 0 in some environments (e.g., ARM64-based):
+    * `max_container_depth`
+    * `max_object_entry_count`
+    * `max_object_entry_name_length`
+    * `max_array_element_count`
+    * `max_string_value_length`
+
+* [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
+  * Fixed an issue that caused an HTTP 500 error when `hide_client_headers` was set to `true` and the request exceeded the rate limit.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where a warn log was printed when `event_hooks` was disabled.
+
+### Dependencies
+
+* Bumped `lua-kong-nginx-module` from 0.11.0 to 0.11.1 to fix an issue where the upstream cert chain wasn't properly set.
+* Bumped `lua-resty-aws` to 1.5.4 to fix a bug inside region prefix generation.
+
 ## 3.8.0.0
 **Release Date** 2024/09/11
 
