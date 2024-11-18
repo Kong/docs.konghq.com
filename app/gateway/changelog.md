@@ -12,7 +12,7 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.8.1.0
-**Release Date** 2024/10/29
+**Release Date** 2024/11/04
 
 ### Features
 #### Plugins
@@ -30,6 +30,10 @@ For product versions that have reached the end of sunset support, see the [chang
 
 * **Vault**: Fixed an issue where updating a vault entity in a non-default workspace wouldn't take effect.
 
+#### Admin API
+
+* **Admin API** Fixed an issue where sending `tags=` as an empty parameter resulted in a 500 error. Now, Kong returns a 400 error because empty explicit tags are not allowed.
+
 #### Kong Manager
 
 * Fixed an issue where text was not centered in custom banners.
@@ -39,6 +43,7 @@ For product versions that have reached the end of sunset support, see the [chang
 
 * [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
   * Fixed an issue where multi-modal requests were blocked on the Azure AI provider.
+  * Fixed an issue where AI Transformer plugins always returned a 404 error when using 'Google One' Gemini subscription.
 
 * [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
   * Fixed an issue where the lowest-usage and lowest-latency strategies did not update data points correctly.
