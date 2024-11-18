@@ -53,6 +53,10 @@
 /hub/kong-inc/ai-proxy/how-to/anthropic/ /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/
 /hub/kong-inc/ai-proxy/how-to/mistral/   /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/
 /hub/kong-inc/ai-proxy/how-to/llama2/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
+/hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/gemini/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
+/hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/bedrock/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
+/hub/kong-inc/ai-proxy-advanced/how-to/machine-learning-platform-integration-guides/gemini/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
+/hub/kong-inc/ai-proxy-advanced/how-to/machine-learning-platform-integration-guides/bedrock/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
 
 ## App reg v2
 

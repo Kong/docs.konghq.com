@@ -3,14 +3,14 @@ layout: plugins/show
 type: plugin
 ---
 
-<h2 id="configuration">Configuration</h2>
+<h2 id="configuration">{% t _layouts.plugins.configuration.title %}</h2>
 
 {% if page.dbless_compatible == "yes" or page.dbless_compatible == true %}
-  <p>This plugin is <strong>compatible</strong> with DB-less mode.</p>
+  <p>{% t _layouts.plugins.configuration.dbless.compatible %}</p>
 {% elsif page.dbless_compatible == "partially" %}
-  <p>This plugin is <strong>partially compatible</strong> with DB-less mode.</p>
+  <p>{% t _layouts.plugins.configuration.dbless.partially_compatible %}</p>
 {% elsif page.dbless_compatible != nil %}
-  <p>This plugin is <strong>not compatible</strong> with DB-less mode.</p>
+  <p>{% t _layouts.plugins.configuration.dbless.not_compatible %}</p>
 {% endif %}
 
 {% if page.dbless_explanation %}
@@ -22,8 +22,8 @@ type: plugin
   {% if protocols.elements %}
     {% assign one_of = protocols.elements['one_of'] %}
     {% if one_of %}
-      <h3>Compatible protocols</h3>
-      <p>The {{ page.name }} plugin is compatible with the following protocols:</p>
+      <h3>{% t _layouts.plugins.configuration.compatible_protocols.title %}</h3>
+      <p>{% t _layouts.plugins.configuration.compatible_protocols.description name=page.name %}</p>
       <p>
         {%- for value in one_of %} <code>{{ value }}</code>{% unless forloop.last %},{% endunless %}{%- endfor -%}
       </p>
@@ -32,8 +32,8 @@ type: plugin
   {% endif %}
 {% endif %}
 
-<h3 id="parameters">Parameters</h3>
+<h3 id="parameters">{% t _layouts.plugins.configuration.parameters.title %}</h3>
 
-<p>Here's a list of all the parameters which can be used in this plugin's configuration: </p>
+<p>{% t _layouts.plugins.configuration.parameters.description %}</p>
 
 {% include plugins/schema.html %}

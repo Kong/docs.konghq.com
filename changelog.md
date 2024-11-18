@@ -2,6 +2,46 @@
 
 <!--vale off-->
 
+## Week 45
+
+### [Update title to Impart Security](https://github.com/Kong/docs.konghq.com/pull/8112) (2024-11-04)
+
+Incorrectly labeled title as overview, corrected it to Impart Security.  Link to page https://docs.konghq.com/hub/impart-security/kong-plugin-impart/
+
+<img width="346" alt="Screenshot 2024-10-31 at 1 11 52 PM" src="https://github.com/user-attachments/assets/ba9bbcdc-c49f-40ec-a305-74c8c5f8e69e">
+
+#### Modified
+
+- https://docs.konghq.com/hub/impart-security/kong-plugin-impart/overview/
+
+
+### [Mesh CVE policy](https://github.com/Kong/docs.konghq.com/pull/8100) (2024-11-05)
+
+fixes #6156 
+
+Adds a CVE policy for Kong Mesh
+
+
+#### Modified
+
+- https://docs.konghq.com/mesh/2.0.x/features/
+- https://docs.konghq.com/mesh/2.1.x/features/
+
+## Week 43
+
+### [Fix: Konnect roles reference](https://github.com/Kong/docs.konghq.com/pull/8065) (2024-10-21)
+
+Update the Konnect roles reference to the most recent actual state of Konnect.
+Includes the new serverless roles.
+
+Entries pulled from UI text with very light editing. Eventually, I expect we'll be generating this, so we won't want to manually edit.
+
+Issue reported on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/roles-reference
+
 ## Week 42
 
 ### [Update request-validator content-type validation](https://github.com/Kong/docs.konghq.com/pull/8057) (2024-10-16)
@@ -544,7 +584,7 @@ DOCU-3863
 #### Added
 
 - https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/how-to/machine-learning-platform-integrations/bedrock.md
-- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/bedrock.md
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock.md
 
 
 ### [Fix: OTEL + dynatrace feedback](https://github.com/Kong/docs.konghq.com/pull/7907) (2024-09-11)
@@ -796,7 +836,7 @@ DOCU-3863
 #### Added
 
 - https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/how-to/machine-learning-platform-integrations/gemini.md
-- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/gemini.md
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini.md
 
 #### Modified
 

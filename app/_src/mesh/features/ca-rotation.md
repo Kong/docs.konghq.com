@@ -1,5 +1,6 @@
 ---
 title: Certificate Authority rotation
+badge: enterprise
 ---
 
 ## Overview

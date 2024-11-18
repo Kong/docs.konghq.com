@@ -3,10 +3,10 @@
 <p>{{ c.desc | markdownify }}</p>
 <table>
   <thead>
-    <th>Change</th>
-    <th>Category</th>
+    <th>{% t _includes.lts-changes.thead.change %}</th>
+    <th>{% t _includes.lts-changes.thead.category %}</th>
     {% unless c.key == 5 %}
-    <th>Action required</th>
+    <th>{% t _includes.lts-changes.thead.action_required %}</th>
     {% endunless %}
   </thead>
   <tbody>

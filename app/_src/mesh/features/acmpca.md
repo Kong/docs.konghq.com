@@ -1,5 +1,6 @@
 ---
 title: ACM Private CA Policy
+badge: enterprise
 ---
 
 ## Amazon Certificate Manager Private CA Backend

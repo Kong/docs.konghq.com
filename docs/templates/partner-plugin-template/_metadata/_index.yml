@@ -10,15 +10,12 @@ publisher: # (Required) The company name of the publisher of this plugin.
   # Note that every plugin by a given publisher must have the exact same value.
 
 categories: # (Required) In the following categories, first choose
-# "community", "third party partner", or "premium partner"
-# Uncomment "community" if you are submitting a 3rd party plugin that isn't a technical partner. 
+# "community" or "premium partner".
+# Uncomment "community" if you are submitting a 3rd party plugin that isn't a premium partner. 
 # No other categories apply if "community" is active.
-# Uncomment "third-party-partner" if you are a Kong technical partner, 
-# and choose a secondary category from the list.
 # Uncomment "premium-partner" if you are a Kong premium partner, 
 # and choose a secondary category from the list.
   #- community 
-  #- third-party-partner
   #- premium-partner
   #- authentication
   #- security

@@ -1,5 +1,6 @@
 ---
 title: Multi-zone authentication
+badge: enterprise
 ---
 
 To add to the security of your deployments, {{site.mesh_product_name}} provides authentication of zone control planes to the global control plane.

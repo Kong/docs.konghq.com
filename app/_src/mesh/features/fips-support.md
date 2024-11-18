@@ -1,5 +1,6 @@
 ---
 title: FIPS Support
+badge: enterprise
 ---
 
 With version 1.2.0, {{site.mesh_product_name}} provides built-in support for the Federal Information Processing Standard (FIPS-2). Compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.

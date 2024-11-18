@@ -9,8 +9,52 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">November<br>05</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-konnect-config-store">Introducing Konnect Config Store</a>
+</div>
+<div class="changelog-description">We are excited to announce the launch of Konnect Config Store!  You can now store your secrets and sensitive data for your gateways directly in Konnect Config Store and reference them in your gateway configuration.</div>
+</div>
+</div>
+
+<div class="changelog-entries">
+<div class="changelog-date">November<br>04</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/enhanced-api-request-filtering-experience">Enhanced API Request Filtering Experience</a>
+</div>
+<div class="changelog-description">We're excited to announce two important updates to our API Requests filtering capabilities:
+</div>
+<ul>
+<li>Konnect users can now filter API requests by any attribute, including HTTP verb, IP, path, and more.</li>
+<li>The API request slideout window now allows users to add filters directly by clicking on displayed metadata items.</li>
+</ul>
+<div>These features work together to significantly streamline your investigation process. By providing more granular filtering options and an intuitive, one-click filter addition from the context of individual requests, you can quickly narrow down to the most relevant API requests.
+</div>
+<br>
+<div><b>Deprecation Notice:</b>
+We have deprecated the old method of filtering requests via the API in favor of the new, more powerful filter options, which are now included in the updated <a href="https://docs.konghq.com/konnect/api/api-requests/latest/">API endpoint</a>. While both old and new filtering methods will continue to work, we recommend users transition to the new fields so that they can leverage the new enhanced functionality.
+</div>
+</div>
+</div>
+
 
 ## October 2024
+
+
+<div class="changelog-entries">
+<div class="changelog-date">October<br>24</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/serverless-gateways-now-in-public-beta-QRE5uhad">Serverless Gateways now in Public Beta</a>
+</div>
+<div class="changelog-description">Serverless Gateways are now available to all Konnect Plus users in Public Beta.  Serverless Gateways allow you to provision lightweight, managed Kong Gateway instances within seconds.</div>
+</div>
+</div>
 
 <div class="changelog-entries">
 <div class="changelog-date">October<br>18</div>
@@ -21,7 +65,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">Service Catalog now supports importing API specifications directly from SwaggerHub.  This integration enhances Service Catalog's ability to serve as your organization's central repository for all APIs.</div>
 </div>
 </div>
-
 
 ## September 2024
 

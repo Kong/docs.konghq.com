@@ -1,5 +1,6 @@
 ---
 title: Kubernetes cert-manager CA Policy
+badge: enterprise
 ---
 
 ## cert-manager CA Backend

@@ -19,7 +19,7 @@ module PluginSingleSource
         [
           { text: category_title, url: category_url },
           { text: breadcrumb_title, url: base_section_url },
-          { text: 'Introduction' },
+          { text: I18n.t('hub.breadcrumbs.introduction', locale: translate_to) },
           { text: nav_title, url: permalink }
         ]
       end

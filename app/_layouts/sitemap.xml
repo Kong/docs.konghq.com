@@ -1,0 +1,15 @@
+---
+layout: null
+---
+
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for entry in site.data['sitemap_pages'] %}
+    <url>
+      <loc>{{ page.domain }}{{ entry['url'] }}</loc>
+      <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+      <changefreq>{{ entry['changefreq'] }}</changefreq>
+      <priority>{{ entry['priority'] }}</priority>
+    </url>
+  {% endfor %}
+</urlset>
