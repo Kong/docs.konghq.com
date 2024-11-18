@@ -46,6 +46,11 @@ module Jekyll
       # Read existing _common_redirects file from Kuma
       redirects.concat(kuma_redirects)
 
+      # Redirect sitemap in docs.konghq.com, jp site has an entry in robots.txt
+      if site.config['locale'] == I18n.default_locale.to_s
+        redirects.push(['/sitemap.xml', '/sitemap-index/default.xml'].join("\t"))
+      end
+
       # Write out a _redirects file
       site.pages << build_page(redirects)
     end

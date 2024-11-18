@@ -658,6 +658,8 @@ components:
           $ref: '#/components/schemas/StringFieldFilter'
         publish_status:
           $ref: '#/components/schemas/StringFieldFilter'
+        gateway_service_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
       title: APIProductVersionFilterParameters
     SortQuery:
       description: |
@@ -843,6 +845,10 @@ components:
           description: API product document title
           type: string
           example: API Product Document
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
       additionalProperties: false
       required:
         - id
@@ -850,6 +856,8 @@ components:
         - slug
         - title
         - status
+        - created_at
+        - updated_at
       title: API Product Document Summary
     APIProductDocument:
       description: an api product document
@@ -1628,7 +1636,7 @@ components:
         choices:
           type: array
           items: {}
-          minimum: 1
+          minItems: 1
           nullable: false
           readOnly: true
           uniqueItems: true
@@ -1759,6 +1767,8 @@ components:
       description: |
         Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types. 
 
+        Labels are intended to store **INTERNAL** metadata.
+
         Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
       type: object
       example:
@@ -1773,7 +1783,6 @@ components:
       nullable: true
       writeOnly: true
     PublishStatus:
-      description: document publish status
       type: string
       enum:
         - published
@@ -1817,6 +1826,10 @@ components:
               metadata:
                 author: John Doe
               children: []
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
       required:
         - id
         - title
@@ -1824,6 +1837,8 @@ components:
         - metadata
         - children
         - status
+        - created_at
+        - updated_at
       title: DocumentTree
     ChildNode:
       type: object
@@ -2129,6 +2144,21 @@ components:
       required:
         - checked
         - type
+    UuidFieldFilter:
+      description: Filters on the given UUID field value by exact match.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      title: UuidFieldFilter
+      x-examples:
+        example-1: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-2:
+          eq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-3:
+          oeq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-4:
+          neq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
     ConflictError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -2308,6 +2338,8 @@ components:
             slug: api-product-document
             status: published
             title: API Product Document
+            created_at: '2022-11-04T20:10:06.927Z'
+            updated_at: '2022-11-04T20:10:06.927Z'
             metadata: {}
             children:
               - children: []
@@ -2317,6 +2349,8 @@ components:
                 slug: api-product-document-child
                 status: published
                 title: API Product Document Child
+                created_at: '2022-11-04T20:10:06.927Z'
+                updated_at: '2022-11-04T20:10:06.927Z'
         meta:
           page:
             number: 1
@@ -2330,6 +2364,8 @@ components:
             slug: api-product-document
             status: published
             title: API Product Document
+            created_at: '2022-11-04T20:10:06.927Z'
+            updated_at: '2022-11-04T20:10:06.927Z'
         meta:
           page:
             number: 1
@@ -2451,8 +2487,9 @@ components:
         invalid_parameters:
           - field: sort
             rule: enum
-            choices: []
-            reason: '"sort" field must contain any of: []'
+            choices:
+              - name
+            reason: '"sort" field must contain any of: [name]'
     InvalidSortQueryNameBadRequestExample:
       value:
         status: 400

@@ -23,10 +23,6 @@ module Jekyll
           !!@metadata['enterprise']
         end
 
-        def techpartner?
-          !!@metadata['techpartner'] && @publisher != KONG_INC
-        end
-
         def premiumpartner?
           !!@metadata['premiumpartner']
         end
@@ -35,7 +31,6 @@ module Jekyll
           "publisher:#{@publisher}-" \
             "konnect:#{konnect?}-" \
             "enterprise:#{enterprise?}-" \
-            "techpartner:#{techpartner?}-" \
             "premiumpartner:#{premiumpartner?}-" \
             "oss:#{oss?}"
         end

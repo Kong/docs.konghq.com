@@ -392,12 +392,24 @@ items:
             url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
             generate: false
             absolute_url: true
+          - text: Vertex/Gemini
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
+            generate: false
+            absolute_url: true
+          - text: Amazon Bedrock
+            url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
+            generate: false
+            absolute_url: true
       - text: AI Gateway Analytics
         url: /ai-gateway/ai-analytics/
         generate: false
       - text: Expose and graph AI Metrics
         url: /ai-gateway/metrics/
         generate: false
+      - text: AI Gateway Load Balancing
+        url: /hub/kong-inc/ai-proxy-advanced/#load-balancing
+        generate: false
+        absolute_url: true
       - text: AI Gateway plugins
         url: /hub/?category=ai
         generate: false

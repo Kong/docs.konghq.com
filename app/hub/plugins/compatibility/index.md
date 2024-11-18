@@ -35,11 +35,13 @@ data plane roles. Kong provides and hosts the control plane and a database with
 {{site.konnect_product_name}}, and you provide the {{site.base_gateway}} data plane nodes (no databases required).
   * [**Dedicated Cloud Gateways:**](/konnect/gateway-manager/dedicated-cloud-gateways/) 
   Kong manages both the control plane and the data plane nodes through {{site.konnect_product_name}}.
+  * [**Serverless Gateways:**](/konnect/gateway-manager/serverless-gateways/) 
+  Kong manages both the control plane and the data plane through {{site.konnect_product_name}}.
 
 {% assign hub = site.data.ssg_hub %}
 {% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
 
-{% assign categories = site.extensions.categories %}
+{% assign categories = site.data.extensions.categories %}
 
 {% for category in categories %}
 <h3 id="{{ category.slug }}">
@@ -54,6 +56,7 @@ data plane roles. Kong provides and hosts the control plane and a database with
       <th style="text-align: center">Self-managed hybrid</th>
       <th style="text-align: center">Konnect hybrid </th>
       <th style="text-align: center">Dedicated Cloud Gateways</th>
+      <th style="text-align: center">Serverless Gateways</th>
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
@@ -94,6 +97,13 @@ data plane roles. Kong provides and hosts the control plane and a database with
         </td>
         <td style="text-align: center">
           {% if plugin.cloud_gateways == false or plugin.konnect == false %}
+            <i class="fa fa-times"></i>
+          {% else %}
+            <i class="fa fa-check"></i>
+          {% endif %}
+        </td>
+        <td style="text-align: center">
+          {% if plugin.serverless_gateways == false or plugin.konnect == false %}
             <i class="fa fa-times"></i>
           {% else %}
             <i class="fa fa-check"></i>

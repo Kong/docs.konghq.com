@@ -22,16 +22,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
-        - $ref: '#/components/parameters/FilterByNameEquality'
-        - $ref: '#/components/parameters/FilterByNameEqualityShort'
-        - $ref: '#/components/parameters/FilterByNameContains'
-        - $ref: '#/components/parameters/FilterByNameNotEquals'
-        - $ref: '#/components/parameters/FilterByIdEquality'
-        - $ref: '#/components/parameters/FilterByIdEqualityShort'
-        - $ref: '#/components/parameters/FilterByIdsEquality'
-        - $ref: '#/components/parameters/FilterByClusterTypeEquality'
-        - $ref: '#/components/parameters/FilterByClusterTypeEqualityShort'
-        - $ref: '#/components/parameters/FilterByClusterTypeNotEquals'
+        - $ref: '#/components/parameters/ControlPlaneFilter'
         - $ref: '#/components/parameters/FilterByLabels'
         - $ref: '#/components/parameters/ControlPlaneSort'
       responses:
@@ -188,6 +179,27 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
         - Control Plane Groups
+    put:
+      operationId: put-control-planes-id-group-memberships
+      summary: Upsert Control Plane Group Members
+      description: Adds one or more control planes as a member of a control plane group.
+      requestBody:
+        $ref: '#/components/requestBodies/GroupMemebershipUpsert'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      tags:
+        - Control Plane Groups
   '/control-planes/{id}/group-memberships/add':
     parameters:
       - name: id
@@ -302,6 +314,14 @@ paths:
         - Control Plane Groups
 components:
   parameters:
+    ControlPlaneFilter:
+      name: filter
+      description: Filters a collection of control-planes.
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/ControlPlaneFilterParameters'
+      style: deepObject
     ControlPlaneSort:
       name: sort
       description: |
@@ -311,54 +331,6 @@ components:
       in: query
       schema:
         $ref: '#/components/schemas/SortQuery'
-    FilterByClusterTypeEquality:
-      name: 'filter[cluster_type][eq]'
-      description: Filter by direct equality comparison of the cluster_type property with a supplied value.
-      in: query
-      required: false
-      schema:
-        type: string
-      example: CLUSTER_TYPE_CONTROL_PLANE
-    FilterByClusterTypeEqualityShort:
-      name: 'filter[cluster_type]'
-      description: Filter by direct equality comparison (short-hand) of the cluster_type property with a supplied value.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: CLUSTER_TYPE_CONTROL_PLANE
-    FilterByClusterTypeNotEquals:
-      name: 'filter[cluster_type][neq]'
-      description: Filter by non-equality comparison of the cluster_type property with a supplied value.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: test
-    FilterByIdEquality:
-      name: 'filter[id][eq]'
-      description: Filter by direct equality comparison of the id property with a supplied value.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-    FilterByIdEqualityShort:
-      name: 'filter[id]'
-      description: Filter by direct equality comparison (short-hand) of the id property with a supplied value.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-    FilterByIdsEquality:
-      name: 'filter[id][oeq]'
-      description: Filter by direct equality comparison of id property with multiple supplied values.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: 'some-value,some-other-value'
     FilterByLabels:
       name: labels
       description: Filter control planes in the response by associated labels.
@@ -367,38 +339,6 @@ components:
       schema:
         type: string
         example: 'key:value,existCheck'
-    FilterByNameContains:
-      name: 'filter[name][contains]'
-      description: Filter by contains comparison of the name property with a supplied substring.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: test
-    FilterByNameEquality:
-      name: 'filter[name][eq]'
-      description: Filter by direct equality comparison of the name property with a supplied value.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: test
-    FilterByNameEqualityShort:
-      name: 'filter[name]'
-      description: Filter by direct equality comparison (short-hand) of the name property with a supplied value.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: test
-    FilterByNameNotEquals:
-      name: 'filter[name][neq]'
-      description: Filter by non-equality comparison of the name property with a supplied value.
-      in: query
-      required: false
-      schema:
-        type: string
-        example: test
     PageAfter:
       name: 'page[after]'
       description: 'Request the next page of data, starting with the item after this parameter.'
@@ -455,7 +395,6 @@ components:
           example: CLUSTER_TYPE_CONTROL_PLANE
           enum:
             - CLUSTER_TYPE_CONTROL_PLANE
-            - CLUSTER_TYPE_HYBRID
             - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
             - CLUSTER_TYPE_CONTROL_PLANE_GROUP
             - CLUSTER_TYPE_SERVERLESS
@@ -504,60 +443,6 @@ components:
       additionalProperties: false
       title: UpdateControlPlaneRequest
     ControlPlane:
-      allOf:
-        - $ref: '#/components/schemas/ControlPlaneSummary'
-        - type: object
-          properties:
-            labels:
-              $ref: '#/components/schemas/Labels'
-            config:
-              description: CP configuration object for related access endpoints.
-              type: object
-              properties:
-                control_plane_endpoint:
-                  description: Control Plane Endpoint.
-                  type: string
-                  format: url
-                  example: 'https://acfe5f253f.cp0.konghq.com'
-                  readOnly: true
-                telemetry_endpoint:
-                  description: Telemetry Endpoint.
-                  type: string
-                  format: url
-                  example: 'https://acfe5f253f.tp0.konghq.com'
-                  readOnly: true
-            created_at:
-              description: An ISO-8604 timestamp representation of control plane creation date.
-              type: string
-              format: date-time
-              example: '2022-11-04T20:10:06.927Z'
-              readOnly: true
-            updated_at:
-              description: An ISO-8604 timestamp representation of control plane update date.
-              type: string
-              format: date-time
-              example: '2022-11-04T20:10:06.927Z'
-              readOnly: true
-      x-examples:
-        Example 1:
-          id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-          name: Test Control Plane
-          description: A test control plane for exploration.
-          labels:
-            env: test
-          config:
-            control_plane_endpoint: 'https://acfe5f253f.cp0.konghq.com'
-            telemetry_endpoint: 'https://acfe5f253f.tp0.konghq.com'
-            cluster_type: CLUSTER_TYPE_CONTROL_PLANE
-            auth_type: pinned_client_certs
-            cloud_gateway: false
-            proxy_urls:
-              - host: example.com
-                port: 443
-                protocol: https
-          created_at: '2022-11-04T20:10:06.927Z'
-          updated_at: '2022-11-04T20:10:06.927Z'
-    ControlPlaneSummary:
       description: The control plane object contains information about a Kong control plane.
       type: object
       properties:
@@ -600,7 +485,6 @@ components:
               example: CLUSTER_TYPE_CONTROL_PLANE
               enum:
                 - CLUSTER_TYPE_CONTROL_PLANE
-                - CLUSTER_TYPE_HYBRID
                 - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
                 - CLUSTER_TYPE_CONTROL_PLANE_GROUP
                 - CLUSTER_TYPE_SERVERLESS
@@ -626,13 +510,43 @@ components:
             - auth_type
             - cloud_gateway
         created_at:
+          description: An ISO-8604 timestamp representation of control plane creation date.
           type: string
           format: date-time
+          example: '2022-11-04T20:10:06.927Z'
+          readOnly: true
         updated_at:
+          description: An ISO-8604 timestamp representation of control plane update date.
           type: string
           format: date-time
+          example: '2022-11-04T20:10:06.927Z'
+          readOnly: true
       additionalProperties: false
-      title: ControlPlaneSummary
+      required:
+        - id
+        - name
+        - config
+        - created_at
+        - updated_at
+      x-examples:
+        Example 1:
+          id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          name: Test Control Plane
+          description: A test control plane for exploration.
+          labels:
+            env: test
+          config:
+            control_plane_endpoint: 'https://acfe5f253f.cp0.konghq.com'
+            telemetry_endpoint: 'https://acfe5f253f.tp0.konghq.com'
+            cluster_type: CLUSTER_TYPE_CONTROL_PLANE
+            auth_type: pinned_client_certs
+            cloud_gateway: false
+            proxy_urls:
+              - host: example.com
+                port: 443
+                protocol: https
+          created_at: '2022-11-04T20:10:06.927Z'
+          updated_at: '2022-11-04T20:10:06.927Z'
     GroupStatus:
       description: The Group Status object contains information about the status of a control plane group.
       type: object
@@ -758,11 +672,94 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ProxyURL'
+      format: set
       example:
         - host: example.com
           port: 443
           protocol: https
       title: ProxyURLs
+    ControlPlaneFilterParameters:
+      type: object
+      properties:
+        id:
+          oneOf:
+            - $ref: '#/components/schemas/StringFieldEqualsFilter'
+            - $ref: '#/components/schemas/StringFieldOEQFilter'
+        name:
+          oneOf:
+            - $ref: '#/components/schemas/StringFieldEqualsFilter'
+            - $ref: '#/components/schemas/StringFieldContainsFilter'
+            - $ref: '#/components/schemas/StringFieldNEQFilter'
+        cluster_type:
+          oneOf:
+            - $ref: '#/components/schemas/StringFieldEqualsFilter'
+            - $ref: '#/components/schemas/StringFieldNEQFilter'
+        cloud_gateway:
+          $ref: '#/components/schemas/BooleanFieldFilter'
+      additionalProperties: false
+      title: ControlPlaneFilterParameters
+    StringFieldEqualsFilter:
+      description: Filters on the given string field value by exact match.
+      oneOf:
+        - type: string
+        - type: object
+          title: StringFieldEqualsComparison
+          additionalProperties: false
+          properties:
+            eq:
+              type: string
+          required:
+            - eq
+      title: StringFieldEqualsFilter
+      x-examples:
+        example-1: equals-some-value
+        example-2:
+          eq: some-value
+    StringFieldOEQFilter:
+      description: Returns entities that exact match any of the comma-delimited phrases in the filter string.
+      type: object
+      properties:
+        oeq:
+          type: string
+      additionalProperties: false
+      required:
+        - oeq
+      title: StringFieldOEQFilter
+      x-examples:
+        example-1:
+          oeq: 'some-value,some-other-value'
+    StringFieldContainsFilter:
+      description: Filters on the given string field value by fuzzy match.
+      type: object
+      properties:
+        contains:
+          type: string
+      additionalProperties: false
+      required:
+        - contains
+      title: StringFieldContainsFilter
+      x-examples:
+        example-1:
+          contains: some-value
+    StringFieldNEQFilter:
+      description: Filters on the given string field value by exact match inequality.
+      type: object
+      properties:
+        neq:
+          type: string
+      additionalProperties: false
+      required:
+        - neq
+      title: StringFieldNEQFilter
+      x-examples:
+        example-1:
+          neq: not-this-value
+    BooleanFieldFilter:
+      description: Filter by a boolean value (true/false).
+      type: boolean
+      title: BooleanFieldFilter
+      x-examples:
+        example-1: true
     SortQuery:
       description: |
         The `asc` suffix is optional as the default sort order is ascending.
@@ -942,7 +939,7 @@ components:
         choices:
           type: array
           items: {}
-          minimum: 1
+          minItems: 1
           nullable: false
           readOnly: true
           uniqueItems: true
@@ -1214,6 +1211,8 @@ components:
             - host: example.com
               port: 443
               protocol: https
+        created_at: '2022-11-04T20:10:06.927Z'
+        updated_at: '2022-11-04T20:10:06.927Z'
     GroupConflictStatusExample:
       value:
         id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
@@ -1336,6 +1335,19 @@ components:
                   - id: 778a0474-687d-41af-8e51-a0488d790586
                   - id: fa85f8e8-2e5a-496e-b6d0-4e534eaab459
       description: Request body for removing a list of child control planes from a control plane group membership.
+    GroupMemebershipUpsert:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GroupMembership'
+          examples:
+            Example 1:
+              value:
+                members:
+                  - id: 1beb9ad3-d21b-4090-b6e3-574784d1166d
+                  - id: 778a0474-687d-41af-8e51-a0488d790586
+                  - id: fa85f8e8-2e5a-496e-b6d0-4e534eaab459
+      description: Request body for upserting a list of child control planes to a control plane group membership.
   responses:
     RetrieveControlPlaneResponse:
       description: A response to retrieving a single control plane.
@@ -1516,7 +1528,7 @@ components:
                 description: Array of control planes summary who are a child to this control plane group.
                 type: array
                 items:
-                  $ref: '#/components/schemas/ControlPlaneSummary'
+                  $ref: '#/components/schemas/ControlPlane'
           examples:
             List Group Memberships Example:
               $ref: '#/components/examples/ListGroupMembershipsExample'

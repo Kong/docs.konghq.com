@@ -11467,6 +11467,8 @@ paths:
       tags:
         - Information
       responses:
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '200':
           description: OK
           content:
@@ -11727,11 +11729,9 @@ paths:
       description: |-
         Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node's memory usage.
 
-        This endpoint now listens on `127.0.0.1:8007` by default for status checks. It provides detailed metrics regarding memory usage, worker process stats, database connection status, and server connection metrics.
+        `status_listen` listens on port `8007` by default, however `8001` can be used for status checks as well. The status endpoint provides detailed metrics regarding memory usage, worker process stats, database connection status, and server connection metrics.
 
         If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
-        '401': 
-          $ref: '#/components/responses/HTTP401Error'
   /keyring/generate:
     post:
       summary: Generate key
@@ -12127,6 +12127,24 @@ paths:
                       username: string
                       email: string
                       rbac_token_enabled: true
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Detail about the conflict
+                    example: user already exists with same username, email, or custom_id
+                x-exmples:
+                  Example 1:
+                    message: user already exists with same username, email, or custom_id
+              examples:
+                Constraint violation:
+                  value:
+                    message: user already exists with same username, email, or custom_id
       tags:
         - admins
       description: Invite an admin to your organization.

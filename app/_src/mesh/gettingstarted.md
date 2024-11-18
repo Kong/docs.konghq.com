@@ -57,7 +57,7 @@ Learn about enterprise features:
   * [Certificate Authority rotation](/mesh/{{page.release}}/features/ca-rotation/)
   * [Role-Based Access Control](/mesh/{{page.release}}/features/rbac/)
   * [Red Hat Universal Base Images](/mesh/{{page.release}}/features/ubi-images/)
-  {% if_version lte:2.3.x -%}
+  {% if_version lte:2.9.x -%}
   * [Windows Support](/mesh/{{page.release}}/features/windows/)
   {% endif_version %}
 

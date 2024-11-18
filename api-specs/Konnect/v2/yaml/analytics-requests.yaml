@@ -26,12 +26,18 @@ paths:
             schema:
               $ref: '#/components/schemas/AnalyticsRequestsQuery'
             examples:
-              Query Control Plane filter and relative time range:
-                $ref: '#/components/examples/ExampleControlPlaneFilter'
-              Query Gateway Service filter and absolute time range:
-                $ref: '#/components/examples/ExampleGatewayServiceFilter'
-              Query API Product filter and offset:
-                $ref: '#/components/examples/ExampleOffsetPagination'
+              Example multiselect filters:
+                $ref: '#/components/examples/ExampleMultiselectFilters'
+              Example single select filters:
+                $ref: '#/components/examples/ExampleSingleSelectFilters'
+              Example numeric filters:
+                $ref: '#/components/examples/ExampleNumericFilters'
+              Example wildcard filters:
+                $ref: '#/components/examples/ExampleWildcardFilters'
+              Example empty filters:
+                $ref: '#/components/examples/ExampleEmptyFilters'
+              Example pagination and absolute time range:
+                $ref: '#/components/examples/ExampleAbsoluteTimeRangeAndPagination'
       responses:
         '200':
           $ref: '#/components/responses/AnalyticsRequestsResponse'
@@ -51,166 +57,400 @@ paths:
 components:
   schemas:
     AnalyticsRequestsQuery:
-      type: object
-      properties:
-        filters:
-          type: array
-          items:
-            discriminator:
-              propertyName: dimension
-              mapping:
-                api_product: '#/components/schemas/RequestsApiProductFilter'
-                api_product_version: '#/components/schemas/RequestsApiProductVersionFilter'
-                application: '#/components/schemas/RequestsApplicationFilter'
-                consumer: '#/components/schemas/RequestsConsumerFilter'
-                control_plane: '#/components/schemas/RequestsControlPlaneFilter'
-                control_plane_group: '#/components/schemas/RequestsControlPlaneGroupFilter'
-                data_plane_node: '#/components/schemas/RequestsDataPlaneNodeFilter'
-                gateway_service: '#/components/schemas/RequestsGatewayServiceFilter'
-                route: '#/components/schemas/RequestsRouteFilter'
-                status_code: '#/components/schemas/RequestsStatusCodeFilter'
-                status_code_grouped: '#/components/schemas/RequestsStatusCodeGroupedFilter'
-            oneOf:
-              - $ref: '#/components/schemas/RequestsApiProductFilter'
-              - $ref: '#/components/schemas/RequestsApiProductVersionFilter'
-              - $ref: '#/components/schemas/RequestsApplicationFilter'
-              - $ref: '#/components/schemas/RequestsConsumerFilter'
-              - $ref: '#/components/schemas/RequestsControlPlaneFilter'
-              - $ref: '#/components/schemas/RequestsControlPlaneGroupFilter'
-              - $ref: '#/components/schemas/RequestsDataPlaneNodeFilter'
-              - $ref: '#/components/schemas/RequestsGatewayServiceFilter'
-              - $ref: '#/components/schemas/RequestsRouteFilter'
-              - $ref: '#/components/schemas/RequestsStatusCodeFilter'
-              - $ref: '#/components/schemas/RequestsStatusCodeGroupedFilter'
-          default: []
-        time_range:
-          description: 'The period of time to return data. Relative time ranges are relative to the current moment. Absolute time ranges specify an unchanging period of time. If not specified, a default relative timeframe of 1 hour will be chosen.'
-          default:
-            type: relative
-            time_range: 1H
-          discriminator:
-            propertyName: type
-            mapping:
-              relative: '#/components/schemas/RequestsRelativeTimeRange'
-              absolute: '#/components/schemas/RequestsAbsoluteTimeRange'
-          oneOf:
-            - $ref: '#/components/schemas/RequestsRelativeTimeRange'
-            - $ref: '#/components/schemas/RequestsAbsoluteTimeRange'
-        order:
-          description: Order of results sorted by time.
-          type: string
-          default: descending
-          enum:
-            - ascending
-            - descending
-        size:
-          description: Number of requests to be returned.
-          type: integer
-          default: 100
-        offset:
-          description: Number of requests to be skipped when returning results.
-          type: integer
-          default: 0
-      additionalProperties: false
+      oneOf:
+        - title: Filter by field
+          type: object
+          additionalProperties: false
+          properties:
+            filters:
+              type: array
+              items:
+                oneOf:
+                  - $ref: '#/components/schemas/ApiProductFilterByField'
+                  - $ref: '#/components/schemas/ApiProductVersionFilterByField'
+                  - $ref: '#/components/schemas/ApplicationFilterByField'
+                  - $ref: '#/components/schemas/AuthTypeFilterByField'
+                  - $ref: '#/components/schemas/ClientIpFilterByField'
+                  - $ref: '#/components/schemas/ConsumerFilterByField'
+                  - $ref: '#/components/schemas/ControlPlaneFilterByField'
+                  - $ref: '#/components/schemas/ControlPlaneGroupFilterByField'
+                  - $ref: '#/components/schemas/DataPlaneNodeFilterByField'
+                  - $ref: '#/components/schemas/DataPlaneNodeVersionFilterByField'
+                  - $ref: '#/components/schemas/GatewayServiceFilterByField'
+                  - $ref: '#/components/schemas/HeaderHostFilterByField'
+                  - $ref: '#/components/schemas/HeaderUserAgentFilterByField'
+                  - $ref: '#/components/schemas/HttpMethodFilterByField'
+                  - $ref: '#/components/schemas/LatenciesKongGatewayMsFilterByField'
+                  - $ref: '#/components/schemas/LatenciesResponseMsFilterByField'
+                  - $ref: '#/components/schemas/LatenciesUpstreamMsFilterByField'
+                  - $ref: '#/components/schemas/ResponseBodySizeFilterByField'
+                  - $ref: '#/components/schemas/ResponseHeaderContentLengthFilterByField'
+                  - $ref: '#/components/schemas/ResponseSourceFilterByField'
+                  - $ref: '#/components/schemas/RequestBodySizeFilterByField'
+                  - $ref: '#/components/schemas/RequestIdFilterByField'
+                  - $ref: '#/components/schemas/RequestUriFilterByField'
+                  - $ref: '#/components/schemas/ResponseHeaderContentTypeFilterByField'
+                  - $ref: '#/components/schemas/RouteFilterByField'
+                  - $ref: '#/components/schemas/ServicePortFilterByField'
+                  - $ref: '#/components/schemas/ServiceProtocolFilterByField'
+                  - $ref: '#/components/schemas/StatusCodeFilterByField'
+                  - $ref: '#/components/schemas/StatusCodeGroupedFilterByField'
+                  - $ref: '#/components/schemas/TraceIdFilterByField'
+                  - $ref: '#/components/schemas/UpstreamStatusCodeFilterByField'
+                  - $ref: '#/components/schemas/UpstreamStatusCodeGroupedFilterByField'
+                  - $ref: '#/components/schemas/UpstreamUriFilterByField'
+              default: []
+            time_range:
+              $ref: '#/components/schemas/FilterTimeRange'
+            order:
+              $ref: '#/components/schemas/FilterOrder'
+            size:
+              $ref: '#/components/schemas/FilterSize'
+            offset:
+              $ref: '#/components/schemas/FilterOffset'
+        - title: Filter by dimension
+          type: object
+          deprecated: true
+          additionalProperties: false
+          properties:
+            filters:
+              type: array
+              items:
+                oneOf:
+                  - $ref: '#/components/schemas/ApiProductFilterByDimension'
+                  - $ref: '#/components/schemas/ApiProductVersionFilterByDimension'
+                  - $ref: '#/components/schemas/ApplicationFilterByDimension'
+                  - $ref: '#/components/schemas/ConsumerFilterByDimension'
+                  - $ref: '#/components/schemas/ControlPlaneFilterByDimension'
+                  - $ref: '#/components/schemas/ControlPlaneGroupFilterByDimension'
+                  - $ref: '#/components/schemas/DataPlaneNodeFilterByDimension'
+                  - $ref: '#/components/schemas/GatewayServiceFilterByDimension'
+                  - $ref: '#/components/schemas/RouteFilterByDimension'
+                  - $ref: '#/components/schemas/StatusCodeFilterByDimension'
+                  - $ref: '#/components/schemas/StatusCodeGroupedFilterByDimension'
+              default: []
+            time_range:
+              $ref: '#/components/schemas/FilterTimeRange'
+            order:
+              $ref: '#/components/schemas/FilterOrder'
+            size:
+              $ref: '#/components/schemas/FilterSize'
+            offset:
+              $ref: '#/components/schemas/FilterOffset'
+    FilterTimeRange:
+      description: 'The period of time to return data. Relative time ranges are relative to the current moment. Absolute time ranges specify an unchanging period of time. If not specified, a default relative timeframe of 1 hour will be chosen.'
+      default:
+        type: relative
+        time_range: 1H
+      discriminator:
+        propertyName: type
+        mapping:
+          relative: '#/components/schemas/RequestsRelativeTimeRange'
+          absolute: '#/components/schemas/RequestsAbsoluteTimeRange'
+      oneOf:
+        - $ref: '#/components/schemas/RequestsRelativeTimeRange'
+        - $ref: '#/components/schemas/RequestsAbsoluteTimeRange'
+    FilterOrder:
+      description: Order of results sorted by time.
+      type: string
+      default: descending
+      enum:
+        - ascending
+        - descending
+    FilterSize:
+      description: Number of requests to be returned.
+      type: integer
+      default: 100
+    FilterOffset:
+      description: Number of requests to be skipped when returning results.
+      type: integer
+      default: 0
     RequestsFilterType:
       description: 'The type of filter to apply.  `in` filters will limit results to only the specified values, while `not_in` filters will exclude the specified values.'
       type: string
       enum:
         - in
         - not_in
-    RequestsApiProductFilter:
+    RequestsFilterTypeEquals:
+      description: The type of filter to apply.
+      type: string
+      enum:
+        - '='
+        - '!='
+    RequestsFilterTypeEmpty:
+      description: The type of filter to apply.
+      type: string
+      enum:
+        - empty
+        - not_empty
+    RequestsFilterTypeWildcard:
+      description: The type of filter to apply. `starts_with` filters will limit the results to those that start with the specified value. `ends_with` will limit the results to those that end with the specified value.
+      type: string
+      enum:
+        - starts_with
+        - ends_with
+    RequestsFilterTypeNumeric:
+      description: The type of filter to apply.
+      type: string
+      enum:
+        - '='
+        - '!='
+        - <
+        - '>'
+        - <=
+        - '>='
+    UnscopedUuid:
+      type: string
+      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    ScopedUuid:
+      type: string
+      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    FilterEmpty:
       type: object
       properties:
-        dimension:
-          description: The dimension to filter.
-          type: string
-          enum:
-            - api_product
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEmpty'
+      required:
+        - operator
+      title: Empty filters
+    FilterWildcard:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeWildcard'
+        value:
           description: |
-            The UUIDs of the API products to include in the results.
+            The value to include in the results
+          type: string
+      required:
+        - operator
+        - value
+      title: Wildcard filters
+    FilterMultiValueUUID:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/UnscopedUuid'
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueUUID:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
+          description: |
+            The ID to include in the results.
+          type: string
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+      required:
+        - operator
+        - value
+      title: Single select filters
+    FilterMultiValueScopedUUID:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The IDs to include in the results. Because gateway IDs are only unique within a given control plane, the filter values must be of the form `control_plane_id:field_id` or `control_plane_group_id:field_id` for data plane nodes within a control plane group.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopedUuid'
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueScopedUUID:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
+          description: |
+            The ID to include in the results. Because gateway IDs are only unique within a given control plane, the filter values must be of the form `control_plane_id:field_id` or `control_plane_group_id:field_id` for data plane nodes within a control plane group.
+          type: string
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+      required:
+        - operator
+        - value
+      title: Single select filters
+    FilterMultiValueStatusCode:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The codes to include in the results.
+          type: array
+          items:
+            type: integer
+            minimum: 0
+            maximum: 999
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueStatusCode:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
+          description: |
+            The code to include in the results.
+          type: integer
+          maximum: 999
+          minimum: 0
+      required:
+        - operator
+        - value
+      title: Single select filters
+    FilterMultiValueStatusCodeGrouped:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The code groups to include in the results.
           type: array
           items:
             type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
+            pattern: '^\d[xX][xX]$'
       required:
-        - dimension
-        - type
-        - values
-    RequestsApiProductVersionFilter:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueStatusCodeGrouped:
       type: object
       properties:
-        dimension:
-          description: The dimension to filter.
-          type: string
-          enum:
-            - api_product_version
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
           description: |
-            The UUIDs of the API product versions to include in the results.
+            The code group to include in the results.
+          type: string
+          pattern: '^\d[xX][xX]$'
+      required:
+        - operator
+        - value
+      title: Single select filters
+    FilterMultiValueString:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The values to include in the results.
           type: array
           items:
             type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
       required:
-        - dimension
-        - type
-        - values
-    RequestsConsumerFilter:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueString:
       type: object
       properties:
-        dimension:
-          description: The dimension to filter.
-          type: string
-          enum:
-            - consumer
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
           description: |
-            The consumers to include in the results. Because consumer UUIDs are only unique within a given control plane, the filter values must be of the form `CONTROL_PLANE_UUID:CONSUMER_UUID`.
+            The value to include in the results
+          type: string
+      required:
+        - operator
+        - value
+      title: Single select filters
+    FilterSingleValueNumericMilliseconds:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeNumeric'
+        value:
+          description: |
+            The value to include in the results. The value should be in milliseconds.
+          type: integer
+      required:
+        - operator
+        - value
+      title: Numeric filters
+    FilterMultiValueNumericMilliseconds:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The values to include in the results. The values should be in milliseconds.
           type: array
           items:
-            type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
+            type: integer
       required:
-        - dimension
-        - type
-        - values
-    RequestsRouteFilter:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueNumericBytes:
       type: object
       properties:
-        dimension:
-          description: The dimension to filter.
-          type: string
-          enum:
-            - route
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeNumeric'
+        value:
           description: |
-            The routes to include in the results. Because route UUIDs are only unique within a given control plane, the filter values must be of the form `CONTROL_PLANE_UUID:ROUTE_UUID`.
+            The value to include in the results. The value should be in bytes.
+          type: integer
+      required:
+        - operator
+        - value
+      title: Numeric filters
+    FilterMultiValueNumericBytes:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The values to include in the results. The values should be in bytes.
           type: array
           items:
-            type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
+            type: integer
       required:
-        - dimension
-        - type
-        - values
-    RequestsApplicationFilter:
+        - operator
+        - value
+      title: Multiselect filters
+    ApplicationFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - application
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by application
+    ApplicationFilterByDimension:
       type: object
       properties:
         dimension:
-          description: The dimension to filter.
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
           type: string
           enum:
             - application
@@ -218,130 +458,256 @@ components:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: |
-            The UUIDs of the dev portal applications to include in the results.
+            The IDs to include in the results.
           type: array
           items:
-            type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
+            $ref: '#/components/schemas/UnscopedUuid'
       required:
         - dimension
         - type
         - values
-    RequestsStatusCodeFilter:
+      title: Filter by application
+    ApiProductFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - api_product
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by api_product
+    ApiProductFilterByDimension:
       type: object
       properties:
         dimension:
-          description: The dimension to filter.
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
           type: string
           enum:
-            - status_code
+            - api_product
         type:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: |
-            Only include requests with specific status codes in the results.
+            The IDs to include in the results.
           type: array
           items:
-            type: integer
-            minimum: 100
-            maximum: 999
+            $ref: '#/components/schemas/UnscopedUuid'
       additionalProperties: false
       required:
         - dimension
         - type
         - values
-    RequestsStatusCodeGroupedFilter:
+      title: Filter by api_product
+    ApiProductVersionFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - api_product_version
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by api_product_version
+    ApiProductVersionFilterByDimension:
       type: object
       properties:
         dimension:
-          description: The dimension to filter.
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
           type: string
           enum:
-            - status_code_grouped
+            - api_product_version
         type:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: |
-            Only include the given groups of status codes in the results.
+            The IDs to include in the results.
           type: array
           items:
-            type: string
-            pattern: '^\d[xX][xX]$'
-      additionalProperties: false
+            $ref: '#/components/schemas/UnscopedUuid'
       required:
         - dimension
         - type
         - values
-    RequestsGatewayServiceFilter:
+      title: Filter by api_product_version
+    AuthTypeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - auth_type
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by auth_type
+    ClientIpFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - client_ip
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by client_ip
+    ConsumerFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - consumer
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
+            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by consumer
+    ConsumerFilterByDimension:
       type: object
       properties:
         dimension:
-          description: The dimension to filter.
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
           type: string
           enum:
-            - gateway_service
+            - consumer
         type:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: |
-            The gateway services to include in the results. Because gateway service UUIDs are only unique within a given control plane, the filter values must be of the form `CONTROL_PLANE_UUID:`.
+            The IDs to include in the results.
           type: array
           items:
-            type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
+            $ref: '#/components/schemas/ScopedUuid'
       required:
         - dimension
         - type
         - values
-    RequestsControlPlaneFilter:
+      title: Filter by consumer
+    ControlPlaneFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - control_plane
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by control_plane
+    ControlPlaneFilterByDimension:
       type: object
       properties:
         dimension:
-          description: The dimension to filter.
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
           type: string
           enum:
             - control_plane
         type:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
-          description: The UUIDs of the control planes to include in the results.
+          description: |
+            The IDs to include in the results.
           type: array
           items:
-            type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
+            $ref: '#/components/schemas/UnscopedUuid'
       required:
         - dimension
         - type
         - values
-    RequestsControlPlaneGroupFilter:
+      title: Filter by control_plane
+    ControlPlaneGroupFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - control_plane_group
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by control_plane_group
+    ControlPlaneGroupFilterByDimension:
       type: object
       properties:
         dimension:
-          description: The dimension to filter.
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
           type: string
           enum:
             - control_plane_group
         type:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
-          description: The UUIDs of the control plane groups to include in the results.
+          description: |
+            The IDs to include in the results.
           type: array
           items:
-            type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
+            $ref: '#/components/schemas/UnscopedUuid'
       required:
         - dimension
         - type
         - values
-    RequestsDataPlaneNodeFilter:
+      title: Filter by control_plane_group
+    DataPlaneNodeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - data_plane_node
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
+            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by data_plane_node
+    DataPlaneNodeFilterByDimension:
       type: object
       properties:
         dimension:
-          description: The dimension to filter.
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
           type: string
           enum:
             - data_plane_node
@@ -349,16 +715,498 @@ components:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: |
-            The data plane nodes to include in the results. Because data plane node UUIDs are only unique within a given control plane or control plane group, the filter values must be of the form `CONTROL_PLANE_UUID:DATA_PLANE_NODE_UUID` if the node belongs to a control plane or `CONTROL_PLANE_GROUP_UUID:DATA_PLANE_NODE_UUID` if the node belongs to a control plane group.
+            The IDs to include in the results.
           type: array
           items:
-            type: string
-            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      additionalProperties: false
+            $ref: '#/components/schemas/ScopedUuid'
       required:
         - dimension
         - type
         - values
+      title: Filter by data_plane_node
+    DataPlaneNodeVersionFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - data_plane_node_version
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by data_plane_node_version
+    GatewayServiceFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - gateway_service
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
+            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by gateway_service
+    GatewayServiceFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - gateway_service
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by gateway_service
+    HeaderUserAgentFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - header_user_agent
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by header_user_agent
+    HeaderHostFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - header_user_host
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by header_user_host
+    HttpMethodFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - http_method
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by http_method
+    LatenciesKongGatewayMsFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - latencies_kong_gateway_ms
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by latencies_kong_gateway_ms
+    LatenciesResponseMsFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - latencies_response_ms
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by latencies_response_ms
+    LatenciesUpstreamMsFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - latencies_upstream_ms
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by latencies_upstream_ms
+    RequestBodySizeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - request_body_size
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
+            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by request_body_size
+    RequestIdFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - request_id
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by request_id
+    RequestUriFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - request_uri
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by request_uri
+    ResponseBodySizeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - response_body_size
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
+            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by response_body_size
+    ResponseHeaderContentLengthFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - response_body_size
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
+            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by response_header_content_length
+    ResponseHeaderContentTypeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - response_header_content_type
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by response_header_content_type
+    ResponseSourceFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - response_source
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by response_source
+    RouteFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - route
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
+            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by route
+    RouteFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - route
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by route
+    ServicePortFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - service_port
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by service_port
+    ServiceProtocolFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - service_protocol
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by service_protocol
+    StatusCodeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - status_code
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueStatusCode'
+            - $ref: '#/components/schemas/FilterSingleValueStatusCode'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by status_code
+    StatusCodeFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - status_code
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The codes to include in the results.
+          type: array
+          items:
+            type: integer
+            minimum: 0
+            maximum: 999
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by status_code
+    StatusCodeGroupedFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - status_code_grouped
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueStatusCodeGrouped'
+            - $ref: '#/components/schemas/FilterSingleValueStatusCodeGrouped'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by status_code_grouped
+    StatusCodeGroupedFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - status_code_grouped
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The codes to include in the results.
+          type: array
+          items:
+            type: string
+            pattern: '^\d[xX][xX]$'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by status_code_grouped
+    TraceIdFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - trace_id
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by trace_id
+    UpstreamStatusCodeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - upstream_status_code
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueStatusCode'
+            - $ref: '#/components/schemas/FilterSingleValueStatusCode'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by upstream_status_code
+    UpstreamStatusCodeGroupedFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - upstream_status_code_grouped
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueStatusCodeGrouped'
+            - $ref: '#/components/schemas/FilterSingleValueStatusCodeGrouped'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by upstream_status_code_grouped
+    UpstreamUriFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - upstream_uri
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by upstream_uri
     RequestsRelativeTimeRange:
       type: object
       properties:
@@ -493,21 +1341,25 @@ components:
             type: string
             nullable: true
           consumer:
-            description: 'Consumer ID associated with the request. In the format `control_plane_uuid:consumer_uuid`.'
+            description: 'Consumer ID associated with the request. In the format `control_plane_id:consumer_id`.'
             type: string
             nullable: true
           control_plane:
             description: Control Plane ID associated with the request.
             type: string
+            nullable: true
           control_plane_group:
             description: Control Plane Group ID associated with the request.
             type: string
             nullable: true
           data_plane_node:
-            description: 'Data Plane Node ID associated with the request. In the format `control_plane_uuid:data_plane_node_uuid` if the node belongs to a control plane or `control_plane_group_uuid:data_plane_node_uuid` if the node belongs to a control plane group.'
+            description: 'Data Plane Node ID associated with the request. In the format `control_plane_id:data_plane_node_id` if the node belongs to a control plane or `control_plane_group_id:data_plane_node_id` if the node belongs to a control plane group.'
+            type: string
+          data_plane_node_version:
+            description: Version used by the Data Plane Node associated with the request.
             type: string
           gateway_service:
-            description: 'Gateway Service ID associated with the request. In the format `control_plane_uuid:gateway_service_uuid`.'
+            description: 'Gateway Service ID associated with the request. In the format `control_plane_id:gateway_service_id`.'
             type: string
             nullable: true
           header_host:
@@ -573,36 +1425,50 @@ components:
           ratelimit_limit_second:
             description: Rate limit value for requests per second.
             type: integer
+            nullable: true
           ratelimit_limit_year:
             description: Rate limit value for requests per year.
             type: integer
+            nullable: true
           ratelimit_remaining:
             description: Number of requests remaining until the limit is hit.
             type: integer
+            nullable: true
           ratelimit_remaining_day:
             description: Number of requests remaining until the limit is hit for requests per day.
             type: integer
+            nullable: true
           ratelimit_remaining_hour:
             description: Number of requests remaining until the limit is hit for requests per hour.
             type: integer
+            nullable: true
           ratelimit_remaining_minute:
             description: Number of requests remaining until the limit is hit for requests per minute.
             type: integer
+            nullable: true
           ratelimit_remaining_month:
             description: Number of requests remaining until the limit is hit for requests per month.
             type: integer
+            nullable: true
           ratelimit_remaining_second:
             description: Number of requests remaining until the limit is hit for requests per second.
             type: integer
+            nullable: true
           ratelimit_remaining_year:
             description: Number of requests remaining until the limit is hit for requests per year.
             type: integer
+            nullable: true
           ratelimit_reset:
             description: 'The time, in seconds, until the quota is reset.'
             type: integer
+            nullable: true
           request_body_size:
             description: Request body size of the request in bytes.
             type: integer
+            nullable: true
+          request_id:
+            description: Request ID associated with the request.
+            type: string
             nullable: true
           request_uri:
             description: Request URI associated with the request.
@@ -624,8 +1490,12 @@ components:
             description: Response HTTP status code returned from the request.
             type: string
             nullable: true
+          response_source:
+            description: Response source associated with the response status.
+            type: string
+            nullable: true
           route:
-            description: 'Route ID associated with the request. In the format `control_plane_uuid:route_uuid`.'
+            description: 'Route ID associated with the request. In the format `control_plane_id:route_id`.'
             type: string
             nullable: true
           service_port:
@@ -639,6 +1509,10 @@ components:
           trace_id:
             description: ID used to trace the query.
             type: string
+            nullable: true
+          upstream_status:
+            description: Upstream URI associated with the request.
+            type: integer
             nullable: true
           upstream_uri:
             description: Upstream URI associated with the request.
@@ -728,26 +1602,95 @@ components:
             rule: unknown_property
             choices: []
             reason: property time_range should not exist
-          - field: time_range.start_date
-            rule: is_date
-            choices: []
-            reason: start must be a valid date in ISO format
-          - field: time_range.end_date
-            rule: is_date
-            choices: []
-            reason: end must be a valid date in ISO format
-    ExampleControlPlaneFilter:
+    ExampleMultiselectFilters:
       value:
         time_range:
           type: relative
           time_range: 24H
           tz: EST
         filters:
-          - type: in
-            dimension: control_plane
-            values:
-              - d5ac5d88-efed-4e10-9dfe-0b0a6646c219
-    ExampleGatewayServiceFilter:
+          - operator: in
+            field: api_product
+            value:
+              - 523468b1-2e74-4b58-b30e-6f904e99e4d0
+              - c19b3f76-ef71-484a-bbc8-a07812a980b3
+          - operator: in
+            field: gateway_service
+            value:
+              - 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:523468b1-2e74-4b58-b30e-6f904e99e4d0'
+          - operator: not_in
+            field: http_method
+            value:
+              - OPTIONS
+              - GET
+          - operator: not_in
+            field: status_code_grouped
+            value:
+              - 2XX
+          - operator: not_in
+            field: status_code
+            value:
+              - 200
+    ExampleSingleSelectFilters:
+      value:
+        time_range:
+          type: relative
+          time_range: 24H
+          tz: EST
+        filters:
+          - operator: '='
+            field: application
+            value: bc2587ae-a35e-4a34-b6b2-f4ca5ae06dc9
+          - operator: '!='
+            field: route
+            value: 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:523468b1-2e74-4b58-b30e-6f904e99e4d0'
+          - operator: '='
+            field: service_protocol
+            value: https
+          - operator: '='
+            field: status_code_grouped
+            value: 5XX
+    ExampleNumericFilters:
+      value:
+        time_range:
+          type: relative
+          time_range: 15M
+          tz: EST
+        filters:
+          - operator: '>='
+            field: latencies_response_ms
+            value: 5000
+          - operator: <
+            field: latencies_response_ms
+            value: 10000
+          - operator: '='
+            field: status_code
+            value: 500
+    ExampleWildcardFilters:
+      value:
+        time_range:
+          type: relative
+          time_range: 15M
+          tz: EST
+        filters:
+          - operator: starts_with
+            field: request_uri
+            value: /users/
+          - operator: ends_with
+            field: request_uri
+            value: v2/accounts
+    ExampleEmptyFilters:
+      value:
+        time_range:
+          type: relative
+          time_range: 15M
+          tz: EST
+        filters:
+          - operator: not_empty
+            field: api_product
+          - operator: empty
+            field: consumer
+    ExampleAbsoluteTimeRangeAndPagination:
       value:
         time_range:
           type: absolute
@@ -755,20 +1698,10 @@ components:
           end: '2023-08-13T00:00:00'
           tz: America/Denver
         filters:
-          - type: not_in
-            dimension: gateway_service
-            values:
-              - 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055'
-    ExampleOffsetPagination:
-      value:
-        time_range:
-          type: relative
-          time_range: 1H
-        filters:
-          - type: in
-            dimension: api_product
-            values:
-              - 97fdea2e-ed40-4560-b2da-8aa3a3dfa349
+          - operator: in
+            field: application
+            value:
+              - 147bbc1a-b58a-484f-afd2-6479a70c0548
         size: 10
         offset: 100
     ResponseExample:
@@ -784,6 +1717,7 @@ components:
             control_plane: d5ac5d88-efed-4e10-9dfe-0b0a6646c219
             control_plane_group: cafe2d4f-95ec-458c-8c88-62417018678d
             data_plane_node: 'cafe2d4f-95ec-458c-8c88-62417018678d:122a0f86-029c-4292-82fd-f3b38e1cfa60'
+            data_plane_node_version: 3.8.0.1
             gateway_service: 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:523468b1-2e74-4b58-b30e-6f904e99e4d0'
             header_host: google.com
             header_user_agent: Mozilla/4.0 (compatible; Flight Explorer)
@@ -814,6 +1748,7 @@ components:
             ratelimit_remaining_year: 0
             ratelimit_reset: 0
             request_body_size: 182
+            request_id: f3043125bdec40385195f20db7e0491b
             request_uri: /notifications/graphql
             response_body_size: 431
             response_header_content_length: 41
@@ -823,6 +1758,7 @@ components:
             service_port: '4000'
             service_protocol: http
             trace_id: 36b95ea3a6be443d11866fb5d2a8ba6b
+            upstream_status: null
             upstream_uri: /graphql
           - request_start: '2020-02-02T01:00:01.050Z'
             api_product: b866c867-60e6-4258-adb3-e136cc26388b
@@ -834,6 +1770,7 @@ components:
             control_plane: d5ac5d88-efed-4e10-9dfe-0b0a6646c219
             control_plane_group: null
             data_plane_node: 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:a3e0692c-2351-4c8e-acbe-e7a5185147de'
+            data_plane_node_version: 3.8.0.1
             gateway_service: 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:523468b1-2e74-4b58-b30e-6f904e99e4d0'
             header_host: proxy-zyq.com
             header_user_agent: python-works
@@ -864,15 +1801,18 @@ components:
             ratelimit_remaining_year: 0
             ratelimit_reset: 0
             request_body_size: 258
+            request_id: a193bb0fefadcd3948cebc2c2c63a500
             request_uri: /users
             response_body_size: 390
             response_header_content_length: 102
             response_header_content_type: text/html
             response_http_status: '200'
+            response_source: upstream
             route: 'd5ac5d88-efed-4e10-9dfe-0b0a6646c219:2a3e9d21-804b-4b3b-ab7e-c6f002dadbf4'
             service_port: '443'
             service_protocol: https
             trace_id: 77ea76d5f4e24fcae336d3ec2c9c92e3
+            upstream_status: 200
             upstream_uri: /users
         meta:
           size: 15

@@ -160,6 +160,12 @@ In addition to the above, when **tracing** is enabled, request-scoped logs inclu
 - `TraceID`: Request trace ID.
 - `SpanID`: Request span ID.
 - `TraceFlags`: W3C trace flag.
+
+#### Logging for custom plugins
+
+The custom plugin PDK [`kong.telemetry.log`](/gateway/latest/plugin-development/pdk/kong.telemetry.log/) module lets you configure OTLP logging for a custom plugin. 
+The module records a structured log entry, which is reported via the OpenTelemetry plugin.
+
 {% endif_version %}
 
 {% if_version gte:3.3.x %}

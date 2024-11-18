@@ -53,6 +53,10 @@
 /hub/kong-inc/ai-proxy/how-to/anthropic/ /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/
 /hub/kong-inc/ai-proxy/how-to/mistral/   /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/
 /hub/kong-inc/ai-proxy/how-to/llama2/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
+/hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/gemini/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
+/hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/bedrock/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
+/hub/kong-inc/ai-proxy-advanced/how-to/machine-learning-platform-integration-guides/gemini/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
+/hub/kong-inc/ai-proxy-advanced/how-to/machine-learning-platform-integration-guides/bedrock/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
 
 ## App reg v2
 
@@ -118,6 +122,14 @@
 /konnect/dev-portal/access-and-approval/auto-approve-devs-apps/ /konnect/dev-portal/create-dev-portal/
 /konnect/dev-portal/access-and-approval/manage-teams    /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
 /konnect/api/portal-auth/portal-rbac-guide/   /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
+
+# Konnect Dev Portal audit logs
+/konnect/dev-portal/audit-logging/reference/    /konnect/reference/audit-logs/
+/konnect/org-management/audit-logging/reference/    /konnect/reference/audit-logs/
+/konnect/dev-portal/audit-logging/verify-signatures/  /reference/verify-signatures/
+/konnect/org-management/audit-logging/verify-signatures/    /reference/verify-signatures/
+/konnect/dev-portal/audit-logging/webhook-status/   /konnect/dev-portal/audit-logging/webhook/#view-audit-log-webhook-status
+
 
 # API markdown doc deprecation
 
@@ -447,6 +459,7 @@
 /hub/smartparkingtechnology/*                      /hub/
 /hub/bitnami/*                                     /gateway/latest/install/
 /hub/kong-inc/kong-terraform-aws/                  https://github.com/kong/kong-terraform-aws
+/hub/:vendor/:plugin/3.0.x/*                                   https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
 
 # KONNECT
 
@@ -1014,6 +1027,8 @@
 /enterprise/2.3.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.3.x/:splat
 /enterprise/2.4.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.4.x/:splat
 /enterprise/2.5.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.5.x/:splat
+/enterprise/2.6.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.6.x/:splat
+/enterprise/2.7.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.7.x/:splat
 
 # COMMUNITY DOC ARCHIVES
 /gateway-oss/2.5.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.5.x/:splat
@@ -1057,6 +1072,10 @@
 /0.4.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.4.x/:splat
 /0.3.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.3.x/:splat
 /0.2.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.2.x/:splat
+
+# GATEWAY DOC ARCHIVES
+/gateway/3.0.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.0.x/:splat
+
 
 # COMMUNITY DOC REBRANDING
 /community   https://konghq.com/community-resources/

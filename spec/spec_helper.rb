@@ -97,9 +97,10 @@ RSpec.configure do |config|
     allow(ENV).to receive(:[]).with('VITE_PORTAL_API_URL').and_return('http://developer.konghq.com')
 
     stub_const(
-      'PluginSingleSource::Plugin::Schemas::ThirdParty::SCHEMAS_PATH',
-      'spec/fixtures/app/_hub/'
+      'PluginSingleSource::Plugin::Schemas::Kong::SCHEMAS_PATH',
+      '../../../app/_src/.repos/kong-plugins/schemas/'
     )
+
     stub_const(
       'PluginSingleSource::Plugin::Examples::Base::HUB_PATH',
       'spec/fixtures/app/_hub'

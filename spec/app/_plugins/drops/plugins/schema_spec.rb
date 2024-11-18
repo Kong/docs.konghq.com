@@ -7,7 +7,8 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
     PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name: plugin_name,
       vendor: 'kong-inc',
-      version: version
+      version: version,
+      site:
     )
   end
 
