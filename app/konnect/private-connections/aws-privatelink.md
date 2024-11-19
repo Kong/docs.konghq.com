@@ -5,9 +5,9 @@ content-type: reference
 ---
 
 You can establish a private connection to ensure that the data transmitted between {{site.konnect_short_name}} and your AWS environment is secure. This private connection uses AWS PrivateLink and is available for the following AWS regions:
-- ap-southeast-2
 - eu-central-1
 - us-east-2
+- eu-west-1
 
 If you want to create a connection with a different AWS region, contact [Kong Support](https://support.konghq.com/support/s/).
 
