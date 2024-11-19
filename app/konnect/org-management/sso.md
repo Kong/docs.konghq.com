@@ -7,28 +7,28 @@ As an alternative to {{site.konnect_saas}}’s native authentication, you can se
 
 If you want to configure Okta, please see the [Okta configuration guide](/konnect/org-management/okta-idp/).
 
-## Map {{site.konnect_short_name}} teams to Okta groups
+## Map {{site.konnect_short_name}} teams to IdP groups
 
-Before you enable SSO, you have the option to map Okta groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/). By doing this, you can manage a user's {{site.konnect_short_name}} team membership directly through Okta group membership.
+Before you enable SSO, you have the option to map IdP groups to [{{site.konnect_short_name}} teams](/konnect/org-management/teams-and-roles/). By doing this, you can manage a user's {{site.konnect_short_name}} team membership directly through your IdP group membership.
 
 After mapping is set up:
-* Okta users belonging to the mapped groups can log in to {{site.konnect_short_name}}.
-* When a user logs into {{site.konnect_short_name}} with their Okta account
+* IdP users belonging to the mapped groups can log in to {{site.konnect_short_name}}.
+* When a user logs into {{site.konnect_short_name}} with their IdP account
 for the first time,
 {{site.konnect_short_name}} automatically provisions an account with the
 relevant roles.
 * If your org already has non-admin {{site.konnect_short_name}} users before
 mapping, on their next
-login they will be mapped to the teams defined by their Okta group membership.
+login they will be mapped to the teams defined by their IdP group membership.
 * An organization admin can view all registered users in
 {{site.konnect_short_name}},
 but cannot edit their team membership from the {{site.konnect_short_name}} side. To
-manage automatically-created users, adjust user permissions through Okta, or
+manage automatically-created users, adjust user permissions through your IdP, or
 adjust the team mapping.
 
-Any changes to the mapped Okta groups on the Okta side are reflected in
+Any changes to the mapped IdP groups on the IdP-side are reflected in
 {{site.konnect_saas}}. For example:
-* Removing a user from a group in Okta also deactivates their
+* Removing a user from a group in your IdP also deactivates their
 {{site.konnect_short_name}} account.
 * Moving a user from one group to another changes their team in {{site.konnect_short_name}}
 to align with the new group-to-team mapping.
