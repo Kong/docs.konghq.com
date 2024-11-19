@@ -16,8 +16,14 @@
 1. Create a [new OIDC application in Okta](https://help.okta.com/oie/en-us/content/topics/apps/apps_app_integration_wizard_oidc.htm) to manage {{site.konnect_saas}} account integration. Configure the following settings:
     * **Application Type**: Web Application
     * **Grant type**: Authorization Code
+    {% if include.desc == "Konnect Org" %}
     * **Sign-in redirect URIs**: `https://cloud.konghq.com/login` (This is a placeholder value that you'll replace later)
     * **Sign-out redirect URIs**: `https://cloud.konghq.com/login` (This is a placeholder value that you'll replace later)
+    {% endif %}
+    {% if include.desc == "Dev Portal" %}
+    * **Sign-in redirect URIs**: `https://{portalId}.{region}.portal.konghq.com/login` (This is a placeholder value that you'll replace later)
+    * **Sign-out redirect URIs**: `https://{portalId}.{region}.portal.konghq.com/login` (This is a placeholder value that you'll replace later)
+    {% endif %}
     * **Controlled access**: Select a group assignment option
 
     Leave this page open. You'll need the connection details here to configure your {{site.konnect_saas}} account.
@@ -47,7 +53,12 @@
 {% navtab SAML %}
 
 1. Create a [new SAML 2.0 application in Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_saml.htm?cshid=ext_Apps_App_Integration_Wizard-saml) to manage {{site.konnect_saas}} account integration. Configure the following placeholder settings:
+    {% if include.desc == "Konnect Org" %}
     * **Single Sign-On URL**: `https://global.api.konghq.com/v2/authenticate/login_path/saml/acs`
+    {% endif %}
+    {% if include.desc == "Dev Portal" %}
+    * **Single Sign-On URL**: `https://{portalId}.{region}.portal.konghq.com/v2/authenticate/login_path/saml/acs`
+    {% endif %}
     * **Audience URI (SP Entity ID)**: `https://cloud.konghq.com/sp/SP_ID`
 
 1. Optional: To include additional user attributes beyond authentication, add the following three attributes in the **Attribute Statements**:
