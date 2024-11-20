@@ -26,7 +26,8 @@ The same definitions of `feature gates` and `feature stages` from upstream Kuber
 {% if_version gte:3.2.x %}
 | FallbackConfiguration      | `false` | Alpha | 3.2.0  | TBD   |
 | KongCustomEntity           | `false` | Alpha | 3.2.0  | 3.3.0 |
-| KongCustomEntity           | `true`  | Beta  | 3.3.0  | TBD   |
+| KongCustomEntity           | `true`  | Beta  | 3.3.0  | 3.4.0 |
+| KongCustomEntity           | `true`  | GA    | 3.4.0  | TBD   |
 {% endif_version %}
 
 ## Using feature gates
@@ -57,26 +58,24 @@ kubectl set env -n kong deployment/kong-controller CONTROLLER_FEATURE_GATES="Fil
 * Until a feature becomes GA, there are no guarantees that will continue being available. For more information, see the [changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md).
 
 {:.important}
->**Important:** To avoid disruption to your services consider not using features until they have reached GA status. 
+>**Important:** To avoid disruption to your services consider not using features until they have reached GA status.
 
 [k8s]:https://kubernetes.io
 [gates]:https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/
 [stages]:https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/#feature-stages
-[specs]: /kubernetes-ingress-controller/latest/reference/custom-resources/
-[guides]: /kubernetes-ingress-controller/latest/guides/overview/
 [k8s-keps]:https://github.com/kubernetes/enhancements
 [kic-keps]:https://github.com/Kong/kubernetes-ingress-controller/tree/main/keps
 [releases]:https://github.com/Kong/kubernetes-ingress-controller/releases
 
-## Feature gate details 
+## Feature gate details
 
 ### SanitizeKonnectConfigDumps
 
 The `SanitizeKonnectConfigDumps` feature enables the sanitization of configuration dumps that are sent to Konnect.
-This means {{site.kic_product_name}} will obfuscate all sensitive information that your Kong config contains, such as 
+This means {{site.kic_product_name}} will obfuscate all sensitive information that your Kong config contains, such as
 private keys in `Certificate` entities and `Consumer` entities' credentials.
 
 {:.important}
-> **Warning:** `KongPlugin`'s and `KongClusterPlugin`'s `config` field is not sanitized. If you have sensitive information 
-> in your `KongPlugin`'s `config` field, it will be sent to Konnect as is. To avoid that, please consider using 
+> **Warning:** `KongPlugin`'s and `KongClusterPlugin`'s `config` field is not sanitized. If you have sensitive information
+> in your `KongPlugin`'s `config` field, it will be sent to Konnect as is. To avoid that, please consider using
 > [KongVault](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongvault).
