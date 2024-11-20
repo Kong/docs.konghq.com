@@ -20,9 +20,7 @@ enterprise: true
 konnect: true
    # verify this, just setting to render
 
-network_config_opts: # 
-  - DB-less mode
-  - Traditional
+network_config_opts: traditional, and db-less
 
 notes: The plugin supports local/redis policies, not cluster policies, so it doesn't work in hybrid mode.
 

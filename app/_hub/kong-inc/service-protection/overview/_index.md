@@ -25,6 +25,14 @@ For example:
 
 <!-- Describe how your plugin works. For example, if it transforms requests, how does it do that? -->
 
+## FAQ
+
+does this replace rl and rla
+
+can i use this with other rl plugins
+
+when would i use this with other rl plugins
+
 ## More information
 
 <!-- Bulleted list of links to more info about your plugin -->
