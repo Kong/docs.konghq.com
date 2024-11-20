@@ -25,7 +25,6 @@ For more information about developer self-service with Dev Portal, we offer seve
 {% navtabs %}
 {% navtab Konnect admin %}
 * [Enabling and disabling application registration](/konnect/dev-portal/applications/enable-app-reg/) - This explains how to grant and revoke application registration access.
-Manage developer access - This doc details to a {{site.konnect_short_name}} administrator all of the different options they have available to them to manage developer access to their Dev Portal. The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal.
 
 * [Manage developer access](/konnect/dev-portal/access-and-approval/manage-devs/) - This doc details to a {{site.konnect_short_name}} administrator all of the different options they have available to them to manage developer access to their Dev Portal. The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal.
 
