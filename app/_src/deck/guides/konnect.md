@@ -172,6 +172,8 @@ To target a specific geo, set `konnect-addr` to one of the following:
 * AU geo:`"https://au.api.konghq.com"`
 * EU geo:`"https://eu.api.konghq.com"`
 * US geo:`"https://us.api.konghq.com"`
+* IN geo:`"https://in.api.konghq.com"`
+* UAE geo:`"https://uae.api.konghq.com"`
 
 {% endif_version %}
 
