@@ -16,6 +16,10 @@ integrations:
     icon: swaggerhub.svg
     slug: swaggerhub
     description: Expand Service Catalog functionality with SwaggerHub to visualize OpenAPI specs
+  - name: Datadog
+    icon: datadog.svg
+    slug: datadog
+    description: View the performance and health of your services by ingesting Datadog monitors and dashboards
 
 ##### Using this file ######
   # - name: Name of the integration
