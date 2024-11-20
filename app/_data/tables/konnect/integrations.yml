@@ -19,6 +19,7 @@ integrations:
   - name: Datadog
     icon: datadog.svg
     slug: datadog
+    events: true
     description: View the performance and health of your services by ingesting Datadog monitors and dashboards
 
 ##### Using this file ######
