@@ -57,7 +57,7 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
 | `eu.api.konghq.com` | The {{site.konnect_short_name}} API for the EU geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
 | `PORTAL_ID.eu.portal.konghq.com` | The URL for the Dev Portal in the EU geo. |
-| `CONTROL_PLANE_ID.eu.cp0.konghq.com` | Handles configuration for a control plane in the EU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.eu.cp0.konghq.com` | Handles configuration for a control plane in the EU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
 | `CONTROL_PLANE_ID.eu.tp0.konghq.com` | Gathers telemetry data for a control plane in the EU geo. This hostname is unique to each organization and control plane. |
 
 ### US geo
