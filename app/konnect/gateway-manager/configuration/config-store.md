@@ -14,11 +14,11 @@ You can store your sensitive data directly in {{site.konnect_short_name}} via th
 Create a config store entity in {{site.konnect_short_name}} and save the `config_store_id` from the response body.
 
 ```sh 
-curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/core-entities/vaults/ \
-  --header 'Authorization: Bearer{kpat_token}' \
+curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/config-stores \
+  --header 'Authorization: Bearer {kpat_token}' \
   --header 'Content-Type: application/json' \
   --data '{
-	"name": "konnect"
+	"name": "my-config-store"
 }'
 ```
 
@@ -30,11 +30,11 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
   --header 'Content-Type: application/json' \
   --data '{
 	"config":{
-		"config_store_id": "7f1daa91-d386-4eb8-83c9-a78099f9c9d5"
+		"config_store_id": "{my-config-store-id}"
 	},
 	"description": "Description of your vault",
 	"name": "konnect",
-	"prefix": "mysecretvault"
+	"prefix": "my-vault"
 }'
 ```
 
@@ -64,7 +64,15 @@ vaults:
 
 ## Reference {{site.konnect_short_name}} Config Store secrets
 
-You can now store secrets in the {{site.konnect_short_name}} Config Store and reference them throughout the control plane. For instance, a secret in the {{site.konnect_short_name}} Config Store named `secret-name` can hold multiple key-value pairs:
+You can now store secrets in the {{site.konnect_short_name}} Config Store and reference them throughout the control plane. 
+
+For instance, a secret named `secret-name` can be referenced using:
+
+```sh
+{vault://my-vault/secret-name}
+```
+
+This allows {{site.base_gateway}} to recognize and retrieve the stored secrets. Additionally, a secret can hold multiple key-value pairs if needed:
 
 ```json
 {
@@ -73,14 +81,13 @@ You can now store secrets in the {{site.konnect_short_name}} Config Store and re
 }
 ```
 
-To make these secrets accessible to {{site.base_gateway}}, reference the environment variables using a specific URL format. For the example above, the references would be:
+To make these secrets accessible to {{site.base_gateway}}, reference the vault using a specific URL format. For the example above, the references would be:
 
 ```sh
-{vault://konnect/secret-name/foo}
-{vault://konnect/secret-name/snip}
+{vault://my-vault/secret-name/foo}
+{vault://my-vault/secret-name/snip}
 ```
 
-This allows {{site.base_gateway}} to recognize and retrieve the stored secrets.
 
 ## Supported fields
 
@@ -88,4 +95,4 @@ This allows {{site.base_gateway}} to recognize and retrieve the stored secrets.
 |---------------------|-------------------|---------------------------------------------------------------------------------------------------------|
 | `vaults.description`   | Description       | An optional description for your vault.                                                                 |
 | `vaults.name`         | Name              | The type of vault. Accepts one of: `konnect`, `env`, `gcp`, `aws`, or `hcv`. |
-| `vaults.prefix`       | Prefix            | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://konnect-vault/<some-secret>}`. |
+| `vaults.prefix`       | Prefix            | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://<vault-prefix>/<some-secret>}`. |
