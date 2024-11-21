@@ -3,6 +3,12 @@ nav_title: Overview
 title: Overview
 ---
 
+You can use the Regex Threat Protection plugin to detect well known patterns that might be the result of a cross site scripting or other injection type attacks.
+
+## Why should I use the Regex Threat Protection plugin?
+
+
+
 <!-- 
 Introduce your plugin with a long description. What does it do, and why would someone want to use it? 
 
