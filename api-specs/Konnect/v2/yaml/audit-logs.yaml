@@ -396,7 +396,6 @@ components:
       type: string
       enum:
         - required
-        - max_length
         - is_array
         - is_base64
         - is_boolean
@@ -454,6 +453,8 @@ components:
             - min_lowercase
             - min_uppercase
             - min_symbols
+            - min_items
+            - min
           nullable: false
           readOnly: true
         minimum:
@@ -464,7 +465,7 @@ components:
           example: body
         reason:
           type: string
-          example: is a required field
+          example: must have at least 8 characters
           readOnly: true
       additionalProperties: false
       required:
@@ -472,6 +473,38 @@ components:
         - reason
         - rule
         - minimum
+    InvalidParameterMaximumLength:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          enum:
+            - max_length
+            - max_items
+            - max
+          nullable: false
+          readOnly: true
+        maximum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: must not have more than 8 characters
+          readOnly: true
+      additionalProperties: false
+      required:
+        - field
+        - reason
+        - rule
+        - maximum
     InvalidParameterChoiceItem:
       type: object
       properties:
@@ -546,6 +579,7 @@ components:
         oneOf:
           - $ref: '#/components/schemas/InvalidParameterStandard'
           - $ref: '#/components/schemas/InvalidParameterMinimumLength'
+          - $ref: '#/components/schemas/InvalidParameterMaximumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
       minItems: 1
