@@ -57,7 +57,7 @@ _third_party:
 
   # Vaults
   vaultproject: &vaultproject
-    name: Hashicorp Vault
+    name: HashiCorp Vault
     versions:
       - 1.12
     icon: vaultproject.svg
@@ -68,7 +68,7 @@ _third_party:
     name: Microsoft Azure Key Vault
     icon: azure.svg
   gcp-sm: &gcp-sm
-    name: Google Secrets Manager
+    name: Google Cloud Secret Manager
     icon: gcp.svg
 
   # IDP
@@ -168,3 +168,7 @@ _third_party:
       - Raw
       - OLLAMA
       - OpenAI
+  bedrock: &bedrock
+    name: Amazon Bedrock
+  gemini: &gemini
+    name: Gemini

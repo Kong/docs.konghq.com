@@ -13,7 +13,7 @@ You _cannot_ use decK to publish content to the Dev Portal, manage application r
 
 ## {{site.konnect_short_name}} flags
 
-You can use `deck` commands such as `ping`, `diff`, or `sync` with `--konnect` flags to interact with {{site.konnect_short_name}}.
+You can use decK commands such as `ping`, `diff`, or `sync` with `--konnect-*` flags to interact with {{site.konnect_short_name}}.
 
 If you don't pass a {{site.konnect_short_name}} flag to decK, decK looks for a local {{site.base_gateway}} instance instead.
 
@@ -78,12 +78,21 @@ Set either `konnect-token` or `konnect-token-file` in the decK config file.
     ```
 
 decK automatically uses the token from `$HOME/.deck.yaml` in any subsequent calls:
-
+{% if_version lte:1.27.x %}
 ```sh
 deck ping
 
 Successfully Konnected to the Example-Name organization!
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway ping
+
+Successfully Konnected to the Example-Name organization!
+```
+{% endif_version %}
+
 ### Authenticate using a token
 
 You can generate a token in {{site.konnect_short_name}} for authentication with decK commands. 
@@ -120,18 +129,34 @@ To generate a PAT for a user account in {{site.konnect_short_name}}, select your
 
 You can use the `--konnect-token` flag to pass the PAT directly in the command:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck ping \
   --konnect-token YOUR_KONNECT_TOKEN
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway ping \
+  --konnect-token YOUR_KONNECT_TOKEN
+```
+{% endif_version %}
 
 You can save your {{site.konnect_short_name}}
 token to a file, then pass the filename to decK with `--konnect-token-file`:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck ping \
   --konnect-token-file /PATH/TO/FILE
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway ping \
+  --konnect-token-file /PATH/TO/FILE
+```
+{% endif_version %}
 
 ## Target a {{site.konnect_short_name}} API
 
@@ -174,7 +199,7 @@ or use a flag when running any decK command.
     ```
 {% endif_version %}
 
-{% if_version gte:1.27.x %}
+{% if_version eq:1.27.x %}
 * Target a control plane in your state file with the `_konnect.control_plane_name` parameter:
 
     ```yaml
@@ -187,6 +212,22 @@ or use a flag when running any decK command.
 
     ```sh
     deck sync --konnect-control-plane-name staging
+    ```
+{% endif_version %}
+
+{% if_version gte:1.28.x %}
+* Target a control plane in your state file with the `_konnect.control_plane_name` parameter:
+
+    ```yaml
+    _format_version: "3.0"
+    _konnect:
+      control_plane_name: staging
+    ```
+
+* Set a control plane using the `--konnect-control-plane-name` flag:
+
+    ```sh
+    deck gateway sync konnect.yaml --konnect-control-plane-name staging
     ```
 {% endif_version %}
 
@@ -243,7 +284,7 @@ _konnect:
 ### ACL, Key Auth, or OpenID Connect plugins and app registration
 
 You may encounter one of the following scenarios with the ACL, Key Authentication, or OpenID Connect (OIDC) plugins:
-* The plugins are visible in the Gateway Manager, but don't appear in the output from a `deck dump` or `deck diff`.
+* The plugins are visible in the Gateway Manager, but don't appear in the output from a decK `dump` or `diff`.
 * When trying to set up one of the plugins with app registration enabled, you see the following error:
 
     ```
@@ -280,5 +321,5 @@ against {{site.konnect_short_name}}.
 
 ## See also
 
-* [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import/)
+* [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/migration/)
 * [Manage control planes with decK](/konnect/gateway-manager/declarative-config/)

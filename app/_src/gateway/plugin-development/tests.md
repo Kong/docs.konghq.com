@@ -44,7 +44,7 @@ for _, strategy in helpers.each_strategy() do
     setup(function()
       local service = bp.services:insert {
         name = "test-service",
-        host = "httpbin.org"
+        host = "httpbin.konghq.com"
       }
 
       bp.routes:insert({

@@ -52,6 +52,8 @@ items:
             url: /key-concepts/services
           - text: Routes
             url: /key-concepts/routes
+          - text: Consumers
+            url: /key-concepts/consumers
           - text: Upstreams
             url: /key-concepts/upstreams
           - text: Plugins
@@ -228,12 +230,14 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Performance Testing
+      - text: Performance
         items:
         - text: Performance Testing Benchmarks
           url: /production/performance/performance-testing
         - text: Establish a Performance Benchmark
           url: /production/performance/benchmark
+        - text: Improve performance with Brotli compression
+          url: /production/performance/brotli/
       - text: Logging and Debugging
         items:
           - text: Log Reference
@@ -300,9 +304,9 @@ items:
                 url: /kong-enterprise/secrets-management/backends/aws-sm
               - text: Azure Key Vaults
                 url: /kong-enterprise/secrets-management/backends/azure-key-vaults
-              - text: Google Secrets Manager
+              - text: Google Cloud Secret Manager
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
-              - text: Hashicorp Vault
+              - text: HashiCorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
           - text: How-To
             items:

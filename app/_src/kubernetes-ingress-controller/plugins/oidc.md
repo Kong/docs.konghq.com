@@ -6,7 +6,7 @@ purpose: |
 ---
 
 {{site.ee_product_name}}'s OIDC plugin can authenticate requests using OpenID Connect protocol.
-Learn to setup the OIDC plugin using the Ingress Controller. It is important that create a domain name to use OIDC plugin in a production environment. 
+Learn to setup the OIDC plugin using the Ingress Controller. It is important that you create a domain name to use OIDC plugin in a production environment. 
 
 {% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false enterprise=true %}
 

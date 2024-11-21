@@ -58,8 +58,8 @@ If you are using Kong alongside a database, you need decK because:
   the config file is the same. This feature is designed in decK to integrate decK
   with a CI system or a `cronjob` which periodically checks for drifts and alerts
   a team if needed.
-- `decK dump` outputs a more human-readable configuration file compared
-  to Kong's `db_import`.
+- `deck dump` or `deck gateway dump` outputs a more human-readable configuration file 
+  compared to Kong's `db_import`.
 
 However, decK has the following limitations which might or might not affect
 your use case:
@@ -87,7 +87,7 @@ upgrading to decK 1.12 to take advantage of the new `--konnect` CLI flags.
 ### I use Cassandra as a data store for Kong, can I use decK?
 
 As of {{site.base_gateway}} 3.4, you can't use Cassandra as a data store, 
-as it is longer supported by Kong.
+as it is no longer supported by Kong.
 
 You can use decK with earlier versions of Kong backed by Cassandra.
 However, if you observe errors during a sync process, you will have to
@@ -117,7 +117,7 @@ It is derived from the combination of words 'declarative' and 'Kong'.
 Yes. The decK team maintains a JSON schema that you can use to validate YAML files on [Github](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json). You can use the schema with a text editor to provide JIT YAML validation. For example, to use the JSON schema with VS Code: 
 
 1. Install the Red Hat YAML extension:
-```console
+```sh
 code --install-extension redhat.vscode-yaml
 ```
 

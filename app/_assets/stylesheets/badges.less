@@ -16,20 +16,11 @@
     border-radius: 2px;
   }
 
-  &.paid {
-    background: #F2F6FE;
-
-    &::after {
-      content: "KONNECT PAID";
-      color: #0364AC;
-    }
-  }
-
-  &.premium {
+  &.konnect {
     background: @blue-100;
 
     &::after {
-      content: "KONNECT PREMIUM";
+      content: "KONNECT COMPATIBLE";
       background: linear-gradient(90deg, #5052FD 0%, #033796 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -37,11 +28,18 @@
       text-fill-color: transparent;
     }
   }
+  &.events::after {
+    content: "Supports Events";
+    color: #3972d5;
+    background: #f2f6fe;
+    padding: 5px 12px 4px;
+    text-align: center;
+  }
 
-  &.techpartner::after {
-    content: "TECH PARTNER";
-    color: #008871;
-    background: #E8F8F5;
+  &.premiumpartner::after {
+    content: "PREMIUM PARTNER";
+    color: #E8F8F5;
+    background: linear-gradient(90deg, #5052FD 0%, #033796 100%);;
   }
 
   &.enterprise::after {

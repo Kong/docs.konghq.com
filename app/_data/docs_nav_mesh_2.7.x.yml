@@ -32,6 +32,11 @@ inherit:
       url: /support-policy/
       action: insert
       index: -3
+    - path: [ Introduction ]
+      text: Software Bill of Materials
+      url: /sbom
+      action: insert
+      index: -3
     - path: [ Introduction, Release notes]
       url: /mesh/changelog
       src: /mesh/changelog
@@ -152,12 +157,16 @@ inherit:
               url: /features/ubi-images
             - text: Red Hat OpenShift Quickstart
               url: /features/openshift-quickstart
+        - text: Windows Support
+          url: /features/windows
         - text: ECS Support
           url: /installation/ecs
         - text: Auditing
           url: /features/access-audit
         - text: MeshGlobalRateLimit (beta)
           url: /features/meshglobalratelimit
+        - text: Verify signatures for signed Kong Mesh images
+          url: /features/signed-images
     - path: [ Reference ]
       action: modify
       icon: /assets/images/icons/documentation/icn-references-color.svg

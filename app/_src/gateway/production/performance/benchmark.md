@@ -214,15 +214,35 @@ it an additional CPU.
 The CPU generally creates a bottleneck for Redis, so check CPU usage first.
 If this is the case, scale Redis vertically by giving it an additional CPU.
 
-#### DNS
 
+{% if_version gte:3.8.x %}
+#### DNS client
+
+**Action:** Migrate to the new DNS client.
+
+**Explanation:** The new DNS client is designed to be more performant than the old one, so migrating will improve performance.
+For more information, see the [migration docs](/gateway/{{page.release}}/migrate-to-new-dns-client).
+
+{% endif_version %}
+#### DNS TTL
+
+{% if_version lte:3.7.x %}
 **Action:** Increase `dns_stale_ttl` to `300` or up to `86400`.
+{% endif_version %}
+{% if_version gte:3.8.x %}
+**Action:** Increase `<dns|resolver>_stale_ttl` to `300` or up to `86400`.
+{% endif_version %}
 
 **Explanation:** DNS servers can bottleneck {{site.base_gateway}} since {{site.base_gateway}} depends on DNS to determine 
 where to send the request.
 
 In the case of Kubernetes, DNS TTLs are 5 seconds long and can cause problems.
+{% if_version lte:3.7.x %}
 You can increase `dns_stale_ttl` to `300` or up to `86400` to rule out DNS as the issue.
+{% endif_version %}
+{% if_version gte:3.8.x %}
+You can increase `dns_stale_ttl` or `resolver_stale_ttl`, depending on the DNS client you are using, to `300` or up to `86400` to rule out DNS as the issue.
+{% endif_version %}
 
 If DNS servers are the root cause, you will see `coredns` pods creating a bottleneck on the CPU.
 
@@ -285,10 +305,11 @@ KONG_DNS_STALE_TTL="3600"
 If applying configuration through a Helm chart, use the following:
 
 ```yaml
-# The value of 4 for nginx_worker_processes is a suggested value. You can use 8 as well.
+# The value of 1 for nginx_worker_processes is a suggested value. 
+# Change nginx_worker_processes to a number matching the CPU limit. We recommend 4 or 8.
 # Allocate the same amount of CPU and appropriate memory to avoid OOM killer.
 env:
-  nginx_worker_processes: "4"
+  nginx_worker_processes: "1"
   upstream_keepalive_max_requests: "100000"
   nginx_http_keepalive_requests: "100000"
   proxy_access_log: "off"
@@ -296,11 +317,8 @@ env:
 
 resources:
   requests:
-    cpu: 4
-    memory: ""
-  limits:
-    cpu: 4
-    memory: ""
+    cpu: 1
+    memory: "2Gi"
 ```
 {% endnavtab %}
 {% endnavtabs %}

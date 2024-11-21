@@ -20,7 +20,7 @@ Let's test out the Pre-function plugin by filtering requests based on header nam
     ```bash
     curl -i -X POST http://localhost:8001/services/ \
       --data "name=example-service" \
-      --data "url=http://httpbin.org/headers"
+      --data "url=https://httpbin.konghq.com/headers"
     ```
 
 1. Add a route to the service:
@@ -69,7 +69,7 @@ Let's test out the Pre-function plugin by filtering requests based on header nam
     ``` yaml
     services:
     - name: example-service
-      url: http://httpbin.org/headers
+      url: https://httpbin.konghq.com/headers
 
     routes:
     - service: example-service
@@ -103,7 +103,7 @@ Let's test out the Pre-function plugin by filtering requests based on header nam
 1. Sync the file to your {{site.base_gateway}} instance:
 
     ```sh
-    deck sync
+    deck gateway sync kong.yaml
     ```
 
 {% endnavtab %}

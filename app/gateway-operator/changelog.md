@@ -5,6 +5,155 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.4.0
+
+**Release Date** 2024/10/31
+
+### Added
+
+- Proper `User-Agent` header is now set on outgoing HTTP requests.
+  [#387](https://github.com/Kong/gateway-operator/pull/387)
+- Introduce `KongPluginInstallation` CRD to allow installing custom Kong
+  plugins distributed as container images.
+  [#400](https://github.com/Kong/gateway-operator/pull/400), [#424](https://github.com/Kong/gateway-operator/pull/424), [#474](https://github.com/Kong/gateway-operator/pull/474), [#560](https://github.com/Kong/gateway-operator/pull/560), [#615](https://github.com/Kong/gateway-operator/pull/615), [#476](https://github.com/Kong/gateway-operator/pull/476)
+- Extended `DataPlane` API with a possibility to specify `PodDisruptionBudget` to be
+  created for the `DataPlane` deployments via `spec.resources.podDisruptionBudget`.
+  [#464](https://github.com/Kong/gateway-operator/pull/464)
+- Add `KonnectAPIAuthConfiguration` reconciler.
+  [#456](https://github.com/Kong/gateway-operator/pull/456)
+- Add support for Konnect tokens in `Secrets` in `KonnectAPIAuthConfiguration`
+  reconciler.
+  [#459](https://github.com/Kong/gateway-operator/pull/459)
+- Add `KonnectControlPlane` reconciler.
+  [#462](https://github.com/Kong/gateway-operator/pull/462)
+- Add `KongService` reconciler for Konnect control planes.
+  [#470](https://github.com/Kong/gateway-operator/pull/470)
+- Add `KongUpstream` reconciler for Konnect control planes.
+  [#593](https://github.com/Kong/gateway-operator/pull/593)
+- Add `KongConsumer` reconciler for Konnect control planes.
+  [#493](https://github.com/Kong/gateway-operator/pull/493)
+- Add `KongRoute` reconciler for Konnect control planes.
+  [#506](https://github.com/Kong/gateway-operator/pull/506)
+- Add `KongConsumerGroup` reconciler for Konnect control planes.
+  [#510](https://github.com/Kong/gateway-operator/pull/510)
+- Add `KongCACertificate` reconciler for Konnect CA certificates.
+  [#626](https://github.com/Kong/gateway-operator/pull/626)
+- Add `KongCertificate` reconciler for Konnect Certificates.
+  [#643](https://github.com/Kong/gateway-operator/pull/643)
+- Added command line flags to configure the certificate generator job's images.
+  [#516](https://github.com/Kong/gateway-operator/pull/516)
+- Add `KongPluginBinding` reconciler for Konnect Plugins.
+  [#513](https://github.com/Kong/gateway-operator/pull/513), [#535](https://github.com/Kong/gateway-operator/pull/535)
+- Add `KongTarget` reconciler for Konnect Targets.
+  [#627](https://github.com/Kong/gateway-operator/pull/627)
+- Add `KongVault` reconciler for Konnect Vaults.
+  [#597](https://github.com/Kong/gateway-operator/pull/597)
+- Add `KongKey` reconciler for Konnect Keys.
+  [#646](https://github.com/Kong/gateway-operator/pull/646)
+- Add `KongKeySet` reconciler for Konnect KeySets.
+  [#657](https://github.com/Kong/gateway-operator/pull/657)
+- Add `KongDataPlaneClientCertificate` reconciler for Konnect DataPlaneClientCertificates.
+  [#694](https://github.com/Kong/gateway-operator/pull/694)
+- The `KonnectExtension` CRD has been introduced. Such a CRD can be attached
+  to a `DataPlane` via the extensions field to have a konnect-flavored `DataPlane`.
+  [#453](https://github.com/Kong/gateway-operator/pull/453),
+  [#578](https://github.com/Kong/gateway-operator/pull/578),
+  [#736](https://github.com/Kong/gateway-operator/pull/736)
+- Entities created in Konnect are now labeled (or tagged for those that does not
+  support labels) with origin Kubernetes object's metadata: `k8s-name`, `k8s-namespace`,
+  `k8s-uid`, `k8s-generation`, `k8s-kind`, `k8s-group`, `k8s-version`.
+  [#565](https://github.com/Kong/gateway-operator/pull/565)
+- Add `KongService`, `KongRoute`, `KongConsumer`, and `KongConsumerGroup` watchers
+  in the `KongPluginBinding` reconciler.
+  [#571](https://github.com/Kong/gateway-operator/pull/571)
+- Annotating the following resource with the `konghq.com/plugins` annotation results in
+  the creation of a managed `KongPluginBinding` resource:
+  - `KongService` [#550](https://github.com/Kong/gateway-operator/pull/550)
+  - `KongRoute` [#644](https://github.com/Kong/gateway-operator/pull/644)
+  - `KongConsumer` [#676](https://github.com/Kong/gateway-operator/pull/676)
+  - `KongConsumerGroup` [#684](https://github.com/Kong/gateway-operator/pull/684)
+    These `KongPluginBinding`s are taken by the `KongPluginBinding` reconciler
+    to create the corresponding plugin objects in Konnect.
+- `KongConsumer` associated with `ConsumerGroups` is now reconciled in Konnect by removing/adding
+  the consumer from/to the consumer groups.
+  [#592](https://github.com/Kong/gateway-operator/pull/592)
+- Add support for `KongConsumer` credentials:
+  - basic-auth [#625](https://github.com/Kong/gateway-operator/pull/625)
+  - API key [#635](https://github.com/Kong/gateway-operator/pull/635)
+  - ACL [#661](https://github.com/Kong/gateway-operator/pull/661)
+  - JWT [#678](https://github.com/Kong/gateway-operator/pull/678)
+  - HMAC Auth [#687](https://github.com/Kong/gateway-operator/pull/687)
+- Add support for `KongRoute`s bound directly to `KonnectGatewayControlPlane`s (serviceless routes).
+  [#669](https://github.com/Kong/gateway-operator/pull/669)
+- Allow setting `KonnectGatewayControlPlane`s group membership
+  [#697](https://github.com/Kong/gateway-operator/pull/697)
+- Apply Konnect-related customizations to `DataPlane`s that properly reference `KonnectExtension`
+  resources.
+  [#714](https://github.com/Kong/gateway-operator/pull/714)
+- The KonnectExtension functionality is enabled only when the `--enable-controller-konnect`
+  flag or the `GATEWAY_OPERATOR_ENABLE_CONTROLLER_KONNECT` env var is set.
+  [#738](https://github.com/Kong/gateway-operator/pull/738)
+
+### Fixed
+
+- Fixed `ControlPlane` cluster wide resources not migrating to new ownership labels
+  (introduced in 1.3.0) when upgrading the operator form 1.2 (or older) to 1.3.0.
+  [#369](https://github.com/Kong/gateway-operator/pull/369)
+- Requeue instead of reporting an error when a finalizer removal yields a conflict.
+  [#454](https://github.com/Kong/gateway-operator/pull/454)
+- Requeue instead of reporting an error when a GatewayClass status update yields a conflict.
+  [#612](https://github.com/Kong/gateway-operator/pull/612)
+- Guard object counters with checks whether CRDs for them exist
+  [#710](https://github.com/Kong/gateway-operator/pull/710)
+- Do not reconcile Gateways nor assign any finalizers when the referred GatewayClass is not supported.
+  [#711](https://github.com/Kong/gateway-operator/pull/711)
+- Fixed setting `ExternalTrafficPolicy` on `DataPlane`'s ingress `Service` during update and patch operations.
+  [#750](https://github.com/Kong/gateway-operator/pull/750)
+
+### Changes
+
+- Default version of `ControlPlane` is bumped to 3.3.1
+  [#580](https://github.com/Kong/gateway-operator/pull/580)
+- Default version of `DataPlane` is bumped to 3.8.0
+  [#572](https://github.com/Kong/gateway-operator/pull/572)
+- Gateway API has been bumped to v1.2.0
+  [#674](https://github.com/Kong/gateway-operator/pull/674)
+
+## 1.3.0
+
+**Release Date** 2024/06/24
+
+### Fixes
+
+* Fix the `ControlPlane` extensions controller to gracefully handle the
+  absence of a {{site.ee_product_name}} license on startup.
+* Do not require existence of `certmanager.io/v1.certificates` CRD when
+  `KonnectCertificateOptions` is empty in `DataPlane`.
+* Fix version reporting in logs and via `-version` CLI arg
+* Fix enforcing up to date `ControlPlane`'s `ValidatingWebhookConfiguration`
+
+### Changes
+
+* `Gateway` do not have their `Ready` status condition set anymore.
+* This aligns with Gateway API and its conformance test suite.
+* `Gateway`s' listeners now have their `attachedRoutes` count filled in status.
+* Detect when `ControlPlane` has its admission webhook disabled via
+* `CONTROLLER_ADMISSION_WEBHOOK_LISTEN` environment variable and ensure that
+* relevant webhook resources are not created/deleted.
+* The `OwnerReferences` on cluster-wide resources to indicate their owner are now
+* replaced by a proper set of labels to identify `kind`, `namespace`, and
+* `name` of the owning object.
+* Default version of `ControlPlane` is bumped to 3.2.0
+
+### Breaking Changes
+
+* Changes project layout to match `kubebuilder` `v4`. Some import paths (due to dir renames) have changed
+  `apis` -> `api` and `controllers` -> `controller`.
+
+### Added
+
+* Add `ExternalTrafficPolicy` to `DataPlane`'s `ServiceOptions`
+
 ## 1.2.3
 
 **Release Date** 2024/04/24

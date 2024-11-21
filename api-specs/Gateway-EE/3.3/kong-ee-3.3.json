@@ -277,9 +277,42 @@
         "schema": {
           "type": "string"
         }
+      },
+      "beforeAuditLogFilter": {
+        "name": "before_audit_log_filter",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "$ref": "#/components/schemas/RequestTimestampFilterSchema"
+        },
+        "description": "Before filter could be used to request audit log data that was recorded before certain time (exclusive).\nIt can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'\n"
+      },
+      "afterAuditLogFilter": {
+        "name": "after_audit_log_filter",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "$ref": "#/components/schemas/RequestTimestampFilterSchema"
+        },
+        "description": "After filter could be used to request audit log data that was recorded after certain time (inclusive).\nIt can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'\n"
       }
     },
     "schemas": {
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "message"
+        ]
+      },
       "Basic-auth-credential": {
         "example": {
           "consumer": {
@@ -1343,7 +1376,7 @@
         "type": "object"
       },
       "Vault": {
-        "description": "Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.",
+        "description": "Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, HashiCorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.",
         "example": {
           "config": {
             "prefix": "ENV_PREFIX"
@@ -1439,17 +1472,8 @@
                 }
               },
               "portal_developer_meta_fields": {
-                "default": [
-                  {
-                    "label": "Full Name",
-                    "title": "full_name",
-                    "validator": {
-                      "required": true,
-                      "type": "string"
-                    }
-                  }
-                ],
-                "type": "array"
+                "default": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
+                "type": "string"
               },
               "portal_emails_from": {
                 "type": "string"
@@ -1522,16 +1546,7 @@
               "portal_cors_origins": [
                 "string"
               ],
-              "portal_developer_meta_fields": [
-                {
-                  "label": "Full Name",
-                  "title": "full_name",
-                  "validator": {
-                    "required": true,
-                    "type": "string"
-                  }
-                }
-              ],
+              "portal_developer_meta_fields": "[{\"label\":\"Full Name\",\"title\":\"full_name\",\"validator\":{\"required\":true,\"type\":\"string\"}}]",
               "portal_emails_from": "string",
               "portal_emails_reply_to": "string",
               "portal_invite_email": true,
@@ -1558,9 +1573,53 @@
       "pagination-offset-response": {
         "description": "Offset is used to paginate through the API. Provide this value to the next list operation to fetch the next page",
         "type": "string"
+      },
+      "RequestTimestampFilterSchema": {
+        "oneOf": [
+          {
+            "type": "string",
+            "pattern": "^(\\d+|\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)$"
+          },
+          {
+            "type": "integer"
+          }
+        ]
       }
     },
     "responses": {
+      "HTTP401Error": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "DuplicateApiKey": {
+                "summary": "Duplicate API key found",
+                "value": {
+                  "message": "Duplicate API key found",
+                  "status": 401
+                }
+              },
+              "InvalidAuthCred": {
+                "summary": "Invalid authentication credentials",
+                "value": {
+                  "message": "Unauthorized",
+                  "status": 401
+                }
+              },
+              "NoAPIKey": {
+                "summary": "No API key found",
+                "value": {
+                  "message": "No API key found in request",
+                  "status": 401
+                }
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/UnauthorizedError"
+            }
+          }
+        },
+        "description": "Unauthorized"
+      },
       "tags-response": {
         "description": "Tags response body",
         "content": {
@@ -2099,7 +2158,12 @@
                       "example": "my_group"
                     },
                     "tags": {
-                      "description": "An optional set of strings associated with consumer group for grouping and filtering."
+                      "type": "array",
+                      "description": "An optional set of strings associated with consumer group for grouping and filtering.",
+                      "items": {
+                        "type": "string",
+                        "example": "admin"
+                      }
                     }
                   }
                 }
@@ -2168,7 +2232,11 @@
                     "tags": {
                       "type": "array",
                       "description": "An optional set of strings associated with consumer group for grouping and filtering.",
-                      "nullable": true
+                      "nullable": true,
+                      "items":{
+                        "type": "string",
+                        "example": "admin"
+                      }
                     },
                     "type": {
                       "type": "integer",
@@ -2205,7 +2273,11 @@
                       "tags": {
                         "type": "array",
                         "description": "An optional set of strings associated with consumer group for grouping and filtering.",
-                        "nullable": true
+                        "nullable": true,
+                        "items": {
+                          "type": "string",
+                          "example": "admin"
+                        }
                       }
                     }
                   }
@@ -2647,6 +2719,529 @@
                       }
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      },
+      "admins-response": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "x-examples": {
+                "Example 1": {
+                  "data": [
+                    {
+                      "created_at": 1556638385,
+                      "id": "665b4070-541f-48bf-82c1-53030babaa81",
+                      "updated_at": 1556638385,
+                      "status": 4,
+                      "username": "test-admin",
+                      "email": "test@test.com",
+                      "rbac_token_enabled": true
+                    },
+                    {
+                      "created_at": 1556563122,
+                      "id": "a93ff120-9e6c-4198-b47e-f779104c7eac",
+                      "updated_at": 1556563122,
+                      "status": 0,
+                      "username": "kong_admin",
+                      "rbac_token_enabled": false
+                    }
+                  ],
+                  "next": null
+                }
+              },
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "created_at": {
+                        "type": "integer"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "integer"
+                      },
+                      "status": {
+                        "type": "integer",
+                        "description": "The status field indicates the state of the invitation."
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "rbac_token_enabled": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "groups-response": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "x-examples": {
+                "Example 1": {
+                  "data": [
+                    {
+                      "created_at": 1717123483,
+                      "id": "4844ded2-06d1-44f5-974a-03982696f889",
+                      "updated_at": 1717123483,
+                      "name": "group1",
+                      "comment": "comment1"
+                    },
+                    {
+                      "created_at": 1717123637,
+                      "id": "65b3d436-3c5b-4b0e-a2a5-ee188d526ad8",
+                      "updated_at": 1717123637,
+                      "name": "group2",
+                      "comment": "comment2"
+                    }
+                  ],
+                  "next": null
+                }
+              },
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "created_at": {
+                        "type": "integer"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "comment": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "rbac-user-response": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "comment": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "integer"
+                      },
+                      "enabled": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "user_token": {
+                        "type": "string"
+                      },
+                      "user_token_ident": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "type": "string"
+                }
+              },
+              "x-examples": {
+                "Example 1": {
+                  "data": [
+                    {
+                      "comment": null,
+                      "created_at": 1557512629,
+                      "enabled": true,
+                      "id": "f035f120-a95e-4327-b2ae-8fa264601d75",
+                      "name": "doc_lord",
+                      "user_token": "$2b$09$TIMneYcTosdG9WbzRsqcweAS2zote8g6I8HqXAtbFHR1pds2ymsh6",
+                      "user_token_ident": "88ea3"
+                    },
+                    {
+                      "comment": null,
+                      "created_at": 1557522650,
+                      "enabled": true,
+                      "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
+                      "name": "doc_knight",
+                      "user_token": "$2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG",
+                      "user_token_ident": "4d870"
+                    }
+                  ],
+                  "next": null
+                }
+              }
+            },
+            "examples": {
+              "Returned user": {
+                "value": {
+                  "data": [
+                    {
+                      "comment": null,
+                      "created_at": 1557512629,
+                      "enabled": true,
+                      "id": "f035f120-a95e-4327-b2ae-8fa264601d75",
+                      "name": "doc_lord",
+                      "user_token": "$2b$09$TIMneYcTosdG9WbzRsqcweAS2zote8g6I8HqXAtbFHR1pds2ymsh6",
+                      "user_token_ident": "88ea3"
+                    },
+                    {
+                      "comment": null,
+                      "created_at": 1557522650,
+                      "enabled": true,
+                      "id": "fa6881b2-f49f-4007-9475-577cd21d34f4",
+                      "name": "doc_knight",
+                      "user_token": "$2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG",
+                      "user_token_ident": "4d870"
+                    }
+                  ],
+                  "next": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "audit-objects-response": {
+        "description": "Example response generated for checking the `/status` endpoint without RBAC enabled.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "x-examples": {
+                "Example 1": {
+                  "data": [
+                    {
+                      "client_ip": "127.0.0.1",
+                      "method": "GET",
+                      "path": "/status",
+                      "payload": null,
+                      "rbac_user_id": null,
+                      "rbac_user_name": null,
+                      "removed_from_payload": null,
+                      "request_id": "OjOcUBvt6q6XJlX3dd6BSpy1uUkTyctC",
+                      "request_source": null,
+                      "request_timestamp": 1676424547,
+                      "signature": null,
+                      "status": 200,
+                      "ttl": 2591997,
+                      "workspace": "1065b6d6-219f-4002-b3e9-334fc3eff46c"
+                    }
+                  ],
+                  "total": 1
+                }
+              },
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "description": "The client IP address",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "client_ip": {
+                        "type": "string",
+                        "description": "The client IP address"
+                      },
+                      "method": {
+                        "type": "string",
+                        "description": "The HTTP method"
+                      },
+                      "path": {
+                        "type": "string",
+                        "description": "The path of the endpoint"
+                      },
+                      "payload": {
+                        "nullable": true
+                      },
+                      "rbac_user_id": {
+                        "nullable": true
+                      },
+                      "rbac_user_name": {
+                        "nullable": true
+                      },
+                      "removed_from_payload": {
+                        "nullable": true
+                      },
+                      "request_id": {
+                        "type": "string"
+                      },
+                      "request_source": {
+                        "nullable": true
+                      },
+                      "request_timestamp": {
+                        "type": "integer"
+                      },
+                      "signature": {
+                        "nullable": true
+                      },
+                      "status": {
+                        "type": "integer"
+                      },
+                      "ttl": {
+                        "type": "integer"
+                      },
+                      "workspace": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "total": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "database-audit-log-response": {
+        "description": "Example response for a consumer creation log entry",
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "event-hooks-response": {
+        "description": "Example event hooks response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "config": {
+                        "type": "object",
+                        "properties": {
+                          "body": {
+                            "type": "string"
+                          },
+                          "body_format": {
+                            "type": "boolean"
+                          },
+                          "headers": {
+                            "type": "object",
+                            "properties": {
+                              "content-type": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "headers_format": {
+                            "type": "boolean"
+                          },
+                          "method": {
+                            "type": "string"
+                          },
+                          "payload": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "payload_format": {
+                            "type": "boolean"
+                          },
+                          "secret": {
+                            "type": "string"
+                          },
+                          "ssl_verify": {
+                            "type": "boolean"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "functions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "created_at": {
+                        "type": "integer"
+                      },
+                      "event": {
+                        "type": "string"
+                      },
+                      "handler": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "on_change": {
+                        "type": "string"
+                      },
+                      "snooze": {
+                        "type": "integer"
+                      },
+                      "source": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "type": "string"
+                }
+              },
+              "x-examples": {
+                "Example 1": {
+                  "data": [
+                    {
+                      "config": {
+                        "body": null,
+                        "body_format": true,
+                        "headers": {
+                          "content-type": "application/json"
+                        },
+                        "headers_format": false,
+                        "method": "POST",
+                        "payload": {
+                          "text": "payload_text"
+                        },
+                        "payload_format": true,
+                        "secret": null,
+                        "ssl_verify": false,
+                        "url": "https://hooks.slack.com/services/foo/bar/baz"
+                      },
+                      "created_at": 1627588552,
+                      "event": "admins",
+                      "handler": "webhook-custom",
+                      "id": "937df175-3db2-4e6d-8aa1-d95c94a76089",
+                      "on_change": null,
+                      "snooze": null,
+                      "source": "crud"
+                    },
+                    {
+                      "config": {
+                        "headers": {},
+                        "secret": null,
+                        "ssl_verify": false,
+                        "url": "https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6"
+                      },
+                      "created_at": 1627581575,
+                      "event": "consumers",
+                      "handler": "webhook",
+                      "id": "c57340ab-9fed-40fd-bb7e-1cef8d37c2df",
+                      "on_change": null,
+                      "snooze": null,
+                      "source": "crud"
+                    },
+                    {
+                      "config": {
+                        "functions": [
+                          "return function (data, event, source, pid)\n  local user = data.entity.username\n  error(\"Event hook on consumer \" .. user .. \"\")\nend\n"
+                        ]
+                      },
+                      "created_at": 1627595513,
+                      "event": "consumers",
+                      "handler": "lambda",
+                      "id": "c9fdd58d-5416-4d3a-9467-51e5cfe4ca0e",
+                      "on_change": null,
+                      "snooze": null,
+                      "source": "crud"
+                    }
+                  ],
+                  "next": null
+                }
+              }
+            },
+            "examples": {
+              "Example event hooks response": {
+                "value": {
+                  "data": [
+                    {
+                      "config": {
+                        "body": null,
+                        "body_format": true,
+                        "headers": {
+                          "content-type": "string"
+                        },
+                        "headers_format": true,
+                        "method": "string",
+                        "payload": {
+                          "text": "string"
+                        },
+                        "payload_format": true,
+                        "secret": null,
+                        "ssl_verify": true,
+                        "url": "string",
+                        "functions": [
+                          "string"
+                        ]
+                      },
+                      "created_at": 0,
+                      "event": "string",
+                      "handler": "string",
+                      "id": "string",
+                      "on_change": "string",
+                      "snooze": 0,
+                      "source": "string"
+                    }
+                  ],
+                  "next": null
                 }
               }
             }
@@ -4458,6 +5053,325 @@
           }
         },
         "description": "The workspace object describes the workspace entity, which has an ID and a name.\n"
+      },
+      "rbac-request": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The RBAC user name.\n"
+                },
+                "user_token": {
+                  "type": "string",
+                  "description": "The authentication token to be presented to the Admin API. The value will be hashed and cannot be fetched in plaintext."
+                },
+                "enabled": {
+                  "type": "string",
+                  "description": "A flag to enable or disable the user. By default, users are enabled.\n"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "A string describing the RBAC user object.\n"
+                }
+              }
+            }
+          }
+        }
+      },
+      "add-webhook": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "event": {
+                  "type": "string",
+                  "description": "A string describing the Kong entity the event hook listens to for events.\n",
+                  "example": "consumers"
+                },
+                "handler": {
+                  "type": "string",
+                  "description": "A string describing one of four handler options: webhook, webhook-custom, log, or lambda.\n",
+                  "example": "webhook"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "A string describing the action that triggers the event hook.\n",
+                  "example": "crud"
+                },
+                "snooze": {
+                  "type": "integer",
+                  "description": "An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.\n",
+                  "example": 0,
+                  "default": 0
+                },
+                "on_change": {
+                  "type": "boolean",
+                  "description": "An optional boolean indicating whether to trigger an event when key parts of a payload have changed.\n"
+                },
+                "config.url": {
+                  "type": "string",
+                  "description": "The URL the JSON POST request is made to with the event data as the payload.\n",
+                  "example": "https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6"
+                },
+                "config.headers": {
+                  "type": "object",
+                  "description": "An object defining additional HTTP headers to send in the webhook request. For example `{\"X-Custom-Header\": \"My Value\"}`.\n",
+                  "properties": {
+                    "headers": {
+                      "type": "string",
+                      "description": "Optional configuration header\n"
+                    }
+                  }
+                },
+                "config.secret": {
+                  "type": "string",
+                  "description": "An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, sent to the remote endpoint.\n"
+                },
+                "config.ssl_verify": {
+                  "type": "string",
+                  "description": "A boolean indicating whether to verify the SSL certificate of the remote HTTPS server where the event hook will be sent. The default is false.\n"
+                }
+              },
+              "required": [
+                "handler",
+                "source",
+                "config.url"
+              ]
+            },
+            "examples": {
+              "Example 2": {
+                "value": {
+                  "event": "consumers",
+                  "handler": "webhook",
+                  "source": "crud",
+                  "snooze": 0,
+                  "on_change": true,
+                  "config.url": "https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6",
+                  "config.headers": {
+                    "headers": "string"
+                  },
+                  "config.secret": "string",
+                  "config.ssl_verify": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Request body for adding a webhook"
+      },
+      "add-custom-webhook": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "event": {
+                  "type": "string",
+                  "description": "A string describing the Kong entity the event hook listens to for events.\n",
+                  "example": "admins"
+                },
+                "handler": {
+                  "type": "string",
+                  "description": "A string describing one of four handler options: webhook, webhook-custom, log, or lambda.\n",
+                  "example": "webhook-custom"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "A string describing one of four handler options: webhook, webhook-custom, log, or lambda.\n",
+                  "example": "crud"
+                },
+                "snooze": {
+                  "type": "integer",
+                  "description": "An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.\n",
+                  "default": 1
+                },
+                "on_change": {
+                  "type": "boolean",
+                  "description": "An optional boolean indicating whether to trigger an event when key parts of a payload have changed.\n",
+                  "default": true
+                },
+                "config.url": {
+                  "type": "string",
+                  "description": "The URL the JSON POST request is made to with the event data as the payload.\n",
+                  "example": "https://hooks.slack.com/services/foo/bar/baz"
+                },
+                "config.method": {
+                  "type": "string",
+                  "description": "The HTTP method used to create the custom webhook.\n",
+                  "example": "GET"
+                },
+                "config.payload": {
+                  "type": "object",
+                  "description": "An object that includes key/value pairs that describe the configurable payload body. Supports templating. The full list of available template parameters can be found in the /sources API output, under the fields JSON object.\n",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "description": "Configuration payload"
+                    }
+                  }
+                },
+                "config.payload_format": {
+                  "type": "boolean",
+                  "description": "A optional boolean (defaults to true) indicating whether to format `config.payload` with resty templating. When set to false, the payload is sent as a raw object.\n"
+                },
+                "config.body": {
+                  "type": "string",
+                  "description": "An optional string sent in the remote request.\n"
+                },
+                "config.body_format": {
+                  "type": "boolean",
+                  "description": "An optional boolean (defaults to true) indicating whether to format `config.body` with resty templating. When set to false, the body is sent as a raw object. To see all the available parameters defined for a specific source, check the source fields displayed by the `/event-hooks/source` endpoint.\n"
+                },
+                "config.headers": {
+                  "type": "object",
+                  "description": "An object defining additional HTTP headers to send in the webhook request. For example `{\"Content-type\": \"application/json\", \"X-Custom-Header\": \"My Value\"}`.\n"
+                },
+                "config.headers_format": {
+                  "type": "string",
+                  "description": "An optional boolean (defaults to false) indicating whether to format `config.headers` with resty templating. When set to true, the `config.headers` value is treated as a template. To see all the available parameters defined for a specific source, check the source fields displayed by the `/event-hooks/sources` endpoint.\n"
+                },
+                "config.secret": {
+                  "type": "string",
+                  "description": "An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, to the remote endpoint.\n"
+                },
+                "config.ssl_verify": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "handler",
+                "source",
+                "config.url",
+                "config.method"
+              ]
+            }
+          }
+        },
+        "description": "Request body for adding a custom webhook"
+      },
+      "add-log": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "event": {
+                  "type": "string",
+                  "description": "A string describing the Kong entity the event hook listens to for events.\n",
+                  "example": "routes"
+                },
+                "handler": {
+                  "type": "string",
+                  "description": "A string describing one of four handler options: webhook, webhook-custom, log, or lambda.\n",
+                  "example": "log"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "A string describing the action that triggers the event hook.\n",
+                  "example": "crud"
+                },
+                "snooze": {
+                  "type": "integer",
+                  "description": "An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.\n"
+                },
+                "on_change": {
+                  "type": "boolean",
+                  "description": "An optional boolean indicating whether to trigger an event when key parts of a payload have changed.\n"
+                }
+              },
+              "required": [
+                "handler",
+                "source"
+              ]
+            },
+            "examples": {
+              "Example log request": {
+                "value": {
+                  "event": "routes",
+                  "handler": "log",
+                  "source": "crud",
+                  "snooze": 0,
+                  "on_change": true
+                }
+              }
+            }
+          }
+        },
+        "description": "Add a log event hook request body"
+      },
+      "lambda-event-hook": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "event": {
+                  "type": "string",
+                  "description": "A string describing the Kong entity the event hook listens to for events.\n",
+                  "example": "consumers"
+                },
+                "handler": {
+                  "type": "string",
+                  "description": "A string describing one of four handler options: webhook, webhook-custom, log, or lambda.\n",
+                  "example": "lambda"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "A string describing the action that triggers the event hook.\n",
+                  "example": "crud"
+                },
+                "snooze": {
+                  "type": "boolean",
+                  "description": "An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.\n"
+                },
+                "on_change": {
+                  "type": "boolean",
+                  "description": "An optional boolean indicating whether to trigger an event when key parts of a payload have changed.\n"
+                },
+                "config.functions": {
+                  "type": "array",
+                  "description": "An array of Lua code functions to execute on the event hook.\n",
+                  "items": {
+                    "type": "string",
+                    "example": "\"functions\": [             \"return function (data, event, source, pid)\\n  local user = data.entity.username\\n  error(\\\"Event hook on consumer \\\" .. user .. \\\"\\\")\\nend\\n\"         ]"
+                  }
+                }
+              },
+              "required": [
+                "handler",
+                "source",
+                "config.functions"
+              ]
+            },
+            "examples": {
+              "lambda-event-hook": {
+                "value": {
+                  "event": "consumers",
+                  "handler": "lambda",
+                  "source": "crud",
+                  "snooze": true,
+                  "on_change": true,
+                  "config.functions": [
+                    "\"functions\": [             \"return function (data, event, source, pid)\\n  local user = data.entity.username\\n  error(\\\"Event hook on consumer \\\" .. user .. \\\"\\\")\\nend\\n\"         ]"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "description": "Request body for adding a lambda event hook"
+      }
+    },
+    "securitySchemes": {
+      "kongAdminToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Kong-Admin-Token",
+        "description": "When RBAC is enabled, an admin token is required to use the Kong Admin API. \nThis token is passed in a `Kong-Admin-Token` header by default. \nTo configure the header name, adjust `rbac_auth_header` in `kong.conf`.\n<br><br>\nEach admin has their own token.\nThe admin associated with the token must have relevant permissions for the object they're interacting with.\nGenerate tokens using the `/admins` API.\n<br><br>\nIf RBAC isn't enabled, this token isn't required.\n"
       }
     }
   },
@@ -4477,10 +5391,209 @@
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
     "title": "Enterprise Kong Admin API",
-    "version": "0.0.2"
+    "version": "3.3.0"
   },
   "openapi": "3.0.0",
   "paths": {
+    "/": {
+      "get": {
+        "summary": "Get Kong's instance information",
+        "tags": [
+          "Information"
+        ],
+        "operationId": "geInfo",
+        "description": "Returns detailed information about the Kong gateway instance, including the full Kong configuration, available and unavailable plugins, version, edition (enterprise or community), a tagline, the unique node identifier, and other metadata.\n",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "description": "The version number of the Kong instance.",
+                      "example": "2.3.3"
+                    },
+                    "tagline": {
+                      "type": "string",
+                      "description": "A tagline or slogan for the Kong instance.",
+                      "example": "Welcome to Kong"
+                    },
+                    "node_id": {
+                      "type": "string",
+                      "description": "A unique identifier for the node, in UUID format.",
+                      "format": "uuid",
+                      "example": "a74d7c4f-ef83-4bbe-a5e7-3f5409f4a0b9"
+                    },
+                    "hostname": {
+                      "type": "string",
+                      "description": "The hostname of the Kong node.",
+                      "example": "kong-node.example.com"
+                    },
+                    "timers": {
+                      "type": "object",
+                      "description": "Information about running and pending timers.",
+                      "properties": {
+                        "running": {
+                          "type": "integer",
+                          "description": "The number of running timers.",
+                          "example": 5
+                        },
+                        "pending": {
+                          "type": "integer",
+                          "description": "The number of pending timers.",
+                          "example": 2
+                        }
+                      }
+                    },
+                    "plugins": {
+                      "type": "object",
+                      "description": "Information about plugins.",
+                      "properties": {
+                        "available_on_server": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "version": {
+                                "type": "string",
+                                "description": "The version of the plugin."
+                              },
+                              "priority": {
+                                "type": "integer",
+                                "description": "The priority of the plugin."
+                              }
+                            }
+                          }
+                        },
+                        "enabled_in_cluster": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "A list of distinct plugin names enabled in the cluster.",
+                          "example": [
+                            "jwt",
+                            "acl"
+                          ]
+                        }
+                      }
+                    },
+                    "lua_version": {
+                      "type": "string",
+                      "description": "The version of Lua used by the Kong instance.",
+                      "example": "LuaJIT 2.1.0-beta3"
+                    },
+                    "configuration": {
+                      "type": "object",
+                      "description": "A sanitized version of the Kong configuration, excluding sensitive values.",
+                      "additionalProperties": true
+                    },
+                    "pids": {
+                      "type": "object",
+                      "description": "Process IDs for the master process and worker processes.",
+                      "properties": {
+                        "master": {
+                          "type": "integer",
+                          "description": "The PID of the master process.",
+                          "example": 4321
+                        },
+                        "workers": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer"
+                          },
+                          "description": "An array of worker process PIDs.",
+                          "example": [
+                            1234,
+                            5678
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "fullExample": {
+                    "summary": "Example response",
+                    "value": {
+                      "configuration": {
+                        "_debug_pg_ttl_cleanup_interval": 300,
+                        "admin_acc_logs": "/usr/local/kong/logs/admin_access.log",
+                        "admin_access_log": "/dev/stdout",
+                        "admin_approved_email": "true",
+                        "admin_emails_from": "\"\"",
+                        "admin_error_log": "/dev/stderr",
+                        "admin_gui_access_log": "logs/admin_gui_access.log",
+                        "admin_gui_auth_header": "******",
+                        "admin_gui_auth_login_attempts": 0,
+                        "admin_gui_error_log": "logs/admin_gui_error.log",
+                        "admin_gui_flags": "{}",
+                        "admin_gui_listen": [
+                          "0.0.0.0:8002",
+                          "0.0.0.0:8445 ssl"
+                        ],
+                        "admin_gui_origin": "http://localhost:8002"
+                      },
+                      "hostname": "ea3f40ec2c9e",
+                      "lua_version": "LuaJIT 2.1.0-20220411",
+                      "node_id": "1f257156-5e44-46e2-a618-767f5c7529e3",
+                      "pids": {
+                        "master": 1,
+                        "workers": [
+                          2382,
+                          2383
+                        ]
+                      },
+                      "plugins": {
+                        "available_on_server": {
+                          "acl": true,
+                          "acme": true
+                        },
+                        "disabled_on_server": {
+                          "application-registration": true
+                        },
+                        "enabled_in_cluster": []
+                      },
+                      "tagline": "Welcome to kong",
+                      "timers": {
+                        "pending": 1,
+                        "running": 1128
+                      },
+                      "version": "3.3.0.0"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            },
+            "headers": {
+              "Server": {
+                "description": "Kong's server tokens.",
+                "schema": {
+                  "type": "string",
+                  "example": "kong/2.3.3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/ca_certificates": {
       "get": {
         "description": "Retrieve a list of all available Certificate Authority (CA) certificates, including the certificate ID, creation date, and other details. You can use query parameters to filter the results by size or tags, for example `/ca-certificates?size=50&tags=enterprise`.",
@@ -10873,6 +11986,9 @@
       },
       "post": {
         "summary": "Create a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
         "operationId": "post-consumer_groups",
         "responses": {
           "201": {
@@ -10906,6 +12022,9 @@
       },
       "put": {
         "summary": "Create consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
         "operationId": "put-consumer_groups-group_name_or_id",
         "responses": {
           "200": {
@@ -10919,6 +12038,9 @@
       },
       "delete": {
         "summary": "Delete a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
         "operationId": "delete-consumer_groups-group_name_or_id",
         "responses": {
           "204": {
@@ -10949,6 +12071,9 @@
       },
       "post": {
         "summary": "Add a consumer to a specific consumer group.",
+        "tags": [
+          "consumer_groups"
+        ],
         "operationId": "post-consumers-consumer_username_or_id-consumer_groups",
         "responses": {
           "200": {
@@ -10986,6 +12111,9 @@
       },
       "delete": {
         "summary": "Remove a consumer from all groups",
+        "tags": [
+          "consumer_groups"
+        ],
         "operationId": "delete-consumers-consumer_username_or_id-consumer_groups",
         "responses": {
           "204": {
@@ -11021,6 +12149,9 @@
       },
       "post": {
         "summary": "Add a consumer to a group",
+        "tags": [
+          "consumer_groups"
+        ],
         "operationId": "post-consumer_groups-group_name_or_id-consumers",
         "responses": {
           "200": {
@@ -11047,6 +12178,9 @@
       },
       "delete": {
         "summary": "Remove all consumers from a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
         "operationId": "delete-consumer_groups-group_name_or_id-consumers",
         "responses": {
           "204": {
@@ -11254,7 +12388,463 @@
       },
       "delete": {
         "summary": "Delete the configurations for a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
         "operationId": "delete-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced",
+        "responses": {
+          "204": {
+            "description": "HTTP/1.1 204 No Content\n"
+          }
+        },
+        "description": "Delete custom rate limiting settings for a consumer group.\n"
+      }
+    },
+    "/{workspace}/consumer_groups": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/workspace"
+        }
+      ],
+      "get": {
+        "summary": "List consumer groups",
+        "tags": [
+          "consumer_groups"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/consumer_group_response"
+          }
+        },
+        "operationId": "get-consumer_groups_with_workspace",
+        "description": "List all consumer groups\n\nUse consumer groups to manage custom rate limiting configuration for subsets of consumers. For more information read the [consumer group examples documentation](https://docs.konghq.com/gateway/3.2.x/kong-enterprise/consumer-groups/).\n"
+      },
+      "post": {
+        "summary": "Create a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "post-consumer_groups_with_workspace",
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/consumer_group_response"
+          }
+        },
+        "description": "Create a new consumer group.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/consumer_group_request"
+        }
+      }
+    },
+    "/{workspace}/consumer_groups/{group_name_or_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/workspace"
+        },
+        {
+          "$ref": "#/components/parameters/group_name_or_id"
+        }
+      ],
+      "get": {
+        "summary": "List a specific consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/consumer_group_response"
+          }
+        },
+        "operationId": "get-consumer_groups-group_name_with_workspace",
+        "description": "Returns a consumer group by passing either the `group_name` or `group_id` as a path parameter. "
+      },
+      "put": {
+        "summary": "Create consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "put-consumer_groups-group_name_or_id_with_workspace",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/consumer_group_response"
+          }
+        },
+        "description": "Create a consumer group by passing a new group name as the path parameter",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/consumer_group_request"
+        }
+      },
+      "delete": {
+        "summary": "Delete a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "delete-consumer_groups-group_name_or_id_with_workspace",
+        "responses": {
+          "204": {
+            "description": "HTTP/1.1 204 No Content\n"
+          }
+        },
+        "description": "Delete a consumer group. Deleting a consumer group removes all consumers from that group. This operation does not delete existing consuemrs.\n"
+      }
+    },
+    "/{workspace}/consumers/{consumer_username_or_id}/consumer_groups": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/workspace"
+        },
+        {
+          "$ref": "#/components/parameters/Gatewayapi_Consumer_username_or_id"
+        }
+      ],
+      "get": {
+        "summary": "List consumer groups for a consumer",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/consumer_group_response"
+          }
+        },
+        "operationId": "get-consumers-consumer_name_or_id-consumer_groups_with_workspace",
+        "description": "View all consumer groups that a consumer is assigned to.\n",
+        "tags": [
+          "consumer_groups"
+        ]
+      },
+      "post": {
+        "summary": "Add a consumer to a specific consumer group.",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "post-consumers-consumer_username_or_id-consumer_groups_with_workspace",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/add_consumer_to_group_response"
+          }
+        },
+        "description": "Add a consumer to a specific consumer group.\n\nIf you add a consumer to multiple groups:\n\nIf all groups are allowed by the Rate Limiting Advanced plugin, only the first group’s settings will apply.\nOtherwise, whichever group is specified in the Rate Limiting Advanced plugin will be active.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group": {
+                    "type": "string",
+                    "description": "The name or ID of the group to add the consumer to.\n",
+                    "example": "288f2bfc-04e2-4ec3-b6f3-40408dff5417"
+                  }
+                },
+                "required": [
+                  "group"
+                ]
+              },
+              "examples": {
+                "Example request body": {
+                  "value": {
+                    "group": "288f2bfc-04e2-4ec3-b6f3-40408dff5417"
+                  }
+                }
+              }
+            }
+          },
+          "description": "The request body contains the group ID for the group that you are adding a consumer into."
+        }
+      },
+      "delete": {
+        "summary": "Remove a consumer from all groups",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "delete-consumers-consumer_username_or_id-consumer_groups_with_workspace",
+        "responses": {
+          "204": {
+            "description": "HTTP/1.1 204 No Content\n"
+          }
+        },
+        "description": "Remove a consumer from all groups."
+      }
+    },
+    "/{workspace}/consumer_groups/{group_name_or_id}/consumers": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/workspace"
+        },
+        {
+          "$ref": "#/components/parameters/group_name_or_id"
+        }
+      ],
+      "get": {
+        "summary": "List all consumers in a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "get-consumer_groups-group_name_or_id-consumers_with_workspace",
+        "description": "List all consumers in a consumer group",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Gatewayapi_Pagination-tags-filter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/consumer_response"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a consumer to a group",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "post-consumer_groups-group_name_or_id-consumers_with_workspace",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/add_consumer_to_group_response"
+          }
+        },
+        "description": "Add a consumer to a specific consumer group.\n\nIf you add a consumer to multiple groups:\n\nIf all groups are allowed by the Rate Limiting Advanced plugin, only the first group’s settings will apply.\nOtherwise, whichever group is specified in the Rate Limiting Advanced plugin will be active.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "consumer": {
+                    "type": "string",
+                    "description": "The name or ID of the consumer to add to this group.\n",
+                    "example": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove all consumers from a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "delete-consumer_groups-group_name_or_id-consumers_with_workspace",
+        "responses": {
+          "204": {
+            "description": "HTTP/1.1 204 No Content\n"
+          }
+        },
+        "description": "Removes all consumers from a specified consumer group."
+      }
+    },
+    "/{workspace}/consumers/{consumer_name_or_id}/consumer_groups/{group_name_or_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/workspace"
+        },
+        {
+          "$ref": "#/components/parameters/consumer_name_or_id"
+        },
+        {
+          "$ref": "#/components/parameters/group_name_or_id"
+        }
+      ],
+      "delete": {
+        "summary": "Remove a consumer from a consumer group",
+        "operationId": "delete-consumers-consumer_name_or_id-consumer_groups-group_name_or_id_with_workspace",
+        "responses": {
+          "204": {
+            "description": "HTTP/1.1 204 No Content\n"
+          }
+        },
+        "description": "Removes a consumer from a consumer group. This operation does not delete the consumer group.",
+        "tags": [
+          "consumer_groups"
+        ]
+      }
+    },
+    "/{workspace}/consumer_groups/{group_name_or_id}/consumers/{consumer_username_or_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/workspace"
+        },
+        {
+          "$ref": "#/components/parameters/group_name_or_id"
+        },
+        {
+          "$ref": "#/components/parameters/consumer_username_or_id"
+        }
+      ],
+      "delete": {
+        "summary": "Remove a consumer from a consumer group",
+        "operationId": "delete-consumer_groups-group_name_or_id-consumers-consumer_name_or_id_with_workspace",
+        "responses": {
+          "204": {
+            "description": "HTTP/1.1 204 No Content\n"
+          }
+        },
+        "description": "The consumer groups endpoint for removing a consumer from a specified consumer group.",
+        "tags": [
+          "consumer_groups"
+        ]
+      }
+    },
+    "/{workspace}/consumer_groups/{group_name_or_id}/overrides/plugins/rate-limiting-advanced": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/workspace"
+        },
+        {
+          "$ref": "#/components/parameters/group_name_or_id"
+        }
+      ],
+      "put": {
+        "summary": "Configure rate limiting for a consumer group",
+        "operationId": "put-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced_with_workspace",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "config": {
+                        "limit": [
+                          10
+                        ],
+                        "retry_after_jitter_max": 0,
+                        "window_size": [
+                          10
+                        ],
+                        "window_type": "sliding"
+                      },
+                      "group": "test-group",
+                      "plugin": "rate-limiting-advanced"
+                    }
+                  },
+                  "properties": {
+                    "config": {
+                      "type": "object",
+                      "properties": {
+                        "limit": {
+                          "type": "array",
+                          "description": "An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified.\n",
+                          "items": {
+                            "type": "integer",
+                            "example": 10
+                          }
+                        },
+                        "retry_after_jitter_max": {
+                          "type": "integer",
+                          "description": "The upper bound of a jitter (random delay) in seconds to be added to the Retry-After header of denied requests (status = 429) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is 0; in this case, the Retry-After header is equal to the RateLimit-Reset header.\n"
+                        },
+                        "window_size": {
+                          "type": "array",
+                          "description": "An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.\n",
+                          "items": {
+                            "type": "integer",
+                            "example": 10
+                          }
+                        },
+                        "window_type": {
+                          "type": "string",
+                          "description": "Set the time window type to either sliding (default) or fixed.\n",
+                          "example": "sliding"
+                        }
+                      }
+                    },
+                    "group": {
+                      "type": "string",
+                      "description": "The consumer group",
+                      "example": "test-group"
+                    },
+                    "plugin": {
+                      "type": "string",
+                      "description": "The name of the plugin",
+                      "example": "rate-limiting-advanced"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example ": {
+                    "value": {
+                      "config": {
+                        "limit": [
+                          10
+                        ],
+                        "retry_after_jitter_max": 0,
+                        "window_size": [
+                          10
+                        ],
+                        "window_type": "sliding"
+                      },
+                      "group": "test-group",
+                      "plugin": "rate-limiting-advanced"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Define custom rate limiting settings for a consumer group. This endpoint overrides the settings of the Rate Limiting Advanced plugin.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "config.limit": {
+                    "type": "string",
+                    "description": "An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified.\n"
+                  },
+                  "config.window_size": {
+                    "type": "string",
+                    "description": "An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.\n",
+                    "example": " 10"
+                  },
+                  "config.window_type": {
+                    "type": "string",
+                    "description": "Set the time window type to either sliding (default) or fixed.\n",
+                    "default": "sliding",
+                    "enum": [
+                      "sliding",
+                      "fixed"
+                    ]
+                  },
+                  "config.retry_after_jitter_max": {
+                    "type": "string",
+                    "description": "The upper bound of a jitter (random delay) in seconds to be added to the Retry-After header of denied requests (status = 429) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is 0; in this case, the Retry-After header is equal to the RateLimit-Reset header."
+                  }
+                },
+                "required": [
+                  "config.limit",
+                  "config.window_size"
+                ]
+              },
+              "examples": {
+                "Request body": {
+                  "value": {
+                    "config.limit": "string",
+                    "config.window_size": " 10",
+                    "config.window_type": "sliding",
+                    "config.retry_after_jitter_max": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Request Body\n"
+        },
+        "tags": [
+          "consumer_groups"
+        ]
+      },
+      "delete": {
+        "summary": "Delete the configurations for a consumer group",
+        "tags": [
+          "consumer_groups"
+        ],
+        "operationId": "delete-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced_with_workspace",
         "responses": {
           "204": {
             "description": "HTTP/1.1 204 No Content\n"
@@ -11318,6 +12908,9 @@
       },
       "put": {
         "summary": "Update or add a license",
+        "tags": [
+          "licenses"
+        ],
         "operationId": "put-licenses-license-id",
         "responses": {
           "200": {
@@ -11337,6 +12930,9 @@
       },
       "patch": {
         "summary": "Update a license",
+        "tags": [
+          "licenses"
+        ],
         "operationId": "patch-licenses-license-id",
         "responses": {
           "200": {
@@ -11350,6 +12946,9 @@
       },
       "delete": {
         "summary": "Delete a license",
+        "tags": [
+          "licenses"
+        ],
         "operationId": "delete-licenses-license-id",
         "responses": {
           "204": {
@@ -11728,6 +13327,3690 @@
           "description": "Import Keyring"
         }
       }
+    },
+    "/admins": {
+      "get": {
+        "summary": "List Admins",
+        "tags": [
+          "Admins"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/admins-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-admins",
+        "description": "Returns a list of admins. To query all admins, add a parameter `all_workspaces=true` to the `/admins` endpoint. The `status` field in the response indicates the state of the admins invitation. `0`= Approved, `1`= Pending, `2`= Rejected, `3`= Revoked, `4` = Invited, `5`= Unverified."
+      },
+      "post": {
+        "summary": "Invite an Admin",
+        "operationId": "post-admins",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "admin": {
+                      "type": "object",
+                      "properties": {
+                        "created_at": {
+                          "type": "integer"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "integer"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "rbac_token_enabled": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "admin": {
+                        "created_at": 1556638641,
+                        "id": "8f0a742f-07f3-49e0-90d7-4fc7eea7e6a4",
+                        "updated_at": 1556638641,
+                        "status": 4,
+                        "username": "test-case-3",
+                        "email": "test3@test.com",
+                        "rbac_token_enabled": true
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example admin response": {
+                    "value": {
+                      "admin": {
+                        "created_at": 0,
+                        "id": "string",
+                        "updated_at": 0,
+                        "status": 0,
+                        "username": "string",
+                        "email": "string",
+                        "rbac_token_enabled": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema" :{
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Detail about the conflict",
+                      "example": "user already exists with same username, email, or custom_id"
+                    }
+                  },
+                  "x-exmples": {
+                    "Example 1": {
+                      "message": "user already exists with same username, email, or custom_id"
+                    }
+                  }
+                },
+                "examples": {
+                  "Constraint violation": {
+                    "value": {
+                      "message": "user already exists with same username, email, or custom_id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Admins"
+        ],
+        "description": "Invite an admin to your organization.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "email@example.com",
+                    "description": "The admin's email address."
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "The admin's username",
+                    "example": "myusername"
+                  },
+                  "custom_id": {
+                    "type": "string",
+                    "description": "The admin's custom ID"
+                  },
+                  "rbac_token_enabled": {
+                    "type": "boolean",
+                    "description": "Allows the admin to use and reset their RBAC token.",
+                    "default": true
+                  }
+                }
+              },
+              "examples": {
+                "Invite an admin": {
+                  "value": {
+                    "username": "test-case-3",
+                    "email": "test3@test.com",
+                    "custom_id": "customId",
+                    "rbac_token_enabled": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admins/register": {
+      "post": {
+        "summary": "Register an Admin’s Credentials",
+        "operationId": "post-admins-register",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "description": "Register an Admin's Credentials",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  }
+                }
+              },
+              "examples": {
+                "Example registration request": {
+                  "value": {
+                    "token": "string",
+                    "username": "string",
+                    "email": "user@example.com",
+                    "password": "pa$$word"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Admins"
+        ]
+      }
+    },
+    "/admins/password_resets": {
+      "post": {
+        "summary": "Send a Password Reset Email to an Admin",
+        "tags": [
+          "Admins"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-admins-password_resets",
+        "description": "Using a registered admin's email address issue a password reset email to the admin.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The registered admin's email.",
+                    "example": "admin@example.com"
+                  }
+                }
+              },
+              "examples": {
+                "Example reset body": {
+                  "value": {
+                    "email": "admin@example.com"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Reset an Admin’s Password",
+        "operationId": "patch-admins-password_resets",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "description": "Reset an admin's password.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "email": "string",
+                    "password": "string",
+                    "token": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Admins"
+        ]
+      }
+    },
+    "/admins/{name_or_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The admin’s username or ID."
+        }
+      ],
+      "get": {
+        "summary": "Retrieve an Admin",
+        "tags": [
+          "Admins"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "rbac_token_enabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "created_at": 1556638385,
+                      "id": "665b4070-541f-48bf-82c1-53030babaa81",
+                      "updated_at": 1556638385,
+                      "status": 4,
+                      "username": "test-admin",
+                      "email": "test@test.com",
+                      "rbac_token_enabled": true
+                    }
+                  }
+                },
+                "examples": {
+                  "Example response body": {
+                    "value": {
+                      "created_at": 1556638385,
+                      "id": "665b4070-541f-48bf-82c1-53030babaa81",
+                      "updated_at": 1556638385,
+                      "status": 4,
+                      "username": "test-admin",
+                      "email": "test@test.com",
+                      "rbac_token_enabled": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-admins-name_or_id",
+        "description": "Retrieve an admin using their name or ID. Using `generate_register_url`, you can generate a unique registration URL if the admin's invitation status is `4`. `generate_register_url` overrides the previous registration URL for the particular admin each time it is requested."
+      },
+      "patch": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Update an Admin",
+        "operationId": "patch-admins-name_or_id-generate_register_url",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name_or_id": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "rbac_token_enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "name_or_id": "665b4070-541f-48bf-82c1-53030babaa81",
+                    "username": "test-renamed",
+                    "email": "test@test.com",
+                    "rbac_token_enabled": true
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name_or_id": "string",
+                    "username": "string",
+                    "email": "string",
+                    "rbac_token_enabled": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Update information about an admin"
+      },
+      "delete": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Delete an Admin",
+        "operationId": "delete-admins-name_or_id",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "description": "Delete an admin by specifying the admin's username or ID."
+      }
+    },
+    "/admins/{name_or_id}/roles": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The admin’s username or ID"
+        }
+      ],
+      "get": {
+        "summary": "List an Admin’s Roles",
+        "tags": [
+          "Admins"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "comment": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "is_default": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "roles": [
+                        {
+                          "comment": "Read access to all endpoints, across all workspaces",
+                          "created_at": 1556563122,
+                          "id": "7574eb1d-c9fa-46a9-bd3a-3f1b4b196287",
+                          "name": "read-only",
+                          "is_default": false
+                        },
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces—except RBAC Admin API",
+                          "created_at": 1556563122,
+                          "id": "7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d",
+                          "name": "admin",
+                          "is_default": false
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example role list": {
+                    "value": {
+                      "roles": [
+                        {
+                          "comment": "Read access to all endpoints, across all workspaces",
+                          "created_at": 1556563122,
+                          "id": "7574eb1d-c9fa-46a9-bd3a-3f1b4b196287",
+                          "name": "read-only",
+                          "is_default": false
+                        },
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces—except RBAC Admin API",
+                          "created_at": 1556563122,
+                          "id": "7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d",
+                          "name": "admin",
+                          "is_default": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-admins-name_or_id-roles",
+        "description": "List all roles related to a registered admin."
+      },
+      "post": {
+        "summary": "Create or Update an Admin’s Roles",
+        "operationId": "post-admins-name_or_id-roles",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "comment": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "is_default": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "roles": [
+                        {
+                          "comment": "Read access to all endpoints, across all workspaces",
+                          "created_at": 1556563122,
+                          "id": "7574eb1d-c9fa-46a9-bd3a-3f1b4b196287",
+                          "name": "read-only",
+                          "is_default": false
+                        },
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces—except RBAC Admin API",
+                          "created_at": 1556563122,
+                          "id": "7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d",
+                          "name": "admin",
+                          "is_default": false
+                        },
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces",
+                          "created_at": 1556563122,
+                          "id": "99bd8d18-f5b6-410e-aefe-d75f4252f13c",
+                          "name": "super-admin",
+                          "is_default": false
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example role assignment": {
+                    "value": {
+                      "roles": [
+                        {
+                          "comment": "Read access to all endpoints, across all workspaces",
+                          "created_at": 1556563122,
+                          "id": "7574eb1d-c9fa-46a9-bd3a-3f1b4b196287",
+                          "name": "read-only",
+                          "is_default": false
+                        },
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces—except RBAC Admin API",
+                          "created_at": 1556563122,
+                          "id": "7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d",
+                          "name": "admin",
+                          "is_default": false
+                        },
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces",
+                          "created_at": 1556563122,
+                          "id": "99bd8d18-f5b6-410e-aefe-d75f4252f13c",
+                          "name": "super-admin",
+                          "is_default": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Admins"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "roles": {
+                    "type": "string"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "roles": "read-only"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Comma-separated string of role names to create or update for an admin."
+        },
+        "description": "Create or update roles for an admin"
+      },
+      "delete": {
+        "tags": [
+          "Admins"
+        ],
+        "summary": "Delete an Admin’s Role",
+        "operationId": "delete-admins-name_or_id-roles",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "description": "Delete an admin's roles by passing a comma-separated string of names of specific roles to remove from an admin."
+      }
+    },
+    "/admins/{name_or_id}/workspaces": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The admin’s username or ID"
+        }
+      ],
+      "get": {
+        "summary": "List an Admin’s Workspaces",
+        "tags": [
+          "Admins"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/workspace-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-admins-name_or_id-workspaces",
+        "description": "Return workspaces associated with an admin."
+      }
+    },
+    "/debug/cluster/log-level/{log_level}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "debug",
+              "info",
+              "notice",
+              "warn",
+              "error",
+              "crit"
+            ]
+          },
+          "name": "log_level",
+          "in": "path",
+          "required": true,
+          "description": "The log level"
+        }
+      ],
+      "put": {
+        "summary": "Set Node Log Level of All Nodes",
+        "operationId": "put-debug-cluster-log-level-log_level",
+        "responses": {
+          "200": {
+            "description": "log level changed"
+          }
+        },
+        "tags": [
+          "Debug"
+        ],
+        "description": "Change the log level of all nodes in a cluster.\n\nBe careful when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level, such as notice.\nIt’s currently not possible to change the log level of data plane and DB-less nodes.\n\nThis endpoint can be protected with RBAC, and changes will be reflected in the audit logs. \nThe log level change is propagated to all Nginx workers of a node, including to newly spawned workers.\n\nLog levels are set in Kong’s configuration. Possible log levels in increasing order of severity: `debug`, `info`, `notice`, `warn`, `error`, and `crit`. For more information, review the [logging reference](https://docs.konghq.com/gateway/3.3.x/production/logging/).\n\nCurrently, when a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup `kong.conf` setting [`KONG_LOG_LEVEL`](https://docs.konghq.com/gateway/3.3.x/reference/configuration/#log_level)."
+      }
+    },
+    "/debug/node/log-level": {
+      "get": {
+        "summary": "Retrieve Node Log Level of A Node",
+        "tags": [
+          "Debug"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "message": "log level: debug"
+                    }
+                  }
+                },
+                "examples": {
+                  "Retrieved debug level": {
+                    "value": {
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-debug-node-log-level",
+        "description": "Retrieve the current log level of a node.\n\nSee the [Nginx Documentation](https://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.\n"
+      }
+    },
+    "/debug/node/log-level/{log_level}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "debug",
+              "info",
+              "notice",
+              "warn",
+              "error",
+              "crit"
+            ]
+          },
+          "name": "log_level",
+          "in": "path",
+          "required": true,
+          "description": "The log level"
+        }
+      ],
+      "put": {
+        "summary": "Set Log Level of A Single Node",
+        "tags": [
+          "Debug"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "message": "log level changed"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "message": "log level changed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-debug-node-log-level-log_level",
+        "description": "Change the log level of a node.\n"
+      }
+    },
+    "/rbac/users": {
+      "get": {
+        "summary": "List Users",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/rbac-user-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-rbac-users",
+        "description": "List all users.\n\nNote: RBAC users associated with admin aren't listed with `GET /rbac/users`. Instead, use `GET /admins` to list all admins."
+      },
+      "post": {
+        "summary": "Add a User",
+        "operationId": "post-rbac-users",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/rbac-user-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/rbac-request"
+        },
+        "description": "Add a User"
+      }
+    },
+    "/rbac/users/{name_or_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC username or UUID."
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a User",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/rbac-user-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-rbac-users-name_or_id",
+        "description": "Retrieve a user by passing a name or ID in the path."
+      },
+      "patch": {
+        "summary": "Update a User",
+        "operationId": "patch-rbac-users-name_or_id",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/rbac-user-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "description": "Update a user.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/rbac-request"
+        }
+      },
+      "delete": {
+        "summary": "Delete a User",
+        "operationId": "delete-rbac-users-name_or_id",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "description": "Delete a user.\n",
+        "tags": [
+          "RBAC"
+        ]
+      }
+    },
+    "/rbac/roles": {
+      "get": {
+        "summary": "List Roles",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "comment": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "data": [
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces—except RBAC Admin API",
+                          "created_at": 1557506249,
+                          "id": "38a03d47-faae-4366-b430-f6c10aee5029",
+                          "name": "admin"
+                        },
+                        {
+                          "comment": "Read access to all endpoints, across all workspaces",
+                          "created_at": 1557506249,
+                          "id": "4141675c-8beb-41a5-aa04-6258ab2d2f7f",
+                          "name": "read-only"
+                        },
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces",
+                          "created_at": 1557506249,
+                          "id": "888117e0-f2b3-404d-823b-dee595423505",
+                          "name": "super-admin"
+                        },
+                        {
+                          "comment": null,
+                          "created_at": 1557532241,
+                          "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                          "name": "doc_lord"
+                        }
+                      ],
+                      "next": null
+                    }
+                  }
+                },
+                "examples": {
+                  "Multiple roles": {
+                    "value": {
+                      "data": [
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces—except RBAC Admin API",
+                          "created_at": 1557506249,
+                          "id": "38a03d47-faae-4366-b430-f6c10aee5029",
+                          "name": "admin"
+                        },
+                        {
+                          "comment": "Read access to all endpoints, across all workspaces",
+                          "created_at": 1557506249,
+                          "id": "4141675c-8beb-41a5-aa04-6258ab2d2f7f",
+                          "name": "read-only"
+                        },
+                        {
+                          "comment": "Full access to all endpoints, across all workspaces",
+                          "created_at": 1557506249,
+                          "id": "888117e0-f2b3-404d-823b-dee595423505",
+                          "name": "super-admin"
+                        },
+                        {
+                          "comment": null,
+                          "created_at": 1557532241,
+                          "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                          "name": "doc_lord"
+                        }
+                      ],
+                      "next": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-rbac-roles",
+        "description": "List all roles."
+      },
+      "post": {
+        "summary": "Add a Role",
+        "operationId": "post-rbac-roles",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "comment": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_default": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "comment": null,
+                      "created_at": 1557532241,
+                      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                      "is_default": false,
+                      "name": "service_reader"
+                    }
+                  }
+                },
+                "examples": {
+                  "New role response body": {
+                    "value": {
+                      "comment": null,
+                      "created_at": 1557532241,
+                      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                      "is_default": false,
+                      "name": "service_reader"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The RBAC role name."
+                  },
+                  "comment": {
+                    "type": "string",
+                    "description": "A string describing the RBAC user object."
+                  }
+                }
+              }
+            }
+          },
+          "description": "The request body contains the name of the role and an optional attribute."
+        },
+        "description": "Add a role."
+      }
+    },
+    "/rbac/roles/{name_or_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC role name or UUID."
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a Role",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_default": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "created_at": 1557532241,
+                      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                      "is_default": false,
+                      "name": "service_reader"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "created_at": 1557532241,
+                      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                      "is_default": false,
+                      "name": "service_reader"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-rbac-roles-name_or_id",
+        "description": "Retrieve a role by passing the name or UUID as a path parameter."
+      },
+      "put": {
+        "summary": "Update or Create a Role",
+        "operationId": "put-rbac-roles-name_or_id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "comment": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_default": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "comment": "the best",
+                      "created_at": 1557532566,
+                      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                      "is_default": false,
+                      "name": "doc_lord"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example entity replacement": {
+                    "value": {
+                      "comment": "the best",
+                      "created_at": 1557532566,
+                      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                      "is_default": false,
+                      "name": "doc_lord"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "comment": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "With a `PUT` request, if the request payload contains an existing entity’s primary key, the payload replaces the entity specified by the given primary key. If the primary key is not that of an existing entity, the entity is created with the given payload.\n"
+      },
+      "patch": {
+        "summary": "Update a Role",
+        "operationId": "patch-rbac-roles-name_or_id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "comment": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_default": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "comment": "comment from patch request",
+                      "created_at": 1557532566,
+                      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                      "is_default": false,
+                      "name": "service_reader"
+                    }
+                  }
+                },
+                "examples": {
+                  "Patch request response": {
+                    "value": {
+                      "comment": "comment from patch request",
+                      "created_at": 1557532566,
+                      "id": "b5c5cfd4-3330-4796-9b7b-6026e91e3ad6",
+                      "is_default": false,
+                      "name": "service_reader"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attribute": {
+                    "type": "string",
+                    "description": "A string describing the RBAC role object.\n"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Attribute request body"
+        },
+        "description": "Updates a role by passing an optional attribute."
+      },
+      "delete": {
+        "summary": "Delete a Role",
+        "operationId": "delete-rbac-roles-name_or_id",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "description": "Delete a role"
+      }
+    },
+    "/rbac/roles/{name_or_id}/endpoints": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC role name or UUID."
+        }
+      ],
+      "get": {
+        "summary": "List Role Endpoints Permissions",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "actions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "endpoint": {
+                            "type": "string"
+                          },
+                          "negative": {
+                            "type": "boolean"
+                          },
+                          "role": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "workspace": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "data": [
+                        {
+                          "actions": [
+                            "delete",
+                            "create",
+                            "update",
+                            "read"
+                          ],
+                          "created_at": 1557764505,
+                          "endpoint": "/consumers",
+                          "negative": false,
+                          "role": {
+                            "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                          },
+                          "workspace": "default"
+                        },
+                        {
+                          "actions": [
+                            "read"
+                          ],
+                          "created_at": 1557764438,
+                          "endpoint": "/services",
+                          "negative": false,
+                          "role": {
+                            "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                          },
+                          "workspace": "default"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-rbac-roles-name_or_id-endpoints",
+        "description": "Lists all of a role's associated endpoint permissions."
+      },
+      "post": {
+        "summary": "Add a Role Endpoint Permission",
+        "operationId": "post-rbac-roles-name_or_id-endpoints",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    },
+                    "negative": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "workspace": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "update",
+                        "read"
+                      ],
+                      "created_at": 1557764505,
+                      "endpoint": "/consumers",
+                      "negative": false,
+                      "role": {
+                        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                      },
+                      "workspace": "default"
+                    }
+                  }
+                },
+                "examples": {
+                  "Basic example": {
+                    "value": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "update",
+                        "read"
+                      ],
+                      "created_at": 1557764505,
+                      "endpoint": "/consumers",
+                      "negative": false,
+                      "role": {
+                        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                      },
+                      "workspace": "default"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "description": "Add a role endpoint permission for the path of the associated endpoint. Permissions can be exact matches, or contain wildcards, represented by `*`.\n\nExact matches:\n- `/services/`\n- `/services/foo`\n\nWildcards:\n- `/services/*`\n- `/services/*/plugins`\nWhere `*` replaces exactly one segment between slashes (or the end of the path).\n\nNote that wildcards can be nested. For example, `/rbac/*`, `/rbac/*/*`, `/rbac/*/*/*` would refer to all paths under `/rbac/`.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "workspace": {
+                    "type": "string",
+                    "description": "Workspace tied to the endpoint. Defaults to the default permission. Using the wildcard `*` means all workspaces are affected."
+                  },
+                  "endpoint": {
+                    "type": "string",
+                    "description": "Endpoint associated with this permission.\n"
+                  },
+                  "negative": {
+                    "type": "string",
+                    "description": "If true, explicitly disallow the actions associated with the permissions tied to this endpoint. By default, this value is false.\n"
+                  },
+                  "actions": {
+                    "type": "string",
+                    "description": "One or more actions associated with this permission, written as a comma-separated string. \nFor example, `read,create,update,delete`.\n"
+                  },
+                  "comment": {
+                    "type": "string",
+                    "description": "A string describing the RBAC permission object."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC role name or UUID."
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "workspace_name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The workspace name or UUID."
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "endpoint",
+          "in": "path",
+          "required": true,
+          "description": "The endpoint associated with this permission."
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a Role Endpoint Permission",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    },
+                    "negative": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "workspace": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "update",
+                        "read"
+                      ],
+                      "created_at": 1557764505,
+                      "endpoint": "/consumers",
+                      "negative": false,
+                      "role": {
+                        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                      },
+                      "workspace": "default"
+                    }
+                  }
+                },
+                "examples": {
+                  "basic example": {
+                    "value": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "update",
+                        "read"
+                      ],
+                      "created_at": 1557764505,
+                      "endpoint": "/consumers",
+                      "negative": false,
+                      "role": {
+                        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                      },
+                      "workspace": "default"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-rbac-roles-name_or_id-endpoints-workspace_name_or_id-endpoint",
+        "description": "Retrieve a Role Endpoint Permission\n"
+      },
+      "patch": {
+        "summary": "Update a Role Endpoint Permission",
+        "operationId": "patch-rbac-roles-name_or_id-endpoints-workspace_name_or_id-endpoint",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    },
+                    "negative": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "workspace": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "update",
+                        "read"
+                      ],
+                      "created_at": 1557764438,
+                      "endpoint": "/services",
+                      "negative": false,
+                      "role": {
+                        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                      },
+                      "workspace": "default"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "update",
+                        "read"
+                      ],
+                      "created_at": 1557764438,
+                      "endpoint": "/services",
+                      "negative": false,
+                      "role": {
+                        "id": "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                      },
+                      "workspace": "default"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "description": "Update a Role Endpoint Permission\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "negative": {
+                    "type": "string",
+                    "description": "If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false.\n"
+                  },
+                  "actions": {
+                    "type": "string",
+                    "description": "One or more actions associated with this permission.\n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Role Endpoint Permission",
+        "operationId": "delete-rbac-roles-name_or_id-endpoints-workspace_name_or_id-endpoint",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Delete a Role Endpoint Permission\n",
+        "tags": [
+          "RBAC"
+        ]
+      }
+    },
+    "/rbac/roles/{name_or_id}/entities": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC role name or UUID."
+        }
+      ],
+      "get": {
+        "summary": "List Entity Permissions",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "actions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "entity_id": {
+                            "type": "string"
+                          },
+                          "entity_type": {
+                            "type": "string"
+                          },
+                          "negative": {
+                            "type": "boolean"
+                          },
+                          "role": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "data": [
+                        {
+                          "actions": [
+                            "delete",
+                            "create",
+                            "read"
+                          ],
+                          "created_at": 1557771505,
+                          "entity_id": "*",
+                          "entity_type": "wildcard",
+                          "negative": false,
+                          "role": {
+                            "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "data": [
+                        {
+                          "actions": [
+                            "delete",
+                            "create",
+                            "read"
+                          ],
+                          "created_at": 1557771505,
+                          "entity_id": "*",
+                          "entity_type": "wildcard",
+                          "negative": false,
+                          "role": {
+                            "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-rbac-roles-name_or_id-entities",
+        "description": "Add a Role Entity Permission\n"
+      },
+      "post": {
+        "summary": "Add a Role Entity Permission",
+        "operationId": "post-rbac-roles-name_or_id-entities",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "entity_id": {
+                      "type": "string"
+                    },
+                    "entity_type": {
+                      "type": "string"
+                    },
+                    "negative": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "read"
+                      ],
+                      "created_at": 1557771505,
+                      "entity_id": "*",
+                      "entity_type": "wildcard",
+                      "negative": false,
+                      "role": {
+                        "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example response": {
+                    "value": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "read"
+                      ],
+                      "created_at": 1557771505,
+                      "entity_id": "*",
+                      "entity_type": "wildcard",
+                      "negative": false,
+                      "role": {
+                        "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "description": "The `entity_id` must be the ID of an entity in Kong. If you provide the ID of a workspace, the permission applies to all entities in that workspace. Future entities belonging to that workspace will get the same permissions. A wildcard (`*`) will be interpreted as all entities in the system.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false.",
+                "properties": {
+                  "negative": {
+                    "type": "string",
+                    "description": "ID of the entity associated with this permission."
+                  },
+                  "entity_id": {
+                    "type": "string",
+                    "description": "Type of the entity of a given `entity_id`."
+                  },
+                  "entity_type": {
+                    "type": "string",
+                    "description": "One or more actions associated with this permission."
+                  },
+                  "actions": {
+                    "type": "string",
+                    "description": "One or more actions associated with this permission.\n"
+                  },
+                  "comment": {
+                    "type": "string",
+                    "description": "A string describing the RBAC permission object."
+                  }
+                }
+              }
+            }
+          },
+          "description": "Request Body\n"
+        }
+      }
+    },
+    "/rbac/roles/{name_or_id}/entities/{entity_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC permission name or UUID."
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "entity_id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the entity associated with this permission."
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a Role Entity Permission",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "entity_id": {
+                      "type": "string"
+                    },
+                    "entity_type": {
+                      "type": "string"
+                    },
+                    "negative": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "actions": [
+                        "delete",
+                        "create",
+                        "read"
+                      ],
+                      "created_at": 1557771505,
+                      "entity_id": "*",
+                      "entity_type": "wildcard",
+                      "negative": false,
+                      "role": {
+                        "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-response": {
+                    "value": {
+                      "actions": [
+                        "string"
+                      ],
+                      "created_at": 0,
+                      "entity_id": "string",
+                      "entity_type": "string",
+                      "negative": true,
+                      "role": {
+                        "id": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-rbac-roles-name_or_id-entities-entity_id",
+        "description": "Retrieve a Role Entity Permission\n"
+      },
+      "patch": {
+        "summary": "Update an Entity Permission",
+        "operationId": "patch-rbac-roles-name_or_id-entities-entity_id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "entity_id": {
+                      "type": "string"
+                    },
+                    "entity_type": {
+                      "type": "string"
+                    },
+                    "negative": {
+                      "type": "boolean"
+                    },
+                    "role": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "actions": [
+                        "update"
+                      ],
+                      "created_at": 1557771505,
+                      "entity_id": "*",
+                      "entity_type": "wildcard",
+                      "negative": false,
+                      "role": {
+                        "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-response": {
+                    "value": {
+                      "actions": [
+                        "update"
+                      ],
+                      "created_at": 1557771505,
+                      "entity_id": "*",
+                      "entity_type": "wildcard",
+                      "negative": false,
+                      "role": {
+                        "id": "bba049fa-bf7e-40ef-8e89-553dda292e99"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "description": "Update an Entity Permission",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "negative": {
+                    "type": "boolean",
+                    "description": "If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false.\n"
+                  },
+                  "actions": {
+                    "type": "string",
+                    "description": "One or more actions associated with this permission."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an Entity Permission",
+        "operationId": "delete-rbac-roles-name_or_id-entities-entity_id",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Delete an Entity Permission\n",
+        "tags": [
+          "RBAC"
+        ]
+      }
+    },
+    "/rbac/roles/{name_or_id}/permissions": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC role name or UUID."
+        }
+      ],
+      "get": {
+        "summary": "List Role Permissions",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "endpoints": {
+                      "type": "object",
+                      "properties": {
+                        "*": {
+                          "type": "object",
+                          "properties": {
+                            "*": {
+                              "type": "object",
+                              "properties": {
+                                "actions": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "negative": {
+                                  "type": "boolean"
+                                }
+                              }
+                            },
+                            "/*/rbac/*": {
+                              "type": "object",
+                              "properties": {
+                                "actions": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "negative": {
+                                  "type": "boolean"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "entities": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "endpoints": {
+                        "*": {
+                          "*": {
+                            "actions": [
+                              "delete",
+                              "create",
+                              "update",
+                              "read"
+                            ],
+                            "negative": false
+                          },
+                          "/*/rbac/*": {
+                            "actions": [
+                              "delete",
+                              "create",
+                              "update",
+                              "read"
+                            ],
+                            "negative": true
+                          }
+                        }
+                      },
+                      "entities": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "role-permission-example": {
+                    "value": {
+                      "endpoints": {
+                        "*": {
+                          "*": {
+                            "actions": [
+                              "delete",
+                              "create",
+                              "update",
+                              "read"
+                            ],
+                            "negative": false
+                          },
+                          "/*/rbac/*": {
+                            "actions": [
+                              "delete",
+                              "create",
+                              "update",
+                              "read"
+                            ],
+                            "negative": true
+                          }
+                        }
+                      },
+                      "entities": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-rbac-roles-name_or_id-permissions",
+        "description": "List Role Permissions"
+      }
+    },
+    "/rbac/users/{name_or_id}/roles": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC user name or UUID."
+        }
+      ],
+      "get": {
+        "summary": "List a User’s Roles",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "comment": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "comment": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "integer"
+                        },
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "user_token": {
+                          "type": "string"
+                        },
+                        "user_token_ident": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "roles": [
+                        {
+                          "comment": "Read access to all endpoints, across all workspaces",
+                          "created_at": 1557765500,
+                          "id": "a1c810ee-8366-4654-ba0c-963ffb9ccf2e",
+                          "name": "read-only"
+                        },
+                        {
+                          "created_at": 1557772263,
+                          "id": "aae80073-095f-4553-ba9a-bee5ed3b8b91",
+                          "name": "doc-knight"
+                        }
+                      ],
+                      "user": {
+                        "comment": null,
+                        "created_at": 1557772232,
+                        "enabled": true,
+                        "id": "b65ca712-7ceb-4114-87f4-5c310492582c",
+                        "name": "gruce-wayne",
+                        "user_token": "$2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K",
+                        "user_token_ident": "88ea3"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "roles": [
+                        {
+                          "comment": "Read access to all endpoints, across all workspaces",
+                          "created_at": 1557765500,
+                          "id": "a1c810ee-8366-4654-ba0c-963ffb9ccf2e",
+                          "name": "read-only"
+                        },
+                        {
+                          "created_at": 1557772263,
+                          "id": "aae80073-095f-4553-ba9a-bee5ed3b8b91",
+                          "name": "doc-knight"
+                        }
+                      ],
+                      "user": {
+                        "comment": null,
+                        "created_at": 1557772232,
+                        "enabled": true,
+                        "id": "b65ca712-7ceb-4114-87f4-5c310492582c",
+                        "name": "gruce-wayne",
+                        "user_token": "$2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K",
+                        "user_token_ident": "88ea3"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-rbac-users-name_or_id-roles",
+        "description": "Add a User to a Role\n"
+      },
+      "post": {
+        "summary": "Add a User to a Role",
+        "operationId": "post-rbac-users-name_or_id-roles",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "comment": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "integer"
+                        },
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "user_token": {
+                          "type": "string"
+                        },
+                        "user_token_ident": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "roles": [
+                        {
+                          "created_at": 1557772263,
+                          "id": "aae80073-095f-4553-ba9a-bee5ed3b8b91",
+                          "name": "doc-knight"
+                        }
+                      ],
+                      "user": {
+                        "comment": null,
+                        "created_at": 1557772232,
+                        "enabled": true,
+                        "id": "b65ca712-7ceb-4114-87f4-5c310492582c",
+                        "name": "gruce-wayne",
+                        "user_token": "$2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K",
+                        "user_token_ident": "88ea3"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-role-created": {
+                    "value": {
+                      "roles": [
+                        {
+                          "created_at": 1557772263,
+                          "id": "aae80073-095f-4553-ba9a-bee5ed3b8b91",
+                          "name": "doc-knight"
+                        }
+                      ],
+                      "user": {
+                        "comment": null,
+                        "created_at": 1557772232,
+                        "enabled": true,
+                        "id": "b65ca712-7ceb-4114-87f4-5c310492582c",
+                        "name": "gruce-wayne",
+                        "user_token": "$2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K",
+                        "user_token_ident": "88ea3"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Add a User to a Role\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "roles": {
+                    "type": "string",
+                    "description": "Comma-separated list of role names to assign to the user."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "RBAC"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a Role from a User",
+        "operationId": "delete-rbac-users-name_or_id-roles",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "RBAC"
+        ],
+        "description": "Delete a Role from a User"
+      }
+    },
+    "/rbac/users/{name_or_id}/permissions": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The RBAC user name or UUID."
+        }
+      ],
+      "get": {
+        "summary": "List a User’s Permissions",
+        "tags": [
+          "RBAC"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "endpoints": {
+                      "type": "object",
+                      "properties": {
+                        "*": {
+                          "type": "object",
+                          "properties": {
+                            "*": {
+                              "type": "object",
+                              "properties": {
+                                "actions": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "negative": {
+                                  "type": "boolean"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "entities": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "endpoints": {
+                        "*": {
+                          "*": {
+                            "actions": [
+                              "read"
+                            ],
+                            "negative": false
+                          }
+                        }
+                      },
+                      "entities": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "endpoints": {
+                        "*": {
+                          "*": {
+                            "actions": [
+                              "read"
+                            ],
+                            "negative": false
+                          }
+                        }
+                      },
+                      "entities": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-rbac-users-name_or_id-permissions",
+        "description": "List a User’s Permissions\n"
+      }
+    },
+    "/groups": {
+      "get": {
+        "summary": "List Groups",
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/groups-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-groups",
+        "description": "Returns a list of groups."
+      },
+      "post": {
+        "summary": "Create a new group",
+        "operationId": "post-groups",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "created_at": 1556638641,
+                      "id": "8f0a742f-07f3-49e0-90d7-4fc7eea7e897",
+                      "updated_at": 1556638641,
+                      "name": "demo-group",
+                      "comment": "comment"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example group response": {
+                    "value": {
+                      "created_at": 0,
+                      "id": "string",
+                      "updated_at": 0,
+                      "name": "string",
+                      "comment": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Groups"
+        ],
+        "description": "Create a group to your organization.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The group's name",
+                    "example": "my_group"
+                  }
+                }
+              },
+              "examples": {
+                "Create a group": {
+                  "value": {
+                    "name": "demo-group",
+                    "comment": "comment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/{name_or_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The group’s name or ID."
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a Group",
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "created_at": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "comment": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "created_at": 1556638385,
+                      "id": "665b4070-541f-48bf-82c1-53030babaa81",
+                      "updated_at": 1556638385,
+                      "name": "test-group",
+                      "comment": "comment1"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example response body": {
+                    "value": {
+                      "created_at": 1556638385,
+                      "id": "665b4070-541f-48bf-82c1-53030babaa81",
+                      "updated_at": 1556638385,
+                      "username": "test-group",
+                      "comment": "comment"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-groups-name_or_id",
+        "description": "Retrieve a group using their name or ID."
+      },
+      "patch": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Update a Group",
+        "operationId": "patch-groups-name_or_id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "comment": {
+                    "type": "string"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "name": "test-group",
+                    "comment": "comment1"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "string",
+                    "comment": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Update information about a group"
+      },
+      "delete": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Delete an Group",
+        "operationId": "delete-groups-name_or_id",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "description": "Delete a group by specifying the group's name or ID."
+      }
+    },
+    "/groups/{name_or_id}/roles": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "name_or_id",
+          "in": "path",
+          "required": true,
+          "description": "The group’s username or ID"
+        }
+      ],
+      "get": {
+        "summary": "List an Group’s Roles",
+        "tags": [
+          "Groups"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "group": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "comment": {
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                              }
+                            }
+                          },
+                          "rbac_role": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "workspace": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "next": {
+                            "nullable": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "data": [
+                        {
+                          "group": {
+                            "comment": "comment1",
+                            "created_at": 1556563122,
+                            "id": "7574eb1d-c9fa-46a9-bd3a-3f1b4b196287",
+                            "name": "demo-group"
+                          },
+                          "rbac_role": {
+                            "id": "7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d",
+                            "name": "admin"
+                          },
+                          "workspace": {
+                            "id": "99bd8d18-f5b6-410e-aefe-d75f4252f13c"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Example role list": {
+                    "value": {
+                      "data": [
+                        {
+                          "group": {
+                            "comment": "comment1",
+                            "created_at": 1556563122,
+                            "id": "7574eb1d-c9fa-46a9-bd3a-3f1b4b196287",
+                            "name": "demo-group"
+                          },
+                          "rbac_role": {
+                            "id": "7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d",
+                            "name": "admin"
+                          },
+                          "workspace": {
+                            "id": "99bd8d18-f5b6-410e-aefe-d75f4252f13c"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-groups-name_or_id-roles",
+        "description": "List all roles related to a group."
+      },
+      "post": {
+        "summary": "Create or Update a Group's Roles",
+        "operationId": "post-groups-name_or_id-roles",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "group": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "comment": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      }
+                    },
+                    "rbac_role": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "workspace": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "group": {
+                        "comment": "Read access to all endpoints, across all workspaces",
+                        "created_at": 1556563122,
+                        "id": "7574eb1d-c9fa-46a9-bd3a-3f1b4b196287",
+                        "name": "read-only",
+                        "is_default": false
+                      },
+                      "rbac_role": {
+                        "id": "7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d",
+                        "name": "admin"
+                      },
+                      "workspace": {
+                        "id": "99bd8d18-f5b6-410e-aefe-d75f4252f13c"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example role assignment": {
+                    "value": {
+                      "group": {
+                        "comment": "Read access to all endpoints, across all workspaces",
+                        "created_at": 1556563122,
+                        "id": "7574eb1d-c9fa-46a9-bd3a-3f1b4b196287",
+                        "name": "read-only",
+                        "is_default": false
+                      },
+                      "rbac_role": {
+                        "id": "7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d",
+                        "name": "admin"
+                      },
+                      "workspace": {
+                        "id": "99bd8d18-f5b6-410e-aefe-d75f4252f13c"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Groups"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rbac_role_id": {
+                    "type": "string"
+                  },
+                  "workspace_id": {
+                    "type": "string"
+                  }
+                },
+                "x-examples": {
+                  "Example 1": {
+                    "rbac_role_id": "12773c9a-7f7c-45f2-bcea-5285eb18fd2f",
+                    "workspace_id": "d107bce7-dd86-4124-93c8-667ecc34b32e"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Comma-separated string of role names to create or update for a group."
+        },
+        "description": "Create or update roles for a admin"
+      },
+      "delete": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Delete a group’s Role",
+        "operationId": "delete-groups-name_or_id-roles",
+        "parameters": [
+          {
+            "name": "rbac_role_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "12773c9a-7f7c-45f2-bcea-5285eb18fd2f"
+          },
+          {
+            "name": "workspace_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "d107bce7-dd86-4124-93c8-667ecc34b32e"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "description": "Delete a group's roles."
+      }
+    },
+    "/audit/requests": {
+      "get": {
+        "summary": "List request audit logs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/beforeAuditLogFilter"
+          },
+          {
+            "$ref": "#/components/parameters/afterAuditLogFilter"
+          }
+        ],
+        "tags": [
+          "Audit-logs"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/audit-objects-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-audit-requests",
+        "description": "You can access request and database audit logs through the Admin API.\nThe default order of audit log is by request timestamp - latest to oldest.\nFor usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/3.3.x/kong-enterprise/audit-log/)."
+      }
+    },
+    "/audit/objects": {
+      "get": {
+        "summary": "List database audit logs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/beforeAuditLogFilter"
+          },
+          {
+            "$ref": "#/components/parameters/afterAuditLogFilter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/database-audit-log-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-audit-objects",
+        "tags": [
+          "Audit-logs"
+        ],
+        "description": "List database audit logs (ordered by request timestamp - latest to oldest)"
+      }
+    },
+    "/event-hooks": {
+      "get": {
+        "summary": "List all event hooks",
+        "tags": [
+          "Event-hooks"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/event-hooks-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-event-hooks",
+        "description": "List all event hooks and return information about the event hooks."
+      },
+      "post": {
+        "summary": "Add a webhook",
+        "operationId": "post-event-hooks",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/event-hooks-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "tags": [
+          "Event-hooks"
+        ],
+        "description": "Add a webhook\n",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/add-webhook"
+        }
+      }
+    },
+    "/event-hooks/sources": {
+      "get": {
+        "summary": "List all sources",
+        "tags": [
+          "Event-hooks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "balancer": {
+                          "type": "object",
+                          "properties": {
+                            "health": {
+                              "type": "object",
+                              "properties": {
+                                "fields": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "crud": {
+                          "type": "object",
+                          "properties": {
+                            "acls": {
+                              "type": "object",
+                              "properties": {
+                                "fields": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "rate-limiting-advanced": {
+                          "type": "object",
+                          "properties": {
+                            "rate-limit-exceeded": {
+                              "type": "object",
+                              "properties": {
+                                "description": {
+                                  "type": "string"
+                                },
+                                "fields": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "unique": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "data": {
+                        "balancer": {
+                          "health": {
+                            "fields": [
+                              "upstream_id",
+                              "ip",
+                              "port",
+                              "hostname",
+                              "health"
+                            ]
+                          }
+                        },
+                        "crud": {
+                          "acls": {
+                            "fields": [
+                              "operation",
+                              "entity",
+                              "old_entity",
+                              "schema"
+                            ]
+                          }
+                        },
+                        "rate-limiting-advanced": {
+                          "rate-limit-exceeded": {
+                            "description": "Run an event when a rate limit has been exceeded",
+                            "fields": [
+                              "consumer",
+                              "ip",
+                              "service",
+                              "rate",
+                              "limit",
+                              "window"
+                            ],
+                            "unique": [
+                              "consumer",
+                              "ip",
+                              "service"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "sources example": {
+                    "value": {
+                      "data": {
+                        "balancer": {
+                          "health": {
+                            "fields": [
+                              "string"
+                            ]
+                          }
+                        },
+                        "crud": {
+                          "acls": {
+                            "fields": [
+                              "string"
+                            ]
+                          }
+                        },
+                        "rate-limiting-advanced": {
+                          "rate-limit-exceeded": {
+                            "description": "string",
+                            "fields": [
+                              "string"
+                            ],
+                            "unique": [
+                              "string"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-event-hooks-sources",
+        "description": "Sources are the actions that trigger the event hook. The `/sources` JSON output follows the following pattern:\n\n* 1st level = The source, which is the action that triggers the event hook.\n* 2nd level = The event, which is the Kong entity the event hook listens to for events.\n* 3rd level = The available template parameters for use in `webhook-custom` payloads.\n\nFor instance, in the example below `balancer` is the source, `health` is the event, and `upstream_id`, `ip`, `port`, `hostname`, and `health` are the available template parameters.\n"
+      }
+    },
+    "/event-hooks/sources/{source}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "source",
+          "in": "path",
+          "required": true,
+          "description": "The source you want to list events from."
+        }
+      ],
+      "get": {
+        "summary": "List all events for a source",
+        "tags": [
+          "Event-hooks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "create": {
+                          "type": "object",
+                          "properties": {
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "delete": {
+                          "type": "object",
+                          "properties": {
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "update": {
+                          "type": "object",
+                          "properties": {
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "data": {
+                        "create": {
+                          "fields": [
+                            "operation",
+                            "entity",
+                            "old_entity",
+                            "schema"
+                          ]
+                        },
+                        "delete": {
+                          "fields": [
+                            "operation",
+                            "entity",
+                            "old_entity",
+                            "schema"
+                          ]
+                        },
+                        "update": {
+                          "fields": [
+                            "operation",
+                            "entity",
+                            "old_entity",
+                            "schema"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-event-hooks-sources-source",
+        "description": "Events are the Kong entities the event hook listens for events. With this endpoint, you can list all of the events associated with a particular source."
+      }
+    },
+    "/event-hooks/{event-hook-id}/test": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "event-hook-id",
+          "in": "path",
+          "required": true,
+          "description": "The event hook id"
+        }
+      ],
+      "post": {
+        "summary": "Test an event hook",
+        "operationId": "post-event-hooks-event-hook-id-test",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/event-hooks-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "description": "It’s useful to manually trigger an event hook without provoking the event to be triggered. For instance, you might want to test the integration, or see if your hook’s service is receiving a payload from Kong.\n\nPOST any data to `/event-hooks/:id-of-hook/test`, and the `/test` endpoint executes the with the provided data as the event payload.",
+        "tags": [
+          "Event-hooks"
+        ]
+      }
+    },
+    "/event-hooks/{event-hook-id/ping": {
+      "get": {
+        "summary": "Ping a webhook event hook",
+        "tags": [
+          "Event-hooks"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/event-hooks-response"
+          },
+          "401": {
+            "$ref": "#/components/responses/HTTP401Error"
+          }
+        },
+        "operationId": "get-event-hooks-event-hook-id-ping",
+        "description": "Ping a webhook event hook.\n"
+      }
     }
   },
   "servers": [
@@ -11756,6 +17039,11 @@
           ]
         }
       }
+    }
+  ],
+  "security":[
+    {
+      "kongAdminToken": []
     }
   ],
   "tags": [
@@ -11816,16 +17104,40 @@
       "name": "Workspaces"
     },
     {
-      "description": "All about Basic-auth credentials in Kong",
-      "name": "Basic-auth credentials"
-    },
-    {
       "description": "License",
       "name": "licenses"
     },
     {
       "description": "Consumer Groups",
       "name": "consumer_groups"
+    },
+    {
+      "description": "Information",
+      "name": "Information"
+    },
+    {
+      "description": "Admins",
+      "name": "Admins"
+    },
+    {
+      "description": "Groups",
+      "name": "Groups"
+    },
+    {
+      "description": "Debug",
+      "name": "Debug"
+    },
+    {
+      "description": "RBAC",
+      "name": "RBAC"
+    },
+    {
+      "description": "Audit logs",
+      "name": "Audit-logs"
+    },
+    {
+      "description": "Event hooks",
+      "name": "Event-hooks"
     }
   ]
 }

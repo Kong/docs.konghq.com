@@ -4,16 +4,19 @@ module OasDefinitionPages
   class Generator < Jekyll::Generator
     SOURCE_FILE = '_data/konnect_oas_data.json'
 
-    priority :highest
+    priority :low
 
     def generate(site)
       @site = site
       @site.data['ssg_oas_pages'] = []
 
       Dir.glob(File.join(site.source, '_api/**/**/_index.md')).each do |file|
-        product = page_product(file)
+        frontmatter = page_frontmatter(file)
+        product = page_product(frontmatter)
 
-        ::OasDefinition::Product.new(product:, file:, site:).generate_pages!
+        raise "Could not load API Product for #{file}" unless product
+
+        ::OasDefinition::Product.new(product:, file:, site:, frontmatter:).generate_pages!
       end
 
       generate_index_page!
@@ -21,8 +24,11 @@ module OasDefinitionPages
 
     private
 
-    def page_product(page)
-      frontmatter = Utils::FrontmatterParser.new(File.read(page)).frontmatter
+    def page_frontmatter(page)
+      Utils::FrontmatterParser.new(File.read(page)).frontmatter
+    end
+
+    def page_product(frontmatter)
       product_id = frontmatter.fetch('konnect_product_id')
 
       products.detect { |p| p['id'] == product_id }
@@ -37,8 +43,10 @@ module OasDefinitionPages
     end
 
     def index_page_data
-      { 'dir' => '/api/', 'permalink' => '/api/', 'canonical_url' => '/api/', 'layout' => 'oas/index',
-        'source_file' => 'oas/index', 'title' => 'OpenAPI Specifications' }
+      {
+        'dir' => '/api/', 'permalink' => '/api/', 'canonical_url' => '/api/', 'layout' => 'oas/index',
+        'source_file' => 'oas/index', 'title' => 'OpenAPI Specifications'
+      }.merge!(Jekyll::Pages::TranslationMissingData.new(@site).data)
     end
   end
 end

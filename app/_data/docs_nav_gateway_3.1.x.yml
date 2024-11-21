@@ -38,6 +38,8 @@ items:
             url: /key-concepts/services
           - text: Routes
             url: /key-concepts/routes
+          - text: Consumers
+            url: /key-concepts/consumers
           - text: Upstreams
             url: /key-concepts/upstreams
           - text: Plugins
@@ -274,9 +276,9 @@ items:
                 url: /kong-enterprise/secrets-management/backends/env
               - text: AWS Secrets Manager
                 url: /kong-enterprise/secrets-management/backends/aws-sm
-              - text: Google Secrets Manager
+              - text: Google Cloud Secret Manager
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
-              - text: Hashicorp Vault
+              - text: HashiCorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
           - text: How-To
             items:

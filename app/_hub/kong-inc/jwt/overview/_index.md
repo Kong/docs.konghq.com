@@ -381,7 +381,7 @@ Create a Service:
 ```bash
 curl -i -f -X POST http://localhost:8001/services \
   --data "name=example-service" \
-  --data "url=http://httpbin.org"
+  --data "url=https://httpbin.konghq.com"
 ```
 
 Then create a Route:

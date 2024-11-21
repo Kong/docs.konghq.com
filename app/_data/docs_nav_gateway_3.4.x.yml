@@ -48,6 +48,8 @@ items:
             url: /key-concepts/services
           - text: Routes
             url: /key-concepts/routes
+          - text: Consumers
+            url: /key-concepts/consumers
           - text: Upstreams
             url: /key-concepts/upstreams
           - text: Plugins
@@ -305,9 +307,9 @@ items:
                 url: /kong-enterprise/secrets-management/backends/aws-sm
               - text: Azure Key Vaults
                 url: /kong-enterprise/secrets-management/backends/azure-key-vaults
-              - text: Google Secrets Manager
+              - text: Google Cloud Secret Manager
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
-              - text: Hashicorp Vault
+              - text: HashiCorp Vault
                 url: /kong-enterprise/secrets-management/backends/hashicorp-vault
           - text: How-To
             items:
@@ -422,6 +424,8 @@ items:
             url: /kong-enterprise/fips-support/plugins
       - text: Authenticate your Kong Gateway Amazon RDS database with AWS IAM
         url: /kong-enterprise/aws-iam-auth-to-rds-database
+      - text: Verify Build Provenance for Signed Kong Images
+        url: /kong-enterprise/provenance-verification
 
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg

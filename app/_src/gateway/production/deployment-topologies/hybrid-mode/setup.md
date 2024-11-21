@@ -406,7 +406,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong/kong-gateway:{{page.versions.ee}}-alpine
+kong/kong-gateway:{{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -422,7 +422,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong:{{page.versions.ce}}-alpine
+kong:{{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -449,7 +449,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong/kong-gateway:{{page.versions.ee}}-alpine
+kong/kong-gateway:{{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -468,7 +468,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong:{{page.versions.ce}}-alpine
+kong:{{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -593,8 +593,8 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
 ## Verify that nodes are connected
 
-Use the control plane’s Cluster Status API to monitor your data planes. It
-provides:
+Use the control plane’s [Cluster Status API](/gateway/api/admin-ee/latest/#/clustering) to monitor your data planes. 
+It provides:
 * The name of the node
 * The last time the node synced with the control plane
 * The version of the config currently running on each data plane

@@ -11,7 +11,6 @@ Configure the following environment variables on your {{site.base_gateway}} data
 
 Static Vault token authentication:
 
-
 ```bash
 export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
 export KONG_VAULT_HCV_HOST=<hostname>
@@ -177,6 +176,93 @@ Access an older version of the secret like this:
 ```
 
 
+## How does Kong retrieve secrets from HashiCorp Vault?
+
+Kong retrieves secrets from HashiCorp Vault's HTTP API through a two-step process: authentication and secret retrieval.
+
+### Step 1: Authentication
+Depending on the authentication method defined in `config.auth_method`, Kong authenticates to HashiCorp Vault using one of the following methods:
+
+- If you're using the `token` auth method, Kong uses the `config.token` as the client token.
+- If you're using the `kubernetes` auth method, Kong uses the service account JWT token mounted in the pod (path defined in the `config.kube_api_token_file`) to call the login API for the Kubernetes auth path on the HashiCorp Vault server and retrieve a client token. The request looks like the following:
+
+```
+POST /v1/auth/<config.kube_auth_path>/login
+Host: <config.host>:<config.port>
+Content-Type: application/json
+X-Vault-Namespace: <config.namespace>
+
+{
+  "jwt": "<service account JWT token>",
+  "role": "<config.kube_role>"
+}
+```
+
+{% if_version gte:3.4.x %}
+- If you're using the `approle` auth method, Kong uses the AppRole credentials to retrieve a client token. The AppRole role ID is configured by field `config.approle_role_id`, and the secret ID is configured by field `config.approle_secret_id` or `config.approle_secret_id_file`. 
+  - If you set `config.approle_response_wrapping` to `true`, then the secret ID configured by
+  `config.approle_secret_id` or `config.approle_secret_id_file` will be a response wrapping token, 
+  and Kong will call the unwrap API `/v1/sys/wrapping/unwrap` to unwrap the response wrapping token to fetch 
+  the real secret ID. Kong will use the AppRole role ID and secret ID to call the login API for the AppRole auth path
+   on the HashiCorp Vault server and retrieve a client token. The request looks like the following:
+
+```
+POST /v1/auth/<config.approle_auth_path>/login
+Host: <config.host>:<config.port>
+Content-Type: application/json
+X-Vault-Namespace: <config.namespace>
+
+{
+  "role_id": "<config.approle_role_id>",
+  "secret_id": "<secret id>"
+}
+```
+{% endif_version %}
+
+By calling the login API, Kong will retrieve a client token and then use it in the next step as the value of `X-Vault-Token` header to retrieve a secret.
+
+### Step 2: Retrieving the secret
+
+Kong uses the client token retrieved in the [authentication step](#step-1-authentication) to call the Read Secret API and retrieve the secret value. The request varies depending on the secrets engine version you're using:
+
+{% navtabs %}
+{% navtab KV v1 %}
+
+```
+GET /v1/<config.mount>/<secret path>
+Host: <config.host>:<config.port>
+X-Vault-Token: <client token>
+X-Vault-Namespace: <config.namespace>
+```
+
+{% endnavtab %}
+{% navtab KV v2 %}
+
+```
+GET /v1/<config.mount>/data/<secret path>
+Host: <config.host>:<config.port>
+X-Vault-Token: <client token>
+X-Vault-Namespace: <config.namespace>
+```
+
+{% endnavtab %}
+{% navtab KV v2 with versioned secrets %}
+
+```
+GET /v1/<config.mount>/data/<secret path>?version=<version>
+Host: <config.host>:<config.port>
+X-Vault-Token: <client token>
+X-Vault-Namespace: <config.namespace>
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+{:.important}
+> **Warning:** Make sure you've configured the correct KV engine version in `config.kv`, otherwise Kong will fail to parse the response.
+
+Kong will parse the response of the read secret API automatically and return the secret value.
+
+
 ## Vault configuration options
 
 Use the following configuration options to configure the vaults entity through
@@ -205,7 +291,7 @@ Configuration options for a HashiCorp vault in {{site.base_gateway}}:
 
 {% if_version gte:3.1.x %}
 | `vaults.config.namespace` | `namespace` | Namespace for the Vault. Vault Enterprise requires a namespace to successfully connect to it. |
-| `vaults.config.auth_method` | `auth-method` | Defines the authentication mechanism when connecting to the Hashicorp Vault service. Accepted values are: `token`, `kubernetes` or `approle`.  |
+| `vaults.config.auth_method` | `auth-method` | Defines the authentication mechanism when connecting to the HashiCorp Vault service. Accepted values are: `token`, `kubernetes` or `approle`.  |
 | `vaults.config.kube_role` | `kube-role` | Defines the HashiCorp Vault role for the Kubernetes service account of the running pod. `keyring_vault_auth_method` must be set to `kubernetes` for this to activate. |
 | `vaults.config.kube_api_token_file` | `kube-api-token-file` | Defines the file path for the Kubernetes service account token. If not specified then a default path `/run/secrets/kubernetes.io/serviceaccount/token` will be used. |
 {% endif_version %}

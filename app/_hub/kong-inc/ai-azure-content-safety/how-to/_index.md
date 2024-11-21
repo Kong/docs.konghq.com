@@ -8,7 +8,7 @@ title: Using the AI Azure Content Safety plugin
 As a platform owner, you might need to moderate all user request content against a reputable service to comply with specific sensitive 
 categories when using Kong to proxy your Large Language Model (LLM) traffic.
 
-This plugin integrates with the [Azure REST API](https://westus.dev.cognitive.microsoft.com/docs/services/content-safety-service-2023-04-30-preview/operations/TextOperations_Analyze) and transmits every user LLM request 
+This plugin integrates with the [Azure REST API](https://azure-ai-content-safety-api-docs.developer.azure-api.net/api-details#api=content-safety-service-2023-10-01&operation=TextOperations_AnalyzeText) and transmits every user LLM request 
 from users to the Azure Content Safety SaaS *before* proxying to the upstream LLM.
 
 The plugin uses the [**text moderation**](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text?tabs=visual-studio%2Cwindows&pivots=programming-language-rest) operation, and only supports REST API version **2023-10-01**.
@@ -58,7 +58,7 @@ See the [cloud provider authentication](/hub/kong-inc/ai-proxy/how-to/cloud-prov
 ## Examples
 
 Configure the plugin with an array of supported categories, as defined by Azure Content Safety:
-* [Content Services REST API documentation](https://westus.dev.cognitive.microsoft.com/docs/services/content-safety-service-2023-10-01/operations/TextOperations_AnalyzeText)
+* [Content Services REST API documentation](https://azure-ai-content-safety-api-docs.developer.azure-api.net/api-details#api=content-safety-service-2023-10-01&operation=TextOperations_AnalyzeText)
 * [Harm categories in Azure AI Content Safety](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/harm-categories)
 
 Azure's harm categories map to `categories.name` in the plugin's configuration, and the severity levels map to `categories.rejection_level`. 
@@ -93,6 +93,7 @@ formats:
   - curl
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 <!--vale on -->
 
@@ -167,7 +168,7 @@ case the response looks like this:
 
 The plugin supports previously-created blocklists in Azure Content Safety.
 
-Using the [Azure Content Safety API](https://learn.microsoft.com/en-us/rest/api/cognitiveservices/contentsafety/operation-groups) 
+Using the [Azure Content Safety API](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/how-to/use-blocklist) 
 or the Azure Portal, you can create a series of blocklists for banned phrases or patterns. 
 You can then reference their unique names in the plugin configuration. 
 
@@ -199,6 +200,7 @@ formats:
   - curl
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 <!--vale on -->
 

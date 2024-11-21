@@ -17,7 +17,7 @@ in the following examples are entirely up to you.
     ```bash
     curl -i -X POST http://localhost:8001/services \
       --data "name=httpbin" \
-      --data "url=http://httpbin.org/anything"
+      --data "url=https://httpbin.konghq.com/anything"
     ```
 
 1. Create a route to handle peak traffic.

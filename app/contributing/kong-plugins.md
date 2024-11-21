@@ -92,6 +92,102 @@ If you have any diagrams or screenshots that you want to add to your plugin docu
     > *Figure 1: Diagram showing an OAuth2 authentication flow with Keycloak.*
     ```
 
+## Adding plugin examples
+
+You can use `plugin_example` to easily define and format examples using the plugin. 
+
+The example accepts all plugin config, and you can configure it to output any combination of targets and formats that you need.
+
+Possible targets:
+* `service`
+* `route`
+* `consumer`
+* `consumer_group`
+* `global`
+
+Possible formats:
+* `curl`
+* `konnect`
+* `yaml`
+* `kubernetes`
+* `terrafrom`
+
+Here's an example of how to format `plugin_example` using OpenAI and AI Semantic Cache:
+
+<!-- vale off -->
+{% raw %}
+```
+{% plugin_example %}
+title: OpenAI Example
+plugin: kong-inc/ai-semantic-cache
+name: ai-semantic-cache
+config:
+  embeddings:
+    auth:
+      header_name: Authorization
+      header_value: Bearer OPENAI_API_KEY
+  model:
+    provider: openai
+    name: text-embedding-3-large
+    options:
+      upstream_url: https://api.openai.com/v1/embeddings
+  vectordb:
+    dimensions: 3072
+    distance_metric: cosine
+    strategy: redis
+    threshold: 0.1
+    redis:
+      host: redis-stack.redis.svc.cluster.local
+      port: 6379
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+  - terraform
+{% endplugin_example %}
+```
+{% endraw %}
+<!-- vale on -->
+
+And here's how that example would render:
+
+<!--vale off-->
+{% plugin_example %}
+title: OpenAI Example
+plugin: kong-inc/ai-semantic-cache
+name: ai-semantic-cache
+config:
+  embeddings:
+    auth:
+      header_name: Authorization
+      header_value: Bearer OPENAI_API_KEY
+  model:
+    provider: openai
+    name: text-embedding-3-large
+    options:
+      upstream_url: https://api.openai.com/v1/embeddings
+  vectordb:
+    dimensions: 3072
+    distance_metric: cosine
+    strategy: redis
+    threshold: 0.1
+    redis:
+      host: redis-stack.redis.svc.cluster.local
+      port: 6379
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+  - terraform
+{% endplugin_example %}
+<!--vale on-->
+
 ## Test and submit plugin
 
 1. Run the docs site locally per the instructions in
@@ -117,6 +213,6 @@ If you want to write a custom plugin for your own needs, start by reading the [P
 
 If you already wrote a plugin, and are thinking about making it available to the community, we strongly encourage you to host it on a publicly available repository (like GitHub), and distribute it via LuaRocks. A good resource on how to do so is the [distribution section](/gateway/latest/plugin-development/distribution/#distribute-your-plugin) of the Plugin Development Guide.
 
-To give visibility to your plugin, you can create a post in the [Announcements](https://discuss.konghq.com/c/announcements/7) category of Kong Nation.
+To give visibility to your plugin, you can create a post in the [Announcements](https://discuss.konghq.com/c/announcements/24) category of Kong Nation.
 
 If you're interested in becoming a technical partner and publishing your plugin on the Kong Plugin Hub, please reach out to our [Kong Partners team](https://konghq.com/partners/).

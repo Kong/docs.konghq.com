@@ -5,6 +5,11 @@ book: kgo-kic-get-started
 chapter: 3
 ---
 
+{% assign gatewayApiVersion = "v1beta1" %}
+{% if_version gte:1.1.x %}
+{% assign gatewayApiVersion = "v1" %}
+{% endif_version %}
+
 {% if_version lte: 1.1.x %}
 {:.note}
 > **Note:** `Gateway` and `ControlPlane` controllers are still `alpha` so be sure
@@ -27,7 +32,7 @@ After you've installed all of the required components and configured a `GatewayC
     ```yaml
     echo '
     kind: HTTPRoute
-    apiVersion: gateway.networking.k8s.io/v1beta1
+    apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
     metadata:
       name: echo
     spec:

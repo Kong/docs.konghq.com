@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: meshproxypatches.kuma.io
 spec:
   group: kuma.io
@@ -105,7 +105,6 @@ spec:
                                   description: |-
                                     Origin is the name of the component or plugin that generated the resource.
 
-
                                     Here is the list of well-known origins:
                                     inbound - resources generated for handling incoming traffic.
                                     outbound - resources generated for handling outgoing traffic.
@@ -115,7 +114,6 @@ spec:
                                     ingress - resources generated for Zone Ingress.
                                     egress - resources generated for Zone Egress.
                                     gateway - resources generated for MeshGateway.
-
 
                                     The list is not complete, because policy plugins can introduce new resources.
                                     For example MeshTrace plugin can create Cluster with "mesh-trace" origin.
@@ -193,7 +191,6 @@ spec:
                                   description: |-
                                     Origin is the name of the component or plugin that generated the resource.
 
-
                                     Here is the list of well-known origins:
                                     inbound - resources generated for handling incoming traffic.
                                     outbound - resources generated for handling outgoing traffic.
@@ -203,7 +200,6 @@ spec:
                                     ingress - resources generated for Zone Ingress.
                                     egress - resources generated for Zone Egress.
                                     gateway - resources generated for MeshGateway.
-
 
                                     The list is not complete, because policy plugins can introduce new resources.
                                     For example MeshTrace plugin can create Cluster with "mesh-trace" origin.
@@ -274,7 +270,6 @@ spec:
                                   description: |-
                                     Origin is the name of the component or plugin that generated the resource.
 
-
                                     Here is the list of well-known origins:
                                     inbound - resources generated for handling incoming traffic.
                                     outbound - resources generated for handling outgoing traffic.
@@ -284,7 +279,6 @@ spec:
                                     ingress - resources generated for Zone Ingress.
                                     egress - resources generated for Zone Egress.
                                     gateway - resources generated for MeshGateway.
-
 
                                     The list is not complete, because policy plugins can introduce new resources.
                                     For example MeshTrace plugin can create Cluster with "mesh-trace" origin.
@@ -366,7 +360,6 @@ spec:
                                   description: |-
                                     Origin is the name of the component or plugin that generated the resource.
 
-
                                     Here is the list of well-known origins:
                                     inbound - resources generated for handling incoming traffic.
                                     outbound - resources generated for handling outgoing traffic.
@@ -376,7 +369,6 @@ spec:
                                     ingress - resources generated for Zone Ingress.
                                     egress - resources generated for Zone Egress.
                                     gateway - resources generated for MeshGateway.
-
 
                                     The list is not complete, because policy plugins can introduce new resources.
                                     For example MeshTrace plugin can create Cluster with "mesh-trace" origin.
@@ -448,7 +440,6 @@ spec:
                                   description: |-
                                     Origin is the name of the component or plugin that generated the resource.
 
-
                                     Here is the list of well-known origins:
                                     inbound - resources generated for handling incoming traffic.
                                     outbound - resources generated for handling outgoing traffic.
@@ -458,7 +449,6 @@ spec:
                                     ingress - resources generated for Zone Ingress.
                                     egress - resources generated for Zone Egress.
                                     gateway - resources generated for MeshGateway.
-
 
                                     The list is not complete, because policy plugins can introduce new resources.
                                     For example MeshTrace plugin can create Cluster with "mesh-trace" origin.
@@ -501,9 +491,18 @@ spec:
                     - MeshSubset
                     - MeshGateway
                     - MeshService
+                    - MeshExternalService
+                    - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
                     type: string
+                  labels:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Labels are used to select group of MeshServices that match labels. Either Labels or
+                      Name and Namespace can be used.
+                    type: object
                   mesh:
                     description: Mesh is reserved for future use to identify cross
                       mesh resources.
@@ -512,6 +511,11 @@ spec:
                     description: |-
                       Name of the referenced resource. Can only be used with kinds: `MeshService`,
                       `MeshServiceSubset` and `MeshGatewayRoute`
+                    type: string
+                  namespace:
+                    description: |-
+                      Namespace specifies the namespace of target resource. If empty only resources in policy namespace
+                      will be targeted.
                     type: string
                   proxyTypes:
                     description: |-
@@ -524,6 +528,11 @@ spec:
                       type: string
                     minItems: 1
                     type: array
+                  sectionName:
+                    description: |-
+                      SectionName is used to target specific section of resource.
+                      For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
+                    type: string
                   tags:
                     additionalProperties:
                       type: string
@@ -534,7 +543,6 @@ spec:
                 type: object
             required:
             - default
-            - targetRef
             type: object
         type: object
     served: true

@@ -9,8 +9,8 @@ dbless_explanation: |
 free: false
 plus: false
 enterprise: true
-premium: true
 konnect: true
+serverless_gateways: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |
   In DB-less, hybrid mode, and Konnect, the <code>cluster</code> config strategy
@@ -19,3 +19,7 @@ categories:
   - traffic-control
 publisher: Kong Inc.
 desc: Provide rate limiting for GraphQL queries
+examples_description: |
+  {:.important}
+  > **Important**: A cluster strategy with a sync rate of -1 **should not** be used in production with hybrid mode, 
+  DB-less mode, or Konnect, as it creates security risks.

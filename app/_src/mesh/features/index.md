@@ -1,6 +1,7 @@
 ---
 title: Enterprise Features
 content_type: explanation
+badge: enterprise
 ---
 
 {{site.mesh_product_name}} builds on top of Kuma with the following Enterprise features:
@@ -56,4 +57,24 @@ See the [UBI documentation](/mesh/{{page.release}}/features/ubi-images/) for mor
 ## Windows Support
 
 You can [install {{site.mesh_product_name}} on Windows](/mesh/{{page.release}}/installation/windows/).
+{% endif_version %}
+
+{% if_version gte:2.7.x %}
+
+## Docker container image signing
+
+Starting with {{site.mesh_product_name}} 2.7.4, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for signed {{site.mesh_product_name}} images](/mesh/{{ page.release }}/features/signed-images/) documentation to learn more.
+{% endif_version %}
+
+{% if_version gte:2.8.x %}
+
+## Build provenance
+
+Starting with {{site.mesh_product_name}} 2.8.0, {{site.mesh_product_name}} produces build provenance for Docker container images and binaries and can be verified using `cosign` / `slsa-verifier`.
+
+See the following documentation to learn more:
+
+* [Verify build provenance for signed {{site.mesh_product_name}} images](/mesh/{{ page.release }}/features/provenance-verification-images/)
+
+* [Verify build provenance for signed {{site.mesh_product_name}} binaries](/mesh/{{ page.release }}/features/provenance-verification-binaries/)
 {% endif_version %}

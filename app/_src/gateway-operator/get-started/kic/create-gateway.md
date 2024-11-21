@@ -5,6 +5,11 @@ book: kgo-kic-get-started
 chapter: 2
 ---
 
+{% assign gatewayApiVersion = "v1beta1" %}
+{% if_version gte:1.1.x %}
+{% assign gatewayApiVersion = "v1" %}
+{% endif_version %}
+
 {% assign gatewayConfigApiVersion = "v1beta1" %}
 {% if_version lte:1.1.x %}
 {% assign gatewayConfigApiVersion = "v1alpha1" %}
@@ -180,7 +185,7 @@ To use the Gateway API resources to configure your routes, you need to create a 
 ```yaml
 echo '
 kind: GatewayClass
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 metadata:
   name: kong
 spec:
@@ -192,7 +197,7 @@ spec:
     namespace: default
 ---
 kind: Gateway
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/{{ gatewayApiVersion }}
 metadata:
   name: kong
   namespace: default

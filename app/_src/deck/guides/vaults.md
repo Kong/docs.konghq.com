@@ -41,7 +41,7 @@ Key | Description
 ----|---
 `vaults.config` | Stores the configuration for a particular vault. The configuration values required depend on the vault that you are using. In this example, the `vaults.config.prefix` value configures the prefix for the environment variable that the value will be stored in. See the individual [vault backends](/gateway/latest/kong-enterprise/secrets-management/backends/) to find the required configuration values for your particular vault type.
 `vaults.description` | An optional description for your vault.
-`vaults.name` | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`.
+`vaults.name` | The type of vault. Accepts one of: `konnect`, `env`, `gcp`, `aws`, or `hcv`.
 `vaults.prefix` | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-env-vault/<some-secret>}`.
 
 {{site.base_gateway}} also supports HashiCorp Vault, GCP, and AWS as [vault backends](/gateway/latest/kong-enterprise/secrets-management/backends/).
@@ -119,13 +119,20 @@ vaults:
     - env-vault
 ```
 
-When updating the vault, `deck dump` the configuration with the `--select-tag` flag:
+When updating the vault, `dump` the configuration with the `--select-tag` flag:
 
+{% if_version lte:1.27.x %}
 ```sh
 deck dump --select-tag env-vault
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway dump -o kong.yaml --select-tag env-vault
+```
+{% endif_version %}
 
-Make your changes to the vault, then push it back up with `deck sync`.
+Make your changes to the vault, then push it back up with `sync`.
 You don't need to specify `--select-tag` in this case, as decK recognizes the
 tag in the declarative configuration file that you're syncing and updates
 those entities accordingly.

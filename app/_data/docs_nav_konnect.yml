@@ -32,8 +32,8 @@
       url: /getting-started/
     - text: Add your API
       url: /getting-started/add-api/
-    - text: Import Kong Gateway Entities into Konnect
-      url: /getting-started/import/
+    - text: Migrating a Self-Managed Kong Gateway into Konnect
+      url: /getting-started/migration/
 
 - title: Gateway Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
@@ -41,7 +41,23 @@
     - text: Overview
       url: /gateway-manager/
     - text: Dedicated Cloud Gateways
-      url: /gateway-manager/dedicated-cloud-gateways/
+      items: 
+      - text: Overview
+        url: /gateway-manager/dedicated-cloud-gateways/
+      - text: Provision a Dedicated Cloud Gateway
+        url: /gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
+      - text: Transit Gateways
+        url: /gateway-manager/dedicated-cloud-gateways/transit-gateways
+      - text: Azure VNET Peering
+        url: /gateway-manager/dedicated-cloud-gateways/azure-peering
+    - text: Serverless Gateways
+      items: 
+        - text: Overview
+          url: /gateway-manager/serverless-gateways/
+        - text: Provision a serverless Gateway
+          url: /gateway-manager/serverless-gateways/provision-serverless-gateway/
+        - text: Securing Backend Traffic
+          url: /gateway-manager/serverless-gateways/securing-backend-traffic/
     - text: Data Plane Nodes
       items:
         - text: Installation Options
@@ -58,10 +74,6 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
-        - text: Transit Gateways
-          url: /gateway-manager/data-plane-nodes/transit-gateways
-    - text: Provision a Dedicated Cloud Gateway
-      url: /gateway-manager/provision-cloud-gateway/
     - text: Control Plane Groups
       items:
         - text: Overview
@@ -93,6 +105,8 @@
           items:
             - text: Overview
               url: /gateway-manager/configuration/vaults/
+            - text: Konnect Config Store
+              url: /gateway-manager/configuration/config-store/
             - text: Set Up and Use a Vault in Konnect
               url: /gateway-manager/configuration/vaults/how-to/
         - text: Manage Control Plane Configuration with decK
@@ -106,6 +120,7 @@
     - text: Troubleshooting
       url: /gateway-manager/troubleshoot/
 
+
 - title: Mesh Manager
   icon: /assets/images/icons/konnect/icn-mesh-manager-nav.svg
   items:
@@ -113,14 +128,28 @@
       url: /mesh-manager/
     - text: Create a mesh with the Kubernetes demo app
       url: /mesh-manager/service-mesh/
+    - text: Federate a zone control plane to Konnect
+      url: /mesh-manager/federate-zone/
     - text: Migrate a self-managed zone control plane to Konnect
       url: /mesh-manager/migrate-zone/
 
-- title: Service Hub
+- title: Service Catalog
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
-      url: /servicehub/
+      url: /service-catalog/
+    - text: Integrations
+      items:
+        - text: Overview
+          url: /service-catalog/integrations/
+        - text: GitHub
+          url: /service-catalog/integrations/github/
+        - text: PagerDuty
+          url: /service-catalog/integrations/pagerduty/
+        - text: SwaggerHub
+          url: /service-catalog/integrations/swaggerhub/
+        - text: Traceable
+          url: /service-catalog/integrations/traceable/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
@@ -138,10 +167,14 @@
   items:
     - text: Overview
       url: /dev-portal/
+    - text: Dev Portal Configuration Preparation
+      url: /dev-portal/configuration-prep/
+    - text: Create a Dev Portal
+      url: /dev-portal/create-dev-portal/
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
-    - text: Productize a Service
-      url: /dev-portal/publish-service/ 
+    - text: Publish an API to Dev Portal
+      url: /dev-portal/publish-service/
     - text: Access and Approval
       items:
         - text: Manage Developer Access
@@ -150,24 +183,16 @@
           url: /dev-portal/access-and-approval/manage-teams/
         - text: Add Developer Teams from IdPs
           url: /dev-portal/access-and-approval/add-teams/
-        - text: Manage Application Registration Requests
-          url: /dev-portal/access-and-approval/manage-app-reg-requests/
         - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
-        - text: Auto Approve Dev and App Registrations
-          url: /dev-portal/access-and-approval/auto-approve-devs-apps/
-        - text: Azure OIDC
-          url: /dev-portal/access-and-approval/azure/
+        - text: Configure SSO for Dev Portal
+          url: /dev-portal/access-and-approval/sso/
     - text: Application Lifecycle
-      items:
-        - text: Overview
-          url: /dev-portal/applications/application-overview/
-        - text: Enable and Disable App Registration for API Product Versions
-          url: /dev-portal/applications/enable-app-reg/
-        - text: Create, Edit, and Delete an Application
-          url: /dev-portal/applications/dev-apps/
-        - text: Generate Credentials for an Application
-          url: /dev-portal/applications/dev-gen-creds/
+      url: /dev-portal/applications/application-overview/
+    - text: Register and create an application as a developer
+      url: /dev-portal/register-and-create-app/
+    - text: Enable and Disable App Registration for API Product Versions
+      url: /dev-portal/applications/enable-app-reg/
     - text: Dynamic Client Registration
       items:
         - text: Overview
@@ -182,9 +207,17 @@
           url: /dev-portal/applications/dynamic-client-registration/azure/
         - text: Custom IdP
           url: /dev-portal/applications/dynamic-client-registration/custom/
-          
+
     - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
+    - text: Audit Logging
+      items:
+        - text: Overview
+          url: /dev-portal/audit-logging/
+        - text: Set up an Audit Log Webhook
+          url: /dev-portal/audit-logging/webhook/
+        - text: Set up an Audit Log Replay Job
+          url: /dev-portal/audit-logging/replay-job/
     - text: Portal Customization
       items:
         - text: Overview
@@ -199,10 +232,10 @@
     - text: Troubleshoot
       url: /dev-portal/troubleshoot/
 
-- title: Analytics
+- title: Advanced Analytics
   icon: /assets/images/icons/konnect/icn-analytics-nav.svg
   items:
-    - text: Introduction to Analytics
+    - text: Overview
       url: /analytics/
     - text: Dashboard
       url: /analytics/dashboard/
@@ -212,8 +245,6 @@
       url: /analytics/use-cases/
     - text: Requests
       url: /analytics/api-requests/
-    - text: Troubleshooting
-      url: /analytics/troubleshoot
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
@@ -241,9 +272,9 @@
           url: /org-management/social-identity-login/
         - text: Org Switcher
           url: /org-management/org-switcher/
-        - text: Set up SSO with OIDC
-          url: /org-management/oidc-idp/
-        - text: Set up SSO with Okta
+        - text: Configure Generic SSO
+          url: /org-management/sso/
+        - text: Configure Okta
           url: /org-management/okta-idp/
         - text: Login Sessions Reference
           url: /org-management/sessions-reference/
@@ -257,10 +288,6 @@
           url: /org-management/audit-logging/webhook/
         - text: Set up an Audit Log Replay Job
           url: /org-management/audit-logging/replay-job/
-        - text: Verify Audit Log Signatures
-          url: /org-management/audit-logging/verify-signatures/
-        - text: Log Reference
-          url: /org-management/audit-logging/reference/
     - text: Account and Org Deactivation
       url: /org-management/deactivation/
 
@@ -307,7 +334,7 @@
           generate: false
           target_blank: true
     - text: Cloud Gateways API
-      items: 
+      items:
         - text: API Spec
           url: /konnect/api/cloud-gateways/latest/
           absolute_url: true
@@ -394,3 +421,9 @@
       url: /reference/custom-dns/
     - text: Konnect Search
       url: /reference/search/
+    - text: Terraform Provider
+      url: /reference/terraform/
+    - text: Audit Logs
+      url: /reference/audit-logs/
+    - text: Verify audit log signatures
+      url: /reference/verify-signatures/

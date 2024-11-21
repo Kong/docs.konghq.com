@@ -121,8 +121,9 @@ services:
 - name: admin-api
   url: http://127.0.0.1:8001
   routes:
-    - paths:
-      - /admin-api
+  - name: admin-api
+    paths:
+    - /admin-api
   plugins:
   - name: key-auth
 

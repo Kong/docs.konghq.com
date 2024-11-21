@@ -1,0 +1,57 @@
+# This file sets metadata for an individual Kong plugin.
+# View the full instructions for documenting a plugin
+# at https://docs.konghq.com/contributing/kong-plugins
+
+name: # (Required) The name of your plugin.
+  # Use capitals and spaces as needed.
+
+publisher: Kong Inc.
+
+type: plugin
+
+categories: # (Required) Uncomment ONE that applies.
+  #- ai
+  #- authentication
+  #- security
+  #- traffic-control
+  #- serverless
+  #- analytics-monitoring
+  #- transformations
+  #- logging
+  #- deployment
+# Array format only; if your plugin applies to multiple categories,
+# uncomment the most applicable category.
+
+desc: # (Required) Short, one sentence description; max 80 characters.
+
+free: # true OR false
+  # (Required) Set true if your plugin is open-source and available in the 
+  # free version of Kong Gateway. Set false if not.
+
+enterprise: # true OR false
+  # (Required) Set true if the plugin is *only* available with a 
+  # Kong Gateway Enterprise subscription.
+  # Set false if your plugin is open-source and works with open-source Kong Gateway.
+
+konnect: # true OR false
+   # (Required) Set true if compatible with Konnect. Set false if not.
+
+network_config_opts: # 
+  # (Required) A list (in string format) of all of the supported deployment topologies. 
+  # Can be "All", or any combination of Hybrid mode, DB-less mode, and Traditional.
+
+# notes:
+   # (Optional) Free-text explanation explaining any limitations for deployment topologies.
+   # For example, if the plugin is not supported in hybrid mode, explain it here.
+
+dbless_compatible:
+  # (Required) Degree of compatibility with Kong Gateway's DB-less mode. 
+  # One of the following values allowed: 'yes', 'no' or 'partially'.
+
+# dbless_explanation: 
+  # (Optional) Free-text explanation containing details about the degree of
+  # compatibility with DB-less mode.
+
+# examples_description: |
+  # (Optional) Any extra description (notes, warnings, etc.) necessary to preface the basic 
+  # examples (for example, https://docs.konghq.com/hub/kong-inc/acl/how-to/basic-example/).

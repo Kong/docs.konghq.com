@@ -1,0 +1,49 @@
+name: Upload Docs for translation
+on:
+  workflow_dispatch:
+    inputs:
+      product:
+        type: string
+        description: |
+          Kong product to translate.
+          If specified, only files related to that speciific product will be translated.
+          Otherwise, the config file in tools/smartling-integration/config.yml will be used.
+      versions:
+        type: string
+        description: |
+          This param only makes sense if the `product` is provided.
+          Comma-separated list of versions for a specific product to translate.
+          If not provided, the config file in tools/smartling-integration/config.yml will be used.
+      locale:
+        type: string
+        default: 'ja-JP'
+        description: "Target locale, it must match the same format that the Job has, e.g. `ja-JP`."
+      jobId:
+        type: string
+        description: "Smarting's JobUId in case we want to re-upload some files to an existing Job"
+
+jobs:
+  upload-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: |
+          cd tools/smartling-integration
+          npm ci
+      - name: Run upload tool
+        run: |
+          node tools/smartling-integration/upload_docs.js
+        env:
+          PROJECT_ID: ${{ secrets.SMARTLING_PROJECT_ID }}
+          USER_IDENTIFIER: ${{ secrets.SMARTLING_USER_IDENTIFIER }}
+          USER_SECRET: ${{ secrets.SMARTLING_USER_SECRET }}
+          JOB_ID: ${{ github.event.inputs.jobId }}
+          LOCALE: ${{ github.event.inputs.locale }}
+          PRODUCT: ${{ github.event.inputs.product }}
+          VERSIONS: ${{ github.event.inputs.versions }}

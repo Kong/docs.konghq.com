@@ -49,7 +49,7 @@ the Admin API.
 ```sh
 curl -i -X POST http://localhost:8001/services \
   --data name=example_service \
-  --data url='http://httpbin.org'
+  --data url='https://httpbin.konghq.com'
 ```
 
 If the service is created successfully, you'll get a 201 success message.
@@ -88,11 +88,11 @@ curl -i -X GET http://localhost:8000/mock/anything
 
 In this section, you:
 
-* Added a Service named `example_service` with a URL of `http://httpbin.org`.
+* Added a Service named `example_service` with a URL of `https://httpbin.konghq.com`.
 * Added a Route named `/mock`.
 * This means if an HTTP request is sent to the {{site.base_gateway}} node on
 port `8000`(the proxy port) and it matches route `/mock`, then that request is
-sent to `http://httpbin.org`.
+sent to `https://httpbin.konghq.com`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 

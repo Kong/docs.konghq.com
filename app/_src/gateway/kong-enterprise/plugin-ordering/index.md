@@ -59,9 +59,13 @@ PluginA:
 
 ### Consumer scoping
 
-Consumer-scoped plugins don't support dynamic ordering because consumer mapping
-also runs in the access phase. The order of the plugins must be determined
-after consumer mapping has happened. {{site.base_gateway}} can't reliably
+Dynamic plugin ordering cannot coexist with consumer-scoped plugins, 
+even if they are applied to entirely different service and route pairs or are running globally.
+If you have consumer-scoped plugins anywhere in your workspace, you can't use
+dynamic plugin ordering.
+
+Consumer mapping and dynamic plugin ordering both run in the access phase, but the order of the 
+plugins must be determined after consumer mapping has happened. {{site.base_gateway}} can't reliably
 change the order of the plugins in relation to consumer mapping.
 
 ### Cascading deletes & updates

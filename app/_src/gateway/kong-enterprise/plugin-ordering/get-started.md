@@ -76,7 +76,7 @@ ordering:
     ``` yaml
     _format_version: "3.0"
     services:
-    - host: httpbin.org
+    - host: httpbin.konghq.com
       name: example_service
       port: 80
       protocol: http
@@ -111,7 +111,7 @@ ordering:
 2. Sync the configuration:
 
     ``` bash
-    deck sync
+    deck gateway sync kong.yaml
     ```
 
 {% endnavtab %}
@@ -203,7 +203,7 @@ ordering:
     ``` yaml
     _format_version: "3.0"
     services:
-    - host: httpbin.org
+    - host: httpbin.konghq.com
       name: example_service
       port: 80
       protocol: http
@@ -227,8 +227,8 @@ ordering:
 
 2. Sync the configuration:
 
-    ``` bash
-    deck sync
+    ```bash
+    deck gateway sync kong.yaml
     ```
 
 {% endnavtab %}

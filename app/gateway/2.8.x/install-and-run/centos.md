@@ -35,13 +35,13 @@ Install {{site.base_gateway}} on CentOS from the command line.
 1. Download the Kong package:
 
     ```bash
-    curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/%{centos_ver}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el%{centos_ver}.noarch.rpm)
+    curl -Lo kong-enterprise-edition-2.8.4.11.rpm $(rpm --eval {{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/%{centos_ver}/x86_64/kong-enterprise-edition-2.8.4.11.el%{centos_ver}.noarch.rpm)
     ```
 
 2. Install the package:
 
     ```bash
-    sudo yum install -y kong-enterprise-edition-{{page.versions.ee}}.rpm
+    sudo yum install -y kong-enterprise-edition-2.8.4.11.rpm
     ```
 
 {% endnavtab %}
@@ -58,7 +58,7 @@ Install the YUM repository from the command line.
 2. Install Kong:
 
     ```bash
-    sudo yum install -y kong-enterprise-edition-{{page.versions.ee}}
+    sudo yum install -y kong-enterprise-edition-2.8.4.11
     ```
 
 {% endnavtab %}

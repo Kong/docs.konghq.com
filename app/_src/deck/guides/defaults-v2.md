@@ -37,7 +37,7 @@ retrieve the latest object schemas for your instance of the {{site.base_gateway}
 
 Configuring your own defaults is a good way to keep updated on potential
 breaking changes between versions. If you upgrade {{site.base_gateway}} to a
-version which introduces a new property with a default value, a `deck diff`
+version which introduces a new property with a default value, a `diff`
 will catch the difference.
 
 If defaults are not set in the declarative configuration file, any newly
@@ -55,14 +55,12 @@ want to use, skip to [setting defaults](#set-defaults).
 
 ### Create a file and test without defaults
 
-1. Create a `kong.yaml` configuration file.
-
-2. Add the following sample service and route to the file:
+1. Create a `kong.yaml` configuration file with the following sample contents:
 
     ```yaml
     _format_version: "3.0"
     services:
-      - host: httpbin.org
+      - host: httpbin.konghq.com
         name: example_service
         routes:
           - name: mockpath
@@ -74,9 +72,16 @@ want to use, skip to [setting defaults](#set-defaults).
 {% capture deck_diff1 %}
 {% navtabs codeblock %}
 {% navtab Command %}
+{% if_version lte:1.27.x %}
 ```sh
 deck diff
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Response %}
 ```sh
@@ -97,24 +102,38 @@ Summary:
 
 4. Sync your changes with {{site.base_gateway}}:
 
+    {% if_version lte:1.27.x %}
     ```sh
     deck sync
     ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway sync kong.yaml
+    ```
+    {% endif_version %}
 
 5. Now, run another diff and note the difference in the response:
 
 {% capture deck_diff2 %}
 {% navtabs codeblock %}
 {% navtab Command %}
+{% if_version lte:1.27.x %}
 ```sh
 deck diff
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Response %}
 ```sh
 updating service example_service  {
    "connect_timeout": 60000,
-   "host": "httpbin.org",
+   "host": "httpbin.konghq.com",
    "id": "1c088e59-b5fb-4c14-8d3a-401c02fc50b7",
    "name": "example_service",
    "port": 80,
@@ -169,7 +188,7 @@ Summary:
     _info:
       defaults:
     services:
-      - host: httpbin.org
+      - host: httpbin.konghq.com
         name: example_service
         routes:
           - name: mockpath
@@ -213,7 +232,7 @@ Summary:
           read_timeout: 60000
           retries: 5
     services:
-      - host: httpbin.org
+      - host: httpbin.konghq.com
         name: example_service
         routes:
           - name: mockpath
@@ -226,9 +245,16 @@ Summary:
 {% capture deck_diff3 %}
 {% navtabs codeblock %}
 {% navtab Command %}
+{% if_version lte:1.27.x %}
 ```sh
 deck diff
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Response %}
 ```sh

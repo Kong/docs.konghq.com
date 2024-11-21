@@ -18,7 +18,6 @@ RSpec.describe 'Plugin page with multiple versions' do
     it 'renders metadata in the header' do
       expect(html).to have_css('.page-header--info-icon')
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
-      expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
     end
   end
@@ -34,7 +33,6 @@ RSpec.describe 'Plugin page with multiple versions' do
     it 'renders metadata in the header' do
       expect(html).to have_css('.page-header--info-icon')
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
-      expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
     end
 
@@ -54,10 +52,8 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(nested_how_tos).to have_css('.sidebar-item', text: 'Nested Tutorial Nav title with Min and Max')
     end
 
-    context 'plugins that are `paid` or `premium`' do
-      it 'renders a banner for using the plugins in Konnect' do
-        expect(html).to have_css('blockquote', text: 'Did you know that you can try this plugin without talking to anyone')
-      end
+    it 'renders a Konnect CTA button' do
+      expect(html).to have_css('.sidebar-button', text: 'Try it in Konnect')
     end
   end
 end

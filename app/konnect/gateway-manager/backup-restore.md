@@ -6,7 +6,7 @@ content_type: how-to
 Use [decK](/deck/latest/installation/) to back up and restore 
 {{site.konnect_short_name}}'s control plane configuration. 
 
-With `deck dump`, decK generates state files for each control plane, which act 
+With `deck gateway dump`, decK generates state files for each control plane, which act 
 as snapshots of the control plane's configuration at that point in time.
 If a control plane's configuration is ever corrupted, you can then use these snapshots to 
 restore your control plane, or bring up another control plane with the same configuration.
@@ -21,10 +21,10 @@ There is currently no automated way to back up Dev Portal content.
 
 ## Back up a {{site.konnect_short_name}} control plane
 
-Use `deck dump` to back up your configuration:
+Use `deck gateway dump` to back up your configuration:
 
 ```sh
-deck dump \
+deck gateway dump \
 --konnect-token <your-PAT> \
 --konnect-control-plane-name <example-name> \
 --output-file /path/to/<my-backup.yaml>
@@ -45,7 +45,7 @@ consumers:
 - username: example-user2
 services:
 - connect_timeout: 60000
-    host: httpbin.org
+    host: httpbin.konghq.com
     name: MyService
     tags:
     - _KonnectService:example_service
@@ -63,20 +63,18 @@ Run a diff between your backup file and the control plane in {{site.konnect_shor
 make sure you're applying the configuration you want:
 
 ```sh
-deck diff \
+deck gateway diff /path/to/<my-backup.yaml> \
 --konnect-token <your-PAT> \
 --konnect-control-plane-name <example-name> \
---output-file /path/to/<my-backup.yaml>
 ```
 
-If you're satisfied with the diff result, run `deck sync` to sync your configuration to 
+If you're satisfied with the diff result, run `deck gateway sync` to sync your configuration to 
 a control plane:
 
 ```sh
-deck sync \
+deck gateway sync /path/to/<my-backup.yaml> \
 --konnect-token <your-PAT> \
 --konnect-control-plane-name <example-name> \
---output-file /path/to/<my-backup.yaml>
 ```
 
 Check your control plane in {{site.konnect_short_name}} to make sure the sync worked. 

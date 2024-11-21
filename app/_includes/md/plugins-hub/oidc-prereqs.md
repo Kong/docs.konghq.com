@@ -78,7 +78,7 @@ and that can be a problem if both are started on the same host.
     ```bash
     curl -i -X POST http://localhost:8001/services \
       --data "name=openid-connect" \
-      --data "url=http://httpbin.org/anything"
+      --data "url=https://httpbin.konghq.com/anything"
     ```
     
 1. Create a route:

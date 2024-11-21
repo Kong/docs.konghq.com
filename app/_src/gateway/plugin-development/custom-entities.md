@@ -60,7 +60,7 @@ containing the initial migrations. We'll see how this is done in a minute.
 Sometimes it is necessary to introduce changes after a version of a plugin has already been
 released. A new functionality might be needed. A database table row might need changing.
 
-When this happens, *you must* create a new migrations file. You *must not* of modify the
+When this happens, *you must* create a new migrations file. You *must not* modify the
 existing migration files once they are published (you can still make them more robust and
 bulletproof if you want, e.g. always try to write the migrations reentrant).
 
@@ -91,7 +91,7 @@ A migration file is a Lua file which returns a table with the following structur
 ``` lua
 -- `<plugin_name>/migrations/000_base_my_plugin.lua`
 return {
-  postgresql = {
+  postgres = {
     up = [[
       CREATE TABLE IF NOT EXISTS "my_plugin_table" (
         "id"           UUID                         PRIMARY KEY,
@@ -112,7 +112,7 @@ return {
 
 -- `<plugin_name>/migrations/001_100_to_110.lua`
 return {
-  postgresql = {
+  postgres = {
     up = [[
       DO $$
       BEGIN
@@ -180,7 +180,7 @@ A migration file is a Lua file which returns a table with the following structur
 ``` lua
 -- `<plugin_name>/migrations/000_base_my_plugin.lua`
 return {
-  postgresql = {
+  postgres = {
     up = [[
       CREATE TABLE IF NOT EXISTS "my_plugin_table" (
         "id"           UUID                         PRIMARY KEY,
@@ -213,7 +213,7 @@ return {
 
 -- `<plugin_name>/migrations/001_100_to_110.lua`
 return {
-  postgresql = {
+  postgres = {
     up = [[
       DO $$
       BEGIN

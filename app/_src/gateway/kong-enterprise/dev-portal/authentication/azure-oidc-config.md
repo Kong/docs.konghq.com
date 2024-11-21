@@ -26,7 +26,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 ```bash
 curl -i -X PUT http://localhost:8001/services/httpbin-service-azure \
-  --data 'url=https://httpbin.org/anything'
+  --data 'url=https://httpbin.konghq.com/anything'
 ```
 
 ## Create a route in Kong

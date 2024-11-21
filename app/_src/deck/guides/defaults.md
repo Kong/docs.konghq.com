@@ -11,11 +11,11 @@ check the latest object schemas for your instance of the {{site.base_gateway}}.
 
 decK recognizes value defaults and doesn't interpret them as changes to
 configuration. If you push a config for an object to {{site.base_gateway}} with
-`deck sync`, {{site.base_gateway}} applies its default values to the object,
+`sync`, {{site.base_gateway}} applies its default values to the object,
 but a further `diff` or `sync` does not show any changes.
 
 If you upgrade {{site.base_gateway}} to a version that introduces a new
-property with a default value, a `deck diff` will catch the difference.
+property with a default value, a `diff` will catch the difference.
 
 You can also configure your own [custom defaults](#set-custom-defaults) to
 enforce a set of standard values and avoid repetition in your configuration.
@@ -38,14 +38,13 @@ Create a sample `kong.yaml` file with a service, route, and plugin, push it to
 {{site.base_gateway}}, and then pull {{site.base_gateway}}'s configuration down
 again to see how decK interprets default values.
 
-1. Create a `kong.yaml` configuration file.
-
-1. Add the following sample service, route, and plugin to the file:
+1. Create a `kong.yaml` configuration file with the following 
+sample service, route, and plugin:
 
    ```yaml
    _format_version: "3.0"
    services:
-     - host: httpbin.org
+     - host: httpbin.konghq.com
        name: example_service
        routes:
          - name: mockpath
@@ -61,9 +60,16 @@ again to see how decK interprets default values.
 {% capture deck_diff1 %}
 {% navtabs codeblock %}
 {% navtab Command %}
+{% if_version lte:1.27.x %}
 ```sh
 deck diff
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Response %}
 ```sh
@@ -86,18 +92,32 @@ Summary:
 
 1. Sync your changes with {{site.base_gateway}}:
 
-   ```sh
-   deck sync
-   ```
+    {% if_version lte:1.27.x %}
+    ```sh
+    deck sync
+    ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway sync kong.yaml
+    ```
+    {% endif_version %}
 
 1. Now, run another diff and note the response:
 
 {% capture deck_diff2 %}
 {% navtabs codeblock %}
 {% navtab Command %}
+{% if_version lte:1.27.x %}
 ```sh
 deck diff
 ```
+{% endif_version %}
+{% if_version gte:1.28.x %}
+```sh
+deck gateway diff kong.yaml
+```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Response %}
 ```sh
@@ -119,11 +139,19 @@ Summary:
 {{site.base_gateway}}'s object configuration into a file. If you want to avoid
 overwriting your current state file, specify a different filename:
 
+  {% if_version lte:1.27.x %}
    ```sh
    deck dump -o kong-test.yaml
    ```
+  {% endif_version %}
+  {% if_version gte:1.28.x %}
+   ```sh
+   deck gateway dump -o kong-test.yaml
+   ```
+  {% endif_version %}
 
-    Even though `deck diff` didn't show any changes, the result now has
+
+    Even though `diff` didn't show any changes, the result now has
     default values populated for the service, route, and Basic Auth plugin:
 
    ```yaml
@@ -141,7 +169,7 @@ overwriting your current state file, specify a different filename:
      - https
    services:
    - connect_timeout: 60000
-     host: httpbin.org
+     host: httpbin.konghq.com
      name: example_service
      port: 80
      protocol: http
@@ -200,7 +228,7 @@ configuration would overwrite the value in your environment.
    _info:
      defaults:
    services:
-     - host: httpbin.org
+     - host: httpbin.konghq.com
        name: example_service
        routes:
          - name: mockpath
@@ -231,7 +259,7 @@ configuration would overwrite the value in your environment.
          protocol: https
          retries: 10
    services:
-     - host: httpbin.org
+     - host: httpbin.konghq.com
        name: example_service
        routes:
          - name: mockpath
@@ -264,7 +292,7 @@ configuration would overwrite the value in your environment.
          read_timeout: 60000
          retries: 10
    services:
-     - host: httpbin.org
+     - host: httpbin.konghq.com
        name: example_service
        routes:
          - name: mockpath
@@ -274,9 +302,16 @@ configuration would overwrite the value in your environment.
 
 1. Sync your changes with {{site.base_gateway}}:
 
-   ```sh
-   deck sync
-   ```
+    {% if_version lte:1.27.x %}
+    ```sh
+    deck sync
+    ```
+    {% endif_version %}
+    {% if_version gte:1.28.x %}
+    ```sh
+    deck gateway sync kong.yaml
+    ```
+    {% endif_version %}
 
 1.  Run a diff and note the response:
 

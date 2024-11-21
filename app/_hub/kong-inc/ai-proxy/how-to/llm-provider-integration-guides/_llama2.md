@@ -89,7 +89,7 @@ curl -X POST http://localhost:8001/routes/llama2-chat/plugins \
   --data "config.model.provider=llama2" \
   --data "config.model.name=llama2" \
   --data "config.model.options.llama2_format=ollama" \
-  --data "config.model.options.upstream_url=http://ollama-server.local:11434/api/chat" \ 
+  --data "config.model.options.upstream_url=http://ollama-server.local:11434/api/chat"
 ```
 
 {% endnavtab %}
@@ -107,8 +107,9 @@ plugins:
       model:
         provider: "llama2"
         name: "llama2"
-        llama2_format: "ollama"
-        upstream_url: "http://llama2-server.local:11434/api/chat"
+        options:
+          llama2_format: "ollama"
+          upstream_url: "http://llama2-server.local:11434/api/chat"
 ```
 {% endnavtab %}
 {% endnavtabs %}

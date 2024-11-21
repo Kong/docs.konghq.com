@@ -2,6 +2,7 @@
 title: Get started with Red Hat OpenShift and Kong Mesh
 content_type: tutorial
 description: This guide explains how to get started on Kong Mesh with Red Hat OpenShift.
+badge: enterprise
 ---
 
 In this guide, you will learn how to get {{site.mesh_product_name}} up and running quickly in [standalone mode](/mesh/{{page.release}}/production/deployment/stand-alone/) on [Red Hat OpenShift](https://www.redhat.com/technologies/cloud-computing/openshift). This tutorial assumes some base-level OpenShift knowledge.

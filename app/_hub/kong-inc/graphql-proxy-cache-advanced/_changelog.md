@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.8.x
+* Added the Redis `cluster_max_redirections` configuration option.
+
 ### {{site.base_gateway}} 3.7.x
 
 * Added Redis strategy support.

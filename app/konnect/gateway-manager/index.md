@@ -19,7 +19,7 @@ _default control plane, a KIC control plane, and control planes for development 
 With {{site.konnect_short_name}} hosting the control plane, a data plane node
 doesn't need a database to store configuration data. Instead, configuration
 is stored in-memory on each node, and you can easily update all data plane nodes
-in a control plane with a few clicks. This model applies whether the nodes are managed on-premise, in cloud-hosted environments, or through our fully managed SaaS offering with [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways).
+in a control plane with a few clicks. This model applies whether the nodes are managed on-premise, in cloud-hosted environments, or through our fully managed SaaS offering with [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways) or [Serverless Gateways](/konnect/gateway-manager/serverless-gateways).
 
 The Gateway Manager, and the {{site.konnect_saas}} application as
 a whole, does not have access or visibility into the data flowing through your
@@ -57,8 +57,6 @@ entity-specific permissions. For more information, see [Administer teams](/konne
 ### {{site.base_gateway}} control planes
 
 Every region in every organization starts with one default control plane.
-This control plane can't be deleted, and its status as the default can't be changed.
-
 With {{site.konnect_short_name}} you can configure additional {{site.base_gateway}}
 control planes, each of which will have isolated configuration.
 Use multiple control planes in one {{site.konnect_short_name}} organization to
@@ -170,26 +168,29 @@ terminated, but they will be orphaned. They will continue processing traffic
 using the last configuration they received until they are either connected to
 a new control plane or manually shut down.
 
-You cannot delete the default control plane.
-
 ## Data plane nodes
 
 A data plane node is a single {{site.base_gateway}} instance. 
 Data plane nodes service traffic for the control plane. 
 
 You can deploy your data plane nodes in the following ways:
-* **Fully-managed**: Dedicated Cloud Gateways data plane nodes are completely managed by Kong in the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you. You can use the Dedicated Cloud Gateways wizard in Gateway Manager to provision a {{site.base_gateway}} data plane node in a cloud provider.
+* **Fully-managed**: 
+    * Dedicated Cloud Gateways data plane nodes are completely managed by Kong in the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you. You can use the Dedicated Cloud Gateways wizard in Gateway Manager to provision a {{site.base_gateway}} data plane node in a cloud provider. 
+
+    * Serverless Gateways data plane nodes are also completely managed by Kong but all the infrastructure options are abstracted from the user. It is not possible to configure the placement, size, or number of data plane nodes.
+
 * **Self-managed**: The data plane nodes are hosted either on your own systems or in  an external cloud provider. You can use the script in Gateway Manager to provision a {{site.base_gateway}} data plane node in a Docker container running Linux, on MacOS, or on Windows. 
 
 The following table can help you decide which data plane node strategy to use based on your use case:
 
 | Use case | Data plane node strategy |Solution |
 | ------- | ----------- | ----------- |
-| Reducing latency is important to your organization.  | [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | Supports multiple AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. |
+| Reducing latency is important to your organization.  | [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | Supports multiple regions on AWS and Azure: <br><br>- AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. <br>- Azure regions: Frankfurt, Ireland, UK South, Virginia, Washington |
 | Your organization operates in an industry with strict data protection and privacy requirements. |  [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | Using the private gateway option, Kong provisions a private network load balancer and only exposes the IP address in the UI. |
 | Your organization needs high availability with zero downtime when upgrading data plane nodes. | [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | There's no downtime when upgrading your data plane nodes. Additionally, you can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up. |
 | You have infrastructure in multiple clouds. | [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/) | Dedicated Cloud Gateways allows you to run a multi-cloud solution that allows you to standardize API operations across the board to reduce complexity and increase agility. |
-| You use a cloud provider (other than AWS) for hosting, or don't want to host in the cloud because of organizational policy. | [Self-managed](/konnect/gateway-manager/data-plane-nodes/) | You can self-manage your data plane nodes in AWS, Azure, and Google Cloud. Or, you can deploy self-managed data plane nodes in macOS, Windows, Linux (Docker), or Kubernetes. |
+| You need _very_ rapid provisioning for experimentation and sandbox use cases.  | [Serverless Gateways](/konnect/gateway-manager/serverless-gateways/) | Serverless Gateways offer sub-minute provisioning times and enable rapid iteration and development lifecycles. |
+| You use a cloud provider (other than AWS or Azure) for hosting, or don't want to host in the cloud because of organizational policy. | [Self-managed](/konnect/gateway-manager/data-plane-nodes/) | You can self-manage your data plane nodes in AWS, Azure, and Google Cloud. Or, you can deploy self-managed data plane nodes in macOS, Windows, Linux (Docker), or Kubernetes. |
 
 See the [data plane node installation options](/konnect/gateway-manager/data-plane-nodes/) for more information.
 

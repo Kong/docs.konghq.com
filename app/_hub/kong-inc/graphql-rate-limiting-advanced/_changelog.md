@@ -1,9 +1,12 @@
 ## Changelog
 
-**{{site.base_gateway}} 3.4.x**
+### {{site.base_gateway}} 3.8.x
+* Added the Redis `cluster_max_redirections` configuration option.
+
+### {{site.base_gateway}} 3.4.x
 * The `host` field of this plugin now accepts Kong upstream targets.
 
-**{{site.base_gateway}} 2.8.x**
+### {{site.base_gateway}} 2.8.x
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.
 
@@ -16,11 +19,11 @@ in a vault. References must follow a [specific format](/gateway/latest/kong-ente
 were labelled as `1.3-x` and `2.3.x`. They are now updated to align with the
 plugin's actual versions, `0.1.x` and `0.2.x`.
 
-**{{site.base_gateway}} 2.5.x**
+### {{site.base_gateway}} 2.5.x
 
 * Added the `redis.keepalive_pool`, `redis.keepalive_pool_size`, and `redis.keepalive_backlog` configuration parameters.
  These options relate to [Openresty’s Lua INGINX module’s](https://github.com/openresty/lua-nginx-module/#tcpsockconnect) `tcp:connect` options.
 
-**{{site.base_gateway}} 2.2.x**
+### {{site.base_gateway}} 2.2.x
 
 * Added Redis TLS support with the `redis.ssl`, `redis.ssl_verify`, and `redis.server_name` configuration parameters.

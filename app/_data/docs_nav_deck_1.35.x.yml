@@ -49,6 +49,7 @@ items:
         url: /guides/konnect/
       - text: Run decK with Docker
         url: /guides/run-with-docker/
+        src: /deck/guides/run-with-docker-1.28
       - text: Using Multiple Files to Store Configuration
         url: /guides/multi-file-state/
       - text: De-duplicate Plugin Configuration

@@ -72,7 +72,4 @@ decK is written in Go because:
 - Go's compiler spits out a static compiled binary, meaning no other dependency
   need to be installed on the system. This gives a very good end-user experience
   as installing, downloading, and copying a single binary is easy and fast.
-- decK's original goal was much larger than what it is today. If we decide to
-  pursue larger goals (think a control-plane for Kong) in future,
-  Go is probably the best language available to write that type of software.
 - The original author was familiar with Go :)

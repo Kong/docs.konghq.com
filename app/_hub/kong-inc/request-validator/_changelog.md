@@ -1,5 +1,13 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.8.x
+* Fixed an issue where the plugin could fail to handle requests when `param_schema` was `$ref schema`.
+* Added a new configuration field `content_type_parameter_validation` to determine whether to enable Content-Type parameter validation.
+
+### {{site.base_gateway}} 3.7.x
+#### 3.7.1.0
+* Added the new configuration field `content_type_parameter_validation` to determine whether to enable Content-Type parameter validation.
+
 ### {{site.base_gateway}} 3.6.x
 * The plugin now validates the request body schema when `json` is the suffix value in the request content type's subtype (for example, `application/merge-patch+json`).
 
