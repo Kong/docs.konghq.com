@@ -3,35 +3,57 @@ nav_title: Overview
 title: Overview
 ---
 
-<!-- 
-Introduce your plugin with a long description. What does it do, and why would someone want to use it? 
+You can rate limit services using the Service Protection plugin. 
 
-If this is an Enterprise version of an open-source plugin, explain what benefits the 
-plugin adds over the free version.
+If you want to apply global rate limits or apply rate limits to routes and consumers, see the following other rate limiting plugins:
+* [Rate Limiting plugin](/hub/kong-inc/rate-limiting/): Rate limit services, consumers, and routes or apply global rate limits.
+* [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/): Rate limit services, consumers, and routes or apply global rate limits. The Rate Limiting Advanced plugin extends the functionality of the Rate Limiting plugin by providing advanced tuning settings and the ability to apply multiple limits in sliding or fixed windows.
+* [AI Rate Limiting Advanced plugin](/hub/kong-inc/ai-rate-limiting-advanced/): Apply rate limits to traffic from LLMs.
 
-For example: 
+<details><summary>Does the Service Protection plugin replace the Rate Limiting or Rate Limiting Advanced plugins?</summary>
 
-    Use the Mocking plugin to provide mock endpoints to test your APIs in development against your services.
-    The plugin leverages standards based on the Open API Specification (OAS)
-    for sending out mock responses to APIs. Mocking supports both Swagger 2.0 and OpenAPI 3.0.
+{% capture rl_plugins_replace %}
+No. The Service Protection plugin only rate limits services. You can still use the Rate Limiting and Rate Limiting Advanced plugins to rate limit other entities, like consumers and routes. 
+{% endcapture %}
 
-    Benefits of service mocking with the Kong Mocking plugin:
+{{ rl_plugins_replace | markdownify }}
 
-    - Conforms to a design-first approach since mock responses are within OAS.
-    - Accelerates development of services and APIs.
--->
+</details>
+
+<details><summary>Can I use the Service Protection plugin with other rate limiting plugins?</summary>
+
+{% capture rl_plugins_compatibility %} 
+Yes. You can rate limit a service with the Service Protection plugin and rate limit a different service or a consumer with the other rate limiting plugins.
+{% endcapture %}
+
+{{ rl_plugins_compatibility | markdownify }}
+
+</details>
+
+<details><summary>When would I use the Service Protection plugin with other rate limiting plugins?</summary>
+
+{% capture rl_plugins_use_cases %}
+You could use the Rate Limiting Advanced plugin to apply global rate limits and then use the Service Protection plugin to apply rate limits to a specific service. Because the Service Protection plugin executes before the Rate Limiting Advanced plugin because of [plugin priority order](), you can apply more granual rate limits to the specific service than you do globally.
+{% endcapture %}
+
+{{ rl_plugins_use_cases | markdownify }}
+
+</details>
 
 ## How it works
 
-<!-- Describe how your plugin works. For example, if it transforms requests, how does it do that? -->
+The following diagram shows how the Service Protection plugin rate limits services:
 
-## FAQ
+{% mermaid %}
+sequenceDiagram
+    actor Consumer
+    participant Service Protection plugin
+    participant Services
+    Consumer->>Service Protection plugin: Sends a request
+    Service Protection plugin->>Services: API
+{% endmermaid %}
 
-does this replace rl and rla
-
-can i use this with other rl plugins
-
-when would i use this with other rl plugins
+The Service Protection plugin uses the same [Rate Limiting Library](https://docs.konghq.com/gateway/latest/reference/rate-limiting/) as the other rate limiting plugins.
 
 ## More information
 
