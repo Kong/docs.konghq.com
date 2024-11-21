@@ -58,7 +58,7 @@ kubectl set env -n kong deployment/kong-controller CONTROLLER_FEATURE_GATES="Fil
 * Until a feature becomes GA, there are no guarantees that will continue being available. For more information, see the [changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md).
 
 {:.important}
->**Important:** To avoid disruption to your services consider not using features until they have reached GA status.
+>**Important:** To avoid disrupting your services, consider not using features until they have reached GA status.
 
 [k8s]:https://kubernetes.io
 [gates]:https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/
@@ -76,6 +76,6 @@ This means {{site.kic_product_name}} will obfuscate all sensitive information th
 private keys in `Certificate` entities and `Consumer` entities' credentials.
 
 {:.important}
-> **Warning:** `KongPlugin`'s and `KongClusterPlugin`'s `config` field is not sanitized. If you have sensitive information
+> **Warning:** `KongPlugin`'s and `KongClusterPlugin`'s `config` fields are not sanitized. If you have sensitive information
 > in your `KongPlugin`'s `config` field, it will be sent to Konnect as is. To avoid that, please consider using
 > [KongVault](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongvault).
