@@ -18,7 +18,7 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 * AU
 * EU
 * India (IN)
-* UAE
+* ME
 * US
 
 
