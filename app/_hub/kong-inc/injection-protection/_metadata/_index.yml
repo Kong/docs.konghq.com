@@ -2,7 +2,7 @@
 # View the full instructions for documenting a plugin
 # at https://docs.konghq.com/contributing/kong-plugins
 
-name: Regex Threat Protection
+name: Injection Protection
 
 publisher: Kong Inc.
 
