@@ -783,7 +783,7 @@ deck file kong2tf -s ./kong.yaml --generate-imports-for-control-plane-id "0dea9a
 ## Flags
 
 `-g`, `--generate-imports-for-control-plane-id`
-: `import` blocks will be added to Terraform to adopt existing resources.
+: `import` blocks will be added to Terraform to adopt existing resources. Typically used after `deck gateway dump --with-id` to obtain the IDs of all entities.
 
 `--ignore-credential-changes`
 : credentials will be ignored until they are destroyed and recreated.
