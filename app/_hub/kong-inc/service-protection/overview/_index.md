@@ -43,7 +43,7 @@ You should use the Service Protection plugin to rate limit your services and use
 <details><summary>If I'm currently using a different rate limiting plugin to rate limit my services, should I migrate to the Service Protection plugin? And if so, how do I migrate?</summary>
 
 {% capture rl_plugins_migrate %}
-IDK 
+You can choose to migrate existing services to the Service Protection plugin or only enable the Service Protection plugin on new services. If you choose to migrate, you must do so manually. 
 {% endcapture %}
 
 {{ rl_plugins_use_migrate | markdownify }}
