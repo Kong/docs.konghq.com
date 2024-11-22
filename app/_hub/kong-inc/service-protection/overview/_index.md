@@ -23,7 +23,7 @@ No. The Service Protection plugin only rate limits services. You can still use t
 <details><summary>Can I use the Service Protection plugin with other rate limiting plugins?</summary>
 
 {% capture rl_plugins_compatibility %} 
-Yes. You can rate limit a service with the Service Protection plugin and rate limit a different service or a consumer with the other rate limiting plugins.
+Yes. You can rate limit a service with the Service Protection plugin and rate limit a route or a consumer with the other rate limiting plugins. We don't recommend rate limiting the same services with the Service Protection plugin and another rate limiting plugin.
 {% endcapture %}
 
 {{ rl_plugins_compatibility | markdownify }}
@@ -33,10 +33,20 @@ Yes. You can rate limit a service with the Service Protection plugin and rate li
 <details><summary>When would I use the Service Protection plugin with other rate limiting plugins?</summary>
 
 {% capture rl_plugins_use_cases %}
-You could use the Rate Limiting Advanced plugin to apply global rate limits and then use the Service Protection plugin to apply rate limits to a specific service. Because the Service Protection plugin executes before the Rate Limiting Advanced plugin because of [plugin priority order](), you can apply more granual rate limits to the specific service than you do globally.
+You should use the Service Protection plugin to rate limit your services and use the other rate limiting plugins to limit other entities, like consumers or routes, or to apply global rate limits. 
 {% endcapture %}
 
 {{ rl_plugins_use_cases | markdownify }}
+
+</details>
+
+<details><summary>If I'm currently using a different rate limiting plugin to rate limit my services, should I migrate to the Service Protection plugin? And if so, how do I migrate?</summary>
+
+{% capture rl_plugins_migrate %}
+IDK 
+{% endcapture %}
+
+{{ rl_plugins_use_migrate | markdownify }}
 
 </details>
 

@@ -18,11 +18,10 @@ free: false
 enterprise: true
 
 konnect: true
-   # verify this, just setting to render
 
-network_config_opts: traditional, and db-less
+network_config_opts: all
 
-notes: The plugin supports local/redis policies, not cluster policies, so it doesn't work in hybrid mode.
+notes: This plugin doesn't support cluster policies. If you want to use this plugin in hybrid mode, you must use Redis for storage.
 
 dbless_compatible: yes
   # verify this, just setting to render 
