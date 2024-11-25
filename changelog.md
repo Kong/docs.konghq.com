@@ -2,6 +2,46 @@
 
 <!--vale off-->
 
+## Week 47
+
+### [Fix: extra sentence](https://github.com/Kong/docs.konghq.com/pull/8155) (2024-11-21)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/
+
+
+### [Fix: network requirements](https://github.com/Kong/docs.konghq.com/pull/8151) (2024-11-20)
+
+the [CONTROL_PLANE_ID.eu.cp0.konghq.com](http://control_plane_id.eu.cp0.konghq.com/) in the documentation is wrong, since it should actually be [CONTROL_PLANE_DNS_PREFIX.eu.cp0.konghq.com](http://control_plane_dns_prefix.eu.cp0.konghq.com/)
+
+#### Modified
+
+- https://docs.konghq.com/konnect/network
+
+
+### [fix: correct config store queries](https://github.com/Kong/docs.konghq.com/pull/8144) (2024-11-20)
+
+Correct config store queries and references.
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/config-store
+
+
+### [Release: Gateway 3.8.1.0](https://github.com/Kong/docs.konghq.com/pull/8094) (2024-11-18)
+
+Changelog and version bump for gateway 3.8.1.0.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
 ## Week 45
 
 ### [Update title to Impart Security](https://github.com/Kong/docs.konghq.com/pull/8112) (2024-11-04)
