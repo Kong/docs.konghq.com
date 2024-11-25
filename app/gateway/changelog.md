@@ -624,6 +624,55 @@ In some environments (such as ARM64-based environments), the default value is in
 The plugin can erroneously block valid requests if any of the parameters continue with the default values.
 To mitigate this issue, configure the JSON Threat Protection plugin with limits for all of the `max_*` parameters.
 
+
+## 3.7.1.3
+**Release Date** 2024/11/26
+
+### Fixes
+#### Core
+
+* The `kong.logrotate` configuration file is no longer overwritten during upgrade.
+
+  This change presents an additional prompt for Debian users upgrading via `apt` and `deb` packages.
+  To accept the defaults provided by Kong in the package, use the following command, adjusting it to 
+  your architecture and the version you're upgrading to: 
+
+  ```sh
+  DEBIAN_FRONTEND=noninteractive apt upgrade kong-enterprise-edition_3.4.3.11_arm64.deb
+  ```
+* **Vault**: 
+  * Fixed an issue where updating a vault entity in a non-default workspace didn't take effect.
+  * Fixed an issue where the Vault secret cache got refreshed during `resurrect_ttl` time and could not be fetched by other workers.
+* Moved internal Unix sockets to a subdirectory (`sockets`) of the Kong prefix.
+* Shortened names of internal Unix sockets to avoid exceeding the socket name limit.
+* Fixed an issue where `luarocks-admin` was not available in `/usr/local/bin`.
+* Fixed an issue where AWS IAM assume role could not be used in AWS IAM Database Authentication, by using the following fields: `pg_iam_auth_assume_role_arn`, `pg_iam_auth_role_session_name`, `pg_ro_iam_auth_assume_role_arn`, and `pg_ro_iam_auth_role_session_name`.
+* Fixed an issue where the STS endpoint could not be configured manually in RDS IAM Authentication, AWS Vault, and AWS Lambda plugin. For RDS IAM Authentication,
+it can be configured by `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_endpoint_url`; for AWS Vault, it can be configured by `vault_aws_sts_endpoint_url` as a global configuration, or `sts_endpoint_url` on a custom AWS vault entity; for the AWS Lambda plugin, it can be configured by `aws_sts_endpoint_url`.
+
+#### Plugins
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed an issue where certain Azure models would return partial tokens/words when in response-streaming mode.
+  * Fixed an issue where Cohere and Anthropic providers didn't read the `model` parameter properly from the caller's request body.
+  * Fixed an issue where using OpenAI Function inference requests would log a request error, and then hang until timeout.
+  * Fixed an issue where AI Proxy would still allow callers to specify their own model, ignoring the plugin-configured model name.
+  * Fixed an issue where the AI Proxy plugin's configured model tuning options would not take precedence over those in the user's LLM request.
+  * Fixed an issue where setting OpenAI SDK model parameter `null` caused analytics to not be written to the logging plugin(s).
+ 
+  [#13000](https://github.com/Kong/kong/issues/13000)
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where, if the `window_size` in the consumer group overriding config was different 
+    from the `window_size` in the default config, the rate limiting of that consumer group would fall back to local strategy.
+  * Fixed an issue where the sync timer could stop working due to a race condition.
+
+### Dependencies
+
+* Bumped lua-resty-aws to 1.5.3 to fix a bug related to STS regional endpoint.
+* Bumped lua-resty-azure to 1.6.1 to fix a GET request build issue.
+* Made the RPM package relocatable with the default prefix set to `/`.
+
 ## 3.7.1.2
 **Release Date** 2024/07/09
 
