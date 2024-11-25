@@ -185,7 +185,7 @@
           url: /dev-portal/access-and-approval/manage-app-connections/
         - text: Configure generic SSO for Dev Portal
           url: /dev-portal/access-and-approval/sso/
-        - text: Configure Okta SSO 
+        - text: Configure Okta SSO for Dev Portal
           url: /dev-portal/access-and-approval/okta-idp/
     - text: Application Lifecycle
       url: /dev-portal/applications/application-overview/
