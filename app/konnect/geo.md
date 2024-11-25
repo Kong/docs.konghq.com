@@ -18,6 +18,7 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 * AU
 * EU
 * US
+* IN (India)
 
 ### Dedicated Cloud Gateways
 
