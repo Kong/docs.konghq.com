@@ -15,10 +15,9 @@ The Datadog integration lets you connect Datadog entities directly to your Servi
 ## Authenticate the Datadog integration
 
 1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
-2. Select **Datadog**, then **Install Datadog**.
-3. Select **Authorize**. 
-
-<!--post step, does this take you to Datadog? Where/when do I put in my API key and app key? mention that they need to be public dashboards? something about specifying a site-->
+1. Select **Datadog**, then **Install Datadog**.
+1. Select your Datadog region and enter your [Datadog API and application keys](https://docs.datadoghq.com/account_management/api-app-keys/). 
+1. Select **Authorize**. 
 
 ## Resources
 
