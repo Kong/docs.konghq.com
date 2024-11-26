@@ -164,7 +164,7 @@ Use `--konnect-addr` to select the API to connect to.
 
 The default API decK uses is `https://us.api.konghq.com`, which targets the `cloud.konghq.com` environment.
 
-{% if_version gte:1.14.x lte:1.40.x %}
+{% if_version gte:1.14.x lte:1.39.x %}
 
 {{site.base_gateway}} supports AU, EU, and US [geographic regions](/konnect/geo/).
 
