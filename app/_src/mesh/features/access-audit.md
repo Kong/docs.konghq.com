@@ -1,5 +1,6 @@
 ---
 title: Access Audit
+badge: enterprise
 ---
 
 Access Audit lets you track all actions that are executed in {{site.mesh_product_name}}.

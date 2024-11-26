@@ -37,25 +37,28 @@ module LatestVersion
     private
 
     def build_duplicate_page(page)
-      product_name, release_path = page_path(page).first(2)
+      product_name = PRODUCTS_WITH_LATEST[page.data['edition']]
+      release = page.data['release']&.value
 
       DuplicatePage.new(
         @site,
-        page.url.gsub(release_path, 'latest'),
+        page.url.gsub(release, 'latest'),
         page,
-        page_index["#{product_name}/#{release_path}/"],
+        page_index["#{product_name}/#{release}/"],
         remove_generated_prefix(page)
       )
     end
 
     def generate_latest?(page)
-      product_name_from_path, release_path = page_path(page).first(2)
-      product_name, product = PRODUCTS_WITH_LATEST.detect do |k, _|
-        k == product_name_from_path
-      end
+      return false if !page.data['edition'] && !page.data['release']
 
-      product_name &&
-        release_path == @site.data["kong_latest_#{product}"]['release']
+      edition = page.data['edition']
+      release = page.data['release']&.value
+      product = PRODUCTS_WITH_LATEST[edition]
+
+      return false unless product
+
+      product && release == @site.data["kong_latest_#{product}"]['release']
     end
 
     def page_index
@@ -70,7 +73,7 @@ module LatestVersion
     end
 
     def remove_generated_prefix(page)
-      if page.relative_path.start_with?('_src')
+      if @page.is_a?(Jekyll::GeneratorSingleSource::SingleSourcePage)
         page.dir.delete_prefix('/')
       else
         page.path

@@ -93,7 +93,7 @@ Create a new application in Okta to manage the {{site.konnect_saas}} account int
     1. In the **General Settings** page, enter a unique name for your application in the **App Name** box. Optionally add a logo in **App Logo** and update **App Visibility**. Click **Next**.
     1. In the **Configure SAML** page:
        1. Add placeholder values for the below fields.
-          1. **Single Sign-On URL**: `https://global.api.konghq.com/v2/authenticatelogin_path/saml/acs`
+          1. **Single Sign-On URL**: `https://global.api.konghq.com/v2/authenticate/login_path/saml/acs`
           2. **Audience URI (SP Entity ID)**: `https://cloud.konghq.com/sp/SP_ID`
     1. Optional: In the **Attribute Statements**, add the following three attributes:
  
@@ -225,7 +225,7 @@ application into {{site.konnect_saas}}.
 1. Click {% konnect_icon organizations %} **Organization** > **Settings**, then **Authentication Schemes**.
 1. Click **Configure provider** for **SAML**.
 
-1. In Okta, locate your Metadata URL:
+1. In Okta, locate your Metadata :
     1. Go to **Sign On** page in the Okta application created in the previous step.
     2. Copy the **IDP Metadata URL** under the Settings section. It should look like:
 

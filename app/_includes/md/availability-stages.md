@@ -20,7 +20,7 @@ A beta feature or version is made available to the general public for usability 
 
 ## General availability
 General availability, or GA, means that the software is released publicly and
-is supported according to Kong's [support and maintenance policy](https://konghq.com/wp-content/uploads/2021/04/Kong-Support-and-Maintenance-Policy-16-April-2021.pdf). Generally available features usually have official documentation (as needed) and interfaces are stable.
+is supported according to Kong's [support and maintenance policy](https://konghq.com/supportandmaintenancepolicy/). Generally available features usually have official documentation (as needed) and interfaces are stable.
 
 If feature documentation doesn't have a tech preview, alpha, or beta label, then the feature is generally available.
 

@@ -1,6 +1,13 @@
 features:
   - title: Key features
     items:
+      - name: AI Gateway
+        description: Deploy a multi-LLM AI Gateway for GenAI infrastructure to semantically route, secure, observe, accelerate, and govern AI provider use and implementation.
+        icon: /assets/images/icons/documentation/icn-ai.svg
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /gateway/latest/ai-gateway/
       - name: Service Catalog
         description: Build a comprehensive catalog of all services running in your organization, both Konnect-internal applications (like Gateway Manager and Mesh Manager) as well as external applications (like GitHub and PagerDuty).
         icon: /assets/images/landing-page/card-icons/service-hub.svg

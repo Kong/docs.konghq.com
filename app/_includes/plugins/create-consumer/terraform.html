@@ -1,8 +1,8 @@
 {% if include.hub_example.auth_plugin? %}
 
-As this is an auth plugin, you need to create a consumer and attach a credential to it.
+{% t _includes.plugins.create-consumer.terraform.auth_plugin_description %}
 
-Create a consumer:
+{% t _includes.plugins.create-consumer.terraform.create_a_consumer %}
 
 ```bash
 resource "konnect_gateway_consumer" "alex" {
@@ -12,7 +12,7 @@ resource "konnect_gateway_consumer" "alex" {
 }
 ```
 
-Create a {{ include.hub_example.plugin_name }} credential attached to this consumer:
+{% t _includes.plugins.create-consumer.terraform.create_a_credential plugin_name=include.hub_example.plugin_name %}
 
 {% assign plugin_name = include.hub_example.plugin_name | replace: "-","_" %}
 ```hcl

@@ -1,14 +1,14 @@
 {% if include.hub_example.auth_plugin? %}
 
-As this is an auth plugin, you need to create a consumer and attach a credential to it.
+{% t _includes.plugins.create-consumer.curl.auth_plugin_description %}
 
-Create a consumer:
+{% t _includes.plugins.create-consumer.curl.create_a_consumer %}
 
 ```bash
 curl -X POST http://localhost:8001/consumers -d username=alex
 ```
 
-Create a {{ include.hub_example.plugin_name }} credential attached to this consumer:
+{% t _includes.plugins.create-consumer.curl.create_a_credential plugin_name=include.hub_example.plugin_name %}
 
 ```bash
 curl -X POST http://localhost:8001/consumers/alex/{{ include.hub_example.plugin_name }} \
@@ -16,6 +16,7 @@ curl -X POST http://localhost:8001/consumers/alex/{{ include.hub_example.plugin_
   -d {{ field[0] }}={{ field[1] }}{% unless forloop.last %} \{% endunless %}{% endfor %}
 ```
 
-You can now authenticate as <code>alex</code> when making your request. See the <a href="/hub/kong-inc/{{ include.hub_example.plugin_name }}{{ include.hub_example.auth_next_steps_url }}">documentation</a> for more information.
+{% capture link %}<a href="/hub/kong-inc/{{ include.hub_example.plugin_name }}{{ include.hub_example.auth_next_steps_url }}">{% t _includes.plugins.create-consumer.curl.documentation %}</a>{% endcapture %}
+{% t _includes.plugins.create-consumer.curl.you_can_now_authenticate username="alex" documentation_link=link %}
 {% else %}
 {% endif %}

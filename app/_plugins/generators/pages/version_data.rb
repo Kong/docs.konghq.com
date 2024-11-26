@@ -56,7 +56,7 @@ module Jekyll
       end
 
       def version?
-        edition.releases.map(&:to_s).include?(parts[1])
+        edition.releases.map(&:to_s).compact.include?(parts[1])
       end
     end
   end

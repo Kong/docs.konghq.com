@@ -4,7 +4,7 @@ release: 2.9.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
-  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_dev.yml
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.9.x.yml
   patches:
     - path: [ Introduction ]
       action: modify
@@ -30,6 +30,11 @@ inherit:
     - path: [ Introduction ]
       text: Version support policy
       url: /support-policy/
+      action: insert
+      index: -3
+    - path: [ Introduction ]
+      text: Vulnerability patching process
+      url: /vulnerability-patching-process/
       action: insert
       index: -3
     - path: [ Introduction, Release notes]
@@ -157,6 +162,8 @@ inherit:
               url: /features/ubi-images
             - text: Red Hat OpenShift Quickstart
               url: /features/openshift-quickstart
+        - text: Windows Support
+          url: /features/windows
         - text: ECS Support
           url: /installation/ecs
         - text: Auditing

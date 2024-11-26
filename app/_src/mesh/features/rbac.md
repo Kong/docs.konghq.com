@@ -1,5 +1,6 @@
 ---
 title: Role-Based Access Control
+badge: enterprise
 ---
 
 Role-Based Access Control (RBAC) lets you restrict access to resources and actions to specified users or groups, based on user roles.
