@@ -13,11 +13,13 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 
 ### Control planes
 
-{{site.konnect_saas}} currently supports the following geos:
+{{site.konnect_product_name}} currently has the following regions in production:
 
-* AU
-* EU
-* US
+Area | Geo shortform | Region codes and locations
+-----|-----------|---------------------------
+North America - AWS | US | `us-east-2` (Ohio, USA) <br>`us-west-2` (Oregon, USA)
+Europe - AWS | EU | `eu-central-1` (Frankfurt, Germany) <br> `eu-west-1` (Ireland)
+Australia - AWS | AP | `ap-southeast-2` (Sydney, Australia) <br> `ap-southeast-4` (Melbourne, Australia)
 
 ### Dedicated Cloud Gateways
 
@@ -25,40 +27,21 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 {% navtab AWS %}
 {{site.konnect_saas}} Dedicated Cloud Gateways support the following AWS geos: 
 
-
-* North America:
-    * Ohio (`us-east-2`)
-    * Oregon (`us-west-2`)
-    * California, USA (`us-west-1`)
-    * Montreal (`ca-central-1`)
-* Europe:
-    * Frankfurt (`eu-central-1`)
-    * Ireland (`eu-west-1`)
-    * London (`eu-west-2`)
-    * Paris (`eu-west-3`)
-    * Zurich (`eu-central-2`)
-* Asia Pacific:
-    * Tokyo (`ap-northeast-1`)
-    * Singapore (`ap-southeast-1`)
-    * Sydney (`ap-southeast-2`)
-    * Mumbai (`ap-south-1`)
-    * Hyderabad (`ap-south-2`)
-    * Seoul (`ap-northeast-2`)
-    * Jakarta (`ap-southeast-3`)
-* Middle East, and Africa
-    * United Arab Emirates (`me-central-1`)
+Area | Geo shortform | Region codes and locations
+-----|-----------|---------------------------
+North America | US<br>CA | `us-east-2` (Ohio, USA) <br> `us-west-2` (Oregon, USA) <br> `us-west-1` (California, USA) <br> `ca-central-1` (Montreal, Canada)
+Europe | EU |  `eu-central-1` (Frankfurt, Germany) <br> `eu-west-1` (Ireland) <br> `eu-west-2` (London, UK) <br> `eu-west-3` (Paris, France) <br> `eu-central-2` (Zurich, Switzerland)
+Asia Pacific | AP | `ap-northeast-1` (Tokyo, Japan) <br> `ap-southeast-1` (Singapore) <br> `ap-southeast-2` (Sydney, Australia) <br> `ap-south-1` (Mumbai, India) <br> `ap-south-2` (Hyderabad, India) <br> `ap-northeast-2` (Seoul, South Korea) <br> `ap-southeast-3` (Jakarta, Indonesia)
+Middle East and Africa | ME | `me-central-1` (United Arab Emirates)
 
 {% endnavtab %}
 {% navtab Azure %}
 {{site.konnect_saas}} Dedicated Cloud Gateways support the following Azure geos: 
 
-* North America:
-    * Virginia (`eastus2`)
-    * Washington (`westus2`)
-* Europe:
-    * Frankfurt (`germanywestcentral`)
-    * Ireland (`northeurope`)
-    * UK South (`uksouth`)
+Area | Geo shortform | Region codes and locations
+-----|-----------|---------------------------
+North America | US | `eastus2` (Virginia, USA) <br> `westus2` (Washington, USA)
+Europe | EU | `germanywestcentral` (Frankfurt, Germany) <br> `northeurope` (Ireland) <br> `uksouth` (UK South)
 
 {% endnavtab %}
 {% endnavtabs %}
