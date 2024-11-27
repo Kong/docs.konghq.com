@@ -136,7 +136,7 @@ The Kong AI Proxy accepts the following inputs formats, standardized across all 
 }
 ```
 {% if_version gte:3.9.x %}
-With Amazon Bedrock, you can also include your [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) configuration in the request:
+With Amazon Bedrock, you can include your [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) configuration in the request:
 ```json
 {
     "messages": [
