@@ -25,7 +25,7 @@ curl -X POST http://localhost:8001/services/ai-proxy-advanced/routes \
   --data "paths[]=~/huggingface-chat$"
 ```
 
-Enable and configure the AI Proxy Advanced plugin for Anthropic, replacing the `<huggingface_token>` with your own API keyand `<huggingface_model>` with the name of the model to use.
+Enable and configure the AI Proxy Advanced plugin for Anthropic, replacing the `<huggingface_token>` with your own access token and `<huggingface_model>` with the name of the model to use.
 
 <!--vale off-->
 {% plugin_example %}
