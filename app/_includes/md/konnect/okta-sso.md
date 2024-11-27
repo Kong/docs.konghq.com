@@ -186,7 +186,7 @@ to align with the new group-to-team mapping.
 1. [Configure a custom authorization server](https://help.okta.com/en-us/content/topics/security/api-config-auth-server.htm). 
     
     {:.important}
-    > **Important:** Using the Okta API to set up group claims with a custom authorization server is an additional paid Okta feature.
+    > **Important:** Using the Okta API to set up group claims with a custom authorization server is an additional paid Okta feature. Alternatively, you can use the org authorization server and [create a group](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-assign-group-people.htm), [enable group push](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-enable-group-push.htm), and [add a group claim to the org authorization server](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/main/#add-a-groups-claim-for-the-org-authorization-server) instead.
 1. [Navigate to the Token Preview tab](https://help.okta.com/en-us/content/topics/security/api-config-test.htm) of your authorization server and configure the following:
     * **OAuth/OIDC client**: Enter the client name you previously created for your Okta application
     * **Grant Type**: Authorization Code
