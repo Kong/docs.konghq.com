@@ -60,6 +60,9 @@ precedence order:
 - Fetch from the EKS [IAM roles for the service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 - Fetch from the EC2 IMDS metadata. Both v1 and v2 are supported.
 
+{:.note}
+> **Note:** IAM Identity Center credential provider and Process credential provider are not supported for now.
+
 If you also provide the `aws_assume_role_arn` option, the plugin will try to perform
 an additional [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
 action. This requires the Kong process to make a HTTPS request to the AWS STS service API after
