@@ -16,10 +16,19 @@ Before using the plugin, download and install the [AppDynamics C/C++ Application
 
 ### Platform support
 
+{% if_version gte:3.4.x %}
 The AppDynamics C SDK supports Linux distributions based on glibc 2.5+.
 {{site.base_gateway}} must be running on a glibc-based distribution like RHEL, CentOS, Debian, or Ubuntu to support this plugin.
 
 The AppDynamics C/C++ SDK **does not** support ARM64 architecture.
+{% endif_version %}
+
+{% if_version lte:3.3.x %}
+The AppDynamics C SDK supports Linux distributions based on glibc 2.5+, and Alpine.
+{{site.base_gateway}} must be running on Alpine or a glibc-based distribution like RHEL, CentOS, Debian, or Ubuntu to support this plugin.
+
+The AppDynamics C/C++ SDK **does not** support ARM64 architecture.
+{% endif_version %}
 
 See the [AppDynamics C/C++ SDK Supported Environments](https://docs.appdynamics.com/appd/21.x/21.12/en/application-monitoring/install-app-server-agents/c-c++-sdk/c-c++-sdk-supported-environments) document for more information.
 
