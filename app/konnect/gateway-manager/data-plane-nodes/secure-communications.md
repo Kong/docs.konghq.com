@@ -29,7 +29,7 @@ Consider the following scenarios with this example cert chain:
 
 When you use the {{site.konnect_short_name}} wizard to create a data plane node, it generates a certificate key pair. Data planes can establish a connection with this certificate key pair (pinned cert).
 
-1. 1.  Navigate to [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/) in {{site.konnect_short_name}}.
+1. Navigate to [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/) in {{site.konnect_short_name}}.
 1. Click on the control plane you want to create a data plane node for.
 1. Click **Data Plane Nodes** in the sidebar.
 1. Click **Create a New Data Plane Node**. 
@@ -39,7 +39,7 @@ When you use the {{site.konnect_short_name}} wizard to create a data plane node,
 
 Using the {{site.konnect_short_name}} UI, you can generate a CA certificate, which allows data planes to connect using a certificate signed by that CA (PKI). Alternatively you can upload your own CA using the upload option.
 
-1.  Navigate to [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/) in {{site.konnect_short_name}}.
+1. Navigate to [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/) in {{site.konnect_short_name}}.
 1. Click on the control plane you want to create a data plane node for.
 1. From the Action menu, select **Data Plane Certificates**. 
 1. Either upload or generate a certificate.
