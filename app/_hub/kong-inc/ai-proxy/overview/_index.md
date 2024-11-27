@@ -33,6 +33,9 @@ The following table describes which providers and requests the AI Proxy plugin s
 | Amazon Bedrock | ✅ | ✅ | ✅ |
 | Gemini | ✅ | ✅ | ✅ |
 {% endif_version %}
+{% if_version gte:3.9.x %}
+| Hugging Face | ✅ | ✅ | ✅ |
+{% endif_version %}
 
 ## How it works
 

@@ -21,6 +21,9 @@ The following table describes which providers and requests the AI Proxy Advanced
 | Llama3 (OLLAMA and OpenAI formats) | ✅ | ✅ | ✅ |
 | Amazon Bedrock | ✅ | ✅ | ✅ |
 | Gemini | ✅ | ✅ | ✅ |
+{% if_version gte:3.9.x %}
+| Hugging Face | ✅ | ✅ | ✅ |
+{% endif_version %}
 
 ## How it works
 
