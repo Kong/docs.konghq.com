@@ -153,7 +153,7 @@ With Amazon Bedrock, you can include your [guardrail](https://docs.aws.amazon.co
         {
             "guardrailConfig":
                 {
-                    "guardrailIdentifier":"yu5xwvfp4sud",
+                    "guardrailIdentifier":"<guardrail_identifier>",
                     "guardrailVersion":"1",
                     "trace":"enabled"
                 }
