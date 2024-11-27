@@ -28,7 +28,7 @@ spec:
 
 This corresponds to the `uri` and `query` parameters documented in the [plugin documentation](/hub/kong-inc/degraphql/#available-endpoints)
 
-# Tutorial: DeGraphQL custom entities
+## Tutorial: DeGraphQL custom entities
 
 {% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false enterprise=true %}
 
