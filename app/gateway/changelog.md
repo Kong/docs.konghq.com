@@ -5615,7 +5615,7 @@ Kong Gateway version.
 Amazon Linux 1 [reached end-of-life on December 31, 2020](https://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life).
   [Kong/docs.konghq.com #3966](https://github.com/Kong/docs.konghq.com/pull/3966)
 * Deprecated and stopped producing Debian 8 (Jessie) containers and packages.
-Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020/20200709).
+Debian 8 reached end-of-life in June 30, 2020.
   [Kong/kong-build-tools #448](https://github.com/Kong/kong-build-tools/pull/448)
 
 #### Core
@@ -6874,7 +6874,7 @@ images or packages, and Kong will not test package installation on Amazon Linux 
     [previous versions](/gateway/2.8.x/install-and-run/amazon-linux/).
 
 * **Debian 8**: Support for running Kong Gateway on Debian 8 ("Jessie") is now deprecated, as
-[Debian 8 ("Jessie") has reached End of Life (EOL)](https://www.debian.org/News/2020/20200709).
+Debian 8 ("Jessie") has reached End of Life (EOL).
 Starting with Kong Gateway 3.0.0.0, Kong is not building new Debian 8
 ("Jessie") images or packages, and Kong will not test package installation on
 Debian 8 ("Jessie").
