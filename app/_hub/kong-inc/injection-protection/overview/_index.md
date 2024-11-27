@@ -62,8 +62,13 @@ You can specify a custom regex for matching by using the `custom_regex_record` p
 
 ## How do I collect and read the logs?
 
-<!--unsure-->
+Logs are automatically collected when you enable the Injection Protection plugin. You can view the logs with the following options:
 
-## More information
-
-<!-- Bulleted list of links to more info about your plugin -->
+* [{{site.base_gateway}} error log](/gateway/latest/production/logging/)
+* Log serializer. You can view these log with the following plugins:
+    * [File Log](/hub/kong-inc/file-log/)
+    * [HTTP Log](/hub/kong-inc/http-log/)
+    * [Kafka Log](/hub/kong-inc/kafka-log/)
+    * [TCP Log](/hub/kong-inc/tcp-log/)
+    * [UDP Log](/hub/kong-inc/udp-log/)
+* [{{site.konnect_short_name}} Advanced Analytics](/konnect/analytics/) <!--though i'm not sure if they will do anything with them yet--> 

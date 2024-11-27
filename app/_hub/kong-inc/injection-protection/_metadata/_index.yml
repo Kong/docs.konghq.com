@@ -25,9 +25,7 @@ network_config_opts: All
    # (Optional) Free-text explanation explaining any limitations for deployment topologies.
    # For example, if the plugin is not supported in hybrid mode, explain it here.
 
-dbless_compatible:
-  # (Required) Degree of compatibility with Kong Gateway's DB-less mode. 
-  # One of the following values allowed: 'yes', 'no' or 'partially'.
+dbless_compatible: yes
 
 # dbless_explanation: 
   # (Optional) Free-text explanation containing details about the degree of
