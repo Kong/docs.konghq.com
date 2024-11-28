@@ -145,6 +145,8 @@ items:
             url: /guides/security/client-ip
           - text: Kubernetes Secrets in Plugins
             url: /guides/security/plugin-secrets
+          - text: Verifying Upstream TLS
+            url: /guides/security/verify-upstream-tls
       #- text: Service Mesh
       #  items:
       #    - text: Kong Mesh
