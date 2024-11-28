@@ -12,6 +12,7 @@ This guide walks you through setting up the AI Proxy plugin with [Hugging Face](
 
 {% include_cached /md/plugins-hub/ai-providers-prereqs-advanced.md snippet='service' provider='Hugging Face' %}
 * Hugging Face access token with permissions to make calls to the Inference API
+* [Text-generation model](https://huggingface.co/models?pipeline_tag=text-generation&sort=trending) from Hugging Face
 
 ## Provider configuration
 
