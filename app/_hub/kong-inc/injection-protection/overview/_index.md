@@ -5,7 +5,7 @@ title: Overview
 
 You can use the Injection Protection plugin to detect well known patterns that might be the result of a cross site scripting or other injection type attacks.
 
-The Injection Protection plugin makes it easier to protect your APIs from cross site scription or other injection attacks by providing out-of-the box regex matching for common injection attacks. In addition, you can configure custom regex matching as well. 
+The Injection Protection plugin makes it easier to protect your APIs from cross site scripting or other injection attacks by providing out-of-the box regex matching for common injection attacks. In addition, you can configure custom regex matching as well. 
 
 The Injection Protection plugin does the following: 
 * Extracts information from request headers, path/query parameters, or the payload body and evaluate that content against pre-defined regular expression
@@ -24,6 +24,7 @@ Depending on what you have configured in the plugin's config, the Injection Prot
 
 The following diagram shows how the Injection Protection plugin detects injections and is configured to block and log matches:
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     actor Consumer
@@ -38,6 +39,7 @@ sequenceDiagram
         Injection Protection plugin->>{{site.base_gateway}}: Logs injection 
     end
 {% endmermaid %}
+<!--vale on-->
 
 ## What pre-defined regex patterns does the plugin provide for injection attacks?
 
