@@ -192,6 +192,3 @@ inherit:
       src: null
       absolute_url: true
       url: https://kuma.io/community
-unlisted:
-  - url: /install
-    src: /mesh/install

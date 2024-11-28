@@ -1,6 +1,7 @@
 ---
 title: Install Kong Mesh
 disable_image_expand: true
+# This page is to be removed as soon as we remove docs lower than 2.2.x
 ---
 
 ## Install {{site.mesh_product_name}}
@@ -9,89 +10,12 @@ disable_image_expand: true
 seamless experience, {{site.mesh_product_name}} follows the same installation
 and configuration procedures as Kuma, but with {{site.mesh_product_name}}-specific binaries.
 
-On this page, you will find access to the official {{site.mesh_product_name}}
-distributions that provide a drop-in replacement to Kuma's native binaries, plus
+The official distributions of {{site.mesh_product_name}} provide a drop-in replacement to Kuma's native binaries, plus
 links to cloud marketplace integrations.
 
 **The latest {{site.mesh_product_name}} version is
 {{page.kong_latest.version}}.**
 
-{% navtabs %}
-{% navtab Containerized %}
-
-<div class="docs-grid-install">
-
-  <a href="/mesh/{{page.release}}/installation/kubernetes" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/kubernetes-logo.png" alt="Kubernetes" />
-    <div class="install-text">Kubernetes</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/helm" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/helm-icon-color.svg" alt="Helm" />
-    <div class="install-text">Helm</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/openshift" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/openshift-logo.png" alt="OpenShift" />
-    <div class="install-text">OpenShift</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/docker" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/docker.svg" alt="Docker" />
-    <div class="install-text">Docker</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/ecs" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/logo-ecs.jpg" alt="Amazon ECS" />
-    <div class="install-text">Amazon ECS</div>
-  </a>
-</div>
-
-{% endnavtab %}
-{% navtab Operating Systems %}
-
-<div class="docs-grid-install">
-
-  <a href="/mesh/{{page.release}}/installation/centos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/centos.gif" alt="CentOS" />
-    <div class="install-text">CentOS</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/redhat" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/rhel.jpg" alt="Red Hat" />
-    <div class="install-text">Red Hat</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/amazonlinux" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/amazon-linux.png" alt="AWS" />
-    <div class="install-text">Amazon Linux</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/debian" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/debian-logo.jpg" alt="Debian" />
-    <div class="install-text">Debian</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/ubuntu" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/ubuntu.png" alt="Ubuntu" />
-    <div class="install-text">Ubuntu</div>
-  </a>
-
-  <a href="/mesh/{{page.release}}/installation/macos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/macos-logo.png" alt="MacOS" />
-    <div class="install-text">MacOS</div>
-  </a>
-{% if_version lte:2.3.x %}
-  <a href="/mesh/{{page.release}}/installation/windows" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/windows-logo.svg" alt="Windows" />
-    <div class="install-text">Windows</div>
-  </a>
-{% endif_version %}
-
-</div>
-
-{% endnavtab %}
-{% endnavtabs %}
 
 ## Licensing
 
