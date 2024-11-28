@@ -823,8 +823,7 @@
 /mesh/:version/explore/gui/ /mesh/:version/production/gui/
 /mesh/:version/documentation/upgrades/  /mesh/:version/production/upgrades-tuning/upgrades/
 /mesh/:version/documentation/fine-tuning/ /mesh/:version/production/upgrades-tuning/fine-tuning/
-/mesh/:version/installation/* /mesh/:version/production/install-kumactl/
-/mesh/:version/install/* /mesh/:version/production/install-kumactl/
+/mesh/:version/install /mesh/:version/introduction/install/
 /docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
 /mesh/:version/crds/* /assets/mesh/:version/raw/crds/:splat
 /mesh/:version/protos/* /assets/mesh/:version/raw/protos/:splat
