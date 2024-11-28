@@ -4,6 +4,7 @@ type: reference
 purpose: |
   What annotatations are available and what do they do?
 ---
+
 The {{site.kic_product_name}} supports these annotations on various
 resources.
 
@@ -33,8 +34,8 @@ Following annotations are supported on Ingress resources:
 {% if_version gte:3.2.x %}
 | [`konghq.com/headers-separator`](#konghqcomheaders-separator)                        | Separator for header values, other than default `,`                                                             |
 {% endif_version %}
-| [`konghq.com/rewrite`](#konghqcomrewrite)                                            | Rewrite the path of a URL                                                                                       |
-| [`konghq.com/tags`](#konghqcomtags)                                                  | Assign custom tags to Kong entities generated out of this Ingress                                               |
+| [`konghq.com/rewrite`](#konghqcomrewrite)                                            | Rewrite the path of a URL |
+| [`konghq.com/tags`](#konghqcomtags)                                                  | Assign custom tags to Kong entities generated out of this Ingress |
 
 `kubernetes.io/ingress.class` is required, and its value should match
 the value of the `--ingress-class` controller argument (`kong` by default).
@@ -58,6 +59,11 @@ These annotations are supported on Service resources.
 | [`konghq.com/write-timeout`](#konghqcomwritetimeout)                             | Set the timeout for writing data                                                                                                       |
 | [`konghq.com/retries`](#konghqcomretries)                                        | Set the number of times to retry requests that failed                                                                                  |
 | [`konghq.com/tags`](#konghqcomtags)                                              | Assign custom tags to Kong entities generated out of this Service                                                                      |
+{% if_version gte:3.4.x %}
+| [`konghq.com/tls-verify`](#konghqcomtls-verify)                                   | Enable or disable verification of the upstream service's TLS certificates                                                              |
+| [`konghq.com/tls-verify-depth`](#konghqcomtls-verify-depth)                        | Set the maximal depth of a certificate chain when verifying the upstream service's TLS certificates                                    |
+| [`konghq.com/ca-certificates`](#konghqcomca-certificates)                         | Assign CA certificates to be used for the upstream service's TLS certificates verification                                             |
+{% endif_version %}
 
 ## KongConsumer resource
 
@@ -92,7 +98,7 @@ Kong resources (KongConsumer, TCPIngress, etc.)
 still use the `kubernetes.io/ingress.class` annotation.
 
 If you have multiple Ingress controllers in a single cluster,
-you can pick one by specifying the `ingress.class` annotation.
+you can pick one by specifying the `ingress.class` annotation.
 Here is an example to create an Ingress with an annotation:
 
 ```yaml
@@ -663,3 +669,41 @@ The value of the annotation is the name of the `KongUpstreamPolicy` object in th
 same namespace as the `Service`. Please refer to the 
 [KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongupstreampolicy) 
 for details on how to configure the `KongUpstreamPolicy` resource. 
+
+{% if_version gte:3.4.x %}
+
+### konghq.com/tls-verify
+
+> Available since controller 3.4
+
+This annotation can be used to enable or disable verification of the upstream service's TLS certificates.
+The value of the annotation should be either `true` or `false`. By default, the verification is disabled.
+
+See [TLS verification of Upstream Service](/kubernetes-ingress-controller/{{page.release}}/guides/security/verify-upstream-tls)
+guide for more information.
+
+### konghq.com/tls-verify-depth
+
+> Available since controller 3.4
+
+This annotation can be used to set the maximal depth of a certificate chain when verifying the upstream service's TLS
+certificates.
+The value of the annotation should be an integer. If not set, a system default value is used.
+
+See [TLS verification of Upstream Service](/kubernetes-ingress-controller/{{page.release}}/guides/security/verify-upstream-tls)
+guide for more information.
+
+### konghq.com/ca-certificates
+
+> Available since controller 3.4
+
+This annotation can be used to assign CA certificates to be used for the upstream service's TLS certificates
+verification.
+The value of the annotation should be a comma-separated list of CA certificate names.
+
+{% include /md/kic/ca-certificates-note.md %}
+
+See [TLS verification of Upstream Service](/kubernetes-ingress-controller/{{page.release}}/guides/security/verify-upstream-tls)
+guide for more information.
+
+{% endif_version %}
