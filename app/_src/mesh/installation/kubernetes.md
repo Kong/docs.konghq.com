@@ -185,12 +185,5 @@ To start using {{site.mesh_product_name}}, see the
 [quickstart guide for Kubernetes deployments][get-started-k8s].
 
 <!-- links -->
-{% if_version gte:2.0.x %}
 [deployments]: /mesh/{{page.release}}/introduction/deployments/
 [get-started-k8s]: /mesh/{{page.release}}/quickstart/kubernetes/
-{% endif_version %}
-
-{% if_version lte:1.9.x %}
-[deployments]: https://kuma.io/docs/1.8.x/introduction/deployments/
-[get-started-k8s]: https://kuma.io/docs/1.8.x/quickstart/kubernetes/
-{% endif_version %}
