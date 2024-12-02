@@ -38,10 +38,7 @@ EE release https://github.com/Kong/gateway-operator-enterprise/releases/tag/v1.4
 
 ### [fix: step formatting in Secure Comms](https://github.com/Kong/docs.konghq.com/pull/8186) (2024-11-27)
 
-<!-- What did you change and why? -->
 Fixed the formatting of the certificate steps, it was messed up.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -61,10 +58,8 @@ Also merge https://github.com/Kong/docs-plugin-toolkit/pull/74 when this goes in
 
 ### [Update secure-communications.md](https://github.com/Kong/docs.konghq.com/pull/8165) (2024-11-27)
 
-<!-- What did you change and why? -->
  Updated documentation to reflect current behavior. Changes explain what is happening behind the scene so users can understand the flow and what the workflows accomplish
 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 There is no jira. However there are discussions on slack. All are linked below
 
 https://kongstrong.slack.com/archives/C03LRB400TC/p1730253689774879
@@ -78,11 +73,7 @@ https://kongstrong.slack.com/archives/C02KEASTTRC/p1731688031878609
 
 ### [feat: serverless provisioning clarification](https://github.com/Kong/docs.konghq.com/pull/8161) (2024-11-26)
 
-<!-- What did you change and why? -->
-
 Quick clarification change to ensure users know that Serverless Gateways may not be provisioned in their current Konnect region.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -109,9 +100,6 @@ Replaces Kong/docs.konghq.com#7771
 
 ### [feat: Konnect ME geos](https://github.com/Kong/docs.konghq.com/pull/8126) (2024-11-26)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 DOCU-4147
 
 #### Modified
@@ -156,9 +144,6 @@ the [CONTROL_PLANE_ID.eu.cp0.konghq.com](http://control_plane_id.eu.cp0.konghq.c
 ### [fix: correct config store queries](https://github.com/Kong/docs.konghq.com/pull/8144) (2024-11-20)
 
 Correct config store queries and references.
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
