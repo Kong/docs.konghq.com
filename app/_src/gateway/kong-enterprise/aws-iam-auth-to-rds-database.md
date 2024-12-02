@@ -36,6 +36,10 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
    
    {:.warning}
    > **Warning:** You **can't** change the value of the environment variables you used to provide the AWS credential after booting {{site.base_gateway}}. Any changes are ignored.
+
+   {:.note}
+   > **Note:** IAM Identity Center credential provider and Process credential provider are not supported.
+
 {% if_version gte:3.4.x %}
   {% unless page.release == "3.5.x" or page.release == "3.6.x" or page.release == "3.7.x" %}
    - If you want to assume a role, make sure the original IAM role that Kong uses has the correct permission to assume the role of the target IAM role, and the target IAM role has the correct permission to connect to the database using IAM authentication.
