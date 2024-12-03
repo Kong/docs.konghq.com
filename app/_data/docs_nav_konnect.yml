@@ -115,6 +115,10 @@
               url: /gateway-manager/configuration/vaults/how-to/
         - text: Manage Control Plane Configuration with decK
           url: /gateway-manager/declarative-config/
+    - text: Active Tracing
+      items:
+         - text: Overview
+           url: /gateway-manager/active-tracing
     - text: KIC Association
       url: /gateway-manager/kic/
     - text: Backup and Restore
