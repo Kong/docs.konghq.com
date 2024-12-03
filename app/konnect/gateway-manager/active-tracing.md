@@ -1,46 +1,24 @@
 ---
-title: Version Compatibility in Control Planes
+title: Active Tracing - Debugging issues in Dataplanes
 content_type: reference
 ---
 
-We recommend running one major version (2.x or 3.x) of a data plane node per control plane, unless you are in the middle of version upgrades to the data plane.
+The Active Tracing feature allows Control Plane Administrators to initiate "deep tracing" sessions in selected Dataplanes. During an active tracing session, the selected Dataplane records Open Telemetry compatible Traces with very detailed spans covering the entire request and response lifecycle for all requests that match a supplied sampling criteria. These traces are pushed up to Konnect where they can inspected using the Konnect builtin span viewed. No additional instrumentation or telemetry technology is needed for generating these traces. 
 
-If you mix major data plane node versions, the control plane will support the least common subset of configurations across all the versions connected to the {{site.konnect_short_name}} control plane.
-For example, if you are running 2.8.1.3 on one data plane node and 3.0.0.0 on another, the control plane will only push configurations that can be used by the 2.8.1.3 data plane node.
+"Active Tracing" traces are only generated during an Active-Tracing session. These traces cannot be generated with 3rd party telemetry software. "Active Tracing" can have an impact on throughput under heavy load conditions. Active-Tracing itself adds neglible latency to request-response processing under normal load conditions.
 
-If you experience compatibility errors, [upgrade your data plane nodes](/konnect/gateway-manager/data-plane-nodes/upgrade/) to match the version of the highest-versioned data plane node in your control plane.
-
-Possible compatibility errors:
-
-{% assign errors = site.data.tables.version_errors_konnect %}
-
+List of spans and associated attributes:
 <table>
   <thead>
-      <th>Error code</th>
-      <th>Severity</th>
-      <th>Description</th>
-      <th>Resolution</th>
-      <th class="width=25%">References</th>
+    <th>Span Name</th>
+    <th>Note</th>
   </thead>
-<tbody>
-  {% for message in errors.messages %}
-      <tr>
-        <td>
-          {{ message.ID | markdownify }}
-        </td>
-        <td>
-          {{ message.Severity | markdownify }}
-        </td>
-        <td>
-          {{ message.Description | markdownify }}
-        </td>
-        <td>
-          {{ message.Resolution | markdownify }}
-        </td>
-        <td>
-          {{ message.DocumentationURL | markdownify }}
-        </td>
-      </tr>
-    {% endfor %}
+  <tbody>
+    <tr>
+      <td>kong</td>
+      <td>root span</td>
+    </tr>
   </tbody>
 </table>
+
+
