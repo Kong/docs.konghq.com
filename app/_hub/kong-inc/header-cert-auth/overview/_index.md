@@ -68,17 +68,17 @@ When authentication fails, the client does not have access to any details that e
 
 **Q: How should the certificate be passed in a client request?**  
 
-**A:** This depends on the format specified in the `certificate_header_format` parameter. When using **base64_encoded**, only the base64-encoded body of the certificate should be sent (excluding the `BEGIN CERTIFICATE` and `END CERTIFICATE` delimiters).  When using **url_encoded**, the entire certificate, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` delimiters, should be provided.
+**A:** This depends on the format specified in the `certificate_header_format` parameter. When using **`base64_encoded`**, only the base64-encoded body of the certificate should be sent (excluding the `BEGIN CERTIFICATE` and `END CERTIFICATE` delimiters).  When using **`url_encoded`**, the entire certificate, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` delimiters, should be provided.
 
 For example, given the `certificate_header_name` of x-client-cert:
 
-**base64_encoded**
+**`base64_encoded`**
 
 ```bash
 x-client-cert: MIIDbDCCAdSgAwIBAgIUa...
 ```
 
-**url_encoded**
+**`url_encoded`**
 
 ```bash
 x-client-cert: -----BEGIN%20CERTIFICATE-----%0AMIIDbDCCAdSgAwIBAgIUa...-----END%20CERTIFICATE-----
