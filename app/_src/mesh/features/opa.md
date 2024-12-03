@@ -645,17 +645,5 @@ The following example shows how to deploy and test a sample OPA Policy on Kubern
     The request is valid again because the token is signed with the `secret` private key, its payload includes the admin role, and it is not expired.
 
 <!-- links -->
-{% if_version gte:2.0.x %}
 [protocols]: /mesh/{{page.release}}/policies/protocol-support-in-kong-mesh/
-{% if_version lte:2.1.x %}
-[secrets]: /mesh/{{page.release}}/security/secrets/
-{% endif_version %}
-{% if_version gte:2.2.x %}
 [secrets]: /mesh/{{page.release}}/production/secure-deployment/secrets/
-{% endif_version %}
-{% endif_version %}
-
-{% if_version lte:1.9.x %}
-[protocols]: https://kuma.io/docs/1.8.x/policies/protocol-support-in-kuma/
-[secrets]: https://kuma.io/docs/1.8.x/security/secrets/
-{% endif_version %}
