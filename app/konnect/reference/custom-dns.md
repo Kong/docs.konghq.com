@@ -2,7 +2,7 @@
 title: Custom Domains
 ---
 
-{{site.konnect_short_name}} integrates domain name management and configuration in the Dev Portal and with [managed data planes](/konnect/gateway-manager/dedicated-cloud-gateways/). 
+{{site.konnect_short_name}} integrates domain name management and configuration in the Dev Portal and with [managed data planes] [Dedicated cloud](/konnect/gateway-manager/dedicated-cloud-gateways/) or [Serverless](/konnect/gateway-manager/serverless-gateways/) gateways. 
 
 
 ## Managed data planes
@@ -12,6 +12,9 @@ title: Custom Domains
     
     The **Connect** menu will open and display the URL for the **Public Edge DNS**. Save this URL.
 
+
+{% navtabs %}
+{% navtab Dedicated Cloud Gateways %}
 
 1. Select **Custom Domains** from the side navigation, then **New Custom Domain**, and enter your domain name.
 
@@ -28,6 +31,37 @@ title: Custom Domains
 |---------------------------------|-------------|----------------|-------|------------------------|------------------------------------------------------|-----|
 | `_acme-challenge.example.com` | CNAME       | Simple         | No    | No                     | `_acme-challenge.9e454bcfec.acme.gateways.konghq.com`| 300 |
 | `example.com`             | CNAME       | Simple         | No    | No                     | `9e454bcfec.gateways.konghq.com`                     | 300 |
+
+
+  {:.note}
+  > **Note:** DNS validation statuses for Dedicated Cloud Gateways are refreshed every 5 minutes.
+
+
+{% endnavtab %}
+{% navtab Serverless Gateways %}
+
+1. Select **Custom Domains** from the side navigation, then **New Custom Domain**, and enter your domain name.
+
+    Save the value that appears under **CNAME**. 
+
+
+### Domain registrar configuration
+
+1. Log in to your domain registrar's dashboard.
+1. Navigate to the DNS settings section. This area might be labeled differently depending on your registrar.
+1. Locate the option to add a new CNAME record and create the following record using the value saved in the [{{site.konnect_short_name}} configuration](#konnect-configuration) section. For example, in AWS Route 53, it would look like this: 
+
+| Host Name                       | Record Type | Routing Policy | Alias | Evaluate Target Health | Value                                                | TTL |
+|---------------------------------|-------------|----------------|-------|------------------------|------------------------------------------------------|-----|
+| `my.example.com`             | CNAME       | Simple         | No    | No                     | `9e454bcfec.kongcloud.dev`                     | 300 |
+
+
+{:.note}
+	> **Note:** Once a Serverless Gateway custom DNS record has been validated, it will _not_ be refreshed or re-validated. Remove and re-add the custom domain in {{site.konnect_short_name}} to force a re-validation.
+  
+
+{% endnavtab %}
+{% endnavtabs %}
 
 
 ## Dev Portal 
