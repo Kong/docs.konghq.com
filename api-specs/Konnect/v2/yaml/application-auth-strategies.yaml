@@ -8,11 +8,13 @@ info:
     url: 'https://cloud.konghq.com'
 servers:
   - url: 'https://us.api.konghq.com/v2'
-    description: US Region Base URL
+    description: United-States Production region
   - url: 'https://eu.api.konghq.com/v2'
-    description: EU Region Base URL
+    description: Europe Production region
   - url: 'https://au.api.konghq.com/v2'
-    description: AU Region Base URL
+    description: Australia Production region
+  - url: 'https://me.api.konghq.com/v2'
+    description: Middle-East Production region
 paths:
   /dcr-providers:
     post:
