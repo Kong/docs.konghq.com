@@ -13,6 +13,8 @@ spec:
     kind: MeshOPA
     listKind: MeshOPAList
     plural: meshopas
+    shortNames:
+    - mopa
     singular: meshopa
   scope: Namespaced
   versions:
