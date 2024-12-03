@@ -12,7 +12,7 @@ title: Custom Domains
     
     The **Connect** menu will open and display the URL for the **Public Edge DNS**. Save this URL.
 
-
+{% capture the_code %}
 {% navtabs %}
 {% navtab Dedicated Cloud Gateways %}
 
@@ -45,7 +45,7 @@ title: Custom Domains
     Save the value that appears under **CNAME**. 
 
 
-### Domain registrar configuration
+ ## Domain registrar configuration
 
 3. Log in to your domain registrar's dashboard.
 4. Navigate to the DNS settings section. This area might be labeled differently depending on your registrar.
@@ -62,7 +62,8 @@ title: Custom Domains
 
 {% endnavtab %}
 {% endnavtabs %}
-
+{% endcapture %}
+{{ the_code | indent }}
 
 ## Dev Portal 
 
