@@ -87,6 +87,7 @@ For product versions that have reached the end of sunset support, see the [chang
 
 * Bumped `lua-kong-nginx-module` from 0.11.0 to 0.11.1 to fix an issue where the upstream cert chain wasn't properly set.
 * Bumped `lua-resty-aws` to 1.5.4 to fix a bug inside region prefix generation.
+* Bumped `lua-resty-azure` to 1.6.1 to fix a `GET` request build issue, which was causing problems with Azure secret references.
 
 ## 3.8.0.0
 **Release Date** 2024/09/11
@@ -669,8 +670,8 @@ it can be configured by `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_e
 
 ### Dependencies
 
-* Bumped lua-resty-aws to 1.5.3 to fix a bug related to STS regional endpoint.
-* Bumped lua-resty-azure to 1.6.1 to fix a GET request build issue.
+* Bumped `lua-resty-aws` to 1.5.3 to fix a bug related to STS regional endpoint.
+* Bumped `lua-resty-azure` to 1.6.1 to fix a `GET` request build issue, which was causing problems with Azure secret references.
 * Made the RPM package relocatable with the default prefix set to `/`.
 
 ## 3.7.1.2
@@ -2683,7 +2684,7 @@ was called multiple times in a request lifecycle.
 * Bumped `LPEG` from 1.0.2 to 1.1.0 to keep the version consistent across all active branches. 
 The version bump includes fixes like UTF-8 ranges, a larger limit for rules and matches, accumulator capture, and more.
 * Bumped `lua-resty-aws` to 1.5.3 to fix a bug related to the STS regional endpoint.
-* Bumped `lua-resty-azure` to 1.6.1 to fix a `GET` request build issue.
+* Bumped `lua-resty-azure` to 1.6.1 to fix a `GET` request build issue, which was causing problems with Azure secret references.
 * Made the RPM package relocatable with the default prefix set to `/`.
 
 ## 3.4.3.12
