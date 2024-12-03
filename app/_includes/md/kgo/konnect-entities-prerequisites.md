@@ -1,9 +1,7 @@
 {% unless include.disable_accordian %}
-<details class="custom" markdown="1">
+<details markdown="1">
 <summary>
-<blockquote class="note">
-  <p style="cursor: pointer">Before you create any Konnect entity, make sure you've <u>installed {{site.kgo_product_name}} and created a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %}</u> in your cluster.</p>
-</blockquote>
+  <strong>Prerequisites:</strong> Install {{site.kgo_product_name}} and create a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
 </summary>
 
 ## Prerequisites
