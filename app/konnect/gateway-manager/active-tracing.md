@@ -90,7 +90,7 @@ List of spans and associated attributes:
     
     <tr>
     <td>kong.read_client_http_headers</td>
-    <td>span capturing the time taken to read http headers from the client. This span is useful for detecting clients that are coming over a slow network or a buggy CDN, or simply take too long to send in the http headers. 
+    <td>span capturing the time taken to read http headers from the client. This span is useful for detecting clients that are coming over a slow network or a buggy CDN, or simply take too long to send in the http headers.</td> 
      <td>
         <table>
           <tbody>
@@ -133,7 +133,7 @@ List of spans and associated attributes:
     </tr>
 
     <tr>
-      <td>kong.io.<func></td>
+      <td>kong.io.func</td>
       <td>span capturing network i/o timing that occurs during plugin execution or other request processing. Examples including the OIDC plugin making calls to IdP, RLA plugin making calls to redis, custom plugins calling http urls and so forth. Multiple instances of this span can occur anywhere in the trace when i/o happens</td>
       <td>
         <table>
@@ -182,7 +182,7 @@ List of spans and associated attributes:
       </td>
     </tr>
 
- <tr>
+   <tr>
       <td>kong.phase.access</td>
       <td>span capturing the execution of the access phase of request processing. Any plugins configured for running in this phase will show up as individual child spans</td>
     </tr>
@@ -273,7 +273,7 @@ List of spans and associated attributes:
       <td>span capturing the time taken for the upstream to generate a full response. This effectively measures the time Kong sees between the first byte of the response header and the last byte of the response body comng from the upstream. This span can be used to identify slowness in response generation from upstreams</td>
 </tr>
 
-<tr>
+    <tr>
       <td>kong.phase.response</td>
       <td>span capturing the execution of the response phase. Any plugins configured for running in this phase will show up as individual child spans. This phase will not run if response streaming is enabled</td>
     </tr>
@@ -333,6 +333,7 @@ List of spans and associated attributes:
         </table>
       </td>
     </tr>
+    
   </tbody>
 </table>
 
