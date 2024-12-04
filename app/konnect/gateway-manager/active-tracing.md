@@ -9,12 +9,12 @@ These deep traces are only generated during a live Active-Tracing session. These
 
 Where feasible span and attribute naming conventions follow OpenTelemetry naming standards.
 
-A sample trace can be seen below. It is clear from inspecting the spans that the bulk of the latency occurs in the pre-function "plugin" running in the access phase. 
+You can start a tracing session by navigating to Gateway Manager, choosing a Control Plane and selecting the "Active Tracing" menu option. A sample trace can be seen below. It is clear from inspecting the spans that the bulk of the latency occurs in the pre-function "plugin" running in the access phase. 
 
 ![Active-Tracing Spans](/assets/images/products/gateway/active-tracing-spans.png)
 
 
-Full list of spans and associated attributes:
+#### Full list of spans and associated attributes:
 <table>
   <thead>
     <th>Span Name</th>
