@@ -67,10 +67,12 @@ List of spans and associated attributes:
         </table>
       </td>
     </tr>
+
     <tr>
       <td>kong.phase.certificate</td>
       <td>span capturing the execution of the certificate phase of request processing. Any plugins configured for running in this phase will show up as individual child spans</td>
     </tr>
+  
     <tr>
       <td>kong.certificate.plugin.{plugin_name}</td>
       <td>span capturing the execution of a plugin configured to run in the certificate phase. Multiple such spans can occur in a trace</td>
@@ -109,6 +111,77 @@ List of spans and associated attributes:
       <td>kong.read_client_http_body</td>
       <td>span capturing the total time taken to read the full body sent by the client. This span can identify slow clients, buggy CDNs and very large body submissions</td>
     </tr>
+
+    <tr>
+      <td>kong.phase.rewrite</td>
+      <td>span capturing the execution of the rewrite phase of request processing. Any plugins configured for running in this phase will show up as individual child spans</td>
+    </tr>
+    
+    <tr>
+      <td>kong.rewrite.plugin.{plugin_name}</td>
+      <td>span capturing the execution of a plugin configured to run in the rewrite phase. Multiple such spans can occur in a trace</td>
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.plugin.instance_id</td>
+              <td>The instance id of the plugin configuration that ran</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td>kong.io.<func></td>
+      <td>span capturing network i/o timing that occurs during plugin execution or other request processing. Examples including the OIDC plugin making calls to IdP, RLA plugin making calls to redis, custom plugins calling http urls and so forth. Multiple instances of this span can occur anywhere in the trace when i/o happens</td>
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>network.peer.address</td>
+              <td>The address of the peer Kong connected with</td>
+            </tr>
+            <tr>
+              <td>network.protocol.name</td>
+              <td>The protocol that was used (redis, tcp, http, grpc etc)</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+    <td>kong.router</td>
+    <td>span capturing the execution of the Kong router</td>
+    <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.router.matched</td>
+              <td>yes/no - did the router find a match for the request</td>
+            </tr>
+            <tr>
+              <td>proxy.kong.router.route_id</td>
+              <td>The ID of the route that was matched</td>
+            </tr>
+            <tr>
+              <td>proxy.kong.router.service_id</td>
+              <td>The ID of the service that was matched</td>
+            </tr>
+            <tr>
+              <td>proxy.kong.router.upstream_path</td>
+              <td>The path of the upstream url returned by the match</td>
+            </tr>
+            <tr>
+              <td>proxy.kong.router.cache_hit</td>
+              <td>yes/no - was the match returned from cache</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
 
     
   </tbody>
