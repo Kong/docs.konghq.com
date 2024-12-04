@@ -21,6 +21,8 @@ konnect: true
 
 network_config_opts: all
 
-notes: This plugin doesn't support cluster policies. If you want to use this plugin in hybrid mode, you must use Redis for storage.
+notes: |
+  This plugin doesn't support cluster policies. 
+  If you want to use this plugin in hybrid mode or in Konnect, use Redis for storage.
 
 dbless_compatible: yes
