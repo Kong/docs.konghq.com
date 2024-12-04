@@ -61,7 +61,7 @@ List of spans and associated attributes:
 <tr><td>tls.resumed</td><td>was the TLS session reused</td></tr>
 <tr><td>tls.client.subject</td><td>x509 client DN (if mtls)</td></tr>
 <tr><td>tls.server.subject</td><td>x509 DN for cert we presented</td></tr>
-<tr><td>tls.cipher</td></tr>
+<tr><td>tls.cipher</td><td>the negotiated cipher</td></tr>
 
           </tbody>
         </table>
@@ -85,6 +85,32 @@ List of spans and associated attributes:
         </table>
       </td>
     </tr>
+    
+    <tr>
+    <td>kong.read_client_http_headers</td>
+    <td>span capturing the time taken to read http headers from the client. This span is useful for detecting clients that are coming over a slow network or a buggy CDN, or simply take too long to send in the http headers. 
+     <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.http_headers_count</td>
+              <td>The number of headers sent by the client</td>
+            </tr>
+            <tr>
+              <td>proxy.kong.http_headers_size</td>
+              <td>The size (in bytes) of headers sent by the client</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td>kong.read_client_http_body</td>
+      <td>span capturing the total time taken to read the full body sent by the client. This span can identify slow clients, buggy CDNs and very large body submissions</td>
+    </tr>
+
+    
   </tbody>
 </table>
 
