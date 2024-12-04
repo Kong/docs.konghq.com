@@ -182,6 +182,87 @@ List of spans and associated attributes:
       </td>
     </tr>
 
+ <tr>
+      <td>kong.phase.access</td>
+      <td>span capturing the execution of the access phase of request processing. Any plugins configured for running in this phase will show up as individual child spans</td>
+    </tr>
+    
+    <tr>
+      <td>kong.access.plugin.{plugin_name}</td>
+      <td>span capturing the execution of a plugin configured to run in the access phase. Multiple such spans can occur in a trace</td>
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.plugin.instance_id</td>
+              <td>The instance id of the plugin configuration that ran</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+  <tr>
+    <td>kong.dns</td>
+    <td>span capturing the time spent in looking up DNS</td>
+    <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.dns.entry</td>
+              <td>a list of DNS attempts, respones and errors if any</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+<tr>
+    <td>kong.upstream_selection</td>
+    <td>span capturing the total time spent in finding a healthy upstream. Depending on configuration, Kong will try to find a healthy upstream by trying various targets in order determined by the load balancing algorithm. Child spans of this span capture the individual attempts</td>
+    <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.upstream.lb_algorithm</td>
+              <td>the load balancing algorithm used for finding the upstream</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+    <td>kong.upstream.try_select</td>
+    <td>span capturing the attempt to verify a specific upstream. Kong attempts to open a TCP connection (if not KeepAlive cache is found), do a TLS handshake and send down the http headers. If all of this succeeds, the upstream is healthy and Kong will finish sending the full request and wait for a response. If any of the step fails, Kong will switch to the next target and try again</td>
+    <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>network.peer.address</td>
+              <td>the IP address of the target upstream</td>
+            </tr>
+            <tr>
+              <td>network.peer.name</td>
+              <td>the DNS name of the target upstream</td>
+            </tr>
+            <tr>
+              <td>network.peer.port</td>
+              <td>the port number of the target</td>
+            </tr>
+            <tr>
+              <td>try_count</td>
+              <td>The number of attempts Kong has made to find a healthy upstream</td>
+            </tr>
+            <tr>
+              <td>keepalive</td>
+              <td>Is this a KeepAlive connection?</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
 
     
   </tbody>
