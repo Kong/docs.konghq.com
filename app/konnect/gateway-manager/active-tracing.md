@@ -263,8 +263,76 @@ List of spans and associated attributes:
       </td>
     </tr>
 
+ <tr>
+      <td>kong.upstream_ttfb</td>
+      <td>span capturing the "time to first byte" from the upstream. This includes the time taken to finish writing the http request to upstream, and the time taken by the upstream to start generating a response. This span can be used to identify network delays between Kong and an upstream as well as identifying upstreams that take long to start generating responses</td>
+</tr>
 
+<tr>
+      <td>kong.upstream_read_response</td>
+      <td>span capturing the time taken for the upstream to generate a full response. This effectively measures the time Kong sees between the first byte of the response header and the last byte of the response body comng from the upstream. This span can be used to identify slowness in response generation from upstreams</td>
+</tr>
+
+<tr>
+      <td>kong.phase.response</td>
+      <td>span capturing the execution of the response phase. Any plugins configured for running in this phase will show up as individual child spans. This phase will not run if response streaming is enabled</td>
+    </tr>
     
+    <tr>
+      <td>kong.response.plugin.{plugin_name}</td>
+      <td>span capturing the execution of a plugin configured to run in the response phase. Multiple such spans can occur in a trace</td>
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.plugin.instance_id</td>
+              <td>The instance id of the plugin configuration that ran</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td>kong.phase.header_filter</td>
+      <td>span capturing the execution of the header filter phase of response processing. Any plugins configured for running in this phase will show up as individual child spans</td>
+    </tr>
+    
+    <tr>
+      <td>kong.header_filter.plugin.{plugin_name}</td>
+      <td>span capturing the execution of a plugin configured to run in the header_filter phase. Multiple such spans can occur in a trace</td>
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.plugin.instance_id</td>
+              <td>The instance id of the plugin configuration that ran</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>kong.phase.body_filter</td>
+      <td>span capturing the execution of the body filter phase of response processing. Any plugins configured for running in this phase will show up as individual child spans</td>
+    </tr>
+    
+    <tr>
+      <td>kong.body_filter.plugin.{plugin_name}</td>
+      <td>span capturing the execution of a plugin configured to run in the body_filter phase. Multiple such spans can occur in a trace</td>
+      <td>
+        <table>
+          <tbody>
+            <tr>
+              <td>proxy.kong.plugin.instance_id</td>
+              <td>The instance id of the plugin configuration that ran</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
   </tbody>
 </table>
 
