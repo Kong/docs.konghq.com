@@ -37,6 +37,28 @@ List of spans and associated attributes:
         </table>
       </td>
     </tr>
+    <tr>
+      <td>kong.phase.certificate</td>
+      <td>span capturing the execution of the certificate phase of request processing. Any plugins configured for running in this phase will show up as individual child spans</td>
+    </tr>
+    <tr>
+      <td>kong.certificate.plugin.{plugin_name}</td>
+      <td>span capturing the execution of a plugin configured to run in the certificate phase. Multiple such spans can occur in a trace</td>
+      <td>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>proxy.kong.plugin.instance_id</td>
+              <td>The instance id of the plugin configuration that ran</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
   </tbody>
 </table>
 
