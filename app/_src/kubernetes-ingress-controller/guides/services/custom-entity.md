@@ -4,15 +4,22 @@ type: how-to
 purpose: |
   How to create custom Kong entities
 alpha: true
+
+overrides:
+  alpha:
+    false:
+      gte: 3.4.x
 ---
 
 {{ site.kic_product_name }} provides an interface to configure {{ site.base_gateway }} entities using CRDs.
 
-Some Kong plugins define custom entities that require configuration. These entities can be configured using the `KongCustomEntity` resource.
+Some {{ site.base_gateway }} plugins define custom entities that require configuration. These entities can be configured using the `KongCustomEntity` resource.
 
+{% if_version lte:3.2.x %}
 {:.note}
 > **Note:** The KongCustomEntity controller is an opt-in feature. You must enable it by
 > setting feature gate `KongCustomEntity` to `true` to enable the controller.
+{% endif_version %}
 
 The `KongCustomEntity` resource contains a `type` field which indicates the type of Kong entity to create, and a `fields` property which can contain any values that need to be set on an entity.
 
@@ -34,7 +41,7 @@ This corresponds to the `uri` and `query` parameters documented in the [plugin d
 
 This example configures custom entities for the `degraphql` plugin, which allows you to access a GraphQL endpoint as a REST API.
 
-### Create a GraphQL Service
+## Create a GraphQL Service
 
 The `degraphql` plugin requires an upstream GraphQL API. For this tutorial, we'll use [Hasura] to create an example GraphQL service:
 
@@ -163,7 +170,6 @@ spec:
 
 Once the `KongPlugin` is configured, you can attach it to an `Ingress`:
 
-
 ```bash
 echo '
 apiVersion: networking.k8s.io/v1
@@ -208,4 +214,3 @@ which matches the data inserted in the previous steps.
 Need to be updated when custom resource reference page is updated.
 [KongCustomEntity]: /reference/custom-resources/
 <-->
-
