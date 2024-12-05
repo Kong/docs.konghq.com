@@ -11,7 +11,7 @@ type: plugin
 categories: 
   - security
 
-desc: # (Required) Short, one sentence description; max 80 characters.
+desc: Detect and block injection attacks using regular expressions
 
 free: false
 

@@ -3,24 +3,24 @@ nav_title: Overview
 title: Overview
 ---
 
-You can use the Injection Protection plugin to detect well known patterns that might be the result of a cross site scripting or other injection type attacks.
+You can use the Injection Protection plugin to detect and block known injection patterns consistent with SQL injection, server-side include injection, and more.
 
-The Injection Protection plugin makes it easier to protect your APIs from cross site scripting or other injection attacks by providing out-of-the box regex matching for common injection attacks. In addition, you can configure custom regex matching as well. 
+The Injection Protection plugin makes it easier to protect your APIs from SQL injection or other injection attacks by providing out-of-the box regex matching for common injection attacks. In addition, you can configure custom regex matching as well. 
 
 The Injection Protection plugin does the following: 
 * Extracts information from request headers, path/query parameters, or the payload body and evaluate that content against pre-defined regular expression
-* Rejects the requests that match the regular expressions with a 400 bad request
-* Captures metrics about rejected requests for analytics and reporting
+* Rejects the requests that match the regular expressions with a configurable HTTP status code and error message
+* Logs information about rejected requests for analytics and reporting
 
 ## How does the Injection Protection plugin work?
 
 Depending on what you have configured in the plugin's config, the Injection Protection plugin does the following:
 
-1. The plugin extracts the specified content (headers, path/query parameters, payload body, etc.) from a client request.
-1. The plugin checks the extracted content for matches against the specified pre-defined or custom regex expressions. The regex expressions define patterns that would match well-known cross site scripting or other injection attacks.
+1. The plugin extracts the specified content (headers, path/query parameters, payload body) from a client request.
+1. The plugin checks the extracted content for matches against the specified pre-defined or custom regex expressions. The regex expressions define patterns that would match well-known injection attacks.
 1. Depending on if the content matches, the plugin does one of the following:
     * **Regex doesn't match:** The plugin allows the request and sends a `200` status code to the client.
-    * **Regex match:** The plugin prevents the request by sending a `400` status code to the client and sends {{site.base_gateway}} an error log that contains the name of the injection type, what content matched the pattern, and what regex matched the content. You can also configure the plugin to only log matches and allow requests that match to still by proxied.
+    * **Regex match:** The plugin blocks the request by sending a `400` status code to the client and sends {{site.base_gateway}} an error log that contains the name of the injection type, what content matched the pattern, and what regex matched the content. You can also configure the plugin to only log matches and allow requests that match to still by proxied.
 
 The following diagram shows how the Injection Protection plugin detects injections and is configured to block and log matches:
 
@@ -43,7 +43,7 @@ sequenceDiagram
 
 ## What pre-defined regex patterns does the plugin provide for injection attacks?
 
-The Injection Protection plugin comes with several pre-built regex patterns that match common injection attacks. You can specify these patterns when you configure the plugin to easily block common attacks.
+The Injection Protection plugin comes with several pre-built regex patterns that match common injection attacks. You can enable or disable these patterns when you configure the plugin to easily block common attacks.
 
 | Injection type | Regex | Description |
 |----------------|-------|-------------|
@@ -56,7 +56,7 @@ The Injection Protection plugin comes with several pre-built regex patterns that
 
 ## How do I create a custom regex for matching?
 
-You can specify a custom regex for matching by using the `custom_regex_record` parameter in the Injection Protection plugin config. To create a custom regex, you must define the following:
+You can specify a custom regex for matching by using the `custom_injections` parameter in the Injection Protection plugin config. To create a custom regex, you must define the following:
 
 * The name of the regex (used in {{site.base_gateway}} logs)
 * The regex string you want to check for a match
