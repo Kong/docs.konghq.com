@@ -32,7 +32,6 @@ curl -i -X POST \
 
 Protect your LLM service with rate limiting. It will analyze query costs and token response to provide an enterprise-grade rate limiting strategy.
 
-{% if_version lte:3.8.x %}
 ```sh
 curl -i -X POST http://localhost:8001/services/example-service/plugins \
   --data 'name=ai-rate-limiting-advanced' \
@@ -40,18 +39,6 @@ curl -i -X POST http://localhost:8001/services/example-service/plugins \
   --data 'config.llm_providers[1].limit=100' \
   --data 'config.llm_providers[1].window_size=3600'
 ```
-{% endif_version %}
-{% if_version gte:3.9.x %}
-```sh
-curl -i -X POST http://localhost:8001/services/example-service/plugins \
-  --data 'name=ai-rate-limiting-advanced' \
-  --data 'config.llm_providers[1].name=openai' \
-  --data 'config.llm_providers[1].limit[]=100' \
-  --data 'config.llm_providers[1].limit[]=10000' \
-  --data 'config.llm_providers[1].window_size[]=60 \
-  --data 'config.llm_providers[1].window_size[]=3600'
-```
-{% endif_version %}
 
 The AI Rate Limiting Advanced plugin supports threes rate limiting strategies. The default strategy will estimate cost on queries by counting the total token value returned in the LLM responses.
 
