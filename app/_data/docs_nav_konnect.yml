@@ -62,6 +62,8 @@
           url: /gateway-manager/serverless-gateways/provision-serverless-gateway/
         - text: Securing Backend Traffic
           url: /gateway-manager/serverless-gateways/securing-backend-traffic/
+        - text: Custom Domains
+          url: /gateway-manager/serverless-gateways/custom-dns/
     - text: Data Plane Nodes
       items:
         - text: Installation Options

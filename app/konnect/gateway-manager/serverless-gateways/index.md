@@ -51,5 +51,5 @@ This includes [data plane resilience](/gateway/latest/kong-enterprise/cp-outage-
 ## More information
 
 * [Securing backend traffic](/konnect/gateway-manager/serverless-gateways/securing-backend-traffic)
-* [Custom Domains](/konnect/reference/custom-dns/)
+* [Custom Domains](/konnect/gateway-manager/serverless-gateways/custom-dns/)
 * [Serverless gateways API](/konnect/api/cloud-gateways/latest/)
