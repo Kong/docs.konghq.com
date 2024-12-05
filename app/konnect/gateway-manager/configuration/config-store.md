@@ -34,7 +34,7 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
 	},
 	"description": "Description of your vault",
 	"name": "konnect",
-	"prefix": "my-vault"
+	"prefix": "mysecretvault"
 }'
 ```
 
@@ -57,7 +57,7 @@ vaults:
     config_store_id: ee62068e-1843-49f8-ac22-40293b0a949d
   description: Storing secrets in Konnect
   name: konnect
-  prefix: konnect-vault
+  prefix: mysecretvault
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -69,7 +69,7 @@ You can now store secrets in the {{site.konnect_short_name}} Config Store and re
 For instance, a secret named `secret-name` can be referenced using:
 
 ```sh
-{vault://my-vault/secret-name}
+{vault://mysecretvault/secret-name}
 ```
 
 This allows {{site.base_gateway}} to recognize and retrieve the stored secrets. Additionally, a secret can hold multiple key-value pairs if needed:
@@ -84,8 +84,8 @@ This allows {{site.base_gateway}} to recognize and retrieve the stored secrets. 
 To make these secrets accessible to {{site.base_gateway}}, reference the vault using a specific URL format. For the example above, the references would be:
 
 ```sh
-{vault://my-vault/secret-name/foo}
-{vault://my-vault/secret-name/snip}
+{vault://mysecretvault/secret-name/foo}
+{vault://mysecretvault/secret-name/snip}
 ```
 
 
