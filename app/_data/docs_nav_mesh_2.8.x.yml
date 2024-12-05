@@ -144,7 +144,7 @@ inherit:
           url: /features/cert-manager
         - text: OPA policy support
           url: /features/opa
-        - text: MeshOPA (beta)
+        - text: MeshOPA
           url: /features/meshopa
         - text: Multi-zone authentication
           url: /features/kds-auth
@@ -192,6 +192,3 @@ inherit:
       src: null
       absolute_url: true
       url: https://kuma.io/community
-unlisted:
-  - url: /install
-    src: /mesh/install

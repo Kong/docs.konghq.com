@@ -9,6 +9,10 @@
       url: /network-resiliency/
     - text: Port and Network Requirements
       url: /network/
+    - text: Private Connections to Other Cloud Providers
+      items:
+        - text: Create a private connection with AWS PrivateLink
+          url: /private-connections/aws-privatelink/
     - text: Geographic Regions
       url: /geo/
     - text: Compatibility
@@ -150,6 +154,8 @@
           url: /service-catalog/integrations/swaggerhub/
         - text: Traceable
           url: /service-catalog/integrations/traceable/
+        - text: Datadog
+          url: /service-catalog/integrations/datadog/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
@@ -245,6 +251,7 @@
       url: /analytics/use-cases/
     - text: Requests
       url: /analytics/api-requests/
+
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:

@@ -1,9 +1,7 @@
 {% unless include.disable_accordian %}
-<details class="custom" markdown="1">
+<details markdown="1">
 <summary>
-<blockquote class="note">
-  <p style="cursor: pointer">Before you begin, ensure that you have <u>installed the {{site.kgo_product_name}}</u> in your Kubernetes cluster{% if include.aiGateway %} with AI Gateway support enabled{% endif %}{% if include.kongPluginInstallation %} with KongPluginInstallation support enabled{% endif %}{% if include.kconfCRDs %} with Kong's Kubernetes Configuration CRDs enabled{% endif %}. {% if include.enterprise %}This guide requires an enterprise license.{% endif %}</p>
-</blockquote>
+  <strong>Prerequisites:</strong> Install the {{site.kgo_product_name}} in your Kubernetes cluster{% if include.aiGateway %} with AI Gateway support enabled.{% endif %}{% if include.kongPluginInstallation %} with KongPluginInstallation support enabled.{% endif %}{% if include.kconfCRDs %} with Kong's Kubernetes Configuration CRDs enabled.{% endif %} {% if include.enterprise %}This guide requires an enterprise license.{% endif %}
 </summary>
 
 ## Prerequisites

@@ -11,6 +11,84 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.8.1.0
+**Release Date** 2024/11/04
+
+### Features
+#### Plugins
+
+* [**Prometheus**](/hub/kong-inc/prometheus/) (`prometheus`) 
+  * Increased the upper limit of `KONG_LATENCY_BUCKETS` to 6000 to enhance latency tracking precision.
+
+### Fixes
+
+#### Clustering
+
+* Fixed the clustering compatibility logic for the RDS assume role and custom STS endpoint features.
+
+#### Core
+
+* **Vault**: Fixed an issue where updating a vault entity in a non-default workspace wouldn't take effect.
+
+#### Admin API
+
+* **Admin API** Fixed an issue where sending `tags=` as an empty parameter resulted in a 500 error. Now, Kong returns a 400 error because empty explicit tags are not allowed.
+
+#### Kong Manager
+
+* Fixed an issue where text was not centered in custom banners.
+* Fixed an issue where a workspace named "portal", but with different case letters, didn't render the correct overview page.
+
+#### Plugins
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed an issue where multi-modal requests were blocked on the Azure AI provider.
+  * Fixed an issue where AI Transformer plugins always returned a 404 error when using 'Google One' Gemini subscription.
+
+* [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
+  * Fixed an issue where the lowest-usage and lowest-latency strategies did not update data points correctly.
+  * Fixed an issue where stale plugin config was not updated in DB-less or hybrid mode.
+
+* [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)
+  * Fixed an issue where the plugin yielded an error when incrementing the rate limit counters in non-yieldable phases.
+
+* [**AI Request Transformer**](/hub/kong-inc/ai-request-transformer/) (`ai-request-transformer`) and 
+[**AI Response Transformer**](/hub/kong-inc/ai-response-transformer/) (`ai-response-transformer`)
+  * Fixed an issue where the correct LLM error message was not propagated to the caller.
+  * Fixed an issue where AI Transformer plugins always returned a 404 error when using Google One Gemini subscriptions.
+
+* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/)
+  * Fixed an issue where the plugin couldn't use the request-provided models.
+  * Fixed an issue where the plugin put the wrong type value in the metrics when using the Prometheus plugin.
+  * Fixed an issue where the plugin would abort in stream mode when another plugin enabled buffering proxy mode.
+
+* [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-prompt-guard/)
+  * Fixed an issue where stale plugin config was not updated in DB-less or hybrid mode.
+
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where the degraphql routes were updated from the control plane but not updated in the degraphql router on the data plane.
+
+* [**JSON Threat Protection**](/hub/kong-inc/json-threat-protection/)
+  * Fixed an issue where the length counting of escape sequences, non-ASCII characters, and object entry names in JSON strings was incorrect. The plugin now uses UTF-8 character count instead of bytes.
+  * Fixed an issue where certain default parameter values were incorrectly interpreted as 0 in some environments (e.g., ARM64-based):
+    * `max_container_depth`
+    * `max_object_entry_count`
+    * `max_object_entry_name_length`
+    * `max_array_element_count`
+    * `max_string_value_length`
+
+* [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
+  * Fixed an issue that caused an HTTP 500 error when `hide_client_headers` was set to `true` and the request exceeded the rate limit.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where a warn log was printed when `event_hooks` was disabled.
+
+### Dependencies
+
+* Bumped `lua-kong-nginx-module` from 0.11.0 to 0.11.1 to fix an issue where the upstream cert chain wasn't properly set.
+* Bumped `lua-resty-aws` to 1.5.4 to fix a bug inside region prefix generation.
+* Bumped `lua-resty-azure` to 1.6.1 to fix a `GET` request build issue, which was causing problems with Azure secret references.
+
 ## 3.8.0.0
 **Release Date** 2024/09/11
 
@@ -546,6 +624,55 @@ for any of the `max_*` parameters indicates unlimited.
 In some environments (such as ARM64-based environments), the default value is interpreted incorrectly.
 The plugin can erroneously block valid requests if any of the parameters continue with the default values.
 To mitigate this issue, configure the JSON Threat Protection plugin with limits for all of the `max_*` parameters.
+
+
+## 3.7.1.3
+**Release Date** 2024/11/26
+
+### Fixes
+#### Core
+
+* The `kong.logrotate` configuration file is no longer overwritten during upgrade.
+
+  This change presents an additional prompt for Debian users upgrading via `apt` and `deb` packages.
+  To accept the defaults provided by Kong in the package, use the following command, adjusting it to 
+  your architecture and the version you're upgrading to: 
+
+  ```sh
+  DEBIAN_FRONTEND=noninteractive apt upgrade kong-enterprise-edition_3.4.3.11_arm64.deb
+  ```
+* **Vault**: 
+  * Fixed an issue where updating a vault entity in a non-default workspace didn't take effect.
+  * Fixed an issue where the Vault secret cache got refreshed during `resurrect_ttl` time and could not be fetched by other workers.
+* Moved internal Unix sockets to a subdirectory (`sockets`) of the Kong prefix.
+* Shortened names of internal Unix sockets to avoid exceeding the socket name limit.
+* Fixed an issue where `luarocks-admin` was not available in `/usr/local/bin`.
+* Fixed an issue where AWS IAM assume role could not be used in AWS IAM Database Authentication, by using the following fields: `pg_iam_auth_assume_role_arn`, `pg_iam_auth_role_session_name`, `pg_ro_iam_auth_assume_role_arn`, and `pg_ro_iam_auth_role_session_name`.
+* Fixed an issue where the STS endpoint could not be configured manually in RDS IAM Authentication, AWS Vault, and AWS Lambda plugin. For RDS IAM Authentication,
+it can be configured by `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_endpoint_url`; for AWS Vault, it can be configured by `vault_aws_sts_endpoint_url` as a global configuration, or `sts_endpoint_url` on a custom AWS vault entity; for the AWS Lambda plugin, it can be configured by `aws_sts_endpoint_url`.
+
+#### Plugins
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed an issue where certain Azure models would return partial tokens/words when in response-streaming mode.
+  * Fixed an issue where Cohere and Anthropic providers didn't read the `model` parameter properly from the caller's request body.
+  * Fixed an issue where using OpenAI Function inference requests would log a request error, and then hang until timeout.
+  * Fixed an issue where AI Proxy would still allow callers to specify their own model, ignoring the plugin-configured model name.
+  * Fixed an issue where the AI Proxy plugin's configured model tuning options would not take precedence over those in the user's LLM request.
+  * Fixed an issue where setting OpenAI SDK model parameter `null` caused analytics to not be written to the logging plugin(s).
+ 
+  [#13000](https://github.com/Kong/kong/issues/13000)
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where, if the `window_size` in the consumer group overriding config was different 
+    from the `window_size` in the default config, the rate limiting of that consumer group would fall back to local strategy.
+  * Fixed an issue where the sync timer could stop working due to a race condition.
+
+### Dependencies
+
+* Bumped `lua-resty-aws` to 1.5.3 to fix a bug related to STS regional endpoint.
+* Bumped `lua-resty-azure` to 1.6.1 to fix a `GET` request build issue, which was causing problems with Azure secret references.
+* Made the RPM package relocatable with the default prefix set to `/`.
 
 ## 3.7.1.2
 **Release Date** 2024/07/09
@@ -2507,10 +2634,60 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
-
-## 3.4.3.12
+## 3.4.3.13
+**Release Date** 2024/11/15
 
 ### Features
+#### Core
+
+* Added support for AWS IAM role assuming in AWS IAM Database Authentication, with the following new configuration fields: `pg_iam_auth_assume_role_arn`, `pg_iam_auth_role_session_name`, `pg_ro_iam_auth_assume_role_arn`, and `pg_ro_iam_auth_role_session_name`.
+
+* Added support for a configurable STS endpoint for RDS IAM Authentication, with the following new configuration fields: `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_endpoint_url`.
+
+* Added support for a configurable STS endpoint for AWS Vault. This can either be configured by `vault_aws_sts_endpoint_url` as a global configuration, or `sts_endpoint_url` on a custom AWS Vault entity.
+
+#### Plugins
+
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`):
+  * Added support for a configurable STS endpoint with the new configuration field `aws_sts_endpoint_url`.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) 
+  * Increased the time resolution of sliding window weight calculation.
+
+### Fixes
+#### Core
+
+* Fixed an issue where the Vault secret cache got refreshed during `resurrect_ttl` time and could not be fetched by other workers.
+* Moved internal Unix sockets to a subdirectory (`sockets`) of the Kong prefix.
+* Shortened the names of internal Unix sockets to avoid exceeding the socket name limit.
+* Fixed an issue where AWS IAM assume role could not be used in AWS IAM database authentication by using the following fields: 
+  * `pg_iam_auth_assume_role_arn`
+  * `pg_iam_auth_role_session_name`
+  * `pg_ro_iam_auth_assume_role_arn`
+  * `pg_ro_iam_auth_role_session_name`
+* Fixed an issue where the STS endpoint could not be configured manually in RDS IAM Authentication, AWS Vault and AWS Lambda plugin. For RDS IAM authentication, it can be configured by `pg_iam_auth_sts_endpoint_url` and `pg_ro_iam_auth_sts_endpoint_url`. For AWS vault, it can be configured using `vault_aws_sts_endpoint_url` as a global configuration, or `sts_endpoint_url` on a custom AWS vault entity. For the AWS Lambda plugin, it can be configured using the `aws_sts_endpoint_url`. 
+* Fixed an issue where `luarocks-admin` was not available in `/usr/local/bin`.
+* Fixed an issue where analytics could break when the value type of rate limiting-related headers was not `integer`.
+* Fixed an issue where the IAM auth token was not refreshed when the underlying AWS credential expired.
+
+#### Plugins
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
+  * Fixed an issue where `header_type` being `nil` caused a log message concatenation error.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) 
+  * Fixed an issue where the sync timer could stop working due to a race condition.
+  * Fixed an issue where when the sliding window and `window_size` was very small, the precision of the rate limit wasn't accurate enough.
+
+### Dependencies
+
+* Bumped `LPEG` from 1.0.2 to 1.1.0 to keep the version consistent across all active branches. 
+The version bump includes fixes like UTF-8 ranges, a larger limit for rules and matches, accumulator capture, and more.
+* Bumped `lua-resty-aws` to 1.5.3 to fix a bug related to the STS regional endpoint.
+* Bumped `lua-resty-azure` to 1.6.1 to fix a `GET` request build issue, which was causing problems with Azure secret references.
+* Made the RPM package relocatable with the default prefix set to `/`.
+
+## 3.4.3.12
 **Release Date** 2024/08/08
 
 ### Deprecations
@@ -5439,7 +5616,7 @@ Kong Gateway version.
 Amazon Linux 1 [reached end-of-life on December 31, 2020](https://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life).
   [Kong/docs.konghq.com #3966](https://github.com/Kong/docs.konghq.com/pull/3966)
 * Deprecated and stopped producing Debian 8 (Jessie) containers and packages.
-Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020/20200709).
+Debian 8 reached end-of-life in June 30, 2020.
   [Kong/kong-build-tools #448](https://github.com/Kong/kong-build-tools/pull/448)
 
 #### Core
@@ -6698,7 +6875,7 @@ images or packages, and Kong will not test package installation on Amazon Linux 
     [previous versions](/gateway/2.8.x/install-and-run/amazon-linux/).
 
 * **Debian 8**: Support for running Kong Gateway on Debian 8 ("Jessie") is now deprecated, as
-[Debian 8 ("Jessie") has reached End of Life (EOL)](https://www.debian.org/News/2020/20200709).
+Debian 8 ("Jessie") has reached End of Life (EOL).
 Starting with Kong Gateway 3.0.0.0, Kong is not building new Debian 8
 ("Jessie") images or packages, and Kong will not test package installation on
 Debian 8 ("Jessie").

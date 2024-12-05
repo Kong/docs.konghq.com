@@ -12,6 +12,25 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## November 2024
 
 <div class="changelog-entries">
+<div class="changelog-date">November<br>27</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-now-supports-aws-privatelink-for-cp-dp-communication-ZqBwIY5V">Konnect now supports AWS PrivateLink for CP <> DP communication</a>
+</div>
+<div class="changelog-description">You can now leverage AWS PrivateLink for a secure connection between your dataplanes hosted in AWS and Konnect.  This adds another layer of security between the control plane (CP) in Konnect and dataplanes (DP) in your AWS requirement.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">November<br>26</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-is-now-available-in-middle-east">Konnect is now available in Middle East!</a>
+</div>
+<div class="changelog-description">Konnect control plane is now available in Middle East!  You can now leverage Konnect hosted in Middle East to be close to your end customers and comply with the data residency requirements.</div>
+</div>
+</div>
+
+<div class="changelog-entries">
 <div class="changelog-date">November<br>05</div>
 <div class="changelog-entry">
 <div class="changelog-title">
@@ -41,7 +60,6 @@ We have deprecated the old method of filtering requests via the API in favor of 
 </div>
 </div>
 </div>
-
 
 ## October 2024
 
@@ -114,7 +132,6 @@ Cloud Launchers deprecated
 <div class="changelog-description">Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.</div>
 </div>
 </div>
-
 
 ## August 2024
 

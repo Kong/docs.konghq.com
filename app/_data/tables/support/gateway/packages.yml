@@ -138,3 +138,10 @@ _packages:
     arm: false
     fips: false
     graviton: false
+  ubuntu2404: &ubuntu2404
+    os: Ubuntu
+    version: 24.04
+    package: true
+    arm: true
+    fips: true
+    graviton: true

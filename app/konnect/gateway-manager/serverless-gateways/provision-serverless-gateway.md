@@ -91,6 +91,9 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 	* `control_plane_geo`: The geo of the control plane.
 	* `region`: The region you want to deploy the data plane in.
 
+	{:.note}
+	> **Note:** The Serverless Gateway data plane can only be provisioned in the `na`, `eu`, or `au` regions. However your data plane and control plane regions can be different (e.g. it's possible to attach an `eu` data plane to an `me` control plane.)
+
     You should get a `201` response which means your serverless gateway is now provisoned. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
 
 {% endnavtab %}

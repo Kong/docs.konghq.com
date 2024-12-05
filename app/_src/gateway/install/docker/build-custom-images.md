@@ -83,13 +83,16 @@ RUN set -ex; \
 
 {% navtab Ubuntu %}
 ```dockerfile
-
-{% if_version lte:3.0.x %}
+ 
+{% if_version lte:3.0.x -%}
 FROM ubuntu:20.04
-{% endif_version %}
-{% if_version gte:3.1.x %}
+{%- endif_version -%}
+{%- if_version gte:3.1.x lte:3.8.x -%}
 FROM ubuntu:22.04
-{% endif_version %}
+{%- endif_version -%}
+{%- if_version gte:3.9.x -%}
+FROM ubuntu:24.04
+{%- endif_version %}
 
 COPY kong.deb /tmp/kong.deb
 
@@ -112,7 +115,12 @@ RUN set -ex; \
 {% navtab RHEL %}
 ```dockerfile
 
+{% if_version lte:3.8.x -%}
 FROM registry.access.redhat.com/ubi8/ubi:8.1
+{%- endif_version -%}
+{%- if_version gte:3.9.x -%}
+FROM registry.access.redhat.com/ubi9/ubi:9.5
+{%- endif_version %}
 
 COPY kong.rpm /tmp/kong.rpm
 
