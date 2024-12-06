@@ -306,6 +306,7 @@ iptables
 Istio
 Istio's
 istioctl
+jaq
 jetstack
 Jira
 journald
@@ -503,6 +504,7 @@ SCCs
 schema's
 SDKs
 secret_id
+serde-json
 serializer
 serverless
 serviceless
@@ -597,6 +599,8 @@ unpublish
 unpublishing
 unregister
 unregistering
+unset
+unsetting
 unshorten
 unshortened
 unstash

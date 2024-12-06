@@ -65,6 +65,8 @@ Let's test out Datakit by combining responses from two third party API calls, th
 
 In the following example, replace `SERVICE_NAME|ID` with `my-service`, or with your own service name:
 
+<!--vale off-->
+
 {% plugin_example %}
 plugin: kong-inc/acl
 name: datakit
@@ -101,6 +103,8 @@ formats:
   - kubernetes
   - terraform
 {% endplugin_example %}
+
+<!-- vale on -->
 
 ## Validate
 

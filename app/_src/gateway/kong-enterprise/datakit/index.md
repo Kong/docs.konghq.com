@@ -22,7 +22,7 @@ The following are examples of common use cases for Datakit:
 Use case | Description
 ---------|------------
 Internal authentication | Use internal auth within your ecosystem by sending response headers to upstreams.
-Service augumentation | ?
+Service augmentation | ?
 Dynamic service discovery | ?
 Get and set Kong entity properties | Use Datakit to adjust {{site.base_gateway}} entity configurations. For example, you could replace the service URL or set a header on a route.
 
