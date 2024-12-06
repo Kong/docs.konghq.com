@@ -35,6 +35,12 @@ As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provide
   which could lead to `no memory` errors.
 {% endif_version %}
 
+## Choosing a rate limiting plugin
+
+Kong provides multiple rate limiting plugins. Choose one to fit your use case:
+
+{% include /md/plugins-hub/rl-table.md %}
+
 ## Headers sent to the client
 
 When this plugin is enabled, Kong sends some additional headers back to the client

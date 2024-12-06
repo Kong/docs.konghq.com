@@ -15,6 +15,13 @@ provides the ability to apply
 > **Note:** At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. 
 Multiple limits can be configured.
 
+## Choosing a rate limiting plugin
+
+Kong provides multiple rate limiting plugins. Choose one to fit your use case:
+
+{% include /md/plugins-hub/rl-table.md %}
+
+
 ## Headers sent to the client
 
 When this plugin is enabled, Kong sends additional headers

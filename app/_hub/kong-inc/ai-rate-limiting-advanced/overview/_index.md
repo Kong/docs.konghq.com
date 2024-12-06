@@ -26,6 +26,11 @@ You can also create a generic prompt rate limit using the [request prompt provid
       -  If the rate limit is reached, the next request will be blocked
     * Known limitation: The disable penalty only works for the `requestPrompt` provider.
 
+## Choosing a rate limiting plugin
+
+Kong provides multiple rate limiting plugins. Choose one to fit your use case:
+
+{% include /md/plugins-hub/rl-table.md %}
 
 ## Headers sent to the client
 
