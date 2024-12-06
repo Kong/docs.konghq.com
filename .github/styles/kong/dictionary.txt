@@ -195,6 +195,7 @@ Datadog
 datadog
 datagram
 datagrams
+datakit
 dataplane
 dataplanes
 db-ip
