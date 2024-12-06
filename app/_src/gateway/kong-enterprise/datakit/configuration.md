@@ -40,11 +40,11 @@ executing.
 The following node types are implemented:
 
 **Node type**        | **Input ports**            | **Output ports**  |  **Supported attributes**
---------------------:|:--------------------------:|:-----------------:|:-----------------------------
+---------------------|----------------------------|-------------------|---------------------------
 `call`               | `body`, `headers`, `query` | `body`, `headers` | `url`, `method`, `timeout`
 `jq`                 | user-defined               | user-defined      | `jq`
 `handlebars`         | user-defined               | `output`          | `template`, `content_type`
-`exit`               | `body`, `headers`          |                   | `status`
+`exit`               | `body`, `headers`          | none              | `status`
 `property`           | `value`                    | `value`           | `property`, `content_type`
 
 ### `call` node type
@@ -268,11 +268,11 @@ explicitly declared. These reserved node names cannot be used for user-defined
 nodes. These are:
 
 **Node**             | **Input ports**            | **Output ports**           |  **Description**
---------------------:|:--------------------------:|:--------------------------:|:------------------
-`request`            |                            | `body`, `headers`, `query` | the incoming request
-`service_request`    | `body`, `headers`, `query` |                            | request sent to the service being proxied to
-`service_response`   |                            | `body`, `headers`          | response sent by the service being proxied to
-`response`           | `body`, `headers`          |                            | response to be sent to the incoming request
+---------------------|----------------------------|----------------------------|------------------
+`request`            | none                       | `body`, `headers`, `query` | the incoming request
+`service_request`    | `body`, `headers`, `query` | none                       | request sent to the service being proxied to
+`service_response`   | none                       | `body`, `headers`          | response sent by the service being proxied to
+`response`           | `body`, `headers`          | none                       | response to be sent to the incoming request
 
 The `headers` ports produce and consume maps from header names to their values.
 Keys are header names are normalized to lowercase.
