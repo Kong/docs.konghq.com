@@ -96,7 +96,7 @@ plugins:
       jq: |
         {
           "cat_fact": $cat.fact,
-          "dog_fact": $dog.facts
+          "dog_fact": $dog.facts[0]
         }
     - name: EXIT
       type: exit
@@ -191,7 +191,7 @@ services:
         debug: true
         nodes:
         #
-        # read "builtin" kong properties
+        # read "built-in" kong properties
         #
         - name: ROUTE_ID
           type: property
@@ -203,10 +203,7 @@ services:
           content_type: application/json
 
         #
-        # read some properties set by a Lua plugin
-        #
-        # NOTE: these depend on the fact that they are being set during the
-        # access phase and because Lua plugins run before wasm filters
+        # access values from ctx
         #
         - name: LUA_VALUE_ENCODED
           type: property
@@ -238,19 +235,19 @@ services:
           property: kong.ctx.shared.nothing_here
 
         #
-        # emit a JSON-encoded string from jq and store it to kong.ctx.shared
+        # emit a JSON-encoded string from jq and store it in kong.ctx.shared
         #
         - name: JSON_ENCODED_STRING
           type: jq
           jq: '"my string"'
 
-        # encoded as `my string`
+        # encode as `my string`
         - name: SET_MY_STRING_PLAIN
           type: property
           input: JSON_ENCODED_STRING
           property: kong.ctx.shared.my_string
 
-        # [JSON-]encoded as `"my string"`
+        # [JSON-]encode as `"my string"`
         - name: SET_MY_STRING_ENCODED
           type: property
           input: JSON_ENCODED_STRING

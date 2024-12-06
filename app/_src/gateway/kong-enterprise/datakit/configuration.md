@@ -6,17 +6,6 @@ alpha: true
 
 Datakit can be configured via the `/plugins` endpoint.
 
-## The data model
-
-The data types are based on those of [serde-json], so the representable value types are:
-
-* Null
-* Boolean
-* Number
-* String
-* Array (a vector of values)
-* Object (a map from strings to values)
-
 ## The execution model
 
 Nodes can have input ports and output ports.
@@ -208,7 +197,7 @@ Exit and pass the input directly to the client:
   
 ### `property` node type
 
-Get/set Proxy-Wasm host properties.
+Get and set {{site.base_gateway}} host properties.
 
 Whether a **get** or **set** operation is performed depends upon the node inputs:
 
@@ -307,6 +296,5 @@ as normal. Any other value will enable debug tracing.
 
 ---
 
-[serde-json]: https://docs.rs/serde_json/latest/serde_json/
 [Handlebars]: https://docs.rs/handlebars/latest/handlebars/
 [jaq]: https://lib.rs/crates/jaq

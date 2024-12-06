@@ -504,7 +504,6 @@ SCCs
 schema's
 SDKs
 secret_id
-serde-json
 serializer
 serverless
 serviceless

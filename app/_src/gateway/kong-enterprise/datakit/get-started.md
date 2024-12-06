@@ -4,7 +4,7 @@ badge: enterprise
 alpha: true
 ---
 
-## Enable WASM filters
+## Enable the WASM engine
 
 In `kong.conf`, set:
 
@@ -87,7 +87,7 @@ config:
     jq: |
       {
         "cat_fact": $cat.fact,
-        "dog_fact": $dog.facts
+        "dog_fact": $dog.facts[0]
       }
   - name: EXIT
     type: exit
@@ -130,9 +130,7 @@ X-Kong-Upstream-Latency: 742
 
 {
     "cat_fact": "The longest living cat on record according to the Guinness Book belongs to the late Creme Puff of Austin, Texas who lived to the ripe old age of 38 years and 3 days!",
-    "dog_fact": [
-        "Greyhounds can reach a speed of up to 45 miles per hour."
-    ]
+    "dog_fact": "Greyhounds can reach a speed of up to 45 miles per hour."
 }
 
 ```
