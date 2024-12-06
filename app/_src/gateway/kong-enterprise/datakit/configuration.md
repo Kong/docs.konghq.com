@@ -114,11 +114,11 @@ Join the output of two API calls:
   type: jq
   inputs:
   - cat: CAT_FACT.body
-  - chuck: CHUCK_NORRIS_FACT.body
+  - dog: DOG_FACT.body
   jq: |
     {
       "cat_fact": $cat.fact,
-      "chuck_norris_fact": $chuck.value
+      "dog_fact": $dog.facts[0]
     }
 ```
 
