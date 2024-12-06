@@ -166,6 +166,7 @@ booleans
 brotli
 burstable
 CAs
+callout
 certificate_admin
 charset
 chatbot
