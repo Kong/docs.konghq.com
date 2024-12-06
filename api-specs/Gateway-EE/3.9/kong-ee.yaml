@@ -13119,6 +13119,69 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-admins-name_or_id-workspaces
       description: Return workspaces associated with an admin.
+  '/admins/{name_or_id}/workspaces/{workspace_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The admin’s username or ID
+      - schema:
+          type: string
+        name: workspace_name_or_id
+        in: path
+        required: true
+        description: The name or ID of the admin's new workspace.
+    patch:
+      summary: Update an Admin's Workspace
+      tags:
+        - admins
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  updated_at:
+                    type: integer
+                  status:
+                    type: integer
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  rbac_token_enabled:
+                    type: boolean
+                x-examples:
+                  Example 1:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    status: 4
+                    username: test-admin
+                    email: test@test.com
+                    rbac_token_enabled: true
+              examples:
+                Example response body:
+                  value:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    status: 4
+                    username: test-admin
+                    email: test@test.com
+                    rbac_token_enabled: true
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: patch-admins-name_or_id-workspaces-workspace_name_or_id
+      description: Change the `belong_workspace` property for the specified admin.
   /groups:
     get:
       summary: List Groups
