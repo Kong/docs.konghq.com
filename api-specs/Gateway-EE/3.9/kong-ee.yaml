@@ -16158,6 +16158,60 @@ paths:
       tags:
       - cache
 
+  '/config':
+    post:
+      summary: Apply Declarative Config
+      tags:
+        - config
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+            application/yaml:
+              schema:
+                type: object
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  config:
+                    type: string
+                    format: binary
+                    example: /path/to/<config-file>
+                    description: Configuration file in JSON or YAML.
+      operationId: post-config
+      description: |
+        Apply a configuration from a declarative JSON or YAML file. Any existing configuration will be overwritten/
+
+        > Note: This API is only available in DB-less mode.
+    get:
+      summary: Get Declarative Config
+      operationId: get-config
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  config:
+                    type: string
+      tags:
+        - config
+      description: |
+        Get the current configuration.
+
+        > Note: This API is only available in DB-less mode.
+
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'
@@ -16344,3 +16398,6 @@ tags:
   - description: |
       Querying and managing cache entries.
     name: cache
+  - description: |
+      Apply and retrieve declarative configuration when using DB-less mode.
+    name: config
