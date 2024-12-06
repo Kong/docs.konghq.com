@@ -8,11 +8,13 @@ info:
     url: 'https://konghq.com'
 servers:
   - url: 'https://us.api.konghq.com/v2'
-    description: US Region Base URL
+    description: United-States Production region
   - url: 'https://eu.api.konghq.com/v2'
-    description: EU Region Base URL
+    description: Europe Production region
   - url: 'https://au.api.konghq.com/v2'
-    description: AU Region Base URL
+    description: Australia Production region
+  - url: 'https://me.api.konghq.com/v2'
+    description: Middle-East Production region
 paths:
   /portals:
     get:
@@ -1187,6 +1189,22 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
+        - name: filter
+          in: query
+          description: Filter developers returned in the response.
+          required: false
+          schema:
+            type: object
+            properties:
+              email:
+                $ref: '#/components/schemas/StringFieldFilter'
+              full_name:
+                $ref: '#/components/schemas/StringFieldFilter'
+              attributes:
+                $ref: '#/components/schemas/StringFieldFilter'
+              active:
+                $ref: '#/components/schemas/BooleanFieldFilter'
+          style: deepObject
       responses:
         '200':
           $ref: '#/components/responses/ListBasicDevelopers'
@@ -1224,6 +1242,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
       tags:
         - Portal Team Membership
   '/portals/{portalId}/teams/{teamId}/developers/{developerId}':
@@ -1912,6 +1932,7 @@ components:
             - us
             - eu
             - au
+            - me
             - '*'
       example:
         role_name: API Viewer
@@ -2141,6 +2162,7 @@ components:
             - us
             - eu
             - au
+            - me
             - '*'
       example:
         id: 1a3c2169-27f8-4594-926b-41df3432d5dc
