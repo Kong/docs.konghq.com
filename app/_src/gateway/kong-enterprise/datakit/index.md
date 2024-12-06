@@ -61,3 +61,4 @@ sequenceDiagram
 
 * [Get started with Datakit](/gateway/{{page.release}}/kong-enterprise/datakit/get-started/)
 * [Datakit configuration reference](/gateway/{{page.release}}/kong-enterprise/datakit/configuration/)
+* [Datakit examples reference](/gateway/{{page.release}}/kong-enterprise/datakit/examples/)

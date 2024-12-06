@@ -366,6 +366,8 @@ items:
             url: /kong-enterprise/datakit/get-started/
           - text: Datakit Configuration Reference
             url: /kong-enterprise/datakit/configuration/
+          - text: Datakit Examples Reference
+            url: /kong-enterprise/datakit/examples/
 
   - title: Kong AI Gateway
     icon: /assets/images/icons/documentation/icn-ai.svg
