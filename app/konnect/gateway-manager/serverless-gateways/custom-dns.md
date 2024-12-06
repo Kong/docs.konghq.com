@@ -1,17 +1,15 @@
 ---
-title: Custom Domains
+title: Custom Domains for Serverless Gateways
 ---
 
 {{site.konnect_short_name}} integrates domain name management and configuration with [Serverless](/konnect/gateway-manager/serverless-gateways/) gateways. 
 
 
-## Serverless Gateways
-### {{site.konnect_short_name}} configuration
+## {{site.konnect_short_name}} configuration
 
 1. Open {% konnect_icon runtimes %} **Gateway Manager**, choose a control plane to open the **Overview** dashboard, then click **Connect**.
     
     The **Connect** menu will open and display the URL for the **Public Edge DNS**. Save this URL.
-
 
 1. Select **Custom Domains** from the side navigation, then **New Custom Domain**, and enter your domain name.
 
@@ -33,8 +31,8 @@ title: Custom Domains
   > **Note:** Once a Serverless Gateway custom DNS record has been validated, it will _not_ be refreshed or re-validated. Remove and re-add the custom domain in {{site.konnect_short_name}} to force a re-validation.
 
 
-### Delete a custom domain {#delete-url}
+## Delete a custom domain {#delete-url}
 
 1. In {{site.konnect_short_name}}, open {% konnect_icon runtimes %} **Gateway Manager**, choose a control plane to open the **Overview** dashboard, then click **Custom Domains**.
 
-2. Click the hamburger menu on the right of the row you want to delete and click **Delete**.
+2. Click the action menu on the end of the row you want to delete and click **Delete**.

@@ -54,6 +54,8 @@
         url: /gateway-manager/dedicated-cloud-gateways/transit-gateways
       - text: Azure VNET Peering
         url: /gateway-manager/dedicated-cloud-gateways/azure-peering
+      - text: Custom Domains
+        url: /gateway-manager/dedicated-cloud-gateways/custom-dns/
     - text: Serverless Gateways
       items: 
         - text: Overview
@@ -234,6 +236,8 @@
           url: /dev-portal/customization/self-hosted-portal/
         - text: Host your Dev Portal with Netlify
           url: /dev-portal/customization/netlify/
+        - text: Custom Domains
+          url: /dev-portal/customization/custom-dns/
     - text: Dev Portal SDK
       url: https://www.npmjs.com/package/@kong/sdk-portal-js
       absolute_url: true
@@ -426,8 +430,6 @@
       url: /reference/labels/
     - text: Plugin Ordering Reference
       url: /reference/plugins/
-    - text: Custom Domains
-      url: /reference/custom-dns/
     - text: Konnect Search
       url: /reference/search/
     - text: Terraform Provider

@@ -1,5 +1,5 @@
 ---
-title: Custom Domains
+title: Custom Domains for Dev Portal
 ---
 
 {{site.konnect_short_name}} integrates domain name management and configuration in the [Dev Portal](/konnect/dev-portal/). 
@@ -17,7 +17,7 @@ To add a custom URL to Dev Portal, you need:
 
 You can also choose to [self-host the Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) or any other static hosting service that supports single page applications.
 
-### Configure DNS
+## Configure DNS
 
 In your DNS configuration, create a CNAME record for the domain you want to use using the automatically generated Dev Portal URL.
 The record will look like this:
@@ -28,7 +28,7 @@ The record will look like this:
 
 If your domain has specific CAA DNS records that list authorized certificate authorities/issuers, you'll also need to create a new CAA DNS record to permit [Google Trust Services](https://pki.goog/faq/#caa) as an issuer. If your domain doesn't currently have any CAA DNS records, it means all issuers are implicitly allowed, and there's no need for a new CAA DNS record in that case.
 
-### Update Dev Portal URL settings {#update-portal}
+## Update Dev Portal URL settings {#update-portal}
 
 To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps:
 
@@ -41,7 +41,7 @@ To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Port
 
 5. Click **Confirm** to begin the domain verification process.
 
-### Domain name restrictions
+## Domain name restrictions
 
 Because of SSL certificate authority restrictions, {{site.konnect_short_name}} can't generate SSL certificates
 for the following domains:
@@ -65,7 +65,7 @@ for the following domains:
 
 If you have any questions, [contact Support](https://support.konghq.com).
 
-### Delete a custom URL {#delete-url}
+## Delete a custom URL {#delete-url}
 
 Delete a custom Dev Portal URL through your organization's {{site.konnect_short_name}} admin UI.
 
