@@ -249,7 +249,7 @@ components:
         $ref: '#/components/schemas/RequestTimestampFilterSchema'
       description: |
         After filter could be used to request audit log data that was recorded after certain time (inclusive).
-        It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'    pagination-size:
+        It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
     list_consumers:
       description: Indicates whether the list of consumers should be included in the consumer group details.
       in: query
