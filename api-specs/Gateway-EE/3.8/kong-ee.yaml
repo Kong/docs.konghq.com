@@ -22,7 +22,7 @@ components:
       name: tags
       schema:
         type: string
-        minLength: 1
+        nullable: false
     certificate_name_or_id:
       name: certificate_name_or_id
       in: path
@@ -226,7 +226,7 @@ components:
       name: tags
       schema:
         type: string
-        minLength: 1
+        nullable: false
     filter_chain_id:
       name: filter_chain_id
       in: path
