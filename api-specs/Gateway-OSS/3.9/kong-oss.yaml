@@ -7993,9 +7993,7 @@ paths:
                     description: Configuration file in JSON or YAML.
       operationId: post-config
       description: |
-        Apply a configuration from a declarative JSON or YAML file. Any existing configuration will be overwritten/
-
-        > Note: This API is only available in DB-less mode.
+        Apply a configuration from a declarative JSON or YAML file. Any existing configuration will be overwritten. Note: This API is only available in DB-less mode.
     get:
       summary: Get Declarative Config
       operationId: get-config
@@ -8012,9 +8010,7 @@ paths:
       tags:
         - config
       description: |
-        Get the current configuration.
-
-        > Note: This API is only available in DB-less mode.
+        Get the current configuration. Note: This API is only available in DB-less mode.
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'
