@@ -386,7 +386,7 @@
     - text: Portal Client API
       items:
         - text: API Spec
-          url: /konnect/api/portal/latest/
+          url: /konnect-portal/api/latest/
           absolute_url: true
           generate: false
           target_blank: true
@@ -394,25 +394,6 @@
       items:
         - text: API Spec
           url: /konnect/api/portal-management/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Portal RBAC API
-      items:
-        - text: API Spec
-          url: /konnect/api/portal-rbac/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Deprecated APIs
-      items:
-        - text: (Deprecated) Runtime Configuration API
-          url: /konnect/api/runtime-groups-configuration/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-        - text: (Deprecated) Runtime Groups API
-          url: /konnect/api/runtime-groups/latest/
           absolute_url: true
           generate: false
           target_blank: true

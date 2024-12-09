@@ -518,7 +518,7 @@ For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/cus
 
 **Portal Client API**
 : {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. 
-For more information, see the [Portal Client API spec](/konnect/api/portal/latest/).
+For more information, see the [Portal Client API spec](/konnect-portal/api/latest/).
 
 **Audit logging**
 : Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. 
