@@ -73,7 +73,7 @@ To create a custom regex, you must define the following:
 Logs are automatically collected when you enable the Injection Protection plugin. You can view the logs with the following options:
 
 * [{{site.base_gateway}} error log](/gateway/latest/production/logging/)
-* Log serializer. You can view these log with the following plugins:
+* Log serializer. You can view these logs with the following plugins:
     * [File Log](/hub/kong-inc/file-log/)
     * [HTTP Log](/hub/kong-inc/http-log/)
     * [Kafka Log](/hub/kong-inc/kafka-log/)
