@@ -17,16 +17,6 @@
 - https://docs.konghq.com/hub/kong-inc/opentelemetry/
 
 
-### [Revert #8183](https://github.com/Kong/docs.konghq.com/pull/8222) (2024-12-04)
-
-Reverts    #8183
-The upstream PR won't be included in the release
-
-#### Modified
-
-- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/how-to/
-
-
 ### [Feat: Redirect plugin](https://github.com/Kong/docs.konghq.com/pull/8218) (2024-12-06)
 
 Docs for the new Redirect plugin in 3.9.
@@ -45,15 +35,6 @@ https://konghq.atlassian.net/browse/DOCU-4175
 ### [Header Cert Auth plugin: cert format FAQ](https://github.com/Kong/docs.konghq.com/pull/8214) (2024-12-03)
 
 Updated the FAQ to include a note about how the certificate should  be passed. The docs were not entirely clear that base64 and url encoding require different data to be passed (one including the being/end certificate delimiters). 
-
-If this is not the proper place for the details I can update as needed.
-
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -100,22 +81,7 @@ Updated the AI Proxy and AI Proxy Advanced docs to add a request example with gu
 - https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
 
 
-### [Feat: Support for multiple limits and window sizes in AI Rate Limiting Advanced](https://github.com/Kong/docs.konghq.com/pull/8183) (2024-12-02)
-
-Replaced numbers with arrays for window size and limit in AI Rate Limiting Advanced example .
- 
-[DOCU-4171](https://konghq.atlassian.net/browse/DOCU-4171)
-
-#### Modified
-
-- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/how-to/
-
-
 ### [chore(gateway): add notice for unsupported AWS credential provider](https://github.com/Kong/docs.konghq.com/pull/8181) (2024-12-02)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -133,10 +99,6 @@ Replaced numbers with arrays for window size and limit in AI Rate Limiting Advan
 
 ### [Update config-store.md for referencing the secret in Konnect](https://github.com/Kong/docs.konghq.com/pull/8128) (2024-12-05)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/gateway-manager/configuration/config-store
@@ -146,10 +108,8 @@ Replaced numbers with arrays for window size and limit in AI Rate Limiting Advan
 
 ### [feat: Service Catalog Datadog integration ](https://github.com/Kong/docs.konghq.com/pull/8154) (2024-12-01)
 
-<!-- What did you change and why? -->
 Adding Datadog as a new Service Catalog integration.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 DOCU-4109
 
 #### Added
