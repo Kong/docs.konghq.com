@@ -57,9 +57,9 @@ For custom reports, you can also choose a **custom** date range. Custom means th
 during the specified time frame. You can see the exact range below
 the time frame selector. For example:
 
-    ```
+    
     Jan 26, 2023 12:00 AM - Feb 01, 2023 12:00 AM (PST)
-    ```
+    
 
 Interval | Description  
 ---------|-------------
