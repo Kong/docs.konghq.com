@@ -8025,7 +8025,7 @@ tags:
       Most core entities can be tagged via the tags attribute upon creation or modification.
     name: Tags
   - description: |
-      Retreieve information about the status of data planes when Kong Gateway is configured in hybrid mode.
+      Retrieve information about the status of data planes when Kong Gateway is configured in hybrid mode.
     name: clustering
   - description: |
       Querying and managing cache entries.
