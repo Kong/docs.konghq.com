@@ -9,6 +9,28 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">December<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/updated-consumer-display-name-in-advanced-analytics">Updated consumer display name in Advanced Analytics</a>
+</div>
+<div class="changelog-description">Konnect Advanced Analytics will now prioritize and display the username field for consumers in all charts and API Requests when both username and custom_id are present.  This aligns with user preferences for clearer identification.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">December<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/custom-domains-for-serverless-gateways-VJ0PhJCk">Custom Domains for Serverless Gateways</a>
+</div>
+<div class="changelog-description">Serverless Gateways now support configuring custom domains.  To add a custom domain to your serverless gateway, hit the new 'Custom Domains' navigation item when inside a Serverless Control Plane and follow the instructions.</div>
+</div>
+</div>
+
+
 ## November 2024
 
 <div class="changelog-entries">
