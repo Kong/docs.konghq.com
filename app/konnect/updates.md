@@ -9,6 +9,28 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">December<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/updated-consumer-display-name-in-advanced-analytics">Updated consumer display name in Advanced Analytics</a>
+</div>
+<div class="changelog-description">Konnect Advanced Analytics will now prioritize and display the username field for consumers in all charts and API Requests when both username and custom_id are present.  This aligns with user preferences for clearer identification.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">December<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/custom-domains-for-serverless-gateways-VJ0PhJCk">Custom Domains for Serverless Gateways</a>
+</div>
+<div class="changelog-description">Serverless Gateways now support configuring custom domains.  To add a custom domain to your serverless gateway, hit the new 'Custom Domains' navigation item when inside a Serverless Control Plane and follow the instructions.</div>
+</div>
+</div>
+
+
 ## November 2024
 
 <div class="changelog-entries">
@@ -61,6 +83,53 @@ We have deprecated the old method of filtering requests via the API in favor of 
 </div>
 </div>
 
+
+<div class="changelog-entries">
+<div class="changelog-date">November<br>29</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/datadog-integration-in-service-catalog">Datadog Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">You can now map "Datadog Monitors" and "Datadog Dashboards" as new Resource types in Service Catalog.  The former will allow you to view the statuses of your Monitors (Alert / Warn / OK), while the latter will allow you to easily access your Dashboards' external links from within the Service Catalog UI.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">November<br>27</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-now-supports-aws-privatelink-for-cp-dp-communication-ZqBwIY5V">Konnect now supports AWS PrivateLink for CP <> DP communication</a>
+</div>
+<div class="changelog-description">You can now leverage AWS PrivateLink for a secure connection between your dataplanes hosted in AWS and Konnect.  This adds another layer of security between the control plane (CP) in Konnect and dataplanes (DP) in your AWS requirement.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">November<br>26</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-is-now-available-in-middle-east">Konnect is now available in Middle East!</a>
+</div>
+<div class="changelog-description">Konnect control plane is now available in Middle East!  You can now leverage Konnect hosted in Middle East to be close to your end customers and comply with the data residency requirements.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">November<br>05</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-konnect-config-store">Introducing Konnect Config Store</a>
+</div>
+<div class="changelog-description">We are excited to announce the launch of Konnect Config Store!  You can now store your secrets and sensitive data for your gateways directly in Konnect Config Store and reference them in your gateway configuration.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">November<br>04</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/enhanced-api-request-filtering-experience">Enhanced API Request Filtering Experience</a>
+</div>
+<div class="changelog-description">We're excited to announce two important updates to our API Requests filtering capabilities:Konnect users can now filter API requests by any attribute, including HTTP verb, IP, path, and more. The API request slideout window now allows users to add filters directly by clicking on displayed metadata items.</div>
+</div>
+</div>
+
 ## October 2024
 
 
@@ -74,6 +143,26 @@ We have deprecated the old method of filtering requests via the API in favor of 
 </div>
 </div>
 
+<div class="changelog-entries">
+<div class="changelog-date">October<br>18</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/swaggerhub-integration-in-service-catalog-4gP88uzg">SwaggerHub Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">Service Catalog now supports importing API specifications directly from SwaggerHub.  This integration enhances Service Catalog's ability to serve as your organization's central repository for all APIs.</div>
+</div>
+</div>
+
+
+<div class="changelog-entries">
+<div class="changelog-date">October<br>24</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/serverless-gateways-now-in-public-beta-QRE5uhad">Serverless Gateways now in Public Beta</a>
+</div>
+<div class="changelog-description">Serverless Gateways are now available to all Konnect Plus users in Public Beta.  Serverless Gateways allow you to provision lightweight, managed Kong Gateway instances within seconds.</div>
+</div>
+</div>
 <div class="changelog-entries">
 <div class="changelog-date">October<br>18</div>
 <div class="changelog-entry">
@@ -130,6 +219,17 @@ We have deprecated the old method of filtering requests via the API in favor of 
 Cloud Launchers deprecated
 </div>
 <div class="changelog-description">Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.</div>
+</div>
+</div>
+
+
+<div class="changelog-entries">
+<div class="changelog-date">September<br>12</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-llm-analytics-in-kong-konnect-for-genai-traffic">Introducing LLM Analytics in Kong Konnect for GenAI traffic</a>
+</div>
+<div class="changelog-description">We’re pleased to announce the new LLM Usage reporting feature in Advanced Analytics with the release of Kong Gateway 3. 8.</div>
 </div>
 </div>
 
