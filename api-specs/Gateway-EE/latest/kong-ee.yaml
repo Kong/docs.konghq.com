@@ -225,6 +225,7 @@ components:
       name: tags
       schema:
         type: string
+        minLength: 1
     filter_chain_id:
       name: filter_chain_id
       in: path
