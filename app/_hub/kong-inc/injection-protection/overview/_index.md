@@ -1,6 +1,6 @@
 ---
 nav_title: Overview
-title: Overview
+title: Injection Protection
 ---
 
 You can use the Injection Protection plugin to detect and block known injection patterns consistent with SQL injection, server-side include injection, and more.
