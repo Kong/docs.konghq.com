@@ -28,8 +28,13 @@ plugins to rate limit other entities, like consumers and routes.
 <details><summary>Can I use the Service Protection plugin with other rate limiting plugins?</summary>
 
 {% capture rl_plugins_compatibility %} 
-Yes. You can rate limit a service with the Service Protection plugin and rate limit a route or a consumer with the other rate limiting plugins. 
-However, we **do not** recommend rate limiting the same service with multiple plugins.
+Yes. You can rate limit a service with the Service Protection plugin, then rate limit routes, consumers, or consumer groups
+with the other rate limiting plugins. 
+
+{:.note}
+> **Note:** We don’t recommend using multiple rate limiting plugins on the same **service only**.
+We recommend applying Service Protection on the service, and Rate Limiting (or Rate Limiting Advanced) on the service/consumer pair, for more granular rate limits.
+
 {% endcapture %}
 
 {{ rl_plugins_compatibility | markdownify }}
