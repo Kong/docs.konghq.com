@@ -18,11 +18,10 @@ it can point somewhere empty (for example, `http://localhost:32000`), because th
 {% if include.provider %}
 * {{include.provider}} account and subscription
 * {% endif %}You need a service to contain the route for the LLM provider. Create a service **first**:
-
-```bash
-curl -X POST http://localhost:8001/services \
-  --data "name=ai-proxy-advanced" \
-  --data "url=http://localhost:32000"
-```
-Remember that the upstream URL can point anywhere empty, as it won't be used by the plugin.
+  ```bash
+  curl -X POST http://localhost:8001/services \
+    --data "name=ai-proxy-advanced" \
+    --data "url=http://localhost:32000"
+  ```
+  Remember that the upstream URL can point anywhere empty, as it won't be used by the plugin.
 {% endif %}

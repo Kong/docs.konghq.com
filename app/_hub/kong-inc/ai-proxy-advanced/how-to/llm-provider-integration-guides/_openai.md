@@ -1,22 +1,22 @@
 ---
 nav_title: OpenAI
-title: Set up AI Proxy with OpenAI
+title: Set up AI Proxy Advanced with OpenAI
 ---
 
-This guide walks you through setting up the AI Proxy plugin with [OpenAI](https://openai.com/).
+This guide walks you through setting up the AI Proxy Advanced plugin with [OpenAI](https://openai.com/).
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='intro' %}
+{% include_cached /md/plugins-hub/ai-providers-prereqs-advanced.md snippet='intro' %}
 
 ## Prerequisites
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='service' provider='OpenAI' %}
+{% include_cached /md/plugins-hub/ai-providers-prereqs-advanced.md snippet='service' provider='OpenAI' %}
 
 ## Provider configuration
 
 ### Set up route and plugin
 
 After creating an OpenAI account, and purchasing a subscription, you can then create an
-AI Proxy route and plugin configuration.
+AI Proxy Advanced route and plugin configuration.
 
 Create a route:
 
