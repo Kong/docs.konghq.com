@@ -108,7 +108,7 @@ Implemented a new plugin to protect services using request rate limiting.
   * Added support for streaming responses to the AI Proxy Advanced plugin.
 
 * [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)  
-  * Added support for the Huggingface provider to the AI Rate Limiting Advanced plugin.
+  * Added support for the Hugging Face provider to the AI Rate Limiting Advanced plugin.
 
 * [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`)  
   * Added the `ignore_tool` configuration option to discard tool role prompts from the input text.

@@ -1,7 +1,7 @@
 ## Changelog
 
 ### {{site.base_gateway}} 3.9.0.0
-* Added support for the Huggingface provider to the AI Rate Limiting Advanced plugin.
+* Added support for the Hugging Face provider to the AI Rate Limiting Advanced plugin.
 * Updated the error message for exceeding the rate limit to include AI-related information.
 * Fixed an issue where the plugin yielded an error when incrementing the rate limit counters in non-yieldable phases.
 * Fixed an issue where the plugin could fail to authenticate to Redis correctly with vault-referenced Redis configuration.

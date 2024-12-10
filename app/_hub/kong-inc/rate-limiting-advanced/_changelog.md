@@ -2,7 +2,7 @@
 
 ### {{site.base_gateway}} 3.9.x
 * Added the new configuration field `lock_dictionary_name` to support specifying an independent shared memory for storing locks.
-* Added support for authentication from Kong Gateway to Envoy Proxy.
+* Added support for authentication from {{site.base_gateway}} to Envoy Proxy.
 * Added support for combining multiple identifier items with the new configuration field `compound_identifier`.
 * Fixed an issue where counters of the overriding consumer groups weren't fetched when the `window_size` was different and the workspace was non-default.
 * Fixed an issue where a warn log was printed when `event_hooks` was disabled.
