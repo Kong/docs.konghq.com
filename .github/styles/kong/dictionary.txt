@@ -46,6 +46,7 @@ Github
 Gluu
 Goroutine
 Grafana
+hasura
 HTTPie
 istioctl
 Imperva
