@@ -13,7 +13,7 @@ overrides:
 
 {{ site.kic_product_name }} provides an interface to configure {{ site.base_gateway }} entities using CRDs.
 
-Some {{ site.base_gateway }} plugins define custom entities that require configuration. These entities can be configured using the `KongCustomEntity` resource.
+Some {{ site.base_gateway }} plugins define custom entities that require configuration. These entities can be configured using the [`KongCustomEntity` resource][kongcustomentity_crd_ref].
 
 {% if_version lte:3.2.x %}
 {:.note}
@@ -35,6 +35,8 @@ spec:
 
 This corresponds to the `uri` and `query` parameters documented in the [plugin documentation](/hub/kong-inc/degraphql/#available-endpoints)
 
+[kongcustomentity_crd_ref]: /kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongcustomentity
+
 ## Tutorial: DeGraphQL custom entities
 
 {% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false enterprise=true %}
@@ -43,7 +45,9 @@ This example configures custom entities for the `degraphql` plugin, which allows
 
 ## Create a GraphQL Service
 
-The `degraphql` plugin requires an upstream GraphQL API. For this tutorial, we'll use [Hasura] to create an example GraphQL service:
+The `degraphql` plugin requires an upstream GraphQL API. For this tutorial, we'll use [hasura] to create an example GraphQL service:
+
+[hasura]: https://hasura.io/
 
 ```bash
 echo 'apiVersion: apps/v1
@@ -209,8 +213,15 @@ The `curl` command should return
 
 which matches the data inserted in the previous steps.
 
-[hasura]: https://hasura.io/
-<!-- >
-Need to be updated when custom resource reference page is updated.
-[KongCustomEntity]: /reference/custom-resources/
-<-->
+{% if_version gte:3.4.x %}
+
+## Invalid `KongCustomEntity` Configuration
+
+Each `KongCustomEntity` is validated against the schema from Kong.
+If the configuration is invalid, an `Event` with reason set to `KongConfigurationTranslationFailed` will be emitted.
+The `involvedObject` of this `Event` will be set to the `KongCustomEntity` resource.
+
+For more information on observability with events please consult our [events guide][events_guide].
+
+[events_guide]: /kubernetes-ingress-controller/{{page.release}}/production/observability/events
+{% endif_version %}
