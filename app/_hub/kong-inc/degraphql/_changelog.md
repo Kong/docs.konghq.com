@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* Fixed an issue where the DeGraphQL routes were updated from the control plane but not updated in the DeGraphQL router on the data plane.
+
 ### {{site.base_gateway}} 3.8.x
 * Fixed an issue where multiple parameter types were not handled correctly when converting query parameters.
 
