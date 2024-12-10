@@ -1,5 +1,9 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+
+* Fixed an issue where the `snapshot` of the fields `upstream`, `service`, `route`, and `consumer` was missing in the AppDynamics plugin.
+
 ### {{site.base_gateway}} 3.8.x
 
 * Added a new `ANALYTICS_ENABLE` flag. This plugin now also collects more snapshot user data in runtime.

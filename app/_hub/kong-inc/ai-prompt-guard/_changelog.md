@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.0.0
+* Fixed an issue where the plugin could fail when handling requests with multiple models.
+
 ### {{site.base_gateway}} 3.8.0.0
 * Added the `match_all_roles` option to allow matching all roles in addition to `user`.
 [#13183](https://github.com/Kong/kong/issues/13183)

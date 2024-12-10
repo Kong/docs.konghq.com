@@ -1,5 +1,13 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* The `http_proxy_authorization` and `https_proxy_authorization` fields are now referenceable.
+* Added the `introspection_post_args_client_headers` config option, 
+allowing you to pass client headers as introspection POST body arguments.
+* Fixed an `500` error caused by JSON `null` from the request body when parsing bearer tokens or client IDs.
+* Fixed an issue where the configured Redis database was ignored.
+* Fixed an issue where the `token_cache_key_include_scope` feature was not considering scopes defined via `config.scopes` to generate the cache key.
+
 ### {{site.base_gateway}} 3.8.x
 * Added support for Redis caching introspection results with the new fields `cluster_cache_strategy` and `cluster_cache_redis`. 
   When configured, the plugin will share the token introspection response cache across nodes configured to use the same Redis database.

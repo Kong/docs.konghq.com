@@ -1,5 +1,14 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.0.0
+* Fixed an issue where the length counting of escape sequences, non-ASCII characters, and object entry names in JSON strings was incorrect. The plugin now uses UTF-8 character count instead of bytes.
+* Fixed an issue where certain default parameter values were incorrectly interpreted as 0 in some environments (for example, ARM64-based):
+    * `max_container_depth`
+    * `max_object_entry_count`
+    * `max_object_entry_name_length`
+    * `max_array_element_count`
+    * `max_string_value_length`
+
 ### {{site.base_gateway}} 3.8.0.0
 
 * Introduced the new **JSON Threat Protection** plugin.

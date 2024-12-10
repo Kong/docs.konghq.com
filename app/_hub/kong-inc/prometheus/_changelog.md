@@ -1,5 +1,11 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* Increased the upper limit of `KONG_LATENCY_BUCKETS` to 6000 to enhance latency tracking precision.
+  [#13588](https://github.com/Kong/kong/issues/13588)
+* Added support for Proxy-Wasm metrics.
+  [#13681](https://github.com/Kong/kong/issues/13681)
+
 ### {{site.base_gateway}} 3.8.x
 * Added `ai_requests_total`, `ai_cost_total`, and `ai_tokens_total` metrics to 
   the Prometheus plugin to start counting AI usage.
