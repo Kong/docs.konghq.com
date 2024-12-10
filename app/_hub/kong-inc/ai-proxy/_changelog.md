@@ -1,5 +1,25 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* Disabled the HTTP/2 ALPN handshake for connections on routes configured with AI Proxy.
+[#13735](https://github.com/Kong/kong/issues/13735)
+* Fixed an issue where tools (function) calls to Anthropic would return empty results.
+[#13760](https://github.com/Kong/kong/issues/13760)
+* Fixed an issue where tools (function) calls to Bedrock would return empty results.
+[#13760](https://github.com/Kong/kong/issues/13760)
+* Fixed an issue where Bedrock Guardrail config was ignored.
+[#13760](https://github.com/Kong/kong/issues/13760)
+* Fixed an issue where tools (function) calls to Cohere would return empty results.
+[#13760](https://github.com/Kong/kong/issues/13760)
+* Fixed an issue where the Gemini provider would return an error if content safety failed in AI Proxy.
+[#13760](https://github.com/Kong/kong/issues/13760)
+* Fixed an issue where tools (function) calls to Gemini (or via Vertex) would return empty results.
+[#13760](https://github.com/Kong/kong/issues/13760)
+* Fixed an issue where AI Transformer plugins always returned a 404 error when using Google One Gemini subscriptions.
+[#13703](https://github.com/Kong/kong/issues/13703)
+* Fixed an issue where multi-modal requests were blocked on the Azure AI provider.
+[#13702](https://github.com/Kong/kong/issues/13702)
+
 ### {{site.base_gateway}} 3.8.x
 
 * Added the `allow_override` option to allow overriding the upstream model auth parameter or header from the caller's request.

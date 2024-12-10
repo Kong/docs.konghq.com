@@ -1,5 +1,9 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.9.x**
+* Fixed an issue where the plugin couldn't function correctly when configured in a non-default workspace with `certificate_id`.
+* Reduced noisy logs from the plugin and counters.
+
 **{{site.base_gateway}} 3.4.x**
 * The Kafka Log plugin now supports the `custom_fields_by_lua` configuration for 
 dynamic modification of log fields using Lua code.

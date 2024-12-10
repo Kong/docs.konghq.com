@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* Fixed an issue where the plugin could fail to authenticate to Redis correctly with vault-referenced Redis configuration.
+
 ### {{site.base_gateway}} 3.8.x
 * Added the Redis `cluster_max_redirections` configuration option.
 
