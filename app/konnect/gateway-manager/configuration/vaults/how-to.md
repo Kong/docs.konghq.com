@@ -22,6 +22,7 @@ Set up a new vault. For this example, we're going to use the environment variabl
 1. Choose a vault type. 
 1. Enter the configuration settings for your vault. For more information about how to configure settings, see the following {{site.base_gateway}} documentation:
     * [Konnect Config Store options](/konnect/gateway-manager/configuration/config-store/#supported-fields)
+    * [Environment variables vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/env/#vault-configuration-options)
     * [AWS vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/#vault-configuration-options)
     * [Google Cloud vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/#vault-entity-configuration-options)
     * [HashiCorp vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/#vault-configuration-options)
