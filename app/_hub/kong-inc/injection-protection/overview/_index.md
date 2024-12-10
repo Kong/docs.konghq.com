@@ -80,3 +80,8 @@ Logs are automatically collected when you enable the Injection Protection plugin
     * [TCP Log](/hub/kong-inc/tcp-log/)
     * [UDP Log](/hub/kong-inc/udp-log/)
 * [{{site.konnect_short_name}} Advanced Analytics](/konnect/analytics/) <!--though i'm not sure if they will do anything with them yet--> 
+
+
+## Get started with the Injection Protection plugin
+* [Configuration reference](/hub/kong-inc/injection-protection/configuration/)
+* [Basic configuration example](/hub/kong-inc/injection-protection/how-to/basic-example/)
