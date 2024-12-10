@@ -1,7 +1,7 @@
 ---
 title: Get started with Datakit
 badge: enterprise
-alpha: true
+beta: true
 ---
 
 ## Enable the WASM engine
