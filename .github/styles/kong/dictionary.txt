@@ -167,6 +167,7 @@ booleans
 brotli
 burstable
 CAs
+callout
 certificate_admin
 charset
 chatbot
@@ -196,6 +197,7 @@ Datadog
 datadog
 datagram
 datagrams
+datakit
 dataplane
 dataplanes
 db-ip
@@ -306,6 +308,7 @@ iptables
 Istio
 Istio's
 istioctl
+jaq
 jetstack
 Jira
 journald
@@ -597,6 +600,8 @@ unpublish
 unpublishing
 unregister
 unregistering
+unset
+unsetting
 unshorten
 unshortened
 unstash

@@ -358,6 +358,16 @@ items:
         url: /kong-enterprise/signed-images
       - text: Verify Build Provenance for Signed Kong Images
         url: /kong-enterprise/provenance-verification
+      - text: Datakit
+        items:
+          - text: Overview
+            url: /kong-enterprise/datakit/
+          - text: Get Started with Datakit
+            url: /kong-enterprise/datakit/get-started/
+          - text: Datakit Configuration Reference
+            url: /kong-enterprise/datakit/configuration/
+          - text: Datakit Examples Reference
+            url: /kong-enterprise/datakit/examples/
 
   - title: Kong AI Gateway
     icon: /assets/images/icons/documentation/icn-ai.svg
