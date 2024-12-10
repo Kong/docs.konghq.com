@@ -7982,6 +7982,14 @@ paths:
             application/yaml:
               schema:
                 type: object
+              example: |
+                services:
+                  - name: example-service
+                    url: http://example.com
+                    routes:
+                      - name: example-route
+                        paths:
+                          - /example
             multipart/form-data:
               schema:
                 type: object
