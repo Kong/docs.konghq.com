@@ -36,6 +36,10 @@ deck gateway validate [filename] [command-specific flags] [global flags]
 :  validate that the state file(s) are ready to be deployed to Konnect (Default: `false`)
 {% endif_version %}
 
+`--online-entities-list`
+: Specify the list of valid Kong entities (case-sensitive) to be validated online.
+This indicates which entities in the state file(s) should be checked via online validation.
+
 `--parallelism`
 :  Maximum number of concurrent requests to Kong. (Default: `10`)
 
