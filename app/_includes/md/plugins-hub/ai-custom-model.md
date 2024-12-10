@@ -1,14 +1,14 @@
 
-For all providers, the Kong AI Proxy Advanced plugin attaches to **route** entities.
+For all providers, the Kong AI Proxy plugin attaches to **route** entities.
 
 ### Custom model
 
-You can configure the AI Proxy Advanced Plugin using a custom model of your choice by setting the `name` and `upstream_url` when configuring the model. 
+You can configure the AI Proxy Plugin using a custom model of your choice by setting the `name` and `upstream_url` when configuring the model. 
 
 <!--vale off-->
 {% plugin_example %}
 plugin: kong-inc/ai-proxy-advanced
-name: ai-proxy-advanced
+name: ai-advanced
 config:
   targets:
   - route_type: "llm/v1/chat"
