@@ -200,10 +200,9 @@ successfully, reviewing the generated configuration manually and/or applying it
 in a test environment can help locate potential causes.
 
 Under normal operation, the controller does not store generated configuration;
-it is only sent to Kong's Admin API. The `--dump-config` flag enables a
-diagnostic mode where the controller also saves generated configuration to a
-temporary file. You can retrieve this file via the web interface of the diagnostic
-server at `host:10256/debug/config`.
+it is only sent to Kong's Admin API.
+The `--dump-config` flag enables a diagnostic mode where the controller also saves generated configuration and {{ site.base_gateway }} responses to memory.
+You can retrieve these via the web interface of the diagnostic server at `host:10256/debug/config`.
 
 To use the diagnostic mode:
 
@@ -232,6 +231,14 @@ To use the diagnostic mode:
    curl -svo last_good.json localhost:10256/debug/config/successful
    curl -svo last_bad.json localhost:10256/debug/config/failed
    ```
+{% if_version gte:3.4.x %}
+1. Retrieve the last error response body received from {{ site.base_gateway }}:
+   ```bash
+   curl -svo raw_error_body.json localhost:10256/debug/config/raw-error
+   ```
+{% endif_version %}
+
+### Using dumped configuration
 
 Once you have dumped configuration, take one of the following
 approaches to isolate issues:
@@ -250,6 +257,8 @@ approaches to isolate issues:
 
   Once this image is running, run `curl http://localhost:8001/config @last_bad.json`
   to try applying the configuration and see any errors.
+
+You can also analyze the returned error response body from {{ site.base_gateway }} to understand the issue.
 
 ## Inspecting network traffic with a tcpdump sidecar
 
