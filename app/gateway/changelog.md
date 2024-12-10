@@ -51,7 +51,6 @@ consumer groups Admin API `/consumer_groups/:consumer_groups` when `list_consume
 allow users to specify a custom duration to wait before they can try log in again if they have 
 exceeded the maximum login attempts. 
 This is only meaningful when `admin_gui_auth_login_attempts` is a positive number.
-[#10632](https://github.com/Kong/kong-ee/issues/10632)
 * Added an ADA dependency: WHATWG-compliant and fast URL parser.
 [#13120](https://github.com/Kong/kong/issues/13120)
 * Added a new LLM driver for interfacing with the Hugging Face inference API.
@@ -66,9 +65,7 @@ performing a TLS handshake.
   * A new field, `total_time_without_upstream`,  shows the latency only introduced by Kong.
 [#13460](https://github.com/Kong/kong/issues/13460)
 * The embeddings driver can now cache the embeddings for a given model in the current request.
-[#10764](https://github.com/Kong/kong-ee/issues/10764)
 * Added an option for GitHub Actions to build nginx/OpenResty with debug symbols.
-[#10308](https://github.com/Kong/kong-ee/issues/10308)
 
 #### Deployment
 
