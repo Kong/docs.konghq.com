@@ -146,7 +146,7 @@ allowing you to pass client headers as introspection POST body arguments.
 [#13723](https://github.com/Kong/kong/issues/13723)
 * Fixed an issue where nested parameters couldn't be parsed correctly when using `form-urlencoded` requests.
 [#13668](https://github.com/Kong/kong/issues/13668)
-* Fixed the issue where the entities counter wasn't displayed in certain cases when they were empty.
+* Fixed an issue where the entities counter wasn't displayed in certain cases when they were empty.
 * Fixed an issue where entity counts in `/license/report` were retrieved with `select count` instead of `workspace_entity_counters` table in DB-backed (traditional) mode.
 * Fixed an issue where entity counts in `/workspaces?counter` and `/workspace/<workspace>/meta` were retrieved with `select count` instead of `workspace_entity_counters` table in DB-backed (traditional) mode.
  
@@ -216,8 +216,6 @@ database contains invalid Wasm filters.
   [#13760](https://github.com/Kong/kong/issues/13760)
   * Fixed an issue where tools (function) calls to Gemini (or via Vertex) would return empty results.
   [#13760](https://github.com/Kong/kong/issues/13760)
-  * Fixed an issue where AI Transformer plugins always returned a 404 error when using Google One Gemini subscriptions.
-  [#13703](https://github.com/Kong/kong/issues/13703)
   * Fixed an issue where multi-modal requests were blocked on the Azure AI provider.
   [#13702](https://github.com/Kong/kong/issues/13702)
 
@@ -228,11 +226,6 @@ database contains invalid Wasm filters.
   * Fixed an issue where lowest-usage and lowest-latency strategies did not update data points correctly.
   * Fixed an issue where stale plugin config was not updated in DB-less and hybrid modes.
 
-* [**AI Request Transformer**](/hub/kong-inc/ai-request-transformer/) (`ai-request-transformer`) and 
-[**AI Response Transformer**](/hub/kong-inc/ai-response-transformer/) (`ai-response-transformer`)
-  * Fixed an issue where the correct LLM error message was not propagated to the caller.
-  [#13703](https://github.com/Kong/kong/issues/13703)
-
 * [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`) 
   * Updated the error message for exceeding the rate limit to include AI-related information.
   * Fixed an issue where the plugin yielded an error when incrementing the rate limit counters in non-yieldable phases.
@@ -241,6 +234,10 @@ database contains invalid Wasm filters.
 * [**AI Request Transformer**](/hub/kong-inc/ai-request-transformer/) (`ai-request-transformer`) and 
 [**AI Response Transformer**](/hub/kong-inc/ai-response-transformer/) (`ai-response-transformer`)
   * Fixed an issue where Azure Managed Identity did not work for the AI Transformer plugins.
+  * Fixed an issue where AI Transformer plugins always returned a 404 error when using Google One Gemini subscriptions.
+  [#13703](https://github.com/Kong/kong/issues/13703)
+  * Fixed an issue where the correct LLM error message was not propagated to the caller.
+  [#13703](https://github.com/Kong/kong/issues/13703)
 
 * [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/)
   * Fixed an issue where the plugin couldn't use the request-provided models.

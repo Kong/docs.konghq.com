@@ -15,8 +15,6 @@
 [#13760](https://github.com/Kong/kong/issues/13760)
 * Fixed an issue where tools (function) calls to Gemini (or via Vertex) would return empty results.
 [#13760](https://github.com/Kong/kong/issues/13760)
-* Fixed an issue where AI Transformer plugins always returned a 404 error when using Google One Gemini subscriptions.
-[#13703](https://github.com/Kong/kong/issues/13703)
 * Fixed an issue where multi-modal requests were blocked on the Azure AI provider.
 [#13702](https://github.com/Kong/kong/issues/13702)
 
