@@ -6,7 +6,7 @@ purpose: |
 ---
 
 {:.note}
-> **Note**: Kong will continue to support the [Kubernetes Ingress resource](https://kubernetes.io/docs/concepts/services-networking/ingress/) to configure a {{site.base_gateway}} for the foreseeable future. However, as the [Kubernetes Gateway API resource](https://kubernetes.io/docs/concepts/services-networking/gateway/) is now the preferred mechanism for configuring inbound routing in Kubernetes clusters, we recommend that you use the Gateway API to configure a {{site.base_gateway}}.
+> **Note**: Kong will support the Ingress resource for the foreseeable future. However, Kong recommends that you use Gateway API resources to configure networking in Kubernetes.
 
 The {{site.kic_product_name}} uses ingress classes to filter Kubernetes Ingress objects and other resources before converting them into Kong configuration. This allows it to coexist with other ingress controllers and/or other deployments of the {{site.kic_product_name}} in the same cluster. A {{site.kic_product_name}} only processes configuration marked for its use.
 
