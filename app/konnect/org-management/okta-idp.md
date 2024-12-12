@@ -3,7 +3,6 @@ title: Set Up SSO with Okta
 badge: enterprise
 ---
 
-
 As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} through Okta using OpenID Connect or SAML. These authentication methods allow your users to log in to {{site.konnect_saas}} using their Okta credentials without needing a separate login. 
 
 You cannot mix authenticators in {{site.konnect_saas}}. With Okta authentication enabled, all non-admin {{site.konnect_short_name}} users will log in through Okta. Only the {{site.konnect_short_name}} org owner can continue to log in with {{site.konnect_short_name}}'s native authentication.
@@ -41,7 +40,37 @@ Create a new application in Okta to manage {{site.konnect_saas}} account integra
 
     Leave this page open. You'll need the connection details here to configure your {{site.konnect_saas}} account.
 
-**Optionally** set up claims in Okta to have Okta send the correct information to your {{site.konnect_short_name}} org, set up claims to extract that information.
+### (Optional) Set up group claims in Okta
+
+Set up claims in Okta to have Okta send the correct information to your {{site.konnect_short_name}} org, set up claims to extract that information. There are two different methods you can use to set up group claims:
+* **Org authorization server:** Use this method if you're only using Okta-sourced groups.
+* **Custom authorization server:** Use this method if you're using groups other than Okta groups, such as Active Directory (AD) or LDAP.
+    
+    {:.important}
+    > **Important:** Using the Okta API to set up group claims with a custom authorization server is an additional paid Okta feature.
+
+{% navtabs %}
+{% navtab Org authorization server %}
+
+If you want to use group claims for Konnect SSO, navigate to your Konnect app in Okta to [configure a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/main/#add-a-groups-claim-for-the-org-authorization-server) on the **Sign On** tab and fill in the following fields:
+
+| Field | Value |
+| ---|--- |
+| Group claims type | Filter |
+| Group claims filter | `groups`, select **Matches regex** from the drop-down, then enter `.*` in the field.
+| Filter | Select **Matches regex** from the drop-down, then enter `.*` in the field. |
+
+This claim tells Okta to reference a subset of Okta groups.
+In this case, the wildcard (`.*`) value tells Okta to make all groups available for team mapping.
+
+{:.important}
+> If the authorization server is pulling in additional groups from third-party applications (for example, Google groups), the `groups` claim cannot find them. An Okta administrator needs to duplicate those groups and re-create them directly in Okta. They can do this by exporting the group in
+question in CSV format, then importing the CSV file to populate the new group.
+
+{% endnavtab %}
+{% navtab Custom authorization server %}
+{:.important}
+> **Important:** Using the Okta API is an additional paid Okta feature.
 
 1. Open your Okta account in a new browser tab.
 
@@ -76,6 +105,8 @@ If you have problems setting up these claims, refer to the Okta documentation
 for troubleshooting:
 * [Adding a `groups` claim](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/add-groups-claim-custom-as/)
 * [Adding a custom claim](https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/add-custom-claim/)
+{% endnavtab %}
+{% endnavtabs %}
 
 {% endnavtab %}
 {% navtab SAML %}
@@ -129,7 +160,10 @@ Create a new application in Okta to manage the {{site.konnect_saas}} account int
 
 1. Click **Done**.
 
-Test claims and find mapping groups: 
+## Test claims and find mapping groups
+
+{:.important}
+> **Important:** Using the Okta API is an additional paid Okta feature.
 
 1. In the sidebar of your Okta account, click **Security > API**.
 
@@ -289,7 +323,7 @@ in Okta to locate the Okta groups you want to map.
     groups may be accessible by the `groups` claim. See the
     [claims](#set-up-claims-in-okta) setup step for details.
 
-1. In {{site.konnect_saas}}, go to {% konnect_icon organizations %} **Organization > Auth Settings > Team Mappings** and do at least one of the following:
+1. In {{site.konnect_saas}}, go to {% konnect_icon organizations %} **Organization > Settings > Team Mappings** and do at least one of the following:
 
     * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
     * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your Okta groups in the relevant fields.
@@ -316,7 +350,7 @@ You can test the Okta configuration by navigating to the login URI based on the 
 You can now manage your organization's user permissions entirely from the Okta
 application.
 
-## Log in through Okta to test the integration
+### Log in through Okta to test the integration
 1. Copy your {{site.konnect_short_name}} organization's login URI.
 
 1. Paste the URI into a browser address bar. An Okta login page should appear.
