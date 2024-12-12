@@ -67,13 +67,11 @@ The {{site.konnect_short_name}} SAML integration allows you to configure various
 1. After clicking **Save**, configure the SP Entity ID and Login URL on your SAML IdP.
 {% endnavtab %}
 {% endnavtabs %}
-## Test and apply the configuration
+## Verify via SSO Login
 {% navtabs %}
 {% navtab OIDC%}
-{:.important}
-> **Important:** Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
 
-You can test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `https://cloud.konghq.com/login/examplepath`, where `examplepath` is the unique login path string set in the steps above. 
+You can verify the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `https://cloud.konghq.com/login/examplepath`, where `examplepath` is the unique login path string set in the steps above. 
 
 If your configuration is set up correctly, you will see the IdP sign-in page.
 
@@ -81,8 +79,6 @@ You can now manage your organization's user permissions entirely from the IdP
 application.
 {% endnavtab %}
 {% navtab SAML %}
-{:.important}
-> **Important:** Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
 
 Test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `https://cloud.konghq.com/login/examplepath`, where `examplepath` is the unique login path string set in the previous steps.
 
