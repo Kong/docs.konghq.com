@@ -16,8 +16,10 @@ shows how to make this happen using the `BackendTLSPolicy` (when using Gateway A
 ## Set up an upstream service with TLS
 
 Before we configure {{ site.kic_product_name }} to verify the certificate of the upstream service, we need to set up an
-upstream service that handles TLS. We can use the `kong/goecho` service as an example. It is a simple echo server that
+upstream service that handles TLS. We can use the [`kong/goecho`][kong_goecho] service as an example. It is a simple echo server that
 can be configured to serve HTTPS on an arbitrary port using a TLS certificate and key pair.
+
+[kong_goecho]: https://github.com/kong/go-echo
 
 ### Create a certificate chain
 
