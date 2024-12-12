@@ -195,8 +195,10 @@
           url: /dev-portal/access-and-approval/add-teams/
         - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
-        - text: Configure SSO for Dev Portal
+        - text: Configure generic SSO for Dev Portal
           url: /dev-portal/access-and-approval/sso/
+        - text: Configure Okta SSO for Dev Portal
+          url: /dev-portal/access-and-approval/okta-idp/
     - text: Application Lifecycle
       url: /dev-portal/applications/application-overview/
     - text: Register and create an application as a developer
@@ -287,7 +289,7 @@
           url: /org-management/org-switcher/
         - text: Configure Generic SSO
           url: /org-management/sso/
-        - text: Configure Okta
+        - text: Configure Okta SSO 
           url: /org-management/okta-idp/
         - text: Login Sessions Reference
           url: /org-management/sessions-reference/
@@ -419,3 +421,5 @@
       url: /reference/audit-logs/
     - text: Verify audit log signatures
       url: /reference/verify-signatures/
+    - text: IdP SAML attribute mapping
+      url: /reference/saml-idp-mappings/
