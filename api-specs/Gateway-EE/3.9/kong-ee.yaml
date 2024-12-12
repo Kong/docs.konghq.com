@@ -379,6 +379,123 @@ components:
           tags:
             - silver-tier
           username: bob-the-builder
+    Event-Hooks:
+      type: object
+      description: Event Hooks schema
+      properties:
+        data:
+          type: array
+          description: List of event hooks
+          items:
+            type: object
+            properties:
+              config:
+                type: object
+                description: Configuration for the event hook
+                properties:
+                  body:
+                    type: string
+                    nullable: true
+                  body_format:
+                    type: boolean
+                  headers:
+                    type: object
+                    nullable: true
+                    properties:
+                      content-type:
+                        type: string
+                  headers_format:
+                    type: boolean
+                  method:
+                    type: string
+                  payload:
+                    type: object
+                    nullable: true
+                    properties:
+                      text:
+                        type: string
+                  payload_format:
+                    type: boolean
+                  secret:
+                    type: string
+                    nullable: true
+                  ssl_verify:
+                    type: boolean
+                  url:
+                    type: string
+                  functions:
+                    type: array
+                    nullable: true
+                    items:
+                      type: string
+              created_at:
+                type: integer
+              event:
+                type: string
+              handler:
+                type: string
+              id:
+                type: string
+              on_change:
+                type: string
+                nullable: true
+              snooze:
+                type: integer
+                nullable: true
+              source:
+                type: string
+        next:
+          type: string
+          nullable: true
+      example:
+        data:
+          - config:
+              body: null
+              body_format: true
+              headers:
+                content-type: application/json
+              headers_format: false
+              method: POST
+              payload:
+                text: payload_text
+              payload_format: true
+              secret: null
+              ssl_verify: false
+              url: 'https://hooks.slack.com/services/foo/bar/baz'
+            created_at: 1627588552
+            event: admins
+            handler: webhook-custom
+            id: 937df175-3db2-4e6d-8aa1-d95c94a76089
+            on_change: null
+            snooze: null
+            source: crud
+          - config:
+              headers: {}
+              secret: null
+              ssl_verify: false
+              url: 'https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6'
+            created_at: 1627581575
+            event: consumers
+            handler: webhook
+            id: c57340ab-9fed-40fd-bb7e-1cef8d37c2df
+            on_change: null
+            snooze: null
+            source: crud
+          - config:
+              functions:
+                - |
+                  return function (data, event, source, pid)
+                    local user = data.entity.username
+                    error("Event hook on consumer " .. user .. "")
+                  end
+            created_at: 1627595513
+            event: consumers
+            handler: lambda
+            id: c9fdd58d-5416-4d3a-9467-51e5cfe4ca0e
+            on_change: null
+            snooze: null
+            source: crud
+        next: null
     Key:
       description: A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
       example:
