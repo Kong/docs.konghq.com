@@ -693,13 +693,19 @@ The value of the annotation should be an integer. If not set, a system default v
 See [TLS verification of Upstream Service](/kubernetes-ingress-controller/{{page.release}}/guides/security/verify-upstream-tls)
 guide for more information.
 
-### konghq.com/ca-certificates
+### konghq.com/ca-certificates-secret
 
 > Available since controller 3.4
 
-This annotation can be used to assign CA certificates to be used for the upstream service's TLS certificates
-verification.
-The value of the annotation should be a comma-separated list of CA certificate names.
+This annotation can be used to assign CA certificates to be used for the upstream service's TLS certificates verification.
+The value of the annotation should be a comma-separated list of `Secret`s containing CA certificates.
+
+### konghq.com/ca-certificates-configmap
+
+> Available since controller 3.4
+
+This annotation can be used to assign CA certificates to be used for the upstream service's TLS certificates verification.
+The value of the annotation should be a comma-separated list of `ConfigMap`s containing CA certificates.
 
 {% include /md/kic/ca-certificates-note.md %}
 

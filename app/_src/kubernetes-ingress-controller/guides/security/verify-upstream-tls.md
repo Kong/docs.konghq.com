@@ -166,7 +166,7 @@ service/echo patched
 
 Now that the `kong/goecho` service is serving HTTPS, we need to expose it.
 
-{% include /md/kic/http-test-routing-resource.md service=echo port=443 %}
+{% include /md/kic/http-test-routing-resource.md service=echo port=443 route_type=PathPrefix %}
 
 Verify connectivity by issuing an HTTP request to proxy. The service serves HTTPS but {{ site.base_gateway }} initiates
 the connection and proxies it as HTTP in this case, thus the request should be made over HTTP. The `Host` header is
@@ -240,40 +240,63 @@ it with the service.
 
 First, create a secret with the root CA certificate.
 
-{% include /md/kic/ca-certificates-note.md %}
-
+{% navtabs certificate %}
+{% navtab Secret %}
 ```shell
-echo '
-apiVersion: v1
-kind: Secret
-metadata:
-  name: root-ca
-  labels:
-    konghq.com/ca-cert: "true" # This label is required for the CA certificate to be recognized by Kong
-  annotations:
-    kubernetes.io/ingress.class: kong
-data:
-  cert: '$(base64 -w0 ./certs/root.crt)'
-  # An arbitrary ID for the certificate 
-  id: '$(printf "bf6e0f14-78cd-45ad-9325-87ec7ef7b890" | base64 -w0)'
-' | kubectl apply -f -
+kubectl create secret generic root-ca \
+  --from-file=ca.crt=./certs/root.crt \
+  --from-literal=id=bf6e0f14-78cd-45ad-9325-87ec7ef7b891 # An arbitrary ID for the certificate
+kubectl label secret root-ca konghq.com/ca-cert=true     # This label is required for the CA certificate to be recognized by Kong
+kubectl annotate secret root-ca kubernetes.io/ingress.class=kong
 ```
 
 The results should look like this.
 
 ```text
 secret/root-ca created
+configmap/root-ca labeled
+configmap/root-ca annotated
 ```
 
-Now, associate the root CA certificate with the service passing its name to `konghq.com/ca-certificates` annotation.
+Now, associate the root CA certificate with the service passing its name to `konghq.com/ca-certificates-secret` annotation.
 
 {:.note}
-> The `konghq.com/ca-certificates` annotation is a comma-separated list of CA certificate names. You can add multiple
-> CA certificates to the list.
+> The `konghq.com/ca-certificates-secret` annotation is a comma-separated list of `Secret`s holding CA certificates.
+> You can add multiple `Secret`s to the list.
 
 ```shell
-kubectl annotate service echo konghq.com/ca-certificates='root-ca'
+kubectl annotate service echo konghq.com/ca-certificates-secret='root-ca'
 ```
+{% endnavtab %}
+{% navtab ConfigMap %}
+
+```shell
+kubectl create configmap root-ca \
+  --from-file=ca.crt=./certs/root.crt \
+  --from-literal=id=bf6e0f14-78cd-45ad-9325-87ec7ef7b891 # An arbitrary ID for the certificate
+kubectl label configmap root-ca konghq.com/ca-cert=true  # This label is required for the CA certificate to be recognized by Kong
+kubectl annotate configmap root-ca kubernetes.io/ingress.class=kong
+```
+
+The results should look like this.
+
+```text
+configmap/root-ca created
+configmap/root-ca labeled
+configmap/root-ca annotated
+```
+
+Now, associate the root CA certificate with the service passing its name to `konghq.com/ca-certificates-configmap` annotation.
+
+{:.note}
+> The `konghq.com/ca-certificates-configmap` annotation is a comma-separated list of `ConfigMap`s holding CA certificates.
+> You can add multiple `ConfigMap`s to the list.
+
+```shell
+kubectl annotate service echo konghq.com/ca-certificates-configmap='root-ca'
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 The results should look like this.
 
