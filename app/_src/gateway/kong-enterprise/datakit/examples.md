@@ -1,7 +1,7 @@
 ---
 title: Datakit examples
 badge: enterprise
-beta: true
+alpha: true
 ---
 
 Example configuration by use case.

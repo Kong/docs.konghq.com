@@ -1,7 +1,7 @@
 ---
 title: Datakit configuration reference
 badge: enterprise
-beta: true
+alpha: true
 ---
 
 Datakit can be configured via the `/plugins` endpoint.

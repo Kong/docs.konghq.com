@@ -1,7 +1,7 @@
 ---
 title: About Datakit
 badge: enterprise
-beta: true
+alpha: true
 ---
 
 The {{site.base_gateway}} Datakit is a plugin that allows you to interact with third-party APIs. 
