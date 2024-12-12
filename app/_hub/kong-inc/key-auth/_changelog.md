@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* Fixed an issue with the order of query arguments, ensuring that arguments retain order when hiding the credentials.
+
 ### {{site.base_gateway}} 3.8.x
 * Fixed an issue where the realm field wasn't recognized for older {{site.base_gateway}} versions (earlier than 3.7).
    [#13042](https://github.com/Kong/kong/issues/13042)
