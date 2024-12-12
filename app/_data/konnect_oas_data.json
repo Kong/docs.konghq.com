@@ -13,7 +13,7 @@
       {
         "id": "f683716f-218d-4fab-9eef-b453cf795130",
         "created_at": "2024-02-21T17:28:17.757Z",
-        "updated_at": "2024-02-29T19:12:41.588Z",
+        "updated_at": "2024-10-17T19:13:18.223Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -34,7 +34,7 @@
       {
         "id": "1b770f7b-581b-4ab2-9766-70c046aa7fca",
         "created_at": "2024-04-10T19:07:03.399Z",
-        "updated_at": "2024-04-15T19:17:24.675Z",
+        "updated_at": "2024-10-17T19:13:21.812Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -45,17 +45,17 @@
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
     "title": "Gateway Admin - EE",
     "latestVersion": {
-      "name": "3.8.0.0",
-      "id": "8a434890-9251-4f4b-a8cd-21fae85f4285"
+      "name": "3.9.0.0",
+      "id": "28045784-2926-4959-8767-313199170a2b"
     },
     "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes.",
     "documentCount": 2,
-    "versionCount": 6,
+    "versionCount": 7,
     "versions": [
       {
         "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
         "created_at": "2023-05-11T19:37:04.731Z",
-        "updated_at": "2023-05-11T19:37:33.078Z",
+        "updated_at": "2024-10-17T19:10:52.949Z",
         "name": "3.3.0.0",
         "deprecated": false,
         "registration_configs": []
@@ -63,7 +63,7 @@
       {
         "id": "25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9",
         "created_at": "2023-08-01T16:48:18.726Z",
-        "updated_at": "2023-08-09T21:03:30.480Z",
+        "updated_at": "2024-10-17T19:11:00.705Z",
         "name": "3.4.0.0",
         "deprecated": false,
         "registration_configs": []
@@ -71,7 +71,7 @@
       {
         "id": "5363c8ea-e2ce-4670-9117-143b3b3d2bfb",
         "created_at": "2023-11-06T20:40:21.660Z",
-        "updated_at": "2023-11-08T19:39:15.438Z",
+        "updated_at": "2024-10-17T19:12:15.014Z",
         "name": "3.5.0.0",
         "deprecated": false,
         "registration_configs": []
@@ -79,7 +79,7 @@
       {
         "id": "95e68025-45a1-4e24-8561-6d7e5f422de5",
         "created_at": "2024-02-14T20:06:29.376Z",
-        "updated_at": "2024-02-14T20:13:13.359Z",
+        "updated_at": "2024-10-17T19:13:17.698Z",
         "name": "3.6.0.0",
         "deprecated": false,
         "registration_configs": []
@@ -87,7 +87,7 @@
       {
         "id": "7dad8169-6779-49bb-bb78-19f88b186d92",
         "created_at": "2024-05-08T18:37:51.370Z",
-        "updated_at": "2024-05-08T18:37:51.370Z",
+        "updated_at": "2024-10-17T19:13:25.420Z",
         "name": "3.7.0.0",
         "deprecated": false,
         "registration_configs": []
@@ -95,8 +95,16 @@
       {
         "id": "8a434890-9251-4f4b-a8cd-21fae85f4285",
         "created_at": "2024-09-11T01:07:14.811Z",
-        "updated_at": "2024-09-11T01:07:14.811Z",
+        "updated_at": "2024-10-17T19:13:43.751Z",
         "name": "3.8.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "28045784-2926-4959-8767-313199170a2b",
+        "created_at": "2024-12-11T17:54:51.493Z",
+        "updated_at": "2024-12-11T17:56:02.131Z",
+        "name": "3.9.0.0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -106,17 +114,17 @@
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
     "title": "Gateway Admin - OSS",
     "latestVersion": {
-      "name": "3.8.0",
-      "id": "dcea0cfe-0d7e-4a91-a07a-5e358086d5dc"
+      "name": "3.9.0",
+      "id": "2dc29641-aa09-42c9-bcbd-af3f52ebe90d"
     },
     "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes.",
     "documentCount": 0,
-    "versionCount": 6,
+    "versionCount": 7,
     "versions": [
       {
         "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
         "created_at": "2023-05-11T19:34:55.498Z",
-        "updated_at": "2023-05-11T19:35:57.388Z",
+        "updated_at": "2024-10-17T19:10:52.942Z",
         "name": "3.3.0",
         "deprecated": false,
         "registration_configs": []
@@ -124,7 +132,7 @@
       {
         "id": "7df4368a-a2d1-41a3-b8de-708e86c218f4",
         "created_at": "2023-08-08T20:53:41.418Z",
-        "updated_at": "2023-08-09T21:03:42.381Z",
+        "updated_at": "2024-10-17T19:11:01.352Z",
         "name": "3.4.0",
         "deprecated": false,
         "registration_configs": []
@@ -132,7 +140,7 @@
       {
         "id": "7323acff-61a5-4d95-9670-3cc30db88d94",
         "created_at": "2023-11-06T20:42:08.188Z",
-        "updated_at": "2023-11-08T19:39:53.374Z",
+        "updated_at": "2024-10-17T19:12:15.022Z",
         "name": "3.5.0",
         "deprecated": false,
         "registration_configs": []
@@ -140,7 +148,7 @@
       {
         "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e",
         "created_at": "2024-02-14T20:08:38.884Z",
-        "updated_at": "2024-02-14T20:12:53.995Z",
+        "updated_at": "2024-10-17T19:13:17.705Z",
         "name": "3.6.0",
         "deprecated": false,
         "registration_configs": []
@@ -148,7 +156,7 @@
       {
         "id": "51f0d174-f8b8-4469-9a93-d0aab9b9296b",
         "created_at": "2024-05-08T18:40:28.598Z",
-        "updated_at": "2024-06-13T19:06:00.994Z",
+        "updated_at": "2024-10-17T19:13:25.425Z",
         "name": "3.7.0",
         "deprecated": false,
         "registration_configs": []
@@ -156,8 +164,16 @@
       {
         "id": "dcea0cfe-0d7e-4a91-a07a-5e358086d5dc",
         "created_at": "2024-09-11T01:08:36.394Z",
-        "updated_at": "2024-09-11T01:08:36.394Z",
+        "updated_at": "2024-10-17T19:13:43.759Z",
         "name": "3.8.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "2dc29641-aa09-42c9-bcbd-af3f52ebe90d",
+        "created_at": "2024-12-11T17:56:51.385Z",
+        "updated_at": "2024-12-11T17:57:08.325Z",
+        "name": "3.9.0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -177,7 +193,7 @@
       {
         "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1",
         "created_at": "2022-11-09T18:13:05.107Z",
-        "updated_at": "2023-02-24T17:05:21.077Z",
+        "updated_at": "2024-10-17T19:10:37.218Z",
         "name": "v1",
         "deprecated": false,
         "registration_configs": []
@@ -198,7 +214,7 @@
       {
         "id": "5feb007a-348b-486d-8d06-92f615471d22",
         "created_at": "2023-05-08T15:01:55.082Z",
-        "updated_at": "2023-05-11T19:31:56.661Z",
+        "updated_at": "2024-10-17T19:10:52.480Z",
         "name": "v1",
         "deprecated": false,
         "registration_configs": []
@@ -219,7 +235,7 @@
       {
         "id": "941af975-8cfa-40f7-afea-e82d248489a0",
         "created_at": "2023-06-28T18:37:55.070Z",
-        "updated_at": "2023-07-17T14:08:02.747Z",
+        "updated_at": "2024-10-17T19:10:58.024Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -240,7 +256,7 @@
       {
         "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1",
         "created_at": "2023-09-19T12:13:00.185Z",
-        "updated_at": "2023-09-26T18:13:52.394Z",
+        "updated_at": "2024-10-17T19:11:21.699Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -261,7 +277,7 @@
       {
         "id": "d36126ee-ab8d-47b2-960f-5703da22cced",
         "created_at": "2023-01-18T22:01:21.688Z",
-        "updated_at": "2023-01-19T16:53:17.132Z",
+        "updated_at": "2024-10-17T19:10:43.647Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -282,7 +298,7 @@
       {
         "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e",
         "created_at": "2023-09-19T20:03:32.547Z",
-        "updated_at": "2023-09-20T15:53:46.683Z",
+        "updated_at": "2024-10-17T19:11:22.104Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -303,7 +319,7 @@
       {
         "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61",
         "created_at": "2023-09-19T15:03:02.006Z",
-        "updated_at": "2023-09-25T21:38:59.893Z",
+        "updated_at": "2024-10-17T19:11:21.798Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -324,7 +340,7 @@
       {
         "id": "33ab825d-dec0-4d29-8e17-5133655d7ae7",
         "created_at": "2024-06-10T13:14:58.432Z",
-        "updated_at": "2024-06-10T13:16:49.437Z",
+        "updated_at": "2024-10-17T19:13:30.138Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -345,7 +361,7 @@
       {
         "id": "d0e13745-db5c-42d5-80ae-ef803104f5ce",
         "created_at": "2022-10-07T00:04:47.449Z",
-        "updated_at": "2023-09-20T15:36:03.266Z",
+        "updated_at": "2024-10-17T19:10:34.869Z",
         "name": "v2",
         "deprecated": true,
         "registration_configs": []
@@ -353,7 +369,7 @@
       {
         "id": "c8074b5c-5cb8-47bb-8fcd-797d9f209cb2",
         "created_at": "2023-09-19T19:16:31.138Z",
-        "updated_at": "2023-09-19T19:17:05.882Z",
+        "updated_at": "2024-10-17T19:11:22.084Z",
         "name": "v3",
         "deprecated": false,
         "registration_configs": []
@@ -374,7 +390,7 @@
       {
         "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5",
         "created_at": "2023-09-25T17:02:31.016Z",
-        "updated_at": "2023-09-26T21:30:47.305Z",
+        "updated_at": "2024-10-17T19:11:27.560Z",
         "name": "v0",
         "deprecated": false,
         "registration_configs": []
@@ -388,14 +404,14 @@
       "name": "v2",
       "id": "43fca68c-f83d-4cf1-8c40-87574d423313"
     },
-    "description": "Integrate portal management operations with  automation systems (such as CI/CD pipelines) utilizing this AIP-compliant API.",
+    "description": "Integrate portal management operations with automation systems (such as CI/CD pipelines) using this AIP-compliant API.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
         "id": "43fca68c-f83d-4cf1-8c40-87574d423313",
         "created_at": "2023-10-27T16:34:46.991Z",
-        "updated_at": "2023-11-02T22:42:46.657Z",
+        "updated_at": "2024-10-17T19:12:04.768Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -406,7 +422,7 @@
     "id": "97cb97c2-0824-4e87-a13f-2fad352d698f",
     "title": "Konnect Search",
     "latestVersion": {
-      "name": "Konnect Search v1",
+      "name": "v1",
       "id": "c0b23b3d-0e01-4045-98d8-0846c346e6e3"
     },
     "description": "The search API for Kong Konnect.",
@@ -416,8 +432,8 @@
       {
         "id": "c0b23b3d-0e01-4045-98d8-0846c346e6e3",
         "created_at": "2024-05-02T16:10:01.020Z",
-        "updated_at": "2024-05-09T16:28:09.916Z",
-        "name": "Konnect Search v1",
+        "updated_at": "2024-11-26T16:20:27.227Z",
+        "name": "v1",
         "deprecated": false,
         "registration_configs": []
       }
