@@ -8,11 +8,13 @@ info:
     url: 'https://konghq.com'
 servers:
   - url: 'https://us.api.konghq.com/v1'
-    description: US Public API
+    description: United-States Production region
   - url: 'https://eu.api.konghq.com/v1'
-    description: EU Public API
+    description: Europe Production region
   - url: 'https://au.api.konghq.com/v1'
-    description: AU Public API
+    description: Australia Production region
+  - url: 'https://me.api.konghq.com/v1'
+    description: Middle-East Production region
 paths:
   /mesh/control-planes:
     get:
@@ -171,6 +173,7 @@ components:
           type: string
           example: Test control plane
           maxLength: 100
+          pattern: '^[a-z0-9A-Z]{1}.*$'
         description:
           type: string
           example: A control plane to handle traffic on development environment.
@@ -201,6 +204,7 @@ components:
           example: Test control plane
           maxLength: 100
           minLength: 1
+          pattern: '^[a-z0-9A-Z]{1}.*$'
         description:
           type: string
           example: A control plane to handle traffic on development environment.
@@ -220,6 +224,7 @@ components:
           type: string
           example: Test control plane
           maxLength: 100
+          pattern: '^[a-z0-9A-Z]{1}.*$'
         description:
           type: string
           example: A control plane to handle traffic on development environment.

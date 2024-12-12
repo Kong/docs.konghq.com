@@ -8,11 +8,13 @@ info:
     url: 'https://cloud.konghq.com'
 servers:
   - url: 'https://us.api.konghq.com/v2'
-    description: US Region Base URL
+    description: United-States Production region
   - url: 'https://eu.api.konghq.com/v2'
-    description: EU Region Base URL
+    description: Europe Production region
   - url: 'https://au.api.konghq.com/v2'
-    description: AU Region Base URL
+    description: Australia Production region
+  - url: 'https://me.api.konghq.com/v2'
+    description: Middle-East Production region
 paths:
   /control-planes:
     get:
@@ -1262,38 +1264,40 @@ components:
         updated_at: '2022-11-04T20:10:06.927Z'
     GroupConflictStatusExample:
       value:
-        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-        conflicts:
-          - cluster_id: 57fdf779-7935-476f-ab2b-7fa1323b70e6
-            description: 'conflicting entity found: ID=df43b088-cace-4119-9e2a-d83e5fbb0c48, Name=svc1'
-            resource:
-              id: df43b088-cace-4119-9e2a-d83e5fbb0c48
-              type: service
-          - cluster_id: 38ceea96-fe39-11ed-be56-0242ac120002
-            description: 'conflicting entity found: ID=15f3ab7d-7202-498a-95b4-334f783dbcdd, Name=svc1'
-            resource:
-              id: 15f3ab7d-7202-498a-95b4-334f783dbcdd
-              type: service
-        state: CONFLICT
-        created_at: '2022-11-04T20:10:06.927Z'
-        updated_at: '2022-11-04T20:10:06.927Z'
+        item:
+          id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          conflicts:
+            - cluster_id: 57fdf779-7935-476f-ab2b-7fa1323b70e6
+              description: 'conflicting entity found: ID=df43b088-cace-4119-9e2a-d83e5fbb0c48, Name=svc1'
+              resource:
+                id: df43b088-cace-4119-9e2a-d83e5fbb0c48
+                type: service
+            - cluster_id: 38ceea96-fe39-11ed-be56-0242ac120002
+              description: 'conflicting entity found: ID=15f3ab7d-7202-498a-95b4-334f783dbcdd, Name=svc1'
+              resource:
+                id: 15f3ab7d-7202-498a-95b4-334f783dbcdd
+                type: service
+          state: CONFLICT
+          created_at: '2022-11-04T20:10:06.927Z'
+          updated_at: '2022-11-04T20:10:06.927Z'
     GroupNoConflictStatusExample:
       value:
-        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-        conflicts:
-          - cluster_id: 57fdf779-7935-476f-ab2b-7fa1323b70e6
-            description: 'conflicting entity found: ID=df43b088-cace-4119-9e2a-d83e5fbb0c48, Name=svc1'
-            resource:
-              id: df43b088-cace-4119-9e2a-d83e5fbb0c48
-              type: service
-          - cluster_id: 38ceea96-fe39-11ed-be56-0242ac120002
-            description: 'conflicting entity found: ID=15f3ab7d-7202-498a-95b4-334f783dbcdd, Name=svc1'
-            resource:
-              id: 15f3ab7d-7202-498a-95b4-334f783dbcdd
-              type: service
-        state: CONFLICT
-        created_at: '2022-11-04T20:10:06.927Z'
-        updated_at: '2022-11-04T20:10:06.927Z'
+        item:
+          id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          conflicts:
+            - cluster_id: 57fdf779-7935-476f-ab2b-7fa1323b70e6
+              description: 'conflicting entity found: ID=df43b088-cace-4119-9e2a-d83e5fbb0c48, Name=svc1'
+              resource:
+                id: df43b088-cace-4119-9e2a-d83e5fbb0c48
+                type: service
+            - cluster_id: 38ceea96-fe39-11ed-be56-0242ac120002
+              description: 'conflicting entity found: ID=15f3ab7d-7202-498a-95b4-334f783dbcdd, Name=svc1'
+              resource:
+                id: 15f3ab7d-7202-498a-95b4-334f783dbcdd
+                type: service
+          state: CONFLICT
+          created_at: '2022-11-04T20:10:06.927Z'
+          updated_at: '2022-11-04T20:10:06.927Z'
     ListGroupMembershipsExample:
       value:
         meta:
@@ -1587,7 +1591,10 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/GroupStatus'
+            type: object
+            properties:
+              item:
+                $ref: '#/components/schemas/GroupStatus'
           examples:
             Group Conflict Status Example:
               $ref: '#/components/examples/GroupConflictStatusExample'
