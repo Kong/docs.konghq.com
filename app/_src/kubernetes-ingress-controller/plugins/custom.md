@@ -8,7 +8,7 @@ purpose: |
 Install a custom plugin in Kong without using a Docker build.
 
 {:.note}
-> The recommended way to install custom plugins is with {{ site.kgo_product_name }}. See [Kong custom plugin distribution with KongPluginInstallation](/gateway-operator/unreleased/guides/plugin-distribution/) for more information.
+> The recommended way to install custom plugins is with {{ site.kgo_product_name }}. See [Kong custom plugin distribution with KongPluginInstallation](/gateway-operator/{{page.release}}/guides/plugin-distribution/) for more information.
 
 {% include md/custom-plugin.md %}
 
