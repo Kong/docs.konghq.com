@@ -3627,8 +3627,8 @@ components:
       schema:
         type: string
     ConsumerId:
-      description: The UUID of the consumer.
-      example: 123e4567-e89b-12d3-a456-426614174000
+      description: ID of the Consumer to lookup
+      example: c1059869-6fa7-4329-a5f5-5946d14ca2c5
       in: path
       name: ConsumerId
       required: true
