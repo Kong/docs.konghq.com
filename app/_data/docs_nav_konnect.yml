@@ -108,7 +108,7 @@
               url: ../../gateway/latest/plugin-development/
               generate: false
         - text: Create Consumer Groups
-          url: ../../hub/kong-inc/rate-limiting-advanced/how-to
+          url: /gateway-manager/configuration/consumer-groups/
         - text: Secrets Management
           items:
             - text: Overview
@@ -283,6 +283,8 @@
           url: /org-management/users/
         - text: Manage System Accounts
           url: /org-management/system-accounts/
+        - text: Personal Access Tokens
+          url: /org-management/access-tokens/
         - text: Social Identity Login
           url: /org-management/social-identity-login/
         - text: Org Switcher
