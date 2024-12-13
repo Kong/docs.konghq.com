@@ -54,6 +54,8 @@
         url: /gateway-manager/dedicated-cloud-gateways/transit-gateways
       - text: Azure VNET Peering
         url: /gateway-manager/dedicated-cloud-gateways/azure-peering
+      - text: Custom Domains
+        url: /gateway-manager/dedicated-cloud-gateways/custom-dns/
     - text: Serverless Gateways
       items: 
         - text: Overview
@@ -62,6 +64,8 @@
           url: /gateway-manager/serverless-gateways/provision-serverless-gateway/
         - text: Securing Backend Traffic
           url: /gateway-manager/serverless-gateways/securing-backend-traffic/
+        - text: Custom Domains
+          url: /gateway-manager/serverless-gateways/custom-dns/
     - text: Data Plane Nodes
       items:
         - text: Installation Options
@@ -154,6 +158,8 @@
           url: /service-catalog/integrations/swaggerhub/
         - text: Traceable
           url: /service-catalog/integrations/traceable/
+        - text: Datadog
+          url: /service-catalog/integrations/datadog/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
@@ -189,8 +195,10 @@
           url: /dev-portal/access-and-approval/add-teams/
         - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
-        - text: Configure SSO for Dev Portal
+        - text: Configure generic SSO for Dev Portal
           url: /dev-portal/access-and-approval/sso/
+        - text: Configure Okta SSO for Dev Portal
+          url: /dev-portal/access-and-approval/okta-idp/
     - text: Application Lifecycle
       url: /dev-portal/applications/application-overview/
     - text: Register and create an application as a developer
@@ -230,6 +238,8 @@
           url: /dev-portal/customization/self-hosted-portal/
         - text: Host your Dev Portal with Netlify
           url: /dev-portal/customization/netlify/
+        - text: Custom Domains
+          url: /dev-portal/customization/custom-dns/
     - text: Dev Portal SDK
       url: https://www.npmjs.com/package/@kong/sdk-portal-js
       absolute_url: true
@@ -279,7 +289,7 @@
           url: /org-management/org-switcher/
         - text: Configure Generic SSO
           url: /org-management/sso/
-        - text: Configure Okta
+        - text: Configure Okta SSO 
           url: /org-management/okta-idp/
         - text: Login Sessions Reference
           url: /org-management/sessions-reference/
@@ -378,7 +388,7 @@
     - text: Portal Client API
       items:
         - text: API Spec
-          url: /konnect/api/portal/latest/
+          url: /konnect-portal/api/latest/
           absolute_url: true
           generate: false
           target_blank: true
@@ -386,25 +396,6 @@
       items:
         - text: API Spec
           url: /konnect/api/portal-management/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Portal RBAC API
-      items:
-        - text: API Spec
-          url: /konnect/api/portal-rbac/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Deprecated APIs
-      items:
-        - text: (Deprecated) Runtime Configuration API
-          url: /konnect/api/runtime-groups-configuration/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-        - text: (Deprecated) Runtime Groups API
-          url: /konnect/api/runtime-groups/latest/
           absolute_url: true
           generate: false
           target_blank: true
@@ -422,8 +413,6 @@
       url: /reference/labels/
     - text: Plugin Ordering Reference
       url: /reference/plugins/
-    - text: Custom Domains
-      url: /reference/custom-dns/
     - text: Konnect Search
       url: /reference/search/
     - text: Terraform Provider
@@ -432,3 +421,5 @@
       url: /reference/audit-logs/
     - text: Verify audit log signatures
       url: /reference/verify-signatures/
+    - text: IdP SAML attribute mapping
+      url: /reference/saml-idp-mappings/

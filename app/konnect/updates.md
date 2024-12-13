@@ -9,7 +9,48 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">December<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/updated-consumer-display-name-in-advanced-analytics">Updated consumer display name in Advanced Analytics</a>
+</div>
+<div class="changelog-description">Konnect Advanced Analytics will now prioritize and display the username field for consumers in all charts and API Requests when both username and custom_id are present.  This aligns with user preferences for clearer identification.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">December<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/custom-domains-for-serverless-gateways-VJ0PhJCk">Custom Domains for Serverless Gateways</a>
+</div>
+<div class="changelog-description">Serverless Gateways now support configuring custom domains.  To add a custom domain to your serverless gateway, hit the new 'Custom Domains' navigation item when inside a Serverless Control Plane and follow the instructions.</div>
+</div>
+</div>
+
+
 ## November 2024
+
+<div class="changelog-entries">
+<div class="changelog-date">November<br>27</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-now-supports-aws-privatelink-for-cp-dp-communication-ZqBwIY5V">Konnect now supports AWS PrivateLink for CP <> DP communication</a>
+</div>
+<div class="changelog-description">You can now leverage AWS PrivateLink for a secure connection between your dataplanes hosted in AWS and Konnect.  This adds another layer of security between the control plane (CP) in Konnect and dataplanes (DP) in your AWS requirement.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">November<br>26</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-is-now-available-in-middle-east">Konnect is now available in Middle East!</a>
+</div>
+<div class="changelog-description">Konnect control plane is now available in Middle East!  You can now leverage Konnect hosted in Middle East to be close to your end customers and comply with the data residency requirements.</div>
+</div>
+</div>
 
 <div class="changelog-entries">
 <div class="changelog-date">November<br>05</div>
@@ -41,7 +82,6 @@ We have deprecated the old method of filtering requests via the API in favor of 
 </div>
 </div>
 </div>
-
 
 ## October 2024
 
@@ -114,7 +154,6 @@ Cloud Launchers deprecated
 <div class="changelog-description">Cloud Launchers will be deprecated on November 30th, 2024. From this date onward, you will no longer be able to use pre-populated templates to launch data planes in AWS, Azure, or GCP using Cloud Launchers.</div>
 </div>
 </div>
-
 
 ## August 2024
 
@@ -479,7 +518,7 @@ For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/cus
 
 **Portal Client API**
 : {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. 
-For more information, see the [Portal Client API spec](/konnect/api/portal/latest/).
+For more information, see the [Portal Client API spec](/konnect-portal/api/latest/).
 
 **Audit logging**
 : Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. 

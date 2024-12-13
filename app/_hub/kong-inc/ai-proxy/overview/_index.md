@@ -33,6 +33,9 @@ The following table describes which providers and requests the AI Proxy plugin s
 | Amazon Bedrock | ✅ | ✅ | ✅ |
 | Gemini | ✅ | ✅ | ✅ |
 {% endif_version %}
+{% if_version gte:3.9.x %}
+| Hugging Face | ✅ | ✅ | ✅ |
+{% endif_version %}
 
 ## How it works
 
@@ -87,6 +90,10 @@ The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-
 | Gemini     | `llm/v1/chat`                            | `llm/v1/chat`        | `gemini-1.5-flash` or `gemini-1.5-pro`           |
 | Gemini     | `llm/v1/completions`                     | `llm/v1/completions` | `gemini-1.5-flash` or `gemini-1.5-pro`            |
 {% endif_version %}
+{% if_version gte:3.9.x %}
+| Hugging Face | `/models/{model_provider}/{model_name}` | `llm/v1/chat` | [Use the model name for the specific LLM provider](https://huggingface.co/models?inference=warm&pipeline_tag=text-generation&sort=trending) |
+| Hugging Face | `/models/{model_provider}/{model_name}` | `llm/v1/completions` | [Use the model name for the specific LLM provider](https://huggingface.co/models?inference=warm&pipeline_tag=text-generation&sort=trending) |
+{% endif_version %}
 
 The following upstream URL patterns are used:
 
@@ -102,6 +109,9 @@ The following upstream URL patterns are used:
 {% if_version gte:3.8.x %}
 | Amazon Bedrock   | `https://bedrock-runtime.{region}.amazonaws.com`                                                   |
 | Gemini  | `https://generativelanguage.googleapis.com`                                                    |
+{% endif_version %}
+{% if_version gte:3.9.x %}
+| Hugging Face | `https://api-inference.huggingface.co` |
 {% endif_version %}
 
 {:.important}
@@ -130,6 +140,32 @@ The Kong AI Proxy accepts the following inputs formats, standardized across all 
     ]
 }
 ```
+{% if_version gte:3.9.x %}
+With Amazon Bedrock, you can include your [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) configuration in the request:
+```json
+{
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are a scientist."
+        },
+        {
+            "role": "user",
+            "content": "What is the theory of relativity?"
+        }
+    ],
+    "extra_body":
+        {
+            "guardrailConfig":
+                {
+                    "guardrailIdentifier":"<guardrail_identifier>",
+                    "guardrailVersion":"1",
+                    "trace":"enabled"
+                }
+        }
+}
+```
+{% endif_version %}
 {% endnavtab %}
 
 {% navtab llm/v1/completions %}

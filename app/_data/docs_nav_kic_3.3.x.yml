@@ -175,6 +175,8 @@ items:
     items:
       - text: Custom Plugins
         url: /plugins/custom
+      - text: Cross-namespace Plugins
+        url: /plugins/cross-namespace
       - text: Authentication
         url: /plugins/authentication
       - text: ACL

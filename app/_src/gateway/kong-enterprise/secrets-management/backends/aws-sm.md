@@ -15,6 +15,9 @@ To access secrets stored in the AWS Secrets Manager, {{site.base_gateway}} needs
 - Fetch from an EKS [IAM roles for service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 - Fetch from EC2 IMDS metadata. Both v1 and v2 are supported
 
+{:.note}
+> **Note:** IAM Identity Center credential provider and Process credential provider are not supported.
+
 {{site.base_gateway}} also supports role assuming which allows you to use a different IAM role to fetch secrets from AWS Secrets Manager.  This is a common practice in permission division and governance and cross-AWS account management.
 {% endif_version %}
 

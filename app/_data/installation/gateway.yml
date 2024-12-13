@@ -1,4 +1,10 @@
 # e.g.: https://cloudsmith.io/~kong/repos/internal-gateway-37/pub-keys/
+"310":
+  rsa_key: F95F9D51CE8D04A7
+  gpg_key: 5F07A9706C09A6C6
+"39":
+  rsa_key: EE30089B2CC28C9A
+  gpg_key: B9DCD032B1696A89
 "38":
   rsa_key: E4186B13EAE1A2D5
   gpg_key: 8F87A07D181DAA6B

@@ -66,6 +66,24 @@ When authentication fails, the client does not have access to any details that e
 
 **A:** No, the client only needs to send the target's certificate encoded in a header. Kong will validate the certificate, but it requires a high level of trust that the WAF/LB is the only entrypoint to the Kong proxy. The Header Cert Auth plugin will provide an option to secure the source, but additional layers of security are always preferable. Network level security (so that Kong only accepts requests from WAF - IP allow/deny mechanisms) and application-level security (Basic Auth or Key Auth plugins to authenticate the source first) are examples of multiple layers of security that can be applied.
 
+**Q: How should the certificate be passed in a client request?**  
+
+**A:** This depends on the format specified in the `certificate_header_format` parameter. When using `base64_encoded`, only the base64-encoded body of the certificate should be sent (excluding the `BEGIN CERTIFICATE` and `END CERTIFICATE` delimiters).  When using `url_encoded`, the entire certificate, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` delimiters, should be provided.
+
+For example, given the `certificate_header_name` of x-client-cert:
+
+`base64_encoded`
+
+```bash
+x-client-cert: MIIDbDCCAdSgAwIBAgIUa...
+```
+
+`url_encoded`
+
+```bash
+x-client-cert: -----BEGIN%20CERTIFICATE-----%0AMIIDbDCCAdSgAwIBAgIUa...-----END%20CERTIFICATE-----
+```
+
 ## Get started with the Header Cert Authentication plugin
 
 * [Add certificate authorities](/hub/kong-inc/header-cert-auth/how-to/add-cert-authorities/):

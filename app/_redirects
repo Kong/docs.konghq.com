@@ -25,11 +25,12 @@
 
 ## DCG seperate section
 
-
 /konnect/gateway-manager/data-plane-nodes/azure-peering/     /konnect/gateway-manager/dedicated-cloud-gateways/azure-peering/
 /konnect/gateway-manager/data-plane-nodes/transit-gateways/ /konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/
 /konnect/gateway-manager/provision-cloud-gateway/            /konnect/gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
 /konnect/gateway-manager/dedicated-cloud-gateways/   /konnect/gateway-manager/dedicated-cloud-gateways/
+/konnect/reference/custom-dns/      /konnect/dev-portal/customization/custom-dns/
+
 ## Saml SSO
 
 /konnect/org-management/oidc-idp/   /konnect/org-management/sso/
@@ -66,7 +67,14 @@
 # API
 
 /konnect/api/portal-rbac/latest/*    /konnect/api/portal-management/latest/
-/konnect/api/portal-rbac/:version/*    /konnect/api/portal-management/latest/
+/konnect/api/portal-rbac/:version/*  /konnect/api/portal-management/latest/
+/konnect/api/portal/latest/*         /konnect-portal/api/latest/
+/konnect/api/portal/:version/*       /konnect-portal/api/latest/
+/konnect/api/runtime-groups/latest/*                  /konnect/api/control-planes/latest/
+/konnect/api/runtime-groups-configuration/latest/*    /konnect/api/control-plane-configuration/latest/
+/konnect/api/runtime-groups/:version/*                /konnect/api/control-planes/latest/
+/konnect/api/runtime-groups-configuration/:version/*  /konnect/api/control-plane-configuration/latest/
+
 
 # Konnect plugins
 
@@ -823,8 +831,7 @@
 /mesh/:version/explore/gui/ /mesh/:version/production/gui/
 /mesh/:version/documentation/upgrades/  /mesh/:version/production/upgrades-tuning/upgrades/
 /mesh/:version/documentation/fine-tuning/ /mesh/:version/production/upgrades-tuning/fine-tuning/
-/mesh/:version/installation/* /mesh/:version/production/install-kumactl/
-/mesh/:version/install/* /mesh/:version/production/install-kumactl/
+/mesh/:version/install /mesh/:version/introduction/install/
 /docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
 /mesh/:version/crds/* /assets/mesh/:version/raw/crds/:splat
 /mesh/:version/protos/* /assets/mesh/:version/raw/protos/:splat

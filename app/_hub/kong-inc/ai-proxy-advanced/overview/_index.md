@@ -21,6 +21,9 @@ The following table describes which providers and requests the AI Proxy Advanced
 | Llama3 (OLLAMA and OpenAI formats) | ✅ | ✅ | ✅ |
 | Amazon Bedrock | ✅ | ✅ | ✅ |
 | Gemini | ✅ | ✅ | ✅ |
+{% if_version gte:3.9.x %}
+| Hugging Face | ✅ | ✅ | ✅ |
+{% endif_version %}
 
 ## How it works
 
@@ -94,6 +97,10 @@ The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy-advanced/configuration
 | Amazon Bedrock     | Use the LLM `completions` upstream path             | `llm/v1/completions` | [Use the model name for the specific LLM provider](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html)             |
 | Gemini     | `llm/v1/chat`                            | `llm/v1/chat`        | `gemini-1.5-flash` or `gemini-1.5-pro`           |
 | Gemini     | `llm/v1/completions`                     | `llm/v1/completions` | `gemini-1.5-flash` or `gemini-1.5-pro`            |
+{% if_version gte:3.9.x %}
+| Hugging Face | `/models/{model_provider}/{model_name}` | `llm/v1/chat` | [Use the model name for the specific LLM provider](https://huggingface.co/models?inference=warm&pipeline_tag=text-generation&sort=trending) |
+| Hugging Face | `/models/{model_provider}/{model_name}` | `llm/v1/completions` | [Use the model name for the specific LLM provider](https://huggingface.co/models?inference=warm&pipeline_tag=text-generation&sort=trending) |
+{% endif_version %}
 
 
 The following upstream URL patterns are used:
@@ -108,6 +115,9 @@ The following upstream URL patterns are used:
 | Mistral   | As defined in  `config.model.options.upstream_url`                                                     |
 | Amazon Bedrock   | `https://bedrock-runtime.{region}.amazonaws.com`                                                   |
 | Gemini  | `https://generativelanguage.googleapis.com`                                                     |
+{% if_version gte:3.9.x %}
+| Hugging Face | `https://api-inference.huggingface.co` |
+{% endif_version %}
 
 {:.important}
 > While only the **Llama2** and **Mistral** models are classed as self-hosted, the target URL can be overridden for any of the supported providers.
@@ -135,6 +145,32 @@ The Kong AI Proxy accepts the following inputs formats, standardized across all 
     ]
 }
 ```
+{% if_version gte:3.9.x %}
+With Amazon Bedrock, you can include your [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) configuration in the request:
+```json
+{
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are a scientist."
+        },
+        {
+            "role": "user",
+            "content": "What is the theory of relativity?"
+        }
+    ],
+    "extra_body":
+        {
+            "guardrailConfig":
+                {
+                    "guardrailIdentifier":"<guardrail_identifier>",
+                    "guardrailVersion":"1",
+                    "trace":"enabled"
+                }
+        }
+}
+```
+{% endif_version %}
 {% endnavtab %}
 
 {% navtab llm/v1/completions %}

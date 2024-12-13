@@ -2,6 +2,239 @@
 
 <!--vale off-->
 
+## Week 49
+
+### [Update opentelemetry  _changelog.md to include deprecation of config.endpoint in 3.8](https://github.com/Kong/docs.konghq.com/pull/8228) (2024-12-05)
+
+- Update _changelog.md to include deprecation of config.endpoint
+- Fix typo in config.batch_flush_delay deprecation
+ 
+`2024/12/05 15:16:04 [warn] 2533#0: *1692 [kong] init.lua:910 OpenTelemetry: config.endpoint is deprecated, please use config.traces_endpoint instead (deprecated after 4.0), client: 172.19.0.1, server: kong_admin, request: "PUT /plugins/924e591e-5544-4ee8-8327-32625f0034f0 HTTP/1.1", host: "localhost:8001"
+`
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/
+
+
+### [Feat: Redirect plugin](https://github.com/Kong/docs.konghq.com/pull/8218) (2024-12-06)
+
+Docs for the new Redirect plugin in 3.9.
+
+https://konghq.atlassian.net/browse/DOCU-4175
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/redirect/
+- https://docs.konghq.com/hub/kong-inc/redirect/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/redirect/overview/
+- https://docs.konghq.com/hub/kong-inc/redirect/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_redirect.png
+
+
+### [Header Cert Auth plugin: cert format FAQ](https://github.com/Kong/docs.konghq.com/pull/8214) (2024-12-03)
+
+Updated the FAQ to include a note about how the certificate should  be passed. The docs were not entirely clear that base64 and url encoding require different data to be passed (one including the being/end certificate delimiters). 
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/header-cert-auth/overview/
+
+
+### [chore: Update 3.9 support tables](https://github.com/Kong/docs.konghq.com/pull/8210) (2024-12-03)
+
+Add tabs for 3.9 support tables + add ubuntu 24.04 to the data file (it's already in 39.yml, was just missing from here).
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/
+- https://docs.konghq.com/gateway/3.6.x/upgrade/
+- https://docs.konghq.com/gateway/3.7.x/upgrade/
+- https://docs.konghq.com/gateway/3.8.x/upgrade/
+- https://docs.konghq.com/gateway/unreleased/upgrade/
+
+
+### [Fix: missing changelog entry for dependency bump](https://github.com/Kong/docs.konghq.com/pull/8190) (2024-12-02)
+
+Add missing dependency bump changelong entry to 3.8.1.0 ([eng PR here](https://github.com/Kong/kong-ee/pull/10599)) and add detail to capture the customer issue. Support was unable to find the fix in the changelog, since the initial issue wasn't mentioned.
+
+Issue reported on slack: https://kongstrong.slack.com/archives/CDSTDSG9J/p1732724038244199
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update: Guardrail for Bedrock](https://github.com/Kong/docs.konghq.com/pull/8184) (2024-12-03)
+
+Updated the AI Proxy and AI Proxy Advanced docs to add a request example with guardrails for Bedrock.
+ 
+[DOCU-4167](https://konghq.atlassian.net/browse/DOCU-4167)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
+
+
+### [chore(gateway): add notice for unsupported AWS credential provider](https://github.com/Kong/docs.konghq.com/pull/8181) (2024-12-02)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/overview/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/
+- https://docs.konghq.com/gateway/3.6.x/upgrade/
+- https://docs.konghq.com/gateway/3.7.x/upgrade/
+- https://docs.konghq.com/gateway/3.8.x/upgrade/
+- https://docs.konghq.com/gateway/unreleased/upgrade/
+
+
+### [Update config-store.md for referencing the secret in Konnect](https://github.com/Kong/docs.konghq.com/pull/8128) (2024-12-05)
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/config-store
+
+
+## Week 48
+
+### [feat: Service Catalog Datadog integration ](https://github.com/Kong/docs.konghq.com/pull/8154) (2024-12-01)
+
+Adding Datadog as a new Service Catalog integration.
+ 
+DOCU-4109
+
+#### Added
+
+- https://docs.konghq.com/konnect/service-catalog/integrations/datadog
+
+## Week 48
+
+### [cleanup(mesh): remove old versions](https://github.com/Kong/docs.konghq.com/pull/8197) (2024-11-29)
+
+The mesh docs experienced a lot of changes before 2.2.x
+Maintaining all this is very combursome and all these versions
+are now deprecated.
+
+This simply removes old versions and makes the Mesh docs easier to
+manage
+
+We will still need to remove some of the conditional rendering but I'll
+do this as a follow up PR
+
+Part of https://github.com/kumahq/kuma-website/issues/2072
+Replaces https://github.com/Kong/docs.konghq.com/pull/8195
+
+
+Signed-off-by: Charly Molter [charly.molter@konghq.com](mailto:charly.molter@konghq.com)
+
+
+
+### [chore(kgo): bump to 1.4.1](https://github.com/Kong/docs.konghq.com/pull/8193) (2024-11-28)
+
+Bump KGO to 1.4.1
+
+OSS release: https://github.com/Kong/gateway-operator/releases/tag/v1.4.1
+EE release https://github.com/Kong/gateway-operator-enterprise/releases/tag/v1.4.1
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/changelog
+
+
+### [fix: step formatting in Secure Comms](https://github.com/Kong/docs.konghq.com/pull/8186) (2024-11-27)
+
+Fixed the formatting of the certificate steps, it was messed up.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/secure-communications
+
+
+### [Release: Gateway 3.7.1.3](https://github.com/Kong/docs.konghq.com/pull/8170) (2024-11-27)
+
+Changelog and version bump for Gateway 3.7.1.3.
+
+Also merge https://github.com/Kong/docs-plugin-toolkit/pull/74 when this goes in.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update secure-communications.md](https://github.com/Kong/docs.konghq.com/pull/8165) (2024-11-27)
+
+ Updated documentation to reflect current behavior. Changes explain what is happening behind the scene so users can understand the flow and what the workflows accomplish
+
+There is no jira. However there are discussions on slack. All are linked below
+
+https://kongstrong.slack.com/archives/C03LRB400TC/p1730253689774879
+https://kongstrong.slack.com/archives/C03LRB400TC/p1731604458601139?thread_ts=1730253689.774879&cid=C03LRB400TC
+https://kongstrong.slack.com/archives/C02KEASTTRC/p1731688031878609
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/secure-communications
+
+
+### [feat: serverless provisioning clarification](https://github.com/Kong/docs.konghq.com/pull/8161) (2024-11-26)
+
+Quick clarification change to ensure users know that Serverless Gateways may not be provisioned in their current Konnect region.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/
+- https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/provision-serverless-gateway
+
+
+### [Feat: PrivateLink connection](https://github.com/Kong/docs.konghq.com/pull/8149) (2024-11-27)
+
+Add docs page for PrivateLink.
+
+[DOCU-3871](https://konghq.atlassian.net/browse/DOCU-3871)
+[CSRE-2806](https://konghq.atlassian.net/browse/CSRE-2806)
+
+Replaces Kong/docs.konghq.com#7771
+
+[DOCU-3871]: https://konghq.atlassian.net/browse/DOCU-3871?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ
+[CSRE-2806]: https://konghq.atlassian.net/browse/CSRE-2806?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ
+
+#### Added
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [feat: Konnect ME geos](https://github.com/Kong/docs.konghq.com/pull/8126) (2024-11-26)
+
+DOCU-4147
+
+#### Modified
+
+- https://docs.konghq.com/konnect/geo
+- https://docs.konghq.com/konnect/network
+
+
+### [fix: Request Validator incorrectly refers to Kong format schema](https://github.com/Kong/docs.konghq.com/pull/8111) (2024-11-25)
+
+The doc says the the Kong `format` schema validation is supported, which is incorrect. JSON Schema `format` validation is actually what's supported.
+
+Fixes https://konghq.atlassian.net/browse/FTI-6196.
+
+Note to reviewers: I fixed the title of the section referring to the "Kong format schema" and some minor cleanup to the page, including removing unnecessary output examples. 
+However, I couldn't actually get these examples to work as documented in the example. The last step, validation, always fails for me- though this is probably out of scope of this PR and is a separate issue.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-validator/overview/
+
 ## Week 47
 
 ### [Fix: extra sentence](https://github.com/Kong/docs.konghq.com/pull/8155) (2024-11-21)
@@ -25,9 +258,6 @@ the [CONTROL_PLANE_ID.eu.cp0.konghq.com](http://control_plane_id.eu.cp0.konghq.c
 ### [fix: correct config store queries](https://github.com/Kong/docs.konghq.com/pull/8144) (2024-11-20)
 
 Correct config store queries and references.
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 

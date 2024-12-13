@@ -29,9 +29,11 @@ items:
         absolute_url: true
       - text: Breaking Changes
         items:
-          - text: Kong Gateway 3.8.x
+          - text: Kong Gateway 3.9.x
             url: /breaking-changes/
-            src: /gateway/breaking-changes/38x
+            src: /gateway/breaking-changes/39x
+          - text: Kong Gateway 3.8.x
+            url: /breaking-changes/38x/
           - text: Kong Gateway 3.7.x
             url: /breaking-changes/37x/
           - text: Kong Gateway 3.6.x
@@ -358,6 +360,16 @@ items:
         url: /kong-enterprise/signed-images
       - text: Verify Build Provenance for Signed Kong Images
         url: /kong-enterprise/provenance-verification
+      - text: Datakit
+        items:
+          - text: Overview
+            url: /kong-enterprise/datakit/
+          - text: Get Started with Datakit
+            url: /kong-enterprise/datakit/get-started/
+          - text: Datakit Configuration Reference
+            url: /kong-enterprise/datakit/configuration/
+          - text: Datakit Examples Reference
+            url: /kong-enterprise/datakit/examples/
 
   - title: Kong AI Gateway
     icon: /assets/images/icons/documentation/icn-ai.svg
@@ -752,7 +764,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
-        src: /gateway/reference/configuration/configuration-3.8.x
+        src: /gateway/reference/configuration/configuration-3.9.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI
