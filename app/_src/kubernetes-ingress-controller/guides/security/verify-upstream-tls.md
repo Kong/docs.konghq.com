@@ -304,8 +304,12 @@ Through HTTPS connection.
 ```
 
 {:.note}
-> It may take a moment for {{ site.base_gateway }} to pick up the changes and start verifying the certificate.
+> {{ site.base_gateway }} by default keeps upstream connections alive.
+> By default this setting - [`upstream_keepalive_idle_timeout`][kong_upstream_keepalive] - is 60 (seconds).
+> Because of that you might need to wait for 60 seconds to see the results.
 > If you want to speed up the process, you can restart the {{ site.base_gateway }} pod.
+
+[kong_upstream_keepalive]: /gateway/latest/reference/configuration/#upstream_keepalive_idle_timeout
 
 {{ site.base_gateway }} is now verifying the certificate of the upstream service and accepting the connection because
 the certificate is trusted.
