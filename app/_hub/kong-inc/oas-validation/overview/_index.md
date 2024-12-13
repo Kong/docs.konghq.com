@@ -64,7 +64,8 @@ This example tutorial steps you through ensuring an API request conforms to the 
     ```bash
     curl -X POST http://localhost:8001/services/Petstore-Service/routes \
         --data name='Petstore-Route' \
-        --data paths='~/.*'
+        --data paths='~/.*' \
+        --data strip_path=false
     ```
     
 3. Enable the Validation plugin on the service you configured:
