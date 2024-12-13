@@ -200,7 +200,7 @@ items:
       - text: Configuration Options
         url: /reference/cli-arguments/
         src: reference/cli-arguments-3.3.x
-      - text: Beta Feature Gates
+      - text: Feature Gates
         url: /reference/feature-gates
       - text: FAQ
         items:

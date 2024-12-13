@@ -38,11 +38,23 @@ Feature gates consist of a comma-delimited set of `key=value` pairs. For example
 
 To enable features via Helm, set the following in your `values.yaml`:
 
+{% navtabs %}
+{% navtab kong chart %}
 ```yaml
 ingressController:
   env:
     feature_gates: FillIDs=true,RewriteURIs=true
 ```
+{% endnavtab %}
+{% navtab ingress chart %}
+```yaml
+controller:
+  ingressController:
+    env:
+      feature_gates: FillIDs=true,RewriteURIs=true
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 To test a feature gate in an existing deployment, use `kubectl set env`.
 
