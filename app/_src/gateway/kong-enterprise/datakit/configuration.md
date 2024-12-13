@@ -162,7 +162,7 @@ Create a template for parsing the output of an external API call to a coordinate
   - first: FIRST.body
   output: service_request.body
   template: |
-    Coordinates for {{ first.places.0.[place name] }}, {{ first.places.0.state }}, {{ first.country }} are ({{ first.places.0.latitude }}, {{ first.places.0.longitude }}).
+    {% raw %}Coordinates for {{ first.places.0.[place name] }}, {{ first.places.0.state }}, {{ first.country }} are ({{ first.places.0.latitude }}, {{ first.places.0.longitude }}){% endraw %}.
 ```
 
 ### `exit` node type
