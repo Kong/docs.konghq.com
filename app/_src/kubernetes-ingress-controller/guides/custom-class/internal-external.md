@@ -4,9 +4,9 @@ title: Using Custom Classes to split Internal/External traffic
 
 {{ site.kic_product_name }} automatically creates a `kong` `IngressClass` when installed. All of the example ingress definitions in the documentation set `spec.ingressClassName: kong`, which allows things to work by default.
 
-Advanced users of {{ site.kic_product_name }} may wish to split traffic into internal and external ingress definitions. This requires multiple {{ site.kic_product_name }} instances, each pointing to a different `IngressClass`.
+Advanced users of {{ site.kic_product_name }} may want to split traffic into internal and external ingress definitions. This requires multiple {{ site.kic_product_name }} instances, each pointing to a different `IngressClass`.
 
-Users can also split traffic into different gateways when they are using Gateway APIs with multiple {{ site.kic_product_name }} instances and multiple `Gateway`s.
+You can also split traffic into different gateways when you are using Gateway APIs with multiple {{ site.kic_product_name }} instances and multiple `Gateway`s.
 
 ## Understanding IngressClass
 
@@ -33,7 +33,7 @@ spec:
 
 ## Creating Gateways
 
-For splitting traffics into different gateways using Kubernetes gateway API, you should create 2 `Gateway`s in the kubernetes cluster, where each reconciled by one {{ site.kic_product_name }} instance.
+For splitting traffic into different gateways using the Kubernetes Gateway API, create two `Gateway`s in the Kubernetes cluster, where each is reconciled by one {{ site.kic_product_name }} instance:
 
 ```bash
 echo 'apiVersion: gateway.networking.k8s.io/v1
@@ -76,7 +76,7 @@ spec:
 
 Each deployment lives in its namespace, and the `controller.ingressController.ingressClass` value is set depending on whether that deployment should handle internal or external traffic.
 
-To split traffics to different `Gateway`s in Kubernetes gateway APIs, we could configure the environment variable `CONTROLLER_GATEWAY_TO_RECONCILE` to configure {{ site.kic_product_name }} to reconcile specific `Gatweway` and routes attached to the gateway.
+You can split traffic into different `Gateway`s in the Kubernetes Gateway APIs by using the environment variable `CONTROLLER_GATEWAY_TO_RECONCILE`. Configure the variable to instruct {{ site.kic_product_name }} to reconcile specific `Gateway` instances and routes attached to the gateway:
 
 ```bash
 helm upgrade --install kong-internal kong/ingress -n internal --create-namespace --set controller.ingressController.ingressClass=internal --set controller.ingressController.env.gateway_to_reconcile=internal/kong
@@ -89,6 +89,6 @@ Rather than setting `spec.ingressClassName: kong` in your `Ingress` definitions,
 
 For routes in Kubernetes gateway APIs (like `HTTPRoute`), you should refer to the corresponding `Gateway` in its `spec.parentRef`.
 
-This is an example to create a `Ingress` or `HTTPRoute` for routing internal traffic.
+For example, this is how you can create a `Ingress` or `HTTPRoute` for routing internal traffic:
 
 {% include /md/kic/http-test-routing-resource.md release=page.release path='/echo' name='echo-internal' service='echo' namespace='internal' ingress_class='internal' skip_host=true no_results=true %}
