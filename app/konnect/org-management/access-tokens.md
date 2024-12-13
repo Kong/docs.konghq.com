@@ -1,5 +1,5 @@
 ---
-title: Pesonal Access Tokens
+title: Personal Access Tokens
 ---
 
 You can generate a personal access token (PAT) in {{site.konnect_short_name}} for authentication with decK commands. This is more secure than basic authentication, and can be useful for organizations with CI pipelines that can't use the standard username and password authentication. 
