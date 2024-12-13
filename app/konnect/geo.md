@@ -15,10 +15,11 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 
 {{site.konnect_saas}} currently supports the following geos:
 
-* AU
-* EU
-* ME
-* US
+* AU (Australia)
+* EU (Europe)
+* ME (Middle East)
+* US (United States)
+* IN (India)
 
 
 ### Dedicated Cloud Gateways
