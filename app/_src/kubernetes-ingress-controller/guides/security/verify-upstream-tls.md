@@ -193,6 +193,28 @@ verification_.
 
 ### Enable TLS verification
 
+{% navtabs certificate %}
+{% navtab Gateway API %}
+
+To configure {{ site.base_gateway }} to verify the certificate of the upstream service,
+we need to create a `BackendTLSPolicy` resource:
+
+{% navtabs ca_source %}
+<!-- NOTE: Add Secret when https://github.com/Kong/kubernetes-ingress-controller/issues/6834 gets implemented -->
+{% navtab ConfigMap %}
+{% include /md/kic/verify-upstream-tls-backendtlspolicy.md ref_kind="ConfigMap" %}
+{% endnavtab %}
+{% endnavtabs %}
+
+The results should look like this.
+
+```text
+backendtlspolicy.gateway.networking.k8s.io/goecho-tls-policy created
+```
+
+{% endnavtab %}
+{% navtab Ingress %}
+
 To configure {{ site.base_gateway }} to verify the certificate of the upstream service, we need to annotate the
 service accordingly.
 
@@ -205,6 +227,8 @@ The results should look like this.
 ```text
 service/echo annotated
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, when you issue the same request as before, you should see an error similar to this.
 
@@ -222,7 +246,7 @@ curl -H Host:kong.example $PROXY_IP/echo
 If you inspect {{ site.base_gateway }}'s container logs, you should see an error indicating an issue with TLS handshake.
 
 ```shell
- kubectl logs -n kong deploy/kong-gateway | grep "GET /echo"
+kubectl logs -n kong deploy/kong-gateway | grep "GET /echo"
 ```
 
 ```text
@@ -238,71 +262,32 @@ the certificate is not trusted.
 That can be fixed by adding the root CA certificate to the {{ site.base_gateway }}'s CA certificates and associating
 it with the service.
 
-First, create a secret with the root CA certificate.
-
 {% navtabs certificate %}
-{% navtab Secret %}
-```shell
-kubectl create secret generic root-ca \
-  --from-file=ca.crt=./certs/root.crt \
-  --from-literal=id=bf6e0f14-78cd-45ad-9325-87ec7ef7b891 # An arbitrary ID for the certificate
-kubectl label secret root-ca konghq.com/ca-cert=true     # This label is required for the CA certificate to be recognized by Kong
-kubectl annotate secret root-ca kubernetes.io/ingress.class=kong
-```
+{% navtab Gateway API %}
 
-The results should look like this.
-
-```text
-secret/root-ca created
-configmap/root-ca labeled
-configmap/root-ca annotated
-```
-
-Now, associate the root CA certificate with the service passing its name to `konghq.com/ca-certificates-secret` annotation.
-
-{:.note}
-> The `konghq.com/ca-certificates-secret` annotation is a comma-separated list of `Secret`s holding CA certificates.
-> You can add multiple `Secret`s to the list.
-
-```shell
-kubectl annotate service echo konghq.com/ca-certificates-secret='root-ca'
-```
-{% endnavtab %}
+{% navtabs ca_source %}
+<!-- NOTE: Add Secret when https://github.com/Kong/kubernetes-ingress-controller/issues/6834 gets implemented -->
 {% navtab ConfigMap %}
-
-```shell
-kubectl create configmap root-ca \
-  --from-file=ca.crt=./certs/root.crt \
-  --from-literal=id=bf6e0f14-78cd-45ad-9325-87ec7ef7b891 # An arbitrary ID for the certificate
-kubectl label configmap root-ca konghq.com/ca-cert=true  # This label is required for the CA certificate to be recognized by Kong
-kubectl annotate configmap root-ca kubernetes.io/ingress.class=kong
-```
-
-The results should look like this.
-
-```text
-configmap/root-ca created
-configmap/root-ca labeled
-configmap/root-ca annotated
-```
-
-Now, associate the root CA certificate with the service passing its name to `konghq.com/ca-certificates-configmap` annotation.
-
-{:.note}
-> The `konghq.com/ca-certificates-configmap` annotation is a comma-separated list of `ConfigMap`s holding CA certificates.
-> You can add multiple `ConfigMap`s to the list.
-
-```shell
-kubectl annotate service echo konghq.com/ca-certificates-configmap='root-ca'
-```
+{% include /md/kic/verify-upstream-tls-ca.md ca_source_type="configmap" %}
 {% endnavtab %}
 {% endnavtabs %}
 
-The results should look like this.
+The CA is already associated with the `Service` through `BackendTLSPolicy`'s `spec.validation.caCertificateRefs`.
 
-```text
-service/echo annotated
-```
+{% endnavtab %}
+{% navtab Ingress %}
+
+{% navtabs ca_source %}
+{% navtab Secret %}
+{% include /md/kic/verify-upstream-tls-ca.md ca_source_type="secret" associate_with_service=true %}
+{% endnavtab %}
+{% navtab ConfigMap %}
+{% include /md/kic/verify-upstream-tls-ca.md ca_source_type="configmap" associate_with_service=true %}
+{% endnavtab %}
+{% endnavtabs %}
+
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, when you issue the same request as before, you should see a successful response.
 
@@ -318,6 +303,10 @@ With IP address 192.168.194.18.
 Through HTTPS connection.
 ```
 
+{:.note}
+> It may take a moment for {{ site.base_gateway }} to pick up the changes and start verifying the certificate.
+> If you want to speed up the process, you can restart the {{ site.base_gateway }} pod.
+
 {{ site.base_gateway }} is now verifying the certificate of the upstream service and accepting the connection because
 the certificate is trusted.
 
@@ -326,8 +315,30 @@ the certificate is trusted.
 By default, {{ site.base_gateway }} verifies the certificate chain up to the root CA certificate with no depth limit.
 You can configure the verification depth by annotating the service with the `konghq.com/tls-verify-depth` annotation.
 
-For example, to limit the verification depth to 1 (i.e., only verify one intermediate certificate), you can annotate the
-service like this:
+{% navtabs certificate %}
+{% navtab Gateway API %}
+For example, to limit the verification depth to 1 (i.e., only verify one intermediate certificate),
+you can set the `tls-verify-depth` option in the `BackendTLSPolicy` resource like this:
+
+```shell
+kubectl patch backendtlspolicies.gateway.networking.k8s.io goecho-tls-policy --type merge -p='{
+  "spec": {
+    "options" : {
+      "tls-verify-depth": "1"
+    }
+  }
+}'
+```
+
+The results should look like this.
+
+```text
+backendtlspolicy.gateway.networking.k8s.io/goecho-tls-policy patched
+```
+{% endnavtab %}
+{% navtab Ingress %}
+For example, to limit the verification depth to 1 (i.e., only verify one intermediate certificate),
+you can annotate the service like this:
 
 ```shell
 kubectl annotate service echo konghq.com/tls-verify-depth=1
@@ -338,6 +349,8 @@ The results should look like this.
 ```text
 service/echo annotated
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, when you issue the same request as before, you should still see a successful response.
 
@@ -355,6 +368,25 @@ Through HTTPS connection.
 
 You can also set the verification depth to 0 to not allow any intermediate certificates.
 
+{% navtabs certificate %}
+{% navtab Gateway API %}
+```shell
+kubectl patch backendtlspolicies.gateway.networking.k8s.io goecho-tls-policy --type merge -p='{
+  "spec": {
+    "options" : {
+      "tls-verify-depth": "0"
+    }
+  }
+}'
+```
+
+The results should look like this.
+
+```text
+backendtlspolicy.gateway.networking.k8s.io/goecho-tls-policy patched
+```
+{% endnavtab %}
+{% navtab Ingress %}
 ```shell
 kubectl annotate --overwrite service echo konghq.com/tls-verify-depth=0
 ```
@@ -364,6 +396,8 @@ The results should look like this.
 ```text
 service/echo annotated
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, when you issue the same request as before, you should see an error similar to this.
 
@@ -389,8 +423,30 @@ kubectl logs -n kong deploy/kong-gateway | grep "GET /echo"
 192.168.194.1 - - [29/Nov/2024:11:41:46 +0000] "GET /echo HTTP/1.1" 502 126 "-" "curl/8.7.1" kong_request_id: "678281372fb8907ed06d517cf515de78"
 ```
 
-{{ site.base_gateway }} is now rejecting the connection because the certificate chain is too long. Changing the
-verification depth to 1 should allow the connection to succeed again.
+{{ site.base_gateway }} is now rejecting the connection because the certificate chain is too long.
+Changing the verification depth to 1 should allow the connection to succeed again.
+
+{% navtabs certificate %}
+{% navtab Gateway API %}
+```shell
+kubectl patch backendtlspolicies.gateway.networking.k8s.io goecho-tls-policy --type merge -p='{
+  "spec": {
+    "options" : {
+      "tls-verify-depth": "1"
+    }
+  }
+}'
+```
+
+The results should look like this.
+
+```text
+backendtlspolicy.gateway.networking.k8s.io/goecho-tls-policy patched
+```
+{% endnavtab %}
+{% navtab Ingress %}
+For example, to limit the verification depth to 1 (i.e., only verify one intermediate certificate),
+you can annotate the service like this:
 
 ```shell
 kubectl annotate --overwrite service echo konghq.com/tls-verify-depth=1
@@ -401,6 +457,8 @@ The results should look like this.
 ```text
 service/echo annotated
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 Now, when you issue the same request as before, you should see a successful response.
 
