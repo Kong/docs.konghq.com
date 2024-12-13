@@ -2,7 +2,7 @@
 title: Explorer
 ---
 
-Explorer is an intuitive web-based interface that displays API usage data gathered by {{site.konnect_short_name}} Analytics from your data plane nodes. You can use this tool to promptly diagnose performance issues, monitor LLM token consumption and costs, or capture essential usage metrics. Explorer also provides the option to save the output as custom reports.
+Explorer is an intuitive web-based interface that displays API usage data gathered by {{site.konnect_short_name}} Analytics from your data plane nodes. You can use this tool to promptly diagnose performance issues, monitor LLM token consumption and costs, or capture essential usage metrics. Explorer also provides the option to save the output as custom reports. You can access the Explorer from any Advanced Analytics chart by clicking through the context (kebab) menu. 
 
 ![Explorer Dashboard](/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png){:.image-border}
 

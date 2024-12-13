@@ -20,7 +20,7 @@ You can monitor the latency, investigate where delays are noticed, and optimize 
     {:.note}
     > **Note**: Latency data is only available for requests proxied through a data plane running {{site.base_gateway}} 3.0.0.0 or later.
 
-You can interact with the traffic and latency graphs, including hovering over chart items to display more details, and selecting a time period using the **time period** drop-down menu. The intervals aggregate data at different increments of time. You can also click through a dashboard to navigate to the [explorer](/konnect/analytics/explorer/).
+You can interact with the traffic and latency graphs, including hovering over chart items to display more details, and selecting a time period using the **time period** drop-down menu. The intervals aggregate data at different increments of time. You can also click through any dashboard to navigate to the [explorer](/konnect/analytics/explorer/).
 
 
 ## Explorer actions
