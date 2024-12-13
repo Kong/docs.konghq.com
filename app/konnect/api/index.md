@@ -22,7 +22,7 @@ The geo-specific endpoints are used to manage {{site.konnect_short_name}} entiti
 
 ## Authentication
 
-The recommended method of authentication for {{site.konnect_short_name}} is [Personal Access Token (PAT)](/konnect/gateway-manager/declarative-config/#generate-a-personal-access-token), which can be obtained from the [personal access token page](https://cloud.konghq.com/global/account/tokens) in {{site.konnect_short_name}}. The PAT must be passed in the `Authorization` header of all requests, for example: 
+The recommended method of authentication for {{site.konnect_short_name}} is [Personal Access Token (PAT)](/konnect/org-management/access-tokens/), which can be obtained from the [personal access token page](https://cloud.konghq.com/global/account/tokens) in {{site.konnect_short_name}}. The PAT must be passed in the `Authorization` header of all requests, for example: 
 
 `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT'`
 
