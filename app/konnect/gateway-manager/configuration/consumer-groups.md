@@ -22,8 +22,9 @@ This plugin will apply to all consumers in the group.
 
 ## decK example
 
-Let's look at a more complex example where you define three consumer groups for rate limiting consumers.
-We'll be using decK to reduce the configuration complexity, but you can achieve all of this using the {{site.konnect_short_name}} admin interface or API as well.
+Let's look at a more complex example where you define three consumer groups for rate limiting consumers. In this example, each consumer group represents a different tier of support, such as Free, Basic, and Premium. Each tier will have different rate limits. For example, the Free tier has lower rate limits than the Premium tier.
+
+We'll be using [decK](/deck/) to reduce the configuration complexity, but you can achieve all of this using the {{site.konnect_short_name}} admin interface or API as well.
 
 In the following decK file, you have:
 1. Consumer authentication via the Key Authentication plugin
