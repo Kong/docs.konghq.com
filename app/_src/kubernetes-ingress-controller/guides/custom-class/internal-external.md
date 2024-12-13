@@ -87,7 +87,7 @@ helm upgrade --install kong-external kong/ingress -n external --create-namespace
 
 Rather than setting `spec.ingressClassName: kong` in your `Ingress` definitions, you should now use either `internal` or `external`. Ingress definitions that target `internal` will only be available via {{ site.base_gateway }} running in the `internal` namespace. Definitions that target `external` will only be available via the `external` gateway.
 
-For routes in Kubernetes gateway APIs (like `HTTPRoute`), you should refer to the corresponding `Gateway` in its `spec.parentRef`.
+For routes in Kubernetes Gateway APIs (like `HTTPRoute`), refer to the corresponding `Gateway` in its `spec.parentRef`.
 
 For example, this is how you can create a `Ingress` or `HTTPRoute` for routing internal traffic:
 
