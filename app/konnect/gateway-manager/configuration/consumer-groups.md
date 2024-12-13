@@ -4,7 +4,7 @@ content_type: tutorial
 badge: enterprise
 ---
 
-With [consumer groups](/gateway/latest/enterprise/consumer-groups/), you can scope plugins to specifically defined groups and a new plugin instance will be created for each individual consumer group, making configurations and customizations more flexible and convenient. 
+With [consumer groups](/gateway/latest/key-concepts/consumer-groups/), you can scope plugins to specifically defined groups and a new plugin instance will be created for each individual consumer group, making configurations and customizations more flexible and convenient. 
 For all plugins available on the consumer groups scope, see the [Plugin Scopes Reference](/hub/plugins/compatibility/#scopes).
 
 ## Create a consumer group in {{site.konnect_short_name}}
