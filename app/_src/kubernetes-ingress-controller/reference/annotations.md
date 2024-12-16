@@ -62,7 +62,8 @@ These annotations are supported on Service resources.
 {% if_version gte:3.4.x %}
 | [`konghq.com/tls-verify`](#konghqcomtls-verify)                                   | Enable or disable verification of the upstream service's TLS certificates                                                              |
 | [`konghq.com/tls-verify-depth`](#konghqcomtls-verify-depth)                        | Set the maximal depth of a certificate chain when verifying the upstream service's TLS certificates                                    |
-| [`konghq.com/ca-certificates`](#konghqcomca-certificates)                         | Assign CA certificates to be used for the upstream service's TLS certificates verification                                             |
+| [`konghq.com/ca-certificates-secret`](#konghqcomca-certificates-secret)                         | Assign CA certificates Secrets to be used for the upstream service's TLS certificates verification                                             |
+| [`konghq.com/ca-certificates-configmap`](#konghqcomca-certificates-configmap)                         | Assign CA certificates ConfigMaps to be used for the upstream service's TLS certificates verification                                             |
 {% endif_version %}
 
 ## KongConsumer resource
