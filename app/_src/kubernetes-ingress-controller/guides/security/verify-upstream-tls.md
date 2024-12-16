@@ -199,8 +199,14 @@ verification_.
 To configure {{ site.base_gateway }} to verify the certificate of the upstream service,
 we need to create a `BackendTLSPolicy` resource:
 
-<!-- NOTE: Add navtabs with Secret navtab when https://github.com/Kong/kubernetes-ingress-controller/issues/6834 gets implemented -->
+{% navtabs ca_source %}
+{% navtab Secret %}
+{% include /md/kic/verify-upstream-tls-backendtlspolicy.md ref_kind="Secret" %}
+{% endnavtab %}
+{% navtab ConfigMap %}
 {% include /md/kic/verify-upstream-tls-backendtlspolicy.md ref_kind="ConfigMap" %}
+{% endnavtab %}
+{% endnavtabs %}
 
 The results should look like this.
 
@@ -261,8 +267,14 @@ it with the service.
 {% navtabs certificate %}
 {% navtab Gateway API %}
 
-<!-- NOTE: Add navtabs with Secret navtab when https://github.com/Kong/kubernetes-ingress-controller/issues/6834 gets implemented -->
+{% navtabs ca_source %}
+{% navtab Secret %}
+{% include /md/kic/verify-upstream-tls-ca.md ca_source_kind="Secret" %}
+{% endnavtab %}
+{% navtab ConfigMap %}
 {% include /md/kic/verify-upstream-tls-ca.md ca_source_kind="ConfigMap" %}
+{% endnavtab %}
+{% endnavtabs %}
 
 The CA is already associated with the `Service` through `BackendTLSPolicy`'s `spec.validation.caCertificateRefs`.
 
