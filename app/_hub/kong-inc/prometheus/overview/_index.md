@@ -86,9 +86,11 @@ When `upstream_health_metrics` is set to true:
 
 {% if_version gte:3.8.x %}
 #### AI LLM metrics
+<span class="badge enterprise"></span>
+
 All the following AI LLM metrics are available per provider, model, cache, database name (if cached), embeddings provider (if cached), embeddings model (if cached), and workspace.
 
-When `ai_llm_metrics` is set to true:
+When `ai_metrics` is set to true:
 - **AI Requests**: AI request sent to LLM providers.
 - **AI Cost**: AI Cost charged by LLM providers.
 - **AI Tokens**: AI Tokens counted by LLM providers.
