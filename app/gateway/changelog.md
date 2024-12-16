@@ -2981,6 +2981,31 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.14
+**Release Date** 2024/12/18
+
+### Fixes
+#### Core
+
+* Fixed an issue where the workspace ID was not included in the plugin config in the plugins iterator.
+* Fixed Vault initialization by postponing Vault reference resolution to a timer in the `init_worker` phase.
+* Fixed an issue where using Hashicorp Vault AppRole authentication with a secret ID file would fail to read the secret ID.
+
+#### Plugins
+
+* [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`)
+  * Fixed an issue where the plugin could fail to authenticate to Redis correctly with vault-referenced Redis configuration.
+
+* [**mTLS Auth**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
+  * Fixed an issue where a 500 error occurred when Kong configuration changed with the mTLS plugin enabled.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`) 
+  * Fixed an issue where counters of the overriding consumer groups weren't fetched when the `window_size` was different and the workspace was non-default.
+  * Fixed an issue where, if multiple plugin instances sharing the same namespace enforced consumer groups and different `window_size`s were used in the consumer group overriding configs, then the rate limiting of some consumer groups would fall back to the `local` strategy. 
+  Now, every plugin instance sharing the same namespace can set a different `window_size`.
+  * Fixed an issue where the plugin could fail to authenticate to Redis correctly with Vault-referenced Redis configuration.
+  * Fixed an issue where plugin-stored items with a long expiration time caused `no memory` errors.
+
 ## 3.4.3.13
 **Release Date** 2024/11/15
 
