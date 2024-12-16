@@ -1245,7 +1245,7 @@ options allow better control over the configuration of tracing header propagatio
 
 * [**GraphQL Proxy Cache Advanced**](/hub/kong-inc/graphql-proxy-cache-advanced/)
   * Added Redis strategy support.
-  * Added the ability to resolve unhandled errors with bypass, with the request going upstream. Enable it using the [`bypass_on_err`](/hub/kong-inc/graphql-proxy-cache-advanced/unreleased/configuration/#config-bypass_on_err) configuration option.
+  * Added the ability to resolve unhandled errors with bypass, with the request going upstream. Enable it using the [`bypass_on_err`](/hub/kong-inc/graphql-proxy-cache-advanced/configuration/#config-bypass_on_err) configuration option.
 
 * [**JWT Signer**](/hub/kong-inc/jwt-signer/) (`jwt-signer`)
   * Added support for basic authentication and mTLS authentication to external JWKS services.

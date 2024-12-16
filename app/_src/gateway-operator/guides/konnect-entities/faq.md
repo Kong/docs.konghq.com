@@ -22,7 +22,7 @@ New resources are created immediately using the Konnect API.
 
 Existing resources are processed once per minute by default. This is customizable, but we recommend keeping the default value so that you do not hit the {{ site.konnect_short_name }} API rate limit.
 
-For more information, see [how it works](/gateway-operator/unreleased/guides/konnect-entities/architecture/#how-it-works).
+For more information, see [how it works](/gateway-operator/{{page.release}}/guides/konnect-entities/architecture/#how-it-works).
 
 ## I deleted a resource in the UI, but it wasn't recreated by the operator. Why?
 
@@ -30,7 +30,7 @@ Wait 60 seconds, then check the UI again. The reconcile loop only runs once per 
 
 ## Can I use Secrets for consumer credentials like in {{ site.kic_product_name }}?
 
-{{ site.kgo_product_name }} uses new `Credential` CRDs for managing [consumer credentials]((/gateway-operator/unreleased/guides/konnect-entities/consumer-and-consumergroup/#associate-the-consumer-with-credentials)). We plan to support Kubernetes `Secret` resources in a future release. [#618](https://github.com/Kong/gateway-operator/issues/618).
+{{ site.kgo_product_name }} uses new `Credential` CRDs for managing [consumer credentials](/gateway-operator/{{page.release}}/guides/konnect-entities/consumer-and-consumergroup/#associate-the-consumer-with-credentials). We plan to support Kubernetes `Secret` resources in a future release. [#618](https://github.com/Kong/gateway-operator/issues/618).
 
 ## Can I adopt existing {{ site.konnect_short_name }} entities?
 
