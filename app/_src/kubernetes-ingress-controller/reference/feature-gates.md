@@ -29,6 +29,9 @@ The same definitions of `feature gates` and `feature stages` from upstream Kuber
 | KongCustomEntity           | `true`  | Beta  | 3.3.0  | 3.4.0 |
 | KongCustomEntity           | `true`  | GA    | 3.4.0  | TBD   |
 {% endif_version %}
+{% if_version gte:3.4.x %}
+| CombinedServicesFromDifferentHTTPRoutes  | `false` | Alpha | 3.4.0  | TBD   |
+{% endif_version %}
 
 ## Using feature gates
 
@@ -91,3 +94,12 @@ private keys in `Certificate` entities and `Consumer` entities' credentials.
 > **Warning:** `KongPlugin`'s and `KongClusterPlugin`'s `config` fields are not sanitized. If you have sensitive information
 > in your `KongPlugin`'s `config` field, it will be sent to Konnect as is. To avoid that, please consider using
 > [KongVault](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongvault).
+
+### CombinedServicesFromDifferentHTTPRoutes
+
+When the feature gate `CombinedServicesFromDifferentHTTPRoutes` is enabled, {{site.kic_product_name}} will translate `HTTPRoute` rules
+sharing the same set of backends(comblination of namespace, name, port and weight) from different `HTTPRoute`s in the same namespace
+into one {{site.base_gateway}} service. Enabling the feature gate could reduce the number of translated {{site.base_gateway}} services.
+
+The names of {{site.base_gateway}} services will be changed if the feature gate is enabled compared to the names when it is disabled.
+You can refer to the [reference page](/kubernetes-ingress-controller/{{page.release}}/reference/combined-services-from-different-httproutes) to know the details.
