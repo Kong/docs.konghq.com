@@ -28,7 +28,6 @@ metadata:
   name: external
 spec:
   controller: ingress-controllers.konghq.com/kong' | kubectl apply -f -
-
 ```
 
 ## Creating Gateways
