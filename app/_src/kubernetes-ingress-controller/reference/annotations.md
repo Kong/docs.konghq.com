@@ -62,8 +62,8 @@ These annotations are supported on Service resources.
 {% if_version gte:3.4.x %}
 | [`konghq.com/tls-verify`](#konghqcomtls-verify)                                   | Enable or disable verification of the upstream service's TLS certificates                                                              |
 | [`konghq.com/tls-verify-depth`](#konghqcomtls-verify-depth)                        | Set the maximal depth of a certificate chain when verifying the upstream service's TLS certificates                                    |
-| [`konghq.com/ca-certificates-secret`](#konghqcomca-certificates-secret)                         | Assign CA certificates Secrets to be used for the upstream service's TLS certificates verification                                             |
-| [`konghq.com/ca-certificates-configmap`](#konghqcomca-certificates-configmap)                         | Assign CA certificates ConfigMaps to be used for the upstream service's TLS certificates verification                                             |
+| [`konghq.com/ca-certificates-secrets`](#konghqcomca-certificates-secrets)                         | Assign CA certificates Secrets to be used for the upstream service's TLS certificates verification                                             |
+| [`konghq.com/ca-certificates-configmaps`](#konghqcomca-certificates-configmaps)                         | Assign CA certificates ConfigMaps to be used for the upstream service's TLS certificates verification                                             |
 {% endif_version %}
 
 ## KongConsumer resource
@@ -694,14 +694,14 @@ The value of the annotation should be an integer. If not set, a system default v
 See [TLS verification of Upstream Service](/kubernetes-ingress-controller/{{page.release}}/guides/security/verify-upstream-tls)
 guide for more information.
 
-### konghq.com/ca-certificates-secret
+### konghq.com/ca-certificates-secrets
 
 > Available since controller 3.4
 
 This annotation can be used to assign CA certificates to be used for the upstream service's TLS certificates verification.
 The value of the annotation should be a comma-separated list of `Secret`s containing CA certificates.
 
-### konghq.com/ca-certificates-configmap
+### konghq.com/ca-certificates-configmaps
 
 > Available since controller 3.4
 

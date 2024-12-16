@@ -24,14 +24,14 @@ The results should look like this.
 ```
 
 {% if include.associate_with_service %}
-Now, associate the root CA certificate with the `Service` passing its name to `konghq.com/ca-certificates-{{ source_type }}` annotation.
+Now, associate the root CA certificate with the `Service` passing its name to `konghq.com/ca-certificates-{{ source_type }}s` annotation.
 
 {:.note}
-> The `konghq.com/ca-certificates-{{ source_type }}` annotation is a comma-separated list of `{{ kind }}`s holding CA certificates.
+> The `konghq.com/ca-certificates-{{ source_type }}s` annotation is a comma-separated list of `{{ kind }}`s holding CA certificates.
 > You can add multiple `{{ kind }}`s to the list.
 
 ```shell
-kubectl annotate service echo konghq.com/ca-certificates-{{ source_type }}='root-ca'
+kubectl annotate service echo konghq.com/ca-certificates-{{ source_type }}s='root-ca'
 ```
 
 The result should look like this.
