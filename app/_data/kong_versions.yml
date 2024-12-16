@@ -254,7 +254,7 @@
   version: "1.40.2"
   edition: "deck"
 - release: "1.41.x"
-  version: "1.41.0"
+  version: "1.41.4"
   edition: "deck"
 - release: "1.42.x"
   version: "1.42.0"
