@@ -4230,7 +4230,7 @@ instead of the previous 1 (trace all requests).
     Thanks [@PidgeyBE](https://github.com/PidgeyBE) for contributing this change.
     [#10204](https://github.com/Kong/kong/pull/10204) [#10595](https://github.com/Kong/kong/pull/10595)
 
-* Added `KONG_UPSTREAM_DNS_TIME` to `kong.ctx` to record the time it takes for DNS
+* Added `KONG_UPSTREAM_DNS_TIME` to `ngx.ctx` to record the time it takes for DNS
   resolution when Kong proxies to an upstream.
   [#10355](https://github.com/Kong/kong/pull/10355)
 * Dynamic log levels now have a default timeout of 60 seconds.
