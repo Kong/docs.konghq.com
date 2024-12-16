@@ -85,7 +85,9 @@ When `upstream_health_metrics` is set to true:
 {% endif_version %}
 
 {% if_version gte:3.8.x %}
-#### AI LLM metrics <span class="badge enterprise"></span>
+#### AI LLM metrics
+<span class="badge enterprise"></span>
+
 All the following AI LLM metrics are available per provider, model, cache, database name (if cached), embeddings provider (if cached), embeddings model (if cached), and workspace.
 
 When `ai_metrics` is set to true:
