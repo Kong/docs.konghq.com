@@ -106,24 +106,32 @@ Fz/+NmBYpY72Q+XtoszN4E1QUsk1InJ3Wf6hZm3z/CKZLbKIn/UTYTjzKIBPQdLX
 C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
 -----END PUBLIC KEY-----{% endcapture %}
 
-1. Create secrets by replacing the RSA key strings with your own from jwt.io. The credentials are stored in Secrets with a `konghq.com/credential` label indicating the type of credential.
+1. Create secrets by replacing the RSA key strings with your own from jwt.io.
+   The credentials are stored in Secrets with a `konghq.com/credential` label indicating the type of credential.
+   Please note that we're adding the labels to the secrets before applying them against the API server to validate upon creation.
 
     ```bash
     kubectl create secret \
       generic admin-jwt \
+      --dry-run="client" \
+      --output yaml \
       --from-literal=key="admin-issuer" \
       --from-literal=algorithm=RS256 \ {% if_version lte:3.3.x %}
       --from-literal=secret="dummy" \ {%- endif_version %}
-      --from-literal=rsa_public_key="{{ public_key }}"
-    kubectl label secret admin-jwt konghq.com/credential=jwt
+      --from-literal=rsa_public_key="{{ public_key }}" | \
+      yq '.metadata += {"labels": {"konghq.com/credential": "jwt"}}' | \
+      kubectl apply -f -
 
     kubectl create secret \
       generic user-jwt \
+      --dry-run="client" \
+      --output yaml \
       --from-literal=key="user-issuer" \
       --from-literal=algorithm=RS256 \ {% if_version lte:3.3.x %}
       --from-literal=secret="dummy" \ {%- endif_version %}
-      --from-literal=rsa_public_key="{{ public_key }}"
-    kubectl label secret user-jwt konghq.com/credential=jwt
+      --from-literal=rsa_public_key="{{ public_key }}" | \
+      yq '.metadata += {"labels": {"konghq.com/credential": "jwt"}}' | \
+      kubectl apply -f -
     ```
 
 {% if_version lte:3.3.x %}
@@ -327,13 +335,13 @@ ingress.networking.k8s.io/lime annotated
       -p='[{
         "op":"add",
         "path":"/credentials/-",
-        "value":"admin-acl" 
+        "value":"admin-acl"
       }]'
     kubectl patch --type json kongconsumer user \
       -p='[{
         "op":"add",
         "path":"/credentials/-",
-        "value":"user-acl" 
+        "value":"user-acl"
       }]'
     ```
     The results should look like this:
