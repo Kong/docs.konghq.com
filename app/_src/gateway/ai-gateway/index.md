@@ -196,7 +196,6 @@ Kong's AI Gateway allows you to configure semantic caching.
 Kong's AI Gateway enables comprehensive observability of your AI services through logging and metrics. These features provide insights into AI usage, performance, and costs, helping you optimize and govern AI operations effectively.
 
 #### Logging
-{:.badge .enterprise}
 
 Kong's AI Gateway provides standardized logging formats for AI plugins, allowing you to track and analyze AI usage consistently across various providers. 
 
@@ -214,7 +213,16 @@ AI operations, helping you monitor performance and costs effectively.
 
 For more information, see [AI Metrics](/gateway/{{ page.release }}/production/monitoring/ai-metrics).
 
+#### {{site.konnect_short_name}} Advanced Analytics
+
+Kong's AI Gateway allows you to expose and visualize AI metrics with {{site.konnect_short_name}} Advanced Analytics. These metrics include
+the number of AI requests, the cost associated with AI services, and the token usage per provider and model. This setup provides a real-time view of
+AI operations, helping you monitor performance and costs effectively.
+
+For more information, see [{{site.konnect_short_name}} Advanced Analytics](/konnect/analytics/).
+
 {% endif_version %}
+
 
 ## Quickstart script
 
