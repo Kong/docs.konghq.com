@@ -1,0 +1,38 @@
+name: Dynatrace
+publisher: Dynatrace
+
+categories:
+  - premium-partner
+  - security
+
+search_aliases:
+  - opentelemetry
+  - telemetry
+  - otel
+  - otlp
+  - analytics
+  - monitoring
+  - security
+
+type: integration
+premiumpartner: true
+enterprise: false
+konnect: true
+
+desc: Set up Dynatrace with the OpenTelemetry plugin to send logs and metrics to Dynatrace
+
+# support_url: 
+# source_code: 
+
+kong_version_compatibility:
+    community_edition:
+      compatible:
+      - 3.8.x
+      - 3.9.x
+    enterprise_edition:
+      compatible:
+      - 3.8.x
+      - 3.9.x
+
+dbless_compatible: yes
+
