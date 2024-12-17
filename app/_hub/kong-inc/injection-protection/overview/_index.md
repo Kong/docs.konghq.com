@@ -81,6 +81,12 @@ Logs are automatically collected when you enable the Injection Protection plugin
     * [UDP Log](/hub/kong-inc/udp-log/)
 * [{{site.konnect_short_name}} Advanced Analytics](/konnect/analytics/) <!--though i'm not sure if they will do anything with them yet--> 
 
+The following is an example of the information that is logged by the Injection Protection plugin:
+
+```
+threat detected: 'sql', action taken: log_only, found in path_and_query, query param value: foo: insert into test
+```
+
 
 ## Get started with the Injection Protection plugin
 * [Configuration reference](/hub/kong-inc/injection-protection/configuration/)
