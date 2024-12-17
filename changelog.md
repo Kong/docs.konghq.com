@@ -2,6 +2,269 @@
 
 <!--vale off-->
 
+## Week 50
+
+### [Fix: clarify license propagation in Konnect](https://github.com/Kong/docs.konghq.com/pull/8262) (2024-12-13)
+
+We were missing info about KIC licenses in Konnect, so adding that.
+
+https://konghq.atlassian.net/browse/DOCU-4144
+
+#### Modified
+
+- https://docs.konghq.com/konnect/account-management/
+- https://docs.konghq.com/konnect/gateway-manager/kic
+
+
+### [kic: drop 'beta' from feature gates toc heading](https://github.com/Kong/docs.konghq.com/pull/8259) (2024-12-13)
+
+Drop 'beta' from feature gates toc heading
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/datakit/
+
+
+### [Fix: Consumer groups docs](https://github.com/Kong/docs.konghq.com/pull/8257) (2024-12-13)
+
+Addressing feedback we’ve received on consumer groups docs, where some of the docs are outdated (kong manager), one is missing from the nav but findable via search (Konnect), and links for how-to guides go to the Rate Limiting plugin, which is only one of the plugins that supports consumer groups. 
+* The Kong Manager topic is very short and doesn't need to exist, but doesn't hurt to leave it for now
+* The Konnect topic is a condensed version of upcoming how-to guides
+* As part of this, splitting out the Personal Access Token info into its own doc, as we link to it a bunch (I needed to from the consumer groups doc), but its buried in a decK page.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/6465 and https://konghq.atlassian.net/browse/DOCU-3593
+
+#### Modified
+
+- https://docs.konghq.com/konnect/api/
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+- https://docs.konghq.com/konnect/gateway-manager/configuration/consumer-groups
+- https://docs.konghq.com/konnect/gateway-manager/declarative-config
+
+
+### [Fix: Add missing vault config link](https://github.com/Kong/docs.konghq.com/pull/8245) (2024-12-10)
+
+Add link to environment variable vault config options.
+
+Issue reported on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/vaults/how-to
+
+
+### [chore: Changelog for Gateway 3.9](https://github.com/Kong/docs.konghq.com/pull/8243) (2024-12-12)
+
+Changelog and breaking changes page for 3.9.
+
+https://konghq.atlassian.net/browse/DOCU-4164
+https://konghq.atlassian.net/browse/DOCU-4154
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/
+- https://docs.konghq.com/hub/kong-inc/jwe-decrypt/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-prompt-guard/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/
+- https://docs.konghq.com/hub/kong-inc/ai-request-transformer/
+- https://docs.konghq.com/hub/kong-inc/ai-response-transformer/
+- https://docs.konghq.com/hub/kong-inc/ai-semantic-cache/
+- https://docs.konghq.com/hub/kong-inc/ai-semantic-prompt-guard/
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/changelog.md
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/
+- https://docs.konghq.com/hub/kong-inc/correlation-id/
+- https://docs.konghq.com/hub/kong-inc/degraphql/
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/
+- https://docs.konghq.com/hub/kong-inc/json-threat-protection/
+- https://docs.konghq.com/hub/kong-inc/jwt-signer/
+- https://docs.konghq.com/hub/kong-inc/jwt/
+- https://docs.konghq.com/hub/kong-inc/kafka-log/
+- https://docs.konghq.com/hub/kong-inc/key-auth/
+- https://docs.konghq.com/hub/kong-inc/loggly/
+- https://docs.konghq.com/hub/kong-inc/oas-validation/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/prometheus/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/
+- https://docs.konghq.com/hub/kong-inc/request-validator/
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Automated submodule update (app/_src/.repos/kong-plugins)](https://github.com/Kong/docs.konghq.com/pull/8238) (2024-12-11)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/datakit/
+
+
+### [Update performance-testing.md for 3.9 rc4](https://github.com/Kong/docs.konghq.com/pull/8237) (2024-12-09)
+
+The raw results could be found [here](https://docs.google.com/spreadsheets/d/1knu87tczpuTQ4a5si3WSkOoFHWf0pS8vqNpC44-Oxmw/edit?gid=131097464#gid=131097464)
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/datakit/
+
+
+### [chore: Remove deprecated APIs](https://github.com/Kong/docs.konghq.com/pull/8229) (2024-12-09)
+
+Clean out deprecated Konnect APIs in prep for migration.
+
+https://konghq.atlassian.net/browse/DOCU-4176
+
+Need to merge this before unpublishing specs in the Konnect Org + running the sync action to update the `konnect_oas_data.json` file properly.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/customization/
+- https://docs.konghq.com/konnect/dev-portal/customization/netlify
+- https://docs.konghq.com/konnect/dev-portal/customization/self-hosted-portal
+- https://docs.konghq.com/konnect/updates
+
+
+### [feat: serverless custom domains docs](https://github.com/Kong/docs.konghq.com/pull/8213) (2024-12-09)
+
+Add specific serverless docs for custom domains.
+
+#### Added
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/custom-dns
+- https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/custom-dns
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/customization/
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/
+- https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/
+
+
+### [feat: Datakit](https://github.com/Kong/docs.konghq.com/pull/8189) (2024-12-12)
+
+Adds documentation about the Datakit feature for 3.9.
+
+DOCU-4170
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/datakit/
+
+
+### [Feat: Add Hugging Face as LLM provider](https://github.com/Kong/docs.konghq.com/pull/8182) (2024-12-09)
+
+Add docs for AI Proxy and AI Proxy Advanced configuration with Hugging Face.
+
+[DOCU-4166](https://konghq.atlassian.net/browse/DOCU-4166)
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/overview/
+
+
+### [Fix: Inaccurate OS support for AppD C SDK agent](https://github.com/Kong/docs.konghq.com/pull/8178) (2024-12-13)
+
+Removed the mention of Alpine from AppD docs.
+
+Although the AppD agent does [support Alpine as of May 2022](https://docs.appdynamics.com/appd/23.x/latest/en/product-and-release-announcements/past-releases/past-agent-releases#PastAgentReleases-Version22.3.1-March15,2022), Kong stopped supporting Alpine in 3.3.x, so the older versions get a mention of Alpine, while it's completely removed from the newest ones.
+
+https://konghq.atlassian.net/browse/DOCU-4121
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
+
+### [feat: Injection Protection plugin for 3.9](https://github.com/Kong/docs.konghq.com/pull/8177) (2024-12-12)
+
+ Adding the new Injection Protection plugin docs.
+
+DOCU-4148
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/injection-protection/
+- https://docs.konghq.com/hub/kong-inc/injection-protection/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/injection-protection/overview/
+- https://docs.konghq.com/hub/kong-inc/injection-protection/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_injection-protection.png
+
+
+### [feat: Konnect IN geo](https://github.com/Kong/docs.konghq.com/pull/8169) (2024-12-13)
+
+This PR splits the IN geo information into a separate PR (from the original #8126 , which will be edited to just contain ME info)
+
+DOCU-4147
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/datakit/
+- https://docs.konghq.com/konnect/geo
+- https://docs.konghq.com/konnect/network
+
+
+### [feat: Service Protection plugin](https://github.com/Kong/docs.konghq.com/pull/8152) (2024-12-09)
+
+DOCU-4149
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/service-protection/
+- https://docs.konghq.com/hub/kong-inc/service-protection/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/service-protection/how-to/
+- https://docs.konghq.com/hub/kong-inc/service-protection/overview/
+- https://docs.konghq.com/hub/kong-inc/service-protection/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_service-protection.png
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
+
+
+### [docs(kic): fix ingress to gateway migration plugins conversion](https://github.com/Kong/docs.konghq.com/pull/8138) (2024-12-13)
+
+Changed the conversion from `konghq.com/plugins` in the Ingress to the Gateway API migration. The conversion should be placed under `httpRoute.spec.rules[*].filters` in the HTTPRoute resource.
+
+Following the [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gateway/blob/main/pkg/i2gw/providers/kong/plugins.go) tool and the [Gateway API](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2fv1.HTTPRouteFilter) documentation, the plugins annotation should be filters rather than headers.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/datakit/
+
+
+### [feat: Dev Portal SAML SSO](https://github.com/Kong/docs.konghq.com/pull/8118) (2024-12-12)
+
+SAML SSO is being added to Dev Portal. This PR adds instructions for it and creates SSO includes so that org SSO and Dev Portal SSO content can be shared.
+
+This PR also fixes some outdated Okta SSO language, see DOCU-4120 for more information.
+
+DOCU-4135
+
+#### Added
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/okta-idp
+- https://docs.konghq.com/konnect/reference/saml-idp-mappings
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/sso
+- https://docs.konghq.com/konnect/org-management/okta-idp
+- https://docs.konghq.com/konnect/org-management/sso
+
 ## Week 49
 
 ### [Update opentelemetry  _changelog.md to include deprecation of config.endpoint in 3.8](https://github.com/Kong/docs.konghq.com/pull/8228) (2024-12-05)
@@ -9,8 +272,9 @@
 - Update _changelog.md to include deprecation of config.endpoint
 - Fix typo in config.batch_flush_delay deprecation
  
-`2024/12/05 15:16:04 [warn] 2533#0: *1692 [kong] init.lua:910 OpenTelemetry: config.endpoint is deprecated, please use config.traces_endpoint instead (deprecated after 4.0), client: 172.19.0.1, server: kong_admin, request: "PUT /plugins/924e591e-5544-4ee8-8327-32625f0034f0 HTTP/1.1", host: "localhost:8001"
-`
+```
+2024/12/05 15:16:04 [warn] 2533#0: *1692 [kong] init.lua:910 OpenTelemetry: config.endpoint is deprecated, please use config.traces_endpoint instead (deprecated after 4.0), client: 172.19.0.1, server: kong_admin, request: "PUT /plugins/924e591e-5544-4ee8-8327-32625f0034f0 HTTP/1.1", host: "localhost:8001"
+```
 
 #### Modified
 
