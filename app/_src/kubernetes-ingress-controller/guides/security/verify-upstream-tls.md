@@ -11,7 +11,7 @@ site.base_gateway }} to verify the certificate it presents by attaching a CA cer
 shows how to make this happen using the `BackendTLSPolicy` (when using Gateway API) or Kubernetes Service annotations
 (when using Ingress API).
 
-{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false%}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=true %}
 
 ## Set up an upstream service with TLS
 
