@@ -133,6 +133,12 @@ kubectl patch deployment echo -p '{
 }'
 ```
 
+The results should look like this:
+
+```text
+deployment.apps/echo patched
+```
+
 Also, patch the service to use HTTPS by adding the `konghq.com/protocol: https` annotation and the `spec.ports`
 entry.
 
@@ -158,7 +164,6 @@ kubectl patch service echo -p '{
 The results should look like this:
 
 ```text
-deployment.apps/echo patched
 service/echo patched
 ```
 
