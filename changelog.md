@@ -30,7 +30,7 @@ Drop 'beta' from feature gates toc heading
 Addressing feedback we’ve received on consumer groups docs, where some of the docs are outdated (kong manager), one is missing from the nav but findable via search (Konnect), and links for how-to guides go to the Rate Limiting plugin, which is only one of the plugins that supports consumer groups. 
 * The Kong Manager topic is very short and doesn't need to exist, but doesn't hurt to leave it for now
 * The Konnect topic is a condensed version of upcoming how-to guides
-* As part of this, splitting out the Personal Access Token info into its own doc, as we link to it a bunch (I needed to from  the consumer groups doc), but its buried in a decK page.
+* As part of this, splitting out the Personal Access Token info into its own doc, as we link to it a bunch (I needed to from the consumer groups doc), but its buried in a decK page.
 
 Fixes https://github.com/Kong/docs.konghq.com/issues/6465 and https://konghq.atlassian.net/browse/DOCU-3593
 
@@ -147,10 +147,8 @@ Add specific serverless docs for custom domains.
 
 ### [feat: Datakit](https://github.com/Kong/docs.konghq.com/pull/8189) (2024-12-12)
 
-<!-- What did you change and why? -->
-Adds documentation about the Datakit feature for 3.9
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Adds documentation about the Datakit feature for 3.9.
+
 DOCU-4170
 
 #### Added
@@ -191,9 +189,8 @@ https://konghq.atlassian.net/browse/DOCU-4121
 
 ### [feat: Injection Protection plugin for 3.9](https://github.com/Kong/docs.konghq.com/pull/8177) (2024-12-12)
 
-<!-- What did you change and why? -->
  Adding the new Injection Protection plugin docs.
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 DOCU-4148
 
 #### Added
@@ -207,10 +204,8 @@ DOCU-4148
 
 ### [feat: Konnect IN geo](https://github.com/Kong/docs.konghq.com/pull/8169) (2024-12-13)
 
-<!-- What did you change and why? -->
 This PR splits the IN geo information into a separate PR (from the original #8126 , which will be edited to just contain ME info)
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 DOCU-4147
 
 #### Modified
@@ -222,9 +217,6 @@ DOCU-4147
 
 ### [feat: Service Protection plugin](https://github.com/Kong/docs.konghq.com/pull/8152) (2024-12-09)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 DOCU-4149
 
 #### Added
@@ -245,11 +237,7 @@ DOCU-4149
 
 ### [docs(kic): fix ingress to gateway migration plugins conversion](https://github.com/Kong/docs.konghq.com/pull/8138) (2024-12-13)
 
-<!-- What did you change and why? -->
-
 Changed the conversion from `konghq.com/plugins` in the Ingress to the Gateway API migration. The conversion should be placed under `httpRoute.spec.rules[*].filters` in the HTTPRoute resource.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 Following the [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gateway/blob/main/pkg/i2gw/providers/kong/plugins.go) tool and the [Gateway API](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2fv1.HTTPRouteFilter) documentation, the plugins annotation should be filters rather than headers.
 
@@ -260,12 +248,10 @@ Following the [ingress2gateway](https://github.com/kubernetes-sigs/ingress2gatew
 
 ### [feat: Dev Portal SAML SSO](https://github.com/Kong/docs.konghq.com/pull/8118) (2024-12-12)
 
-<!-- What did you change and why? -->
 SAML SSO is being added to Dev Portal. This PR adds instructions for it and creates SSO includes so that org SSO and Dev Portal SSO content can be shared.
 
 This PR also fixes some outdated Okta SSO language, see DOCU-4120 for more information.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 DOCU-4135
 
 #### Added
@@ -286,8 +272,9 @@ DOCU-4135
 - Update _changelog.md to include deprecation of config.endpoint
 - Fix typo in config.batch_flush_delay deprecation
  
-`2024/12/05 15:16:04 [warn] 2533#0: *1692 [kong] init.lua:910 OpenTelemetry: config.endpoint is deprecated, please use config.traces_endpoint instead (deprecated after 4.0), client: 172.19.0.1, server: kong_admin, request: "PUT /plugins/924e591e-5544-4ee8-8327-32625f0034f0 HTTP/1.1", host: "localhost:8001"
-`
+```
+2024/12/05 15:16:04 [warn] 2533#0: *1692 [kong] init.lua:910 OpenTelemetry: config.endpoint is deprecated, please use config.traces_endpoint instead (deprecated after 4.0), client: 172.19.0.1, server: kong_admin, request: "PUT /plugins/924e591e-5544-4ee8-8327-32625f0034f0 HTTP/1.1", host: "localhost:8001"
+```
 
 #### Modified
 
