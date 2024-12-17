@@ -45,7 +45,7 @@ To add authentication in front of an API you just need to enable a plugin.
     service/echo annotated
     ```
     Any requests matching the proxying rules for `/lemon` and `/lime` now requires a valid JWT and the consumer for the JWT to be associate with the right ACL. Requests without credentials are rejected.
-1. Send a request without the credentials.    
+1. Send a request without the credentials.
 
     ```bash
     curl -i $PROXY_IP/lemon
@@ -72,6 +72,7 @@ To access the protected endpoints, create two consumers.
 {% include /md/kic/consumer.md release=page.release name='admin' %}
 
 1. Create a consumer named `user`:
+
 {% include /md/kic/consumer.md release=page.release name='user' %}
 
 ## Provision JWT credentials
@@ -105,41 +106,42 @@ Fz/+NmBYpY72Q+XtoszN4E1QUsk1InJ3Wf6hZm3z/CKZLbKIn/UTYTjzKIBPQdLX
 C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
 -----END PUBLIC KEY-----{% endcapture %}
 
-1. Create secrets by replacing the RSA key strings with your own from jwt.io. The credentials are stored in Secrets with a `kongCredType` key whose value indicates the type of credential.
+1. Create secrets by replacing the RSA key strings with your own from jwt.io. The credentials are stored in Secrets with a `konghq.com/credential` label indicating the type of credential.
 
     ```bash
     kubectl create secret \
-      generic admin-jwt  \
+      generic admin-jwt \
       --from-literal=key="admin-issuer" \
-      --from-literal=algorithm=RS256 \
-      --from-literal=secret="dummy" \
+      --from-literal=algorithm=RS256 \ {% if_version lte:3.3.x %}
+      --from-literal=secret="dummy" \ {%- endif_version %}
       --from-literal=rsa_public_key="{{ public_key }}"
     kubectl label secret admin-jwt konghq.com/credential=jwt
 
     kubectl create secret \
-      generic user-jwt  \
+      generic user-jwt \
       --from-literal=key="user-issuer" \
-      --from-literal=algorithm=RS256 \
-      --from-literal=secret="dummy" \
+      --from-literal=algorithm=RS256 \ {% if_version lte:3.3.x %}
+      --from-literal=secret="dummy" \ {%- endif_version %}
       --from-literal=rsa_public_key="{{ public_key }}"
     kubectl label secret user-jwt konghq.com/credential=jwt
     ```
 
-Validation requirements impose that even if the `secret` is not used for algorithm
-`RS256` or `ES256` the field `secret` must be present, so put some dummy value for it.
+{% if_version lte:3.3.x %}
+    Validation requirements impose that even if the `secret` is not used for algorithm
+    `RS256` or `ES256` the field `secret` must be present, so put some dummy value for it.
+{%- endif_version %}
 
-   The results should look like this:
+    The results should look like this:
+    ```text
+    secret/admin-jwt created
+    secret/admin-jwt labeled
+    secret/user-jwt created
+    secret/user-jwt labeled
+    ```
 
-  ```text
-  secret/admin-jwt created
-  secret/admin-jwt labeled
-  secret/user-jwt created
-  secret/user-jwt labeled
-  ```
+    To associate the JWT Secrets with your consumers, you must add their name to the `credentials` array in the KongConsumers.
 
-   To associate the JWT Secrets with your consumers, you must add their name to the `credentials` array in the KongConsumers.
-
-1. Assign the credentials `admin-jwt` to the `admin`.     
+1. Assign the credentials `admin-jwt` to the `admin`.
 
     ```bash
     kubectl patch --type json kongconsumer admin \
@@ -153,7 +155,8 @@ Validation requirements impose that even if the `secret` is not used for algorit
     ```text
     kongconsumer.configuration.konghq.com/admin patched
     ```
-1. Assign the credentials `user-jwt` to the `user`. 
+
+1. Assign the credentials `user-jwt` to the `user`.
     ```bash
     kubectl patch --type json kongconsumer user \
       -p='[{
@@ -353,7 +356,7 @@ ingress.networking.k8s.io/lime annotated
     HTTP/1.1 200 OK
     ```
 
-1. Send a request as the`user` consumer.
+1. Send a request as the `user` consumer.
 
     ```bash
     curl -sI $PROXY_IP/lemon -H "Authorization: Bearer ${USER_JWT}" | grep HTTP

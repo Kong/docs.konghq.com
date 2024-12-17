@@ -18,18 +18,18 @@ echo "
 apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
 kind: HTTPRoute
 metadata:
-  name: {{ name }}
-  {% unless .namespace == '' %}namespace: {{ namespace }}   {% endunless %}
+  name: {{ name }}{% unless .namespace == '' %}
+  namespace: {{ namespace }}{% endunless %}
   annotations:{% if include.annotation_rewrite %}
     konghq.com/rewrite: '{{ include.annotation_rewrite }}'{% endif %}
     konghq.com/strip-path: 'true'
 spec:
   parentRefs:
-  - name: kong
-    {% unless .namespace == '' %}namespace: {{ namespace }}{% endunless %}
-{% unless include.skip_host %}  hostnames:
-  - '{{ hostname }}'
-{% endunless %}  rules:
+  - name: kong{% unless .namespace == '' %}
+    namespace: {{ namespace }}{% endunless %}{% unless include.skip_host %}
+  hostnames:
+  - '{{ hostname }}'{% endunless %}
+  rules:
   - matches:
     - path:
         type: {{ include.route_type }}
