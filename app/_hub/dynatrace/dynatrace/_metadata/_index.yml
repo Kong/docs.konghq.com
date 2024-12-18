@@ -3,7 +3,7 @@ publisher: Dynatrace
 
 categories:
   - premium-partner
-  - security
+  - analytics-monitoring
 
 search_aliases:
   - opentelemetry
