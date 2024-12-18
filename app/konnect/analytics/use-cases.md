@@ -62,7 +62,7 @@ Set the following options in the UI:
 * **From**: API usage
 * **Show**: Line
 * **With**: Request Count
-* **And**: Day
+* **Per**: 1 Day
 * **By**: API Product
 
 Add a filter for the Accounts API. Click **Add Filter**, then set the following options:
@@ -132,7 +132,7 @@ Your company determines that it is critical that payments are processed quickly 
 * **From**: API usage
 * **Show**: Line
 * **With**: Response Latency (p99)
-* **Per**: Day
+* **Per**: 1 Day
 * **By**: API Product 
 
 Add a filter for the Payment API. Click **Add Filter**, then set the following options:
