@@ -1,7 +1,6 @@
 
 ## Prerequisites
-* Install the `contrib` version of the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/installation/).
-  The `contrib` version is necessary for generating metrics.
+* Install the [Dynatrace Collector](https://docs.dynatrace.com/docs/ingest-from/opentelemetry/collector)
 * {{site.base_gateway}} 3.8+
 
 ## Configure {{site.base_gateway}}
@@ -15,7 +14,7 @@ tracing_sampling_rate = 1.0
 
 ## Configure the OpenTelemetry plugin
 
-Adjust the `{OPENTELEMETRY_COLLECTOR}` variable with your own collector endpoint:
+Adjust the `{your-environment-id}` variable with your own Collector endpoint:
 
 <!--vale off-->
 {% plugin_example %}
@@ -42,7 +41,7 @@ formats:
 
 ## Configure the OpenTelemetry Collector
 
-Configure your OpenTelemetry Collector to send data to the Dynatrace environment. 
+Configure your Dynatrace OpenTelemetry Collector to send data to the Dynatrace environment. 
 
 The following example OpenTelemetry configuration shows how to export traces and logs:
 
@@ -72,6 +71,8 @@ service:
 ```
 
 ## Export application span metrics
+
+Kong relies on the OpenTelemetry Collector to calculate the metrics based on the traces the OpenTelemetry plugin generates.
 
 To include span metrics for application traces, configure the collector exporters section of 
 the OpenTelemetry Collector configuration file: 
