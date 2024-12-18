@@ -19,10 +19,7 @@ premiumpartner: true
 enterprise: false
 konnect: true
 
-desc: Set up Dynatrace with the OpenTelemetry plugin to send logs and metrics to Dynatrace
-
-# support_url: 
-# source_code: 
+desc: Set up Dynatrace with the OpenTelemetry plugin to send metrics, logs, and traces to Dynatrace
 
 kong_version_compatibility:
     community_edition:
@@ -36,3 +33,6 @@ kong_version_compatibility:
 
 dbless_compatible: yes
 
+custom_support_banner: |
+  {:.partner-plugin no-icon}
+  > **Partner Integration:** This integration is **developed, tested, and maintained** by Kong.
