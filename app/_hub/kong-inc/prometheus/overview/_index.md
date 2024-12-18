@@ -50,6 +50,9 @@ license signature. Those metrics are only exported on {{site.base_gateway}}.
     measures the current number of database entities.
 - **Number of Nginx timers** : A gauge metric that measures the total number of Nginx
     timers, in Running or Pending state.
+{% if_version gte:3.8.x %}
+- **[AI LLM metrics](#ai-llm-metrics)** <span class="badge enterprise"></span> : AI LLM metrics are available per provider, model, cache, database name (if cached), embeddings provider (if cached), embeddings model (if cached), and workspace.
+{% endif_version %}
 
 {% if_version gte:3.0.x %}
 ### Metrics disabled by default
