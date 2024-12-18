@@ -15,9 +15,9 @@ config:
     auth:
       header_name: "Authorization"
       header_value: "Bearer <openai_key>"
-  - model:
+    model:
       name: custom_model_name
-      provider: openai|azure|anthropic|cohere|mistral|llama2|gemini|bedrock
+      provider: openai|azure|anthropic|cohere|mistral|llama2|gemini|bedrock|huggingface
       options:
         upstream_url: http://localhost:8000/vi/chat/completions
 targets:

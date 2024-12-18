@@ -10,16 +10,15 @@ You can configure the AI Proxy Plugin using a custom model of your choice by set
 plugin: kong-inc/ai-proxy-advanced
 name: ai-advanced
 config:
-  targets:
-  - route_type: "llm/v1/chat"
-    auth:
-      header_name: "Authorization"
-      header_value: "Bearer <openai_key>"
-  - model:
-      name: custom_model_name
-      provider: openai|azure|anthropic|cohere|mistral|llama2|gemini|bedrock
-      options:
-        upstream_url: http://localhost:8000/vi/chat/completions
+  route_type: "llm/v1/chat"
+  auth:
+    header_name: "Authorization"
+    header_value: "Bearer <openai_key>"
+  model:
+    name: custom_model_name
+    provider: openai|azure|anthropic|cohere|mistral|llama2|gemini|bedrock|huggingface
+    options:
+      upstream_url: http://localhost:8000/vi/chat/completions
 targets:
   - route
 formats:
