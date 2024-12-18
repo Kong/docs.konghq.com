@@ -91,39 +91,57 @@ JWTs.
 {:.warning}
 > **Warning:** These examples use a shared public key. Ensure you use your own public key in production.
 
-{% capture public_key %}-----BEGIN PUBLIC KEY-----
-MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr6m2/8lMUCiBBgCXFf8B
-DNBZ1Puk2JchjjrKQSiAbkhMgcBUzXqUaxZDc8S3s4/E1Y8HT5JMML1wF6h/AIVM
-FjL1F+qDj0klAHae0tfAU3B2pvUpOSkWU1wWJxQDUH+CF2ihKdEhYMcQv1HGsyZM
-FNuhYbzo9gjcTegQDHgJZd0BSoNxVBvSjE/adUU7kYuAomLDP7ETqlSSWlgIEUxL
-FGhdch0x21J7OETlWJI3UbZxKyCOjWpqcuXYgTRnrHHD8Sy2LWs6hSIToO2ZwWHJ
-HLcyt026eWtIhzu9NHfvU74QGLcAuDooRqtbG/u1pd8NFC7GwLqv6aIoSEvPJhbC
-Br+HeihpCtWg4viM/uWG6La6h0aGpS5VLI/jjDfPN9yN5Yg57lHnipQNMeSisuAE
-a10LKm5l4O6MC1VrFEqZWVGVZ/B+jEFlaqGPDSd3YvIaM7vk7S9TB4O5tEPaJ2XH
-YQv5LtOyGxy0QpI3PyaD1Tks28wDotYcOsPMP59v7LlFewhmMw2eqzJ1lgQ3CuLr
-p343+BMdTfLiw4Nv2h8EVFp3FLpr/xBbeM9ifkloTis+QJsxbnelGF0SzhBP5W4M
-Fz/+NmBYpY72Q+XtoszN4E1QUsk1InJ3Wf6hZm3z/CKZLbKIn/UTYTjzKIBPQdLX
-C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
------END PUBLIC KEY-----{% endcapture %}
+{% capture public_key %}
+      -----BEGIN PUBLIC KEY-----
+      MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr6m2/8lMUCiBBgCXFf8B
+      DNBZ1Puk2JchjjrKQSiAbkhMgcBUzXqUaxZDc8S3s4/E1Y8HT5JMML1wF6h/AIVM
+      FjL1F+qDj0klAHae0tfAU3B2pvUpOSkWU1wWJxQDUH+CF2ihKdEhYMcQv1HGsyZM
+      FNuhYbzo9gjcTegQDHgJZd0BSoNxVBvSjE/adUU7kYuAomLDP7ETqlSSWlgIEUxL
+      FGhdch0x21J7OETlWJI3UbZxKyCOjWpqcuXYgTRnrHHD8Sy2LWs6hSIToO2ZwWHJ
+      HLcyt026eWtIhzu9NHfvU74QGLcAuDooRqtbG/u1pd8NFC7GwLqv6aIoSEvPJhbC
+      Br+HeihpCtWg4viM/uWG6La6h0aGpS5VLI/jjDfPN9yN5Yg57lHnipQNMeSisuAE
+      a10LKm5l4O6MC1VrFEqZWVGVZ/B+jEFlaqGPDSd3YvIaM7vk7S9TB4O5tEPaJ2XH
+      YQv5LtOyGxy0QpI3PyaD1Tks28wDotYcOsPMP59v7LlFewhmMw2eqzJ1lgQ3CuLr
+      p343+BMdTfLiw4Nv2h8EVFp3FLpr/xBbeM9ifkloTis+QJsxbnelGF0SzhBP5W4M
+      Fz/+NmBYpY72Q+XtoszN4E1QUsk1InJ3Wf6hZm3z/CKZLbKIn/UTYTjzKIBPQdLX
+      C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
+      -----END PUBLIC KEY-----
+{% endcapture %}
 
-1. Create secrets by replacing the RSA key strings with your own from jwt.io. The credentials are stored in Secrets with a `konghq.com/credential` label indicating the type of credential.
+1. Create secrets by replacing the RSA key strings with your own from jwt.io.
+   The credentials are stored in Secrets with a `konghq.com/credential` label indicating the type of credential.
+   Please note that we're adding the labels to the secrets before applying them against the API server to validate upon creation.
 
     ```bash
-    kubectl create secret \
-      generic admin-jwt \
-      --from-literal=key="admin-issuer" \
-      --from-literal=algorithm=RS256 \ {% if_version lte:3.3.x %}
-      --from-literal=secret="dummy" \ {%- endif_version %}
-      --from-literal=rsa_public_key="{{ public_key }}"
-    kubectl label secret admin-jwt konghq.com/credential=jwt
+    echo "
+    kind: Secret
+    apiVersion: v1
+    metadata:
+      name: admin-jwt
+      labels:
+        konghq.com/credential: jwt
+    stringData:
+      key: admin_issuer
+      algorithm: RS256 {% if_version lte:3.3.x %}
+      secret: dummy {%- endif_version %}
+      rsa_public_key: |
+      {{- public_key | indent }}
+    " | kubectl apply -f -
 
-    kubectl create secret \
-      generic user-jwt \
-      --from-literal=key="user-issuer" \
-      --from-literal=algorithm=RS256 \ {% if_version lte:3.3.x %}
-      --from-literal=secret="dummy" \ {%- endif_version %}
-      --from-literal=rsa_public_key="{{ public_key }}"
-    kubectl label secret user-jwt konghq.com/credential=jwt
+    echo "
+    kind: Secret
+    apiVersion: v1
+    metadata:
+      name: user-jwt
+      labels:
+        konghq.com/credential: jwt
+    stringData:
+      key: user_issuer
+      algorithm: RS256 {% if_version lte:3.3.x %}
+      secret: dummy {%- endif_version %}
+      rsa_public_key: |
+      {{- public_key | indent }}
+    " | kubectl apply -f -
     ```
 
 {% if_version lte:3.3.x %}
@@ -134,9 +152,7 @@ C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
     The results should look like this:
     ```text
     secret/admin-jwt created
-    secret/admin-jwt labeled
     secret/user-jwt created
-    secret/user-jwt labeled
     ```
 
     To associate the JWT Secrets with your consumers, you must add their name to the `credentials` array in the KongConsumers.
@@ -327,13 +343,13 @@ ingress.networking.k8s.io/lime annotated
       -p='[{
         "op":"add",
         "path":"/credentials/-",
-        "value":"admin-acl" 
+        "value":"admin-acl"
       }]'
     kubectl patch --type json kongconsumer user \
       -p='[{
         "op":"add",
         "path":"/credentials/-",
-        "value":"user-acl" 
+        "value":"user-acl"
       }]'
     ```
     The results should look like this:
