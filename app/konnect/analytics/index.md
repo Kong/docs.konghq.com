@@ -40,7 +40,7 @@ You can use the following table to help you determine which analytics tools are 
 
 ### Charts and limitations
 
-{{site.konnect_short_name}} charts offer interactive features such as the ability to hover over elements to reveal additional details, and to filter data by selecting items with the chart. {{site.konnect_short_name}} caps the number of entities showing in any activity graph or [custom reports](/konnect/analytics/use-cases/) to 50. If this limit is exceeded, a warning icon displays at the top of the affected graph or report.
+{{site.konnect_short_name}} charts offer interactive features such as the ability to hover over elements to reveal additional details, and to filter data by selecting items within the chart. {{site.konnect_short_name}} caps the number of entities showing in any activity graph or [custom reports](/konnect/analytics/use-cases/) to 50. If this limit is exceeded, a warning icon displays at the top of the affected graph or report. All charts can access the [explorer](/konnect/analytics/explorer/) function by clicking the context menu within the individual chart. 
 
 ### Data ingestion
 
