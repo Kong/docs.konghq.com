@@ -31,12 +31,7 @@ registration, or configure custom plugins.
 
 * decK v1.12.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple data plane node](/konnect/getting-started/configure-data-plane-node/).
-
-## Generate a personal access token
-
-To test your connection, we recommend that you use a personal access token (PAT).
-
-{% include_cached /md/personal-access-token.md %}
+* A [personal access token (PAT)](/konnect/org-management/access-tokens/).
 
 ## Test your connection
 

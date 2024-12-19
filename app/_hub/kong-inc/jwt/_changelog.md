@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* Ensured that `rsa_public_key` isn't base64-decoded.
+
 ### {{site.base_gateway}} 3.8.x
 * Added WWW-Authenticate headers to 401 responses.
 

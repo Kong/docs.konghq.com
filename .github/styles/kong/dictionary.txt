@@ -46,6 +46,7 @@ Github
 Gluu
 Goroutine
 Grafana
+Hasura
 HTTPie
 istioctl
 Imperva
@@ -167,6 +168,7 @@ booleans
 brotli
 burstable
 CAs
+callout
 certificate_admin
 charset
 chatbot
@@ -196,6 +198,7 @@ Datadog
 datadog
 datagram
 datagrams
+datakit
 dataplane
 dataplanes
 db-ip
@@ -259,6 +262,7 @@ Github
 glibc
 globbing
 Gluu
+goecho
 gojira
 Golang
 Goroutine
@@ -306,6 +310,7 @@ iptables
 Istio
 Istio's
 istioctl
+jaq
 jetstack
 Jira
 journald
@@ -597,6 +602,8 @@ unpublish
 unpublishing
 unregister
 unregistering
+unset
+unsetting
 unshorten
 unshortened
 unstash
@@ -643,6 +650,7 @@ workspace
 workspace's
 xbox
 xenial
+XPath
 yaml
 yml
 yq

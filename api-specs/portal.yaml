@@ -965,13 +965,14 @@ components:
         type: string
         format: uuid
     DocumentId:
-      name: documentId
-      in: path
-      required: true
-      description: Contains a unique identifier used by the Portal API for this resource.
       schema:
         type: string
         format: uuid
+        example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+      name: documentId
+      in: path
+      required: true
+      description: ID of the document.
     FilterByAuthStrategyEquality:
       name: 'filter[auth_strategy_id][eq]'
       description: Filter by the id of the auth strategy supported by the application.
@@ -2609,9 +2610,12 @@ components:
           readOnly: true
         latest_version:
           $ref: '#/components/schemas/LatestVersion'
+        public_labels:
+          $ref: '#/components/schemas/PublicLabels'
       additionalProperties: false
       required:
         - id
+        - public_labels
         - created_at
         - updated_at
         - name
@@ -2892,6 +2896,23 @@ components:
         - title
         - content
       title: ProductDocumentRaw
+    PublicLabels:
+      description: |
+        Public labels store information about an entity that can be used for filtering a list of objects.
+
+        Public labels are intended to store **PUBLIC** metadata. 
+
+        Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
+      type: object
+      example:
+        category: finance
+      additionalProperties:
+        type: string
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        minLength: 1
+        maxLength: 63
+      maxProperties: 50
+      title: PublicLabels
     NullableUUID:
       description: Contains a unique identifier for a resource.
       type: string
@@ -3557,6 +3578,8 @@ components:
           required:
             - name
             - id
+        public_labels:
+          $ref: '#/components/schemas/PublicLabels'
       additionalProperties: false
       required:
         - id
@@ -3566,6 +3589,7 @@ components:
         - document_count
         - version_count
         - latest_version
+        - public_labels
       title: ProductCatalogIndexSource
     SearchIndicesParameters:
       type: string
@@ -3893,6 +3917,8 @@ components:
               description: Great products are built with great care
               document_count: 5
               version_count: 5
+              public_labels:
+                env: test
               latest_version:
                 name: v5
                 id: 455b0beb-c3f7-4f8f-95f7-cd8ff0ee478e
@@ -4326,7 +4352,7 @@ tags:
   - name: versions
     description: The API for Konnect Portal Product Versions.
   - name: documentation
-    description: The API for Konnect Portal Product Documentation.
+    description: The API for Konnect Portal API Documentation.
   - name: registrations
     description: |
       The API for Konnect Portal application registrations. If the portal is public

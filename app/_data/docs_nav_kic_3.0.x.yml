@@ -193,7 +193,7 @@ items:
         url: /reference/annotations
       - text: Configuration Options
         url: /reference/cli-arguments
-      - text: Beta Feature Gates
+      - text: Feature Gates
         url: /reference/feature-gates
       - text: FAQ
         items:

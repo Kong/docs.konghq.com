@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.9.x**
+* Fixed an issue in proxy integration mode that caused an internal server error when the `multiValueHeaders` was null.
+
 **{{site.base_gateway}} 3.8.x**
 * Added support for a configurable STS endpoint with the new configuration field `aws_sts_endpoint_url`.
 [#13388](https://github.com/Kong/kong/issues/13388)

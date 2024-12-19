@@ -16,20 +16,23 @@
 
 ### Install the Gateway APIs
 
+   {% if include.gateway_api_experimental %}
+
+1. Install the experimental Gateway API CRDs before installing {{ site.kic_product_name }}.
+
+    ```bash
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/{{ gw_api_crd_version}}/experimental-install.yaml
+    ```
+
+   {% else %}
+
 1. Install the Gateway API CRDs before installing {{ site.kic_product_name }}.
 
     ```bash
     kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/{{ gw_api_crd_version}}/standard-install.yaml
     ```
 
-    {% if include.gateway_api_experimental %}
-
-1. Install the experimental Gateway API CRDs to test this feature.
-
-    ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/{{ gw_api_crd_version}}/experimental-install.yaml
-    ```
-    {% endif %}
+   {% endif %}
 
 1. Create a `Gateway` and `GatewayClass` instance to use.
 

@@ -16,8 +16,13 @@ info:
   version: 0.0.1
 servers:
   - url: 'https://us.api.konghq.com/v2'
+    description: United-States Production region
   - url: 'https://eu.api.konghq.com/v2'
+    description: Europe Production region
   - url: 'https://au.api.konghq.com/v2'
+    description: Australia Production region
+  - url: 'https://me.api.konghq.com/v2'
+    description: Middle-East Production region
 paths:
   '/control-planes/{controlPlaneId}/expected-config-hash':
     get:
@@ -263,6 +268,27 @@ paths:
         - ACLs
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/acls/{ACLId}':
+    get:
+      operationId: get-acl
+      summary: Fetch an ACL
+      description: Get an ACL using ID.
+      responses:
+        '200':
+          description: Successfully fetched ACL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ACL'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      tags:
+        - ACLs
+    parameters:
+      - $ref: '#/components/parameters/ACLId'
+      - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/basic-auths':
     get:
       operationId: list-basic-auth
@@ -293,6 +319,27 @@ paths:
       tags:
         - Basic-auth credentials
     parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/basic-auths/{BasicAuthId}':
+    get:
+      operationId: get-basic-auth
+      summary: Fetch a Basic-auth credential
+      description: Get a Basic-auth credential using ID.
+      responses:
+        '200':
+          description: Successfully fetched Basic-auth credential
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicAuth'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      tags:
+        - Basic-auth credentials
+    parameters:
+      - $ref: '#/components/parameters/BasicAuthId'
       - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/ca_certificates':
     get:
@@ -730,6 +777,21 @@ paths:
       tags:
         - Consumer Groups
   '/control-planes/{controlPlaneId}/core-entities/consumer_groups/{ConsumerGroupId}/consumers':
+    delete:
+      operationId: remove-all-consumers-from-consumer-group
+      summary: Remove consumers from consumer group
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Removes all consumers from a consumer groups. This operation does not delete the consumer group.
+      responses:
+        '204':
+          description: Consumers removed from group
+        '404':
+          description: Consumer group or consumer association does not exist
+      tags:
+        - Consumer Groups
     get:
       operationId: list-consumers-for-consumer-group
       summary: List all Consumers in a Consumer Group
@@ -1024,6 +1086,19 @@ paths:
       tags:
         - Consumers
   '/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerId}/consumer_groups':
+    delete:
+      operationId: remove-consumer-from-all-consumer-groups
+      summary: Remove consumer from consumer group
+      description: Removes a consumer from all consumer groups. This operation does not delete the consumer group.
+      parameters:
+        - $ref: '#/components/parameters/ConsumerId'
+      responses:
+        '204':
+          description: Consumer removed from all groups
+        '404':
+          description: Consumer does not exist
+      tags:
+        - Consumer Groups
     get:
       operationId: list-consumer-groups-for-consumer
       summary: List all Consumer Groups a Consumer belongs to
@@ -1886,6 +1961,27 @@ paths:
         - HMAC-auth credentials
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/hmac-auths/{HMACAuthId}':
+    get:
+      operationId: get-hmac-auth
+      summary: Fetch a HMAC-auth credential
+      description: Get a HMAC-auth credential using ID.
+      responses:
+        '200':
+          description: Successfully fetched HMAC-auth credential
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HMACAuth'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      tags:
+        - HMAC-auth credentials
+    parameters:
+      - $ref: '#/components/parameters/HMACAuthId'
+      - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/jwts':
     get:
       operationId: list-jwt
@@ -1917,6 +2013,27 @@ paths:
         - JWTs
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/jwts/{JWTId}':
+    get:
+      operationId: get-jwt
+      summary: Fetch a JWT
+      description: Get a JWT using ID.
+      responses:
+        '200':
+          description: Successfully fetched JWT
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWT'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      tags:
+        - JWTs
+    parameters:
+      - $ref: '#/components/parameters/JWTId'
+      - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/key-auths':
     get:
       operationId: list-key-auth
@@ -1947,6 +2064,27 @@ paths:
       tags:
         - API-keys
     parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/key-auths/{KeyAuthId}':
+    get:
+      operationId: get-key-auth
+      summary: Fetch an API-key
+      description: Get an API-key using ID.
+      responses:
+        '200':
+          description: Successfully fetched API-key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyAuth'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      tags:
+        - API-keys
+    parameters:
+      - $ref: '#/components/parameters/KeyAuthId'
       - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/key-sets':
     get:
@@ -2304,6 +2442,27 @@ paths:
       tags:
         - MTLS-auth credentials
     parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/mtls-auths/{MTLSAuthId}':
+    get:
+      operationId: get-mtls-auth
+      summary: Fetch a MTLS-auth credential
+      description: Get a MTLS-auth credential using ID.
+      responses:
+        '200':
+          description: Successfully fetched MTLS-auth credential
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MTLSAuth'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      tags:
+        - MTLS-auth credentials
+    parameters:
+      - $ref: '#/components/parameters/MTLSAuthId'
       - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/plugins':
     get:
@@ -3468,8 +3627,8 @@ components:
       schema:
         type: string
     ConsumerId:
-      description: The UUID of the consumer.
-      example: 123e4567-e89b-12d3-a456-426614174000
+      description: ID of the Consumer to lookup
+      example: c1059869-6fa7-4329-a5f5-5946d14ca2c5
       in: path
       name: ConsumerId
       required: true
@@ -4340,7 +4499,6 @@ components:
         ca_certificate:
           type: object
           additionalProperties: false
-          nullable: true
           properties:
             id:
               type: string
@@ -4382,7 +4540,6 @@ components:
         ca_certificate:
           type: object
           additionalProperties: false
-          nullable: true
           properties:
             id:
               type: string
@@ -5554,7 +5711,6 @@ components:
           description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
           additionalProperties: true
-          nullable: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
@@ -5595,6 +5751,7 @@ components:
       required:
         - name
         - prefix
+        - config
     BaseError:
       description: standard error
       type: object

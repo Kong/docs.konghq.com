@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* The `/jwt-signer/jwks` endpoint is now supported in DB-less mode.
+
 ### {{site.base_gateway}} 3.8.x
 * This plugin now supports using the `/jwt-signer/jwks/:jwt_signer_jwks` endpoint in DB-less mode.
 

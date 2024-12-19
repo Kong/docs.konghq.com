@@ -22,6 +22,7 @@ components:
       name: tags
       schema:
         type: string
+        nullable: false
     certificate_name_or_id:
       name: certificate_name_or_id
       in: path
@@ -225,6 +226,7 @@ components:
       name: tags
       schema:
         type: string
+        nullable: false
     filter_chain_id:
       name: filter_chain_id
       in: path
@@ -250,6 +252,13 @@ components:
       description: |
         After filter could be used to request audit log data that was recorded after certain time (inclusive).
         It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
+    list_consumers:
+      description: Indicates whether the list of consumers should be included in the consumer group details.
+      in: query
+      name: list_consumers
+      schema:
+        default: true
+        type: boolean
   schemas:
     UnauthorizedError:
       type: object
@@ -370,6 +379,123 @@ components:
           tags:
             - silver-tier
           username: bob-the-builder
+    Event-Hooks:
+      type: object
+      description: Event Hooks schema
+      properties:
+        data:
+          type: array
+          description: List of event hooks
+          items:
+            type: object
+            properties:
+              config:
+                type: object
+                description: Configuration for the event hook
+                properties:
+                  body:
+                    type: string
+                    nullable: true
+                  body_format:
+                    type: boolean
+                  headers:
+                    type: object
+                    nullable: true
+                    properties:
+                      content-type:
+                        type: string
+                  headers_format:
+                    type: boolean
+                  method:
+                    type: string
+                  payload:
+                    type: object
+                    nullable: true
+                    properties:
+                      text:
+                        type: string
+                  payload_format:
+                    type: boolean
+                  secret:
+                    type: string
+                    nullable: true
+                  ssl_verify:
+                    type: boolean
+                  url:
+                    type: string
+                  functions:
+                    type: array
+                    nullable: true
+                    items:
+                      type: string
+              created_at:
+                type: integer
+              event:
+                type: string
+              handler:
+                type: string
+              id:
+                type: string
+              on_change:
+                type: string
+                nullable: true
+              snooze:
+                type: integer
+                nullable: true
+              source:
+                type: string
+        next:
+          type: string
+          nullable: true
+      example:
+        data:
+          - config:
+              body: null
+              body_format: true
+              headers:
+                content-type: application/json
+              headers_format: false
+              method: POST
+              payload:
+                text: payload_text
+              payload_format: true
+              secret: null
+              ssl_verify: false
+              url: 'https://hooks.slack.com/services/foo/bar/baz'
+            created_at: 1627588552
+            event: admins
+            handler: webhook-custom
+            id: 937df175-3db2-4e6d-8aa1-d95c94a76089
+            on_change: null
+            snooze: null
+            source: crud
+          - config:
+              headers: {}
+              secret: null
+              ssl_verify: false
+              url: 'https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6'
+            created_at: 1627581575
+            event: consumers
+            handler: webhook
+            id: c57340ab-9fed-40fd-bb7e-1cef8d37c2df
+            on_change: null
+            snooze: null
+            source: crud
+          - config:
+              functions:
+                - |
+                  return function (data, event, source, pid)
+                    local user = data.entity.username
+                    error("Event hook on consumer " .. user .. "")
+                  end
+            created_at: 1627595513
+            event: consumers
+            handler: lambda
+            id: c9fdd58d-5416-4d3a-9467-51e5cfe4ca0e
+            on_change: null
+            snooze: null
+            source: crud
+        next: null
     Key:
       description: A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
       example:
@@ -10476,6 +10602,7 @@ paths:
   '/consumer_groups/{group_name_or_id}':
     parameters:
       - $ref: '#/components/parameters/group_name_or_id'
+      - $ref: '#/components/parameters/list_consumers' 
     get:
       summary: List a specific consumer group
       responses:
@@ -13111,6 +13238,69 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-admins-name_or_id-workspaces
       description: Return workspaces associated with an admin.
+  '/admins/{name_or_id}/workspaces/{workspace_name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The admin’s username or ID
+      - schema:
+          type: string
+        name: workspace_name_or_id
+        in: path
+        required: true
+        description: The name or ID of the admin's new workspace.
+    patch:
+      summary: Update an Admin's Workspace
+      tags:
+        - admins
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  updated_at:
+                    type: integer
+                  status:
+                    type: integer
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  rbac_token_enabled:
+                    type: boolean
+                x-examples:
+                  Example 1:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    status: 4
+                    username: test-admin
+                    email: test@test.com
+                    rbac_token_enabled: true
+              examples:
+                Example response body:
+                  value:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    status: 4
+                    username: test-admin
+                    email: test@test.com
+                    rbac_token_enabled: true
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: patch-admins-name_or_id-workspaces-workspace_name_or_id
+      description: Change the `belong_workspace` property for the specified admin.
   /groups:
     get:
       summary: List Groups
@@ -16158,6 +16348,64 @@ paths:
       tags:
       - cache
 
+  '/config':
+    post:
+      summary: Apply Declarative Config
+      tags:
+        - config
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+      requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+            application/yaml:
+              schema:
+                type: object
+              example: |
+                services:
+                  - name: example-service
+                    url: http://example.com
+                    routes:
+                      - name: example-route
+                        paths:
+                          - /example
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  config:
+                    type: string
+                    format: binary
+                    example: /path/to/<config-file>
+                    description: Configuration file in JSON or YAML.
+      operationId: post-config
+      description: |
+        Apply a configuration from a declarative JSON or YAML file. Any existing configuration will be overwritten. Note: This API is only available in DB-less mode.
+    get:
+      summary: Get Declarative Config
+      operationId: get-config
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  config:
+                    type: string
+      tags:
+        - config
+      description: |
+        Get the current configuration. Note: This API is only available in DB-less mode.
+
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'
@@ -16344,3 +16592,6 @@ tags:
   - description: |
       Querying and managing cache entries.
     name: cache
+  - description: |
+      Apply and retrieve declarative configuration when using DB-less mode.
+    name: config

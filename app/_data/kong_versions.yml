@@ -57,7 +57,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.4.x"
-  ee-version: "3.4.3.13"
+  ee-version: "3.4.3.14"
   ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -127,10 +127,24 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  latest: true
 - release: "3.9.x"
   ee-version: "3.9.0.0"
   ce-version: "3.9.0"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+  latest: true
+- release: "3.10.x"
+  ee-version: "3.10.0.0"
+  ce-version: "3.10.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -239,9 +253,15 @@
 - release: "1.40.x"
   version: "1.40.2"
   edition: "deck"
-  latest: true
 - release: "1.41.x"
-  version: "1.41.0"
+  version: "1.41.4"
+  edition: "deck"
+- release: "1.42.x"
+  version: "1.42.0"
+  edition: "deck"
+  latest: true
+- release: "1.43.x"
+  version: "1.43.0"
   edition: "deck"
   label: unreleased
 - edition: "konnect"
@@ -341,13 +361,13 @@
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: 2.6.13
+  version: 2.6.14
   release: 2.6.x
   releaseDate: "2024-02-01"
   endOfLifeDate: "2025-02-01"
   branch: release-2.6
 - edition: mesh
-  version: 2.7.9
+  version: 2.7.10
   release: 2.7.x
   releaseDate: "2024-04-19"
   endOfLifeDate: "2026-04-19"
@@ -360,7 +380,7 @@
   endOfLifeDate: "2025-06-24"
   branch: release-2.8
 - edition: mesh
-  version: 2.9.1
+  version: 2.9.2
   release: 2.9.x
   latest: true
   releaseDate: "2024-10-22"
