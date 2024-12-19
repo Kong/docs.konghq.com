@@ -15,7 +15,7 @@ The feature is enabled when the feature gate `CombinedServicesFromDifferentHTTPR
 When the feature is enabled, The rules having the same combination of backend services (combination of namespace, name, port and weight in `backendRefs` of rules)
 in all `HTTPRoute`s within the same namespace will be translated to one {{site.base_gateway}} service.
 
-## How the Translation is Done?
+## How is the Translation Done?
 
 The names of the translated {{site.base_gateway}} service will be changed when the feature is enabled. Instead of generating names from source `HTTPRoute`
 and rules, the {{site.base_gateway}} service names will be generated from the consolidated backends.
@@ -32,7 +32,7 @@ Names of {{site.base_gateway}} services are computed from the namespace, name, p
  - `next_backends` are sections computed from other backend services. Backend services are sorted by the namespace and name.
 
  In addition, When the computed name from the method above is longer than 512 characters (the limit of service name length in {{site.konnect_short_name}}), the service name is trimmed using the following rules:
-- Only use `backend_ns`, `backend_name`,`backend_port`, `backend_weight` of the first backend service,
+- Only use `backend_ns`, `backend_name`,`backend_port`, `backend_weight`,
 - Append the `_combined.<hash>` to make sure that the name is unique. Where `hash` is the SHA256 digest of the computed service name.
 
 For example, the following two `HTTPRoute`s with rules pointing to the same backends with the same ports and weights:
