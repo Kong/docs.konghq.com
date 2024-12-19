@@ -72,7 +72,7 @@ kind: Secret
 metadata:
   name: rate-limit-redis
 stringData:
-  password: '\"PASSWORD\"' # The string fields require the value to be quoted in double quotation marks.
+  password: '"PASSWORD"' # The string fields require the value to be quoted in double quotation marks.
 type: Opaque" | kubectl apply -f -
 ```
 
