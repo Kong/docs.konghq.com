@@ -73,6 +73,26 @@ complete the following steps to upgrade to version v1.1 of the CRD:
 
 {% endif_version %}
 
+{% if_version gte:3.4.x %}
+
+### Update Gateway API from v1.1 to v1.2
+
+Starting from version 3.4, {{ site.kic_product_name }} supports Gateway API version 1.2.
+There is a breaking change in gateway API 1.2 to remove the `v1alpha2` version of `GRPCRoute` and `ReferenceGrant`.
+
+If you have been using gateway API v1.1 and {{ site.kic_product_name }} 3.2 and above, and there are no `GRPCRoute` and `ReferenceGrant` resources stored in `v1alpha2` version, you can directly upgrade gateway API from v1.1 to v1.2.
+
+If the conditions to directly update gateway API to v1.2 is not satisfied, you can upgrade gateway API and {{ site.kic_product_name }} by the following steps:
+
+1. If you have installed gateway API 1.0, upgrade it to 1.1 by the steps in the section above.
+2. Upgrade your {{ site.kic_product_name }} to 3.2 if the version is below 3.2.
+3. Update all your manifests to use `v1` instead of `v1alpha2` for `GRPCRoute` and `v1beta1` instead of `v1alpha2` for `ReferenceGrant`. You can follow the [upgrade guide][gateway-api-v12-upgrade-notes] to ensure the `GRPCRoute` and `ReferenceGrant` are all updated to the latest storage version.
+4. Install the wanted channel of gateway API 1.2.
+
+[gateway-api-v12-upgrade-notes]: https://gateway-api.sigs.k8s.io/guides/?h=v1.2#v12-upgrade-notes
+
+{% endif_version %}
+
 ### Upgrade
 
 Run the following command, specifying the old release name, the namespace where
