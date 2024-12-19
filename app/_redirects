@@ -468,6 +468,7 @@
 /hub/bitnami/*                                     /gateway/latest/install/
 /hub/kong-inc/kong-terraform-aws/                  https://github.com/kong/kong-terraform-aws
 /hub/:vendor/:plugin/3.0.x/*                                   https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
+/hub/dynatrace/dynatrace/*                                   /hub/kong-inc/dynatrace/:splat
 
 # KONNECT
 
