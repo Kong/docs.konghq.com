@@ -89,6 +89,7 @@ Selectors are used to define the criteria of the search. The following table des
 | `name:{value}` | Searches for a match on `name`. |`name:default`|
 | `description:{value}` | Searches for a match on `description`. |`description:temporary`|
 | `labels.{label_key}:{label_value}` | Searches for an exact match for a labeled entity. |`labels.env:prod`|
+| `public_labels.{label_key}:{label_value}` | Searches for an exact match for a labeled entity in Dev Portal. |`public_labels.env:prod`|
 | `@{attribute_key}:{attribute_value}` | Searches for an exact match for an entity specific attribute. |`@email:"admin@domain.com"`|
 
 ### Reserved Characters
