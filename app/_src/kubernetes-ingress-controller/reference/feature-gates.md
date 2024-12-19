@@ -97,9 +97,9 @@ private keys in `Certificate` entities and `Consumer` entities' credentials.
 
 ### CombinedServicesFromDifferentHTTPRoutes
 
-When the feature gate `CombinedServicesFromDifferentHTTPRoutes` is enabled, {{site.kic_product_name}} will translate `HTTPRoute` rules
-sharing the same set of backends (combination of namespace, name, port and weight) from different `HTTPRoute`s in the same namespace
+The `CombinedServicesFromDifferentHTTPRoutes` feature enables translating `HTTPRoute` rules
+having the same set of backends (combination of namespace, name, port and weight) from different `HTTPRoute`s in the same namespace
 into one {{site.base_gateway}} service. Enabling the feature gate could reduce the number of translated {{site.base_gateway}} services.
 
-The names of {{site.base_gateway}} services will be changed if the feature gate is enabled compared to the names when it is disabled.
+The names of {{site.base_gateway}} services will be changed if the feature gate is enabled.
 You can refer to the [reference page](/kubernetes-ingress-controller/{{page.release}}/reference/combined-services-from-different-httproutes) to know the details.
