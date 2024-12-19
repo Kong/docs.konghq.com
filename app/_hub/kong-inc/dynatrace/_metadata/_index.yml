@@ -4,6 +4,7 @@ publisher: Dynatrace
 categories:
   - premium-partner
   - analytics-monitoring
+weight: 100
 
 search_aliases:
   - opentelemetry
