@@ -95,11 +95,13 @@ private keys in `Certificate` entities and `Consumer` entities' credentials.
 > in your `KongPlugin`'s `config` field, it will be sent to Konnect as is. To avoid that, please consider using
 > [KongVault](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongvault).
 
+{% if_version gte:3.4.x %}
 ### CombinedServicesFromDifferentHTTPRoutes
 
 The `CombinedServicesFromDifferentHTTPRoutes` feature enables translating `HTTPRoute` rules
-having the same set of backends (combination of namespace, name, port and weight) from different `HTTPRoute`s in the same namespace
-into one {{site.base_gateway}} service. Enabling the feature gate could reduce the number of translated {{site.base_gateway}} services.
+with the same set of backends (combination of namespace, name, port and weight) from different `HTTPRoute`s in the same namespace
+into a single {{site.base_gateway}} service. Enabling the feature gate can reduce the number of translated {{site.base_gateway}} services.
 
-The names of {{site.base_gateway}} services will be changed if the feature gate is enabled.
-You can refer to the [reference page](/kubernetes-ingress-controller/{{page.release}}/reference/combined-services-from-different-httproutes) to know the details.
+The names of {{site.base_gateway}} services will change if the feature gate is enabled.
+You can refer to the [reference page](/kubernetes-ingress-controller/{{page.release}}/reference/combined-services-from-different-httproutes) for further details.
+{% endif_version %}

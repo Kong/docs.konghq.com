@@ -6,11 +6,10 @@ purpose: |
 alpha: true
 ---
 
-As have been done to `Ingress`es, {{site.kic_product_name}} can consolidate rules from different `HTTPRoute`s having the same
-combination of backend services and translate them into one {{site.base_gateway}} service to reduce the number of {{site.base_gateway}} services.
+Similar to the consolidation behavior implemented for `Ingress` resources, {{ site.kic_product_name }} now supports the consolidation of rules from different `HTTPRoute` resources. When multiple `HTTPRoute`s specify the same combination of backend services, they will be translated into a single {{ site.base_gateway }} service, effectively reducing the total number of {{ site.base_gateway }} services required.
 
 ## How to Enable the Feature?
-The feature is enabled when the feature gate `CombinedServicesFromDifferentHTTPRoutes` is set to `true`.
+The feature is enabled when the feature gate `CombinedServicesFromDifferentHTTPRoutes` is set to `true`. You can refer to the [feature gate reference](/kubernetes-ingress-controller/{{page.release}}/reference/feature-gates) to know more about the feature gates.
 
 ## What Does the Feature Gate Do?
 When the feature is enabled, The rules having the same combination of backend services (combination of namespace, name, port and weight in `backendRefs` of rules)
@@ -23,7 +22,7 @@ and rules, the {{site.base_gateway}} service names will be generated from the co
 
 ### Compute Service Name
 
-Names of {{site.base_gateway}} services will be computed from the namespace, name, port and weight(if specified). The pattern of names is
+Names of {{site.base_gateway}} services are computed from the namespace, name, port and weight(if specified). The pattern of names is
 `httproute.<namespace>.svc.<backend_ns>.<backend_name>.<backend_port>.[backend_weight]_[next_backends]...` where:
  - `namespace` is the namespace of the `HTTPRoute`s.
  - `backend_ns` is the namespace of the first backend service.
@@ -31,6 +30,10 @@ Names of {{site.base_gateway}} services will be computed from the namespace, nam
  - `backend_port` is the port number of the first backend service.
  - `backend_weight` is the weight of the first backend service if specified.
  - `next_backends` are sections computed from other backend services. Backend services are sorted by the namespace and name.
+
+ In addition, When the computed name from the method above is longer than 512 characters (the limit of service name length in {{site.konnect_short_name}}), the service name is trimmed using the following rules:
+- Only use `backend_ns`, `backend_name`,`backend_port`, `backend_weight` of the first backend service,
+- Append the `_combined.<hash>` to make sure that the name is unique. Where `hash` is the SHA256 digest of the computed service name.
 
 For example, the following two `HTTPRoute`s with rules pointing to the same backends with the same ports and weights:
 
@@ -82,15 +85,7 @@ spec:
       weight: 25
 ```
 
-When the feature is not enabled, the rules in the two `HTTPRoutes` will be translated
-to two {{site.base_gateway}} services separately.
-The names of the services will be `httproute.default.httproute-consolidated-1.0` and `httproute.default.httproute-consolidated-2.0`.
+When the feature is disabled (which is default), the rules in the two `HTTPRoutes` are translated to two distinct {{site.base_gateway}} services:
+`httproute.default.httproute-consolidated-1.0` and `httproute.default.httproute-consolidated-2.0`.
 
-When the feature is enabled, The two rules from the two `HTTPRoute`s `httproute-consolidated-1` and `httproute-consolidated-2` will be translated to one {{site.base_gateway}} service.
-The translated service name will computed by the rules above, resulting to the name `httproute.default.svc.default.echo-1.80.75.default.echo-2.80.25`.
-
-### Trimming {{site.base_gateway}} Service Names
-
-When the computed name from the method above is longer than 512 characters(the limit of service name length in {{site.konnect_short_name}}), the service name is trimmed using the following rules:
-- Trim the name to only preserve the information (`backend_ns`, `backend_name`,`backend_port`, `backend_weight`) of the first backend service,
-- Append the `_combined.<hash>` to make sure that the name is unique. Where `hash` is the SHA256 digest of the computed service name.
+When the feature is enabled, The two rules from the two `HTTPRoute`s `httproute-consolidated-1` and `httproute-consolidated-2` result in a single {{site.base_gateway}} service named `httproute.default.svc.default.echo-1.80.75.default.echo-2.80.25`.
