@@ -31,7 +31,7 @@
     "less": "^4.1.3",
     "lodash": "4.17.21",
     "netlify-cli": "17.38.0",
-    "node-fetch": "2.7.0",
+    "node-fetch": "3.3.2",
     "postcss-custom-properties": "^14.0.0",
     "prettier": "3.4.2",
     "sass": "^1.63.6",
