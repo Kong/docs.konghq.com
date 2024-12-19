@@ -239,7 +239,7 @@ response in the following step:
     Response:
 
     ```json
-        HTTP/1.1 200 OK
+        HTTP/1.1 401 Unauthorized
         ...
         X-Some-Header: some value
         {
