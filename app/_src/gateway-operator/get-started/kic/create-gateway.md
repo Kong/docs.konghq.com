@@ -48,7 +48,7 @@ To get the endpoint and the authentication details of the data plane.
     kubectl create secret tls konnect-client-tls --cert=./tls.crt --key=./tls.key
     ```
 
-1. In the **Install the KIC** step 4, find the value of `runtimeGroupID`. Replace `YOUR_CP_ID` with the control plane ID in the following manifest.
+1. In the **Install the KIC** step 4, find the value of `controlPlaneID`. Replace `YOUR_CP_ID` with the control plane ID in the following manifest.
 1. In the **Install the KIC** step 4, find the value of `cluster_telemetry_endpoint`. The first segment of that value is the control plane endpoint for your cluster. For example, if the value of `cluster_telemetry_endpoint` is `36fc5d01be.us.cp0.konghq.com`, then the control plane endpoint of the cluster is `36fc5d01be`. Replace `YOUR_CP_ENDPOINT` with your control plane ID in the following manifest.
 1. Deploy the data plane with `kubectl apply`:
 
