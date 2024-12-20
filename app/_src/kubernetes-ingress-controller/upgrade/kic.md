@@ -45,7 +45,9 @@ ingressController:
 
 {% if_version gte:3.2.x %}
 
-### Update Gateway API from v1.0 to v1.1
+### Update Gateway API 
+
+#### Update Gateway API from v1.0 to v1.1
 
 Starting from version 3.2, {{ site.kic_product_name }} supports Gateway API version 1.1.
 The primary change in Gateway API v1.1 is the promotion of GRPCRoute from v1alpha2 to v1.
@@ -75,7 +77,7 @@ complete the following steps to upgrade to version v1.1 of the CRD:
 
 {% if_version gte:3.4.x %}
 
-### Update Gateway API from v1.1 to v1.2
+#### Update Gateway API from v1.1 to v1.2
 
 Starting from version 3.4, {{ site.kic_product_name }} supports Gateway API version 1.2.
 There is a breaking change in gateway API 1.2 to remove the `v1alpha2` version of `GRPCRoute` and `ReferenceGrant`.
