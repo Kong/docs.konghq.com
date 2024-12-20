@@ -1,12 +1,12 @@
 product: kubernetes-ingress-controller
-release: 3.4.x
+release: 3.5.x
 generate: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Overview
-        url: /kubernetes-ingress-controller/3.4.x/
+        url: /kubernetes-ingress-controller/3.5.x/
         absolute_url: true
       - text: Kubernetes Gateway API
         url: /gateway-api
@@ -199,7 +199,7 @@ items:
         url: /reference/annotations
       - text: Configuration Options
         url: /reference/cli-arguments/
-        src: reference/cli-arguments-3.4.x
+        src: reference/cli-arguments-3.5.x
       - text: Feature Gates
         url: /reference/feature-gates
       - text: FAQ
@@ -213,7 +213,7 @@ items:
             url: /reference/faq/nginx.conf
       - text: Custom Resource Definitions
         url: /reference/custom-resources
-        src: reference/custom-resources-3.4.x
+        src: reference/custom-resources-3.5.x
       - text: Resources Requiring Setting Ingress Class
         url: /reference/resource-requiring-ingress-class
         src: reference/ingress-class-requirement
