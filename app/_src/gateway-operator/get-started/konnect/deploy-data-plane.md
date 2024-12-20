@@ -98,9 +98,11 @@ To get the endpoint and the authentication details of the data plane:
 1. Extract the following values from the **Configuration parameters** step 4:
    1. `CP_ID`: Find the value of `cluster_server_name`. The first segment of that value is the control plane ID for your cluster. For example, if the value of `cluster_server_name` is `36fc5d01be.us.cp0.konghq.com`, then the control plane ID of the cluster is `36fc5d01be`
    1. `REGION`:  Find the value in the bottom left corner of the screen.
-   1. `HOSTNAME`:  The server you are connected to (e.g. `konghq.tech`, `konghq.com`).
+{%- if_version lt:1.5.0 %}
+   1. `HOSTNAME`:  The server you are connected please set `konghq.com`.
+{%- endif_version %}
 
-2. Now, create a [`KonnectExtension` resource](/gateway-operator/{{ page.release }}/reference/custom-resources#konnectextension). In the following manifest, replace the placeholders for `CP_ID`, `REGION`, and `HOSTNAME` with the values you just noted, and deploy it with `kubectl apply`:
+2. Now, create a [`KonnectExtension` resource](/gateway-operator/{{ page.release }}/reference/custom-resources#konnectextension). In the following manifest, replace the placeholders for aforementioned with the values you just noted, and deploy it with `kubectl apply`:
 
    ```yaml
     echo '
@@ -114,7 +116,9 @@ To get the endpoint and the authentication details of the data plane:
         type: konnectID
         konnectID: <CP_ID>
       controlPlaneRegion: <REGION>
+{%- if_version lt:1.5.0 %}
       serverHostname: <HOSTNAME>
+{%- endif_version %}
       konnectControlPlaneAPIAuthConfiguration:
         clusterCertificateSecretRef:
           name: konnect-client-tls
