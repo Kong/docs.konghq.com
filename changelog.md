@@ -2,6 +2,178 @@
 
 <!--vale off-->
 
+## Week 51
+
+### [feat: Public labels search syntax for Dev Portal](https://github.com/Kong/docs.konghq.com/pull/8302) (2024-12-20)
+
+<!-- What did you change and why? -->
+Addition of `public_labels` KSearch syntax. Public labels are meant to provide a client-facing search syntax in KSearch for API Products in Developer Portals. This emulates the same syntax as `labels`, but for API clients browsing the Developer Portal
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/search
+
+
+### [Fix: Dynatrace weight](https://github.com/Kong/docs.konghq.com/pull/8295) (2024-12-19)
+
+Change dynatrace weight
+
+
+
+### [fix the status code in the 1st Demonstration](https://github.com/Kong/docs.konghq.com/pull/8290) (2024-12-19)
+
+The status code is not updated in the lua script so it should remain 401.
+
+
+
+<!-- What did you change and why? -->
+After follow the Demonstration, I got an 401 status code but the doc says it is a 200. 
+
+```
+❯ http  localhost:8000 Host:example.com
+HTTP/1.1 401 Unauthorized
+Connection: keep-alive
+Content-Length: 73
+Content-Type: application/json; charset=utf-8
+Date: Wed, 18 Dec 2024 15:17:35 GMT
+Server: kong/3.8.0.0-enterprise-edition
+X-Kong-Request-Id: 10e6903070b3246162eeac7756792938
+X-Kong-Response-Latency: 3
+x-some-header: some value
+
+{
+    "error": true,
+    "message": "No API key found in request, arr!",
+    "status": 401
+}
+```
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/overview/
+
+
+### [chore: Dynatrace tile](https://github.com/Kong/docs.konghq.com/pull/8288) (2024-12-17)
+
+Create a dynatrace tile on the plugin hub so that we can list them as a premium partner.
+
+#### Added
+
+- https://docs.konghq.com/hub/dynatrace/dynatrace/_metadata/_index.yml
+- https://docs.konghq.com/hub/dynatrace/dynatrace/overview/
+- https://docs.konghq.com/hub/dynatrace/dynatrace/schemas/_index.json
+- https://docs.konghq.com/assets/images/icons/hub/dynatrace_dynatrace.png
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/how-to/
+
+
+### [fix: Add example Injection Protection plugin log](https://github.com/Kong/docs.konghq.com/pull/8286) (2024-12-19)
+
+<!-- What did you change and why? -->
+Added an example Injection Protection plugin log.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/injection-protection/overview/
+
+
+### [fix: AI Gateway metrics info](https://github.com/Kong/docs.konghq.com/pull/8285) (2024-12-18)
+
+Fixes the following:
+- [Make the Logging label OSS instead of Enterprise](https://docs.konghq.com/gateway/3.8.x/ai-gateway/#logging)
+- [Add Konnect Advanced Analytics bullet to the AI observability section and label](https://docs.konghq.com/gateway/3.8.x/ai-gateway/#ai-observability)
+- [Mention AI gateway metrics on Prometheus plugin page and label as Enterprise](https://docs.konghq.com/hub/kong-inc/prometheus/#available-metrics): This is mentioned in the existing page, it's just referenced later down the page and the customer couldn't find it. I moved it to the "available metrics" section as well with a link to the other section for findability.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+https://kongstrong.slack.com/archives/CDSTDSG9J/p1734333985135819
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/prometheus/overview/
+
+
+### [Release: Gateway 3.4.3.14](https://github.com/Kong/docs.konghq.com/pull/8274) (2024-12-17)
+
+Version bump and changelog for Gateway 3.4.3.14.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update changelog.md](https://github.com/Kong/docs.konghq.com/pull/8271) (2024-12-17)
+
+As per the detail in the pull here: https://github.com/Kong/kong/pull/10355 this value is added to the ngx.ctx table NOT kong.ctx
+
+
+
+Changed reference of location of KONG_UPSTREAM_DNS_TIME to correct internal table as per pull request this change is in respect of.
+
+See also: https://konghq.atlassian.net/browse/FTI-5243
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Prometheus AI metrics](https://github.com/Kong/docs.konghq.com/pull/8269) (2024-12-16)
+
+Fix parameter name and add enterprise badge for AI metrics in Prometheus docs.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/prometheus/overview/
+
+
+### [Fix: Clean out "unreleased" links ](https://github.com/Kong/docs.konghq.com/pull/8264) (2024-12-16)
+
+Removing the hardcoded `unreleased` version from links, which likely made its way in because the links were breaking at the time, and that seemed like the right fix. `unreleased` should never be part of a production URL.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/8192
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix route format in OAS Validation plugin example](https://github.com/Kong/docs.konghq.com/pull/8263) (2024-12-16)
+
+Using an expressions route instead of traditional.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/8140.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/oas-validation/overview/
+
+
+### [Feat: Jump to explorer ](https://github.com/Kong/docs.konghq.com/pull/8241) (2024-12-19)
+
+https://konghq.atlassian.net/browse/DOCU-4179
+
+#### Modified
+
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/api-usage-by-application.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/kong-vs-upstream-latency.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/latency-payments-api-30.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/total-api-requests.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/total-usage-accounts-api-30.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/konnect-analytics-api-requests.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/konnect-api-usage-summary.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/konnect-summary-dashboard.png
+- https://docs.konghq.com/konnect/analytics/dashboard
+- https://docs.konghq.com/konnect/analytics/explorer
+- https://docs.konghq.com/konnect/analytics/
+- https://docs.konghq.com/konnect/analytics/use-cases
+
 ## Week 50
 
 ### [Fix: clarify license propagation in Konnect](https://github.com/Kong/docs.konghq.com/pull/8262) (2024-12-13)
