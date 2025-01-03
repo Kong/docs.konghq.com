@@ -28,12 +28,12 @@ admin_gui_session_conf = {
     "cookie_name":"<SET_COOKIE_NAME>",
     "storage":"<SET_STORAGE>",
     "cookie_lifetime":<NUMBER_OF_SECONDS_TO_LIVE>,
-    "cookie_secure":<SET_DEPENDING_ON_PROTOCOL>
+    "cookie_secure":<SET_DEPENDING_ON_PROTOCOL>,
     "cookie_samesite":"<SET_DEPENDING_ON_DOMAIN>"
 }
 ```
 {% endif_version %}
-{% if_version gte:3.2.x %}
+{% if_version gte:3.2.x lte:3.3.x %}
 
 ```
 enforce_rbac = on
@@ -43,8 +43,26 @@ admin_gui_session_conf = {
     "cookie_name":"<SET_COOKIE_NAME>",
     "storage":"<SET_STORAGE>",
     "rolling_timeout":<NUMBER_OF_SECONDS_UNTIL_RENEWAL>,
-    "cookie_secure":<SET_DEPENDING_ON_PROTOCOL>
+    "cookie_secure":<SET_DEPENDING_ON_PROTOCOL>,
     "cookie_same_site":"<SET_DEPENDING_ON_DOMAIN>"
+}
+```
+
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
+
+```
+enforce_rbac = on
+admin_gui_auth = <set to desired auth type>
+admin_gui_session_conf = {
+    "secret":"<SET_SECRET>",
+    "cookie_name":"<SET_COOKIE_NAME>",
+    "storage":"<SET_STORAGE>",
+    "rolling_timeout":<NUMBER_OF_SECONDS_UNTIL_RENEWAL>,
+    "cookie_secure":<SET_DEPENDING_ON_PROTOCOL>,
+    "cookie_same_site":"<SET_DEPENDING_ON_DOMAIN>",
+    "store_metadata": true
 }
 ```
 
@@ -63,7 +81,7 @@ Attribute | Description
 
 {% endif_version %}
 
-{% if_version gte:3.2.x %}
+{% if_version gte:3.2.x lte:3.3.x %}
 
 Attribute | Description
 ----------|------------
@@ -77,6 +95,21 @@ Attribute | Description
 
 {% endif_version %}
 
+{% if_version gte:3.4.x %}
+
+Attribute | Description
+----------|------------
+`cookie_name` | A name for the cookie. <br> For example, `"cookie_name":"kong_cookie"`
+`secret` | The secret used in keyed HMAC generation. Although the Session plugin's default is a random string, the `secret` _must_ be manually set for use with Kong Manager since it must be the same across all Kong workers/nodes.
+`storage` | The location where session data is stored. <br> The default value is `cookie`. It may be more secure if set to `kong`, since access to the database would be required.
+`cookie_lifetime` | The duration (in seconds) that the session will remain open. <br> The default value is `3600`.
+`cookie_secure` | Applies the Secure directive so that the cookie may be sent to the server only with an encrypted request over the HTTPS protocol. See [Session Security](#session-security) for exceptions. <br> The default value is `true`.
+`cookie_samesite`| Determines whether and how a cookie may be sent with cross-site requests. See [Session Security](#session-security) for exceptions. <br> The default value is `strict`.
+`hash_subject`| Whether to hash or not the subject when `store_metadata` is enabled. The default value is false.
+`store_metadata`| Whether to also store metadata of sessions, such as collecting data of sessions for a specific audience belonging to a specific subject. The default value is false. If enable this option. You should set the `storage` to `kong`.
+
+{% endif_version %}
+
 {:.important}
 > **Important:** The following properties must **not** be altered from default for use with Kong Manager:
 * `logout_methods`
@@ -85,6 +118,14 @@ Attribute | Description
 
 For detailed descriptions of each configuration property, learn more in the
 [Session plugin documentation](/hub/kong-inc/session).
+
+{% if_version gte:3.4.x %}
+
+## Multiple session management
+
+The multiple session by default is isolated. Sessions are not invalidated when the password is changed if `"store_metadata": false` or `"storage": "cookie"` is used. In these cases, the session's metadata not be stored in DB and the cookie is managed by client-side. Only when session's metadata is stored server-side with  `"storage": "kong","store_metadata": true` set is the all sessions actively invalidated.
+
+{% endif_version %}
 
 ## Session security
 
@@ -133,3 +174,35 @@ admin_gui_session_conf = {
     "cookie_secure":false
 }
 ```
+
+{% if_version gte:3.4.x %}
+If you want to invalidate all sessions when the password is changed, the following configuration could be used for Basic Auth:
+
+```
+enforce_rbac = on
+admin_gui_auth = basic-auth
+admin_gui_session_conf = {
+    "cookie_name":"kong_cookie",
+    "secret":"change-this-secret",
+    "storage":"kong",
+    "cookie_secure":false,
+    "store_metadata": true
+}
+```
+
+If enabling the `store_metadata` and for PII reasons, the following configuration could be used instead.
+
+```
+enforce_rbac = on
+admin_gui_auth = basic-auth
+admin_gui_session_conf = {
+    "cookie_name":"kong_cookie",
+    "secret":"change-this-secret",
+    "storage":"kong",
+    "cookie_secure":false,
+    "hash_subject": true,
+    "store_metadata": true
+}
+```
+
+{% endif_version %}
