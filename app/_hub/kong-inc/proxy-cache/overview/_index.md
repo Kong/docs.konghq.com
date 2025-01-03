@@ -21,6 +21,7 @@ Proxy Cache plugin with Redis and Redis Sentinel support.
 
 ## Cache Key
 
+{% if_version lte:3.0.x %}
 Kong keys each cache elements based on the request method, the full client request (e.g., the request path and query parameters), and the UUID of either the API or Consumer associated with the request. This also implies that caches are distinct between APIs and/or Consumers. Currently the cache key format is hard-coded and cannot be adjusted. Internally, cache keys are represented as a hexadecimal-encoded MD5 sum of the concatenation of the constituent parts. This is calculated as follows:
 
 ```
@@ -28,6 +29,17 @@ key = md5(UUID | method | request)
 ```
 
 Where `method` is defined via the OpenResty `ngx.req.get_method()` call, and `request` is defined via the Nginx `$request` variable. Kong will return the cache key associated with a given request as the `X-Cache-Key` response header. It is also possible to precalculate the cache key for a given request as noted above.
+{% endif_version %}
+
+{% if_version gte:3.1.x %}
+Kong keys each cache elements based on the request method, the full client request (e.g., the request path and query parameters), and the UUID of either the API or Consumer associated with the request. This also implies that caches are distinct between APIs and/or Consumers. Currently the cache key format is hard-coded and cannot be adjusted. Internally, cache keys are represented as a hexadecimal-encoded SHA256 sum of the concatenation of the constituent parts. This is calculated as follows:
+
+```
+key = sha256(UUID | method | request | query_params | headers)
+```
+
+Where `method`, `query_params ` and `headers` are defined via the OpenResty `ngx.req.get_method()`, `ngx.req.get_uri_args()` and `ngx.req.get_headers()` call respectively, and `request` is defined via the Nginx `$request` variable. Kong will return the cache key associated with a given request as the `X-Cache-Key` response header. It is also possible to precalculate the cache key for a given request as noted above.
+{% endif_version %}
 
 ## Cache Control
 
