@@ -3,6 +3,9 @@ title: Using decK with Kong Konnect
 content_type: reference
 ---
 
+{:.important}
+> Konnect requires decK v1.40.0 or above. Versions below this will see inconsistent `deck gateway diff` results.
+
 You can manage {{site.base_gateway}} core entity configuration in your {{site.konnect_short_name}} organization using decK.
 
 decK can only target one control plane at a time.
