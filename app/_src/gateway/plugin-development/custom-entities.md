@@ -329,7 +329,7 @@ return {
         id = typedefs.uuid,
       },
       {
-        -- also interted by the DAO itself
+        -- also inserted by the DAO itself
         created_at = typedefs.auto_timestamp_s,
       },
       {
@@ -599,7 +599,7 @@ local entity, err = kong.db.keyauth_credentials:select({
 })
 
 if err then
-  kong.log.err("Error when inserting keyauth credential: " .. err)
+  kong.log.err("Error when selecting keyauth credential: " .. err)
   return nil
 end
 
@@ -612,7 +612,7 @@ end
 ### Iterate over all the entities
 
 ``` lua
-for entity, err on kong.db.<name>:each(entities_per_page) do
+for entity, err in kong.db.<name>:each(entities_per_page) do
   if err then
     ...
   end
@@ -631,7 +631,7 @@ and otherwise assume that `entity` is present.
 Example of usage:
 
 ``` lua
-for credential, err on kong.db.keyauth_credentials:each(1000) do
+for credential, err in kong.db.keyauth_credentials:each(1000) do
   if err then
     kong.log.err("Error when iterating over keyauth credentials: " .. err)
     return nil
