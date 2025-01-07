@@ -156,7 +156,7 @@ deck dump --all-workspaces
 {% endif_version %}
 {% if_version gte:1.28.x %}
 ```sh
-deck gateway dump -o kong.yaml --all-workspaces
+deck gateway dump --all-workspaces
 ```
 {% endif_version %}
 
