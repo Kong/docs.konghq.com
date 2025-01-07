@@ -155,7 +155,7 @@ the default workspace and the two team workspaces.
 
     ```
 
-## Entities in different workspaces can have the same name!
+## Use the same name with different workspaces
 
 Different teams—belonging to different workspaces—are allowed to give any
 name to their entities. To provide an example of that, let's say that Teams A and
