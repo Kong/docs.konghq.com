@@ -12,7 +12,7 @@ decK can only target one control plane at a time.
 
 Managing multiple control planes requires a separate state file per control plane.
 
-You _cannot_ use decK to publish content to the Dev Portal, manage application registration, or configure custom plugins.
+decK _does not_ support publishing content to the Dev Portal or managing application registrations. Custom plugins can only be configured if the plugin schema has been uploaded to Konnect. Please note that creating or managing schemas via decK is not supported.
 
 ## {{site.konnect_short_name}} flags
 
