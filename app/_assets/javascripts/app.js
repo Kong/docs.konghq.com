@@ -381,7 +381,7 @@ jQuery(function () {
     for (const i in matches) {
       const navTab = $(".navtab-title[data-slug='" + matches[i] + "']").first();
       if (navTab.length) {
-        activateNavTab(navTab);
+        activateNavTab(navTab, true);
       }
     }
   }
