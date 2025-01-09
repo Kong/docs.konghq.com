@@ -411,6 +411,7 @@ components:
         - is_fqdn
         - is_arn
         - unknown_property
+        - missing_reference
         - is_label
         - matches_regex
         - invalid
