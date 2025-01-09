@@ -2981,6 +2981,21 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+
+## 3.4.3.15
+**Release Date** 2025/01/10
+
+### Fixes
+#### Core
+
+* Fixed an issue where a certificate entity configured with a vault reference was 
+occasionally not refreshed on time when initialized with an invalid string.
+
+### Dependencies
+
+* Bumped `lua-kong-nginx-module` from 0.8.1 to 0.8.2.
+* Fixed an issue in the Lua Kong Nginx module, ensuring that the values in the cache remain valid and are updated in time.
+
 ## 3.4.3.14
 **Release Date** 2024/12/17
 
