@@ -30,7 +30,7 @@ Add the following configuration to a `kong.yaml` file:
 ```yaml
 _format_version: "3.0"
 services:
-- url: http://127.0.0.1:8001/
+- url: http://httpbin.org
   name: my-service
   routes:
   - name: my-route
@@ -45,7 +45,7 @@ services:
   ```bash
   curl -i -X POST http://localhost:8001/services \
     --data "name=my-service" \
-    --data "url=http://127.0.0.1:8001/"
+    --data "url=http://httpbin.org"
   ```
   
 1. Create a route:
@@ -63,55 +63,98 @@ services:
 
 Let's test out Datakit by combining responses from two third party API calls, then returning directly to the client.
 
-In the following example, replace `SERVICE_NAME|ID` with `my-service`, or with your own service name:
+{% navtabs %}
+{% navtab decK (YAML) %}
+```yaml
+plugins:
+- name: datakit
+  service: my-service
+  config:
+    debug: true
+    nodes:
+    - name: CAT_FACT
+      type: call
+      url: https://catfact.ninja/fact
+    - name: DOG_FACT
+      type: call
+      url: https://dogapi.dog/api/v1/facts
+    - name: JOIN
+      type: jq
+      inputs:
+      - cat: CAT_FACT.body
+      - dog: DOG_FACT.body
+      jq: |
+        {
+          "cat_fact": $cat.fact,
+          "dog_fact": $dog.facts[0]
+        }
+    - name: EXIT
+      type: exit
+      inputs:
+      - body: JOIN
+      status: 200
+```
 
-<!--vale off-->
+{% endnavtab %}
+{% navtab Admin API %}
 
-{% plugin_example %}
-plugin: kong-inc/acl
-name: datakit
-config:
-  debug: true
-  nodes:
-  - name: CAT_FACT
-    type: call
-    url:  https://catfact.ninja/fact
-  - name: DOG_FACT
-    type: call
-    url:  https://dogapi.dog/api/v1/facts
-  - name: JOIN
-    type: jq
-    inputs:
-    - cat: CAT_FACT.body
-    - dog: DOG_FACT.body
-    jq: |
-      {
-        "cat_fact": $cat.fact,
-        "dog_fact": $dog.facts[0]
-      }
-  - name: EXIT
-    type: exit
-    inputs:
-    - body: JOIN
-    status: 200
-targets:
-  - service
-formats:
-  - curl
-  - konnect
-  - yaml
-  - kubernetes
-  - terraform
-{% endplugin_example %}
-
-<!-- vale on -->
+```sh
+curl -X POST http://localhost:8001/services/my-service/plugins \
+   --header "accept: application/json" \
+   --header "Content-Type: application/json" \
+   --data '
+   {
+ "name": "datakit",
+ "config": {
+   "debug": true,
+   "nodes": [
+     {
+       "name": "CAT_FACT",
+       "type": "call",
+       "url": "https://catfact.ninja/fact"
+     },
+     {
+       "name": "DOG_FACT",
+       "type": "call",
+       "url": "https://dogapi.dog/api/v1/facts"
+     },
+     {
+       "name": "JOIN",
+       "type": "jq",
+       "inputs": [
+         {
+           "cat": "CAT_FACT.body"
+         },
+         {
+           "dog": "DOG_FACT.body"
+         }
+       ],
+       "jq": "{\n  \"cat_fact\": $cat.fact,\n  \"dog_fact\": $dog.facts[0]\n}\n"
+     },
+     {
+       "name": "EXIT",
+       "type": "exit",
+       "inputs": [
+         {
+           "body": "JOIN"
+         }
+       ],
+       "status": 200
+     }
+   ]
+ }
+}
+   '
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Validate
 
 Access the service via the route `my-route` to test Datakit:
 
 ```sh
-curl http://locahost:8000/my-route
+curl -i http://localhost:8000/my-route
 ```
 
 You should get a `200` response with a random fact from each fact generator called in the config:
