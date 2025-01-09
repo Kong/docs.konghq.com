@@ -69,7 +69,7 @@ jobs:
           JEKYLL_CONFIG_FILES: jekyll.yml
         run: |
           npm install -g wait-on
-          netlify dev & wait-on http://localhost:8888
+          npx netlify dev & wait-on http://localhost:8888
           npm test
 
       - name: Check for broken markdown anchors
