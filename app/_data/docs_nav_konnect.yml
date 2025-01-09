@@ -160,6 +160,8 @@
           url: /service-catalog/integrations/traceable/
         - text: Datadog
           url: /service-catalog/integrations/datadog/
+        - text: Slack
+          url: /service-catalog/integrations/slack/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
