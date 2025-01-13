@@ -2,6 +2,101 @@
 
 <!--vale off-->
 
+## Week 2
+
+### [fix: workspace collision](https://github.com/Kong/docs.konghq.com/pull/8332) (2025-01-10)
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.8.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/workspaces
+
+
+### [fix: we do not support uploading the custom schema via decK.](https://github.com/Kong/docs.konghq.com/pull/8324) (2025-01-08)
+
+Clarify that when using decK with custom plugins, the schema must be uploaded to Konnect first. After that, custom plugins can be managed like any other entity. We do not support uploading the custom schema via decK.
+
+(https://kongstrong.slack.com/archives/C04349E4KRC/p1736269545150239)
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.8.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/workspaces
+
+
+### [Fix: RHEL7 deprecation version](https://github.com/Kong/docs.konghq.com/pull/8320) (2025-01-07)
+
+The deprecation notice for rhel7 mentions the wrong kong version.
+Checked all the other version entries (2.8 onward), all the rest are correct.
+
+Issue reported on slack: https://kongstrong.slack.com/archives/CDSTDSG9J/p1736248819331859
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [docs: update the key calculation expression of proxy cache](https://github.com/Kong/docs.konghq.com/pull/8316) (2025-01-08)
+
+In [the description of Proxy Cache](https://docs.konghq.com/hub/kong-inc/proxy-cache/), it is explained that the cache key is calculated using the following expression.
+
+```
+key = md5(UUID | method | request)
+```
+
+However, in the source code of Proxy Cache (3.9.0), the cache key is calculated from the following five elements.
+
+https://github.com/Kong/kong/blob/3.9.0/kong/plugins/proxy-cache/cache_key.lua#L111-L112
+
+Because of that, I have updated the expression in the documentation to match it with the one of source code.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/proxy-cache/overview/
+
+
+### [Update _index.md](https://github.com/Kong/docs.konghq.com/pull/8315) (2025-01-06)
+
+Updating some issues with the text in this plugin description
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-prompt-template/overview/
+
+
+### [Fix: typos in plugin development](https://github.com/Kong/docs.konghq.com/pull/8311) (2025-01-06)
+
+Fixed several small typos in plugin development pages.
+ 
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.8.x/kong-enterprise/workspaces
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/workspaces
+
 ## Week 50
 
 ### [Fix: clarify license propagation in Konnect](https://github.com/Kong/docs.konghq.com/pull/8262) (2024-12-13)
