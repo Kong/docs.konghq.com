@@ -6,8 +6,6 @@
 
 ### [fix: workspace collision](https://github.com/Kong/docs.konghq.com/pull/8332) (2025-01-10)
 
-
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.1.x/kong-enterprise/workspaces
@@ -77,13 +75,6 @@ Because of that, I have updated the expression in the documentation to match it 
 
 Updating some issues with the text in this plugin description
 
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/ai-prompt-template/overview/
@@ -91,11 +82,8 @@ Updating some issues with the text in this plugin description
 
 ### [Fix: typos in plugin development](https://github.com/Kong/docs.konghq.com/pull/8311) (2025-01-06)
 
-<!-- What did you change and why? -->
 Fixed several small typos in plugin development pages.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.1.x/kong-enterprise/workspaces
