@@ -29,7 +29,7 @@ registration, or configure custom plugins.
 
 ## Prerequisites
 
-* decK v1.12.0 or later [installed](/deck/latest/installation/).
+* decK v1.40.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple data plane node](/konnect/getting-started/configure-data-plane-node/).
 * A [personal access token (PAT)](/konnect/org-management/access-tokens/).
 
@@ -85,7 +85,7 @@ configured, decK creates the file with only the format version and control plane
 name:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 _konnect:
   control_plane_name: default
 ```
@@ -107,7 +107,7 @@ For this example, let's add a new service.
 1. Add the following snippet to your `konnect.yaml` file:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     _konnect:
       control_plane_name: default
     services:
@@ -275,7 +275,7 @@ You can also use decK to migrate or duplicate configuration between control plan
 1. In the file, change the control plane name to the new group:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: 3.0"
     _konnect:
       control_plane_name: staging
     ```
