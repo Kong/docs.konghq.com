@@ -68,6 +68,7 @@ defaults:
       path: "deck"
     values:
       layout: "docs-v2"
+      no_version: true
 
   - scope:
       path: "mesh"

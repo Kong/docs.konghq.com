@@ -1,0 +1,12 @@
+- title: Introduction
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  items:
+    - text: Overview
+      url: /
+    - text: Support Policy
+      url: /support-policy
+    - text: Changelog
+      url: >-
+        https://github.com/Kong/deck/blob/main/CHANGELOG.md
+      absolute_url: true
+      target_blank: true

@@ -256,13 +256,15 @@
 /deck/overview/                       /deck/
 /hub/kong-inc/deck/                   /deck/
 /hub/hbagdi/deck/                     /deck/
-/deck/commands/                       /deck/latest/reference/deck/
-/deck/guides/*                        /deck/latest/guides/:splat
-/deck/compatibility-promise/          /deck/latest/compatibility-promise/
-/deck/design-architecture/            /deck/latest/design-architecture/
-/deck/faqs/                           /deck/latest/faqs/
-/deck/installation/                   /deck/latest/installation/
-/deck/terminology/                    /deck/latest/terminology/
+/deck/commands/                       /deck/reference/deck/
+/deck/guides/*                        /deck/guides/:splat
+/deck/compatibility-promise/          /deck/compatibility-promise/
+/deck/design-architecture/            /deck/design-architecture/
+/deck/faqs/                           /deck/faqs/
+/deck/installation/                   /deck/installation/
+/deck/terminology/                    /deck/terminology/
+/deck/latest/ /deck/
+/deck/latest/* /deck/:splat
 
 
 # KUBERNETES

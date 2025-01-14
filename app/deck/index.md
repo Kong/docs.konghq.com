@@ -12,12 +12,10 @@ content_type: explanation
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
     <div class="install-text">Install decK</div>
   </a>
-  {% if_version gte:1.24.x %}
   <a href="/deck/{{page.release}}/guides/apiops/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-cogwheel-nav.svg" alt="">
     <div class="install-text">APIOps with decK</div>
   </a>
-  {% endif_version %}
   <a href="/deck/{{page.release}}/reference/deck/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
     <div class="install-text">CLI Reference</div>
@@ -41,15 +39,12 @@ State files encapsulate the complete configuration of Kong in a declarative form
 including services, routes, plugins, consumers, and other entities that define how requests
 are processed and routed through Kong.
 
-{% if_version gte:1.35.x %}
-Check out our [KongAir use case](/deck/latest/use-case/) to learn how decK can be used to
+Check out our [KongAir use case](/deck/use-case/) to learn how decK can be used to
 streamline API management processes for an airline.
-{% endif_version %}
 
 decK is compatible with {{site.ce_product_name}} >= 1.x and
 {{site.ee_product_name}} >= 0.35.
 
-{% if_version gte:1.35.x %}
 ## decK commands
 
 The decK commands are structured into three main categories:
@@ -69,9 +64,7 @@ The decK commands are structured into three main categories:
    - [deck file render](/deck/{{page.release}}/reference/deck_file_render/): Fuses multiple complete decK files, rendering a singular, unified configuration.
    - [deck file validate](/deck/{{page.release}}/reference/deck_file_validate/): Conducts an offline validation of the state file, pinpointing potential issues.
    - [deck file kong2kic](/deck/{{page.release}}/reference/deck_file_kong2kic/): Converts decK state files into {{site.kic_product_name}} manifests.
- {%- if_version gte:1.40.x %}
    - [deck file kong2tf](/deck/{{page.release}}/reference/deck_file_kong2tf/): Converts decK state files into Terraform resources.
-  {% endif_version %}
 
 3. **Gateway State Management**: This category encompasses commands that facilitate
 the synchronization of the final decK file with the target platform, be it {{site.konnect_product_name}}, {{site.base_gateway}}, 
@@ -85,8 +78,6 @@ or {{site.kic_product_name}}. This category includes:
 
 Through these categories and their associated commands, decK offers a comprehensive suite of tools 
 for configuration and management within the Kong platform.
-
-{% endif_version %}
 
 ## Looking for help or need to report an issue?
 
@@ -130,10 +121,8 @@ Read the [LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more
 ## More resources
 
 * [**decK FAQs**](/deck/{{page.release}}/faqs)
-{% if_version gte:1.35.x -%}
 * **Use case:** [Streamlining KongAir APIs](/deck/{{page.release}}/use-case/), based on the 
 [KongAir demo app](https://github.com/Kong/KongAir)
-{% endif_version -%}
 * **References:** The command line `--help` flag on the main command or a subcommand (like `diff`,
 `sync`, `reset`, and so on) shows the help text along with supported flags for those
 commands. You can also see the references for all [commands available with decK](/deck/{{page.release}}/reference/deck)
