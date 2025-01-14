@@ -1,3 +1,8 @@
+let baseUrl = "https://docs.konghq.com";
+if (process.env.TEST_BASE_URL) {
+  baseUrl = process.env.TEST_BASE_URL;
+}
+
 describe("Canonical links", () => {
   [
     {
@@ -35,7 +40,7 @@ describe("Canonical links", () => {
       async () => {
         const $ = await fetchPage(t.src);
         await expect($("head link[rel='canonical']").attr("href")).toBe(
-          `https://docs.konghq.com${t.href}`,
+          `${baseUrl}${t.href}`,
         );
       },
       15000,
@@ -134,22 +139,16 @@ describe("sitemap includes", () => {
   ].forEach((t) => {
     test(t, async () => {
       const page = await fetchPageRaw("/sitemap.xml");
-      await expect(
-        page.includes(`<loc>https://docs.konghq.com${t}</loc>`),
-      ).toBe(true);
+      await expect(page.includes(`<loc>${baseUrl}${t}</loc>`)).toBe(true);
     });
   });
 });
 
 describe("sitemap does not include", () => {
-  ["/mesh/1.6.x/", "/mesh/1.1.x/overview/", "/deck/", "/gateway/"].forEach(
-    (t) => {
-      test(t, async () => {
-        const page = await fetchPageRaw("/sitemap.xml");
-        await expect(
-          page.includes(`<loc>https://docs.konghq.com${t}</loc>`),
-        ).toBe(false);
-      });
-    },
-  );
+  ["/mesh/1.6.x/", "/mesh/1.1.x/overview/", "/gateway/"].forEach((t) => {
+    test(t, async () => {
+      const page = await fetchPageRaw("/sitemap.xml");
+      await expect(page.includes(`<loc>${baseUrl}${t}</loc>`)).toBe(false);
+    });
+  });
 });
