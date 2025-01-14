@@ -33,7 +33,7 @@ RSpec.describe SEO::Index do
         '/kuma-to-kong-mesh/' => { 'url' => '/kuma-to-kong-mesh/', 'page' => find_page_by_url('/kuma-to-kong-mesh/') },
 
         '/contributing/' => { 'url' => '/contributing/', 'page' => find_page_by_url('/contributing/') },
-        '/deck/VERSION/' => { 'url' => '/deck/', 'page' => find_page_by_url('/deck/'), 'version' => Gem::Version.new('1.16.0') },
+        '/deck/' => { 'url' => '/deck/', 'page' => find_page_by_url('/deck/') },
         '/gateway/VERSION/' => { 'url' => '/gateway/latest/', 'page' => find_page_by_url('/gateway/latest/'), 'version' => Gem::Version.new('3.0.0') },
         '/gateway/changelog/' => { 'url' => '/gateway/changelog/', 'page' => find_page_by_url('/gateway/changelog/'), 'version' => Gem::Version.new('3.0.0') },
 

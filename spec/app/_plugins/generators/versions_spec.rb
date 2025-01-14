@@ -3,10 +3,6 @@ RSpec.describe Jekyll::Versions do
     SafeYAML.load(File.read(File.join(site.source, '_data/kong_versions.yml')))
   end
 
-  let(:deck_versions) do
-    kong_versions.select { |v| v.fetch('edition') == 'deck' }
-  end
-
   let(:mesh_versions) do
     kong_versions.select { |v| v.fetch('edition') == 'mesh' }
   end
@@ -29,10 +25,6 @@ RSpec.describe Jekyll::Versions do
 
   let(:latest_kic) do
     { 'release' => '2.7.x', 'version' => '2.7.0', 'edition' => 'kubernetes-ingress-controller', 'latest' => true }
-  end
-
-  let(:latest_deck) do
-    { 'release' => '1.16.x', 'version' => '1.16.1', 'edition' => 'deck', 'latest' => true }
   end
 
   shared_examples_for 'does not set `release` and `version` to the page' do
@@ -58,7 +50,7 @@ RSpec.describe Jekyll::Versions do
     before { described_class.new.generate(site) }
 
     it 'sets kong_versions to the site' do
-      expect(site.data['kong_versions_deck']).to eq(deck_versions)
+      expect(site.data['kong_versions_deck']).to eq(['edition' => 'deck'])
       expect(site.data['kong_versions_mesh']).to eq(mesh_versions)
       expect(site.data['kong_versions_konnect']).to eq(['edition' => 'konnect'])
       expect(site.data['kong_versions_kic']).to eq(kubernetes_ingress_controller_versions)
@@ -69,7 +61,6 @@ RSpec.describe Jekyll::Versions do
     it 'sets the latest versions of the products to the site' do
       expect(site.data['kong_latest_mesh']).to eq(latest_mesh)
       expect(site.data['kong_latest_KIC']).to eq(latest_kic)
-      expect(site.data['kong_latest_deck']).to eq(latest_deck)
       expect(site.data['kong_latest_gateway']).to include(latest_gateway)
     end
 
@@ -154,23 +145,6 @@ RSpec.describe Jekyll::Versions do
         end
       end
 
-      context 'deck' do
-        let(:relative_path) { 'deck/pre-1.7/index.md' }
-
-        it 'adds version properties' do
-          expect(page.data['has_version']).to eq(true)
-          expect(page.data['edition']).to eq('deck')
-          expect(page.data['releases_hash']).to eq(deck_versions)
-          expect(page.data['kong_latest']).to eq(latest_deck)
-          expect(page.data['nav_items']).to eq(site.data['docs_nav_deck_pre-1.7'])
-        end
-
-        it 'sets `release` and `version` to the page' do
-          expect(page.data['release'].to_s).to eq('pre-1.7')
-          expect(page.data['version']).to eq('1.6.0')
-        end
-      end
-
       context 'gateway' do
         context 'with version' do
           let(:relative_path) { 'gateway/2.6.x/index.md' }
@@ -238,26 +212,6 @@ RSpec.describe Jekyll::Versions do
       end
 
       context 'single sourced pages' do
-        context 'deck' do
-          let(:relative_path) { '_src/deck/index.md' }
-
-          it 'adds version properties' do
-            expect(page.data['has_version']).to eq(true)
-            expect(page.data['edition']).to eq('deck')
-            expect(page.data['releases_hash']).to eq(deck_versions)
-            expect(page.data['kong_latest']).to eq(latest_deck)
-          end
-
-          it 'does not change the `release` and `version` set in the single sourced generator ' do
-            expect(page.data['release'].to_s).to eq('1.16.x')
-            expect(page.data['version']).to eq('1.16.1')
-          end
-
-          it 'cleans up nav_items for single sourced pages' do
-            expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_deck_116x').fetch('items'))
-          end
-        end
-
         context 'gateway' do
           let(:relative_path) { '_src/gateway/index.md' }
 
