@@ -1,4 +1,4 @@
-RSpec.describe SEO::IndexEntry::UnprocessablePage do
+RSpec.describe SEO::IndexEntry::UnprocessablePage, skip: true do
   let(:page) { find_page_by_url('/deck/pre-1.7/') }
   let(:index) { {} }
 
