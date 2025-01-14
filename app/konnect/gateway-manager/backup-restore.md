@@ -3,7 +3,7 @@ title: Back Up and Restore Konnect Configuration
 content_type: how-to
 ---
 
-Use [decK](/deck/latest/installation/) to back up and restore 
+Use [decK](/deck/installation/) to back up and restore 
 {{site.konnect_short_name}}'s control plane configuration. 
 
 With `deck gateway dump`, decK generates state files for each control plane, which act 
@@ -11,7 +11,7 @@ as snapshots of the control plane's configuration at that point in time.
 If a control plane's configuration is ever corrupted, you can then use these snapshots to 
 restore your control plane, or bring up another control plane with the same configuration.
 
-Review the list of [entities managed by decK](/deck/latest/reference/entities/) to see what can 
+Review the list of [entities managed by decK](/deck/reference/entities/) to see what can 
 be backed up.
 
 {:.note}
@@ -31,7 +31,7 @@ deck gateway dump \
 ```
 
 We recommend using a personal access token to authenticate with the {{site.konnect_short_name}} org. 
-You can also choose a [different form of authentication](/deck/latest/guides/konnect).
+You can also choose a [different form of authentication](/deck/guides/konnect).
 
 This command generates a state file for the control plane's entity
 configuration, for example:
@@ -81,5 +81,5 @@ Check your control plane in {{site.konnect_short_name}} to make sure the sync wo
 Open **Gateway Manager**, select your control plane, and check through the configured entities.
 
 ## More information
-* [Entities managed by decK](/deck/latest/reference/entities/)
-* [Using tags to back up a subset of configuration](/deck/latest/guides/backup-restore/#manage-a-subset-of-configuration)
+* [Entities managed by decK](/deck/reference/entities/)
+* [Using tags to back up a subset of configuration](/deck/guides/backup-restore/#manage-a-subset-of-configuration)

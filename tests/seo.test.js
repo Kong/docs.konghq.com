@@ -13,12 +13,14 @@ describe("Canonical links", () => {
       href: "/hub/kong-inc/application-registration/",
     },
     {
-      title: "links to the product index when showing the index page for a specific version (kic)",
+      title:
+        "links to the product index when showing the index page for a specific version (kic)",
       src: "/kubernetes-ingress-controller/2.5.x/",
       href: "/kubernetes-ingress-controller/latest/",
     },
-     {
-      title: "links to the product index when showing the index page for a specific version (gateway)",
+    {
+      title:
+        "links to the product index when showing the index page for a specific version (gateway)",
       src: "/gateway/3.7.x/",
       href: "/gateway/latest/",
     },
@@ -28,12 +30,16 @@ describe("Canonical links", () => {
       href: "/hub/",
     },
   ].forEach((t) => {
-    test(t.title, async () => {
-      const $ = await fetchPage(t.src);
-      await expect($("head link[rel='canonical']").attr("href")).toBe(
-        `https://docs.konghq.com${t.href}`
-      );
-    }, 15000);
+    test(
+      t.title,
+      async () => {
+        const $ = await fetchPage(t.src);
+        await expect($("head link[rel='canonical']").attr("href")).toBe(
+          `https://docs.konghq.com${t.href}`,
+        );
+      },
+      15000,
+    );
   });
 });
 
@@ -54,7 +60,9 @@ describe("noindex links", () => {
   ].forEach((t) => {
     test(t.title, async () => {
       const $ = await fetchPage(t.src);
-      await expect($("meta[name='robots'][content='follow,noindex']")).toHaveCount(1);
+      await expect(
+        $("meta[name='robots'][content='follow,noindex']"),
+      ).toHaveCount(1);
     });
   });
 });
@@ -76,7 +84,9 @@ describe("index links", () => {
   ].forEach((t) => {
     test(t.title, async () => {
       const $ = await fetchPage(t.src);
-      await expect($("meta[name='robots'][content='follow,index']")).toHaveCount(1);
+      await expect(
+        $("meta[name='robots'][content='follow,index']"),
+      ).toHaveCount(1);
     });
   });
 });
@@ -94,7 +104,9 @@ describe("unversioned content", () => {
   ].forEach((t) => {
     test(t.title, async () => {
       const $ = await fetchPage(t.src);
-      await expect($("meta[name='robots'][content='follow,index']")).toHaveCount(1);
+      await expect(
+        $("meta[name='robots'][content='follow,index']"),
+      ).toHaveCount(1);
 
       // Even unversioned content has a canonical link now
       await expect($("link[rel='canonical']")).toHaveCount(1);
@@ -108,10 +120,10 @@ describe("sitemap includes", () => {
     "/gateway/latest/",
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
-    "/deck/latest/",
+    "/deck/",
     "/gateway/latest/install/kubernetes/proxy/",
     "/mesh/latest/installation/ecs/",
-    "/deck/latest/installation/",
+    "/deck/installation/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
     "/mesh/changelog/",
@@ -122,22 +134,22 @@ describe("sitemap includes", () => {
   ].forEach((t) => {
     test(t, async () => {
       const page = await fetchPageRaw("/sitemap.xml");
-      await expect(page.includes(`<loc>https://docs.konghq.com${t}</loc>`)).toBe(true);
+      await expect(
+        page.includes(`<loc>https://docs.konghq.com${t}</loc>`),
+      ).toBe(true);
     });
   });
 });
 
-
 describe("sitemap does not include", () => {
-  [
-    "/mesh/1.6.x/",
-    "/mesh/1.1.x/overview/",
-    "/deck/",
-    "/gateway/",
-  ].forEach((t) => {
-    test(t, async () => {
-      const page = await fetchPageRaw("/sitemap.xml");
-      await expect(page.includes(`<loc>https://docs.konghq.com${t}</loc>`)).toBe(false);
-    });
-  });
+  ["/mesh/1.6.x/", "/mesh/1.1.x/overview/", "/deck/", "/gateway/"].forEach(
+    (t) => {
+      test(t, async () => {
+        const page = await fetchPageRaw("/sitemap.xml");
+        await expect(
+          page.includes(`<loc>https://docs.konghq.com${t}</loc>`),
+        ).toBe(false);
+      });
+    },
+  );
 });

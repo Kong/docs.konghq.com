@@ -35,7 +35,7 @@ If you're using Cassandra as your data store, [migrate off of Cassandra](/gatewa
     * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
     {% endif_version %}
 * [Review KIC upgrade compatibility](/kubernetes-ingress-controller/latest/guides/upgrade-kong-3x/).
-* If you're using decK, [upgrade it to the latest version](/deck/latest/installation/).
+* If you're using decK, [upgrade it to the latest version](/deck/installation/).
 
 Read this document thoroughly to successfully complete the upgrade process, as it includes all the necessary operational knowledge for the upgrade.
 

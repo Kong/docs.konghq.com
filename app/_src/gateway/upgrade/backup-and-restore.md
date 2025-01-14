@@ -36,12 +36,12 @@ However, decK also has its limitations:
 
 * **Performance**: decK uses the Admin API to read and write entities and might take longer than expected, especially when the number of entities is very large.
 
-  You can resolve this by increasing the number of threads by passing the flag `--parallelism` to [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/)
-  or [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/), or use decK’s
-  [distributed configuration](/deck/latest/guides/distributed-configuration/) feature.
+  You can resolve this by increasing the number of threads by passing the flag `--parallelism` to [`deck gateway sync`](/deck/reference/deck_gateway_sync/)
+  or [`deck gateway diff`](/deck/reference/deck_gateway_diff/), or use decK’s
+  [distributed configuration](/deck/guides/distributed-configuration/) feature.
 
 * **Entities managed by decK**: decK does not manage Enterprise-only entities, like RBAC roles, credentials, keyring, licence, etc. Configure these security related entities separately using Admin API or Kong Manager.
-See the reference for [Entities managed by decK](/deck/latest/reference/entities/) for a full list.
+See the reference for [Entities managed by decK](/deck/reference/entities/) for a full list.
 
 Due to these limitations, we recommend prioritizing the [database-native method](#database-native-backup) in deployments using a database.
 

@@ -132,4 +132,4 @@ The purpose of this phase is to migrate traffic in a controlled manner, with a r
 After migration, basic authentication credentials can be managed by decK. See the following topics to learn how to manage secrets with deck:
 
 * [Gateway secret management GCP](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
-* [Secrets management with decK](/deck/latest/guides/vaults/#configure-a-secret-vault)
+* [Secrets management with decK](/deck/guides/vaults/#configure-a-secret-vault)

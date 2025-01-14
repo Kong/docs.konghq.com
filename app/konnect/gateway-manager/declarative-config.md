@@ -22,14 +22,14 @@ parameters using a decK configuration file (`~/.deck.yaml` by default) to target
 `https://cloud.konghq.com`. If you don't pass any {{site.konnect_short_name}} parameters to decK,
 decK looks for a local {{site.base_gateway}} instance instead.
 
-Run `deck help` to see all available flags, or see the [decK CLI reference](/deck/latest/reference/deck/).
+Run `deck help` to see all available flags, or see the [decK CLI reference](/deck/reference/deck/).
 
 You _cannot_ use decK to publish content to the Dev Portal, manage application
 registration, or configure custom plugins.
 
 ## Prerequisites
 
-* decK v1.12.0 or later [installed](/deck/latest/installation/).
+* decK v1.12.0 or later [installed](/deck/installation/).
 * Optional: To test your configuration, [set up a simple data plane node](/konnect/getting-started/configure-data-plane-node/).
 * A [personal access token (PAT)](/konnect/org-management/access-tokens/).
 
@@ -264,7 +264,7 @@ No API key found in request.
 You can also use decK to migrate or duplicate configuration between control planes.
 
 1. Export configuration from the original control plane with
-[`deck gateway dump`](/deck/latest/reference/deck_gateway_dump) into a state file:
+[`deck gateway dump`](/deck/reference/deck_gateway_dump) into a state file:
 
     ```bash
     deck gateway dump \
@@ -281,7 +281,7 @@ You can also use decK to migrate or duplicate configuration between control plan
     ```
 
 1. Using the state file you just edited, preview the import with
-the [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/)
+the [`deck gateway diff`](/deck/reference/deck_gateway_diff/)
 command, pointing to the control plane that you want to target:
 
     ```sh
@@ -289,7 +289,7 @@ command, pointing to the control plane that you want to target:
       --konnect-control-plane-name staging
     ```
 
-1. If everything looks good, [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/)
+1. If everything looks good, [`deck gateway sync`](/deck/reference/deck_gateway_sync/)
  the configuration to the new control plane:
 
     ```sh
@@ -302,5 +302,5 @@ the same configuration.
 
 ## More information
 
-* [decK CLI reference](/deck/latest/reference/deck/)
+* [decK CLI reference](/deck/reference/deck/)
 * [Import {{site.base_gateway}} configuration into {{site.konnect_short_name}}](/konnect/getting-started/migration/)

@@ -60,7 +60,7 @@ Konnect supports the following vault backends:
 * Azure Key Vault
 * Environment variables
 
-You can manage all of these vaults through the [Gateway Manager](/konnect/gateway-manager/configuration/vaults/how-to/) or with [decK](/deck/latest/guides/vaults/).
+You can manage all of these vaults through the [Gateway Manager](/konnect/gateway-manager/configuration/vaults/how-to/) or with [decK](/deck/guides/vaults/).
 
 ## See also
 

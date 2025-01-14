@@ -103,7 +103,7 @@ RSpec.describe ProductsRenderer do
         context 'renders all the latest versions of the products' do
           [
             '/gateway/latest/', '/mesh/latest/', '/mesh/latest/features/', '/gateway/latest/admin-api/',
-            '/deck/latest/', '/deck/latest/terminology/',
+            '/deck/', '/deck/terminology/',
             '/kubernetes-ingress-controller/latest/', '/kubernetes-ingress-controller/latest/faq/'
           ].each do |page_dir|
             it_behaves_like 'renders the page', page_dir

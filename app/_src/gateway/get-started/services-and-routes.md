@@ -81,7 +81,7 @@ See [Routes](/gateway/{{page.release}}/key-concepts/routes/) for a description o
 The following tutorial walks through managing and testing services and routes using the 
 {{site.base_gateway}} [Admin API](/gateway/latest/admin-api/). {{site.base_gateway}} 
 also offers other options for configuration management including
-[{{site.konnect_saas}}](/konnect/) and [decK](/deck/latest/).
+[{{site.konnect_saas}}](/konnect/) and [decK](/deck/).
 
 In this section of the tutorial, you will complete the following steps:
 * Create a service pointing to the [httpbin](https://httpbin.konghq.com/) API, which provides testing facilities 

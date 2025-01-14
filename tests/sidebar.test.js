@@ -19,7 +19,7 @@ describe("Version Switcher", () => {
     test(t.title, async () => {
       const $ = await fetchPage(t.page);
       await expect($(t.selector).attr("href")).toMatch(
-        new RegExp(`^${t.href}$`)
+        new RegExp(`^${t.href}$`),
       );
     });
   });
@@ -32,7 +32,7 @@ describe("Older version documentation", () => {
 
   test("does not show on the latest version", async () => {
     const $ = await fetchPage(
-      `/gateway/${latestGatewayVersion}/install/linux/rhel/`
+      `/gateway/${latestGatewayVersion}/install/linux/rhel/`,
     );
     await expect($(oldVersionSelector)).toHaveCount(0);
   });
@@ -41,9 +41,9 @@ describe("Older version documentation", () => {
     const $ = await fetchPage(`/gateway/3.6.x/install/docker/`);
     const s = $(oldVersionSelector);
     await expect(s).toHaveCount(1);
-    console.log(s.attr("href"))
+    console.log(s.attr("href"));
     await expect(s.attr("href")).toMatch(
-      new RegExp(`^/gateway/latest/install/docker/$`)
+      new RegExp(`^/gateway/latest/install/docker/$`),
     );
   });
 });
@@ -59,7 +59,7 @@ describe("Sidebar section count", () => {
     },
     {
       title: "decK",
-      path: "/deck/latest/",
+      path: "/deck/",
       count: 6,
     },
   ].forEach((t) => {
