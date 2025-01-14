@@ -3,10 +3,99 @@
   items:
     - text: Overview
       url: /
+    - text: Configuration Options
+      url: /configuration
     - text: Support Policy
-      url: /support-policy
-    - text: Changelog
-      url: >-
-        https://github.com/Kong/deck/blob/main/CHANGELOG.md
-      absolute_url: true
-      target_blank: true
+      url: /support
+    - text: Security Policy
+      url: /security
+    - text: Konnect Compatibility
+      url: /konnect
+    - text: On-Prem Compatibility
+      url: /on-prem
+- title: Changelog
+  icon: /assets/images/icons/documentation/icn-references-color.svg
+  url: >-
+    https://github.com/Kong/deck/blob/main/CHANGELOG.md
+  absolute_url: true
+  target_blank: true
+- title: Installation
+  icon: /assets/images/icons/documentation/icn-deployment-color.svg
+  items:
+    - text: Overview
+      url: /install/
+- title: Get Started
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /get-started/
+- title: Managing Kong Gateway
+  icon: /assets/images/icons/documentation/icn-admin-api-color.svg
+  items:
+    - text: Overview
+      url: /manage-gateway/
+    - text: Backup
+      url: /manage-gateway/backup/
+    - text: Sync
+      url: /manage-gateway/sync/
+    - text: Validate
+      url: /manage-gateway/validate/
+    - text: RBAC
+      url: /manage-gateway/rbac/
+    - text: Workspaces
+      url: /manage-gateway/workspaces/
+    - text: Tags
+      url: /manage-gateway/tags/
+    - text: Deduplicate Plugin Configuration
+      url: /manage-gateway/deduplicate/
+    - text: Object Defaults
+      url: /manage-gateway/defaults/
+    - text: Sensitive Data
+      url: /manage-gateway/sensitive-data/
+    - text: Command Reference
+      url: /manage-gateway/commands/
+- title: decK Files
+  icon: /assets/images/icons/documentation/icn-solution-guide.svg
+  items:
+    - text: Overview
+      url: /deck-file/
+    - text: Config Generation
+      url: /deck-file/generation/
+    - text: Linting
+      url: /deck-file/linting/
+    - text: File Manipulation
+      items:
+        - text: Update Values
+          url: /deck-file/manipulation/patch/
+        - text: Plugins
+          url: /deck-file/manipulation/plugins/
+        - text: Tags
+          url: /deck-file/manipulation/tags/
+    - text: Combining Files
+      items:
+        - text: Merge
+          url: /deck-file/combining/merge/
+        - text: Render
+          url: /deck-file/combining/render/
+        - text: Namespace
+          url: /deck-file/combining/namespace/
+    - text: Validate
+      url: /deck-file/validate/
+    - text: Convert
+      url: /deck-file/convert/
+- title: APIOps
+  icon: /assets/images/icons/documentation/icn-documentation-small.svg
+  items:
+    - text: Overview
+      url: /apiops/
+    - text: Continuous Integration
+      url: /apiops/continuous-integration/
+    - text: Federated Config
+      url: /apiops/federated-configuration/
+- title: Reference
+  icon: /assets/images/icons/documentation/icn-faq-color.svg
+  items:
+    - text: Entities
+      url: /reference/entities/
+    - text: CLI
+      url: /reference/cli/
+    - text: FAQ
+      url: /reference/faq/
