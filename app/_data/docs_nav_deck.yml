@@ -20,8 +20,8 @@
   items:
     - text: Overview
       url: /install/
-    - text: Package
-      url: /install/package/
+    - text: Binary
+      url: /install/binary/
     - text: Docker
       url: /install/docker/
     - text: GitHub Actions
