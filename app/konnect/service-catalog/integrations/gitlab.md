@@ -17,7 +17,7 @@ For each linked Project, the UI can show a **Project Summary** with simple data 
 
 ## Prerequisites
 
-* You need the [Owner GitLab role](https://docs.gitlab.com/ee/user/permissions.html) to authorize the integration. This is required for event injestion.
+* You need the [Owner GitLab role](https://docs.gitlab.com/ee/user/permissions.html) to authorize the integration. This is required for event ingestion.
 * Only [GitLab.com subscriptions](https://docs.gitlab.com/ee/subscriptions/gitlab_com/) are supported at this time
 
 ## Authorize the GitLab integration
