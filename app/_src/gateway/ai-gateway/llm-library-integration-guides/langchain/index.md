@@ -1,7 +1,6 @@
 ---
 nav_title: Langchain
 title: Set up AI Proxy with Langchain
-minimum_version: 3.9.x
 ---
 
 This guide walks you through setting up the AI Proxy plugin with [Langchain](https://www.langchain.com/).
