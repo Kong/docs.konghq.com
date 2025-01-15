@@ -414,6 +414,12 @@ items:
             url: /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
             generate: false
             absolute_url: true
+      - text: LLM Library Integration Guides
+        items:
+          - text: Langchain
+            url: /ai-gateway/llm-library-integration-guides/langchain/
+            generate: false
+            absolute_url: true
       - text: AI Gateway Analytics
         url: /ai-gateway/ai-analytics/
         generate: false

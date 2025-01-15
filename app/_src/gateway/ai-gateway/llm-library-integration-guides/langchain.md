@@ -6,10 +6,6 @@ minimum_version: 3.9.x
 
 This guide walks you through setting up the AI Proxy plugin with [Langchain](https://www.langchain.com/).
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='intro' %}
-
-## Kong AI Gateway
-
 [Kong AI Gateway](https://konghq.com/products/kong-ai-gateway) delivers a suite of AI-specific plugins
 on top of the API Gateway platform, enabling you to:
 
