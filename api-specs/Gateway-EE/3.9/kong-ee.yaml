@@ -260,6 +260,85 @@ components:
         default: true
         type: boolean
   schemas:
+    Admin:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the admin.
+        created_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the admin was created.
+        updated_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the admin was last updated.
+        username:
+          type: string
+          description: The admin's username.
+          uniqueItems: true
+        username_lower:
+          type: string
+          description: The admin's username in lowercase.
+        custom_id:
+          type: string
+          description: The Admin’s custom ID.
+          uniqueItems: true
+        email:
+          type: string
+          format: email
+          description: The admin's email address.
+          uniqueItems: true
+        status:
+          type: string
+          description: The status of the admin.
+          enum:
+            - active
+            - inactive
+        rbac_token_enabled:
+          type: boolean
+          description: Allows the Admin to use and reset their RBAC token; true by default.
+          default: true
+        consumer:
+          type: string
+          description: The ID of the associated consumer.
+          format: uuid
+        rbac_user:
+          type: string
+          description: The ID of the associated RBAC user.
+          format: uuid
+      required:
+        - username
+        - status
+        - rbac_token_enabled
+        - consumer
+        - rbac_user
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the group.
+        created_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the group was created.
+        updated_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the group was last updated.
+        name:
+          type: string
+          description: The name of the group.
+          uniqueItems: true
+        comment:
+          type: string
+          description: Any comments associated with the specific group.
+      required:
+        - name
     UnauthorizedError:
       type: object
       properties:
