@@ -183,6 +183,6 @@ whereas columns represent constant value types that display on the right-hand si
   Meaning `http.path ~ r#"/foo/\d"#` could match a path like `/foo/1` or `/some/thing/foo/1`.
   If you want to match from the beginning of the string (anchoring the regex), then you must
   manually specify it with the `^` meta-character. For example, `http.path ~ r#"^/foo/\d"#`.
-  * When performing IP address-related comparisons with `==`, `in`, or `not in`, different families of
+  * When performing IP address-related comparisons with `==`, `in`, different families of
   address types for the field and constant value will always cause the predicate to return `false` at
-  runtime.
+  runtime while `not in` will always return `true` for address of different family.
