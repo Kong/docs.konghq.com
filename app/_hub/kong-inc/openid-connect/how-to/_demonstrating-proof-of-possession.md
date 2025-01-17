@@ -86,8 +86,10 @@ plugin: kong-inc/openid-connect
 name: openid-connect
 config:
   issuer: "http://keycloak.test:8440/auth/realms/master"
-  client_id: "cert_bound"
-  client_secret: "cf4c655a-0622-4ce6-a0de-d3353ef0b714"
+  client_id: 
+    - "cert_bound"
+  client_secret: 
+    - "cf4c655a-0622-4ce6-a0de-d3353ef0b714"
   auth_methods:
     - "bearer"
   proof_of_possession_dpop: "strict"
