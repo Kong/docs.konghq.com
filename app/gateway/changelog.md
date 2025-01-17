@@ -2982,6 +2982,13 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 
+## 3.4.3.16
+**Release Date** 2025/01/16
+
+### Dependencies
+
+* Bumped `libxml2` to 2.11.9 to address [CVE-2024-40896](https://nvd.nist.gov/vuln/detail/CVE-2024-40896).
+
 ## 3.4.3.15
 **Release Date** 2025/01/10
 
