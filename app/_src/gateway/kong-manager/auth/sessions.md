@@ -33,7 +33,7 @@ admin_gui_session_conf = {
 }
 ```
 {% endif_version %}
-{% if_version gte:3.2.x lte:3.3.x %}
+{% if_version gte:3.2.x lte:3.9.x %}
 
 ```
 enforce_rbac = on
@@ -50,7 +50,7 @@ admin_gui_session_conf = {
 
 {% endif_version %}
 
-{% if_version gte:3.4.x %}
+{% if_version gte:3.10.x %}
 
 ```
 enforce_rbac = on
@@ -81,7 +81,7 @@ Attribute | Description
 
 {% endif_version %}
 
-{% if_version gte:3.2.x lte:3.3.x %}
+{% if_version gte:3.2.x lte:3.9.x %}
 
 Attribute | Description
 ----------|------------
@@ -95,7 +95,7 @@ Attribute | Description
 
 {% endif_version %}
 
-{% if_version gte:3.4.x %}
+{% if_version gte:3.10.x %}
 
 Attribute | Description
 ----------|------------
@@ -104,9 +104,9 @@ Attribute | Description
 `storage` | The location where session data is stored. <br> The default value is `cookie`. It may be more secure if set to `kong`, since access to the database would be required.
 `cookie_lifetime` | The duration (in seconds) that the session will remain open. <br> The default value is `3600`.
 `cookie_secure` | Applies the Secure directive so that the cookie may be sent to the server only with an encrypted request over the HTTPS protocol. See [Session Security](#session-security) for exceptions. <br> The default value is `true`.
-`cookie_samesite`| Determines whether and how a cookie may be sent with cross-site requests. See [Session Security](#session-security) for exceptions. <br> The default value is `strict`.
-`hash_subject`| Whether to hash or not the subject when `store_metadata` is enabled. The default value is false.
-`store_metadata`| Whether to also store metadata of sessions, such as collecting data of sessions for a specific audience belonging to a specific subject. The default value is false. If enable this option. You should set the `storage` to `kong`.
+`cookie_same_site`| Determines whether and how a cookie may be sent with cross-site requests. See [Session Security](#session-security) for exceptions. <br> The default value is `strict`.
+`hash_subject`| Whether to hash or not the subject when `store_metadata` is enabled. The default value is `false`.
+`store_metadata`| Whether to also store metadata of sessions, such as collecting data of sessions for a specific audience belonging to a specific subject. The default value is `false`. Upon enabling this option, please also set `storage` to `kong`.
 
 {% endif_version %}
 
@@ -119,11 +119,12 @@ Attribute | Description
 For detailed descriptions of each configuration property, learn more in the
 [Session plugin documentation](/hub/kong-inc/session).
 
-{% if_version gte:3.4.x %}
+{% if_version gte:3.10.x %}
 
 ## Multiple session management
 
-The multiple session by default is isolated. Sessions are not invalidated when the password is changed if `"store_metadata": false` or `"storage": "cookie"` is used. In these cases, the session's metadata not be stored in DB and the cookie is managed by client-side. Only when session's metadata is stored server-side with  `"storage": "kong","store_metadata": true` set is the all sessions actively invalidated.
+Sessions are isolated by default. Sessions but the current one will not be invalidated upon password updates if `store_metadata` is set to `false` or `storage` is set to `"cookie"`. In these cases, the session metadata is not stored on the server side and the session cookie is kept on the client side.
+With `storage` set to `"kong"` and `store_metadata` set to `true`, session metadata will be stored on the server side, and all associated sessions will be invalidated upon password updates.
 
 {% endif_version %}
 
@@ -175,8 +176,8 @@ admin_gui_session_conf = {
 }
 ```
 
-{% if_version gte:3.4.x %}
-If you want to invalidate all sessions when the password is changed, the following configuration could be used for Basic Auth:
+{% if_version gte:3.10.x %}
+If you want to invalidate all sessions when the password is changed, the following configuration could be used with the Basic Auth plugin:
 
 ```
 enforce_rbac = on
@@ -186,11 +187,11 @@ admin_gui_session_conf = {
     "secret":"change-this-secret",
     "storage":"kong",
     "cookie_secure":false,
-    "store_metadata": true
+    "store_metadata":true
 }
 ```
 
-If enabling the `store_metadata` and for PII reasons, the following configuration could be used instead.
+If you need to avoid storing session subjects as clear text due to PII concerns with `store_metadata` enabled, the following configuration can be used instead:
 
 ```
 enforce_rbac = on
@@ -200,8 +201,8 @@ admin_gui_session_conf = {
     "secret":"change-this-secret",
     "storage":"kong",
     "cookie_secure":false,
-    "hash_subject": true,
-    "store_metadata": true
+    "hash_subject":true,
+    "store_metadata":true
 }
 ```
 
