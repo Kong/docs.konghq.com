@@ -2,6 +2,62 @@
 
 <!--vale off-->
 
+## Week 3
+
+### [Fix: OIDC plugin params listed as strings instead of arrays](https://github.com/Kong/docs.konghq.com/pull/8347) (2025-01-17)
+
+In the OIDC plugin, `client_id`, `client_secret`, and` client_auth` must be arrays. See the config schema to verify:  https://docs.konghq.com/hub/kong-inc/openid-connect/configuration/
+
+Fixes #8343
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/client-authentication/
+
+
+### [Release: Gateway 3.4.3.16](https://github.com/Kong/docs.konghq.com/pull/8346) (2025-01-17)
+
+Version bump and changelog for 3.4.3.16
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.4.3.15](https://github.com/Kong/docs.konghq.com/pull/8334) (2025-01-13)
+
+Changelog and version bump for Gateway 3.4.3.15.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Update decK compatible version with Konnect](https://github.com/Kong/docs.konghq.com/pull/8331) (2025-01-13)
+
+Versions of decK before 1.4 have some inconsistency issues when used with Konnect. We need to tell our users to use 1.40 with Konnect at a minimum.
+
+issue reported on slack: https://kongstrong.slack.com/archives/C03NRECFJPM/p1734711282132209
+
+#### Modified
+
+- https://docs.konghq.com/konnect/compatibility
+- https://docs.konghq.com/konnect/gateway-manager/control-plane-groups/migrate
+- https://docs.konghq.com/konnect/gateway-manager/declarative-config
+
 ## Week 2
 
 ### [fix: workspace collision](https://github.com/Kong/docs.konghq.com/pull/8332) (2025-01-10)
