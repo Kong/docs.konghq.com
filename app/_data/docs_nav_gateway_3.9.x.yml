@@ -418,7 +418,6 @@ items:
         items:
           - text: Langchain
             url: /ai-gateway/llm-library-integration-guides/langchain/
-            generate: false
       - text: AI Gateway Analytics
         url: /ai-gateway/ai-analytics/
         generate: false
