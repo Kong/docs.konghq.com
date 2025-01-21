@@ -45,7 +45,7 @@ For the {{site.konnect_product_name}} version support policy, review the [{{site
 > Each LTS is supported for 3 years from the date of release. 
 > This will allow adjacent LTS releases to have a support overlap of 2 years in which customers can plan their upgrades.
 > <br><br>
-> _* Release timeframes are subject to change_
+> _* Release timeframes are subject to change._
 
 ## Versioning
 
