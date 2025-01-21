@@ -10,12 +10,14 @@ The `ENTERPRISE_PATCH` segment identifies a sub-patch for {{site.ee_product_name
 This policy **only** applies to {{site.base_gateway}} and {{site.ee_product_name}}. 
 For the {{site.konnect_product_name}} version support policy, review the [{{site.konnect_product_name}} policy](/konnect/compatibility/#kong-gateway-version-compatibility).
 
-{:.important}
+{:.note}
 > **Long Term Support Policy Update**
 > <br><br>
-> We are planning to release our next LTS version, 3.10, in late March*, and moving forward we plan to release 4 minor versions per year every year: one in March, one in June, one in September and the last one in December. Each year, the first version we release will become an LTS release, so starting from 3.10 we will have 1 LTS every year in March of that year. 
+> Beginning in March 2025, we plan to release 4 minor versions per year, every year: one in March, one in June, one in September, and the last one in December. 
+> Each year, the first version we release will become an LTS release. 
+> Starting from 3.10, we will have 1 LTS release every year, in March* of that year.
 > <br><br>
-Example of planned LTS schedule for next 4 years:
+> Example of planned LTS schedule for next 4 years:
 > <table>
 >  <thead>
 >    <th>LTS Version</th>
@@ -40,7 +42,8 @@ Example of planned LTS schedule for next 4 years:
 >    </tr>
 >  </tbody>
 > </table>
-> Each LTS is supported for 3 years from date of release. This will allow adjacent LTS releases to have a support overlap of 2 years in which customers can plan their upgrade.
+> Each LTS is supported for 3 years from the date of release. 
+> This will allow adjacent LTS releases to have a support overlap of 2 years in which customers can plan their upgrades.
 > <br><br>
 > _* Release timeframes are subject to change_
 
