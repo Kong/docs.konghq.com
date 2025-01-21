@@ -339,6 +339,12 @@
   releaseDate: "2024-11-28"
   endOfLifeDate: "2025-11-28"
   latest: true
+- edition: gateway-operator
+  version: 1.5.0
+  release: 1.5.x
+  releaseDate: "TBA"
+  endOfLifeDate: "TBA"
+  label: unreleased
 - edition: mesh
   version: 2.2.9
   release: 2.2.x

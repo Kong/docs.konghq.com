@@ -10,14 +10,17 @@ with-control-plane=true %}
 
 ## Introduction of `KongPluginBinding` CRD
 
-The `KongPluginBinding` is the CRD used to manage the binding relationship between plugins and attached {{site.konnect_short_name}} entities, including services, routes, consumers, and consumer groups, or a supported combination of these entities.
+The `KongPluginBinding` is the CRD used to manage the binding relationship between plugins and attached {{site.konnect_short_name}} 
+entities, including services, routes, consumers, and consumer groups, or a supported combination of these entities.
+{% if_version gte:1.5.x %} It can also be used to bind a plugin globally to a control plane when `spec.scope` is set to `GlobalInControlPlane`. {% endif_version %} 
+Each `KongPluginBinding` represents a single plugin instance on {{ site.konnect_short_name }}.
 
-This CRD has two parts for the binding description in its specification: 
-* `spec.pluginRef`: Refers to a `KongPlugin` resource which contains the plugin name and configuration of the plugin.
-* `spec.targets`: Refers to the entity or combination of entities that the plugin is attached to.
-The `spec.controlPlaneRef` refers to the {{site.konnect_product_name}} control plane this `KongPluginBinding` is associated with.
+This CRD has the following fields:
+* `spec.pluginRef`: Refers to a `KongPlugin` object which contains the plugin name and configuration of the plugin.
+* `spec.targets`: Refers to the entity or combination of entities that the plugin is attached to.{% if_version gte:1.5.x %} At least one target has to be specified when `spec.scope` is `OnlyTargets` (default). {% endif_version %}
+* `spec.controlPlaneRef`: Refers to the {{site.konnect_product_name}} control plane this `KongPluginBinding` is associated with.
 
-Each `KongPluginBinding` represents a plugin on {{ site.konnect_short_name }}.
+You can refer to the CR [API](/gateway-operator/{{ page.release }}/reference/custom-resources/#kongpluginbinding) to see all the available fields.
 
 ## Using an unmanaged `KongPluginBinding`
 
@@ -176,6 +179,36 @@ spec:
       name: cp
 ' | kubectl apply -f -
 ```
+
+{% if_version gte:1.5.x %}
+### Attaching plugins globally to a control plane
+
+You can also attach a plugin globally to a control plane by setting the `spec.scope` field to `GlobalInControlPlane` in the `KongPluginBinding` CRD.
+
+Create a `KongPluginBinding` to attach a plugin globally to a control plane like this:
+
+```shell
+echo '
+kind: KongPluginBinding
+apiVersion: configuration.konghq.com/v1alpha1
+metadata:
+  namespace: default
+  name: binding-global-rate-limiting
+spec:
+  # This indicates that the plugin is attached globally to the control plane and allows leaving targets empty.
+  scope: GlobalInControlPlane
+  pluginRef:
+    kind: KongPlugin
+    name: rate-limiting-minute-10
+  controlPlaneRef:
+    type: konnectNamespacedRef
+    konnectNamespacedRef:
+      name: cp
+' | kubectl apply -f -
+```
+
+Having the `KongPluginBinding` created, the plugin will be attached globally to the control plane in {{ site.konnect_short_name }}.
+{% endif_version %}
 
 ## Using annotations to bind plugins to other entities
 
