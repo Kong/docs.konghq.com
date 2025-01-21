@@ -323,6 +323,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/ApiProductNotFound'
+        '409':
+          $ref: '#/components/responses/ApiProductImplementationConflict'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
@@ -413,6 +415,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/ApiProductNotFound'
+        '409':
+          $ref: '#/components/responses/ApiProductImplementationConflict'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
@@ -2569,6 +2573,12 @@ components:
         title: Conflict
         instance: 'kong:trace:9039922446017540182'
         detail: 'Key (service_version_id, path)=(23380be0-c15e-4ca8-bcf7-43aadddc91b1, hidden.yaml) already exists.'
+    ApiProductImplementationConflictExample:
+      value:
+        status: 409
+        title: Conflict
+        instance: 'kong:trace:9039922446017540182'
+        detail: This gateway service is already linked to a V3 API
     InvalidSortQueryBadRequestExample:
       value:
         status: 400
@@ -2735,6 +2745,15 @@ components:
           examples:
             VersionSpecConflictExample:
               $ref: '#/components/examples/VersionSpecHiddenConflictExample'
+    ApiProductImplementationConflict:
+      description: Conflict - V3 API is currently linked to the target gateway service
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            VersionSpecConflictExample:
+              $ref: '#/components/examples/ApiProductImplementationConflictExample'
     ApiProductUnauthorized:
       description: Unauthorized
       content:

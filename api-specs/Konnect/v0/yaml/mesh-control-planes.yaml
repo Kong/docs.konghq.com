@@ -3,7 +3,6 @@ info:
   title: Konnect Mesh Control Plane manager
   description: Control Plane manager API
   version: 0.0.1
-  x-ref-schema-name: MeshOPA
   contact:
     name: Kong
     url: 'https://konghq.com'
@@ -261,9 +260,52 @@ paths:
           $ref: '#/components/responses/Internal'
       tags:
         - Inspect
+  '/mesh/control-planes/{cpId}/meshes/{mesh}/{serviceType}/{serviceName}/_hostnames':
+    get:
+      operationId: inspect-hostnames
+      summary: Returns hostnames for service
+      description: Returns hostnames for a service
+      parameters:
+        - name: mesh
+          in: path
+          description: The mesh the service is part of
+          required: true
+          schema:
+            type: string
+          example: default
+        - name: serviceType
+          in: path
+          description: The type of the service
+          required: true
+          schema:
+            type: string
+            enum:
+              - meshservices
+              - meshmultizoneservices
+              - meshexternalservices
+          example: meshservices
+        - name: serviceName
+          in: path
+          description: The name of the service
+          required: true
+          schema:
+            type: string
+          example: redis
+        - $ref: '#/components/parameters/cpId'
+      responses:
+        '200':
+          $ref: '#/components/responses/InspectHostnamesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Internal'
+      tags:
+        - Inspect
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshaccesslogs/{name}':
     get:
-      operationId: get-mal
+      operationId: getMeshAccessLog
       summary: Returns MeshAccessLog entity
       parameters:
         - name: mesh
@@ -285,7 +327,7 @@ paths:
       tags:
         - MeshAccessLog
     put:
-      operationId: create-or-update-mal
+      operationId: putMeshAccessLog
       summary: Creates or Updates MeshAccessLog entity
       parameters:
         - name: mesh
@@ -324,7 +366,7 @@ paths:
       tags:
         - MeshAccessLog
     delete:
-      operationId: delete-mal
+      operationId: deleteMeshAccessLog
       summary: Deletes MeshAccessLog entity
       parameters:
         - name: mesh
@@ -349,7 +391,7 @@ paths:
         - MeshAccessLog
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshaccesslogs':
     get:
-      operationId: get-mal-list
+      operationId: getMeshAccessLogList
       summary: Returns a list of MeshAccessLog in the mesh.
       parameters:
         - name: mesh
@@ -366,7 +408,7 @@ paths:
         - MeshAccessLog
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshcircuitbreakers/{name}':
     get:
-      operationId: get-mcb
+      operationId: getMeshCircuitBreaker
       summary: Returns MeshCircuitBreaker entity
       parameters:
         - name: mesh
@@ -388,7 +430,7 @@ paths:
       tags:
         - MeshCircuitBreaker
     put:
-      operationId: create-or-update-mcb
+      operationId: putMeshCircuitBreaker
       summary: Creates or Updates MeshCircuitBreaker entity
       parameters:
         - name: mesh
@@ -427,7 +469,7 @@ paths:
       tags:
         - MeshCircuitBreaker
     delete:
-      operationId: delete-mcb
+      operationId: deleteMeshCircuitBreaker
       summary: Deletes MeshCircuitBreaker entity
       parameters:
         - name: mesh
@@ -452,7 +494,7 @@ paths:
         - MeshCircuitBreaker
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshcircuitbreakers':
     get:
-      operationId: get-mcb-list
+      operationId: getMeshCircuitBreakerList
       summary: Returns a list of MeshCircuitBreaker in the mesh.
       parameters:
         - name: mesh
@@ -469,7 +511,7 @@ paths:
         - MeshCircuitBreaker
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshfaultinjections/{name}':
     get:
-      operationId: get-mfi
+      operationId: getMeshFaultInjection
       summary: Returns MeshFaultInjection entity
       parameters:
         - name: mesh
@@ -491,7 +533,7 @@ paths:
       tags:
         - MeshFaultInjection
     put:
-      operationId: create-or-update-mfi
+      operationId: putMeshFaultInjection
       summary: Creates or Updates MeshFaultInjection entity
       parameters:
         - name: mesh
@@ -530,7 +572,7 @@ paths:
       tags:
         - MeshFaultInjection
     delete:
-      operationId: delete-mfi
+      operationId: deleteMeshFaultInjection
       summary: Deletes MeshFaultInjection entity
       parameters:
         - name: mesh
@@ -555,7 +597,7 @@ paths:
         - MeshFaultInjection
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshfaultinjections':
     get:
-      operationId: get-mfi-list
+      operationId: getMeshFaultInjectionList
       summary: Returns a list of MeshFaultInjection in the mesh.
       parameters:
         - name: mesh
@@ -572,7 +614,7 @@ paths:
         - MeshFaultInjection
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshhealthchecks/{name}':
     get:
-      operationId: get-mhc
+      operationId: getMeshHealthCheck
       summary: Returns MeshHealthCheck entity
       parameters:
         - name: mesh
@@ -594,7 +636,7 @@ paths:
       tags:
         - MeshHealthCheck
     put:
-      operationId: create-or-update-mhc
+      operationId: putMeshHealthCheck
       summary: Creates or Updates MeshHealthCheck entity
       parameters:
         - name: mesh
@@ -633,7 +675,7 @@ paths:
       tags:
         - MeshHealthCheck
     delete:
-      operationId: delete-mhc
+      operationId: deleteMeshHealthCheck
       summary: Deletes MeshHealthCheck entity
       parameters:
         - name: mesh
@@ -658,7 +700,7 @@ paths:
         - MeshHealthCheck
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshhealthchecks':
     get:
-      operationId: get-mhc-list
+      operationId: getMeshHealthCheckList
       summary: Returns a list of MeshHealthCheck in the mesh.
       parameters:
         - name: mesh
@@ -675,7 +717,7 @@ paths:
         - MeshHealthCheck
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshhttproutes/{name}':
     get:
-      operationId: get-mhttpr
+      operationId: getMeshHTTPRoute
       summary: Returns MeshHTTPRoute entity
       parameters:
         - name: mesh
@@ -697,7 +739,7 @@ paths:
       tags:
         - MeshHTTPRoute
     put:
-      operationId: create-or-update-mhttpr
+      operationId: putMeshHTTPRoute
       summary: Creates or Updates MeshHTTPRoute entity
       parameters:
         - name: mesh
@@ -736,7 +778,7 @@ paths:
       tags:
         - MeshHTTPRoute
     delete:
-      operationId: delete-mhttpr
+      operationId: deleteMeshHTTPRoute
       summary: Deletes MeshHTTPRoute entity
       parameters:
         - name: mesh
@@ -761,7 +803,7 @@ paths:
         - MeshHTTPRoute
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshhttproutes':
     get:
-      operationId: get-mhttpr-list
+      operationId: getMeshHTTPRouteList
       summary: Returns a list of MeshHTTPRoute in the mesh.
       parameters:
         - name: mesh
@@ -778,7 +820,7 @@ paths:
         - MeshHTTPRoute
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshloadbalancingstrategies/{name}':
     get:
-      operationId: get-mlbs
+      operationId: getMeshLoadBalancingStrategy
       summary: Returns MeshLoadBalancingStrategy entity
       parameters:
         - name: mesh
@@ -800,7 +842,7 @@ paths:
       tags:
         - MeshLoadBalancingStrategy
     put:
-      operationId: create-or-update-mlbs
+      operationId: putMeshLoadBalancingStrategy
       summary: Creates or Updates MeshLoadBalancingStrategy entity
       parameters:
         - name: mesh
@@ -839,7 +881,7 @@ paths:
       tags:
         - MeshLoadBalancingStrategy
     delete:
-      operationId: delete-mlbs
+      operationId: deleteMeshLoadBalancingStrategy
       summary: Deletes MeshLoadBalancingStrategy entity
       parameters:
         - name: mesh
@@ -864,7 +906,7 @@ paths:
         - MeshLoadBalancingStrategy
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshloadbalancingstrategies':
     get:
-      operationId: get-mlbs-list
+      operationId: getMeshLoadBalancingStrategyList
       summary: Returns a list of MeshLoadBalancingStrategy in the mesh.
       parameters:
         - name: mesh
@@ -881,7 +923,7 @@ paths:
         - MeshLoadBalancingStrategy
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshmetrics/{name}':
     get:
-      operationId: get-mm
+      operationId: getMeshMetric
       summary: Returns MeshMetric entity
       parameters:
         - name: mesh
@@ -903,7 +945,7 @@ paths:
       tags:
         - MeshMetric
     put:
-      operationId: create-or-update-mm
+      operationId: putMeshMetric
       summary: Creates or Updates MeshMetric entity
       parameters:
         - name: mesh
@@ -942,7 +984,7 @@ paths:
       tags:
         - MeshMetric
     delete:
-      operationId: delete-mm
+      operationId: deleteMeshMetric
       summary: Deletes MeshMetric entity
       parameters:
         - name: mesh
@@ -967,7 +1009,7 @@ paths:
         - MeshMetric
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshmetrics':
     get:
-      operationId: get-mm-list
+      operationId: getMeshMetricList
       summary: Returns a list of MeshMetric in the mesh.
       parameters:
         - name: mesh
@@ -984,7 +1026,7 @@ paths:
         - MeshMetric
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshpassthroughs/{name}':
     get:
-      operationId: get-mp
+      operationId: getMeshPassthrough
       summary: Returns MeshPassthrough entity
       parameters:
         - name: mesh
@@ -1006,7 +1048,7 @@ paths:
       tags:
         - MeshPassthrough
     put:
-      operationId: create-or-update-mp
+      operationId: putMeshPassthrough
       summary: Creates or Updates MeshPassthrough entity
       parameters:
         - name: mesh
@@ -1045,7 +1087,7 @@ paths:
       tags:
         - MeshPassthrough
     delete:
-      operationId: delete-mp
+      operationId: deleteMeshPassthrough
       summary: Deletes MeshPassthrough entity
       parameters:
         - name: mesh
@@ -1070,7 +1112,7 @@ paths:
         - MeshPassthrough
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshpassthroughs':
     get:
-      operationId: get-mp-list
+      operationId: getMeshPassthroughList
       summary: Returns a list of MeshPassthrough in the mesh.
       parameters:
         - name: mesh
@@ -1087,7 +1129,7 @@ paths:
         - MeshPassthrough
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshproxypatches/{name}':
     get:
-      operationId: get-mpp
+      operationId: getMeshProxyPatch
       summary: Returns MeshProxyPatch entity
       parameters:
         - name: mesh
@@ -1109,7 +1151,7 @@ paths:
       tags:
         - MeshProxyPatch
     put:
-      operationId: create-or-update-mpp
+      operationId: putMeshProxyPatch
       summary: Creates or Updates MeshProxyPatch entity
       parameters:
         - name: mesh
@@ -1148,7 +1190,7 @@ paths:
       tags:
         - MeshProxyPatch
     delete:
-      operationId: delete-mpp
+      operationId: deleteMeshProxyPatch
       summary: Deletes MeshProxyPatch entity
       parameters:
         - name: mesh
@@ -1173,7 +1215,7 @@ paths:
         - MeshProxyPatch
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshproxypatches':
     get:
-      operationId: get-mpp-list
+      operationId: getMeshProxyPatchList
       summary: Returns a list of MeshProxyPatch in the mesh.
       parameters:
         - name: mesh
@@ -1190,7 +1232,7 @@ paths:
         - MeshProxyPatch
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshratelimits/{name}':
     get:
-      operationId: get-mrl
+      operationId: getMeshRateLimit
       summary: Returns MeshRateLimit entity
       parameters:
         - name: mesh
@@ -1212,7 +1254,7 @@ paths:
       tags:
         - MeshRateLimit
     put:
-      operationId: create-or-update-mrl
+      operationId: putMeshRateLimit
       summary: Creates or Updates MeshRateLimit entity
       parameters:
         - name: mesh
@@ -1251,7 +1293,7 @@ paths:
       tags:
         - MeshRateLimit
     delete:
-      operationId: delete-mrl
+      operationId: deleteMeshRateLimit
       summary: Deletes MeshRateLimit entity
       parameters:
         - name: mesh
@@ -1276,7 +1318,7 @@ paths:
         - MeshRateLimit
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshratelimits':
     get:
-      operationId: get-mrl-list
+      operationId: getMeshRateLimitList
       summary: Returns a list of MeshRateLimit in the mesh.
       parameters:
         - name: mesh
@@ -1293,7 +1335,7 @@ paths:
         - MeshRateLimit
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshretries/{name}':
     get:
-      operationId: get-mr
+      operationId: getMeshRetry
       summary: Returns MeshRetry entity
       parameters:
         - name: mesh
@@ -1315,7 +1357,7 @@ paths:
       tags:
         - MeshRetry
     put:
-      operationId: create-or-update-mr
+      operationId: putMeshRetry
       summary: Creates or Updates MeshRetry entity
       parameters:
         - name: mesh
@@ -1354,7 +1396,7 @@ paths:
       tags:
         - MeshRetry
     delete:
-      operationId: delete-mr
+      operationId: deleteMeshRetry
       summary: Deletes MeshRetry entity
       parameters:
         - name: mesh
@@ -1379,7 +1421,7 @@ paths:
         - MeshRetry
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshretries':
     get:
-      operationId: get-mr-list
+      operationId: getMeshRetryList
       summary: Returns a list of MeshRetry in the mesh.
       parameters:
         - name: mesh
@@ -1396,7 +1438,7 @@ paths:
         - MeshRetry
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtcproutes/{name}':
     get:
-      operationId: get-mtcpr
+      operationId: getMeshTCPRoute
       summary: Returns MeshTCPRoute entity
       parameters:
         - name: mesh
@@ -1418,7 +1460,7 @@ paths:
       tags:
         - MeshTCPRoute
     put:
-      operationId: create-or-update-mtcpr
+      operationId: putMeshTCPRoute
       summary: Creates or Updates MeshTCPRoute entity
       parameters:
         - name: mesh
@@ -1457,7 +1499,7 @@ paths:
       tags:
         - MeshTCPRoute
     delete:
-      operationId: delete-mtcpr
+      operationId: deleteMeshTCPRoute
       summary: Deletes MeshTCPRoute entity
       parameters:
         - name: mesh
@@ -1482,7 +1524,7 @@ paths:
         - MeshTCPRoute
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtcproutes':
     get:
-      operationId: get-mtcpr-list
+      operationId: getMeshTCPRouteList
       summary: Returns a list of MeshTCPRoute in the mesh.
       parameters:
         - name: mesh
@@ -1499,7 +1541,7 @@ paths:
         - MeshTCPRoute
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtimeouts/{name}':
     get:
-      operationId: get-mt
+      operationId: getMeshTimeout
       summary: Returns MeshTimeout entity
       parameters:
         - name: mesh
@@ -1521,7 +1563,7 @@ paths:
       tags:
         - MeshTimeout
     put:
-      operationId: create-or-update-mt
+      operationId: putMeshTimeout
       summary: Creates or Updates MeshTimeout entity
       parameters:
         - name: mesh
@@ -1560,7 +1602,7 @@ paths:
       tags:
         - MeshTimeout
     delete:
-      operationId: delete-mt
+      operationId: deleteMeshTimeout
       summary: Deletes MeshTimeout entity
       parameters:
         - name: mesh
@@ -1585,7 +1627,7 @@ paths:
         - MeshTimeout
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtimeouts':
     get:
-      operationId: get-mt-list
+      operationId: getMeshTimeoutList
       summary: Returns a list of MeshTimeout in the mesh.
       parameters:
         - name: mesh
@@ -1602,7 +1644,7 @@ paths:
         - MeshTimeout
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtlses/{name}':
     get:
-      operationId: get-mtls
+      operationId: getMeshTLS
       summary: Returns MeshTLS entity
       parameters:
         - name: mesh
@@ -1624,7 +1666,7 @@ paths:
       tags:
         - MeshTLS
     put:
-      operationId: create-or-update-mtls
+      operationId: putMeshTLS
       summary: Creates or Updates MeshTLS entity
       parameters:
         - name: mesh
@@ -1663,7 +1705,7 @@ paths:
       tags:
         - MeshTLS
     delete:
-      operationId: delete-mtls
+      operationId: deleteMeshTLS
       summary: Deletes MeshTLS entity
       parameters:
         - name: mesh
@@ -1688,7 +1730,7 @@ paths:
         - MeshTLS
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtlses':
     get:
-      operationId: get-mtls-list
+      operationId: getMeshTLSList
       summary: Returns a list of MeshTLS in the mesh.
       parameters:
         - name: mesh
@@ -1705,7 +1747,7 @@ paths:
         - MeshTLS
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtraces/{name}':
     get:
-      operationId: get-mtr
+      operationId: getMeshTrace
       summary: Returns MeshTrace entity
       parameters:
         - name: mesh
@@ -1727,7 +1769,7 @@ paths:
       tags:
         - MeshTrace
     put:
-      operationId: create-or-update-mtr
+      operationId: putMeshTrace
       summary: Creates or Updates MeshTrace entity
       parameters:
         - name: mesh
@@ -1766,7 +1808,7 @@ paths:
       tags:
         - MeshTrace
     delete:
-      operationId: delete-mtr
+      operationId: deleteMeshTrace
       summary: Deletes MeshTrace entity
       parameters:
         - name: mesh
@@ -1791,7 +1833,7 @@ paths:
         - MeshTrace
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtraces':
     get:
-      operationId: get-mtr-list
+      operationId: getMeshTraceList
       summary: Returns a list of MeshTrace in the mesh.
       parameters:
         - name: mesh
@@ -1808,7 +1850,7 @@ paths:
         - MeshTrace
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtrafficpermissions/{name}':
     get:
-      operationId: get-mtp
+      operationId: getMeshTrafficPermission
       summary: Returns MeshTrafficPermission entity
       parameters:
         - name: mesh
@@ -1830,7 +1872,7 @@ paths:
       tags:
         - MeshTrafficPermission
     put:
-      operationId: create-or-update-mtp
+      operationId: putMeshTrafficPermission
       summary: Creates or Updates MeshTrafficPermission entity
       parameters:
         - name: mesh
@@ -1869,7 +1911,7 @@ paths:
       tags:
         - MeshTrafficPermission
     delete:
-      operationId: delete-mtp
+      operationId: deleteMeshTrafficPermission
       summary: Deletes MeshTrafficPermission entity
       parameters:
         - name: mesh
@@ -1894,7 +1936,7 @@ paths:
         - MeshTrafficPermission
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshtrafficpermissions':
     get:
-      operationId: get-mtp-list
+      operationId: getMeshTrafficPermissionList
       summary: Returns a list of MeshTrafficPermission in the mesh.
       parameters:
         - name: mesh
@@ -1911,7 +1953,7 @@ paths:
         - MeshTrafficPermission
   '/mesh/control-planes/{cpId}/meshes/{name}':
     get:
-      operationId: get-m
+      operationId: getMesh
       summary: Returns Mesh entity
       parameters:
         - name: name
@@ -1927,7 +1969,7 @@ paths:
       tags:
         - Mesh
     put:
-      operationId: create-or-update-m
+      operationId: putMesh
       summary: Creates or Updates Mesh entity
       parameters:
         - name: name
@@ -1960,7 +2002,7 @@ paths:
       tags:
         - Mesh
     delete:
-      operationId: delete-m
+      operationId: deleteMesh
       summary: Deletes Mesh entity
       parameters:
         - name: name
@@ -1979,7 +2021,7 @@ paths:
         - Mesh
   '/mesh/control-planes/{cpId}/meshes':
     get:
-      operationId: get-m-list
+      operationId: getMeshList
       summary: Returns a list of Mesh in the mesh.
       parameters:
         - $ref: '#/components/parameters/cpId'
@@ -1990,7 +2032,7 @@ paths:
         - Mesh
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshgateways/{name}':
     get:
-      operationId: get-mgw
+      operationId: getMeshGateway
       summary: Returns MeshGateway entity
       parameters:
         - name: mesh
@@ -2012,7 +2054,7 @@ paths:
       tags:
         - MeshGateway
     put:
-      operationId: create-or-update-mgw
+      operationId: putMeshGateway
       summary: Creates or Updates MeshGateway entity
       parameters:
         - name: mesh
@@ -2051,7 +2093,7 @@ paths:
       tags:
         - MeshGateway
     delete:
-      operationId: delete-mgw
+      operationId: deleteMeshGateway
       summary: Deletes MeshGateway entity
       parameters:
         - name: mesh
@@ -2076,7 +2118,7 @@ paths:
         - MeshGateway
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshgateways':
     get:
-      operationId: get-mgw-list
+      operationId: getMeshGatewayList
       summary: Returns a list of MeshGateway in the mesh.
       parameters:
         - name: mesh
@@ -2093,7 +2135,7 @@ paths:
         - MeshGateway
   '/mesh/control-planes/{cpId}/hostnamegenerators/{name}':
     get:
-      operationId: get-hg
+      operationId: getHostnameGenerator
       summary: Returns HostnameGenerator entity
       parameters:
         - name: name
@@ -2109,7 +2151,7 @@ paths:
       tags:
         - HostnameGenerator
     put:
-      operationId: create-or-update-hg
+      operationId: putHostnameGenerator
       summary: Creates or Updates HostnameGenerator entity
       parameters:
         - name: name
@@ -2142,7 +2184,7 @@ paths:
       tags:
         - HostnameGenerator
     delete:
-      operationId: delete-hg
+      operationId: deleteHostnameGenerator
       summary: Deletes HostnameGenerator entity
       parameters:
         - name: name
@@ -2161,7 +2203,7 @@ paths:
         - HostnameGenerator
   '/mesh/control-planes/{cpId}/hostnamegenerators':
     get:
-      operationId: get-hg-list
+      operationId: getHostnameGeneratorList
       summary: Returns a list of HostnameGenerator in the mesh.
       parameters:
         - $ref: '#/components/parameters/cpId'
@@ -2172,7 +2214,7 @@ paths:
         - HostnameGenerator
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshexternalservices/{name}':
     get:
-      operationId: get-extsvc
+      operationId: getMeshExternalService
       summary: Returns MeshExternalService entity
       parameters:
         - name: mesh
@@ -2194,7 +2236,7 @@ paths:
       tags:
         - MeshExternalService
     put:
-      operationId: create-or-update-extsvc
+      operationId: putMeshExternalService
       summary: Creates or Updates MeshExternalService entity
       parameters:
         - name: mesh
@@ -2233,7 +2275,7 @@ paths:
       tags:
         - MeshExternalService
     delete:
-      operationId: delete-extsvc
+      operationId: deleteMeshExternalService
       summary: Deletes MeshExternalService entity
       parameters:
         - name: mesh
@@ -2258,7 +2300,7 @@ paths:
         - MeshExternalService
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshexternalservices':
     get:
-      operationId: get-extsvc-list
+      operationId: getMeshExternalServiceList
       summary: Returns a list of MeshExternalService in the mesh.
       parameters:
         - name: mesh
@@ -2275,7 +2317,7 @@ paths:
         - MeshExternalService
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshmultizoneservices/{name}':
     get:
-      operationId: get-mzsvc
+      operationId: getMeshMultiZoneService
       summary: Returns MeshMultiZoneService entity
       parameters:
         - name: mesh
@@ -2297,7 +2339,7 @@ paths:
       tags:
         - MeshMultiZoneService
     put:
-      operationId: create-or-update-mzsvc
+      operationId: putMeshMultiZoneService
       summary: Creates or Updates MeshMultiZoneService entity
       parameters:
         - name: mesh
@@ -2336,7 +2378,7 @@ paths:
       tags:
         - MeshMultiZoneService
     delete:
-      operationId: delete-mzsvc
+      operationId: deleteMeshMultiZoneService
       summary: Deletes MeshMultiZoneService entity
       parameters:
         - name: mesh
@@ -2361,7 +2403,7 @@ paths:
         - MeshMultiZoneService
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshmultizoneservices':
     get:
-      operationId: get-mzsvc-list
+      operationId: getMeshMultiZoneServiceList
       summary: Returns a list of MeshMultiZoneService in the mesh.
       parameters:
         - name: mesh
@@ -2378,7 +2420,7 @@ paths:
         - MeshMultiZoneService
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshservices/{name}':
     get:
-      operationId: get-msvc
+      operationId: getMeshService
       summary: Returns MeshService entity
       parameters:
         - name: mesh
@@ -2400,7 +2442,7 @@ paths:
       tags:
         - MeshService
     put:
-      operationId: create-or-update-msvc
+      operationId: putMeshService
       summary: Creates or Updates MeshService entity
       parameters:
         - name: mesh
@@ -2439,7 +2481,7 @@ paths:
       tags:
         - MeshService
     delete:
-      operationId: delete-msvc
+      operationId: deleteMeshService
       summary: Deletes MeshService entity
       parameters:
         - name: mesh
@@ -2464,7 +2506,7 @@ paths:
         - MeshService
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshservices':
     get:
-      operationId: get-msvc-list
+      operationId: getMeshServiceList
       summary: Returns a list of MeshService in the mesh.
       parameters:
         - name: mesh
@@ -2481,7 +2523,7 @@ paths:
         - MeshService
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshglobalratelimits/{name}':
     get:
-      operationId: get-mgrl
+      operationId: getMeshGlobalRateLimit
       summary: Returns MeshGlobalRateLimit entity
       parameters:
         - name: mesh
@@ -2503,7 +2545,7 @@ paths:
       tags:
         - MeshGlobalRateLimit
     put:
-      operationId: create-or-update-mgrl
+      operationId: putMeshGlobalRateLimit
       summary: Creates or Updates MeshGlobalRateLimit entity
       parameters:
         - name: mesh
@@ -2542,7 +2584,7 @@ paths:
       tags:
         - MeshGlobalRateLimit
     delete:
-      operationId: delete-mgrl
+      operationId: deleteMeshGlobalRateLimit
       summary: Deletes MeshGlobalRateLimit entity
       parameters:
         - name: mesh
@@ -2567,7 +2609,7 @@ paths:
         - MeshGlobalRateLimit
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshglobalratelimits':
     get:
-      operationId: get-mgrl-list
+      operationId: getMeshGlobalRateLimitList
       summary: Returns a list of MeshGlobalRateLimit in the mesh.
       parameters:
         - name: mesh
@@ -2584,7 +2626,7 @@ paths:
         - MeshGlobalRateLimit
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshopas/{name}':
     get:
-      operationId: get-mopa
+      operationId: getMeshOPA
       summary: Returns MeshOPA entity
       parameters:
         - name: mesh
@@ -2606,7 +2648,7 @@ paths:
       tags:
         - MeshOPA
     put:
-      operationId: create-or-update-mopa
+      operationId: putMeshOPA
       summary: Creates or Updates MeshOPA entity
       parameters:
         - name: mesh
@@ -2645,7 +2687,7 @@ paths:
       tags:
         - MeshOPA
     delete:
-      operationId: delete-mopa
+      operationId: deleteMeshOPA
       summary: Deletes MeshOPA entity
       parameters:
         - name: mesh
@@ -2670,7 +2712,7 @@ paths:
         - MeshOPA
   '/mesh/control-planes/{cpId}/meshes/{mesh}/meshopas':
     get:
-      operationId: get-mopa-list
+      operationId: getMeshOPAList
       summary: Returns a list of MeshOPA in the mesh.
       parameters:
         - name: mesh
@@ -3006,6 +3048,47 @@ components:
           properties:
             limits:
               $ref: '#/components/schemas/Limits'
+    InspectHostnames:
+      description: A list of hostnames
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 200
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InspectHostname'
+      required:
+        - total
+        - items
+      title: InspectHostnames
+    InspectHostname:
+      description: An supported hostname along with the zones it exists in
+      type: object
+      properties:
+        hostname:
+          description: Generated hostname
+          type: string
+          example: redis.redis-system.svc.east.mesh.local
+        zones:
+          type: array
+          items:
+            $ref: '#/components/schemas/InspectHostnameZone'
+      required:
+        - hostname
+        - zones
+      title: InspectHostname
+    InspectHostnameZone:
+      description: A name of the zone in which the hostname is available
+      type: object
+      properties:
+        name:
+          type: string
+          example: east
+      required:
+        - name
+      title: InspectHostnameZone
     PolicyDescription:
       description: information about a policy
       type: object
@@ -3454,6 +3537,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -3519,6 +3603,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -3731,6 +3816,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -4085,6 +4171,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -4150,6 +4237,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -4455,6 +4543,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -4647,6 +4736,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -4712,6 +4802,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -4853,6 +4944,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -4966,6 +5058,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -5221,6 +5314,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -5334,6 +5428,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -5421,6 +5516,7 @@ components:
                                       - MeshMultiZoneService
                                       - MeshServiceSubset
                                       - MeshHTTPRoute
+                                      - Dataplane
                                   labels:
                                     description: |-
                                       Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -5546,6 +5642,7 @@ components:
                                               - MeshMultiZoneService
                                               - MeshServiceSubset
                                               - MeshHTTPRoute
+                                              - Dataplane
                                           labels:
                                             description: |-
                                               Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -5869,6 +5966,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -5980,6 +6078,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -6410,6 +6509,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -6682,6 +6782,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -6836,6 +6937,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -7345,6 +7447,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -7573,6 +7676,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -7638,6 +7742,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -7816,6 +7921,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -7929,6 +8035,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -8304,6 +8411,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -8417,6 +8525,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -8497,6 +8606,7 @@ components:
                                       - MeshMultiZoneService
                                       - MeshServiceSubset
                                       - MeshHTTPRoute
+                                      - Dataplane
                                   labels:
                                     description: |-
                                       Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -8574,6 +8684,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -8743,6 +8854,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -8789,6 +8901,63 @@ components:
                 required:
                   - targetRef
                 type: object
+            rules:
+              description: |-
+                Rules defines inbound timeout configurations. Currently limited to exactly one rule containing
+                default timeouts that apply to all inbound traffic, as L7 matching is not yet implemented.
+              type: array
+              items:
+                properties:
+                  default:
+                    description: Default contains configuration of the inbound timeouts
+                    type: object
+                    properties:
+                      connectionTimeout:
+                        description: |-
+                          ConnectionTimeout specifies the amount of time proxy will wait for an TCP connection to be established.
+                          Default value is 5 seconds. Cannot be set to 0.
+                        type: string
+                      http:
+                        description: Http provides configuration for HTTP specific timeouts
+                        type: object
+                        properties:
+                          maxConnectionDuration:
+                            description: |-
+                              MaxConnectionDuration is the time after which a connection will be drained and/or closed,
+                              starting from when it was first established. Setting this timeout to 0 will disable it.
+                              Disabled by default.
+                            type: string
+                          maxStreamDuration:
+                            description: |-
+                              MaxStreamDuration is the maximum time that a stream’s lifetime will span.
+                              Setting this timeout to 0 will disable it. Disabled by default.
+                            type: string
+                          requestHeadersTimeout:
+                            description: |-
+                              RequestHeadersTimeout The amount of time that proxy will wait for the request headers to be received. The timer is
+                              activated when the first byte of the headers is received, and is disarmed when the last byte of
+                              the headers has been received. If not specified or set to 0, this timeout is disabled.
+                              Disabled by default.
+                            type: string
+                          requestTimeout:
+                            description: |-
+                              RequestTimeout The amount of time that proxy will wait for the entire request to be received.
+                              The timer is activated when the request is initiated, and is disarmed when the last byte of the request is sent,
+                              OR when the response is initiated. Setting this timeout to 0 will disable it.
+                              Default is 15s.
+                            type: string
+                          streamIdleTimeout:
+                            description: |-
+                              StreamIdleTimeout is the amount of time that proxy will allow a stream to exist with no activity.
+                              Setting this timeout to 0 will disable it. Default is 30m
+                            type: string
+                      idleTimeout:
+                        description: |-
+                          IdleTimeout is defined as the period in which there are no bytes sent or received on connection
+                          Setting this timeout to 0 will disable it. Be cautious when disabling it because
+                          it can lead to connection leaking. Default value is 1h.
+                        type: string
+                type: object
             targetRef:
               description: |-
                 TargetRef is a reference to the resource the policy takes an effect on.
@@ -8808,6 +8977,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -8925,6 +9095,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -9090,6 +9261,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -9155,6 +9327,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -9430,6 +9603,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -9557,6 +9731,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -9622,6 +9797,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -11132,6 +11308,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -11197,6 +11374,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -11419,6 +11597,7 @@ components:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                       labels:
                         description: |-
                           Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -11612,6 +11791,7 @@ components:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                 labels:
                   description: |-
                     Labels are used to select group of MeshServices that match labels. Either Labels or
@@ -12234,6 +12414,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/InspectRules'
+    InspectHostnamesResponse:
+      description: A response containing hostnames that match a service.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InspectHostnames'
+          examples:
+            ResponseForDataplane:
+              $ref: '#/components/examples/InspectDataplanesForPolicyExample'
     MeshAccessLogItem:
       description: Successful response
       content:
