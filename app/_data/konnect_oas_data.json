@@ -398,6 +398,27 @@
     ]
   },
   {
+    "id": "b0b03b39-cfa4-48b6-9b23-a901786eb46a",
+    "title": "Konnect Notification Hub",
+    "latestVersion": {
+      "name": "v1",
+      "id": "b6f62bf6-2009-4022-9d3e-ae951032df36"
+    },
+    "description": "Notification Hub API for Konnect.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "b6f62bf6-2009-4022-9d3e-ae951032df36",
+        "created_at": "2025-01-21T22:08:03.723Z",
+        "updated_at": "2025-01-21T22:08:13.761Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "f99f0f29-be4e-4fc8-8cec-64e5d3511bff",
     "title": "Konnect Portal Management",
     "latestVersion": {
