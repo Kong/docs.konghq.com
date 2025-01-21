@@ -2054,6 +2054,7 @@ components:
           type: string
           example: Services
         entity_region:
+          description: Region of the entity.
           type: string
           example: eu
           enum:
@@ -2061,6 +2062,7 @@ components:
             - eu
             - au
             - me
+            - in
             - '*'
       example:
         role_name: API Viewer
@@ -2292,6 +2294,7 @@ components:
           type: string
           example: Services
         entity_region:
+          description: Region of the entity.
           type: string
           example: eu
           enum:
@@ -2299,6 +2302,7 @@ components:
             - eu
             - au
             - me
+            - in
             - '*'
       example:
         id: 1a3c2169-27f8-4594-926b-41df3432d5dc
@@ -6907,8 +6911,11 @@ components:
             choices:
               - us
               - eu
+              - au
+              - me
+              - in
               - '*'
-            reason: 'must be one of [us, eu, *]'
+            reason: 'must be one of [us, eu, au, me, in, *]'
             source: body
     ListDevelopersBadRequestExample1:
       value:

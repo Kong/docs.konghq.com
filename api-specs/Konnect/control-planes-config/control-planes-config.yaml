@@ -1930,6 +1930,62 @@ paths:
                 $ref: '#/components/schemas/Plugin'
       tags:
         - Plugins
+  '/control-planes/{controlPlaneId}/core-entities/custom-plugins':
+    get:
+      operationId: list-custom-plugin
+      summary: List all CustomPlugins
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        List all CustomPlugins
+      parameters:
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+      responses:
+        '200':
+          description: A successful response listing CustomPlugins
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomPlugin'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - CustomPlugins
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/custom-plugins/{CustomPluginId}':
+    delete:
+      operationId: delete-custom-plugin
+      summary: Delete a CustomPlugin
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Delete a CustomPlugin
+      parameters:
+        - $ref: '#/components/parameters/CustomPluginId'
+      responses:
+        '204':
+          description: Successfully deleted CustomPlugin or the resource didn't exist
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - CustomPlugins
+    parameters:
+      - $ref: '#/components/parameters/CustomPluginId'
+      - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/hmac-auths':
     get:
       operationId: list-hmac-auth
@@ -3642,6 +3698,14 @@ components:
       required: true
       schema:
         type: string
+    CustomPluginId:
+      description: ID of the CustomPlugin to lookup
+      example: ''
+      in: path
+      name: CustomPluginId
+      required: true
+      schema:
+        type: string
     DataPlaneCertificateId:
       name: certificateId
       in: path
@@ -4112,6 +4176,40 @@ components:
       properties:
         consumer_group:
           $ref: '#/components/schemas/ConsumerGroup'
+    CustomPlugin:
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        handler:
+          type: string
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+        schema:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+          readOnly: true
+      example:
+        handler: 'return { VERSION = ''1.0,0'', PRIORITY = 500, access = function(self, config) kong.service.request.set_header(config.name, config.value) end }'
+        id: 868346aa-1105-4b77-8346-aa1105fb77c4
+        name: set-header
+        schema: 'return { name = ''set-header'', fields = { { protocols = require(''kong.db.schema.typedefs'').protocols_http }, { config = { type = ''record'', fields = { { name = { description = ''The name of the header to set.'', type = ''string'', required = true } }, { value = { description = ''The value for the header.'', type = ''string'', required = true } } } } } } }'
+      additionalProperties: false
+      required:
+        - name
+        - schema
+        - handler
     GatewayUnauthorizedError:
       type: object
       properties:
@@ -4823,7 +4921,9 @@ components:
           description: 'One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.'
           type: object
           additionalProperties:
-            type: string
+            type: array
+            items:
+              type: string
           nullable: true
         hosts:
           description: A list of domain names that match this Route. Note that the hosts value is case sensitive.
@@ -4984,7 +5084,9 @@ components:
           description: 'One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.'
           type: object
           additionalProperties:
-            type: string
+            type: array
+            items:
+              type: string
           nullable: true
         hosts:
           description: A list of domain names that match this Route. Note that the hosts value is case sensitive.
@@ -6383,6 +6485,7 @@ tags:
     name: DP Certificates
   - description: Custom Plugin Schemas
     name: Custom Plugin Schemas
+  - name: CustomPlugins
   - description: |
       Service entities are abstractions of your microservice interfaces or formal APIs. For example, a service could be a data transformation microservice or a billing API.
       <br><br>
