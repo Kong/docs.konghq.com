@@ -3,9 +3,7 @@ title: SwaggerHub Integration
 content-type: reference
 beta: true
 discovery_support: true
-discovery_default: true
 bindable_entities: "SwaggerHub API version"
-mechanism: "pull/ingestion model"
 ---
 
 _Type: External_

@@ -3,9 +3,7 @@ title: Datadog Integration
 content-type: reference
 beta: true
 discovery_support: true
-discovery_default: true
 bindable_entities: "Datadog Monitor, Datadog Dashboard"
-mechanism: "pull/ingestion model"
 ---
 
 _Type: External_
