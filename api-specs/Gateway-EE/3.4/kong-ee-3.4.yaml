@@ -513,6 +513,32 @@ components:
           tags:
             - silver-tier
           username: bob-the-builder
+    ConsumerGroup:
+      description: Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem. By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations.
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the Consumer Group.
+          nullable: true
+        name:
+          type: string
+          description: The name of the Consumer Group.
+        tags:
+          description: An optional set of strings associated with the Consumer Group for grouping and filtering.
+          items:
+            type: string
+          type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+      additionalProperties: false
+      required:
+        - name
     Key:
       description: A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
       example:
