@@ -11,6 +11,28 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+
+## 3.9.0.1
+**Release Date** 2025/01/25
+
+### Fixes
+#### Plugins
+
+* **AI Plugins**: Reverted the analytics container key from `proxy` to `ai-proxy` to align with previous versions.
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed an issue in the Azure provider where `model.options.upstream_path` overrides would always return a 404 error code.
+  * Fixed an issue where Azure streaming responses would be missing individual tokens.
+  * Fixed an issue where response streaming in Gemini and Bedrock providers was returning whole chat responses in one chunk.
+
+* [**gRPC-Web**](/hub/kong-inc/grpc-web/) (`grpc-web`) and [**gRPC-Gateway**](/hub/kong-inc/grpc-gateway/) (`grpc-gateway`)
+  * Fixed an issue where the `TE` (transfer-encoding) header would not be sent to the upstream gRPC servers when `grpc-web` or `grpc-gateweay` were in use.
+
+### Dependencies
+
+* Bumped `lua-kong-nginx-module` from 0.13.1 to 0.13.2.
+* Fixed a bug in the Lua kong Nginx module, ensuring the values in the cache remain valid and are updated in time.
+
 ## 3.9.0.0
 **Release Date** 2024/12/12
 
