@@ -1,0 +1,24 @@
+name: Push OAS Downstream
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  raise-pr-on-change:
+    if: github.event.pull_request.merged == true
+    name: Raise PR on change
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Raise PR on change
+         uses: mheap/raise-pr-on-change-action@v1
+         with:
+           token: ${{ secrets.PAT }}
+           configFile: ".github/raise-pr-on-change.json"
+           prBranch: automated-update
+           targetBranch: main
+           prTitle: "feat(sdk): automated oas update - from docs repo"
+           prBody: "Generated OAS files from docs.konghq.com"
+           commitMessage: "feat(sdk): automated oas update from docs.konghq.com"

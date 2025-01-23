@@ -1,0 +1,52 @@
+{
+  "kong/developer.konghq.com": [
+    {
+      "src": "api-specs/Gateway-EE/3.4/kong-ee-3.4.yaml",
+      "dest": "api-specs/gateway/admin-ee/3.4/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-EE/3.5/kong-ee-3.5.yaml",
+      "dest": "api-specs/gateway/admin-ee/3.5/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-EE/3.6/kong-ee-3.6.yaml",
+      "dest": "api-specs/gateway/admin-ee/3.6/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-EE/3.7/kong-ee-3.7.yaml",
+      "dest": "api-specs/gateway/admin-ee/3.7/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-EE/3.8/kong-ee-3.8.yaml",
+      "dest": "api-specs/gateway/admin-ee/3.8/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-EE/3.9/kong-ee-3.9.yaml",
+      "dest": "api-specs/gateway/admin-ee/3.9/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-OSS/3.4/kong-oss-3.4.yaml",
+      "dest": "api-specs/gateway/admin-oss/3.4/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-OSS/3.5/kong-oss-3.5.yaml",
+      "dest": "api-specs/gateway/admin-oss/3.5/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-OSS/3.6/kong-oss-3.6.yaml",
+      "dest": "api-specs/gateway/admin-oss/3.6/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-OSS/3.7/kong-oss-3.7.yaml",
+      "dest": "api-specs/gateway/admin-oss/3.7/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-OSS/3.8/kong-oss-3.8.yaml",
+      "dest": "api-specs/gateway/admin-oss/3.8/openapi.yaml"
+    },
+    {
+      "src": "api-specs/Gateway-OSS/3.9/kong-oss-3.9.yaml",
+      "dest": "api-specs/gateway/admin-oss/3.9/openapi.yaml"
+    }
+  ]
+}
