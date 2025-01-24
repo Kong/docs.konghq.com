@@ -5,9 +5,22 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.4.2
+
+**Release date**: 2025-01-23
+
+### Fixed
+
+- Bump `kong/kubernetes-configuration` dependency to v1.0.8 that fixes the issue with `spec.headers`
+  in `KongRoute` CRD by aligning to the expected schema (instead of `map[string]string`, it should be
+  `map[string][]string`).
+  Please make sure you update the KGO channel CRDs accordingly in your cluster:
+  `kustomize build github.com/Kong/kubernetes-configuration/config/crd/gateway-operator\?ref=v1.0.8 | kubectl apply -f -`
+  [#1072](https://github.com/Kong/gateway-operator/pull/1072)
+
 ## 1.4.1
 
-**Release Date** 2024/11/28
+**Release Date**: 2024/11/28
 
 - Fix setting the `ServiceAccountName` for `DataPlane`'s `Deployment`.
   [#897](https://github.com/Kong/gateway-operator/pull/897)
@@ -24,7 +37,7 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 ## 1.4.0
 
-**Release Date** 2024/10/31
+**Release date**: 2024/10/31
 
 ### Added
 
@@ -138,7 +151,7 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 ## 1.3.0
 
-**Release Date** 2024/06/24
+**Release date**: 2024/06/24
 
 ### Fixes
 
@@ -173,7 +186,7 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 ## 1.2.3
 
-**Release Date** 2024/04/24
+**Release date**: 2024/04/24
 
 ### Fixes
 
@@ -190,7 +203,7 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 ## 1.2.2
 
-**Release Date** 2024/04/23
+**Release date**: 2024/04/23
 
 ### **NOTE: Retracted**
 
@@ -202,7 +215,7 @@ v1.2.3 contains all the changes that v1.2.2 intended to contain.
 
 ## 1.2.1
 
-**Release Date** 2024/03/20
+**Release date**: 2024/03/20
 
 ### Fixes
 
@@ -216,7 +229,7 @@ v1.2.3 contains all the changes that v1.2.2 intended to contain.
 
 ## 1.2.0
 
-**Release Date** 2024/03/15
+**Release date**: 2024/03/15
 
 ## Highlights
 
@@ -313,7 +326,7 @@ v1.2.3 contains all the changes that v1.2.2 intended to contain.
 
 ## 1.1.0
 
-**Release Date** 2023/11/20
+**Release date**: 2023/11/20
 
 ### Added
 
@@ -331,7 +344,7 @@ v1.2.3 contains all the changes that v1.2.2 intended to contain.
 
 ## 1.0.3
 
-**Release Date** 2023/11/06
+**Release date**: 2023/11/06
 
 ### Fixes
 
@@ -346,7 +359,7 @@ v1.2.3 contains all the changes that v1.2.2 intended to contain.
 
 ## 1.0.2
 
-**Release Date** 2023/10/18
+**Release date**: 2023/10/18
 
 ### Changed
 
@@ -354,7 +367,7 @@ v1.2.3 contains all the changes that v1.2.2 intended to contain.
 
 ## 1.0.1
 
-**Release Date** 2023/10/02
+**Release date**: 2023/10/02
 
 ### Fixes
 
@@ -367,7 +380,7 @@ v1.2.3 contains all the changes that v1.2.2 intended to contain.
 
 ## 1.0.0
 
-**Release Date** 2023/09/27
+**Release date**: 2023/09/27
 
 ### Features
 
