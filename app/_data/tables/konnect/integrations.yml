@@ -21,6 +21,11 @@ integrations:
     slug: datadog
     events: true
     description: View the performance and health of your services by ingesting Datadog monitors and dashboards
+  - name: GitLab
+    icon: gitlab.svg
+    slug: gitlab
+    events: true
+    description: Associate a service to one or more GitLab projects
 
 ##### Using this file ######
   # - name: Name of the integration

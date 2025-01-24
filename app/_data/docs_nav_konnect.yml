@@ -50,6 +50,8 @@
         url: /gateway-manager/dedicated-cloud-gateways/
       - text: Provision a Dedicated Cloud Gateway
         url: /gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
+      - text: Securing Backend Traffic
+        url: /gateway-manager/dedicated-cloud-gateways/securing-backend-traffic
       - text: Transit Gateways
         url: /gateway-manager/dedicated-cloud-gateways/transit-gateways
       - text: Azure VNET Peering
@@ -160,6 +162,8 @@
           url: /service-catalog/integrations/traceable/
         - text: Datadog
           url: /service-catalog/integrations/datadog/
+        - text: GitLab
+          url: /service-catalog/integrations/gitlab/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
