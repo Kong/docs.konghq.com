@@ -12112,6 +12112,33 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       tags:
         - Keyring
+  /keyring/vault/sync:
+   post:
+    summary: Synchronize Vault keyring
+    operationId: post-keyring-vault-sync
+    responses:
+      '204':
+        description: No Content
+    description: | 
+      Kong reads the keyring material from Vault when the Kong process starts.
+      Any changes to the Vault KV store are not reflected on the Kong node until Kong syncs with Vault via the `/keyring/vault/sync` Admin API endpoint. 
+      This allows Kong to receive a Vault token with a low TTL, as the list and read operation only occur once.
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                description: Optional token for Vault synchronization.
+                example: "example-token"
+          examples:
+            Example 1:
+              value:
+                token: "example-token"
+    tags:
+      - Keyring
   /tags:
     get:
       summary: List all tags
