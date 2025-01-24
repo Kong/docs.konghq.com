@@ -16,6 +16,12 @@ For product versions that have reached the end of sunset support, see the [chang
 **Release Date** 2025/01/25
 
 ### Fixes
+
+#### Core
+
+* Fixed an issue where consistent hashing did not correctly handle hyphenated-Pascal-case headers, leading to uneven distribution of requests across upstream targets.
+* Fixed an issue where a certificate entity configured with a vault reference occasionally didn't get refreshed on time when initialized with an invalid string.
+
 #### Plugins
 
 * **AI Plugins**: Reverted the analytics container key from `proxy` to `ai-proxy` to align with previous versions.
@@ -31,7 +37,7 @@ For product versions that have reached the end of sunset support, see the [chang
 ### Dependencies
 
 * Bumped `lua-kong-nginx-module` from 0.13.1 to 0.13.2.
-* Fixed a bug in the Lua kong Nginx module, ensuring the values in the cache remain valid and are updated in time.
+* Bumped `libexpat` from 2.6.2 to 2.6.4 to fix a crash in the `XML_ResumeParser` function caused by `XML_StopParser` stopping an uninitialized parser.
 
 ## 3.9.0.0
 **Release Date** 2024/12/12
