@@ -1302,52 +1302,53 @@ components:
       type: object
     Vault:
       description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, HashiCorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
-      example:
-        config:
-          prefix: vaults.config.resurrect_ttl
-        description: environment variable based vault
-        id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
-        name: env
-        tags:
-          - foo
-          - bar
+      type: object
       properties:
         config:
-          description: The configuration properties for the Vault which can be found on the [vaults documentation page](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
+          description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
-          properties:
-            prefix:
-              description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
-              type: string
-              enum:
-                - vaults.config.resurrect_ttl
-                - vaults.config.neg_ttl
-                - vaults.config.ttl
-              required:
-                - prefix
+          additionalProperties: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
+          readOnly: true
         description:
           description: The description of the Vault entity.
           type: string
+          nullable: true
         id:
           type: string
+          nullable: true
         name:
-          description: The name of the vault that's going to be added. The vault implementation must be installed in every Kong instance.
+          description: 'The name of the Vault that''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.'
           type: string
         prefix:
           description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
           type: string
         tags:
           description: An optional set of strings associated with the Vault for grouping and filtering.
+          type: array
           items:
             type: string
-          type: array
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
-      type: object
+          readOnly: true
+      example:
+        config:
+          prefix: ENV_PREFIX
+        description: environment variable based vault
+        id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
+        name: env
+        prefix: env
+        tags:
+          - foo
+          - bar
+      additionalProperties: false
+      required:
+        - name
+        - prefix
+        - config
     Workspace:
       type: object
       properties:
