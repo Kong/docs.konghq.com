@@ -1,12 +1,14 @@
 ---
-title: Set Up SSO with Okta
+title: Configure Okta SSO for Dev Portal
 badge: enterprise
 ---
 
-You can set up single sign-on (SSO) access to Dev Portals through Okta using OpenID Connect or SAML. These authentication methods allow developers to log in to a Dev Portal using their Okta credentials without needing a separate login. 
+You can set up single sign-on (SSO) access to Dev Portals through Okta using OpenID Connect or SAML. 
+These authentication methods allow developers to log in to a Dev Portal using their Okta credentials 
+without needing a separate {{site.konnect_saas}} login. 
 
-You cannot mix authenticators in a {{site.konnect_saas}} Dev Portal. With Okta authentication enabled, all developers will log in to the Dev Portal through Okta.
-
-This topic covers configuring Okta. For generic instructions on configuring SAML or OIDC for use with other identity providers, see the [generic SSO guide](/konnect/dev-portal/access-and-approval/sso/).
+{:.note}
+> This page provides specific instructions for configuring SSO with Okta. 
+See [Configure Generic SSO](/konnect/dev-portal/access-and-approval/sso/) for general instructions on setting up SSO for other identity providers.
 
 {% include_cached /md/konnect/okta-sso.md desc='Dev Portal' %}
