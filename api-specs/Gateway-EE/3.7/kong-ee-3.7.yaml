@@ -968,9 +968,15 @@ components:
         slots: 10000
       properties:
         algorithm:
-          default: round-robin
           description: Which load balancing algorithm to use.
           type: string
+          default: round-robin
+          enum:
+            - consistent-hashing
+            - least-connections
+            - round-robin
+            - latency
+          nullable: true
         client_certificate:
           additionalProperties: false
           description: If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.
