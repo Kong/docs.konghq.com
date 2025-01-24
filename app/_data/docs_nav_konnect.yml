@@ -160,6 +160,8 @@
           url: /service-catalog/integrations/traceable/
         - text: Datadog
           url: /service-catalog/integrations/datadog/
+        - text: GitLab
+          url: /service-catalog/integrations/gitlab/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
