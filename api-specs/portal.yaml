@@ -1942,10 +1942,16 @@ components:
           type: string
           enum:
             - key_auth
+        key_names:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
       required:
         - id
         - name
         - credential_type
+        - key_names
     AuthMethods:
       type: array
       items:
@@ -1974,6 +1980,9 @@ components:
             - self_managed_client_credentials
         auth_methods:
           $ref: '#/components/schemas/AuthMethods'
+        available_scopes:
+          $ref: '#/components/schemas/AvailableScopes'
+      additionalProperties: false
       required:
         - id
         - name
