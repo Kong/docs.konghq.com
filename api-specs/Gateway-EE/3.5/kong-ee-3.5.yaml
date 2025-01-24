@@ -2059,7 +2059,7 @@ components:
                                     type: hybrid
                                 kong_version: 3.9.0.0
                                 license:
-                                    license_expiration_date: 2025-02-20
+                                    license_expiration_date: "2025-02-20"
                                     license_key: ASDASDASDASDASDASDASDASDASD_ASDASDA
                                 plugins_count:
                                     tiers:
@@ -2134,7 +2134,7 @@ components:
                                     license_expiration_date:
                                         type: string
                                         description: The date current license expires. If no license is present, the field displays as 2017-7-20.
-                                        example: 2025-02-20
+                                        example: "2025-02-20"
                                     license_key:
                                         type: string
                                         description: |
