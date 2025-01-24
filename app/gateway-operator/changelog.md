@@ -20,7 +20,7 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 ## 1.4.1
 
-**Release Date**: 2024/11/28
+**Release date**: 2024/11/28
 
 - Fix setting the `ServiceAccountName` for `DataPlane`'s `Deployment`.
   [#897](https://github.com/Kong/gateway-operator/pull/897)
