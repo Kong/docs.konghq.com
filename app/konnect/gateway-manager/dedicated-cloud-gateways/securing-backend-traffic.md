@@ -76,7 +76,7 @@ Now you can add as many other security methods or implement additional plugins a
 
 Q: Why isn’t AWS PrivateLink recommended for connecting Dedicated Cloud Gateway to my upstream services?
 
-A: AWS PrivateLink offers secure and private connectivity by routing traffic through an endpoint, but it only supports unidirectional communication. This means that Dedicated Cloud Gateway can send requests to your upstream services, but your upstream services cannot initiate communication back to the gateway (or vice-versa: Dedicated Cloud Gateways cannot send requests to your upstream service]. For many use cases requiring bidirectional communication—such as callbacks or dynamic interactions between the gateway and your upstream services. For this reason, PrivateLink is not generally recommended for secure connectivity to your upstream services. 
+A: AWS PrivateLink offers secure and private connectivity by routing traffic through an endpoint, but it only supports unidirectional communication. This means that Dedicated Cloud Gateway can send requests to your upstream services, but your upstream services cannot initiate communication back to the gateway (or vice-versa: Dedicated Cloud Gateways cannot send requests to your upstream service). For many use cases requiring bidirectional communication—such as callbacks or dynamic interactions between the gateway and your upstream services. For this reason, PrivateLink is not generally recommended for secure connectivity to your upstream services. 
 
 
 
