@@ -308,30 +308,30 @@ components:
           - rbac_token_enabled
           - consumer
           - rbac_user
-      Group:
-        type: object
-        properties:
-          id:
-            type: string
-            format: uuid
-            description: Unique identifier for the group.
-          created_at:
-            type: integer
-            format: timestamp
-            description: Timestamp when the group was created.
-          updated_at:
-            type: integer
-            format: timestamp
-            description: Timestamp when the group was last updated.
-          name:
-            type: string
-            description: The name of the group.
-            uniqueItems: true
-          comment:
-            type: string
-            description: Any comments associated with the specific group.
-        required:
-          - name
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the group.
+        created_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the group was created.
+        updated_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the group was last updated.
+        name:
+          type: string
+          description: The name of the group.
+          uniqueItems: true
+        comment:
+          type: string
+          description: Any comments associated with the specific group.
+      required:
+        - name
     UnauthorizedError:
       type: object
       properties:
