@@ -1,5 +1,5 @@
 ---
-title: Authentication
+title: Configuration
 ---
 
 decK assumes that it is running on the same machine as {{ site.base_gateway }} and that the Admin API requires no authentication by default.
