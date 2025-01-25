@@ -34,10 +34,16 @@
   items:
     - text: Overview
       url: /manage-gateway/
+    - text: Configuration
+      url: /manage-gateway/configuration/
     - text: Backup
       url: /manage-gateway/backup/
+    - text: Diff
+      url: /manage-gateway/diff/
     - text: Sync
       url: /manage-gateway/sync/
+    - text: Apply
+      url: /manage-gateway/apply/
     - text: Validate
       url: /manage-gateway/validate/
     - text: RBAC

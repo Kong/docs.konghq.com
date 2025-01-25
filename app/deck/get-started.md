@@ -111,7 +111,7 @@ If you make a request without the authentication header, you will see a `No API 
 
 This page provided each configuration snippet separately to focus on what each snippet provides. For production usage, you should apply the whole configuration each time.
 
-To export the complete configuration, run `deck gateway dump > kong.yaml`, then open `kong.yaml` in your favorite editor.
+To export the complete configuration, run `deck gateway dump -o kong.yaml`, then open `kong.yaml` in your favorite editor.
 
 Try changing Alice's authentication key to `test` and then run `deck gateway sync kong.yaml` to sync the entire configuration. You'll see the following output:
 
