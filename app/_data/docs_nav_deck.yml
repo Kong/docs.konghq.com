@@ -58,15 +58,19 @@
       url: /manage-gateway/defaults/
     - text: Sensitive Data
       url: /manage-gateway/sensitive-data/
-    - text: Command Reference
-      url: /manage-gateway/commands/
 - title: decK Files
   icon: /assets/images/icons/documentation/icn-solution-guide.svg
   items:
     - text: Overview
       url: /file/
     - text: Config Generation
-      url: /file/generation/
+      items:
+        - text: openapi2kong
+          url: /file/openapi2kong/
+        - text: kong2kic
+          url: /file/kong2kic/
+        - text: kong2tf
+          url: /file/kong2tf/
     - text: Linting
       url: /file/linting/
     - text: File Manipulation
