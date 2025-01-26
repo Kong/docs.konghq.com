@@ -2,7 +2,7 @@
 title: diff
 ---
 
-The `deck gateway diff` shows the differences between your live {{ site.base_gateway }} configuration and the state file provided.
+The `deck gateway diff` command shows the differences between your live {{ site.base_gateway }} configuration and the state file provided.
 
 `deck gateway diff` is typically used to preview upcoming changes, or to detect unexpected changes in the live system.
 
