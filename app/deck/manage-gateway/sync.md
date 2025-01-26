@@ -44,4 +44,4 @@ deck gateway sync directory/*.yaml
 ```
 
 Please note that having the state split across different files is not same
-as [federated configuration](/deck/apiops/federated-configuration/).
+as [distributed configuration](/deck/manage-gateway/tags/) using tags.
