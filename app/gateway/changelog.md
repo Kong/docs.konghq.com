@@ -13,7 +13,7 @@ For product versions that have reached the end of sunset support, see the [chang
 
 
 ## 3.9.0.1
-**Release Date** 2025/01/25
+**Release Date** 2025/01/28
 
 ### Fixes
 
