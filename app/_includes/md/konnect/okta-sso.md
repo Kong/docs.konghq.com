@@ -44,7 +44,7 @@ in the **Application->Sign On** section of the Okta configuration, setting the f
 {{site.konnect_short_name}} configuration.
 
     * **Client ID**: Located in your Application **General -> Client Credentials** settings.
-    * **Client Secret**: Located in your Application **General -> Client Seecrets** settings.
+    * **Client Secret**: Located in your Application **General -> Client Secrets** settings.
     * **Issuer URI** : The Issuer is typically found in the **Security -> API -> Authorization Servers** settings.
     It should look like the following: `https://<okta-org-id>.okta.com/oauth2/default`
 {% endnavtab %}
@@ -115,7 +115,7 @@ path value will be used by {{site.konnect_short_name}} to route users to the cor
 
     Requirements:
     * The path must be unique *across all {{site.konnect_short_name}} organizations*.
-    If your desired path is already taken, you will be promted to enter another one.
+    If your desired path is already taken, you will be prompted to enter another one.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 {% endif %}
@@ -156,7 +156,7 @@ path value will be used by {{site.konnect_short_name}} to route users to the cor
 
     Requirements:
     * The path must be unique *across all {{site.konnect_short_name}} organizations*.
-    If your desired path is already taken, you will be promted to enter another one.
+    If your desired path is already taken, you will be prompted to enter another one.
     * The path can be any alphanumeric string.
     * The path does not require a slash (`/`).
 {% endif %}
@@ -187,7 +187,7 @@ They will receive an access error but the new user will be visible to the {{site
 The administrator can now map the user to a valid {{site.konnect_short_name}} team, which will give the user the required
 access. The new user must now re-login to gain access. 
 
-Preferrably the IdP group to team mapping feature is used to streamline this process. Use the following to enable this feature:
+Preferably the IdP group to team mapping feature is used to streamline this process. Use the following to enable this feature:
 
 1. In {{site.konnect_short_name}}, go to {% konnect_icon organizations %} **Organization** > **Settings**, 
 click the **Team Mappings** and enable the IdP Mapping feature.
@@ -228,7 +228,7 @@ to align with the new group-to-team mapping.
 ## Debug and test the configuration
 
 The Okta console provides a [Token Preview feature](https://help.okta.com/en-us/content/topics/security/api-config-test.htm) which will be useful in 
-verifying configuration values for these SSO configuration instructions. If you encouter issues configuring SSO with Okta, start by
+verifying configuration values for these SSO configuration instructions. If you encounter issues configuring SSO with Okta, start by
 checking the Token Preview for the Okta application you created.
 
 {% if include.desc == "Dev Portal" %}
@@ -256,4 +256,4 @@ If you want your users to have easy access to {{site.konnect_saas}}
 {% if include.desc == "Dev Portal" %} Dev Portal{% endif %} alongside their other apps, 
 you can add it to your Okta dashboard.
 
-In Okta, navigate to the General Settings of your application and confiure the _application icon_ for users as needed.
+In Okta, navigate to the General Settings of your application and configure the _application icon_ for users as needed.

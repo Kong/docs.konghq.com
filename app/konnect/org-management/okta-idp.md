@@ -9,7 +9,7 @@ for {{site.konnect_short_name}} authentication and authorization. Alternatively,
 access to {{site.konnect_short_name}} using OpenID Connect (OIDC) or Security Assertion Markup Language (SAML). 
 These authentication methods allow your users to log in to {{site.konnect_short_name}} using IdP authorization, 
 without needing additional {{site.konnect_short_name}} specific credentials. You can also configure a mapping
-between Okta group claims and {{site.konnect_saas}} teams, allowing for {{site.konnect_short_name}} user team assginments 
+between Okta group claims and {{site.konnect_saas}} teams, allowing for {{site.konnect_short_name}} user team assignments
 from within Okta.
 
 {:.note}
@@ -17,7 +17,7 @@ from within Okta.
 See [Configure Generic SSO](/konnect/org-management/sso/) for general instructions on setting up SSO for other identity providers.
 
 {:.important}
-> It is recommended to utilize a single authentication method, however, {{site.konnect_short_name}} supports the ability to 
+> It is recommended to use a single authentication method, however, {{site.konnect_short_name}} supports the ability to 
 combine built-in authentication with _either_ OIDC or SAML based SSO. Combining both OIDC and SAML based SSO is not supported.
 Keep built-in authentication enabled while you are testing IdP authentication and only disable it after successfully testing 
 your SSO configuration.
