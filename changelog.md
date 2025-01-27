@@ -2,6 +2,42 @@
 
 <!--vale off-->
 
+## Week 4
+
+### [Feat: Secure back end traffic](https://github.com/Kong/docs.konghq.com/pull/8339) (2025-01-24)
+
+
+
+#### Added
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/securing-backend-traffic
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/
+
+
+### [feat: Service Catalog GitLab integration ](https://github.com/Kong/docs.konghq.com/pull/8329) (2025-01-24)
+
+<!-- What did you change and why? -->
+Added GitLab as the newest Service Catalog integration.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+DOCU-4140
+
+#### Added
+
+- https://docs.konghq.com/assets/images/icons/third-party/gitlab.svg
+- https://docs.konghq.com/konnect/service-catalog/integrations/gitlab
+
+#### Modified
+
+- https://docs.konghq.com/konnect/service-catalog/integrations/datadog
+- https://docs.konghq.com/konnect/service-catalog/integrations/github
+- https://docs.konghq.com/konnect/service-catalog/integrations/pagerduty
+- https://docs.konghq.com/konnect/service-catalog/integrations/swaggerhub
+- https://docs.konghq.com/konnect/service-catalog/integrations/traceable
+
 ## Week 3
 
 ### [Fix: OIDC plugin params listed as strings instead of arrays](https://github.com/Kong/docs.konghq.com/pull/8347) (2025-01-17)
