@@ -23,7 +23,7 @@ Keep the following in mind when configuring SSO for Dev Portal:
   If you want to use SSO to log in to {{site.konnect_short_name}}, you must configure that separately. 
 
 {:.important}
-> It is recommended to utilize a single authentication method, however, {{site.konnect_short_name}} supports the ability to 
+> It is recommended to use a single authentication method, however, {{site.konnect_short_name}} supports the ability to 
 combine built-in authentication with _either_ OIDC or SAML based SSO. Combining both OIDC and SAML based SSO is not supported.
 Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after 
 successfully testing the configurations in these guides.

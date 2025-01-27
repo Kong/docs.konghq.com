@@ -12,7 +12,7 @@ without needing a separate {{site.konnect_saas}} Dev Portal login.
 See [Configure Generic SSO](/konnect/dev-portal/access-and-approval/sso/) for general instructions on setting up SSO for other identity providers.
 
 {:.important}
-> It is recommended to utilize a single authentication method, however, {{site.konnect_short_name}} supports the ability to 
+> It is recommended to use a single authentication method, however, {{site.konnect_short_name}} supports the ability to 
 combine built-in authentication with _either_ OIDC or SAML based SSO. Combining both OIDC and SAML based SSO is not supported.
 Keep built-in authentication enabled while you are testing IdP authentication and only disable it after successfully testing 
 your SSO configuration.
