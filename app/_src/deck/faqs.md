@@ -82,7 +82,8 @@ versions of Kong.
 ### I'm a {{site.konnect_short_name}} user, can I use decK?
 
 Yes, decK is compatible with {{site.konnect_short_name}}. We recommend
-upgrading to decK 1.12 to take advantage of the new `--konnect` CLI flags.
+upgrading to decK to 1.40.0 at minimum, or use the latest available version 
+for continued compatibility with {{site.konnect_short_name}}.
 
 ### I use Cassandra as a data store for Kong, can I use decK?
 

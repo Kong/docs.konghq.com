@@ -4,7 +4,7 @@ content_type: reference
 ---
 
 {:.important}
-> Konnect requires decK v1.40.0 or above. Versions below this will see inconsistent `deck gateway diff` results.
+> {{site.konnect_short_name}} requires decK v1.40.0 or above. Versions below this will see inconsistent `deck gateway diff` results.
 
 You can manage {{site.base_gateway}} core entity configuration in your {{site.konnect_short_name}} organization using decK.
 

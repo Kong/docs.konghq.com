@@ -65,8 +65,10 @@ plugin: kong-inc/openid-connect
 name: openid-connect
 config:
   issuer: "http://keycloak.test:8080/auth/realms/master"
-  client_id: "kong"
-  client_auth: "private_key_jwt"
+  client_id: 
+    - "kong"
+  client_auth: 
+    - "private_key_jwt"
   auth_methods:
     - "bearer"
     - "password"
@@ -96,8 +98,10 @@ plugin: kong-inc/openid-connect
 name: openid-connect
 config:
   issuer: "http://keycloak.test:8080/auth/realms/master"
-  client_id: "kong"
-  client_auth: "private_key_jwt"
+  client_id: 
+    - "kong"
+  client_auth: 
+    - "private_key_jwt"
   auth_methods:
     - "bearer"
     - "password"

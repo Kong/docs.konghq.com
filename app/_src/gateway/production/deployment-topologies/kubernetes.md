@@ -35,7 +35,7 @@ For more information about {{ site.base_gateway }} and {{ site.kic_product_name 
 
 Both topologies are supported by Kong, and deciding between the two options depends on your team's capabilities.
 
-If you're a Kubernetes-native company who are comfortable managing CRDs and have pre-existing workflows around Kubernetes resources, we recommend using {{ site.kic_product_name }} to manage your deployment. {{ site.kic_product_name }} can be attached to Konnect to provide visibility in to the generated configuration and live traffic through analytics.
+If you're a Kubernetes-native company who are comfortable managing CRDs and have pre-existing workflows around Kubernetes resources, we recommend using {{ site.kic_product_name }} to manage your deployment. {{ site.kic_product_name }} can be attached to Konnect to provide visibility in to the generated configuration and live traffic through analytics. _{{ site.kic_product_name }} is not currently compatible with the {{ site.konnect_short_name }} Developer Portal. If you are using Developer Portal, choose Hybrid mode._
 
 If your team is not familiar with CRDs, or you're migrating an existing configuration from bare metal machines or VMs to Kubernetes, you should choose Hybrid mode. In this topology, Kubernetes is a place to run your data planes and nothing more. There are no CRDs to learn, no Ingress Controller to maintain and update. All configuration is stored in the control plane and send to data planes using the Hybrid mode protocol.
 

@@ -1440,6 +1440,7 @@ components:
             - eu
             - au
             - me
+            - in
             - '*'
       example:
         id: 54cc6168-ebb1-4300-8168-d62a0dd08fc8
@@ -2434,7 +2435,7 @@ components:
                   - Portals
                   - Service Hub
               entity_region:
-                description: The region of the team.
+                description: Region of the team.
                 type: string
                 example: eu
                 enum:
@@ -2442,6 +2443,7 @@ components:
                   - eu
                   - au
                   - me
+                  - in
                   - '*'
           examples:
             Assigned Roles US:

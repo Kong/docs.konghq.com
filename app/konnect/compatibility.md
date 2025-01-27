@@ -40,6 +40,11 @@ To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible ve
 | {{site.mesh_product_name}} 2.4.x | <i class="fa fa-check"></i> | 2.4.1
 | {{site.mesh_product_name}} 2.3.x or earlier | <i class="fa fa-times"></i> | -
 
+## decK version compatibility
+
+{{site.konnect_short_name}} requires decK v1.40.0 or above. 
+Versions below this will see inconsistent `deck gateway diff` results and other potential issues.
+
 ## Plugin compatibility
 
 Most {{site.base_gateway}} plugins are compatible with {{site.konnect_short_name}}.

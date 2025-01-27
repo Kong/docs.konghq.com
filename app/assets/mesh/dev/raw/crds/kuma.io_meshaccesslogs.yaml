@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.17.1
   name: meshaccesslogs.kuma.io
 spec:
   group: kuma.io
@@ -219,6 +219,7 @@ spec:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                           type: string
                         labels:
                           additionalProperties:
@@ -286,6 +287,7 @@ spec:
                     - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                     type: string
                   labels:
                     additionalProperties:
@@ -502,6 +504,7 @@ spec:
                           - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                           type: string
                         labels:
                           additionalProperties:

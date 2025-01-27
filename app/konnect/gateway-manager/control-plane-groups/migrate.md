@@ -16,7 +16,7 @@ Therefore, when migrating, you will need at least two new groups: a control plan
 ## Prerequisites
 
 * **Control plane admin** permissions
-* decK v1.12 or later [installed](/deck/latest/installation/)
+* decK v1.40.0 or later [installed](/deck/latest/installation/)
 * You have a Konnect access token and you have [made sure that decK can connect to your account](/konnect/gateway-manager/declarative-config/)
 
 ## Prepare control planes for migration

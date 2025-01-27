@@ -2054,6 +2054,7 @@ components:
           type: string
           example: Services
         entity_region:
+          description: Region of the entity.
           type: string
           example: eu
           enum:
@@ -2061,6 +2062,7 @@ components:
             - eu
             - au
             - me
+            - in
             - '*'
       example:
         role_name: API Viewer
@@ -2292,6 +2294,7 @@ components:
           type: string
           example: Services
         entity_region:
+          description: Region of the entity.
           type: string
           example: eu
           enum:
@@ -2299,6 +2302,7 @@ components:
             - eu
             - au
             - me
+            - in
             - '*'
       example:
         id: 1a3c2169-27f8-4594-926b-41df3432d5dc
@@ -5012,10 +5016,16 @@ components:
           type: string
           enum:
             - key_auth
+        key_names:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
       required:
         - id
         - name
         - credential_type
+        - key_names
     AuthMethods:
       type: array
       items:
@@ -5023,6 +5033,14 @@ components:
         type: string
       example:
         - bearer
+    AvailableScopes:
+      description: Possible developer selectable scopes for an application. Only present when using DCR Provider that supports it.
+      type: array
+      items:
+        type: string
+      example:
+        - scope1
+        - scope2
     AuthStrategyClientCredentials:
       description: Client Credential Auth strategy that the application uses.
       type: object
@@ -5044,6 +5062,9 @@ components:
             - self_managed_client_credentials
         auth_methods:
           $ref: '#/components/schemas/AuthMethods'
+        available_scopes:
+          $ref: '#/components/schemas/AvailableScopes'
+      additionalProperties: false
       required:
         - id
         - name
@@ -5746,6 +5767,8 @@ components:
           - id: 44f8380e-7798-4566-99e3-2edf2b57d289
             name: key auth strategy
             credential_type: key_auth
+            key_names:
+              - apikey
         application_registration_enabled: true
         auto_approve_registration: true
         deprecated: false
@@ -5761,6 +5784,8 @@ components:
               - id: 44f8380e-7798-4566-99e3-2edf2b57d289
                 name: key auth strategy
                 credential_type: key_auth
+                key_names:
+                  - apikey
             application_registration_enabled: true
             auto_approve_registration: true
             deprecated: false
@@ -6907,8 +6932,11 @@ components:
             choices:
               - us
               - eu
+              - au
+              - me
+              - in
               - '*'
-            reason: 'must be one of [us, eu, *]'
+            reason: 'must be one of [us, eu, au, me, in, *]'
             source: body
     ListDevelopersBadRequestExample1:
       value:
