@@ -3,11 +3,13 @@ title: Configure generic SSO for a Konnect Org
 ---
 
 {{site.konnect_saas}} provides [built-in authentication](/konnect/org-management/auth/), 
-allowing you to setup users and teams for {{site.konnect_short_name}}
-authentication and authorization. Alternatively, you can set up single sign-on (SSO) 
+allowing you to setup [users](/konnect/org-management/users/) and [teams](/konnect/org-management/teams-and-roles/) 
+for {{site.konnect_short_name}} authentication and authorization. Alternatively, you can set up single sign-on (SSO) 
 access to {{site.konnect_short_name}} using OpenID Connect (OIDC) or Security Assertion Markup Language (SAML). 
 These authentication methods allow your users to log in to {{site.konnect_short_name}} using IdP authorization, 
-without needing additional {{site.konnect_short_name}} specific credentials.
+without needing additional {{site.konnect_short_name}} specific credentials. You can also configure a mapping
+between Okta group claims and {{site.konnect_saas}} teams, allowing for {{site.konnect_short_name}} user team assginments 
+from within Okta.
 
 {:.note}
 > This topic provides general instructions for configuring SSO across identity providers.
