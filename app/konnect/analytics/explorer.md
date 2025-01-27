@@ -14,19 +14,22 @@ To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} se
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 
-* **None**                                                         
-* **API Product**                                                   
-* **API Product Version**                                          
-* **Route**                                                         
-* **Application**                                                  
-* **Status Code**                                                   
-* **Status Code Group**                                            
-* **Control Plane**                                              
-* **Control Plane Group**                                          
-* **Data Plane Node**                                            
-* **Gateway Services**                                            
-* **Consumer**                                                     
-
+* **API Product**
+* **API Product Version**
+* **Application**
+* **Consumer**
+* **Control Plane**
+* **Control Plane Group**
+* **Data Plane Node**
+* **Data Plane Node Version**
+* **Gateway Services**
+* **None**
+* **Response Source**
+* **Route**
+* **Status Code**
+* **Status Code Group**
+* **Upstream Status Code**
+* **Upstream Status Code Group**
 
 {% endnavtab %}
 {% navtab Metrics %}
@@ -42,7 +45,9 @@ Response Latency | Latency | The amount of time, in milliseconds, that it takes 
 Upstream Latency | Latency | The amount of time, in milliseconds, that {{site.base_gateway}} was waiting for the first byte of the upstream service response. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from sending the request to the upstream service until the response returned.
 Kong latency | Latency | The amount of time, in milliseconds, that {{site.base_gateway}} was waiting for the first byte of the upstream service response. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from the time the {{site.base_gateway}} received the request up to when it sends it back to the upstream service.
 Request Size | Size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
+Request Size (sum) | Size | The sum of the request payload received from the client, in bytes. 
 Response Size | Size | The size of the response payload returned to the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
+Response Size (sum) | Size | The sum of the response payloads returned to the client, in bytes. 
 
 {% endnavtab %}
 {% navtab Time intervals %}
@@ -78,6 +83,16 @@ Previous month | Data is aggregated in daily increments. Logs any traffic in the
 {% endnavtab %}
 {% endnavtabs %}
 
+## System defined groups
+
+* **Empty** - Empty is a system-defined group that indiciates that API calls do not have an entity like consumers or routes, selected for grouping. Empty allows you to group API calls that don't match specific groupings so you can gain more comprehensive insights. 
+
+Empty can be used in cases like this: 
+* Identify the number of API calls that don't match a route.
+* Identify API calls without an associated consumer to keep track of any security holes.
+
+**Empty** is displayed in italics in Konnect, and it is not mandatory, using `Is Empty` or `Is Not Empty`, you can filter results in Explorer. 
+
 ## LLM usage reporting
 
 Advanced Analytics allows you to monitor and optimize your LLM usage by providing detailed insights into objects such as token consumption, costs, and latency. 
@@ -97,18 +112,17 @@ To use this feature, navigate to the [Explorer dashboard](https://cloud.konghq.c
 {% navtab Grouping and Filtering %}
 
 
-* **Provider**                                                         
-* **Request Model**                                                   
-* **Response Model**                                          
-* **Cache Status**                                                         
-* **Embeddings Provider**                                                  
-* **Embeddings Model**                                                   
-* **Control Plane**                                                                                      
-* **Control Plane Group**                                          
-* **Route**                                            
-* **Consumer**                                            
-* **Application**                                                     
-
+* **Application**
+* **Cache Status**
+* **Consumer**
+* **Control Plane**
+* **Control Plane Group**
+* **Embeddings Model**
+* **Embeddings Provider**
+* **Provider**
+* **Request Model**
+* **Response Model**
+* **Route**
 
 {% endnavtab %}
 {% navtab Metrics %}
