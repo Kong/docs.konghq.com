@@ -169,6 +169,9 @@ mesh_ignored_links_regex:
 mesh_raw_generated_paths:
   - app/assets/mesh
   - app/_src/.repos/kuma/app/assets
+mesh_product_name_path: kong-mesh
+mesh_cp_zone_sync_name_prefix: kong-mesh-
+mesh_docker_org: kong
 # Helm commands
 set_flag_values_prefix: kuma.
 mesh_helm_repo_url: https://kong.github.io/kong-mesh-charts
