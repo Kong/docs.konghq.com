@@ -18,13 +18,23 @@ The Slack integration allows you to see relevant communication channels (via [Sl
 2. Select **Slack**, then **Install Slack**.
 3. Select **Authorize**. 
 
-Slack will ask you to grant consent to {{site.konnect_product_name}}. Both Read and Write scopes are required.
+Slack will ask you to grant consent to {{site.konnect_product_name}}. Both read and write scopes are required.
 
 ## Resources
 
 Entity | Description
 -------|------------
 Slack Channel | A Slack channel relating to the Service Catalog service
+
+
+## Events
+
+**Event**  | **Description** 
+-------|------------
+ [**`team_access_granted`**](https://api.slack.com/events/team_access_granted)       | Occurs when a Slack bot is installed into a workspace for an Enterprise Grid customer.                            
+ [**`team_access_revoked`**](https://api.slack.com/events/team_access_revoked)       | Occurs when a Slack bot is removed from a workspace for an Enterprise Grid customer.                              
+ [**`grid_migration_started`**](https://api.slack.com/events/grid_migration_started) | Occurs when a workspace begins migrating to Enterprise Grid.                                                      
+ [**`grid_migration_finished`**](https://api.slack.com/events/grid_migration_finished)| Occurs when a workspace has finished migrating to Enterprise Grid.                                                
 
 ## Discovery information
 
