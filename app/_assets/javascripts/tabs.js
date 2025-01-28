@@ -61,7 +61,7 @@ class TabsComponent {
   }
 
   addEventListeners() {
-    this.elem.querySelectorAll('li.tabs-component-tab').forEach((item) => {
+    this.elem.querySelectorAll('.tabs-component-tab').forEach((item) => {
       item.addEventListener('click', this.selectTab.bind(this));
     });
 
@@ -85,7 +85,7 @@ class TabsComponent {
       .closest('.tabs-component')
       .querySelectorAll(':scope > .tabs-component-tabs > .tabs-component-tab')
       .forEach((item) => {
-        item.classList.remove('is-active');
+        item.classList.remove('active');
         item.querySelector('.tabs-component-tab-a').setAttribute('aria-selected', false);
       });
 
@@ -111,7 +111,7 @@ class TabsComponent {
   setSelectedTab(selectedTab) {
     this.hideTabs(selectedTab);
 
-    selectedTab.classList.add('is-active');
+    selectedTab.classList.add('active');
     selectedTab.querySelector('.tabs-component-tab-a').setAttribute('aria-selected', true);
 
     const tabLink = selectedTab.querySelector('.tabs-component-tab-a');
@@ -124,7 +124,7 @@ class TabsComponent {
 
   setSelectedTabBySlug(slug) {
     const tab = Array.from(
-      this.elem.querySelectorAll('li.tabs-component-tab')
+      this.elem.querySelectorAll('.tabs-component-tab')
     ).find(tab => tab.querySelector('.tabs-component-tab-a').dataset.slug === slug);
 
     if (tab) {

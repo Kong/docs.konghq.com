@@ -1,17 +1,32 @@
-<div class="navtabs code">
-  <div class="navtab-titles" role="tablist">
-    <% environment['tabs'][file_path][@name].each_with_index do |(title, value), index| %>
-    <% slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\\w-]/, '') %>
-    <div data-slug="<%= slug %>" data-navtab-id="<%= title.rstrip.gsub(' ', '-') %>" class="navtab-title" role="tab" aria-controls="<%= title.rstrip.gsub(' ', '-') %>" tabindex="0">
-      <%= title %>
-    </div>
-  <% end %>
+<div class="tabs-component navtabs" data-tab="<%= SecureRandom.uuid %>" data-tab-use-url-fragment="<%= options['useUrlFragment'] %>">
+  <div role="tablist" class="tabs-component-tabs navtab-titles">
+    <% environment['tabs'][file_path][@name].each_with_index do |(hash, value), index| %>
+      <div class="tabs-component-tab navtab-title <%= index == 0 ? 'active' : '' %>" role="presentation">
+        <a
+          aria-controls="<%= hash.rstrip.gsub(' ', '-') %>"
+          aria-selected="<%= index == 0 %>"
+          href="#<%= hash.rstrip.gsub(' ', '-') %>"
+          class="tabs-component-tab-a"
+          role="tab"
+          data-slug="<%= hash.rstrip.gsub(' ', '-') %>"
+          >
+            <%= hash %>
+        </a>
+      </div>
+    <% end %>
   </div>
-  <div class="navtab-contents">
-  <% environment['tabs'][file_path][@name].each_with_index do |(title, value), index| %>
-    <div data-navtab-content="<%= title.rstrip.gsub(' ', '-') %>" class="navtab-content" role="tabpanel" id="<%= title.rstrip.gsub(' ', '-') %>" tabindex="0">
-      <%= value %>
-    </div>
-  <% end %>
+
+  <div class="tabs-component-panels navtab-contents">
+    <% environment['tabs'][file_path][@name].each_with_index do |(key, value), index| %>
+      <section
+        aria-hidden="<%= index != 0 %>"
+        class="tabs-component-panel navtab-content <%= index != 0 ? 'hidden' : '' %>"
+        id="<%= key.rstrip.gsub(' ', '-') %>"
+        role="tabpanel"
+        data-panel="<%= key.rstrip.gsub(' ', '-') %>"
+      >
+        <%= value %>
+      </section>
+    <% end %>
   </div>
 </div>
