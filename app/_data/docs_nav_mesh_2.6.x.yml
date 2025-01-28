@@ -77,6 +77,10 @@ inherit:
       text: Deploy Kong Mesh on Kubernetes
       action: modify
       items: []
+    - path: [ Quickstart, Deploy Kuma on Universal ]
+      text: Deploy Kong Mesh on Universal
+      action: modify
+      items: []
     - path: [ Using Kuma ]
       title: Using Kong Mesh
       action: modify
