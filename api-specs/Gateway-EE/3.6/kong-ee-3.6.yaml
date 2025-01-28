@@ -943,9 +943,15 @@ components:
         slots: 10000
       properties:
         algorithm:
-          default: round-robin
           description: Which load balancing algorithm to use.
           type: string
+          default: round-robin
+          enum:
+            - consistent-hashing
+            - least-connections
+            - round-robin
+            - latency
+          nullable: true
         client_certificate:
           additionalProperties: false
           description: If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.
@@ -1144,52 +1150,53 @@ components:
       type: object
     Vault:
       description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, HashiCorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
-      example:
-        config:
-          prefix: vaults.config.resurrect_ttl
-        description: environment variable based vault
-        id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
-        name: env
-        tags:
-          - foo
-          - bar
+      type: object
       properties:
         config:
-          description: The configuration properties for the Vault which can be found on the [vaults documentation page](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
+          description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
-          properties:
-            prefix:
-              description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
-              type: string
-              enum:
-                - vaults.config.resurrect_ttl
-                - vaults.config.neg_ttl
-                - vaults.config.ttl
-              required:
-                - prefix
+          additionalProperties: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
+          readOnly: true
         description:
           description: The description of the Vault entity.
           type: string
+          nullable: true
         id:
           type: string
+          nullable: true
         name:
-          description: The name of the vault that's going to be added. The vault implementation must be installed in every Kong instance.
+          description: 'The name of the Vault that''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.'
           type: string
         prefix:
           description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
           type: string
         tags:
           description: An optional set of strings associated with the Vault for grouping and filtering.
+          type: array
           items:
             type: string
-          type: array
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
-      type: object
+          readOnly: true
+      example:
+        config:
+          prefix: ENV_PREFIX
+        description: environment variable based vault
+        id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
+        name: env
+        prefix: env
+        tags:
+          - foo
+          - bar
+      additionalProperties: false
+      required:
+        - name
+        - prefix
+        - config
     Workspace:
       type: object
       properties:
@@ -2085,54 +2092,141 @@ components:
             type: object
             x-examples:
               Example 1:
+                checksum: 38b06b3c3c69299740e1f2d48a1a197d17864b99
+                consumers_count: 0
                 counters:
-                  - bucket: 2021-12
-                    request_count: 0
-                db_version: postgres 9.6.19
-                kong_version: 3.2.2.1
-                license_key: ASDASDASDASDASDASDASDASDASD_ASDASDA
+                  total_requests: 10
+                  buckets: 
+                    - bucket: 2025-01
+                      request_count: 10
+                db_version: postgres 13.18
+                deployment_info:
+                  type: hybrid
+                kong_version: 3.9.0.0
+                license:
+                  license_expiration_date: "2025-02-20"
+                  license_key: ASDASDASDASDASDASDASDASDASD_ASDASDA
+                plugins_count:
+                  tiers:
+                    custom: 0
+                    enterprise:
+                      rate-limiting-advanced: 1
+                    free:
+                      basic-auth: 1
+                  unique_route_kafkas: 0
+                  unique_route_lambdas: 0
                 rbac_users: 0
+                routes_count: 0
                 services_count: 0
                 system_info:
                   cores: 4
                   hostname: 13b867agsa008
                   uname: Linux x86_64
+                timestamp: a1737692223
                 workspaces_count: 1
             properties:
+              checksum:
+                type: string
+                description: The checksum of the current report.
+                example: 38b06b3c3c69299740e1f2d48a1a197d17864b99
               counters:
-                type: array
+                type: object
                 description: |
                   Counts the number of requests made in a given month.
-                items:
-                  type: object
-                  properties:
-                    bucket:
-                      type: string
-                      description: Year and month when the requests were processed. If the value in bucket is UNKNOWN, then the requests were processed before Kong Gateway 2.7.0.1.
-                      example: 2021-12
-                    request_count:
-                      type: integer
-                      description: Number of requests processed in the given month and year.
-                      example: 0
+                properties:
+                  total_requests:
+                    type: number
+                    description: The total number of requests made in all buckets.
+                    example: 10
+                  buckets:
+                    type: array
+                    description: A list of year-month buckets and the number of requests made in each one.
+                    items:
+                      properties:
+                        bucket: 
+                          type: string
+                          description: Year and month when the requests were processed. If the value in bucket is UNKNOWN, then the requests were processed before Kong Gateway 2.7.0.1.
+                          example: 2025-01
+                        request_count: 
+                          type: integer
+                          description: Number of requests processed in the given month and year.
+                          example: 10
               db_version:
                 type: string
                 description: |
                   The type and version of the data store Kong Gateway is using.
-                example: postgres 9.6.19
+                example: postgres 13.18
+              deployment_info:
+                type: object
+                description: Displays information about the deployment running Kong Gateway.
+                properties:
+                  type:
+                    type: string
+                    description: Type of the deployment mode.
+                    example: traditional
+                  connected_dp_count:
+                    type: number
+                    description: Number of data planes across the cluster. If the deployment is not hybrid mode, the field is not displayed.
               kong_version:
                 type: string
                 description: |
                   The version of the Kong Gateway instance.
-                example: 3.2.2.1
-              license_key:
-                type: string
-                description: |
-                  An encrypted identifier for the current license key. If no license is present, the field displays as UNLICENSED.
-                example: ASDASDASDASDASDASDASDASDASD_ASDASDA
+                example: 3.9.0.0
+              license:
+                type: object
+                description: Information about the license.
+                properties:
+                  license_expiration_date:
+                    type: string
+                    description: The date current license expires. If no license is present, the field displays as 2017-7-20.
+                    example: "2025-02-20"
+                  license_key:
+                    type: string
+                    description: |
+                      An encrypted identifier for the current license key. If no license is present, the field displays as UNLICENSED.
+                    example: ASDASDASDASDASDASDASDASDASD_ASDASDA
               rbac_users:
                 type: integer
                 description: |
                   The number of users registered with through RBAC.
+                example: 0
+              consumers_count:
+                type: integer
+                description: The number of configured consumers in the Kong Gateway instance.
+                example: 0
+              plugins_count:
+                type: object
+                description: Counts the number of plugins in use.
+                properties:
+                  unique_route_lambdas:
+                    type: number
+                    description: |
+                      Number of AWS Lambda plugins in use. Only counts in case of the plugin is defined on a service-less route level and have a unique function name.
+                    example: 0
+                  unique_route_kafkas:
+                    type: number
+                    description: Number of unique broker IPs listed in broker array across Kafka Upstream plugins defined on a service-less route level.
+                    example: 0
+                  tiers:
+                    type: object
+                    description: The number of configured plugins in each subscription tier.
+                    properties:
+                      custom:
+                        type: object
+                        description: A list of all configured custom plugins and the number of instances of each.
+                      enterprise:
+                        type: object
+                        description:  A list of all configured Enterprise plugins and the number of instances of each.
+                        example:
+                          rate-limiting-advanced: 1
+                      free:
+                        type: object
+                        description: A list of all configured free plugins and the number of instances of each.
+                        example:
+                          basic-auth: 1
+              routes_count:
+                type: integer
+                description: The number of configured routes in the Kong Gateway instance.
                 example: 0
               services_count:
                 type: integer
@@ -2156,6 +2250,10 @@ components:
                     type: string
                     description: Operating system
                     example: Linux x86_64
+              timestamp:
+                type: string
+                description: The timestamp of the current response.
+                example: 1737692223
               workspaces_count:
                 type: integer
                 description: |
@@ -12428,6 +12526,33 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       tags:
         - Keyring
+  /keyring/vault/sync:
+   post:
+    summary: Synchronize Vault keyring
+    operationId: post-keyring-vault-sync
+    responses:
+      '204':
+        description: No Content
+    description: | 
+      Kong reads the keyring material from Vault when the Kong process starts.
+      Any changes to the Vault KV store are not reflected on the Kong node until Kong syncs with Vault via the `/keyring/vault/sync` Admin API endpoint. 
+      This allows Kong to receive a Vault token with a low TTL, as the list and read operation only occur once.
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                description: Optional token for Vault synchronization.
+                example: "example-token"
+          examples:
+            Example 1:
+              value:
+                token: "example-token"
+    tags:
+      - Keyring
   /tags:
     get:
       summary: List all tags

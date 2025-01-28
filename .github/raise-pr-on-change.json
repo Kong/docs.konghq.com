@@ -17,11 +17,11 @@
       "dest": "api-specs/gateway/admin-ee/3.7/openapi.yaml"
     },
     {
-      "src": "api-specs/Gateway-EE/3.8/kong-ee-3.8.yaml",
+      "src": "api-specs/Gateway-EE/3.8/kong-ee.yaml",
       "dest": "api-specs/gateway/admin-ee/3.8/openapi.yaml"
     },
     {
-      "src": "api-specs/Gateway-EE/3.9/kong-ee-3.9.yaml",
+      "src": "api-specs/Gateway-EE/3.9/kong-ee.yaml",
       "dest": "api-specs/gateway/admin-ee/3.9/openapi.yaml"
     },
     {
@@ -41,11 +41,11 @@
       "dest": "api-specs/gateway/admin-oss/3.7/openapi.yaml"
     },
     {
-      "src": "api-specs/Gateway-OSS/3.8/kong-oss-3.8.yaml",
+      "src": "api-specs/Gateway-OSS/3.8/kong-oss.yaml",
       "dest": "api-specs/gateway/admin-oss/3.8/openapi.yaml"
     },
     {
-      "src": "api-specs/Gateway-OSS/3.9/kong-oss-3.9.yaml",
+      "src": "api-specs/Gateway-OSS/3.9/kong-oss.yaml",
       "dest": "api-specs/gateway/admin-oss/3.9/openapi.yaml"
     }
   ]

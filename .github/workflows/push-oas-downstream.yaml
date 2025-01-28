@@ -13,8 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Raise PR on change
-         uses: mheap/raise-pr-on-change-action@v1
-         with:
+        uses: mheap/raise-pr-on-change-action@v1
+        with:
            token: ${{ secrets.PAT }}
            configFile: ".github/raise-pr-on-change.json"
            prBranch: automated-update
