@@ -30,6 +30,7 @@ For product versions that have reached the end of sunset support, see the [chang
   * Fixed an issue in the Azure provider where `model.options.upstream_path` overrides would always return a 404 error code.
   * Fixed an issue where Azure streaming responses would be missing individual tokens.
   * Fixed an issue where response streaming in Gemini and Bedrock providers was returning whole chat responses in one chunk.
+  * Fixed an issue where multimodal requests (in OpenAI format) would not transform properly when using the Gemini provider.
 
 * [**gRPC-Web**](/hub/kong-inc/grpc-web/) (`grpc-web`) and [**gRPC-Gateway**](/hub/kong-inc/grpc-gateway/) (`grpc-gateway`)
   * Fixed an issue where the `TE` (transfer-encoding) header would not be sent to the upstream gRPC servers when `grpc-web` or `grpc-gateweay` were in use.
