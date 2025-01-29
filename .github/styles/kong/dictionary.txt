@@ -61,6 +61,7 @@ JSONObjects
 JSONObject
 ketama
 Keycloak
+Kibana
 knative
 Knative
 Knative's
@@ -73,7 +74,7 @@ Kuma
 kustomizations
 kustomize
 Kustomize
-Langchain
+LangChain
 Librato
 Loggly
 Lua's
