@@ -2741,10 +2741,11 @@ unless `read_body_for_logout` is explicitly set to `true`. This adjustment preve
   
   If you have purchased Kong Enterprise Portal in the past and would like to continue to use it with this release or a future release of Kong Gateway Enterprise, contact [Kong Support](https://support.konghq.com/support/s/) for more information.
 
-* As of this release, the product component known as Vitals is deprecated and is no longer included in Kong Gateway Enterprise.
+* As of this release, the product component known as Vitals is no longer included in Kong Gateway Enterprise. 
+Existing customers who have purchased Kong Vitals can continue to use it and be supported via a dedicated mechanism. 
 Kong Konnect users can take advantage of our [API Analytics](/konnect/analytics/) offering, which provides a superset of Vitals functionality. 
 
-  Vitals continues to be supported for existing customers until August 2026 via the Kong Enterprise 3.4 LTS release.
+  If you have purchased Vitals in the past and would like to continue to use it with this release or a future release of Kong Gateway Enterprise, contact [Kong Support](https://support.konghq.com/support/s/) for more information.
 
 * The default value of the [`dns_no_sync`](/gateway/3.5.x/reference/configuration/#dns_no_sync) option has been changed to `on`.
 [#11871](https://github.com/kong/kong/pull/11871).
