@@ -123,8 +123,10 @@ For detailed descriptions of each configuration property, learn more in the
 
 ## Multiple session management
 
-Sessions are isolated by default. Sessions but the current one will not be invalidated upon password updates if `store_metadata` is set to `false` or `storage` is set to `"cookie"`. In these cases, the session metadata is not stored on the server side and the session cookie is kept on the client side.
-With `storage` set to `"kong"` and `store_metadata` set to `true`, session metadata will be stored on the server side, and all associated sessions will be invalidated upon password updates.
+When you have multiple sessions running, sessions are isolated by default. You can choose to keep sessions valid or invalidate them on password update:
+
+* **Keep current sessions valid on password update**: Set  `store_metadata` to `false` or  set `storage` to `"cookie". In these cases, the session metadata is not stored on the server side and the session cookie is kept on the client side, so current sessions remain valid.
+* **Invalidate current sessions on password update**: Set `storage` to `"kong"` and set `store_metadata` to `true`. In this case, session metadata will be stored on the server side, and all associated sessions will be invalidated upon password updates.
 
 {% endif_version %}
 
