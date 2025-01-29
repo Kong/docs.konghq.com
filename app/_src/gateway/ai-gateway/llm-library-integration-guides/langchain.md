@@ -15,25 +15,25 @@ on top of the API Gateway platform, enabling you to:
 * Provide no-code AI enhancements to your existing REST APIs
 * Leverage Kong's existing ecosystem of authentication, monitoring, and traffic-control plugins
 
-## Get Started
+## Get started
 
 Kong AI Gateway exchanges inference requests in the OpenAI formats - thus you can easily and quickly
 connect your existing LangChain OpenAI adaptor-based integrations directly through Kong with no code changes.
 
-You can target hundreds of models across the [supported providers](https://docs.konghq.com/hub/kong-inc/ai-proxy/),
+You can target hundreds of models across the [supported providers](/hub/kong-inc/ai-proxy/),
 all from the same client-side codebase.
 
-### Create LLM Configuration
+### Create LLM configuration
 
 Kong AI Gateway uses the same familiar service/route/plugin system as the API Gateway product,
 with a declarative setup that launches a complete gateway system configured from a single
 YAML file.
 
-Create your gateway YAML file, using the [Kong AI-Proxy Plugin](https://docs.konghq.com/hub/kong-inc/ai-proxy/),
+Create your gateway YAML file, using the [AI Proxy plugin](/hub/kong-inc/ai-proxy/),
 in this example for:
 
-* the **OpenAI** backend and **GPT-4o** model
-* the **Gemini** backend and **Google One-hosted Gemini** model
+* The **OpenAI** backend and **GPT-4o** model
+* The **Gemini** backend and **Google One-hosted Gemini** model
 
 ```yaml
 _format_version: "3.0"
@@ -60,26 +60,26 @@ services:
                 header_value: "Bearer <OPENAI_KEY_HERE>"  # replace with your OpenAI key
 ```
 
-Output this file to `kong.yaml`
+Output this file to `kong.yaml`.
 
 ### Launch the Gateway
 
 Launch the Kong open-source gateway, loading this configuration YAML, with one command:
 
 ```sh
-$ docker run -it --rm --name kong-ai -p 8000:8000 \
+docker run -it --rm --name kong-ai -p 8000:8000 \
     -v "$(pwd)/kong.yaml:/etc/kong/kong.yaml" \
     -e "KONG_DECLARATIVE_CONFIG=/etc/kong/kong.yaml" \
     -e "KONG_DATABASE=off" \
     kong:3.8
 ```
 
-#### Test it
+#### Validate
 
 Check you are reaching GPT-4o on OpenAI correctly:
 
 ```sh
-$ curl -H 'Content-Type: application/json' -d '{"messages":[{"role":"user","content":"What are you?"}]}' http://127.0.0.1:8000/gpt4o
+curl -H 'Content-Type: application/json' -d '{"messages":[{"role":"user","content":"What are you?"}]}' http://127.0.0.1:8000/gpt4o
 
 {
   ...
@@ -92,8 +92,8 @@ $ curl -H 'Content-Type: application/json' -d '{"messages":[{"role":"user","cont
 
 ### Execute Your LangChain Code
 
-Now you can (re-)configure your LangChain client code to point to Kong, and we should see
-identical results!
+Now you can configure your LangChain client code to point to Kong, and we should see
+identical results.
 
 First, load the LangChain SDK into your Python dependencies:
 
@@ -127,13 +127,13 @@ response = llm.invoke("What are you?")
 print(f"$ ChainAnswer:> {response.content}")
 ```
 
-and run it!
+Run the script:
 
 ```sh
 $ python3 ./app.py
 ```
 
-#### Custom Tool Usage
+#### Custom tool usage
 
 Kong also supports custom tools, defined via any supported OpenAI-compatible SDK, including LangChain.
 
@@ -163,9 +163,9 @@ response = chain.invoke("What's four times 23?")
 print(f"$ ToolsAnswer:> {response}")
 ```
 
-## Productionize the Gateway
+## Prepare the Gateway for production
 
-### Secure your AI Model
+### Secure your AI model
 
 We've just opened up our GPT-4o subscription to the localhost.
 
@@ -226,16 +226,16 @@ llm = ChatOpenAI(
 There are two mechanisms for observability in Kong AI Gateway, depending on your deployment architecture:
 
 * Self-hosted and Kong Community users can bring their favourite JSON-log dashboard software.
-* Konnect Cloud users can use [Konnect Advanced Analytics](https://docs.konghq.com/konnect/analytics/) to automatically visualize every aspect of the AI Gateway operation.
+* {{site.konnect_product_name}} users can use [{{site.konnect_short_name}}  Advanced Analytics](/konnect/analytics/) to automatically visualize every aspect of the AI Gateway operation.
 
-### Self-Hosting AI Gateway Observability
+### Self-hosting AI Gateway observability
 
-You can use one (or more) of Kong's many [logging protocol plugins](https://docs.konghq.com/hub/?category=logging),
+You can use one (or more) of Kong's many [logging protocol plugins](/hub/?category=logging),
 sending your AI Gateway metrics and logs (in JSON format) to your chosen dashboarding software.
 
 You can choose to log metrics, input/output payloads, or both.
 
-#### Sample ELK Stack
+#### Sample ELK stack
 
 Use the [sample Elasticsearch/Logstash/Kibana stack](https://github.com/KongHQ-CX/kong-ai-gateway-observability) on GitHub 
 to see the full range of observability tools available when running LangChain applications via Kong AI Gateway.
@@ -257,11 +257,11 @@ http://localhost:5601/app/dashboards#/view/aa8e4cb0-9566-11ef-beb2-c361d8db17a8
 
 ![Kong API Logs Example](/assets/images/guides/llm-libraries/kong-logs.png)
 
-*This uses the [Kong HTTP-Log plugin](https://docs.konghq.com/hub/kong-inc/http-log/) 
+*This uses the [HTTP Log plugin](/hub/kong-inc/http-log/) 
 to send all AI statistics and payloads to Logstash.*
 
-## Prompt Tuning, Audit, and Cost Control Features
+## Prompt tuning, audit, and cost control features
 
 Now that you have your LangChain codebase calling one or many LLMs via Kong AI Gateway, you can 
 snap-in as many features as required, by harnessing 
-[Kong's growing array of AI plugins](https://docs.konghq.com/hub/?category=ai).
+[Kong's growing array of AI plugins](/hub/?category=ai).
