@@ -1,11 +1,11 @@
 ---
-nav_title: Langchain
-title: Set up AI Proxy with Langchain
+nav_title: LangChain
+title: Set up AI Proxy with LangChain
 ---
 
-This guide walks you through setting up the AI Proxy plugin with [Langchain](https://www.langchain.com/).
+This guide walks you through setting up the AI Proxy plugin with [LangChain](https://www.langchain.com/).
 
-[Kong AI Gateway](https://konghq.com/products/kong-ai-gateway) delivers a suite of AI-specific plugins
+[Kong AI Gateway](/products/kong-ai-gateway/) delivers a suite of AI-specific plugins
 on top of the API Gateway platform, enabling you to:
 
 * Route a single consumer interface to multiple models, across many providers
@@ -80,7 +80,10 @@ Check you are reaching GPT-4o on OpenAI correctly:
 
 ```sh
 curl -H 'Content-Type: application/json' -d '{"messages":[{"role":"user","content":"What are you?"}]}' http://127.0.0.1:8000/gpt4o
+```
 
+Response:
+```json
 {
   ...
   ...
@@ -130,7 +133,7 @@ print(f"$ ChainAnswer:> {response.content}")
 Run the script:
 
 ```sh
-$ python3 ./app.py
+python3 ./app.py
 ```
 
 #### Custom tool usage
@@ -167,7 +170,7 @@ print(f"$ ToolsAnswer:> {response}")
 
 ### Secure your AI model
 
-We've just opened up our GPT-4o subscription to the localhost.
+We've just opened up our GPT-4o subscription to the `localhost`.
 
 Now add a Kong-level API key to the `kong.yaml` configuration file, which secures your published AI route, and allows your to track usage across multiple
 users, departments, paying-subscribers, or any other entity:
@@ -207,7 +210,7 @@ consumers:
       - key: "Bearer department-1-api-key"
 ```
 
-and adjust your Python code accordingly:
+Adjust your Python code accordingly:
 
 ```python
 ...
@@ -225,7 +228,7 @@ llm = ChatOpenAI(
 
 There are two mechanisms for observability in Kong AI Gateway, depending on your deployment architecture:
 
-* Self-hosted and Kong Community users can bring their favourite JSON-log dashboard software.
+* Self-hosted and Kong open-source users can bring their favourite JSON-log dashboard software.
 * {{site.konnect_product_name}} users can use [{{site.konnect_short_name}}  Advanced Analytics](/konnect/analytics/) to automatically visualize every aspect of the AI Gateway operation.
 
 ### Self-hosting AI Gateway observability
@@ -242,18 +245,35 @@ to see the full range of observability tools available when running LangChain ap
 
 Boot it up in three steps:
 
-1. Clone the repository: `git clone https://github.com/KongHQ-CX/kong-ai-gateway-observability && cd kong-ai-gateway-observability/`
-2. Export your OpenAI API auth header (with API key) into the current shell environment: `export OPENAI_AUTH_HEADER="Bearer sk-proj-......"`
-3. Start the stack: `docker compose up`
+1. Clone the repository: 
+  
+    ```sh
+    git clone https://github.com/KongHQ-CX/kong-ai-gateway-observability && cd kong-ai-gateway-observability/
+    ```
+2. Export your OpenAI API auth header (with API key) into the current shell environment:
+  
+    ```sh
+    export OPENAI_AUTH_HEADER="Bearer sk-proj-......"
+    ```
+3. Start the stack:
+  
+    ```sh
+    docker compose up
+    ```
 
-Now you can run the same LangChain code as in the previous step(s), visualizing exactly what's happening in Kibana, at:
+Now you can run the same LangChain code as in the previous step(s), visualizing exactly what's happening in Kibana, at the following URL:
+
+```
 http://localhost:5601/app/dashboards#/view/aa8e4cb0-9566-11ef-beb2-c361d8db17a8
+```
 
-**You can generate analytics over every AI request executed by LangChain/Kong:**
+#### Example reports
+
+You can generate analytics over every AI request executed by LangChain/Kong:
 
 ![Kong API Stats Example](/assets/images/guides/llm-libraries/kong-analytics.png)
 
-**and even, if enabled, every request and response, as granular as 'who-is-executing-what-when':**
+And even, if enabled, every request and response, as granular as "who-is-executing-what-when":
 
 ![Kong API Logs Example](/assets/images/guides/llm-libraries/kong-logs.png)
 
@@ -263,5 +283,5 @@ to send all AI statistics and payloads to Logstash.*
 ## Prompt tuning, audit, and cost control features
 
 Now that you have your LangChain codebase calling one or many LLMs via Kong AI Gateway, you can 
-snap-in as many features as required, by harnessing 
+snap-in as many features as required by harnessing 
 [Kong's growing array of AI plugins](/hub/?category=ai).
