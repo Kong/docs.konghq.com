@@ -10,20 +10,20 @@ module Jekyll
         super
 
         @name, options = config.split(' ', 2)
-        @options = options.split(' ').each_with_object({}) do |o, h|
+        @options = options.split.each_with_object({}) do |o, h|
           key, value = o.split('=')
           h[key] = value
         end
       end
 
-      def render(context)
+      def render(context) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         environment = context.environments.first
         environment['tabs'] ||= {}
         file_path = context.registers[:page]['dir']
         environment['tabs'][file_path] ||= {}
 
         if environment['tabs'][file_path].key? @name
-          raise SyntaxError.new("There's already a {% tabs %} block with the name '#{@name}'.")
+          raise SyntaxError, "There's already a {% tabs %} block with the name '#{@name}'."
         end
 
         environment['tabs'][file_path][@name] ||= {}
@@ -31,14 +31,14 @@ module Jekyll
         super
 
         options = @options
-        templateFile = File.read(File.expand_path('template.erb', __dir__))
-        template = ERB.new(templateFile)
+        template_file = File.read(File.expand_path('template.erb', __dir__))
+        template = ERB.new(template_file)
         template.result(binding)
       end
     end
 
     class TabBlock < Liquid::Block
-      alias_method :render_block, :render
+      alias render_block render
 
       def initialize(tag_name, markup, tokens)
         super
@@ -46,7 +46,7 @@ module Jekyll
         @name, @tab = markup.split(' ', 2)
       end
 
-      def render(context)
+      def render(context) # rubocop:disable Metrics/AbcSize
         site = context.registers[:site]
         converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
         file_path = context.registers[:page]['dir']
