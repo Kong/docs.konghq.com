@@ -785,5 +785,7 @@ items:
         url: /reference/rate-limiting/
       - text: WebAssembly
         url: /reference/wasm
+      - text: Reserved Entity Names
+        url: /reference/reserved-entity-names/
       - text: FAQ
         url: /reference/faq
