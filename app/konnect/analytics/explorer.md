@@ -85,7 +85,7 @@ Previous month | Data is aggregated in daily increments. Logs any traffic in the
 
 ## System defined groups
 
-* **Empty** - Empty is a system-defined group that indiciates that API calls do not have an entity like consumers or routes, selected for grouping. Empty allows you to group API calls that don't match specific groupings so you can gain more comprehensive insights. 
+* **Empty** - Empty is a system-defined group that indicates that API calls do not have an entity like consumers or routes, selected for grouping. Empty allows you to group API calls that don't match specific groupings so you can gain more comprehensive insights. 
 
 Empty can be used in cases like this: 
 * Identify the number of API calls that don't match a route.
