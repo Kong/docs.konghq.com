@@ -73,6 +73,7 @@ Kuma
 kustomizations
 kustomize
 Kustomize
+Langchain
 Librato
 Loggly
 Lua's
