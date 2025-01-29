@@ -404,7 +404,7 @@ items:
             absolute_url: true
       - text: LLM Library Integration Guides
         items:
-          - text: Langchain
+          - text: LangChain
             url: /ai-gateway/llm-library-integration-guides/langchain/
       - text: AI Gateway Analytics
         url: /ai-gateway/ai-analytics/
