@@ -9,6 +9,45 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## January 2025
+
+<div class="changelog-entries">
+<div class="changelog-date">January<br>30</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/new-dimensions-and-more-comprehensive-insights-with-empty-values">New dimensions and more comprehensive insights with "empty" values</a>
+</div>
+<div class="changelog-description">We're excited to introduce two new improvements to our Advanced Analytics experience: More comprehensive insights with "empty" We now display counts for "empty" values in our analytics experience.  "Empty" indicates a request exists, but there is no specific value associated with an attribute of that request (e.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">January<br>28</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/gitlab-integration-in-service-catalog-0K385Gt6">GitLab Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">You can now map "GitLab Projects" as a new Resource type in Service Catalog.  This integration enables discovery of API specs hosted in GitLab and ingestion of Events for merge request activity (opened and merged).</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">January<br>22</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/we-are-excited-to-announce-the-notification-hub-in-konnect">We are excited to announce the Notification Hub in Konnect!</a>
+</div>
+<div class="changelog-description">We are excited to announce the Notification Hub in Konnect.  You have the option to get notifications delivered in Konnect UI or to their registered emails.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">January<br>22</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/we-are-ex">We are ex</a>
+</div>
+</div>
+</div>
+
+
 ## December 2024
 
 <div class="changelog-entries">
@@ -30,6 +69,53 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 </div>
 </div>
 
+
+
+<div class="changelog-entries">
+<div class="changelog-date">December<br>19</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/enhanced-data-exploration-new-features-and-chart-types-in-konnect-advanced-analytics">Enhanced Data Exploration: New Features and Chart Types in Konnect Advanced Analytics</a>
+</div>
+<div class="changelog-description">We are excited to announce two new features that enhance our data analysis and troubleshooting experience in Konnect Advanced Analytics.  With critical events often happening in seconds, lower time granularity can cause users to miss crucial details, which is why we now enable configuration down to second-level precision.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">December<br>12</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/konnect-is-now-available-in-india-geo-AAOtSpQk">Konnect is now available in India geo!</a>
+</div>
+<div class="changelog-description">Konnect is now available in India!  You can now leverage Konnect hosted in India to be close to your end customers and comply with the data residency requirements.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">December<br>12</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/developers-can-be-authenticated-using-saml-protocol-in-dev-portal">Developers can be authenticated using SAML protocol in Dev Portal!</a>
+</div>
+<div class="changelog-description">We are excited to annouce that Konnect now supports SAML authentication protocol for Dev Portal login.  SAML is an open standard that allows Konnect to delegate authentication to an identity provider (IdP).</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">December<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/updated-consumer-display-name-in-advanced-analytics">Updated consumer display name in Advanced Analytics</a>
+</div>
+<div class="changelog-description">Konnect Advanced Analytics will now prioritize and display the username field for consumers in all charts and API Requests when both username and custom_id are present.  This aligns with user preferences for clearer identification.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">December<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/custom-domains-for-serverless-gateways-VJ0PhJCk">Custom Domains for Serverless Gateways</a>
+</div>
+<div class="changelog-description">Serverless Gateways now support configuring custom domains.  To add a custom domain to your serverless gateway, hit the new 'Custom Domains' navigation item when inside a Serverless Control Plane and follow the instructions.</div>
+</div>
+</div>
 
 ## November 2024
 
@@ -80,6 +166,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div><b>Deprecation Notice:</b>
 We have deprecated the old method of filtering requests via the API in favor of the new, more powerful filter options, which are now included in the updated <a href="https://docs.konghq.com/konnect/api/api-requests/latest/">API endpoint</a>. While both old and new filtering methods will continue to work, we recommend users transition to the new fields so that they can leverage the new enhanced functionality.
 </div>
+</div>
+</div>
+
+
+<div class="changelog-entries">
+<div class="changelog-date">November<br>29</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/datadog-integration-in-service-catalog">Datadog Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">You can now map "Datadog Monitors" and "Datadog Dashboards" as new Resource types in Service Catalog.  The former will allow you to view the statuses of your Monitors (Alert / Warn / OK), while the latter will allow you to easily access your Dashboards' external links from within the Service Catalog UI.</div>
 </div>
 </div>
 
