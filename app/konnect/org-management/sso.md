@@ -2,10 +2,24 @@
 title: Configure generic SSO for a Konnect Org
 ---
 
+{{site.konnect_saas}} provides [built-in authentication](/konnect/org-management/auth/), 
+allowing you to setup [users](/konnect/org-management/users/) and [teams](/konnect/org-management/teams-and-roles/) 
+for {{site.konnect_short_name}} authentication and authorization. Alternatively, you can set up single sign-on (SSO) 
+access to {{site.konnect_short_name}} using OpenID Connect (OIDC) or Security Assertion Markup Language (SAML). 
+These authentication methods allow your users to log in to {{site.konnect_short_name}} using IdP authorization, 
+without needing additional {{site.konnect_short_name}} specific credentials. You can also configure a mapping
+between Okta group claims and {{site.konnect_saas}} teams, allowing for {{site.konnect_short_name}} user team assignments
+from within Okta.
 
-As an alternative to {{site.konnect_saas}}’s native authentication, you can set up single sign-on (SSO) access to {{site.konnect_short_name}} using OpenID Connect or SAML. This authentication method allows your users to log in to {{site.konnect_saas}} using their IdP credentials, without needing a separate login. This topic covers configuring SSO for use with various identity providers. 
+{:.note}
+> This topic provides general instructions for configuring SSO across identity providers.
+See [Configure Okta SSO](/konnect/org-management/okta-idp/) specific instructions on setting up SSO with Okta.
 
-If you want to configure Okta, please see the [Okta configuration guide](/konnect/org-management/okta-idp/).
+{:.important}
+> It is recommended to use a single authentication method, however, {{site.konnect_short_name}} supports the ability to 
+combine built-in authentication with _either_ OIDC or SAML based SSO. Combining both OIDC and SAML based SSO is not supported.
+Keep built-in authentication enabled while you are testing IdP authentication and only disable it after successfully testing 
+your SSO configuration.
 
 ## Map {{site.konnect_short_name}} teams to IdP groups
 

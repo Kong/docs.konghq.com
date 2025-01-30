@@ -11,6 +11,35 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+
+## 3.9.0.1
+**Release Date** 2025/01/28
+
+### Fixes
+
+#### Core
+
+* Fixed an issue where consistent hashing did not correctly handle hyphenated-Pascal-case headers, leading to uneven distribution of requests across upstream targets.
+* Fixed an issue where a certificate entity configured with a vault reference occasionally didn't get refreshed on time when initialized with an invalid string.
+
+#### Plugins
+
+* **AI Plugins**: Reverted the analytics container key from `proxy` to `ai-proxy` to align with previous versions.
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed an issue in the Azure provider where `model.options.upstream_path` overrides would always return a 404 error code.
+  * Fixed an issue where Azure streaming responses would be missing individual tokens.
+  * Fixed an issue where response streaming in Gemini and Bedrock providers was returning whole chat responses in one chunk.
+  * Fixed an issue where multimodal requests (in OpenAI format) would not transform properly when using the Gemini provider.
+
+* [**gRPC-Web**](/hub/kong-inc/grpc-web/) (`grpc-web`) and [**gRPC-Gateway**](/hub/kong-inc/grpc-gateway/) (`grpc-gateway`)
+  * Fixed an issue where the `TE` (transfer-encoding) header would not be sent to the upstream gRPC servers when `grpc-web` or `grpc-gateweay` were in use.
+
+### Dependencies
+
+* Bumped `lua-kong-nginx-module` from 0.13.1 to 0.13.2.
+* Bumped `libexpat` from 2.6.2 to 2.6.4 to fix a crash in the `XML_ResumeParser` function caused by `XML_StopParser` stopping an uninitialized parser.
+
 ## 3.9.0.0
 **Release Date** 2024/12/12
 
@@ -2712,10 +2741,11 @@ unless `read_body_for_logout` is explicitly set to `true`. This adjustment preve
   
   If you have purchased Kong Enterprise Portal in the past and would like to continue to use it with this release or a future release of Kong Gateway Enterprise, contact [Kong Support](https://support.konghq.com/support/s/) for more information.
 
-* As of this release, the product component known as Vitals is deprecated and is no longer included in Kong Gateway Enterprise.
+* As of this release, the product component known as Vitals is no longer included in Kong Gateway Enterprise. 
+Existing customers who have purchased Kong Vitals can continue to use it and be supported via a dedicated mechanism. 
 Kong Konnect users can take advantage of our [API Analytics](/konnect/analytics/) offering, which provides a superset of Vitals functionality. 
 
-  Vitals continues to be supported for existing customers until August 2026 via the Kong Enterprise 3.4 LTS release.
+  If you have purchased Vitals in the past and would like to continue to use it with this release or a future release of Kong Gateway Enterprise, contact [Kong Support](https://support.konghq.com/support/s/) for more information.
 
 * The default value of the [`dns_no_sync`](/gateway/3.5.x/reference/configuration/#dns_no_sync) option has been changed to `on`.
 [#11871](https://github.com/kong/kong/pull/11871).

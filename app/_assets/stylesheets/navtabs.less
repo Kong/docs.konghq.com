@@ -155,4 +155,32 @@
   .navtab-contents {
     padding: 1.5rem 0 0 0;
   }
+
+  .navtab-content {
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .tabs-component-panel .hidden {
+    display: none;
+  }
+
+  .tabs-component-tab.active {
+    .tabs-component-tab-a {
+      color: @blue-500;
+    }
+  }
+
+  .tabs-component-tab-a {
+    font-size: 15px;
+    font-weight: 600;
+    color: #494e50;
+
+    &:hover {
+      color: @blue-500;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+  }
 }
