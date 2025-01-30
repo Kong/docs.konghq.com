@@ -2,12 +2,14 @@
 title: Data Plane Logs
 ---
 
-The Data Plane Logs feature provides users with the ability to view, filter, search, and download logs for the data plane nodes associated with a Dedicated Cloud Gateway. This feature is essential for debugging, monitoring, and understanding the behavior of data plane nodes.
+Data plane logs provide users with the ability to view, filter, search, and download logs for the data plane nodes associated with a Dedicated Cloud Gateway. This feature is essential for debugging, monitoring, and understanding the behavior of data plane nodes.
 
 
 ## Log Management Features
 
-You can access Data Plane logs from the Data Plane Dashboard in [Gateway Manager](https://cloud.konghq.com/us/gateway-manager/). From here, you can perform the following actions:
+You can access data plane logs from the Data Plane Dashboard in [Gateway Manager](https://cloud.konghq.com/us/gateway-manager/): Choose a Dedicated Cloud Gateway control plane > **Data Plane Nodes** in side menu > **Logs** tab. 
+
+From here, you can perform the following actions:
 
 | **Feature**                   | **Description**                                                                 |
 |-------------------------------|---------------------------------------------------------------------------------|
