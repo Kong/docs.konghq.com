@@ -250,7 +250,7 @@ paths:
         - Inspect
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshaccesslogs/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshaccesslogs/{name}#create':
     get:
       operationId: getMeshAccessLog
       summary: Returns MeshAccessLog entity
@@ -272,44 +272,6 @@ paths:
           $ref: '#/components/responses/MeshAccessLogItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshAccessLog
-    put:
-      operationId: putMeshAccessLog
-      summary: Creates or Updates MeshAccessLog entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshAccessLog
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshAccessLogItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshAccessLogCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshAccessLogCreateOrUpdateSuccessResponse'
       tags:
         - MeshAccessLog
     delete:
@@ -341,6 +303,73 @@ paths:
         - MeshAccessLog
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshAccessLog
+      summary: Creates or Updates MeshAccessLog entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshAccessLog
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshAccessLogItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshAccessLogCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshAccessLog
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshaccesslogs/{name}#update':
+    put:
+      operationId: updateMeshAccessLog
+      summary: Creates or Updates MeshAccessLog entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshAccessLog
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshAccessLogItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshAccessLogCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshAccessLog
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshaccesslogs':
     get:
       operationId: getMeshAccessLogList
@@ -359,7 +388,7 @@ paths:
         - MeshAccessLog
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshcircuitbreakers/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshcircuitbreakers/{name}#create':
     get:
       operationId: getMeshCircuitBreaker
       summary: Returns MeshCircuitBreaker entity
@@ -381,44 +410,6 @@ paths:
           $ref: '#/components/responses/MeshCircuitBreakerItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshCircuitBreaker
-    put:
-      operationId: putMeshCircuitBreaker
-      summary: Creates or Updates MeshCircuitBreaker entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshCircuitBreaker
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshCircuitBreakerItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshCircuitBreakerCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshCircuitBreakerCreateOrUpdateSuccessResponse'
       tags:
         - MeshCircuitBreaker
     delete:
@@ -450,6 +441,73 @@ paths:
         - MeshCircuitBreaker
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshCircuitBreaker
+      summary: Creates or Updates MeshCircuitBreaker entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshCircuitBreaker
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshCircuitBreakerItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshCircuitBreakerCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshCircuitBreaker
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshcircuitbreakers/{name}#update':
+    put:
+      operationId: updateMeshCircuitBreaker
+      summary: Creates or Updates MeshCircuitBreaker entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshCircuitBreaker
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshCircuitBreakerItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshCircuitBreakerCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshCircuitBreaker
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshcircuitbreakers':
     get:
       operationId: getMeshCircuitBreakerList
@@ -468,7 +526,7 @@ paths:
         - MeshCircuitBreaker
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshfaultinjections/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshfaultinjections/{name}#create':
     get:
       operationId: getMeshFaultInjection
       summary: Returns MeshFaultInjection entity
@@ -490,44 +548,6 @@ paths:
           $ref: '#/components/responses/MeshFaultInjectionItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshFaultInjection
-    put:
-      operationId: putMeshFaultInjection
-      summary: Creates or Updates MeshFaultInjection entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshFaultInjection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshFaultInjectionItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshFaultInjectionCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshFaultInjectionCreateOrUpdateSuccessResponse'
       tags:
         - MeshFaultInjection
     delete:
@@ -559,6 +579,73 @@ paths:
         - MeshFaultInjection
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshFaultInjection
+      summary: Creates or Updates MeshFaultInjection entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshFaultInjection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshFaultInjectionItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshFaultInjectionCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshFaultInjection
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshfaultinjections/{name}#update':
+    put:
+      operationId: updateMeshFaultInjection
+      summary: Creates or Updates MeshFaultInjection entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshFaultInjection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshFaultInjectionItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshFaultInjectionCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshFaultInjection
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshfaultinjections':
     get:
       operationId: getMeshFaultInjectionList
@@ -577,7 +664,7 @@ paths:
         - MeshFaultInjection
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshhealthchecks/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshhealthchecks/{name}#create':
     get:
       operationId: getMeshHealthCheck
       summary: Returns MeshHealthCheck entity
@@ -599,44 +686,6 @@ paths:
           $ref: '#/components/responses/MeshHealthCheckItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshHealthCheck
-    put:
-      operationId: putMeshHealthCheck
-      summary: Creates or Updates MeshHealthCheck entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshHealthCheck
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshHealthCheckItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshHealthCheckCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshHealthCheckCreateOrUpdateSuccessResponse'
       tags:
         - MeshHealthCheck
     delete:
@@ -668,6 +717,73 @@ paths:
         - MeshHealthCheck
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshHealthCheck
+      summary: Creates or Updates MeshHealthCheck entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshHealthCheck
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshHealthCheckItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshHealthCheckCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshHealthCheck
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshhealthchecks/{name}#update':
+    put:
+      operationId: updateMeshHealthCheck
+      summary: Creates or Updates MeshHealthCheck entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshHealthCheck
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshHealthCheckItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshHealthCheckCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshHealthCheck
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshhealthchecks':
     get:
       operationId: getMeshHealthCheckList
@@ -686,7 +802,7 @@ paths:
         - MeshHealthCheck
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshhttproutes/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshhttproutes/{name}#create':
     get:
       operationId: getMeshHTTPRoute
       summary: Returns MeshHTTPRoute entity
@@ -708,44 +824,6 @@ paths:
           $ref: '#/components/responses/MeshHTTPRouteItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshHTTPRoute
-    put:
-      operationId: putMeshHTTPRoute
-      summary: Creates or Updates MeshHTTPRoute entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshHTTPRoute
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshHTTPRouteItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshHTTPRouteCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshHTTPRouteCreateOrUpdateSuccessResponse'
       tags:
         - MeshHTTPRoute
     delete:
@@ -777,6 +855,73 @@ paths:
         - MeshHTTPRoute
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshHTTPRoute
+      summary: Creates or Updates MeshHTTPRoute entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshHTTPRoute
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshHTTPRouteItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshHTTPRouteCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshHTTPRoute
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshhttproutes/{name}#update':
+    put:
+      operationId: updateMeshHTTPRoute
+      summary: Creates or Updates MeshHTTPRoute entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshHTTPRoute
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshHTTPRouteItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshHTTPRouteCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshHTTPRoute
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshhttproutes':
     get:
       operationId: getMeshHTTPRouteList
@@ -795,7 +940,7 @@ paths:
         - MeshHTTPRoute
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshloadbalancingstrategies/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshloadbalancingstrategies/{name}#create':
     get:
       operationId: getMeshLoadBalancingStrategy
       summary: Returns MeshLoadBalancingStrategy entity
@@ -817,44 +962,6 @@ paths:
           $ref: '#/components/responses/MeshLoadBalancingStrategyItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshLoadBalancingStrategy
-    put:
-      operationId: putMeshLoadBalancingStrategy
-      summary: Creates or Updates MeshLoadBalancingStrategy entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshLoadBalancingStrategy
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshLoadBalancingStrategyItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshLoadBalancingStrategyCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshLoadBalancingStrategyCreateOrUpdateSuccessResponse'
       tags:
         - MeshLoadBalancingStrategy
     delete:
@@ -886,6 +993,73 @@ paths:
         - MeshLoadBalancingStrategy
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshLoadBalancingStrategy
+      summary: Creates or Updates MeshLoadBalancingStrategy entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshLoadBalancingStrategy
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshLoadBalancingStrategyItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshLoadBalancingStrategyCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshLoadBalancingStrategy
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshloadbalancingstrategies/{name}#update':
+    put:
+      operationId: updateMeshLoadBalancingStrategy
+      summary: Creates or Updates MeshLoadBalancingStrategy entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshLoadBalancingStrategy
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshLoadBalancingStrategyItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshLoadBalancingStrategyCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshLoadBalancingStrategy
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshloadbalancingstrategies':
     get:
       operationId: getMeshLoadBalancingStrategyList
@@ -904,7 +1078,7 @@ paths:
         - MeshLoadBalancingStrategy
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshmetrics/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshmetrics/{name}#create':
     get:
       operationId: getMeshMetric
       summary: Returns MeshMetric entity
@@ -926,44 +1100,6 @@ paths:
           $ref: '#/components/responses/MeshMetricItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshMetric
-    put:
-      operationId: putMeshMetric
-      summary: Creates or Updates MeshMetric entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshMetric
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshMetricItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshMetricCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshMetricCreateOrUpdateSuccessResponse'
       tags:
         - MeshMetric
     delete:
@@ -995,6 +1131,73 @@ paths:
         - MeshMetric
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshMetric
+      summary: Creates or Updates MeshMetric entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshMetric
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshMetricItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshMetricCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshMetric
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshmetrics/{name}#update':
+    put:
+      operationId: updateMeshMetric
+      summary: Creates or Updates MeshMetric entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshMetric
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshMetricItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshMetricCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshMetric
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshmetrics':
     get:
       operationId: getMeshMetricList
@@ -1013,7 +1216,7 @@ paths:
         - MeshMetric
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshpassthroughs/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshpassthroughs/{name}#create':
     get:
       operationId: getMeshPassthrough
       summary: Returns MeshPassthrough entity
@@ -1035,44 +1238,6 @@ paths:
           $ref: '#/components/responses/MeshPassthroughItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshPassthrough
-    put:
-      operationId: putMeshPassthrough
-      summary: Creates or Updates MeshPassthrough entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshPassthrough
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshPassthroughItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshPassthroughCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshPassthroughCreateOrUpdateSuccessResponse'
       tags:
         - MeshPassthrough
     delete:
@@ -1104,6 +1269,73 @@ paths:
         - MeshPassthrough
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshPassthrough
+      summary: Creates or Updates MeshPassthrough entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshPassthrough
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshPassthroughItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshPassthroughCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshPassthrough
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshpassthroughs/{name}#update':
+    put:
+      operationId: updateMeshPassthrough
+      summary: Creates or Updates MeshPassthrough entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshPassthrough
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshPassthroughItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshPassthroughCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshPassthrough
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshpassthroughs':
     get:
       operationId: getMeshPassthroughList
@@ -1122,7 +1354,7 @@ paths:
         - MeshPassthrough
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshproxypatches/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshproxypatches/{name}#create':
     get:
       operationId: getMeshProxyPatch
       summary: Returns MeshProxyPatch entity
@@ -1144,44 +1376,6 @@ paths:
           $ref: '#/components/responses/MeshProxyPatchItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshProxyPatch
-    put:
-      operationId: putMeshProxyPatch
-      summary: Creates or Updates MeshProxyPatch entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshProxyPatch
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshProxyPatchItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshProxyPatchCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshProxyPatchCreateOrUpdateSuccessResponse'
       tags:
         - MeshProxyPatch
     delete:
@@ -1213,6 +1407,73 @@ paths:
         - MeshProxyPatch
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshProxyPatch
+      summary: Creates or Updates MeshProxyPatch entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshProxyPatch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshProxyPatchItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshProxyPatchCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshProxyPatch
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshproxypatches/{name}#update':
+    put:
+      operationId: updateMeshProxyPatch
+      summary: Creates or Updates MeshProxyPatch entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshProxyPatch
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshProxyPatchItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshProxyPatchCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshProxyPatch
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshproxypatches':
     get:
       operationId: getMeshProxyPatchList
@@ -1231,7 +1492,7 @@ paths:
         - MeshProxyPatch
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshratelimits/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshratelimits/{name}#create':
     get:
       operationId: getMeshRateLimit
       summary: Returns MeshRateLimit entity
@@ -1253,44 +1514,6 @@ paths:
           $ref: '#/components/responses/MeshRateLimitItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshRateLimit
-    put:
-      operationId: putMeshRateLimit
-      summary: Creates or Updates MeshRateLimit entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshRateLimit
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshRateLimitItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshRateLimitCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshRateLimitCreateOrUpdateSuccessResponse'
       tags:
         - MeshRateLimit
     delete:
@@ -1322,6 +1545,73 @@ paths:
         - MeshRateLimit
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshRateLimit
+      summary: Creates or Updates MeshRateLimit entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshRateLimit
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshRateLimitItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshRateLimitCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshRateLimit
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshratelimits/{name}#update':
+    put:
+      operationId: updateMeshRateLimit
+      summary: Creates or Updates MeshRateLimit entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshRateLimit
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshRateLimitItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshRateLimitCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshRateLimit
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshratelimits':
     get:
       operationId: getMeshRateLimitList
@@ -1340,7 +1630,7 @@ paths:
         - MeshRateLimit
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshretries/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshretries/{name}#create':
     get:
       operationId: getMeshRetry
       summary: Returns MeshRetry entity
@@ -1362,44 +1652,6 @@ paths:
           $ref: '#/components/responses/MeshRetryItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshRetry
-    put:
-      operationId: putMeshRetry
-      summary: Creates or Updates MeshRetry entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshRetry
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshRetryItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshRetryCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshRetryCreateOrUpdateSuccessResponse'
       tags:
         - MeshRetry
     delete:
@@ -1431,6 +1683,73 @@ paths:
         - MeshRetry
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshRetry
+      summary: Creates or Updates MeshRetry entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshRetry
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshRetryItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshRetryCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshRetry
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshretries/{name}#update':
+    put:
+      operationId: updateMeshRetry
+      summary: Creates or Updates MeshRetry entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshRetry
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshRetryItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshRetryCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshRetry
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshretries':
     get:
       operationId: getMeshRetryList
@@ -1449,7 +1768,7 @@ paths:
         - MeshRetry
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtcproutes/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtcproutes/{name}#create':
     get:
       operationId: getMeshTCPRoute
       summary: Returns MeshTCPRoute entity
@@ -1471,44 +1790,6 @@ paths:
           $ref: '#/components/responses/MeshTCPRouteItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshTCPRoute
-    put:
-      operationId: putMeshTCPRoute
-      summary: Creates or Updates MeshTCPRoute entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshTCPRoute
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshTCPRouteItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTCPRouteCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTCPRouteCreateOrUpdateSuccessResponse'
       tags:
         - MeshTCPRoute
     delete:
@@ -1540,6 +1821,73 @@ paths:
         - MeshTCPRoute
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshTCPRoute
+      summary: Creates or Updates MeshTCPRoute entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTCPRoute
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTCPRouteItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTCPRouteCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTCPRoute
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtcproutes/{name}#update':
+    put:
+      operationId: updateMeshTCPRoute
+      summary: Creates or Updates MeshTCPRoute entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTCPRoute
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTCPRouteItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTCPRouteCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTCPRoute
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtcproutes':
     get:
       operationId: getMeshTCPRouteList
@@ -1558,7 +1906,7 @@ paths:
         - MeshTCPRoute
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtimeouts/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtimeouts/{name}#create':
     get:
       operationId: getMeshTimeout
       summary: Returns MeshTimeout entity
@@ -1580,44 +1928,6 @@ paths:
           $ref: '#/components/responses/MeshTimeoutItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshTimeout
-    put:
-      operationId: putMeshTimeout
-      summary: Creates or Updates MeshTimeout entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshTimeout
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshTimeoutItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTimeoutCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTimeoutCreateOrUpdateSuccessResponse'
       tags:
         - MeshTimeout
     delete:
@@ -1649,6 +1959,73 @@ paths:
         - MeshTimeout
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshTimeout
+      summary: Creates or Updates MeshTimeout entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTimeout
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTimeoutItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTimeoutCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTimeout
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtimeouts/{name}#update':
+    put:
+      operationId: updateMeshTimeout
+      summary: Creates or Updates MeshTimeout entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTimeout
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTimeoutItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTimeoutCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTimeout
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtimeouts':
     get:
       operationId: getMeshTimeoutList
@@ -1667,7 +2044,7 @@ paths:
         - MeshTimeout
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtlses/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtlses/{name}#create':
     get:
       operationId: getMeshTLS
       summary: Returns MeshTLS entity
@@ -1689,44 +2066,6 @@ paths:
           $ref: '#/components/responses/MeshTLSItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshTLS
-    put:
-      operationId: putMeshTLS
-      summary: Creates or Updates MeshTLS entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshTLS
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshTLSItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTLSCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTLSCreateOrUpdateSuccessResponse'
       tags:
         - MeshTLS
     delete:
@@ -1758,6 +2097,73 @@ paths:
         - MeshTLS
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshTLS
+      summary: Creates or Updates MeshTLS entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTLS
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTLSItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTLSCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTLS
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtlses/{name}#update':
+    put:
+      operationId: updateMeshTLS
+      summary: Creates or Updates MeshTLS entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTLS
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTLSItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTLSCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTLS
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtlses':
     get:
       operationId: getMeshTLSList
@@ -1776,7 +2182,7 @@ paths:
         - MeshTLS
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtraces/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtraces/{name}#create':
     get:
       operationId: getMeshTrace
       summary: Returns MeshTrace entity
@@ -1798,44 +2204,6 @@ paths:
           $ref: '#/components/responses/MeshTraceItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshTrace
-    put:
-      operationId: putMeshTrace
-      summary: Creates or Updates MeshTrace entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshTrace
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshTraceItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTraceCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTraceCreateOrUpdateSuccessResponse'
       tags:
         - MeshTrace
     delete:
@@ -1867,6 +2235,73 @@ paths:
         - MeshTrace
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshTrace
+      summary: Creates or Updates MeshTrace entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTrace
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTraceItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTraceCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTrace
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtraces/{name}#update':
+    put:
+      operationId: updateMeshTrace
+      summary: Creates or Updates MeshTrace entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTrace
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTraceItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTraceCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTrace
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtraces':
     get:
       operationId: getMeshTraceList
@@ -1885,7 +2320,7 @@ paths:
         - MeshTrace
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtrafficpermissions/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtrafficpermissions/{name}#create':
     get:
       operationId: getMeshTrafficPermission
       summary: Returns MeshTrafficPermission entity
@@ -1909,8 +2344,70 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - MeshTrafficPermission
+    delete:
+      operationId: deleteMeshTrafficPermission
+      summary: Deletes MeshTrafficPermission entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTrafficPermission
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTrafficPermissionDeleteSuccessResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - MeshTrafficPermission
+    parameters:
+      - $ref: '#/components/parameters/cpId'
     put:
-      operationId: putMeshTrafficPermission
+      operationId: createMeshTrafficPermission
+      summary: Creates or Updates MeshTrafficPermission entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshTrafficPermission
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshTrafficPermissionItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshTrafficPermissionCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshTrafficPermission
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshtrafficpermissions/{name}#update':
+    put:
+      operationId: updateMeshTrafficPermission
       summary: Creates or Updates MeshTrafficPermission entity
       parameters:
         - name: mesh
@@ -1939,39 +2436,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MeshTrafficPermissionCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTrafficPermissionCreateOrUpdateSuccessResponse'
-      tags:
-        - MeshTrafficPermission
-    delete:
-      operationId: deleteMeshTrafficPermission
-      summary: Deletes MeshTrafficPermission entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshTrafficPermission
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshTrafficPermissionDeleteSuccessResponse'
-        '404':
-          $ref: '#/components/responses/NotFound'
       tags:
         - MeshTrafficPermission
     parameters:
@@ -2078,7 +2542,7 @@ paths:
         - Mesh
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshgateways/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshgateways/{name}#create':
     get:
       operationId: getMeshGateway
       summary: Returns MeshGateway entity
@@ -2100,44 +2564,6 @@ paths:
           $ref: '#/components/responses/MeshGatewayItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshGateway
-    put:
-      operationId: putMeshGateway
-      summary: Creates or Updates MeshGateway entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshGateway
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshGatewayItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshGatewayCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshGatewayCreateOrUpdateSuccessResponse'
       tags:
         - MeshGateway
     delete:
@@ -2169,6 +2595,73 @@ paths:
         - MeshGateway
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshGateway
+      summary: Creates or Updates MeshGateway entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshGateway
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshGatewayItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshGatewayCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshGateway
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshgateways/{name}#update':
+    put:
+      operationId: updateMeshGateway
+      summary: Creates or Updates MeshGateway entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshGateway
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshGatewayItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshGatewayCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshGateway
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshgateways':
     get:
       operationId: getMeshGatewayList
@@ -2187,7 +2680,7 @@ paths:
         - MeshGateway
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/hostnamegenerators/{name}':
+  '/mesh/control-planes/{cpId}/api/hostnamegenerators/{name}#create':
     get:
       operationId: getHostnameGenerator
       summary: Returns HostnameGenerator entity
@@ -2203,38 +2696,6 @@ paths:
           $ref: '#/components/responses/HostnameGeneratorItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - HostnameGenerator
-    put:
-      operationId: putHostnameGenerator
-      summary: Creates or Updates HostnameGenerator entity
-      parameters:
-        - name: name
-          in: path
-          description: name of the HostnameGenerator
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/HostnameGeneratorItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HostnameGeneratorCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HostnameGeneratorCreateOrUpdateSuccessResponse'
       tags:
         - HostnameGenerator
     delete:
@@ -2260,6 +2721,61 @@ paths:
         - HostnameGenerator
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createHostnameGenerator
+      summary: Creates or Updates HostnameGenerator entity
+      parameters:
+        - name: name
+          in: path
+          description: name of the HostnameGenerator
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostnameGeneratorItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostnameGeneratorCreateOrUpdateSuccessResponse'
+      tags:
+        - HostnameGenerator
+  '/mesh/control-planes/{cpId}/api/hostnamegenerators/{name}#update':
+    put:
+      operationId: updateHostnameGenerator
+      summary: Creates or Updates HostnameGenerator entity
+      parameters:
+        - name: name
+          in: path
+          description: name of the HostnameGenerator
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostnameGeneratorItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostnameGeneratorCreateOrUpdateSuccessResponse'
+      tags:
+        - HostnameGenerator
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/hostnamegenerators':
     get:
       operationId: getHostnameGeneratorList
@@ -2271,7 +2787,7 @@ paths:
         - HostnameGenerator
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshexternalservices/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshexternalservices/{name}#create':
     get:
       operationId: getMeshExternalService
       summary: Returns MeshExternalService entity
@@ -2293,44 +2809,6 @@ paths:
           $ref: '#/components/responses/MeshExternalServiceItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshExternalService
-    put:
-      operationId: putMeshExternalService
-      summary: Creates or Updates MeshExternalService entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshExternalService
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshExternalServiceItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshExternalServiceCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshExternalServiceCreateOrUpdateSuccessResponse'
       tags:
         - MeshExternalService
     delete:
@@ -2362,6 +2840,73 @@ paths:
         - MeshExternalService
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshExternalService
+      summary: Creates or Updates MeshExternalService entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshExternalService
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshExternalServiceItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshExternalServiceCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshExternalService
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshexternalservices/{name}#update':
+    put:
+      operationId: updateMeshExternalService
+      summary: Creates or Updates MeshExternalService entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshExternalService
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshExternalServiceItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshExternalServiceCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshExternalService
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshexternalservices':
     get:
       operationId: getMeshExternalServiceList
@@ -2380,7 +2925,7 @@ paths:
         - MeshExternalService
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshmultizoneservices/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshmultizoneservices/{name}#create':
     get:
       operationId: getMeshMultiZoneService
       summary: Returns MeshMultiZoneService entity
@@ -2402,44 +2947,6 @@ paths:
           $ref: '#/components/responses/MeshMultiZoneServiceItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshMultiZoneService
-    put:
-      operationId: putMeshMultiZoneService
-      summary: Creates or Updates MeshMultiZoneService entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshMultiZoneService
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshMultiZoneServiceItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshMultiZoneServiceCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshMultiZoneServiceCreateOrUpdateSuccessResponse'
       tags:
         - MeshMultiZoneService
     delete:
@@ -2471,6 +2978,73 @@ paths:
         - MeshMultiZoneService
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshMultiZoneService
+      summary: Creates or Updates MeshMultiZoneService entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshMultiZoneService
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshMultiZoneServiceItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshMultiZoneServiceCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshMultiZoneService
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshmultizoneservices/{name}#update':
+    put:
+      operationId: updateMeshMultiZoneService
+      summary: Creates or Updates MeshMultiZoneService entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshMultiZoneService
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshMultiZoneServiceItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshMultiZoneServiceCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshMultiZoneService
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshmultizoneservices':
     get:
       operationId: getMeshMultiZoneServiceList
@@ -2489,7 +3063,7 @@ paths:
         - MeshMultiZoneService
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshservices/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshservices/{name}#create':
     get:
       operationId: getMeshService
       summary: Returns MeshService entity
@@ -2511,44 +3085,6 @@ paths:
           $ref: '#/components/responses/MeshServiceItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshService
-    put:
-      operationId: putMeshService
-      summary: Creates or Updates MeshService entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshService
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshServiceItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshServiceCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshServiceCreateOrUpdateSuccessResponse'
       tags:
         - MeshService
     delete:
@@ -2580,6 +3116,73 @@ paths:
         - MeshService
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshService
+      summary: Creates or Updates MeshService entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshService
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshServiceItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshServiceCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshService
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshservices/{name}#update':
+    put:
+      operationId: updateMeshService
+      summary: Creates or Updates MeshService entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshService
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshServiceItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshServiceCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshService
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshservices':
     get:
       operationId: getMeshServiceList
@@ -2598,7 +3201,7 @@ paths:
         - MeshService
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshglobalratelimits/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshglobalratelimits/{name}#create':
     get:
       operationId: getMeshGlobalRateLimit
       summary: Returns MeshGlobalRateLimit entity
@@ -2620,44 +3223,6 @@ paths:
           $ref: '#/components/responses/MeshGlobalRateLimitItem'
         '404':
           $ref: '#/components/responses/NotFound'
-      tags:
-        - MeshGlobalRateLimit
-    put:
-      operationId: putMeshGlobalRateLimit
-      summary: Creates or Updates MeshGlobalRateLimit entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshGlobalRateLimit
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Put request
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MeshGlobalRateLimitItem'
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshGlobalRateLimitCreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshGlobalRateLimitCreateOrUpdateSuccessResponse'
       tags:
         - MeshGlobalRateLimit
     delete:
@@ -2689,6 +3254,73 @@ paths:
         - MeshGlobalRateLimit
     parameters:
       - $ref: '#/components/parameters/cpId'
+    put:
+      operationId: createMeshGlobalRateLimit
+      summary: Creates or Updates MeshGlobalRateLimit entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshGlobalRateLimit
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshGlobalRateLimitItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshGlobalRateLimitCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshGlobalRateLimit
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshglobalratelimits/{name}#update':
+    put:
+      operationId: updateMeshGlobalRateLimit
+      summary: Creates or Updates MeshGlobalRateLimit entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshGlobalRateLimit
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshGlobalRateLimitItem'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshGlobalRateLimitCreateOrUpdateSuccessResponse'
+      tags:
+        - MeshGlobalRateLimit
+    parameters:
+      - $ref: '#/components/parameters/cpId'
   '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshglobalratelimits':
     get:
       operationId: getMeshGlobalRateLimitList
@@ -2707,7 +3339,7 @@ paths:
         - MeshGlobalRateLimit
     parameters:
       - $ref: '#/components/parameters/cpId'
-  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshopas/{name}':
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshopas/{name}#create':
     get:
       operationId: getMeshOPA
       summary: Returns MeshOPA entity
@@ -2731,8 +3363,70 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - MeshOPA
+    delete:
+      operationId: deleteMeshOPA
+      summary: Deletes MeshOPA entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshOPA
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshOPADeleteSuccessResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - MeshOPA
+    parameters:
+      - $ref: '#/components/parameters/cpId'
     put:
-      operationId: putMeshOPA
+      operationId: createMeshOPA
+      summary: Creates or Updates MeshOPA entity
+      parameters:
+        - name: mesh
+          in: path
+          description: name of the mesh
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: name of the MeshOPA
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Put request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeshOPAItem'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeshOPACreateOrUpdateSuccessResponse'
+      tags:
+        - MeshOPA
+  '/mesh/control-planes/{cpId}/api/meshes/{mesh}/meshopas/{name}#update':
+    put:
+      operationId: updateMeshOPA
       summary: Creates or Updates MeshOPA entity
       parameters:
         - name: mesh
@@ -2761,39 +3455,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MeshOPACreateOrUpdateSuccessResponse'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshOPACreateOrUpdateSuccessResponse'
-      tags:
-        - MeshOPA
-    delete:
-      operationId: deleteMeshOPA
-      summary: Deletes MeshOPA entity
-      parameters:
-        - name: mesh
-          in: path
-          description: name of the mesh
-          required: true
-          schema:
-            type: string
-        - name: name
-          in: path
-          description: name of the MeshOPA
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MeshOPADeleteSuccessResponse'
-        '404':
-          $ref: '#/components/responses/NotFound'
       tags:
         - MeshOPA
     parameters:
