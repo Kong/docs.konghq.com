@@ -83,14 +83,14 @@
           url: /file/manipulation/plugins/
         - text: Tags
           url: /file/manipulation/tags/
+        - text: Namespace
+          url: /file/manipulation/namespace/
     - text: Combining Files
       items:
         - text: Merge
           url: /file/combining/merge/
         - text: Render
           url: /file/combining/render/
-        - text: Namespace
-          url: /file/combining/namespace/
     - text: Validate
       url: /file/validate/
     - text: Convert
