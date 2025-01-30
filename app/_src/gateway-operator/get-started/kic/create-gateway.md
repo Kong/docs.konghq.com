@@ -156,7 +156,7 @@ spec:
         spec:
           containers:
           - name: proxy
-            image: kong:{{ site.data.kong_latest_gateway.ce-version }}
+            image: kong/kong:{{ site.data.kong_latest_gateway.ce-version }}
             readinessProbe:
               initialDelaySeconds: 1
               periodSeconds: 1
