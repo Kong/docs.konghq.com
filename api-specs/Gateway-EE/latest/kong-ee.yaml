@@ -16508,7 +16508,7 @@ tags:
       Keyring is the mechanism for storing sensitive data fields, such as consumer secrets, in an encrypted format within the database. This provides for encryption-at-rest security controls in a Kong Gateway cluster.
     name: Keyring
   - description: |
-      A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
+      A JSON Web Key Set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
     name: Key-sets
   - description: |
       The workspace object describes the workspace entity, which has an ID and a name.
