@@ -428,7 +428,7 @@ components:
               example: '"-----BEGIN"'
         set:
           additionalProperties: false
-          description: The id (an UUID) of the key-set with which to associate the key.
+          description: The id (an UUID) of the Key Set with which to associate the key.
           type: object
           properties:
             id:
@@ -1663,7 +1663,7 @@ components:
             properties:
               set:
                 type: object
-                description: The id (an UUID) of the key-set with which to associate the key .With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use `"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}.`
+                description: The id (an UUID) of the Key Set with which to associate the key .With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use `"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}.`
                 properties:
                   id:
                     type: string
@@ -4487,7 +4487,7 @@ paths:
       tags:
         - Key-sets
     get:
-      description: This endpoint retrieves information about a specific key-set based on its ID or name.
+      description: This endpoint retrieves information about a specific Key Set based on its ID or name.
       operationId: get-key-set
       responses:
         '200':
@@ -8060,7 +8060,7 @@ tags:
       A key object holds a representation of asymmetric keys in various formats. When Kong Gateway or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
     name: Keys
   - description: |
-      A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
+      A JSON Web Key Set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
     name: Key-sets
   - description: Information routes
     name: Information

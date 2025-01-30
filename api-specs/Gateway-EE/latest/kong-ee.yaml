@@ -514,7 +514,7 @@ components:
           type: object
         set:
           additionalProperties: false
-          description: The id (an UUID) of the key-set with which to associate the key.
+          description: The id (an UUID) of the Key Set with which to associate the key.
           properties:
             id:
               type: string
@@ -1510,7 +1510,7 @@ components:
               name:
                 type: string
                 description: |
-                  The name to associate with the given key-set.
+                  The name to associate with the given Key Set.
                 example: my-key_set
               created_at:
                 type: integer
@@ -1524,7 +1524,7 @@ components:
               tags:
                 type: array
                 description: |
-                  The name to associate with the given key-set.
+                  The name to associate with the given Key Set
                 items:
                   type: string
               next:
@@ -5360,7 +5360,7 @@ components:
               name:
                 type: string
                 description: |
-                  The name to associate with the given key-set.
+                  The name to associate with the given Key Set.
                 example: my-key_set
               tags:
                 type: array
@@ -5368,7 +5368,7 @@ components:
                   An optional set of strings associated with the Key for grouping and filtering.
                 items:
                   type: string
-      description: The request body for creating a new key-set entity.
+      description: The request body for creating a new Key Set entity.
     plugin-request:
       content:
         application/json:
@@ -7056,7 +7056,7 @@ paths:
   /key-sets:
     get:
       description: |
-        Retrieve a list of all Key-sets in the system. A Key Set object holds a collection of asymmetric key objects. This entity allows to logically group keys by their purpose. Key Sets can be both tagged and filtered by tags.
+        Retrieve a list of all Key Sets in the system. A Key Set object holds a collection of asymmetric key objects. This entity allows to logically group keys by their purpose. Key Sets can be both tagged and filtered by tags.
       operationId: list-key-set
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -7067,12 +7067,12 @@ paths:
           $ref: '#/components/responses/key-set-response'
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: List all Key-sets
+      summary: List all Key Sets
       tags:
         - Key-sets
     post:
       description: |
-        This endpoint allows creating a new Key-set by sending a JSON object that describes the Key-set to be created.The request body must contain all the fields required to create a new Key-set.
+        This endpoint allows creating a new Key Set by sending a JSON object that describes the Key Set to be created.The request body must contain all the fields required to create a new Key Set.
       operationId: create-key-set
       responses:
         '201':
@@ -7082,7 +7082,7 @@ paths:
             application/json:
               schema:
                 type: object
-          description: Invalid Key-set
+          description: Invalid Key Set
         '401': 
           $ref: '#/components/responses/HTTP401Error'
         '409':
@@ -7118,26 +7118,26 @@ paths:
                     message: UNIQUE violation detected on `{name="my-key_set"}`
                     name: unique constraint violation
                     code: 5
-      summary: Create a new Key-set
+      summary: Create a new Key Set
       tags:
         - Key-sets
       requestBody:
         $ref: '#/components/requestBodies/key-set-request'
   '/key-sets/{key-set_id_or_name}':
     delete:
-      description: Delete a Key-set
+      description: Delete a Key Set
       operationId: delete-key-set
       responses:
         '204':
-          description: Successfully deleted Key-set or the resource didn't exist
+          description: Successfully deleted Key Set or the resource didn't exist
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Delete a Key-set
+      summary: Delete a Key Set
       tags:
         - Key-sets
     get:
       description: |
-        Get a Key-set using ID or name. This endpoint retrieves information about a specific key-set based on its ID or name.
+        Get a Key Set using ID or name. This endpoint retrieves information about a specific key-set based on its ID or name.
       operationId: get-key-set
       responses:
         '200':
@@ -7146,12 +7146,12 @@ paths:
           description: Resource does not exist
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Fetch a Key-set
+      summary: Fetch a Key Set
       tags:
         - Key-sets
     patch:
       description: |-
-        Update a Key-set using ID or name.
+        Update a Key Set using ID or name.
 
         Note: This API is not available in DB-less mode.
 
@@ -7171,19 +7171,19 @@ paths:
             application/json:
               schema:
                 type: object
-          description: Invalid Key-set
+          description: Invalid Key Set
         '404':
           description: Resource does not exist
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Update a Key-set
+      summary: Update a Key Set
       tags:
         - Key-sets
       requestBody:
         $ref: '#/components/requestBodies/key-set-request'
     put:
       description: |
-        Update a Key-set using ID or name.
+        Update a Key Set using ID or name.
       operationId: upsert-key-set
       responses:
         '200':
@@ -7193,7 +7193,7 @@ paths:
             application/json:
               schema:
                 type: object
-          description: Invalid Key-set
+          description: Invalid Key Set
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       summary: Update key-set
@@ -9189,7 +9189,7 @@ paths:
       tags:
         - Key-sets
     post:
-      description: Create a new Key-set in a workspace
+      description: Create a new Key Set in a workspace
       operationId: create-key-set-in-workspace
       responses:
         '200':
@@ -9199,10 +9199,10 @@ paths:
             application/json:
               schema:
                 type: object
-          description: Invalid Key-set
+          description: Invalid Key Set
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Create a new Key-set in a workspace
+      summary: Create a new Key Set in a workspace
       tags:
         - Key-sets
       requestBody:
@@ -9211,18 +9211,18 @@ paths:
       - $ref: '#/components/parameters/workspace'
   '/{workspace}/key-sets/{key-set_id_or_name}':
     delete:
-      description: Delete a Key-set in a workspace
+      description: Delete a Key Set in a workspace
       operationId: delete-key-set-in-workspace
       responses:
         '204':
-          description: Successfully deleted Key-set or the resource didn't exist
+          description: Successfully deleted Key Set or the resource didn't exist
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Delete a Key-set in a workspace
+      summary: Delete a Key Set in a workspace
       tags:
         - Key-sets
     get:
-      description: Get a Key-set using ID or name in a workspace.
+      description: Get a Key Set using ID or name in a workspace.
       operationId: get-key-set-in-workspace
       responses:
         '200':
@@ -9235,11 +9235,11 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
-      summary: Fetch a Key-set in a workspace
+      summary: Fetch a Key Set in a workspace
       tags:
         - Key-sets
     patch:
-      description: Update a Key-set in a workspace
+      description: Update a Key Set in a workspace
       operationId: update-key-set-in-workspace
       responses:
         '200':
@@ -9254,13 +9254,13 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
-      summary: Update a Key-set in a workspace
+      summary: Update a Key Set in a workspace
       tags:
         - Key-sets
       requestBody:
         $ref: '#/components/requestBodies/key-set-request'
     put:
-      description: Create or Update Key-set using ID or name in a workspace.
+      description: Create or Update Key Set using ID or name in a workspace.
       operationId: upsert-key-set-in-workspace
       responses:
         '200':
@@ -9273,7 +9273,7 @@ paths:
           description: Invalid Key-set
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Upsert a Key-set in a workspace
+      summary: Upsert a Key Set in a workspace
       tags:
         - Key-sets
       requestBody:
@@ -16508,7 +16508,7 @@ tags:
       Keyring is the mechanism for storing sensitive data fields, such as consumer secrets, in an encrypted format within the database. This provides for encryption-at-rest security controls in a Kong Gateway cluster.
     name: Keyring
   - description: |
-      A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
+      A JSON Web Key Set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
     name: Key-sets
   - description: |
       The workspace object describes the workspace entity, which has an ID and a name.
