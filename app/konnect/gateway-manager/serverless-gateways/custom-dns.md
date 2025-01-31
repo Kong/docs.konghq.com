@@ -36,3 +36,18 @@ title: Custom Domains for Serverless Gateways
 1. In {{site.konnect_short_name}}, open {% konnect_icon runtimes %} **Gateway Manager**, choose a control plane to open the **Overview** dashboard, then click **Custom Domains**.
 
 2. Click the action menu on the end of the row you want to delete and click **Delete**.
+
+## Custom Domain Attachment & CAA Record Issue
+
+If your custom domain attachment fails, check if your domain has a CAA record restricting certificate issuance. Serverless Gateways uses Let's Encrypt CA to provision SSL/TLS certificates. If your CAA record does not include the required CA, certificate issuance will fail.
+
+Steps to Fix:
+1. Check existing CAA records
+    * Run: dig CAA yourdomain.com +short
+    * If a CAA record exists but doesn't allow Let's Encrypt (letsencrypt.org), update it.   
+2. Update the CAA record (if needed)
+    * yourdomain.com.    CAA    0 issue "letsencrypt.org"
+3. Wait for DNS propagation and retry attaching your domain.
+
+If no CAA record exists, no changes are needed. More details: [Let's Encrypt CAA Guide](https://letsencrypt.org/docs/caa/)  
+
