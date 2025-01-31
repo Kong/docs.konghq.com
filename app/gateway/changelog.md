@@ -516,8 +516,7 @@ Kong is no longer providing official support for any Kong version running on the
 
 #### Core
 
-* Added the new configuration parameter [`concurrency_limit`](/gateway/3.8.x/reference/configuration/#concurrency_limit)
- (integer, defaults to 1), which lets you specify the number of delivery timers in the queue.
+* Added the new queue configuration parameter `concurrency_limit` (integer, defaults to 1), which lets you specify the number of delivery timers in the queue.
   Note that setting `concurrency_limit` to `-1` means no limit at all, and each HTTP log entry would create an individual timer for sending.
  [#13332](https://github.com/Kong/kong/issues/13332)
 * Kong Gateway now appends gateway info to the upstream `Via` header in the format `1.1 kong/3.8.0`, and optionally to the

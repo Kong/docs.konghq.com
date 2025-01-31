@@ -24,6 +24,10 @@ The unified queue parameter set consists of the following parameters:
 |`max_retry_time` | fraction | seconds | 60 | Maximum time that a batch is retried. This can be set to a negative value to disable retries. |
 |`initial_retry_delay` | fraction | seconds | 0.01 | Initial delay before retrying after processing a failed batch. |
 |`max_retry_delay` | fraction | seconds | 60 | Maximum time to wait between retries. |
+{% if_version gte:3.8.x %}
+|`concurrency_limit` | integer | count | 1 | The maximum number of delivery timers in the queue. Note that setting `concurrency_limit` to `-1` means no limit at all, and each HTTP log entry would create an individual timer for sending. |
+{% endif_version %}
+
 
 Queues are not shared between workers and queueing parameters are
 scoped to one worker.  For whole-system capacity planning, the number
