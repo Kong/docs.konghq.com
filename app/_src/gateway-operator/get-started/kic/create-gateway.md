@@ -38,7 +38,7 @@ If you are creating a KIC in {{site.konnect_short_name}} deployment, you need to
 To get the endpoint and the authentication details of the data plane.
 1. [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
 1. Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), click **New Control Plane** and select **{{ site.kic_product_name }}**.
-1. Enter a name for your new control plane
+1. Enter a name for your new control plane.
 1. In the _Connect to KIC_ section, click **Generate Script**.
 1. Click **Generate Certificate** in step 3.
 1. Save the contents of **Cluster Certificate** in a file named `tls.crt`. Save the contents of **Cluster Key** in a file named `tls.key`.

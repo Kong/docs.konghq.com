@@ -17,7 +17,7 @@
 {% endif_version %}
 ### Install CRDs
 
-If you want to use Gateway API resources please run this command.
+If you want to use Gateway API resources, run this command:
 
 ```shell
 kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/standard-install.yaml
