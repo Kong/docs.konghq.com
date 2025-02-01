@@ -12,6 +12,7 @@ module Jekyll
       gateway = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'gateway', site:)
       gateway_operator = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'gateway-operator', site:)
       konnect = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'konnect', site:)
+      dev_portal = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'dev-portal', site:)
       contributing = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'contributing', site:)
 
       site.data['editions'] = {}
@@ -21,11 +22,13 @@ module Jekyll
       site.data['editions']['gateway'] = gateway
       site.data['editions']['gateway-operator'] = gateway_operator
       site.data['editions']['konnect'] = konnect
+      site.data['editions']['dev-portal'] = dev_portal
       site.data['editions']['contributing'] = contributing
 
       site.data['kong_versions_deck'] = deck.releases.map(&:to_h)
       site.data['kong_versions_mesh'] = mesh.releases.map(&:to_h)
       site.data['kong_versions_konnect'] = konnect.releases.compact.map(&:to_h)
+      site.data['kong_versions_dev_portal'] = dev_portal.releases.compact.map(&:to_h)
       site.data['kong_versions_kic'] = kic.releases.map(&:to_h)
       site.data['kong_versions_contributing'] = contributing.releases.map(&:to_h)
       site.data['kong_versions_gateway'] = gateway.releases.map(&:to_h)

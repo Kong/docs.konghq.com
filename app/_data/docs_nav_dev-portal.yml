@@ -1,0 +1,67 @@
+- title: Portals
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  items:
+    - text: Overview
+      url: /portals/
+    - text: Customization
+      items:
+        - text: Custom Pages
+          url: /portals/customization/custom-pages/
+        - text: Styling
+          url: /portals/customization/styling/
+        - text: Portal Editor
+          url: /portals/customization/portal-editor/
+        - text: Navigation
+          url: /portals/customization/navigation/
+    - text: Publishing APIs
+      url: /portals/publishing/
+    - text: Custom Domains
+      url: /portals/custom-domains/
+    - text: Audit Logs
+      url: /portals/audit-logs/
+- title: APIs
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  url: /apis/
+- title: Managing Developers
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  items:
+    - text: Overview
+      url: /developers/
+    - text: Developer Approval
+      url: /developers/approval/
+    - text: Configuring SSO
+      url: /developers/sso/
+    - text: Portal Teams
+      url: /developers/teams/
+- title: Application Registration
+  icon: /assets/images/icons/documentation/icn-flag.svg
+  items:
+    - text: Overview
+      url: /app-reg/
+    - text: Enabling App Reg
+      url: /app-reg/enable/
+    - text: Application Approval
+      url: /app-reg/approval/
+    - text: Auth Strategies
+      url: /app-reg/auth-strategies/
+      items:
+        - text: Key Auth
+          url: /app-reg/auth-strategies/key-auth/
+        - text: OIDC
+          items:
+            - text: Overview
+              url: /app-reg/auth-strategies/oidc/
+            - text: DCR
+              items:
+                - text: Overview
+                  url: /app-reg/auth-strategies/oidc/dcr/
+                - text: Okta
+                  url: /app-reg/auth-strategies/oidc/dcr/okta/
+                - text: Curity
+                  url: /app-reg/auth-strategies/oidc/dcr/curity/
+                - text: Auth0
+                  url: /app-reg/auth-strategies/oidc/dcr/auth0/
+                - text: Azure
+                  url: /app-reg/auth-strategies/oidc/dcr/azure/
+                - text: Custom IdP
+                  url: /app-reg/auth-strategies/oidc/dcr/custom/

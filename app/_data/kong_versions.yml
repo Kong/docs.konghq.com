@@ -158,6 +158,7 @@
   lua_doc: true
   label: unreleased
 - edition: "deck"
+- edition: "dev-portal"
 - edition: "konnect"
 - edition: "contributing"
 - release: "2.5.x"
