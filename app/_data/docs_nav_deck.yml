@@ -109,7 +109,5 @@
   items:
     - text: Entities
       url: /reference/entities/
-    - text: CLI
-      url: /reference/cli/
     - text: FAQ
       url: /reference/faq/
