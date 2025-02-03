@@ -2,6 +2,120 @@
 
 <!--vale off-->
 
+## Week 5
+
+### [Update custom-dns.md](https://github.com/Kong/docs.konghq.com/pull/8400) (2025-01-31)
+
+Updating Serverless for CAA instructions
+
+Updated the Serverless custom domains doc to include instructions on adding CAA to prevent CAA errors with Serverless GWs. 
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/custom-dns
+
+
+### [Update custom-dns.md](https://github.com/Kong/docs.konghq.com/pull/8399) (2025-01-31)
+
+Updated to include instructions for CAA Records
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/custom-dns
+
+
+### [Fix: Add missing queue parameter to table](https://github.com/Kong/docs.konghq.com/pull/8397) (2025-01-31)
+
+We missed documenting the `concurrency_limit` queue parameter in 3.8.
+Removed the link to kong.conf from the changelog; these params aren't in kong.conf, they're in plugins.
+
+Fixes https://github.com/Kong/docs.konghq.com/issues/8291.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix SSO Instructions](https://github.com/Kong/docs.konghq.com/pull/8383) (2025-01-29)
+
+Improved the SSO Instructions, specifically the Okta instructions to be correct and more helpful for onboarding users.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/okta-idp
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/sso
+- https://docs.konghq.com/konnect/org-management/auth
+- https://docs.konghq.com/konnect/org-management/okta-idp
+- https://docs.konghq.com/konnect/org-management/sso
+
+
+### [docs(opentelemetry): better description of OTel logs](https://github.com/Kong/docs.konghq.com/pull/8381) (2025-01-29)
+
+this commit follows up to https://github.com/Kong/kong/issues/14068 and tries to make the OTel logs description more clear / less open for interpretation.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/overview/
+
+
+### [Feat: Dedicated Cloud Gateways logs](https://github.com/Kong/docs.konghq.com/pull/8380) (2025-01-31)
+
+https://deploy-preview-8380--kongdocs.netlify.app/konnect/gateway-manager/dedicated-cloud-gateways/data-plane-logs/
+
+#### Added
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/data-plane-logs
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/
+
+
+### [Feat: Empty states and new dimensions](https://github.com/Kong/docs.konghq.com/pull/8379) (2025-01-30)
+
+For the release of Empty states in Explorer.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/analytics/explorer
+
+
+### [docs(kgo): update references for 1.4.x](https://github.com/Kong/docs.konghq.com/pull/8367) (2025-01-28)
+
+Adjusts the CRD references after releasing KGO v1.4.2.
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/changelog
+
+
+### [chore: Adjust messaging around Vitals sustaining mode](https://github.com/Kong/docs.konghq.com/pull/8365) (2025-01-29)
+
+Vitals is supported indefinitely for existing customer that have purchased it in the past, same as Dev Portal. Adjusting the docs to reflect this.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.9.0.1](https://github.com/Kong/docs.konghq.com/pull/8358) (2025-01-29)
+
+Changelog and version bump for 3.9.0.1
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [feat(ai): Community LLM libraries documentation and demonstrations](https://github.com/Kong/docs.konghq.com/pull/8340) (2025-01-30)
+
+First phase of adding supported "LLM Library and Framework" tutorials, for our AI community to use, to demonstrate compatibility with Kong AI Gateway.
+
+#### Added
+
+- https://docs.konghq.com/assets/images/guides/llm-libraries/kong-analytics.png
+- https://docs.konghq.com/assets/images/guides/llm-libraries/kong-logs.png
+
 ## Week 4
 
 ### [Feat: Secure back end traffic](https://github.com/Kong/docs.konghq.com/pull/8339) (2025-01-24)
