@@ -9,7 +9,7 @@ Using Mesh Manager, you can create global control planes to manage your {{site.m
 
 * A Kubernetes cluster with [load balancer service capabilities](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)
 * `kubectl` installed and configured to communicate with your Kubernetes cluster
-* [The latest version of {{site.mesh_product_name}}](/mesh/latest/production/install-kumactl/)
+* [The latest version of {{site.mesh_product_name}}](/mesh/latest/introduction/install/)
 
 ## Create a global control plane in {{site.konnect_short_name}}
 
