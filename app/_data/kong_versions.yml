@@ -264,6 +264,7 @@
   version: "1.43.0"
   edition: "deck"
   label: unreleased
+- edition: "dev-portal"
 - edition: "konnect"
 - edition: "contributing"
 - release: "2.5.x"

@@ -13,6 +13,9 @@
 {% if include.edition == 'konnect' %}
   {% capture product_url %}/konnect/{% endcapture %}
   {% capture product_title %}{{site.konnect_saas}}{% endcapture %}
+{% elsif include.edition == 'dev-portal' %}
+  {% capture product_url %}/dev-portal/{% endcapture %}
+  {% capture product_title %}{{site.konnect_short_name}} Dev Portal{% endcapture %}
 {% elsif include.edition == 'mesh' %}
   {% capture product_url %}/mesh/{% unless include.no_version == true %}{{version}}/{% endunless %}{% endcapture %}
   {% capture product_title %}{{site.mesh_product_name}}{% endcapture %}
