@@ -58,9 +58,8 @@ For more information about the Kubernetes demo app, see [Explore {{site.mesh_pro
 
 ## Configure `kumactl` to connect to your global control plane
 
-{% tip %}
-Since we are deploying {{site.mesh_product_name}} zone in Kubernetes mode for this tutorial, `kumactl` is read-only. Instead, `kubectl` is used to apply changes to {{site.mesh_product_name}} zone directly. Although, we don't use `kumactl` in this tutorial because we are using Kubernetes, it's still best practice to configure it to connect to your global control plane.
-{% endtip %}
+{:.note}
+> Since we are deploying {{site.mesh_product_name}} zone in Kubernetes mode for this tutorial, `kumactl` is read-only. Instead, `kubectl` is used to apply changes to {{site.mesh_product_name}} zone directly. Although, we don't use `kumactl` in this tutorial because we are using Kubernetes, it's still best practice to configure it to connect to your global control plane.
 
 `kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode.
 
