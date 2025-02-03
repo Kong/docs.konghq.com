@@ -19,3 +19,11 @@ brew install kong/deck/deck
 ## Linux
 
 Download the `.deb` or `.rpm` file from the releases page and install it using your package manager.
+
+## Mise
+
+If you are using [mise](#) to manage your tools, you can use it to manage decK too.
+
+```bash
+mise x deck@latest -- deck version
+```
