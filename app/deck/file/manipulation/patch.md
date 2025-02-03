@@ -4,66 +4,49 @@ title: deck file patch
 
 The `deck file patch` command allows you to add, update or remove values from a declarative configuration file. A patch is a combination of a `selector` that selects which objects to patch in the file, and a `value` that contains the new value to use.
 
-The data type of the property identified by `selector` defines the merge behavior. For scalar values (strings, integers, booleans) the existing value is overwritten. For arrays, the provided values are appended to the existing array.
+The data type of the property identified by `selector` defines the merge behavior. For scalar values (strings, integers, booleans) the existing value is overwritten. For arrays, the provided values are appended to the existing array if the selector is an array.
 
 Changes can be specified as command line arguments, or provided in a patch file that is passed to the `deck file patch` command.
 
+The `deck file patch` command outputs the patched file to `stdout` by default. You can provide `-o /path/to/config.yaml` to write the updated configuration to a file on disk.
+
 ## Command line arguments
 
-...
+To patch values using the command line, pass the `--selector` and `--value` arguments.
+
+You can run the following examples as `deck file patch -s /path/to/kong.yaml --selector <S> --value <V>`.
+
+```bash
+# set field "read_timeout" to a numeric value of 10000
+--selector="$..services[*]" --value="read_timeout:10000"
+
+# set field "_comment" to a string value
+--selector="$..services[*]" --value='_comment:"comment injected by patching"'
+
+# set field "_ignore" to an array of strings
+--selector="$..services[*]" --value='_ignore:["ignore1","ignore2"]'
+
+# remove fields "_ignore" and "_comment" from the object
+--selector="$..services[*]" --value='_ignore:' --value='_comment:'
+
+# append entries to the methods array of all route objects
+--selector="$..routes[*].methods" --value='["OPTIONS"]'
+```
 
 ## Patch file
 
-...
+If you have more complex patching needs, you can store the patches in a YAML file. The YAML file contains `selectors` and `values`, plus an explicit `remove` key for deleting values.
 
----
-
-WIP:
-
-Changes can be specified using a `--selector` and one or more `--value` tags, or via patch files.
-
-When using `--selector` and `--values`, the items are selected by the `selector`, which is a JSONpath query. The 'field values' (in `<key:value>` format) are applied on each of the JSONObjects returned by the 'selector'. The 'array values' (in `[val1, val2]` format) are appended to each of the JSONArrays returned by the `selector`.
-
-The field values must be a valid JSON snippet, so use single/double quotes
-appropriately. If the value is empty, the field is removed from the object.
-
-Examples of valid values:
-
-```bash
-  # set field "read_timeout" to a numeric value of 10000
-	--selector="$..services[*]" --value="read_timeout:10000"
-
-	# set field "_comment" to a string value
-	--selector="$..services[*]" --value='_comment:"comment injected by patching"'
-
-	# set field "_ignore" to an array of strings
-	--selector="$..services[*]" --value='_ignore:["ignore1","ignore2"]'
-
-	# remove fields "_ignore" and "_comment" from the object
-	--selector="$..services[*]" --value='_ignore:' --value='_comment:'
-
-	# append entries to the methods array of all route objects
-	--selector="$..routes[*].methods" --value='["OPTIONS"]'
+```yaml
+patches:
+  - selectors:
+      - $..services[*]
+    values:
+      read_timeout: 10000
+      _comment: comment injected by patching
+    remove:
+      - _ignore
+      - _comment
 ```
 
-Patch files have the following format (JSON or YAML) and can contain multiple
-patches that are applied in order:
-
-```json
-{ "_format_version": "1.0",
-  "patches": [
-    { "selectors": [
-        "$..services[*]"
-      ],
-      "values": {
-        "read_timeout": 10000,
-        "_comment": "comment injected by patching"
-      },
-      "remove": [ "_ignore" ]
-    }
-  ]
-}
-```
-
-If the 'values' object instead is an array, then any arrays returned by the selectors
-will get the 'values' appended to them.
+To apply the above file, run `deck file patch -s /path/to/config.yaml patch1.yaml patch2.yaml`. Multiple patch files can be provided at once.
