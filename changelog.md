@@ -8,14 +8,7 @@
 
 Updating Serverless for CAA instructions
 
-
-
-
-<!-- What did you change and why? -->
-
 Updated the Serverless custom domains doc to include instructions on adding CAA to prevent CAA errors with Serverless GWs. 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -25,13 +18,6 @@ Updated the Serverless custom domains doc to include instructions on adding CAA 
 ### [Update custom-dns.md](https://github.com/Kong/docs.konghq.com/pull/8399) (2025-01-31)
 
 Updated to include instructions for CAA Records
-
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
