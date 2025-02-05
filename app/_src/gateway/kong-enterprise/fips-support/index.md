@@ -7,7 +7,7 @@ content_type: reference
 The Federal Information Processing Standard (FIPS) 140-2 is a federal standard defined by the National Institute of Standards and Technology. It specifies the security requirements that must be satisfied by a cryptographic module. The FIPS {{site.base_gateway}} package is FIPS 140-2 compliant. Compliance means that {{site.base_gateway}} only uses FIPS 140-2 approved algorithms while running in FIPS mode, but the product has not been submitted to a NIST testing lab for validation.
 
 
-{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04** {% if_version gte:3.1.x %}, **Ubuntu 22.04** {% if_version gte:3.4.x %}, **Red Hat Enterprise 9** {% endif_version %}, and **Red Hat Enterprise 8** {% endif_version %}. This package provides compliance for the core {{site.base_gateway}} product {% if_version gte:3.2.x %} and all out of the box plugins. {% endif_version %}
+{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04**{% if_version gte:3.1.x %}, **Ubuntu 22.04**{% if_version gte:3.4.x %}, **Red Hat Enterprise 9**{% endif_version %}, and **Red Hat Enterprise 8**{% endif_version %}. This package provides compliance for the core {{site.base_gateway}} product {% if_version gte:3.2.x %} and all out of the box plugins{% endif_version %}.
 
 The package uses the OpenSSL FIPS 3.0 module OpenSSL to provide FIPS 140-2 validated cryptographic operations.
 
