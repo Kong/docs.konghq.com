@@ -2,23 +2,25 @@
 title: Configuration
 ---
 
-decK can be configured using CLI flags, environment variables and a configuration file on disk.
+decK can be configured using CLI flags, environment variables, and a configuration file on disk.
 
-* CLI flags override all other values
-* Environment variables override the configuration file
-* Configuration file values are treated as defaults
+decK reads these configuration sources in the following priority order:
+1. CLI flags override all other values.
+2. Environment variables override the configuration file.
+3. Configuration file values are treated as defaults.
 
-## CLI Flags
+## CLI flags
 
-To view the available CLI flags for a command, run `deck <command> --help`. These flags can be provided when running the command e.g.
+To view the available CLI flags for a command, run `deck <command> --help`. 
+You can provide these flags when running the command. For example:
 
 ```bash
 deck gateway sync --konnect-control-plane-name demo --konnect-token $KONNECT_TOKEN kong.yaml
 ```
 
-## Environment Variables
+## Environment variables
 
-All CLI flags may also be provided as environment variables.
+All CLI flags can also be provided as environment variables.
 
 To determine the environment variable name, replace the `.` and `-` characters in the CLI flag with `_` and prefix it with `DECK_`.
 
@@ -30,7 +32,7 @@ export DECK_KONNECT_TOKEN=$KONNECT_TOKEN
 deck gateway sync kong.yaml
 ```
 
-## Configuration File
+## Configuration file
 
 decK can be configured using a `$HOME/.deck.yaml` file in your home directory.
 

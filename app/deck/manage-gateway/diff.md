@@ -8,7 +8,7 @@ The `deck gateway diff` command shows the differences between your live {{ site.
 
 ## Dry run
 
-`deck gateway diff` should always be run before running [sync](/deck/manage-gateway/sync/) to preview upcoming changes. decK resolves all changes as though it is performing a sync, and outputs the changes that would have been made at the end:
+`deck gateway diff` should always be run before running [sync](/deck/manage-gateway/sync/) to preview upcoming changes. decK resolves all changes as though it's performing a sync, and outputs the changes that would have been made at the end:
 
 ```bash
 $ deck gateway sync /path/to/kong.yaml
@@ -32,13 +32,13 @@ Summary:
   Deleted: 0
 ```
 
-If you do not expect these changes, edit your state file until it matches your expectations and run `deck gateway diff` again before running `deck gateway sync`.
+If you see changes in the diff that you didn't expect, edit your state file until it matches your expectations and run `deck gateway diff` again before running `deck gateway sync`.
 
 ## Drift detection
 
 You can run `deck gateway diff` periodically with a known state file to detect any unexpected changes in the live system.
 
-If your running {{ site.base_gateway }} matches your expected state you will see the following output:
+If your running {{ site.base_gateway }} matches your expected state, you will see the following output:
 
 ```bash
 Summary:

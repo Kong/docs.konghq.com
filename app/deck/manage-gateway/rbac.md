@@ -2,14 +2,14 @@
 title: RBAC
 ---
 
-decK can manage {{ site.ee_product_name }} RBAC configuration using the `diff`, `sync` and `dump` commands.
+decK can manage {{ site.ee_product_name }} RBAC configuration using the `diff`, `sync`, and `dump` commands.
 
 {:.important}
-> decK cannot manage {{ site.konnect_short_name }} permissions as they are set at an organization rather than a control plane level. We recommend [terraform-provider-konnect](https://github.com/Kong/terraform-provider-konnect) for your {{ site.konnect_short_name }} RBAC needs.
+> decK can't manage {{ site.konnect_short_name }} permissions as they are set at the organization level, rather than the control plane level. We recommend [terraform-provider-konnect](https://github.com/Kong/terraform-provider-konnect) for your {{ site.konnect_short_name }} RBAC needs.
 
 RBAC configuration is usually stored separately from all other configuration, and decK provides the `--rbac-resources-only` flag to ensure that only RBAC resorces are in scope when running commands.
 
-RBAC roles accept a list of `actions`, a wildcard endpoint e.g. `/services/*` and if the role is `negative` or not. A negative RBAC role means that the actions listed are explicitly denied on the endpoint specified, even if allowed by a different permission.
+RBAC roles accept a list of `actions`, a wildcard endpoint (for example,`/services/*`), and if the role is `negative` or not. A negative RBAC role means that the actions listed are explicitly denied on the endpoint specified, even if allowed by a different permission.
 
 ```yaml
 _format_version: "3.0"

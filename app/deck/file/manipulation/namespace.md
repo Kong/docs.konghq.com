@@ -6,11 +6,11 @@ When practicing [federated configuration management](/deck/apiops/federated-conf
 
 To avoid this, you can namespace each API using a path prefix or have each API listen on a specific host.
 
-By default the `deck file namespace` command operates on all routes in a file. To target specific routes, pass the `--selector` flag.
+By default, the `deck file namespace` command operates on all routes in a file. To target specific routes, pass the `--selector` flag.
 
 ## Path prefix
 
-The simplest way to prevent colissions is to prefix each API's routes with a static path. In this case, all routes in `/path/to/config` will be exposed under a `/billing` path:
+The simplest way to prevent collisions is to prefix each API route with a static path. In this case, all routes in `/path/to/config` will be exposed under a `/billing` path:
 
 ```bash
 deck file namespace --path-prefix=/billing -s /path/to/config.yaml
@@ -24,7 +24,7 @@ To remain transparent to the backend services, the added path prefix must be rem
 
 ## Custom host
 
-An alternate way to namespace APIs is to have each API listen on a different hostname e.g. `http://service1.api.example.com/somepath`, `http://service2.api.example.com/somepath`.
+An alternate way to namespace APIs is to have each API listen on a different hostname, for example, `http://service1.api.example.com/somepath`, `http://service2.api.example.com/somepath`.
 
 The following command updates all route definitions in a file to listen only when a request is made to `service1.api.example.com`. If the route already has a `hosts` entry, the new domain is appended to the list.
 

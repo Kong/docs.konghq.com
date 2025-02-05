@@ -6,7 +6,7 @@ decK assumes that it is running on the same machine as {{ site.base_gateway }} a
 
 This page explains the CLI flags required to customise this behavior. If you would like to change the default behavior using environment variables or a configuration file, see the [configuration options](/deck/configuration/) page.
 
-The following examples will use `deck gateway ping`, but the flags apply to all other `deck gateway` commands too.
+The following examples use `deck gateway ping`, but the flags also apply to all other `deck gateway` commands.
 
 ## Konnect
 
@@ -18,7 +18,7 @@ To use decK with {{ site.konnect_short_name }}, you must provide a {{ site.konne
 deck gateway ping --konnect-addr https://us.api.konghq.com --konnect-control-plane-name default
 ```
 
-`--konnect-addr` is optional. If any `--konnect` flag is set, the Admin API URL will default to https://us.api.konghq.com
+`--konnect-addr` is optional. If any `--konnect` flag is set, the Admin API URL will default to `https://us.api.konghq.com`.
 
 ```bash
 deck gateway ping --konnect-control-plane-name default
@@ -44,7 +44,7 @@ deck gateway ping --konnect-token-file /path/to/file --konnect-addr https://us.a
 
 ## {{ site.base_gateway }}
 
-The `--kong-addr` flag configures the URL that decK calls to use the Admin API. The default value is http://localhost:8001.
+The `--kong-addr` flag configures the URL that decK calls to use the Admin API. The default value is `http://localhost:8001`.
 
 ```bash
 deck gateway ping --kong-addr https://my-kong-gateway.example.com:8001
@@ -56,11 +56,11 @@ If you run {{ site.base_gateway }} using a self-signed TLS certificate, you shou
 deck gateway ping --kong-addr https://my-kong-gateway.example.com:8001 --ca-cert-file /path/to/ca.crt
 ```
 
-If you do not wish to verify the TLS certificate (we do not recommend this), you can use the `--tls-skip-verify` flag.
+If you don't want to verify the TLS certificate (we do not recommend this), you can use the `--tls-skip-verify` flag.
 
 ### Token authentication
 
-If your Admin API is secured using RBAC, you will need to send the `Kong-Admin-Token` header in your requests. This is done using the `--headers` flag
+If your Admin API is secured using RBAC, you will need to send the `Kong-Admin-Token` header in your requests. This is done using the `--headers` flag:
 
 ```bash
 deck gateway ping --headers "Kong-Admin-Token:$MY_TOKEN_HERE"

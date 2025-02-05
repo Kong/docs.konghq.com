@@ -5,7 +5,7 @@ title: sync
 The `deck gateway sync` command configures the target {{ site.base_gateway }} to match the values specified in your declarative configuration.
 
 {:.important}
-> Any configuration in {{ site.base_gateway }} that is not present in the provided declarative configuration file **will be deleted** using `deck gateway sync`.
+> Any configuration in {{ site.base_gateway }} that isn't present in the provided declarative configuration file **will be deleted** using `deck gateway sync`.
 
 The `deck gateway sync` command can accept one or more files as positional arguments:
 
@@ -32,7 +32,6 @@ multiple files if:
   can have one file per service, and keep the service, its associated routes, plugins, and other entities in that file.
 - You have a large configuration file and want to break it down into smaller digestible chunks.
 
-
 ```bash
 # Sync multiple files
 deck gateway sync services.yaml consumers.yaml
@@ -43,5 +42,5 @@ deck gateway sync services.yaml consumers.yaml
 deck gateway sync directory/*.yaml
 ```
 
-Please note that having the state split across different files is not same
+Note that having the state split across different files is not same
 as [distributed configuration](/deck/manage-gateway/tags/) using tags.

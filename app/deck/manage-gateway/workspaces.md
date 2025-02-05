@@ -5,9 +5,9 @@ title: Workspaces
 decK is workspace-aware, meaning it can interact with multiple workspaces.
 
 {:.note}
-> Workspaces are a {{ site.ee_product_name }} concept, and are not applicable to  {{ site.konnect_short_name }}
+> Workspaces are a {{ site.ee_product_name }} concept, and are not applicable to {{ site.konnect_short_name }}.
 
-### Manage one workspace at a time
+## Manage one workspace at a time
 
 To manage the configuration of a specific workspace, use the `--workspace` flag with [`sync`](/deck/manage-gateway/sync/), [`diff`](/deck/manage-gateway/diff/), [`dump`](/deck/manage-gateway/dump/), or [`reset`](/deck/manage-gateway/reset/).
 
@@ -17,7 +17,7 @@ For example, to export the configuration of the workspace `my-workspace`:
 deck gateway dump --workspace my-workspace
 ```
 
-If you do not specify a `--workspace` flag, decK uses the `default` workspace.
+If you don't specify a `--workspace` flag, decK uses the `default` workspace.
 
 To set a workspace directly in the state file, use the `_workspace` parameter. For example:
 
@@ -29,10 +29,10 @@ services:
 ```
 
 {:.note}
-> **Note:** decK cannot delete workspaces. If you use `--workspace` or
+> **Note:** decK can't delete workspaces. If you use `--workspace` or
 `--all-workspaces` with `deck gateway reset`, decK deletes the entire configuration inside the workspace, but not the workspace itself.
 
-### Manage multiple workspaces
+## Manage multiple workspaces
 
 You can manage the configurations of all workspaces in {{site.ee_product_name}} with the `--all-workspaces` flag:
 

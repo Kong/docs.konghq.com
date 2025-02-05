@@ -4,7 +4,7 @@ title: Plugins
 
 Adding or managing plugins is a common use case for platform teams. The `deck file` command allows you to add or update a plugin configuration programatically.
 
-If the plugin being added already exists, the `add-plugin` command will not edit the plugin unless the `--overwrite` flag is provided or `overwrite: true` is specified in the plugin configuration file.
+If the plugin being added already exists, the `add-plugin` command won't edit the plugin unless the `--overwrite` flag is provided or `overwrite: true` is specified in the plugin configuration file.
 
 The `deck file add-plugins` command outputs the patched file to `stdout` by default. You can provide `-o /path/to/config.yaml` to write the updated configuration to a file on disk.
 

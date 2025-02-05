@@ -49,7 +49,10 @@ services:
 Validating this configuration against the example ruleset, stored in `ruleset.yaml`, results in the following violations: 
 
 ```bash
-> deck file lint -s kong.yaml ruleset.yaml
+deck file lint -s kong.yaml ruleset.yaml
+```
+
+```
 Linting Violations: 1
 Failures: 1
 
@@ -74,7 +77,11 @@ services:
 ```
 
 ```bash
-> deck file lint -s kong.yaml ruleset.yaml; echo $?
+deck file lint -s kong.yaml ruleset.yaml; echo $?
+```
+
+Result:
+```
 0
 ```
 
@@ -84,7 +91,7 @@ Notice that the command results in a `0` (Success) return code. In situations wh
 
 ### Ensure that configuration files contain select_tags
 
-[select_tags](/deck/manage-gateway/tags/#select-tags) allows you to segment your configuration so that it can be managed as multiple, independent configurations.
+[`select_tags`](/deck/manage-gateway/tags/#select-tags) allows you to segment your configuration so that it can be managed as multiple, independent configurations.
 
 This linting rule ensures that every configuration file has `select_tags` defined.
 

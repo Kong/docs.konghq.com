@@ -63,7 +63,7 @@ x-kong-security-openid-connect:
 
 #### Dynamic request-validator plugin configuration
 
-The Kong `request-validator` plugin can validates incoming requests against a user provided JSON schema.
+The Kong `request-validator` plugin can validate incoming requests against a user-provided JSON schema.
 
 The plugin can be configured manually, but `openapi2kong` can use the provided OpenAPI specification to configure the `request-validator` plugin for all routes automatically. To do enable this behavior, add the `x-kong-plugin-request-validator` at the root level to add it to all routes, at the path level to add it to all routes on that path, or on an operation to add it to a specific route.
 

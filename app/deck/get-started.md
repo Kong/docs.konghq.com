@@ -4,7 +4,7 @@ description: Learn how to install decK and use it to configure Kong Gateway
 content_type: how-to
 ---
 
-This page teaches you how to use decK to create a service, route, plugins and consumers. It uses the `deck gateway apply` command to build the configuration up incrementally. At any point, you can run `deck gateway dump` to see the entire configuration of {{ site.base_gateway }} at once.
+This page teaches you how to use decK to create a service, route, plugins, and consumers. It uses the `deck gateway apply` command to build the configuration up incrementally. At any point, you can run `deck gateway dump` to see the entire configuration of {{ site.base_gateway }} at once.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ curl -Ls https://get.konghq.com/quickstart | bash
 
 To complete this guide, you'll need decK v1.43.0 or above [installed](/deck/install/).
 
-If you don't have decK installed, copy the following line in to your terminal to run decK using Docker for the purposes of this guide.
+If you don't have decK installed, copy the following line in to your terminal to run decK using Docker for the purposes of this guide:
 
 ```bash
 alias deck='docker run --rm -v .:/files -w /files -e DECK_KONG_ADDR=http://host.docker.internal:8001 kong/deck'
@@ -30,7 +30,7 @@ alias deck='docker run --rm -v .:/files -w /files -e DECK_KONG_ADDR=http://host.
 
 ## Create a Service
 
-You can use decK to configure a service by providing a `name` and a `url`. Any requests made to this service will be proxied to http://httpbin.konghq.com.
+You can use decK to configure a Service by providing a `name` and a `url`. Any requests made to this Service will be proxied to `http://httpbin.konghq.com`:
 
 ```bash
 echo '_format_version: "3.0"
@@ -41,7 +41,7 @@ services:
 
 ## Create a Route
 
-To access this service, you need to configure a route. Create a route that matches incoming requests that start with `/`, and attach it to the service that was previously created by specifying `service.name`:
+To access this Service, you need to configure a Route. Create a Route that matches incoming requests that start with `/`, and attach it to the service that was previously created by specifying `service.name`:
 
 ```bash
 echo '_format_version: "3.0"
@@ -53,15 +53,15 @@ routes:
       - "/"' | deck gateway apply
 ```
 
-You can now make a HTTP request to your running {{ site.base_gateway }} instance and see it proxied to HTTPBin:
+You can now make a HTTP request to your running {{ site.base_gateway }} instance and see it proxied to httpbin:
 
 ```bash
 curl http://localhost:8000/anything
 ```
 
-## Add Rate Limiting
+## Add rate limiting
 
-At this point {{ site.base_gateway }} is a transparent layer that proxies requests to the upstream HTTPBin instance. Let's add the [rate limiting](/hub/rate-limiting/) plugin to make sure that people only make five requests per minute.
+At this point, {{ site.base_gateway }} is a transparent layer that proxies requests to the upstream httpbin instance. Let's add the [Rate Limiting](/hub/kong-inc/rate-limiting/) plugin to make sure that people only make five requests per minute:
 
 ```bash
 echo '_format_version: "3.0"
@@ -82,11 +82,11 @@ for _ in {1..6}; do
 done
 ```
 
-## Add Authentication
+## Add authentication
 
 You may have noticed that the rate limiting plugin used the `limit_by: consumer` configuration option. This means that each uniquely identified consumer is allowed 5 requests per minute.
 
-To identify a consumer, let's add the [key auth plugin](/hub/key-auth/) and create a test user named `alice`:
+To identify a consumer, let's add the [Key Auth plugin](/hub/kong-inc/key-auth/) and create a test user named `alice`:
 
 ```bash
 echo '_format_version: "3.0"
@@ -124,4 +124,4 @@ Summary:
   Deleted: 1
 ```
 
-Congratulations! You just went from zero to a configured {{ site.base_gateway }} using deck in no time at all.
+Congratulations! You just went from zero to a configured {{ site.base_gateway }} using decK in no time at all.

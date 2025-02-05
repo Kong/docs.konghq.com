@@ -2,7 +2,7 @@
 title: deck file patch
 ---
 
-The `deck file patch` command allows you to add, update or remove values from a declarative configuration file. A patch is a combination of a `selector` that selects which objects to patch in the file, and a `value` that contains the new value to use.
+The `deck file patch` command allows you to add, update, or remove values from a declarative configuration file. A patch is a combination of a `selector` that selects which objects to patch in the file, and a `value` that contains the new value to use.
 
 The data type of the property identified by `selector` defines the merge behavior. For scalar values (strings, integers, booleans) the existing value is overwritten. For arrays, the provided values are appended to the existing array if the selector is an array.
 

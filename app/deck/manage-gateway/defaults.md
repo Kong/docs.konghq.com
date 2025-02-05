@@ -479,7 +479,6 @@ decK doesn't support setting custom default values for the plugin object.
 {% endnavtabs %}
 
 ## See also
-* [Deduplicate plugin configuration](/deck/{{page.release}}/guides/deduplicate-plugin-configuration/)
-* [Distributed configuration for {{site.base_gateway}} using decK](/deck/{{page.release}}/guides/distributed-configuration/)
-* [Using multiple files to store configuration](/deck/{{page.release}}/guides/multi-file-state/)
+* [Deduplicate plugin configuration](/deck/manage-gateway/deduplicate/)
+* [Using multiple files to store configuration](/deck/manage-gateway/tags/)
 * {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway/latest/admin-api/#retrieve-entity-schema)

@@ -4,7 +4,7 @@ title: decK in GitHub Actions
 
 If you use GitHub Actions to apply your declarative configuration to a running Gateway, you should use [Kong/setup-deck](https://github.com/kong/setup-deck).
 
-This GitHub Action installs decK on to the GitHub Actions runner using the GitHub tools cache. 
+This GitHub Action installs decK on to the GitHub Actions runner using the GitHub tools cache: 
 
 ```yaml
 on:

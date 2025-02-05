@@ -7,13 +7,13 @@ As shown in the [APIOps example](/deck/apiops/), decK enables a completely feder
 * Application teams can work with OpenAPI files as the soure of truth
 * If they _want_ to add Kong specific configuration, they can patch it in
 * Platform teams can layer on requred policies
-* Declarative configuration files can be linted for unwanted configuration e.g. non-HTTPS routes
+* State files can be linted for unwanted configuration, for example, non-HTTPS routes
 
 ## Federated management example
 
 AcmeCorp is building their new SaaS platform on top of {{ site.base_gateway }}. They want application teams to manage their own routing configuration, but also need to ensure that the APIs are secured appropriately.
 
-To meet their needs, they split their configuration in to multiple files:
+To meet their needs, they split their configuration into multiple files:
 
 * `team-a.yaml`
 * `team-b.yaml` (all the way to `team-z.yaml`)

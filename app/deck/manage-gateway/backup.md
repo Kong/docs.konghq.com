@@ -11,9 +11,9 @@ The exact command that you need to run changes if you're using workspaces (on-pr
 {:.note}
 > The following commands will back up **all** of the configuration in to a single file. See [tags](/deck/manage-gateway/tags/) to learn how to segment configuration.
 
-## Konnect
+## {{ site.konnect_short_name }}
 
-decK can export one control plane at a time from Konnect. To choose which control plane is backed up, specify the `--konnect-control-plane-name` flag.
+decK can export one control plane at a time from {{ site.konnect_short_name }}. To choose which control plane is backed up, specify the `--konnect-control-plane-name` flag:
 
 ```bash
 deck gateway dump -o $YOUR_CP_NAME.yaml --konnect-control-plane-name $YOUR_CP_NAME --konnect-token $KONNECT_TOKEN
@@ -21,13 +21,13 @@ deck gateway dump -o $YOUR_CP_NAME.yaml --konnect-control-plane-name $YOUR_CP_NA
 
 ## Single workspace
 
-If you're using {{ site.ce_product_name }} or the default workspace in {{ site.ee_product_name }}, decK will automatically identify the workspace to backup.
+If you're using {{ site.ce_product_name }} or the default workspace in {{ site.ee_product_name }}, decK automatically identifies the workspace to back up:
 
 ```bash
 deck gateway dump -o kong.yaml
 ```
 
-To backup a different workspace, pass the `-w` flag:
+To back up a different workspace, pass the `-w` flag:
 
 ```bash
 deck gateway dump -w $WORKSPACE_NAME -o $WORKSPACE_NAME.yaml
@@ -35,7 +35,8 @@ deck gateway dump -w $WORKSPACE_NAME -o $WORKSPACE_NAME.yaml
 
 ## All workspaces
 
-To backup all {{ site.ee_product_name }} workspaces, pass the `--all-workspaces` flag. This will create multiple files in the current directory. Each file is named the same as the workspace.
+To back up all {{ site.ee_product_name }} workspaces, pass the `--all-workspaces` flag. 
+This creates multiple files in the current directory. Each file is named the same as its workspace:
 
 ```bash
 deck gateway dump --all-workspaces
