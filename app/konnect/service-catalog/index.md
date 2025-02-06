@@ -61,9 +61,7 @@ graph LR
 | Keep track of your organization's resource ownership by mapping teams to {{site.service_catalog_name}} services. | Add the {{site.service_catalog_name}}service's owner when you [create a new {{site.service_catalog_name}} service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
 | Gain visibility into all your services, including unrecognized or undiscovered APIs in your organization.  | [{{site.service_catalog_name}} integrations](https://cloud.konghq.com/service-catalog/integrations) |
 | Consolidate key {{site.service_catalog_name}} service health metrics, documentation, and API specs into a single list, allowing you to interact with other tools from one place. | [{{site.service_catalog_name}} dashboard](https://cloud.konghq.com/service-catalog/) |
-
-<!-- commenting this out until it's released:
-| Govern how services are created and maintained across your company to adhere to security, compliance, and engineering best practices. | Scorecards |-->
+| Govern how services are created and maintained across your company to adhere to security, compliance, and engineering best practices. | [Scorecards](/konnect/service-catalog/scorecards/) |
 
 ## {{site.service_catalog_name}} terminology
 
@@ -74,8 +72,9 @@ graph LR
 | {{site.service_catalog_name}} service | A unit of software that is typically owned by a single team, exposes one or more APIs, and may be dependent on other {{site.service_catalog_name}} services (as either upstream or downstream). A {{site.service_catalog_name}} service can be thought of as a collection of one or more resources. |
 | {{site.service_catalog_name}} | A comprehensive catalog of all resources and {{site.service_catalog_name}} services running in your organization. |
 | Events | An [event](/konnect/service-catalog/integrations/#events) is a captured unit of information logged by the {{site.service_catalog_name}}. It includes a wide range of activities such as user-driven actions, configuration changes, and alerts. |
+| Scorecards | a [scorecard](/konnect/service-catalog/scorecards/) is a compliance monitoring tool that can be used to identify gaps and provide insight across all of your Service Catalog Services, and [integrations](/konnect/service-catalog/integrations/).|
 
-
+Scorecards are a compliance monitoring tool in {{site.service_catalog_name}} that assess services against predefined best practices, identifying gaps and providing actionable insights to improve security, reliability, and adherence to standards.
 ## FAQs
 
 <details><summary>How do Service Catalog services map to API products? What is the relationship there?</summary>

@@ -150,6 +150,10 @@
   items:
     - text: Overview
       url: /service-catalog/
+    - text: Score Cards
+      items: 
+        - text: Overview
+          url: /service-catalog/score-cards/
     - text: Integrations
       items:
         - text: Overview
