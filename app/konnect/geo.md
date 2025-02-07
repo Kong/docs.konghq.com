@@ -78,3 +78,4 @@ The following objects are geo-specific and are not shared between geos:
 * [Consumers](/konnect/gateway-manager/configuration/)
 * [Application registration](/konnect/dev-portal/applications/enable-app-reg/)
 * [Custom teams and roles](/konnect/org-management/teams-and-roles/)
+* [Dev portals](/konnect/dev-portal/)
