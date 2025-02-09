@@ -2,6 +2,26 @@
 
 <!--vale off-->
 
+## Week 6
+
+### [extra space between period ](https://github.com/Kong/docs.konghq.com/pull/8406) (2025-02-05)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/fips-support
+
+
+### [Update the Dynatrace integration description](https://github.com/Kong/docs.konghq.com/pull/8403) (2025-02-03)
+
+Updating the description of our Dynatrace implementation to provide more context, per request.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/dynatrace/overview/
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/how-to/
+
 ## Week 5
 
 ### [Update custom-dns.md](https://github.com/Kong/docs.konghq.com/pull/8400) (2025-01-31)
