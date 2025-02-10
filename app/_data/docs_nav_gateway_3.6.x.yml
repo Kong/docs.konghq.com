@@ -224,8 +224,6 @@ items:
             url: /production/tracing/api
       - text: Resource Sizing Guidelines
         url: /production/sizing-guidelines
-      - text: Security Update Process
-        url: /production/security-update-process
       - text: Blue-Green Deployments
         url: /production/blue-green
       - text: Canary Deployments
