@@ -24,16 +24,16 @@ The Kong Admin API is documented in OpenAPI format:
 
 | Spec | Insomnia link |
 |-------|---------------|
-| [Enterprise API](/gateway/api/admin-ee/latest/){:target="_blank"} | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20{{page.release.versions.short}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F{{page.release.versions.short}}%2Fkong-ee-{{page.release.versions.short}}.yaml" target="_blank"> <img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
-|  [Open source API](/gateway/api/admin-oss/latest/){:target="_blank"} | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20OSS%20{{page.release.versions.short}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F{{page.release.versions.short}}%2Fkong-oss-{{page.release.versions.short}}.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
+| [Enterprise API](/gateway/api/admin-ee/latest/){:target="_blank"} | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20{{page.short_version}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F{{page.short_version}}%2Fkong-ee-{{page.short_version}}.yaml" target="_blank"> <img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
+|  [Open source API](/gateway/api/admin-oss/latest/){:target="_blank"} | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20OSS%20{{page.short_version}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F{{page.short_version}}%2Fkong-oss-{{page.short_version}}.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
 
 {% endif_version %}
 {% if_version gte:3.8.x %}
 
 | Spec | Insomnia link |
 |-------|---------------|
-| [Enterprise API](/gateway/api/admin-ee/latest/){:target="_blank"} |<a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20{{page.release.versions.short}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F{{page.release.versions.short}}%2Fkong-ee.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
-|  [Open source API](/gateway/api/admin-oss/latest/){:target="_blank"} | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20OSS%20{{page.release.versions.short}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F{{page.release.versions.short}}%2Fkong-oss.yaml" target="_blank"> <img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
+| [Enterprise API](/gateway/api/admin-ee/latest/){:target="_blank"} |<a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20{{page.short_version}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F{{page.short_version}}%2Fkong-ee.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
+|  [Open source API](/gateway/api/admin-oss/latest/){:target="_blank"} | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20OSS%20{{page.short_version}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F{{page.short_version}}%2Fkong-oss.yaml" target="_blank"> <img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
 
 {% endif_version %}
 
