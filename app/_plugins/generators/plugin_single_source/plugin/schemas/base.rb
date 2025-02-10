@@ -110,7 +110,7 @@ module PluginSingleSource
 
         def field_no_def?(key, field, no_def)
           no_def[key].all? do |k, v|
-            field[key][k] == v
+            field[key].key?(k) && field[key][k] == v
           end
         end
       end
