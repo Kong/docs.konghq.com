@@ -70,6 +70,7 @@ module PluginSingleSource
 
         ::Jekyll::Drops::Plugins::HubExamples.new(
           schema: @release.schema,
+          metadata: metadata,
           example: @release.schema.example,
           targets: ::Jekyll::InlinePluginExample::Config::TARGETS,
           formats: %i[curl konnect yaml kubernetes terraform]

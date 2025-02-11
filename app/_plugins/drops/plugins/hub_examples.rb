@@ -88,8 +88,9 @@ module Jekyll
       class HubExamples < Liquid::Drop
         attr_reader :schema, :example, :formats
 
-        def initialize(schema:, example:, targets:, formats:) # rubocop:disable Lint/MissingSuper
+        def initialize(schema:, metadata:, example:, targets:, formats:) # rubocop:disable Lint/MissingSuper
           @schema = schema
+          @metadata = metadata
           @example = example
           @targets = targets
           @formats = formats
@@ -120,7 +121,12 @@ module Jekyll
         end
 
         def enable_globally?
-          @targets.include?(:global)
+          global = @metadata['global']
+
+          # Default to true if the key is not present
+          global = true unless @metadata.key?('global')
+
+          @targets.include?(:global) && global
         end
 
         def consumer
@@ -130,6 +136,8 @@ module Jekyll
         end
 
         def global
+          return unless enable_globally?
+
           @global ||= Example.new(schema:, type: 'global', example:, formats:)
         end
 
