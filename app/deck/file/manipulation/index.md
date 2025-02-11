@@ -1,5 +1,5 @@
 ---
-title: File Manipulation
+title: Configuration Transformation
 ---
 
 `deck file` provides multiple commands to manipulate an existing declarative configuration file. They can be used to update values in the configuration, add new plugins and more.
