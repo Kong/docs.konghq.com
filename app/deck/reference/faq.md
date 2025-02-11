@@ -3,6 +3,7 @@ title: Frequently Asked Questions (FAQs)
 content_type: reference
 ---
 
+
 ### I use Terraform to configure Kong, why should I care about decK?
 
 If you are using Terraform and are happy with it, you should continue to use it.
@@ -66,7 +67,7 @@ your use case:
 
 - If you have a very large installation, it can take some time for decK to
   sync up the configuration to Kong. This can be mitigated by adopting
-  [distributed configuration](/deck/manage-gateway/tags/) for your
+  [distributed configuration](/deck/gateway/tags/) for your
   Kong installation and tweaking the `--parallelism` value.
   Kong's `db_import` will usually be faster by orders of magnitude.
 - decK cannot export and re-import fields that are hashed in the database.

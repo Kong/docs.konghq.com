@@ -17,4 +17,4 @@ The decK commands are structured into three main categories:
 
 2. [**Configuration Transformation**](/deck/file/manipulation/): This set of commands provides the tools needed to refine and restructure decK configuration files. It allows for the segmentation of a full configuration into smaller, manageable parts and their subsequent reassembly.
 
-3. [**Gateway State Management**](/deck/manage-gateway/): This category includes commands that facilitate the synchronization of the final decK file with the target platform, which can be {{site.konnect_product_name}}, {{site.base_gateway}}, or {{site.kic_product_name}}.
+3. [**Gateway State Management**](/deck/gateway/): This category includes commands that facilitate the synchronization of the final decK file with the target platform, which can be {{site.konnect_product_name}}, {{site.base_gateway}}, or {{site.kic_product_name}}.

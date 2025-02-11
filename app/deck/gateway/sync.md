@@ -43,4 +43,4 @@ deck gateway sync directory/*.yaml
 ```
 
 Note that having the state split across different files is not same
-as [distributed configuration](/deck/manage-gateway/tags/) using tags.
+as [distributed configuration](/deck/gateway/tags/) using tags.

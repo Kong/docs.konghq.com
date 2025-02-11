@@ -91,7 +91,7 @@ Notice that the command results in a `0` (Success) return code. In situations wh
 
 ### Ensure that configuration files contain select_tags
 
-[`select_tags`](/deck/manage-gateway/tags/#select-tags) allows you to segment your configuration so that it can be managed as multiple, independent configurations.
+[`select_tags`](/deck/gateway/tags/#select-tags) allows you to segment your configuration so that it can be managed as multiple, independent configurations.
 
 This linting rule ensures that every configuration file has `select_tags` defined.
 

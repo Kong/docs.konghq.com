@@ -40,13 +40,13 @@ When managing vaults with declarative configuration, you need to take certain pr
 To keep your environment secure and avoid taking down your proxies by accident, make sure to:
 
 * Manage vaults with distributed configuration via tags.
-* Use a separate [RBAC role, user, and token](/deck/manage-gateway/rbac/)
+* Use a separate [RBAC role, user, and token](/deck/gateway/rbac/)
 to manage vaults. Don't use a generic admin user.
 * Set up a separate CI pipeline for vaults.
 
 ## Manage vaults with distributed configuration
 
-Avoid mixing vault configuration with other {{site.base_gateway}} entities. Instead, manage vaults with [distributed configuration](/deck/manage-gateway/tags/#select-tags) via `select_tags`.
+Avoid mixing vault configuration with other {{site.base_gateway}} entities. Instead, manage vaults with [distributed configuration](/deck/gateway/tags/#select-tags) via `select_tags`.
 
 ```yaml
 _format_version: "3.0"

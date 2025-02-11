@@ -33,31 +33,33 @@
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   items:
     - text: Overview
-      url: /manage-gateway/
+      url: /gateway/
+    - text: Konnect Configuration
+      url: /gateway/konnect-configuration/
     - text: Configuration
-      url: /manage-gateway/configuration/
+      url: /gateway/configuration/
     - text: Backup
-      url: /manage-gateway/backup/
+      url: /gateway/backup/
     - text: Diff
-      url: /manage-gateway/diff/
+      url: /gateway/diff/
     - text: Sync
-      url: /manage-gateway/sync/
+      url: /gateway/sync/
     - text: Apply
-      url: /manage-gateway/apply/
+      url: /gateway/apply/
     - text: Validate
-      url: /manage-gateway/validate/
+      url: /gateway/validate/
     - text: RBAC
-      url: /manage-gateway/rbac/
+      url: /gateway/rbac/
     - text: Workspaces
-      url: /manage-gateway/workspaces/
+      url: /gateway/workspaces/
     - text: Tags
-      url: /manage-gateway/tags/
+      url: /gateway/tags/
     - text: Deduplicate Plugin Configuration
-      url: /manage-gateway/deduplicate/
+      url: /gateway/deduplicate/
     - text: Object Defaults
-      url: /manage-gateway/defaults/
+      url: /gateway/defaults/
     - text: Sensitive Data
-      url: /manage-gateway/sensitive-data/
+      url: /gateway/sensitive-data/
 - title: decK Files
   icon: /assets/images/icons/documentation/icn-solution-guide.svg
   items:
@@ -111,3 +113,5 @@
       url: /reference/entities/
     - text: FAQ
       url: /reference/faq/
+    - text: Gateway 3.0 Upgrade
+      url: /reference/3.0-upgrade/

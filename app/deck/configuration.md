@@ -42,7 +42,7 @@ To run the same `deck gateway sync` command as above using the configuation file
 
 ```bash
 echo "
-konnect-control-plane-name: 15Jan
+konnect-control-plane-name: MySampleCP
 konnect-token: $KONNECT_TOKEN
 " > $HOME/.deck.yaml
 

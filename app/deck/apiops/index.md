@@ -36,10 +36,10 @@ The diagram below delineates KongAir's structured approach to deploying decK, st
 For {{site.konnect_product_name}} or {{site.base_gateway}} deployments, the process involves:
 
 1. Ensuring connectivity with the Admin API via `deck gateway ping`.
-2. Performing an online validation with [`deck gateway validate`](/deck/manage-gateway/validate/).
-3. Backing up the current Kong state with [`deck gateway dump`](/deck/manage-gateway/backup/).
-4. Previewing changes with [`deck gateway diff`](/deck/manage-gateway/diff/).
-5. Applying the new configuration with [`deck gateway sync`](/deck/manage-gateway/sync/).
+2. Performing an online validation with [`deck gateway validate`](/deck/gateway/validate/).
+3. Backing up the current Kong state with [`deck gateway dump`](/deck/gateway/backup/).
+4. Previewing changes with [`deck gateway diff`](/deck/gateway/diff/).
+5. Applying the new configuration with [`deck gateway sync`](/deck/gateway/sync/).
 
 {% endnavtab %}
 {% navtab KIC %}

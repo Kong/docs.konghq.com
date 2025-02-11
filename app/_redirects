@@ -265,7 +265,7 @@
 /deck/terminology/                    /deck/terminology/
 /deck/latest/ /deck/
 /deck/latest/* /deck/:splat
-
+/deck/gateway/dump/ /deck/gateway/backup/
 
 # KUBERNETES
 /gateway-oss/2.6.x/kong-for-kubernetes/changelog    https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md

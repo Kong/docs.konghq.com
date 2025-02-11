@@ -9,7 +9,7 @@ See the reference for [Entities Managed by decK](/deck/{{page.release}}/referenc
 The exact command that you need to run changes if you're using workspaces (on-prem only) or not.
 
 {:.note}
-> The following commands will back up **all** of the configuration in to a single file. See [tags](/deck/manage-gateway/tags/) to learn how to segment configuration.
+> The following commands will back up **all** of the configuration in to a single file. See [tags](/deck/gateway/tags/) to learn how to segment configuration.
 
 ## {{ site.konnect_short_name }}
 

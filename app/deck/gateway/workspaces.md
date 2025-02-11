@@ -9,7 +9,7 @@ decK is workspace-aware, meaning it can interact with multiple workspaces.
 
 ## Manage one workspace at a time
 
-To manage the configuration of a specific workspace, use the `--workspace` flag with [`sync`](/deck/manage-gateway/sync/), [`diff`](/deck/manage-gateway/diff/), [`dump`](/deck/manage-gateway/dump/), or [`reset`](/deck/manage-gateway/reset/).
+To manage the configuration of a specific workspace, use the `--workspace` flag with [`sync`](/deck/gateway/sync/), [`diff`](/deck/gateway/diff/), [`dump`](/deck/gateway/dump/), or [`reset`](/deck/gateway/reset/).
 
 For example, to export the configuration of the workspace `my-workspace`:
 

@@ -27,5 +27,5 @@ Example response:
 Error: building state: route demo-route for plugin rate-limiting: entity not found
 ```
 
-No communication takes places between decK and Kong during the execution of this command. This process is faster than online validation, but may catch fewer errors. For online validation, see [`deck gateway validate`](/deck/manage-gateway/validate/).
+No communication takes places between decK and Kong during the execution of this command. This process is faster than online validation, but may catch fewer errors. For online validation, see [`deck gateway validate`](/deck/gateway/validate/).
 
