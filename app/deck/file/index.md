@@ -8,7 +8,7 @@ decK provides multiple tools for interacting with this declarative configuration
 
 | Command  | Description |
 |----------|-------------|
-| [openapi2kong](/deck/file/openapi2kon/) | Convert an OpenAPI specification to Kong services and routes. |
+| [openapi2kong](/deck/file/openapi2kong/) | Convert an OpenAPI specification to Kong services and routes. |
 | [kong2kic](/deck/file/kong2kic/) | Convert a Kong declarative configuration file to [Kong Ingress Controller](/kubernetes-ingress-controller/) compatible CRDs. Supports both Gateway API and Ingress resources. |
 | [kong2tf](/deck/file/kong2tf/)   | Convert a Kong declarative configuration file to Terraform manifests (Konnect only).|
 

@@ -13,7 +13,7 @@ decK operates on state files, which represent the intended configuration of {{ s
 decK offers a comprehensive suite of tools for configuring and managing the Kong platform through sets of commands. 
 The decK commands are structured into three main categories:
 
-1. [**Configuration Generation**](/deck/file/generation/): This category focuses on the initial creation of decK state files from industry-standard API specification formats.
+1. [**Configuration Generation**](/deck/file/): This category focuses on the initial creation of decK state files from industry-standard API specification formats.
 
 2. [**Configuration Transformation**](/deck/file/manipulation/): This set of commands provides the tools needed to refine and restructure decK configuration files. It allows for the segmentation of a full configuration into smaller, manageable parts and their subsequent reassembly.
 

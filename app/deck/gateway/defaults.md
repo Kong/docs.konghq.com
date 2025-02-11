@@ -282,8 +282,7 @@ configuration would overwrite the value in your environment.
 
 {{ deck_diff2 | indent | replace: "    </code>", "</code>" }}
 
-    Whether you choose to define a subset of custom defaults or all available
-    options, the result is the same: the diff doesn't show any changes.
+Whether you choose to define a subset of custom defaults or all available options, the result is the same: the diff doesn't show any changes.
 
 ## Find defaults for an object
 

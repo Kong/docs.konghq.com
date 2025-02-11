@@ -22,6 +22,9 @@ To remain transparent to the backend services, the added path prefix must be rem
 1. If the related service has a `path` property that matches the prefix, then the `service.path` property is updated to remove the prefix.
 1. A `pre-function` plugin will be added to remove the prefix from the path.
 
+{:.important}
+> If a `pre-function` is used, this will take priority over any global `pre-function` plugin that you have configured.
+
 ## Custom host
 
 An alternate way to namespace APIs is to have each API listen on a different hostname, for example, `http://service1.api.example.com/somepath`, `http://service2.api.example.com/somepath`.

@@ -38,6 +38,8 @@
       url: /gateway/konnect-configuration/
     - text: Configuration
       url: /gateway/configuration/
+    - text: Ping
+      url: /gateway/ping/
     - text: Backup
       url: /gateway/backup/
     - text: Diff
@@ -46,6 +48,8 @@
       url: /gateway/sync/
     - text: Apply
       url: /gateway/apply/
+    - text: Reset
+      url: /gateway/reset/
     - text: Validate
       url: /gateway/validate/
     - text: RBAC

@@ -28,6 +28,12 @@ NO! Please do not do this. The two processes will step on each other and
 might corrupt Kong's configuration. You should ensure that there is only
 one instance of decK running at any point in time.
 
+### Konnect Developer Portal plugins
+
+**When creating an application registration in the Konnect Developer Portal, a plugin is automatically added to the configuration of the service. Will that create a discrepancy with decK?**
+
+No, it will not create a discrepancy. The plugins added to the configuration of the service are managed by Konnect and will not show up in a deck gateway dump operation of the relevant control plane and will not be taken into account during a deck gateway sync.
+
 ### Kong already has built-in declarative configuration, do I still need decK?
 
 Kong has an official declarative configuration format.
