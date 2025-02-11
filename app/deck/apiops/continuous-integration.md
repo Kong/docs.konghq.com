@@ -24,9 +24,3 @@ jobs:
 ```
 
 `kong/setup-deck` installs the latest version of decK by default. To pin to a specific version, you can specify the `version` [input](https://github.com/Kong/setup-deck?tab=readme-ov-file#sample-workflow) in your workflow.
-
-## Jenkins
-
-Jenkins is a popular choice for internal CI/CD systems. To install decK in a Jenkins pipeline, use the following script:
-
-TODO: Document Jack's script. Test it too.
