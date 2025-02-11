@@ -58,7 +58,7 @@ graph LR
 
 | You want to... | Then use... |
 | -------------- | ----------- |
-| Keep track of your organization's resource ownership by mapping teams to {{site.service_catalog_name}} services. | Add the {{site.service_catalog_name}}service's owner when you [create a new {{site.service_catalog_name}} service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
+| Keep track of your organization's resource ownership by mapping teams to {{site.service_catalog_name}} services. | Add the {{site.service_catalog_name}} service's owner when you [create a new {{site.service_catalog_name}} service in {{site.konnect_short_name}}](https://cloud.konghq.com/service-catalog/create-service) |
 | Gain visibility into all your services, including unrecognized or undiscovered APIs in your organization.  | [{{site.service_catalog_name}} integrations](https://cloud.konghq.com/service-catalog/integrations) |
 | Consolidate key {{site.service_catalog_name}} service health metrics, documentation, and API specs into a single list, allowing you to interact with other tools from one place. | [{{site.service_catalog_name}} dashboard](https://cloud.konghq.com/service-catalog/) |
 | Govern how services are created and maintained across your company to adhere to security, compliance, and engineering best practices. | [Scorecards](/konnect/service-catalog/scorecards/) |
