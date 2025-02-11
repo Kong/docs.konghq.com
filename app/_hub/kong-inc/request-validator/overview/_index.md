@@ -30,7 +30,7 @@ Either Kong's own schema validator (`config.version=kong`) or a JSON Schema Draf
 
 ## Parameter validation
 
-Only JSON Schema Draft 4 compliant validator is supported for parameter validation.
+Only the JSON Schema Draft 4 compliant validator is supported for parameter validation.
 
 {:.important}
 > Even if `config.version` is set to `kong`, the parameter validation will still use the JSON Schema Draft 4 compliant validator.
