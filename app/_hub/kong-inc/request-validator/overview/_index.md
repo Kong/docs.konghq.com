@@ -26,6 +26,15 @@ Request body validation is only performed for requests with `application/json` C
 
 For requests with any other allowed Content-Type, body validation is skipped. In that case, the request is proxied to  the upstream without validating the body.
 
+Either Kong's own schema validator (`config.version=kong`) or a JSON Schema Draft 4 compliant validator (`config.version=draft4`) can be used to validate the request body.
+
+## Parameter validation
+
+Only JSON Schema Draft 4 compliant validator is supported for parameter validation.
+
+{:.important}
+> Even if `config.version` is set to `kong`, the parameter validation will still use the JSON Schema Draft 4 compliant validator.
+
 ## Examples
 
 ### Overview
