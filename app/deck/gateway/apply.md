@@ -1,5 +1,5 @@
 ---
-title: apply
+title: Apply a partial configuration to Gateway
 ---
 
 The `deck gateway apply` commands create or update entities in {{ site.base_gateway }} without deleting any existing configuration. `deck gateway apply` is useful when building your configuration incrementally.

@@ -1,5 +1,5 @@
 ---
-title: sync
+title: Synchronize your local and remote state
 ---
 
 The `deck gateway sync` command configures the target {{ site.base_gateway }} to match the values specified in your declarative configuration.

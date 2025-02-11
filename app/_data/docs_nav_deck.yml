@@ -54,7 +54,7 @@
       url: /gateway/workspaces/
     - text: Tags
       url: /gateway/tags/
-    - text: Deduplicate Plugin Configuration
+    - text: De-duplicate Plugin Configuration
       url: /gateway/deduplicate/
     - text: Object Defaults
       url: /gateway/defaults/

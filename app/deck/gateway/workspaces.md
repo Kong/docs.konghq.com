@@ -1,5 +1,5 @@
 ---
-title: Workspaces
+title: Working with Workspaces
 ---
 
 decK is workspace-aware, meaning it can interact with multiple workspaces.

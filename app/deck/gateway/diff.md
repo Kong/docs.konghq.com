@@ -1,5 +1,5 @@
 ---
-title: diff
+title: Show differences in configuration (`deck gateway diff`)
 ---
 
 The `deck gateway diff` command shows the differences between your live {{ site.base_gateway }} configuration and the state file provided.

@@ -1,5 +1,5 @@
 ---
-title: RBAC
+title: Manage RBAC roles
 ---
 
 decK can manage {{ site.ee_product_name }} RBAC configuration using the `diff`, `sync`, and `dump` commands.

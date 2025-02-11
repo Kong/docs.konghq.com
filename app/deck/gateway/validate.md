@@ -1,5 +1,5 @@
 ---
-title: Validate
+title: Validate configuration against the Admin API
 ---
 
 The `deck gateway validate` command reads one or more declarative state files and ensures validity. It reports YAML/JSON parsing issues, checks for foreign relationships, and alerts if there are broken relationships or missing links present.
