@@ -34,7 +34,7 @@ module Jekyll
 
       def examples
         ::Jekyll::Drops::Plugins::HubExamples
-          .new(schema:, example:, targets:, formats:)
+          .new(schema:, metadata: {}, example:, targets:, formats:)
       end
 
       def schema
