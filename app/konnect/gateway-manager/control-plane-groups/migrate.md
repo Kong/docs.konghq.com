@@ -16,7 +16,7 @@ Therefore, when migrating, you will need at least two new groups: a control plan
 ## Prerequisites
 
 * **Control plane admin** permissions
-* decK v1.12 or later [installed](/deck/installation/)
+* decK v1.12 or later [installed](/deck/latest/installation/)
 * You have a Konnect access token and you have [made sure that decK can connect to your account](/konnect/gateway-manager/declarative-config/)
 
 ## Prepare control planes for migration
@@ -94,7 +94,7 @@ Assuming you already have a control plane group and a member control plane, you 
 
 Use decK to migrate a self-managed {{site.base_gateway}} workspace into a control plane group.
 
-1. Run [`deck gateway dump`](/deck/reference/deck_gateway_dump/) to export workspace configuration into a file:
+1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export workspace configuration into a file:
 
     ```sh
     deck gateway dump --workspace ws1 -o ws1.yaml
@@ -111,14 +111,14 @@ Use decK to migrate a self-managed {{site.base_gateway}} workspace into a contro
 
     * Any other [unsupported plugins](/konnect/compatibility/#plugin-compatibility)
 
-1. Preview the import with the [`deck gateway diff`](/deck/reference/deck_gateway_diff/)
+1. Preview the import with the [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/)
 command, pointing to the control plane that you want to target:
 
     ```sh
     deck gateway diff ws1.yaml --konnect-control-plane-name CP1
     ```
 
-1. If you're satisfied with the preview, run [`deck gateway sync`](/deck/reference/deck_gateway_sync/):
+1. If you're satisfied with the preview, run [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/):
 
     ```sh
     deck gateway sync ws1.yaml --konnect-control-plane-name CP1

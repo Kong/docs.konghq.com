@@ -25,7 +25,7 @@ The following sections briefly describe each mode.
 
 > _Figure 1: In {{ site.konnect_short_name }}, Kong hosts your control planes and all of the related applications: Dev Portal, Gateway Manager, Analytics, {{site.service_catalog_name}}, and so on. You attach data planes to {{ site.konnect_short_name }} to process traffic, which get all of their configuration from the control planes._
 
-Configuration changes can be made using the {{ site.konnect_short_name }} UI and configuration wizards, or applied in an automated way using [decK](/deck/).
+Configuration changes can be made using the {{ site.konnect_short_name }} UI and configuration wizards, or applied in an automated way using [decK](/deck/latest/).
 
 As with self-managed hybrid mode, your data plane nodes will continue to process traffic even if the control plane is offline. In addition, you no longer need to worry about securing the control plane because {{site.base_gateway}} does it for you.
 
@@ -67,7 +67,7 @@ When running in traditional mode, every {{ site.base_gateway }} node runs as bot
 
 In addition, if you're running {{site.ee_product_name}} with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
 
-You can use the [Admin API](/gateway/{{page.release}}/admin-api/) or declarative configuration files [(decK)](/deck/) to configure the {{site.base_gateway}} in traditional mode.
+You can use the [Admin API](/gateway/{{page.release}}/admin-api/) or declarative configuration files [(decK)](/deck/latest/) to configure the {{site.base_gateway}} in traditional mode.
 
 ## DB-less and declarative mode
 

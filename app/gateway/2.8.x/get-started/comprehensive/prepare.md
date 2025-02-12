@@ -13,7 +13,7 @@ Before you start this section, make sure that:
 * Kong Manager (if applicable) and Kong Admin API ports are listening on the
 appropriate port/IP/DNS settings.
 * If using declarative configuration to configure {{site.base_gateway}},
-[decK](/deck/installation) is installed.
+[decK](/deck/latest/installation) is installed.
 
 In this guide, an instance of {{site.base_gateway}} is referenced via
 `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname

@@ -132,7 +132,7 @@ The following provides an example set of steps for migrating a small multi-works
 
 {:.note}
 > **Note**: Instructions on this page are not step-by-step guides. They are meant to illustrate the general steps 
-you can perform to migrate workspaces. The examples use [decK](/deck/) and some well known command-line tools for 
+you can perform to migrate workspaces. The examples use [decK](/deck/latest/) and some well known command-line tools for 
 querying APIs and manipulating text output. See the [jq](https://jqlang.github.io/jq/) and [yq](https://github.com/mikefarah/yq) 
 tool pages for more information.
 
@@ -215,7 +215,7 @@ Contact your Kong representative for more information.
 ### {{site.base_gateway}} configuration
 
 We recommend migrating {{site.base_gateway}} configuration to {{site.konnect_product_name}} 
-using [decK](/deck/guides/konnect/), the declarative management tool for {{site.base_gateway}}
+using [decK](/deck/latest/guides/konnect/), the declarative management tool for {{site.base_gateway}}
 configurations.
 
 The general process for migrating the configuration involves "dumping" your existing  self-managed configuration
@@ -269,9 +269,9 @@ launchers for popular operating systems and compute platforms.
 
 In {{site.konnect_short_name}}, there are additional options for managing the API deployment lifecycle, as compared to {{site.base_gateway}}.
 
-* **decK**: If you're using [deck](/deck/) to manage your {{site.base_gateway}} configuration, you can continue to use
+* **decK**: If you're using [deck](/deck/latest) to manage your {{site.base_gateway}} configuration, you can continue to use
 the tool to managing your {{site.konnect_product_name}} configuration. The decK CLI 
-[supports {{site.konnect_short_name}} control plane configuration](/deck/guides/konnect/)
+[supports {{site.konnect_short_name}} control plane configuration](/deck/latest/guides/konnect/)
 by providing additional flags that configure the tool to connect to a particular control plane using access tokens.
 
 * **Terraform**: Kong provides a Terraform provider for managing a full {{site.konnect_short_name}} deployment, 

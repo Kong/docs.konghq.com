@@ -125,10 +125,10 @@ describe("sitemap includes", () => {
     "/gateway/latest/",
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
-    "/deck/",
+    "/deck/latest/",
     "/gateway/latest/install/kubernetes/proxy/",
     "/mesh/latest/installation/ecs/",
-    "/deck/installation/",
+    "/deck/latest/installation/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
     "/mesh/changelog/",
@@ -145,10 +145,14 @@ describe("sitemap includes", () => {
 });
 
 describe("sitemap does not include", () => {
-  ["/mesh/1.6.x/", "/mesh/1.1.x/overview/", "/gateway/"].forEach((t) => {
-    test(t, async () => {
-      const page = await fetchPageRaw("/sitemap.xml");
-      await expect(page.includes(`<loc>${baseUrl}${t}</loc>`)).toBe(false);
-    });
-  });
+  ["/mesh/1.6.x/", "/mesh/1.1.x/overview/", "/deck/", "/gateway/"].forEach(
+    (t) => {
+      test(t, async () => {
+        const page = await fetchPageRaw("/sitemap.xml");
+        await expect(
+          page.includes(`<loc>https://docs.konghq.com${t}</loc>`),
+        ).toBe(false);
+      });
+    },
+  );
 });

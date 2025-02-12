@@ -27,7 +27,7 @@ describe("Edit this page link", () => {
     },
     {
       title: "Single Sourced /latest/",
-      src: "/deck/",
+      src: "/deck/latest/",
       expected:
         `https://github.com/Kong/docs.konghq.com/edit/${branch}/app/deck/index.md`,
     },
@@ -39,7 +39,7 @@ describe("Edit this page link", () => {
     },
   ].forEach((t) => {
     test(t.title, async () => {
-      const $ = await fetchPage(t.src);
+      const $ = await fetchPage(t.src)
       expect($(".github-links a").first().attr("href")).toBe(t.expected);
     });
   });

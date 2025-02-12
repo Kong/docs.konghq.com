@@ -60,7 +60,7 @@ entries:
       Declarative configurations using older versions are upgraded to 3.0 during migrations.
     action: |
       If any configurations are stored in a repository (following a GitOps model),
-      these need to be upgraded using [`deck convert`](/deck/reference/deck_convert/).
+      these need to be upgraded using [`deck convert`](/deck/latest/reference/deck_convert/).
   - area: DB config
     category: 1
     description: Tags may now contain space characters.

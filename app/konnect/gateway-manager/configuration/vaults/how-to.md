@@ -41,7 +41,7 @@ uses to recognize relevant values on the data plane.
     Setting tags is optional, but recommended. If you want to manage
     your vault configuration declaratively, tagging your vaults and managing subsets of configuration
     with tags lets you protect your vaults from accidental change or deletion.
-    See the [declarative configuration guide for vaults](/deck/guides/vaults/#best-practices)
+    See the [declarative configuration guide for vaults](/deck/latest/guides/vaults/#best-practices)
     for more information and best practices.
 
 1. Save the vault configuration.

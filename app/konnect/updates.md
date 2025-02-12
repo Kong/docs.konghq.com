@@ -846,12 +846,12 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 **Declarative configuration management support with decK**
 : As of [decK 1.12](https://github.com/Kong/deck/releases), standard decK commands such as `diff`, `sync`, and `dump` support {{site.konnect_short_name}} runtime groups.
 : Learn how to use decK with {{site.konnect_short_name}}:
-  * [Get started with decK and {{site.konnect_short_name}}](/deck/guides/konnect/)
+  * [Get started with decK and {{site.konnect_short_name}}](/deck/latest/guides/konnect/)
   * [Import](/konnect/getting-started/import) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
   * [Manage runtime groups with decK](/konnect/gateway-manager/declarative-config/)
 
 **Tags for {{site.konnect_short_name}} services**
-: You can now connect {{site.konnect_short_name}} services to Gateway services with the [`_KonnectService` tag](/deck/guides/konnect/#konnect-service-tags).
+: You can now connect {{site.konnect_short_name}} services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).
 
 **{{site.konnect_short_name}} UI/UX redesign**
 : The {{site.konnect_short_name}} UI now has reworked navigation, refreshed colors and styles, and a focus on consistent interactions throughout the application.

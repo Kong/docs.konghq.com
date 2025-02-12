@@ -9609,7 +9609,7 @@ go-apiops cli is built for testing purposes. End users are encumbered to use thi
 
 I changed `go-apiops` cli example to `deck file`. As mentioned in [go-apiops repository](https://github.com/Kong/go-apiops)
 > Currently, the functionality is released as a library and as part of the [decK](https://github.com/Kong/deck) CLI tool. The 
-> repository also contains a CLI named go-apiops **for local testing**. For general CLI usage, prefer the decK tool [docs](https://docs.konghq.com/deck/) tool.
+> repository also contains a CLI named go-apiops **for local testing**. For general CLI usage, prefer the decK tool [docs](https://docs.konghq.com/deck/latest/) tool.
 
  `go-apiops` is used for testing and deck is encouraged for general usage.
 

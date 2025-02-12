@@ -17,7 +17,7 @@ Running Kong in Hybrid mode is commonly referred to as "Kong _on_ Kubernetes". R
 
 Deploying {{ site.base_gateway }} in [Hybrid mode](/gateway/{{ page.release }}/production/deployment-topologies/hybrid-mode/) uses Kubernetes as a runtime for your data planes. 
 
-Configuring Kong on Kubernetes is identical to deploying Kong running on a virtual machine or bare metal. The Data Planes connect to a Control Plane (Konnect, or an in-cluster control plane) and receive configuration from the CP. Configuration is managed using the UI, the Kong Admin API or via [deck](/deck/).
+Configuring Kong on Kubernetes is identical to deploying Kong running on a virtual machine or bare metal. The Data Planes connect to a Control Plane (Konnect, or an in-cluster control plane) and receive configuration from the CP. Configuration is managed using the UI, the Kong Admin API or via [deck](/deck/latest/).
 
 We provide detailed [installation instructions](/gateway/{{ page.release }}/install/kubernetes/proxy/) for Hybrid mode, including ingress definitions for EKS, GKE and AKS.
 

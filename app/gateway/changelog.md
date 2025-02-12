@@ -1258,7 +1258,7 @@ options allow better control over the configuration of tracing header propagatio
 
 * [**Mocking**](/hub/kong-inc/mocking/) (`mocking`)  
   * Added the [`custom_base_path`](/hub/kong-inc/mocking/configuration/#config-custom_base_path) field to specify a custom base path.
-  Use it with the [`deck file namespace`](/deck/reference/deck_file_namespace/) command.
+  Use it with the [`deck file namespace`](/deck/latest/reference/deck_file_namespace/) command.
 
 * [**Mutual TLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
   * Added the [`default_consumer`](/hub/kong-inc/mtls-auth/configuration/#config-default_consumer) option, 
@@ -1268,7 +1268,7 @@ options allow better control over the configuration of tracing header propagatio
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
   * Added the new field [`api_spec_encoded`](/hub/kong-inc/oas-validation/configuration/#config-api_spec_encoded) to indicate whether the `api_spec` is URI-Encoded.
   * Add the [`custom_base_path`](/hub/kong-inc/oas-validation/configuration/#config-custom_base_path) field to specifiy a custom base path.
-  Use it with the [`deck file namespace`](/deck/reference/deck_file_namespace/) command.
+  Use it with the [`deck file namespace`](/deck/latest/reference/deck_file_namespace/) command.
   * The plugin now supports OpenAPI Specification v3.1.0. The plugin now switches to a new JSONSchema validator when the specification version is v3.1.0.
 
 ### Performance

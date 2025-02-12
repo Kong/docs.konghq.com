@@ -112,7 +112,7 @@ vaults:
 ```
 
 For more information on configuring vaults and using secret references in declarative
-configuration files, see [Secret Management with decK](/deck/guides/vaults/).
+configuration files, see [Secret Management with decK](/deck/latest/guides/vaults/).
 
 ## Shared configuration parameters
 

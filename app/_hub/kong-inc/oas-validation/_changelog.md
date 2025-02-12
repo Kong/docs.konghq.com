@@ -13,7 +13,7 @@
 ### {{site.base_gateway}} 3.7.x
 * Added the new field [`api_spec_encoded`](/hub/kong-inc/oas-validation/configuration/#config-api_spec_encoded) to indicate whether the `api_spec` is URI-Encoded.
 * Add the [`custom_base_path`](/hub/kong-inc/oas-validation/configuration/#config-custom_base_path) field to specify a custom base path. 
-  Use it with the [`deck file namespace`](/deck/reference/deck_file_namespace/) command.
+  Use it with the [`deck file namespace`](/deck/latest/reference/deck_file_namespace/) command.
 * The plugin now supports OpenAPI Specification v3.1.0. The plugin now switches to a new JSON Schema validator when the specification version is v3.1.0.
 
 ### {{site.base_gateway}} 3.6.x
