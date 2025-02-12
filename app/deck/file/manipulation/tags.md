@@ -14,7 +14,7 @@ The `add-tags` command can add tags to any entity. Here's an example that adds t
 deck file add-tags -s /path/to/config.yaml team-one 
 ```
 
-This is useful to track entity ownership when using the [deck file merge](/deck/file/combining/merge/) command to build a single configuration to sync.
+This is useful to track entity ownership when using the [deck file merge](/deck/file/merge/) command to build a single configuration to sync.
 
 To add tags to specific entities only, provide the `--selector` flag. The provided tags will be added only to entities that match the selector
 

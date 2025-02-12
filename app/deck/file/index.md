@@ -21,8 +21,8 @@ decK also provides commands to manipulate declarative configuration files:
 | [add-tags](/deck/file/manipulation/tags/) | Add new tags to a Kong declarative configuration file. |
 | [list-tags](/deck/file/manipulation/tags/) | List all tags in a Kong declarative configuration file. |
 | [remove-tags](/deck/file/manipulation/tags/) | Remove tags to a Kong declarative configuration file. |
-| [merge](/deck/file/combining/merge/) | Merge multiple files in to a single file, leaving `env` variables in place. |
-| [render](/deck/file/combining/render/) | Render the final configuration sent to the Admin API in a single file. |
+| [merge](/deck/file/merge/) | Merge multiple files in to a single file, leaving `env` variables in place. |
+| [render](/deck/file/render/) | Render the final configuration sent to the Admin API in a single file. |
 | [namespace](/deck/file/manipulation/namespace/) | Apply a namespace to routes in a decK file by path or hostname. |
 | [convert](/deck/file/convert/) | Convert decK files from one format to another, for example Kong 2.x to 3.x. |
 

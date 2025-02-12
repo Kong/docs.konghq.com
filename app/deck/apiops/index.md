@@ -25,8 +25,8 @@ The diagram below delineates KongAir's structured approach to deploying decK, st
 3. To track the configuration's creation time, they apply relevant tags using [`deck file add-tags`](/deck/file/manipulation/tags/).
 4. The state file undergoes a quality check against a predefined linting ruleset with [`deck file lint`](/deck/file/lint/), ensuring adherence to best practices.
 5. Environment-specific adjustments, including upstream API URLs, are made using the [`deck file patch`](/deck/file/manipulation/patch/) command.
-6. The Platform Team then merges global plugins for observability, authentication, authorization, and traffic control into the main state file with [`deck file merge`](/deck/file/combining/merge/).
-7. At this stage, a comprehensive state file for the Flights API is ready. This file is combined with the Routes API's state file using [`deck file render`](/deck/file/combining/render/), creating a unified configuration.
+6. The Platform Team then merges global plugins for observability, authentication, authorization, and traffic control into the main state file with [`deck file merge`](/deck/file/merge/).
+7. At this stage, a comprehensive state file for the Flights API is ready. This file is combined with the Routes API's state file using [`deck file render`](/deck/file/render/), creating a unified configuration.
 8. The final state file is subjected to an offline validation through [`deck file validate`](/deck/file/validate/).
 9. The state file is deployed to the chosen runtime
 
@@ -37,7 +37,7 @@ For {{site.konnect_product_name}} or {{site.base_gateway}} deployments, the proc
 
 1. Ensuring connectivity with the Admin API via `deck gateway ping`.
 2. Performing an online validation with [`deck gateway validate`](/deck/gateway/validate/).
-3. Backing up the current Kong state with [`deck gateway dump`](/deck/gateway/backup/).
+3. Backing up the current Kong state with [`deck gateway dump`](/deck/gateway/dump/).
 4. Previewing changes with [`deck gateway diff`](/deck/gateway/diff/).
 5. Applying the new configuration with [`deck gateway sync`](/deck/gateway/sync/).
 

@@ -265,6 +265,64 @@
 /deck/installation/                   /deck/latest/installation/
 /deck/terminology/                    /deck/latest/terminology/
 
+# Deck Single version doc redirects
+/deck/:version/                                          /deck/
+/deck/:version/terminology/                              /deck/
+/deck/:version/design-architecture/                      /deck/
+/deck/:version/use-case/                                 /deck/apiops/
+/deck/:version/compatibility-promise/                    /deck/support/
+/deck/:version/installation/                             /deck/install/
+/deck/:version/guides/getting-started/                   /deck/get-started/
+/deck/:version/guides/backup-restore/                    /deck/gateway/dump/
+/deck/:version/3.0-upgrade/                              /deck/reference/3.0-upgrade/
+/deck/:version/guides/ci-driven-configuration/            /deck/apiops/continuous-integration/
+/deck/:version/guides/apiops/                            /deck/file/openapi2kong/
+/deck/:version/guides/distributed-configuration/          /deck/apiops/federated-configuration/
+/deck/:version/guides/best-practices/                    /deck/reference/faq/#can-i-run-multiple-deck-processes-at-the-same-time
+/deck/:version/guides/kong-enterprise/                   /deck/gateway/rbac/
+/deck/:version/guides/konnect/                           /deck/gateway/konnect-configuration/
+/deck/:version/guides/run-with-docker/                   /deck/install/docker/
+/deck/:version/guides/multi-file-state/                   /deck/gateway/tags/
+/deck/:version/guides/deduplicate-plugin-configuration/   /deck/gateway/deduplicate/
+/deck/:version/guides/defaults/                          /deck/gateway/defaults/
+/deck/:version/guides/security/                          /deck/gateway/sensitive-data/
+/deck/:version/guides/vaults/                            /deck/gateway/sensitive-data/#configuring-kong-vaults
+/deck/:version/guides/environment-variables/             /deck/gateway/sensitive-data/#using-deck-environment-variables
+/deck/:version/reference/entities/                       /deck/reference/entities/
+/deck/:version/reference/deck/                           /deck/gateway/
+/deck/:version/reference/deck_completion/                /deck/
+/deck/:version/reference/deck_file/                       /deck/file/
+/deck/:version/reference/deck_file_add-plugins/           /deck/file/manipulation/plugins/#add-a-new-plugin
+/deck/:version/reference/deck_file_add-tags/              /deck/file/manipulation/tags/#add-tags
+/deck/:version/reference/deck_file_convert/               /deck/file/convert/
+/deck/:version/reference/deck_file_kong2kic/              /deck/file/kong2kic/
+/deck/:version/reference/deck_file_kong2tf/               /deck/file/kong2tf/
+/deck/:version/reference/deck_file_lint/                  /deck/file/lint/
+/deck/:version/reference/deck_file_list-tags/             /deck/file/manipulation/tags/#list-tags
+/deck/:version/reference/deck_file_merge/                 /deck/file/merge/
+/deck/:version/reference/deck_file_namespace/             /deck/file/manipulation/namespace/
+/deck/:version/reference/deck_file_openapi2kong/          /deck/file/openapi2kong/
+/deck/:version/reference/deck_file_patch/                 /deck/file/manipulation/patch/
+/deck/:version/reference/deck_file_remove-tags/           /deck/file/manipulation/tags/#remove-tags
+/deck/:version/reference/deck_file_render/                /deck/file/render/
+/deck/:version/reference/deck_file_validate/              /deck/file/validate/
+/deck/:version/reference/deck_gateway/                   /deck/gateway/
+/deck/:version/reference/deck_gateway_diff/              /deck/gateway/diff/
+/deck/:version/reference/deck_gateway_dump/              /deck/gateway/dump/
+/deck/:version/reference/deck_gateway_ping/              /deck/gateway/ping/
+/deck/:version/reference/deck_gateway_reset/             /deck/gateway/reset/
+/deck/:version/reference/deck_gateway_sync/              /deck/gateway/sync/
+/deck/:version/reference/deck_gateway_validate/          /deck/gateway/validate/
+/deck/:version/reference/deck_version/                   /deck/
+/deck/:version/faqs/                                     /deck/reference/faq/
+
+# Deck Pages that don't exist, but people might guess
+/deck/file/add-tags/                                    /deck/file/manipulation/tags/#add-tags
+/deck/file/remove-tags/                                 /deck/file/manipulation/tags/#remove-tags
+/deck/file/list-tags/                                   /deck/file/manipulation/tags/#list-tags
+/deck/file/patch/                                       /deck/file/manipulation/patch/
+/deck/file/namespace/                                   /deck/file/manipulation/namespace/
+/deck/file/add-plugins/                                 /deck/file/manipulation/plugins/#add-a-new-plugin
 
 # KUBERNETES
 /gateway-oss/2.6.x/kong-for-kubernetes/changelog    https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md

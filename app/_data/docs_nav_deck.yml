@@ -41,7 +41,7 @@
     - text: Ping
       url: /gateway/ping/
     - text: Backup
-      url: /gateway/backup/
+      url: /gateway/dump/
     - text: Diff
       url: /gateway/diff/
     - text: Sync
@@ -94,9 +94,9 @@
     - text: Combining Files
       items:
         - text: Merge
-          url: /file/combining/merge/
+          url: /file/merge/
         - text: Render
-          url: /file/combining/render/
+          url: /file/render/
     - text: Validate
       url: /file/validate/
     - text: Convert
