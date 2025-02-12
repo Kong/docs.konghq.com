@@ -1,8 +1,3 @@
-let baseUrl = "https://docs.konghq.com";
-if (process.env.TEST_BASE_URL) {
-  baseUrl = process.env.TEST_BASE_URL;
-}
-
 describe("Canonical links", () => {
   [
     {
@@ -40,7 +35,7 @@ describe("Canonical links", () => {
       async () => {
         const $ = await fetchPage(t.src);
         await expect($("head link[rel='canonical']").attr("href")).toBe(
-          `${baseUrl}${t.href}`,
+          `https://docs.konghq.com${t.href}`,
         );
       },
       15000,
@@ -125,10 +120,10 @@ describe("sitemap includes", () => {
     "/gateway/latest/",
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
-    "/deck/latest/",
+    "/deck/",
     "/gateway/latest/install/kubernetes/proxy/",
     "/mesh/latest/installation/ecs/",
-    "/deck/latest/installation/",
+    "/deck/installation/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
     "/mesh/changelog/",
@@ -139,7 +134,9 @@ describe("sitemap includes", () => {
   ].forEach((t) => {
     test(t, async () => {
       const page = await fetchPageRaw("/sitemap.xml");
-      await expect(page.includes(`<loc>${baseUrl}${t}</loc>`)).toBe(true);
+      await expect(
+        page.includes(`<loc>https://docs.konghq.com${t}</loc>`),
+      ).toBe(true);
     });
   });
 });

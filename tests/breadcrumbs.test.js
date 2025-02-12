@@ -4,30 +4,30 @@ describe("Gateway", () => {
 
     const $homeIcon = $(".breadcrumb-item:nth-of-type(1)").find("img");
     await expect($homeIcon.attr("src")).toBe(
-      "/assets/images/icons/hub-layout/icn-breadcrumbs.svg"
+      "/assets/images/icons/hub-layout/icn-breadcrumbs.svg",
     );
 
     await expect($homeIcon.attr("alt")).toBe("Home icon");
 
-    await expect($(".breadcrumb-item:nth-of-type(2)")).toHaveTextAllowingWhitespace(
-      "Kong Gateway"
-    );
+    await expect(
+      $(".breadcrumb-item:nth-of-type(2)"),
+    ).toHaveTextAllowingWhitespace("Kong Gateway");
   });
 });
 
 describe("decK", () => {
   test("renders the index page breadcrumbs correctly", async () => {
-    const $ = await fetchPage("/deck/latest/");
+    const $ = await fetchPage("/deck/");
 
     const $homeIcon = $(".breadcrumb-item:nth-of-type(1)").find("img");
     await expect($homeIcon.attr("src")).toBe(
-      "/assets/images/icons/hub-layout/icn-breadcrumbs.svg"
+      "/assets/images/icons/hub-layout/icn-breadcrumbs.svg",
     );
 
     await expect($homeIcon.attr("alt")).toBe("Home icon");
 
-    await expect($(".breadcrumb-item:nth-of-type(2)")).toHaveTextAllowingWhitespace(
-      "decK"
-    );
+    await expect(
+      $(".breadcrumb-item:nth-of-type(2)"),
+    ).toHaveTextAllowingWhitespace("decK");
   });
 });
