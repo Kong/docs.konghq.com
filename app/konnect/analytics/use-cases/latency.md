@@ -22,14 +22,14 @@ You can build custom reports by navigating to {% konnect_icon analytics %} **Ana
 {:.note}
 > You can select more than one metric by clicking on **Select Multiple** next to the Metrics dropdown list.
 
-Then, they add a filter to filter by the control plane
+Then, you can add a filter for the control plane:
 
 * **Filter by**: Control Plane
 * **Operator**: In
 * **Value**: prod
 
 ![Production - Kong vs Upstream Latency (last hour)](/assets/images/products/konnect/analytics/custom-reports/kong-vs-upstream-latency.png){:.image-border}
-> _**Figure 1:** Line chart showing average upstream and Kong latency over the last hour. ._
+> _**Figure 1:** Line chart showing average upstream and Kong latency over the last hour._
 
 ## Conclusion
 
