@@ -14,7 +14,6 @@ module LatestVersion
     PRODUCTS_WITH_LATEST = {
       'gateway' => 'gateway',
       'mesh' => 'mesh',
-      'deck' => 'deck',
       'kubernetes-ingress-controller' => 'KIC',
       'gateway-operator' => 'kgo'
     }.freeze
