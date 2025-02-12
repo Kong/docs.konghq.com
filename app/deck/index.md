@@ -10,7 +10,7 @@ decK operates on state files, which represent the intended configuration of {{ s
 
 ## decK commands
 
-decK offers a comprehensive suite of tools for configuring and managing the Kong platform through sets of commands. 
+decK offers a comprehensive suite of tools for configuring and managing the Kong platform through sets of commands.
 The decK commands are structured into three main categories:
 
 * [**Configuration Generation**](/deck/file/): This category focuses on the initial creation of decK state files from industry-standard API specification formats.
@@ -18,3 +18,11 @@ The decK commands are structured into three main categories:
 * [**Configuration Transformation**](/deck/file/manipulation/): This set of commands provides the tools needed to refine and restructure decK configuration files. It allows for the segmentation of a full configuration into smaller, manageable parts and their subsequent reassembly.
 
 * [**Gateway State Management**](/deck/gateway/): This category includes commands that facilitate the synchronization of the final decK file with the target platform, which can be {{site.konnect_product_name}}, {{site.base_gateway}}, or {{site.kic_product_name}}.
+
+## Declarative configuration
+
+{{ site.base_gateway }} has historically offered two declarative configuraton formats, `deck` and `dbless`. The `dbless` format is an internal format used by `kong config db_export` and {{ site.kic_product_name }}.
+
+The `deck` format is the canonical declarative configuration format in this documentation. When the words "declarative configuration" are used, it is to refer to a `deck` format file, _not_ a `dbless` format.
+
+For more information, see the [FAQ](/deck/reference/faq/#kong-already-has-built-in-declarative-configuration-do-i-still-need-deck)
