@@ -108,10 +108,10 @@ describe("sitemap includes", () => {
     "/gateway/latest/",
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
-    "/deck/latest/",
+    "/deck/",
     "/gateway/latest/install/kubernetes/proxy/",
     "/mesh/latest/installation/ecs/",
-    "/deck/latest/installation/",
+    "/deck/install/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
     "/mesh/changelog/",
@@ -132,7 +132,6 @@ describe("sitemap does not include", () => {
   [
     "/mesh/1.6.x/",
     "/mesh/1.1.x/overview/",
-    "/deck/",
     "/gateway/",
   ].forEach((t) => {
     test(t, async () => {

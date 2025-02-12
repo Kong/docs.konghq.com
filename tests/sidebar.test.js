@@ -59,8 +59,8 @@ describe("Sidebar section count", () => {
     },
     {
       title: "decK",
-      path: "/deck/latest/",
-      count: 6,
+      path: "/deck/",
+      count: 8,
     },
   ].forEach((t) => {
     test(t.title, async () => {

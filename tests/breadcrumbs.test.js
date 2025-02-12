@@ -17,7 +17,7 @@ describe("Gateway", () => {
 
 describe("decK", () => {
   test("renders the index page breadcrumbs correctly", async () => {
-    const $ = await fetchPage("/deck/latest/");
+    const $ = await fetchPage("/deck/");
 
     const $homeIcon = $(".breadcrumb-item:nth-of-type(1)").find("img");
     await expect($homeIcon.attr("src")).toBe(
