@@ -52,11 +52,11 @@ The default API decK uses is `https://us.api.konghq.com`.
 {{site.base_gateway}} supports AU, EU, IN, ME, and US [geographic regions](/konnect/geo/).
 
 To target a specific geo, set `konnect-addr` to one of the following:
-* AU geo:`"https://au.api.konghq.com"`
-* EU geo:`"https://eu.api.konghq.com"`
-* US geo:`"https://us.api.konghq.com"`
-* IN geo:`"https://in.api.konghq.com"`
-* ME geo:`"https://me.api.konghq.com"`
+* AU geo: `"https://au.api.konghq.com"`
+* EU geo: `"https://eu.api.konghq.com"`
+* US geo: `"https://us.api.konghq.com"`
+* IN geo: `"https://in.api.konghq.com"`
+* ME geo: `"https://me.api.konghq.com"`
 
 ### Control planes
 

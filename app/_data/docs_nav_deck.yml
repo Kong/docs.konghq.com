@@ -36,7 +36,7 @@
       url: /gateway/
     - text: Konnect Configuration
       url: /gateway/konnect-configuration/
-    - text: Configuration
+    - text: Configure Authentication
       url: /gateway/configuration/
     - text: Ping
       url: /gateway/ping/

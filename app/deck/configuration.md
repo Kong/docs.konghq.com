@@ -1,5 +1,5 @@
 ---
-title: Configuration
+title: decK Configuration
 ---
 
 decK can be configured using CLI flags, environment variables, and a configuration file on disk.

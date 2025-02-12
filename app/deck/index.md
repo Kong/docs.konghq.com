@@ -23,6 +23,6 @@ The decK commands are structured into three main categories:
 
 {{ site.base_gateway }} has historically offered two declarative configuration formats, `deck` and `dbless`. The `dbless` format is an internal format used by `kong config db_export` and {{ site.kic_product_name }}.
 
-The `deck` format is the canonical declarative configuration format in this documentation. When the words "declarative configuration" are used, it is to refer to a `deck` format file, _not_ a `dbless` format.
+The `deck` format is the canonical declarative configuration format in this documentation. When the words "declarative configuration" are used, they refer to a `deck` format file, _not_ a `dbless` format.
 
-For more information, see the [FAQ](/deck/reference/faq/#kong-already-has-built-in-declarative-configuration-do-i-still-need-deck)
+For more information, see the [FAQ](/deck/reference/faq/#kong-already-has-built-in-declarative-configuration-do-i-still-need-deck).

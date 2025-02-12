@@ -1,5 +1,5 @@
 ---
-title: Get Started
+title: Get Started with decK
 description: Learn how to install decK and use it to configure Kong Gateway
 content_type: how-to
 ---

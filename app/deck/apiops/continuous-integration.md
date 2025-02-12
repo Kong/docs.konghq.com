@@ -1,5 +1,5 @@
 ---
-title: Continuous Integraion
+title: Continuous Integration
 ---
 
 decK is designed to be run in your CI/CD system. Committing your configuration to a repository (either as OpenAPI specifications or as decK files) allows you to audit all changes to your configuration and roll back easily if needed.
