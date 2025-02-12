@@ -7,6 +7,7 @@ allowlist
 Amal
 Amberflo
 apiVersion
+APIm
 Arya
 auditability
 Autonegotiation
@@ -17,6 +18,7 @@ backfilled
 Backfilling
 backfilling
 APIOps
+gitops
 Bagdi
 Bintray
 Bitnami
@@ -660,3 +662,4 @@ yq
 Zipkin
 zipkin
 zsh
+Rulesets
