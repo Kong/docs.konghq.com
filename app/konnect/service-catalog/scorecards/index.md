@@ -5,7 +5,7 @@ beta: true
 
 Scorecards in {{site.service_catalog_name}} allow platform teams to monitor services for compliance with Kong-recommended and industry-defined best practices in {{site.konnect_saas}}. By [integrating](/konnect/service-catalog/integrations/) Service Catalog with third-party applications, you can also use those in scorecard criteria.
 
-When you enable a scorecard, you can choose from criteria that you want the service to report on. For example, you can track if an on-call engineer is assigned in PagerDuty or the number of open PRs in a GitHub repository. From the scorecard view, you can see how many services are passing or failing a criteria, and which specific services those are.
+When creating a scorecard, you define the validation criteria and specify which services should be evaluated. Scorecards help you detect issues, like whether there are services in the catalog that don't have an on-call engineer assigned or if you have GitHub repositories with stale pull requests that aren't getting reviewed or closed. From the scorecard view, you can view details on either a per-service or per-criteria basis.
 
 ![Scorecards dashboard](/assets/images/products/konnect/konnect-service-catalog-scorecards.png){:.image-border}
 
@@ -15,10 +15,10 @@ When you enable a scorecard, you can choose from criteria that you want the serv
 
 | Scorecard template | Description |
 |--------------------|-------------|
-| Service documentation | Evaluates how well a service’s documentation, including API specs, adheres to [OpenAPI industry standards](https://apistylebook.stoplight.io/). |
-| Service maturity | Helps you determine how mature your services are based on criteria that use the [PagerDuty](/konnect/service-catalog/integrations/pagerduty/) and [GitHub](/konnect/service-catalog/integrations/github/) integrations. |
-| Kong best practices | Determines how well your services adhere to Kong's best practice standards for Kong's features, such as [Gateway Services](/konnect/gateway-manager/configuration/#gateway-services). |
-| Security and compliance | Helps you determine how secure your services are based on criteria such as pull request reviews and number of open vulnerabilities. |
+| Service documentation | Ensures that your services are well-documented with ownership information, documentation files, and [API specs](https://apistylebook.stoplight.io/). |
+| Service maturity | Measure performance reflecting industry-defined DORA metrics: deployment frequency, lead time for changes, change failure rate, and time to restore service. |
+| Kong best practices | Best practices that we encourage users to follow when using other {{site.konnect_short_name}} applications. |
+| Security and compliance | Enforces that services are protected through external monitoring and vulnerability management tools. |
 
 ## Enable scorecards on a service
 
