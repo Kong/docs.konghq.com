@@ -27,4 +27,8 @@ deck gateway sync  my_deck_file.yaml
 
 ## Upgrade deck
 
-To upgrade decK when using docker, run `docker pull kong/deck:latest`
+To upgrade decK when using Docker, run:
+
+```sh
+docker pull kong/deck:latest
+```
