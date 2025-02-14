@@ -18,7 +18,7 @@
     <td>Oct 2025</td>
   {%- if include.show_kic -%}
     <td>2.8 LTS, 3.x</td>
-    <td>2.12 LTS</td>
+    <td>3.4 LTS</td>
     <td>Sept 2026</td>
   {%- endif -%}
   </tr>
@@ -28,7 +28,7 @@
     <td>Jun 2025</td>
   {%- if include.show_kic -%}
     <td>2.8 LTS, 3.x</td>
-    <td>2.12 LTS</td>
+    <td>3.4 LTS</td>
     <td>Sept 2026</td>
   {%- endif -%}
   </tr>
@@ -38,7 +38,7 @@
     <td>Feb 2025</td>
   {%- if include.show_kic -%}
     <td>2.8 LTS, 3.x</td>
-    <td>2.12 LTS</td>
+    <td>3.4 LTS</td>
     <td>Sept 2026</td>
   {%- endif -%}
   </tr>
