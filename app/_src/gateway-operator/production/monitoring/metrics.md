@@ -8,14 +8,14 @@ title: Metrics
 
 {% if_version gte:1.5.x %}
 ### Metrics about {{site.konnect_short_name}} entity operations 
-From 1.5.x, if [{{site.konnect_short_name}} entities management][konnect_entity_management] is enabled, {{ site.kgo_product_name }} exposes metrics to show statistics of counts and durations of calling {{site.konnect_short_name}}'s CRUD APIs.
-The metrics are grouped by server URLs, entity types, operation types(create/update/delete/get), and status of success/fail.
+From 1.5.x, if [{{site.konnect_short_name}} entity management][konnect_entity_management] is enabled, {{ site.kgo_product_name }} exposes metrics to show statistics of counts and durations of calling {{site.konnect_short_name}}'s CRUD APIs.
+The metrics are grouped by server URLs, entity types, operation types (create/update/delete/get), and the status (success/fail).
 
-Counts of {{site.konnect_short_name}} entity operations are in the metrics `gateway_operator_konnect_entity_operation_count`. It is a prometheus counter.
+* Counts of {{site.konnect_short_name}} entity operations are in the metric `gateway_operator_konnect_entity_operation_count`. It is a Prometheus counter.
+* Durations of {{site.konnect_short_name}} entity operations are in the metric `gateway_operator_konnect_entity_operation_duration_milliseconds`. It is a Prometheus histogram.
 
-Durations of {{site.konnect_short_name}} entity operations are in the metrics `gateway_operator_konnect_entity_operation_duration_milliseconds`. It is a prometheus histogram.
-
-NOTE: When `success = "false"` indicates the operation failed, the `status_code` label shows the status code in the response. `status_code` is `"0"` and `success` is `"false"` are operations that failed but {{ site.kgo_product_name }} cannot fetch the status code. When `success` is `"true"`, the `status_code` label is empty.
+{:.note}
+> **Note**: When `success = "false"` indicates the operation failed, the `status_code` label shows the status code in the response. `status_code` is `"0"` and `success` is `"false"` are operations that failed but {{ site.kgo_product_name }} cannot fetch the status code. When `success` is `"true"`, the `status_code` label is empty.
 {% endif_version %}
 
 [konnect_entity_management]: /gateway-operator/{{page.release}}/guides/konnect-entities/architecture
