@@ -13,6 +13,16 @@
 </thead>
 <tbody>
   <tr>
+    <td>1.32</td>
+    <td>N/A</td>
+    <td>Feb 2026</td>
+  {%- if include.show_kic -%}
+    <td>2.8 LTS, 3.x</td>
+    <td>3.4 LTS</td>
+    <td>Sept 2026</td>
+  {%- endif -%}
+  </tr>
+  <tr>
     <td>1.31</td>
     <td>N/A</td>
     <td>Oct 2025</td>
