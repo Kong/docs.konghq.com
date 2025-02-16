@@ -2,6 +2,146 @@
 
 <!--vale off-->
 
+## Week 7
+
+### [Add upgrade instructions to decK](https://github.com/Kong/docs.konghq.com/pull/8432) (2025-02-14)
+
+Smriti gave feedback that upgrading deck is difficult. Added some short descriptions on how to upgrade.
+
+#### Modified
+
+- https://docs.konghq.com/deck/file/manipulation/
+- https://docs.konghq.com/deck/install/binary
+- https://docs.konghq.com/deck/install/docker
+
+
+### [Add kong2kic and kong2tf examples](https://github.com/Kong/docs.konghq.com/pull/8431) (2025-02-13)
+
+Add missing `kong2kic` and `kong2tf` examples
+
+#### Modified
+
+- https://docs.konghq.com/deck/file/kong2kic
+- https://docs.konghq.com/deck/file/kong2tf
+
+
+### [docs(plugin/request-validator): clarify supported validators](https://github.com/Kong/docs.konghq.com/pull/8421) (2025-02-11)
+
+<!-- What did you change and why? -->
+request-validator plugin only supports json schema validator for parameters.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+[FTI-5619](https://konghq.atlassian.net/browse/FTI-5619)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-validator/overview/
+
+
+### [Plugin examples portal app reg](https://github.com/Kong/docs.konghq.com/pull/8417) (2025-02-11)
+
+Two fixes:
+
+* Detect schema compatibility correctly (missing key and `null` were being evaluated as the same)
+* Add support for overriding a basic plugin example when it's an auto-configured plugin
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/application-registration/_metadata/_index.yml
+
+
+### [Add dev portals to geo-specific objects list](https://github.com/Kong/docs.konghq.com/pull/8412) (2025-02-13)
+
+Add dev portals to list of geo-specific items.
+
+Update requested [on Slack](https://kongstrong.slack.com/archives/CDSTDSG9J/p1738952194597479).
+
+#### Modified
+
+- https://docs.konghq.com/konnect/geo
+
+
+### [Rework decK documentation](https://github.com/Kong/docs.konghq.com/pull/8398) (2025-02-12)
+
+**Opening as a draft to get feedback from CX. Do not merge**
+
+Rebuild the decK documentation from scratch:
+
+* Unversioned content
+* Concrete usage examples
+
+#### Added
+
+- https://docs.konghq.com/deck/apiops/continuous-integration
+- https://docs.konghq.com/deck/apiops/federated-configuration
+- https://docs.konghq.com/deck/configuration
+- https://docs.konghq.com/deck/file/convert
+- https://docs.konghq.com/deck/file/
+- https://docs.konghq.com/deck/file/kong2kic
+- https://docs.konghq.com/deck/file/kong2tf
+- https://docs.konghq.com/deck/file/lint
+- https://docs.konghq.com/deck/file/manipulation/
+- https://docs.konghq.com/deck/file/manipulation/namespace
+- https://docs.konghq.com/deck/file/manipulation/patch
+- https://docs.konghq.com/deck/file/manipulation/plugins
+- https://docs.konghq.com/deck/file/manipulation/tags
+- https://docs.konghq.com/deck/file/merge
+- https://docs.konghq.com/deck/file/openapi2kong
+- https://docs.konghq.com/deck/file/render
+- https://docs.konghq.com/deck/file/validate
+- https://docs.konghq.com/deck/gateway/apply
+- https://docs.konghq.com/deck/gateway/configuration
+- https://docs.konghq.com/deck/gateway/diff
+- https://docs.konghq.com/deck/gateway/dump
+- https://docs.konghq.com/deck/gateway/
+- https://docs.konghq.com/deck/gateway/konnect-configuration
+- https://docs.konghq.com/deck/gateway/ping
+- https://docs.konghq.com/deck/gateway/rbac
+- https://docs.konghq.com/deck/gateway/reset
+- https://docs.konghq.com/deck/gateway/sensitive-data
+- https://docs.konghq.com/deck/gateway/sync
+- https://docs.konghq.com/deck/gateway/tags
+- https://docs.konghq.com/deck/gateway/validate
+- https://docs.konghq.com/deck/gateway/workspaces
+- https://docs.konghq.com/deck/get-started
+- https://docs.konghq.com/deck/
+- https://docs.konghq.com/deck/install/binary
+- https://docs.konghq.com/deck/install/docker
+- https://docs.konghq.com/deck/install/github-actions
+- https://docs.konghq.com/deck/install/
+- https://docs.konghq.com/deck/reference/env-variables
+- https://docs.konghq.com/deck/security
+- https://docs.konghq.com/deck/support
+
+
+### [Typos and prose fixes in Konnect Advanced Analytics section](https://github.com/Kong/docs.konghq.com/pull/8394) (2025-02-12)
+
+<!-- What did you change and why? -->
+There were a few typos and some strange prose in the Advanced Analytics section. Namely:
+
+**Konnect -> Advanced Analytics -> Explorer -> [LLM usage reporting](https://docs.konghq.com/konnect/analytics/explorer/#llm-usage-reporting):**
+- Within the table for "Metrics":
+  - > Average time in milliseconds to generate a token. Calculated as LLM latency divided by the of tokens.
+- Should be "divided by the _number_ of tokens."
+
+**Konnect -> Advanced Analytics -> Explorer ->  [Diagnosing latency issues example](https://docs.konghq.com/konnect/analytics/explorer/#diagnosing-latency-issues-example)**:
+- Redundant phrasing:
+  - > Then, you can add a filter to filter by the control plane
+- Beneath Figure 1, there is an extra period in:
+  - > Figure 1: Line chart showing average upstream and Kong latency over the last hour. .
+
+**Konnect -> Advanced Analytics -> Use Cases -> [Latency](https://docs.konghq.com/konnect/analytics/use-cases/latency/#main):**
+- Same issues as in the "Diagnosing latency issues example" section.
+
+
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/analytics/explorer
+- https://docs.konghq.com/konnect/analytics/use-cases/latency
+
 ## Week 6
 
 ### [extra space between period ](https://github.com/Kong/docs.konghq.com/pull/8406) (2025-02-05)
