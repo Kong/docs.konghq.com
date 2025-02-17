@@ -73,12 +73,12 @@ The {{site.kic_product_name}} can be integrated with an [Istio Service Mesh][ist
 
 For each {{site.kic_product_name}} release, tests are run to verify this documentation with upcoming versions of KIC and Istio. The following table lists the tested combinations:
 
-| {{site.kic_product_name}} |           2.12.x            |            3.0.x            |            3.1.x            |            3.2.x            |            3.3.x            |
-|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
-| Istio 1.21                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Istio 1.22                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Istio 1.23                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Istio 1.24                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| {{site.kic_product_name}} |           2.12.x            |            3.0.x            |            3.1.x            |            3.2.x            |            3.3.x            |            3.4.x            |
+|:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+| Istio 1.21                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Istio 1.22                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Istio 1.23                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Istio 1.24                | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 [istio]:https://istio.io
 [istio-guide]:/kubernetes-ingress-controller/{{page.release}}/guides/getting-started-istio/
