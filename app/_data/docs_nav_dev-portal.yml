@@ -21,7 +21,11 @@
       url: /portals/audit-logs/
 - title: APIs
   icon: /assets/images/icons/documentation/icn-flag.svg
-  url: /apis/
+  items:
+    - text: Overview
+      url: /apis/
+    - text: Versioning
+      url: /apis/versioning/
 - title: Managing Developers
   icon: /assets/images/icons/documentation/icn-flag.svg
   items:
