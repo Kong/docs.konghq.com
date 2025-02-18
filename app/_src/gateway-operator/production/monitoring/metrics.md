@@ -2,7 +2,23 @@
 title: Metrics
 ---
 
+## Available Metrics
+
 {{ site.kgo_product_name }} exposes metrics that are provided by [controller-runtime](https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/metrics).
+
+{% if_version gte:1.5.x %}
+### Metrics about {{site.konnect_short_name}} entity operations 
+From 1.5.x, if [{{site.konnect_short_name}} entity management][konnect_entity_management] is enabled, {{ site.kgo_product_name }} exposes metrics to show statistics of counts and durations of calling {{site.konnect_short_name}}'s CRUD APIs.
+The metrics are grouped by server URLs, entity types, operation types (create/update/delete/get), and the status (success/fail).
+
+* Counts of {{site.konnect_short_name}} entity operations are in the metric `gateway_operator_konnect_entity_operation_count`. It is a Prometheus counter.
+* Durations of {{site.konnect_short_name}} entity operations are in the metric `gateway_operator_konnect_entity_operation_duration_milliseconds`. It is a Prometheus histogram.
+
+{:.note}
+> **Note**: When `success = "false"` indicates the operation failed, the `status_code` label shows the status code in the response. `status_code` is `"0"` and `success` is `"false"` are operations that failed but {{ site.kgo_product_name }} cannot fetch the status code. When `success` is `"true"`, the `status_code` label is empty.
+{% endif_version %}
+
+[konnect_entity_management]: /gateway-operator/{{page.release}}/guides/konnect-entities/architecture
 
 ## Configuration
 
@@ -527,5 +543,135 @@ workqueue_work_duration_seconds_sum{name="service"} 0.12272996100000001
 workqueue_work_duration_seconds_count{name="service"} 29
 ```
 
+{% if_version gte:1.5.x %}
+### Example metrics about {{site.konnect_short_name}} entity operation
 
+Here is an example of dumped metrics about {{site.konnect_short_name}} operations:
 
+```
+# HELP gateway_operator_konnect_entity_operation_count Count of successful/failed entity operations in Konnect. `server_url` describes the URL of the Konnect server. `operation_type` describes the operation type (`create`, `update`, or `delete`).`entity_type` describes the type of the operated entity. `success` describes whether the operation is successful (`true`) or not (`false`). `status_code` is always "0" when  `success="true"` and is populated in case of `success="false"` and describes the status code returned from Konnect API. `status_code`="0" and success="false" means we cannot collect the status code or error happens in the process other than Konnect API call.
+# TYPE gateway_operator_konnect_entity_operation_count counter
+gateway_operator_konnect_entity_operation_count{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1
+gateway_operator_konnect_entity_operation_count{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1
+gateway_operator_konnect_entity_operation_count{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true"} 2
+gateway_operator_konnect_entity_operation_count{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1
+gateway_operator_konnect_entity_operation_count{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1
+# HELP gateway_operator_konnect_entity_operation_duration_milliseconds How long did the Konnect entity operation take in milliseconds. `server_url` describes the URL of the Konnect server. `operation_type` describes the operation type (`create`, `update`, or `delete`).`entity_type` describes the type of the operated entity. `success` describes whether the operation is successful (`true`) or not (`false`). `status_code` is always "0" when  `success="true"` and is populated in case of `success="false"` and describes the status code returned from Konnect API. `status_code`="0" and success="false" means we cannot collect the status code or error happens in the process other than Konnect API call.
+# TYPE gateway_operator_konnect_entity_operation_duration_milliseconds histogram
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2.0142493107417994"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4.057200285823813"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8.172212879262048"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="16.460874159288835"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="33.15630442955503"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="66.78506334397649"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="134.52176780845207"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="270.9603780879429"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="545.7817548019764"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1099.3405234253305"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2214.345891580001"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4460.244685858952"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8984.044784231166"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="18096.106014311084"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="36450.06906643664"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="73419.52649356097"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="147885.23063464448"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="297877.72387472464"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="600000.0000000001"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="+Inf"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_sum{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true"} 0.433949268
+gateway_operator_konnect_entity_op{{site.konnect_short_name}}eration_duration_milliseconds_count{entity_type="KongService",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2.0142493107417994"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4.057200285823813"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8.172212879262048"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="16.460874159288835"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="33.15630442955503"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="66.78506334397649"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="134.52176780845207"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="270.9603780879429"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="545.7817548019764"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1099.3405234253305"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2214.345891580001"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4460.244685858952"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8984.044784231166"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="18096.106014311084"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="36450.06906643664"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="73419.52649356097"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="147885.23063464448"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="297877.72387472464"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="600000.0000000001"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="+Inf"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_sum{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true"} 0.244031381
+gateway_operator_konnect_entity_operation_duration_milliseconds_count{entity_type="KongService",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2.0142493107417994"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4.057200285823813"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8.172212879262048"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="16.460874159288835"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="33.15630442955503"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="66.78506334397649"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="134.52176780845207"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="270.9603780879429"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="545.7817548019764"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1099.3405234253305"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2214.345891580001"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4460.244685858952"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8984.044784231166"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="18096.106014311084"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="36450.06906643664"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="73419.52649356097"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="147885.23063464448"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="297877.72387472464"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="600000.0000000001"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true",le="+Inf"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_sum{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1.5224173479999998
+gateway_operator_konnect_entity_operation_duration_milliseconds_count{entity_type="KonnectGatewayControlPlane",operation_type="create",server_url="https://us.api.konghq.tech",status_code="",success="true"} 2
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2.0142493107417994"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4.057200285823813"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8.172212879262048"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="16.460874159288835"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="33.15630442955503"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="66.78506334397649"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="134.52176780845207"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="270.9603780879429"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="545.7817548019764"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1099.3405234253305"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2214.345891580001"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4460.244685858952"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8984.044784231166"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="18096.106014311084"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="36450.06906643664"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="73419.52649356097"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="147885.23063464448"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="297877.72387472464"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="600000.0000000001"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true",le="+Inf"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_sum{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true"} 0.868175824
+gateway_operator_konnect_entity_operation_duration_milliseconds_count{entity_type="KonnectGatewayControlPlane",operation_type="delete",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2.0142493107417994"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4.057200285823813"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8.172212879262048"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="16.460874159288835"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="33.15630442955503"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="66.78506334397649"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="134.52176780845207"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="270.9603780879429"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="545.7817548019764"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="1099.3405234253305"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="2214.345891580001"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="4460.244685858952"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="8984.044784231166"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="18096.106014311084"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="36450.06906643664"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="73419.52649356097"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="147885.23063464448"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="297877.72387472464"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="600000.0000000001"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_bucket{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true",le="+Inf"} 1
+gateway_operator_konnect_entity_operation_duration_milliseconds_sum{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true"} 0.592125953
+gateway_operator_konnect_entity_operation_duration_milliseconds_count{entity_type="KonnectGatewayControlPlane",operation_type="update",server_url="https://us.api.konghq.tech",status_code="",success="true"} 1
+```
+{% endif_version %}
