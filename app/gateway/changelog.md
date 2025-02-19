@@ -1000,6 +1000,19 @@ In some environments (such as ARM64-based environments), the default value is in
 The plugin can erroneously block valid requests if any of the parameters continue with the default values.
 To mitigate this issue, configure the JSON Threat Protection plugin with limits for all of the `max_*` parameters.
 
+## 3.7.1.4
+**Release Date** 2025/02/20
+
+### Fixes
+#### Core
+
+* Fixed an issue where a certificate entity configured with a vault reference was occasionally not refreshed on time when initialized with an invalid string.
+
+### Dependencies
+
+* Bumped `libexpat` from 2.6.2 to 2.6.4 to fix a crash in the XML_ResumeParser function caused by XML_StopParser stopping an uninitialized parser.
+* Bumped `lua-kong-nginx-module` from 0.11.0 to 0.11.2.
+* Bumped `libxml2` to 2.12.9 to address [CVE-2024-40896](https://nvd.nist.gov/vuln/detail/CVE-2024-40896).
 
 ## 3.7.1.3
 **Release Date** 2024/11/26
