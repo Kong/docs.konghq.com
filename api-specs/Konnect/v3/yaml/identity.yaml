@@ -1366,6 +1366,11 @@ components:
       type: string
       example: YOUR_CLIENT_ID
       title: OIDC Identity Provider Login Client Id Property
+    OIDCIdentityProviderClientSecret:
+      description: The Client Secret assigned to your application by the identity provider.
+      type: string
+      example: YOUR_CLIENT_SECRET
+      title: OIDC Identity Provider Login Client Secret Property
     OIDCIdentityProviderScopes:
       description: The scopes requested by your application when authenticating with the identity provider.
       type: array
@@ -1425,7 +1430,7 @@ components:
         config:
           type: object
           oneOf:
-            - $ref: '#/components/schemas/OIDCIdentityProviderConfig'
+            - $ref: '#/components/schemas/ConfigureOIDCIdentityProviderConfig'
             - $ref: '#/components/schemas/SAMLIdentityProviderConfig'
       title: Identity Provider
     UpdateIdentityProvider:
@@ -1439,7 +1444,7 @@ components:
         config:
           type: object
           oneOf:
-            - $ref: '#/components/schemas/OIDCIdentityProviderConfig'
+            - $ref: '#/components/schemas/ConfigureOIDCIdentityProviderConfig'
             - $ref: '#/components/schemas/SAMLIdentityProviderConfig'
       title: Identity Provider
     IdentityProvider:
@@ -1472,6 +1477,25 @@ components:
           $ref: '#/components/schemas/OIDCIdentityProviderIssuer'
         client_id:
           $ref: '#/components/schemas/OIDCIdentityProviderClientId'
+        scopes:
+          $ref: '#/components/schemas/OIDCIdentityProviderScopes'
+        claim_mappings:
+          $ref: '#/components/schemas/OIDCIdentityProviderClaimMappings'
+      additionalProperties: false
+      required:
+        - issuer_url
+        - client_id
+      title: OIDC Identity Provider Config
+    ConfigureOIDCIdentityProviderConfig:
+      description: The identity provider that contains configuration data for the OIDC authentication integration.
+      type: object
+      properties:
+        issuer_url:
+          $ref: '#/components/schemas/OIDCIdentityProviderIssuer'
+        client_id:
+          $ref: '#/components/schemas/OIDCIdentityProviderClientId'
+        client_secret:
+          $ref: '#/components/schemas/OIDCIdentityProviderClientSecret'
         scopes:
           $ref: '#/components/schemas/OIDCIdentityProviderScopes'
         claim_mappings:
@@ -1586,6 +1610,11 @@ components:
           type: boolean
           default: true
           readOnly: true
+        inferred_region:
+          description: The Konnect region closest to the user's IP address. This property might only be set for users on signup through Konnect’s build-in native authentication.
+          type: string
+          example: us
+          readOnly: true
         created_at:
           description: The time stamp for the date the account was registered.
           type: string
@@ -1604,6 +1633,7 @@ components:
         full_name: Test User
         preferred_name: test
         active: true
+        inferred_region: us
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
       title: User
@@ -2605,6 +2635,7 @@ components:
         config:
           issuer_url: 'https://konghq.okta.com/oauth2/default'
           client_id: 0oaqhb43ckTZ02j1F357
+          client_secret: BbqwI8xP9E4evOK
           scopes:
             - openid
             - email
@@ -2636,6 +2667,7 @@ components:
         config:
           issuer_url: 'https://konghq.okta.com/oauth2/default'
           client_id: 0oaqhb43ckTZ02j1F357
+          client_secret: BbqwI8xP9E4evOK
           scopes:
             - openid
             - email

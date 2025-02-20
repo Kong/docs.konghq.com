@@ -291,9 +291,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-      example:
-        Audit Log Destination:
-          $ref: '#/components/examples/Audit-Log-Destination'
       title: AuditLogDestination
     JWK:
       description: An individual JSON Web Key.
@@ -897,6 +894,7 @@ components:
                 description: The value to include in the `Authorization` header when sending audit logs to the webhook.
                 type: string
                 example: Bearer sometoken
+                writeOnly: true
               log_format:
                 description: The output format of each log message.
                 type: string
@@ -913,6 +911,10 @@ components:
                 type: boolean
                 example: false
                 default: false
+            required:
+              - name
+              - endpoint
+              - log_format
           examples:
             Create Audit Log Destination:
               $ref: '#/components/examples/Create-Audit-Log-Destination'
@@ -935,6 +937,7 @@ components:
                 description: The value to include in the `Authorization` header when sending audit logs to the webhook.
                 type: string
                 example: Bearer sometoken
+                writeOnly: true
               log_format:
                 description: The output format of each log message.
                 type: string
