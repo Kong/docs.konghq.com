@@ -36,6 +36,8 @@ paths:
           $ref: '#/components/responses/ControlPlaneUnauthenticated'
         '403':
           $ref: '#/components/responses/ControlPlanePermissionDenied'
+        '500':
+          $ref: '#/components/responses/Internal'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
@@ -96,6 +98,8 @@ paths:
           $ref: '#/components/responses/ControlPlanePermissionDenied'
         '404':
           $ref: '#/components/responses/ControlPlaneNotFound'
+        '500':
+          $ref: '#/components/responses/Internal'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
@@ -177,6 +181,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Internal'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
@@ -198,6 +204,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Internal'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
@@ -227,6 +235,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Internal'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
@@ -256,6 +266,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Internal'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
@@ -283,6 +295,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Internal'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
@@ -310,6 +324,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Internal'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       tags:
@@ -1151,6 +1167,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: Invalid request format
         instance: 'konnect:trace:3674017986744198214'
         invalid_parameters:
           - field: body
@@ -1159,6 +1176,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: Request cannot be empty
         instance: 'konnect:trace:6644808935508571943'
         invalid_parameters:
           - field: name
@@ -1167,6 +1185,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: Request contains invalid ID format
         instance: 'konnect:trace:8988732526256293040'
         invalid_parameters:
           - field: id
@@ -1177,14 +1196,17 @@ components:
         title: Bad Request
         instance: 'konnect:trace:8988732526256293040'
         detail: Cannot create an additional control plane because usage limits have been reached.
+        invalid_parameters:
+          - field: object
+            reason: usage limits reached
     400UnknownPropertyExample:
       value:
         status: 400
         title: Bad Request
+        detail: Request contains unknown property
         instance: 'konnect:trace:8988732526256293040'
         invalid_parameters:
           - field: id
-            rule: unknownProperty
             reason: property id should not exist
     401UnauthenticatedExample:
       value:
@@ -1510,9 +1532,11 @@ components:
               status:
                 description: The HTTP status code.
                 type: integer
+                format: int32
                 example: 500
                 enum:
                   - 500
+                x-go-type: int32
               title:
                 description: The error response code.
                 type: string
@@ -1544,9 +1568,11 @@ components:
               status:
                 description: The HTTP status code.
                 type: integer
+                format: int32
                 example: 503
                 enum:
                   - 503
+                x-go-type: int32
               title:
                 description: The error response code.
                 type: string
@@ -1607,6 +1633,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GroupMemberStatus'
+    Internal:
+      description: Internal
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BaseError'
     BadRequest:
       description: Bad Request
       content:
