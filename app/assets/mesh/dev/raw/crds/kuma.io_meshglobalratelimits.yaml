@@ -77,9 +77,6 @@ spec:
                                 url:
                                   description: Url defines address of rate limit service.
                                   type: string
-                              required:
-                              - timeout
-                              - url
                               type: object
                           required:
                           - rateLimitService
@@ -181,7 +178,6 @@ spec:
                                             header value.
                                           type: string
                                       required:
-                                      - requestRate
                                       - value
                                       type: object
                                     type: array
@@ -384,9 +380,6 @@ spec:
                                 url:
                                   description: Url defines address of rate limit service.
                                   type: string
-                              required:
-                              - timeout
-                              - url
                               type: object
                           required:
                           - rateLimitService
@@ -488,7 +481,6 @@ spec:
                                             header value.
                                           type: string
                                       required:
-                                      - requestRate
                                       - value
                                       type: object
                                     type: array
