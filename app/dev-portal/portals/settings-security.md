@@ -53,7 +53,7 @@ Identity Providers (IdP) manage authentication of Developers signing into the De
 
 OIDC or SAML providers can be configured as an integrated IdP provider.
 
-Learn more about configuring IdPs in [Enable Self-Service Developer & Application Registration](/konnect/dev-portal/app-reg/enable)
+Learn more about configuring IdPs in [Enable Self-Service Developer & Application Registration](/konnect/dev-portal/app-reg)
 
 ## Developer & Application Approvals
 
@@ -184,7 +184,7 @@ rbac_enabled: true|false
 Authentication strategy determines how published APIs will be authenticated, and how Developers will create API Keys. Authentication strategies automatically configure the {site.konnect_short_name} Gateway service by enabling the KAA Application Auth (KAA) plugin on that service. 
 
 **Default application authentication strategy** determines a default strategy to be applied to any newly created API. Changing this default will not retroactively change any previously published APIs.
-To create a new Application Authentication Strategy, navigate to **Application Auth**, more on this in [Enable Self-Service Developer & Application Registration](/konnect/dev-portal/app-reg/enable).
+To create a new Application Authentication Strategy, navigate to **Application Auth**, more on this in [Enable Self-Service Developer & Application Registration](/konnect/dev-portal/app-reg).
 
 *Note: Authentication strategy does not affect developers browsing the portal from viewing APIs (GA: Pages or Snippets). To change visibility, see [Default Visibility](#default-visibility) and [RBAC](#role-based-access-control).*
 

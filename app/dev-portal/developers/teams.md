@@ -1,3 +1,0 @@
----
-title: Configure Portal Teams
----
