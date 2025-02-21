@@ -26,7 +26,7 @@ Konnect Dev Portal APIs are a repository of API specifications and documentation
 
 Common ways to get started in configuring appropriate access controls for Developers to acquire API keys.
 
-* [Enabling and disabling application registration](/konnect/dev-portal/app-reg/) - This explains how to grant and revoke application registration access.
+* [Enabling and disabling application registration](app-reg/) - This explains how to grant and revoke application registration access.
 
 * [Access and approvals](/konnect/dev-portal/access-and-approval/manage-devs/) - The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal, including Developer and Application registration. Additionally, Teams can be created to provide role-based access to  set of APIs to a set of Developers.
 
