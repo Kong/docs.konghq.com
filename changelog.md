@@ -2,6 +2,36 @@
 
 <!--vale off-->
 
+## Week 8
+
+### [Fix: route priority info](https://github.com/Kong/docs.konghq.com/pull/8457) (2025-02-22)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/key-concepts/routes
+- https://docs.konghq.com/gateway/unreleased/key-concepts/routes
+- https://docs.konghq.com/gateway/3.2.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.3.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.4.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.5.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.6.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.7.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.8.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.9.x/key-concepts/routes
+
+
+### [Update diff.md](https://github.com/Kong/docs.konghq.com/pull/8455) (2025-02-20)
+
+Minor fix in deck gateway diff documentation
+
+#### Modified
+
+- https://docs.konghq.com/deck/gateway/diff
+
 ## Week 6
 
 ### [extra space between period ](https://github.com/Kong/docs.konghq.com/pull/8406) (2025-02-05)
