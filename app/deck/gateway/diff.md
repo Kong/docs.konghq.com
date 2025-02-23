@@ -11,7 +11,7 @@ The `deck gateway diff` command shows the differences between your live {{ site.
 `deck gateway diff` should always be run before running [sync](/deck/gateway/sync/) to preview upcoming changes. decK resolves all changes as though it's performing a sync, and outputs the changes that would have been made at the end:
 
 ```bash
-$ deck gateway sync /path/to/kong.yaml
+$ deck gateway diff /path/to/kong.yaml
 updating service example-service  {
    "connect_timeout": 60000,
    "enabled": true,

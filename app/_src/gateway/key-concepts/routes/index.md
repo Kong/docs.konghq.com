@@ -65,7 +65,7 @@ one.
 
 Among the routes with the same "priority point" value, those that have
 any wildcard host specification will be considered after routes that
-don't have any wildcard host (or no host) specified.
+don't have any wildcard host specified.
 
 ### Header count
 
