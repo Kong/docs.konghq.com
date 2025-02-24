@@ -3,8 +3,18 @@ nav_title: Overview
 ---
 
 The JSON Threat Protection plugin provides security validation against various aspects of JSON structure.
+{% if_version lte:3.9.x %}
 The plugin validates the incoming JSON request body to ensure the payload adheres to the policy limits, regardless of whether the `Content-Type` header exists or is set to `application/json`.
-Requests violating the policy are considered malicious.
+{% endif_version %}
+{% if_version gte:3.10.x %}
+The plugin validates the JSON body of incoming `POST`, `PUT`, and `PATCH` requests to ensure the payload adheres to policy limits, regardless of whether `Content-Type: application/json` is set.
+Other HTTP methods will not be validated by this plugin.
+{% endif_version %}
+{:.note}
+> **NOTE:** This plugin does not support chunked encoding.
+
+
+Requests that violate the policy are considered malicious.
 You can configure the plugin to drop such requests, which stops them from reaching the service.
 Optionally, the plugin can operate in tap mode to monitor the traffic.
 
