@@ -66,6 +66,7 @@ After creating the resource share, copy the **RAM Share ARN**. You will need thi
 1. From the **AWS Console**, go to  **VPC** > **Transit Gateway Attachments**.
 1. Wait for an attachment request coming from the AWS Account ID you used in {{site.konnect_short_name}}.
 1. Accept the attachment to complete the setup.
+1. **Important:** Make sure a Transit Gateway Attachment is set up for each AWS VPC that needs to send or receive traffic.   
 
 Once the transit gateway attachment is successful, add a route where the upstream services are running, and configure the route to forward all traffic for the {{site.konnect_short_name}} managed VPC via the transit gateway. This ensures that traffic from the {{site.konnect_short_name}} data plane reaches the service and the response packets are routed back correctly.
 
