@@ -9,7 +9,7 @@ Using Mesh Manager, you can create global control planes to manage your {{site.m
 
 * A Kubernetes cluster with [load balancer service capabilities](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)
 * `kubectl` installed and configured to communicate with your Kubernetes cluster
-* [The latest version of {{site.mesh_product_name}}](/mesh/latest/production/install-kumactl/)
+* [The latest version of {{site.mesh_product_name}}](/mesh/latest/introduction/install/)
 
 ## Create a global control plane in {{site.konnect_short_name}}
 
@@ -58,7 +58,10 @@ For more information about the Kubernetes demo app, see [Explore {{site.mesh_pro
 
 ## Configure `kumactl` to connect to your global control plane
 
-`kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode. Since we are deploying {{site.mesh_product_name}} in Kubernetes mode for this tutorial, `kumactl` is read-only. Instead, `kubectl` is used to apply changes to {{site.mesh_product_name}}. Although we don't use `kumactl` in this tutorial because we are using Kubernetes, it's still best practice to configure it to connect to your global control plane.
+{:.note}
+> Since we are deploying {{site.mesh_product_name}} zone in Kubernetes mode for this tutorial, `kumactl` is read-only. Instead, `kubectl` is used to apply changes to {{site.mesh_product_name}} zone directly. Although, we don't use `kumactl` in this tutorial because we are using Kubernetes, it's still best practice to configure it to connect to your global control plane.
+
+`kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode.
 
 1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
 1. From the **Actions** dropdown menu, select **Configure kumactl** and follow the steps in the wizard to connect `kumactl` to the control plane.
