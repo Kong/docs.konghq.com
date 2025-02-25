@@ -6,10 +6,6 @@
 
 ### [Fix: route priority info](https://github.com/Kong/docs.konghq.com/pull/8457) (2025-02-22)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.1.x/key-concepts/routes
