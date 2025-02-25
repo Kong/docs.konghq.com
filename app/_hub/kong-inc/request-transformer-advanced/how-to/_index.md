@@ -110,3 +110,34 @@ curl -X POST http://localhost:8001/services/httpbin/plugins \
 | p1=v1&p2=v1 | p2=v1
 | p2=v1 | p2=v1
 
+
+## Example: Replace the relative URI 
+
+Replace the upstream URI with a static path:
+
+```bash
+curl -X POST http://localhost:8001/services/httpbin/plugins \
+ --data "name=request-transformer-advanced" \
+ --data "config.replace.uri=/status/200"
+```
+
+| Service Path | Upstream Proxied URI
+| --------- | -----------
+| /anything | /status/200
+
+
+## Example: Replace the relative URI using capturing groups
+
+Assuming the gateway path definition of `~/(?<status>\d+)`,
+replace the upstream URI based on the requested path:
+
+```bash
+curl -X POST http://localhost:8001/services/httpbin/plugins \
+  --data "name=request-transformer-advanced" \
+  --data "config.replace.uri=/status/\$(uri_captures['status'])"
+```
+
+| Gateway Path | Upstream Proxied URI
+| --------- | -----------
+| /200 | /status/200
+| /301 | /status/301
