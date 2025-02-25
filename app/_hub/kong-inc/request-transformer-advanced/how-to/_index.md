@@ -128,7 +128,7 @@ curl -X POST http://localhost:8001/services/httpbin/plugins \
 
 ## Example: Replace the relative URI using capturing groups
 
-Assuming the gateway path definition of ```~/(?<status>\d+)```,
+Assuming the gateway path definition of `~/(?<status>\d+)`,
 replace the upstream URI based on the requested path:
 
 ```bash
