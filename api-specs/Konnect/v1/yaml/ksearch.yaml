@@ -15,6 +15,8 @@ servers:
     description: Australia Production region
   - url: 'https://me.api.konghq.com/v1'
     description: Middle-East Production region
+  - url: 'https://in.api.konghq.com/v1'
+    description: India Production region
 paths:
   /search:
     get:

@@ -1652,6 +1652,41 @@ components:
       format: date-time
       example: '2022-11-04T20:10:06.927Z'
       readOnly: true
+    AuthStrategyKeyAuth:
+      description: KeyAuth Auth strategy that the application uses.
+      type: object
+      properties:
+        id:
+          description: The Application Auth Strategy ID.
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          readOnly: true
+        name:
+          type: string
+          example: name
+          default: name
+        credential_type:
+          type: string
+          enum:
+            - key_auth
+        key_names:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - credential_type
+        - key_names
+    AuthMethods:
+      type: array
+      items:
+        description: Auth Methods enabled for this strategy
+        type: string
+      example:
+        - bearer
     AvailableScopes:
       description: Possible developer selectable scopes for an application. Only present when using DCR Provider that supports it.
       type: array
@@ -1660,6 +1695,42 @@ components:
       example:
         - scope1
         - scope2
+    AuthStrategyClientCredentials:
+      description: Client Credential Auth strategy that the application uses.
+      type: object
+      properties:
+        id:
+          description: The Application Auth Strategy ID.
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          readOnly: true
+        name:
+          type: string
+          example: name
+          default: name
+        credential_type:
+          type: string
+          enum:
+            - client_credentials
+            - self_managed_client_credentials
+        auth_methods:
+          $ref: '#/components/schemas/AuthMethods'
+        available_scopes:
+          $ref: '#/components/schemas/AvailableScopes'
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - credential_type
+        - auth_methods
+    AuthStrategy:
+      type: object
+      discriminator:
+        propertyName: credential_type
+      oneOf:
+        - $ref: '#/components/schemas/AuthStrategyKeyAuth'
+        - $ref: '#/components/schemas/AuthStrategyClientCredentials'
     InvalidRules:
       description: invalid parameters rules
       type: string
@@ -1905,12 +1976,6 @@ components:
       required:
         - page
       title: PaginatedMeta
-    DocumentContentTypeEnum:
-      type: string
-      default: application/json
-      enum:
-        - application/json
-        - application/vnd.konnect.document-tree+json
     DocumentFormatContentTypeEnum:
       type: string
       default: application/json
@@ -1924,77 +1989,6 @@ components:
       format: uuid
       example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
       nullable: true
-    AuthStrategyKeyAuth:
-      description: KeyAuth Auth strategy that the application uses.
-      type: object
-      properties:
-        id:
-          description: The Application Auth Strategy ID.
-          type: string
-          format: uuid
-          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
-          readOnly: true
-        name:
-          type: string
-          example: name
-          default: name
-        credential_type:
-          type: string
-          enum:
-            - key_auth
-        key_names:
-          type: array
-          items:
-            type: string
-      additionalProperties: false
-      required:
-        - id
-        - name
-        - credential_type
-        - key_names
-    AuthMethods:
-      type: array
-      items:
-        description: Auth Methods enabled for this strategy
-        type: string
-      example:
-        - bearer
-    AuthStrategyClientCredentials:
-      description: Client Credential Auth strategy that the application uses.
-      type: object
-      properties:
-        id:
-          description: The Application Auth Strategy ID.
-          type: string
-          format: uuid
-          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
-          readOnly: true
-        name:
-          type: string
-          example: name
-          default: name
-        credential_type:
-          type: string
-          enum:
-            - client_credentials
-            - self_managed_client_credentials
-        auth_methods:
-          $ref: '#/components/schemas/AuthMethods'
-        available_scopes:
-          $ref: '#/components/schemas/AvailableScopes'
-      additionalProperties: false
-      required:
-        - id
-        - name
-        - credential_type
-        - auth_methods
-    AuthStrategy:
-      type: object
-      discriminator:
-        propertyName: credential_type
-      oneOf:
-        - $ref: '#/components/schemas/AuthStrategyKeyAuth'
-        - $ref: '#/components/schemas/AuthStrategyClientCredentials'
     ApplicationReferenceId:
       description: |
         An identifier to correlate the application with an external system.
@@ -3012,6 +3006,12 @@ components:
         maxLength: 63
       maxProperties: 50
       title: PublicLabels
+    DocumentContentTypeEnum:
+      type: string
+      default: application/json
+      enum:
+        - application/json
+        - application/vnd.konnect.document-tree+json
     Metadata:
       description: Contains key value pairs information about entity's metadata.
       type: object
@@ -3096,12 +3096,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DocumentTree'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
       required:
         - id
         - title
         - slug
         - metadata
         - children
+        - created_at
+        - updated_at
       title: DocumentTree
     ListDocumentsTree:
       type: object
