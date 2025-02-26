@@ -56,7 +56,7 @@ Learn more about configuring IdPs in [Enable Self-Service Developer & Applicatio
 ## Developer & Application Approvals
 
 {:.note}
-> *In order for credential generation to properly restrict access to your API with Authentication Strategies, a Konnect Gateway Service must be [linked to your API](../apis/gateway-service-link). Gateway version 3.6+ supported. *
+> An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
 
 Registration of Developer accounts and Application requires approval by portal admins by default. These approvals are managed in <Access and Approvals>.
 
@@ -95,7 +95,7 @@ rbac_enabled: true|false
 ## Authentication Strategy / Creating API Keys
 
 {:.note}
-> *In order for credential generation to properly restrict access to your API with Authentication Strategies, a Konnect Gateway Service must be [linked to your API](../apis/gateway-service-link). Gateway version 3.6+ supported. *
+> An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
 
 Authentication strategies determine how [published APIs](published-apis) will be authenticated, and how Developers will create API Keys. 
 
@@ -142,7 +142,7 @@ Konnect's Built-in authentication provider is used by default. OIDC or SAML prov
 ## Developer/Application Approval
 
 {:.note}
-> *In order for credential generation to properly restrict access to your API with Authentication Strategies, a Konnect Gateway Service must be [linked to your API](../apis/gateway-service-link). Gateway version 3.6+ supported. *
+> An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
 
 ### Auto approve developers
 
@@ -181,7 +181,7 @@ rbac_enabled: true|false
 ## Authentication Strategy / Creating API Keys
 
 {:.note}
-> *In order for credential generation to properly restrict access to your API with Authentication Strategies, a Konnect Gateway Service must be [linked to your API](../apis/gateway-service-link). Gateway version 3.6+ supported. *
+> An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
 
 Authentication strategy determines how published APIs will be authenticated, and how Developers will create API Keys. Authentication strategies automatically configure the Konnect Gateway service by enabling the KAA Application Auth (KAA) plugin on that service. 
 

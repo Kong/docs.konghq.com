@@ -25,7 +25,7 @@ Visibility, Authentication strategies, and User authentication can be independen
 > *Visibility of [Pages](customization/custom-pages) and [Menus](customization/customization.md) are configured independently from APIs, maximizing your flexibility.
 
 {:.note}
-> *In order for credential generation to properly restrict access to your API with Authentication Strategies, a Konnect Gateway Service must be [linked to your API](../apis/gateway-service-link). Gateway version 3.6+ supported. * 
+> An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies. 
 
 #### Viewable by anyone, no self-service credentials
 Anyone can view the API's specs and documentation, but cannot generate credentials/API keys. No Developer registration is required.

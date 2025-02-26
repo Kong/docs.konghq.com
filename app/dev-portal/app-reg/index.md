@@ -53,7 +53,7 @@ Developers are limited to using a single auth strategy per application. For exam
 - A Gateway Service configured in Konnect Gateway Manager, and [linked to the published API](/konnect/dev-portal/apis/gateway-service-link) in Dev Portal.
 
 {:.note}
-> *In order for credential generation to properly restrict access to your API with Authentication Strategies, a Konnect Gateway Service must be [linked to your API](../apis/gateway-service-link). Gateway version 3.6+ supported. *
+> An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
@@ -109,11 +109,6 @@ To enable app registration with OpenID Connect for a specific API, be sure you a
 
 3. Click **Save**.
 
-TODO: Update for gw 3.6+?
-{:.note}
-> **Note:** If the published API is in the `default` control plane group, it will
-instead receive read-only entries for the `acl` and `openid-connect` plugins to provide
-support for {{site.base_gateway}} versions less than 3.0.
 
 ###  OpenID Connect configuration parameters {#openid-config-parameters}
 

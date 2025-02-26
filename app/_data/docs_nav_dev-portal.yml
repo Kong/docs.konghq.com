@@ -41,7 +41,7 @@
   items:
     - text: Overview
       url: /access-and-approvals/
-    - text: Developer Approval
+    - text: Developer Signup
       url: /access-and-approvals/developers/
     - text: Configuring SSO
       url: /access-and-approvals/sso/
