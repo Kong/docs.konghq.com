@@ -1001,7 +1001,7 @@ The plugin can erroneously block valid requests if any of the parameters continu
 To mitigate this issue, configure the JSON Threat Protection plugin with limits for all of the `max_*` parameters.
 
 ## 3.7.1.4
-**Release Date** 2025/02/20
+**Release Date** 2025/02/25
 
 ### Fixes
 #### Core
