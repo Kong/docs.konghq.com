@@ -28,3 +28,14 @@ When creating a scorecard, you define the validation criteria and specify which 
 1. Click **Save**.
 
 
+## Service Documentation linting
+
+By default the Service Documentation template supports the following Spectral recipes:
+
+| Category           | Description     | Link |
+|------------|----------|------|
+| **OAS Recommended** | Uses Stoplight's style guide. Only considering criteria tagged with `"recommended: true"` | [Stoplight Style Guide](https://apistylebook.stoplight.io/docs/stoplight-style-guide) |
+| **OWASP Top 10**   | Set of rules to enforce OWASP security guidelines. | [OWASP Top 10 API Security Guide](https://apistylebook.stoplight.io/docs/owasp-top-10-2023) |
+| **URL Versioning** | Set of rules to enforce versioning | [API Versioning Guide](https://apistylebook.stoplight.io/docs/versioning) |
+| **Documentation**  | Set of rules to enforce documentation best practices. | [API Documentation Guidelines](https://apistylebook.stoplight.io/docs/documentation) |
+
