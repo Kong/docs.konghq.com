@@ -19,7 +19,7 @@ In both cases, you'll see the same dialog.
 
 ### Access control scenarios
 
-Visibility, Authentication strategies, and User authentication can be independently configured to maximize fleixbility in how you publish your API to a given Developer audience.
+Visibility, Authentication strategies, and User authentication can be independently configured to maximize flexibility in how you publish your API to a given Developer audience.
 
 {:.note}
 > *Visibility of [Pages](customization/custom-pages) and [Menus](customization/customization.md) are configured independently from APIs, maximizing your flexibility.
@@ -31,7 +31,7 @@ Visibility, Authentication strategies, and User authentication can be independen
 Anyone can view the API's specs and documentation, but cannot generate credentials/API keys. No Developer registration is required.
   * Visibility: Public
   * Authentication strategy: Disabled
-  * User authentication: Disabled in [Seucrity settings](settings/security)
+  * User authentication: Disabled in [Security settings](settings/security)
 
 #### Viewable by anyone, self-service credentials
 Anyone can view the API's specs and documentation, but must sign up for a Developer account and create an Application to generate credentials/API keys.

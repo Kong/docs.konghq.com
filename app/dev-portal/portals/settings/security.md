@@ -2,8 +2,6 @@
 title: Security Settings
 ---
 
-# Settings/Security
-
 Security settings allow for visibility and access control around Developers accessing your Dev Portal. 
 
 {:.note}
@@ -101,7 +99,7 @@ rbac_enabled: true|false
 
 Authentication strategies determine how [published APIs](published-apis) will be authenticated, and how Developers will create API Keys. 
 
-Authentication strategies automatically configure the Konnect Gateway service by enabling the Konnect Application Auth (KAA) plugin on that service. The KAA plugin can only be configured from the associated Dev Portal.
+Authentication strategies automatically configure the Konnect Gateway service by enabling the Konnect Application Auth (KAA) plugin on that service (for APIs that are [linked](../../apis/gateway-service-link) to a Gateway Service). The KAA plugin can only be configured from the associated Dev Portal.
 
 ### Default application authentication strategy 
 

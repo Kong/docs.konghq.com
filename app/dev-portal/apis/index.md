@@ -7,7 +7,9 @@ An API is the interface that you publish to your end customer. Developers regist
 As an API Producer, you [publish an OpenAPI specification](../portals/publishing) and additional documentation to help users get started with your API.
 
 {:.note}
-> When linking an **API** to a **Gateway Service**, it is currently a 1:1 mapping. 
+> If you previously used API Products you may be wondering where the "API Product" concept has gone. API Product will not be used in the Beta Dev Portal, and will not affect your existing API Products, which will only be supported on older Dev Portals.
+
+{:.note}
 <!-- TODO: composition once we commit to deliver
 In the future you will be able to define an API as a subset of the endpoints available within a Service, or compose an API using multiple Services.
 -->
