@@ -2,8 +2,6 @@
 title: Appearance
 ---
 
-# Appearance
-
 Appearance settings are applied globally to all pages in your Dev Portal. Appearance can be found in Portal Editor on the left sidebar.
 
 ## Basic Appearance

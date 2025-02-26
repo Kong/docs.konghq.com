@@ -2,8 +2,6 @@
 title: Portal Editor
 ---
 
-# Portal Editor
-
 Portal Editor provides you with a variety of tools for creating highly customized content for your Dev Portal. Navigate to a specific Dev Portal, and select **Portal Editor** from the left sidebar.
 
 ## Pages

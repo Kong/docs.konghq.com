@@ -9,8 +9,8 @@
           url: /portals/customization/customization/
         - text: Custom Pages
           url: /portals/customization/custom-pages/
-        - text: Styling
-          url: /portals/customization/styling/
+        - text: Appearance
+          url: /portals/customization/appearance/
         - text: Portal Editor
           url: /portals/customization/portal-editor/
     - text: Publishing APIs
@@ -20,7 +20,7 @@
         - text: General
           url: /portals/settings/general/
         - text: Custom Domains
-          url: /portals/custom-domains/
+          url: /portals/settings/custom-domains/
         - text: Security
           url: /portals/settings/security/
     - text: Audit Logs

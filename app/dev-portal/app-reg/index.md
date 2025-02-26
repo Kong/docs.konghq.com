@@ -53,7 +53,7 @@ Developers are limited to using a single auth strategy per application. For exam
 - A Gateway Service configured in Konnect Gateway Manager, and [linked to the published API](/konnect/dev-portal/apis/gateway-service-link) in Dev Portal.
 
 {:.note}
-> **Note:** In order to restrict access to calling APIs, a gateway service must be linked. Developer and application registration can function and grant API keys in isolation, but without the gateway service linked, it will not actually map generated API keys to a gateway service in order to restrict access to the API. Any API keys generated in disconnected state (as they exist outside the gateway control plane) will sync to the gateway service once linked.
+> *In order for credential generation to properly restrict access to your API with Authentication Strategies, a Konnect Gateway Service must be [linked to your API](../apis/gateway-service-link). Gateway version 3.6+ supported. *
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
@@ -74,18 +74,7 @@ When a new Dev Portal is created, if **Private** is selected, **User Authenticat
 
 ### Publish API
 
-1. In **Dev Portals/APIs**, select an API.
-
-2. Click **Publish API**, select appropriate Dev Portals, and change Auth Strategy from default, if non-default is preferrred.
-    
-    <!--TODO: compatibility update to 3.6+ for v3 portal?-->
-    {:.note}
-    > **Note:** If the API is in the `default` control plane group, it will
-    instead receive read-only entries for the `acl` and `key-auth` plugins to provide
-    support for {{site.base_gateway}} versions less than 3.0.
-
-3. Within your Dev Portal Settings, click **Published APIs**, and select the API. Click **API/Gateway Service**, and **Link Service**. Select the appropriate control plane and gateway service to link.
-
+Learn more about [Publishing your API to Dev Portals](../portals/publishing)
 
 ## Enable app registration with OpenID Connect {#oidc-flow}
 

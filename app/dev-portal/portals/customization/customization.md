@@ -2,8 +2,6 @@
 title: Customization
 ---
 
-# Customization
-
 Customization can be found on the left sidebar when a Dev Portal is selected.
 
 ## Menus 
