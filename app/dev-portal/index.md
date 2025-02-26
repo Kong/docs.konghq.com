@@ -2,9 +2,9 @@
 title: Dev Portal
 ---
 
-The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, try API operations, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
+The {{site.konnect_short_name}} is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, try API operations, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
 
-The Konnect Dev Portal allows you to publish APIs with OpenAPI specifications and/or Markdown documentation, to enable developers to locate, access, and consume API services. Highly customizable content can be also provided at the site-level, as well as API-level, to provide additional context to the APIs.
+The {{site.konnect_short_name}} allows you to publish APIs with OpenAPI specifications and/or Markdown documentation, to enable developers to locate, access, and consume API services. Highly customizable content can be also provided at the site-level, as well as API-level, to provide additional context to the APIs.
 
 * [Portals](#portals): create Developer Portals with appropriate visibility & access control for each audience.
 * [APIs](#apis): create API specifications & documentation to be published to one or more Dev Portals
@@ -12,7 +12,7 @@ The Konnect Dev Portal allows you to publish APIs with OpenAPI specifications an
 
 ## Portals
 
-{site.konnect_short_name} Dev Portals allow you to publish, document and secure APIs to drive adoption for any developer audience. Multiple Dev Portals can be created based on a selection of APIs, set to appropriate visibility and access control. 
+{{site.konnect_short_name}} allows you to publish, document and secure APIs to drive adoption for any developer audience. Multiple Dev Portals can be created based on a selection of APIs, set to appropriate visibility and access control. 
 
 [Get started](portals) creating your first Dev Portal.
 
@@ -23,7 +23,7 @@ Konnect Dev Portal APIs are a repository of API specifications and documentation
 [Get started](APIs) creating your APIs.
 
 {:.note}
-> **API Products are not utilized by Beta Dev Portals, API Products are only used in the previous version of Dev Portals
+> **API Products** are not utilized by Beta Dev Portals, API Products are only used in the previous version of Dev Portals.
 
 
 ## Developer Self-Service

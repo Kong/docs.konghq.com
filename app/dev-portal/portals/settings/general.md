@@ -1,3 +1,6 @@
 ---
 title: Settings
 ---
+
+# Settings/General
+

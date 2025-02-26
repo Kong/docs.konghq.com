@@ -59,7 +59,7 @@ Developers are limited to using a single auth strategy per application. For exam
 
 ### Dev Portal Settings and defaults
 
-In [**Settings/Security**](/konnect/dev-portal/portals/settings-security) for each portal, make appropriate choices to setup Developer & Application registration for your needs.
+In [**Settings/Security**](/konnect/dev-portal/portals/settings/security) for each portal, make appropriate choices to setup Developer & Application registration for your needs.
 
 {:.note}
 When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled.
@@ -68,7 +68,7 @@ When a new Dev Portal is created, if **Private** is selected, **User Authenticat
 
 2. Optional: Enable **Role-based access control (RBAC)** to control viewing/consuming of APIs in the Dev Portal by defining roles within Teams.
 
-3. Optional: Click the [**Auto Approve**](/konnect/dev-portal/settings-security/) checkbox for Developers and/or Applications to automatically approve all registration requests. Otherwise portal admins will need to approve all registrations.
+3. Optional: Click the [**Auto Approve**](/konnect/dev-portal/settings/security/) checkbox for Developers and/or Applications to automatically approve all registration requests. Otherwise portal admins will need to approve all registrations.
 
 4. Optional: Select the preferred **Default Auth Strategy** (default is Konnect's built-in `key-auth`). This will not retroactively change any published APIs, but will set the default on any new published assets.
 

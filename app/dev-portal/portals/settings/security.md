@@ -7,7 +7,7 @@ title: Security Settings
 Security settings allow for visibility and access control around Developers accessing your Dev Portal. 
 
 {:.note}
-> **To adjust security settings for Dev Portal admin/users, see [{site.konnect_short_name} Organization settings](/konnect/org-management/auth/)*.
+> *To adjust security settings for Dev Portal admin/users, see [{site.konnect_short_name} Organization settings](/konnect/org-management/auth/)*.
 
 <!-- TODO: Settings screenshot -->
 
@@ -19,7 +19,7 @@ Security settings allow for visibility and access control around Developers acce
  * Public: Visible to anonymous users browsing the Dev Portal
 
 {:.note}
-> **Changing default Visibility does not retroactively change the visibility of existing APIs or Pages.*
+> *Changing default Visibility does not retroactively change the visibility of existing APIs or Pages.*
 
 <!--
 ### {site.konnect_short_name} Dev Portal API
@@ -58,7 +58,7 @@ Learn more about configuring IdPs in [Enable Self-Service Developer & Applicatio
 ## Developer & Application Approvals
 
 {:.note}
-> **Developer signup/login and Application registration requires the use of a {site.konnect_short_name} Gateway service*
+> *Developer signup/login and Application registration requires the use of a {site.konnect_short_name} Gateway service*
 
 Registration of Developer accounts and Application requires approval by portal admins by default. These approvals are managed in <Access and Approvals>.
 
@@ -96,7 +96,8 @@ rbac_enabled: true|false
 
 ## Authentication Strategy / Creating API Keys
 
-*Note: Authentication strategies require the use of a [{site.konnect_short_name} Gateway service](gateway-manager/configuration)*
+{:.note}
+> *Authentication strategies require the use of a [{site.konnect_short_name} Gateway service](gateway-manager/configuration)*
 
 Authentication strategies determine how [published APIs](published-apis) will be authenticated, and how Developers will create API Keys. 
 
@@ -108,7 +109,8 @@ Determines a default strategy to be applied to any API during publishing. Changi
 
 *To create a new Application Authentication Strategy, visit [Application Auth](application-auth)*
 
-*Note: Authentication strategy does not affect developers browsing the portal from viewing APIs. To change visibility, see [Default Visibility](#default-visibility) and [Role-based access control](role-based-access-control).*
+{:.note}
+> *Authentication strategy does not affect developers browsing the portal from viewing APIs. To change visibility, see [Default Visibility](#default-visibility) and [Role-based access control](role-based-access-control).*
 
 <!--
 ### {site.konnect_short_name} Dev Portal API 
@@ -141,7 +143,8 @@ Identity Providers handle authentication of Developers signing into the Dev Port
 
 ## Developer/Application Approval
 
-*Note: Developer signup/login and Application registration requires the use of a Kong Gateway service.*
+{:.note}
+> *Developer signup/login and Application registration requires the use of a Kong Gateway service.*
 
 ### Auto approve developers
 
@@ -179,14 +182,16 @@ rbac_enabled: true|false
 
 ## Authentication Strategy / Creating API Keys
 
-*Note: Authentication strategies require the use of a Kong Gateway service*
+{:.note}
+> *Authentication strategies require the use of a Kong Gateway service*
 
 Authentication strategy determines how published APIs will be authenticated, and how Developers will create API Keys. Authentication strategies automatically configure the {site.konnect_short_name} Gateway service by enabling the KAA Application Auth (KAA) plugin on that service. 
 
 **Default application authentication strategy** determines a default strategy to be applied to any newly created API. Changing this default will not retroactively change any previously published APIs.
 To create a new Application Authentication Strategy, navigate to **Application Auth**, more on this in [Enable Self-Service Developer & Application Registration](/konnect/dev-portal/app-reg).
 
-*Note: Authentication strategy does not affect developers browsing the portal from viewing APIs (GA: Pages or Snippets). To change visibility, see [Default Visibility](#default-visibility) and [RBAC](#role-based-access-control).*
+{:.note}
+> *Authentication strategy does not affect developers browsing the portal from viewing APIs (GA: Pages or Snippets). To change visibility, see [Default Visibility](#default-visibility) and [RBAC](#role-based-access-control).*
 
 <!--
 ### {site.konnect_short_name} Dev Portal API: 

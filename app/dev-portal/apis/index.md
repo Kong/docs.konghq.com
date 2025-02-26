@@ -7,7 +7,7 @@ An API is the interface that you publish to your end customer. Developers regist
 As an API Producer, you [publish an OpenAPI specification](../portals/publishing) and additional documentation to help users get started with your API.
 
 {:.note}
-> **When linking an API to a Gateway Service, today it is a 1:1 mapping. 
+> When linking an **API** to a **Gateway Service**, it is currently a 1:1 mapping. 
 <!-- TODO: composition once we commit to deliver
 In the future you will be able to define an API as a subset of the endpoints available within a Service, or compose an API using multiple Services.
 -->
@@ -21,6 +21,6 @@ Publishing an API is a multi-step process:
 3. Link your API to a [Gateway Service](gateway-service-link)
 4. [Publish your API to a Portal](../portals/publishing)
 
-Your API is now published in the Portal that you selected. If [User Authentication](../portals/settings/settings-security#user-authentication--role-based-access-control-rbac) is enabled, Developers can register to create applications, generate credentials and use the API in a self-service manner. 
+Your API is now published in the Portal that you selected. If [User Authentication](../portals/settings/settings/security#user-authentication--role-based-access-control-rbac) is enabled, Developers can register to create applications, generate credentials and use the API in a self-service manner. 
 
 If you have RBAC enabled, you will need to add an approved Developer to a [Team](../access-and-approvals/teams) in order to provide access.

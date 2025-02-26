@@ -5,14 +5,14 @@
       url: /portals/
     - text: Customization
       items:
+        - text: Customization
+          url: /portals/customization/customization/
         - text: Custom Pages
           url: /portals/customization/custom-pages/
         - text: Styling
           url: /portals/customization/styling/
         - text: Portal Editor
           url: /portals/customization/portal-editor/
-        - text: Navigation
-          url: /portals/customization/navigation/
     - text: Publishing APIs
       url: /portals/publishing/
     - text: Settings
