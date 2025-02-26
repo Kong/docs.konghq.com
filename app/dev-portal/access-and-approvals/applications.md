@@ -1,3 +1,3 @@
 ---
-title: Developer Approval
+title: Application Approval
 ---
