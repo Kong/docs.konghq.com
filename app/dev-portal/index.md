@@ -22,6 +22,10 @@ Konnect Dev Portal APIs are a repository of API specifications and documentation
 
 [Get started](APIs) creating your APIs.
 
+{:.note}
+> **API Products are not utilized by Beta Dev Portals, API Products are only used in the previous version of Dev Portals
+
+
 ## Developer Self-Service
 
 Common ways to get started in configuring appropriate access controls for Developers to acquire API keys.

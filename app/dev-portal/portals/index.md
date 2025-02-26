@@ -2,7 +2,7 @@
 title: Create a Dev Portal
 ---
 
-The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services.
+The Konnect Dev Portal is a customizable website for developers to locate, access, and consume API services.
 
 ### Common use cases:
 * Internal Dev Portal
@@ -45,7 +45,8 @@ After clicking Next, your Dev Portal will be created, and you'll be presented wi
 
 ### Configure developer self-service
 
-* [Configure Application Registration for an API](../app-reg/)
+* [Configure Application Registration](../app-reg/)
+
 <!-- Before GA
 * [Dynamic Client Registration Overview](/konnect/dev-portal/applications/dynamic-client-registration/): Dynamic Client Registration (DCR) within Konnect Dev Portal allows applications created in the portal to automatically create a linked application in a third-party Identity Provider (IdP).
 -->
