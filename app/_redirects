@@ -526,8 +526,9 @@
 /hub/smartparkingtechnology/*                      /hub/
 /hub/bitnami/*                                     /gateway/latest/install/
 /hub/kong-inc/kong-terraform-aws/                  https://github.com/kong/kong-terraform-aws
-/hub/:vendor/:plugin/3.0.x/*                                   https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
-/hub/dynatrace/dynatrace/*                                   /hub/kong-inc/dynatrace/:splat
+/hub/:vendor/:plugin/3.0.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
+/hub/:vendor/:plugin/3.1.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.1.x/:splat
+/hub/dynatrace/dynatrace/*                         /hub/kong-inc/dynatrace/:splat
 
 # KONNECT
 
@@ -1142,6 +1143,7 @@
 
 # GATEWAY DOC ARCHIVES
 /gateway/3.0.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.0.x/:splat
+/gateway/3.1.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.1.x/:splat
 
 
 # COMMUNITY DOC REBRANDING
