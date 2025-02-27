@@ -2,9 +2,9 @@
 title: Publishing
 ---
 
-Publishing an API makes it available to one or more Dev Portals, and with the appropriate [Security Settings](/konnect/dev-portal/portals/settings/security) and [Access and Approvals](/konnect/dev-portal/access-and-approvals/), can publish security to the appropriate audience.
+Publishing an API makes it available to one or more Dev Portals, and with the appropriate [Security Settings](/dev-portal/portals/settings/security) and [Access and Approvals](/dev-portal/access-and-approvals/), can publish security to the appropriate audience.
 
-Be sure you have [created APIs](/konnect/dev-portal/apis) before attempting to publish to your Dev Portals
+Be sure you have [created APIs](/dev-portal/apis) before attempting to publish to your Dev Portals
 
 ## Publish an API to Dev Portals
 
@@ -22,7 +22,7 @@ In both cases, you'll see the same dialog.
 Visibility, Authentication strategies, and User authentication can be independently configured to maximize flexibility in how you publish your API to a given Developer audience.
 
 {:.note}
-> *Visibility of [Pages](/konnect/dev-portal/portals/customization/custom-pages) and [Menus](/konnect/dev-portal/portals/customization/customization.md) are configured independently from APIs, maximizing your flexibility.
+> *Visibility of [Pages](/dev-portal/portals/customization/custom-pages) and [Menus](/dev-portal/portals/customization/customization.md) are configured independently from APIs, maximizing your flexibility.
 
 {:.note}
 > An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies. 
@@ -31,25 +31,25 @@ Visibility, Authentication strategies, and User authentication can be independen
 Anyone can view the API's specs and documentation, but cannot generate credentials/API keys. No Developer registration is required.
   * Visibility: Public
   * Authentication strategy: Disabled
-  * User authentication: Disabled in [Security settings](/konnect/dev-portal/portals/settings/security)
+  * User authentication: Disabled in [Security settings](/dev-portal/portals/settings/security)
 
 #### Viewable by anyone, self-service credentials
 Anyone can view the API's specs and documentation, but must sign up for a Developer account and create an Application to generate credentials/API keys.
   * Visibility: Public
   * Authentication strategy: `key-auth` (or any other appropriate Authentication strategy)
-  * User authentication: Enabled in [Security settings](/konnect/dev-portal/portals/settings/security)
-  * RBAC: Disabled, if you don't need to manage fine grained access with Teams, configured in [Security settings](/konnect/dev-portal/portals/settings/security)
+  * User authentication: Enabled in [Security settings](/dev-portal/portals/settings/security)
+  * RBAC: Disabled, if you don't need to manage fine grained access with Teams, configured in [Security settings](/dev-portal/portals/settings/security)
 
 #### Viewable by anyone, self-service credentials with RBAC
 Anyone can view the API's specs and documentation, but must sign up for a Developer account and create an Application to generate credentials/API keys. Konnect Admin must assign Developer to a Team to provide specfic role-based access.
   * Visibility: Public
   * Authentication strategy: `key-auth` (or any other appropriate Authentication strategy)
-  * User authentication: Enabled in [Security settings](/konnect/dev-portal/portals/settings/security)
-  * RBAC: Enabled (allows for [Teams](/konnect/dev-portal/access-and-approvals/teams) assignments for Developers, grants credentials with the API Consumer role)  in [Security settings](/konnect/dev-portal/portals/settings/security)
+  * User authentication: Enabled in [Security settings](/dev-portal/portals/settings/security)
+  * RBAC: Enabled (allows for [Teams](/dev-portal/access-and-approvals/teams) assignments for Developers, grants credentials with the API Consumer role)  in [Security settings](/dev-portal/portals/settings/security)
 
 #### Signup required to view API specs and/or documentation
 All users must sign up for a Developer account in order to view APIs. Optionally, they can create an Application to generate credentials/API keys with RBAC.
   * Visibility: Private
   * Authentication strategy: `key-auth` (or any other appropriate Authentication strategy)
-  * User authentication: Enabled in [Security settings](/konnect/dev-portal/portals/settings/security)
-  * RBAC(optional): Enabled (allows for [Teams](/konnect/dev-portal/access-and-approvals/teams) assignments for Developers, grants credentials with the API Consumer role)  in [Security settings](/konnect/dev-portal/settings/security)
+  * User authentication: Enabled in [Security settings](/dev-portal/portals/settings/security)
+  * RBAC(optional): Enabled (allows for [Teams](/dev-portal/access-and-approvals/teams) assignments for Developers, grants credentials with the API Consumer role)  in [Security settings](/dev-portal/settings/security)

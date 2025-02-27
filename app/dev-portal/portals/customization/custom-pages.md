@@ -4,7 +4,7 @@ title: Custom Pages
 
 Pages are highly customizable using Markdown Components (MDC), allowing to create nested page structures to organize pages and generate URLs/slugs. Visibility controls and Publishing status allow you to stage new Pages, and/or restrict access to logged-in Developers.
 
-To get started creating Pages, navigate to your Dev Portal and select [**Portal Editor**](/konnect/dev-portal/portals/portal-editor) from the left sidebar.
+To get started creating Pages, navigate to your Dev Portal and select [**Portal Editor**](/dev-portal/portals/portal-editor) from the left sidebar.
 
 ## Page structure
 
@@ -23,7 +23,7 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 * Edit the content of your Page in the middle panel, and you'll see a Live Preview in the right panel.
 
 {:.note}
-> *Pages will be created with the Default Visibility as set in your [Settings](/konnect/dev-portal/portals/settings/general)*
+> *Pages will be created with the Default Visibility as set in your [Settings](/dev-portal/portals/settings/general)*
 
 {:.note}
 > *At the bottom of preview, the generated URL for your page will be shown*

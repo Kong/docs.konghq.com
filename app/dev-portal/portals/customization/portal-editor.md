@@ -8,7 +8,7 @@ Portal Editor provides you with a variety of tools for creating highly customize
 
 Pages provide a nested structure of page slugs which allows you to organize Pages, and automatically builds your URLs. Pages are highly customizable using Markdown Components (MDC). 
 
-[Get started with Pages](/konnect/dev-portal/portals/customization/custom-pages)
+[Get started with Pages](/dev-portal/portals/customization/custom-pages)
 
 ## Appearance
 
@@ -16,8 +16,8 @@ Basic appearance settings like brand colors, logo, and favicon can be customized
 
 You'll find the Appearance icon in the left sidebar of Portal Editor.
 
-[Customize Appearance](/konnect/dev-portal/portals/appearance)
+[Customize Appearance](/dev-portal/portals/appearance)
 
 ## Additional Customization
 
-Some items like top navigation and SEO optimization/`robots.txt` are availabe in [Customization](/konnect/dev-portal/portals/customization), outside of Portal Editor.
+Some items like top navigation and SEO optimization/`robots.txt` are availabe in [Customization](/dev-portal/portals/customization), outside of Portal Editor.

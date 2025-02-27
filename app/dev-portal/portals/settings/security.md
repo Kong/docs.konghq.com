@@ -51,7 +51,7 @@ Konnect’s Built-in authentication provider is used by default. This will gener
 
 OIDC or SAML providers can be configured as an integrated IdP provider.
 
-Learn more about configuring IdPs in [Enable Self-Service Developer & Application Registration](/konnect/dev-portal/portals/app-reg)
+Learn more about configuring IdPs in [Enable Self-Service Developer & Application Registration](/dev-portal/portals/app-reg)
 
 ## Developer & Application Approvals
 
@@ -62,12 +62,12 @@ Registration of Developer accounts and Application requires approval by portal a
 
 ### Auto approve developers
 * Enabled: anyone can sign up for a Developer account without further approval process. 
-* Disabled: portal admins will have to approve any new signup in [Access and Approvals](/konnect/dev-portal/access-and-approvals).
+* Disabled: portal admins will have to approve any new signup in [Access and Approvals](/dev-portal/access-and-approvals).
 
 ### Auto approve applications 
 * Enabled: When any approved Developer creates an Application, it will be automatically approved. 
   * Once an application is approved, the Developer will be able to create an API Key. 
-* Disable: dportal admins need to approve any new Applications in [Access and Approvals](/konnect/dev-portal/access-and-approvals) before a Developer can create API Keys.
+* Disable: dportal admins need to approve any new Applications in [Access and Approvals](/dev-portal/access-and-approvals) before a Developer can create API Keys.
 
 <!--
 ### Konnect Dev Portal API: 
@@ -97,15 +97,15 @@ rbac_enabled: true|false
 {:.note}
 > An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
 
-Authentication strategies determine how [published APIs](/konnect/dev-portal/portals/publishing) will be authenticated, and how Developers will create API Keys. 
+Authentication strategies determine how [published APIs](/dev-portal/portals/publishing) will be authenticated, and how Developers will create API Keys. 
 
-Authentication strategies automatically configure the Konnect Gateway service by enabling the Konnect Application Auth (KAA) plugin on that service (for APIs that are [linked](/konnect/dev-portal/apis/gateway-service-link) to a Gateway Service). The KAA plugin can only be configured from the associated Dev Portal.
+Authentication strategies automatically configure the Konnect Gateway service by enabling the Konnect Application Auth (KAA) plugin on that service (for APIs that are [linked](/dev-portal/apis/gateway-service-link) to a Gateway Service). The KAA plugin can only be configured from the associated Dev Portal.
 
 ### Default application authentication strategy 
 
-Determines a default strategy to be applied to any API during publishing. Changing this default will not retroactively change any previously [published APIs](/konnect/dev-portal/portals/publishing).
+Determines a default strategy to be applied to any API during publishing. Changing this default will not retroactively change any previously [published APIs](/dev-portal/portals/publishing).
 
-*To create a new Application Authentication Strategy, see [Application Auth](/konnect/dev-portal/app-reg#authentication-strategies)*
+*To create a new Application Authentication Strategy, see [Application Auth](/dev-portal/app-reg#authentication-strategies)*
 
 {:.note}
 > *Authentication strategy does not affect developers browsing the portal from viewing APIs. To change visibility, see [Default Visibility](#default-visibility) and [Role-based access control](#role-based-access-control).*
@@ -147,13 +147,13 @@ Konnect's Built-in authentication provider is used by default. OIDC or SAML prov
 ### Auto approve developers
 
 * Enabled: anyone can sign up for an account without further approval process. 
-* Disabled: portal admins will have to approve any new signup in [Access and Approvals](/konnect/dev-portal//access-and-approvals).
+* Disabled: portal admins will have to approve any new signup in [Access and Approvals](/dev-portal//access-and-approvals).
 
 ### Auto approve applications
 
 * Enabled: when any approved Developer creates an Application, it will be automatically approved. 
   * Once an application is approved, the Developer will be able to create an API Key. 
-* Disabled: portal admins will have to approve any new Applications before a Developer can create API Keys in [Access and Approvals](/konnect/dev-portal/access-and-approvals).
+* Disabled: portal admins will have to approve any new Applications before a Developer can create API Keys in [Access and Approvals](/dev-portal/access-and-approvals).
 
 <!--
 ### Konnect Dev Portal API: 
@@ -167,7 +167,7 @@ auto_approve_applications: true|false
 
 ## Role-Based Access Control
 
-When RBAC is enabled for a Portal, the option to configure access policies for Developers on APIs will be available during [publishing](/konnect/dev-portal//portals/publishing). Otherwise, any logged in Developer can see any published API that is set to `Visibility: true`.
+When RBAC is enabled for a Portal, the option to configure access policies for Developers on APIs will be available during [publishing](/dev-portal//portals/publishing). Otherwise, any logged in Developer can see any published API that is set to `Visibility: true`.
 
 <!--
 ### {site.konnect_short_name} Dev Portal API: 
@@ -186,7 +186,7 @@ rbac_enabled: true|false
 Authentication strategy determines how published APIs will be authenticated, and how Developers will create API Keys. Authentication strategies automatically configure the Konnect Gateway service by enabling the KAA Application Auth (KAA) plugin on that service. 
 
 **Default application authentication strategy** determines a default strategy to be applied to any newly created API. Changing this default will not retroactively change any previously published APIs.
-To create a new Application Authentication Strategy, navigate to **Application Auth**, more on this in [Enable Self-Service Developer & Application Registration](/konnect/dev-portal/app-reg).
+To create a new Application Authentication Strategy, navigate to **Application Auth**, more on this in [Enable Self-Service Developer & Application Registration](/dev-portal/app-reg).
 
 {:.note}
 > *Authentication strategy does not affect developers browsing the portal from viewing APIs (GA: Pages or Snippets). To change visibility, see [Default Visibility](#default-visibility) and [RBAC](#role-based-access-control).*

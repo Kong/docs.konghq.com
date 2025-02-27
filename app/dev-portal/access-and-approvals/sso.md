@@ -8,14 +8,14 @@ This allows developers to log in to Dev Portals by using their IdP credentials, 
 
 {:.note}
 > This page provides general instructions for configuring SSO across identity providers. 
-See [Set Up SSO with Okta](/konnect/dev-portal/access-and-approval/sso/) for specific instructions on setting up SSO with Okta.
+See [Set Up SSO with Okta](/dev-portal/access-and-approval/sso/) for specific instructions on setting up SSO with Okta.
 
 Keep the following in mind when configuring SSO for Dev Portal:
 
 * Developers are auto-approved by {{site.konnect_short_name}} when they use SSO to log in to the Dev Portal. 
   This is because Kong outsources the approval process to the IdP instance when using SSO. Therefore, you should restrict 
   who can sign up from the IdP rather than through {{site.konnect_short_name}}.
-* If you plan on using [team mappings from an IdP](/konnect/dev-portal/access-and-approval/add-teams), 
+* If you plan on using [team mappings from an IdP](/dev-portal/access-and-approval/add-teams), 
   they must be from the same IdP instance as your SSO.
 * If you have multiple Dev Portals, keep in mind that each Dev Portal has a separate SSO configuration. 
   You can use the same IdP for multiple Dev Portals or different IdPs per Dev Portal.

@@ -3,7 +3,7 @@ title: Set up an audit log replay job
 content_type: how-to
 ---
 
-You can use the {{site.dev-portal_short_name}} Audit Logs API to configure replay jobs for [audit logging](/konnect/dev-portal/audit-logs/). 
+You can use the {{site.dev-portal_short_name}} Audit Logs API to configure replay jobs for [audit logging](/dev-portal/audit-logs/). 
 
 Replay jobs are useful when you have missed audit log entries due to an error or a misconfigured audit
 log webhook. You may have one replay job at a time per region, and request data from up to one week ago.
@@ -12,7 +12,7 @@ A replay job in a region will resend data for the requested timeframe to the web
 ## Prerequisites
 
 * [Org Admin permissions](/konnect/org-management/teams-and-roles/teams-reference/)
-* Your [audit log webhook](/konnect/dev-portal/portals/audit-logs/webhook/) must be enabled and ready to receive data. 
+* Your [audit log webhook](/dev-portal/portals/audit-logs/webhook/) must be enabled and ready to receive data. 
 
 
 ## Configure a replay job
@@ -20,7 +20,7 @@ A replay job in a region will resend data for the requested timeframe to the web
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. In {% konnect_icon dev-portal %} [**Dev Portal**](/konnect/dev-portal/portals), click the Dev Portal you want to configure a replay job for.
+1. In {% konnect_icon dev-portal %} [**Dev Portal**](/dev-portal/portals), click the Dev Portal you want to configure a replay job for.
 
    You can alternatively configure a replay job by navigating to [**Organization > Audit Logs Setup**](https://cloud.konghq.com/global/organization/audit-logs). Under the **Dev Portal** tab, click the Dev Portal you want to configure the replay job for.
 1. Click **Settings** in the sidebar, and then click the **Audit Logs** tab.
@@ -104,8 +104,8 @@ A replay job can be in one of the following statuses:
 | `failed` | The job has failed. |
 
 ## More information
-* [Audit logging in {{site.konnect_short_name}}](/konnect/dev-portal/portalsaudit-logs/)
-* [Set up an audit log webhook](/konnect/dev-portal/portals/audit-logs/webhook/)
+* [Audit logging in {{site.konnect_short_name}}](/dev-portal/portalsaudit-logs/)
+* [Set up an audit log webhook](/dev-portal/portals/audit-logs/webhook/)
 * [Audit log event reference](/konnect/reference/portals/audit-logs/)
 * [Verify audit log signatures](/konnect/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)

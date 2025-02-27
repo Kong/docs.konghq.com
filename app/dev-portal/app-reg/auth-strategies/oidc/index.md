@@ -10,7 +10,7 @@ OpenID Connect (OIDC) is an open authentication protocol that lets users sign in
 - Set up your application, claims, and scopes in your OpenID identity provider
 
 {:.note}
-> Be sure to complete [Prerequisites for all Auth Strategies](/konnect/dev-portal/auth-strategies#prerequisites)
+> Be sure to complete [Prerequisites for all Auth Strategies](/dev-portal/auth-strategies#prerequisites)
 
 ### Create OIDC Auth Strategy
 
@@ -32,7 +32,7 @@ If you do _not_ already have an OIDC Auth Strategy created, we will first create
 
 8. Optional: In **Settings/Security**, select the preferred Default Auth Strategy (default is Konnect's built-in `key-auth`). This will not retroactively change any published APIs, but will change default on new publishing.
 
-9. [/konnect/dev-portal/portals/publishing](Publish an API) with the OIDC Auth Strategy you just created.
+9. [/dev-portal/portals/publishing](Publish an API) with the OIDC Auth Strategy you just created.
 
 Now Developers can access the API using OIDC!
 
@@ -58,11 +58,11 @@ In {{site.konnect_short_name}} can configure and manage multiple authentication 
 This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration, you can manage multiple APIs and configure a different DCR on a per API basis. DCR is one type of strategy for application auth, where {{site.konnect_short_name}} is integrated directly with the IdP to outsource, link, and automate the credential management using that IDP.
 
 1. Configure the auth strategies of your choice:
-  * [Okta](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/okta/)
-  * [Curity](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/curity/)
-  * [Auth0](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/auth0/)
-  * [Azure](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/azure/)
-  * [Custom IdP](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/custom/)
+  * [Okta](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/okta/)
+  * [Curity](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/curity/)
+  * [Auth0](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/auth0/)
+  * [Azure](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/azure/)
+  * [Custom IdP](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/custom/)
 
 2. Apply the auth strategy to your API when [publishing](/konnect/dev-portals/portals/publishing) to the apprpriate Dev Portals.
 -->

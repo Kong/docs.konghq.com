@@ -9,7 +9,7 @@ Your Dev Portal is automatically created with a "Key Auth" Authentication Strate
 ## Create a key auth strategy
 
 {:.note}
-> Be sure to complete [Prerequisites](/konnect/dev-portal/auth-strategies#prerequisites)
+> Be sure to complete [Prerequisites](/dev-portal/auth-strategies#prerequisites)
 
 If you need to create an additional key auth strategy:
 
@@ -24,5 +24,5 @@ If you need to create an additional key auth strategy:
 
 
 {:.note}
-> Be sure you review [Security Settings](/konnect/dev-portal/portals/settings/security) to ensure you have configured your Dev Portal's settings appropriately.
+> Be sure you review [Security Settings](/dev-portal/portals/settings/security) to ensure you have configured your Dev Portal's settings appropriately.
 

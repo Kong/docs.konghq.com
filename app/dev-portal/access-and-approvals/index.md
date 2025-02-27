@@ -2,13 +2,13 @@
 title: Access and Approvals
 ---
 
-When Dev Portal [security settings](/konnect/dev-portal/portals/settings/security#auto-approve-developers) require approval for Developer and Application registration, portal admins will be notified to approve those registratios.
+When Dev Portal [security settings](/dev-portal/portals/settings/security#auto-approve-developers) require approval for Developer and Application registration, portal admins will be notified to approve those registratios.
 
 ## Developers
 
 A list of all Developers registered for the Dev Portal is listed by default. Email addresses for new signups are validated by the registered Developer.
 
-[Learn more](/konnect/dev-portal/access-and-approvals/developers) about the Developer registration process.
+[Learn more](/dev-portal/access-and-approvals/developers) about the Developer registration process.
 
 ### Filters
 
@@ -20,7 +20,7 @@ A list of all Developers registered for the Dev Portal is listed by default. Ema
 In the list, click the three dots menu on the right side of an unapproved Developer, and select **Approve*. The Developer will now be permitted to login to the portal. 
 
 {:.note}
-> If [RBAC is enabled](/konnect/dev-portal/portals/settings/security.md#role-cased-access-control) for the portal, a Developer needs to be added to a [Team](/konnect/dev-portal/access-and-approvals/teams) in order to view specific APIs or register an API in their Applications.
+> If [RBAC is enabled](/dev-portal/portals/settings/security.md#role-cased-access-control) for the portal, a Developer needs to be added to a [Team](/dev-portal/access-and-approvals/teams) in order to view specific APIs or register an API in their Applications.
 
 ### Add Developer to Team
 

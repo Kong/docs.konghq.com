@@ -5,7 +5,7 @@ content_type: how-to
 
 <!-- TODO update API to v3? -->
 
-You can use the {{site.konnect_short_name}} UI or the [Audit Logs](/konnect/api/audit-logs/latest/) and [Portal Management](/konnect/api/portal-management/latest/) APIs to configure webhooks for [audit logging](/konnect/dev-portal/portals/audit-logs/). 
+You can use the {{site.konnect_short_name}} UI or the [Audit Logs](/konnect/api/audit-logs/latest/) and [Portal Management](/konnect/api/portal-management/latest/) APIs to configure webhooks for [audit logging](/dev-portal/portals/audit-logs/). 
 
 <!--
 TODO fix include
@@ -141,8 +141,8 @@ You will receive a `200` response code and a response body with information abou
 
 
 ## More information
-* [Audit logging in {{site.konnect_short_name}}](/konnect/dev-portal/portals/audit-logs/)
+* [Audit logging in {{site.konnect_short_name}}](/dev-portal/portals/audit-logs/)
 * [Audit log event reference](/konnect/reference/audit-logs/)
-* [Set up an audit log replay job](/konnect/dev-portal/portals/audit-logs/replay-job/)
+* [Set up an audit log replay job](/dev-portal/portals/audit-logs/replay-job/)
 * [Verify audit log signatures](/konnect/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)

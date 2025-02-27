@@ -12,7 +12,7 @@ Each geo has their own API keys and specifications for application registration 
 
 ### Konnect Application Auth plugin
 
-When an authentication strategy is applied during [publishing an API](/konnect/dev-portal/apis), {{site.konnect_saas}} enables the Konnect Application Auth (KAA) plugin in the data plane automatically to support the desired mode: key authentication or OpenID Connect (OIDC).
+When an authentication strategy is applied during [publishing an API](/dev-portal/apis), {{site.konnect_saas}} enables the Konnect Application Auth (KAA) plugin in the data plane automatically to support the desired mode: key authentication or OpenID Connect (OIDC).
 
 {:.note}
 The Konnect Application Auth (KAA) plugin added to the Gateway Service is not configurable outside of Dev Portals & APIs.
@@ -44,14 +44,14 @@ Developers are limited to using a single auth strategy per application. For exam
 
 ## Prerequisites
 
-- A Gateway Service configured in Konnect Gateway Manager, and [linked to the published API](/konnect/dev-portal/apis/gateway-service-link) in Dev Portal.
+- A Gateway Service configured in Konnect Gateway Manager, and [linked to the published API](/dev-portal/apis/gateway-service-link) in Dev Portal.
 
 {:.note}
 > An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
 
 ### Dev Portal Security Settings and defaults
 
-In [**Settings/Security**](/konnect/dev-portal/portals/settings/security) for each portal, make appropriate choices to setup Developer & Application registration for your needs.
+In [**Settings/Security**](/dev-portal/portals/settings/security) for each portal, make appropriate choices to setup Developer & Application registration for your needs.
 
 {:.note}
 When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled, and a Default Authentication Strategy will be created as **Key auth**.
@@ -60,11 +60,11 @@ When a new Dev Portal is created, if **Private** is selected, **User Authenticat
 
 2. Optional: Enable **Role-based access control (RBAC)** to control viewing/consuming of APIs in the Dev Portal by defining roles within Teams.
 
-3. Optional: Click the [**Auto Approve**](/konnect/dev-portal/settings/security/) checkbox for Developers and/or Applications to automatically approve all registration requests. Otherwise portal admins will need to approve all registrations.
+3. Optional: Click the [**Auto Approve**](/dev-portal/settings/security/) checkbox for Developers and/or Applications to automatically approve all registration requests. Otherwise portal admins will need to approve all registrations.
 
 4. Optional: Select the preferred **Default Auth Strategy** (default is Konnect's built-in `key-auth`). This will not retroactively change any published APIs, but will set the default on any new published assets.
 
 ### Get started
-* [Key Auth](/konnect/dev-portal/app-reg/auth-strategies/key-auth)
-* [OIDC](/konnect/dev-portal/app-reg/auth-strategies/oidc)
+* [Key Auth](/dev-portal/app-reg/auth-strategies/key-auth)
+* [OIDC](/dev-portal/app-reg/auth-strategies/oidc)
 * DCR: Coming soon!
