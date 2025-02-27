@@ -157,9 +157,9 @@ rules:
 {:.important}
 > **Important:** Granting access actions without binding them to specific resource types provides full access, including to Secrets and GlobalSecrets, posing security risks.
 >
-> For example, an AccessRole with `access: ["CREATE", "UPDATE", "DELETE"]` and no defined `types` allows modifying any resource, including secrets. Even without `GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN`, or `GENERATE_ZONE_TOKEN`, the user can retrieve secrets and generate tokens manually.
+> For example, an AccessRole with `access: ["CREATE", "UPDATE", "DELETE"]` and no defined `types` allows modifying any resource, including secrets. Even without `GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN`, or `GENERATE_ZONE_TOKEN`, the user can retrieve secrets and use them to generate tokens manually.
 >
-> To prevent this, always bind access actions to specific resource types. Instead of unrestricted access, explicitly define allowed types, such as `types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshGatewayRoute"]`.
+> To prevent this, always bind access actions to specific resource types. Instead of unrestricted access, explicitly define allowed types, such as `types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshGatewayRoute"]`, to ensure the role can only manage those resources and not secrets or other sensitive data.
 
 ### AccessRoleBinding
 
