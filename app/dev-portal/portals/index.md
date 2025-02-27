@@ -38,6 +38,9 @@ Your Dev Portal use case might dictate different security settings tailored to y
 
 The only required choices are "Private" or "Public", and provide a name for the Dev Portal. Optionally, you can specify the first API specification to publish. 
 
+![Create Dev Portal](/assets/images/products/konnect/dev-portal-v3/create-portal.png)
+> _**Figure 1:** Create a new Dev Portal_
+
 ### Access control
 During portal creation, "Private" and "Public" change a variety of settings to streamline your onboarding. They can all be changed later in [Settings/Security](/dev-portal/portals/settings/security).
 
