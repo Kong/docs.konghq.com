@@ -9,6 +9,9 @@ The {{site.konnect_short_name}} allows you to publish APIs with OpenAPI specific
 {:.note}
 > *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [stable Dev Portal](/konnect/dev-portal)*
 
+![KongAir Dev Portal](/assets/images/products/konnect/dev-portal-v3/kongair-example.png)
+
+## Get Started
 
 * [Portals](#portals): create Developer Portals with appropriate visibility & access control for each audience.
 * [APIs](#apis): create API specifications & documentation to be published to one or more Dev Portals
