@@ -1,9 +1,7 @@
 ---
 title: Self-Service Developer & Application Registration
-content_type: how-to
+content_type: concepts
 ---
-
-## Self-Service Developer & Application Registration
 
 Konnect Dev Portal provides a variety of flexible options for controlling access to content and APIs. When combined with a Gateway Service, Developers visiting a Dev Portal can register, create an Application, and retrieve API keys without any necessary intervention.
 
@@ -46,23 +44,17 @@ Developers are limited to using a single auth strategy per application. For exam
 
 ## Prerequisites
 
-- An API that is [published to a {{site.konnect_short_name}} Dev Portal](/konnect/dev-portal/portals/publishing).
-
-- If you are using [OpenID Connect](#oidc-flow), set up your application, claims, and scopes in your OpenID identity provider. 
-
 - A Gateway Service configured in Konnect Gateway Manager, and [linked to the published API](/konnect/dev-portal/apis/gateway-service-link) in Dev Portal.
 
 {:.note}
 > An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
 
-## Enable app registration with key authentication {#key-auth-flow}
-
-### Dev Portal Settings and defaults
+### Dev Portal Security Settings and defaults
 
 In [**Settings/Security**](/konnect/dev-portal/portals/settings/security) for each portal, make appropriate choices to setup Developer & Application registration for your needs.
 
 {:.note}
-When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled.
+When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled, and a Default Authentication Strategy will be created as **Key auth**.
 
 1. Enable **User Authentication** to allow developers to register their applications to access APIs.
 
@@ -72,71 +64,7 @@ When a new Dev Portal is created, if **Private** is selected, **User Authenticat
 
 4. Optional: Select the preferred **Default Auth Strategy** (default is Konnect's built-in `key-auth`). This will not retroactively change any published APIs, but will set the default on any new published assets.
 
-### Publish API
-
-Learn more about [Publishing your API to Dev Portals](/konnect/dev-portal/portals/publishing)
-
-## Enable app registration with OpenID Connect {#oidc-flow}
-
-### Create OIDC Auth Strategy
-
-If you do _not_ already have an OIDC Auth Strategy created, we will first create an OIDC Auth strategy.
-
-1. In the Dev Portal menu, navigate to the **Application Auth** tab. Click **New Auth Strategy** to create an auth strategy. Refer to the [configuration parameters section](#openid-config-parameters) for more information about each field.
-
-2. Enter a name to be seen only in {{site.konnect_short_name}} and a display name that will be displayed on your Dev Portal.
-
-3. In the Auth Type dropdown menu select **OpenID-Connect**. Enter the Issuer URL for your OIDC tenant.
-
-4. Enter any scopes your developers may need access to (e.g. openid, profile, email, etc). Note the required scopes may differ depending on your IdP.
-
-5. Enter the Credential Claims which will match the client ID of the corresponding application in your IdP.
-
-6. Select the relevant Auth Methods you need (for example: `client_credentials`, `bearer`, `session`).
-
-7. Click **Save**
-
-8. Optional: In **Settings/Security**, select the preferred Default Auth Strategy (default is Konnect's built-in `key-auth`). This will not retroactively change any published APIs, but will change default on new publishing.
-
-
-### Enable app registration with OIDC
-
-To enable app registration with OpenID Connect for a specific API, be sure you already have an OIDC Auth Strategy created in the **Application Auth**. 
-
-1. In {% konnect_icon api-product %} **Dev Portals/APIs**, select an API.
-
-2. Click **Publish APIs**, select a Dev Portal, and change Auth Strategy to your OIDC-enabled Auth Strategy previously created.
-
-3. Click **Save**.
-
-
-###  OpenID Connect configuration parameters {#openid-config-parameters}
-
-In the `default` control plane group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` control plane groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider. For more background information about OpenID Connect plugin parameters, see [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
-
-   | Form Parameter | Description                                                                       |Required |
-   |:---------------|:----------------------------------------------------------------------------------|--|
-   | `Issuer` | The issuer URL from which the OpenID Connect configuration can be discovered. For example: `https://dev-1234567.okta.com/oauth2/default`.  |**True** |
-   | `Scopes` | The scopes to be requested from the OpenID Provider. Enter one or more scopes separated by spaces, for example: `open_id` `myscope1`.  | **False**
-   | `Credential claims` |  Name of the claim that maps to the unique client id in the identity provider. | **True**
-   | `Auth method` | The supported authentication method(s) you want to enable. This field should contain only the authentication methods that you need to use. Individual entries must be separated by commas. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. | **True**
-   | `Hide Credentials` |**Default: disabled**<br>  Hide the credential from the upstream service. If enabled, the plugin strips the credential from the request header, query string, or request body, before proxying it. | **False** |
-   | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application.| **False**
-
-
-<!-- TODO: DCR support before GA
-## Enable app registration with multiple IdPs
-
-In {{site.konnect_short_name}} can configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
-
-This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration, you can manage multiple APIs and configure a different DCR on a per API basis. DCR is one type of strategy for application auth, where {{site.konnect_short_name}} is integrated directly with the IdP to outsource, link, and automate the credential management using that IDP.
-
-1. Configure the auth strategies of your choice:
-  * [Okta](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/okta/)
-  * [Curity](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/curity/)
-  * [Auth0](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/auth0/)
-  * [Azure](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/azure/)
-  * [Custom IdP](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/custom/)
-
-2. Apply the auth strategy to your API when [publishing](/konnect/dev-portals/portals/publishing) to the apprpriate Dev Portals.
--->
+### Get started
+* [Key Auth](/konnect/dev-portal/app-reg/auth-strategies/key-auth)
+* [OIDC](/konnect/dev-portal/app-reg/auth-strategies/oidc)
+* DCR: Coming soon!
