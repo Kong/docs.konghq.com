@@ -26,11 +26,6 @@ Unless otherwise noted, Kong supports the last 2 versions any third party tool, 
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.37 %}
   {% endnavtab %}
   {% endif_version %}
-  {% if_version gte: 3.6.x %}
-  {% navtab 3.6 %}
-    {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.36 %}
-  {% endnavtab %}
-  {% endif_version %}
   {% navtab 3.4 LTS %}
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.34 %}
   {% endnavtab %}
