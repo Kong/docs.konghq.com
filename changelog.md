@@ -8136,12 +8136,6 @@ Adds a TLS configuration include. This creates a certificate and injects configu
 
 GWAPI does not easily allow adding HTTPS configuration without a TLS Listener, and these Listeners _must_ have a certificate as of GWAPI v0.8. We can't use the default Kong certificates if we don't care about the specific certificates, so we need this include for any guides that touch HTTPS-specific functionality.
 
-#### Modified
-
-- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/fips-support/plugins
-- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/fips-support/plugins
-- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/fips-support/plugins
-
 
 ### [Guide to migrate Zone CP from On-Prem Global CP to Konnect](https://github.com/Kong/docs.konghq.com/pull/6320) (2023-10-23)
 
