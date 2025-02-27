@@ -1,5 +1,5 @@
 ---
-title: Active Tracing - Debugging issues in Dataplanes
+title: Debug Data plane issues and unlock In-Depth Insights with Active Tracing
 content_type: reference
 ---
 
