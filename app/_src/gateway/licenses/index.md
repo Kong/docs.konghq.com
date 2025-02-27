@@ -65,7 +65,7 @@ After the license expires, {{site.base_gateway}} behaves as follows:
 
 * Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.release}}/kong-enterprise/) become read-only.
 * The Admin API allows OSS features to continue working and configured {{site.ee_product_name}} features to continue operating in read-only mode.
-* Proxy traffic, including traffic using Enterprise plugins, continues to be processed as if the license had not expired.
+* Proxy traffic, including traffic using Enterprise plugins, continues to be processed as if the license had expired.
 * Other Enterprise features are not accessible.
 * There may be some Enterprise features that are still writable, but they may also change later, so do not rely on this behavior.
 
