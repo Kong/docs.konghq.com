@@ -333,8 +333,7 @@ items:
             src: /gateway/kong-enterprise/fips-support/index
           - text: Install the FIPS Compliant Package
             url: /kong-enterprise/fips-support/install
-          - text: FIPS 140-2 Compliant Plugins
-            url: /kong-enterprise/fips-support/plugins
+
       - text: Authenticate your Kong Gateway Amazon RDS database with AWS IAM
         url: /kong-enterprise/aws-iam-auth-to-rds-database
       - text: Verify Signatures for Signed Kong Images
