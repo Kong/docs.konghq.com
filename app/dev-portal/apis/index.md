@@ -4,10 +4,13 @@ title: APIs
 
 An API is the interface that you publish to your end customer. Developers register [applications](/dev-portal/access-and-approvals/applications) for use with specific APIs.
 
-As an API Producer, you [publish an OpenAPI specification](/dev-portal/portals/publishing) and additional documentation to help users get started with your API.
+{:.note}
+> *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [stable Dev Portal](/konnect/dev-portal)*
 
 {:.note}
-> If you previously used API Products you may be wondering where the "API Product" concept has gone. API Product will not be used in the Beta Dev Portal, and will not affect your existing API Products, which will only be supported on older Dev Portals.
+> If you previously used API Products, be aware that these are only utilized by our stable [Dev Portal](/konnect/dev-portal). API Products will not be affected by **Dev Portal BETA**, only APIs are used in this context.
+
+As an API Producer, you [publish an OpenAPI specification](/dev-portal/portals/publishing) and additional documentation to help users get started with your API.
 
 {:.note}
 <!-- TODO: composition once we commit to deliver

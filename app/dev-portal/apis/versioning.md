@@ -5,7 +5,7 @@ title: Versioning
 The API entity allows you to set a `version` for your APIs. Each API is identified using the combination of `name+version`. If `version` is not specified, then `name` will be used as the unique identifier. 
 
 {:.note}
-> If you previously used API Products you may be wondering where the "API Product Version" concept has gone. The `version` field is now an optional field on the `API` object.
+> If you previously used API Products, be aware that these are only utilized by our stable [Dev Portal](/konnect/dev-portal). API Version is now an optional field on the `API`.
 
 ## Unversioned APIs
 

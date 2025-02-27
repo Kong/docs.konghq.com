@@ -93,5 +93,7 @@ where `portal.example.com` is your custom domain and `example.edge.us.portal.kon
 URL for your Dev Portal.
 
 {:.note}
->**Note:** If the command returns no output, or the values are incorrect, check the custom domain DNS configuration or contact your DNS provider.
->You may need to reset your Dev Portal domain settings to fix your DNS records, you can do this by [deleting the custom URL](#delete-url) and [setting the portal URL](#update-portal) again.
+> *If the command returns no output, or the values are incorrect, check the custom domain DNS configuration or contact your DNS provider.*
+
+{:.note}
+> *You may need to reset your Dev Portal domain settings to fix your DNS records, you can do this by [deleting the custom URL](#delete-url) and [setting the portal URL](#update-portal) again.*

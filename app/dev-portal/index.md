@@ -6,6 +6,10 @@ The {{site.konnect_short_name}} is a customizable website for developers to loca
 
 The {{site.konnect_short_name}} allows you to publish APIs with OpenAPI specifications and/or Markdown documentation, to enable developers to locate, access, and consume API services. Highly customizable content can be also provided at the site-level, as well as API-level, to provide additional context to the APIs.
 
+{:.note}
+> *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [stable Dev Portal](/konnect/dev-portal)*
+
+
 * [Portals](#portals): create Developer Portals with appropriate visibility & access control for each audience.
 * [APIs](#apis): create API specifications & documentation to be published to one or more Dev Portals
 * [Developer Self Service](#developer-self-service): create authentication strategies that define how Developers will acquire API keys.
@@ -23,8 +27,7 @@ Konnect Dev Portal APIs are a repository of API specifications and documentation
 [Get started](/dev-portal/apis) creating your APIs.
 
 {:.note}
-> **API Products** are not utilized by Beta Dev Portals, API Products are only used in the previous version of Dev Portals.
-
+> **API Products** are not utilized by Beta Dev Portals, API Products are only used in the [stable version](/konnect/dev-portal) of Dev Portal.
 
 ## Developer Self-Service
 

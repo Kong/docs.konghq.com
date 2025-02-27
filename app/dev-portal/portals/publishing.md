@@ -22,10 +22,10 @@ In both cases, you'll see the same dialog.
 Visibility, Authentication strategies, and User authentication can be independently configured to maximize flexibility in how you publish your API to a given Developer audience.
 
 {:.note}
-> *Visibility of [Pages](/dev-portal/portals/customization/custom-pages) and [Menus](/dev-portal/portals/customization/customization.md) are configured independently from APIs, maximizing your flexibility.
+> *Visibility of [Pages](/dev-portal/portals/customization/custom-pages) and [Menus](/dev-portal/portals/customization/customization.md) are configured independently from APIs, maximizing your flexibility.*
 
 {:.note}
-> An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies. 
+> *An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.*
 
 #### Viewable by anyone, no self-service credentials
 Anyone can view the API's specs and documentation, but cannot generate credentials/API keys. No Developer registration is required.

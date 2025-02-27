@@ -10,7 +10,7 @@ OpenID Connect (OIDC) is an open authentication protocol that lets users sign in
 - Set up your application, claims, and scopes in your OpenID identity provider
 
 {:.note}
-> Be sure to complete [Prerequisites for all Auth Strategies](/dev-portal/auth-strategies#prerequisites)
+> *Be sure to complete [Prerequisites for all Auth Strategies](/dev-portal/auth-strategies#prerequisites)*
 
 ### Create OIDC Auth Strategy
 

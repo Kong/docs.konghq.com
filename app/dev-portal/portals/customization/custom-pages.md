@@ -51,7 +51,7 @@ Newly created pages are in `Draft` status by default. With the Page selected on 
 In the top right corner, click the menu with three dots. You can toggle from `Private` to `Public`, and vice versa.
 
 {:.note}
-> * Fine-grained RBAC is currently not supported in Beta Dev Portals, but will be coming soon
+> * **Coming soon:** RBAC settings for Pages.*
 
 ## Create a Child Page
 

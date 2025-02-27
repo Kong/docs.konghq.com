@@ -15,7 +15,7 @@ Each geo has their own API keys and specifications for application registration 
 When an authentication strategy is applied during [publishing an API](/dev-portal/apis), {{site.konnect_saas}} enables the Konnect Application Auth (KAA) plugin in the data plane automatically to support the desired mode: key authentication or OpenID Connect (OIDC).
 
 {:.note}
-The Konnect Application Auth (KAA) plugin added to the Gateway Service is not configurable outside of Dev Portals & APIs.
+> *The Konnect Application Auth (KAA) plugin added to the Gateway Service is not configurable outside of Dev Portals & APIs.*
 
 ### Authentication strategies
 
@@ -37,24 +37,24 @@ flowchart TB
 <!--vale on-->
 
 {:.note}
-Auth Configs are independently configured entities, meaning they can be used by multiple APIs (for example, Weather API v2 and Maps API v2 in Staging Portal both use the Okta OIDC config). Independently configured Auth Configs also give you the flexibility to configure the same API Product version to use different auth strategies in different portals. For example, Maps v2 uses the Okta OIDC Auth Config in the Staging Portal, and the Auth0 OIDC Auth Config in the Production portal.
+> *Auth Configs are independently configured entities, meaning they can be used by multiple APIs (for example, Weather API v2 and Maps API v2 in Staging Portal both use the Okta OIDC config). Independently configured Auth Configs also give you the flexibility to configure the same API Product version to use different auth strategies in different portals. For example, Maps v2 uses the Okta OIDC Auth Config in the Staging Portal, and the Auth0 OIDC Auth Config in the Production portal.*
 
 {:.note}
-Developers are limited to using a single auth strategy per application. For example, they can create an application to register for both Weather v2 and Maps v2, as both employ `okta-oidc`, however, registering for Weather v1 and Weather v2 within the same application isn't possible due to their differing auth configurations.
+> *Developers are limited to using a single auth strategy per application. For example, they can create an application to register for both Weather v2 and Maps v2, as both employ `okta-oidc`, however, registering for Weather v1 and Weather v2 within the same application isn't possible due to their differing auth configurations.*
 
 ## Prerequisites
 
 - A Gateway Service configured in Konnect Gateway Manager, and [linked to the published API](/dev-portal/apis/gateway-service-link) in Dev Portal.
 
 {:.note}
-> An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.
+> *An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.*
 
 ### Dev Portal Security Settings and defaults
 
 In [**Settings/Security**](/dev-portal/portals/settings/security) for each portal, make appropriate choices to setup Developer & Application registration for your needs.
 
 {:.note}
-When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled, and a Default Authentication Strategy will be created as **Key auth**.
+> *When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled, and a Default Authentication Strategy will be created as **Key auth**.*
 
 1. Enable **User Authentication** to allow developers to register their applications to access APIs.
 

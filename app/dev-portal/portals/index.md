@@ -4,6 +4,12 @@ title: Create a Dev Portal
 
 The Konnect Dev Portal is a customizable website for developers to locate, access, and consume API services.
 
+{:.note}
+> *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [stable Dev Portal](/konnect/dev-portal)*
+
+{:.note}
+> *When referring to Konnect APIs for the Beta (Dev Portal and APIs), please use `v3`.*
+
 ### Get started
 
 Your Dev Portal use case might dictate different security settings tailored to your audience. While this is not comprehensive of all possibilities, these are typical scenarios. Keep in mind it's quite common to have multiple Dev Portals, and your APIs are shared across them. 

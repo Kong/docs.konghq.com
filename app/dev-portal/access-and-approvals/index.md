@@ -4,6 +4,10 @@ title: Access and Approvals
 
 When Dev Portal [security settings](/dev-portal/portals/settings/security#auto-approve-developers) require approval for Developer and Application registration, portal admins will be notified to approve those registratios.
 
+{:.note}
+> *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [stable Dev Portal](/konnect/dev-portal)*
+
+
 ## Developers
 
 A list of all Developers registered for the Dev Portal is listed by default. Email addresses for new signups are validated by the registered Developer.
