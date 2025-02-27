@@ -3,13 +3,37 @@ title: Active Tracing - Debugging issues in Dataplanes
 content_type: reference
 ---
 
-The Active Tracing feature allows Control Plane Administrators to initiate "deep tracing" sessions in selected Dataplanes. During an active tracing session, the selected Dataplane records Open Telemetry compatible Traces with very detailed spans covering the entire request and response lifecycle for all requests that match a supplied sampling criteria. These traces are pushed up to Konnect where they can inspected using the Konnect builtin span viewer. No additional instrumentation or telemetry technology is needed for generating these traces. 
+Active tracing enables control plane administrators to initiate targeted "deep tracing" sessions in specific data plane nodes. During an active tracing session, the selected data plane generates detailed, OpenTelemetry-compatible traces for all requests matching the sampling criteria. The detailed spans are captured for the entire request/response lifecycle. These traces can be visualized with Konnect's built-in span viewer with no additional instrumentation or telemetry tools.
 
-These deep traces are only generated during a live Active-Tracing session. These traces cannot be generated with 3rd party telemetry software. "Active Tracing" can have an impact on throughput under heavy load conditions. Active-Tracing itself adds negligible latency to request-response processing under normal load conditions.
+Konnect's active tracing offers exclusive, in-depth insights that cannot be replicated by third-party telemetry tools. The detailed traces generated during live active tracing session are unique to Kong and provide unparalleled visibility into system performance.
 
-Where feasible span and attribute naming conventions follow OpenTelemetry naming standards.
+Active Tracing may affect throughput under heavy loads, but adds negligible latency under normal conditions
 
-You can start a tracing session by navigating to Gateway Manager, choosing a Control Plane and selecting the "Active Tracing" menu option. A sample trace can be seen below. It is clear from inspecting the spans that the bulk of the latency occurs in the pre-function "plugin" running in the access phase. 
+Active Tracing adheres to OpenTelemetry naming conventions for spans and attributes, wherever possible, ensuring consistency and interoperability.
+
+
+## Get Started with tracing
+
+Active Tracing requires the following **data plane version** and **environment variables** in `kong.conf`:
+
+- **Version:** 3.9+
+- **Environment Variables:**
+  - `KONG_CLUSTER_RPC=on`
+  - `KONG_ACTIVE_TRACING=on`
+
+## Start a Tracing Session
+
+1. Navigate to **Gateway Manager**.
+2. Select a **Control Plane** with an appropriate data plane connected.
+3. Click **"Start a tracing session"**, specify an optional name, and click **Start**.
+
+Once started, traces will begin to be captured. The **default session duration** is **5 minutes**.  
+For **advanced sampling rules**, specify the desired criteria.
+
+## Sample Trace
+
+A sample trace is shown below. By inspecting the **spans**, it is clear that the **bulk of the latency** occurs in the **pre-function plugin** during the **access phase**.
+
 
 ![Active-Tracing Spans](/assets/images/products/gateway/active-tracing-spans.png)
 
