@@ -1,0 +1,19 @@
+name: AI Rag Injector
+search_aliases:
+  - ai
+  - llm
+  - artificial
+  - intelligence
+  - language
+  - model
+dbless_compatible: yes
+free: true
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - ai
+publisher: Kong Inc.
+desc: Automatically inject documents to simplify building RAG pipeline
+type: plugin
