@@ -15,9 +15,9 @@ Active Tracing adheres to OpenTelemetry naming conventions for spans and attribu
 - Samplign criteria can be defined with simple expressions language ex: http.method == "GET"
 - Trace sessions are retained for upto 7 days
 
-Although active tracing is desinged to be as a debug and troubleshooting tool, it can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, active tracing adds negligible latency. However it may affect throughput under heavy loads.
+Although active tracing is desinged to be as a debug and troubleshooting tool, it can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, active tracing adds negligible latency. However, under heavy loads, it may affect the throughput.
 
-## Get Started with tracing
+## Get Started with Tracing
 
 Active Tracing requires the following **data plane version** and **environment variables** in `kong.conf`:
 
@@ -33,10 +33,17 @@ Active Tracing requires the following **data plane version** and **environment v
 3. Click on **Active Tracing** in left navigation menu.
 4. Click **"New tracing session"**, define the criteria and, click **Start Session**.
 
-Once started, traces will begin to be captured and shown. The **default session duration** is **5 minutes** or **200 traces per session**. Note the sessions are retained for upto **7 days**
+Once started, traces will begin to be captured. Click on a trace to visualize it in the traceviewer.
 
-For **advanced sampling rules**, specify the desired criteria using expression. For example, to capture traces for all requests matching 503 response code, specify the following rule
-- http.response.status_code==503
+The **default session duration** is **5 minutes** or **200 traces per session**. Note the sessions are retained for upto 7 days
+
+### Sampling Rules
+
+To capture only the relevant API traffic, use sampling rules. Sampling rules filter and refine the requests to be matched. The matching requests are then traced and captured in the session. There are two options. **Basic sampling rules** allow filtering on route and services. For **advanced sampling rules**, specify the desired criteria using expressions. For example, to capture traces for all requests matching 503 response code, specify the following rule
+
+```
+http.response.status_code==503
+```
 
 
 ## Sample Trace
@@ -47,7 +54,7 @@ A sample trace is shown below. By inspecting the **spans**, it is clear that the
 ![Active-Tracing Spans](/assets/images/products/gateway/active-tracing-spans.png)
 
 
-#### Full list of spans and associated attributes:
+#### List of Spans and Associated Attributes:
 <table>
   <thead>
     <th>Span Name</th>
