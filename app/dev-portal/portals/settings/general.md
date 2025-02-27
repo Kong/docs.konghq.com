@@ -19,4 +19,4 @@ description: Start building and innovating with our APIs
 
 ## Custom Domains
 
-Learn more about configuring [Custom Domains](custom-domains)
+Learn more about configuring [Custom Domains](/konnect/dev-portal/portals/settings/custom-domains)

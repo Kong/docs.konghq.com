@@ -5,9 +5,9 @@ content_type: how-to
 
 <!-- TODO update API to v3? -->
 
-You can use the {{site.konnect_short_name}} UI or the [Audit Logs](/konnect/api/audit-logs/latest/) and [Portal Management](/konnect/api/portal-management/latest/) APIs to configure webhooks for [audit logging](/konnect/dev-portal/audit-logging/). 
+You can use the {{site.konnect_short_name}} UI or the [Audit Logs](/konnect/api/audit-logs/latest/) and [Portal Management](/konnect/api/portal-management/latest/) APIs to configure webhooks for [audit logging](/konnect/dev-portal/portals/audit-logs/). 
 
-{% include_cached /md/konnect/audit-logging/webhook-overview-prereq-siem-config.md desc='Dev Portal' %}
+{% include_cached /md/konnect/audit-logs/webhook-overview-prereq-siem-config.md desc='Dev Portal' %}
 
 
 ## Create a webhook
@@ -139,8 +139,8 @@ You will receive a `200` response code and a response body with information abou
 
 
 ## More information
-* [Audit logging in {{site.konnect_short_name}}](/konnect/dev-portal/audit-logging/)
+* [Audit logging in {{site.konnect_short_name}}](/konnect/dev-portal/portals/audit-logs/)
 * [Audit log event reference](/konnect/reference/audit-logs/)
-* [Set up an audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+* [Set up an audit log replay job](/konnect/dev-portal/portals/audit-logs/replay-job/)
 * [Verify audit log signatures](/konnect/reference/verify-signatures/)
 * [Audit Logs API](/konnect/api/audit-logs/latest/)

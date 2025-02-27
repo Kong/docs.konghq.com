@@ -14,13 +14,13 @@ The {{site.konnect_short_name}} allows you to publish APIs with OpenAPI specific
 
 {{site.konnect_short_name}} allows you to publish, document and secure APIs to drive adoption for any developer audience. Multiple Dev Portals can be created based on a selection of APIs, set to appropriate visibility and access control. 
 
-[Get started](portals) creating your first Dev Portal.
+[Get started](/konnect/dev-portal/portals) creating your first Dev Portal.
 
 ## APIs
 
 Konnect Dev Portal APIs are a repository of API specifications and documentation, optionally versioned, which can be published to one or more portals. This allows you to maintain a source of truth for all of your APIs, and publish those APIs to Dev Portals which address developer audiences with appropriate access controls.
 
-[Get started](APIs) creating your APIs.
+[Get started](/konnect/dev-portal/apis) creating your APIs.
 
 {:.note}
 > **API Products** are not utilized by Beta Dev Portals, API Products are only used in the previous version of Dev Portals.
@@ -30,9 +30,9 @@ Konnect Dev Portal APIs are a repository of API specifications and documentation
 
 Common ways to get started in configuring appropriate access controls for Developers to acquire API keys.
 
-* [Enabling and disabling application registration](app-reg/) - This explains how to grant and revoke application registration access.
+* [Enabling and disabling application registration](/konnect/dev-portal/app-reg/) - This explains how to grant and revoke application registration access.
 
-* [Access and approvals](access-and-approvals/) - The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal, including Developer and Application registration. Additionally, Teams can be created to provide role-based access to  set of APIs to a set of Developers.
+* [Access and approvals](/konnect/dev-portal/access-and-approvals/) - The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal, including Developer and Application registration. Additionally, Teams can be created to provide role-based access to  set of APIs to a set of Developers.
 
 
 <!--

@@ -18,7 +18,7 @@ Main Menus are a flat list of links that will be added to the header of every pa
 
 Footer Menus allow you to create a set of columns with links for global navigation. Select **Footer Sections Menu** from the dropdown list to begin creating your menus.
 
-Footer Sections create vertical columns across the bottom of every Page, with the Logo from [Appearance](appearance) on the left side. It's best to create your desired Footer Sections before creating Footer Menu Items.
+Footer Sections create vertical columns across the bottom of every Page, with the Logo from [Appearance](/konnect/dev-portal/portals/appearance) on the left side. It's best to create your desired Footer Sections before creating Footer Menu Items.
 
 Footer Menu Items are links to any URL you prefer, with a title to be displayed. Items must specify a Footer Menu Section.
 

@@ -13,4 +13,4 @@ Konnect APIs support linking to a Konnect Gateway Service, in order to enable De
 * Select the appropriate Control Plane and Gateway Service
 * Click **Submit**
 
-In order for the Gateway Service to actually restrict access to the API, [learn more](../app-reg/index.md) about the configuring Developer & Application Registration for your Dev Portal.
+In order for the Gateway Service to actually restrict access to the API, [learn more](/konnect/dev-portal/app-reg/index.md) about the configuring Developer & Application Registration for your Dev Portal.

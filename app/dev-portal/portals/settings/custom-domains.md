@@ -2,7 +2,7 @@
 title: Custom Domains for Dev Portal
 ---
 
-Konnect integrates domain name management and configuration in [Settings](general). Select your Dev Portal and click **Settings** to view your configuration.
+Konnect integrates domain name management and configuration in [Settings](/konnect/dev-portal/settings/general). Select your Dev Portal and click **Settings** to view your configuration.
 
 ## Dev Portal 
 

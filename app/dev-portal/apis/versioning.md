@@ -25,7 +25,7 @@ To create a versioned API, specify the `version` field when creating an API:
 curl -X POST -H 'Content-Type: application/json' https://us.api.konghq.com/v3/apis -d '{"name": "My Test API", "version": "v3"}'
 ```
 
-This API will be accessible as `my-test-api-v3` in your list of APIs. The API will not be visible in a portal until you [publish](../portals/publishing).
+This API will be accessible as `my-test-api-v3` in your list of APIs. The API will not be visible in a portal until you [publish](/konnect/dev-portal/portals/publishing).
 
 The `version` field is a free text string. This allows you to follow semantic versioning (e.g. `v1`, `v2`), date based versioning (e.g. `2024-05-10`, `2024-10-22`) or any custom naming scheme (e.g. `a1b2c3-internal-xxyyzz00`)
 

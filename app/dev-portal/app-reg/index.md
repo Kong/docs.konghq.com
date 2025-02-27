@@ -74,7 +74,7 @@ When a new Dev Portal is created, if **Private** is selected, **User Authenticat
 
 ### Publish API
 
-Learn more about [Publishing your API to Dev Portals](../portals/publishing)
+Learn more about [Publishing your API to Dev Portals](/konnect/dev-portal/portals/publishing)
 
 ## Enable app registration with OpenID Connect {#oidc-flow}
 
@@ -132,11 +132,11 @@ In {{site.konnect_short_name}} can configure and manage multiple authentication 
 This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration, you can manage multiple APIs and configure a different DCR on a per API basis. DCR is one type of strategy for application auth, where {{site.konnect_short_name}} is integrated directly with the IdP to outsource, link, and automate the credential management using that IDP.
 
 1. Configure the auth strategies of your choice:
-  * [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
-  * [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity/)
-  * [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/)
-  * [Azure](/konnect/dev-portal/applications/dynamic-client-registration/azure/)
-  * [Custom IdP](/konnect/dev-portal/applications/dynamic-client-registration/custom/)
+  * [Okta](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/okta/)
+  * [Curity](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/curity/)
+  * [Auth0](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/auth0/)
+  * [Azure](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/azure/)
+  * [Custom IdP](/konnect/dev-portal/app-reg/auth-strategies/dynamic-client-registration/custom/)
 
 2. Apply the auth strategy to your API when [publishing](/konnect/dev-portals/portals/publishing) to the apprpriate Dev Portals.
 -->

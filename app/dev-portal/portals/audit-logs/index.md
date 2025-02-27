@@ -8,8 +8,8 @@ Dev Portal audit logs are set up and managed separately from org-wide {{site.kon
 {% include_cached /md/konnect/audit-logging/audit-log-overview.md %}
     
 ## More information
-* [Set up an portal audit log webhook](/konnect/dev-portal/audit-logging/webhook/)
-* [Set up an portal audit log replay job](/konnect/dev-portal/audit-logging/replay-job/)
+* [Set up an portal audit log webhook](/konnect/dev-portal/portals/audit-logs/webhook/)
+* [Set up an portal audit log replay job](/konnect/dev-portal/portals/audit-logs/replay-job/)
 * [Portal Audit log event reference](/konnect/reference/audit-logs/)
 * [Verify audit log signatures](/konnect/reference/verify-signatures/)
 * [Dev Portal Audit Logs API](/konnect/api/audit-logs/latest/)

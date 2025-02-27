@@ -2,7 +2,7 @@
 title: Developer Teams
 ---
 
-Teams are provided to define [Role-based access control (RBAC)](../portals/settings/security.md#role-cased-access-control). When User Autentication and RBAC are enabled, only logged in Developers assigned to a team will be able to view or generate credentials / API keys for the APIs in that Team.
+Teams are provided to define [Role-based access control (RBAC)](/konnect/dev-portal/portals/settings/security.md#role-cased-access-control). When User Autentication and RBAC are enabled, only logged in Developers assigned to a team will be able to view or generate credentials / API keys for the APIs in that Team.
 
 ## Create a Team
 
@@ -23,4 +23,4 @@ From the **APIs** tab, click **Add**. Select one of the previously created APIs,
 In the list of Teams, click the three dots menu on the right side, and select **Add Developer**. Select the approriate Developer(s) from the list, and click Save.
 
 {:.note}
-> Developers can also be added to a team from the list of [Developers](developers).
+> Developers can also be added to a team from the list of [Developers](/konnect/dev-portal/access-and-approvals/developers).
