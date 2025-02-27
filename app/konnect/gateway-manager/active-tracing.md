@@ -1,34 +1,43 @@
 ---
-title: Debug Data plane issues and unlock In-Depth Insights with Active Tracing
+title: Active Tracing in Konnect
 content_type: reference
 ---
 
 Active tracing enables control plane administrators to initiate targeted "deep tracing" sessions in specific data plane nodes. During an active tracing session, the selected data plane generates detailed, OpenTelemetry-compatible traces for all requests matching the sampling criteria. The detailed spans are captured for the entire request/response lifecycle. These traces can be visualized with Konnect's built-in span viewer with no additional instrumentation or telemetry tools.
 
-Konnect's active tracing offers exclusive, in-depth insights that cannot be replicated by third-party telemetry tools. The detailed traces generated during live active tracing session are unique to Kong and provide unparalleled visibility into system performance.
-
-Active Tracing may affect throughput under heavy loads, but adds negligible latency under normal conditions
+Konnect's active tracing capability offers exclusive, in-depth insights that cannot be replicated by third-party telemetry tools. The detailed traces generated during live active tracing session are unique to Kong and provide unparalleled visibility into system performance. 
 
 Active Tracing adheres to OpenTelemetry naming conventions for spans and attributes, wherever possible, ensuring consistency and interoperability.
 
+## Key Highlights
+- Traces can be generated for a service or per route
+- Refined traces can be generated for all requests matching a sampling criteria
+- Samplign criteria can be defined with simple expressions language ex: http.method == "GET"
+- Trace sessions are retained for upto 7 days
+
+Although active tracing is desinged to be as a debug and troubleshooting tool, it can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, active tracing adds negligible latency. However it may affect throughput under heavy loads.
 
 ## Get Started with tracing
 
 Active Tracing requires the following **data plane version** and **environment variables** in `kong.conf`:
 
-- **Version:** 3.9+
+- **Version:** 3.9 or above
 - **Environment Variables:**
   - `KONG_CLUSTER_RPC=on`
   - `KONG_ACTIVE_TRACING=on`
 
-## Start a Tracing Session
+## Start a Trace Session
 
 1. Navigate to **Gateway Manager**.
-2. Select a **Control Plane** with an appropriate data plane connected.
-3. Click **"Start a tracing session"**, specify an optional name, and click **Start**.
+2. Select a **Control Plane** which has the data plane to be traced.
+3. Click on **Active Tracing** in left navigation menu.
+4. Click **"New tracing session"**, define the criteria and, click **Start Session**.
 
-Once started, traces will begin to be captured. The **default session duration** is **5 minutes**.  
-For **advanced sampling rules**, specify the desired criteria.
+Once started, traces will begin to be captured and shown. The **default session duration** is **5 minutes** or **200 traces per session**. Note the sessions are retained for upto **7 days**
+
+For **advanced sampling rules**, specify the desired criteria using expression. For example, to capture traces for all requests matching 503 response code, specify the following rule
+- http.response.status_code==503
+
 
 ## Sample Trace
 
