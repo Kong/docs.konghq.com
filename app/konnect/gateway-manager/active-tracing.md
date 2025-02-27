@@ -9,7 +9,7 @@ Konnect's active tracing capability offers exclusive, in-depth insights that can
 
 Active Tracing adheres to OpenTelemetry naming conventions for spans and attributes, wherever possible, ensuring consistency and interoperability.
 
-## Key Highlights
+## Key highlights
 - Traces can be generated for a service or per route
 - Refined traces can be generated for all requests matching a sampling criteria
 - Samplign criteria can be defined with simple expressions language ex: http.method == "GET"
@@ -17,7 +17,7 @@ Active Tracing adheres to OpenTelemetry naming conventions for spans and attribu
 
 Although active tracing is desinged to be as a debug and troubleshooting tool, it can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, active tracing adds negligible latency. However, under heavy loads, it may affect the throughput.
 
-## Get Started with Tracing
+## Get started with tracing
 
 Active Tracing requires the following **data plane version** and **environment variables** in `kong.conf`:
 
@@ -26,7 +26,7 @@ Active Tracing requires the following **data plane version** and **environment v
   - `KONG_CLUSTER_RPC=on`
   - `KONG_ACTIVE_TRACING=on`
 
-## Start a Trace Session
+## Start a trace session
 
 1. Navigate to **Gateway Manager**.
 2. Select a **Control Plane** which has the data plane to be traced.
@@ -37,7 +37,7 @@ Once started, traces will begin to be captured. Click on a trace to visualize it
 
 The **default session duration** is **5 minutes** or **200 traces per session**. Note the sessions are retained for upto 7 days
 
-### Sampling Rules
+### Sampling rules
 
 To capture only the relevant API traffic, use sampling rules. Sampling rules filter and refine the requests to be matched. The matching requests are then traced and captured in the session. There are two options. **Basic sampling rules** allow filtering on route and services. For **advanced sampling rules**, specify the desired criteria using expressions. For example, to capture traces for all requests matching 503 response code, specify the following rule
 
@@ -46,7 +46,7 @@ http.response.status_code==503
 ```
 
 
-## Sample Trace
+## Sample trace
 
 A sample trace is shown below. By inspecting the **spans**, it is clear that the **bulk of the latency** occurs in the **pre-function plugin** during the **access phase**.
 
@@ -54,7 +54,7 @@ A sample trace is shown below. By inspecting the **spans**, it is clear that the
 ![Active-Tracing Spans](/assets/images/products/gateway/active-tracing-spans.png)
 
 
-#### List of Spans and Associated Attributes:
+#### List of spans and associated attributes:
 <table>
   <thead>
     <th>Span Name</th>
