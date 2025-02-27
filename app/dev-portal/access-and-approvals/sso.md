@@ -28,7 +28,9 @@ combine built-in authentication with _either_ OIDC or SAML based SSO. Combining 
 Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after 
 successfully testing the configurations in these guides.
 
-{% include_cached /md/konnect/generic-sso.md desc='Dev Portal' %}
+<!-- TODO fix include
+ include_cached /md/konnect/generic-sso.md desc='Dev Portal' %}
+ -->
 
 ## Related links
 

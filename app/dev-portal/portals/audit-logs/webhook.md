@@ -7,8 +7,10 @@ content_type: how-to
 
 You can use the {{site.konnect_short_name}} UI or the [Audit Logs](/konnect/api/audit-logs/latest/) and [Portal Management](/konnect/api/portal-management/latest/) APIs to configure webhooks for [audit logging](/konnect/dev-portal/portals/audit-logs/). 
 
-{% include_cached /md/konnect/audit-logs/webhook-overview-prereq-siem-config.md desc='Dev Portal' %}
-
+<!--
+TODO fix include
+ include_cached /md/konnect/audit-logs/webhook-overview-prereq-siem-config.md desc='Dev Portal' %}
+-->
 
 ## Create a webhook
 
