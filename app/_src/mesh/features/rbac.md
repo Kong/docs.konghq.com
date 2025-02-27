@@ -155,36 +155,17 @@ rules:
 {% endnavtabs %}
 
 {:.important}
-> **Important:** Specifying access actions without binding them to specific resources grants access to all resources, including Secrets and GlobalSecrets, which can lead to security risks.
+> **Important:** Granting access actions without binding them to specific resource types  
+> provides full access, including to Secrets and GlobalSecrets, posing security risks.
 >
-> For example, consider the following AccessRole:
+> For example, an AccessRole with `access: ["CREATE", "UPDATE", "DELETE"]` and no  
+> defined `types` allows modifying any resource, including secrets. Even without  
+> `GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN`, or  
+> `GENERATE_ZONE_TOKEN`, the user can retrieve secrets and generate tokens manually.
 >
-> ```yaml
-> type: AccessRole
-> name: custom-role
-> rules:
-> - access: ["CREATE", "UPDATE", "DELETE"]
-> ```
->
-> If assigned to a user, this role allows them to get, create, update, and delete any resource in the system, including secrets. This means that even without explicitly granting actions like:
->
-> ```yaml
-> access: ["GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"]
-> ```
->
-> The user could manually retrieve secrets used for signing tokens and generate them.
->
-> To avoid unintended access, always specify access actions carefully and bind them to specific resource types. For example:
->
-> ```yaml
-> type: AccessRole
-> name: restricted-role
-> rules:
-> - types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshGatewayRoute"]
->   access: ["CREATE", "UPDATE", "DELETE"]
-> ```
->
-> This ensures that the user can only perform the specified actions on `MeshHTTPRoute`, `MeshTCPRoute`, and `MeshGatewayRoute` resources, preventing access to secrets or other sensitive data.
+> To prevent this, always bind access actions to specific resource types. Instead of  
+> unrestricted access, explicitly define allowed types, such as  
+> `types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshGatewayRoute"]`.
 
 ### AccessRoleBinding
 
