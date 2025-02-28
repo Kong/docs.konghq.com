@@ -45,7 +45,7 @@ Active Tracing requires the following **data plane version** and **environment v
   - `KONG_CLUSTER_RPC=on`
   - `KONG_ACTIVE_TRACING=on`
 
-## Start a trace session
+### Start a trace session
 
 1. Navigate to **Gateway Manager**.
 2. Select a **Control Plane** which has the data plane to be traced.
