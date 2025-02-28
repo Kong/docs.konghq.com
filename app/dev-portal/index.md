@@ -7,7 +7,7 @@ Konnect Dev Portal is a customizable website for developers to locate, access, a
 Konnect Dev Portal's **APIs** allows you to publish APIs with OpenAPI specifications and/or Markdown documentation, to enable developers to locate, access, and consume API services. Highly customizable content can be also provided at the site-level, as well as API-level, to provide additional context to the APIs.
 
 {:.note}
-> *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [stable Dev Portal](/konnect/dev-portal)*
+> *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
 
 ![KongAir Dev Portal](/assets/images/products/konnect/dev-portal-v3/kongair-example.png)
 
@@ -30,7 +30,7 @@ Konnect Dev Portal APIs are a repository of API specifications and documentation
 [Get started](/dev-portal/apis) creating your APIs.
 
 {:.note}
-> **API Products** are not utilized by Beta Dev Portals, API Products are only used in the [stable version](/konnect/dev-portal) of Dev Portal.
+> **API Products** are not utilized by Beta Dev Portals, API Products are only used in the [classic version](/konnect/dev-portal) of Dev Portal.
 
 ## Developer Self-Service
 
