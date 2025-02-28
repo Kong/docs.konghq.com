@@ -209,14 +209,14 @@ metadata:
   name: default
 spec:
   subjects:
-    - type: Group
-      name: mesh-system:admin
-    # The `system:serviceaccounts:kube-system` group is required by Kubernetes controllers to manage {{site.mesh_product_name}} 
-    # resources, for example, cleaning up data plane objects when a namespace is removed.
-    - type: Group
-      name: system:serviceaccounts:kube-system
+  - type: Group
+    name: mesh-system:admin
+  # The `system:serviceaccounts:kube-system` group is required by Kubernetes controllers to manage {{site.mesh_product_name}} 
+  # resources, for example, cleaning up data plane objects when a namespace is removed.
+  - type: Group
+    name: system:serviceaccounts:kube-system
   roles:
-    - admin
+  - admin
 ```
 {% endnavtab %}
 {% navtab Universal %}
@@ -224,10 +224,10 @@ spec:
 type: AccessRoleBinding
 name: default
 subjects:
-  - type: Group
-    name: mesh-system:admin
+- type: Group
+  name: mesh-system:admin
 roles:
-  - admin
+- admin
 ```
 {% endnavtab %}
 {% endnavtabs %}
