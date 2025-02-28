@@ -232,8 +232,6 @@ roles:
 {% endnavtab %}
 {% endnavtabs %}
 
-With this configuration, only users in the `mesh-system:admin` group will have admin rights.
-
 ## Example roles
 
 Let's go through example roles in the organization that can be created using {{site.mesh_product_name}} RBAC.
