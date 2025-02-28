@@ -52,15 +52,15 @@ All developers must register through the {{site.konnect_short_name}} Dev Portal.
     
     * **If you want to create an application for one API:** 
         1. Click **Catalog**. 
-        1. Find the API product version you want to register for and click **Register**. 
-        1. Select **Create an application**. Kong will auto select the appropriate authentication strategy for the API product version you’re registering for.
+        2. Find the API you want to register for and click **Register**. 
+        3. Select **Create an application**. Kong will auto select the appropriate authentication strategy for the API you’re registering for.
     <br>
     <br>
     * **If you want to create an application for multiple APIs:** 
         1. Click **My Apps**. 
-        1. From the **My Apps** page, click **New App** and fill out the application information. 
-        1. Click **Catalog**, click the product version you want to create an application for, and then click **Register**.
-        1. In the registration pop-up, select the app you just created and click **Request Access**. Repeat this for as many product versions as you want to add to one application.
+        2. From the **My Apps** page, click **New App** and fill out the application information. 
+        3. Click **Catalog**, click the API you want to create an application for, and then click **Register**.
+        4. In the registration pop-up, select the app you just created and click **Request Access**. Repeat this for as many APIs as you want to add to one application.
 
         Each application can only work with one authentication strategy. Dev Portal can contain products with different authentication strategies, so keep this in mind when adding more than one product to your application.
     
@@ -69,7 +69,7 @@ All developers must register through the {{site.konnect_short_name}} Dev Portal.
 
     If you want to edit or delete your app after creating it, go to the app and either click **Edit** or click **Delete** in the app settings. 
 
-1. **Create API credentials for your application**
+2. **Create API credentials for your application**
     
     You can generate credentials using one of the following methods:
     

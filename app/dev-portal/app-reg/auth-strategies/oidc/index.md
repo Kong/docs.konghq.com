@@ -55,7 +55,7 @@ In the `default` control plane group, **Credential claim** is used as a **Consum
 
 In {{site.konnect_short_name}} can configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
 
-This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration, you can manage multiple APIs and configure a different DCR on a per API basis. DCR is one type of strategy for application auth, where {{site.konnect_short_name}} is integrated directly with the IdP to outsource, link, and automate the credential management using that IDP.
+This section will introduce you to the functionality portal APIs using Dynamic client registration (DCR). Using the Application Registration, you can manage multiple APIs and configure a different DCR on a per API basis. DCR is one type of strategy for application auth, where {{site.konnect_short_name}} is integrated directly with the IdP to outsource, link, and automate the credential management using that IDP.
 
 1. Configure the auth strategies of your choice:
   * [Okta](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/okta/)
