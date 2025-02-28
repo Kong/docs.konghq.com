@@ -6,6 +6,9 @@ Pages are highly customizable using Markdown Components (MDC), allowing to creat
 
 To get started creating Pages, navigate to your Dev Portal and select [**Portal Editor**](/dev-portal/portals/portal-editor) from the left sidebar.
 
+{:.note}
+> *Pages are built using Markdown Components (MDC). Additional documentation on syntax, as well as tools for generating components, are available on a [dedicated MDC site](https://portaldocs.konghq.com/).*
+
 ## Page structure
 
 On the left panel inside Portal Editor, you'll see a list of Pages in your Dev Portal. The name for each page is a `slug`, and will be used to build the URL for that page. If pages are nested, the slugs will be combined to build the URL.
@@ -32,8 +35,6 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 > *`home` is a special page representing the `/` path. If this page is deleted, you'll need to create it from the Pages API.*
 
 ### Modify a Page
-
-Pages are built using Markdown Components (MDC). Additional documentation on syntax, as well as tools for generating components, are available on a [dedicated MDC site](https://portaldocs.konghq.com/).
 
 In the middle panel, you can make changes to your MDC content, and instantly see the live Preview. 
 

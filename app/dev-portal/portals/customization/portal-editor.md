@@ -4,6 +4,9 @@ title: Portal Editor
 
 Portal Editor provides you with a variety of tools for creating highly customized content for your Dev Portal. Navigate to a specific Dev Portal, and select **Portal Editor** from the left sidebar.
 
+{:.note}
+> *Pages are built using Markdown Components (MDC). Additional documentation on syntax, as well as tools for generating components, are available on a [dedicated MDC site](https://portaldocs.konghq.com/).*
+
 ## Pages
 
 Pages provide a nested structure of page slugs which allows you to organize Pages, and automatically builds your URLs. Pages are highly customizable using Markdown Components (MDC). 
