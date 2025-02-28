@@ -30,7 +30,7 @@ If you do _not_ already have an OIDC Auth Strategy created, we will first create
 
 7. Click **Save**
 
-8. Optional: In **Settings/Security**, select the preferred Default Auth Strategy (default is Konnect's built-in `key-auth`). This will not retroactively change any published APIs, but will change default on new publishing.
+8. Optional: In **Settings/Security**, set the preferred Default Auth Strategy to your new OIDC configuration instead of the default `key-auth`. This setting makes it easier to publish an API (in the next step) using the OIDC Auth Strategy, because this setting will be auto-selected for you. Changing this default will not retroactively change any previously published APIs.
 
 9. [/dev-portal/portals/publishing](Publish an API) with the OIDC Auth Strategy you just created.
 
@@ -38,7 +38,7 @@ Now Developers can access the API using OIDC!
 
 ###  OpenID Connect configuration parameters {#openid-config-parameters}
 
-In the `default` control plane group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` control plane groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider. For more background information about OpenID Connect plugin parameters, see [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
+For more background information about OpenID Connect plugin parameters, see [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
 
    | Form Parameter | Description                                                                       |Required |
    |:---------------|:----------------------------------------------------------------------------------|--|

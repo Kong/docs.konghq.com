@@ -13,7 +13,7 @@ See [Set Up SSO with Okta](/dev-portal/access-and-approval/sso/) for specific in
 Keep the following in mind when configuring SSO for Dev Portal:
 
 * Developers are auto-approved by {{site.konnect_short_name}} when they use SSO to log in to the Dev Portal. 
-  This is because Kong outsources the approval process to the IdP instance when using SSO. Therefore, you should restrict 
+  This is because Kong outsources the approval process to the IdP instance when using SSO. Therefore, you must restrict 
   who can sign up from the IdP rather than through {{site.konnect_short_name}}.
 * If you plan on using [team mappings from an IdP](/dev-portal/access-and-approval/add-teams), 
   they must be from the same IdP instance as your SSO.

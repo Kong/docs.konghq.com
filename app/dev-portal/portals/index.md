@@ -5,14 +5,14 @@ title: Create a Dev Portal
 The Konnect Dev Portal is a customizable website for developers to locate, access, and consume API services.
 
 {:.note}
-> *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
+> *This is documentation for Konnect's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
 
 {:.note}
 > *When referring to Konnect APIs for the Beta (Dev Portal and APIs), please use `v3`.*
 
 ### Get started
 
-Your Dev Portal use case might dictate different security settings tailored to your audience. While this is not comprehensive of all possibilities, these are typical scenarios. Keep in mind it's quite common to have multiple Dev Portals, and your APIs are shared across them. 
+Your Dev Portal use case might dictate different security settings tailored to your audience. While this is not comprehensive of all possibilities, these are typical scenarios. Keep in mind it's quite common to have multiple Dev Portals with APIs shared across them.
 
 #### Internal Dev Portal
   * [Create a portal](#create-dev-portal) with Private visibility / Auth enabled.
@@ -49,13 +49,15 @@ During portal creation, "Private" and "Public" change a variety of settings to s
 * Default Page visibility: Private
 * Default API visibility: Private
 
+<!-- If default page and api visibility are indeed the same for these two, we should positively assert this here and maybe provide some context why they're the same -->
+
 #### Public
 * Disables User Authentication
 * Default Page visibility: Private
 * Default API visibility: Private
 
 ### Upload your first API
-Optionally, you can create and publish your first API by uploading an OpenAPI 3.x specification. If you are creating more than one Dev Portal, or previously uploaded APIs, you can also select from an existing API.
+Optionally, you can create and publish your first API by uploading an OpenAPI 3.x specification. If you are creating more than one Dev Portal or have previously uploaded APIs, you can also select from a list of existing APIs.
 
 ### Appearance
 After clicking Next, your Dev Portal will be created, and you'll be presented with basic options to customize the look and feel. These settings can be changed later in Portal Editor in the [Appearance](/dev-portal/portals/customization/appearance) tab.
