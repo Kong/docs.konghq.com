@@ -14,6 +14,9 @@ The Konnect Dev Portal is a customizable website for developers to locate, acces
 
 Your Dev Portal use case might dictate different security settings tailored to your audience. While this is not comprehensive of all possibilities, these are typical scenarios. Keep in mind it's quite common to have multiple Dev Portals with APIs shared across them.
 
+![Visibility and Access Control combinations](visibility-access-combinations)
+> _**Figure 1:** Common visibility and access control combinations_
+
 #### Internal Dev Portal
   * [Create a portal](#create-dev-portal) with Private visibility / Auth enabled.
   * Publish [all internal APIs](/dev-portal/apis/index), secured to internal use only. 
@@ -60,7 +63,9 @@ During portal creation, "Private" and "Public" change a variety of settings to s
 Optionally, you can create and publish your first API by uploading an OpenAPI 3.x specification. If you are creating more than one Dev Portal or have previously uploaded APIs, you can also select from a list of existing APIs.
 
 ### Appearance
-After clicking Next, your Dev Portal will be created, and you'll be presented with basic options to customize the look and feel. These settings can be changed later in Portal Editor in the [Appearance](/dev-portal/portals/customization/appearance) tab.
+After clicking Next, your Dev Portal will be created, and you'll be presented with basic options to customize the look and feel. You will immedately see the template preview change according to your choices. 
+
+Appearance settings can be changed later in Portal Editor in the [Appearance](/dev-portal/portals/customization/appearance) tab.
 
 ## Next steps
 
