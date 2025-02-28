@@ -54,10 +54,6 @@
   items:
     - text: Overview
       url: /app-reg/
-    - text: Enabling App Reg
-      url: /app-reg/enable/
-    - text: Application Approval
-      url: /app-reg/approval/
     - text: Auth Strategies
       url: /app-reg/auth-strategies/
       items:

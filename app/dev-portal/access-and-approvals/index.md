@@ -2,7 +2,7 @@
 title: Access and Approvals
 ---
 
-When Dev Portal [security settings](/dev-portal/portals/settings/security#auto-approve-developers) require approval for Developer and Application registration, portal admins will be notified to approve those registratios.
+When Dev Portal [security settings](/dev-portal/portals/settings/security#auto-approve-developers) require approval for Developer and Application registration, portal admins will be notified to approve those registrations.
 
 {:.note}
 > *This is documentation for Konnect's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*

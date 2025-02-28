@@ -50,11 +50,11 @@ This guide explains how to map the permissions, including scopes and claims, fro
 
 1. From the **Teams** settings in the side bar, click **New Team** and configure the team.
 
-1. From the IdP team you just created, click the **Products** tab and click **Add Roles**. This allows you to assign API products and the role for the API product to members of your IdP team.
+2. From the IdP team you just created, click the **APIs** tab and click **Add Roles**. This allows you to assign APIs and the role for the APIs to members of your IdP team.
 
-1. From **Settings** in the Dev Portal side bar, click the **Identity** tab and then click **Configure OIDC provider**.
+3. From **Settings** in the Dev Portal side bar, click the **Identity** tab and then click **Configure OIDC provider**.
 
-1. Configure the IdP settings using the following mappings:
+4. Configure the IdP settings using the following mappings:
     * **Provider URL:** The value stored in the `issuer` variable from your application in your IdP.
     * **Client ID:** The application ID from your application in your IdP.
     * **Client Secret:** The client secret from your application in your IdP.
@@ -63,9 +63,9 @@ This guide explains how to map the permissions, including scopes and claims, fro
     * **Claim Mappings - Email:** `email`
     * **Claim Mappings - Groups:** `groups`
 
-1. Click the **Team Mappings** tab, and then select **IdP Mapping Enabled**.
+5. Click the **Team Mappings** tab, and then select **IdP Mapping Enabled**.
 
-1. Enter the exact name of your team from your IdP next to the name of the Konnect team you want to map it to.
+6. Enter the exact name of your team from your IdP next to the name of the Konnect team you want to map it to.
 
 ## Test developer team mappings
 
@@ -74,7 +74,7 @@ Now that you've configured the IdP team mappings in Konnect for the Dev Portal, 
 1. Navigate to your Dev Portal URL and log in as a test developer that is assigned to the team in your IdP.
     You can find your Dev Portal URL in the Dev Portal settings in the **Portal Domain** tab.
 
-2. If the mappings are correct, you should see any API products that you assigned to the team in Konnect.
+2. If the mappings are correct, you should see any APIs that you assigned to the team in Konnect.
 
 Once a developer in your IdP team signs into the Dev Portal, they will be populated as a new developer associated with that team in Konnect. You can verify this by going to the Dev Portal teams settings in Konnect. The test developer should be listed there as a developer associated with your team.
 

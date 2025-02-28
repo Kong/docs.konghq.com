@@ -13,9 +13,20 @@ There are two methods for publishing an API, for your convenience:
 * Click on **APIs**, and select the API you want to publish. Click **Publish**
 
 In both cases, you'll see the same dialog. 
-* Select the portal you want to publish to
-* The Authentication Strategy will be set to the default in Settings/Security for that portal. You can change this Authentication Strategy if desired. This will determine how Developers will generate credentials to call the API.
-* Visibility determines if Developers need to register to view the API. 
+
+1. Select the **Dev Portal** you want to publish the API to.
+2. Change the **Authentication Strategy** if desired. The **Authentication Strategy** will be set to the default in Settings/Security for that Dev Portal. This will determine how Developers will generate credentials to call the API.
+3. Select the appropriate **Visibility**, it will also be set to the default in Settings/Security. Visibility determines if Developers need to register to view the API or generate credentials / API keys. 
+
+## Change Published API
+
+To change the **Visibility** or **Authentication Strategy)) of an API that has been published to one or more Dev Portals, 
+
+1. Browse to a **Published API**.
+2. Select the **Portals** tab to see where the API has been previously published.
+3. On the three dots menu on the appropriate Dev Portal, select **Edit Publication**
+4. Change **Visibility** and **Authentication Strategy** to the appropriate values
+5. Click **Save**
 
 ### Access control scenarios
 
