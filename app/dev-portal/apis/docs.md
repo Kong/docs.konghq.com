@@ -4,6 +4,9 @@ title: API Documentation
 
 Konnect APIs can be documented with a tree of Markdown files, automatically generating URL slugs for the Dev Portal when published.
 
+{:.note}
+> *API Documentation is for a single API+version, to create portal-level content, use [Custom Pages](/dev-portal/portals/customization/custom-pages) in the [Portal Editor](/dev/portal/portals/customization/portal-editor)*
+
 ## Create a new API document
 
 1. Navigate to a specific API from [APIs](/dev-portal/apis) or [Published APIs](/dev-portal/portals/publishing)

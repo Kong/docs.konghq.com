@@ -71,13 +71,3 @@
               items:
                 - text: Overview
                   url: /app-reg/auth-strategies/oidc/dcr/
-                - text: Okta
-                  url: /app-reg/auth-strategies/oidc/dcr/okta/
-                - text: Curity
-                  url: /app-reg/auth-strategies/oidc/dcr/curity/
-                - text: Auth0
-                  url: /app-reg/auth-strategies/oidc/dcr/auth0/
-                - text: Azure
-                  url: /app-reg/auth-strategies/oidc/dcr/azure/
-                - text: Custom IdP
-                  url: /app-reg/auth-strategies/oidc/dcr/custom/

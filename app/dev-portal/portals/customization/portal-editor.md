@@ -13,6 +13,31 @@ Pages provide a nested structure of page slugs which allows you to organize Page
 
 [Get started with Pages](/dev-portal/portals/customization/custom-pages)
 
+## Preview panel
+
+Preview will automatically show what your Page should look like when Developers view your Dev Portal. In the event that it fails to refresh after editing the Page, there is a refresh button next to the generated URL at the bottom. 
+
+### Generated URL
+
+[Custom Pages](/dev-portal/portals/customization/portal-editor) allow you to define a page structure/tree that organizes your pages and generates the page URL based on page `slug`s. The generated URL is shown at the bottom of the Preview pane.
+
+### Viewports
+
+There are three icons above Preview that will allow you to test adaptive designs in some pre-defined viewports.
+
+* Desktop
+* Tablet
+* Mobile
+
+### Preview limitations
+
+Preview will only show `Visibility:Public` assets like APIs and Menus, as Preview is not fully representing a logged-in Developer context. However, `Visibility: Private` pages will be previewable.
+
+**Examples:**
+* `Private` Pages can be displayed in Preview
+* `Private` APIs will not be displayed when using the `:apis-list` MDC component
+* `Private` Menus in header/footer will not be displayed
+
 ## Appearance
 
 Basic appearance settings like brand colors, logo, and favicon can be customized to easiliy convey your branding. For advanced needs, you can also create Custom CSS that applies custom styles to your Dev Portal.
