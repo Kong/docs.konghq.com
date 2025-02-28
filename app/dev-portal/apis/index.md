@@ -5,7 +5,7 @@ title: APIs
 An API is the interface that you publish to your end customer. Developers register [applications](/dev-portal/access-and-approvals/applications) for use with specific APIs.
 
 {:.note}
-> *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
+> *This is documentation for Konnect's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
 
 {:.note}
 
