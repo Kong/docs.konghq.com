@@ -64,6 +64,19 @@ To capture only the relevant API traffic, use sampling rules. Sampling rules fil
 http.response.status_code==503
 ```
 
+### Known Issues in Tech Preview
+
+Here is a list of known issues that are being addressed. 
+
+- **Missing information**
+    - Time taken by the client to read the response from Kong is missing. The transaction map showns an empty box
+    - Upstream status code is not populated in the root span
+- **Incorrect span orders in cae of high resolution spans**
+    - WHen the timimg resolution is high few spans may be displayed in wrong order
+- **Incorrect handling of 5xx errors**
+  - Broken traces when the backend returns a 5xx error. Ex: When DNS name resolution failed
+- **Missing spans during high traffic volumes**
+    - When no sampling rule is enabled during a high traffic volume scenario, some traces could be missing span
 
 ## Sample trace
 
