@@ -2,9 +2,9 @@
 title: Dev Portal
 ---
 
-The {{site.konnect_short_name}} is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, try API operations, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
+Konnect Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, try API operations, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
 
-The {{site.konnect_short_name}} allows you to publish APIs with OpenAPI specifications and/or Markdown documentation, to enable developers to locate, access, and consume API services. Highly customizable content can be also provided at the site-level, as well as API-level, to provide additional context to the APIs.
+Konnect Dev Portal's **APIs** allows you to publish APIs with OpenAPI specifications and/or Markdown documentation, to enable developers to locate, access, and consume API services. Highly customizable content can be also provided at the site-level, as well as API-level, to provide additional context to the APIs.
 
 {:.note}
 > *This is documentation for Konnet's new **Dev Portal BETA**. Be aware of potential instability compared to our [stable Dev Portal](/konnect/dev-portal)*

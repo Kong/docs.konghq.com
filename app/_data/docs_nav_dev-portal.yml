@@ -23,6 +23,8 @@
           url: /portals/settings/custom-domains/
         - text: Security
           url: /portals/settings/security/
+        - text: Team Mapping
+          url: /portals/settings/team-mapping/
     - text: Audit Logs
       url: /portals/audit-logs/
 - title: APIs
