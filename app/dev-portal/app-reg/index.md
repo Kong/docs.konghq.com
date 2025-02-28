@@ -46,9 +46,11 @@ flowchart TB
 
 ## Prerequisites
 
-- A Gateway Service configured in Konnect Gateway Manager,
+<!-- link to gw manager in the first bullet? -->
+
+- A version 3.6+ Gateway Service configured in Konnect Gateway Manager,
 - [Linked to a portal API](/dev-portal/apis/gateway-service-link), and
-- [Published to a Dev Portal](/dev-portal/portals/publishing)
+- [Published to a Dev Portal](/dev-portal/portals/publishing).
 
 {:.note}
 > *An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.*
@@ -58,7 +60,7 @@ flowchart TB
 In [**Settings/Security**](/dev-portal/portals/settings/security) for each portal, make appropriate choices to setup Developer & Application registration for your needs.
 
 {:.note}
-> *When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled, and a Default Authentication Strategy will be created as **Key auth**.*
+> *When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled, and **key auth** will be the default Application Auth Strategy.
 
 1. Enable **User Authentication** to allow developers to register their applications to access APIs.
 
@@ -66,7 +68,7 @@ In [**Settings/Security**](/dev-portal/portals/settings/security) for each porta
 
 3. Optional: Click the [**Auto Approve**](/dev-portal/settings/security/) checkbox for Developers and/or Applications to automatically approve all registration requests. Otherwise portal admins will need to approve all registrations.
 
-4. Optional: Select the preferred **Default Auth Strategy** (default is Konnect's built-in `key-auth`). This will not retroactively change any published APIs, but will set the default on any new published assets.
+4. Optional: Select the preferred **Default Auth Strategy** (default is Konnect's built-in `key-auth`). This will not retroactively change any published APIs, but will set the default on any new published APIs.
 
 ### Get started
 * [Key Auth](/dev-portal/app-reg/auth-strategies/key-auth)
