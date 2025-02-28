@@ -28,7 +28,7 @@ When creating a scorecard, you define the validation criteria and specify which 
 1. Click **Save**.
 
 
-## Service Documentation linting
+## Service documentation linting
 
 By default, the service documentation template supports the following Spectral recipes:
 
