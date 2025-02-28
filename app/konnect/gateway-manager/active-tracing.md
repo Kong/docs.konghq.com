@@ -10,12 +10,31 @@ Konnect's active tracing capability offers exclusive, in-depth insights that can
 Active Tracing adheres to OpenTelemetry naming conventions for spans and attributes, wherever possible, ensuring consistency and interoperability.
 
 ## Key highlights
+
 - Traces can be generated for a service or per route
 - Refined traces can be generated for all requests matching a sampling criteria
 - Samplign criteria can be defined with simple expressions language ex: http.method == "GET"
 - Trace sessions are retained for upto 7 days
+- Traces can be visualized in Konnect's built in trace viewer 
 
 Although active tracing is desinged to be as a debug and troubleshooting tool, it can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, active tracing adds negligible latency. However, under heavy loads, it may affect the throughput.
+
+## Reading traces in Konnect trace viewer
+
+Traces captured in an active tracing session can be visualized in Konnect's built-in trace viewer. The trace viewer displays a **Summary** view and a **Trace** view. You can gain instant insights with the summary view while the trace view will help you dive deeper.
+
+### Summary view  
+
+Summary view helps you visualize the entire API request-response flow in a single glance. This view provides a concise overview of critical metrics and a transaction map. The transaction map includes the plugins executed by kong on both the request and the response along with the times spent in each phase. Use summary view to quickly understand the end-to-end API flow, identify performance bottlenecks, and optimize your API strategy. 
+
+### Trace view
+
+The trace view gives you unparalleled visibility into Kong's internal workings. This defailed view breaks down into individual spans providing a comprehensive understanding of:
+- Kong's internal proesses and phases
+- Plugin execution and performance
+- Request and Resposne handling
+
+Use trace view to troubleshoot issues, optimize performance, and refine your configuration.
 
 ## Get started with tracing
 
