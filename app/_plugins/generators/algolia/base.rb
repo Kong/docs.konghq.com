@@ -31,7 +31,7 @@ module Jekyll
           Home.new(page)
         elsif page.data['layout'] == 'oas/spec'
           OasPage.new(page)
-        else
+        else # rubocop:disable Lint/DuplicateBranch
           NotIndexable.new(page)
         end
       end
