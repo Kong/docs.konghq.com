@@ -1,5 +1,5 @@
 - title: Portals
-  icon: /assets/images/icons/konnect/icn-dev-portal.svg
+  icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
     - text: Overview
       url: /portals/
@@ -50,7 +50,7 @@
     - text: Portal Teams
       url: /access-and-approvals/teams/
 - title: Application Registration
-  icon: /assets/images/icons/konnect/konnect-settings.svg
+  icon: /assets/images/icons/konnect/icn-cogwheel-nav.svg
   items:
     - text: Overview
       url: /app-reg/
