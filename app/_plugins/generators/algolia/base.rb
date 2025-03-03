@@ -20,7 +20,7 @@ module Jekyll
         'oas' => ['Kong Gateway', 'Kong Konnect']
       }.freeze
 
-      def self.make_for(page) # rubocop:disable Metrics/MethodLength
+      def self.make_for(page) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         if page.data['edition'] == 'dev-portal'
           NotIndexable.new(page)
         elsif page.data['edition']
