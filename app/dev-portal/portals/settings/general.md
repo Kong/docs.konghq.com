@@ -11,13 +11,14 @@ This is the name that you will see in your list of Dev Portals in Konnect.
 
 This is utilized for SEO in the Portal and sets what users will see in the browser for the `home` / `/` Page, appended to the front matter title.
 
-### Example
+### Home Page title format
 
 ```
 <title>{front matter title} | {display_name}</title>
 ```
 
-### Example
+
+### Home Page title example
 
 Assuming the `home` / `/` page has the following front matter
 
@@ -28,7 +29,12 @@ description: Start building and innovating with our APIs
 ---
 ```
 
-Assuming Dev Portal Settings has the Display Name set to "Developer Portal", the browser would display "Welcome to KongAir | Developer Portal"
+Assuming Dev Portal Settings has the Display Name set to "Developer Portal", the browser would display:
+
+```
+Welcome to KongAir | Developer Portal
+```
+
 
 ## Description
 
