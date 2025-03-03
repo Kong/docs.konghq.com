@@ -68,10 +68,10 @@ http.response.status_code==503
 
 Here is a list of known issues in the tech preivew : 
 
-- **Incorrect span orders in case of high resolution spans**
-    - When the timimg resolution is high few spans may be displayed in wrong order
-- **Incorrect handling of 5xx errors**
-  - Broken traces when the backend returns a 5xx error. Ex: When DNS name resolution failed
+- **Incorrect span orders**
+    - When spans have very short duration few spans may be displayed in wrong order
+- **Incorrect handling of certain error conditions**
+  - Traces may be broken when there are certain error conditions. Ex: When DNS name resolution failed
 - **Missing spans during high traffic volumes**
     - When no sampling rule is enabled during a high traffic volume scenario, some traces could be missing span
 
