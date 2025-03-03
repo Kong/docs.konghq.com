@@ -57,3 +57,24 @@ In the top right corner, click the menu with three dots. You can toggle from `Pr
 ## Create a Child Page
 
 In order to create pages in a nested structure (generating URLs in a folder-style), you can create **Child Pages**. CLick the three dots menu next to any Page, and select **Create Child Page**. As with creating any Page, provide a name/slug, and your Page will be created.
+
+## Meta tags
+To affect page metadata/descriptions (meta tags like  `description` `og:description`), use the `description` field in Page front matter.
+
+### Front matter example
+
+```
+---
+title: Home
+description: Start building and innovating with our APIs
+---
+```
+
+With the above front matter, the portal will render the following html tags for your page:
+
+```
+<title>Home | Developer Portal</title>
+<meta name="description" content="Start building and innovating with our APIs">
+<meta property="og:title" content="Home | Developer Portal">
+<meta property="og:description" content="Start building and innovating with our APIs">
+```

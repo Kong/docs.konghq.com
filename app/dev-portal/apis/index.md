@@ -4,17 +4,14 @@ title: APIs
 
 An API is the interface that you publish to your end customer. Developers register [applications](/dev-portal/access-and-approvals/applications) for use with specific APIs.
 
-{:.note}
-> *This is documentation for Konnect's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
-
-{:.note}
-
 As an API Producer, you [publish an OpenAPI specification](/dev-portal/portals/publishing) and additional documentation to help users get started with your API.
 
 {:.note}
-<!-- TODO: composition once we commit to deliver
-In the future you will be able to define an API as a subset of the endpoints available within a Service, or compose an API using multiple Services.
--->
+> *This is documentation for Konnect's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
+
+### Validation
+
+All API specification files are validated during upload. Specs much be valid JSON or YAML, and must be valid according to [OpenAPI 3.x spec](https://spec.openapis.org/). This ensures accurate generation of spec documentation.
 
 ## From Zero to API
 

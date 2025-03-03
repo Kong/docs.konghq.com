@@ -5,10 +5,16 @@ title: Settings
 Settings allows you to make global changes to your Dev Portal. 
 
 ## Name
-This is the name that you will see in your list of Dev Portals
+This is the name that you will see in your list of Dev Portals in Konnect.
 
-## Display Name and Description
-This sets the default title and description (used in page metadata) of your `/` page. However, in practice, you can set the title in the front matter of your page, which takes precedence.
+## Display Name
+This sets what users will see in the browser for your `/` page, postpended to the front matter title.
+
+`{front matter title} | {display_name}`
+
+### Example
+
+Assuming the `home` / `/` page has the following front matter
 
 ```
 ---
@@ -16,6 +22,14 @@ title: Welcome to KongAir
 description: Start building and innovating with our APIs
 ---
 ```
+
+Assuming Dev Portal Settings has the Display Name set to "Developer Portal", the browser would display "Welcome to KongAir | Developer Portal"
+
+## Description
+
+This description is only displayed in the Konnect, and will not be delivered to users browsing the portal.
+
+To affect meta description/tags in Pages, refer to [Pages docs](/dev-portal/portals/customization/custom-pages#meta-tags)
 
 ## Custom Domains
 
