@@ -5,7 +5,7 @@ module Jekyll
   class SiteProductData < Jekyll::Generator
     priority :highest
 
-    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
+    def generate(site) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
       deck = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'deck', site:)
       mesh = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'mesh', site:)
       kic = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'kubernetes-ingress-controller', site:)
