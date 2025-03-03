@@ -140,13 +140,18 @@ This span has the following attributes:
 <!--vale on-->
 ### kong.phase.certificate
 
-A span capturing the execution of the certificate phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
+A span capturing the execution of the `certificate` phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.certificate.plugin.{plugin_name}
 
-A span capturing the execution of a plugin configured to run in the certificate phase. Multiple such spans can occur in a trace.
+A span capturing the execution of a plugin configured to run in the `certificate` phase. Multiple such spans can occur in a trace.
 
+This span has the following attributes:
  <table>
+ <thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.plugin.instance_id</td>
@@ -156,9 +161,15 @@ A span capturing the execution of a plugin configured to run in the certificate 
 </table>
 
 ### kong.read_client_http_headers
-A span capturing the time taken to read http headers from the client. This span is useful for detecting clients that are coming over a slow network or a buggy CDN, or simply take too long to send in the http headers.
+A span capturing the time taken to read HTTP headers from the client. 
+This span is useful for detecting clients that are coming over a slow network or a buggy CDN, or simply take too long to send in the HTTP headers.
 
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.http_headers_count</td>
@@ -175,11 +186,17 @@ A span capturing the time taken to read http headers from the client. This span 
 A span capturing the total time taken to read the full body sent by the client. This span can identify slow clients, a buggy CDN and very large body submissions.
 
 ### kong.phase.rewrite
-A span capturing the execution of the rewrite phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
+A span capturing the execution of the `rewrite` phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.rewrite.plugin.{plugin_name}
-A span capturing the execution of a plugin configured to run in the rewrite phase. Multiple such spans can occur in a trace.
+A span capturing the execution of a plugin configured to run in the `rewrite` phase. Multiple such spans can occur in a trace.
+
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.plugin.instance_id</td>
@@ -189,9 +206,22 @@ A span capturing the execution of a plugin configured to run in the rewrite phas
 </table>
 
 ### kong.io.func
-A span capturing network i/o timing that occurs during plugin execution or other request processing. Examples including the OIDC plugin making calls to IdP, RLA plugin making calls to redis, custom plugins calling http urls and so forth. Multiple instances of this span can occur anywhere in the trace when i/o happens.
+A span capturing network i/o timing that occurs during plugin execution or other request processing. 
+
+Examples:
+* OIDC plugin making calls to IdP
+* Rate Limiting Advanced plugin making calls to Redis
+* Custom plugins calling HTTP URLs 
+
+Multiple instances of this span can occur anywhere in the trace when i/o happens.
+
+This span has the following attributes:
 
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>network.peer.address</td>
@@ -208,7 +238,13 @@ A span capturing network i/o timing that occurs during plugin execution or other
 ### kong.router
 
 A span capturing the execution of the Kong router.
+
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.router.matched</td>
@@ -234,11 +270,18 @@ A span capturing the execution of the Kong router.
 </table>
 
 ### kong.phase.access
-A span capturing the execution of the access phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
+A span capturing the execution of the `access` phase of request processing. 
+Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.access.plugin.{plugin_name}
-A span capturing the execution of a plugin configured to run in the access phase. Multiple such spans can occur in a trace.
+A span capturing the execution of a plugin configured to run in the `access` phase. Multiple such spans can occur in a trace.
+
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.plugin.instance_id</td>
@@ -250,20 +293,32 @@ A span capturing the execution of a plugin configured to run in the access phase
 ### kong.dns
 A span capturing the time spent in looking up DNS.
 
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.dns.entry</td>
-      <td>a list of DNS attempts, responses and errors if any</td>
+      <td>A list of DNS attempts, responses and errors if any</td>
     </tr>
   </tbody>
 </table>
 
 
 ### kong.upstream_selection
-A span capturing the total time spent in finding a healthy upstream. Depending on configuration, Kong will try to find a healthy upstream by trying various targets in order determined by the load balancing algorithm. Child spans of this span capture the individual attempts.
+A span capturing the total time spent in finding a healthy upstream. 
+Depending on configuration, Kong will try to find a healthy upstream by trying various targets in order determined by the load balancing algorithm. 
+Child spans of this span capture the individual attempts.
 
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.upstream.lb_algorithm</td>
@@ -274,9 +329,18 @@ A span capturing the total time spent in finding a healthy upstream. Depending o
 
 
 ### kong.upstream.try_select
-A span capturing the attempt to verify a specific upstream. Kong attempts to open a TCP connection (if not KeepAlive cache is found), do a TLS handshake and send down the http headers. If all of this succeeds, the upstream is healthy and Kong will finish sending the full request and wait for a response. If any of the step fails, Kong will switch to the next target and try again.
+A span capturing the attempt to verify a specific upstream. 
+Kong attempts to open a TCP connection (if not KeepAlive cache is found), do a TLS handshake and send down the HTTP headers. 
+If all of this succeeds, the upstream is healthy and Kong will finish sending the full request and wait for a response. 
+If any of the step fails, Kong will switch to the next target and try again.
+
+This span has the following attributes:
 <!--vale off-->
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>network.peer.address</td>
@@ -302,18 +366,28 @@ A span capturing the attempt to verify a specific upstream. Kong attempts to ope
 </table>
 <!--vale on-->
 ### kong.upstream_ttfb
-A span capturing the "time to first byte" from the upstream. This includes the time taken to finish writing the http request to upstream, and the time taken by the upstream to start generating a response. This span can be used to identify network delays between Kong and an upstream as well as identifying upstreams that take long to start generating responses.
+A span capturing the "time to first byte" from the upstream. 
+This includes the time taken to finish writing the http request to upstream, and the time taken by the upstream to start generating a response. 
+This span can be used to identify network delays between Kong and an upstream as well as identifying upstreams that take long to start generating responses.
 
 ### kong.upstream_read_response
-A span capturing the time taken for the upstream to generate a full response. This effectively measures the time Kong sees between the first byte of the response header and the last byte of the response body coming from the upstream. This span can be used to identify slowness in response generation from upstreams.
+A span capturing the time taken for the upstream to generate a full response. 
+This effectively measures the time Kong sees between the first byte of the response header and the last byte of the response body coming from the upstream. 
+This span can be used to identify slowness in response generation from upstreams.
 
 ### kong.phase.response
-A span capturing the execution of the response phase. Any plugins configured for running in this phase will show up as individual child spans. This phase will not run if response streaming is enabled.
+A span capturing the execution of the `response` phase. 
+Any plugins configured for running in this phase will show up as individual child spans. This phase will not run if response streaming is enabled.
 
 ### kong.response.plugin.{plugin_name}
-A span capturing the execution of a plugin configured to run in the response phase. Multiple such spans can occur in a trace.
+A span capturing the execution of a plugin configured to run in the `response` phase. Multiple such spans can occur in a trace.
 
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.plugin.instance_id</td>
@@ -327,9 +401,14 @@ A span capturing the execution of a plugin configured to run in the response pha
 A span capturing the execution of the header filter phase of response processing. Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.header_filter.plugin.{plugin_name}
-A span capturing the execution of a plugin configured to run in the header_filter phase. Multiple such spans can occur in a trace.
+A span capturing the execution of a plugin configured to run in the `header_filter` phase. Multiple such spans can occur in a trace.
 
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.plugin.instance_id</td>
@@ -342,9 +421,14 @@ A span capturing the execution of a plugin configured to run in the header_filte
 A span capturing the execution of the body filter phase of response processing. Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.body_filter.plugin.{plugin_name}
-A span capturing the execution of a plugin configured to run in the body_filter phase. Multiple such spans can occur in a trace.
+A span capturing the execution of a plugin configured to run in the `body_filter` phase. Multiple such spans can occur in a trace.
 
+This span has the following attributes:
 <table>
+<thead>
+  <th>Name</th>
+  <th>Description</th>
+</thead>
   <tbody>
     <tr>
       <td>proxy.kong.plugin.instance_id</td>
