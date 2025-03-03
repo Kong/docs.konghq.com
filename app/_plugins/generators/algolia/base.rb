@@ -21,7 +21,9 @@ module Jekyll
       }.freeze
 
       def self.make_for(page) # rubocop:disable Metrics/MethodLength
-        if page.data['edition']
+        if page.data['edition'] == 'dev-portal'
+          NotIndexable.new(page)
+        elsif page.data['edition']
           Doc.new(page)
         elsif page.url.start_with?('/hub')
           Hub.new(page)

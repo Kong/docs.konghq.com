@@ -81,6 +81,12 @@ defaults:
       layout: "docs-v2"
 
   - scope:
+      path: "dev-portal"
+    values:
+      layout: "docs-v2"
+      no_version: true
+
+  - scope:
       path: "konnect"
     values:
       layout: "docs-v2"
