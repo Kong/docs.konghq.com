@@ -5,6 +5,14 @@ with `x.y.z` being the version you are planning to upgrade to.
 
 Make sure to also check the upgrade notes for the matching version of [Kuma](https://kuma.io/docs/latest/production/upgrades-tuning/upgrades).
 
+## Upgrade to `2.10.x`
+
+### CP tokens are removed
+
+Control Plane Tokens were deprecated in 2.0.x.
+They are now removed and only zone tokens are supported to auth to zonal control-planes to global.
+To generate and use zone tokens checkout the dedicated [docs](https://docs.konghq.com/mesh/latest/features/kds-auth/).
+
 ## Upgrade to `2.7.x`
 
 ### RBAC
@@ -40,3 +48,8 @@ you'll need:
 ```
 
 See [Kong/kong-mesh-ecs#40](https://github.com/Kong/kong-mesh-ecs/pull/40) for an example.
+
+## Upgrade to `2.0.x`
+
+Control Plane Tokens are deprecated. It will be removed in a future release.
+You can use the Zone Token instead to authenticate any zonal control plane.

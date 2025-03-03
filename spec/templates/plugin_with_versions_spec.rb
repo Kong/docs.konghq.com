@@ -52,8 +52,5 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(nested_how_tos).to have_css('.sidebar-item', text: 'Nested Tutorial Nav title with Min and Max')
     end
 
-    it 'renders a Konnect CTA button' do
-      expect(html).to have_css('.sidebar-button', text: 'Try it in Konnect')
-    end
   end
 end

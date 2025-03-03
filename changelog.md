@@ -2,6 +2,32 @@
 
 <!--vale off-->
 
+## Week 8
+
+### [Fix: route priority info](https://github.com/Kong/docs.konghq.com/pull/8457) (2025-02-22)
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.1.x/key-concepts/routes
+- https://docs.konghq.com/gateway/unreleased/key-concepts/routes
+- https://docs.konghq.com/gateway/3.2.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.3.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.4.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.5.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.6.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.7.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.8.x/key-concepts/routes
+- https://docs.konghq.com/gateway/3.9.x/key-concepts/routes
+
+
+### [Update diff.md](https://github.com/Kong/docs.konghq.com/pull/8455) (2025-02-20)
+
+Minor fix in deck gateway diff documentation
+
+#### Modified
+
+- https://docs.konghq.com/deck/gateway/diff
+
 ## Week 6
 
 ### [extra space between period ](https://github.com/Kong/docs.konghq.com/pull/8406) (2025-02-05)
@@ -8109,12 +8135,6 @@ Add GWAPI instructions to the KIC HTTPS redirect guide. Due to https://github.co
 Adds a TLS configuration include. This creates a certificate and injects configuration to use it into either an Ingress or Gateway. The certificate hostname is configurable. The Gateway and Ingress names are not and expect the standard `echo` Ingress or `kong` Gateway.
 
 GWAPI does not easily allow adding HTTPS configuration without a TLS Listener, and these Listeners _must_ have a certificate as of GWAPI v0.8. We can't use the default Kong certificates if we don't care about the specific certificates, so we need this include for any guides that touch HTTPS-specific functionality.
-
-#### Modified
-
-- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/fips-support/plugins
-- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/fips-support/plugins
-- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/fips-support/plugins
 
 
 ### [Guide to migrate Zone CP from On-Prem Global CP to Konnect](https://github.com/Kong/docs.konghq.com/pull/6320) (2023-10-23)

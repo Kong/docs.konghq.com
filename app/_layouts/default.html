@@ -193,6 +193,29 @@
         window.pageI18n = { "banner": {{ banner | rstrip | jsonify }} }
       </script>
     {% endif %}
+
+    {% if jekyll.environment == "production" %}
+      <script>
+        (function() {
+          if (typeof window === 'undefined') return;
+          if (typeof window.signals !== 'undefined') return;
+          var script = document.createElement('script');
+          script.src = 'https://cdn.cr-relay.com/v1/site/993c7a0d-caec-465c-be46-2d3a78ab60c5/signals.js';
+          script.async = true;
+          window.signals = Object.assign(
+            [],
+            ['page', 'identify', 'form'].reduce(function (acc, method){
+              acc[method] = function () {
+                signals.push([method, arguments]);
+                return signals;
+              };
+              return acc;
+            }, {})
+          );
+          document.head.appendChild(script);
+        })();
+      </script>
+    {% endif %}
   </body>
 
   {% if page.pdk %}
