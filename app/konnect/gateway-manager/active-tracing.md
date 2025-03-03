@@ -14,7 +14,7 @@ Active Tracing adheres to OpenTelemetry naming conventions for spans and attribu
 
 - Traces can be generated for a service or per route
 - Refined traces can be generated for all requests matching a sampling criteria
-- Samplign criteria can be defined with simple expressions language, for example: `http.method == GET`
+- Sampling criteria can be defined with simple expressions language, for example: `http.method == GET`
 - Trace sessions are retained for up to 7 days
 - Traces can be visualized in {{site.konnect_short_name}}'s built in trace viewer 
 
@@ -55,7 +55,7 @@ Active Tracing requires the following **data plane version** and **environment v
 3. Click on **Active Tracing** in left navigation menu.
 4. Click **New tracing session**, define the criteria and, click **Start Session**.
 
-Once started, traces will begin to be captured. Click on a trace to visualize it in the traceviewer.
+Once started, traces will begin to be captured. Click on a trace to visualize it in the trace viewer.
 
 The **default session duration** is **5 minutes** or **200 traces per session**. Note the sessions are retained for up to 7 days.
 
@@ -86,7 +86,7 @@ A sample trace is shown below. By inspecting the **spans**, it is clear that the
 ![Active-Tracing Spans](/assets/images/products/gateway/active-tracing-spans.png)
 
 ## Spans
-
+<!--vale off-->
 ### kong
 
 The root span.
@@ -137,7 +137,7 @@ This span has the following attributes:
     <tr><td>tls.cipher</td><td>the negotiated cipher</td></tr>
   </tbody>
 </table>
-
+<!--vale on-->
 ### kong.phase.certificate
 
 A span capturing the execution of the certificate phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
@@ -172,7 +172,7 @@ A span capturing the time taken to read http headers from the client. This span 
 </table>
 
 ### kong.read_client_http_body
-A span capturing the total time taken to read the full body sent by the client. This span can identify slow clients, buggy CDNs and very large body submissions.
+A span capturing the total time taken to read the full body sent by the client. This span can identify slow clients, a buggy CDN and very large body submissions.
 
 ### kong.phase.rewrite
 A span capturing the execution of the rewrite phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
@@ -254,7 +254,7 @@ A span capturing the time spent in looking up DNS.
   <tbody>
     <tr>
       <td>proxy.kong.dns.entry</td>
-      <td>a list of DNS attempts, respones and errors if any</td>
+      <td>a list of DNS attempts, responses and errors if any</td>
     </tr>
   </tbody>
 </table>
@@ -275,7 +275,7 @@ A span capturing the total time spent in finding a healthy upstream. Depending o
 
 ### kong.upstream.try_select
 A span capturing the attempt to verify a specific upstream. Kong attempts to open a TCP connection (if not KeepAlive cache is found), do a TLS handshake and send down the http headers. If all of this succeeds, the upstream is healthy and Kong will finish sending the full request and wait for a response. If any of the step fails, Kong will switch to the next target and try again.
-
+<!--vale off-->
 <table>
   <tbody>
     <tr>
@@ -300,12 +300,12 @@ A span capturing the attempt to verify a specific upstream. Kong attempts to ope
     </tr>
   </tbody>
 </table>
-
+<!--vale on-->
 ### kong.upstream_ttfb
 A span capturing the "time to first byte" from the upstream. This includes the time taken to finish writing the http request to upstream, and the time taken by the upstream to start generating a response. This span can be used to identify network delays between Kong and an upstream as well as identifying upstreams that take long to start generating responses.
 
 ### kong.upstream_read_response
-A span capturing the time taken for the upstream to generate a full response. This effectively measures the time Kong sees between the first byte of the response header and the last byte of the response body comng from the upstream. This span can be used to identify slowness in response generation from upstreams.
+A span capturing the time taken for the upstream to generate a full response. This effectively measures the time Kong sees between the first byte of the response header and the last byte of the response body coming from the upstream. This span can be used to identify slowness in response generation from upstreams.
 
 ### kong.phase.response
 A span capturing the execution of the response phase. Any plugins configured for running in this phase will show up as individual child spans. This phase will not run if response streaming is enabled.
