@@ -1,5 +1,5 @@
 - title: Portals
-  icon: /assets/images/icons/documentation/icn-flag.svg
+  icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
   items:
     - text: Overview
       url: /portals/
@@ -28,7 +28,7 @@
     - text: Audit Logs
       url: /portals/audit-logs/
 - title: APIs
-  icon: /assets/images/icons/documentation/icn-flag.svg
+  icon: /assets/images/icons/konnect/icn-api-product.svg
   items:
     - text: Overview
       url: /apis/
@@ -39,7 +39,7 @@
     - text: Link Gateway Service
       url: /apis/gateway-service-link/
 - title: Access and Approvals
-  icon: /assets/images/icons/documentation/icn-flag.svg
+  icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
     - text: Overview
       url: /access-and-approvals/
@@ -50,7 +50,7 @@
     - text: Portal Teams
       url: /access-and-approvals/teams/
 - title: Application Registration
-  icon: /assets/images/icons/documentation/icn-flag.svg
+  icon: /assets/images/icons/konnect/icn-cogwheel-nav.svg
   items:
     - text: Overview
       url: /app-reg/
