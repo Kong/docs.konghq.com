@@ -8,9 +8,14 @@ Settings allows you to make global changes to your Dev Portal.
 This is the name that you will see in your list of Dev Portals in Konnect.
 
 ## Display Name
-This sets what users will see in the browser for your `/` page, postpended to the front matter title.
 
-`{front matter title} | {display_name}`
+This is utilized for SEO in the Portal and sets what users will see in the browser for the `home` / `/` Page, appended to the front matter title.
+
+### Example
+
+```
+<title>{front matter title} | {display_name}</title>
+```
 
 ### Example
 
