@@ -57,3 +57,52 @@ In the top right corner, click the menu with three dots. You can toggle from `Pr
 ## Create a Child Page
 
 In order to create pages in a nested structure (generating URLs in a folder-style), you can create **Child Pages**. CLick the three dots menu next to any Page, and select **Create Child Page**. As with creating any Page, provide a name/slug, and your Page will be created.
+
+## Meta tags
+To affect page metadata/descriptions (meta tags like  `description` `og:description`), use the `description` field in Page front matter.
+
+### Front matter example
+
+```
+---
+title: Home
+description: Start building and innovating with our APIs
+---
+```
+
+With the above front matter, the portal will render the following html tags for your page:
+
+```
+<title>Home | Developer Portal</title>
+<meta name="description" content="Start building and innovating with our APIs">
+<meta property="og:title" content="Home | Developer Portal">
+<meta property="og:description" content="Start building and innovating with our APIs">
+```
+
+### OpenGraph
+
+The Dev Portal will automatically generate an Open Graph image for each page on the site which utilizes a default design, and incorporates your brand color and light or dark color mode, along with the page's title and description. This image may be utilized in search results and when sharing links that render page previews (e.g. on X or other social sites).
+
+If you would like to provide a custom Open Graph image, you may do so in the page's front matter by providing the `image` property as a string:
+
+```
+---
+title: Home
+description: Start building and innovating with our APIs
+image: https://example.com/images/my-image.png
+---
+```
+
+If you would like more control over the image, the front matter property also accepts an object interface:
+
+```
+---
+title: Home
+description: Start building and innovating with our APIs
+image:
+  url: https://example.com/images/my-image.png
+  alt: A description of the image
+  width: 300px
+  height: 200px
+---
+```
