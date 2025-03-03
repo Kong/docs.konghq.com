@@ -73,7 +73,7 @@ flowchart TB
 <!-- link to gw manager in the first bullet? -->
 
 - A version 3.6+ Gateway Service configured in Konnect Gateway Manager,
-- [Linked to a portal API](/dev-portal/apis/gateway-service-link), and
+- [API linked to Gateway Service](/dev-portal/apis/gateway-service-link), and
 - [Published to a Dev Portal](/dev-portal/portals/publishing).
 
 {:.note}
@@ -87,11 +87,11 @@ In [**Settings/Security**](/dev-portal/portals/settings/security) for each porta
 > *When a new Dev Portal is created, if **Private** is selected, **User Authentication** will automatically be enabled, and **key auth** will be the default Application Auth Strategy.
 
 {:.note}
-> *If you would like anonymous, not-logged-in users to be able to see some content, and logged in users to have more access, select **Private** and adjust visibility settings on the APIs and Pages themselves to make them viewable publicly. Consider using Role-based access control (RBAC, see below) for more granular control for logged in users as well.
+> *If you would like anonymous/not-logged-in users to be able to see some content, and logged in users to have more access, select **Private** and adjust visibility settings on the APIs and Pages during publishing to make them viewable publicly. Consider using Role-based access control (RBAC, see below) for more granular control for logged-in users.
 
-1. Enable **User Authentication** to allow developers to register their applications to access APIs. Application registration is not possible with logged out users.
+1. Enable **User Authentication** to allow developers to register their applications to access APIs. Application registration is not possible with anonymous/not-logged-in users.
 
-2. Optional: Enable **Role-based access control (RBAC)** to allow granular control of viewing andconsuming APIs in the Dev Portal by defining roles within Teams.
+2. Optional: Enable **Role-based access control (RBAC)** to allow granular control of viewing and consuming APIs in the Dev Portal by defining roles within Teams.
 
 3. Optional: Click the [**Auto Approve**](/dev-portal/settings/security/) checkbox to enable new Developers registrations and/or thier Applications to be approved automatically by the system. If not set, portal admins will need to approve any new registrations and/or applications.
 
