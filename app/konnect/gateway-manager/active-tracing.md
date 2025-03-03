@@ -1,11 +1,12 @@
 ---
-title: Active Tracing in Konnect
+title: Active Tracing in {{site.konnect_short_name}
 content_type: reference
+alpha:true
 ---
 
-Active tracing enables control plane administrators to initiate targeted "deep tracing" sessions in specific data plane nodes. During an active tracing session, the selected data plane generates detailed, OpenTelemetry-compatible traces for all requests matching the sampling criteria. The detailed spans are captured for the entire request/response lifecycle. These traces can be visualized with Konnect's built-in span viewer with no additional instrumentation or telemetry tools.
+Active tracing enables control plane administrators to initiate targeted "deep tracing" sessions in specific data plane nodes. During an active tracing session, the selected data plane generates detailed, OpenTelemetry-compatible traces for all requests matching the sampling criteria. The detailed spans are captured for the entire request/response lifecycle. These traces can be visualized with {{site.konnect_short_name}}'s built-in span viewer with no additional instrumentation or telemetry tools.
 
-Konnect's active tracing capability offers exclusive, in-depth insights that cannot be replicated by third-party telemetry tools. The detailed traces generated during live active tracing session are unique to Kong and provide unparalleled visibility into system performance. 
+{{site.konnect_product_name}}'s active tracing capability offers exclusive, in-depth insights that cannot be replicated by third-party telemetry tools. The detailed traces generated during live active tracing session are unique to Kong and provide unparalleled visibility into system performance. 
 
 Active Tracing adheres to OpenTelemetry naming conventions for spans and attributes, wherever possible, ensuring consistency and interoperability.
 
@@ -15,13 +16,13 @@ Active Tracing adheres to OpenTelemetry naming conventions for spans and attribu
 - Refined traces can be generated for all requests matching a sampling criteria
 - Samplign criteria can be defined with simple expressions language ex: http.method == "GET"
 - Trace sessions are retained for upto 7 days
-- Traces can be visualized in Konnect's built in trace viewer 
+- Traces can be visualized in {{site.konnect_short_name}}'s built in trace viewer 
 
 Although active tracing is desinged to be as a debug and troubleshooting tool, it can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, active tracing adds negligible latency. However, under heavy loads, it may affect the throughput.
 
-## Reading traces in Konnect trace viewer
+## Reading traces in {{site.konnect_short_name}} trace viewer
 
-Traces captured in an active tracing session can be visualized in Konnect's built-in trace viewer. The trace viewer displays a **Summary** view and a **Trace** view. You can gain instant insights with the summary view while the trace view will help you dive deeper.
+Traces captured in an active tracing session can be visualized in {{site.konnect_short_name}}'s built-in trace viewer. The trace viewer displays a **Summary** view and a **Trace** view. You can gain instant insights with the summary view while the trace view will help you dive deeper.
 
 ### Summary view  
 
