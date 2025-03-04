@@ -30,8 +30,11 @@ to be up to date on any pending migration:
 
    ```shell
    kong migrations up [-c configuration_file]
-   kong migrations finish [-c configuration_file]
+   kong migrations -f finish [-c configuration_file]
    ```
+
+   {:.important}
+   > **Caution**: {% include_cached /md/enterprise/migration-finish-warning.md %}
 
 2. Confirm that all of the entities are now available on your
    {{site.ee_product_name}} node.
