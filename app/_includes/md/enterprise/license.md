@@ -10,7 +10,7 @@ worth merging the two versioned options and finding generic language. -->
 {{site.ee_product_name}} requires a license to run.
 
 If you have lost access to your `license.json` file but still have a valid
-license for Kong Gateway (Enterprise), open a
+license for {{site.ee_product_name}}, open a
 [support case](https://support.konghq.com/) to request the file.
 {% endif %}
 
@@ -19,7 +19,7 @@ license for Kong Gateway (Enterprise), open a
 
 {{site.base_gateway}} requires a license file.
 You receive this file from Kong when you sign up for an Enterprise subscription.
-[Contact Kong](https://konghq.com/get-started/) for more information.
+[Contact Kong](https://konghq.com/get-started) for more information.
 
 If you have purchased a subscription but haven't received a license file,
 contact your sales representative.
