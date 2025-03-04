@@ -14,7 +14,7 @@ The Konnect Dev Portal is a customizable website for developers to locate, acces
 
 Your Dev Portal use case might dictate different security settings tailored to your audience. While this is not comprehensive of all possibilities, these are typical scenarios. Keep in mind it's quite common to have multiple Dev Portals with APIs shared across them.
 
-![Visibility and Access Control combinations](visibility-access-combinations)
+![Visibility and Access Control combinations](/assets/images/products/konnect/dev-portal-v3/visibility-access-combinations.png)
 > _**Figure 1:** Common visibility and access control combinations_
 
 #### Internal Dev Portal
