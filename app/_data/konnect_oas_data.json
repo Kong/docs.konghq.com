@@ -222,6 +222,27 @@
     ]
   },
   {
+    "id": "830b5dd0-6914-44fc-ae5d-cc8efcf77c04",
+    "title": "Konnect API Builder",
+    "latestVersion": {
+      "name": "v3",
+      "id": "f1a1134c-797d-4712-bcd4-47c1b79e8099"
+    },
+    "description": "Manage APIs to be published in Konnect Developer Portals (beta).",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "f1a1134c-797d-4712-bcd4-47c1b79e8099",
+        "created_at": "2025-03-04T00:08:04.283Z",
+        "updated_at": "2025-03-04T00:08:50.392Z",
+        "name": "v3",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "d420333f-01b0-464e-a87a-97acc92c2026",
     "title": "Konnect API Products",
     "latestVersion": {
@@ -335,13 +356,21 @@
     },
     "description": "The API that powers the Konnect Developer Portal. Access portal data from the perspective of a Portal user, rather than a Portal administrator.",
     "documentCount": 0,
-    "versionCount": 1,
+    "versionCount": 2,
     "versions": [
       {
         "id": "33ab825d-dec0-4d29-8e17-5133655d7ae7",
         "created_at": "2024-06-10T13:14:58.432Z",
         "updated_at": "2024-10-17T19:13:30.138Z",
         "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "11ae89ce-a372-48fd-b71f-d39a9659dce1",
+        "created_at": "2025-03-04T00:03:50.955Z",
+        "updated_at": "2025-03-04T00:04:08.795Z",
+        "name": "v3",
         "deprecated": false,
         "registration_configs": []
       }
@@ -427,13 +456,21 @@
     },
     "description": "Integrate portal management operations with automation systems (such as CI/CD pipelines) using this AIP-compliant API.",
     "documentCount": 0,
-    "versionCount": 1,
+    "versionCount": 2,
     "versions": [
       {
         "id": "43fca68c-f83d-4cf1-8c40-87574d423313",
         "created_at": "2023-10-27T16:34:46.991Z",
         "updated_at": "2024-10-17T19:12:04.768Z",
         "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "6ba6dc55-52a6-43fc-9237-dbaf283bb879",
+        "created_at": "2025-03-03T23:35:19.886Z",
+        "updated_at": "2025-03-03T23:35:45.859Z",
+        "name": "v3",
         "deprecated": false,
         "registration_configs": []
       }
