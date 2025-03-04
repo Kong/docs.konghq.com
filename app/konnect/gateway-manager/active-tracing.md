@@ -106,20 +106,20 @@ This span has the following attributes:
       <td>client.address</td>
       <td>IP address of the peer connecting to Kong</td>
     </tr>
-    <tr><td>client.port</td><td>if available</td></tr>
+    <tr><td>client.port</td><td>Port the peer is connecting to (captured if available)</td></tr>
     <tr><td>network.peer.address</td><td>client ip</td></tr>
     <tr><td>network.peer.port</td><td>client port</td></tr>
-    <tr><td>server.address</td><td>our dns/ip the client used to reach us</td></tr>
-    <tr><td>server.port</td><td>our public port</td></tr>
+    <tr><td>server.address</td><td>Kong's dns name or ip used in client connection</td></tr>
+    <tr><td>server.port</td><td>Kong's public port</td></tr>
     <tr><td>network.protocol.name</td><td>http, grpc, ws, kafka etc</td></tr>
-    <tr><td>http.request.method</td><td>the http method</td></tr>
-    <tr><td>http.request.body.size</td><td>content-length or equivalent in bytes</td></tr>
-    <tr><td>http.request.size</td><td>body.size + headers.size in bytes</td></tr>
+    <tr><td>http.request.method</td><td>the http request method</td></tr>
+    <tr><td>http.request.body.size</td><td>request content-length or equivalent in bytes</td></tr>
+    <tr><td>http.request.size</td><td>request.body.size + request.headers.size in bytes</td></tr>
     <tr><td>http.response.body.size</td><td>response content-length or equivalent in bytes</td></tr>
-    <tr><td>http.response.size</td><td>response.body.size + resp.headers.size in bytes</td></tr>
-    <tr><td>kong.request.id</td><td>proxy.kong.request_id</td></tr>
-    <tr><td>url.scheme</td><td>scheme of the request</td></tr>
-    <tr><td>network.protocol.flavor</td><td>http flavor [1.2, 2.0]</td></tr>
+    <tr><td>http.response.size</td><td>response.body.size + response.headers.size in bytes</td></tr>
+    <tr><td>kong.request.id</td><td>proxy.kong.request_id - unique id for each request</td></tr>
+    <tr><td>url.scheme</td><td>Protocol identifier</td></tr>
+    <tr><td>network.protocol.version</td><td>version of the http protocol used in establishing connection [1.2, 2.0]</td></tr>
     <tr><td>tls.client.server_name</td><td>SNI</td></tr>
     <tr><td>http.request.header.host</td><td>Host header if present. This can be different from SNI</td></tr>
     <tr><td>proxy.kong.consumer_id</td><td>authenticated consumer_id if present</td></tr>
