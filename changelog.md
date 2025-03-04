@@ -2,6 +2,92 @@
 
 <!--vale off-->
 
+## Week 9
+
+### [Fix Konnect cluster and telemetry hostnames](https://github.com/Kong/docs.konghq.com/pull/8478) (2025-02-27)
+
+Changed the existing cluster and telemetry hostnames to `CONTROL_PLANE_DNS_PREFIX` to match feedback I got here: https://kongstrong.slack.com/archives/C04RXLGNB6K/p1740607033227059
+
+#### Modified
+
+- https://docs.konghq.com/konnect/network
+
+
+### [Fix: Loggly plugin description update](https://github.com/Kong/docs.konghq.com/pull/8462) (2025-02-26)
+
+Remove unrelated description of Syslog in Loggly page.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/loggly/overview/
+
+
+### [docs(json-threat-protection): add a description for the supported HTTP methods](https://github.com/Kong/docs.konghq.com/pull/8459) (2025-02-28)
+
+Please merge this PR after the PR https://github.com/Kong/kong-ee/pull/11437 is merged.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/json-threat-protection/overview/
+
+
+### [Fix: transit gateways](https://github.com/Kong/docs.konghq.com/pull/8456) (2025-02-24)
+
+Updated steps to ensure a customer has Tgw attachment for their own VPCs also.
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways
+
+
+### [Release: Gateway 3.7.1.4 ](https://github.com/Kong/docs.konghq.com/pull/8454) (2025-02-27)
+
+Changelog and version bump for 3.7.1.4
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update request-transformer-advanced examples to include replace.uri](https://github.com/Kong/docs.konghq.com/pull/8447) (2025-02-25)
+
+Update request-transformer-advanced examples to include replace.uri
+- Added examples for replace.uri using static values and capturing groups.
+- Improved documentation to clarify usage.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
+
+
+### [Feat: service catalog score cards](https://github.com/Kong/docs.konghq.com/pull/8410) (2025-02-28)
+
+https://konghq.atlassian.net/browse/DOCU-4184
+
+## Preview Links
+- https://deploy-preview-8410--kongdocs.netlify.app/konnect/service-catalog/scorecards/
+- https://deploy-preview-8410--kongdocs.netlify.app/konnect/service-catalog/#service-catalog-use-cases (added scorecards to table)
+- https://deploy-preview-8410--kongdocs.netlify.app/konnect/service-catalog/#service-catalog-terminology (added scorecards to table)
+
+#### Added
+
+- https://docs.konghq.com/assets/images/products/konnect/konnect-service-catalog-scorecards.png
+- https://docs.konghq.com/konnect/service-catalog/scorecards/
+
+#### Modified
+
+- https://docs.konghq.com/konnect/service-catalog/
+
+
+### [docs(mesh): moved k8s section of kumactl configuration](https://github.com/Kong/docs.konghq.com/pull/8404) (2025-02-25)
+
+The instruction is a bit confusing and might suggest that user can access Konnect cluster with kubectl. I tried to moved it to the tip.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/mesh-manager/service-mesh
+
 ## Week 8
 
 ### [Fix: route priority info](https://github.com/Kong/docs.konghq.com/pull/8457) (2025-02-22)
