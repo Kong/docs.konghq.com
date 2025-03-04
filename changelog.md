@@ -6,10 +6,7 @@
 
 ### [Fix Konnect cluster and telemetry hostnames](https://github.com/Kong/docs.konghq.com/pull/8478) (2025-02-27)
 
-<!-- What did you change and why? -->
 Changed the existing cluster and telemetry hostnames to `CONTROL_PLANE_DNS_PREFIX` to match feedback I got here: https://kongstrong.slack.com/archives/C04RXLGNB6K/p1740607033227059
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -29,15 +26,6 @@ Remove unrelated description of Syslog in Loggly page.
 
 Please merge this PR after the PR https://github.com/Kong/kong-ee/pull/11437 is merged.
 
-
-KAG-6419
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/json-threat-protection/overview/
@@ -47,12 +35,6 @@ KAG-6419
 
 Updated steps to ensure a customer has Tgw attachment for their own VPCs also.
 
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
