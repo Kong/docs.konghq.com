@@ -18,13 +18,13 @@ deck gateway sync --kong-addr http://host.docker.internal:8001 my_deck_file.yaml
 
 ### Windows
 
-On Windows the commands are slightly different based on the environment you are using.
+On Windows, the commands are slightly different based on the environment you are using.
 
-Environment | command
--|-
-Bash like GitBash or MinGW bash | `MSYS_NO_PATHCONV=1 docker run --rm -v $(pwd):/files -w /files kong/deck`
-PowerShell | `docker run --rm -v ${PWD}:/files -w /files kong/deck`
-cmd | `docker run --rm -v %CD%:/files -w /files kong/deck`
+| Environment | Command |
+| -|- |
+| Bash, for example GitBash or MinGW bash | `MSYS_NO_PATHCONV=1 docker run --rm -v $(pwd):/files -w /files kong/deck`|
+| PowerShell | `docker run --rm -v ${PWD}:/files -w /files kong/deck` |
+| cmd | `docker run --rm -v %CD%:/files -w /files kong/deck` |
 
 ## Set a default kong-addr
 
