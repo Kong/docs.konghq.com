@@ -11,6 +11,8 @@ There are a few key concepts to understand for linting with decK:
 *   **Functions** accept the filtered values and perform a validation returning information when there are violations.
 *   **Rulesets** are collections of Rules.
 
+For a complete list of available rules, see the [vacuum](https://quobix.com/vacuum/rules/) documentation.
+
 ## Example
 
 {{ site.base_gateway }} services are defined in the `services` block in the decK file. Services support a number of configuration values including a protocol field which specifies the communication protocol used between the gateway and the upstream service. To ensure this traffic is secure, you may want to validate that only `https` protocols are used. Here is a sample Ruleset file containing a single Rule that accomplishes this.
