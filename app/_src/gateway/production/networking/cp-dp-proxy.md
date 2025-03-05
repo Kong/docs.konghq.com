@@ -20,7 +20,7 @@ configure the following parameters:
 
 ```
 proxy_server = http(s)://<username>:<password>@<proxy-host>:<proxy-port>
-proxy_server_tls_verify = on/off
+proxy_server_ssl_verify = on/off
 cluster_use_proxy = on
 lua_ssl_trusted_certificate = system | <certificate> | <path-to-cert>
 ```
@@ -28,7 +28,7 @@ lua_ssl_trusted_certificate = system | <certificate> | <path-to-cert>
 * `proxy_server`: Proxy server defined as a URL. {{site.base_gateway}} will
 only use this option if any component is explicitly configured to use the proxy.
 
-* `proxy_server_tls_verify`: Toggles server certificate verification if
+* `proxy_server_ssl_verify`: Toggles server certificate verification if
 `proxy_server` is in HTTPS. Set to `on` if using HTTPS (default), or `off` if
 using HTTP.
 
