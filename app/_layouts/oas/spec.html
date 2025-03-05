@@ -7,4 +7,5 @@ oas: true
 
 <script>
   window.oas = { "product": {{ page.product.as_json | jsonify }}, "version": {{ page.version | jsonify }} }
+  window.versions = {{ page.versions | jsonify }}
 </script>
