@@ -56,6 +56,9 @@ export default ({ command, mode }) => {
           /node_modules/
         ]
       },
+      rollupOptions: {
+        external: ['shiki/onig.wasm']
+      }
     },
     plugins: [
       inject({
