@@ -16,7 +16,7 @@ module OasDefinition
       @data = {}
     end
 
-    def build_data # rubocop:disable Metrics/MethodLength
+    def build_data # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
       @data
         .merge!({
                   'source_file' => @file,
@@ -30,13 +30,21 @@ module OasDefinition
                   'canonical_url' => canonical_url,
                   'seo_noindex' => @latest ? nil : true,
                   'is_latest' => @latest,
-                  'algolia_docsearch_meta' => algolia_docsearch_meta
+                  'algolia_docsearch_meta' => algolia_docsearch_meta,
+                  'versions' => versions.map(&:as_json)
                 })
         .merge!(frontmatter_attrs)
         .merge!(Jekyll::Pages::TranslationMissingData.new(@site).data)
     end
 
     private
+
+    def versions
+      @versions ||= @product.fetch('versions', []).map do |version|
+        base_url = canonical_url.gsub('latest/', '')
+        ::Jekyll::Drops::Oas::Version.new(base_url:, version:)
+      end
+    end
 
     def permalink(version)
       PageUrlGenerator.run(file: @file, version:)
