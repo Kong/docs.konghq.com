@@ -1,0 +1,14 @@
+name: Request Callout
+search_aliases:
+  - request-callout
+dbless_compatible: 'yes'
+free: false
+plus: false
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - transformations
+publisher: Kong Inc.
+desc: ''
