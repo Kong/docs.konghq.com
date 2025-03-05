@@ -161,7 +161,6 @@ const openSlideoutToc = async () => {
 .app-container {
   display: flex;
   gap: 40px;
-  width: 100%;
   padding: 0 40px;
 }
 
