@@ -427,6 +427,27 @@
     ]
   },
   {
+    "id": "d2331886-d3cc-4ec9-9ddd-ea620b72ca0a",
+    "title": "Konnect Metrics Endpoint",
+    "latestVersion": {
+      "name": "4.0.0",
+      "id": "b9e0b85a-7188-4f80-b7d3-ec91fd5f5b41"
+    },
+    "description": "Konnect endpoint for extracting and computing metrics, similar to the data that is used to build graphs in Konnect Advanced Analytics. This endpoint is used to query the Advanced Analytics platform for aggregated metrics down to ten seconds for recent data. Data can be requested to group by any 2 dimensions, up to 3 metrics and any number of filter conditions in 1 query.\n\nThis endpoint is only available for Konnect Advanced Analytics.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "b9e0b85a-7188-4f80-b7d3-ec91fd5f5b41",
+        "created_at": "2025-03-05T14:58:54.950Z",
+        "updated_at": "2025-03-05T15:32:01.494Z",
+        "name": "4.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "b0b03b39-cfa4-48b6-9b23-a901786eb46a",
     "title": "Konnect Notification Hub",
     "latestVersion": {
