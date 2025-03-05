@@ -8,7 +8,7 @@
     </button>
   </div>
 
-  <div class="app-container">
+  <div>
     <KSlideout
       v-if="!loading && tableOfContents"
       :title="parsedDocument?.name || 'Table of Contents'"
@@ -162,6 +162,7 @@ const openSlideoutToc = async () => {
   display: flex;
   gap: 40px;
   width: 100%;
+  padding: 0 40px;
 }
 
 .spec-content {
