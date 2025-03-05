@@ -4996,6 +4996,12 @@ components:
                   type: array
                   items:
                     type: string
+        partials:
+          type: array
+          items:
+            additionalProperties: true
+            type: object
+          nullable: true
         protocols:
           description: 'A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.'
           type: array
@@ -5056,6 +5062,11 @@ components:
         enabled: true
         id: 3fd1eea1-885a-4011-b986-289943ff8177
         name: key-auth
+        partials:
+          - id: cff1230a-00f7-4ae8-b376-c370f0eb4dae
+            path: config.redis
+          - id: 129ee345-cba8-4e55-9d6d-93c223ff91ae
+            path: config.redis
         protocols:
           - grpc
           - grpcs
@@ -5124,6 +5135,12 @@ components:
                   type: array
                   items:
                     type: string
+        partials:
+          type: array
+          items:
+            additionalProperties: true
+            type: object
+          nullable: true
         protocols:
           description: 'A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.'
           type: array
@@ -5184,6 +5201,11 @@ components:
         enabled: true
         id: 3fd1eea1-885a-4011-b986-289943ff8177
         name: key-auth
+        partials:
+          - id: cff1230a-00f7-4ae8-b376-c370f0eb4dae
+            path: config.redis
+          - id: 129ee345-cba8-4e55-9d6d-93c223ff91ae
+            path: config.redis
         protocols:
           - grpc
           - grpcs
