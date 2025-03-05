@@ -104,11 +104,11 @@ This span has the following attributes:
     </tr>
     <tr>
       <td>client.address</td>
-      <td>IP address of the peer connecting to Kong</td>
+      <td>Remote address of the client making the request. This considers forwarded addresses in cases when a load balancer is in front of Kong. Note: this requires configuring the real_ip_header and trusted_ips global configuration options.</td>
     </tr>
-    <tr><td>client.port</td><td>Port the peer is connecting to (captured if available)</td></tr>
-    <tr><td>network.peer.address</td><td>client ip</td></tr>
-    <tr><td>network.peer.port</td><td>client port</td></tr>
+    <tr><td>client.port</td><td>Remote port of the client making the request. This considers forwarded ports in cases when a load balancer is in front of Kong. Note: this requires configuring the real_ip_header and trusted_ips global configuration options.</td></tr>
+    <tr><td>network.peer.address</td><td>IP of the component that is connecting to Kong</td></tr>
+    <tr><td>network.peer.port</td><td>Port of the component that is connecting to Kong</td></tr>
     <tr><td>server.address</td><td>Kong's dns name or ip used in client connection</td></tr>
     <tr><td>server.port</td><td>Kong's public port</td></tr>
     <tr><td>network.protocol.name</td><td>http, grpc, ws, kafka etc</td></tr>
@@ -205,8 +205,14 @@ This span has the following attributes:
   </tbody>
 </table>
 
-### kong.io.func
+### kong.io.<func>
 A span capturing network i/o timing that occurs during plugin execution or other request processing. 
+
+Can be one of:
+* kong.io.http.request (requests done by the internal http client during the flow)
+* kong.io.http.connect (connections done by the internal http client during the flow)
+* kong.io.redis.<function> (redis functions)
+* kong.io.socket.<function> (functions called on the internal nginx socket)
 
 Examples:
 * OIDC plugin making calls to IdP
@@ -308,7 +314,7 @@ This span has the following attributes:
 </table>
 
 
-### kong.upstream_selection
+### kong.upstream.selection
 A span capturing the total time spent in finding a healthy upstream. 
 Depending on configuration, Kong will try to find a healthy upstream by trying various targets in order determined by the load balancing algorithm. 
 Child spans of this span capture the individual attempts.
@@ -328,7 +334,7 @@ This span has the following attributes:
 </table>
 
 
-### kong.upstream.try_select
+### kong.upstream.find_upstream
 A span capturing the attempt to verify a specific upstream. 
 Kong attempts to open a TCP connection (if not KeepAlive cache is found), do a TLS handshake and send down the HTTP headers. 
 If all of this succeeds, the upstream is healthy and Kong will finish sending the full request and wait for a response. 
@@ -365,15 +371,19 @@ This span has the following attributes:
   </tbody>
 </table>
 <!--vale on-->
-### kong.upstream_ttfb
-A span capturing the "time to first byte" from the upstream. 
-This includes the time taken to finish writing the http request to upstream, and the time taken by the upstream to start generating a response. 
-This span can be used to identify network delays between Kong and an upstream as well as identifying upstreams that take long to start generating responses.
 
-### kong.upstream_read_response
-A span capturing the time taken for the upstream to generate a full response. 
-This effectively measures the time Kong sees between the first byte of the response header and the last byte of the response body coming from the upstream. 
+### kong.send_request_to_upstream
+A span capturing the time taken to finish writing the http request to upstream.
+This span can be used to identify network delays between Kong and an upstream.
+
+### kong.read_headers_from_upstream
+A span capturing the time taken for the upstream to generate the response headers. 
 This span can be used to identify slowness in response generation from upstreams.
+
+### kong.read_body_from_upstream
+A span capturing the time taken for the upstream to generate the response body. 
+This span can be used to identify slowness in response generation from upstreams.
+
 
 ### kong.phase.response
 A span capturing the execution of the `response` phase. 
