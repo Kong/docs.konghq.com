@@ -23,6 +23,8 @@ servers:
     description: Australia Production region
   - url: 'https://me.api.konghq.com/v2'
     description: Middle-East Production region
+  - url: 'https://in.api.konghq.com/v2'
+    description: India Production region
 paths:
   '/control-planes/{controlPlaneId}/expected-config-hash':
     get:
@@ -4091,21 +4093,18 @@ components:
     DataPlaneClientCertificate:
       type: object
       properties:
-        item:
-          type: object
-          properties:
-            id:
-              description: Unique ID of the certificate entity.
-              type: string
-            created_at:
-              description: Date certificate was created.
-              type: integer
-            updated_at:
-              description: Date certificate was last updated.
-              type: integer
-            cert:
-              description: JSON escaped string of the certificate.
-              type: string
+        id:
+          description: Unique ID of the certificate entity.
+          type: string
+        created_at:
+          description: Date certificate was created.
+          type: integer
+        updated_at:
+          description: Date certificate was last updated.
+          type: integer
+        cert:
+          description: JSON escaped string of the certificate.
+          type: string
     ConfigStore:
       type: object
       properties:
@@ -4184,7 +4183,6 @@ components:
       properties:
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4216,7 +4214,6 @@ components:
       properties:
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4246,7 +4243,6 @@ components:
       properties:
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4282,7 +4278,6 @@ components:
       properties:
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4478,7 +4473,6 @@ components:
       properties:
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4514,7 +4508,6 @@ components:
       properties:
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4566,7 +4559,6 @@ components:
           nullable: true
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4623,7 +4615,6 @@ components:
           nullable: true
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4689,7 +4680,6 @@ components:
         set:
           description: The id (an UUID) of the key-set with which to associate the key.
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4722,7 +4712,6 @@ components:
       properties:
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4754,7 +4743,6 @@ components:
       properties:
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4840,7 +4828,6 @@ components:
         set:
           description: The id (an UUID) of the key-set with which to associate the key.
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4873,14 +4860,12 @@ components:
       properties:
         ca_certificate:
           type: object
-          additionalProperties: false
           properties:
             id:
               type: string
           x-foreign: true
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4914,14 +4899,12 @@ components:
       properties:
         ca_certificate:
           type: object
-          additionalProperties: false
           properties:
             id:
               type: string
           x-foreign: true
         consumer:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4965,7 +4948,6 @@ components:
         consumer:
           description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.'
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -4973,7 +4955,6 @@ components:
           x-foreign: true
         consumer_group:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5040,7 +5021,6 @@ components:
         route:
           description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.'
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5049,7 +5029,6 @@ components:
         service:
           description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.'
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5097,7 +5076,6 @@ components:
         consumer:
           description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.'
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5105,7 +5083,6 @@ components:
           x-foreign: true
         consumer_group:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5172,7 +5149,6 @@ components:
         route:
           description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.'
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5181,7 +5157,6 @@ components:
         service:
           description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.'
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5219,6 +5194,110 @@ components:
         - name
         - config
     Route:
+      oneOf:
+        - $ref: '#/components/schemas/RouteJson'
+        - $ref: '#/components/schemas/RouteExpression'
+    RouteExpression:
+      description: 'Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.'
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          readOnly: true
+        expression:
+          description: Use Router Expression to perform route match. This option is only available when `router_flavor` is set to `expressions`.
+          type: string
+          nullable: true
+        https_redirect_status_code:
+          description: 'The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308. Note: This config applies only if the Route is configured to only accept the `https` protocol.'
+          type: integer
+          default: 426
+          enum:
+            - 426
+            - 301
+            - 302
+            - 307
+            - 308
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        name:
+          description: 'The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".'
+          type: string
+          nullable: true
+        path_handling:
+          description: 'Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.'
+          type: string
+          default: v0
+          enum:
+            - v0
+            - v1
+          nullable: true
+        preserve_host:
+          description: 'When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service''s `host`.'
+          type: boolean
+          default: false
+          nullable: true
+        priority:
+          type: integer
+          default: 0
+          nullable: true
+        protocols:
+          description: 'An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.'
+          type: array
+          items:
+            enum:
+              - grpc
+              - grpcs
+              - http
+              - https
+              - tcp
+              - tls
+              - tls_passthrough
+              - udp
+              - ws
+              - wss
+            type: string
+          default:
+            - http
+            - https
+          nullable: true
+        request_buffering:
+          description: 'Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.'
+          type: boolean
+          default: true
+          nullable: true
+        response_buffering:
+          description: 'Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.'
+          type: boolean
+          default: true
+          nullable: true
+        service:
+          description: The Service this Route is associated to. This is where the Route proxies traffic to.
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        strip_path:
+          description: 'When matching a Route via one of the `paths`, strip the matching prefix from the upstream request URL.'
+          type: boolean
+          default: true
+          nullable: true
+        tags:
+          description: An optional set of strings associated with the Route for grouping and filtering.
+          type: array
+          items:
+            type: string
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+          readOnly: true
+      additionalProperties: false
+    RouteJson:
       description: 'Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.'
       type: object
       properties:
@@ -5241,9 +5320,9 @@ components:
           description: 'One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.'
           type: object
           additionalProperties:
-            type: array
             items:
               type: string
+            type: array
           nullable: true
         hosts:
           description: A list of domain names that match this Route. Note that the hosts value is case sensitive.
@@ -5332,7 +5411,6 @@ components:
         service:
           description: The Service this Route is associated to. This is where the Route proxies traffic to.
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5400,13 +5478,17 @@ components:
                 type: integer
             type: object
           nullable: true
+        expression:
+          description: Use Router Expression to perform route match. This option is only available when `router_flavor` is set to `expressions`.
+          type: string
+          nullable: true
         headers:
           description: 'One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.'
           type: object
           additionalProperties:
-            type: array
             items:
               type: string
+            type: array
           nullable: true
         hosts:
           description: A list of domain names that match this Route. Note that the hosts value is case sensitive.
@@ -5457,6 +5539,10 @@ components:
           type: boolean
           default: false
           nullable: true
+        priority:
+          type: integer
+          default: 0
+          nullable: true
         protocols:
           description: 'An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.'
           type: array
@@ -5495,7 +5581,6 @@ components:
         service:
           description: The Service this Route is associated to. This is where the Route proxies traffic to.
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5549,7 +5634,6 @@ components:
         certificate:
           description: The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.
           type: object
-          additionalProperties: false
           properties:
             id:
               type: string
@@ -5589,7 +5673,6 @@ components:
         certificate:
           description: The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.
           type: object
-          additionalProperties: false
           properties:
             id:
               type: string
@@ -5632,7 +5715,6 @@ components:
         client_certificate:
           description: Certificate to be used as client certificate while TLS handshaking to the upstream server.
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5759,7 +5841,6 @@ components:
           readOnly: true
         upstream:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5803,7 +5884,6 @@ components:
           readOnly: true
         upstream:
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -5836,7 +5916,6 @@ components:
         client_certificate:
           description: 'If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.'
           type: object
-          additionalProperties: false
           nullable: true
           properties:
             id:
@@ -6731,7 +6810,10 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/DataPlaneClientCertificate'
+            type: object
+            properties:
+              item:
+                $ref: '#/components/schemas/DataPlaneClientCertificate'
     GetExpectedConfigHashResponse:
       description: Response body for retrieving the expected config hash of the control plane.
       content:

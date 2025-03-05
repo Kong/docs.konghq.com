@@ -15,6 +15,8 @@ servers:
     description: Australia Production region
   - url: 'https://me.api.konghq.com/v2'
     description: Middle-East Production region
+  - url: 'https://in.api.konghq.com/v2'
+    description: India Production region
 paths:
   /dcr-providers:
     post:
@@ -964,6 +966,12 @@ components:
       type: object
       discriminator:
         propertyName: provider_type
+        mapping:
+          auth0: '#/components/schemas/CreateDcrProviderRequestAuth0'
+          azureAd: '#/components/schemas/CreateDcrProviderRequestAzureAd'
+          curity: '#/components/schemas/CreateDcrProviderRequestCurity'
+          okta: '#/components/schemas/CreateDcrProviderRequestOkta'
+          http: '#/components/schemas/CreateDcrProviderRequestHttp'
       oneOf:
         - $ref: '#/components/schemas/CreateDcrProviderRequestAuth0'
         - $ref: '#/components/schemas/CreateDcrProviderRequestAzureAd'
