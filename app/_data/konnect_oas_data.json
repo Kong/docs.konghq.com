@@ -351,8 +351,8 @@
     "id": "295fef86-02f3-438a-ada1-256680ba6424",
     "title": "Konnect Developer Portal",
     "latestVersion": {
-      "name": "v2",
-      "id": "33ab825d-dec0-4d29-8e17-5133655d7ae7"
+      "name": "v3",
+      "id": "11ae89ce-a372-48fd-b71f-d39a9659dce1"
     },
     "description": "The API that powers the Konnect Developer Portal. Access portal data from the perspective of a Portal user, rather than a Portal administrator.",
     "documentCount": 0,
@@ -451,8 +451,8 @@
     "id": "f99f0f29-be4e-4fc8-8cec-64e5d3511bff",
     "title": "Konnect Portal Management",
     "latestVersion": {
-      "name": "v2",
-      "id": "43fca68c-f83d-4cf1-8c40-87574d423313"
+      "name": "v3",
+      "id": "6ba6dc55-52a6-43fc-9237-dbaf283bb879"
     },
     "description": "Integrate portal management operations with automation systems (such as CI/CD pipelines) using this AIP-compliant API.",
     "documentCount": 0,
