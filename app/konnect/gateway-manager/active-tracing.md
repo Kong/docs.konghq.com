@@ -128,17 +128,17 @@ This span has the following attributes:
     <tr><td>http.response.status_code</td><td>status code sent back by Kong</td></tr>
     <tr><td>proxy.kong.latency.upstream</td><td>time between connect() to upstream and last byte of response ($upstream_response_time)</td></tr>
     <tr><td>proxy.kong.latency.total</td><td>first byte into kong, last byte out of kong ($request_time)</td></tr>
-    <tr><td>proxy.kong.latency.internal</td><td>see Appendix-D</td></tr>
+    <tr><td>proxy.kong.latency.internal</td><td>Time taken by Kong to process the request. Excludes client and upstream read/write times, and i/o times</td></tr>
     <tr><td>proxy.kong.latency.net_io_timings</td><td>array of (ip, connect_time, rw_time) - i/o outside of request context is not considered</td></tr>
     <tr><td>proxy.kong.client_KA</td><td>did downstream use a KeepAlive connection</td></tr>
     <tr><td>tls.resumed</td><td>was the TLS session reused</td></tr>
     <tr><td>tls.client.subject</td><td>x509 client DN (if mtls)</td></tr>
-    <tr><td>tls.server.subject</td><td>x509 DN for cert we presented</td></tr>
+    <tr><td>tls.server.subject</td><td>x509 DN for cert Kong presented</td></tr>
     <tr><td>tls.cipher</td><td>the negotiated cipher</td></tr>
   </tbody>
 </table>
 <!--vale on-->
-### kong.phase.certificate
+## kong.phase.certificate
 
 A span capturing the execution of the `certificate` phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
 
