@@ -114,6 +114,14 @@ id: documentation
               </blockquote>
           {% endunless %}
 
+          {% assign devPortalPrefix = page.url | slice: 0, 20 %}
+          {% assign apiProductsPrefix = page.url | slice: 0, 22 %}
+          {% if devPortalPrefix == '/konnect/dev-portal/' or apiProductsPrefix == '/konnect/api-products/' %}
+            <blockquote class="note">
+              Looking for the new Developer Portal beta docs? <a href="/dev-portal/">Try the beta now</a>.
+            </blockquote>
+          {% endif %}
+
           <h1 tabindex="-1" id="main" class="page-content-title"
           >{{page.title | flatify }}
             {% if page.github_star_button %}
