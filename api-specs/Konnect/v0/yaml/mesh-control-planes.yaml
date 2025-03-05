@@ -15,6 +15,8 @@ servers:
     description: Australia Production region
   - url: 'https://me.api.konghq.com/v1'
     description: Middle-East Production region
+  - url: 'https://in.api.konghq.com/v1'
+    description: India Production region
 paths:
   /mesh/control-planes:
     get:
@@ -144,6 +146,38 @@ components:
         type: integer
         example: 10
   schemas:
+    MeshControlPlaneFeatures:
+      type: array
+      items:
+        $ref: '#/components/schemas/MeshControlPlaneFeature'
+    MeshControlPlaneFeatureHostnameGenerationCreation:
+      properties:
+        enabled:
+          type: boolean
+      required:
+        - enabled
+    MeshControlPlaneFeatureMeshCreation:
+      properties:
+        enabled:
+          type: boolean
+      required:
+        - enabled
+    MeshControlPlaneFeature:
+      description: |
+        Features to be enabled in the control plane. Currently only defaults are supported.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - MeshCreation
+            - HostnameGeneratorCreation
+        hostnameGeneratorCreation:
+          $ref: '#/components/schemas/MeshControlPlaneFeatureHostnameGenerationCreation'
+        meshCreation:
+          $ref: '#/components/schemas/MeshControlPlaneFeatureMeshCreation'
+      required:
+        - type
     MeshControlPlaneLabels:
       description: Labels to facilitate tagged search on control planes. Keys must be of length 1-63 characters.
       type: object
@@ -180,14 +214,18 @@ components:
           maxLength: 250
         labels:
           $ref: '#/components/schemas/MeshControlPlaneLabels'
+        features:
+          $ref: '#/components/schemas/MeshControlPlaneFeatures'
         created_at:
           type: string
           format: date-time
           example: '2023-01-11T02:30:42.227Z'
+          readOnly: true
         updated_at:
           type: string
           format: date-time
           example: '2023-01-11T02:30:42.227Z'
+          readOnly: true
       required:
         - id
         - name
@@ -209,6 +247,8 @@ components:
           type: string
           example: A control plane to handle traffic on development environment.
           maxLength: 250
+        features:
+          $ref: '#/components/schemas/MeshControlPlaneFeatures'
         labels:
           $ref: '#/components/schemas/MeshControlPlaneLabels'
       additionalProperties: false
@@ -725,7 +765,7 @@ components:
       bearerFormat: Token
       description: |
         The personal access token is meant to be used as an alternative to basic-auth when accessing Konnect via APIs.
-        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/tokens/) in the Konnect dashboard.
+        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/account/tokens/) in the Konnect dashboard.
         The PAT token must be passed in the header of a request, for example:
         `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT...'`
     systemAccountAccessToken:
