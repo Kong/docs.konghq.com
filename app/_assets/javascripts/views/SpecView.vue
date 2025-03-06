@@ -232,4 +232,8 @@ const openSlideoutToc = async () => {
 :deep(details summary:before) {
   content: none;
 }
+
+:deep(.table-of-contents) {
+  height: 100%;
+}
 </style>
