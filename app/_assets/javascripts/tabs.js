@@ -46,7 +46,7 @@ class MeshServiceSwitcher {
         })
       }
     })
-    
+
     // fire a fake event to update the view
     window.dispatchEvent(new StorageEvent('storage', { key: KEY }));
   }
@@ -71,13 +71,14 @@ class TabsComponent {
 
   selectTab(event) {
     event.stopPropagation();
-    if (!this.options['useUrlFragment']) {
+    if (this.options['useUrlFragment'] === 'false') {
       event.preventDefault();
     }
-    event.target.scrollIntoView({ behavior: "smooth", block: "start" });
-    const selectedTab = event.currentTarget;
-    this.setSelectedTab(selectedTab);
-    this.dispatchTabSelectedEvent(event.target.dataset.slug);
+
+    const slug = event.target.dataset.slug || event.target.querySelector('[data-slug]')?.dataset?.slug;
+
+    this.setSelectedTab(event.currentTarget);
+    this.dispatchTabSelectedEvent(slug);
   }
 
   hideTabs(selectedTab) {
