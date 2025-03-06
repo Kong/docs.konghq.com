@@ -1,6 +1,6 @@
 ---
 nav_title: 
-title: How to configure pools
+title: How to configure realms
 
 minimum_version: 3.8.x
 ---
