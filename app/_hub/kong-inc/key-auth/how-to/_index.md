@@ -2,70 +2,64 @@
 nav_title: 
 title: How to configure realms
 
-minimum_version: 3.8.x
+minimum_version: 3.10.x
 ---
 
 
-With `pool_id` you can configure the key-auth plugin to validate API keys against the Identity Service.
+API Keys that are stored centrally in Konnect to be shared across multiple Gateways can be validated by configuring `identity_realms` field in the key-auth plugin.
 
-### Configuring Multiple Pools
+### Configuring Multiple realms
 
-In the key-auth plugin configuration, add the `pools` option as shown below:
-
-```yaml
-pools:
-  - geo: us
-    id: <the_pool_id_you_got_in_step_1>
-    type: remote
-  - geo: null
-    id: null
-    type: local
-```
-
-The order in which you configure the pools dictates the priority in which the dataplane attempts to authenticate the provided API keys.
-
-In the example above, if the remote pool is listed first, the dataplane will first reach out to the identity service and, if necessary, subsequently to the local pool.
-
-Alternatively, you can configure the local pool first:
+In the key-auth plugin configuration, add the `identity_realms` field as shown below:
 
 ```yaml
-pools:
-  - geo: null
-    id: null
-    type: local
-  - geo: us
-    id: <the_pool_id_you_got_in_step_1>
-    type: remote
+identity_realms:
+  - region: us
+    id: <realm_id>
+    scope: realm
+  - scope: cp
 ```
 
-In this configuration, the dataplane will initially check the local pool (LMDB) before querying the remote Identity Service.
+The order in which you configure the identity_realms dictates the priority in which the dataplane attempts to authenticate the provided API keys.
 
-If a matching key is found in any of these pools, the request will be authenticated. If the key is not found in any of the configured pools, the request will be blocked.
+In the example above, if the realm is listed first, the dataplane will first reach out to the realm. If the API key is not found in the realm, the dataplane will look for the API key in the control plane config. 
 
-### Configuring Single Pools
-
-It is also possible to configure only a single pool, either local or remote. However, only one of each type can be configured.
-
-To configure only a remote pool:
+Alternatively, you can configure the look up in the control plane config first, followed by a lookup in the realm as necessary:
 
 ```yaml
-pools:
-  - geo: us
-    id: <the_pool_id_you_got_in_step_1>
-    type: remote
+identity_realms:
+  - scope: cp
+  - region: us
+    id: <realm_id>
+    scope: realm
 ```
 
-In this case, the dataplane will only attempt to authenticate API keys against the remote Identity Service.
+In this configuration, the dataplane will initially check the control plane configuration (LMDB) for the API key before looking up the API Key in the realm.
 
-To configure only a local pool:
+If a matching key is found in any of these realms, the request will be authenticated. If the key is not found in any of the configured realms, the request will be blocked.
+
+### Configuring Single Realm
+
+It is also possible to configure only a single `identity_realm`, either the control plane configuration or a realm. 
+
+To configure only a realm:
 
 ```yaml
-pools:
-  - geo: null
-    id: null
-    type: local
+identity_realms:
+  - region: us
+    id: <realm_id>
+    scope: realm
 ```
 
-In this scenario, the dataplane will only check the local pool (LMDB) for API key authentication.
+In this case, the dataplane will only attempt to authenticate API keys against the realm.
 
-In both cases, if the API key is not found in the configured pool, the request will be blocked.
+To configure a look up only in the control plane config
+
+```yaml
+identity_realms:
+  - scope: cp
+```
+
+In this scenario, the dataplane will only check the control plane configuration (LMDB) for API key authentication.
+
+In both cases, if the API key is not found either in the realm or the control plane configuration, the request will be blocked.
