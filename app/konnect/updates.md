@@ -9,8 +9,63 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
+
+
+## March 2025
+
+
+<div class="changelog-entries">
+<div class="changelog-date">March<br>06</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/new-api-metrics-endpoint-is-now-available-alknzOvS">New API metrics endpoint is now available </a>
+</div>
+<div class="changelog-description">Advanced Analytics customers can now benefit from a new endpoint that allows them to programmatically access the same API consumption and performance metrics previously available only through our Advanced Analytics UI.  This release empowers users to retrieve real-time data, create custom integrations, and build automated reporting directly from our analytics infrastructure.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">March<br>05</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-the-new-dev-portal-beta-8uOAADPV">Introducing the new Dev Portal beta! 💥 </a>
+</div>
+<div class="changelog-description">We’re proud to announce the Beta launch of our all-new Dev Portal!  This release provides a highly customizable API consumption experience to establish API producers’ brand and project a strong developer experience.</div>
+</div>
+</div>
+
+## February 2025
+
+<div class="changelog-entries">
+<div class="changelog-date">February<br>28</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/scorecards-in-service-catalog-now-available-in-public-beta-7Cdescpb">Scorecards in Service Catalog now available in Public Beta</a>
+</div>
+<div class="changelog-description">Scorecards enable Platform Teams to easily pinpoint Services in their catalog which aren’t compliant with Kong-recommended and industry-defined maturity standards.  By identifying non-compliant Services and providing actionable next steps for each responsible Service Owner, this feature helps Platform Teams drive adherence across their organization.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">February<br>18</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/google-cloud-now-beta-on-cloud-gateways-kIhMa75h">Google Cloud now BETA on Cloud Gateways!</a>
+</div>
+<div class="changelog-description">We are excited to announce the BETA launch of Dedicated Cloud Gateways on Google Cloud.  This is a beta release available the following Google Cloud regions: US (South Carolina) Canada (Montreal)Europe (Belgium)Asia-pacific (Tokyo) This expansion enables greater flexibility for our customers, allowing you to deploy high-performance API gateways in the Google Cloud environment to meet your specific business and infrastructure needs.</div>
+</div>
+</div>
+
 ## January 2025
 
+<div class="changelog-entries">
+<div class="changelog-date">January<br>31</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/download-logs-for-dedicated-cloud-gateways">Download logs for Dedicated Cloud Gateways</a>
+</div>
+<div class="changelog-description">Dedicated Cloud Gateways now supports viewing and downloading Data Plane logs.  This new capability allows customers to better manage and troubleshoot their Cloud Gateways, providing greater visibility into their operations and faster issue resolution.</div>
+</div>
+</div>
 <div class="changelog-entries">
 <div class="changelog-date">January<br>30</div>
 <div class="changelog-entry">
@@ -38,6 +93,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">We are excited to announce the Notification Hub in Konnect.  You have the option to get notifications delivered in Konnect UI or to their registered emails.</div>
 </div>
 </div>
+
 
 
 
