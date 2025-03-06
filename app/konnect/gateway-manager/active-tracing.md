@@ -43,7 +43,7 @@ Use the trace view to troubleshoot issues, optimize performance, and refine your
 
 Active Tracing requires the following **data plane version** and **environment variables** in `kong.conf`:
 
-- **Version:** 3.9 or above
+- **Version:** 3.9.1 or above
 - **Environment variables:**
   - `KONG_CLUSTER_RPC=on`
   - `KONG_ACTIVE_TRACING=on`
