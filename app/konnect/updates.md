@@ -9,6 +9,31 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
+
+
+## March 2025
+
+
+<div class="changelog-entries">
+<div class="changelog-date">March<br>06</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/new-api-metrics-endpoint-is-now-available-alknzOvS">New API metrics endpoint is now available </a>
+</div>
+<div class="changelog-description">Advanced Analytics customers can now benefit from a new endpoint that allows them to programmatically access the same API consumption and performance metrics previously available only through our Advanced Analytics UI.  This release empowers users to retrieve real-time data, create custom integrations, and build automated reporting directly from our analytics infrastructure.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">March<br>05</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-the-new-dev-portal-beta-8uOAADPV">Introducing the new Dev Portal beta! 💥 </a>
+</div>
+<div class="changelog-description">We’re proud to announce the Beta launch of our all-new Dev Portal!  This release provides a highly customizable API consumption experience to establish API producers’ brand and project a strong developer experience.</div>
+</div>
+</div>
+
 ## February 2025
 
 <div class="changelog-entries">
@@ -30,70 +55,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 </div>
 </div>
 
-
-## March 2025
-
-<div class="changelog-entries">
-<div class="changelog-date">March<br>06</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/creating-personalized-dashboards-is-now-in-tech-preview-WmWAYVw0">Creating personalized dashboards is now in Tech Preview</a>
-</div>
-<div class="changelog-description">We’re excited to announce an early prototype release of custom dashboards in Konnect Labs (KLabs) as a Tech Preview.  Today, our built-in Summary dashboard provides a fixed set of key performance metrics, but we know that every organization has different priorities.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">March<br>06</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/new-api-metrics-endpoint-is-now-available-alknzOvS">New API metrics endpoint is now available </a>
-</div>
-<div class="changelog-description">Advanced Analytics customers can now benefit from a new endpoint that allows them to programmatically access the same API consumption and performance metrics previously available only through our Advanced Analytics UI.  This release empowers users to retrieve real-time data, create custom integrations, and build automated reporting directly from our analytics infrastructure.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">March<br>05</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/introducing-the-new-dev-portal-beta-8uOAADPV">Introducing the new Dev Portal beta! 💥 </a>
-</div>
-<div class="changelog-description">We’re proud to announce the Beta launch of our all-new Dev Portal!  This release provides a highly customizable API consumption experience to establish API producers’ brand and project a strong developer experience.</div>
-</div>
-</div>
-
-
 ## January 2025
-
-<div class="changelog-entries">
-<div class="changelog-date">January<br>30</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/new-dimensions-and-more-comprehensive-insights-with-empty-values">New dimensions and more comprehensive insights with "empty" values</a>
-</div>
-<div class="changelog-description">We're excited to introduce two new improvements to our Advanced Analytics experience: More comprehensive insights with "empty" We now display counts for "empty" values in our analytics experience.  "Empty" indicates a request exists, but there is no specific value associated with an attribute of that request (e.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">January<br>28</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/gitlab-integration-in-service-catalog-0K385Gt6">GitLab Integration in Service Catalog</a>
-</div>
-<div class="changelog-description">You can now map "GitLab Projects" as a new Resource type in Service Catalog.  This integration enables discovery of API specs hosted in GitLab and ingestion of Events for merge request activity (opened and merged).</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">January<br>22</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/we-are-excited-to-announce-the-notification-hub-in-konnect">We are excited to announce the Notification Hub in Konnect!</a>
-</div>
-<div class="changelog-description">We are excited to announce the Notification Hub in Konnect.  You have the option to get notifications delivered in Konnect UI or to their registered emails.</div>
-</div>
-</div>
-
-
-
 
 <div class="changelog-entries">
 <div class="changelog-date">January<br>31</div>
@@ -131,14 +93,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">We are excited to announce the Notification Hub in Konnect.  You have the option to get notifications delivered in Konnect UI or to their registered emails.</div>
 </div>
 </div>
-<div class="changelog-entries">
-<div class="changelog-date">January<br>22</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/we-are-ex">We are ex</a>
-</div>
-</div>
-</div>
+
+
+
 
 ## December 2024
 
