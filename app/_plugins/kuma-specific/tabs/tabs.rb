@@ -6,7 +6,7 @@ require 'securerandom'
 module Jekyll
   module Tabs
     class TabsBlock < Liquid::Block
-      def initialize(tag_name, config, tokens)
+      def initialize(tag_name, config, tokens) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         super
 
         @name, options = config.split(' ', 2)
@@ -31,7 +31,7 @@ module Jekyll
         @options['additionalClasses'] = additional_classes.empty? ? '' : " #{additional_classes}"
       end
 
-      def render(context) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+      def render(context) # rubocop:disable Metrics/AbcSize
         environment = context.environments.first
         environment['tabs'] ||= {}
         file_path = context.registers[:page]['dir']
