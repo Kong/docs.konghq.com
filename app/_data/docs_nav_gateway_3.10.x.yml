@@ -151,6 +151,8 @@ items:
               url: /production/deployment-topologies/hybrid-mode/
             - text: Deploy Kong Gateway in Hybrid mode
               url: /production/deployment-topologies/hybrid-mode/setup
+            - text: Incremental Configuration Sync
+              url: /production/deployment-topologies/hybrid-mode/incremental-config-sync/
           - text: DB-less Deployment
             url: /production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
