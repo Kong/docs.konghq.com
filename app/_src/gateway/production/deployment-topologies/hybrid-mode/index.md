@@ -244,3 +244,12 @@ endpoints.
 Because the keyring module encrypts data in the database, it can't encrypt
 data on data plane nodes, since these nodes run without a database and get
 data from the control plane.
+
+## Incremental configuration sync
+
+In hybrid mode, whenever you make changes to {{site.base_gateway}} entity configuration on the Control Plane, it immediately triggers a cluster-wide update of all Data Plane configurations. This can cause performanace issues.
+
+You can enable **incremental configuration sync** for improved performance. 
+When a configuration changes, instead of sending the entire configuration set for each change, {{site.base_gateway}} only sends the parts of the configuration that have changed. 
+
+See the [incremental confic sync](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/incremental-config-sync/) documentation to learn more.
