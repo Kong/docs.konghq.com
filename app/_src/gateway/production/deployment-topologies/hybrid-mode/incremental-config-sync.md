@@ -128,7 +128,7 @@ end
 We don't recommend using the `local` strategy for rate limiting plugins with incremental config sync.
 
 When load balancing across multiple Data Plane nodes, rate limiting is enforced per node. 
-With the `local` strategy, rapid configuration updates may cause inconsistencies and potential resets in rate limting plugins,
+With the `local` strategy, rapid configuration updates may cause inconsistencies and potential resets in rate limiting plugins,
 impacting performance for API traffic control. 
 
 
