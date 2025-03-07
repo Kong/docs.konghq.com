@@ -97,38 +97,8 @@ The following steps assume that {{site.base_gateway}} is installed and the Confl
         --header 'Accept: text/event-stream'
     ```
 
-## Configuration
+## Learn more about the Confluent Consume plugin
 
-### Enable on a Route
+* [Configuration reference](/hub/kong-inc/confluent-consume/configuration/)
+* [Basic configuration example](/hub/kong-inc/confluent-consume/how-to/basic-example/)
 
-```bash
-curl -X POST http://localhost:8001/routes/{route}/plugins \
-    --data "name=confluent-consume" \
-    --data "config.bootstrap_servers[1].host=<YOUR_BOOTSTRAP_SERVER>" \
-    --data "config.bootstrap_servers[1].port=9092" \
-    --data "config.topics[1].name=my-topic" \
-    --data "config.mode=http-get" \
-    --data "config.message_deserializer=json" \
-    --data "config.auto_offset_reset=latest" \
-    --data "config.authentication.strategy=sasl" \
-    --data "config.authentication.mechanism=PLAIN" \
-    --data "config.authentication.user=<YOUR_API_KEY>" \
-    --data "config.authentication.password=<YOUR_API_SECRET>"
-```
-
-### Parameters
-
-Here's a list of all the parameters which can be used in this plugin's configuration:
-
-| FORM PARAMETER | DEFAULT | DESCRIPTION |
-|---------------|---------|-------------|
-| `bootstrap_servers` <br>*required* | | Set of bootstrap brokers in a `{host: host, port: port}` list format. |
-| `topics` <br>*required* | | The Kafka topics and their configuration you want to consume from. |
-| `mode` | `http-get` | The mode of operation for the plugin. One of: `http-get`, `server-sent-events` |
-| `message_deserializer` | `noop` | The deserializer to use for the consumed messages. One of: `json`, `noop` |
-| `auto_offset_reset` | `latest` | The offset to start from when there is no initial offset in the consumer group. One of: `earliest`, `latest` |
-| `authentication.strategy` | | The authentication strategy for the plugin. Currently supports: `sasl` |
-| `authentication.mechanism` | | The SASL authentication mechanism. Supports: `PLAIN`, `SCRAM-SHA-256`, `SCRAM-SHA-512` |
-| `authentication.user` | | Username for SASL authentication (API Key for Confluent Cloud) |
-| `authentication.password` | | Password for SASL authentication (API Secret for Confluent Cloud) |
-| `cluster_name` | | The name of your Confluent Cloud cluster |
