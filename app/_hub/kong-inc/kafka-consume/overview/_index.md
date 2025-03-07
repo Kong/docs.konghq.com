@@ -94,36 +94,8 @@ The following steps assume that {{site.base_gateway}} is installed and the Kafka
         --header 'Accept: text/event-stream'
     ```
 
-## Configuration
+## Learn more about the Kafka Consume plugin
 
-### Enable on a Route
+* [Configuration reference](/hub/kong-inc/kafka-consume/configuration/)
+* [Basic configuration example](/hub/kong-inc/kafka-consume/how-to/basic-example/)
 
-```bash
-curl -X POST http://localhost:8001/routes/{route}/plugins \
-    --data "name=kafka-consume" \
-    --data "config.bootstrap_servers[1].host=localhost" \
-    --data "config.bootstrap_servers[1].port=9092" \
-    --data "config.topics[1].name=my-topic" \
-    --data "config.mode=http-get" \
-    --data "config.message_deserializer=json" \
-    --data "config.auto_offset_reset=latest" \
-    --data "config.commit_strategy=auto"
-```
-
-### Parameters
-
-Here's a list of all the parameters which can be used in this plugin's configuration:
-
-| FORM PARAMETER | DEFAULT | DESCRIPTION |
-|---------------|---------|-------------|
-| `bootstrap_servers` <br>*required* | | Set of bootstrap brokers in a `{host: host, port: port}` list format. |
-| `topics` <br>*required* | | The Kafka topics and their configuration you want to consume from. |
-| `mode` | `http-get` | The mode of operation for the plugin. One of: `http-get`, `server-sent-events` |
-| `message_deserializer` | `noop` | The deserializer to use for the consumed messages. One of: `json`, `noop` |
-| `auto_offset_reset` | `latest` | The offset to start from when there is no initial offset in the consumer group. One of: `earliest`, `latest` |
-| `commit_strategy` | `auto` | The strategy to use for committing offsets. One of: `auto`, `off` |
-| `authentication.strategy` | | The authentication strategy for the plugin. Currently supports: `sasl` |
-| `authentication.mechanism` | | The SASL authentication mechanism. Supports: `PLAIN`, `SCRAM-SHA-256`, `SCRAM-SHA-512` |
-| `authentication.user` | | Username for SASL authentication |
-| `authentication.password` | | Password for SASL authentication |
-| `authentication.tokenauth` | | Enable this to indicate `DelegationToken` authentication |
