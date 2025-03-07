@@ -36,7 +36,8 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 
 #### Reserved paths
 
-The Portal requires a number of reserved paths from the root of the URL in order to properly function that may not be overridden with custom pages or other functionality.
+The Portal requires a number of reserved paths from the root of the URL to properly function. 
+You cannot override these paths with custom pages or other functionality.
 
 | Path | Description | RegExp
 |:------|:-------|:-------|
