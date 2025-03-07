@@ -47,6 +47,7 @@ The Portal requires a number of reserved paths from the root of the URL in order
 | `/logout` | Log out | `^/logout` |
 | `/apps/*` | Developer applications | `^/apps` |
 | `/api/v*/` | Portal API | `^/api\/v\d+\/.*` |
+| `/_api/*` | Nuxt server endpoints | `^/_api\/.*` |
 | `/api/*` | Nuxt server endpoints | `^/api\/(?!v\d+\/).*` |
 | `/npm/*` | CDN Proxy | `^/npm\/.*` |
 | `/_preview-mode/*` | Konnect previews | `^/_preview-mode\/.*` |
