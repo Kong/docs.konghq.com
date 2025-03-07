@@ -4,7 +4,7 @@ title: Custom Pages
 
 Pages are highly customizable using Markdown Components (MDC), allowing to create nested page structures to organize pages and generate URLs/slugs. Visibility controls and Publishing status allow you to stage new Pages, and/or restrict access to logged-in Developers.
 
-To get started creating Pages, navigate to your Dev Portal and select [**Portal Editor**](/dev-portal/portals/portal-editor) from the left sidebar.
+To get started creating Pages, navigate to your Dev Portal and select [**Portal Editor**](/dev-portal/portals/customization/portal-editor/) from the left sidebar.
 
 {:.note}
 > *Pages are built using Markdown Components (MDC). Additional documentation on syntax, as well as tools for generating components, are available on a [dedicated MDC site](https://portaldocs.konghq.com/).*
