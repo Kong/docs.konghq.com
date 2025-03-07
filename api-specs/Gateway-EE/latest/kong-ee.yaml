@@ -252,6 +252,14 @@ components:
       description: |
         After filter could be used to request audit log data that was recorded after certain time (inclusive).
         It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
+    PartialId:
+      name: partial_id
+      in: path
+      required: true
+      description: ID of the Partial
+      schema:
+        type: string
+        example: 2747d1e5-8246-4f65-a939-b392f1ee17f8
   schemas:
     Admin:
       type: object
@@ -635,6 +643,23 @@ components:
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
+        partials:
+          description: List of partials linked to that plugin
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: ce44eef5-41ed-47f6-baab-f725cecf98c7
+                format: uuid
+              name:
+                type: string
+                example: my-partial-1
+              path:
+                type: string
+                description: The path at which the Partial configuration will be applied at.
+                example: config.redis
       type: object
     Route:
       description: Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.
@@ -1416,6 +1441,43 @@ components:
         - type: string
           pattern: '^(\d+|\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)$'
         - type: integer
+    Partial:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          format: uuid
+        name:
+          type: string
+          example: my-partial-1
+        type:
+          type: string
+          required: true
+          enum: [redis-ce, redis-ee]
+        config:
+          type: object
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: number
+        created_at:
+          description: Unix epoch when the resource was udpated.
+          type: number
+        tags:
+          type: array
+          description: |
+            The name to associate with the given Key Set
+          items:
+            type: string
+    PluginLink:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          format: uuid
+        name:
+          type: string
   responses:
     HTTP401Error:
       content:
@@ -5394,6 +5456,8 @@ components:
                 ordering:
                   before:
                     - plugin-name
+                partials:
+                  - id: ce44eef5-41ed-47f6-baab-f725cecf98c7
             properties:
               name:
                 type: string
@@ -5466,6 +5530,15 @@ components:
                     type: array
                     items:
                       type: string
+              partials:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                description: If provided the Plugin will be linked to given Partial
+                nullable: true
           examples:
             request example:
               value:
@@ -16390,6 +16463,97 @@ paths:
       tags:
       - cache
 
+  '/partials':
+    get:
+      summary: List all Partials
+      operationId: listPartials
+      responses:
+        '200':
+          description: A list of all Partials.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Partial'
+                  next:
+                    type: string
+                    nullable: true
+    post:
+      summary: Create a new Partial
+      operationId: createPartial
+      responses:
+        '201':
+          description: Partial successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
+  '/partials/{id}':
+    get:
+      summary: Get a specific Partial
+      operationId: getPartial
+      parameters:
+        - $ref: '#/components/parameters/PartialId'
+      responses:
+        '200':
+          description: Details of the specified Partial.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
+    put:
+      summary: Update / Upsert a specific Partial
+      operationId: upsertPartial
+      parameters:
+        - $ref: '#/components/parameters/PartialId'
+    patch:
+      summary: Update a specific Partial
+      operationId: updatePartial
+      parameters:
+        - $ref: '#/components/parameters/PartialId'
+      responses:
+        '200':
+          description: Partial successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
+    delete:
+      summary: Delete a specific Partial
+      operationId: deletePartial
+      parameters:
+        - $ref: '#/components/parameters/PartialId'
+      responses:
+        '204':
+          description: Partial successfully deleted.
+
+  /partials/{id}/links:
+    get:
+      summary: List Plugins linked to a Partial
+      operationId: listPartialLinks
+      parameters:
+        - $ref: '#/components/parameters/PartialId'
+      responses:
+        '200':
+          description: Plugins linked to the Partial.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PluginLink'
+                  count:
+                    type: integer
+                  next:
+                    type: string
+                    nullable: true
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'
