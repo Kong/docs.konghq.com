@@ -3,7 +3,7 @@ title: Incremental Configuration Sync
 ---
 
 In hybrid mode, whenever you make changes to {{site.base_gateway}} entity configuration on the Control Plane, it immediately triggers a cluster-wide update of all Data Plane configurations. 
-In these updates, {{site.base_gateway}} sends the entire configuration set to the Data Planes - therefore, the bigger your configuration set is, the more time it takes to send and process, and the more memory is consumed proportional to the configuration size.
+In these updates, {{site.base_gateway}} sends the entire configuration set to the Data Planes. The bigger your configuration set is, the more time it takes to send and process, and the more memory is consumed proportional to the configuration size. This can result in latency spikes and loss in throughput for high-traffic Data Planes under certain conditions.
 
 You can enable **incremental configuration sync** to address this issue. 
 When entity configuration changes, instead of sending the entire configuration set for each change, {{site.base_gateway}} only sends the parts of the configuration that have changed. 
@@ -26,7 +26,7 @@ H(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no
 
  E --"POST Route config
  1 entity
- A few KB"---> F --"Route config
+ A few KB"---> F --"Updated Route config
  1 entity
  A few KB"---> G & H
  end
@@ -36,7 +36,7 @@ H(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no
 
  A --"POST Route config
  1 entity
- A few KB"---> B --Route config
+ A few KB"---> B --Full Kong config
  30k entities
  30MB---> C & D
 
@@ -83,7 +83,7 @@ export KONG_CLUSTER_RPC=on
 ### Using incremental config sync with custom plugins
 
 When incremental config sync is enabled, the configuration change notification from the Control Plane only triggers an event for changed entities, and doesn't trigger cache updates in Data Plane nodes. 
-This causes outdated and inconsistent configuration for custom plugins.
+This causes outdated and inconsistent configuration for [custom plugins](/gateway/latest/plugin-development/).
 
 If you are running {{site.base_gateway}} on {{site.konnect_short_name}} or in hybrid mode, you need to adjust your custom plugins to be compatible with incremental config sync.
 
@@ -125,7 +125,7 @@ end
 
 ### Using incremental config sync with rate limiting plugins
 
-We don't recommend using the `local` strategy for rate limiting plugins with incremental config sync.
+We don't recommend using the `local` strategy for [rate limiting plugins](/hub/?search=rate%2520limiting) with incremental config sync.
 
 When load balancing across multiple Data Plane nodes, rate limiting is enforced per node. 
 With the `local` strategy, rapid configuration updates may cause inconsistencies and potential resets in rate limiting plugins,
