@@ -45,7 +45,7 @@ In addition to networking considerations, Serverless Gateways have the following
 * Request Rate Limit: Serverless Gateways support up to 100 requests per second (RPS) per gateway.
 * Maximum Request Size: Incoming requests are limited to a maximum payload size of 10MB.
 
-For workloads that exceed these limits, consider using Dedicated Cloud Gateways for higher throughput and larger request sizes.
+For workloads that exceed these limits, consider using [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways) for higher throughput and larger request sizes.
 
 ## Plugin considerations for serverless gateways
 There are some limitations for plugins with serverless gateways:
