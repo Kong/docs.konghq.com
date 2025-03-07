@@ -87,7 +87,7 @@ description: Start building and innovating with our APIs
 ---
 ```
 
-With the above front matter, the portal will render the following html tags for your page:
+With the above front matter, the portal will render the following HTML tags for your page:
 
 ```
 <title>Home | Developer Portal</title>
