@@ -3,10 +3,10 @@ title: Incremental Configuration Sync
 ---
 
 In hybrid mode, whenever you make changes to {{site.base_gateway}} entity configuration on the Control Plane, it immediately triggers a cluster-wide update of all Data Plane configurations. 
-In these updates, {{site.base_gateway}} sends the entire configuration set to the Data Planes - therefore, the bigger your configuration set is, the more time it takes to send and process, and the extra memory is consumed proportional to the configuration size.
+In these updates, {{site.base_gateway}} sends the entire configuration set to the Data Planes - therefore, the bigger your configuration set is, the more time it takes to send and process, and the more memory is consumed proportional to the configuration size.
 
 You can enable **incremental configuration sync** to address this issue. 
-When a configuration changes, instead of sending the entire configuration set for each change, {{site.base_gateway}} only sends the parts of the configuration that have changed. 
+When entity configuration changes, instead of sending the entire configuration set for each change, {{site.base_gateway}} only sends the parts of the configuration that have changed. 
 
 <!--vale off-->
 {% mermaid %}
@@ -49,7 +49,8 @@ linkStyle 4,5 stroke:#d44324,color:#d44324
 
 {% endmermaid %}
 <!--vale on-->
-> _**Figure 1**: In an environment with 30k entities of about 30MB total, sending a POST request to update one entity sends the whole 30MB config to every data plane. With incremental config enabled, that same POST request only triggers an update of a few KB._
+> _**Figure 1**: In an environment with 30k entities of about 30MB total, sending a POST request to update one entity sends the whole 30MB config to every Data Plane. 
+With incremental config sync enabled, that same POST request only triggers an update of a few KB._
 
 Incremental config sync achieves significant memory savings and CPU savings. 
 This means lower total cost of ownership for {{site.base_gateway}} users, shorter config propagation delay, and less impact to proxy latency. 
@@ -58,6 +59,11 @@ See our [blog on incremental config sync](https://konghq.com/blog/product-releas
 ## Enable incremental config sync
 
 You can enable incremental config sync when installing {{site.base_gateway}} in [hybrid mode](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/setup/), or when setting up a {{site.konnect_short_name}} Data Plane.
+
+{:.important}
+> **Caution**: There are some [limitations for custom plugins](#using-incremental-config-sync-with-custom-plugins) and for 
+[rate limiting plugins](#using-incremental-config-sync-with-rate-limiting-plugins) when using incremental config sync. 
+Review and adjust your plugin config before enabling this feature.
 
 During setup, set the following values in your `kong.conf` files on both Control Planes and Data Planes:
 
@@ -72,14 +78,16 @@ export KONG_CLUSTER_RPC_SYNC=on
 export KONG_CLUSTER_RPC=on
 ```
 
-## Using incremental config sync with custom plugins
+## Limitations
+
+### Using incremental config sync with custom plugins
 
 When incremental config sync is enabled, the configuration change notification from the Control Plane only triggers an event for changed entities, and doesn't trigger cache updates in Data Plane nodes. 
 This causes outdated and inconsistent configuration for custom plugins.
 
 If you are running {{site.base_gateway}} on {{site.konnect_short_name}} or in hybrid mode, you need to adjust your custom plugins to be compatible with incremental config sync.
 
-### Workaround for custom plugins
+#### Workaround for custom plugins
 
 To ensure your custom plugin configuration is kept up to date, you must add additional code logic to register the CRUD events for the entities the plugin cares about, and invalidate the relevant cache data.
 
@@ -115,11 +123,12 @@ function _M.init_worker()
 end
 ```
 
-## Using incremental config sync with rate limiting plugins
+### Using incremental config sync with rate limiting plugins
 
 We don't recommend using the `local` strategy for rate limiting plugins with incremental config sync.
 
-When load balancing across multiple Data Plane nodes, rate limiting is enforced per node, and it can leading to inconsistencies and potential resets when updates occur.
-With the `local` strategy, these plugins may have inconsistencies in sync behavior during rapid configuration updates, impacting performance for API traffic control. 
+When load balancing across multiple Data Plane nodes, rate limiting is enforced per node. 
+With the `local` strategy, rapid configuration updates may cause inconsistencies and potential resets in rate limting plugins,
+impacting performance for API traffic control. 
 
 
