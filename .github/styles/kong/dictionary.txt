@@ -92,6 +92,7 @@ Nginx
 Nginx's
 Node.js
 Noname
+Nuxt
 OAuth
 Okta
 Okta's
@@ -293,6 +294,7 @@ healthchecks
 hostname
 hostnames
 href
+HTML
 http
 httpbin
 HTTPie

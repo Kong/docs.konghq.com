@@ -4,7 +4,7 @@ title: Custom Pages
 
 Pages are highly customizable using Markdown Components (MDC), allowing to create nested page structures to organize pages and generate URLs/slugs. Visibility controls and Publishing status allow you to stage new Pages, and/or restrict access to logged-in Developers.
 
-To get started creating Pages, navigate to your Dev Portal and select [**Portal Editor**](/dev-portal/portals/portal-editor) from the left sidebar.
+To get started creating Pages, navigate to your Dev Portal and select [**Portal Editor**](/dev-portal/portals/customization/portal-editor/) from the left sidebar.
 
 {:.note}
 > *Pages are built using Markdown Components (MDC). Additional documentation on syntax, as well as tools for generating components, are available on a [dedicated MDC site](https://portaldocs.konghq.com/).*
@@ -34,9 +34,28 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 {:.note}
 > *`home` is a special page representing the `/` path. If this page is deleted, you'll need to create it from the Pages API.*
 
+#### Reserved paths
+
+The Portal requires a number of reserved paths from the root of the URL to properly function. 
+You cannot override these paths with custom pages or other functionality.
+
+| Path | Description | RegExp
+|:------|:-------|:-------|
+| `/login/*` | Login | `^/login(?:\/.*)?` |
+| `/register` | Registration | `^/register` |
+| `/forgot-password` | Forgot password | `^/forgot-password` |
+| `/reset-password` | Reset password | `^/reset-password` |
+| `/logout` | Log out | `^/logout` |
+| `/apps/*` | Developer applications | `^/apps` |
+| `/api/v*/` | Portal API | `^/api\/v\d+\/.*` |
+| `/_api/*` | Nuxt server endpoints | `^/_api\/.*` |
+| `/api/*` | Nuxt server endpoints | `^/api\/(?!v\d+\/).*` |
+| `/npm/*` | CDN Proxy | `^/npm\/.*` |
+| `/_preview-mode/*` | Konnect previews | `^/_preview-mode\/.*` |
+
 ### Modify a Page
 
-In the middle panel, you can make changes to your MDC content, and instantly see the live Preview. 
+In the middle panel, you can make changes to your MDC content, and instantly see the live Preview.
 
 Once you have completed your changes, be sure to click **Save**.
 
@@ -70,7 +89,7 @@ description: Start building and innovating with our APIs
 ---
 ```
 
-With the above front matter, the portal will render the following html tags for your page:
+With the above front matter, the portal will render the following HTML tags for your page:
 
 ```
 <title>Home | Developer Portal</title>
