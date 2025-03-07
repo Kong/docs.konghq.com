@@ -20,7 +20,7 @@ curl -i -X POST http://localhost:8001/plugins \
 
 Dots `.` in the field key creates nested fields. You can use a backslash `\` to escape dots if you want to keep them in the field name.
 
-For example, if you configure a field in File Log with both dot and escaped dot:
+For example, if you configure a field in the File Log plugin with both a regular dot and an escaped dot:
 
 ```sh
 curl -i -X POST http://localhost:8001/plugins/ \
@@ -28,7 +28,7 @@ curl -i -X POST http://localhost:8001/plugins/ \
   --data config.name=file-log \
   --data config.custom_fields_by_lua[my_file.log\.field]="return foo"
 ```
-You will see below field in file log:
+The field will look like this in the log:
 ```sh
 "my_file": {
   "log.field": "foo"
