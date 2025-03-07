@@ -33,7 +33,7 @@ admin_gui_session_conf = {
 }
 ```
 {% endif_version %}
-{% if_version gte:3.2.x lte:3.9.x %}
+{% if_version gte:3.2.x lte:3.3.x %}
 
 ```
 enforce_rbac = on
@@ -50,7 +50,7 @@ admin_gui_session_conf = {
 
 {% endif_version %}
 
-{% if_version gte:3.10.x %}
+{% if_version gte:3.4.x %}
 
 ```
 enforce_rbac = on
@@ -81,7 +81,7 @@ Attribute | Description
 
 {% endif_version %}
 
-{% if_version gte:3.2.x lte:3.9.x %}
+{% if_version gte:3.2.x lte:3.3.x %}
 
 Attribute | Description
 ----------|------------
@@ -95,7 +95,7 @@ Attribute | Description
 
 {% endif_version %}
 
-{% if_version gte:3.10.x %}
+{% if_version gte:3.4.x %}
 
 Attribute | Description
 ----------|------------
@@ -119,7 +119,7 @@ Attribute | Description
 For detailed descriptions of each configuration property, learn more in the
 [Session plugin documentation](/hub/kong-inc/session).
 
-{% if_version gte:3.10.x %}
+{% if_version gte:3.4.x %}
 
 ## Multiple session management
 
@@ -178,7 +178,7 @@ admin_gui_session_conf = {
 }
 ```
 
-{% if_version gte:3.10.x %}
+{% if_version gte:3.4.x %}
 If you want to invalidate all sessions when the password is changed, the following configuration could be used with the Basic Auth plugin:
 
 ```
