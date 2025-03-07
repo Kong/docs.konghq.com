@@ -18,7 +18,7 @@ curl -i -X POST http://localhost:8001/plugins \
 
 ### Special characters
 
-Dots `.` in the field key creates nested fields. You can use a backslash `\` to escape dots if you want to keep them in the field name.
+Dot characters (`.`) in the field key create nested fields. You can use a backslash `\` to escape a dot if you want to keep it in the field name.
 
 For example, if you configure a field in the File Log plugin with both a regular dot and an escaped dot:
 
