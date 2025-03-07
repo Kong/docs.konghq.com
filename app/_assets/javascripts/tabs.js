@@ -71,9 +71,7 @@ class TabsComponent {
 
   selectTab(event) {
     event.stopPropagation();
-    if (this.options['useUrlFragment'] === 'false') {
-      event.preventDefault();
-    }
+    event.preventDefault();
 
     const slug = event.target.dataset.slug || event.target.querySelector('[data-slug]')?.dataset?.slug;
 
