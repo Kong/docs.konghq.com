@@ -52,7 +52,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    > For instructions on this and other advanced usage, pass the `-h` flag to the script:
    > 
    > ```sh
-   > curl -Ls https://get.konghq.com/quickstart | bash -- -h
+   > curl -Ls https://get.konghq.com/quickstart | bash -s -- -h
    > ```
 
    This script runs Docker containers for {{site.base_gateway}} and the supporting PostgreSQL database.

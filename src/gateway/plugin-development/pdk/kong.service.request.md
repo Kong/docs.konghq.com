@@ -214,6 +214,35 @@ kong.service.request.set_query({
 ```
 
 
+{% if_version gte:3.9.x %}
+
+## kong.service.request.clear_query_arg(name)
+
+Removes all occurrences of the specified query string argument
+ from the request to the Service.  The order of query string
+ arguments is retained.
+
+
+**Phases**
+
+* `rewrite`, `access`
+
+**Parameters**
+
+* **name** (`string`):
+
+**Returns**
+
+*  Nothing; throws an error on invalid inputs.
+
+
+**Usage**
+
+``` lua
+kong.service.request.clear_query_arg("foo")
+```
+
+{% endif_version %}
 
 ## kong.service.request.set_header(header, value)
 

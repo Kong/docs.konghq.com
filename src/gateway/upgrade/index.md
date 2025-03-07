@@ -50,7 +50,7 @@ In this part of the upgrade journey, you will use the strategy you determined du
 
 Now, let's move on to preparation, starting with determining your upgrade path.
 
-## Preparation: Review upgrade paths
+## Preparation: Choose an upgrade path
 
 {{site.base_gateway}} adheres to a structured approach to versioning its products, which makes a
 distinction between major, minor, and patch versions.
@@ -74,20 +74,16 @@ The smaller the version gap is, the less complex the upgrade process becomes.
 
 ### Guaranteed upgrade paths
 
-By default, {{site.base_gateway}} has migration tests between adjacent versions and hence the following upgrade paths are guaranteed officially:
+By default, {{site.base_gateway}} has migration tests between adjacent versions, therefore the following upgrade paths are guaranteed officially:
 
-1. Between patch releases of the same major and minor version.
-2. Between adjacent minor releases of the same major version.
+1. Between patch releases of the same major and minor version (for example, 3.8.0.0 to 3.8.1.0).
+2. Between adjacent minor releases of the same major version (for example, 3.7.x to 3.8.x).
 3. Between LTS (Long Term Support) versions.
 
     {{site.base_gateway}} maintains LTS versions and guarantees upgrades between adjacent LTS versions.
     The current LTS in the 2.x series is 2.8, and the current LTS in the 3.x series is 3.4.
     If you want to upgrade between the 2.8 and 3.4 LTS versions, 
     see the [LTS Upgrade guide](/gateway/{{page.release}}/upgrade/lts-upgrade/).
-
-The following table outlines various upgrade path scenarios to {{page.release}} depending on the {{site.base_gateway}} version you are currently using:
-
-{% include_cached /md/gateway/upgrade-paths.md release=page.release %}
 
 ## Preparation: Choose a backup strategy
 

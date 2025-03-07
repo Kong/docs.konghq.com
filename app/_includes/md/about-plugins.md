@@ -100,7 +100,7 @@ or see the following references:
 
 ### Third-party plugins
 
-Through partnerships with third parties, Kong lists some [third-party custom plugins](/hub/?support=third-party-partner%2Ccommunity%2premium-partner) on the Kong Plugin Hub. 
+Through partnerships with third parties, Kong lists some [third-party custom plugins](/hub/?support=community%2Cpremium-partner) on the Kong Plugin Hub. 
 These plugins are maintained by Kong partners. 
 If you would like to have your plugin featured on the Kong Plugin Hub, we encourage you to become a [Kong Partner](https://konghq.com/partners/).
 

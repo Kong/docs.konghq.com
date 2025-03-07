@@ -20,12 +20,12 @@ router:
   - If no Services or Routes are found with matching routing rules, the creation
   or modification proceeds
   - If Services or Routes with matching routing rules are found **within the same
-  workspace**, proceed
+  workspace**, the action will fail.
   - If Services or Routes are found **in a different workspace**:
     * If the matching Service or Route **does not have an associated
       `host` value**—`409 Conflict`
     * If the matching Service or Route's `host` is a wildcard
-      - If they are the same, a conflict is reported—`409 Conflict`
+      - If they are the same, the action fails with a `409 Conflict`
       - If they are not equal, proceed
     * If the matching Service or Route's `host` is an absolute value, a
       conflict is reported—`409 Conflict`
@@ -155,7 +155,7 @@ the default workspace and the two team workspaces.
 
     ```
 
-## Entities in different workspaces can have the same name!
+## Use the same name with different workspaces
 
 Different teams—belonging to different workspaces—are allowed to give any
 name to their entities. To provide an example of that, let's say that Teams A and

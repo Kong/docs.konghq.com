@@ -73,6 +73,7 @@ the following resource allocations as a starting point:
 
 | Size  | CPU  | RAM  | Typical Cloud Instance Sizes |
 |---|---|---|---|---|
+| Development | 1-2 cores  | 2-4 GB   | **AWS**: t3.medium<br/>**GCP**: n1-standard-1<br/>**Azure**: Standard A1 v2  |
 | Small  | 1-2 cores  | 2-4 GB   | **AWS**: t3.medium<br/>**GCP**: n1-standard-1<br/>**Azure**: Standard A1 v2  |
 | Medium | 2-4 cores  | 4-8 GB   | **AWS**: m5.large<br/>**GCP**: n1-standard-4<br/>**Azure**: Standard A1 v4  |
 | Large  | 8-16 cores | 16-32 GB | **AWS**: c5.xlarge<br/>**GCP**: n1-highcpu-16<br/>**Azure**: F8s v2  |

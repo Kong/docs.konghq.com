@@ -8,6 +8,8 @@ This how-to guide explains how to install and configure the {{site.base_gateway}
 
 ## Installing a {{site.base_gateway}} FIPS compliant package
 
+{% assign gpg_key = site.data.installation.gateway[page.major_minor_version].gpg_key  %}
+
 {% navtabs %}
 {% navtab Ubuntu %}
 

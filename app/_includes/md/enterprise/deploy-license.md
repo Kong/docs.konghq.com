@@ -10,10 +10,21 @@ Method | Supported deployment types
 -------|---
  `/licenses` Admin API endpoint | &#8226; Traditional database-backed deployment <br> &#8226; Hybrid mode deployment
 File on the node filesystem <br>(`license.json`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
-Environment variable <br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
-Environment variable <br>(`KONG_LICENSE_PATH`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environment variable containing the full license <br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environment variable containing path to license file <br>(`KONG_LICENSE_PATH`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
 
 The recommended method is using the Admin API.
+
+{:.important}
+> **Important**:
+> * If you deploy a license using the `/license` endpoint on the control plane, the control plane propagates 
+> the license to connected data planes automatically.
+> * If you deploy a license using a `KONG_LICENSE_DATA` or `KONG_LICENSE_PATH` environment variable, 
+> the control plane **does not** propagate the license to data plane nodes.
+> You **must** add the license to each data plane node, and each node **must** start with the license.
+> The license can't be added after starting the node. 
+>
+>  We don't recommend using this method in hybrid mode deployments.
 
 {{ include.heading }} Prerequisites
 
@@ -35,27 +46,19 @@ applies the license to data planes automatically.
 The license data must contain straight quotes to be considered valid JSON
 (`'` and `"`, not `’` or `“`).
 
-`POST` the contents of the provided `license.json` license to your
-{{site.base_gateway}} instance:
-
 {:.note}
-> **Note:** The following license is only an example. You must use the
+> **Note:** The payload of the following license is only an example. You must use the
 following format, but provide your own content.
 
-{% navtabs codeblock %}
-{% navtab cURL %}
+{% navtabs %}
+{% navtab Add new license %}
+To add a new license, `POST` the contents of the provided `license.json` license to your
+{{site.base_gateway}} instance:
+
 ```bash
-$ curl -i -X POST http://<hostname>:8001/licenses \
+curl -i -X POST http://localhost:8001/licenses \
   -d payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
 ```
-{% endnavtab %}
-{% navtab HTTPie %}
-```bash
-$ http POST :8001/licenses \
-  payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
-```
-{% endnavtab %}
-{% endnavtabs %}
 
 Result:
 ```json
@@ -66,14 +69,45 @@ Result:
   "updated_at": 1500508800
 }
 ```
+{% endnavtab %}
+{% navtab Update existing license %}
+Update the license with a `PATCH` request to the existing license's ID:
+
+1. Find the license you want to update, and copy the ID from the output:
+
+    ```bash
+    curl -i -X GET http://localhost:8001/licenses
+    ```
+
+1. Submit a `PATCH` request to the license ID:
+
+    ```bash
+    curl -i -X PATCH http://localhost:8001/licenses/30b4edb7-0847-4f65-af90-efbed8b0161f \
+      payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-21","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb","version":"1"}}'
+    ```
+
+    Response:
+    ```json
+    {
+      "created_at": 1500595200,
+      "id": "30b4edb7-0847-4f65-af90-efbed8b0161f",
+      "payload": "{\"license\":{\"payload\":{\"admin_seats\":\"1\",\"customer\":\"Example Company, Inc\",\"dataplanes\":\"1\",\"license_creation_date\":\"2017-07-20\",\"license_expiration_date\":\"2017-07-21\",\"license_key\":\"00141000017ODj3AAG_a1V41000004wT0OEAU\",\"product_subscription\":\"Konnect Enterprise\",\"support_plan\":\"None\"},\"signature\":\"24cc21223633044c15c300be19cacc26ccc5aca0dd9a12df8a7324a1970fe304bc07b8dcd7fb08d7b92e04169313377ae3b550ead653b951bc44cd2eb59f6beb\",\"version\":\"1\"}}",
+      "updated_at": 1500595200
+    }
+    ```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+[Restart](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after adding or updating a license.
 
 For more detail and options, see the
-[Admin API `licenses` endpoint reference](/gateway/latest/admin-api/licenses/examples/).
+[Admin API `licenses` endpoint reference](/gateway/latest/licenses/examples).
 
 {% endnavtab %}
 {% navtab Filesystem %}
 
-You can provide a license file to Kong Gateway in any database-backed or DB-less
+You can provide a license file to {{site.base_gateway}} in any database-backed or DB-less
 deployment. This method is not recommended for use in hybrid mode, as you have
 to maintain the license on each node manually.
 
@@ -121,16 +155,25 @@ substituting your own license key.
 
 1. Include the license as part of the `docker run` command when starting a {{site.base_gateway}} container:
 
+    {% if_version gte:2.6.x lte:2.8.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
+    [Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install-and-run/docker/).
+
+    {% endif_version %}
+    {% if_version gte:3.0.x %}
+    {:.note}
+    > **Note:** This is only a snippet. For a full working example, see the instructions to
+    [Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install/docker/).
+
+    {% endif_version %}
 
     ```bash
     docker run -d --name kong-gateway \
      --network=kong-net \
      ...
      -e KONG_LICENSE_DATA \
-     kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+     kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
     ```
 {% endnavtab %}
 {% navtab Environment variable (file path) %}
@@ -142,12 +185,21 @@ on each node manually.
 
 Include the license as part of the `docker run` command when starting a
 {{site.base_gateway}} container. Mount the path to the file on your
-local filesystem to a directory in the Docker container, making the file visible 
+local filesystem to a directory in the Docker container, making the file visible
 from the container:
 
+{% if_version gte:2.6.x lte:2.8.x %}
 {:.note}
 > **Note:** This is only a snippet. For a full working example, see the instructions to
-[Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
+[Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install-and-run/docker).
+
+{% endif_version %}
+{% if_version gte:3.0.x %}
+{:.note}
+> **Note:** This is only a snippet. For a full working example, see the instructions to
+[Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install/docker).
+
+{% endif_version %}
 
 ```bash
 docker run -d --name kong-gateway \
@@ -155,7 +207,7 @@ docker run -d --name kong-gateway \
  ...
  -v "$(pwd)/kong-license/:/kong-license/" \
  -e "KONG_LICENSE_PATH=/kong-license/license.json" \
- kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
 ```
 
 {% endnavtab %}

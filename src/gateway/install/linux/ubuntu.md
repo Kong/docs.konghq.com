@@ -14,7 +14,7 @@ Kong is licensed under an
 * A [supported system](/gateway/{{page.release}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.release}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
-Once you have everything you need, choose an installation path: 
+Once you have everything you need, choose an installation path:
   * [Quickstart](#installation): Install script for a {{site.base_gateway}} package and PostgreSQL database
   * [Advanced installation](#advanced-installation): Choose your own pieces to install
 
@@ -47,7 +47,7 @@ bash <(curl -sS https://get.konghq.com/install) -p kong -v {{ page.versions.ce }
 {% endnavtab %}
 {% endnavtabs_ee %}
 
-This script detects your operating system and automatically installs the correct package. 
+This script detects your operating system and automatically installs the correct package.
 It also installs a PostgreSQL database and bootstraps {{ site.base_gateway }} for you.
 
 If you'd prefer to install just the {{site.base_gateway}} package, see the [Package Install](#package-install) section.
@@ -86,7 +86,7 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 
 You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
 
-The following steps install the package **only**, without a data store. 
+The following steps install the package **only**, without a data store.
 You will need to set one up after installation.
 
 {% navtabs %}
@@ -96,30 +96,32 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 
 1. Download the Kong package.
 
-    {% if_version gte:3.4.x %}
-    We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. The following command assumes you're running `jammy`. 
-    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% if_version gte:3.9.x %}
+    {% assign default_flavor = "noble" %}
+    {% assign available_flavors = "Focal, Jammy, and Noble" %}
+    {% endif_version %}
+    {% if_version gte:3.4.x lte:3.8.x %}
+    {% assign default_flavor = "jammy" %}
+    {% assign available_flavors = "Focal, and Jammy" %}
     {% endif_version %}
     {% if_version lte:3.3.x %}
-    We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. The following command assumes you're running `jammy`. 
-    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+    {% assign default_flavor = "bionic" %}
+    {% assign available_flavors = "Bionic, Focal, and Jammy" %}
     {% endif_version %}
 
-{% assign ubuntu_flavor = "jammy" %}
-{% if page.release == "3.0.x" %}
-{% assign ubuntu_flavor = "bionic" %}
-{% endif %}
+    We currently package {{ site.base_gateway }} for Ubuntu {{ available_flavors }}. The following command assumes you're running `{{default_flavor}}`.
+    If you are using a different release, replace `{{default_flavor}}` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
 
 {% capture download_package %}
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.deb "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/{{ ubuntu_flavor }}/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_$(dpkg --print-architecture).deb"
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.deb "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/{{ default_flavor }}/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_$(dpkg --print-architecture).deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.deb "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/{{ ubuntu_flavor }}/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_$(dpkg --print-architecture).deb"
+curl -Lo kong-{{page.versions.ce}}.deb "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/{{ default_flavor }}/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_$(dpkg --print-architecture).deb"
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -158,18 +160,12 @@ Install the APT repository from the command line.
 
 1. Set up the Kong APT repository.
 
-    {% if_version gte:3.4.x %}
-    We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. The following command assumes you're running `jammy`. 
-    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
-    {% endif_version %}
-    {% if_version lte:3.3.x %}
-    We currently package {{ site.base_gateway }} for Ubuntu Bionic, Focal, and Jammy. The following command assumes you're running `jammy`. 
-    If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
-    {% endif_version %}
-    
+    We currently package {{ site.base_gateway }} for Ubuntu {{ available_flavors }}. The following command assumes you're running `{{default_flavor}}`.
+    If you are using a different release, replace `{{default_flavor}}` with `$(lsb_release -sc)` or the release name in the command below. To check your release name, run `lsb_release -sc`.
+
     ```bash
     curl -1sLf "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/gpg.{{ gpg_key }}.key" |  gpg --dearmor | sudo tee /usr/share/keyrings/kong-gateway-{{ page.major_minor_version }}-archive-keyring.gpg > /dev/null
-    curl -1sLf "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/config.deb.txt?distro=ubuntu&codename={{ ubuntu_flavor }}" | sudo tee /etc/apt/sources.list.d/kong-gateway-{{ page.major_minor_version }}.list > /dev/null
+    curl -1sLf "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/config.deb.txt?distro=ubuntu&codename={{ default_flavor }}" | sudo tee /etc/apt/sources.list.d/kong-gateway-{{ page.major_minor_version }}.list > /dev/null
     ```
 
 2. Update the repository:
@@ -218,7 +214,7 @@ sudo apt-mark hold kong
 
 ### Next steps
 
-Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.release}}/install/post-install/set-up-data-store/) 
+Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.release}}/install/post-install/set-up-data-store/)
 and update the `kong.conf.default` configuration property file with a reference to your data store.
 
 Depending on your desired environment, also see the following guides:
@@ -233,7 +229,7 @@ Depending on your desired environment, also see the following guides:
 {% endif_version %}
 
 You can also check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{ page.release }}/get-started/) guides to learn how 
+[Getting Started](/gateway/{{ page.release }}/get-started/) guides to learn how
 get the most out of {{site.base_gateway}}.
 
 ## Uninstall package
@@ -245,13 +241,13 @@ kong stop
 
 {% navtabs_ee %}
 {% navtab Kong Gateway %}
-To uninstall the package, run: 
+To uninstall the package, run:
 ```
 sudo apt remove kong-enterprise-edition
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
-To uninstall the package, run: 
+To uninstall the package, run:
 ```
 sudo apt remove kong
 ```

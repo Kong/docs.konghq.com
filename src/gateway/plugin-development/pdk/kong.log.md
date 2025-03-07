@@ -384,7 +384,7 @@ assert(kong.log.serialize().my_new_value == nil)
 
 -- Dots in the key are interpreted as table accesses
 kong.log.set_serialize_value("my.new.value", 4)
-assert(kong.log.serialize().my.new_value == 4)
+assert(kong.log.serialize().my.new.value == 4)
 ```
 
 
