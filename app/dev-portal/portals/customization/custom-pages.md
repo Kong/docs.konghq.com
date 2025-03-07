@@ -34,9 +34,26 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 {:.note}
 > *`home` is a special page representing the `/` path. If this page is deleted, you'll need to create it from the Pages API.*
 
+#### Reserved paths
+
+The Portal requires a number of reserved paths from the root of the URL in order to properly function that may not be overridden with custom pages or other functionality.
+
+| Path | Description | RegExp
+|:------|:-------|:-------|
+| `/login/*` | Login | `^/login(?:\/.*)?` |
+| `/register` | Registration | `^/register` |
+| `/forgot-password` | Forgot password | `^/forgot-password` |
+| `/reset-password` | Reset password | `^/reset-password` |
+| `/logout` | Log out | `^/logout` |
+| `/apps/*` | Developer applications | `^/apps` |
+| `/api/v*/` | Portal API | `^/api\/v\d+\/.*` |
+| `/api/*` | Nuxt server endpoints | `^/api\/(?!v\d+\/).*` |
+| `/npm/*` | CDN Proxy | `^/npm\/.*` |
+| `/_preview-mode/*` | Konnect previews | `^/_preview-mode\/.*` |
+
 ### Modify a Page
 
-In the middle panel, you can make changes to your MDC content, and instantly see the live Preview. 
+In the middle panel, you can make changes to your MDC content, and instantly see the live Preview.
 
 Once you have completed your changes, be sure to click **Save**.
 
