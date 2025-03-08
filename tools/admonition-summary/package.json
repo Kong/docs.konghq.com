@@ -12,7 +12,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "fast-glob": "^3.3.1",
-    "finalhandler": "^1.2.0",
+    "finalhandler": "^2.0.0",
     "serve-static": "^1.16.2"
   }
 }
