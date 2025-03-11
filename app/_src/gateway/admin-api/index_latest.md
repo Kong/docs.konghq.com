@@ -28,7 +28,7 @@ The Kong Admin API is documented in OpenAPI format:
 |  [Open source API](/gateway/api/admin-oss/latest/){:target="_blank"} | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20OSS%20{{page.short_version}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F{{page.short_version}}%2Fkong-oss-{{page.short_version}}.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
 
 {% endif_version %}
-{% if_version gte:3.8.x %}
+{% if_version gte:3.8.x lte:3.9.x %}
 
 | Spec | Insomnia link |
 |-------|---------------|
@@ -37,7 +37,17 @@ The Kong Admin API is documented in OpenAPI format:
 
 {% endif_version %}
 
+{% if_version gte:3.10.x %}
+
+| Spec | Insomnia link |
+|-------|---------------|
+| [Enterprise API](/gateway/api/admin-ee/latest/){:target="_blank"} |<a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20{{page.short_version}}&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F{{page.short_version}}%2Fkong-ee.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia" class="no-image-expand"></a> |
+
+{% endif_version %}
+
 See the following links for individual entity documentation:
+
+{% if_version lte:3.9.x %}
 
 {% navtabs %}
 {% navtab Enterprise endpoints %}
@@ -62,6 +72,21 @@ See the following links for individual entity documentation:
 | [Filter Chains](/gateway/api/admin-oss/latest/#/filter-chains/get-filter-chains){:target="_blank"} | | |
 {% endnavtab %}
 {% endnavtabs %}
+
+{% endif_version %}
+
+{% if_version gte:3.10.x %}
+
+| [Information Routes](/gateway/api/admin-ee/latest/#/Information/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-ee/latest/#/Information/get-status){:target="_blank"} | [Tags](/gateway/api/admin-ee/latest/#/tags/get-tags){:target="_blank"} |
+| [Debug Routes](/gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level){:target="_blank"} | [Services](/gateway/api/admin-ee/latest/#/Services/list-service){:target="_blank"} | [Routes](/gateway/api/admin-ee/latest/#/Routes/list-route){:target="_blank"} |
+| [Consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-ee/latest/#/Plugins/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-ee/latest/#/Certificates/list-certificate){:target="_blank"} |
+| [CA Certificates](/gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream){:target="_blank"} |
+| [Targets](/gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-ee/latest/#/Vaults/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-ee/latest/#/Keys/list-key){:target="_blank"} |
+| [Filter Chains](/gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains){:target="_blank"} | [Licenses](/gateway/api/admin-ee/latest/#/licenses/get-licenses){:target="_blank"} | [Workspaces](/gateway/api/admin-ee/latest/#/Workspaces/list-workspace){:target="_blank"} |
+| [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users){:target="_blank"} | [Admins](/gateway/api/admin-ee/latest/#/admins/get-admins){:target="_blank"} | [Consumer Groups](/gateway/api/admin-ee/latest/#/consumer_groups/){:target="_blank"} |
+| [Event Hooks](/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks){:target="_blank"} | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/Keyring/get-keyring){:target="_blank"} | [Audit Logs](/gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests){:target="_blank"} |
+
+{% endif_version %}
 
 ## DB-less mode
 

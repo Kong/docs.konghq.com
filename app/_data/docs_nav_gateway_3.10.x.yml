@@ -173,6 +173,8 @@ items:
             url: /production/access-control/register-admin-api
           - text: Enabling RBAC
             url: /production/access-control/enable-rbac
+          - text: Workspaces
+            url: /kong-enterprise/workspaces
       - text: Licenses
         items:
           - text: Overview
@@ -208,6 +210,38 @@ items:
         url: /production/environment-variables
       - text: Serving a Website and APIs from Kong
         url: /production/website-api-serving
+      - text: Secrets Management
+        items:
+          - text: Overview
+            url: /kong-enterprise/secrets-management/
+          - text: Getting Started
+            url: /kong-enterprise/secrets-management/getting-started
+          - text: Secrets Rotation
+            url: /kong-enterprise/secrets-management/secrets-rotation
+          - text: Advanced Usage
+            url: /kong-enterprise/secrets-management/advanced-usage
+          - text: Backends
+            items:
+              - text: Overview
+                url: /kong-enterprise/secrets-management/backends
+              - text: Environment Variables
+                url: /kong-enterprise/secrets-management/backends/env
+              - text: AWS Secrets Manager
+                url: /kong-enterprise/secrets-management/backends/aws-sm
+              - text: Azure Key Vaults
+                url: /kong-enterprise/secrets-management/backends/azure-key-vaults
+              - text: Google Cloud Secret Manager
+                url: /kong-enterprise/secrets-management/backends/gcp-sm
+              - text: HashiCorp Vault
+                url: /kong-enterprise/secrets-management/backends/hashicorp-vault
+          - text: How-To
+            items:
+              - text: Securing the Database with AWS Secrets Manager
+                url: /kong-enterprise/secrets-management/how-to/aws-secrets-manager
+          - text: Reference Format
+            url: /kong-enterprise/secrets-management/reference-format
+      - text: Keyring and Data Encryption
+        url: /kong-enterprise/db-encryption
       - text: Monitoring
         items:
           - text: Overview
@@ -258,11 +292,18 @@ items:
             url: /production/debug-request
           - text: AI Gateway Analytics
             url: /production/logging/ai-analytics/
-        url: /production/logging
+          - text: Audit Logging
+            url: /kong-enterprise/audit-log
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
       - text: Use the Expressions Router
         url: /key-concepts/routes/expressions
+      - text: Outage Handling
+        items:
+          - text: Configure Data Plane Resilience
+            url: /kong-enterprise/cp-outage-handling
+          - text: About Control Plane Outage Management
+            url: /kong-enterprise/cp-outage-handling-faq
       - text: Upgrade and Migration
         items:
           - text: Upgrading Kong Gateway 3.x.x
@@ -290,63 +331,6 @@ items:
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
-  - title: Kong Gateway Enterprise
-    icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
-    items:
-      - text: Overview
-        url: /kong-enterprise/
-      - text: Secrets Management
-        items:
-          - text: Overview
-            url: /kong-enterprise/secrets-management/
-          - text: Getting Started
-            url: /kong-enterprise/secrets-management/getting-started
-          - text: Secrets Rotation
-            url: /kong-enterprise/secrets-management/secrets-rotation
-          - text: Advanced Usage
-            url: /kong-enterprise/secrets-management/advanced-usage
-          - text: Backends
-            items:
-              - text: Overview
-                url: /kong-enterprise/secrets-management/backends
-              - text: Environment Variables
-                url: /kong-enterprise/secrets-management/backends/env
-              - text: AWS Secrets Manager
-                url: /kong-enterprise/secrets-management/backends/aws-sm
-              - text: Azure Key Vaults
-                url: /kong-enterprise/secrets-management/backends/azure-key-vaults
-              - text: Google Cloud Secret Manager
-                url: /kong-enterprise/secrets-management/backends/gcp-sm
-              - text: HashiCorp Vault
-                url: /kong-enterprise/secrets-management/backends/hashicorp-vault
-          - text: How-To
-            items:
-              - text: Securing the Database with AWS Secrets Manager
-                url: /kong-enterprise/secrets-management/how-to/aws-secrets-manager
-          - text: Reference Format
-            url: /kong-enterprise/secrets-management/reference-format
-      - text: Dynamic Plugin Ordering
-        items:
-          - text: Overview
-            url: /kong-enterprise/plugin-ordering/
-          - text: Get Started with Dynamic Plugin Ordering
-            url: /kong-enterprise/plugin-ordering/get-started
-      - text: Audit Logging
-        url: /kong-enterprise/audit-log
-      - text: Keyring and Data Encryption
-        url: /kong-enterprise/db-encryption
-      - text: Workspaces
-        url: /kong-enterprise/workspaces
-      - text: Consumer Groups
-        url: /kong-enterprise/consumer-groups
-      - text: Partials
-        url: /kong-enterprise/partials
-      - text: Event Hooks
-        url: /kong-enterprise/event-hooks
-      - text: Configure Data Plane Resilience
-        url: /kong-enterprise/cp-outage-handling
-      - text: About Control Plane Outage Management
-        url: /kong-enterprise/cp-outage-handling-faq
       - text: FIPS 140-2
         items:
           - text: Overview
@@ -354,7 +338,6 @@ items:
             src: /gateway/kong-enterprise/fips-support/index
           - text: Install the FIPS Compliant Package
             url: /kong-enterprise/fips-support/install
-
       - text: Authenticate your Kong Gateway Amazon RDS database with AWS IAM
         url: /kong-enterprise/aws-iam-auth-to-rds-database
       - text: Verify Signatures for Signed Kong Images
@@ -615,6 +598,14 @@ items:
             url: /kong-plugins/queue
           - text: Plugin Queuing Reference
             url: /kong-plugins/queue/reference
+      - text: Dynamic Plugin Ordering
+        items:
+          - text: Overview
+            url: /kong-enterprise/plugin-ordering/
+          - text: Get Started with Dynamic Plugin Ordering
+            url: /kong-enterprise/plugin-ordering/get-started
+      - text: Redis Partials
+        url: /kong-enterprise/partials
 
   - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
@@ -751,11 +742,6 @@ items:
           absolute_url: true
           generate: false
           target_blank: true
-      - text: Open Source API
-        url: /gateway/api/admin-oss/latest/
-        absolute_url: true
-        generate: false
-        target_blank: true
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
@@ -780,5 +766,7 @@ items:
         url: /reference/rate-limiting/
       - text: WebAssembly
         url: /reference/wasm
+      - text: Event Hooks
+        url: /kong-enterprise/event-hooks
       - text: FAQ
         url: /reference/faq
