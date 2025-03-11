@@ -11,6 +11,28 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.9.1.0
+**Release Date** 2025/03/11
+
+### Fixes
+#### Core
+
+* Fixed an issue where a mismatch between If-Match in the request and ETag in the response would result in a bad case in the response phase.
+* Updated the AWS Vault supported regions list to the latest available.
+* Added support for the new Ollama streaming content type in the AI driver.
+
+#### Plugins
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed an issue with Gemini streaming responses getting truncated and/or missing tokens.
+  * Fixed an incorrect error thrown when trying to log streaming responses.
+  * Fixed an issue where tool calls weren't working in streaming mode for Bedrock and Gemini providers.
+
+* [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-prompt-guard/) (`ai-semantic-prompt-guard`)
+  *  Fixed an issue where Kong Gateway couldn't reconfigure the plugin when using DB-less mode.
+
+* [**Session**](/hub/kong-inc/session/) (`session`) 
+  * Fixed an issue where two boolean configuration fields `hash_subject` (default `false`) and `store_metadata` (default `false`) stored the session's metadata in the database.
 
 ## 3.9.0.1
 **Release Date** 2025/01/28
@@ -140,7 +162,7 @@ Implemented a new plugin to protect services using request rate limiting.
   * Added the `ignore_tool` configuration option to discard tool role prompts from the input text.
   * This plugin can now be enabled on consumer groups.
 
-* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`), [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`), [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
+* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`), [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-prompt-guard/) (`ai-semantic-prompt-guard`), [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
   * Made the `embeddings.model.name` config field a free text entry, enabling use of a
 self-hosted (or otherwise compatible) model.
 
