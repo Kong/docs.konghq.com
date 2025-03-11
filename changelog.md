@@ -2,6 +2,123 @@
 
 <!--vale off-->
 
+## Week 11
+
+### [Release: Gateway 3.9.1.0](https://github.com/Kong/docs.konghq.com/pull/8536) (2025-03-11)
+
+Changelog and version bump for 3.9.1.0.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [docs(portal): add reserved path for api proxy](https://github.com/Kong/docs.konghq.com/pull/8535) (2025-03-11)
+
+List the proxy path as reserved in Portal Custom Pages.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/customization/custom-pages
+
+
+### [Incremental config sync doc](https://github.com/Kong/docs.konghq.com/pull/8520) (2025-03-11)
+
+Documentation for the incremental config sync feature.
+
+https://konghq.atlassian.net/browse/DOCU-4174
+
+#### Modified
+
+- https://docs.konghq.com/gateway/unreleased/production/deployment-topologies/hybrid-mode/
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/hybrid-mode/
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/hybrid-mode/
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/hybrid-mode/
+- https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/hybrid-mode/
+- https://docs.konghq.com/gateway/3.7.x/production/deployment-topologies/hybrid-mode/
+- https://docs.konghq.com/gateway/3.8.x/production/deployment-topologies/hybrid-mode/
+- https://docs.konghq.com/gateway/3.9.x/production/deployment-topologies/hybrid-mode/
+
+
+## Week 10
+
+### [docs(portal): reserved paths](https://github.com/Kong/docs.konghq.com/pull/8527) (2025-03-07)
+
+Document the new Dev Portal reserved paths.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/customization/custom-pages
+
+
+### [Rename title in transit-gateways.md](https://github.com/Kong/docs.konghq.com/pull/8524) (2025-03-07)
+
+Issue reported at [https://github.com/Kong/docs.konghq.com/issues/8296](https://github.com/Kong/docs.konghq.com/issues/8296)
+
+Change title from "How to configure Transit Gateway" to "How to configure AWS Transit Gateway", so it clearly states this is an AWS product.
+
+In the "Configure AWS Transit Gateway" section, replace "Create Transit Gateway" with "Create transit gateway", in lowercase, as this is the term appearing in AWS.
+
+
+### Description
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways
+
+
+### [Update index.md](https://github.com/Kong/docs.konghq.com/pull/8522) (2025-03-07)
+
+Added Other limits for Serverless
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/
+
+
+### [fix(deck): docker on Windows](https://github.com/Kong/docs.konghq.com/pull/8500) (2025-03-05)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/deck/install/docker
+
+
+### [Add link to Vacuum to deck file lint](https://github.com/Kong/docs.konghq.com/pull/8499) (2025-03-04)
+
+Link to all available `deck file lint` rules
+
+#### Modified
+
+- https://docs.konghq.com/deck/file/lint
+
+
+### [Add v3 API Builder API, insomnia fixes for other portal v3 APIs](https://github.com/Kong/docs.konghq.com/pull/8497) (2025-03-04)
+
+Added required files for docs portal to list new API Builder v3, and added YAML versions of specs to potentially fix Insomnia links.
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/
+
 ## Week 10
 
 ### [docs(portal): reserved paths](https://github.com/Kong/docs.konghq.com/pull/8527) (2025-03-07)
