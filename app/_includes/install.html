@@ -22,7 +22,7 @@
 
 {% endif_version %}
 
-{% if_version gte:3.4.x %}
+{% if_version gte:3.4.x lte:3.9.x %}
 
 <table class="installation-options">
   <thead>
@@ -61,6 +61,37 @@
             </a>
           {% endfor %}
         </td>
+        <td class="installation-options__cell installation-options__cell--body">
+          {% assign enterprise_items = feature.items | where: "enterprise", true %}
+          {% for item in enterprise_items %}
+            {% if item.ee_url %}
+              {% assign url = item.ee_url %}
+            {% else %}
+              {% assign url = item.url %}
+            {% endif %}
+            {% assign url = url | replace: 'VERSION', page.release %}
+
+            <a class="installation-options__link" href="{{ url }}">
+              <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }} icon">
+              <span>{{ item.name }}</span>
+            </a>
+          {% endfor %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif_version %}
+
+
+{% if_version gte:3.10.x %}
+
+<table class="installation-options">
+  <tbody>
+    {% for feature in include.config.features %}
+      <tr class="installation-options__row">
+        <td class="installation-options__cell installation-options__cell--body installation-options__cell--platform">{{ feature.name }}</td>
         <td class="installation-options__cell installation-options__cell--body">
           {% assign enterprise_items = feature.items | where: "enterprise", true %}
           {% for item in enterprise_items %}
