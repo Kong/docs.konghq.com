@@ -86,7 +86,7 @@ and advanced Redis support for greater performance. Ensure that you have install
    curl --request POST \
     --url http://localhost:8001/teamA/services \
     --data "name=httpbin" \
-    --data "url=http://httpbin.org/anything"
+    --data "url=https://httpbin.konghq.com/anything"
    ```
    The results should look like this:
    ```json
@@ -103,7 +103,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "protocol": "http",
      "enabled": true,
      "created_at": 1699525785,
-     "host": "httpbin.org",
+     "host": "httpbin.konghq.com",
      "connect_timeout": 60000,
      "path": "/anything",
      "read_timeout": 60000,

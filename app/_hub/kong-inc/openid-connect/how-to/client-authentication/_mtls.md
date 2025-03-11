@@ -80,8 +80,10 @@ plugin: kong-inc/openid-connect
 name: openid-connect
 config:
   issuer: "http://keycloak.test:8080/auth/realms/master"
-  client_id: "client-tls-auth"
-  client_auth: "tls_client_auth"
+  client_id: 
+    - "client-tls-auth"
+  client_auth: 
+    - "tls_client_auth"
   auth_methods:
     - "password"
   tls_client_auth_cert_id: "1e0721c1-fd43-494c-9864-007bbba98c8c"
@@ -92,6 +94,7 @@ formats:
   - curl
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 <!-- vale on -->
 

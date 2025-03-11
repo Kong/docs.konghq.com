@@ -45,7 +45,9 @@ ingressController:
 
 {% if_version gte:3.2.x %}
 
-### Update Gateway API from v1.0 to v1.1
+### Update Gateway API 
+
+#### From v1.0 to v1.1
 
 Starting from version 3.2, {{ site.kic_product_name }} supports Gateway API version 1.1.
 The primary change in Gateway API v1.1 is the promotion of GRPCRoute from v1alpha2 to v1.
@@ -70,6 +72,34 @@ complete the following steps to upgrade to version v1.1 of the CRD:
 4. (Optional) Install the Standard Channel of Gateway API v1.1.
 
 [gwapi-alpha-version-update]: https://github.com/kubernetes-sigs/gateway-api/issues/3086
+
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
+
+#### From v1.1 to v1.2
+
+Starting from version 3.4, {{ site.kic_product_name }} supports Gateway API version 1.2.
+There is a breaking change in gateway API 1.2 to remove the `v1alpha2` version of `GRPCRoute` and `ReferenceGrant`.
+
+If you have been using gateway API v1.1 and {{ site.kic_product_name }} 3.2 and above, and there are no `GRPCRoute` and `ReferenceGrant` resources stored in `v1alpha2` version, you can directly upgrade gateway API from v1.1 to v1.2. 
+You can use the following script to ensure your `GRPCRoute` and `ReferenceGrant` CRDs are not using `v1alpha2` storage version:
+
+```bash
+kubectl get grpcroutes -A -o jsonpath='{.items[*].apiVersion}' | tr ' ' '\n' | sort | uniq -c
+kubectl get referencegrants -A -o jsonpath='{.items[*].apiVersion}' | tr ' ' '\n' | sort | uniq -c
+```
+
+If the output contains `v1alpha2`, it means that there are `GRPCRoute`s or `ReferenceGrant`s (or both) using `v1alpha2` storage version and you need to update the manifests before upgrading.
+
+Otherwise, upgrade Gateway API and {{ site.kic_product_name }} following these steps:
+
+1. Ensure you are using Gateway API 1.1 (you can upgrade by following the steps in the section above).
+2. Ensure your are using {{ site.kic_product_name }} version 3.2 (or above).
+3. Update all your `GRPCRoute` manifests to use `v1` instead of `v1alpha2` and your `ReferenceGrant` manifests to use `v1beta1` instead of `v1alpha2`. This can be done by following the [upgrade guide from Gateway API][gateway-api-v12-upgrade-notes].
+4. Install the wanted channel of gateway API 1.2.
+
+[gateway-api-v12-upgrade-notes]: https://gateway-api.sigs.k8s.io/guides/?h=v1.2#v12-upgrade-notes
 
 {% endif_version %}
 
@@ -136,7 +166,7 @@ After a rollback, if you run into issues in production, consider using a testing
     Helm does not upgrade CRDs automatically. You must apply the 3.x CRDs before you upgrade your releases.
 
     ```bash
-    kubectl kustomize https://github.com/Kong/kubernetes-ingress-controller//config/crd/?v3.0.0 | kubectl apply -f -
+    kubectl kustomize https://github.com/Kong/kubernetes-ingress-controller/config/crd/?ref=v3.0.0 | kubectl apply -f -
     ```
 
 1. **Convert `KongIngress` `route` and `service` fields to annotations.**

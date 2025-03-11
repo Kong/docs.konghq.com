@@ -1,5 +1,6 @@
 ---
 title: ACM Private CA Policy
+badge: enterprise
 ---
 
 ## Amazon Certificate Manager Private CA Backend
@@ -19,10 +20,8 @@ using a CA root certificate and key stored in a HashiCorp Vault
 server.
 * `acmpca`: {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
-{% if_version gte:1.8.x -%}
 * [`certmanager`](/mesh/{{page.release}}/features/cert-manager/): {{site.mesh_product_name}} generates data plane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
-{% endif_version %}
 
 ## ACM Private CA mode
 
@@ -146,19 +145,5 @@ You must also make sure the global control plane can communicate with ACM Privat
 {% endif_version %}
 
 <!-- links -->
-{% if_version gte:2.0.x %}
-[mtls-policy]: /mesh/{{page.release}}/policies/mutual-tls/
-{% if_version lte:2.1.x %}
-[secrets]: /mesh/{{page.release}}/security/secrets/
-{% endif_version %}
-{% if_version gte:2.2.x %}
 [secrets]: /mesh/{{page.release}}//production/secure-deployment/secrets/
-{% endif_version %}
 [http-api]: /mesh/{{page.release}}/reference/http-api/
-{% endif_version %}
-
-{% if_version lte:1.9.x %}
-[mtls-policy]: https://kuma.io/docs/1.8.x/policies/mutual-tls/
-[secrets]: https://kuma.io/docs/1.8.x/security/secrets/
-[http-api]: https://kuma.io/docs/1.8.x/reference/http-api
-{% endif_version %}

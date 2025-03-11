@@ -2,17 +2,20 @@
 nav_title: Overview
 ---
 
-Validate requests before they reach their upstream service. Supports validating
+Validate requests before they reach their upstream service. This plugin supports validating
 the schema of the body and the parameters of the request using either Kong's own
 schema validator (body only) or a JSON Schema Draft 4 compliant validator.
 
-## Content-Type Validation
+## Content-Type validation
 
 The request Content-Type header is validated against the plugin's [`allowed_content_types`](/hub/kong-inc/request-validator/configuration/#config-allowed_content_types) setting. If the request Content-Type is not listed, the request will be rejected with an HTTP/400 error: `{"message":"specified Content-Type is not allowed"}`
 
 The parameter is strictly validated, which means a request with a parameter (for example, `application/json; charset=UTF-8`) is NOT considered valid for one without the same parameter (for example, `application/json`). The type, subtype, parameter names, and the value of the charset parameter are not case sensitive based on the RFC explanation.
 
-## Body Validation
+{:.important}
+> When setting this configuration, the `Content-Type` header only gets validated when `body_schema` is configured.
+
+## Body validation
 
 {% if_version lte:3.5.x %}
 Request body validation is only performed for requests with `application/json` Content-Type.
@@ -23,11 +26,20 @@ Request body validation is only performed for requests with `application/json` C
 
 For requests with any other allowed Content-Type, body validation is skipped. In that case, the request is proxied to  the upstream without validating the body.
 
+Either Kong's own schema validator (`config.version=kong`) or a JSON Schema Draft 4 compliant validator (`config.version=draft4`) can be used to validate the request body.
+
+## Parameter validation
+
+Only the JSON Schema Draft 4 compliant validator is supported for parameter validation.
+
+{:.important}
+> Even if `config.version` is set to `kong`, the parameter validation will still use the JSON Schema Draft 4 compliant validator.
+
 ## Examples
 
 ### Overview
 
-By applying the plugin to a Service, all requests to that Service will be validated
+By applying the plugin to a service, all requests to that service will be validated
 before being proxied.
 
 {% navtabs %}
@@ -67,7 +79,7 @@ to contain a `name` field only, which needs to be a string.
 
 In case the validation fails, a `400 Bad Request` will be returned as the response.
 
-### Schema Definition
+### Schema definition
 
 *For using the JSON Schema Draft 4-compliant validator, see the [JSON Schema website](
 https://json-schema.org/) for details on the format and examples. The rest of
@@ -94,7 +106,7 @@ Map:
 
 Example string-boolean map:
 
-```
+```json
 {
   "type": "map",
   "keys": {
@@ -114,7 +126,7 @@ Array:
 
 Example integer array schema:
 
-```
+```json
 {
   "type": "array",
   "elements": {
@@ -131,7 +143,7 @@ Record:
 
 Example record schema:
 
-```
+```json
 {
   "type": "record",
   "fields": [
@@ -181,7 +193,10 @@ validations:
 
 **Note**: To learn more, see [Lua patterns][lua-patterns].
 
-#### Semantic validation for `format` attribute
+#### Semantic validation for the JSON Schema `format` attribute
+
+{:.important}
+> This feature is only supported in JSON Schema Draft 4.
 
 Structural validation alone may be insufficient to validate that an instance
 meets all the requirements of an application. The `format` keyword is defined
@@ -199,16 +214,16 @@ external specifications. The following attributes are available:
 
 Example `date` schema:
 
-```
+```json
 {
   "type": "string",
   "format": "date"
 }
 ```
 
-### Kong Schema Example
+### JSON Schema example
 
-```
+```json
 [
   {
     "name": {
@@ -254,7 +269,7 @@ Example `date` schema:
 
 Such a schema would validate the following request body:
 
-```
+```json
 {
   "name": "Gruce The Great",
   "age": 4,
@@ -267,14 +282,14 @@ Such a schema would validate the following request body:
 
 ```
 
-### Parameter Schema Definition
+### Parameter schema definition
 
-You can setup definitions for each parameter based on the OpenAPI Specification and
+You can set up definitions for each parameter based on the OpenAPI Specification and
 the plugin will validate each parameter against it. For more information, see the
 [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameter-object)
 or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
 
-#### Fixed Fields
+#### Fixed fields
 
 |Field Name | Type | Description|
 | --- | --- | --- |
@@ -289,107 +304,31 @@ or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
 
 In this example, use the plugin to validate a request's path parameter.
 
-1.  Add a Service to Kong:
+1.  Add a service to Kong:
 
-    ```
+    ```sh
     curl -i -X POST http://localhost:8001/services \
       --data name=httpbin \
-      --data url=http://httpbin.org
-
-    HTTP/1.1 201 Created
-    ..
-
-    {
-      "host":"httpbin.org",
-      "created_at":1563479714,
-      "connect_timeout":60000,
-      "id":"0a7f3795-bc92-43b5-aada-258113b7c4ed",
-      "protocol":"http",
-      "name":"httpbin",
-      "read_timeout":60000,
-      "port":80,
-      "path":null,
-      "updated_at":1563479714,
-      "retries":5,
-      "write_timeout":60000
-    }
+      --data url=https://httpbin.konghq.com
     ```
 
-2.  Add a Route with [named capture group](/gateway/latest/how-kong-works/routing-traffic/#capturing-groups):
+2.  Add a route with [named capture group](/gateway/latest/how-kong-works/routing-traffic/#capturing-groups):
 
-    ```
+    ```sh
     curl -i -X POST http://localhost:8001/services/httpbin/routes \
       --data paths="~/status/(?<status_code>\d%+)" \
       --data strip_path=false
-
-    HTTP/1.1 201 Created
-    ..
-
-    {
-      "created_at": 1563481399,
-      "methods": null,
-      "id": "cd78749a-33a3-4bbd-9560-588eaf4116d3",
-      "service": {
-        "id": "0a7f3795-bc92-43b5-aada-258113b7c4ed"
-      },
-      "name": null,
-      "hosts": null,
-      "updated_at": 1563481399,
-      "preserve_host": false,
-      "regex_priority": 0,
-      "paths": [
-        "\\/status\\/(?<status_code>\\d+)"
-      ],
-      "sources": null,
-      "destinations": null,
-      "snis": null,
-      "protocols": [
-        "http",
-        "https"
-      ],
-      "strip_path": false
-    }
     ```
 
 3. Enable `request-validator` plugin to validate body and parameter:
 
-    ```
+    ```sh
     curl -i -X POST http://localhost:8001/services/httpbin/plugins \
       --header "Content-Type: application/json" \
       --data @parameter_schema.json
-
-    HTTP/1.1 201 Created
-    ..
-
-    {
-      "created_at": 1563483059,
-      "config": {
-        "body_schema": "{\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}",
-        "parameter_schema": [
-          {
-            "style": "simple",
-            "required": true,
-            "in": "path",
-            "schema": "{\"type\": \"number\"}",
-            "explode": false,
-            "name": "status_code"
-          }
-        ],
-        "version": "draft4"
-      },
-      "id": "ad91a2d4-6217-4d34-9133-4a2508ddda9f",
-      "service": {
-        "id": "0a7f3795-bc92-43b5-aada-258113b7c4ed"
-      },
-      "enabled": true,
-      "run_on": "first",
-      "consumer": null,
-      "route": null,
-      "name": "request-validator"
-    }
     ```
 
-    Content of file `parameter_schema.json`:
+    Content of the file `parameter_schema.json`:
 
     ```json
     {
@@ -413,13 +352,17 @@ In this example, use the plugin to validate a request's path parameter.
 
 4. In these step examples, validation ensures that `status_code` is a number and the body contains a parameter called `name`.
 
-   A proxy request with a non-numerical status code is blocked:
+   For example, if you try to send a request to an existing route with the path `/status/abc`:
 
-    ```
+    ```sh
     curl -i -X POST \
     --url http://localhost:8000/status/abc \
     --header 'Content-Type: application/json' \
     --data '{ "name": "foo" }'
+    ```
+
+    The proxy request is blocked because the path has a non-numerical status code, which doesn't conform to the schema:
+    ```
     HTTP/1.1 400 Bad Request
     ...
 
@@ -428,19 +371,19 @@ In this example, use the plugin to validate a request's path parameter.
 
     A proxy request with a numeric status code is allowed:
 
-    ```
+    ```sh
     curl -i -X POST \
     --url http://localhost:8000/status/123 \
     --header 'Content-Type: application/json' \
     --data '{ "name": "foo" }'
-    HTTP/1.1 200 OK
-    X-Kong-Upstream-Latency: 163
-    X-Kong-Proxy-Latency: 37
-    ...
-
     ```
 
-### Further References
+    Response:
+    ```
+    HTTP/1.1 200 OK
+    ```
+
+### Further references
 
 The Kong schema validation format is based on the plugin schemas.
 For more information, see the Kong plugin docs on

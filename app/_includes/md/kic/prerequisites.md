@@ -1,9 +1,7 @@
 {% unless include.disable_accordian %}
-<details class="custom" markdown="1">
+<details markdown="1">
 <summary>
-<blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}}</u> {% unless include.disable_gateway_api %}with Gateway API support {% endunless %}in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>{{site.ee_product_name}}</strong>.{% endif %}</p>
-</blockquote>
+  <strong>Prerequisites:</strong> Install {{site.kic_product_name}} {% unless include.disable_gateway_api %}with Gateway API support {% endunless %}in your Kubernetes cluster and connect to Kong. {% if include.enterprise %}This guide requires <strong>{{site.ee_product_name}}</strong>.{% endif %}
 </summary>
 
 ## Prerequisites
@@ -18,20 +16,23 @@
 
 ### Install the Gateway APIs
 
+   {% if include.gateway_api_experimental %}
+
+1. Install the experimental Gateway API CRDs before installing {{ site.kic_product_name }}.
+
+    ```bash
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/{{ gw_api_crd_version}}/experimental-install.yaml
+    ```
+
+   {% else %}
+
 1. Install the Gateway API CRDs before installing {{ site.kic_product_name }}.
 
     ```bash
     kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/{{ gw_api_crd_version}}/standard-install.yaml
     ```
 
-    {% if include.gateway_api_experimental %}
-
-1. Install the experimental Gateway API CRDs to test this feature.
-
-    ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/{{ gw_api_crd_version}}/experimental-install.yaml
-    ```
-    {% endif %}
+   {% endif %}
 
 1. Create a `Gateway` and `GatewayClass` instance to use.
 
@@ -63,6 +64,9 @@
      - name: proxy
        port: 80
        protocol: HTTP
+       allowedRoutes:
+         namespaces:
+            from: All
    " | kubectl apply -f -
    ```
 

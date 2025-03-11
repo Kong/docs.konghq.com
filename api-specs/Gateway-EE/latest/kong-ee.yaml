@@ -22,6 +22,7 @@ components:
       name: tags
       schema:
         type: string
+        nullable: false
     certificate_name_or_id:
       name: certificate_name_or_id
       in: path
@@ -225,6 +226,7 @@ components:
       name: tags
       schema:
         type: string
+        nullable: false
     filter_chain_id:
       name: filter_chain_id
       in: path
@@ -251,6 +253,85 @@ components:
         After filter could be used to request audit log data that was recorded after certain time (inclusive).
         It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
   schemas:
+    Admin:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the admin.
+        created_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the admin was created.
+        updated_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the admin was last updated.
+        username:
+          type: string
+          description: The admin's username.
+          uniqueItems: true
+        username_lower:
+          type: string
+          description: The admin's username in lowercase.
+        custom_id:
+          type: string
+          description: The Admin’s custom ID.
+          uniqueItems: true
+        email:
+          type: string
+          format: email
+          description: The admin's email address.
+          uniqueItems: true
+        status:
+          type: string
+          description: The status of the admin.
+          enum:
+            - active
+            - inactive
+        rbac_token_enabled:
+          type: boolean
+          description: Allows the Admin to use and reset their RBAC token; true by default.
+          default: true
+        consumer:
+          type: string
+          description: The ID of the associated consumer.
+          format: uuid
+        rbac_user:
+          type: string
+          description: The ID of the associated RBAC user.
+          format: uuid
+      required:
+        - username
+        - status
+        - rbac_token_enabled
+        - consumer
+        - rbac_user
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the group.
+        created_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the group was created.
+        updated_at:
+          type: integer
+          format: timestamp
+          description: Timestamp when the group was last updated.
+        name:
+          type: string
+          description: The name of the group.
+          uniqueItems: true
+        comment:
+          type: string
+          description: Any comments associated with the specific group.
+      required:
+        - name
     UnauthorizedError:
       type: object
       properties:
@@ -326,6 +407,13 @@ components:
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
+        snis:
+          description: >
+            A list of SNIs associated with the certificate.
+          type: array
+          items:
+            type: string
+            format: hostname
       type: object
     Consumer:
       description: The Consumer object represents a consumer - or a user - of a Service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
@@ -363,6 +451,32 @@ components:
           tags:
             - silver-tier
           username: bob-the-builder
+    ConsumerGroup:
+      description: Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem. By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations.
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the Consumer Group.
+          nullable: true
+        name:
+          type: string
+          description: The name of the Consumer Group.
+        tags:
+          description: An optional set of strings associated with the Consumer Group for grouping and filtering.
+          items:
+            type: string
+          type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+      additionalProperties: false
+      required:
+        - name
     Key:
       description: A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
       example:
@@ -400,7 +514,7 @@ components:
           type: object
         set:
           additionalProperties: false
-          description: The id (an UUID) of the key-set with which to associate the key.
+          description: The id (an UUID) of the Key Set with which to associate the key.
           properties:
             id:
               type: string
@@ -863,9 +977,15 @@ components:
         slots: 10000
       properties:
         algorithm:
-          default: round-robin
           description: Which load balancing algorithm to use.
           type: string
+          default: round-robin
+          enum:
+            - consistent-hashing
+            - least-connections
+            - round-robin
+            - latency
+          nullable: true
         client_certificate:
           additionalProperties: false
           description: If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.
@@ -1064,52 +1184,53 @@ components:
       type: object
     Vault:
       description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, HashiCorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
-      example:
-        config:
-          prefix: vaults.config.resurrect_ttl
-        description: environment variable based vault
-        id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
-        name: env
-        tags:
-          - foo
-          - bar
+      type: object
       properties:
         config:
-          description: The configuration properties for the Vault which can be found on the [vaults documentation page](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
+          description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
-          properties:
-            prefix:
-              description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
-              type: string
-              enum:
-                - vaults.config.resurrect_ttl
-                - vaults.config.neg_ttl
-                - vaults.config.ttl
-              required:
-                - prefix
+          additionalProperties: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
+          readOnly: true
         description:
           description: The description of the Vault entity.
           type: string
+          nullable: true
         id:
           type: string
+          nullable: true
         name:
-          description: The name of the vault that's going to be added. The vault implementation must be installed in every Kong instance.
+          description: 'The name of the Vault that''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.'
           type: string
         prefix:
           description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
           type: string
         tags:
           description: An optional set of strings associated with the Vault for grouping and filtering.
+          type: array
           items:
             type: string
-          type: array
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
-      type: object
+          readOnly: true
+      example:
+        config:
+          prefix: ENV_PREFIX
+        description: environment variable based vault
+        id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
+        name: env
+        prefix: env
+        tags:
+          - foo
+          - bar
+      additionalProperties: false
+      required:
+        - name
+        - prefix
+        - config
     Workspace:
       type: object
       properties:
@@ -1143,14 +1264,8 @@ components:
               items:
                 type: string
             portal_developer_meta_fields:
-              default:
-                properties:
-                  - label: Full Name
-                    title: full_name
-                    validator:
-                      required: true
-                      type: string
-              type: object
+              default: '[{"label":"Full Name","title":"full_name","validator":{"required":true,"type":"string"}}]'
+              type: string
             portal_emails_from:
               type: string
             portal_emails_reply_to:
@@ -1201,12 +1316,8 @@ components:
             portal_auto_approve: true
             portal_cors_origins:
               - string
-            portal_developer_meta_fields:
-              - label: Full Name
-                title: full_name
-                validator:
-                  required: true
-                  type: string
+            portal_developer_meta_fields: >-
+              [{"label":"Full Name","title":"full_name","validator":{"required":true,"type":"string"}}]
             portal_emails_from: string
             portal_emails_reply_to: string
             portal_invite_email: true
@@ -1399,7 +1510,7 @@ components:
               name:
                 type: string
                 description: |
-                  The name to associate with the given key-set.
+                  The name to associate with the given Key Set.
                 example: my-key_set
               created_at:
                 type: integer
@@ -1413,7 +1524,7 @@ components:
               tags:
                 type: array
                 description: |
-                  The name to associate with the given key-set.
+                  The name to associate with the given Key Set
                 items:
                   type: string
               next:
@@ -2020,54 +2131,141 @@ components:
             type: object
             x-examples:
               Example 1:
+                checksum: 38b06b3c3c69299740e1f2d48a1a197d17864b99
+                consumers_count: 0
                 counters:
-                  - bucket: 2021-12
-                    request_count: 0
-                db_version: postgres 9.6.19
-                kong_version: 3.2.2.1
-                license_key: ASDASDASDASDASDASDASDASDASD_ASDASDA
+                  total_requests: 10
+                  buckets: 
+                    - bucket: 2025-01
+                      request_count: 10
+                db_version: postgres 13.18
+                deployment_info:
+                  type: hybrid
+                kong_version: 3.9.0.0
+                license:
+                  license_expiration_date: "2025-02-20"
+                  license_key: ASDASDASDASDASDASDASDASDASD_ASDASDA
+                plugins_count:
+                  tiers:
+                    custom: 0
+                    enterprise:
+                      rate-limiting-advanced: 1
+                    free:
+                      basic-auth: 1
+                  unique_route_kafkas: 0
+                  unique_route_lambdas: 0
                 rbac_users: 0
+                routes_count: 0
                 services_count: 0
                 system_info:
                   cores: 4
                   hostname: 13b867agsa008
                   uname: Linux x86_64
+                timestamp: a1737692223
                 workspaces_count: 1
             properties:
+              checksum:
+                type: string
+                description: The checksum of the current report.
+                example: 38b06b3c3c69299740e1f2d48a1a197d17864b99
               counters:
-                type: array
+                type: object
                 description: |
                   Counts the number of requests made in a given month.
-                items:
-                  type: object
-                  properties:
-                    bucket:
-                      type: string
-                      description: Year and month when the requests were processed. If the value in bucket is UNKNOWN, then the requests were processed before Kong Gateway 2.7.0.1.
-                      example: 2021-12
-                    request_count:
-                      type: integer
-                      description: Number of requests processed in the given month and year.
-                      example: 0
+                properties:
+                  total_requests:
+                    type: number
+                    description: The total number of requests made in all buckets.
+                    example: 10
+                  buckets:
+                    type: array
+                    description: A list of year-month buckets and the number of requests made in each one.
+                    items:
+                      properties:
+                        bucket: 
+                          type: string
+                          description: Year and month when the requests were processed. If the value in bucket is UNKNOWN, then the requests were processed before Kong Gateway 2.7.0.1.
+                          example: 2025-01
+                        request_count: 
+                          type: integer
+                          description: Number of requests processed in the given month and year.
+                          example: 10
               db_version:
                 type: string
                 description: |
                   The type and version of the data store Kong Gateway is using.
-                example: postgres 9.6.19
+                example: postgres 13.18
+              deployment_info:
+                type: object
+                description: Displays information about the deployment running Kong Gateway.
+                properties:
+                  type:
+                    type: string
+                    description: Type of the deployment mode.
+                    example: traditional
+                  connected_dp_count:
+                    type: number
+                    description: Number of data planes across the cluster. If the deployment is not hybrid mode, the field is not displayed.
               kong_version:
                 type: string
                 description: |
                   The version of the Kong Gateway instance.
-                example: 3.2.2.1
-              license_key:
-                type: string
-                description: |
-                  An encrypted identifier for the current license key. If no license is present, the field displays as UNLICENSED.
-                example: ASDASDASDASDASDASDASDASDASD_ASDASDA
+                example: 3.9.0.0
+              license:
+                type: object
+                description: Information about the license.
+                properties:
+                  license_expiration_date:
+                    type: string
+                    description: The date current license expires. If no license is present, the field displays as 2017-7-20.
+                    example: "2025-02-20"
+                  license_key:
+                    type: string
+                    description: |
+                      An encrypted identifier for the current license key. If no license is present, the field displays as UNLICENSED.
+                    example: ASDASDASDASDASDASDASDASDASD_ASDASDA
               rbac_users:
                 type: integer
                 description: |
                   The number of users registered with through RBAC.
+                example: 0
+              consumers_count:
+                type: integer
+                description: The number of configured consumers in the Kong Gateway instance.
+                example: 0
+              plugins_count:
+                type: object
+                description: Counts the number of plugins in use.
+                properties:
+                  unique_route_lambdas:
+                    type: number
+                    description: |
+                      Number of AWS Lambda plugins in use. Only counts in case of the plugin is defined on a service-less route level and have a unique function name.
+                    example: 0
+                  unique_route_kafkas:
+                    type: number
+                    description: Number of unique broker IPs listed in broker array across Kafka Upstream plugins defined on a service-less route level.
+                    example: 0
+                  tiers:
+                    type: object
+                    description: The number of configured plugins in each subscription tier.
+                    properties:
+                      custom:
+                        type: object
+                        description: A list of all configured custom plugins and the number of instances of each.
+                      enterprise:
+                        type: object
+                        description:  A list of all configured Enterprise plugins and the number of instances of each.
+                        example:
+                          rate-limiting-advanced: 1
+                      free:
+                        type: object
+                        description: A list of all configured free plugins and the number of instances of each.
+                        example:
+                          basic-auth: 1
+              routes_count:
+                type: integer
+                description: The number of configured routes in the Kong Gateway instance.
                 example: 0
               services_count:
                 type: integer
@@ -2091,6 +2289,10 @@ components:
                     type: string
                     description: Operating system
                     example: Linux x86_64
+              timestamp:
+                type: string
+                description: The timestamp of the current response.
+                example: 1737692223
               workspaces_count:
                 type: integer
                 description: |
@@ -3605,21 +3807,21 @@ components:
             Returned user:
               value:
                 data:
-                  - comment: 'null'
+                  - comment: null
                     created_at: 1557512629
                     enabled: true
                     id: f035f120-a95e-4327-b2ae-8fa264601d75
                     name: doc_lord
                     user_token: $2b$09$TIMneYcTosdG9WbzRsqcweAS2zote8g6I8HqXAtbFHR1pds2ymsh6
                     user_token_ident: 88ea3
-                  - comment: 'null'
+                  - comment: null
                     created_at: 1557522650
                     enabled: true
                     id: fa6881b2-f49f-4007-9475-577cd21d34f4
                     name: doc_knight
                     user_token: $2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG
                     user_token_ident: 4d870
-                next: 'null'
+                next: null
     audit-objects-response:
       description: Example response generated for checking the `/status` endpoint without RBAC enabled.
       content:
@@ -5158,7 +5360,7 @@ components:
               name:
                 type: string
                 description: |
-                  The name to associate with the given key-set.
+                  The name to associate with the given Key Set.
                 example: my-key_set
               tags:
                 type: array
@@ -5166,7 +5368,7 @@ components:
                   An optional set of strings associated with the Key for grouping and filtering.
                 items:
                   type: string
-      description: The request body for creating a new key-set entity.
+      description: The request body for creating a new Key Set entity.
     plugin-request:
       content:
         application/json:
@@ -5910,7 +6112,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Enterprise Kong Admin API
-  version: 3.7.0
+  version: 3.9.0
 openapi: 3.0.0
 paths:
   /:
@@ -6854,7 +7056,7 @@ paths:
   /key-sets:
     get:
       description: |
-        Retrieve a list of all Key-sets in the system. A Key Set object holds a collection of asymmetric key objects. This entity allows to logically group keys by their purpose. Key Sets can be both tagged and filtered by tags.
+        Retrieve a list of all Key Sets in the system. A Key Set object holds a collection of asymmetric key objects. This entity allows to logically group keys by their purpose. Key Sets can be both tagged and filtered by tags.
       operationId: list-key-set
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -6865,12 +7067,12 @@ paths:
           $ref: '#/components/responses/key-set-response'
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: List all Key-sets
+      summary: List all Key Sets
       tags:
         - Key-sets
     post:
       description: |
-        This endpoint allows creating a new Key-set by sending a JSON object that describes the Key-set to be created.The request body must contain all the fields required to create a new Key-set.
+        This endpoint allows creating a new Key Set by sending a JSON object that describes the Key Set to be created.The request body must contain all the fields required to create a new Key Set.
       operationId: create-key-set
       responses:
         '201':
@@ -6880,7 +7082,7 @@ paths:
             application/json:
               schema:
                 type: object
-          description: Invalid Key-set
+          description: Invalid Key Set
         '401': 
           $ref: '#/components/responses/HTTP401Error'
         '409':
@@ -6916,26 +7118,26 @@ paths:
                     message: UNIQUE violation detected on `{name="my-key_set"}`
                     name: unique constraint violation
                     code: 5
-      summary: Create a new Key-set
+      summary: Create a new Key Set
       tags:
         - Key-sets
       requestBody:
         $ref: '#/components/requestBodies/key-set-request'
   '/key-sets/{key-set_id_or_name}':
     delete:
-      description: Delete a Key-set
+      description: Delete a Key Set
       operationId: delete-key-set
       responses:
         '204':
-          description: Successfully deleted Key-set or the resource didn't exist
+          description: Successfully deleted Key Set or the resource didn't exist
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Delete a Key-set
+      summary: Delete a Key Set
       tags:
         - Key-sets
     get:
       description: |
-        Get a Key-set using ID or name. This endpoint retrieves information about a specific key-set based on its ID or name.
+        Get a Key Set using ID or name. This endpoint retrieves information about a specific key-set based on its ID or name.
       operationId: get-key-set
       responses:
         '200':
@@ -6944,12 +7146,12 @@ paths:
           description: Resource does not exist
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Fetch a Key-set
+      summary: Fetch a Key Set
       tags:
         - Key-sets
     patch:
       description: |-
-        Update a Key-set using ID or name.
+        Update a Key Set using ID or name.
 
         Note: This API is not available in DB-less mode.
 
@@ -6969,19 +7171,19 @@ paths:
             application/json:
               schema:
                 type: object
-          description: Invalid Key-set
+          description: Invalid Key Set
         '404':
           description: Resource does not exist
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Update a Key-set
+      summary: Update a Key Set
       tags:
         - Key-sets
       requestBody:
         $ref: '#/components/requestBodies/key-set-request'
     put:
       description: |
-        Update a Key-set using ID or name.
+        Update a Key Set using ID or name.
       operationId: upsert-key-set
       responses:
         '200':
@@ -6991,7 +7193,7 @@ paths:
             application/json:
               schema:
                 type: object
-          description: Invalid Key-set
+          description: Invalid Key Set
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       summary: Update key-set
@@ -7130,7 +7332,9 @@ paths:
       - $ref: '#/components/parameters/key_id_or_name'
   /plugins:
     get:
-      description: List all plugins
+      description: |
+        List all plugins
+
       operationId: list-plugin
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -8985,7 +9189,7 @@ paths:
       tags:
         - Key-sets
     post:
-      description: Create a new Key-set in a workspace
+      description: Create a new Key Set in a workspace
       operationId: create-key-set-in-workspace
       responses:
         '200':
@@ -8995,10 +9199,10 @@ paths:
             application/json:
               schema:
                 type: object
-          description: Invalid Key-set
+          description: Invalid Key Set
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Create a new Key-set in a workspace
+      summary: Create a new Key Set in a workspace
       tags:
         - Key-sets
       requestBody:
@@ -9007,18 +9211,18 @@ paths:
       - $ref: '#/components/parameters/workspace'
   '/{workspace}/key-sets/{key-set_id_or_name}':
     delete:
-      description: Delete a Key-set in a workspace
+      description: Delete a Key Set in a workspace
       operationId: delete-key-set-in-workspace
       responses:
         '204':
-          description: Successfully deleted Key-set or the resource didn't exist
+          description: Successfully deleted Key Set or the resource didn't exist
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Delete a Key-set in a workspace
+      summary: Delete a Key Set in a workspace
       tags:
         - Key-sets
     get:
-      description: Get a Key-set using ID or name in a workspace.
+      description: Get a Key Set using ID or name in a workspace.
       operationId: get-key-set-in-workspace
       responses:
         '200':
@@ -9031,11 +9235,11 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
-      summary: Fetch a Key-set in a workspace
+      summary: Fetch a Key Set in a workspace
       tags:
         - Key-sets
     patch:
-      description: Update a Key-set in a workspace
+      description: Update a Key Set in a workspace
       operationId: update-key-set-in-workspace
       responses:
         '200':
@@ -9050,13 +9254,13 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
-      summary: Update a Key-set in a workspace
+      summary: Update a Key Set in a workspace
       tags:
         - Key-sets
       requestBody:
         $ref: '#/components/requestBodies/key-set-request'
     put:
-      description: Create or Update Key-set using ID or name in a workspace.
+      description: Create or Update Key Set using ID or name in a workspace.
       operationId: upsert-key-set-in-workspace
       responses:
         '200':
@@ -9069,7 +9273,7 @@ paths:
           description: Invalid Key-set
         '401': 
           $ref: '#/components/responses/HTTP401Error'
-      summary: Upsert a Key-set in a workspace
+      summary: Upsert a Key Set in a workspace
       tags:
         - Key-sets
       requestBody:
@@ -10926,6 +11130,499 @@ paths:
         $ref: '#/components/requestBodies/plugin-request'
       operationId: upsert-plugin-for-customer-group
     parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/consumer_group_name_or_id'
+      - $ref: '#/components/parameters/plugin_id'
+  '/{workspace}/consumer_groups':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+    get:
+      summary: List consumer groups
+      tags:
+        - consumer_groups
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-consumer_groups_with_workspace
+      description: |
+        List all consumer groups
+
+        Use consumer groups to manage consumer affiliation.
+    post:
+      summary: Create a consumer group
+      operationId: post-consumer_groups_with_workspace
+      responses:
+        '201':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Create a new consumer group.
+      requestBody:
+        $ref: '#/components/requestBodies/consumer_group_request'
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{group_name_or_id}':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/group_name_or_id'
+    get:
+      summary: List a specific consumer group
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-consumer_groups-group_name_with_workspace
+      description: Returns a consumer group by passing either the `group_name` or `group_id` as a path parameter.
+      tags:
+        - consumer_groups
+    put:
+      summary: Create consumer group
+      operationId: put-consumer_groups-group_name_or_id_with_workspace
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Create a consumer group by passing a new group name as the path parameter
+      requestBody:
+        $ref: '#/components/requestBodies/consumer_group_request'
+      tags:
+        - consumer_groups
+    delete:
+      summary: Delete a consumer group
+      operationId: delete-consumer_groups-group_name_or_id_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Delete a consumer group. Deleting a consumer group removes all consumers from that group. This operation does not delete existing consuemrs.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumers/{consumer_username_or_id}/consumer_groups':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/Gatewayapi_Consumer_username_or_id'
+    get:
+      summary: List consumer groups for a consumer
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: get-consumers-consumer_name_or_id-consumer_groups_with_workspace
+      description: |
+        View all consumer groups that a consumer is assigned to.
+      tags:
+        - consumer_groups
+      parameters:
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-size'
+    post:
+      summary: Add a consumer to a specific consumer group.
+      operationId: post-consumers-consumer_username_or_id-consumer_groups_with_workspace
+      responses:
+        '200':
+          $ref: '#/components/responses/add_consumer_to_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Add a consumer to a specific consumer group.
+
+        If you add a consumer to multiple groups:
+
+        If all groups are allowed by the Rate Limiting Advanced plugin, only the first group's settings will apply.
+        Otherwise, whichever group is specified in the Rate Limiting Advanced plugin will be active.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group:
+                  type: string
+                  description: |
+                    The name or ID of the group to add the consumer to.
+                  example: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
+              required:
+                - group
+            examples:
+              Example request body:
+                value:
+                  group: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
+        description: The request body contains the group ID for the group that you are adding a consumer into.
+      tags:
+        - consumer_groups
+    delete:
+      summary: Remove a consumer from all groups
+      operationId: delete-consumers-consumer_username_or_id-consumer_groups_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+      description: Remove a consumer from all groups.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{group_name_or_id}/consumers':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/group_name_or_id'
+    get:
+      summary: List all consumers in a consumer group
+      tags:
+        - consumer_groups
+      operationId: get-consumer_groups-group_name_or_id-consumers_with_workspace
+      description: List all consumers in a consumer group
+      parameters:
+        - $ref: '#/components/parameters/Gatewayapi_Pagination-tags-filter'
+      responses:
+        '200':
+          $ref: '#/components/responses/consumer_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+    post:
+      summary: Add a consumer to a group
+      operationId: post-consumer_groups-group_name_or_id-consumers_with_workspace
+      responses:
+        '200':
+          $ref: '#/components/responses/add_consumer_to_group_response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: |-
+        Add a consumer to a specific consumer group.
+
+        If you add a consumer to multiple groups:
+
+        If all groups are allowed by the Rate Limiting Advanced plugin, only the first group's settings will apply.
+        Otherwise, whichever group is specified in the Rate Limiting Advanced plugin will be active.
+      tags:
+        - consumer_groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consumer:
+                  type: string
+                  description: |
+                    The name or ID of the consumer to add to this group.
+                  example: 8a4bba3c-7f82-45f0-8121-ed4d2847c4a4
+    delete:
+      summary: Remove all consumers from a consumer group
+      operationId: delete-consumer_groups-group_name_or_id-consumers_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Removes all consumers from a specified consumer group.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumers/{consumer_name_or_id}/consumer_groups/{group_name_or_id}':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/consumer_name_or_id'
+      - $ref: '#/components/parameters/group_name_or_id'
+    delete:
+      summary: Remove a consumer from a consumer group
+      operationId: delete-consumers-consumer_name_or_id-consumer_groups-group_name_or_id_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Removes a consumer from a consumer group. This operation does not delete the consumer group.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{group_name_or_id}/consumers/{consumer_username_or_id}':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/group_name_or_id'
+      - $ref: '#/components/parameters/consumer_username_or_id'
+    delete:
+      summary: Remove a consumer from a consumer group
+      operationId: delete-consumer_groups-group_name_or_id-consumers-consumer_name_or_id_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: The consumer groups endpoint for removing a consumer from a specified consumer group.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{group_name_or_id}/overrides/plugins/rate-limiting-advanced':
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/group_name_or_id'
+    put:
+      summary: Configure rate limiting for a consumer group.
+      operationId: put-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced_with_workspace
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    config:
+                      limit:
+                        - 10
+                      retry_after_jitter_max: 0
+                      window_size:
+                        - 10
+                      window_type: sliding
+                    group: test-group
+                    plugin: rate-limiting-advanced
+                properties:
+                  config:
+                    type: object
+                    properties:
+                      limit:
+                        type: array
+                        description: |
+                          An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified. 
+                        items:
+                          type: integer
+                          example: 10
+                      retry_after_jitter_max:
+                        type: integer
+                        description: |
+                          The upper bound of a jitter (random delay) in seconds to be added to the Retry-After header of denied requests (status = 429) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is 0; in this case, the Retry-After header is equal to the RateLimit-Reset header.
+                      window_size:
+                        type: array
+                        description: |
+                          An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.
+                        items:
+                          type: integer
+                          example: 10
+                      window_type:
+                        type: string
+                        description: |
+                          Set the time window type to either sliding (default) or fixed.
+                        example: sliding
+                  group:
+                    type: string
+                    description: The consumer group
+                    example: test-group
+                  plugin:
+                    type: string
+                    description: The name of the plugin
+                    example: rate-limiting-advanced
+              examples:
+                'Example ':
+                  value:
+                    config:
+                      limit:
+                        - 10
+                      retry_after_jitter_max: 0
+                      window_size:
+                        - 10
+                      window_type: sliding
+                    group: test-group
+                    plugin: rate-limiting-advanced
+      description: |
+        Define custom rate limiting settings for a consumer group. This endpoint overrides the settings of the Rate Limiting Advanced plugin. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config.limit:
+                  type: string
+                  description: |
+                    An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified.
+                config.window_size:
+                  type: string
+                  description: |
+                    An array of one or more window sizes to apply a limit to (defined in seconds). There must be a matching number of window limits and sizes specified.
+                  example: ' 10'
+                config.window_type:
+                  type: string
+                  description: |
+                    Set the time window type to either sliding (default) or fixed.
+                  default: sliding
+                  enum:
+                    - sliding
+                    - fixed
+                config.retry_after_jitter_max:
+                  type: string
+                  description: The upper bound of a jitter (random delay) in seconds to be added to the Retry-After header of denied requests (status = 429) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is 0; in this case, the Retry-After header is equal to the RateLimit-Reset header.
+              required:
+                - config.limit
+                - config.window_size
+            examples:
+              Request body:
+                value:
+                  config.limit: string
+                  config.window_size: ' 10'
+                  config.window_type: sliding
+                  config.retry_after_jitter_max: string
+        description: |
+          Request Body
+      tags:
+        - consumer_groups
+    delete:
+      summary: Delete the configurations for a consumer group
+      operationId: delete-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced_with_workspace
+      responses:
+        '204':
+          description: |
+            HTTP/1.1 204 No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: |
+        Delete custom rate limiting settings for a consumer group. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
+      tags:
+        - consumer_groups
+  '/{workspace}/consumer_groups/{consumer_username_or_id}/plugins':
+    get:
+      description: Retrieve a list of all plugins associated with a consumer group.
+      parameters:
+        - $ref: '#/components/parameters/pagination-size'
+        - $ref: '#/components/parameters/pagination-offset'
+        - $ref: '#/components/parameters/pagination-tags-filter'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Plugin'
+                    type: array
+                  offset:
+                    $ref: '#/components/schemas/pagination-offset-response'
+          description: A successful response listing plugins
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      summary: List all plugins associated with a consumer group
+      tags:
+        - Plugins
+      operationId: list-plugins-consumer-group_with_workspace
+    post:
+      description: Create a new plugin associated with a Consumer Group
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+          description: Successfully created plugin
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      summary: Create a new plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: create-plugin-for-consumer-group_with_workspace
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+    parameters:
+      - $ref: '#/components/parameters/workspace'
+      - $ref: '#/components/parameters/consumer_username_or_id'
+  '/{workspace}/consumer_groups/{consumer_group_name_or_id}/plugins/{plugin_id}':
+    delete:
+      description: Delete a plugin associated with a a consumer group using ID.
+      responses:
+        '204':
+          description: Successfully deleted plugin or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      summary: Delete a plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: delete-plugin-for-consumer-group_with_workspace
+    get:
+      description: Get a plugin associated with a Consumer Group using ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    message: Not found
+                properties:
+                  message:
+                    type: string
+                    example: Not Found
+                    description: 404 Not Found
+              examples:
+                Not Found:
+                  value:
+                    message: Not Found
+      summary: Fetch a plugin associated with a Consumer Group
+      tags:
+        - Plugins
+      operationId: fetch-plugin-with-consumer-group_with_workspace
+    patch:
+      description: Update a plugin associated with a consumer group using the consumergroup name or ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      summary: Update a plugin associated with a consumer group
+      tags:
+        - Plugins
+      operationId: update-plugin-with-consumer-group_with_workspace
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+    put:
+      description: Create or Update a plugin associated with a Consumer Group using ID.
+      responses:
+        '200':
+          $ref: '#/components/responses/plugin-response'
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      summary: Upsert a plugin associated with a Consumer Group
+      tags:
+        - Plugins
+      requestBody:
+        $ref: '#/components/requestBodies/plugin-request'
+      operationId: upsert-plugin-for-customer-group_with_workspace
+    parameters:
+      - $ref: '#/components/parameters/workspace'
       - $ref: '#/components/parameters/consumer_group_name_or_id'
       - $ref: '#/components/parameters/plugin_id'
   /licenses:
@@ -11467,6 +12164,8 @@ paths:
       tags:
         - Information
       responses:
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '200':
           description: OK
           content:
@@ -11727,9 +12426,52 @@ paths:
       description: |-
         Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node's memory usage.
 
-        This endpoint now listens on `127.0.0.1:8007` by default for status checks. It provides detailed metrics regarding memory usage, worker process stats, database connection status, and server connection metrics.
+        `status_listen` listens on port `8007` by default, however `8001` can be used for status checks as well. The status endpoint provides detailed metrics regarding memory usage, worker process stats, database connection status, and server connection metrics.
 
         If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
+
+  /status/dns:
+    get:
+      summary: DNS Status
+      tags:
+        - Information
+      operationId: getDnsStatus
+      description: |
+        Retrieve DNS worker and stats information. If the legacy DNS client is in use, it returns a 501 status with a message.
+      responses:
+        '200':
+          description: DNS worker and stats information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  worker:
+                    type: object
+                    description: Worker information.
+                    properties:
+                      id:
+                        type: integer
+                        description: The worker ID.
+                        example: 1
+                      count:
+                        type: integer
+                        description: The total number of workers.
+                        example: 4
+                  stats:
+                    type: object
+                    description: DNS stats information (specific details depend on the Kong instance).
+        '501':
+          description: Legacy DNS client in use
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Message indicating that the endpoint is not implemented with the legacy DNS client.
+                    example: "not implemented with the legacy DNS client"
         '401': 
           $ref: '#/components/responses/HTTP401Error'
   /keyring/generate:
@@ -11879,6 +12621,32 @@ paths:
                   recovery_private_key: /path/to/generated/<base64-encoded-contents-of-key.pem>
       tags:
         - Keyring
+  /keyring/remove:
+    post:
+      summary: Remove key
+      operationId: post-keyring-remove
+      responses:
+        '204':
+          description: No Content
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      description: Remove a key from the keyring.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  key: 3Rwvk223
+              properties:
+                key:
+                  type: string
+                  description: The key ID
+                  example: 3Rwvk223
+        description: The request body contains a key ID that can be generated from the `/keyring/generate` endpoint.
+      tags:
+        - Keyring
   /keyring/export:
     post:
       summary: Export keyring
@@ -11909,6 +12677,33 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       tags:
         - Keyring
+  /keyring/vault/sync:
+   post:
+    summary: Synchronize Vault keyring
+    operationId: post-keyring-vault-sync
+    responses:
+      '204':
+        description: No Content
+    description: | 
+      Kong reads the keyring material from Vault when the Kong process starts.
+      Any changes to the Vault KV store are not reflected on the Kong node until Kong syncs with Vault via the `/keyring/vault/sync` Admin API endpoint. 
+      This allows Kong to receive a Vault token with a low TTL, as the list and read operation only occur once.
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                description: Optional token for Vault synchronization.
+                example: "example-token"
+          examples:
+            Example 1:
+              value:
+                token: "example-token"
+    tags:
+      - Keyring
   /tags:
     get:
       summary: List all tags
@@ -12127,6 +12922,24 @@ paths:
                       username: string
                       email: string
                       rbac_token_enabled: true
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Detail about the conflict
+                    example: user already exists with same username, email, or custom_id
+                x-exmples:
+                  Example 1:
+                    message: user already exists with same username, email, or custom_id
+              examples:
+                Constraint violation:
+                  value:
+                    message: user already exists with same username, email, or custom_id
       tags:
         - admins
       description: Invite an admin to your organization.
@@ -12967,7 +13780,7 @@ paths:
       description: |
         Retrieve the current log level of a node.
 
-        See the [Nginx Documentation](ttp://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
+        See the [Nginx Documentation](https://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
   '/debug/node/log-level/{log_level}':
     parameters:
       - schema:
@@ -13145,11 +13958,11 @@ paths:
                         created_at: 1557506249
                         id: 888117e0-f2b3-404d-823b-dee595423505
                         name: super-admin
-                      - comment: 'null'
+                      - comment: null
                         created_at: 1557532241
                         id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                         name: doc_lord
-                    next: 'null'
+                    next: null
       operationId: get-rbac-roles
       description: List all roles.
     post:
@@ -13183,7 +13996,7 @@ paths:
               examples:
                 New role response body:
                   value:
-                    comment: 'null'
+                    comment: null
                     created_at: 1557532241
                     id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                     is_default: false
@@ -13522,6 +14335,9 @@ paths:
         Where `*` replaces exactly one segment between slashes (or the end of the path).
 
         Note that wildcards can be nested. For example, `/rbac/*`, `/rbac/*/*`, `/rbac/*/*/*` would refer to all paths under `/rbac/`.
+        <br><br>
+         For the `admin` role in the default workspace, CRUD actions on `/groups` and `/groups/*` endpoints are disallowed.
+         For the `workspace-admin` role in non-default workspaces, CRUD actions on `/groups` and `/groups/*` endpoints are disallowed.
       requestBody:
         content:
           application/json:
@@ -14230,7 +15046,7 @@ paths:
                         id: aae80073-095f-4553-ba9a-bee5ed3b8b91
                         name: doc-knight
                     user:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557772232
                       enabled: true
                       id: b65ca712-7ceb-4114-87f4-5c310492582c
@@ -14301,7 +15117,7 @@ paths:
                         id: aae80073-095f-4553-ba9a-bee5ed3b8b91
                         name: doc-knight
                     user:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557772232
                       enabled: true
                       id: b65ca712-7ceb-4114-87f4-5c310492582c
@@ -14927,9 +15743,35 @@ paths:
         POST any data to `/event-hooks/:id-of-hook/test`, and the `/test` endpoint executes the with the provided data as the event payload.
       tags:
         - Event-hooks
-  '/event-hooks/{event-hook-id/ping':
+  '/event-hooks/{event-hook-id}':
+      delete:
+        summary: Delete an event hook
+        description: Deletes a specific event hook by its ID.
+        operationId: deleteEventHook
+        parameters:
+          - name: event-hook-id
+            in: path
+            required: true
+            description: The ID of the event hook to delete.
+            schema:
+              type: string
+        responses:
+          '204':
+            description: Event hook successfully deleted.
+          '404':
+            description: Event hook not found.
+        tags:
+        - Event-hooks
+  '/event-hooks/{event-hook-id}/ping':
     get:
       summary: Ping a webhook event hook
+      parameters:
+        - name: event-hook-id
+          in: path
+          required: true
+          description: The ID of the event hook to delete.
+          schema:
+            type: string
       tags:
         - Event-hooks
       responses:
@@ -15011,11 +15853,11 @@ paths:
                         created_at: 1557506249
                         id: 888117e0-f2b3-404d-823b-dee595423505
                         name: super-admin
-                      - comment: 'null'
+                      - comment: null
                         created_at: 1557532241
                         id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                         name: doc_lord
-                    next: 'null'
+                    next: null
       operationId: get-rbac-roles-by-workspace
       description: List all roles by workspace
     post: 
@@ -15049,7 +15891,7 @@ paths:
                 examples:
                   New role response body:
                     value:
-                      comment: 'null'
+                      comment: null
                       created_at: 1557532241
                       id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
                       is_default: false
@@ -15356,6 +16198,197 @@ paths:
           summary: Associate a role with a group
           tags:
               - Workspaces
+  '/clustering/data-planes':
+    get:
+      summary: Retrieve connected data planes
+      description: >
+        Retrieve a list of all data planes connected to the control plane. This endpoint is only accessible when Kong Gateway is running in hybrid mode.
+      operationId: getDataPlanes
+      responses:
+        '200':
+          description: A list of connected data planes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ip:
+                          type: string
+                          description: The IP address of the data plane.
+                        updated_at:
+                          type: integer
+                          description: Unix timestamp of the last update.
+                        config_hash:
+                          type: string
+                          description: The hash of the current configuration on the data plane.
+                        sync_status:
+                          type: string
+                          description: The sync status of the data plane.
+                        version:
+                          type: string
+                          description: The version of Kong running on the data plane.
+                        id:
+                          type: string
+                          description: Unique identifier of the data plane.
+                        hostname:
+                          type: string
+                          description: The hostname of the data plane.
+                        ttl:
+                          type: integer
+                          description: Time-to-live for the connection.
+                        last_seen:
+                          type: integer
+                          description: Unix timestamp when the data plane was last seen by the control plane.
+                        labels:
+                          type: object
+                          description: Metadata labels attached to the data plane.
+                          properties:
+                            deployment:
+                              type: string
+                              description: The deployment name.
+                            region:
+                              type: string
+                              description: The region of the data plane.
+                        cert_details:
+                          type: object
+                          properties:
+                            expiry_timestamp:
+                              type: integer
+                              description: Timestamp for when the certificate expires.
+        '400':
+          description: Kong Gatewat is not running as a control plane.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: This endpoint is only available when Kong is running as a control plane for the cluster.
+      tags:
+        - clustering
+
+  '/clustering/status':
+    get:
+      summary: Retrieve the status of connected data planes
+      description: >
+        Retrieve a status report for all data planes connected to the control plane. It includes information like the config hash, hostname, IP address, and last seen timestamp.
+        This endpoint is only accessible when Kong Gateway is running in hybrid mode.
+      operationId: getDataPlaneStatus
+      responses:
+        '200':
+          description: The status of all connected data planes.
+          headers:
+            Deprecation:
+              description: >
+                Indicates that the endpoint may be deprecated in the future.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    config_hash:
+                      type: string
+                      description: Hash of the configuration running on the data plane.
+                    hostname:
+                      type: string
+                      description: Hostname of the data plane.
+                    ip:
+                      type: string
+                      description: The IP address of the data plane.
+                    last_seen:
+                      type: integer
+                      description: Unix timestamp of the last interaction between the data plane and control plane.
+        '400':
+          description: Kong Gatewat is not running as a control plane.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: This endpoint is only available when Kong is running as a control plane for the cluster.
+      tags:
+      - clustering
+  '/cache/{key}':
+    get:
+      summary: Get cache value by key
+      description: >
+        Retrieve the cached value for a specific key. This endpoint probes both `kong.cache` and `kong.core_cache`. 
+        If the key exists, it returns the associated value and TTL. If not found, it returns a 404.
+      operationId: getCacheByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The cache key to retrieve.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cached value found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ttl:
+                    type: integer
+                    description: Time-to-live (TTL) of the cached entry.
+                  message:
+                    type: string
+                    description: Cached value or a message.
+        '404':
+          description: Cache key not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Not found
+      tags:
+      - cache
+    delete:
+      summary: Invalidate cache by key
+      description: >
+        Invalidate the cache for a specific key in both `kong.cache` and `kong.core_cache`.
+      operationId: deleteCacheByKey
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The cache key to invalidate.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cache invalidated successfully.
+      tags:
+      - cache
+  
+  '/cache':
+    delete:
+      summary: Purge all cache entries
+      description: >
+        Purge all cache entries in both `kong.cache` and `kong.core_cache`.
+      operationId: purgeAllCache
+      responses:
+        '204':
+          description: All cache entries purged successfully.
+      tags:
+      - cache
 
 servers:
   - description: Default Admin API URL
@@ -15420,6 +16453,13 @@ tags:
       When adding a plugin configuration to a service, the plugin will run on every request made by a client to that service. If a plugin needs to be tuned to different values for some specific consumers, you can do so by creating a separate plugin instance that specifies both the service and the consumer, through the service and consumer fields.
       <br><br>
       Plugins can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
+      <br><br>
+        **Bracket syntax for keys with periods:**
+        When submitting form data, keys that contain dots (e.g., `service.name`) should be enclosed in square brackets to avoid ambiguity:
+        
+        - Example: `config.resource_attributes[service.name]=kong-dev`
+        
+        - If necessary, URL encode the square brackets: `%5Bservice.name%5D`.
     name: Plugins
   - description: |
       The consumer object represents a consumer - or a user - of a service. 
@@ -15468,7 +16508,7 @@ tags:
       Keyring is the mechanism for storing sensitive data fields, such as consumer secrets, in an encrypted format within the database. This provides for encryption-at-rest security controls in a Kong Gateway cluster.
     name: Keyring
   - description: |
-      A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
+      A JSON Web Key Set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
     name: Key-sets
   - description: |
       The workspace object describes the workspace entity, which has an ID and a name.
@@ -15506,6 +16546,8 @@ tags:
       * `role_source`: The origin of the RBAC user role. Specifies where the user role is defined, either locally or through an identity provider (IdP).
       * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
       * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
+      For the admin role in the default workspace, CRUD actions on /groups and /groups/* endpoints are disallowed. 
+      For the workspace-admin role in non-default workspaces, CRUD actions on /groups and /groups/* endpoints are disallowed.
     name: RBAC
   - description: |
       A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
@@ -15528,3 +16570,9 @@ tags:
       Event hooks do not work with Konnect yet.
       <br><br>
     name: Event-hooks
+  - description: |
+      Retrieve information about the status of data planes when Kong Gateway is running in hybrid mode.
+    name: clustering
+  - description: |
+      Querying and managing cache entries.
+    name: cache

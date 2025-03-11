@@ -29,14 +29,9 @@ registration, or configure custom plugins.
 
 ## Prerequisites
 
-* decK v1.12.0 or later [installed](/deck/latest/installation/).
+* decK v1.40.0 or later [installed](/deck/latest/installation/).
 * Optional: To test your configuration, [set up a simple data plane node](/konnect/getting-started/configure-data-plane-node/).
-
-## Generate a personal access token
-
-To test your connection, we recommend that you use a personal access token (PAT).
-
-{% include_cached /md/personal-access-token.md %}
+* A [personal access token (PAT)](/konnect/org-management/access-tokens/).
 
 ## Test your connection
 
@@ -90,7 +85,7 @@ configured, decK creates the file with only the format version and control plane
 name:
 
 ```yaml
-_format_version: "1.1"
+_format_version: "3.0"
 _konnect:
   control_plane_name: default
 ```
@@ -112,12 +107,12 @@ For this example, let's add a new service.
 1. Add the following snippet to your `konnect.yaml` file:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: "3.0"
     _konnect:
       control_plane_name: default
     services:
     - name: MyService
-      host: httpbin.org
+      host: httpbin.konghq.com
       port: 80
       protocol: http
       routes:
@@ -134,7 +129,7 @@ For this example, let's add a new service.
             - apikey
     ```
 
-    This snippet defines a service named `MyService` pointing to `httpbin.org`.
+    This snippet defines a service named `MyService` pointing to `httpbin.konghq.com`.
     The service has one version, and the version gets implemented with the
     route `/mock`, which means that you can access the service by appending
     this route to your proxy URL.
@@ -253,7 +248,7 @@ header:
   -H 'apikey: {API_KEY}'
  ```
 
-If successful, you should see the homepage for `httpbin.org`. On the Service
+If successful, you should see the homepage for `httpbin.konghq.com`. On the Service
 Version overview page, you’ll see a record for status code `200`.
 
 If you try to access the route without a key, you'll get an authorization error:
@@ -280,7 +275,7 @@ You can also use decK to migrate or duplicate configuration between control plan
 1. In the file, change the control plane name to the new group:
 
     ```yaml
-    _format_version: "1.1"
+    _format_version: 3.0"
     _konnect:
       control_plane_name: staging
     ```

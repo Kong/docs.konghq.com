@@ -23,10 +23,10 @@ You have a license for {{site.mesh_product_name}}.
 {{site.mesh_product_name}} provides the following Docker images for all of its
 executables, hosted on Docker Hub:
 
-* **kuma-cp**: at [`kong/kuma-cp:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kuma-cp)
-* **kuma-dp**: at [`kong/kuma-dp:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kuma-dp)
-* **kumactl**: at [`kong/kumactl:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kumactl)
-* **kuma-prometheus-sd**: at [`kong/kuma-prometheus-sd:{{page.kong_latest.version}}`](https://hub.docker.com/r/kong/kuma-prometheus-sd)
+* **kuma-cp**: at [`kong/kuma-cp:{{page.version}}`](https://hub.docker.com/r/kong/kuma-cp)
+* **kuma-dp**: at [`kong/kuma-dp:{{page.version}}`](https://hub.docker.com/r/kong/kuma-dp)
+* **kumactl**: at [`kong/kumactl:{{page.version}}`](https://hub.docker.com/r/kong/kumactl)
+* **kuma-prometheus-sd**: at [`kong/kuma-prometheus-sd:{{page.version}}`](https://hub.docker.com/r/kong/kuma-prometheus-sd)
 
 {:.note}
 > **Note**: {{site.mesh_product_name}} also has UBI images, image names are prefixed with `ubi`. For example `kong/ubi-kuma-cp` instead of `kong/kuma-cp`.
@@ -34,7 +34,7 @@ executables, hosted on Docker Hub:
 `docker pull` each image that you need. For example:
 
 ```sh
-docker pull kong/kuma-cp:{{page.kong_latest.version}}
+docker pull kong/kuma-cp:{{page.version}}
 ```
 
 ## 2. Run {{site.mesh_product_name}}
@@ -108,7 +108,7 @@ mtls:
   enabledBackend: ca-1
   backends:
   - name: ca-1
-    type: builtin" | docker run -i --net="host" kong/kumactl:{{page.kong_latest.version}} kumactl apply -f -
+    type: builtin" | docker run -i --net="host" kong/kumactl:{{page.version}} kumactl apply -f -
 ```
 
 This runs `kumactl` from the Docker
@@ -138,16 +138,7 @@ If you are entirely using Docker, you may also be interested in checking out the
 [Kubernetes quickstart][get-started-k8s] as well.
 
 <!-- links -->
-{% if_version gte:2.0.x %}
 [deployments]: /mesh/{{page.release}}/introduction/deployments/
 [backends]: /mesh/{{page.release}}/documentation/configuration/
 [get-started-k8s]: /mesh/{{page.release}}/quickstart/kubernetes/
 [get-started-universal]: /mesh/{{page.release}}/quickstart/universal/
-{% endif_version %}
-
-{% if_version lte:1.9.x %}
-[deployments]: https://kuma.io/docs/1.8.x/introduction/deployments/
-[backends]: https://kuma.io/docs/1.8.x/documentation/configuration/
-[get-started-k8s]: https://kuma.io/docs/1.8.x/quickstart/kubernetes/
-[get-started-universal]: https://kuma.io/docs/1.8.x/quickstart/universal/
-{% endif_version %}

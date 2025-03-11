@@ -15,6 +15,7 @@
           {% elsif include.edition == 'gateway' %}{{site.base_gateway}}
           {% elsif include.edition == 'getting-started-guide' %}Get Started with Kong Gateway
           {% elsif include.edition == 'contributing' %}Contribution guidelines
+          {% elsif include.edition == 'dev-portal' %}Dev Portal
           {% endif %}
         </span>
         <span class="caret"></span>
@@ -31,10 +32,13 @@
           <a href="/mesh/latest/" {% if include.edition == 'mesh' %}class="active"{% endif %}>Kong Mesh</a>
         </li>
         <li role="menuitem" tabindex="-1">
+          <a href="/hub/?category=ai">Kong AI Gateway</a>
+        </li>
+        <li role="menuitem" tabindex="-1">
           <a href="/hub/">Plugin Hub</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'deck' %} class="active"{% endif %}>
-          <a href="/deck/latest/" {% if include.edition == 'deck' %}class="active"{% endif %}>decK</a>
+          <a href="/deck/" {% if include.edition == 'deck' %}class="active"{% endif %}>decK</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'kubernetes-ingress-controller' %} class="active"{% endif %}>
           <a href="/kubernetes-ingress-controller/latest/" {% if include.edition == 'kubernetes-ingress-controller' %}class="active"{% endif %}>Kong Ingress Controller</a>
@@ -50,7 +54,7 @@
         </li>
         <hr>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'contributing' %} class="active"{% endif %}>
-          <a href="/contributing/" {% if include.edition == 'contributing' %}class="active"{% endif %}>Docs contribution guidelines</a>
+          <a href="/contributing/" {% if include.edition == 'contributing' %}class="active"{% endif %}>{% t _includes.docs-sidebar.contribution_guidelines %}</a>
         </li>
       </ul>
     </div>
@@ -59,9 +63,9 @@
     <div class="versions-dropdown dropdown">
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
-          Version {{ include.release }}
+          {% t _includes.docs-sidebar.version %} {{ include.release }}
           {% if include.release.latest? %}
-            <span>(latest)</span>
+            <span>{% t _includes.docs-sidebar.latest %}</span>
           {% endif %}
           {% if include.release.lts %}
             <span>(LTS)</span>
@@ -80,7 +84,7 @@
         {% if include.edition == 'gateway' %}
         <li role="menuitem" tabindex="-1">
           <a href="{{site.links.archive}}/">
-            Archive (pre-2.6)
+            {% t _includes.docs-sidebar.archive %}
           </a>
         </li>
         {% endif %}

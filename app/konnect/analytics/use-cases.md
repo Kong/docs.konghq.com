@@ -28,6 +28,7 @@ To build a report that displays the total number of requests across all of your 
 
 * **Name**:  API usage (last 30 days)
 * **Date/Time**: Last 30 days
+* **From**: API usage
 * **Show**: Horizontal Bar
 * **With**: Request Count
 * **By**: API Product 
@@ -58,9 +59,10 @@ Set the following options in the UI:
 
 * **Name**: Daily Accounts API Usage (last 30 days)
 * **Date/Time**: Last 30 days
+* **From**: API usage
 * **Show**: Line
 * **With**: Request Count
-* **And**: Day
+* **Per**: 1 Day
 * **By**: API Product
 
 Add a filter for the Accounts API. Click **Add Filter**, then set the following options:
@@ -101,6 +103,7 @@ To configure the {{site.konnect_saas}} to create a look back report of total tra
 
 * **Name**: API Usage by Application (last 30 days)
 * **Date/Time**: Last 30 days
+* **From**: API usage
 * **Show**: Vertical Bar
 * **With**: Request Count
 * **By**: API Product
@@ -126,9 +129,10 @@ Your company determines that it is critical that payments are processed quickly 
 
 * **Name**: Payment API - Latency (last 30 days)
 * **Date/Time**: Last 30 days
+* **From**: API usage
 * **Show**: Line
 * **With**: Response Latency (p99)
-* **Per**: Day
+* **Per**: 1 Day
 * **By**: API Product 
 
 Add a filter for the Payment API. Click **Add Filter**, then set the following options:

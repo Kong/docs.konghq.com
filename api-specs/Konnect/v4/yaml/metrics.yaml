@@ -1,0 +1,1444 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Konnect Metrics Endpoint",
+    "description": "Konnect endpoint for extracting and computing metrics, similar to the data that is used to build graphs in Konnect Advanced Analytics. This endpoint is used to query the Advanced Analytics platform for aggregated metrics down to ten seconds for recent data. Data can be requested to group by any 2 dimensions, up to 3 metrics and any number of filter conditions in 1 query.\n\nImportant Considerations:\n- This endpoint is only available for Konnect Advanced Analytics.\n- The time range for the query must be within the last 32 days, otherwise a 400 error will be returned.\n- The time range you request may be adjusted slightly to avoid returning buckets that contain only partial information. For instance:\n    - You request data for the last 24 hours with hourly intervals.\n    - The current time is Tuesday at 10:40 AM.\n    - The query will return data starting from Monday at 10:00 AM up to Tuesday at 10:40 AM.\n    - The returned data will include complete hourly buckets (10:00 AM, 11:00 AM, etc.), but the last hour for Tuesday at 10:00 AM will only contain 40 minutes of data since it’s not yet complete. This means the total duration is actually 24 hours and 40 minutes.\n    - The exact start and end times can be found in the results under `meta.start` and `meta.end`.\n- For queries that use the time dimension, the granularity of the result may be coarser than requested. The finest allowed granularity depends on the query's time range: data farther in the past may have coarser granularity. The exact result granularity will be reported in the response `meta.granularity_ms` field.\n- Queries must complete within 10 seconds. If a query takes longer than 10 seconds, a 408 will be returned. In this case, it is suggested to add more filters, and/or reduce the time range.\n- This endpoint is rate limited to 10 requests per minute per user.\n- Must at least have the Analytics Viewer permission to use this endpoint.\n",
+    "version": "4.0.0",
+    "contact": {
+      "name": "Kong",
+      "url": "https://cloud.konghq.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://us.api.konghq.com/v1",
+      "description": "United-States Production region"
+    },
+    {
+      "url": "https://eu.api.konghq.com/v1",
+      "description": "Europe Production region"
+    },
+    {
+      "url": "https://au.api.konghq.com/v1",
+      "description": "Australia Production region"
+    },
+    {
+      "url": "https://me.api.konghq.com/v1",
+      "description": "Middle-East Production region"
+    },
+    {
+      "url": "https://in.api.konghq.com/v1",
+      "description": "India Production region"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Metrics"
+    }
+  ],
+  "paths": {
+    "/metrics": {
+      "post": {
+        "tags": [
+          "Metrics"
+        ],
+        "operationId": "metrics",
+        "summary": "Query metrics in the advanced analytics platform",
+        "description": "Post a query to the endpoint to retrieve aggregated metrics down to the minute. Data can be requested to group by any 2 dimensions, and any number of filter conditions.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricsV2Dto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aggregated results of the query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsResultV2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "examples": {
+                  "BadRequestExample": {
+                    "$ref": "#/components/examples/BadRequestExample"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MetricsAbsoluteTimeRangeDtoV2": {
+        "type": "object",
+        "description": "A duration representing an exact start and end time. Start/End must be within the last 32 days",
+        "properties": {
+          "tz": {
+            "type": "string",
+            "default": "Etc/UTC"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "absolute"
+            ]
+          },
+          "start": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "end": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "MetricsRelativeTimeRangeDtoV2": {
+        "type": "object",
+        "description": "A duration representing a relative-to-now span of time. Generally the start time is floored to the requested granularity. Eg 7d from now, with 1day granularity initiated at 2024-01-08T17:11:00+05:00 will query for the time range from 2024-01-01T00:00:00+05:00 to 2024-01-08T17:11:00+05:00. The exact start and end timestamps are returned in the result query in the meta.start and meta.end fields. If the granularity for the previous query was 1hour, it would query a time range from 2024-01-01T17:00:00+05:00 to 2024-01-08T17:11:00+05:00.",
+        "properties": {
+          "tz": {
+            "type": "string",
+            "default": "Etc/UTC"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "relative"
+            ]
+          },
+          "time_range": {
+            "type": "string",
+            "enum": [
+              "15m",
+              "1h",
+              "6h",
+              "12h",
+              "24h",
+              "7d",
+              "30d",
+              "current_week",
+              "current_month",
+              "previous_week",
+              "previous_month"
+            ],
+            "default": "1h"
+          }
+        },
+        "required": [
+          "type",
+          "time_range"
+        ]
+      },
+      "MetricsV2Dto": {
+        "type": "object",
+        "description": "A query to launch at the API",
+        "properties": {
+          "metrics": {
+            "type": "array",
+            "maxItems": 3,
+            "description": "List of aggregated metrics to collect across the requested time span. If no metrics are specified, request_count will be computed by default.",
+            "example": [
+              "request_count"
+            ],
+            "items": {
+              "type": "string",
+              "enum": [
+                "kong_latency_average",
+                "kong_latency_p50",
+                "kong_latency_p95",
+                "kong_latency_p99",
+                "request_count",
+                "request_per_minute",
+                "request_size_average",
+                "request_size_p50",
+                "request_size_p95",
+                "request_size_p99",
+                "request_size_sum",
+                "response_latency_average",
+                "response_latency_p50",
+                "response_latency_p95",
+                "response_latency_p99",
+                "response_size_average",
+                "response_size_p50",
+                "response_size_p95",
+                "response_size_p99",
+                "response_size_sum",
+                "upstream_latency_average",
+                "upstream_latency_p50",
+                "upstream_latency_p95",
+                "upstream_latency_p99"
+              ]
+            }
+          },
+          "dimensions": {
+            "type": "array",
+            "description": "List of attributes or entity types to group by.",
+            "maxItems": 2,
+            "example": [
+              "status_code_grouped"
+            ],
+            "items": {
+              "type": "string",
+              "enum": [
+                "api_product",
+                "api_product_version",
+                "application",
+                "consumer",
+                "control_plane",
+                "control_plane_group",
+                "data_plane_node",
+                "data_plane_node_version",
+                "gateway_service",
+                "response_source",
+                "route",
+                "status_code",
+                "status_code_grouped",
+                "time",
+                "upstream_status_code",
+                "upstream_status_code_grouped"
+              ]
+            }
+          },
+          "filters": {
+            "type": "array",
+            "description": "A list of filters to apply to the query.",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/MetricsApiProductFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsApiProductVersionFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsApplicationFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsConsumerFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsControlPlaneFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsControlPlaneGroupFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsDataPlaneNodeFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsDataPlaneNodeVersionFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsGatewayServiceFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsResponseSourceFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsRouteFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsStatusCodeFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsStatusCodeGroupedFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsUpstreamStatusCodeFilterByField"
+                },
+                {
+                  "$ref": "#/components/schemas/MetricsUpstreamStatusCodeGroupedFilterByField"
+                }
+              ]
+            }
+          },
+          "granularity": {
+            "type": "string",
+            "description": "Force time grouping into buckets of the specified duration.  Only has an effect if \"time\" is in the \"dimensions\" list.\n\nThe granularity of the result may be coarser than requested.  The finest allowed granularity depends on the query's time range: data farther in the past may have coarser granularity.  The exact result granularity will be reported in the response `meta.granularity_ms` field.\n\nIf granularity is not specified and \"time\" is in the dimensions list, a default will be chosen based on the time range requested.\n\nDifferent relative times support different granularities:\n  - 15m => tenSecondly, thirtySecondly, minutely\n  - 1h  => tenSecondly, thirtySecondly, minutely, fiveMinutely, tenMinutely\n  - 6h  => thirtySecondly, minutely, fiveMinutely, tenMinutely, thirtyMinutely, hourly\n  - 12h => minutely, fiveMinutely, tenMinutely, thirtyMinutely, hourly\n  - 24h => fiveMinutely, tenMinutely, thirtyMinutely, hourly\n  - 7d  => thirtyMinutely, hourly, twoHourly, twelveHourly, daily\n  - 30d => hourly, twoHourly, twelveHourly, daily, weekly\n\nFor special time ranges:\n  - current_week, previous_week   => thirtyMinutely, hourly, twoHourly, twelveHourly, daily\n  - current_month, previous_month => hourly, twoHourly, twelveHourly, daily, weekly\n\nFor absolute time ranges, daily will be used.\n",
+            "enum": [
+              "tenSecondly",
+              "thirtySecondly",
+              "minutely",
+              "fiveMinutely",
+              "tenMinutely",
+              "thirtyMinutely",
+              "hourly",
+              "twoHourly",
+              "twelveHourly",
+              "daily",
+              "weekly"
+            ]
+          },
+          "time_range": {
+            "description": "The time range to query.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MetricsRelativeTimeRangeDtoV2"
+              },
+              {
+                "$ref": "#/components/schemas/MetricsAbsoluteTimeRangeDtoV2"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "relative": "#/components/schemas/MetricsRelativeTimeRangeDtoV2",
+                "absolute": "#/components/schemas/MetricsAbsoluteTimeRangeDtoV2"
+              }
+            },
+            "default": {
+              "type": "relative",
+              "time_range": "1h"
+            }
+          }
+        },
+        "required": [
+          "metrics"
+        ],
+        "example": {
+          "time_range": {
+            "type": "relative",
+            "time_range": "24h",
+            "tz": "EST"
+          },
+          "dimensions": [
+            "time",
+            "gateway_service"
+          ],
+          "filters": [
+            {
+              "operator": "in",
+              "field": "control_plane",
+              "value": [
+                "d5ac5d88-efed-4e10-9dfe-0b0a6646c219"
+              ]
+            }
+          ],
+          "granularity": "hourly",
+          "metrics": [
+            "request_count",
+            "response_latency_p99"
+          ]
+        }
+      },
+      "MetricsResult": {
+        "type": "object",
+        "description": "A result with metrics grouped by the dimensions specified in the query, at a particular time\n\nThe example represents a result group that has a summed request_count, and response_latency_p99 for a gateway_service at 2024-01-16T00:00:00Z.\n",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "readOnly": true
+          },
+          "event": {
+            "type": "object",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "timestamp",
+          "event"
+        ],
+        "example": {
+          "event": {
+            "gateway_service": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055",
+            "request_count": 1000,
+            "response_latency_p99": 23
+          },
+          "timestamp": "2024-01-16T00:00:00Z"
+        }
+      },
+      "DisplayEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "is_other_group": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "example": {
+          "id": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-111111111111",
+          "deleted": true,
+          "name": "Gateway Service Alpha"
+        }
+      },
+      "MetricsDisplayBlob": {
+        "type": "object",
+        "properties": {
+          "api_product": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "api_product_version": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "application": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "consumer": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "control_plane": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "control_plane_group": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "data_plane_node": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "data_plane_node_version": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "gateway_service": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "response_source": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "route": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "status_code": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "status_code_grouped": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "upstream_status_code": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          },
+          "upstream_status_code_grouped": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DisplayEntry"
+            }
+          }
+        },
+        "description": "The blob represents how to interpret large UUID strings in the MetricsResult. The structure is records of dimension_id ->  ID -> entity metadata. Since entity names within Konnect may overlap, ids are returned and used for exact grouping. This blob may be used to join and display results in a more human friendly manner. Since IDs represent entities in the system at all points in time, historical data will still exist even if an entity is deleted. These such entities are marked with the `deleted` key.\n\nAnother special case is the ____OTHER____ entity. When the limit of cardinality is reached for a second dimension, the system will group all other entities into the ____OTHER____ grouping. This prevents returning an overwhelming number of long tail entities.\n",
+        "example": {
+          "gateway_service": {
+            "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-111111111111": {
+              "id": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-111111111111",
+              "deleted": true,
+              "name": "Gateway Service Alpha"
+            },
+            "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055": {
+              "id": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055",
+              "deleted": false,
+              "name": "Gateway Service Beta"
+            }
+          }
+        }
+      },
+      "MetricUnits": {
+        "type": "object",
+        "description": "A mapping of metric names to their associated unit. The keys are the metric names, and the values are the units. The possible units are: `ms` (Millisecond), `count`, and `bytes`\n",
+        "properties": {},
+        "example": {
+          "request_count": "count",
+          "response_latency_p99": "ms"
+        }
+      },
+      "MetricsResponseMeta": {
+        "type": "object",
+        "description": "Metadata about the query response. This includes the start and end times of the query, the granularity of the result, whether the result was truncated, the limit of the result, and the query_id.\n",
+        "properties": {
+          "start": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Start of the query time range.\n",
+            "readOnly": true
+          },
+          "end": {
+            "format": "date-time",
+            "type": "string",
+            "description": "End of the query time range.\n",
+            "readOnly": true
+          },
+          "display": {
+            "readOnly": true,
+            "description": "The blob represents how to interpret large UUID strings in the MetricsResult. The structure is records of dimension_id ->  ID -> entity metadata. Since entity names within Konnect may overlap, ids are returned and used for exact grouping. This blob may be used to join and display results in a more human friendly manner. Since IDs represent entities in the system at all points in time, historical data will still exist even if an entity is deleted. These such entities are marked with the `deleted` key.\n\nAnother special case is the ____OTHER____ entity. When the limit of cardinality is reached for a second dimension, the system will group all other entities into the ____OTHER____ grouping. This prevents returning an overwhelming number of long tail entities.\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricsDisplayBlob"
+              }
+            ]
+          },
+          "metric_units": {
+            "readOnly": true,
+            "description": "A meta object that describes how to interpret metric names and their associated unit.\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricUnits"
+              }
+            ]
+          },
+          "granularity_ms": {
+            "type": "number",
+            "description": "The number of milliseconds per interval in a time series.\n",
+            "readOnly": true
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "Set true when the limit of cardinarlity is hit. For queries with 2 dimensions, the limit truncates the first dimension, and then groups all other groupings for the second dimension.\n\nExample: limit of 2 for gateway_service and status_code would return 2 gateway services maximum, and 2 status codes + ____OTHER____. The ____OTHER___ is representing all other status codes.\n",
+            "readOnly": true
+          },
+          "limit": {
+            "type": "number",
+            "description": "Applied query cardinality limit.\n",
+            "readOnly": true
+          },
+          "query_id": {
+            "type": "string",
+            "description": "An ID that can be used to reference the query.\n",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "start",
+          "end",
+          "display",
+          "metric_units",
+          "granularity_ms",
+          "truncated",
+          "limit",
+          "query_id"
+        ],
+        "example": {
+          "start": "2024-01-16T18:00:00.000Z",
+          "end": "2024-01-16T18:16:40.000Z",
+          "display": {
+            "gateway_service": {
+              "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-111111111111": {
+                "id": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-111111111111",
+                "deleted": true,
+                "name": "Gateway Service Alpha"
+              },
+              "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055": {
+                "id": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055",
+                "deleted": false,
+                "name": "Gateway Service Beta"
+              }
+            }
+          },
+          "metric_units": {
+            "request_count": "count",
+            "response_latency_p99": "ms"
+          },
+          "granularity_ms": 60000,
+          "truncated": false,
+          "limit": 50,
+          "query_id": "requested-query-id"
+        }
+      },
+      "MetricsResultV2": {
+        "type": "object",
+        "description": "The result of a metrics query. Contains the data and metadata about the query.\n",
+        "properties": {
+          "data": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricsResult"
+            }
+          },
+          "meta": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricsResponseMeta"
+              }
+            ]
+          }
+        },
+        "example": {
+          "data": [
+            {
+              "event": {
+                "gateway_service": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055",
+                "request_count": 1000,
+                "response_latency_p99": 23
+              },
+              "timestamp": "2024-01-16T00:00:00Z"
+            },
+            {
+              "event": {
+                "gateway_service": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-111111111111",
+                "request_count": 10,
+                "response_latency_p99": 339
+              },
+              "timestamp": "2024-01-16T01:00:00Z"
+            }
+          ],
+          "meta": {
+            "start": "2024-01-16T00:00:00.000Z",
+            "end": "2024-01-16T02:00:00.000Z",
+            "display": {
+              "gateway_service": {
+                "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-111111111111": {
+                  "id": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-111111111111",
+                  "deleted": true,
+                  "name": "Gateway Service Alpha"
+                },
+                "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055": {
+                  "id": "d5ac5d88-efed-4e10-9dfe-0b0a6646c219:bf16907c-8673-4f9d-aa83-1f2ea9215055",
+                  "deleted": false,
+                  "name": "Gateway Service Beta"
+                }
+              }
+            },
+            "metric_units": {
+              "request_count": "count",
+              "response_latency_p99": "ms"
+            },
+            "granularity_ms": 60000,
+            "truncated": false,
+            "limit": 50,
+            "query_id": "requested-query-id"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "RequestsFilterType": {
+        "type": "string",
+        "description": "The type of filter to apply.  `in` filters will limit results to only the specified values, while `not_in` filters will exclude the specified values.",
+        "enum": [
+          "in",
+          "not_in"
+        ]
+      },
+      "UnscopedUuid": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+      },
+      "FilterMultiValueUUID": {
+        "title": "Multiselect filters",
+        "type": "object",
+        "properties": {
+          "operator": {
+            "$ref": "#/components/schemas/RequestsFilterType"
+          },
+          "value": {
+            "description": "The IDs to include in the results.\n",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnscopedUuid"
+            }
+          }
+        },
+        "required": [
+          "operator",
+          "value"
+        ]
+      },
+      "RequestsFilterTypeEmpty": {
+        "type": "string",
+        "description": "The type of filter to apply.",
+        "enum": [
+          "empty",
+          "not_empty"
+        ]
+      },
+      "FilterEmpty": {
+        "title": "Empty filters",
+        "type": "object",
+        "properties": {
+          "operator": {
+            "$ref": "#/components/schemas/RequestsFilterTypeEmpty"
+          }
+        },
+        "required": [
+          "operator"
+        ]
+      },
+      "MetricsApiProductFilterByField": {
+        "title": "Filter by api_product",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "api_product"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsApiProductVersionFilterByField": {
+        "title": "Filter by api_product_version",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "api_product_version"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsApplicationFilterByField": {
+        "title": "Filter by application",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "application"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "ScopedUuid": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+      },
+      "FilterMultiValueScopedUUID": {
+        "title": "Multiselect filters",
+        "type": "object",
+        "properties": {
+          "operator": {
+            "$ref": "#/components/schemas/RequestsFilterType"
+          },
+          "value": {
+            "description": "The IDs to include in the results. Because gateway IDs are only unique within a given control plane, the filter values must be of the form `control_plane_id:field_id` or `control_plane_group_id:field_id` for data plane nodes within a control plane group.\n",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScopedUuid"
+            }
+          }
+        },
+        "required": [
+          "operator",
+          "value"
+        ]
+      },
+      "MetricsConsumerFilterByField": {
+        "title": "Filter by consumer",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "consumer"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueScopedUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsControlPlaneFilterByField": {
+        "title": "Filter by control_plane",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "control_plane"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsControlPlaneGroupFilterByField": {
+        "title": "Filter by control_plane_group",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "control_plane_group"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsDataPlaneNodeFilterByField": {
+        "title": "Filter by data_plane_node",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "data_plane_node"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueScopedUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "FilterMultiValueString": {
+        "title": "Multiselect filters",
+        "type": "object",
+        "properties": {
+          "operator": {
+            "$ref": "#/components/schemas/RequestsFilterType"
+          },
+          "value": {
+            "description": "The values to include in the results.\n",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "operator",
+          "value"
+        ]
+      },
+      "MetricsDataPlaneNodeVersionFilterByField": {
+        "title": "Filter by data_plane_node_version",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "data_plane_node_version"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueString"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsGatewayServiceFilterByField": {
+        "title": "Filter by gateway_service",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "gateway_service"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueScopedUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsResponseSourceFilterByField": {
+        "title": "Filter by response_source",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "response_source"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueString"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsRouteFilterByField": {
+        "title": "Filter by route",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "route"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueScopedUUID"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "FilterMultiValueStatusCode": {
+        "title": "Multiselect filters",
+        "type": "object",
+        "properties": {
+          "operator": {
+            "$ref": "#/components/schemas/RequestsFilterType"
+          },
+          "value": {
+            "description": "The codes to include in the results.\n",
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            }
+          }
+        },
+        "required": [
+          "operator",
+          "value"
+        ]
+      },
+      "MetricsStatusCodeFilterByField": {
+        "title": "Filter by status_code",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "status_code"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueStatusCode"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "FilterMultiValueStatusCodeGrouped": {
+        "title": "Multiselect filters",
+        "type": "object",
+        "properties": {
+          "operator": {
+            "$ref": "#/components/schemas/RequestsFilterType"
+          },
+          "value": {
+            "description": "The code groups to include in the results.\n",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^\\d[xX][xX]$"
+            }
+          }
+        },
+        "required": [
+          "operator",
+          "value"
+        ]
+      },
+      "MetricsStatusCodeGroupedFilterByField": {
+        "title": "Filter by status_code_grouped",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "status_code_grouped"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueStatusCodeGrouped"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsUpstreamStatusCodeFilterByField": {
+        "title": "Filter by upstream_status_code",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "upstream_status_code"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueStatusCode"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "MetricsUpstreamStatusCodeGroupedFilterByField": {
+        "title": "Filter by upstream_status_code_grouped",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "description": "The field to filter.",
+                "type": "string",
+                "enum": [
+                  "upstream_status_code_grouped"
+                ]
+              }
+            },
+            "required": [
+              "field"
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FilterMultiValueStatusCodeGrouped"
+              },
+              {
+                "$ref": "#/components/schemas/FilterEmpty"
+              }
+            ]
+          }
+        ]
+      },
+      "BaseError": {
+        "type": "object",
+        "title": "Error",
+        "description": "standard error",
+        "required": [
+          "status",
+          "title",
+          "instance",
+          "detail"
+        ],
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "The HTTP status code of the error. Useful when passing the response\nbody to child properties in a frontend UI. Must be returned as an integer.\n",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "description": "A short, human-readable summary of the problem. It should not\nchange between occurences of a problem, except for localization.\nShould be provided as \"Sentence case\" for direct use in the UI.\n",
+            "readOnly": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The error type.",
+            "readOnly": true
+          },
+          "instance": {
+            "type": "string",
+            "description": "Used to return the correlation ID back to the user, in the format\nkong:trace:<correlation_id>. This helps us find the relevant logs\nwhen a customer reports an issue.\n",
+            "readOnly": true
+          },
+          "detail": {
+            "type": "string",
+            "description": "A human readable explanation specific to this occurence of the problem.\nThis field may contain request/entity data to help the user understand\nwhat went wrong. Enclose variable values in square brackets. Should be\nprovided as \"Sentence case\" for direct use in the UI.\n",
+            "readOnly": true
+          }
+        }
+      },
+      "UnauthorizedError": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseError"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "status": {
+                "example": 401
+              },
+              "title": {
+                "example": "Unauthorized"
+              },
+              "type": {
+                "example": "https://httpstatuses.com/401"
+              },
+              "instance": {
+                "example": "kong:trace:1234567890"
+              },
+              "detail": {
+                "example": "Invalid credentials"
+              }
+            }
+          }
+        ]
+      },
+      "ForbiddenError": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseError"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "status": {
+                "example": 403
+              },
+              "title": {
+                "example": "Forbidden"
+              },
+              "type": {
+                "example": "https://httpstatuses.com/403"
+              },
+              "instance": {
+                "example": "kong:trace:1234567890"
+              },
+              "detail": {
+                "example": "Forbidden"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "examples": {
+      "BadRequestExample": {
+        "value": {
+          "status": 400,
+          "title": "Invalid Request",
+          "instance": "kong:trace:6591723055278037644",
+          "detail": "Invalid Parameters",
+          "invalid_parameters": [
+            {
+              "field": "time_range.time_range",
+              "rule": "unknown_property",
+              "choices": [],
+              "reason": "property time_range should not exist"
+            },
+            {
+              "field": "time_range.start_date",
+              "rule": "is_date",
+              "choices": [],
+              "reason": "start must be a valid date in ISO format"
+            },
+            {
+              "field": "time_range.end_date",
+              "rule": "is_date",
+              "choices": [],
+              "reason": "end must be a valid date in ISO format"
+            }
+          ]
+        }
+      },
+      "UnauthorizedExample": {
+        "value": {
+          "status": 401,
+          "title": "Unauthorized",
+          "instance": "kong:trace:8347343766220159418",
+          "detail": "Unauthorized"
+        }
+      },
+      "ForbiddenExample": {
+        "value": {
+          "status": 403,
+          "title": "Forbidden",
+          "instance": "kong:trace:2723154947768991354",
+          "detail": "You do not have permission to perform this action"
+        }
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/UnauthorizedError"
+            },
+            "examples": {
+              "UnauthorizedExample": {
+                "$ref": "#/components/examples/UnauthorizedExample"
+              }
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ForbiddenError"
+            },
+            "examples": {
+              "UnauthorizedExample": {
+                "$ref": "#/components/examples/ForbiddenExample"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

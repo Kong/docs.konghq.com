@@ -140,8 +140,23 @@ The available commands are:
                                         seconds).
                                         default: 60
 
-  log_level get                         Get the logging level.
+{% if_version gte:3.9.x %}
+  profiling memory-analyzer <start|status>
+                                        Trigger memory analyzer and generate
+                                        memory profiling data.
 
+    --timeout   (optional number)       Timeout for memory analyzer in seconds.
+                                        Default is 120 seconds.
+
+    --pid       (optional number)       Specific worker process ID to analyze.
+                                        If not provided, the current worker
+                                        process will be used.
+{% endif_version %}
+
+  log_level get                         Get the logging level.
+{% if_version gte:3.8.x %}
+  status                                Get the status of the Kong node.
+{% endif_version %}
 
 Options:
  --pid            (optional number)     The worker’s PID for profiling.
@@ -172,6 +187,28 @@ EXIT CODES
 
 
 ```
+{% endif_version %}
+
+{% if_version gte:3.9.x %}
+---
+
+
+### kong drain
+
+```
+Usage: kong drain [OPTIONS]
+
+Make status listeners(`/status/ready`) return 503 Service Unavailable.
+
+Example usage:
+ kong drain
+
+Options:
+ -c,--conf    (optional string)  configuration file
+ -p,--prefix  (optional string)  override prefix directory
+
+```
+
 {% endif_version %}
 
 ---
@@ -282,6 +319,8 @@ Options:
 
 ```
 
+{:.important}
+> **Caution**: {% include_cached /md/enterprise/migration-finish-warning.md %}
 ---
 
 

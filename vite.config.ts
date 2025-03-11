@@ -56,6 +56,9 @@ export default ({ command, mode }) => {
           /node_modules/
         ]
       },
+      rollupOptions: {
+        external: ['shiki/onig.wasm']
+      }
     },
     plugins: [
       inject({
@@ -66,6 +69,7 @@ export default ({ command, mode }) => {
       vue()
     ],
     server: {
+      cors: { origin: 'http://localhost:8888' },
       proxy: {
         '^/api': {
           changeOrigin: true,

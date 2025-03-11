@@ -9,11 +9,17 @@ when running Kong in Kubernetes.
 This plugin uses blocking I/O, which could affect performance when writing
 to physical files on slow (spinning) disks.
 
+{:.important}
+> Log interleaving can occur when logging to stdout. This happens because data
+> written through a pipe must fit within the pipe buffer, which is typically 4k
+> as defined by the Linux kernel. If the data exceeds this size, the kernel cannot
+> guarantee the atomicity of the `write()` system call, leading to interleaved logs. 
+
 ## Log format
 
 {% include /md/plugins-hub/log-format.md %}
 
-### JSON object considerations
+### Log format definitions 
 
 {% include /md/plugins-hub/json-object-log.md %}
 
@@ -21,7 +27,7 @@ to physical files on slow (spinning) disks.
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
-## Custom Fields by Lua
+## Custom fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
 

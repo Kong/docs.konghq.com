@@ -23,7 +23,7 @@ dashboard: [https://grafana.com/grafana/dashboards/7424-kong-official/](https://
 ## Available metrics
 
 {% if_version lte:2.8.x %}
-- **Status codes**: HTTP status codes returned by upstream services.
+- **Status codes**: HTTP status codes returned by Kong.
   These are available per service, across all services, and per route per consumer.
 - **Latencies Histograms**: Latency (in ms), as measured at Kong:
    - **Request**: Total time taken by Kong and upstream services to serve
@@ -50,15 +50,22 @@ license signature. Those metrics are only exported on {{site.base_gateway}}.
     measures the current number of database entities.
 - **Number of Nginx timers** : A gauge metric that measures the total number of Nginx
     timers, in Running or Pending state.
+{% if_version gte:3.8.x %}
+- **[AI LLM metrics](#ai-llm-metrics)** <span class="badge enterprise"></span> : AI LLM metrics are available per provider, model, cache, database name (if cached), embeddings provider (if cached), embeddings model (if cached), and workspace.
+{% endif_version %}
 
 {% if_version gte:3.0.x %}
+### Metrics disabled by default
 Following metrics are disabled by default as it may create high cardinality of metrics and may
 cause performance issues:
 
-When `status_code_metrics` is set to true:
-- **Status codes**: HTTP status codes returned by upstream services.
-  These are available per service, across all services, and per route per consumer.
+#### Status code metrics
+When `status_code_metrics` is set to true `http_requests_total`, `stream_sessions_total` metrics will be exported.
+- **Status codes**: HTTP status codes returned by Kong.
+  - **`http_requests_total`**: HTTP status codes per consumer/service/route at Kong.
+  - **`stream_session_total`**: Stream status codes per service/route in Kong.
 
+#### Latency metrics
 When `latency_metrics` is set to true:
 - **Latencies Histograms**: Latency (in ms), as measured at Kong:
    - **Request**: Total time taken by Kong and upstream services to serve
@@ -67,10 +74,12 @@ When `latency_metrics` is set to true:
      plugins.
    - **Upstream**: Time taken by the upstream service to respond to requests.
 
+#### Bandwidth metrics
 When `bandwidth_metrics` is set to true:
 - **Bandwidth**: Total Bandwidth (egress/ingress) flowing through Kong.
   This metric is available per service and as a sum across all services.
 
+#### Upstream health metrics
 When `upstream_health_metrics` is set to true:
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of targets
   belonging to a given upstream as well as their subsystem (`http` or `stream`).
@@ -79,18 +88,24 @@ When `upstream_health_metrics` is set to true:
 {% endif_version %}
 
 {% if_version gte:3.8.x %}
-When `ai_llm_metrics` is set to `true`:
-- **AI Requests**: AI requests sent to LLM providers.
-  These are available per provider, model, cache, database name (if cached), and workspace.
-- **AI Cost:**: AI costs charged by LLM providers.
-  These are available per provider, model, cache, database name (if cached), and workspace.
-- **AI Tokens** AI tokens counted by LLM providers.
-  These are available per provider, model, cache, database name (if cached), token type, and workspace.
+#### AI LLM metrics
+<span class="badge enterprise"></span>
 
-For more details, see [AI Metrics](/gateway/latest/production/monitoring/ai-metrics/).
+All the following AI LLM metrics are available per provider, model, cache, database name (if cached), embeddings provider (if cached), embeddings model (if cached), and workspace.
+
+When `ai_metrics` is set to true:
+- **AI Requests**: AI request sent to LLM providers.
+- **AI Cost**: AI Cost charged by LLM providers.
+- **AI Tokens**: AI Tokens counted by LLM providers.
+  These are also available per token type in addition to the options listed previously.
+- **AI LLM Latency**: Time taken to return a response by LLM providers.
+- **AI Cache Fetch Latency**: Time taken to return a response from the cache.
+- **AI Cache Embeddings Latency**: Time taken to generate embedding during the cache.
+
+For more details, see [AI Metrics](/gateway/{{ page.release }}/production/monitoring/ai-metrics/).
 {% endif_version %}
 
-
+### Metrics output example
 Here is an example of output you could expect from the `/metrics` endpoint:
 
 ```bash

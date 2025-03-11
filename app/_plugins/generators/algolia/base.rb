@@ -20,8 +20,10 @@ module Jekyll
         'oas' => ['Kong Gateway', 'Kong Konnect']
       }.freeze
 
-      def self.make_for(page) # rubocop:disable Metrics/MethodLength
-        if page.data['edition']
+      def self.make_for(page) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+        if page.data['edition'] == 'dev-portal'
+          NotIndexable.new(page)
+        elsif page.data['edition']
           Doc.new(page)
         elsif page.url.start_with?('/hub')
           Hub.new(page)
@@ -29,7 +31,7 @@ module Jekyll
           Home.new(page)
         elsif page.data['layout'] == 'oas/spec'
           OasPage.new(page)
-        else
+        else # rubocop:disable Lint/DuplicateBranch
           NotIndexable.new(page)
         end
       end

@@ -15,6 +15,9 @@ To access secrets stored in the AWS Secrets Manager, {{site.base_gateway}} needs
 - Fetch from an EKS [IAM roles for service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 - Fetch from EC2 IMDS metadata. Both v1 and v2 are supported
 
+{:.note}
+> **Note:** IAM Identity Center credential provider and Process credential provider are not supported.
+
 {{site.base_gateway}} also supports role assuming which allows you to use a different IAM role to fetch secrets from AWS Secrets Manager.  This is a common practice in permission division and governance and cross-AWS account management.
 {% endif_version %}
 
@@ -194,6 +197,10 @@ Parameter | Field name                     | Description
 `vaults.config.endpoint_url` | **AWS Secrets Manager Endpoint URL** | The endpoint URL of the AWS Secrets Manager service. If not specified, the value used by vault will be the official AWS Secrets Manager service url which is `https://secretsmanager.{region}.amazonaws.com`. You can specify a complete URL(including the `http/https` scheme) to override the endpoint.
 `vaults.config.assume_role_arn` | **Assume AWS IAM role ARN** | The target IAM role ARN that will assume as the AWS Secrets Manager service. If specified, the vault backend will do additional role assuming based on your current runtime's IAM Role. If you are not using assume role, do not specify this value.
 `vaults.config.role_session_name` | **Role Session Name** | The role session name used for role assuming. The default value is `KongVault`.
+{% endif_version -%}
+
+{% if_version gte:3.8.x -%}
+`vaults.config.sts_endpoint_url` | **AWS STS Endpoint URL** | The custom STS endpoint URL used for the IAM assume role in AWS Vault. You can specify a complete URL, including the `http/https` scheme. This value will override the default STS endpoint URL, which should be `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if `AWS_STS_REGIONAL_ENDPOINTS` is set to `regional`(by default). If you are not using a private VPC endpoint for STS service, you should not specify this value.
 {% endif_version -%}
 
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.

@@ -3,8 +3,6 @@
 module PluginSingleSource
   module Pages
     class Changelog < Base
-      TITLE = 'Changelog'
-
       def canonical_url
         "#{base_url}changelog/"
       end
@@ -18,7 +16,7 @@ module PluginSingleSource
       end
 
       def page_title
-        "#{@release.metadata['name']} #{TITLE}"
+        @page_title ||= I18n.t('hub.page_title.changelog', locale: translate_to, plugin_name: @release.metadata['name'])
       end
 
       def dropdown_url
@@ -26,11 +24,11 @@ module PluginSingleSource
       end
 
       def nav_title
-        TITLE
+        @nav_title ||= I18n.t('hub.sidebar.changelog', locale: translate_to)
       end
 
       def breadcrumb_title
-        TITLE
+        @breadcrumb_title ||= I18n.t('hub.breadcrumbs.changelog', locale: translate_to)
       end
 
       def icon

@@ -5,10 +5,12 @@ search_aliases:
 dbless_compatible: 'yes'
 free: true
 enterprise: true
-paid: true
 konnect: true
+serverless_gateways: false
 network_config_opts: All
-notes: --
+notes: | 
+   <b>Serverless Gateways</b>: This plugin is not supported in serverless gateways because the 
+   TLS handshake does not occur at the Kong layer in this setup. 
 categories:
   - security
 publisher: Kong Inc.

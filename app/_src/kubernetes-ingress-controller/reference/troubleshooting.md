@@ -200,10 +200,9 @@ successfully, reviewing the generated configuration manually and/or applying it
 in a test environment can help locate potential causes.
 
 Under normal operation, the controller does not store generated configuration;
-it is only sent to Kong's Admin API. The `--dump-config` flag enables a
-diagnostic mode where the controller also saves generated configuration to a
-temporary file. You can retrieve this file via the web interface of the diagnostic
-server at `host:10256/debug/config`.
+it is only sent to Kong's Admin API.
+The `--dump-config` flag enables a diagnostic mode where the controller also saves generated configuration and {{ site.base_gateway }} responses to memory.
+You can retrieve these via the web interface of the diagnostic server at `host:10256/debug/config`.
 
 To use the diagnostic mode:
 
@@ -232,6 +231,14 @@ To use the diagnostic mode:
    curl -svo last_good.json localhost:10256/debug/config/successful
    curl -svo last_bad.json localhost:10256/debug/config/failed
    ```
+{% if_version gte:3.4.x %}
+1. Retrieve the last error response body received from {{ site.base_gateway }}:
+   ```bash
+   curl -svo raw_error_body.json localhost:10256/debug/config/raw-error
+   ```
+{% endif_version %}
+
+### Using dumped configuration
 
 Once you have dumped configuration, take one of the following
 approaches to isolate issues:
@@ -250,6 +257,8 @@ approaches to isolate issues:
 
   Once this image is running, run `curl http://localhost:8001/config @last_bad.json`
   to try applying the configuration and see any errors.
+
+You can also analyze the returned error response body from {{ site.base_gateway }} to understand the issue.
 
 ## Inspecting network traffic with a tcpdump sidecar
 
@@ -359,3 +368,22 @@ kong admin` for configuration push failures.
 {{ site.kic_product_name }} provides Kubernetes Events to help understand the state of your system. Events occur when an invalid configuration is rejected by {{ site.base_gateway }} (`KongConfigurationApplyFailed`) or when an invalid configuration such as an upstream service that does not exist is detected (`KongConfigurationTranslationFailed`)..
 
 For more information, see [Events](/kubernetes-ingress-controller/{{ page.release }}/production/observability/events/).
+
+
+{% if_version gte:3.3.x %}
+### Debugging {{ site.konnect_short_name }} integration
+
+{{ site.kic_product_name }} needs to communicate with the {{ site.konnect_short_name }} cloud APIs to provide the [integration](/konnect/gateway-manager/kic). 
+If you encounter issues with KIC in {{ site.konnect_short_name }}, you should first inspect logs from {{ site.kic_product_name }} to identify the root cause.
+
+By default, KIC logs the details for every failed request and response (method, URL, status code) it
+receives from {{ site.konnect_short_name }}. If you set the `LOG_LEVEL` to `trace`, {{ site.kic_product_name }} will log the details for _every_ request and response it receives from {{ site.konnect_short_name }}.
+
+Here is an example of a failed request/response log entry:
+```text
+Request failed  {"x_b3_traceid": "66c731200000000034ce3297e8e64544", "x_b3_spanid": "4e6955874299011d", "x_datadog_trace_id": "3805034363203503428", "x_datadog_parent_id": "5650141246939267357", "v": 0, "method": "GET", "url": "https://us.kic.api.konghq.tech/kic/api/control-planes/81bc4af5-ed3c-40b4-bb88-b5a05fbe34a1/oauth2?size=1000", "status_code": 404}
+```
+
+If your issue requires further investigation on the {{ site.konnect_short_name }} side, attach logs with tracing information to your support ticket.   
+
+{% endif_version %}

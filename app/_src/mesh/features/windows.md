@@ -2,7 +2,18 @@
 title: Kong Mesh with Windows
 ---
 
-{% if_version gte:2.4.x %}
+{% if_version gte:2.11.x %}
+{:.important}
+> As of 2.11.0 Windows is no longer supported in {{site.mesh_product_name}}.
+
+{% endif_version %}
+{% if_version lt:2.11.x %}
+{% if_version gte:2.9.x %}
+{:.important}
+> **Deprecation notice:** Windows support in {{site.mesh_product_name}} has 
+been deprecated as of v2.9.0 and will be removed in v2.11.0.
+ 
+{% endif_version %}
 
 To install and run {{site.mesh_product_name}} on Windows:
 
@@ -34,8 +45,7 @@ Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Ur
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download]{%if_version gte:2.2.x %}({{site.links.download}}/kong-mesh-binaries-release/kong-mesh-{{page.version}}-windows-amd64.tar.gz){%endif_version%}{%if_version lte:2.1.x%}(https://download.konghq.com/mesh-alpine/kong-mesh-{{page.version}}-windows-amd64.tar.gz){%endif_version%}
-the distribution manually.
+You can also [download]({{site.links.download}}/kong-mesh-binaries-release/kong-mesh-{{page.version}}-windows-amd64.tar.gz) the distribution manually.
 
 Then extract the archive with:
 
@@ -80,20 +90,7 @@ but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-
 
 
 <!-- links -->
-{% if_version gte:2.0.x %}
-{% if_version lte:2.1.x %}
-[deployments]: /mesh/{{page.release}}/introduction/deployments/
-[backends]: /mesh/{{page.release}}/documentation/configuration/
-{% endif_version %}
-{% if_version gte:2.2.x %}
 [deployments]: /mesh/{{page.release}}/production/deployment/
 [backends]: /mesh/{{page.release}}/documentation/configuration/
-{% endif_version %}
-{% endif_version %}
-
-{% if_version lte:1.9.x %}
-[deployments]: https://kuma.io/docs/1.8.x/introduction/deployments/
-[backends]: https://kuma.io/docs/1.8.x/documentation/configuration/
-{% endif_version %}
 
 {% endif_version %}

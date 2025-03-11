@@ -25,7 +25,12 @@ The same definitions of `feature gates` and `feature stages` from upstream Kuber
 | SanitizeKonnectConfigDumps | `true`  | Beta  | 3.1.0  | TBD   |
 {% if_version gte:3.2.x %}
 | FallbackConfiguration      | `false` | Alpha | 3.2.0  | TBD   |
-| KongCustomEntity           | `false` | Alpha | 3.2.0  | TBD   |
+| KongCustomEntity           | `false` | Alpha | 3.2.0  | 3.3.0 |
+| KongCustomEntity           | `true`  | Beta  | 3.3.0  | 3.4.0 |
+| KongCustomEntity           | `true`  | GA    | 3.4.0  | TBD   |
+{% endif_version %}
+{% if_version gte:3.4.x %}
+| CombinedServicesFromDifferentHTTPRoutes  | `false` | Alpha | 3.4.0  | TBD   |
 {% endif_version %}
 
 ## Using feature gates
@@ -36,11 +41,23 @@ Feature gates consist of a comma-delimited set of `key=value` pairs. For example
 
 To enable features via Helm, set the following in your `values.yaml`:
 
+{% navtabs %}
+{% navtab kong chart %}
 ```yaml
 ingressController:
   env:
     feature_gates: FillIDs=true,RewriteURIs=true
 ```
+{% endnavtab %}
+{% navtab ingress chart %}
+```yaml
+controller:
+  ingressController:
+    env:
+      feature_gates: FillIDs=true,RewriteURIs=true
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 To test a feature gate in an existing deployment, use `kubectl set env`.
 
@@ -56,26 +73,35 @@ kubectl set env -n kong deployment/kong-controller CONTROLLER_FEATURE_GATES="Fil
 * Until a feature becomes GA, there are no guarantees that will continue being available. For more information, see the [changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md).
 
 {:.important}
->**Important:** To avoid disruption to your services consider not using features until they have reached GA status. 
+>**Important:** To avoid disrupting your services, consider not using features until they have reached GA status.
 
 [k8s]:https://kubernetes.io
 [gates]:https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/
 [stages]:https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/#feature-stages
-[specs]: /kubernetes-ingress-controller/latest/reference/custom-resources/
-[guides]: /kubernetes-ingress-controller/latest/guides/overview/
 [k8s-keps]:https://github.com/kubernetes/enhancements
 [kic-keps]:https://github.com/Kong/kubernetes-ingress-controller/tree/main/keps
 [releases]:https://github.com/Kong/kubernetes-ingress-controller/releases
 
-## Feature gate details 
+## Feature gate details
 
 ### SanitizeKonnectConfigDumps
 
 The `SanitizeKonnectConfigDumps` feature enables the sanitization of configuration dumps that are sent to Konnect.
-This means {{site.kic_product_name}} will obfuscate all sensitive information that your Kong config contains, such as 
+This means {{site.kic_product_name}} will obfuscate all sensitive information that your Kong config contains, such as
 private keys in `Certificate` entities and `Consumer` entities' credentials.
 
 {:.important}
-> **Warning:** `KongPlugin`'s and `KongClusterPlugin`'s `config` field is not sanitized. If you have sensitive information 
-> in your `KongPlugin`'s `config` field, it will be sent to Konnect as is. To avoid that, please consider using 
+> **Warning:** `KongPlugin`'s and `KongClusterPlugin`'s `config` fields are not sanitized. If you have sensitive information
+> in your `KongPlugin`'s `config` field, it will be sent to Konnect as is. To avoid that, please consider using
 > [KongVault](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongvault).
+
+{% if_version gte:3.4.x %}
+### CombinedServicesFromDifferentHTTPRoutes
+
+The `CombinedServicesFromDifferentHTTPRoutes` feature enables translating `HTTPRoute` rules
+with the same set of backends (combination of namespace, name, port and weight) from different `HTTPRoute`s in the same namespace
+into a single {{site.base_gateway}} service. Enabling the feature gate can reduce the number of translated {{site.base_gateway}} services.
+
+The names of {{site.base_gateway}} services will change if the feature gate is enabled.
+You can refer to the [reference page](/kubernetes-ingress-controller/{{page.release}}/reference/combined-services-from-different-httproutes) for further details.
+{% endif_version %}

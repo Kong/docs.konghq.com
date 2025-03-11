@@ -14,9 +14,13 @@ breadcrumbs:
 {% endunless %}
 
 {% unless page.extn_publisher == "kong-inc" %}
-    {% if page.techpartner %}
+    {% if page.premiumpartner %}
+      {% if page.custom_support_banner %}
+        {{ page.custom_support_banner | markdownify }}
+      {% else %}
       <blockquote class="partner-plugin no-icon">
         <b>Partner Plugin:</b> This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
+      {% endif %}
     {% else %}
       <blockquote class="community-plugin no-icon">
         <b>Contact 3rd party for support:</b> This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
@@ -30,7 +34,7 @@ breadcrumbs:
 
 {% if page.bundled == false or page.bundled == false %}
   <blockquote class="important">
-    <details class="collapsible-note">
+    <details class="custom collapsible-note">
     <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it</summary>
 
     <ul>

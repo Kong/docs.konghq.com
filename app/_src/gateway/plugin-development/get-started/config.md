@@ -119,7 +119,7 @@ Add a test service:
 ```sh
 curl -i -s -X POST http://localhost:8001/services \
    --data name=example_service \
-   --data url='http://httpbin.org'
+   --data url='https://httpbin.konghq.com'
 ```
 
 And create our plugin instance, but this time provide the configuration value

@@ -4,7 +4,7 @@ release: 2.9.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
-  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_dev.yml
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.9.x.yml
   patches:
     - path: [ Introduction ]
       action: modify
@@ -30,6 +30,16 @@ inherit:
     - path: [ Introduction ]
       text: Version support policy
       url: /support-policy/
+      action: insert
+      index: -3
+    - path: [ Introduction ]
+      text: Software Bill of Materials
+      url: /sbom
+      action: insert
+      index: -3
+    - path: [ Introduction ]
+      text: Vulnerability patching process
+      url: /vulnerability-patching-process/
       action: insert
       index: -3
     - path: [ Introduction, Release notes]
@@ -80,6 +90,10 @@ inherit:
       icon: /assets/images/icons/documentation/icn-quickstart-color.svg
     - path: [ Quickstart, Deploy Kuma on Kubernetes ]
       text: Deploy Kong Mesh on Kubernetes
+      action: modify
+      items: []
+    - path: [ Quickstart, Deploy Kuma on Universal ]
+      text: Deploy Kong Mesh on Universal
       action: modify
       items: []
     - path: [ Using Kuma ]
@@ -139,7 +153,7 @@ inherit:
           url: /features/cert-manager
         - text: OPA policy support
           url: /features/opa
-        - text: MeshOPA (beta)
+        - text: MeshOPA
           url: /features/meshopa
         - text: Multi-zone authentication
           url: /features/kds-auth
@@ -157,12 +171,22 @@ inherit:
               url: /features/ubi-images
             - text: Red Hat OpenShift Quickstart
               url: /features/openshift-quickstart
+        - text: Windows Support
+          url: /features/windows
         - text: ECS Support
           url: /installation/ecs
         - text: Auditing
           url: /features/access-audit
         - text: MeshGlobalRateLimit (beta)
           url: /features/meshglobalratelimit
+        - text: Verify signatures for signed Kong Mesh images
+          url: /features/signed-images
+        - text: Build provenance
+          items:
+            - text: Verify build provenance for signed Kong Mesh images
+              url: /features/provenance-verification-images
+            - text: Verify build provenance for signed Kong Mesh binaries
+              url: /features/provenance-verification-binaries
     - path: [ Reference ]
       action: modify
       icon: /assets/images/icons/documentation/icn-references-color.svg
@@ -177,6 +201,3 @@ inherit:
       src: null
       absolute_url: true
       url: https://kuma.io/community
-unlisted:
-  - url: /install
-    src: /mesh/install

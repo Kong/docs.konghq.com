@@ -9,7 +9,7 @@ or enable an external authenticator to manage
 provider. {{site.konnect_saas}} offers multiple options for authentication. The [generic SSO](/konnect/org-management/sso/) with SAML and OIDC allow you to configure authentication with any identity provider that supports these protocols. 
 The [Okta](/konnect/org-management/okta-idp/) specific setup offers an integrated approach for Okta users, supporting both OIDC and SAML, and includes features like team mappings and dashboard integration.
 
-## Native authentication through {{site.konnect_short_name}}
+## Built-in authentication through {{site.konnect_short_name}}
 
 The default authentication option in {{site.konnect_saas}} is basic
 authentication. You don't have to do anything special to set it up.

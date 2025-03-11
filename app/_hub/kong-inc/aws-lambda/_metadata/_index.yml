@@ -4,7 +4,6 @@ search_aliases:
 dbless_compatible: 'yes'
 free: true
 enterprise: true
-paid: true
 konnect: true
 network_config_opts: All
 notes: |

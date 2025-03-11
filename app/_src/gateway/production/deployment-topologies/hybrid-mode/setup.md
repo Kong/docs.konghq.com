@@ -443,8 +443,8 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
 -e "KONG_CLUSTER_MTLS=pki" \
 -e "KONG_CLUSTER_SERVER_NAME=control-plane.kong.yourcorp.tld" \
--e "KONG_CLUSTER_CERT=data-plane.crt" \
--e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
+-e "KONG_CLUSTER_CERT=/<path-to-file>/data-plane.crt" \
+-e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.key" \
 -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
@@ -462,8 +462,8 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
 -e "KONG_CLUSTER_MTLS=pki" \
 -e "KONG_CLUSTER_SERVER_NAME=control-plane.kong.yourcorp.tld" \
--e "KONG_CLUSTER_CERT=data-plane.crt" \
--e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
+-e "KONG_CLUSTER_CERT=/<path-to-file>/data-plane.crt" \
+-e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.key" \
 -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
 -e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
@@ -550,7 +550,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     cluster_mtls = pki
     cluster_server_name = control-plane.kong.yourcorp.tld
     cluster_cert = /<path-to-file>/data-plane.crt
-    cluster_cert_key = /<path-to-file>/data-plane.crt
+    cluster_cert_key = /<path-to-file>/data-plane.key
     cluster_ca_cert = /<path-to-file>/ca-cert.pem
     cluster_dp_labels = deployment:cloud1,region:us-east-1
     ```
@@ -593,8 +593,8 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
 ## Verify that nodes are connected
 
-Use the control plane’s Cluster Status API to monitor your data planes. It
-provides:
+Use the control plane’s [Cluster Status API](/gateway/api/admin-ee/latest/#/clustering) to monitor your data planes. 
+It provides:
 * The name of the node
 * The last time the node synced with the control plane
 * The version of the config currently running on each data plane

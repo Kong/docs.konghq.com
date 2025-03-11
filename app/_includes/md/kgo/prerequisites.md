@@ -1,20 +1,30 @@
 {% unless include.disable_accordian %}
-<details class="custom" markdown="1">
+<details markdown="1">
 <summary>
-<blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>installed the {{site.kgo_product_name}}</u> in your Kubernetes cluster {% if include.aiGateway %}with AI Gateway support enabled{% endif %}. {% if include.enterprise %}This guide requires an enterprise license.{% endif %}</p>
-</blockquote>
+  <strong>Prerequisites:</strong> Install the {{site.kgo_product_name}} in your Kubernetes cluster{% if include.aiGateway %} with AI Gateway support enabled.{% endif %}{% if include.kongPluginInstallation %} with KongPluginInstallation support enabled.{% endif %}{% if include.kconfCRDs %} with Kong's Kubernetes Configuration CRDs enabled.{% endif %} {% if include.enterprise %}This guide requires an enterprise license.{% endif %}
 </summary>
 
 ## Prerequisites
 {% endunless %}
 
-{% if include.experimental %}
-### Install CRDs
-{% assign gwapi_version = "1.0.0" %}
-{% if include.release.value == "1.0.x" %}
+{% if include.install_crds %}
+{% assign gwapi_version = "1.2.1" %}
+{% if_version eq:1.0.x %}
 {% assign gwapi_version = "0.8.1" %}
-{% endif %}
+{% endif_version %}
+{% if_version gte:1.1.x lte:1.3.x %}
+{% assign gwapi_version = "1.0.0" %}
+{% endif_version %}
+### Install CRDs
+
+If you want to use Gateway API resources, run this command:
+
+```shell
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/standard-install.yaml
+```
+
+{% if include.experimental %}
+#### Gateway API experimental CRDs
 
 If you want to use experimental resources and fields such as `TCPRoute`s and `UDPRoute`s, please run this command.
 
@@ -24,28 +34,23 @@ kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/downloa
 {% endif %}
 
 {% if include.aiGateway %}
+#### `AIGateway`
+
 The `AIGateway` feature is an **alpha** release, and needs additional CRDs installed:
 
 ```bash
 kubectl apply -f {{site.links.web}}/assets/gateway-operator/ai-gateway-crd.yaml --server-side
 ```
 {% endif %}
+{% endif %}
 
 ### Install {{ site.kgo_product_name }}
 
-{% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release %}
-
-
-{%- if include.aiGateway %}
-
-### Enable the AI Gateway controller
-
-As this guide uses the experimental AI Gateway feature, we need to explicitly enable it.
-
-```bash
-kubectl set env -n kong-system deployments/kgo-gateway-operator-controller-manager -c manager GATEWAY_OPERATOR_ENABLE_CONTROLLER_AIGATEWAY="true"
-```
-{% endif %}
+{% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release
+    kconfCRDs=include.kconfCRDs
+    konnectEntities=include.konnectEntities
+    aiGateway=include.aiGateway
+    kongPluginInstallation=include.kongPluginInstallation %}
 
 {% if include.enterprise %}
 

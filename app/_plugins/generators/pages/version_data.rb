@@ -49,6 +49,9 @@ module Jekyll
 
         # Add a `major_minor_version` property which is used for cloudsmith install pages
         @page.data['major_minor_version'] = release.value.gsub('.x', '').gsub('.', '')
+
+        # Add a `short_version` property which is used for spec filenames
+        @page.data['short_version'] = release.value.gsub('.x', '')
       end
 
       def release
@@ -56,7 +59,7 @@ module Jekyll
       end
 
       def version?
-        edition.releases.map(&:to_s).include?(parts[1])
+        edition.releases.map(&:to_s).compact.include?(parts[1])
       end
     end
   end

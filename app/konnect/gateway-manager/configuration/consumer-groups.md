@@ -3,91 +3,157 @@ title: Create Consumer Groups in Konnect
 content_type: tutorial
 badge: enterprise
 ---
-With consumer groups, you can define any number of rate limiting tiers and
-apply them to subsets of consumers, instead of managing each consumer
-individually.
 
-For example, you could define three consumer groups:
-* **gold tier** with 1000 requests per minute
-* **silver tier** with 10 requests per second
-* **bronze tier** with 6 requests per 30 seconds
+With [consumer groups](/gateway/latest/key-concepts/consumer-groups/), you can scope plugins to specifically defined groups and a new plugin instance will be created for each individual consumer group, making configurations and customizations more flexible and convenient. 
+For all plugins available on the consumer groups scope, see the [Plugin Scopes Reference](/hub/plugins/compatibility/#scopes).
 
-The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/).
+## Create a consumer group in {{site.konnect_short_name}}
 
-Consumers that are not in a consumer group default to the Rate Limiting advanced
-plugin’s configuration, so you can define tier groups for some users and
-have a default behavior for consumers without groups.
+The following creates a new consumer group:
 
-To use consumer groups for rate limiting, you must:
-* Create a consumer group and create or add consumers to it
-* Configure the Rate Limiting Advanced plugin globally with the `enforce_consumer_groups`
-and `consumer_groups` parameters, setting up the list of consumer groups that
-the plugin accepts
-* Configure a rate limiting policy for each consumer group, overriding the 
-plugin's global configuration
+1. In Gateway Manager, go to a {{site.base_gateway}} control plane > **Consumers**.
+2. Open the **Consumer Groups** tab.
+3. Click **New Consumer Group**.
+4. Enter a group name and select consumers to add to the group.
+5. Click **Save**.
 
-This tutorial will walk through creating a bronze tier consumer group that allows consumers in the group to make five requests every 30 seconds. 
+On the consumer group's overview page, you can now add any supported plugin. 
+This plugin will apply to all consumers in the group.
 
-## Create a consumer
+## decK example
 
-In this section, you will create a consumer.
+Let's look at a more complex example where you define three consumer groups for rate limiting consumers. In this example, each consumer group represents a different tier of support, such as Free, Basic, and Premium. Each tier will have different rate limits. For example, the Free tier has lower rate limits than the Premium tier.
 
-1. From the {{site.konnect_short_name}} sidebar, open the **Gateway Manager** section.
-1. Select the **default** control plane.
-1. Open the **Consumers** tab, click **Add consumer**, and enter the following consumer information into the form:
-    * **Username**: Amal
-    * **Custom ID**: Amal
+We'll be using [decK](/deck/) to reduce the configuration complexity, but you can achieve all of this using the {{site.konnect_short_name}} admin interface or API as well.
 
-## Assign a consumer to a consumer group
+In the following decK file, you have:
+1. Consumer authentication via the Key Authentication plugin
+2. Three consumer groups (Free, Basic, Premium)
+3. Three consumers, each belonging to a different group
+4. The Rate Limiting Advanced plugin configured with a different rate limit on each consumer group 
 
-In this section, you will assign the consumer you just created to the Bronze tier consumer group. 
+Save the following content to a file named `konnect.yaml`:
+```yaml
+_format_version: '3.0'
+services:
+  - name: example-service
+    url: http://httpbin.konghq.com/anything
+routes:
+  - name: example-route
+    paths:
+    - "/anything"
+    service:
+      name: example-service
+consumer_groups:
+  - name: Free
+  - name: Basic
+  - name: Premium
+consumers:
+  - username: Amal
+    groups:
+    - name: Free
+    keyauth_credentials:
+    - key: amal
+  - username: Dana
+    groups:
+    - name: Basic
+    keyauth_credentials:
+    - key: dana
+  - username: Mahan
+    groups:
+    - name: Premium
+    keyauth_credentials:
+    - key: mahan
+plugins:
+  - name: key-auth
+    config:
+      key_names:
+      - apikey
+  - name: rate-limiting-advanced
+    consumer_group: Free
+    config:
+      limit:
+      - 3
+      window_size:
+      - 30
+      window_type: fixed
+      retry_after_jitter_max: 0
+      namespace: free
+  - name: rate-limiting-advanced
+    consumer_group: Basic
+    config:
+      limit:
+      - 5
+      window_size:
+      - 30
+      window_type: sliding
+      retry_after_jitter_max: 0
+      namespace: basic
+  - name: rate-limiting-advanced
+    consumer_group: Premium
+    config:
+      limit:
+      - 500
+      window_size:
+      - 30
+      window_type: sliding
+      retry_after_jitter_max: 0
+      namespace: premium
+```
 
-1. From the **Gateway Manager** section in the **default** {{site.konnect_short_name}} workspace, open the **Consumers** tab.
-1. Click the **Consumer Groups** tab, and then click **Add Consumer Group**.
-1. Enter "Bronze" for the consumer group name and select the "Amal" consumer you just created from the drop-down. 
-1. Click **Create**.
+Check your configuration with `deck gateway diff`, adding in your [{{site.konnect_short_name}} token](/konnect/org-management/access-tokens/) and control plane name:
 
-## Configure the Rate Limiting Advanced plugin for all consumers
+```sh
+deck gateway diff konnect.yaml \
+ --konnect-token $KONNECT_TOKEN \
+ --konnect-control-plane-name $KONNECT_CP_NAME
+```
 
-In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 5 requests every 30 seconds for all consumers.
+If everything looks right, synchronize the file to {{site.konnect_short_name}} to update your Gateway configuration:
 
-1. In {{site.konnect_short_name}}, click **Gateway Manager** in the sidebar.
-1. Click the **default** control plane.
-1. From the menu, open **Plugins**, then click **Add plugin**.
-1. Find the **Rate Limiting** plugin, then click **Select**.
-1. Apply the plugin as **Global**
-    This means the rate-limiting applies to all requests, including every service and route in the workspace.
+```sh
+deck gateway sync konnect.yaml \
+  --konnect-token $KONNECT_TOKEN \
+  --konnect-control-plane-name $KONNECT_CP_NAME
+```
 
-    If you switched it to **Scoped**, the rate limiting would apply the plugin to only one service, route, or consumer.
+### Validate
 
-    By default, the plugin is automatically enabled when the form is submitted.
-    You can also toggle the **This plugin is Enabled** button to configure the plugin without enabling it.
-    For this example, keep the plugin enabled.
-1. Complete only the following fields with the following parameters:
-    * **Config.limit:** 5
-    * **Config.window_size:** 30
-    * **Config.window_type:** Sliding
-    * **Config.retry_after_jitter_max:** 0
-    * **Config.enforce_consumer_groups:** true 
-    * **Config.consumer_groups:** Bronze
+Now we can test that each rate limiting tier is working as expected by sending a series of HTTP requests (for example, six for Free Tier and seven for Basic Tier) to the endpoint with the appropriate API key with the goal of exceeding the configured rate limit for that tier. The tests wait for one second between requests to avoid overwhelming the server and test rate limits more clearly.
 
-    Besides the above fields, there may be others populated with default values. For this example, leave the rest of the fields as they are.
-1. Click **Save**.
+Test the rate limiting of the Free tier:
 
-## Configure rate limiting for consumer groups
+```sh
+echo "Testing Free Tier Rate Limit..."
 
-In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 6 requests every 30 seconds only for consumers in the Bronze tier.
+for i in {1..6}; do
+  curl -I http://localhost:8000/anything -H 'apikey:amal'
+  echo
+  sleep 1
+done
+```
 
-1. In {{site.konnect_short_name}}, click **Gateway Manager** in the sidebar.
-1. Select the **default** control plane.
-1. From the menu, open **Consumers**, then click the **Consumer Groups** tab.
-1. Click the **Bronze** consumer group you just created.
-1. Click **Add Configuration**.
-1. In the dialog, complete only the following fields with the following parameters:
-    * **Window Size:** 30
-    * **Window Type:** Sliding
-    * **Limit:** 6
-    * **Retry After Jitter Max:** 0
-1. Click **Save**.
+For the first few requests (up to the configured limit, which is 3 requests in 30 seconds), you should receive a `200 OK` status code. Once the limit is exceeded, you should receive a `429 Too Many Requests` status code with a message indicating the rate limit has been exceeded.
 
-You have now set up a Bronze tier consumer group with one consumer, Amal, assigned to the group. Whenever the consumer Amal sends requests, they can make up to six requests every 30 seconds before hitting the rate limit. All other consumers are limited to only five requests every 30 seconds. 
+You can do the same for the Basic tier:
+```sh
+echo "Testing Basic Tier Rate Limit..."
+
+for i in {1..7}; do
+  curl -I http://localhost:8000/anything -H 'apikey:dana'
+  echo
+  sleep 1
+done
+```
+
+And for the Premium tier:
+
+```sh
+echo "Testing Premium Tier Rate Limit..."
+
+for i in {1..11}; do
+  curl -I http://localhost:8000/anything -H 'apikey:mahan'
+  echo
+  sleep 1
+done
+```

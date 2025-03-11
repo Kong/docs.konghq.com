@@ -11,6 +11,7 @@ module.exports = function (filename) {
     konnect: "konnect",
     mesh: "mesh",
     gateway: "gateway",
+    "dev-portal": "dev-portal",
     contributing: "contributing",
   };
 

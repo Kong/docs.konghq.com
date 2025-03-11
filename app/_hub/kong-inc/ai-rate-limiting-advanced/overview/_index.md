@@ -26,6 +26,11 @@ You can also create a generic prompt rate limit using the [request prompt provid
       -  If the rate limit is reached, the next request will be blocked
     * Known limitation: The disable penalty only works for the `requestPrompt` provider.
 
+## Choosing a rate limiting plugin
+
+Kong provides multiple rate limiting plugins. Choose one to fit your use case:
+
+{% include /md/plugins-hub/rl-table.md %}
 
 ## Headers sent to the client
 
@@ -100,6 +105,9 @@ The plugin supports three strategies to calculate the token:
 
 {% if_version gte: 3.8.x %}
 | `cost`   | Represents the financial or computational cost incurred based on the tokens used by the LLM during the request. Using this strategy can help you limit API usage based on the actual costs of processing the request, ensuring that expensive requests (in terms of token usage) are managed more carefully. This cost is calculated by taking the sum of multiplying the number of prompt tokens by the cost per prompt token (input cost) and by multiplying the number of completion tokens by the cost per completion token (output cost): `cost = prompt_tokens * input_cost + completion_tokens * output_cost`. The `input_cost` and `output_cost` fields must be defined in the AI Rate Limiting Advanced plugin for this to work. |
+
+{:.important}
+> **Important**: If using the `cost` strategy, please make sure to fill the `input_cost` and `output_cost` fields in the ai plugins.
 {% endif_version %}
 
 #### Request Prompt Function {#request-prompt-function}

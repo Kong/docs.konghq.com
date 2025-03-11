@@ -2,37 +2,6 @@
 
 # There are also oauth2, acl and mtls-auth but I don't have examples of how to use them yet
 AUTH_PLUGINS = %w[basic-auth hmac-auth jwt key-auth].freeze
-TERRAFORM_ENABLED_PLUGINS = %w[
-  key-auth
-  cors
-  rate-limiting
-  basic-auth
-  rate-limiting-advanced
-  openid-connect
-  jwt
-  prometheus
-  acl
-  request-termination
-  file-log
-  request-transformer
-  correlation-id
-  proxy-cache
-  request-transformer-advanced
-  response-transformer
-  response-transformer-advanced
-  ip-restriction
-  pre-function
-  oauth2
-  opentelemetry
-  ai-proxy
-  ai-prompt-guard
-  ai-prompt-template
-  ai-prompt-decorator
-  aws-lambda
-  jq
-  jwt-signer
-  saml
-].freeze
 
 module Jekyll
   module Drops
@@ -40,7 +9,8 @@ module Jekyll
       class Example < Liquid::Drop
         attr_reader :example, :type
 
-        def initialize(type:, example:, formats:) # rubocop:disable Lint/MissingSuper
+        def initialize(schema:, type:, example:, formats:) # rubocop:disable Lint/MissingSuper
+          @schema = schema
           @type = type
           @example = example
           @formats = formats
@@ -63,11 +33,15 @@ module Jekyll
         end
 
         def render_terraform?
-          terraform_implemented? && @formats.include?(:terraform)
+          kong_plugin? && plugin_config? && @formats.include?(:terraform)
         end
 
-        def terraform_implemented?
-          TERRAFORM_ENABLED_PLUGINS.include?(plugin_name)
+        def kong_plugin?
+          @schema.is_a?(PluginSingleSource::Plugin::Schemas::Kong)
+        end
+
+        def plugin_config?
+          !!@example.fetch('config', nil)
         end
 
         def auth_plugin?
@@ -112,10 +86,11 @@ module Jekyll
       end
 
       class HubExamples < Liquid::Drop
-        attr_reader :example, :formats
+        attr_reader :schema, :example, :formats
 
-        def initialize(schema:, example:, targets:, formats:) # rubocop:disable Lint/MissingSuper
+        def initialize(schema:, metadata:, example:, targets:, formats:) # rubocop:disable Lint/MissingSuper
           @schema = schema
+          @metadata = metadata
           @example = example
           @targets = targets
           @formats = formats
@@ -146,35 +121,42 @@ module Jekyll
         end
 
         def enable_globally?
-          @targets.include?(:global)
+          global = @metadata['global']
+
+          # Default to true if the key is not present
+          global = true unless @metadata.key?('global')
+
+          @targets.include?(:global) && global
         end
 
         def consumer
           return unless enable_on_consumer?
 
-          @consumer ||= Example.new(type: 'consumer', example:, formats:)
+          @consumer ||= Example.new(schema:, type: 'consumer', example:, formats:)
         end
 
         def global
-          @global ||= Example.new(type: 'global', example:, formats:)
+          return unless enable_globally?
+
+          @global ||= Example.new(schema:, type: 'global', example:, formats:)
         end
 
         def route
           return unless enable_on_route?
 
-          @route ||= Example.new(type: 'route', example:, formats:)
+          @route ||= Example.new(schema:, type: 'route', example:, formats:)
         end
 
         def service
           return unless enable_on_service?
 
-          @service ||= Example.new(type: 'service', example:, formats:)
+          @service ||= Example.new(schema:, type: 'service', example:, formats:)
         end
 
         def consumer_group
           return unless enable_on_consumer_group?
 
-          @consumer_group ||= Example.new(type: 'consumer_group', example:, formats:)
+          @consumer_group ||= Example.new(schema:, type: 'consumer_group', example:, formats:)
         end
       end
     end

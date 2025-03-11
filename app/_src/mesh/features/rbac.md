@@ -1,5 +1,6 @@
 ---
 title: Role-Based Access Control
+badge: enterprise
 ---
 
 Role-Based Access Control (RBAC) lets you restrict access to resources and actions to specified users or groups, based on user roles.
@@ -20,31 +21,8 @@ It is global-scoped, which means it is not bound to a mesh.
 {% navtab "targetRef" selectors %}
 For policies using the `targetRef` selector. You can specify which `targetRef` kinds users should have access to.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
-{% if_version lte:2.0.x %}
-```yaml
-apiVersion: kuma.io/v1alpha1
-kind: AccessRole
-metadata:
-  name: role-1
-spec:
-  rules:
-  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of Kuma resource kinds that are granted access. If it's empty, access is granted to all kinds.
-    names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
-    mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
-    access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
-    when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-    - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
-        kind: MeshService
-        name: backend
-    - targetRef:
-        kind: MeshSubset
-        tags:
-          k8s.kuma.io/namespace: kuma-demo
-```
-{% endif_version %}
-{% if_version gte:2.1.x %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: AccessRole
@@ -78,29 +56,8 @@ spec:
         targetRef:
           kind: Mesh
 ```
-{% endif_version %}
 {% endnavtab %}
 {% navtab Universal %}
-{% if_version lte:2.0.x %}
-```yaml
-type: AccessRole
-name: role-1
-rules:
-- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of Kuma resource types that are granted access. If it's empty, access is granted to all types.
-  names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
-  mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
-  access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
-  when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-  - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
-      kind: MeshService
-      name: backend
-  - targetRef:
-      kind: MeshSubset
-      tags:
-        k8s.kuma.io/namespace: kuma-demo
-```
-{% endif_version %}
-{% if_version gte:2.1.x %}
 ```yaml
 type: AccessRole
 name: role-1
@@ -131,18 +88,15 @@ rules:
       targetRef:
         kind: Mesh
 ```
-{% endif_version %}
 {% endnavtab %}
 {% endnavtabs %}
-{% if_version gte:2.1.x %}
 The lack of `targetRef`, `from`, or `to` means that a user can specify anything in this section.
 For example, the `when` element with a specific `from` section allows the user to pick anything for `targetRef` in the policy.
 
 If the policy contains multiple `to` elements, you must specify an RBAC qualifier for every single `to` element.
-{% endif_version %}
 {% endnavtab %}
 {% navtab Source and Destination selectors %}
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -200,12 +154,14 @@ rules:
 {% endnavtab %}
 {% endnavtabs %}
 
+{:.important}
+> **Important:** Granting access actions without binding them to specific resource types provides full access, including to Secrets and GlobalSecrets, posing security risks. For example, an AccessRole with `access: ["CREATE", "UPDATE", "DELETE"]` and no defined `types` allows modifying any resource, including secrets. Even without `GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN`, or `GENERATE_ZONE_TOKEN`, the user can retrieve secrets and use them to generate tokens manually. To prevent this, always bind access actions to specific resource types. Instead of unrestricted access, explicitly define allowed types, such as `types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshTrace"]`, to ensure the role can only manage those resources and not secrets or other sensitive data.
+
 ### AccessRoleBinding
 
-`AccessRoleBinding` assigns a set of `AccessRoles` to a set of subjects (users and groups).
-It is global-scoped, which means it is not bound to a mesh.
+`AccessRoleBinding` assigns a set of `AccessRoles` to a list of subjects (users or groups). Because these bindings are global in scope, they apply across all meshes, allowing centralized management of permissions.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -213,12 +169,12 @@ kind: AccessRoleBinding
 metadata:
   name: binding-1
 spec:
-  subjects: # a list of subjects that will be assigned roles
-  - type: User # type of the subject. Available values: ("User", "Group")
-    name: john.doe@example.com # name of the subject.
+  subjects:
+  - type: User
+    name: john.doe@example.com
   - type: Group
     name: team-a
-  roles: # a list of roles that will be assigned to the list of subjects.
+  roles:
   - role-1
 ```
 {% endnavtab %}
@@ -226,13 +182,52 @@ spec:
 ```yaml
 type: AccessRoleBinding
 name: binding-1
-subjects: # a list of subjects that will be assigned roles
-- type: User # type of the subject. Available values: ("User", "Group")
-  name: john.doe@example.com # name of the subject.
+subjects:
+- type: User
+  name: john.doe@example.com
 - type: Group
   name: team-a
-roles: # a list of roles that will be assigned to the list of subjects.
+roles:
 - role-1
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+#### Restricting the default AccessRoleBinding
+
+{:.important}
+> **Important:** [By default](/mesh/{{page.release}}/features/rbac/#default), {{site.mesh_product_name}} assigns the `admin` role to everyone in the `mesh-system:authenticated` and `mesh-system:unauthenticated` groups. This means every user automatically gets admin rights, even if you create a custom binding for them, they will also inherit the default admin role.
+
+To limit admin privileges to a specific group, update the default binding. For example, to grant admin rights only to members of the `mesh-system:admin` group, replace the default binding with the following:
+
+{% navtabs codeblock %}
+{% navtab Kubernetes %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRoleBinding
+metadata:
+  name: default
+spec:
+  subjects:
+  - type: Group
+    name: mesh-system:admin
+  # The `system:serviceaccounts:kube-system` group is required by Kubernetes controllers to manage {{site.mesh_product_name}} 
+  # resources, for example, cleaning up data plane objects when a namespace is removed.
+  - type: Group
+    name: system:serviceaccounts:kube-system
+  roles:
+  - admin
+```
+{% endnavtab %}
+{% navtab Universal %}
+```yaml
+type: AccessRoleBinding
+name: default
+subjects:
+- type: Group
+  name: mesh-system:admin
+roles:
+- admin
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -245,7 +240,7 @@ Let's go through example roles in the organization that can be created using {{s
 
 Mesh operator is a part of infrastructure team responsible for {{site.mesh_product_name}} deployment.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -276,44 +271,10 @@ This way {{site.mesh_product_name}} operators can execute any action.
 
 Service owner is a part of team responsible for given service. Let's take a `backend` service as an example.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
-{% if_version lte:2.0.x %}
-```yaml
-apiVersion: kuma.io/v1alpha1
-kind: AccessRole
-metadata:
-  name: backend-owner
-spec:
-  rules:
-  - mesh: default
-    types: ["TrafficPermission", "RateLimit"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-    - destinations:
-        match:
-          kuma.io/service: backend
-  - mesh: default
-    types: ["TrafficRoute", "HealthCheck", "CircuitBreaker", "FaultInjection", "Retry", "Timeout", "TrafficLog"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-    - sources:
-        match:
-          kuma.io/service: backend
-    - destinations:
-        match:
-          kuma.io/service: backend
-  - mesh: default
-    types: ["TrafficTrace", "ProxyTemplate"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-    - selectors:
-        match:
-          kuma.io/service: backend
-```
-{% endif_version %}
 [//]: # (MeshTCPRoute was added in `2.3.0`)
-{% if_version gte:2.1.x lte:2.2.x %}
+{% if_version eq:2.2.x %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: AccessRole
@@ -326,11 +287,8 @@ spec:
     access: ["CREATE", "DELETE", "UPDATE"]
     when:
     - targetRef:
-        kind: Mesh
-      to:
-        targetRef:
-          kind: MeshService
-          name: backend
+        kind: MeshService
+        name: backend
   - mesh: default
     types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
     access: ["CREATE", "DELETE", "UPDATE"]
@@ -339,8 +297,9 @@ spec:
         kind: Mesh
       from:
         targetRef:
-          kind: MeshService
-          name: backend
+          kind: MeshSubset
+          tags:
+            kuma.io/service: backend
     - targetRef:
         kind: Mesh
       to:
@@ -369,11 +328,8 @@ spec:
     access: ["CREATE", "DELETE", "UPDATE"]
     when:
     - targetRef:
-        kind: Mesh
-      to:
-        targetRef:
-          kind: MeshService
-          name: backend
+        kind: MeshService
+        name: backend
   - mesh: default
     types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
     access: ["CREATE", "DELETE", "UPDATE"]
@@ -382,8 +338,9 @@ spec:
         kind: Mesh
       from:
         targetRef:
-          kind: MeshService
-          name: backend
+          kind: MeshSubset
+          tags:
+            kuma.io/service: backend
     - targetRef:
         kind: Mesh
       to:
@@ -401,39 +358,8 @@ spec:
 {% endif_version %}
 {% endnavtab %}
 {% navtab Universal %}
-{% if_version lte:2.0.x %}
-```yaml
-type: AccessRole
-name: backend-owner
-rules:
-- mesh: default
-  types: ["TrafficPermission", "RateLimit"]
-  access: ["CREATE", "DELETE", "UPDATE"]
-  when:
-  - destinations:
-      match:
-        kuma.io/service: backend
-- mesh: default
-  types: ["TrafficRoute", "HealthCheck", "CircuitBreaker", "FaultInjection", "Retry", "Timeout", "TrafficLog"]
-  access: ["CREATE", "DELETE", "UPDATE"]
-  when:
-  - sources:
-      match:
-        kuma.io/service: backend
-  - destinations:
-      match:
-        kuma.io/service: backend
-- mesh: default
-  types: ["TrafficTrace", "ProxyTemplate"]
-  access: ["CREATE", "DELETE", "UPDATE"]
-  when:
-  - selectors:
-      match:
-        kuma.io/service: backend
-```
-{% endif_version %}
 [//]: # (MeshTCPRoute was added in `2.3.0`)
-{% if_version gte:2.1.x lte:2.2.x %}
+{% if_version eq:2.2.x %}
 ```yaml
 type: AccessRole
 name: backend-owner
@@ -443,11 +369,8 @@ rules:
   access: ["CREATE", "DELETE", "UPDATE"]
   when:
   - targetRef:
-      kind: Mesh
-    to:
-      targetRef:
-        kind: MeshService
-        name: backend
+      kind: MeshService
+      name: backend
 - mesh: default
   types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
   access: ["CREATE", "DELETE", "UPDATE"]
@@ -456,8 +379,9 @@ rules:
       kind: Mesh
     from:
       targetRef:
-        kind: MeshService
-        name: backend
+        kind: MeshSubset
+        tags:
+          kuma.io/service: backend
   - targetRef:
       kind: Mesh
     to:
@@ -483,11 +407,8 @@ rules:
   access: ["CREATE", "DELETE", "UPDATE"]
   when:
   - targetRef:
-      kind: Mesh
-    to:
-      targetRef:
-        kind: MeshService
-        name: backend
+      kind: MeshService
+      name: backend
 - mesh: default
   types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
   access: ["CREATE", "DELETE", "UPDATE"]
@@ -496,8 +417,9 @@ rules:
       kind: Mesh
     from:
       targetRef:
-        kind: MeshService
-        name: backend
+        kind: MeshSubset
+        tags:
+          kuma.io/service: backend
   - targetRef:
       kind: Mesh
     to:
@@ -516,18 +438,6 @@ rules:
 {% endnavtab %}
 {% endnavtabs %}
 
-{% if_version lte:2.0.x %}
-This way a service owners can:
-* Modify `RateLimit` and `TrafficPermission` that allows/restrict access to the backend service.
-  This changes the configuration of data plane proxy that implements `backend` service.
-* Modify connection policies (`TrafficRoute`, `HealthCheck`, `CircuitBreaker`, `FaultInjection`, `Retry`, `Timeout`, `RateLimit`, `TrafficLog`)
-  that matches backend service that connects to other services. This changes the configuration of data plane proxy that implements `backend` service.
-* Modify connection policies that matches any service that consumes backend service.
-  This changes the configuration of data plane proxies that are connecting to backend, but the configuration only affects connections to backend service.
-  It's useful because the service owner of backend has the best knowledge what (`Timeout`, `HealthCheck`) should be applied when communicating with their service.
-* Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
-{% endif_version %}
-{% if_version gte:2.1.x %}
 * Modify `MeshRateLimit` and `MeshTrafficPermission` that allows/restricts access to the backend service.
   This changes the configuration of the data plane proxy that implements the `backend` service.
 * Modify connection policies (`MeshHTTPRoute`, {% if_version gte:2.3.x inline:true %}`MeshTCPRoute`, {% endif_version %}`MeshHealthCheck`, `MeshCircuitBreaker`, `MeshFaultInjection`, `MeshRetry`, `MeshTimeout`, `MeshRateLimit`, `MeshAccessLog`)
@@ -536,7 +446,6 @@ This way a service owners can:
   This changes the configuration of data plane proxies that are connecting to the backend, but the configuration only affects connections to the backend service.
   It's useful because the service owner of the backend knows what (`MeshTimeout`, `MeshHealthCheck`) should be applied when communicating with their service.
 * Modify the `MeshTrace` or `MeshProxyPatch` that matches the backend service. This changes the configuration of the data plane proxy that implements the `backend` service.
-{% endif_version %}
 
 {:.note}
 > **Note**: When giving users `UPDATE` permission, remember to add `UPDATE` permission to all selectors they can switch between. For example, if a user only has access to `sources` selector, they won't be able to update policy with `destinations` selector or new `targetRef` selectors. Likewise, when a user only has access to the `targetRef` kind `MeshService`, they won't be able to update the policy to use a different `targetRef` kind.
@@ -544,26 +453,10 @@ This way a service owners can:
 ### Observability operator
 
 We may also have an infrastructure team which is responsible for the logging/metrics/tracing systems in the organization.
-Currently, those features are configured on `Mesh`, {% if_version lte:2.0.x inline:true %}`TrafficLog`, and `TrafficTrace`{% endif_version %}{% if_version gte:2.1.x inline:true %}`MeshAccessLog`, and `MeshTrace`{% endif_version %} objects.
+Currently, those features are configured on `Mesh`, `MeshAccessLog`, and `MeshTrace` objects.
 
-{% navtabs %}
+{% navtabs codeblock%}
 {% navtab Kubernetes %}
-{% if_version lte:2.0.x %}
-```yaml
-apiVersion: kuma.io/v1alpha1
-kind: AccessRole
-metadata:
-  name: observability-operator
-spec:
-  rules:
-  - mesh: '*'
-    types: ["TrafficLog", "TrafficTrace"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-  - types: ["Mesh"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-```
-{% endif_version %}
-{% if_version gte:2.1.x %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
 kind: AccessRole
@@ -577,22 +470,8 @@ spec:
   - types: ["Mesh"]
     access: ["CREATE", "DELETE", "UPDATE"]
 ```
-{% endif_version %}
 {% endnavtab %}
 {% navtab Universal %}
-{% if_version lte:2.0.x %}
-```yaml
-type: AccessRole
-name: observability-operator
-rules:
-- mesh: '*'
-  types: ["TrafficLog", "TrafficTrace"]
-  access: ["CREATE", "DELETE", "UPDATE"]
-- types: ["Mesh"]
-  access: ["CREATE", "DELETE", "UPDATE"]
-```
-{% endif_version %}
-{% if_version gte:2.1.x %}
 ```yaml
 type: AccessRole
 name: observability-operator
@@ -603,12 +482,11 @@ rules:
 - types: ["Mesh"]
   access: ["CREATE", "DELETE", "UPDATE"]
 ```
-{% endif_version %}
 {% endnavtab %}
 {% endnavtabs %}
 
 This way an observability operator can:
-* Modify {% if_version lte:2.0.x inline:true %}`TrafficLog` and `TrafficTrace`{% endif_version %}{% if_version gte:2.1.x inline:true %}`MeshAccessLog` and `MeshTrace`{% endif_version %} in any mesh
+* Modify `MeshAccessLog` and `MeshTrace` in any mesh
 * Modify any `Mesh`
 
 ### Single Mesh operator
@@ -616,7 +494,7 @@ This way an observability operator can:
 {{site.mesh_product_name}} lets us segment the deployment into many logical service meshes configured by Mesh object.
 We may want to give access to one specific Mesh and all objects connected with this Mesh.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -657,12 +535,7 @@ Kubernetes provides their own RBAC system, but it's not sufficient to cover use 
 * You cannot restrict access based on the content of the policy
 
 {{site.mesh_product_name}} RBAC works on top of Kubernetes RBAC.
-{% if_version lte:2.0.x %}
-For example, to restrict the access for a user to modify `TrafficPermission` for backend service, they need to be able to create `TrafficPermission` in the first place.
-{% endif_version %}
-{% if_version gte:2.1.x %}
 For example, to restrict the access for a user to modify `MeshTrafficPermission` for backend service, they need to be able to create `MeshTrafficPermission` in the first place.
-{% endif_version %}
 
 The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and groups.
 {{site.mesh_product_name}} RBAC on Kubernetes is implemented using Kubernetes Webhook when applying resources. This means you can only use Kubernetes users and groups for `CREATE`, `DELETE` and `UPDATE` access.
@@ -677,7 +550,7 @@ In a standalone deployment, the `default` `AccessRoleBinding` assigns this role 
 In a multi-zone deployment, the `default` `AccessRoleBinding` on the global control plane assigns this role to every authenticated and unauthenticated user.
 However, on the zone control plane, the `default` `AccessRoleBinding` is restricted to the `admin` `AccessRole` only.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -728,7 +601,7 @@ roles:
 
 To restrict access to `admin` only, change the default `AccessRole` policy:
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -741,12 +614,13 @@ spec:
     name: mesh-system:admin
   - type: Group
     name: system:masters
+  # The `system:serviceaccounts:kube-system` group is required by Kubernetes controllers to manage {{site.mesh_product_name}} 
+  # resources, for example, cleaning up data plane objects when a namespace is removed.
   - type: Group
     name: system:serviceaccounts:kube-system
   roles:
   - admin
 ```
-`system:serviceaccounts:kube-system` is required for Kubernetes controllers to manage {{site.mesh_product_name}} resources -- for example, to remove data plane objects when a namespace is removed.
 {% endnavtab %}
 {% navtab Universal %}
 ```yaml
@@ -1322,7 +1196,7 @@ You can perform partial tag value matching using `*` wildcards.
 
 For example, the following role:
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -1364,7 +1238,7 @@ rules:
 
 would allow a subject to create the following resource:
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -1405,7 +1279,6 @@ conf:
 {% endnavtab %}
 {% endnavtabs %}
 
-{% if_version gte:2.0.x %}
 ## What should I do if I've locked myself out?
 
 If you remove the default `AccessRoleBinding` and `AccessRole`, you might find yourself locked out and unable to edit any resources. If you encounter this situation, you can regain access to the cluster by following these steps:
@@ -1413,4 +1286,3 @@ If you remove the default `AccessRoleBinding` and `AccessRole`, you might find y
 1. [Configure the control-plane](/mesh/{{page.release}}/documentation/configuration/#modifying-the-configuration) by setting the: `KUMA_ACCESS_TYPE` environment variable to `static`, and then restart the control-plane.
 2. Create the default `AccessRoleBinding` and `AccessRole` (as described in the [default section](/mesh/{{page.release}}/features/rbac/#default)), or add new groups if necessary.
 3. Remove the `KUMA_ACCESS_TYPE` environment variable for the control-plane and restart the control-plane.
-{% endif_version %}

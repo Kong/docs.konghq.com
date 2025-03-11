@@ -10,6 +10,54 @@ The external control plane may be a {{ site.konnect_product_name }} control plan
 
 {% navtabs %}
 {% navtab Konnect %}
+
+{% if_version gte:1.4.x %}
+```yaml
+# Ensure that you create a secret containing your cluster certificate before applying this
+# kubectl create secret tls konnect-client-tls -n kong --cert=./tls.crt --key=./tls.key
+# See https://docs.konghq.com/gateway-operator/{{ page.release }}/get-started/konnect/install/ for complete instructions
+echo '
+kind: KonnectExtension
+apiVersion: gateway-operator.konghq.com/v1alpha1
+metadata:
+  name: example-konnect-config
+  namespace: kong
+spec:
+  controlPlaneRef:
+    type: konnectID
+    konnectID: <CP_ID>
+  controlPlaneRegion: <REGION>
+{%- if_version lt:1.5.0 %}
+  serverHostname: <HOSTNAME>
+{%- endif_version %}
+  konnectControlPlaneAPIAuthConfiguration:
+    clusterCertificateSecretRef:
+      name: konnect-client-tls
+---
+apiVersion: gateway-operator.konghq.com/v1beta1
+kind: DataPlane
+metadata:
+  name: dataplane-example
+  namespace: kong
+spec:
+  extensions:
+  - kind: KonnectExtension
+    name: example-konnect-config
+    group: gateway-operator.konghq.com
+  deployment:
+    podTemplateSpec:
+      spec:
+        containers:
+        - name: proxy
+          image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+          env:
+          - name: KONG_LOG_LEVEL
+            value: debug
+' | kubectl apply -f -
+```
+{% endif_version %}
+
+{% if_version lte:1.3.x %}
 ```yaml
 # Ensure that you create a secret containing your cluster certificate before applying this
 # kubectl create secret tls konnect-client-tls -n kong --cert=./tls.crt --key=./tls.key
@@ -66,6 +114,8 @@ spec:
               defaultMode: 420
 " | kubectl apply -f -
 ```
+{% endif_version %}
+
 {% endnavtab %}
 {% navtab Self Managed %}
 ```yaml

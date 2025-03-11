@@ -22,10 +22,24 @@
 
 ######################################################################
 
+
+## DCG seperate section
+
+/konnect/gateway-manager/data-plane-nodes/azure-peering/     /konnect/gateway-manager/dedicated-cloud-gateways/azure-peering/
+/konnect/gateway-manager/data-plane-nodes/transit-gateways/ /konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/
+/konnect/gateway-manager/provision-cloud-gateway/            /konnect/gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
+/konnect/gateway-manager/dedicated-cloud-gateways/   /konnect/gateway-manager/dedicated-cloud-gateways/
+/konnect/reference/custom-dns/      /konnect/dev-portal/customization/custom-dns/
+
 ## Saml SSO
 
 /konnect/org-management/oidc-idp/   /konnect/org-management/sso/
 /konnect/org-management/saml-idp/   /konnect/org-management/sso/
+
+
+## Service Catalog rename
+
+/konnect/servicehub/ /konnect/service-catalog/
 
 ## Kong Manager
 
@@ -40,6 +54,10 @@
 /hub/kong-inc/ai-proxy/how-to/anthropic/ /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/
 /hub/kong-inc/ai-proxy/how-to/mistral/   /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/mistral/
 /hub/kong-inc/ai-proxy/how-to/llama2/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/llama2/
+/hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/gemini/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
+/hub/kong-inc/ai-proxy/how-to/machine-learning-platform-integration-guides/bedrock/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
+/hub/kong-inc/ai-proxy-advanced/how-to/machine-learning-platform-integration-guides/gemini/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/gemini/
+/hub/kong-inc/ai-proxy-advanced/how-to/machine-learning-platform-integration-guides/bedrock/    /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/bedrock/
 
 ## App reg v2
 
@@ -49,7 +67,14 @@
 # API
 
 /konnect/api/portal-rbac/latest/*    /konnect/api/portal-management/latest/
-/konnect/api/portal-rbac/:version/*    /konnect/api/portal-management/latest/
+/konnect/api/portal-rbac/:version/*  /konnect/api/portal-management/latest/
+/konnect/api/portal/latest/*         /konnect-portal/api/latest/
+/konnect/api/portal/:version/*       /konnect-portal/api/latest/
+/konnect/api/runtime-groups/latest/*                  /konnect/api/control-planes/latest/
+/konnect/api/runtime-groups-configuration/latest/*    /konnect/api/control-plane-configuration/latest/
+/konnect/api/runtime-groups/:version/*                /konnect/api/control-planes/latest/
+/konnect/api/runtime-groups-configuration/:version/*  /konnect/api/control-plane-configuration/latest/
+
 
 # Konnect plugins
 
@@ -103,6 +128,16 @@
 /konnect/dev-portal/access-and-approval/azure/    /konnect/dev-portal/access-and-approval/sso/
 /konnect/dev-portal/access-and-approval/manage-app-reg-requests/    /konnect/dev-portal/access-and-approval/manage-app-connections/
 /konnect/dev-portal/access-and-approval/auto-approve-devs-apps/ /konnect/dev-portal/create-dev-portal/
+/konnect/dev-portal/access-and-approval/manage-teams    /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
+/konnect/api/portal-auth/portal-rbac-guide/   /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
+
+# Konnect Dev Portal audit logs
+/konnect/dev-portal/audit-logging/reference/    /konnect/reference/audit-logs/
+/konnect/org-management/audit-logging/reference/    /konnect/reference/audit-logs/
+/konnect/dev-portal/audit-logging/verify-signatures/  /reference/verify-signatures/
+/konnect/org-management/audit-logging/verify-signatures/    /reference/verify-signatures/
+/konnect/dev-portal/audit-logging/webhook-status/   /konnect/dev-portal/audit-logging/webhook/#view-audit-log-webhook-status
+
 
 # API markdown doc deprecation
 
@@ -153,9 +188,10 @@
 
 # 3.4
 
-/gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process
+/gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process/
+/gateway/:version/production/security-update-process /gateway/:version/support/vulnerability-patching-process/
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
-/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups
+/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups
 /konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
 
 # 3.3
@@ -229,6 +265,64 @@
 /deck/installation/                   /deck/latest/installation/
 /deck/terminology/                    /deck/latest/terminology/
 
+# Deck Single version doc redirects
+/deck/:version/                                          /deck/
+/deck/:version/terminology/                              /deck/
+/deck/:version/design-architecture/                      /deck/
+/deck/:version/use-case/                                 /deck/apiops/
+/deck/:version/compatibility-promise/                    /deck/support/
+/deck/:version/installation/                             /deck/install/
+/deck/:version/guides/getting-started/                   /deck/get-started/
+/deck/:version/guides/backup-restore/                    /deck/gateway/dump/
+/deck/:version/3.0-upgrade/                              /deck/reference/3.0-upgrade/
+/deck/:version/guides/ci-driven-configuration/            /deck/apiops/continuous-integration/
+/deck/:version/guides/apiops/                            /deck/file/openapi2kong/
+/deck/:version/guides/distributed-configuration/          /deck/apiops/federated-configuration/
+/deck/:version/guides/best-practices/                    /deck/reference/faq/#can-i-run-multiple-deck-processes-at-the-same-time
+/deck/:version/guides/kong-enterprise/                   /deck/gateway/rbac/
+/deck/:version/guides/konnect/                           /deck/gateway/konnect-configuration/
+/deck/:version/guides/run-with-docker/                   /deck/install/docker/
+/deck/:version/guides/multi-file-state/                   /deck/gateway/tags/
+/deck/:version/guides/deduplicate-plugin-configuration/   /deck/gateway/deduplicate/
+/deck/:version/guides/defaults/                          /deck/gateway/defaults/
+/deck/:version/guides/security/                          /deck/gateway/sensitive-data/
+/deck/:version/guides/vaults/                            /deck/gateway/sensitive-data/#configuring-kong-vaults
+/deck/:version/guides/environment-variables/             /deck/gateway/sensitive-data/#using-deck-environment-variables
+/deck/:version/reference/entities/                       /deck/reference/entities/
+/deck/:version/reference/deck/                           /deck/gateway/
+/deck/:version/reference/deck_completion/                /deck/
+/deck/:version/reference/deck_file/                       /deck/file/
+/deck/:version/reference/deck_file_add-plugins/           /deck/file/manipulation/plugins/#add-a-new-plugin
+/deck/:version/reference/deck_file_add-tags/              /deck/file/manipulation/tags/#add-tags
+/deck/:version/reference/deck_file_convert/               /deck/file/convert/
+/deck/:version/reference/deck_file_kong2kic/              /deck/file/kong2kic/
+/deck/:version/reference/deck_file_kong2tf/               /deck/file/kong2tf/
+/deck/:version/reference/deck_file_lint/                  /deck/file/lint/
+/deck/:version/reference/deck_file_list-tags/             /deck/file/manipulation/tags/#list-tags
+/deck/:version/reference/deck_file_merge/                 /deck/file/merge/
+/deck/:version/reference/deck_file_namespace/             /deck/file/manipulation/namespace/
+/deck/:version/reference/deck_file_openapi2kong/          /deck/file/openapi2kong/
+/deck/:version/reference/deck_file_patch/                 /deck/file/manipulation/patch/
+/deck/:version/reference/deck_file_remove-tags/           /deck/file/manipulation/tags/#remove-tags
+/deck/:version/reference/deck_file_render/                /deck/file/render/
+/deck/:version/reference/deck_file_validate/              /deck/file/validate/
+/deck/:version/reference/deck_gateway/                   /deck/gateway/
+/deck/:version/reference/deck_gateway_diff/              /deck/gateway/diff/
+/deck/:version/reference/deck_gateway_dump/              /deck/gateway/dump/
+/deck/:version/reference/deck_gateway_ping/              /deck/gateway/ping/
+/deck/:version/reference/deck_gateway_reset/             /deck/gateway/reset/
+/deck/:version/reference/deck_gateway_sync/              /deck/gateway/sync/
+/deck/:version/reference/deck_gateway_validate/          /deck/gateway/validate/
+/deck/:version/reference/deck_version/                   /deck/
+/deck/:version/faqs/                                     /deck/reference/faq/
+
+# Deck Pages that don't exist, but people might guess
+/deck/file/add-tags/                                    /deck/file/manipulation/tags/#add-tags
+/deck/file/remove-tags/                                 /deck/file/manipulation/tags/#remove-tags
+/deck/file/list-tags/                                   /deck/file/manipulation/tags/#list-tags
+/deck/file/patch/                                       /deck/file/manipulation/patch/
+/deck/file/namespace/                                   /deck/file/manipulation/namespace/
+/deck/file/add-plugins/                                 /deck/file/manipulation/plugins/#add-a-new-plugin
 
 # KUBERNETES
 /gateway-oss/2.6.x/kong-for-kubernetes/changelog    https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
@@ -432,13 +526,14 @@
 /hub/smartparkingtechnology/*                      /hub/
 /hub/bitnami/*                                     /gateway/latest/install/
 /hub/kong-inc/kong-terraform-aws/                  https://github.com/kong/kong-terraform-aws
+/hub/dynatrace/dynatrace/*                         /hub/kong-inc/dynatrace/:splat
+/hub/:vendor/:plugin/3.0.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
+/hub/:vendor/:plugin/3.1.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.1.x/:splat
+/hub/:vendor/:plugin/3.2.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.2.x/:splat
 
 # KONNECT
 
 /konnect/api/audit-logs/webhook/                    /konnect/org-management/audit-logging/webhook/
-/konnect/service-hub                                /konnect/servicehub/
-/konnect/service-hub/*                              /konnect/servicehub/:splat
-/konnect/service-hub/manage-services                /konnect/servicehub/
 /konnect/org-management/okta-role-mapping           /konnect/org-management/okta-idp/#map-roles-to-groups
 /konnect/key-concepts-and-terms/                    /konnect/
 /konnect/reference/konnect-api/                     /konnect/
@@ -452,8 +547,8 @@
 /konnect/getting-started/spec/publish/              /konnect/getting-started/publish-service/
 /konnect/getting-started/spec/implement/            /konnect/getting-started/implement-service/
 /konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
-/konnect/servicehub/dev-portal/service-documentation/   /konnect/servicehub/service-documentation/
-/konnect/servicehub/dev-portal/publish/              /konnect/servicehub/service-documentation/
+/konnect/servicehub/dev-portal/service-documentation/  /konnect/api-products/service-documentation/
+/konnect/servicehub/dev-portal/publish/              /konnect/service-catalog/
 /konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/
@@ -481,7 +576,6 @@
 /konnect/analytics/services-and-routes/              /konnect/analytics/
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
-/konnect/servicehub/plugins/                          /konnect/runtime-manager/plugins/
 
 /konnect/getting-started/configure-service/           /konnect/getting-started/productize-service/
 /konnect/getting-started/implement-service/           /konnect/getting-started/deploy-service
@@ -799,8 +893,7 @@
 /mesh/:version/explore/gui/ /mesh/:version/production/gui/
 /mesh/:version/documentation/upgrades/  /mesh/:version/production/upgrades-tuning/upgrades/
 /mesh/:version/documentation/fine-tuning/ /mesh/:version/production/upgrades-tuning/fine-tuning/
-/mesh/:version/installation/* /mesh/:version/production/install-kumactl/
-/mesh/:version/install/* /mesh/:version/production/install-kumactl/
+/mesh/:version/install /mesh/:version/introduction/install/
 /docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
 /mesh/:version/crds/* /assets/mesh/:version/raw/crds/:splat
 /mesh/:version/protos/* /assets/mesh/:version/raw/protos/:splat
@@ -1003,6 +1096,8 @@
 /enterprise/2.3.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.3.x/:splat
 /enterprise/2.4.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.4.x/:splat
 /enterprise/2.5.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.5.x/:splat
+/enterprise/2.6.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.6.x/:splat
+/enterprise/2.7.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.7.x/:splat
 
 # COMMUNITY DOC ARCHIVES
 /gateway-oss/2.5.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.5.x/:splat
@@ -1046,6 +1141,12 @@
 /0.4.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.4.x/:splat
 /0.3.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.3.x/:splat
 /0.2.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.2.x/:splat
+
+# GATEWAY DOC ARCHIVES
+/gateway/3.0.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.0.x/:splat
+/gateway/3.1.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.1.x/:splat
+/gateway/3.2.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.2.x/:splat
+
 
 # COMMUNITY DOC REBRANDING
 /community   https://konghq.com/community-resources/

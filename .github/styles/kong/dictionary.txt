@@ -7,7 +7,9 @@ allowlist
 Amal
 Amberflo
 apiVersion
+APIm
 Arya
+auditability
 Autonegotiation
 autoscale
 autoscales
@@ -16,6 +18,7 @@ backfilled
 Backfilling
 backfilling
 APIOps
+gitops
 Bagdi
 Bintray
 Bitnami
@@ -34,6 +37,7 @@ DNs
 DPP
 DPPs
 Datadog
+Dynatrace
 Dex
 ElastiCache
 Entra
@@ -44,9 +48,11 @@ Github
 Gluu
 Goroutine
 Grafana
+Hasura
 HTTPie
 istioctl
 Imperva
+Inigo
 Istio
 Istio's
 Jira
@@ -57,6 +63,7 @@ JSONObjects
 JSONObject
 ketama
 Keycloak
+Kibana
 knative
 Knative
 Knative's
@@ -69,6 +76,7 @@ Kuma
 kustomizations
 kustomize
 Kustomize
+LangChain
 Librato
 Loggly
 Lua's
@@ -84,6 +92,7 @@ Nginx
 Nginx's
 Node.js
 Noname
+Nuxt
 OAuth
 Okta
 Okta's
@@ -152,6 +161,7 @@ backporting
 backtrace
 Bagdi
 bcc
+bindable
 Bintray
 Bitnami
 blockquote
@@ -163,6 +173,7 @@ booleans
 brotli
 burstable
 CAs
+callout
 certificate_admin
 charset
 chatbot
@@ -173,6 +184,7 @@ clipanion
 CLIs
 CloudFormation
 Cloudformation
+cmd
 cncf
 cncf's
 Cognito
@@ -192,6 +204,7 @@ Datadog
 datadog
 datagram
 datagrams
+datakit
 dataplane
 dataplanes
 db-ip
@@ -204,6 +217,7 @@ denylist
 deployer
 dereference
 dereferenced
+dereferencing
 deserialization
 deserialize
 deserialized
@@ -227,10 +241,12 @@ ElastiCache
 elbs
 enablement
 enqueued
+enqueues
 enum
 env
 Equinix
 Equinix
+etag
 etcd
 failover
 Fargate
@@ -238,6 +254,8 @@ favicon
 filepath
 filetype
 filetypes
+finalizer
+finalizers
 firewalled
 flamegraph
 full_name
@@ -250,6 +268,7 @@ Github
 glibc
 globbing
 Gluu
+goecho
 gojira
 Golang
 Goroutine
@@ -260,7 +279,9 @@ grpcs
 grpcurl
 gui
 guis
+GWLBs
 gzip
+gzipped
 hackathon
 hackathons
 hardcoded
@@ -273,11 +294,13 @@ healthchecks
 hostname
 hostnames
 href
+HTML
 http
 httpbin
 HTTPie
 https
 IdPs
+If-Match
 impactful
 Imperva
 inbounds
@@ -294,6 +317,7 @@ iptables
 Istio
 Istio's
 istioctl
+jaq
 jetstack
 Jira
 journald
@@ -368,6 +392,7 @@ mimetype
 minifier
 minikube
 minio
+misconfigurations
 misconfigured
 Moesif
 MongoDB
@@ -388,6 +413,7 @@ nginx
 Nginx's
 ngrok
 ngx_wasm_module
+NLBs
 Node.js
 Noname
 nopp
@@ -417,6 +443,7 @@ perf
 performant
 petstore
 pgdump
+pgvector
 pipeline
 pipelined
 pipelines
@@ -444,6 +471,7 @@ Protobuf
 protobuf
 proxied
 proxying
+Qdrant
 querystring
 ratelimit
 rbac
@@ -462,6 +490,7 @@ remediation
 remediations
 repo
 requery
+Requeue
 Resty
 retryOn
 reusability
@@ -474,8 +503,8 @@ routable
 ruleset
 runloop
 runtime
-runtime_groups
 runtimes
+runtime_groups
 SAML
 sandboxed
 sandboxing
@@ -496,8 +525,8 @@ sni
 snis
 Splunk
 ssl
-ssl_cert_key
 ssl_certificate
+ssl_cert_key
 sso
 Stap
 stapxx
@@ -514,12 +543,14 @@ subcomponents
 submodule
 submodule's
 subnet
+subnets
 substring
 subtable
 subtables
 subtree
 subtrees
 sudo
+Supabase
 superset
 svg
 svgs
@@ -573,10 +604,13 @@ unnormalized
 unpackage
 unparsed
 unprocessable
+unproxied
 unpublish
 unpublishing
 unregister
 unregistering
+unset
+unsetting
 unshorten
 unshortened
 unstash
@@ -606,6 +640,7 @@ validator
 validators
 vararg
 vms
+vnet
 Vue
 Wallarm
 Wasm
@@ -623,9 +658,11 @@ workspace
 workspace's
 xbox
 xenial
+XPath
 yaml
 yml
 yq
 Zipkin
 zipkin
 zsh
+Rulesets

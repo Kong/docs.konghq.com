@@ -9,6 +9,10 @@
       url: /network-resiliency/
     - text: Port and Network Requirements
       url: /network/
+    - text: Private Connections to Other Cloud Providers
+      items:
+        - text: Create a private connection with AWS PrivateLink
+          url: /private-connections/aws-privatelink/
     - text: Geographic Regions
       url: /geo/
     - text: Compatibility
@@ -41,7 +45,31 @@
     - text: Overview
       url: /gateway-manager/
     - text: Dedicated Cloud Gateways
-      url: /gateway-manager/dedicated-cloud-gateways/
+      items: 
+      - text: Overview
+        url: /gateway-manager/dedicated-cloud-gateways/
+      - text: Provision a Dedicated Cloud Gateway
+        url: /gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
+      - text: Securing Backend Traffic
+        url: /gateway-manager/dedicated-cloud-gateways/securing-backend-traffic
+      - text: Transit Gateways
+        url: /gateway-manager/dedicated-cloud-gateways/transit-gateways
+      - text: Azure VNET Peering
+        url: /gateway-manager/dedicated-cloud-gateways/azure-peering
+      - text: Custom Domains
+        url: /gateway-manager/dedicated-cloud-gateways/custom-dns/
+      - text: Data plane logs
+        url: /gateway-manager/dedicated-cloud-gateways/data-plane-logs
+    - text: Serverless Gateways
+      items: 
+        - text: Overview
+          url: /gateway-manager/serverless-gateways/
+        - text: Provision a serverless Gateway
+          url: /gateway-manager/serverless-gateways/provision-serverless-gateway/
+        - text: Securing Backend Traffic
+          url: /gateway-manager/serverless-gateways/securing-backend-traffic/
+        - text: Custom Domains
+          url: /gateway-manager/serverless-gateways/custom-dns/
     - text: Data Plane Nodes
       items:
         - text: Installation Options
@@ -58,10 +86,6 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
-        - text: Transit Gateways
-          url: /gateway-manager/data-plane-nodes/transit-gateways
-    - text: Provision a Dedicated Cloud Gateway
-      url: /gateway-manager/provision-cloud-gateway/
     - text: Control Plane Groups
       items:
         - text: Overview
@@ -88,15 +112,21 @@
               url: ../../gateway/latest/plugin-development/
               generate: false
         - text: Create Consumer Groups
-          url: ../../hub/kong-inc/rate-limiting-advanced/how-to
+          url: /gateway-manager/configuration/consumer-groups/
         - text: Secrets Management
           items:
             - text: Overview
               url: /gateway-manager/configuration/vaults/
+            - text: Konnect Config Store
+              url: /gateway-manager/configuration/config-store/
             - text: Set Up and Use a Vault in Konnect
               url: /gateway-manager/configuration/vaults/how-to/
         - text: Manage Control Plane Configuration with decK
           url: /gateway-manager/declarative-config/
+    - text: Active Tracing
+      items:
+         - text: Overview
+           url: /gateway-manager/active-tracing
     - text: KIC Association
       url: /gateway-manager/kic/
     - text: Backup and Restore
@@ -105,6 +135,7 @@
       url: /gateway-manager/version-compatibility/
     - text: Troubleshooting
       url: /gateway-manager/troubleshoot/
+
 
 - title: Mesh Manager
   icon: /assets/images/icons/konnect/icn-mesh-manager-nav.svg
@@ -118,11 +149,29 @@
     - text: Migrate a self-managed zone control plane to Konnect
       url: /mesh-manager/migrate-zone/
 
-- title: Service Hub
+- title: Service Catalog
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
-      url: /servicehub/
+      url: /service-catalog/
+    - text: Scorecards
+      url: /service-catalog/scorecards/
+    - text: Integrations
+      items:
+        - text: Overview
+          url: /service-catalog/integrations/
+        - text: GitHub
+          url: /service-catalog/integrations/github/
+        - text: PagerDuty
+          url: /service-catalog/integrations/pagerduty/
+        - text: SwaggerHub
+          url: /service-catalog/integrations/swaggerhub/
+        - text: Traceable
+          url: /service-catalog/integrations/traceable/
+        - text: Datadog
+          url: /service-catalog/integrations/datadog/
+        - text: GitLab
+          url: /service-catalog/integrations/gitlab/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
@@ -158,8 +207,10 @@
           url: /dev-portal/access-and-approval/add-teams/
         - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
-        - text: Configure SSO for Dev Portal
+        - text: Configure generic SSO for Dev Portal
           url: /dev-portal/access-and-approval/sso/
+        - text: Configure Okta SSO for Dev Portal
+          url: /dev-portal/access-and-approval/okta-idp/
     - text: Application Lifecycle
       url: /dev-portal/applications/application-overview/
     - text: Register and create an application as a developer
@@ -183,6 +234,14 @@
 
     - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
+    - text: Audit Logging
+      items:
+        - text: Overview
+          url: /dev-portal/audit-logging/
+        - text: Set up an Audit Log Webhook
+          url: /dev-portal/audit-logging/webhook/
+        - text: Set up an Audit Log Replay Job
+          url: /dev-portal/audit-logging/replay-job/
     - text: Portal Customization
       items:
         - text: Overview
@@ -191,6 +250,8 @@
           url: /dev-portal/customization/self-hosted-portal/
         - text: Host your Dev Portal with Netlify
           url: /dev-portal/customization/netlify/
+        - text: Custom Domains
+          url: /dev-portal/customization/custom-dns/
     - text: Dev Portal SDK
       url: https://www.npmjs.com/package/@kong/sdk-portal-js
       absolute_url: true
@@ -210,6 +271,7 @@
       url: /analytics/use-cases/
     - text: Requests
       url: /analytics/api-requests/
+
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
@@ -233,13 +295,15 @@
           url: /org-management/users/
         - text: Manage System Accounts
           url: /org-management/system-accounts/
+        - text: Personal Access Tokens
+          url: /org-management/access-tokens/
         - text: Social Identity Login
           url: /org-management/social-identity-login/
         - text: Org Switcher
           url: /org-management/org-switcher/
         - text: Configure Generic SSO
           url: /org-management/sso/
-        - text: Configure Okta
+        - text: Configure Okta SSO 
           url: /org-management/okta-idp/
         - text: Login Sessions Reference
           url: /org-management/sessions-reference/
@@ -253,10 +317,6 @@
           url: /org-management/audit-logging/webhook/
         - text: Set up an Audit Log Replay Job
           url: /org-management/audit-logging/replay-job/
-        - text: Verify Audit Log Signatures
-          url: /org-management/audit-logging/verify-signatures/
-        - text: Log Reference
-          url: /org-management/audit-logging/reference/
     - text: Account and Org Deactivation
       url: /org-management/deactivation/
 
@@ -342,7 +402,7 @@
     - text: Portal Client API
       items:
         - text: API Spec
-          url: /konnect/api/portal/latest/
+          url: /konnect-portal/api/latest/
           absolute_url: true
           generate: false
           target_blank: true
@@ -350,25 +410,6 @@
       items:
         - text: API Spec
           url: /konnect/api/portal-management/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Portal RBAC API
-      items:
-        - text: API Spec
-          url: /konnect/api/portal-rbac/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Deprecated APIs
-      items:
-        - text: (Deprecated) Runtime Configuration API
-          url: /konnect/api/runtime-groups-configuration/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-        - text: (Deprecated) Runtime Groups API
-          url: /konnect/api/runtime-groups/latest/
           absolute_url: true
           generate: false
           target_blank: true
@@ -386,9 +427,13 @@
       url: /reference/labels/
     - text: Plugin Ordering Reference
       url: /reference/plugins/
-    - text: Custom Domains
-      url: /reference/custom-dns/
     - text: Konnect Search
       url: /reference/search/
     - text: Terraform Provider
       url: /reference/terraform/
+    - text: Audit Logs
+      url: /reference/audit-logs/
+    - text: Verify audit log signatures
+      url: /reference/verify-signatures/
+    - text: IdP SAML attribute mapping
+      url: /reference/saml-idp-mappings/

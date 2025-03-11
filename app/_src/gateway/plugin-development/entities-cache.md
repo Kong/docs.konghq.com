@@ -232,7 +232,7 @@ local cache_key = kong.db.keyauth_credentials:cache_key("abcd")
 ```
 
 This would produce a `cache_key` for the API key `"abcd"` (retrieved from one
-of the query's arguments) that we can the use to retrieve the key from the
+of the query's arguments) that we can then use to retrieve the key from the
 cache (or fetch from the database if the cache is a miss):
 
 ```lua

@@ -5,14 +5,16 @@ RSpec.describe Jekyll::Drops::Plugins::HubExamples do
     PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name:,
       vendor: 'kong-inc',
-      version: version
+      version: version,
+      site:
     )
   end
   let(:example) { schema.example }
+  let(:metadata) { {} }
   let(:targets) { [:consumer, :route, :global, :service, :consumer_group] }
   let(:formats) { [:curl, :yaml, :kubernetes] }
 
-  subject { described_class.new(schema:, example:, formats:, targets:) }
+  subject { described_class.new(schema:, metadata:, example:, formats:, targets:) }
 
   describe '#render?' do
     context 'when there is an example for the plugin' do
@@ -66,7 +68,20 @@ RSpec.describe Jekyll::Drops::Plugins::HubExamples do
   end
 
   describe '#global' do
-    it { expect(subject.global).to be_an_instance_of(Jekyll::Drops::Plugins::Example) }
+    context 'when the plugin does not have an explicit global config' do
+      let(:metadata) { {} }
+      it { expect(subject.global).to be_an_instance_of(Jekyll::Drops::Plugins::Example) }
+    end
+
+    context 'when the plugin can be enabled globally' do
+      let(:metadata) { { 'global' => true } }
+      it { expect(subject.global).to be_an_instance_of(Jekyll::Drops::Plugins::Example) }
+    end
+
+    context 'when the plugin can not be enabled globally' do
+      let(:metadata) { { 'global' => false } }
+      it { expect(subject.global).to be_nil }
+    end
   end
 
   describe '#route' do

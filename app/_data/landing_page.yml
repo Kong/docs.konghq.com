@@ -1,24 +1,28 @@
 features:
   - title: Key features
     items:
-      - name: Service Hub
-        description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every API across your entire architecture.
+      - name: AI Gateway
+        description: Deploy a multi-LLM AI Gateway for GenAI infrastructure to semantically route, secure, observe, accelerate, and govern AI provider use and implementation.
+        icon: /assets/images/icons/documentation/icn-ai.svg
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /gateway/latest/ai-gateway/
+      - name: Service Catalog
+        description: Build a comprehensive catalog of all services running in your organization, both Konnect-internal applications (like Gateway Manager and Mesh Manager) as well as external applications (like GitHub and PagerDuty).
         icon: /assets/images/landing-page/card-icons/service-hub.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /konnect/servicehub/
+            url: /konnect/service-catalog/
 
       - name: Dev Portal
         description: Streamline developer onboarding with a self-service developer experience, letting developers discover, register, and consume published services.
         icon: /assets/images/landing-page/card-icons/dev-portal.svg
         links:
-          - text: Overview (cloud)
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
             url: /konnect/dev-portal/
-          - text: Self-managed
-            icon: /assets/images/icons/icn-doc.svg
-            url: /gateway/latest/kong-enterprise/dev-portal/
 
       - name: Advanced Analytics
         description: View granular analytics with Konnect Advanced Analytics to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
@@ -59,13 +63,13 @@ features:
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /deck/latest/
+            url: /deck/
           - text: Get Started
             icon: /assets/images/icons/icn-doc.svg
-            url: /deck/latest/guides/getting-started/
+            url: /deck/get-started/
           - text: APIOps with decK
             icon: /assets/images/icons/icn-doc.svg
-            url: /deck/latest/guides/apiops/
+            url: /deck/apiops/
 
       - name: Kong Gateway Operator
         description: Manage your Kong Ingress Controller, Kong Gateway Data Planes, or both together when running on Kubernetes.

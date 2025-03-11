@@ -25,10 +25,13 @@ Here are a few benefits of running KIC in {{site.konnect_short_name}} over a sel
 
 To associate your KIC data plane nodes with {{site.konnect_short_name}}, use the setup wizard to add your KIC deployment to a KIC control plane.  
 
-In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Gateway Manager](https://cloud.konghq.com/gateway-manager)**, then click **New Control Plane** > **{{site.kic_product_name}}**.
+In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Gateway Manager](https://cloud.konghq.com/gateway-manager)**, then click **New Gateway** > **{{site.kic_product_name}}**.
 
 {:.note}
-> **Note**: KIC OSS and {{site.base_gateway}} Free users can connect to {{site.konnect_short_name}}’s Free tier, while {{site.ee_product_name}} users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.ee_product_name}}, see [Using {{site.ee_product_name}}](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the {{site.kic_product_name}} documentation.
+> **Note**: KIC OSS and {{site.base_gateway}} Free users can connect to {{site.konnect_short_name}}’s Plus tier, while {{site.ee_product_name}} users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.ee_product_name}}, see [Customize Images](/kubernetes-ingress-controller/latest/guides/customize/image/#kong-gateway-enterprise) in the {{site.kic_product_name}} documentation.
+> <br>
+> All licenses are automatically propagated from the {{site.konnect_short_name}} control plane to any connected nodes. You do not need to manage these
+licenses manually.
 
 ### Prerequisites
 
@@ -53,6 +56,11 @@ Item | Description
 **KIC Details** | This section displays the status of your KIC data plane node. The different status options are: Fully Operational, Partially Operational, Not Operational, Unknown, and Disconnected. See the UI for troubleshooting steps related to these statuses. 
 **Summary** | This section displays the traffic and error rate of your KIC data plane node.  
 **Analytics** | Analytics data for the KIC data plane node. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/). 
+
+### Optimize performance of synchronizing configuration
+
+When your environment has many `KongConsumer`s, they can slow down your configuration synchronization with {{site.konnect_short_name}}. {{site.kic_product_name}} 3.3 and later provides a `--disable-consumer-sync` flag to disable synchronizing consumers with {{site.konnect_short_name}}. You can enable this flag to make the synchronization faster. See [{{site.kic_product_name}} CLI arguments](/kubernetes-ingress-controller/latest/reference/cli-arguments/) for more details.
+
 
 ## KIC analytics compatibility
 

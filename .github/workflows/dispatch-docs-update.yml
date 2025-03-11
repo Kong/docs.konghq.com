@@ -1,0 +1,16 @@
+name: Dispatch docs update
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT }}
+          repository: Kong/docs.konghq.com-jp
+          event-type: DOCS_UPDATED

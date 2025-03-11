@@ -1,194 +1,239 @@
 <template>
-  <EmptyState
-    v-if="productError"
-    is-error
-    class="mt-6"
-    :message="productError"
-  />
-  <template v-else>
-    <div v-if="activeProductVersionId" class="app-container flex pb-0 product fixed-position">
-      <div class="sidebar-wrapper">
-        <Sidebar
-          class="sidebar"
-          :product="product"
-          :active-product-version-id="activeProductVersionId"
-          @operation-selected="onOperationSelected"
+  <div v-if="tableOfContents" class="sidebar-mobile">
+    <button
+      type="button"
+      @click="openSlideoutToc"
+    >
+      <MenuIcon />
+    </button>
+  </div>
+
+  <div>
+    <KSlideout
+      v-if="!loading && tableOfContents"
+      :title="parsedDocument?.name || 'Table of Contents'"
+      :visible="slideoutTocVisible"
+      @close="hideSlideout"
+    >
+      <SpecRendererToc
+        v-if="slideoutTocVisible"
+        navigation-type="hash"
+        :base-path="basePath"
+        :table-of-contents="tableOfContents"
+        :control-address-bar="true"
+        :current-path="currentPathTOC"
+        @item-selected="itemSelected"
+      />
+    </KSlideout>
+
+    <KSkeleton v-if="loading" type="spinner" class="spinner"/>
+
+    <div v-if="!loading" class="app-container">
+      <aside class="sidebar">
+        <KSelect
+          :items="versions"
+          @selected="onVersionSelect"
+          class="mt-2"
         />
-      </div>
+
+        <SpecRendererToc
+          v-if="!loading && tableOfContents && !slideoutTocVisible"
+          navigation-type="hash"
+          :base-path="basePath"
+          :table-of-contents="tableOfContents"
+          :control-address-bar="true"
+          :current-path="currentPathTOC"
+          @item-selected="itemSelected"
+        />
+      </aside>
 
       <div class="spec-content">
-        <KAlert
-          v-if="deprecatedProductVersion"
-          appearance="warning"
-          class="deprecated-warning"
-          message="This product version is now deprecated. The endpoints will remain fully usable until this version is sunsetted."
-        />
-
-        <div class="swagger-ui has-sidebar breadcrumbs">
+        <div class="breadcrumbs">
           <KBreadcrumbs :items="breadcrumbs" />
         </div>
 
-        <Spec
-          :product="product"
-          :product-version-id="activeProductVersionId"
-          :active-operation="activeOperation"
+        <KAlert
+          show-icon
+          v-if="pageI18n"
+          class="deprecated-warning"
+          :message=pageI18n.banner
+        />
+
+        <SpecDocument
+          v-if="!loading && parsedDocument"
+          :document="parsedDocument"
+          navigation-type="hash"
+          :base-path="basePath"
+          :control-address-bar="true"
+          @content-scrolled="onDocumentScroll"
+          :current-path="currentPathDOC"
         />
       </div>
     </div>
-  </template>
+  </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch, reactive } from 'vue'
-import { sortByDate } from '~/javascripts/helpers/sortBy.js'
-import { fetchAll } from '~/javascripts/helpers/fetchAll.js'
-import getMessageFromError from '~/javascripts/helpers/getMessageFromError.js'
-import ApiService from '~/javascripts/services/api.js'
-import EmptyState from '../components/EmptyState.vue'
-import Spec from '../components/Spec.vue'
-import Sidebar from '../components/Sidebar.vue'
+import { onBeforeMount, ref, watch, computed } from 'vue';
+import { SpecDocument, SpecRendererToc, parseSpecDocument,  parsedDocument, tableOfContents } from '@kong/spec-renderer-dev';
+import ApiService from '../services/api.js';
+import { KSkeleton, KSelect, KSlideout } from '@kong/kongponents';
+import { MenuIcon } from '@kong/icons'
+import '@kong/kongponents/dist/style.css';
 
-const product = ref(null);
-const activeProductVersionId = ref(null);
-const activeProductVersionName= ref(null);
-const productIdParam = ref(window.oas.product.id);
-const productVersionParam = ref(window.oas.version.id);
-const productsAPI = new ApiService().productsAPI;
+const loading = ref(true);
 const versionsAPI = new ApiService().versionsAPI;
-const activeOperation = ref(null);
-const state = reactive({ activeOperation });
-const productError = ref(null);
-const deprecatedProductVersion = ref(false);
+const productId = ref(window.oas.product.id);
+const productVersionId = ref(window.oas.version.id);
+const specText = ref('');
+const currentPathTOC = ref(window.location.hash.substring(1));
+const currentPathDOC = ref(window.location.hash.substring(1));
+const basePath = window.location.pathname;
+const slideoutTocVisible = ref(false)
+const pageI18n = ref(window.pageI18n);
+
+const versions = window.versions.map((v) => {
+  return { ...v, selected: v.id === productVersionId.value };
+});
 
 const breadcrumbs = computed(() => {
   return [
     { key: 'product-catalog', to: '/api/', text: 'Catalog' },
-    { key: 'api-product', title: product.value.name, text: product.value.name }
   ];
 });
 
-function onOperationSelected(event) {
-  activeOperation.value = event;
-}
-
-onMounted(async () => {
-  await fetchProduct();
-  initActiveProductVersionId();
+onBeforeMount(async () =>  {
+  await fetchSpec();
 })
 
-async function fetchProduct () {
-  const id = productIdParam.value;
+watch((specText), async (newSpecText, oldSpecText) => {
+  await parseSpecDocument(newSpecText, {
+    traceParsing: false,
+    specUrl: null,
+    withCredentials: false,
+  })
+})
 
-  try {
-    const { data } = await productsAPI.getProduct({ productId: id })
-
-    const productWithVersion = {
-      ...data,
-      versions: await fetchAll(meta => versionsAPI.listProductVersions({ ...meta, productId: id }))
-    }
-
-    product.value = productWithVersion;
-  } catch (err) {
-    console.error(err);
-    productError.value = getMessageFromError(err);
-  }
+async function fetchSpec() {
+  let response = await versionsAPI.getProductVersionSpec({
+    productId: productId.value,
+    productVersionId: productVersionId.value,
+  }).catch(e => {
+    console.log(e)
+  }).finally(() => {
+    loading.value = false;
+  });
+  specText.value = response.data.content
 }
 
-function initActiveProductVersionId () {
-  if (!product.value) {
-    return
+const onDocumentScroll = (path) => {
+  currentPathTOC.value = path
+  // we need to re-calculate initiallyExpanded property based on the new path
+  window.history.pushState({}, '', basePath + path)
+}
+
+const itemSelected = (id) => {
+  currentPathTOC.value = id;
+  currentPathDOC.value = id;
+
+  slideoutTocVisible.value = false;
+}
+
+const onVersionSelect = (version) => {
+  let path = version.value;
+  if (window.location.hash !== '') {
+    path += window.location.hash;
   }
+  window.location.href = path;
+  return;
+}
 
-  const versions = product.value.versions
-    .slice()
-    .sort(sortByDate('created_at'))
+const hideSlideout = () => {
+  slideoutTocVisible.value = false
+}
 
-  if (!versions) {
-    return
-  }
-
-  const val = productVersionParam.value?.toLowerCase()
-  if (val) {
-    const newProductVersion = versions.find(
-      (productVersion) => productVersion.id === val || productVersion.name?.toLowerCase() === val
-    )
-
-    if (newProductVersion) {
-      activeProductVersionId.value = newProductVersion.id;
-      deprecatedProductVersion.value = newProductVersion.deprecated;
-    }
-  }
-
-  if (!activeProductVersionId.value) {
-    activeProductVersionId.value = versions[0]?.id
-  }
+const openSlideoutToc = async () => {
+  slideoutTocVisible.value = true
 }
 </script>
 
 <style scoped>
 .app-container {
   display: flex;
+  gap: 40px;
+  padding: 0 40px;
 }
 
-.app-container .breadcrumbs {
-  position: relative;
-  left: var(--spacing-xl);
-  top: var(--spacing-xl);
-}
-
-.breadcrumbs :deep(.k-breadcrumbs .k-breadcrumbs-item .k-breadcrumb-divider) {
-  line-height: 0;
-}
-
-.sidebar-wrapper {
-  flex: 0 0 auto;
-  position: sticky;
-  height: calc(100vh - 60px);
-  margin-top: 60px;
-  top: 60px;
-  border-right: 1px solid var(--section_colors-stroke);
-}
-.sidebar {
-  height: 100%;
-  overflow-y: auto;
-}
 .spec-content {
-  flex: 1 1 auto;
-  overflow: auto;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 100px;
 }
+
+.sidebar {
+  display: none;
+  position: sticky;
+  left: 0;
+  top: 100px;
+  flex-direction: column;
+  gap: 12px;
+  width: 256px;
+  flex-shrink: 0;
+  height: 100vh;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.sidebar-mobile {
+  display: flex;
+  position: sticky;
+  top: 60px;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 208px;
+}
+
 .deprecated-warning.k-alert {
   border-radius: 0;
   position: sticky;
   top: 0;
   z-index: 1;
 }
-.product .deprecated-alert {
-  padding: 14px;
-  font-family: inherit;
-  font-size: 1rem;
-  border-radius: 4px;
-  color: var(--KAlertWarningColor, var(--yellow-500, color(yellow-500)));
-  border-color: var(--KAlertWarningBorder, var(--yellow-200, color(yellow-200)));
-  background-color: var(--KAlertWarningBackground, var(--yellow-100, color(yellow-100)));
+:deep(.input) {
+  height: auto !important;
+  margin-bottom: unset !important;
 }
 
-.product .container .breadcrumbs {
-  position: relative;
-  left: var(--spacing-xs)
+:deep(summary) {
+  background-color: inherit !important;
 }
 
-.product .swagger-ui .version-pragma {
-  display: none;
+:deep(details[open] summary:before) {
+  content: none;
 }
 
-.product .header-anchor {
-  position: relative;
+:deep(details summary:before) {
+  content: none;
 }
 
-.product .header-anchor svg {
-  position: absolute;
-  left: -1.5rem;
-  bottom: 0;
+:deep(.table-of-contents) {
+  height: 100%;
 }
 </style>

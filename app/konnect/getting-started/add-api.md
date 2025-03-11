@@ -41,7 +41,7 @@ In this guide, you will build on your Konnect environment by adding your own API
     
         For example, you can use `example_service`, `ExampleService`, `Example-Service`. However, `Example Service` is invalid.
 
-    1. In the **Upstream URL** field, enter `http://httpbin.org`.
+    1. In the **Upstream URL** field, enter `https://httpbin.konghq.com`.
 
     1. Use the defaults for the remaining fields.
 
@@ -80,7 +80,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     --header 'accept: application/json' \
     --data '{
         "name": "my_service",
-        "host": "httpbin.org",
+        "host": "httpbin.konghq.com",
         "path": "/mock"
     }'
   ```
@@ -101,7 +101,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     --data '{
         "name": "my_route",
         "hosts": [
-          "httpbin.org"
+          "httpbin.konghq.com"
         ],
         "paths": [
           "/mock"
@@ -133,7 +133,7 @@ you just set. The final URL should look something like this:
 http://localhost:8000/mock
 ```
 
-If successful, you should see the homepage for `httpbin.org`. In the Gateway Manager you will now see a **200** responses recorded in the **Analytics** tab.
+If successful, you should see the homepage for `httpbin.konghq.com`. In the Gateway Manager you will now see a **200** responses recorded in the **Analytics** tab.
 
 And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} data plane node.

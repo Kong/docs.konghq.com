@@ -3,7 +3,7 @@ RSpec.describe Jekyll::PluginExample do
 
   let(:page) { find_page_by_url('/gateway/latest/') }
   let(:environment) { { 'page' => page } }
-  let(:liquid_context) { Liquid::Context.new(environment, {}, site: site) }
+  let(:liquid_context) { Liquid::Context.new(environment, {}, site: site, page: page.data) }
   let(:liquid_block) do
     <<~BLOCK
 {% plugin_example %}

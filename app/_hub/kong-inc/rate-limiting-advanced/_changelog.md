@@ -1,4 +1,22 @@
 ## Changelog
+
+### {{site.base_gateway}} 3.9.x
+* Added the new configuration field `lock_dictionary_name` to support specifying an independent shared memory for storing locks.
+* Added support for authentication from {{site.base_gateway}} to Envoy Proxy.
+* Added support for combining multiple identifier items with the new configuration field `compound_identifier`.
+* Fixed an issue where counters of the overriding consumer groups weren't fetched when the `window_size` was different and the workspace was non-default.
+* Fixed an issue where a warn log was printed when `event_hooks` was disabled.
+* Fixed an issue where, if multiple plugin instances sharing the same namespace enforced consumer groups and different `window_size`s were used in the consumer group overriding configs, then the rate limiting of some consumer groups would fall back to the `local` strategy. Now, every plugin instance sharing the same namespace can set a different `window_size`.
+* Fixed an issue where the plugin could fail to authenticate to Redis correctly with vault-referenced Redis configuration.
+* Fixed an issue where plugin-stored items with a long expiration time caused `no memory` errors.
+
+### {{site.base_gateway}} 3.8.x
+* Added the Redis `cluster_max_redirections` configuration option.
+* Timer spikes no longer occur when there is network instability with the central data store.
+* Fixed an issue where, if the `window_size` in the consumer group overriding config was different 
+  from the `window_size` in the default config, the rate limiting of that consumer group would fall back to local strategy.
+* Fixed an issue where the sync timer could stop working due to a race condition.
+
 ### {{site.base_gateway}} 3.7.x
 * Refactored `kong/tools/public/rate-limiting`, adding the new interface `new_instance` to provide isolation between different plugins. 
   The original interfaces remain unchanged for backward compatibility. 

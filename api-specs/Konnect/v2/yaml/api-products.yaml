@@ -5,33 +5,28 @@ info:
   description: The API for Kong Konnect API Products.
   contact:
     name: Kong
-    url: https://cloud.konghq.com
+    url: 'https://cloud.konghq.com'
 servers:
-  - url: https://us.api.konghq.com/v2
-    description: US Region Base URL
-  - url: https://eu.api.konghq.com/v2
-    description: EU Region Base URL
-  - url: https://au.api.konghq.com/v2
-    description: AU Region Base URL
-security:
-  - personalAccessToken: []
-  - systemAccountAccessToken: []
-tags:
-  - name: API Products
-  - name: API Product Documentation
-  - name: API Product Versions
-  - name: API Product Version Specification
+  - url: 'https://us.api.konghq.com/v2'
+    description: United-States Production region
+  - url: 'https://eu.api.konghq.com/v2'
+    description: Europe Production region
+  - url: 'https://au.api.konghq.com/v2'
+    description: Australia Production region
+  - url: 'https://me.api.konghq.com/v2'
+    description: Middle-East Production region
+  - url: 'https://in.api.konghq.com/v2'
+    description: India Production region
 paths:
   /api-products:
     post:
-      summary: Create API Product
-      description: >
-        An API Product packages together associated APIs and their operations,
-        backed by thorough documentation,
-
-        with the objective of making API consumption straightforward for
-        developers.
       operationId: create-api-product
+      summary: Create API Product
+      description: |
+        An API Product packages together associated APIs and their operations, backed by thorough documentation,
+        with the objective of making API consumption straightforward for developers.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateAPIProductRequest'
       responses:
         '201':
           $ref: '#/components/responses/APIProductResponse'
@@ -52,18 +47,17 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
         - API Products
-      requestBody:
-        $ref: '#/components/requestBodies/CreateAPIProductRequest'
     get:
+      operationId: get-many-api-product
+      summary: List API Products
+      description: Returns a collection of API products.
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
         - $ref: '#/components/parameters/APIProductFilters'
         - $ref: '#/components/parameters/APIProductSort'
         - $ref: '#/components/parameters/LabelsFilter'
-      summary: List API Products
-      description: Returns a collection of API products.
-      operationId: get-many-api-product
+        - $ref: '#/components/parameters/PublicLabelsFilter'
       responses:
         '200':
           $ref: '#/components/responses/ListAPIProductResponse'
@@ -84,20 +78,20 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Products
-  /api-products/{id}:
+  '/api-products/{id}':
     parameters:
-      - schema:
+      - name: id
+        in: path
+        description: API product identifier
+        required: true
+        schema:
           type: string
           format: uuid
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
-        name: id
-        in: path
-        required: true
-        description: API product identifier
     get:
+      operationId: get-api-product
       summary: Fetch API product
       description: Returns an API product.
-      operationId: get-api-product
       responses:
         '200':
           $ref: '#/components/responses/APIProductResponse'
@@ -110,9 +104,11 @@ paths:
       tags:
         - API Products
     patch:
+      operationId: update-api-product
       summary: Update an individual API product
       description: Updates an API product.
-      operationId: update-api-product
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateAPIProductRequest'
       responses:
         '200':
           $ref: '#/components/responses/APIProductResponse'
@@ -135,12 +131,10 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
         - API Products
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateAPIProductRequest'
     delete:
+      operationId: delete-api-product
       summary: Delete API Product
       description: Removes an individual API product.
-      operationId: delete-api-product
       responses:
         '204':
           description: API product was deleted successfully.
@@ -152,20 +146,22 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Products
-  /api-products/{apiProductId}/documents:
+  '/api-products/{apiProductId}/documents':
     parameters:
-      - schema:
+      - name: apiProductId
+        in: path
+        description: The API product identifier
+        required: true
+        schema:
           type: string
           format: uuid
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
-        name: apiProductId
-        description: The API product identifier
-        in: path
-        required: true
     post:
+      operationId: create-api-product-document
       summary: Create API Product Document
       description: Creates a document for an API product.
-      operationId: create-api-product-document
+      requestBody:
+        $ref: '#/components/requestBodies/CreateAPIProductDocumentRequest'
       responses:
         '201':
           $ref: '#/components/responses/APIProductDocumentResponse'
@@ -188,17 +184,15 @@ paths:
           $ref: '#/components/responses/SlugConflict'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
-      requestBody:
-        $ref: '#/components/requestBodies/CreateAPIProductDocumentRequest'
       tags:
         - API Product Documentation
     get:
+      operationId: get-many-api-product-document
+      summary: List API Product Documents
+      description: Returns a collection of all documents for an API product.
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
-      summary: List API Product Documents
-      description: Returns a collection of all documents for an API product.
-      operationId: get-many-api-product-document
       responses:
         '200':
           $ref: '#/components/responses/ListAPIProductDocumentResponse'
@@ -219,28 +213,28 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Product Documentation
-  /api-products/{apiProductId}/documents/{id}:
+  '/api-products/{apiProductId}/documents/{id}':
     parameters:
-      - schema:
+      - name: apiProductId
+        in: path
+        description: The API product identifier
+        required: true
+        schema:
           type: string
           format: uuid
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
-        name: apiProductId
-        description: The API product identifier
+      - name: id
         in: path
+        description: The document identifier related to the API product
         required: true
-      - schema:
+        schema:
           type: string
           format: uuid
           example: de5c9818-be5c-42e6-b514-e3d4bc30ddeb
-        name: id
-        description: The document identifier related to the API product
-        in: path
-        required: true
     get:
+      operationId: get-api-product-document
       summary: Fetch API Product Document
       description: Returns a document for the API product.
-      operationId: get-api-product-document
       responses:
         '200':
           $ref: '#/components/responses/APIProductDocumentResponse'
@@ -253,9 +247,11 @@ paths:
       tags:
         - API Product Documentation
     patch:
+      operationId: update-api-product-document
       summary: Update an API Product Document
       description: Updates a document for an API product.
-      operationId: update-api-product-document
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateAPIProductDocumentRequest'
       responses:
         '200':
           $ref: '#/components/responses/APIProductDocumentResponse'
@@ -280,12 +276,10 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
         - API Product Documentation
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateAPIProductDocumentRequest'
     delete:
+      operationId: delete-api-product-document
       summary: Delete API Product Documentation
       description: Removes a document from an API product.
-      operationId: delete-api-product-document
       responses:
         '204':
           description: Document for the API product was deleted successfully.
@@ -297,20 +291,22 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Product Documentation
-  /api-products/{apiProductId}/product-versions:
+  '/api-products/{apiProductId}/product-versions':
     parameters:
-      - schema:
+      - name: apiProductId
+        in: path
+        description: The API Product ID
+        required: true
+        schema:
           type: string
           format: uuid
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
-        name: apiProductId
-        description: The API Product ID
-        in: path
-        required: true
     post:
+      operationId: create-api-product-version
       summary: Create API Product Version
       description: Creates a version of an API product.
-      operationId: create-api-product-version
+      requestBody:
+        $ref: '#/components/requestBodies/CreateAPIProductVersionRequest'
       responses:
         '201':
           $ref: '#/components/responses/APIProductVersionResponse'
@@ -329,21 +325,21 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/ApiProductNotFound'
+        '409':
+          $ref: '#/components/responses/ApiProductImplementationConflict'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
         - API Product Versions
-      requestBody:
-        $ref: '#/components/requestBodies/CreateAPIProductVersionRequest'
     get:
+      operationId: get-many-api-product-version
+      summary: List API Product Versions
+      description: Returns a collection of all versions for an API product.
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
         - $ref: '#/components/parameters/APIProductVersionFilters'
         - $ref: '#/components/parameters/APIProductVersionSort'
-      summary: List API Product Versions
-      description: Returns a collection of all versions for an API product.
-      operationId: get-many-api-product-version
       responses:
         '200':
           $ref: '#/components/responses/ListAPIProductVersionResponse'
@@ -364,28 +360,28 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Product Versions
-  /api-products/{apiProductId}/product-versions/{id}:
+  '/api-products/{apiProductId}/product-versions/{id}':
     parameters:
-      - schema:
+      - name: apiProductId
+        in: path
+        description: The API product identifier
+        required: true
+        schema:
           type: string
           format: uuid
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
-        name: apiProductId
-        description: The API product identifier
+      - name: id
         in: path
+        description: The API product version identifier
         required: true
-      - schema:
+        schema:
           type: string
           format: uuid
           example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
-        name: id
-        description: The API product version identifier
-        in: path
-        required: true
     get:
+      operationId: get-api-product-version
       summary: Fetch API Product Version
       description: Returns a version of an API product.
-      operationId: get-api-product-version
       responses:
         '200':
           $ref: '#/components/responses/APIProductVersionResponse'
@@ -398,9 +394,11 @@ paths:
       tags:
         - API Product Versions
     patch:
+      operationId: update-api-product-version
       summary: Update an API Product Version
       description: Updates an API product version.
-      operationId: update-api-product-version
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateAPIProductVersionRequest'
       responses:
         '200':
           $ref: '#/components/responses/APIProductVersionResponse'
@@ -419,16 +417,16 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/ApiProductNotFound'
+        '409':
+          $ref: '#/components/responses/ApiProductImplementationConflict'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
         - API Product Versions
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateAPIProductVersionRequest'
     delete:
+      operationId: delete-api-product-version
       summary: Delete API Product Version
       description: Removes an API product version.
-      operationId: delete-api-product-version
       responses:
         '204':
           description: API product version was deleted successfully.
@@ -440,30 +438,32 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Product Versions
-  /api-products/{apiProductId}/product-versions/{apiProductVersionId}/specifications:
+  '/api-products/{apiProductId}/product-versions/{apiProductVersionId}/specifications':
     parameters:
-      - schema:
+      - name: apiProductId
+        in: path
+        description: The API product identifier
+        required: true
+        schema:
           type: string
           format: uuid
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
-        name: apiProductId
-        description: The API product identifier
+      - name: apiProductVersionId
         in: path
+        description: The API product version identifier
         required: true
-      - schema:
+        schema:
           type: string
           format: uuid
           example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
-        name: apiProductVersionId
-        description: The API product version identifier
-        in: path
-        required: true
     post:
+      operationId: create-api-product-version-spec
       summary: Create API Product Version Specification
       description: |
         Creates a specification for a version of an API product.
         **Note:** You can only have one specification for a product version.
-      operationId: create-api-product-version-spec
+      requestBody:
+        $ref: '#/components/requestBodies/CreateAPIProductVersionSpecRequest'
       responses:
         '201':
           $ref: '#/components/responses/APIProductVersionSpecResponse'
@@ -475,8 +475,7 @@ paths:
                 $ref: '#/components/schemas/BadRequestError'
               examples:
                 APIProductVersionSpecContentBadRequestExample:
-                  $ref: >-
-                    #/components/examples/APIProductVersionSpecContentBadRequestExample
+                  $ref: '#/components/examples/APIProductVersionSpecContentBadRequestExample'
         '401':
           $ref: '#/components/responses/ApiProductUnauthorized'
         '403':
@@ -489,14 +488,12 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
         - API Product Version Specification
-      requestBody:
-        $ref: '#/components/requestBodies/CreateAPIProductVersionSpecRequest'
     get:
+      operationId: get-many-api-product-version-spec
       summary: Fetch API Product Version Specifications
       description: |
         Returns a list of specification for the version of an API product.
         **Note:** You can only have one specification for a product version.
-      operationId: get-many-api-product-version-spec
       responses:
         '200':
           $ref: '#/components/responses/ListAPIProductVersionSpecResponse'
@@ -508,36 +505,36 @@ paths:
           $ref: '#/components/responses/ApiProductNotFound'
       tags:
         - API Product Version Specification
-  /api-products/{apiProductId}/product-versions/{apiProductVersionId}/specifications/{specificationId}:
+  '/api-products/{apiProductId}/product-versions/{apiProductVersionId}/specifications/{specificationId}':
     parameters:
-      - schema:
+      - name: apiProductId
+        in: path
+        description: The API product identifier
+        required: true
+        schema:
           type: string
           format: uuid
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
-        name: apiProductId
-        description: The API product identifier
+      - name: apiProductVersionId
         in: path
+        description: The API product version identifier
         required: true
-      - schema:
+        schema:
           type: string
           format: uuid
           example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
-        name: apiProductVersionId
-        description: The API product version identifier
+      - name: specificationId
         in: path
+        description: The API product version specification identifier
         required: true
-      - schema:
+        schema:
           type: string
           format: uuid
           example: 742ff9f1-fb89-4aeb-a599-f0e278c7aeaa
-        name: specificationId
-        description: The API product version specification identifier
-        in: path
-        required: true
     get:
+      operationId: get-api-product-version-spec
       summary: Fetch API Product Version Specification
       description: Returns a specification for the version of an API product.
-      operationId: get-api-product-version-spec
       responses:
         '200':
           $ref: '#/components/responses/APIProductVersionSpecResponse'
@@ -550,9 +547,11 @@ paths:
       tags:
         - API Product Version Specification
     patch:
+      operationId: update-api-product-version-spec
       summary: Update an API Product Version Specification
       description: Updates a specification from an API product version.
-      operationId: update-api-product-version-spec
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateAPIProductVersionSpecRequest'
       responses:
         '200':
           $ref: '#/components/responses/APIProductVersionSpecResponse'
@@ -564,8 +563,7 @@ paths:
                 $ref: '#/components/schemas/BadRequestError'
               examples:
                 APIProductVersionSpecContentBadRequestExample:
-                  $ref: >-
-                    #/components/examples/APIProductVersionSpecContentBadRequestExample
+                  $ref: '#/components/examples/APIProductVersionSpecContentBadRequestExample'
         '401':
           $ref: '#/components/responses/ApiProductUnauthorized'
         '403':
@@ -578,17 +576,13 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
       tags:
         - API Product Version Specification
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateAPIProductVersionSpecRequest'
     delete:
+      operationId: delete-api-product-version-spec
       summary: Delete API Product Version Specification
       description: Removes a specification from a verion of an API product.
-      operationId: delete-api-product-version-spec
       responses:
         '204':
-          description: >-
-            Specification for the version of an API product was deleted
-            successfully.
+          description: Specification for the version of an API product was deleted successfully.
         '401':
           $ref: '#/components/responses/ApiProductUnauthorized'
         '403':
@@ -607,22 +601,6 @@ components:
       schema:
         $ref: '#/components/schemas/APIProductFilterParameters'
       style: deepObject
-    APIProductVersionFilters:
-      name: filter
-      description: Filters API Product Versions in the response.
-      required: false
-      in: query
-      schema:
-        $ref: '#/components/schemas/APIProductVersionFilterParameters'
-      style: deepObject
-    LabelsFilter:
-      name: labels
-      description: Filters requested resource by associated labels.
-      required: false
-      in: query
-      schema:
-        type: string
-        example: key:value,keyExists
     APIProductSort:
       name: sort
       description: |
@@ -632,29 +610,33 @@ components:
       in: query
       schema:
         $ref: '#/components/schemas/SortQuery'
+    APIProductVersionFilters:
+      name: filter
+      description: Filters API Product Versions in the response.
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/APIProductVersionFilterParameters'
+      style: deepObject
     APIProductVersionSort:
       name: sort
-      description: >
-        Sorts a collection of API products versions. Supported sort attributes
-        are:
+      description: |
+        Sorts a collection of API products versions. Supported sort attributes are:
           - name
       required: false
       in: query
       schema:
         $ref: '#/components/schemas/SortQuery'
-    PageSize:
-      name: page[size]
-      description: >-
-        The maximum number of items to include per page. The last page of a
-        collection may include fewer items.
+    LabelsFilter:
+      name: labels
+      description: Filters requested resource by associated labels.
       required: false
       in: query
-      allowEmptyValue: true
       schema:
-        type: integer
-        example: 10
+        type: string
+        example: 'key:value,keyExists'
     PageNumber:
-      name: page[number]
+      name: 'page[number]'
       description: Determines which page of the entities to retrieve.
       required: false
       in: query
@@ -662,408 +644,58 @@ components:
       schema:
         type: integer
         example: 1
-  requestBodies:
-    CreateAPIProductRequest:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateAPIProductDTO'
-          examples:
-            CreateAPIProductRequestMinimalExample:
-              $ref: '#/components/examples/CreateAPIProductRequestMinimalExample'
-            CreateAPIProductRequestExample:
-              $ref: '#/components/examples/CreateAPIProductRequestExample'
-            CreateAPIProductAndPublishToPortalsRequestExample:
-              $ref: >-
-                #/components/examples/CreateAPIProductAndPublishToPortalsRequestExample
-    UpdateAPIProductRequest:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateAPIProductDTO'
-          examples:
-            UpdateAPIProductRequestExample:
-              $ref: '#/components/examples/UpdateAPIProductRequestExample'
-            PublishAPIProductToPortalExample:
-              $ref: '#/components/examples/PublishAPIProductToPortalExample'
-    CreateAPIProductVersionRequest:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateAPIProductVersionDTO'
-          examples:
-            UnlinkedAPIProductVersion:
-              $ref: >-
-                #/components/examples/CreateAPIProductVersionRequestMinimalExample
-            LinkedAPIProductVersion:
-              $ref: >-
-                #/components/examples/CreateLinkedAPIProductVersionRequestExample
-    CreateAPIProductVersionSpecRequest:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateAPIProductVersionSpecDTO'
-          examples:
-            CreateAPIProductVersionSpecificationRequestExample:
-              $ref: >-
-                #/components/examples/CreateAPIProductVersionSpecificationRequestExample
-    CreateAPIProductDocumentRequest:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateAPIProductDocumentDTO'
-          examples:
-            CreateAPIProductDocumentRequestMinimalExample:
-              $ref: >-
-                #/components/examples/CreateAPIProductDocumentRequestMinimalExample
-            CreateAPIProductDocumentRequestExample:
-              $ref: '#/components/examples/CreateAPIProductDocumentRequestExample'
-    UpdateAPIProductVersionRequest:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateAPIProductVersionDTO'
-          examples:
-            LinkAPIProductVersionRequest:
-              $ref: '#/components/examples/LinkAPIProductVersionRequestExample'
-            UnlinkAPIProductVersionRequest:
-              $ref: '#/components/examples/UnlinkAPIProductVersionRequestExample'
-            DeprecateAPIProductVersionRequest:
-              $ref: '#/components/examples/DeprecateAPIProductVersionRequestExample'
-    UpdateAPIProductDocumentRequest:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateAPIProductDocumentDTO'
-          examples:
-            UpdateAPIProductDocumentAttributes:
-              $ref: >-
-                #/components/examples/UpdateAPIProductDocumentAttributesRequestExample
-            UpdateAPIProductDocumentContent:
-              $ref: >-
-                #/components/examples/UpdateAPIProductDocumentContentRequestExample
-            UpdateAPIProductDocumentAttributesAndContent:
-              $ref: >-
-                #/components/examples/UpdateAPIProductDocumentAttributesAndContentRequestExample
-    UpdateAPIProductVersionSpecRequest:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateAPIProductVersionSpecDTO'
-          examples:
-            UpdateAPIProductVersionSpecContentRequest:
-              $ref: >-
-                #/components/examples/UpdateAPIProductVersionSpecContentRequestExample
-            UpdateAPIProductVersionSpecNameRequest:
-              $ref: >-
-                #/components/examples/UpdateAPIProductVersionSpecNameRequestExample
-            UpdateAPIProductVersionSpecRequest:
-              $ref: '#/components/examples/UpdateAPIProductVersionSpecRequestExample'
-  responses:
-    SlugConflict:
-      description: Conflict - `slug` property must be unique
-      content:
-        application/problem+json:
-          schema:
-            type: object
-            required:
-              - status
-              - title
-              - instance
-            properties:
-              status:
-                type: number
-              title:
-                type: string
-              type:
-                type: string
-              instance:
-                type: string
-          examples:
-            SlugConflictExample:
-              $ref: '#/components/examples/SlugConflictExample'
-    VersionSpecConflict:
-      description: Conflict - only one version specification can exist
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ConflictError'
-          examples:
-            VersionSpecConflictExample:
-              $ref: '#/components/examples/VersionSpecConflictExample'
-    VersionSpecHiddenConflict:
-      description: >-
-        Conflict - name attribute must be unique accross legacy version
-        specifications
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ConflictError'
-          examples:
-            VersionSpecConflictExample:
-              $ref: '#/components/examples/VersionSpecHiddenConflictExample'
-    ApiProductUnauthorized:
-      description: Unauthorized
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-          examples:
-            UnauthorizedExample:
-              $ref: '#/components/examples/UnauthorizedExample'
-    ApiProductNotFound:
-      description: Not Found
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-          examples:
-            NotFoundExample:
-              $ref: '#/components/examples/NotFoundExample'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenError'
-          examples:
-            ForbiddenExample:
-              $ref: '#/components/examples/ForbiddenExample'
-    APIProductResponse:
-      description: API product
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIProduct'
-          examples:
-            Create API Product Response:
-              $ref: '#/components/examples/APIProductExample'
-    ListAPIProductResponse:
-      description: List of API products
-      content:
-        application/json:
-          schema:
-            title: ListAPIProductsResponse
-            type: object
-            required:
-              - data
-              - meta
-            properties:
-              meta:
-                $ref: '#/components/schemas/PaginatedMeta'
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/APIProduct'
-          examples:
-            API Product Collection:
-              value:
-                data:
-                  - id: e7a4f6c0-5777-4a37-bcb9-2d37d3b362ee
-                    name: API Product
-                    description: Text describing the API product
-                    portal_ids: []
-                    portals: []
-                    created_at: '2023-01-01T00:00:00.000Z'
-                    updated_at: '2023-01-01T00:00:00.000Z'
-                    version_count: 10
-                    labels:
-                      env: test
-                meta:
-                  page:
-                    number: 1
-                    size: 1
-                    total: 10
-    APIProductVersionResponse:
-      description: API product
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIProductVersion'
-          examples:
-            Create API Product Response:
-              $ref: '#/components/examples/APIProductVersionExample'
-    ListAPIProductVersionResponse:
-      description: List of API products
-      content:
-        application/json:
-          schema:
-            title: ListAPIProductVersionsResponse
-            type: object
-            required:
-              - data
-              - meta
-            properties:
-              meta:
-                $ref: '#/components/schemas/PaginatedMeta'
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/APIProductVersion'
-          examples:
-            API Product Version Collection:
-              value:
-                data:
-                  - id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
-                    name: v1
-                    gateway_service:
-                      runtime_group_id: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
-                      control_plane_id: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
-                      id: 09b4786a-3e48-4631-8f6b-62d1d8e1a7f3
-                    publish_status: unpublished
-                    deprecated: false
-                    labels:
-                      env: test
-                    portals:
-                      - portal_id: 35a2624c-49fc-4764-99e1-224ed819f200
-                        portal_name: Developer Portal
-                        portal_product_version_id: 35a2624c-49fc-4764-99e1-224ed819f200
-                        publish_status: published
-                        deprecated: false
-                        application_registration_enabled: true
-                        auto_approve_registration: false
-                        auth_strategies:
-                          - id: 35a2624c-49fc-4764-99e1-224ed819f200
-                            name: OIDC
-                    created_at: '2023-01-01T00:00:00.000Z'
-                    updated_at: '2023-01-01T00:00:00.000Z'
-                meta:
-                  page:
-                    number: 1
-                    size: 1
-                    total: 10
-    APIProductDocumentResponse:
-      description: API product document
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIProductDocument'
-          examples:
-            Create API Product Document Response:
-              $ref: '#/components/examples/APIProductDocumentExample'
-    ListAPIProductDocumentResponse:
-      description: List of API product documents
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - data
-              - meta
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/APIProductDocumentSummary'
-              meta:
-                $ref: '#/components/schemas/PaginatedMeta'
-          examples:
-            List API Product Document Response:
-              $ref: '#/components/examples/ListAPIProductDocumentSummaryExample'
-        application/vnd.konnect.document-tree+json:
-          schema:
-            type: object
-            required:
-              - data
-              - meta
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/DocumentTree'
-              meta:
-                $ref: '#/components/schemas/PaginatedMeta'
-          examples:
-            List API Product Document Response:
-              $ref: '#/components/examples/APIProductDocumentTreeExample'
-    ListAPIProductVersionSpecResponse:
-      description: List of API product version specification
-      content:
-        application/json:
-          schema:
-            title: ListAPIProductVersionSpecResponse
-            type: object
-            required:
-              - data
-              - meta
-            properties:
-              meta:
-                $ref: '#/components/schemas/PaginatedMeta'
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/APIProductVersionSpec'
-          examples:
-            List API Product Version Document Response:
-              $ref: '#/components/examples/ListAPIProductVersionSpecExample'
-    APIProductVersionSpecResponse:
-      description: API product version specification
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIProductVersionSpec'
-          examples:
-            API Product Version Document Response:
-              $ref: '#/components/examples/APIProductVersionSpecExample'
-    UnsupportedMediaType:
-      description: Unsupported Media Type
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/UnsupportedMediaTypeError'
-          examples:
-            UnsupportedMediaTypeExample:
-              $ref: '#/components/examples/UnsupportedMediaTypeExample'
+    PageSize:
+      name: 'page[size]'
+      description: The maximum number of items to include per page. The last page of a collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    PublicLabelsFilter:
+      name: public_labels
+      description: Filters requested resource by associated public labels.
+      required: false
+      in: query
+      schema:
+        type: string
+        example: 'key:value,keyExists'
   schemas:
     APIProductFilterParameters:
-      title: APIProductFilterParameters
       type: object
       properties:
         name:
           $ref: '#/components/schemas/StringFieldFilter'
+      title: APIProductFilterParameters
     APIProductVersionFilterParameters:
-      title: APIProductVersionFilterParameters
       type: object
       properties:
         name:
           $ref: '#/components/schemas/StringFieldFilter'
         publish_status:
           $ref: '#/components/schemas/StringFieldFilter'
+        gateway_service_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+      title: APIProductVersionFilterParameters
     SortQuery:
-      title: SortQuery
+      description: |
+        The `asc` suffix is optional as the default sort order is ascending.
+        The `desc` suffix is used to specify a descending order.
+        Multiple sort attributes may be provided via a comma separated list.
+        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar desc').
       type: string
       example: name desc
-      description: >
-        The `asc` suffix is optional as the default sort order is ascending.
-
-        The `desc` suffix is used to specify a descending order.
-
-        Multiple sort attributes may be provided via a comma separated list.
-
-        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar
-        desc').
+      title: SortQuery
     APIProductPortals:
-      title: APIProductPortals
-      type: array
-      minItems: 0
       description: The list of portals which this API product is published to
+      type: array
       items:
         $ref: '#/components/schemas/APIProductPortal'
+      minItems: 0
+      title: APIProductPortals
     APIProductPortal:
-      title: APIProductPortal
       type: object
-      additionalProperties: false
-      required:
-        - portal_id
-        - portal_name
       properties:
         portal_id:
           type: string
@@ -1072,33 +704,27 @@ components:
         portal_name:
           type: string
           example: Developer Portal
-    APIProductVersionPublishStatus:
-      title: APIProductVersionPublishStatus
-      type: string
-      enum:
-        - published
-        - unpublished
-      example: published
-    APIProductVersionPortals:
-      title: APIProductVersionPortals
-      type: array
-      minItems: 0
-      description: The list of portals which this API product version is configured for
-      items:
-        $ref: '#/components/schemas/APIProductVersionPortal'
-    APIProductVersionPortal:
-      title: APIProductVersionPortal
-      type: object
       additionalProperties: false
       required:
         - portal_id
         - portal_name
-        - portal_product_version_id
-        - publish_status
-        - deprecated
-        - application_registration_enabled
-        - auto_approve_registration
-        - auth_strategies
+      title: APIProductPortal
+    APIProductVersionPublishStatus:
+      type: string
+      example: published
+      enum:
+        - published
+        - unpublished
+      title: APIProductVersionPublishStatus
+    APIProductVersionPortals:
+      description: The list of portals which this API product version is configured for
+      type: array
+      items:
+        $ref: '#/components/schemas/APIProductVersionPortal'
+      minItems: 0
+      title: APIProductVersionPortals
+    APIProductVersionPortal:
+      type: object
       properties:
         portal_id:
           type: string
@@ -1126,13 +752,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/APIProductVersionAuthStrategy'
-    APIProductVersionAuthStrategy:
-      title: APIProductVersionAuthStrategy
-      type: object
       additionalProperties: false
       required:
-        - id
-        - name
+        - portal_id
+        - portal_name
+        - portal_product_version_id
+        - publish_status
+        - deprecated
+        - application_registration_enabled
+        - auto_approve_registration
+        - auth_strategies
+      title: APIProductVersionPortal
+    APIProductVersionAuthStrategy:
+      type: object
       properties:
         id:
           type: string
@@ -1144,9 +776,56 @@ components:
       example:
         id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
         name: Key Auth
+      additionalProperties: false
+      required:
+        - id
+        - name
+      title: APIProductVersionAuthStrategy
     APIProduct:
-      title: API Product
       type: object
+      properties:
+        id:
+          description: The API product ID.
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          readOnly: true
+        name:
+          description: The name of the API product
+          type: string
+          example: My Name
+        description:
+          description: The description of the API product
+          type: string
+          example: MyDescription
+          nullable: true
+        portal_ids:
+          description: |
+            The list of portal identifiers which this API product is published to.
+            This property is deprecated and will be removed in a future version. Use the `portals` property instead.
+          type: array
+          items:
+            type: string
+            format: uuid
+            example: 25a2624c-49fc-4764-99e1-224ed819f200
+          deprecated: true
+          minItems: 0
+          nullable: false
+          uniqueItems: true
+        portals:
+          $ref: '#/components/schemas/APIProductPortals'
+        version_count:
+          description: The number of product versions attached to this API product
+          type: number
+          example: 10
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        labels:
+          $ref: '#/components/schemas/Labels'
+        public_labels:
+          $ref: '#/components/schemas/PublicLabels'
       additionalProperties: false
       required:
         - id
@@ -1157,54 +836,39 @@ components:
         - created_at
         - updated_at
         - labels
+        - public_labels
         - version_count
+      title: API Product
+    APIProductDocumentSummary:
+      type: object
       properties:
         id:
+          description: The API product document identifier.
           type: string
           format: uuid
-          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
-          description: The API product ID.
+          example: de5c9818-be5c-42e6-b514-e3d4bc30ddeb
           readOnly: true
-        name:
+        parent_document_id:
+          description: The parent API product document identifier.
           type: string
-          description: The name of the API product
-          example: My Name
-        description:
-          type: string
+          format: uuid
+          example: null
           nullable: true
-          description: The description of the API product
-          example: MyDescription
-        portal_ids:
-          deprecated: true
-          type: array
-          nullable: false
-          uniqueItems: true
-          minItems: 0
-          description: >
-            The list of portal identifiers which this API product is published
-            to.
-
-            This property is deprecated and will be removed in a future version.
-            Use the `portals` property instead.
-          items:
-            type: string
-            format: uuid
-            example: 25a2624c-49fc-4764-99e1-224ed819f200
-        portals:
-          $ref: '#/components/schemas/APIProductPortals'
-        version_count:
-          type: number
-          example: 10
-          description: The number of product versions attached to this API product
+        slug:
+          description: API product document slug
+          type: string
+          example: api-product-document
+          pattern: '^[\w-]+$'
+        status:
+          $ref: '#/components/schemas/PublishStatus'
+        title:
+          description: API product document title
+          type: string
+          example: API Product Document
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
-        labels:
-          $ref: '#/components/schemas/Labels'
-    APIProductDocumentSummary:
-      title: API Product Document Summary
-      type: object
       additionalProperties: false
       required:
         - id
@@ -1212,45 +876,12 @@ components:
         - slug
         - title
         - status
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: de5c9818-be5c-42e6-b514-e3d4bc30ddeb
-          description: The API product document identifier.
-          readOnly: true
-        parent_document_id:
-          type: string
-          format: uuid
-          nullable: true
-          description: The parent API product document identifier.
-          example: null
-        slug:
-          type: string
-          pattern: ^[\w-]+$
-          description: API product document slug
-          example: api-product-document
-        status:
-          $ref: '#/components/schemas/PublishStatus'
-        title:
-          type: string
-          description: API product document title
-          example: API Product Document
-    APIProductDocument:
-      type: object
-      title: ApiProductDocument
-      description: an api product document
-      required:
-        - id
-        - parent_document_id
-        - title
-        - slug
-        - status
-        - metadata
-        - content
-        - ast
-        - updated_at
         - created_at
+        - updated_at
+      title: API Product Document Summary
+    APIProductDocument:
+      description: an api product document
+      type: object
       properties:
         id:
           type: string
@@ -1271,8 +902,8 @@ components:
         metadata:
           type: object
         content:
-          type: string
           description: The unencoded markdown string of the api product document.
+          type: string
         ast:
           type: array
           items:
@@ -1281,11 +912,20 @@ components:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+      required:
+        - id
+        - parent_document_id
+        - title
+        - slug
+        - status
+        - metadata
+        - content
+        - ast
+        - updated_at
+        - created_at
+      title: ApiProductDocument
     AuthStrategySyncError:
       type: object
-      additionalProperties: false
-      required:
-        - message
       properties:
         plugin_name:
           type: string
@@ -1318,22 +958,81 @@ components:
         plugin_name: konnect-application-auth
         value: plugin_sync_error_comm
         message: Unable to connect to the control plane to update plugin
+      additionalProperties: false
+      required:
+        - message
     AuthStrategySyncErrors:
-      readOnly: true
+      description: The set of errors encountered when trying to sync the auth strategies on the version
       type: array
-      nullable: true
-      description: >-
-        The set of errors encountered when trying to sync the auth strategies on
-        the version
       items:
         $ref: '#/components/schemas/AuthStrategySyncError'
       example:
         - plugin_name: konnect-application-auth
           value: plugin_sync_error_comm
           message: Unable to connect to the control plane to update plugin
+      nullable: true
+      readOnly: true
     APIProductVersion:
-      title: API Product Version
       type: object
+      properties:
+        id:
+          description: The API product version identifier.
+          type: string
+          format: uuid
+          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+          readOnly: true
+        name:
+          description: The version of the API product
+          type: string
+          example: FirstVersion
+        gateway_service:
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            id:
+              description: The identifier of a gateway service associated with the version of the API product.
+              type: string
+              format: uuid
+              example: 09b4786a-3e48-4631-8f6b-62d1d8e1a7f3
+              nullable: true
+            runtime_group_id:
+              description: 'This field is deprecated, please use `control_plane_id` instead. The identifier of the control plane that the gateway service resides in'
+              type: string
+              format: uuid
+              example: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
+              deprecated: true
+            control_plane_id:
+              description: The identifier of the control plane that the gateway service resides in
+              type: string
+              format: uuid
+              example: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
+          required:
+            - id
+            - control_plane_id
+        publish_status:
+          description: 'This field is published if the API product version is published to at least one portal. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          type: string
+          example: unpublished
+          enum:
+            - unpublished
+            - published
+          deprecated: true
+        deprecated:
+          description: 'Whether this API product version is deprecated in at least one portal. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead'
+          type: boolean
+          example: false
+          deprecated: true
+        labels:
+          $ref: '#/components/schemas/Labels'
+        auth_strategy_sync_errors:
+          $ref: '#/components/schemas/AuthStrategySyncErrors'
+        portals:
+          $ref: '#/components/schemas/APIProductVersionPortals'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
       additionalProperties: false
       required:
         - id
@@ -1345,83 +1044,29 @@ components:
         - portals
         - created_at
         - updated_at
+      title: API Product Version
+    APIProductVersionSpec:
+      type: object
       properties:
         id:
+          description: The API product version specification identifier.
           type: string
           format: uuid
-          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
-          description: The API product version identifier.
+          example: 7710d5c4-d902-410b-992f-18b814155b53
           readOnly: true
         name:
+          description: The name of the API product version specification
           type: string
-          description: The version of the API product
-          example: FirstVersion
-        gateway_service:
-          type: object
-          nullable: true
-          additionalProperties: false
-          required:
-            - id
-            - control_plane_id
-          properties:
-            id:
-              type: string
-              format: uuid
-              nullable: true
-              description: >-
-                The identifier of a gateway service associated with the version
-                of the API product.
-              example: 09b4786a-3e48-4631-8f6b-62d1d8e1a7f3
-            runtime_group_id:
-              type: string
-              format: uuid
-              deprecated: true
-              description: >-
-                This field is deprecated, please use `control_plane_id` instead.
-                The identifier of the control plane that the gateway service
-                resides in
-              example: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
-            control_plane_id:
-              type: string
-              format: uuid
-              description: >-
-                The identifier of the control plane that the gateway service
-                resides in
-              example: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
-        publish_status:
+          example: oas.yaml
+          pattern: '^.+(?:\.yaml|\.yml|\.json)$'
+        content:
+          description: The contents of the API product version specification
+          example: My YAML or JSON formatted OAS content
           type: string
-          deprecated: true
-          description: >-
-            This field is published if the API product version is published to
-            at least one portal. This field is deprecated: Use
-            [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
-            instead.
-          enum:
-            - unpublished
-            - published
-          example: unpublished
-        deprecated:
-          type: boolean
-          deprecated: true
-          description: >-
-            Whether this API product version is deprecated in at least one
-            portal. This field is deprecated: Use
-            [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
-            instead
-          example: false
-        labels:
-          $ref: '#/components/schemas/Labels'
-        auth_strategy_sync_errors:
-          $ref: '#/components/schemas/AuthStrategySyncErrors'
-        portals:
-          $ref: '#/components/schemas/APIProductVersionPortals'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
-    APIProductVersionSpec:
-      title: API Product Version Spec
-      type: object
       additionalProperties: false
       required:
         - id
@@ -1429,301 +1074,239 @@ components:
         - content
         - created_at
         - updated_at
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 7710d5c4-d902-410b-992f-18b814155b53
-          description: The API product version specification identifier.
-          readOnly: true
-        name:
-          type: string
-          description: The name of the API product version specification
-          example: oas.yaml
-          pattern: .+(\.yaml|\.yml|\.json)
-        content:
-          type: string
-          description: The contents of the API product version specification
-          example: My YAML or JSON formatted OAS content
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
+      title: API Product Version Spec
     CreateAPIProductDTO:
-      title: Create API Product Request
       description: The request schema to create an API product.
       type: object
-      additionalProperties: false
-      required:
-        - name
       properties:
         name:
-          type: string
-          minLength: 1
-          maxLength: 100
-          example: API Product
           description: The name of the API product.
-        description:
           type: string
-          nullable: true
-          example: Text describing the API product
+          example: API Product
+          maxLength: 100
+          minLength: 1
+        description:
           description: The description of the API product.
+          type: string
+          example: Text describing the API product
           default: null
+          nullable: true
         labels:
           $ref: '#/components/schemas/Labels'
+        public_labels:
+          $ref: '#/components/schemas/PublicLabels'
         portal_ids:
+          description: The list of portal identifiers which this API product should be published to
           type: array
-          nullable: false
-          uniqueItems: true
-          minItems: 0
-          description: >-
-            The list of portal identifiers which this API product should be
-            published to
           items:
             type: string
             format: uuid
             example: 25a2624c-49fc-4764-99e1-224ed819f200
-    UpdateAPIProductDTO:
-      title: Update API Product Request
-      description: The request schema for updating an API product.
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 100
-          example: API Product
-          description: The name for the API product.
-        description:
-          type: string
-          nullable: true
-          example: Text describing the API product
-          description: The description of the API product.
-        labels:
-          $ref: '#/components/schemas/LabelsUpdate'
-        portal_ids:
-          type: array
+          minItems: 0
           nullable: false
           uniqueItems: true
-          minItems: 0
-          description: >-
-            The list of portal identifiers which this API product should be
-            published to
-          items:
-            type: string
-            format: uuid
-            example: 25a2624c-49fc-4764-99e1-224ed819f200
-    CreateAPIProductVersionDTO:
-      title: Create API Product Version Request
-      description: >
-        The request schema to create a version of an API product.
-
-        Note that the `publish_status` and `deprecated` fields are deprecated: 
-        Use
-        [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
-        instead.
-      type: object
       additionalProperties: false
       required:
         - name
+      title: Create API Product Request
+    UpdateAPIProductDTO:
+      description: The request schema for updating an API product.
+      type: object
       properties:
         name:
+          description: The name for the API product.
           type: string
-          nullable: false
+          example: API Product
+          maxLength: 100
           minLength: 1
-          example: v1
-          description: The version name of the API product version.
-        publish_status:
+        description:
+          description: The description of the API product.
           type: string
+          example: Text describing the API product
+          nullable: true
+        labels:
+          $ref: '#/components/schemas/LabelsUpdate'
+        public_labels:
+          $ref: '#/components/schemas/PublicLabelsUpdate'
+        portal_ids:
+          description: The list of portal identifiers which this API product should be published to
+          type: array
+          items:
+            type: string
+            format: uuid
+            example: 25a2624c-49fc-4764-99e1-224ed819f200
+          minItems: 0
           nullable: false
-          deprecated: true
-          description: >-
-            The publish status of the API product version. Applies publish
-            status to all related portal product versions. This field is
-            deprecated: Use
-            [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
-            instead.
+          uniqueItems: true
+      additionalProperties: false
+      title: Update API Product Request
+    CreateAPIProductVersionDTO:
+      description: |
+        The request schema to create a version of an API product.
+        Note that the `publish_status` and `deprecated` fields are deprecated:  Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.
+      type: object
+      properties:
+        name:
+          description: The version name of the API product version.
+          type: string
+          example: v1
+          minLength: 1
+          nullable: false
+        publish_status:
+          description: 'The publish status of the API product version. Applies publish status to all related portal product versions. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          type: string
+          example: unpublished
+          default: unpublished
           enum:
             - unpublished
             - published
-          example: unpublished
-          default: unpublished
-        deprecated:
-          type: boolean
-          nullable: false
           deprecated: true
-          description: >-
-            Indicates if the version of the API product is deprecated. Applies
-            deprecation or removes deprecation from all related portal product
-            versions. This field is deprecated: Use
-            [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
-            instead.
+          nullable: false
+        deprecated:
+          description: 'Indicates if the version of the API product is deprecated. Applies deprecation or removes deprecation from all related portal product versions. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          type: boolean
           example: false
           default: false
+          deprecated: true
+          nullable: false
         labels:
           $ref: '#/components/schemas/Labels'
         gateway_service:
           oneOf:
             - $ref: '#/components/schemas/GatewayServicePayload'
             - $ref: '#/components/schemas/LegacyGatewayServicePayload'
+      additionalProperties: false
+      required:
+        - name
+      title: Create API Product Version Request
     CreateAPIProductVersionSpecDTO:
-      title: Create API Product Version Specification Request
-      description: >-
-        The request schema to create a specification for a version of an API
-        product.
+      description: The request schema to create a specification for a version of an API product.
       type: object
+      properties:
+        name:
+          description: The name of the API product version specification
+          type: string
+          example: oas.yaml
+          maxLength: 255
+          minLength: 1
+          nullable: false
+          pattern: '^.+(?:\.yaml|\.yml|\.json)$'
+        content:
+          description: The base64 encoded contents of the API product version specification
+          example: TXkgWUFNTCBvciBKU09OIGZvcm1hdHRlZCBPQVMgY29udGVudA==
+          format: byte
+          minLength: 1
+          type: string
       additionalProperties: false
       required:
         - name
         - content
-      properties:
-        name:
-          type: string
-          nullable: false
-          pattern: ^.+(?:\.yaml|\.yml|\.json)$
-          minLength: 1
-          maxLength: 255
-          example: oas.yaml
-          description: The name of the API product version specification
-        content:
-          type: string
-          format: byte
-          minLength: 1
-          example: TXkgWUFNTCBvciBKU09OIGZvcm1hdHRlZCBPQVMgY29udGVudA==
-          description: The base64 encoded contents of the API product version specification
+      title: Create API Product Version Specification Request
     CreateAPIProductDocumentDTO:
-      type: object
-      title: CreateDocumentPayload
       description: a document payload
+      type: object
+      properties:
+        parent_document_id:
+          description: parent document id
+          type: string
+          format: uuid
+          example: dd4e1b98-3629-4dd3-acc0-759a726ffee2
+          default: null
+          nullable: true
+        slug:
+          description: document slug. must be unique accross documents belonging to an api product
+          type: string
+          example: path-for-seo
+          maxLength: 80
+          pattern: '^[\w-]+$'
+        status:
+          $ref: '#/components/schemas/PublishStatus'
+        title:
+          description: document title
+          type: string
+          example: How to create a document in Konnect DocumentHub
+          minLength: 1
+        content:
+          description: Can be markdown string content or base64 encoded string
+          example: '## My Markdown'
+          type: string
+        metadata:
+          description: metadata of the document
+          type: object
+          example:
+            author: John Doe
+          default: {}
+          nullable: false
       required:
         - slug
         - status
         - title
-      properties:
-        parent_document_id:
-          type: string
-          format: uuid
-          nullable: true
-          description: parent document id
-          example: dd4e1b98-3629-4dd3-acc0-759a726ffee2
-          default: null
-        slug:
-          type: string
-          maxLength: 80
-          pattern: ^[\w-]+$
-          description: >-
-            document slug. must be unique accross documents belonging to an api
-            product
-          example: path-for-seo
-        status:
-          $ref: '#/components/schemas/PublishStatus'
-        title:
-          type: string
-          minLength: 1
-          description: document title
-          example: How to create a document in Konnect DocumentHub
-        content:
-          type: string
-          description: Can be markdown string content or base64 encoded string
-          example: '## My Markdown'
-        metadata:
-          type: object
-          nullable: false
-          description: metadata of the document
-          example:
-            author: John Doe
-          default: {}
+      title: CreateDocumentPayload
     UpdateAPIProductDocumentDTO:
-      type: object
-      title: UpdateDocumentAttributesAndContentPayload
       description: a document payload
+      type: object
       properties:
         parent_document_id:
+          description: |
+            Parent document Id. If this value is explicitly set to null, the
+            document will be put as a top level document at the bottom of the tree.
           type: string
           format: uuid
-          nullable: true
-          description: >
-            Parent document Id. If this value is explicitly set to null, the
-
-            document will be put as a top level document at the bottom of the
-            tree.
           example: dd4e1b98-3629-4dd3-acc0-759a726ffee2
+          nullable: true
         slug:
+          description: document slug. must be unique accross documents belonging to an api product
           type: string
-          pattern: ^[\w-]+$
-          maxLength: 80
-          description: >-
-            document slug. must be unique accross documents belonging to an api
-            product
           example: path-for-seo
+          maxLength: 80
+          pattern: '^[\w-]+$'
         status:
           $ref: '#/components/schemas/PublishStatus'
         title:
-          type: string
-          minLength: 1
           description: document title
-          example: How to update a document in Konnect DocumentHub
-        content:
           type: string
+          example: How to update a document in Konnect DocumentHub
+          minLength: 1
+        content:
           description: Can be markdown string content or base64 encoded string
           example: YmFzZTY0LWVuY29kZWQgdGV4dCBzdHJpbmc=
+          type: string
         metadata:
           type: object
           nullable: false
+      title: UpdateDocumentAttributesAndContentPayload
     UpdateAPIProductVersionDTO:
-      title: Update API Product Version Request
-      description: >
+      description: |
         The request schema for updating a version of an API product.
-
-        Note that the `publish_status` and `deprecated` fields are deprecated: 
-        Use
-        [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
-        instead.
+        Note that the `publish_status` and `deprecated` fields are deprecated:  Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.
       type: object
-      additionalProperties: false
       properties:
         name:
-          type: string
-          minLength: 1
-          example: v1
           description: The version name of the API product version.
-        publish_status:
           type: string
-          deprecated: true
-          description: >-
-            The publish status of the API product version. Applies publish
-            status to all related portal product versions. This field is
-            deprecated: Use
-            [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
-            instead.
+          example: v1
+          minLength: 1
+        publish_status:
+          description: 'The publish status of the API product version. Applies publish status to all related portal product versions. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          type: string
+          example: unpublished
           enum:
             - unpublished
             - published
-          example: unpublished
-        deprecated:
-          type: boolean
           deprecated: true
-          description: >-
-            Indicates if the version of the API product is deprecated. Applies
-            deprecation or removes deprecation from all related portal product
-            versions. This field is deprecated: Use
-            [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version)
-            instead.
-          example: false
-        notify:
+        deprecated:
+          description: 'Indicates if the version of the API product is deprecated. Applies deprecation or removes deprecation from all related portal product versions. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
           type: boolean
-          description: >
+          example: false
+          deprecated: true
+        notify:
+          description: |
             When set to `true`, and all the following conditions are true:
-
-            - version of the API product deprecation has changed from `false` ->
-            `true`
-
+            - version of the API product deprecation has changed from `false` -> `true`
             - version of the API product is published
 
-
-            then consumers of the now deprecated verion of the API product will
-            be notified.
+            then consumers of the now deprecated verion of the API product will be notified.
+          type: boolean
           example: true
         gateway_service:
           anyOf:
@@ -1731,75 +1314,66 @@ components:
             - $ref: '#/components/schemas/LegacyGatewayServicePayload'
         labels:
           $ref: '#/components/schemas/LabelsUpdate'
-    UpdateAPIProductVersionSpecDTO:
-      title: Update API Product Version Specification Request
-      description: >-
-        The request schema for updating a specification for a version of an API
-        product.
-      type: object
       additionalProperties: false
+      title: Update API Product Version Request
+    UpdateAPIProductVersionSpecDTO:
+      description: The request schema for updating a specification for a version of an API product.
+      type: object
       properties:
         name:
-          type: string
-          nullable: false
-          pattern: ^.+(?:\.yaml|\.yml|\.json)$
-          minLength: 1
-          maxLength: 255
-          example: oas.yaml
           description: The name of the API product version specification
-        content:
           type: string
+          example: oas.yaml
+          maxLength: 255
+          minLength: 1
+          nullable: false
+          pattern: '^.+(?:\.yaml|\.yml|\.json)$'
+        content:
+          description: The base64 encoded contents of the API product version specification
+          example: TXkgWUFNTCBvciBKU09OIGZvcm1hdHRlZCBPQVMgY29udGVudA==
           format: byte
           minLength: 1
-          example: TXkgWUFNTCBvciBKU09OIGZvcm1hdHRlZCBPQVMgY29udGVudA==
-          description: The base64 encoded contents of the API product version specification
+          type: string
+      additionalProperties: false
+      title: Update API Product Version Specification Request
     LegacyGatewayServicePayload:
       type: object
-      nullable: true
+      properties:
+        id:
+          description: The identifier of a gateway service associated with the version of the API product.
+          type: string
+          format: uuid
+          example: 09b4786a-3e48-4631-8f6b-62d1d8e1a7f3
+        runtime_group_id:
+          description: The identifier of the control plane that the gateway service resides in
+          type: string
+          format: uuid
+          example: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
+          deprecated: true
       additionalProperties: false
+      nullable: true
       required:
         - id
         - runtime_group_id
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: >-
-            The identifier of a gateway service associated with the version of
-            the API product.
-          example: 09b4786a-3e48-4631-8f6b-62d1d8e1a7f3
-        runtime_group_id:
-          type: string
-          format: uuid
-          deprecated: true
-          description: >-
-            The identifier of the control plane that the gateway service resides
-            in
-          example: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
     GatewayServicePayload:
       type: object
-      nullable: true
+      properties:
+        id:
+          description: The identifier of a gateway service associated with the version of the API product.
+          type: string
+          format: uuid
+          example: 09b4786a-3e48-4631-8f6b-62d1d8e1a7f3
+        control_plane_id:
+          description: The identifier of the control plane that the gateway service resides in
+          type: string
+          format: uuid
+          example: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
       additionalProperties: false
+      nullable: true
       required:
         - id
         - control_plane_id
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: >-
-            The identifier of a gateway service associated with the version of
-            the API product.
-          example: 09b4786a-3e48-4631-8f6b-62d1d8e1a7f3
-        control_plane_id:
-          type: string
-          format: uuid
-          description: >-
-            The identifier of the control plane that the gateway service resides
-            in
-          example: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
     StringFieldEqualsFilter:
-      title: StringFieldEqualsFilter
       description: Filters on the given string field value by exact match.
       oneOf:
         - type: string
@@ -1811,68 +1385,64 @@ components:
               type: string
           required:
             - eq
+      title: StringFieldEqualsFilter
       x-examples:
         example-1: equals-some-value
         example-2:
           eq: some-value
     StringFieldContainsFilter:
-      title: StringFieldContainsFilter
       description: Filters on the given string field value by fuzzy match.
       type: object
-      additionalProperties: false
       properties:
         contains:
           type: string
+      additionalProperties: false
       required:
         - contains
+      title: StringFieldContainsFilter
       x-examples:
         example-1:
           contains: some-value
     StringFieldOContainsFilter:
-      title: StringFieldOContainsFilter
-      description: >-
-        Returns entities that fuzzy-match any of the comma-delimited phrases in
-        the filter string.
+      description: Returns entities that fuzzy-match any of the comma-delimited phrases in the filter string.
       type: object
-      additionalProperties: false
       properties:
         ocontains:
           type: string
+      additionalProperties: false
       required:
         - ocontains
+      title: StringFieldOContainsFilter
       x-examples:
         example-1:
-          ocontains: this-value,or-that-value
+          ocontains: 'this-value,or-that-value'
     StringFieldOEQFilter:
-      title: StringFieldOEQFilter
-      description: >-
-        Returns entities that exact match any of the comma-delimited phrases in
-        the filter string.
+      description: Returns entities that exact match any of the comma-delimited phrases in the filter string.
       type: object
-      additionalProperties: false
       properties:
         oeq:
           type: string
+      additionalProperties: false
       required:
         - oeq
+      title: StringFieldOEQFilter
       x-examples:
         example-1:
-          oeq: some-value,some-other-value
+          oeq: 'some-value,some-other-value'
     StringFieldNEQFilter:
-      title: StringFieldNEQFilter
       description: Filters on the given string field value by exact match inequality.
       type: object
-      additionalProperties: false
       properties:
         neq:
           type: string
+      additionalProperties: false
       required:
         - neq
+      title: StringFieldNEQFilter
       x-examples:
         example-1:
           neq: not-this-value
     StringFieldFilter:
-      title: StringFieldFilter
       description: Filters on the given string field value by either exact or fuzzy match.
       oneOf:
         - $ref: '#/components/schemas/StringFieldEqualsFilter'
@@ -1880,6 +1450,7 @@ components:
         - $ref: '#/components/schemas/StringFieldOContainsFilter'
         - $ref: '#/components/schemas/StringFieldOEQFilter'
         - $ref: '#/components/schemas/StringFieldNEQFilter'
+      title: StringFieldFilter
       x-examples:
         example-1: equals-some-value
         example-2:
@@ -1887,20 +1458,14 @@ components:
         example-3:
           contains: some-value
         example-4:
-          ocontains: some-potential,value
+          ocontains: 'some-potential,value'
         example-5:
-          oeq: some-potential,value
+          oeq: 'some-potential,value'
         example-6:
           neq: not-this-value
     PageMeta:
+      description: Contains pagination query parameters and the total number of objects returned.
       type: object
-      description: >-
-        Contains pagination query parameters and the total number of objects
-        returned.
-      required:
-        - number
-        - size
-        - total
       properties:
         number:
           type: number
@@ -1911,103 +1476,110 @@ components:
         total:
           type: number
           example: 100
+      required:
+        - number
+        - size
+        - total
     PaginatedMeta:
-      type: object
-      title: PaginatedMeta
       description: returns the pagination information
+      type: object
       properties:
         page:
           $ref: '#/components/schemas/PageMeta'
       required:
         - page
+      title: PaginatedMeta
     CreatedAt:
+      description: An ISO-8601 timestamp representation of entity creation date.
       type: string
       format: date-time
       example: '2022-11-04T20:10:06.927Z'
-      description: An ISO-8601 timestamp representation of entity creation date.
       readOnly: true
     UpdatedAt:
+      description: An ISO-8601 timestamp representation of entity update date.
       type: string
       format: date-time
       example: '2022-11-04T20:10:06.927Z'
-      description: An ISO-8601 timestamp representation of entity update date.
       readOnly: true
     Labels:
-      title: Labels
+      description: |
+        Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types. 
+
+        Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
       type: object
       example:
         env: test
-      maxProperties: 50
-      description: >
-        Labels store metadata of an entity that can be used for filtering an
-        entity list or for searching across entity types. 
-
-
-        Keys must be of length 1-63 characters, and cannot start with "kong",
-        "konnect", "mesh", "kic", or "_".
       additionalProperties:
         type: string
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
         minLength: 1
         maxLength: 63
-    BaseError:
+      maxProperties: 50
+      title: Labels
+    PublicLabels:
+      description: |
+        Public labels store information about an entity that can be used for filtering a list of objects.
+
+        Public labels are intended to store **PUBLIC** metadata. 
+
+        Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
       type: object
-      title: Error
+      example:
+        category: finance
+      additionalProperties:
+        type: string
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        minLength: 1
+        maxLength: 63
+      maxProperties: 50
+      title: PublicLabels
+    BaseError:
       description: standard error
+      type: object
+      properties:
+        status:
+          description: |
+            The HTTP status code of the error. Useful when passing the response
+            body to child properties in a frontend UI. Must be returned as an integer.
+          type: integer
+          readOnly: true
+        title:
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          type: string
+          readOnly: true
+        type:
+          description: The error type.
+          type: string
+          readOnly: true
+        instance:
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          type: string
+          readOnly: true
+        detail:
+          description: |
+            A human readable explanation specific to this occurence of the problem.
+            This field may contain request/entity data to help the user understand
+            what went wrong. Enclose variable values in square brackets. Should be
+            provided as "Sentence case" for direct use in the UI.
+          type: string
+          readOnly: true
       required:
         - status
         - title
         - instance
         - detail
-      properties:
-        status:
-          type: integer
-          description: >
-            The HTTP status code of the error. Useful when passing the response
-
-            body to child properties in a frontend UI. Must be returned as an
-            integer.
-          readOnly: true
-        title:
-          type: string
-          description: |
-            A short, human-readable summary of the problem. It should not
-            change between occurences of a problem, except for localization.
-            Should be provided as "Sentence case" for direct use in the UI.
-          readOnly: true
-        type:
-          type: string
-          description: The error type.
-          readOnly: true
-        instance:
-          type: string
-          description: |
-            Used to return the correlation ID back to the user, in the format
-            kong:trace:<correlation_id>. This helps us find the relevant logs
-            when a customer reports an issue.
-          readOnly: true
-        detail:
-          type: string
-          description: >
-            A human readable explanation specific to this occurence of the
-            problem.
-
-            This field may contain request/entity data to help the user
-            understand
-
-            what went wrong. Enclose variable values in square brackets. Should
-            be
-
-            provided as "Sentence case" for direct use in the UI.
-          readOnly: true
+      title: Error
     InvalidRules:
       description: invalid parameters rules
       type: string
-      readOnly: true
-      nullable: true
       enum:
         - required
-        - max_length
         - is_array
         - is_base64
         - is_boolean
@@ -2021,15 +1593,17 @@ components:
         - is_fqdn
         - is_arn
         - unknown_property
+        - missing_reference
         - is_label
         - matches_regex
         - invalid
         - is_supported_network_availability_zone_list
         - is_supported_network_cidr_block
         - is_supported_provider_region
+      nullable: true
+      readOnly: true
     InvalidParameterStandard:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -2044,12 +1618,12 @@ components:
           type: string
           example: is a required field
           readOnly: true
+      additionalProperties: false
       required:
         - field
         - reason
     InvalidParameterMinimumLength:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -2058,14 +1632,16 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
-          nullable: false
           enum:
             - min_length
             - min_digits
             - min_lowercase
             - min_uppercase
             - min_symbols
+            - min_items
+            - min
+          nullable: false
+          readOnly: true
         minimum:
           type: integer
           example: 8
@@ -2074,16 +1650,16 @@ components:
           example: body
         reason:
           type: string
-          example: is a required field
+          example: must have at least 8 characters
           readOnly: true
+      additionalProperties: false
       required:
         - field
         - reason
         - rule
         - minimum
-    InvalidParameterChoiceItem:
+    InvalidParameterMaximumLength:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -2092,24 +1668,57 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
+          enum:
+            - max_length
+            - max_items
+            - max
           nullable: false
+          readOnly: true
+        maximum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: must not have more than 8 characters
+          readOnly: true
+      additionalProperties: false
+      required:
+        - field
+        - reason
+        - rule
+        - maximum
+    InvalidParameterChoiceItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
           enum:
             - enum
+          nullable: false
+          readOnly: true
         reason:
           type: string
           example: is a required field
           readOnly: true
         choices:
           type: array
-          uniqueItems: true
-          readOnly: true
-          nullable: false
-          minimum: 1
           items: {}
+          minItems: 1
+          nullable: false
+          readOnly: true
+          uniqueItems: true
         source:
           type: string
           example: body
+      additionalProperties: false
       required:
         - field
         - reason
@@ -2117,7 +1726,6 @@ components:
         - choices
     InvalidParameterDependentItem:
       type: object
-      additionalProperties: false
       properties:
         field:
           type: string
@@ -2126,40 +1734,42 @@ components:
         rule:
           description: invalid parameters rules
           type: string
-          readOnly: true
-          nullable: true
           enum:
             - dependent_fields
+          nullable: true
+          readOnly: true
         reason:
           type: string
           example: is a required field
           readOnly: true
         dependents:
           type: array
-          uniqueItems: true
-          nullable: true
           items: {}
+          nullable: true
           readOnly: true
+          uniqueItems: true
         source:
           type: string
           example: body
+      additionalProperties: false
       required:
         - field
         - rule
         - reason
         - dependents
     InvalidParameters:
-      type: array
-      nullable: false
-      uniqueItems: true
-      minItems: 1
       description: invalid parameters
+      type: array
       items:
         oneOf:
           - $ref: '#/components/schemas/InvalidParameterStandard'
           - $ref: '#/components/schemas/InvalidParameterMinimumLength'
+          - $ref: '#/components/schemas/InvalidParameterMaximumLength'
           - $ref: '#/components/schemas/InvalidParameterChoiceItem'
           - $ref: '#/components/schemas/InvalidParameterDependentItem'
+      minItems: 1
+      nullable: false
+      uniqueItems: true
     BadRequestError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -2179,9 +1789,9 @@ components:
             title:
               example: Unauthorized
             type:
-              example: https://httpstatuses.com/401
+              example: 'https://httpstatuses.com/401'
             instance:
-              example: kong:trace:1234567890
+              example: 'kong:trace:1234567890'
             detail:
               example: Invalid credentials
     ForbiddenError:
@@ -2194,9 +1804,9 @@ components:
             title:
               example: Forbidden
             type:
-              example: https://httpstatuses.com/403
+              example: 'https://httpstatuses.com/403'
             instance:
-              example: kong:trace:1234567890
+              example: 'kong:trace:1234567890'
             detail:
               example: Forbidden
     NotFoundError:
@@ -2209,9 +1819,9 @@ components:
             title:
               example: Not Found
             type:
-              example: https://httpstatuses.com/404
+              example: 'https://httpstatuses.com/404'
             instance:
-              example: kong:trace:1234567890
+              example: 'kong:trace:1234567890'
             detail:
               example: Not found
     UnsupportedMediaTypeError:
@@ -2224,48 +1834,57 @@ components:
             title:
               example: UnsupportedMediaType
             type:
-              example: https://httpstatuses.com/415
+              example: 'https://httpstatuses.com/415'
             instance:
-              example: kong:trace:1234567890
+              example: 'kong:trace:1234567890'
             detail:
               example: UnsupportedMediaType
     LabelsUpdate:
+      description: |
+        Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types. 
+
+        Labels are intended to store **INTERNAL** metadata.
+
+        Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
       type: object
-      nullable: true
-      description: >
-        Labels store metadata of an entity that can be used for filtering an
-        entity list or for searching across entity types. 
-
-
-        Keys must be of length 1-63 characters, and cannot start with "kong",
-        "konnect", "mesh", "kic", or "_".
       example:
         env: test
-      maxProperties: 50
       additionalProperties:
         type: string
-        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
         minLength: 1
         maxLength: 63
         nullable: true
+      maxProperties: 50
+      nullable: true
+      writeOnly: true
+    PublicLabelsUpdate:
+      description: |
+        Public labels store information about an entity that can be used for filtering a list of objects.
+
+        Public labels are intended to store **PUBLIC** metadata.
+
+        Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
+      type: object
+      example:
+        category: finance
+      additionalProperties:
+        type: string
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        minLength: 1
+        maxLength: 63
+        nullable: true
+      maxProperties: 50
+      title: PublicLabelsUpdate
       writeOnly: true
     PublishStatus:
-      description: document publish status
       type: string
       enum:
         - published
         - unpublished
     DocumentTree:
-      type: object
-      title: DocumentTree
       description: a document tree
-      required:
-        - id
-        - title
-        - slug
-        - metadata
-        - children
-        - status
+      type: object
       properties:
         id:
           type: string
@@ -2279,19 +1898,21 @@ components:
         title:
           type: string
         slug:
-          type: string
           description: document slug
+          type: string
           example: path-for-seo
         metadata:
-          type: object
           description: metadata of the document
+          type: object
           example:
             author: John Doe
         status:
           $ref: '#/components/schemas/PublishStatus'
         children:
-          type: array
           description: children of the document
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentTree'
           example:
             - id: d32d905a-ed33-46a3-a093-d8f536af9a8a
               title: Hello world
@@ -2300,10 +1921,24 @@ components:
               metadata:
                 author: John Doe
               children: []
-          items:
-            $ref: '#/components/schemas/DocumentTree'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+      required:
+        - id
+        - title
+        - slug
+        - metadata
+        - children
+        - status
+        - created_at
+        - updated_at
+      title: DocumentTree
     ChildNode:
       type: object
+      discriminator:
+        propertyName: type
       oneOf:
         - $ref: '#/components/schemas/HeadingBlock'
         - $ref: '#/components/schemas/BlockQuoteBlock'
@@ -2324,8 +1959,6 @@ components:
         - $ref: '#/components/schemas/TableCellBlock'
         - $ref: '#/components/schemas/TableRowBlock'
         - $ref: '#/components/schemas/TaskCheckbox'
-      discriminator:
-        propertyName: type
     NodeChildren:
       description: List of children nodes of the current node
       type: array
@@ -2333,8 +1966,6 @@ components:
         $ref: '#/components/schemas/ChildNode'
     HeadingBlock:
       type: object
-      required:
-        - type
       properties:
         type:
           type: string
@@ -2343,14 +1974,14 @@ components:
         level:
           description: Level of the heading which maps to HTML <h> tag
           type: number
-          minimum: 1
           maximum: 6
+          minimum: 1
         children:
           $ref: '#/components/schemas/NodeChildren'
-    BlockQuoteBlock:
-      type: object
       required:
         - type
+    BlockQuoteBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2358,10 +1989,10 @@ components:
             - blockquote
         children:
           $ref: '#/components/schemas/NodeChildren'
-    ParagraphBlock:
-      type: object
       required:
         - type
+    ParagraphBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2369,10 +2000,10 @@ components:
             - paragraph
         children:
           $ref: '#/components/schemas/NodeChildren'
-    TextBlock:
-      type: object
       required:
         - type
+    TextBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2380,10 +2011,10 @@ components:
             - text_block
         children:
           $ref: '#/components/schemas/NodeChildren'
-    BreakBlock:
-      type: object
       required:
         - type
+    BreakBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2391,10 +2022,10 @@ components:
             - break
         children:
           $ref: '#/components/schemas/NodeChildren'
-    CodeBlock:
-      type: object
       required:
         - type
+    CodeBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2404,10 +2035,10 @@ components:
           type: string
         children:
           $ref: '#/components/schemas/NodeChildren'
-    ListBlock:
-      type: object
       required:
         - type
+    ListBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2418,10 +2049,10 @@ components:
           type: boolean
         children:
           $ref: '#/components/schemas/NodeChildren'
-    ListItemBlock:
-      type: object
       required:
         - type
+    ListItemBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2429,10 +2060,10 @@ components:
             - list_item
         children:
           $ref: '#/components/schemas/NodeChildren'
-    Text:
-      type: object
       required:
         - type
+    Text:
+      type: object
       properties:
         type:
           type: string
@@ -2454,29 +2085,29 @@ components:
           type: boolean
         children:
           $ref: '#/components/schemas/NodeChildren'
-    Emphasis:
-      type: object
       required:
         - type
+    Emphasis:
+      type: object
       properties:
         type:
           type: string
           enum:
             - emphasis
         level:
-          type: number
-          minimum: 1
-          maximum: 2
           description: |
             Level of emphasis
             1 - italic
             2 - bold
+          type: number
+          maximum: 2
+          minimum: 1
         children:
           $ref: '#/components/schemas/NodeChildren'
-    Code:
-      type: object
       required:
         - type
+    Code:
+      type: object
       properties:
         type:
           type: string
@@ -2484,10 +2115,10 @@ components:
             - code
         children:
           $ref: '#/components/schemas/NodeChildren'
-    Link:
-      type: object
       required:
         - type
+    Link:
+      type: object
       properties:
         type:
           type: string
@@ -2499,10 +2130,10 @@ components:
         title:
           description: Title of the link
           type: string
-    Image:
-      type: object
       required:
         - type
+    Image:
+      type: object
       properties:
         type:
           type: string
@@ -2517,15 +2148,17 @@ components:
         title:
           description: Title of the image
           type: string
-    StrikeThrough:
-      type: object
       required:
         - type
+    StrikeThrough:
+      type: object
       properties:
         type:
           type: string
           enum:
             - strikethrough
+      required:
+        - type
     AlignmentKind:
       type: string
       enum:
@@ -2535,14 +2168,11 @@ components:
         - none
     TableAlignments:
       type: array
-      nullable: true
       items:
         $ref: '#/components/schemas/AlignmentKind'
+      nullable: true
     TableBlock:
       type: object
-      required:
-        - type
-        - alignments
       properties:
         type:
           type: string
@@ -2552,11 +2182,11 @@ components:
           $ref: '#/components/schemas/TableAlignments'
         children:
           $ref: '#/components/schemas/NodeChildren'
-    TableHeaderBlock:
-      type: object
       required:
         - type
         - alignments
+    TableHeaderBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2566,10 +2196,11 @@ components:
           $ref: '#/components/schemas/TableAlignments'
         children:
           $ref: '#/components/schemas/NodeChildren'
-    TableCellBlock:
-      type: object
       required:
         - type
+        - alignments
+    TableCellBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2579,11 +2210,10 @@ components:
           $ref: '#/components/schemas/AlignmentKind'
         children:
           $ref: '#/components/schemas/NodeChildren'
-    TableRowBlock:
-      type: object
       required:
         - type
-        - alignments
+    TableRowBlock:
+      type: object
       properties:
         type:
           type: string
@@ -2593,19 +2223,37 @@ components:
           $ref: '#/components/schemas/TableAlignments'
         children:
           $ref: '#/components/schemas/NodeChildren'
+      required:
+        - type
+        - alignments
     TaskCheckbox:
       type: object
-      required:
-        - checked
-        - type
       properties:
         type:
           type: string
           enum:
             - task_checkbox
         checked:
-          type: boolean
           description: State of the checkbox
+          type: boolean
+      required:
+        - checked
+        - type
+    UuidFieldFilter:
+      description: Filters on the given UUID field value by exact match.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      title: UuidFieldFilter
+      x-examples:
+        example-1: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-2:
+          eq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-3:
+          oeq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-4:
+          neq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
     ConflictError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -2616,44 +2264,11 @@ components:
             title:
               example: Conflict
             type:
-              example: https://httpstatuses.com/409
+              example: 'https://httpstatuses.com/409'
             instance:
-              example: kong:trace:1234567890
+              example: 'kong:trace:1234567890'
             detail:
               example: Conflict
-  securitySchemes:
-    personalAccessToken:
-      type: http
-      scheme: bearer
-      bearerFormat: Token
-      description: >
-        The personal access token is meant to be used as an alternative to
-        basic-auth when accessing Konnect via APIs.
-
-        You can generate a Personal Access Token (PAT) from the [personal access
-        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
-        dashboard.
-
-        The PAT token must be passed in the header of a request, for example:
-
-        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
-        'Authorization: Bearer kpat_xgfT...'`
-    systemAccountAccessToken:
-      type: http
-      scheme: bearer
-      bearerFormat: Token
-      description: >
-        The system account access token is meant for automations and
-        integrations that are not directly associated with a human identity.
-
-        You can generate a system account Access Token by creating a system
-        account and then obtaining a system account access token for that
-        account.
-
-        The access token must be passed in the header of a request, for example:
-
-        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
-        'Authorization: Bearer spat_i2Ej...'`
   examples:
     APIProductExample:
       value:
@@ -2667,6 +2282,8 @@ components:
         version_count: 10
         labels:
           env: test
+        public_labels:
+          label: value
     APIProductVersionExample:
       value:
         id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
@@ -2818,6 +2435,8 @@ components:
             slug: api-product-document
             status: published
             title: API Product Document
+            created_at: '2022-11-04T20:10:06.927Z'
+            updated_at: '2022-11-04T20:10:06.927Z'
             metadata: {}
             children:
               - children: []
@@ -2827,6 +2446,8 @@ components:
                 slug: api-product-document-child
                 status: published
                 title: API Product Document Child
+                created_at: '2022-11-04T20:10:06.927Z'
+                updated_at: '2022-11-04T20:10:06.927Z'
         meta:
           page:
             number: 1
@@ -2840,6 +2461,8 @@ components:
             slug: api-product-document
             status: published
             title: API Product Document
+            created_at: '2022-11-04T20:10:06.927Z'
+            updated_at: '2022-11-04T20:10:06.927Z'
         meta:
           page:
             number: 1
@@ -2851,8 +2474,7 @@ components:
         slug: api-product-document
         status: published
         title: API Product Document
-        content: >-
-          IyBBUEkgUHJvZHVjdCBEb2N1bWVudCBIZWFkZXIKQVBJIHByb2R1Y3QgZG9jdW1lbnQgY29udGVudA==
+        content: IyBBUEkgUHJvZHVjdCBEb2N1bWVudCBIZWFkZXIKQVBJIHByb2R1Y3QgZG9jdW1lbnQgY29udGVudA==
         parent_document_id: 417a2aed-9a75-4eca-a943-fa7d88ed6a73
         metadata:
           author: John Doe
@@ -2862,8 +2484,7 @@ components:
         slug: api-product-document
         status: published
         title: API Product Document
-        content: >-
-          IyBBUEkgUHJvZHVjdCBEb2N1bWVudCBIZWFkZXIKQVBJIHByb2R1Y3QgZG9jdW1lbnQgY29udGVudA==
+        content: IyBBUEkgUHJvZHVjdCBEb2N1bWVudCBIZWFkZXIKQVBJIHByb2R1Y3QgZG9jdW1lbnQgY29udGVudA==
     UpdateAPIProductDocumentAttributesRequestExample:
       summary: Update API Product Document Attributes Request
       value:
@@ -2876,8 +2497,7 @@ components:
     UpdateAPIProductDocumentContentRequestExample:
       summary: Update API Product Document Content Request
       value:
-        content: >-
-          IyBBUEkgUHJvZHVjdCBEb2N1bWVudCBIZWFkZXIKQVBJIHByb2R1Y3QgZG9jdW1lbnQgY29udGVudCB1cGRhdGVk
+        content: IyBBUEkgUHJvZHVjdCBEb2N1bWVudCBIZWFkZXIKQVBJIHByb2R1Y3QgZG9jdW1lbnQgY29udGVudCB1cGRhdGVk
     UpdateAPIProductDocumentAttributesAndContentRequestExample:
       summary: Update API Product Document Attributes and Content Request
       value:
@@ -2885,15 +2505,14 @@ components:
         slug: api-product-document
         status: published
         title: API Product Document
-        content: >-
-          IyBBUEkgUHJvZHVjdCBEb2N1bWVudCBIZWFkZXIKQVBJIHByb2R1Y3QgZG9jdW1lbnQgY29udGVudCB1cGRhdGVk
+        content: IyBBUEkgUHJvZHVjdCBEb2N1bWVudCBIZWFkZXIKQVBJIHByb2R1Y3QgZG9jdW1lbnQgY29udGVudCB1cGRhdGVk
         metadata:
           author: Jane Doe
     APIProductNameBadRequestExample:
       value:
         status: 400
         title: Invalid Request
-        instance: kong:trace:8405749052424858251
+        instance: 'kong:trace:8405749052424858251'
         detail: Invalid Parameters
         invalid_parameters:
           - field: name
@@ -2904,17 +2523,17 @@ components:
       value:
         status: 400
         title: Invalid Request
-        instance: kong:trace:5832302153563197721
+        instance: 'kong:trace:5832302153563197721'
         detail: Invalid Parameters
         invalid_parameters:
           - field: slug
             rule: matches_regex
-            reason: slug must match /^[\w-]+$/ regular expression
+            reason: 'slug must match /^[\w-]+$/ regular expression'
     APIProductVersionSpecContentBadRequestExample:
       value:
         status: 400
         title: Invalid Request
-        instance: kong:trace:1433447772874964729
+        instance: 'kong:trace:1433447772874964729'
         detail: Invalid Parameters
         invalid_parameters:
           - field: content
@@ -2925,57 +2544,60 @@ components:
       value:
         status: 401
         title: Unauthorized
-        instance: kong:trace:8347343766220159418
+        instance: 'kong:trace:8347343766220159418'
         detail: Unauthorized
     NotFoundExample:
       value:
         status: 404
         title: Not Found
-        instance: kong:trace:6816496025408232265
+        instance: 'kong:trace:6816496025408232265'
         detail: Not Found
     ForbiddenExample:
       value:
         status: 403
         title: Forbidden
-        instance: kong:trace:2723154947768991354
+        instance: 'kong:trace:2723154947768991354'
         detail: You do not have permission to perform this action
     SlugConflictExample:
       value:
         status: 409
         title: Conflict
-        instance: kong:trace:3169213858331814220
+        instance: 'kong:trace:3169213858331814220'
     VersionSpecConflictExample:
       value:
         status: 409
         title: Conflict
-        instance: kong:trace:3169213858331814220
-        detail: >-
-          Specification for API product version
-          '9f5061ce-78f6-4452-9108-ad7c02821fd5' already exists
+        instance: 'kong:trace:3169213858331814220'
+        detail: Specification for API product version '9f5061ce-78f6-4452-9108-ad7c02821fd5' already exists
     VersionSpecHiddenConflictExample:
       value:
         status: 409
         title: Conflict
-        instance: kong:trace:9039922446017540182
-        detail: >-
-          Key (service_version_id, path)=(23380be0-c15e-4ca8-bcf7-43aadddc91b1,
-          hidden.yaml) already exists.
+        instance: 'kong:trace:9039922446017540182'
+        detail: 'Key (service_version_id, path)=(23380be0-c15e-4ca8-bcf7-43aadddc91b1, hidden.yaml) already exists.'
+    ApiProductImplementationConflictExample:
+      value:
+        status: 409
+        title: Conflict
+        instance: 'kong:trace:9039922446017540182'
+        detail: This gateway service is already linked to a V3 API
     InvalidSortQueryBadRequestExample:
       value:
         status: 400
         title: Invalid Request
-        instance: kong:trace:4725061142075238974
+        instance: 'kong:trace:4725061142075238974'
         detail: Invalid Parameters
         invalid_parameters:
           - field: sort
             rule: enum
-            choices: []
-            reason: '"sort" field must contain any of: []'
+            choices:
+              - name
+            reason: '"sort" field must contain any of: [name]'
     InvalidSortQueryNameBadRequestExample:
       value:
         status: 400
         title: Invalid Request
-        instance: kong:trace:4725061142075238974
+        instance: 'kong:trace:4725061142075238974'
         detail: Invalid Parameters
         invalid_parameters:
           - field: sort
@@ -2987,5 +2609,391 @@ components:
       value:
         status: 415
         title: Unsupported Media Type
-        instance: kong:trace:8347343766220159418
+        instance: 'kong:trace:8347343766220159418'
         detail: 'This API only supports requests with `Content-Type: application/json`'
+  requestBodies:
+    CreateAPIProductRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateAPIProductDTO'
+          examples:
+            CreateAPIProductRequestMinimalExample:
+              $ref: '#/components/examples/CreateAPIProductRequestMinimalExample'
+            CreateAPIProductRequestExample:
+              $ref: '#/components/examples/CreateAPIProductRequestExample'
+            CreateAPIProductAndPublishToPortalsRequestExample:
+              $ref: '#/components/examples/CreateAPIProductAndPublishToPortalsRequestExample'
+    UpdateAPIProductRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateAPIProductDTO'
+          examples:
+            UpdateAPIProductRequestExample:
+              $ref: '#/components/examples/UpdateAPIProductRequestExample'
+            PublishAPIProductToPortalExample:
+              $ref: '#/components/examples/PublishAPIProductToPortalExample'
+    CreateAPIProductVersionRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateAPIProductVersionDTO'
+          examples:
+            UnlinkedAPIProductVersion:
+              $ref: '#/components/examples/CreateAPIProductVersionRequestMinimalExample'
+            LinkedAPIProductVersion:
+              $ref: '#/components/examples/CreateLinkedAPIProductVersionRequestExample'
+    CreateAPIProductVersionSpecRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateAPIProductVersionSpecDTO'
+          examples:
+            CreateAPIProductVersionSpecificationRequestExample:
+              $ref: '#/components/examples/CreateAPIProductVersionSpecificationRequestExample'
+    CreateAPIProductDocumentRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateAPIProductDocumentDTO'
+          examples:
+            CreateAPIProductDocumentRequestMinimalExample:
+              $ref: '#/components/examples/CreateAPIProductDocumentRequestMinimalExample'
+            CreateAPIProductDocumentRequestExample:
+              $ref: '#/components/examples/CreateAPIProductDocumentRequestExample'
+    UpdateAPIProductVersionRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateAPIProductVersionDTO'
+          examples:
+            LinkAPIProductVersionRequest:
+              $ref: '#/components/examples/LinkAPIProductVersionRequestExample'
+            UnlinkAPIProductVersionRequest:
+              $ref: '#/components/examples/UnlinkAPIProductVersionRequestExample'
+            DeprecateAPIProductVersionRequest:
+              $ref: '#/components/examples/DeprecateAPIProductVersionRequestExample'
+    UpdateAPIProductDocumentRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateAPIProductDocumentDTO'
+          examples:
+            UpdateAPIProductDocumentAttributes:
+              $ref: '#/components/examples/UpdateAPIProductDocumentAttributesRequestExample'
+            UpdateAPIProductDocumentContent:
+              $ref: '#/components/examples/UpdateAPIProductDocumentContentRequestExample'
+            UpdateAPIProductDocumentAttributesAndContent:
+              $ref: '#/components/examples/UpdateAPIProductDocumentAttributesAndContentRequestExample'
+    UpdateAPIProductVersionSpecRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateAPIProductVersionSpecDTO'
+          examples:
+            UpdateAPIProductVersionSpecContentRequest:
+              $ref: '#/components/examples/UpdateAPIProductVersionSpecContentRequestExample'
+            UpdateAPIProductVersionSpecNameRequest:
+              $ref: '#/components/examples/UpdateAPIProductVersionSpecNameRequestExample'
+            UpdateAPIProductVersionSpecRequest:
+              $ref: '#/components/examples/UpdateAPIProductVersionSpecRequestExample'
+  responses:
+    SlugConflict:
+      description: Conflict - `slug` property must be unique
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+              title:
+                type: string
+              type:
+                type: string
+              instance:
+                type: string
+            required:
+              - status
+              - title
+              - instance
+          examples:
+            SlugConflictExample:
+              $ref: '#/components/examples/SlugConflictExample'
+    VersionSpecConflict:
+      description: Conflict - only one version specification can exist
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            VersionSpecConflictExample:
+              $ref: '#/components/examples/VersionSpecConflictExample'
+    VersionSpecHiddenConflict:
+      description: Conflict - name attribute must be unique accross legacy version specifications
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            VersionSpecConflictExample:
+              $ref: '#/components/examples/VersionSpecHiddenConflictExample'
+    ApiProductImplementationConflict:
+      description: Conflict - V3 API is currently linked to the target gateway service
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            VersionSpecConflictExample:
+              $ref: '#/components/examples/ApiProductImplementationConflictExample'
+    ApiProductUnauthorized:
+      description: Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/UnauthorizedExample'
+    ApiProductNotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            NotFoundExample:
+              $ref: '#/components/examples/NotFoundExample'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+          examples:
+            ForbiddenExample:
+              $ref: '#/components/examples/ForbiddenExample'
+    APIProductResponse:
+      description: API product
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIProduct'
+          examples:
+            Create API Product Response:
+              $ref: '#/components/examples/APIProductExample'
+    ListAPIProductResponse:
+      description: List of API products
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/APIProduct'
+            required:
+              - data
+              - meta
+            title: ListAPIProductsResponse
+          examples:
+            API Product Collection:
+              value:
+                data:
+                  - id: e7a4f6c0-5777-4a37-bcb9-2d37d3b362ee
+                    name: API Product
+                    description: Text describing the API product
+                    portal_ids: []
+                    portals: []
+                    created_at: '2023-01-01T00:00:00.000Z'
+                    updated_at: '2023-01-01T00:00:00.000Z'
+                    version_count: 10
+                    labels:
+                      env: test
+                    public_labels:
+                      label: value
+                meta:
+                  page:
+                    number: 1
+                    size: 1
+                    total: 10
+    APIProductVersionResponse:
+      description: API product
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIProductVersion'
+          examples:
+            Create API Product Response:
+              $ref: '#/components/examples/APIProductVersionExample'
+    ListAPIProductVersionResponse:
+      description: List of API products
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/APIProductVersion'
+            required:
+              - data
+              - meta
+            title: ListAPIProductVersionsResponse
+          examples:
+            API Product Version Collection:
+              value:
+                data:
+                  - id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+                    name: v1
+                    gateway_service:
+                      runtime_group_id: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
+                      control_plane_id: e4d9ebb1-26b4-426a-b00e-cb67044f3baf
+                      id: 09b4786a-3e48-4631-8f6b-62d1d8e1a7f3
+                    publish_status: unpublished
+                    deprecated: false
+                    labels:
+                      env: test
+                    portals:
+                      - portal_id: 35a2624c-49fc-4764-99e1-224ed819f200
+                        portal_name: Developer Portal
+                        portal_product_version_id: 35a2624c-49fc-4764-99e1-224ed819f200
+                        publish_status: published
+                        deprecated: false
+                        application_registration_enabled: true
+                        auto_approve_registration: false
+                        auth_strategies:
+                          - id: 35a2624c-49fc-4764-99e1-224ed819f200
+                            name: OIDC
+                    created_at: '2023-01-01T00:00:00.000Z'
+                    updated_at: '2023-01-01T00:00:00.000Z'
+                meta:
+                  page:
+                    number: 1
+                    size: 1
+                    total: 10
+    APIProductDocumentResponse:
+      description: API product document
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIProductDocument'
+          examples:
+            Create API Product Document Response:
+              $ref: '#/components/examples/APIProductDocumentExample'
+    ListAPIProductDocumentResponse:
+      description: List of API product documents
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/APIProductDocumentSummary'
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+            required:
+              - data
+              - meta
+          examples:
+            List API Product Document Response:
+              $ref: '#/components/examples/ListAPIProductDocumentSummaryExample'
+        application/vnd.konnect.document-tree+json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentTree'
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+            required:
+              - data
+              - meta
+          examples:
+            List API Product Document Response:
+              $ref: '#/components/examples/APIProductDocumentTreeExample'
+    ListAPIProductVersionSpecResponse:
+      description: List of API product version specification
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/APIProductVersionSpec'
+            required:
+              - data
+              - meta
+            title: ListAPIProductVersionSpecResponse
+          examples:
+            List API Product Version Document Response:
+              $ref: '#/components/examples/ListAPIProductVersionSpecExample'
+    APIProductVersionSpecResponse:
+      description: API product version specification
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIProductVersionSpec'
+          examples:
+            API Product Version Document Response:
+              $ref: '#/components/examples/APIProductVersionSpecExample'
+    UnsupportedMediaType:
+      description: Unsupported Media Type
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnsupportedMediaTypeError'
+          examples:
+            UnsupportedMediaTypeExample:
+              $ref: '#/components/examples/UnsupportedMediaTypeExample'
+  securitySchemes:
+    personalAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: |
+        The personal access token is meant to be used as an alternative to basic-auth when accessing Konnect via APIs.
+        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/account/tokens/) in the Konnect dashboard.
+        The PAT token must be passed in the header of a request, for example:
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT...'`
+    systemAccountAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: |
+        The system account access token is meant for automations and integrations that are not directly associated with a human identity.
+        You can generate a system account Access Token by creating a system account and then obtaining a system account access token for that account.
+        The access token must be passed in the header of a request, for example:
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer spat_i2Ej...'`
+tags:
+  - name: API Products
+  - name: API Product Documentation
+  - name: API Product Versions
+  - name: API Product Version Specification
+security:
+  - personalAccessToken: []
+  - systemAccountAccessToken: []

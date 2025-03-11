@@ -175,6 +175,8 @@ items:
     items:
       - text: Custom Plugins
         url: /plugins/custom
+      - text: Cross-namespace Plugins
+        url: /plugins/cross-namespace
       - text: Authentication
         url: /plugins/authentication
       - text: ACL
@@ -198,7 +200,7 @@ items:
       - text: Configuration Options
         url: /reference/cli-arguments/
         src: reference/cli-arguments-3.2.x
-      - text: Beta Feature Gates
+      - text: Feature Gates
         url: /reference/feature-gates
       - text: FAQ
         items:

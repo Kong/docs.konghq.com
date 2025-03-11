@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.15.0
+    controller-gen.kubebuilder.io/version: v0.17.2
   name: meshglobalratelimits.kuma.io
 spec:
   group: kuma.io
@@ -13,6 +13,8 @@ spec:
     kind: MeshGlobalRateLimit
     listKind: MeshGlobalRateLimitList
     plural: meshglobalratelimits
+    shortNames:
+    - mgrl
     singular: meshglobalratelimit
   scope: Namespaced
   versions:
@@ -75,9 +77,6 @@ spec:
                                 url:
                                   description: Url defines address of rate limit service.
                                   type: string
-                              required:
-                              - timeout
-                              - url
                               type: object
                           required:
                           - rateLimitService
@@ -179,7 +178,6 @@ spec:
                                             header value.
                                           type: string
                                       required:
-                                      - requestRate
                                       - value
                                       type: object
                                     type: array
@@ -237,8 +235,10 @@ spec:
                           - MeshGateway
                           - MeshService
                           - MeshExternalService
+                          - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                           type: string
                         labels:
                           additionalProperties:
@@ -270,7 +270,6 @@ spec:
                             - Sidecar
                             - Gateway
                             type: string
-                          minItems: 1
                           type: array
                         sectionName:
                           description: |-
@@ -284,6 +283,8 @@ spec:
                             Tags used to select a subset of proxies by tags. Can only be used with kinds
                             `MeshSubset` and `MeshServiceSubset`
                           type: object
+                      required:
+                      - kind
                       type: object
                   required:
                   - targetRef
@@ -303,8 +304,10 @@ spec:
                     - MeshGateway
                     - MeshService
                     - MeshExternalService
+                    - MeshMultiZoneService
                     - MeshServiceSubset
                     - MeshHTTPRoute
+                    - Dataplane
                     type: string
                   labels:
                     additionalProperties:
@@ -336,7 +339,6 @@ spec:
                       - Sidecar
                       - Gateway
                       type: string
-                    minItems: 1
                     type: array
                   sectionName:
                     description: |-
@@ -350,6 +352,8 @@ spec:
                       Tags used to select a subset of proxies by tags. Can only be used with kinds
                       `MeshSubset` and `MeshServiceSubset`
                     type: object
+                required:
+                - kind
                 type: object
               to:
                 description: To list makes a match between clients and corresponding
@@ -378,9 +382,6 @@ spec:
                                 url:
                                   description: Url defines address of rate limit service.
                                   type: string
-                              required:
-                              - timeout
-                              - url
                               type: object
                           required:
                           - rateLimitService
@@ -482,7 +483,6 @@ spec:
                                             header value.
                                           type: string
                                       required:
-                                      - requestRate
                                       - value
                                       type: object
                                     type: array
@@ -540,8 +540,10 @@ spec:
                           - MeshGateway
                           - MeshService
                           - MeshExternalService
+                          - MeshMultiZoneService
                           - MeshServiceSubset
                           - MeshHTTPRoute
+                          - Dataplane
                           type: string
                         labels:
                           additionalProperties:
@@ -573,7 +575,6 @@ spec:
                             - Sidecar
                             - Gateway
                             type: string
-                          minItems: 1
                           type: array
                         sectionName:
                           description: |-
@@ -587,13 +588,13 @@ spec:
                             Tags used to select a subset of proxies by tags. Can only be used with kinds
                             `MeshSubset` and `MeshServiceSubset`
                           type: object
+                      required:
+                      - kind
                       type: object
                   required:
                   - targetRef
                   type: object
                 type: array
-            required:
-            - targetRef
             type: object
         type: object
     served: true

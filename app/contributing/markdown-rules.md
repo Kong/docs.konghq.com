@@ -501,8 +501,7 @@ Badge | HTML tag | Markdown tag | Purpose
 ------|----------|--------------|---------
 <span class="badge free"></span> | `<span class="badge free"></span>` | `{:.badge .free}` | {{site.ee_product_name}} - free mode
 <span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge .enterprise}` | {{site.ee_product_name}} features
-<span class="badge paid"></span> | `<span class="badge paid"></span>` | `{:.badge .paid}` | {{site.konnect_short_name}} paid plugins
-<span class="badge premium"></span> | `<span class="badge premium"></span>` | `{:.badge .premium}` |  {{site.konnect_short_name}} premium plugins
+<span class="badge konnect"></span> | `<span class="badge konnect"></span>` | `{:.badge .konnect}` |  {{site.konnect_short_name}} compatible plugins
 <span class="badge dbless"></span> | `<span class="badge dbless"></span>` | `{:.badge .dbless}` | Used to label API endpoints as DB-less compatible
 <span class="badge beta"></span> | `<span class="badge beta"></span>` | `{:.badge .beta}` | Beta features
 <span class="badge alpha"></span> | `<span class="badge alpha"></span>` | `{:.badge .alpha}` | Alpha/tech preview features

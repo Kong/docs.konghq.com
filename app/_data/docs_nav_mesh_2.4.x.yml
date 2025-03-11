@@ -158,6 +158,8 @@ inherit:
           generate: false
         - text: UBI Images
           url: /features/ubi-images
+        - text: Windows Support
+          url: /features/windows
         - text: ECS Support
           url: /installation/ecs
         - text: Auditing
@@ -178,6 +180,3 @@ inherit:
       src: null
       absolute_url: true
       url: https://kuma.io/community
-unlisted:
-  - url: /install
-    src: /mesh/install

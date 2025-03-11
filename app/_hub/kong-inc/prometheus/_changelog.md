@@ -1,5 +1,20 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.9.x
+* Increased the upper limit of `KONG_LATENCY_BUCKETS` to 6000 to enhance latency tracking precision.
+  [#13588](https://github.com/Kong/kong/issues/13588)
+* Added support for Proxy-Wasm metrics.
+  [#13681](https://github.com/Kong/kong/issues/13681)
+
+### {{site.base_gateway}} 3.8.x
+* Added `ai_requests_total`, `ai_cost_total`, and `ai_tokens_total` metrics to 
+  the Prometheus plugin to start counting AI usage.
+  [#13148](https://github.com/Kong/kong/issues/13148)
+* Improved error logging when having an inconsistent label count.
+   [#13020](https://github.com/Kong/kong/issues/13020)
+* Fixed an issue where the CP/DP compatibility check was missing for the new configuration field `ai_metrics`.
+   [#13417](https://github.com/Kong/kong/issues/13417)
+
 ### {{site.base_gateway}} 3.7.x
 * Added a workspace label to Prometheus plugin metrics.
  [#12836](https://github.com/Kong/kong/issues/12836)

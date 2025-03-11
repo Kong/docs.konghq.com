@@ -18,7 +18,7 @@ To change any header names, set up a Post-function plugin instance that runs in 
     ```sh
     curl -i -X POST http://localhost:8001/services/ \
       --data "name=example-service" \
-      --data "url=http://httpbin.org/headers"
+      --data "url=https://httpbin.konghq.com/headers"
     ```
 
 1. Add a route to the service:

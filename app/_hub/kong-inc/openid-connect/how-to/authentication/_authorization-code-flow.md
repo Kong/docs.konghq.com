@@ -96,8 +96,10 @@ plugin: kong-inc/openid-connect
 name: openid-connect
 config:
   issuer: "http://keycloak.test:8080/auth/realms/master"
-  client_id: "kong"
-  client_auth: "private_key_jwt"
+  client_id: 
+    - "kong"
+  client_auth: 
+    - "private_key_jwt"
   auth_methods:
     - "authorization_code"
     - "session"
@@ -112,6 +114,7 @@ formats:
   - curl
   - yaml
   - kubernetes
+  - terraform
 {% endplugin_example %}
 <!--vale on -->
 
@@ -138,7 +141,7 @@ enabled the OpenID Connect plugin on the service. You can now test the authoriza
 
    You can examine the query arguments passed to Keycloak with the browser's developer tools.
 
-3. And finally you will be presented a response from `httpbin.org` that looks something like this:
+3. And finally you will be presented a response from `httpbin.konghq.com` that looks something like this:
 
    ```json
    {

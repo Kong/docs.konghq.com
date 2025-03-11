@@ -7,54 +7,13 @@ purpose: |
 
 Install a custom plugin in Kong without using a Docker build.
 
-## Create a custom plugin
+{:.note}
+> The recommended way to install custom plugins is with {{ site.kgo_product_name }}.
+> See [Kong custom plugin distribution with KongPluginInstallation](/gateway-operator/latest/guides/plugin-distribution/) for more information.
 
-1. Create a directory with test plugin code.
+{% include md/custom-plugin.md %}
 
-   {:.note}
-   > If you already have a real plugin, you can skip this step.
-
-    ```bash
-    $ mkdir myheader
-    $ echo 'local MyHeader = {}
-
-    MyHeader.PRIORITY = 1000
-    MyHeader.VERSION = "1.0.0"
-
-    function MyHeader:header_filter(conf)
-      -- do custom logic here
-      kong.response.set_header("myheader", conf.header_value)
-    end
-
-    return MyHeader
-    ' > myheader/handler.lua
-    
-    $ echo 'return {
-      name = "myheader",
-      fields = {
-        { config = {
-            type = "record",
-            fields = {
-              { header_value = { type = "string", default = "roar", }, },
-            },
-        }, },
-      }
-    }
-    ' > myheader/schema.lua
-    ```
-
-   After your plugin code available in a directory, the directory should look like this:
-
-    ```bash
-    $ tree myheader
-    myheader
-    ├── handler.lua
-    └── schema.lua
-
-    0 directories, 2 files
-    ```
-
-1. Create a ConfigMap or Secret with the plugin code. If you're not sure which option is correct, use a `ConfigMap`.
+2. Create a `ConfigMap` or `Secret` with the plugin code. If you're not sure which option is correct, use a `ConfigMap`.
 
     If you would like to install a plugin which is available as a rock from Luarocks, then you need to download it, unzip it and create a ConfigMap or secret from all the Lua files of the plugin.
 

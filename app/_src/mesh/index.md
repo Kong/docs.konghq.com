@@ -159,15 +159,4 @@ You can contribute to the development of {{site.mesh_product_name}} by contribut
 For more information, see the [contribution guide](https://kuma.io/community).
 
 <!-- links -->
-{% if_version gte:2.0.x %}
-{% if_version lte:2.1.x %}
-[deployments]: /mesh/{{page.release}}/introduction/deployments/
-{% endif_version %}
-{% if_version gte:2.2.x %}
 [deployments]: /mesh/{{page.release}}/production/deployment/
-{% endif_version %}
-{% endif_version %}
-
-{% if_version lte:1.9.x %}
-[deployments]: https://kuma.io/docs/1.8.x/introduction/deployments/
-{% endif_version %}

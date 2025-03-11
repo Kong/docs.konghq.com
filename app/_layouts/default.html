@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/Article">
+<html lang="{{ site.locale }}" itemscope itemtype="http://schema.org/Article">
 
   {% include_cached head.html
      seo_noindex=page.seo_noindex
@@ -12,7 +12,10 @@
      release=page.release
      no_version=page.no_version
      type=page.type
-     kong_latest=page.kong_latest %}
+     kong_latest=page.kong_latest
+     translation_fallback=page.translation_fallback
+     site_locale=site.locale
+     %}
 
   <body
     id="{{ page.id }}"
@@ -29,10 +32,12 @@
     data-offset="350"
   >
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NL48VKT"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    {% if jekyll.environment == "production" and site.gtm_id != empty %}
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.gtm_id }}"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
 
     {% include_cached nav-v2.html layout=page.layout edition=page.edition %}
 
@@ -40,14 +45,12 @@
 
     {% include_cached footer.html %} {% include_cached anchor_links.html %}
 
-    {% if jekyll.environment == "production" %}
+    {% if jekyll.environment == "production" and site.segment_key != empty %}
       <script>
-        (function stp(){
-          if (typeof analytics == "undefined"){
-            return setTimeout(stp, 30);
-          }
+        !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="{{site.segment_key}}";;analytics.SNIPPET_VERSION="5.2.0";
+          analytics.load("{{ site.segment_key }}");
           analytics.page();
-        })();
+        }}();
       </script>
     {% endif %}
 
@@ -59,73 +62,75 @@
       defer
     ></script>
 
-    <script type="text/javascript">
-      var _vwo_code = (function() {
-        var account_id = 125292,
-          settings_tolerance = 2000,
-          library_tolerance = 2500,
-          use_existing_jquery = true,
-          // DO NOT EDIT BELOW THIS LINE
-          f = false,
-          d = document;
-        return {
-          use_existing_jquery: function() {
-            return use_existing_jquery;
-          },
-          library_tolerance: function() {
-            return library_tolerance;
-          },
-          finish: function() {
-            if (!f) {
-              f = true;
-              var a = d.getElementById('_vis_opt_path_hides');
-              if (a) a.parentNode.removeChild(a);
+    {% if jekyll.environment == "production" and site.vwo_account_id != empty %}
+      <script type="text/javascript">
+        var _vwo_code = (function() {
+          var account_id = {{ site.vwo_account_id }},
+            settings_tolerance = 2000,
+            library_tolerance = 2500,
+            use_existing_jquery = true,
+            // DO NOT EDIT BELOW THIS LINE
+            f = false,
+            d = document;
+          return {
+            use_existing_jquery: function() {
+              return use_existing_jquery;
+            },
+            library_tolerance: function() {
+              return library_tolerance;
+            },
+            finish: function() {
+              if (!f) {
+                f = true;
+                var a = d.getElementById('_vis_opt_path_hides');
+                if (a) a.parentNode.removeChild(a);
+              }
+            },
+            finished: function() {
+              return f;
+            },
+            load: function(a) {
+              var b = d.createElement('script');
+              b.src = a;
+              b.type = 'text/javascript';
+              b.innerText;
+              b.onerror = function() {
+                _vwo_code.finish();
+              };
+              d.getElementsByTagName('head')[0].appendChild(b);
+            },
+            init: function() {
+              settings_timer = setTimeout(
+                '_vwo_code.finish()',
+                settings_tolerance
+              );
+              this.load(
+                '//dev.visualwebsiteoptimizer.com/j.php?a=' +
+                  account_id +
+                  '&u=' +
+                  encodeURIComponent(d.URL) +
+                  '&r=' +
+                  Math.random()
+              );
+              var a = d.createElement('style'),
+                b = '',
+                h = d.getElementsByTagName('head')[0];
+              a.setAttribute('id', '_vis_opt_path_hides');
+              a.setAttribute('type', 'text/css');
+              if (a.styleSheet) a.styleSheet.cssText = b;
+              else a.appendChild(d.createTextNode(b));
+              h.appendChild(a);
+              return settings_timer;
             }
-          },
-          finished: function() {
-            return f;
-          },
-          load: function(a) {
-            var b = d.createElement('script');
-            b.src = a;
-            b.type = 'text/javascript';
-            b.innerText;
-            b.onerror = function() {
-              _vwo_code.finish();
-            };
-            d.getElementsByTagName('head')[0].appendChild(b);
-          },
-          init: function() {
-            settings_timer = setTimeout(
-              '_vwo_code.finish()',
-              settings_tolerance
-            );
-            this.load(
-              '//dev.visualwebsiteoptimizer.com/j.php?a=' +
-                account_id +
-                '&u=' +
-                encodeURIComponent(d.URL) +
-                '&r=' +
-                Math.random()
-            );
-            var a = d.createElement('style'),
-              b = '',
-              h = d.getElementsByTagName('head')[0];
-            a.setAttribute('id', '_vis_opt_path_hides');
-            a.setAttribute('type', 'text/css');
-            if (a.styleSheet) a.styleSheet.cssText = b;
-            else a.appendChild(d.createTextNode(b));
-            h.appendChild(a);
-            return settings_timer;
-          }
-        };
-      })();
-      _vwo_settings_timer = _vwo_code.init();
-    </script>
+          };
+        })();
+        _vwo_settings_timer = _vwo_code.init();
+      </script>
+    {% endif %}
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
 
-    {% if page.url != '/search/' %}
+    {% if page.url != '/search/' and site.disable_search != true %}
       <script type="text/javascript">
         docsearch({
           appId: '05Y6TLHNFZ',
@@ -179,6 +184,36 @@
             }
             {% endif %}
           });
+      </script>
+    {% endif %}
+
+    {% if site.locale != site.default_locale and page.translation_fallback == true %}
+      {%- capture banner %}{%- t _includes.do_not_translate_banner.text -%}{%- endcapture -%}
+      <script>
+        window.pageI18n = { "banner": {{ banner | rstrip | jsonify }} }
+      </script>
+    {% endif %}
+
+    {% if jekyll.environment == "production" %}
+      <script>
+        (function() {
+          if (typeof window === 'undefined') return;
+          if (typeof window.signals !== 'undefined') return;
+          var script = document.createElement('script');
+          script.src = 'https://cdn.cr-relay.com/v1/site/993c7a0d-caec-465c-be46-2d3a78ab60c5/signals.js';
+          script.async = true;
+          window.signals = Object.assign(
+            [],
+            ['page', 'identify', 'form'].reduce(function (acc, method){
+              acc[method] = function () {
+                signals.push([method, arguments]);
+                return signals;
+              };
+              return acc;
+            }, {})
+          );
+          document.head.appendChild(script);
+        })();
       </script>
     {% endif %}
   </body>
