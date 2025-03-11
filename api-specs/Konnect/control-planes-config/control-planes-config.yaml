@@ -3970,6 +3970,7 @@ components:
         type: integer
         example: 10
     PaginationOffset:
+      allowEmptyValue: true
       description: Offset from which to return the next set of resources. Use the value of the 'offset' field from the response of a list operation as input here to paginate through all the resources
       in: query
       name: offset
@@ -3985,6 +3986,7 @@ components:
         maximum: 1000
         minimum: 1
     PaginationTagsFilter:
+      allowEmptyValue: true
       description: 'A list of tags to filter the list of resources on. Multiple tags can be concatenated using '','' to mean AND or using ''/'' to mean OR.'
       example: 'tag1,tag2'
       in: query
