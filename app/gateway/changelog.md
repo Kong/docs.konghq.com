@@ -3045,6 +3045,28 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.17
+**Release Date** 2025/03/13
+
+### Fixes
+#### Core
+
+* Updated the AWS Vault supported regions list to the latest available.
+
+#### Plugins
+
+* [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
+  * Fixed segmentation fault caused by missing destructor call on process exit.
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed an issue where a binary string was truncated at the first null character.
+* [**Session**](/hub/kong-inc/session/) (`session`) 
+  * Fixed an issue where two boolean configuration fields `hash_subject` (default `false`) and `store_metadata` (default `false`) stored the session's metadata in the database.
+
+### Dependencies
+
+* Bumped `libexpat` from 2.6.2 to 2.6.4 to fix a crash in the `XML_ResumeParser` function caused by `XML_StopParser` stopping an uninitialized parser.
+* Bumped `lua-resty-events` to 0.3.0.
+* Bumped `lua-resty-healthcheck` to 3.1.0.
 
 ## 3.4.3.16
 **Release Date** 2025/01/16
