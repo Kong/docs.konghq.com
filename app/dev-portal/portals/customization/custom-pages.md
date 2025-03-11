@@ -36,7 +36,7 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 
 #### Reserved paths
 
-The Portal requires a number of reserved paths from the root of the URL to properly function. 
+The Portal requires a number of reserved paths from the root of the URL to properly function.
 You cannot override these paths with custom pages or other functionality.
 
 | Path | Description | RegExp
@@ -48,8 +48,9 @@ You cannot override these paths with custom pages or other functionality.
 | `/logout` | Log out | `^/logout` |
 | `/apps/*` | Developer applications | `^/apps` |
 | `/api/v*/` | Portal API | `^/api\/v\d+\/.*` |
-| `/_api/*` | Nuxt server endpoints | `^/_api\/.*` |
+| `/_proxy/*` | Proxied APIs | `^/_proxy/.*` |
 | `/api/*` | Nuxt server endpoints | `^/api\/(?!v\d+\/).*` |
+| `/_api/*` | Nuxt server endpoints | `^/_api\/.*` |
 | `/npm/*` | CDN Proxy | `^/npm\/.*` |
 | `/_preview-mode/*` | Konnect previews | `^/_preview-mode\/.*` |
 
