@@ -2884,6 +2884,7 @@ components:
                   - Cloud Gateway Cluster Admin
                   - Cloud Gateway Cluster Viewer
                   - Consumer Admin
+                  - Connector
                   - Creator
                   - Deployer
                   - Discovery Admin
@@ -3972,6 +3973,22 @@ components:
                         required:
                           - name
                           - description
+                      connector:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Connector
+                          description:
+                            type: string
+                            example: This role grants a mesh zone to connect to the mesh control plane in Konnect.
+                            enum:
+                              - This role grants a mesh zone to connect to the mesh control plane in Konnect.
+                        required:
+                          - name
+                          - description
                       creator:
                         type: object
                         additionalProperties: false
@@ -4092,6 +4109,9 @@ components:
                     admin:
                       name: Admin
                       description: This role grants full write access to the related to Mesh control planes.
+                    connector:
+                      name: Connector
+                      description: This role grants a mesh zone to connect to the mesh control plane in Konnect.
                     creator:
                       name: Creator
                       description: This role grants access to create new Mesh control planes.
