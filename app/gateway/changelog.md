@@ -17,7 +17,7 @@ For product versions that have reached the end of sunset support, see the [chang
 ### Fixes
 #### Core
 
-* Fixed an issue where a mismatch between If-Match in the request and ETag in the response would result in a bad case in the response phase.0)
+* Fixed an issue where a mismatch between If-Match in the request and ETag in the response would result in a bad case in the response phase.
 * Updated the AWS Vault supported regions list to the latest available.
 * Added support for the new Ollama streaming content type in the AI driver.
 
@@ -29,7 +29,7 @@ For product versions that have reached the end of sunset support, see the [chang
   * Fixed an issue where tool calls weren't working in streaming mode for Bedrock and Gemini providers.
 
 * [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-prompt-guard/) (`ai-semantic-prompt-guard`)
-  *  Fixed an issue where Kong Gateway was not able to reconfigure the plugin when using DB-less mode.
+  *  Fixed an issue where Kong Gateway couldn't reconfigure the plugin when using DB-less mode.
 
 * [**Session**](/hub/kong-inc/session/) (`session`) 
   * Fixed an issue where two boolean configuration fields `hash_subject` (default `false`) and `store_metadata` (default `false`) stored the session's metadata in the database.
