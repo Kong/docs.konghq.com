@@ -530,6 +530,7 @@
 /hub/:vendor/:plugin/3.0.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
 /hub/:vendor/:plugin/3.1.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.1.x/:splat
 /hub/:vendor/:plugin/3.2.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.2.x/:splat
+/hub/plugins/license-tiers/                        /hub/
 
 # KONNECT
 
