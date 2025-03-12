@@ -10,8 +10,8 @@ Some entities in Kong share common configuration settings that often need to be 
 
 Partials address this issue by allowing you to extract shared configurations into reusable entities that can be linked to multiple plugins. To ensure validation and consistency, Partials have defined types. The first two supported types are:
 
-- **`redis-ce`**: Stores common Redis configurations for plugins available in Kong OSS.
-- **`redis-ee`**: Stores common Redis configurations for plugins available in Kong Enterprise.
+- **`redis-ce`**: Stores common Redis configurations for plugins available in {{site.ce_product_name}}.
+- **`redis-ee`**: Stores common Redis configurations for plugins available in {{site.ee_product_name}}.
 
 
 ## Creating a Partial
@@ -149,7 +149,7 @@ The partials key in the response will show the linked Partials. To view the comp
 
 Updates to a Partial are automatically reflected in all linked plugins. Use caution when updating Partials, as incorrect configurations (e.g., wrong Redis port) can disrupt multiple plugins.
 
-## Unlinking a Plugin from a Partial
+## Detaching a Partial from a Plugin
 
 To unlink a plugin from a Partial, update the plugin configuration and omit the partials key, as shown below:
 
