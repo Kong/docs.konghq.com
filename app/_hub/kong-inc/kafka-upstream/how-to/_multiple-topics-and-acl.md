@@ -14,7 +14,7 @@ By using the new configuration field `topics_query_arg`, user can define a reque
 {:.note .no-icon}
 > The default topic configured in the `topic` field is always allowed, regardless of its inclusion in `allowed_topics`. When `allowed_topics` is not defined, only the default topic configured in the `topic` field is allowed.
 
-## How-to
+### How-to
 
 Here is an example config that demonstrate how these new config field are being used in the Kafka Upstream plugin:
 
