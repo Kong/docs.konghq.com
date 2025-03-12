@@ -99,7 +99,9 @@ This plugin supports the following authentication mechanisms:
 Known limitations:
 
 1. Message compression is not supported.
+{% if_version lte: 3.10.x %}
 2. The message format is not customizable.
+{% endif_version %}
 
 ## Quickstart
 
