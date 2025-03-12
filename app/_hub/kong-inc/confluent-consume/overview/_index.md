@@ -39,14 +39,15 @@ The following steps assume that {{site.base_gateway}} is installed.
 
 1. Create a Route:
 
-	 ```bash
-	 curl -X POST http://localhost:8001/routes \
-			--data "name=confluent-consumer" \
-			--data "hosts[]=confluent-consumer.test"
-	 ```
+   ```bash
+   curl -X POST http://localhost:8001/routes \
+      --data "name=confluent-consumer" \
+      --data "hosts[]=confluent-consumer.test"
+   ```
 2. Add the `confluent-consume` plugin to the Route:
-  ```bash
-  curl -X POST http://localhost:8001/routes/confluent-consumer/plugins \
+   
+	 ```bash
+   curl -X POST http://localhost:8001/routes/confluent-consumer/plugins \
       --data "name=confluent-consume" \
       --data "config.bootstrap_servers[1].host=<YOUR_BOOTSTRAP_SERVER>" \
       --data "config.bootstrap_servers[1].port=9092" \
@@ -55,46 +56,46 @@ The following steps assume that {{site.base_gateway}} is installed.
       --data "config.authentication.mechanism=PLAIN" \
       --data "config.authentication.user=<YOUR_API_KEY>" \
       --data "config.authentication.password=<YOUR_API_SECRET>"
-  ```
+   ```
 
 3. Consume messages using HTTP GET:
 
    ```bash
    curl http://localhost:8000/messages \
-		  --header 'Host: confluent-consumer.test'
+      --header 'Host: confluent-consumer.test'
    ```
 
 ## Server-Sent Events quickstart
 
 1. Create a Route:
 
-	 ```bash
-	 curl -X POST http://localhost:8001/routes \
-			--data "name=confluent-sse-consumer" \
-			--data "hosts[]=confluent-sse.test"
-	 ```
+   ```bash
+   curl -X POST http://localhost:8001/routes \
+      --data "name=confluent-sse-consumer" \
+      --data "hosts[]=confluent-sse.test"
+   ```
 2. Add the `confluent-consume` plugin in SSE mode:
 
-	 ```bash
-	 curl -X POST http://localhost:8001/routes/confluent-sse-consumer/plugins \
-			--data "name=confluent-consume" \
-			--data "config.bootstrap_servers[1].host=<YOUR_BOOTSTRAP_SERVER>" \
-			--data "config.bootstrap_servers[1].port=9092" \
-			--data "config.topics[1].name=my-topic" \
-			--data "config.mode=server-sent-events" \
-			--data "config.authentication.strategy=sasl" \
-			--data "config.authentication.mechanism=PLAIN" \
-			--data "config.authentication.user=<YOUR_API_KEY>" \
-			--data "config.authentication.password=<YOUR_API_SECRET>"
-	 ```
+   ```bash
+   curl -X POST http://localhost:8001/routes/confluent-sse-consumer/plugins \
+      --data "name=confluent-consume" \
+      --data "config.bootstrap_servers[1].host=<YOUR_BOOTSTRAP_SERVER>" \
+      --data "config.bootstrap_servers[1].port=9092" \
+      --data "config.topics[1].name=my-topic" \
+      --data "config.mode=server-sent-events" \
+      --data "config.authentication.strategy=sasl" \
+      --data "config.authentication.mechanism=PLAIN" \
+      --data "config.authentication.user=<YOUR_API_KEY>" \
+      --data "config.authentication.password=<YOUR_API_SECRET>"
+   ```
 
 3. Stream messages using Server-Sent Events:
 
-	 ```bash
-	 curl http://localhost:8000/stream \
-			--header 'Host: confluent-sse.test' \
-			--header 'Accept: text/event-stream'
-	 ```
+   ```bash
+   curl http://localhost:8000/stream \
+      --header 'Host: confluent-sse.test' \
+      --header 'Accept: text/event-stream'
+   ```
 
 ## Learn more about the Confluent Consume plugin
 
