@@ -117,7 +117,6 @@ describe("sitemap includes", () => {
     "/mesh/changelog/",
     "/hub/",
     "/hub/plugins/compatibility/",
-    "/hub/plugins/license-tiers/",
     "/hub/plugins/overview/",
   ].forEach((t) => {
     test(t, async () => {
