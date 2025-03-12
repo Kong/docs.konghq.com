@@ -136,7 +136,7 @@ end
 The result should be the same as the one returned the `{a="1", b="2"}` table as return value.
 
 {:.warning}
-> **Note**: Currently the Kafka Upstream plugin only supports JSON encoding on the message. Other serliazation methods are not supported.
+> **Note**: Currently the Kafka Upstream plugin only supports JSON encoding on the message. Other serialization methods are not supported.
 
 
 ### Functions that insert the consumer info and make a sensitive api request header redacted

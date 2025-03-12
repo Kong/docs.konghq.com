@@ -4,10 +4,10 @@ title: Configure Multiple Producer Topics with Whitelist in Kafka Upstream Plugi
 minimum_version: 3.10.x
 ---
 
-## Configure Multiple Producer Topics with Whitelist in Kafka Upstream Plugin
+## Configure Multiple Producer Topics with Allowlist in Kafka Upstream Plugin
 
 
-Since {{site.base_gateway}} 3.10, the Kafka Upstream Plugin supports sending the message to multiple client-defined Kafka topics, by using a query parameter that contains a list of target topic names. To prevent client request from sending message to arbitrary topics, user can also define an allowed topic whitelist that can be sent to.
+Since {{site.base_gateway}} 3.10, the Kafka Upstream Plugin supports sending the message to multiple client-defined Kafka topics, by using a query parameter that contains a list of target topic names. To prevent client request from sending message to arbitrary topics, user can also define a topic allowlist that can be sent to.
 
 By using the new configuration field `topics_query_arg`, user can define a request parameter name that contains a list of the target topics that Kafka Upstream will produce message to. By using the new configuration field `allowed_topics`, user can define the list of allowed topic names to which messages can be sent.
 
@@ -68,9 +68,9 @@ A client can use the `topic-list` query argument to send the message to multiple
 % Reached end of topic topic1 [0] at offset 1
 ```
 
-A client can send the message to whatever topics that is incluede in the `allowed_topic` list as well as the default topic defined in the `topic` field.
+A client can send the message to whatever topics that is included in the `allowed_topic` list as well as the default topic defined in the `topic` field.
 
-A client cannot send the message to a topic that is not allowed in the `allowed_topic` list:q
+A client cannot send the message to a topic that is not allowed in the `allowed_topic` list:
 
 ```
 > curl 'http://localhost:8000/kafka?topic-list=my-topic,topic1,topic3'
