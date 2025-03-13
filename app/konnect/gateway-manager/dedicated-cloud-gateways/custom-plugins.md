@@ -1,0 +1,77 @@
+---
+title: Custom plugins in Dedicated Cloud Gateways
+content_type: reference
+---
+
+With Dedicated Cloud Gateways, {{site.konnect_short_name}} can stream custom plugins from the control plane to the data plane.
+
+This means that the control plane becomes a single source of truth for plugin versions. You only need to upload a plugin once, to the control plane, and {{site.konnect_short_name}} handles distributing the plugin code to all data planes in that control plane.
+
+In comparison with the manual process required in a regular hybrid {{site.konnect_short_name}} deployment, custom plugin streaming in Dedicated Cloud Gateways provides the following benefits:
+* Faster custom plugin distribution
+* Minimal manual maintenance
+* The control plane is the single source of truth
+
+## Prerequisites
+
+* Your custom plugin meets the following requirements:
+  * Each custom plugin must have a unique name.
+  * Each custom plugin can have a maximum of 1 `handler.lua` file and 1 `schema.lua` file.
+  * The plugin can't execute in the `init_worker` phase and can't set any timers.
+  * The schema file must be in Lua, even if the custom plugin is written in another supported language.
+
+      If you have a custom plugin written in a language other than Lua, convert the schema 
+  into a `schema.lua` file before uploading it to {{site.konnect_short_name}}.
+
+* You have a [personal acccess token or system access token](/konnect/org-management/access-tokens) for the {{site.konnect_short_name}} API
+
+## Adding a custom plugin to a Dedicated Cloud Gateway deployment
+
+Upload custom plugin schema and handler files to create a configurable entity in {{site.konnect_short_name}}.
+
+{:.important}
+> The name you give the plugin must be identical to the name of the plugin in the schema file.
+
+{% navtabs %}
+{% navtab Konnect UI %}
+
+You can add a custom plugin using the {{site.konnect_short_name}} UI:
+
+1. Open **Gateway Manager** > Choose a control plane -> Open **Plugins** -> switch to the **Custom Plugins** tab.
+1. Click **Create** on the Custom Plugin tile.
+1. Give the plugin a name.
+   The name must be identical to the name of the plugin in the schema file.
+1. Upload the `schema.lua` and `handler.lua` files, then save.
+
+{% endnavtab %}
+{% navtab Konnect API %}
+
+Using the following command, make a `POST` request to the `/custom-plugins` endpoints of the {{site.konnect_short_name}} Control Plane Config API:
+
+```sh
+curl -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/core-entities/custom-plugins \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer {your-access-token}" \
+  -d "$(jq -n \
+      --arg handler "$(cat handler.lua)" \
+      --arg schema "$(cat schema.lua)" \
+      '{"handler":$handler,"name":"streaming-headers","schema":$schema}')" \
+    | jq
+```
+
+This request returns an `HTTP 200` response with the schema and handler for your plugin as a JSON object.
+
+{% endnavtab %}
+{% endnavtabs %}
+
+Once a custom plugin is uploaded to a Dedicated Cloud Gateway control plane, it can be managed like any other plugin, using any of the following tools:
+* [decK](/konnect/gateway-manager/declarative-config/)
+* [{{site.konnect_short_name}} Control Plane Config API](https://docs.konghq.com/konnect/api/control-plane-configuration/latest/#/operations/list-custom-plugin)
+* [{{site.konnect_short_name}} UI](https://cloud.konghq.com/)
+
+## More information
+
+* [Custom plugin schema endpoints (Control Plane Config API)](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas)
+* [Custom plugin template](https://github.com/Kong/kong-plugin)
+* [Plugin development guide](/gateway/latest/plugin-development/)
+* [PDK reference](/gateway/latest/plugin-development/pdk/)
