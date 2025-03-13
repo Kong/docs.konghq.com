@@ -39,7 +39,7 @@ admin_gui_csp_header_value = default-src 'self'; connect-src 'self' https://my-a
 
 ### See also
 
-* [Content Security Policy (CSP) - HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+* [Content Security Policy (CSP) - HTTP \| MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
 [`admin_gui_api_url`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_api_url
 [`admin_gui_csp_header`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_csp_header
