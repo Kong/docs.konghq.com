@@ -303,21 +303,35 @@ API Keys that are stored centrally in {{site.konnect_short_name}} to be shared a
 
 Add the `identity_realms` field as shown below:
 
-```yaml
-echo '
-_format_version: "3.0"
-plugins:
-  - name: key-auth
-    config:
-      key_names:
-      - apikey
-      identity_realms:
-        - region: us
-          id: <realm_id>
-          scope: realm
-        - scope: cp
-' | deck gateway apply -
+```bash
+curl -X POST \
+https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugins/ \
+   --header "accept: application/json" \
+   --header "Content-Type: application/json" \
+   --header "Authorization: Bearer TOKEN" \
+   --data '{
+      "name": "key-auth",
+      "config": {
+         "key_names": ["apikey"],
+         "identity_realms": [
+            {
+               "region": "$REGION",
+               "id": "$REALM_ID",
+               "scope": "realm"
+            },
+            {
+               "scope": "cp"
+            }
+         ]
+      }
+   }'
 ```
+Be sure to replace the following with your own values:
+   * {region}: Region for your {{site.konnect_short_name}} instance.
+   * {controlPlaneId}: UUID of your control plane.
+   * $KONNECT_TOKEN: Replace with your {{site.konnect_short_name}} personal access token.
+   * $REALM_ID: The ID of the realm you created previously. 
+   * $REGION: Region for your {{site.konnect_short_name}} instance.
 
 The order in which you configure the identity_realms dictates the priority in which the dataplane attempts to authenticate the provided API keys:
 

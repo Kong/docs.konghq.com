@@ -79,7 +79,7 @@ You can create centralized Consumers using the {{site.konnect_short_name}} API. 
    ```
    kong/kong-gateway-dev:ac1501420169b29ea38c03d747f9204826ec8ac8
    ```
-1. Use the `/realms` endpoint to create a realm and associate it with allowed Control Planes:
+1. Use the `/realms` endpoint to create a realm and optionally associate it with allowed Control Planes and time-to-live values:
    ```
    curl -X POST \
    https://{region}.api.konghq.com/v1/realms \
@@ -108,7 +108,7 @@ You can create centralized Consumers using the {{site.konnect_short_name}} API. 
          "consumer_groups": ["gold"]
        }'
    ```
-1. Consumers require authentication. Configure authentication using the [Key Auth plugin](/hub/kong-inc/key-auth/#configure-realms-for-centralized-consumers-in-sitekonnectshortname).
+1. Consumers require authentication. Configure authentication using the [Key Auth plugin](/hub/kong-inc/key-auth/#configure-realms-for-centralized-consumers-in-konnect).
 
 {:.note}
 > **Note:** If you are using KIC to manage your Data Plane nodes in {{site.konnect_short_name}}, ensure that you configure the `telemetry_endpoint` in the Data Plane. You can find the `telemetry_endpoint` in the {{site.konnect_short_name}} UI in [Gateway Manager]() in the Data Plane node instructions.
