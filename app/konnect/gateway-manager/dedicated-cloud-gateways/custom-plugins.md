@@ -23,7 +23,7 @@ In comparison with the manual process required in a regular hybrid {{site.konnec
       If you have a custom plugin written in a language other than Lua, convert the schema 
   into a `schema.lua` file before uploading it to {{site.konnect_short_name}}.
 
-* You have a [personal acccess token or system access token](/konnect/org-management/access-tokens) for the {{site.konnect_short_name}} API
+* You have a [personal access token or system access token](/konnect/org-management/access-tokens) for the {{site.konnect_short_name}} API
 
 ## Adding a custom plugin to a Dedicated Cloud Gateway deployment
 
@@ -66,7 +66,7 @@ This request returns an `HTTP 200` response with the schema and handler for your
 
 Once a custom plugin is uploaded to a Dedicated Cloud Gateway control plane, it can be managed like any other plugin, using any of the following tools:
 * [decK](/konnect/gateway-manager/declarative-config/)
-* [{{site.konnect_short_name}} Control Plane Config API](https://docs.konghq.com/konnect/api/control-plane-configuration/latest/#/operations/list-custom-plugin)
+* [{{site.konnect_short_name}} Control Plane Config API](/konnect/api/control-plane-configuration/latest/#/operations/list-custom-plugin)
 * [{{site.konnect_short_name}} UI](https://cloud.konghq.com/)
 
 ## More information
