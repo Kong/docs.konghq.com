@@ -75,28 +75,36 @@ style id5 stroke-dasharray:3,rx:10,ry:10
 
 You can create centralized Consumers using the {{site.konnect_short_name}} API. Only Org Admins have CRUD permissions for centralized Consumers. 
 
-1. Use the following custom {{site.base_gateway}} image:
+1. Use the following custom {{site.base_gateway}} image when you create a [Data Plane node](/konnect/gateway-manager/data-plane-nodes/):
    ```
-   kong/kong-gateway-dev:ac1501420169b29ea38c03d747f9204826ec8ac8
+   kong/kong-gateway-dev
    ```
 1. Use the `/realms` endpoint to create a realm and optionally associate it with allowed Control Planes and time-to-live values:
    ```
    curl -X POST \
    https://{region}.api.konghq.com/v1/realms \
    -H "Content-Type: application/json" \
-   -H "Authorization: Bearer TOKEN" \
+   -H "Authorization: Bearer $KONNECT_TOKEN" \
    -d '{
         "name": "prod",
         "allowed_control_planes": [
-            "497f6eca-6276-4993-bfeb-53cbbbba6f08"
+            "$CONTROL_PLANE_UUID"
         ],
         "ttl": 10,
         "negative_ttl": 10,
         "consumer_groups": [
-            "gold"
+            "$CONSUMER_GROUP"
         ]
     }'
    ```
+   Save the ID of the realm.
+
+   Be sure to replace the following with your own values:
+   * {region}: Region for your {{site.konnect_short_name}} instance.
+   * $KONNECT_TOKEN: Replace with your {{site.konnect_short_name}} personal access token.
+   * $CONTROL_PLANE_UUID: (Optional) Replace with your Control Plane UUID.
+   * `ttl` and `negative_ttl`: (Optional) Time-to-live in minutes of the consumer or negative consumer for this realm in the {{site.base_gateway}} cache.
+   * $CONSUMER_GROUP: (Optional) Replace with the name of the consumer groups you want to associate with the realm.
 1. Use the `/realms/{realmId}/consumers` endpoint to create a Consumer and optionally assign it to a Consumer Group:
    ```
    curl -X POST \
@@ -104,10 +112,16 @@ You can create centralized Consumers using the {{site.konnect_short_name}} API. 
    -H "Content-Type: application/json" \
    -H "Authorization: Bearer TOKEN" \
    -d '{
-         "username": "Alice",
-         "consumer_groups": ["gold"]
+         "username": "$CONSUMER_NAME",
+         "consumer_groups": ["$CONSUMER_GROUP"]
        }'
    ```
+   Be sure to replace the following with your own values:
+   * {region}: Region for your {{site.konnect_short_name}} instance.
+   * $KONNECT_TOKEN: Replace with your {{site.konnect_short_name}} personal access token.
+   * {realmId}: The ID of the realm you created previously. 
+   * $CONSUMER_NAME: Replace with the name of the consumer.
+   * $CONSUMER_GROUP: (Optional) Replace with the name of the consumer groups you want to associate with the consumer.
 1. Consumers require authentication. Configure authentication using the [Key Auth plugin](/hub/kong-inc/key-auth/#configure-realms-for-centralized-consumers-in-konnect).
 
 {:.note}
