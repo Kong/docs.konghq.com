@@ -79,22 +79,28 @@ You can create centralized Consumers using the {{site.konnect_short_name}} API. 
    ```
    kong/kong-gateway-dev:ac1501420169b29ea38c03d747f9204826ec8ac8
    ```
-1. Use the `endpoint` endpoint to create a realm and associate it with allowed Control Planes:
+1. Use the `/realms` endpoint to create a realm and associate it with allowed Control Planes:
    ```
    curl -X POST \
-   https://{region}.api.konghq.com/v0/realms \
+   https://{region}.api.konghq.com/v1/realms \
    -H "Content-Type: application/json" \
    -H "Authorization: Bearer TOKEN" \
    -d '{
-         "name": "prod",
-         "allowed_control_planes": ["Appointments", "Billing"],
-         "TTL": {1,-5} 
-       }'
+        "name": "prod",
+        "allowed_control_planes": [
+            "497f6eca-6276-4993-bfeb-53cbbbba6f08"
+        ],
+        "ttl": 10,
+        "negative_ttl": 10,
+        "consumer_groups": [
+            "gold"
+        ]
+    }'
    ```
-1. Use the `endpoint` endpoint to create a Consumer and optionally assign it to a Consumer Group:
+1. Use the `/realms/{realmId}/consumers` endpoint to create a Consumer and optionally assign it to a Consumer Group:
    ```
    curl -X POST \
-   https://{region}.api.konghq.com/v0/realms/{realmId}/consumers \
+   https://{region}.api.konghq.com/v1/realms/{realmId}/consumers \
    -H "Content-Type: application/json" \
    -H "Authorization: Bearer TOKEN" \
    -d '{
