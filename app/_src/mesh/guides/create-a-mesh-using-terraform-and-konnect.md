@@ -2,6 +2,20 @@
 title: Create a Mesh using Terraform and Konnect
 ---
 
+{% assign KM_VERSION = "2.9.3" %}
+{% assign TF_BETA_VERSION = "0.1.0" %}
+{% assign TF_TIME_VERSION = "0.13.0" %}
+{% assign TF_KUBERNETES_VERSION = "2.35.1" %}
+{% assign TF_HELM_VERSION = "2.17.0" %}
+
+## Introduction
+
+This guide explains how to create and manage Kong Mesh using Terraform and Konnect.
+It covers setting up the Terraform environment,
+configuring providers,
+deploying a Global Control Plane with a zone and a Mesh in Konnect,
+and deploying a zone.
+
 ## Requirements
 
 - [Personal Access Token](/konnect/org-management/access-tokens/)
@@ -40,7 +54,7 @@ terraform {
   required_providers {
     konnect-beta = {
       source  = "kong/konnect-beta"
-      version = "0.1.0"
+      version = "{{ TF_BETA_VERSION }}"
     }
   }
 }
@@ -65,7 +79,7 @@ terraform {
     }
     konnect-beta = {
       source  = "kong/konnect-beta"
-      version = "0.1.0"
+      version = "{{ TF_BETA_VERSION }}"
     }
   }
 }
@@ -231,7 +245,7 @@ you should see mesh being updated in place:
     }
 ```
 
-For full schema of the Mesh resource, see the [konnect-beta provider documentation](https://github.com/Kong/terraform-provider-konnect-beta/blob/v0.1.0/docs/resources/mesh.md).
+For full schema of the Mesh resource, see the [konnect-beta provider documentation](https://github.com/Kong/terraform-provider-konnect-beta/blob/v{{ TF_BETA_VERSION }}/docs/resources/mesh.md).
 
 ## Adding an example policy
 
@@ -284,7 +298,7 @@ resource "konnect_mesh_traffic_permission" "allow_all" {
 }
 ```
 
-## Renaming a resource
+## Impact of Renaming Resources
 
 Certain properties (like Mesh name, policy name, etc.) are used as identifiers and changing them will result in a new resource being created and all dependant resources being recreated.
 
@@ -316,7 +330,7 @@ Will result in forced replacement of both `mesh` and `mesh_access_log` resources
       ~ mesh              = "mesh1" -> "another-name" # forces replacement
 ```
 
-## Deploying a zone
+## Deploying a Kubernetes Zone
 
 To deploy a Kubernetes zone you can use any Kubernetes services, in this guide we will use `k3d` to create a local Kubernetes cluster.
 
@@ -340,19 +354,19 @@ terraform {
     }
     konnect-beta = {
       source  = "kong/konnect-beta"
-      version = "0.1.0"
+      version = "{{ TF_BETA_VERSION }}"
     }
     time = {
       source  = "hashicorp/time"
-      version = "0.12.1"
+      version = "{{ TF_TIME_VERSION }}"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.35.1"
+      version = "{{ TF_KUBERNETES_VERSION }}"
     }
     helm = {
       source  = "hashicorp/helm"
-      version = "2.17.0"
+      version = "{{ TF_HELM_VERSION }}"
     }
   }
 }
@@ -462,7 +476,7 @@ resource "helm_release" "kong_mesh" {
   name       = "kong-mesh"
   repository = "https://kong.github.io/kong-mesh-charts"
   chart      = "kong-mesh"
-  version    = "2.9.3"
+  version    = "{{ KM_VERSION }}"
 
   namespace        = "kong-mesh-system"
   upgrade_install = true
