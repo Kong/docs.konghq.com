@@ -4,7 +4,6 @@ title: Configure Multiple Allowed Producer Topics with the Kafka Upstream Plugin
 minimum_version: 3.10.x
 ---
 
-
 Starting in {{site.base_gateway}} 3.10, the Kafka Upstream plugin supports sending messages to multiple client-defined Kafka topics by using a query parameter that contains a list of target topic names. 
 To prevent client requests from sending messages to arbitrary topics, you can also define a topic allowlist.
 
@@ -15,11 +14,15 @@ You can use the following fields in combination:
 {:.note}
 > The default topic configured in the `topic` field is always allowed, regardless of its inclusion in `allowed_topics`. When `allowed_topics` is not defined, only the default topic configured in the `topic` field is allowed.
 
+## Prerequisites
+* You have created a Kafka topic
+* The [`kcat` utility](https://github.com/edenhill/kcat) is installed
+
 ## Using the plugin
 
 Here is an example config that defines an allowlist and a topic list:
 
-```
+```yaml
 _format_version: "3.0"
 
 services:
@@ -52,12 +55,22 @@ consumers:
 
 A client can use the `topic-list` query argument to send the message to multiple topics, including any topics in the  `allowed_topic` list, as well as the default topic defined in the `topic` field:
 
+```sh
+curl 'http://localhost:8000/kafka?topic-list=my-topic,topic1'
 ```
-> curl 'http://localhost:8000/kafka?topic-list=my-topic,topic1'
-{"message":"message sent"}
 
-# Check message in the topics
-> kcat -b 127.0.0.1:9092 -G mygroup1 -t my-topic -p 0 -C
+Response:
+```
+{"message":"message sent"}
+```
+
+Check the message in the topics using the `kcat` tool:
+```sh
+kcat -b 127.0.0.1:9092 -G mygroup1 -t my-topic -p 0 -C
+```
+
+Since the client is allowed to send messages to this topic, you should see the following:
+```json
 .....OLD MESSAGES.....
 % Reached end of topic my-topic [0] at offset 22
 {"body_args":{},"body_base64":true,"body":""}
@@ -69,14 +82,19 @@ A client can use the `topic-list` query argument to send the message to multiple
 % Reached end of topic topic1 [0] at offset 1
 ```
 
-
 A client can't send the message to a topic that is not allowed in the `allowed_topic` list:
 
+```sh
+curl 'http://localhost:8000/kafka?topic-list=my-topic,topic1,topic3'
 ```
-> curl 'http://localhost:8000/kafka?topic-list=my-topic,topic1,topic3'
-{"message":"Bad Gateway","error":"one or more target topics are not in the allowed topics list"}
 
-# proxy error log will show
+Response:
+```json
+{"message":"Bad Gateway","error":"one or more target topics are not in the allowed topics list"}
+```
+
+You will see the following in the proxy error log:
+```sh
 2025/03/12 17:07:28 [error] 56468#0: *6580 [kong] producers.lua:28 [kafka-upstream] sending message to the following topics is not allowed: (topic3), client: 127.0.0.1, server: kong, request: "GET /kafka?topic-list=my-topic,topic1,topic3 HTTP/1.1", host: "localhost:8000",
 request_id: "2535dd1cf1bee70828eaef039c1e1070"
 ```
