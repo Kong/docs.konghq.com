@@ -135,7 +135,7 @@ items:
           - text: Enable Kong Manager
             url: /install/post-install/kong-manager/
             generate: false
-  
+
   - title: Kong in Production
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
@@ -489,6 +489,8 @@ items:
         url: /kong-manager/configuring-to-send-email
       - text: Troubleshoot
         url: /kong-manager/troubleshoot/
+      - text: Strengthen Security
+        url: /kong-manager/strengthen-security
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
