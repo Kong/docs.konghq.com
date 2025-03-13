@@ -19,11 +19,7 @@ In comparison with the manual process required in a regular hybrid {{site.konnec
   * Each custom plugin must have a unique name.
   * Each custom plugin can have a maximum of 1 `handler.lua` file and 1 `schema.lua` file.
   * The plugin can't execute in the `init_worker` phase and can't set any timers.
-  * The schema file must be in Lua, even if the custom plugin is written in another supported language.
-
-      If you have a custom plugin written in a language other than Lua, convert the schema 
-  into a `schema.lua` file before uploading it to {{site.konnect_short_name}}.
-
+  * The plugin must be written in Lua. No other languages are supported.
 * You have a [personal access token or system access token](/konnect/org-management/access-tokens) for the {{site.konnect_short_name}} API
 
 ## Adding a custom plugin to a Dedicated Cloud Gateway deployment
