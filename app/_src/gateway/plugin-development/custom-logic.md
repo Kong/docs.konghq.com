@@ -438,6 +438,8 @@ This can be adjusted dynamically using the `ordering` option. See
 [Dynamic Plugin Ordering](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/)
 for more information.
 
+{% if_version lte:3.9.x %}
+
 {% navtabs %}
 {% navtab OSS %}
 
@@ -466,6 +468,16 @@ The current order of execution for the bundled plugins is:
 
 {% endnavtab %}
 {% endnavtabs %}
+
+{% endif_version %}
+
+{% if_version gte:3.10.x %}
+
+The current order of execution for the plugins bundled with {{site.base_gateway}} is:
+
+{% plugins_priority_table enterprise %}
+
+{% endif_version %}
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
 [pdk]: /gateway/{{page.release}}/plugin-development/pdk
