@@ -135,6 +135,8 @@ items:
             url: /guides/konnect-entities/tagging-and-labeling/
           - text: Managing Plugin Bindings by CRD
             url: /guides/konnect-entities/konnect-plugin-binding/
+          - text: Cloud Gateways - Networks
+            url: /guides/konnect-entities/cloud-gateways-network/
           - text: FAQ
             url: /guides/konnect-entities/faq/
   - title: Reference
@@ -144,7 +146,7 @@ items:
         items:
           - text: Overview
             url: /reference/custom-resources/
-            src: reference/custom-resources/1.4.x
+            src: reference/custom-resources/1.5.x
           - text: GatewayConfiguration
             url: /reference/custom-resources/#gatewayconfiguration
             generate: false
