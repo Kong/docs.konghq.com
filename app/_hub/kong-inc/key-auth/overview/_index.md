@@ -333,7 +333,7 @@ Be sure to replace the following with your own values:
    * $REALM_ID: The ID of the realm you created previously. 
    * $REGION: Region for your {{site.konnect_short_name}} instance.
 
-The order in which you configure the identity_realms dictates the priority in which the dataplane attempts to authenticate the provided API keys:
+The order in which you configure the `identity_realms` dictates the priority in which the data plane attempts to authenticate the provided API keys:
 
 * **Realm is listed first:** The dataplane will first reach out to the realm. If the API key is not found in the realm, the dataplane will look for the API key in the control plane config. 
 * **Control Plane scope listed first:** The dataplane will initially check the control plane configuration (LMDB) for the API key before looking up the API Key in the realm.
