@@ -5066,8 +5066,10 @@ components:
         name: key-auth
         partials:
           - id: cff1230a-00f7-4ae8-b376-c370f0eb4dae
+            name: foo-partial
             path: config.redis
           - id: 129ee345-cba8-4e55-9d6d-93c223ff91ae
+            name: bar-partial
             path: config.redis
         protocols:
           - grpc
@@ -5205,8 +5207,10 @@ components:
         name: key-auth
         partials:
           - id: cff1230a-00f7-4ae8-b376-c370f0eb4dae
+            name: foo-partial
             path: config.redis
           - id: 129ee345-cba8-4e55-9d6d-93c223ff91ae
+            name: bar-partial
             path: config.redis
         protocols:
           - grpc
