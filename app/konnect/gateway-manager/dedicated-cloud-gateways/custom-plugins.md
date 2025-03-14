@@ -25,7 +25,7 @@ Compared to the manual process required in a regular hybrid {{site.konnect_short
 ## Adding a custom plugin to a Dedicated Cloud Gateway deployment
 
 Upload custom plugin schema and handler files to create a configurable entity in {{site.konnect_short_name}}.
-If you prefer using the {{konnect_short_name}} UI, you can also upload these files through the Plugins menu in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
+If you prefer using the {{site.konnect_short_name}} UI, you can also upload these files through the Plugins menu in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
 {:.important}
 > The name you give the plugin must be identical to the name of the plugin in the schema file.
