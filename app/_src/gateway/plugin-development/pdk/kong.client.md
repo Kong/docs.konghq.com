@@ -270,7 +270,49 @@ Sets the authenticated consumer and/or credential for the current request.
 -- assuming `credential` and `consumer` have been set by some authentication code
 kong.client.authenticate(consumer, credentials)
 ```
-{% if_version gte:3.8.x %}
+
+{% if_version gte:3.10.x %}
+
+## kong.client.set_authenticated_consumer_groups(groups[, opts])
+
+Explicitly sets the authenticated consumer groups for the current request.
+ Throws an error if the `groups` parameter is neither a table nor `nil`.
+
+**Phases**
+
+* auth_and_later
+
+**Parameters**
+
+* **groups** (`table|nil`):  The consumer groups to set. If no
+ value is provided, then any existing value will be cleared.
+ This value should be a sequence-like table of tables, with each item
+ having at least an `id` and a `name`.
+* **opts** (`table|nil`, _optional_):  Options table, with the following fields:
+ `opts.mode` - either "write" or "append", write will replace any
+ existing groups that are set, append will add to the existing groups.
+
+**Usage**
+
+``` lua
+kong.client.set_authenticated_consumer_groups({
+  {
+    id = "fed2bf38-10c4-404e-8d45-a2b0f521464d",
+    name = "my-group",
+  },
+  {
+    id = "736bb9d9-98f2-46d5-97fc-d7361d9488ee",
+    name = "my-other-group",
+  }
+})
+-- assuming `group` is provided by some code
+_CLIENT.set_authenticated_consumer_groups(group)
+```
+
+{% endif_version %}
+
+
+{% if_version gte:3.8.x lte:3.9.x %}
 ## kong.client.set_authenticated_consumer_groups(groups)
 
 Explicitly sets the authenticated consumer groups for the current request.
@@ -286,6 +328,7 @@ Explicitly sets the authenticated consumer groups for the current request.
  value is provided, then any existing value will be cleared.
  This value should be a sequence-like table of tables, with each item
  having at least an `id` and a `name`.
+
 
 **Usage**
 
