@@ -25,10 +25,10 @@ Compared to the manual process required in a regular hybrid {{site.konnect_short
 ## Adding a custom plugin to a Dedicated Cloud Gateway deployment
 
 Upload custom plugin schema and handler files to create a configurable entity in {{site.konnect_short_name}}.
+If you prefer using the {{konnect_short_name}} UI, you can also upload these files through the Plugins menu in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
 {:.important}
 > The name you give the plugin must be identical to the name of the plugin in the schema file.
-
 
 Using the following command, make a `POST` request to the [`/custom-plugins`](/konnect/api/control-plane-configuration/latest/#/operations/list-custom-plugin) endpoint of the {{site.konnect_short_name}} Control Plane Config API:
 
@@ -44,7 +44,6 @@ curl -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id
 ```
 
 This request returns an `HTTP 200` response with the schema and handler for your plugin as a JSON object.
-
 
 Once a custom plugin is uploaded to a Dedicated Cloud Gateway control plane, it can be managed like any other plugin, using any of the following tools:
 * [decK](/konnect/gateway-manager/declarative-config/)
