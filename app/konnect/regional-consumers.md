@@ -1,0 +1,78 @@
+---
+title: Regional Consumers
+---
+
+A [Consumer](/gateway/latest/key-concepts/consumers/) is a {{site.base_gateway}} entity that consumes or uses the APIs managed by {{site.base_gateway}}. These can be things like applications, services, or users who interact with your APIs. Consumers can be scoped to a {{site.konnect_short_name}} region and managed centrally as regional Consumers, or be scoped to a control plane in Gateway Manager.
+
+Regional Consumers provide the following benefits:
+* The Consumer identity can be set up centrally instead of being defined across multiple control planes.
+* Share Consumers across multiple control planes. Users don't need to replicate changes to Consumer identity in multiple control planes and Consumer configuration doesn't conflict.
+* Reduces configuration sync issues between the control plane and the data planes. Regional Consumers aren't part of the configuration that is pushed down from the control plane to the data planes, so it reduces config size and latency. 
+
+## How regional Consumers work
+
+When you create a regional Consumer, you must assign it to a realm. A realm groups regional Consumers around an identity, defined by organizational boundaries, such as a production realm or a development realm. Realms are connected to a [geographic region](/konnect/geo/) in {{site.konnect_short_name}}. Regional Consumers exist outside of control planes, so they can be used across control planes.
+
+## Create regional Consumers and Realms 
+
+You can create regional Consumers using the {{site.konnect_short_name}} API. Only Org Admins have CRUD permissions for regional Consumers. 
+
+{:.important}
+> Regional Consumers are available for {{site.base_gateway}} 3.10 data planes. Make sure your control plane uses 3.10 data planes at minimum when configuring regional Consumers.
+
+1. Use the `/realms` endpoint to create a realm and optionally associate it with allowed control planes and time-to-live values:
+   ```
+   curl -X POST \
+   https://{region}.api.konghq.com/v1/realms \
+   -H "Content-Type: application/json" \
+   -H "Authorization: Bearer $KONNECT_TOKEN" \
+   -d '{
+        "name": "prod",
+        "allowed_control_planes": [
+            "$CONTROL_PLANE_UUID"
+        ],
+        "ttl": 10,
+        "negative_ttl": 10,
+        "consumer_groups": [
+            "$CONSUMER_GROUP"
+        ]
+    }'
+   ```
+   Save the ID of the realm.
+
+   Be sure to replace the following with your own values:
+   * `{region}`: Region for your {{site.konnect_short_name}} instance.
+   * `$KONNECT_TOKEN`: Replace with your {{site.konnect_short_name}} personal access token.
+   * `$CONTROL_PLANE_UUID`: (Optional) Replace with your control plane UUID.
+   * `ttl`: (Optional) 'ttl' is the time-to-live (TTL) in minutes of the consumer for this realm in the {{site.base_gateway}} cache.
+   * `negative_ttl`: (Optional) Represents the TTL of a bad login cache entry.
+   * `$CONSUMER_GROUP`: (Optional) Replace with the name of the consumer groups you want to associate with the realm.
+1. Use the `/realms/{realmId}/consumers` endpoint to create a regional Consumer and optionally assign it to a Consumer Group:
+   ```
+   curl -X POST \
+   https://{region}.api.konghq.com/v1/realms/{realmId}/consumers \
+   -H "Content-Type: application/json" \
+   -H "Authorization: Bearer TOKEN" \
+   -d '{
+         "username": "$CONSUMER_NAME",
+         "consumer_groups": ["$CONSUMER_GROUP"]
+       }'
+   ```
+   Be sure to replace the following with your own values:
+   * `{region}`: Region for your {{site.konnect_short_name}} instance.
+   * `$KONNECT_TOKEN`: Replace with your {{site.konnect_short_name}} personal access token.
+   * `{realmId}`: The ID of the realm you created previously. 
+   * `$CONSUMER_NAME`: Replace with the name of the consumer.
+   * `$CONSUMER_GROUP`: (Optional) Replace with the name of the consumer groups you want to associate with the consumer. Consumer groups set here are additive. This means that if you configure the realm with consumer groups A and B, and then configure the regional consumer with consumer group C, the authenticated consumer will be assigned to consumer groups A, B, and C.
+1. Consumers require authentication. Configure authentication using the [Key Auth plugin](/hub/kong-inc/key-auth/).
+
+   The order in which you configure the `identity_realms` dictates the priority in which the data plane attempts to authenticate the provided API keys:
+
+    * **Realm is listed first:** The data plane will first reach out to the realm. If the API key is not found in the realm, the data plane will look for the API key in the control plane config. 
+    * **Control plane scope listed first:** The dat aplane will initially check the control plane configuration (LMDB) for the API key before looking up the API Key in the realm.
+    * **Realm only:** You can also configure a single `identity_realms` by omitting the `scope: cp` from the example. In this case, the data plane will only attempt to authenticate API keys against the realm. If the API key isn't found, the request will be blocked.
+    * **Control plane only:** You can configure a look up only in the control plane config by only specifying `scope: cp` for `identity_realms`. In this scenario, the data plane will only check the control plane configuration (LMDB) for API key authentication. If the API key isn't found, the request will be blocked.
+
+{:.note}
+> **Note:** If you are using KIC to manage your Data Plane nodes in {{site.konnect_short_name}}, ensure that you configure the `telemetry_endpoint` in the Data Plane. You can find the `telemetry_endpoint` in the {{site.konnect_short_name}} UI in [Gateway Manager](https://cloud.konghq.com/gateway-manager/) in the Data Plane node instructions.
+
