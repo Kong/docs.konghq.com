@@ -132,13 +132,15 @@ id: documentation
               {{ page.github_star_button }}
             {% endif %}
 
-            {% if page.badge %}
-              <a href="https://konghq.com/pricing" {%
-                if page.badge == 'konnect' %}class="badge konnect" aria-label="available in Konnect"{% endif %}{%
-                if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with Kong Gateway Enterprise subscription"{% endif %}{%
-                if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
-                if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
-              </a>
+            {% if page.release !="3.10.x" %}
+              {% if page.badge %}
+                <a href="https://konghq.com/pricing" {%
+                  if page.badge == 'konnect' %}class="badge konnect" aria-label="available in Konnect"{% endif %}{%
+                  if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with Kong Gateway Enterprise subscription"{% endif %}{%
+                  if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
+                  if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
+                </a>
+              {% endif %}
             {% endif %}
           </h1>
 
