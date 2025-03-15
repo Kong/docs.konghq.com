@@ -17,19 +17,19 @@ jobs:
       # Increase number of watchers to fix generation
       - run: sudo sysctl -w fs.inotify.max_user_watches=524288
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           submodules: 'recursive'
 
       # Configure Ruby to build Jekyll site
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@6c79f721fa26dd64559c2700086ac852c18e0756 # v1
         with:
           ruby-version: .ruby-version
       - name: Install foreman
         run: gem install foreman
       - name: Ruby gem cache
-        uses: actions/cache@v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: ${{ github.workspace }}/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -43,11 +43,11 @@ jobs:
         run: gem install foreman
 
       # Configure Node to build assets
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
         with:
           node-version: "20"
       - name: Cache node modules
-        uses: actions/cache@v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         env:
           cache-name: cache-node-modules
         with:
@@ -74,7 +74,7 @@ jobs:
           node run.js
 
       # Upload build PDFs
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4
         with:
           name: "pdfs-${{ env.TODAY }}"
           path: pdf-generation/pdfs/*.pdf
