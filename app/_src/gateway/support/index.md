@@ -85,6 +85,11 @@ After the product hits the end of the support period, Kong will provide limited 
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
+  {% if_version gte: 3.10.x %}
+  {% navtab 3.10 %}
+    {% include_cached gateway-support.html version="3.10" data=site.data.tables.support.gateway.versions.310 eol="March 2026" %}
+  {% endnavtab %}
+  {% endif_version %}
   {% if_version gte: 3.9.x %}
   {% navtab 3.9 %}
     {% include_cached gateway-support.html version="3.9" data=site.data.tables.support.gateway.versions.39 eol="Dec 2025" %}
