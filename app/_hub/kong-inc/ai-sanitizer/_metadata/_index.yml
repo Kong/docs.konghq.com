@@ -1,0 +1,20 @@
+name: AI Sanitizer
+search_aliases:
+  - ai
+  - llm
+  - artificial
+  - intelligence
+  - language
+  - model
+  - moderation
+dbless_compatible: yes
+free: false
+enterprise: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - ai
+publisher: Kong Inc.
+desc: Sanitize the PII information in requests before being proxied by the AI Gateway
+type: plugin
