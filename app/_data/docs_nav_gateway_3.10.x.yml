@@ -339,6 +339,8 @@ items:
         url: /kong-enterprise/workspaces
       - text: Consumer Groups
         url: /kong-enterprise/consumer-groups
+      - text: Partials
+        url: /kong-enterprise/partials
       - text: Event Hooks
         url: /kong-enterprise/event-hooks
       - text: Configure Data Plane Resilience
