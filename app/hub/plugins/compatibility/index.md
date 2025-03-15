@@ -7,8 +7,6 @@ layout: plugins/introduction
 
 Reference for plugin compatibility with {{site.base_gateway}} and {{site.konnect_short_name}} [deployment topologies](#deployment-topologies), [network protocols](#protocols), and [entity scopes](#scopes).
 
-If you're looking for plugin availability by subscription tier, see [Plugin License Tiers](/hub/plugins/license-tiers/).
-
 ## Deployment topologies
 
 {{site.base_gateway}} can be deployed in the following modes:

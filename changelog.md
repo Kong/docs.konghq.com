@@ -9071,7 +9071,6 @@ Changes:
 
 https://deploy-preview-6099--kongdocs.netlify.app/konnect/compatibility/ 
 https://deploy-preview-6099--kongdocs.netlify.app/konnect/account-management/
-https://deploy-preview-6099--kongdocs.netlify.app/hub/plugins/license-tiers/#kong-gateway
 
 
 
