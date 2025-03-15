@@ -244,7 +244,11 @@ kong.service.request.clear_query_arg("foo")
 
 {% endif_version %}
 
+{% if_version gte:3.10.x %}
+## kong.service.request.set_header(header, of)
+{% else %}
 ## kong.service.request.set_header(header, value)
+{% endif_version%}
 
 
 Sets a header in the request to the Service with the given value.  Any existing header
@@ -264,8 +268,11 @@ Sets a header in the request to the Service with the given value.  Any existing 
 {% if_version lte:3.5.x -%}
 * **value** (`string|boolean|number`):  The header value. Example: "hello world".
 {% endif_version -%}
-{% if_version gte:3.6.x -%}
+{% if_version gte:3.6.x lte:3.9.x-%}
 * **value** (`array of strings|string|boolean|number`) The header value. Example: "hello world".
+{% endif_version %}
+{% if_version gte:3.10.x -%}
+* **of** (`array of strings|string|boolean|number`) The header value. Example: "hello world".
 {% endif_version %}
 **Returns**
 
@@ -279,9 +286,11 @@ kong.service.request.set_header("X-Foo", "value")
 ```
 
 
-
+{% if_version gte:3.10.x %}
+## kong.service.request.add_header(header, of)
+{% else %}
 ## kong.service.request.add_header(header, value)
-
+{% endif_version %}
 
 Adds a request header with the given value to the request to the Service.  Unlike
  `kong.service.request.set_header()`, this function doesn't remove any existing
@@ -299,8 +308,11 @@ Adds a request header with the given value to the request to the Service.  Unlik
 {% if_version lte:3.5.x -%}
 * **value** (`string|number|boolean`):  The header value. Example: "no-cache".
 {% endif_version -%}
-{% if_version gte:3.6.x -%}
+{% if_version gte:3.6.x lte:3.9.x-%}
 * **value** (`array of strings|string|number|boolean`): The header value. Example: "no-cache".
+{% endif_version %}
+{% if_version gte:3.10.x -%}
+* **of** (`array of strings|string|number|boolean`): The header value. Example: "no-cache".
 {% endif_version %}
 **Returns**
 

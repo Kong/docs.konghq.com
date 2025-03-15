@@ -128,15 +128,28 @@ end
 ```
 
 
-
+{% if_version gte:3.10.x %}
+## kong.enterprise_edition.jwe.encrypt(alg, enc, key, plaintext[, options])
+{% else %}
 ## kong.enterprise_edition.jwe.encrypt(alg, enc, key, plaintext, options)
+{% endif_version%}
 
 Encrypt plaintext using JWE encryption and returns a JWT token  Supported algorithms (`alg` argument):
  * `"RSA-OAEP"`
  * `"ECDH-ES"`
 
  Supported encryption algorithms (`enc` argument):
+
+{% if_version gte:3.10.x %}
+ * `"A128GCM"`
+ * `"A192GCM"`
  * `"A256GCM"`
+ * `"A128CBC-HS256"`
+ * `"A192CBC-HS384"`
+ * `"A256CBC-HS512"`
+{% else %}
+* `"A256GCM"`
+{% endif_version %}
 
  Supported keys (`key` argument):
  * Supported key formats:
@@ -176,7 +189,7 @@ Encrypt plaintext using JWE encryption and returns a JWT token  Supported algori
 
 1.  `string`:  JWE encrypted JWT token, or nil
 
-1.  `string`:  Error message, or nil
+2.  `string`:  Error message, or nil
 
 
 **Usage**

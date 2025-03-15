@@ -385,6 +385,12 @@ assert(kong.log.serialize().my_new_value == nil)
 -- Dots in the key are interpreted as table accesses
 kong.log.set_serialize_value("my.new.value", 4)
 assert(kong.log.serialize().my.new.value == 4)
+
+{% if_version gte:3.10.x %}
+-- Dots in the key can be escapted by backslash
+kong.log.set_serialize_value("my\.new\.value", 5)
+assert(kong.log.serialize()["my.new.value"] == 5)
+{% endif_version %}
 ```
 
 

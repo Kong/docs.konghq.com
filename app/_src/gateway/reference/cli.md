@@ -5,7 +5,7 @@
 #  the files in https://github.com/Kong/kong/tree/master/kong/cmd
 #
 title: CLI Reference
-source_url: https://github.com/Kong/kong/tree/master/kong/cmd
+source_url: https://github.com/Kong/kong/tree/master/autodoc/cli
 ---
 
 The provided CLI (*Command Line Interface*) allows you to start, stop, and
@@ -69,17 +69,22 @@ Options:
 
 ```
 
+{% if_version lte:3.10.x %}
 {:.note}
 > **Note:** `db_export` is only supported with open-source
 {{site.base_gateway}} packages.
-
+{% endif_version %}
 
 {% if_version gte:3.5.x %}
 --- 
 
-
+{% if_version gte:3.10.x %}
+### Kong Debug
+{% else %}
 ### Kong Debug
 {:.badge .enterprise}
+{% endif_version %}
+
 ```
 Usage: kong debug COMMAND [OPTIONS]
 
@@ -314,8 +319,10 @@ Options:
 
  -p,--prefix      (optional string)   Override prefix directory.
 
+{% if_version lte:3.9.x %}
  --v              verbose
  --vv             debug
+{% endif_version %}
 
 ```
 
@@ -435,13 +442,22 @@ Options:
 
 ---
 
+{% if_version gte:3.10.x %}
+### kong runner
+{% else %}
 ### kong runner
 {:.badge .enterprise}
+{% endif_version %}
+
 
 ```
+{% if_version gte:3.10.x %}
+Usage: kong runner file.lua [args]
+{% else %}
 Usage: kong runner [file] [args]
+{% endif_version %}
 
-Execute a lua file in a kong node. the `kong` variable is available to
+Execute a lua file in a kong node. The `kong` variable is available to
 reach the DAO, PDK, etc. The variable `args` can be used to access all
 arguments (args[1] being the lua filename being run).
 
