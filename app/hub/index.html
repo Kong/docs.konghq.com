@@ -30,10 +30,6 @@ body_id: page-hub
             <input type='text' id='filter-plugins' placeholder="Filter plugins"/>
             <div class="clear-search"><img src="/assets/images/icons/documentation/close.svg" alt="Clear search icon" /></div>
           </div>
-          <div class="page-hub--filters__filter page-hub--filters__filter-tiers">
-            {% capture label %}{% t hub.index.labels.tiers %}{% endcapture %}
-            {% include components/dropdown.html label=label field_name='tier' options=site.data.hub_filters.tiers %}
-          </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-categories">
             {% capture label %}{% t hub.index.labels.functionality %}{% endcapture %}
             {% include components/dropdown.html label=label field_name='category' options=categories %}
