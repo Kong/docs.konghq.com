@@ -65,17 +65,15 @@ You can enable incremental config sync when installing {{site.base_gateway}} in 
 [rate limiting plugins](#using-incremental-config-sync-with-rate-limiting-plugins) when using incremental config sync. 
 Review and adjust your plugin config before enabling this feature.
 
-During setup, set the following values in your `kong.conf` files on both Control Planes and Data Planes:
+During setup, set the following value in your `kong.conf` files on both Control Planes and Data Planes:
 
 ```
-cluster_rpc = on
-cluster_rpc_sync = on
+incremental_sync = on
 ```
 
-Or, if running {{site.base_gateway}} in Docker, set the following environment variables:
+Or, if running {{site.base_gateway}} in Docker, set the following environment variable:
 ```
-export KONG_CLUSTER_RPC_SYNC=on
-export KONG_CLUSTER_RPC=on
+export KONG_INCREMENTAL_SYNC=on
 ```
 
 ## Limitations
