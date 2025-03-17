@@ -2,62 +2,29 @@
 title: Cloud Gateways Networks
 ---
 
-In this guide you'll learn how to use the `KonnectCloudGatewayNetwork` custom resource to
+{% assign entity = "Network" %}
+{% assign crd = "KonnectCloudGatewayNetwork" %}
+
+In this guide you'll learn how to use the `{{ crd }}` custom resource to
 manage {{site.konnect_product_name}} Dedicated Cloud Gateways Networks natively from your Kubernetes cluster.
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
 with-control-plane=false %}
 
-## Provider Account
+{% include md/kgo/konnect-cloud-gateways-provider-account.md entity='Network' %}
 
-In order to mange Cloud Gateway networks you need to have a Cloud Gateway Provider Account associated with your {{site.konnect_product_name}} account.
+## Create a Cloud Gateway {{ entity }}
 
-To create one, please contact your Kong Account Manager.
+Creating the `{{ crd }}` object in your Kubernetes cluster will provision a new {{site.konnect_short_name }} Dedicated Cloud Gateway {{ entity }}.
 
-If you already have one, you can use the [{{site.konnect_short_name }}'s `/cloud-gateways/provider-accounts` API][provider_account_list_api]
-to get the `id` of the provider account.
-
-```bash
-curl -s -H 'Content-Type: application/json' -H "Authorization: Bearer ${KONNECT_TOKEN}" -XGET https://global.api.konghq.com/v2/cloud-gateways/provider-accounts | jq
-```
-
-[provider_account_list_api]: /konnect/api/cloud-gateways/latest/#/operations/list-provider-accounts
-
-This should return a list of provider accounts, you can use the `id` of the account you want to use to create a Cloud Gateway Network.
-
-```
-{
-  "data": [
-    {
-      "id": "11111111-1111-1111-1111-111111111111",
-      "provider": "aws",
-      "provider_account_id": "001111111111",
-      "created_at": "2023-07-06T18:40:12.172Z",
-      "updated_at": "2023-07-06T18:40:12.172Z"
-    }
-  ],
-  "meta": {
-    "page": {
-      "total": 1,
-      "size": 100,
-      "number": 1
-    }
-  }
-}
-```
-
-## Create a Cloud Gateway Network
-
-Creating the `KonnectCloudGatewayNetwork` object in your Kubernetes cluster will provision a new {{site.konnect_short_name }} Dedicated Cloud Gateway Network.
-
-You can refer to the [`KonnectCloudGatewayNetwork` CRD API](/gateway-operator/{{ page.release }}/reference/custom-resources/#konnectcloudgatewaynetwork)
+You can refer to the [`{{ crd }}` CRD API](/gateway-operator/{{ page.release }}/reference/custom-resources/#konnectcloudgatewaynetwork)
 for all the available fields.
 
-To create a `KonnectCloudGatewayNetwork` object you can use the following YAML manifest:
+To create a `{{ crd }}` object you can use the following YAML manifest:
 
 ```bash
 echo '
-kind: KonnectCloudGatewayNetwork
+kind: {{ crd }}
 apiVersion: konnect.konghq.com/v1alpha1
 metadata:
  name: konnect-network-1
