@@ -202,7 +202,7 @@ inherit:
       absolute_url: true
       url: https://kuma.io/community
     - path: [ Guides ]
-      text: Manage Mesh using Terraform and Konnect
+      text: Deploy Kong Mesh using Terraform and Konnect
       url: /guides/deploy-kong-mesh-using-terraform-and-konnect
       action: insert
       index: -1
