@@ -8,7 +8,7 @@ badge: enterprise
 
 Content Security Policy (CSP) is a feature that helps to prevent or minimize the risk of certain types of security threats. It consists of a series of instructions from a website to a browser, which instruct the browser to place restrictions on the things that the code comprising the site is allowed to do.
 
-Kong Manager provides an optional configuration parameter [`admin_gui_csp_header`] that allows you to enable the Content Security Policy header in Kong Manager. The Content Security Policy header is turned off by default.
+Kong Manager provides the optional configuration parameter [`admin_gui_csp_header`] that allows you to enable the Content Security Policy header. The Content Security Policy header is turned off by default.
 
 When `admin_gui_csp_header` is enabled, Kong Manager will enforce a default Content Security Policy composed of the following directives:
 
