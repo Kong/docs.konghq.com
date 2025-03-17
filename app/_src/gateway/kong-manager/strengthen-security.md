@@ -44,4 +44,3 @@ admin_gui_csp_header_value = default-src 'self'; connect-src 'self' https://my-a
 [`admin_gui_csp_header`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_csp_header
 [`admin_gui_csp_header_value`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_csp_header_value
 
-{% endif_version %}
