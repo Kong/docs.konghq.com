@@ -23,8 +23,6 @@ Attribute mapping for Azure configuration:
 | `user.groups`                               | `groups`                 |
 | `user.principalname`                        | Unique user identifier   |
 
-* When configuring claims, ensure the claim `Namespace` value is empty.
-
 {% endnavtab %}
 {% navtab Oracle Cloud %}
 
