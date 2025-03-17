@@ -4,6 +4,7 @@ title: Create a Mesh using Terraform and Konnect
 
 {% assign KM_VERSION = "2.9.3" %}
 {% assign TF_BETA_VERSION = "0.1.0" %}
+{% assign TF_VERSION = "2.4.1" %}
 {% assign TF_TIME_VERSION = "0.13.0" %}
 {% assign TF_KUBERNETES_VERSION = "2.35.1" %}
 {% assign TF_HELM_VERSION = "2.17.0" %}
@@ -37,6 +38,7 @@ terraform {
     required_providers {
         konnect = {
             source = "kong/konnect"
+            version = "{{ TF_VERSION }}"
         }
     }
 }
@@ -77,6 +79,7 @@ terraform {
   required_providers {
     konnect = {
       source = "kong/konnect"
+      version = "{{ TF_VERSION }}"
     }
     konnect-beta = {
       source  = "kong/konnect-beta"
@@ -401,7 +404,7 @@ resource "konnect_system_account_role" "zone_system_account_role" {
   entity_id        = konnect_mesh_control_plane.my_meshcontrolplane.id
   entity_region    = var.region
   entity_type_name = "Mesh Control Planes"
-  role_name        = "Admin" # should be "Connector"
+  role_name        = "Connector"
 }
 
 resource "time_offset" "one_year_from_now" {
