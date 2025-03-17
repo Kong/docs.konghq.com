@@ -451,11 +451,7 @@ Options:
 
 
 ```
-{% if_version gte:3.10.x %}
 Usage: kong runner file.lua [args]
-{% else %}
-Usage: kong runner [file] [args]
-{% endif_version %}
 
 Execute a lua file in a kong node. The `kong` variable is available to
 reach the DAO, PDK, etc. The variable `args` can be used to access all
