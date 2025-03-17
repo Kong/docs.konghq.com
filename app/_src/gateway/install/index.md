@@ -34,7 +34,7 @@ Or you can set up {{site.base_gateway}} on your own self-managed system:
   <p><a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=install-gateway" class="no-link-icon">Start for Free &rarr;</a></p>
 </blockquote>
 
-Or you can set up {{site.base_gateway}} on your own self-managed system:
+Or you can set up {{site.ee_product_name}} on your own self-managed system:
 
 {% include install.html config=site.data.tables.install_options_34x %}
 
