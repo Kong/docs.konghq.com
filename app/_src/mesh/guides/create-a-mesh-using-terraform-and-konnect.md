@@ -431,7 +431,7 @@ resource "kubernetes_namespace" "kong_mesh_system" {
 resource "kubernetes_secret" "mesh_cp_token" {
   metadata {
     name = "cp-token"
-    namespace = "kong-mesh-system"
+    namespace = kubernetes_namespace.kong_mesh_system.metadata.0.name
   }
 
   data = {
