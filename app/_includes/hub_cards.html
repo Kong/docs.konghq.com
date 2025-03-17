@@ -5,8 +5,14 @@
 {%- if badges.konnect? -%}
   {%- assign css_classes =  css_classes | append: " konnect" -%}
 {%- endif -%}
+{%- if badges.enterprise? -%}
+  {%- assign css_classes =  css_classes | append: " enterprise" -%}
+{%- endif -%}
 {%- if badges.premiumpartner? -%}
   {%- assign css_classes =  css_classes | append: " premiumpartner" -%}
+{%- endif -%}
+{%- if badges.oss? -%}
+  {%- assign css_classes =  css_classes | append: " oss" -%}
 {%- endif -%}
 {%- unless extn.enterprise -%}
   {%- assign css_classes = css_classes | append: " open-source" -%}
@@ -32,8 +38,14 @@
           {% if badges.konnect? %}
             <span class="badge konnect"></span>
           {% endif %}
+          {% if badges.enterprise? %}
+            <span class="badge enterprise"></span>
+          {% endif %}
           {% if badges.premiumpartner? %}
           <span class="badge premiumpartner"></span>
+          {% endif %}
+          {% if badges.oss? %}
+            <span class="badge oss"></span>
           {% endif %}
         </div>
         <div class="plugin-card--meta__description">{{ extn.desc }}</div>
