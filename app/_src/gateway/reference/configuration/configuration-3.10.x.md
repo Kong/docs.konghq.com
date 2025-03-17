@@ -522,34 +522,21 @@ This field is ignored if `cluster_mtls` is not set to `pki_check_cn`.
 
 **Default:** none
 
-
-### cluster_rpc
-
-The setting to enable or disable RPC-based communication between control plane
-and data plane nodes.
-
-The valid values are `on` and `off`. Set to `on` to enable.
-
-If `cluster_rpc_sync` is set to `on`, this parameter must also be set to `on`.
-
-**Default:** `on`
-
-
-### cluster_rpc_sync
+### incremental_sync
 
 The setting to enable or disable the incremental synchronization of
 configuration changes.
+Instead of sending the entire entity config to data planes on each config
+update, incremental config sync lets you send only the changed configuration to
+data planes for hybrid mode deployments.
 
-The valid values are `on` and `off`. To enable, set this value to `on`, and set
-`cluster_rpc` to `on`.
+The valid values are `on` and `off`.
+To enable, set this value to `on`.
 
-This setting will be ignored if `cluster_rpc` is `off`.
-
-In hybrid mode, this setting must be configured on both control plane and data
-plane nodes.
+In hybrid mode, this setting must be configured
+on both control plane and data plane nodes.
 
 **Default:** `off`
-
 
 ---
 
