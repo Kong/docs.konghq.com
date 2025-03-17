@@ -483,6 +483,7 @@ components:
         id: d958f66b-8e99-44d2-b0b4-edd5bbf24658
         jwk: '{"alg":"RSA",  "kid": "42",  ...}'
         kid: '42'
+        x5t: 'a3f1c6b8d9e5...'
         name: a-key
         pem:
           private_key: '-----BEGIN'
@@ -490,44 +491,49 @@ components:
         set:
           id: b86b331c-dcd0-4b3e-97ce-47c5a9543031
       properties:
-        created_at:
-          description: Unix epoch when the resource was created.
-          type: integer
         id:
           type: string
-        jwk:
-          description: A JSON Web Key represented as a string.
-          type: string
-        kid:
-          description: A unique identifier for a key.
-          type: string
+          format: uuid
+          description: Unique identifier for the key.
+        set:
+          type: object
+          description: The ID of the key-set with which to associate the key.
+          properties:
+            id:
+              type: string
+              format: uuid
         name:
-          description: The name to associate with the given keys.
           type: string
+          description: The name to associate with the given keys.
+        kid:
+          type: string
+          description: A unique identifier for a key.
+        x5t:
+          type: string
+          description: X.509 certificate SHA-1 thumbprint.
+        jwk:
+          type: string
+          description: A JSON Web Key represented as a string.
         pem:
-          description: A keypair in PEM format.
+          type: object
+          description: PEM representation of the key.
           properties:
             private_key:
               type: string
             public_key:
               type: string
-          type: object
-        set:
-          additionalProperties: false
-          description: The id (an UUID) of the Key Set with which to associate the key.
-          properties:
-            id:
-              type: string
-          type: object
         tags:
-          description: An optional set of strings associated with the Key for grouping and filtering.
+          type: array
           items:
             type: string
-          type: array
-        updated_at:
-          description: Unix epoch when the resource was last updated.
+        created_at:
           type: integer
-      type: object
+          format: int64
+          description: Timestamp (seconds) of when the key was created.
+        updated_at:
+          type: integer
+          format: int64
+          description: Timestamp (seconds) of when the key was last updated.
     Key-set:
       example:
         id: b58c7d9d-e54f-444c-b24d-cdfc4159f61e
