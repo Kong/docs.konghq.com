@@ -34,7 +34,7 @@ admin_gui_csp_header_value = default-src 'self'; connect-src 'self' https://my-a
 ```
 
 {:.warning}
-> **Note:** Invalid Content Security Policy may break the functionality of Kong Manager or even expose to security risks. Please make sure to test the Content Security Policy before using it in production.
+> **Note:** An invalid Content Security Policy may break the functionality of Kong Manager or even expose it to security risks. Make sure to test the Content Security Policy before using it in production.
 
 ## See also
 
