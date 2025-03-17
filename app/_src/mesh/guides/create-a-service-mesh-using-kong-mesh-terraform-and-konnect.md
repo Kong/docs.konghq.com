@@ -1,5 +1,5 @@
 ---
-title: Create a Mesh using Terraform and Konnect
+title: Create a service mesh using Kong Mesh, Terraform, and Konnect
 ---
 
 {% assign KM_VERSION = "2.9.3" %}
