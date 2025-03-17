@@ -578,6 +578,12 @@ items:
         - text: kong.vault
           url: /plugin-development/pdk/kong.vault
 
+        - text: kong.websocket.client
+          url: /plugin-development/pdk/kong.websocket.client
+
+        - text: kong.websocket.upstream
+          url: /plugin-development/pdk/kong.websocket.upstream
+
       - text: Plugins in Other Languages
         items:
           - text: Go
