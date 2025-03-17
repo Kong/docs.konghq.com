@@ -11,10 +11,11 @@ title: Create a Mesh using Terraform and Konnect
 ## Introduction
 
 This guide explains how to create and manage Kong Mesh using Terraform and Konnect.
-It covers setting up the Terraform environment,
-configuring providers,
-deploying a Global Control Plane with a zone and a Mesh in Konnect,
-and deploying a zone.
+It covers:
+* setting up the Terraform environment,
+* configuring providers,
+* deploying a Global Control Plane with a Mesh in Konnect,
+* and deploying a zone.
 
 ## Requirements
 
