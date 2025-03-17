@@ -20,6 +20,8 @@ premiumpartner: true
 enterprise: false
 konnect: true
 
+network_config_opts: All
+
 desc: Set up Dynatrace with the OpenTelemetry plugin to send traces, metrics, and logs to Dynatrace
 
 kong_version_compatibility:
