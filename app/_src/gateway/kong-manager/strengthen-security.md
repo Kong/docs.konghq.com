@@ -10,7 +10,7 @@ Content Security Policy (CSP) is a feature that helps to prevent or minimize the
 
 Kong Manager provides an optional configuration parameter [`admin_gui_csp_header`] that allows you to enable the Content Security Policy header in Kong Manager. The Content Security Policy header is turned off by default.
 
-By default, Kong Manager will enforce a default Content Security Policy composed of the following directives when [`admin_gui_csp_header`] is enabled:
+When `admin_gui_csp_header` is enabled, Kong Manager will enforce a default Content Security Policy composed of the following directives:
 
 ```
 default-src 'self';
