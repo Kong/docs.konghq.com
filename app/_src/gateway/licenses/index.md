@@ -7,6 +7,8 @@ badge: enterprise
 functionality, {{site.base_gateway}} enforces the presence and validity of a
 {{site.konnect_product_name}} license file.
 
+{% if_version lte:3.9.x %}
+
 | Feature            | Free Mode | Enterprise Subscription |
 |--------------------|:---------:|:-----------------------:|
 | Manager            | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
@@ -18,6 +20,8 @@ functionality, {{site.base_gateway}} enforces the presence and validity of a
 {% endif_version %}
 
 | Enterprise plugins | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
+
+{% endif_version %}
 
 ## Deploying the license file
 
