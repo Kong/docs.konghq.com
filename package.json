@@ -54,7 +54,7 @@
   "dependencies": {
     "@kong/kongponents": "^9.14.24",
     "@kong/sdk-portal-js": "^2.14.0",
-    "@kong/spec-renderer-dev": "^1.87.9",
+    "@kong/spec-renderer": "^1.88.0",
     "algoliasearch": "^5.0.0",
     "instantsearch.css": "^8.1.0",
     "jquery": "3.7.1",

@@ -299,6 +299,8 @@ http
 httpbin
 HTTPie
 https
+idempotent
+idempotency
 IdPs
 If-Match
 impactful

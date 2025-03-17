@@ -8,19 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           repository:  ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
         with:
           node-version: 16
           cache: 'npm'
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v45
+        uses: Kong/changed-files@4edd678ac3f81e2dc578756871e4d00c19191daf
         with:
           sha: ${{  github.event.pull_request.head.sha }}
           files: |
@@ -31,11 +31,11 @@ jobs:
             app/_assets/images/**
       - run: npx prettier --write ${{ steps.changed-files.outputs.all_changed_files }}
       - name: Commit changes
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9
         with:
           author_name: github-actions[bot]
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: "[ci] Autofix :: Prettier"
-      - uses: actions-ecosystem/action-remove-labels@v1
+      - uses: actions-ecosystem/action-remove-labels@2ce5d41b4b6aa8503e285553f75ed56e0a40bae0 # v1
         with:
           labels: "ci:autofix:prettier"

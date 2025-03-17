@@ -75,7 +75,7 @@
 
 <script setup>
 import { onBeforeMount, ref, watch, computed } from 'vue';
-import { SpecDocument, SpecRendererToc, parseSpecDocument,  parsedDocument, tableOfContents } from '@kong/spec-renderer-dev';
+import { SpecDocument, SpecRendererToc, parseSpecDocument,  parsedDocument, tableOfContents } from '@kong/spec-renderer';
 import ApiService from '../services/api.js';
 import { KSkeleton, KSelect, KSlideout } from '@kong/kongponents';
 import { MenuIcon } from '@kong/icons'
