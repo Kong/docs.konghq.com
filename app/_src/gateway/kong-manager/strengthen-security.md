@@ -3,7 +3,6 @@ title: Strengthen Security in Kong Manager
 badge: enterprise
 ---
 
-{% if_version gte:3.10.x %}
 
 ## Content Security Policy
 
