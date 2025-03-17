@@ -514,7 +514,7 @@ helm_release.kong_mesh: Creation complete after 53s [id=kong-mesh]
 You can check that the `MeshTrafficPermission` we created earlier is now available in the zone:
 
 ```bash
-kubectl get meshtrafficpermissions.kuma.io -A                                                                                                                                                                                                                  -- INSERT --
+kubectl get meshtrafficpermissions.kuma.io -A
 ```
 
 should print:
