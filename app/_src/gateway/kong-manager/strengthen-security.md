@@ -23,7 +23,9 @@ style-src 'self' 'unsafe-inline';
 
 If [`admin_gui_api_url`] is not specified, the `connect-src` directive will depends on the requesting host and port. e.g., If the request URL is `http://localhost:9112`, the `connect-src` directive will be `http://localhost:9112`. If the request URL is `https://localhost:9112`, the `connect-src` directive will be `https://localhost:9112`.
 
-If [`admin_gui_api_url`] is specified, and it is started with `http://` or `https://`, the `connect-src` directive will be the value of [`admin_gui_api_url`]. Otherwise, the `connect-src` directive will be the value of [`admin_gui_api_url`] prefixed with `http://` when being accessed over HTTP, and `https://` when being accessed over HTTPS.
+If `admin_gui_api_url` is specified, the `connect_src` directive will depend on the presence of the `http` or `https` prefix:
+* If `admin_gui_api_url` starts with `http://` or `https://`, the `connect-src` directive will be the value of `admin_gui_api_url`. 
+*  If `admin_gui_api_url` doesn't start with `http://` or `https://`, the `connect-src` directive will be the value of `admin_gui_api_url` prefixed with `http://` when being accessed over HTTP, and `https://` when being accessed over HTTPS.
 
 ### Customize the Content Security Policy header
 
