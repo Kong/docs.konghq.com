@@ -479,7 +479,7 @@ resource "helm_release" "kong_mesh" {
   chart      = "kong-mesh"
   version    = "{{ KM_VERSION }}"
 
-  namespace        = "kong-mesh-system"
+  namespace = kubernetes_namespace.kong_mesh_system.metadata.0.name
   upgrade_install = true
 
   values = [templatefile("values.tftpl", {
