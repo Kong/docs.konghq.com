@@ -203,6 +203,6 @@ inherit:
       url: https://kuma.io/community
     - path: [ Guides ]
       text: Manage Mesh using Terraform and Konnect
-      url: /guides/create-a-service-mesh-using-kong-mesh-terraform-and-konnect
+      url: /guides/deploy-kong-mesh-using-terraform-and-konnect
       action: insert
       index: -1
