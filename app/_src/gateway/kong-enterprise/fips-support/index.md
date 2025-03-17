@@ -11,8 +11,10 @@ The Federal Information Processing Standard (FIPS) 140-2 is a federal standard d
 
 The package uses the OpenSSL FIPS 3.0 module OpenSSL to provide FIPS 140-2 validated cryptographic operations.
 
+{% if_version lte:3.9.x %}
 {:.note}
 > **Note**: FIPS is not supported when running {{site.ee_product_name}} in free mode.
+{% endif_version %}
 
 ## FIPS implementation
 ### Password hashing

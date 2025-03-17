@@ -247,8 +247,11 @@ the Kong Admin API.
 ## Get started with {{site.base_gateway}}
 
 [Download and install {{site.base_gateway}}](/gateway/{{page.release}}/install/).
+
+{% if_version lte:3.9.x %}
 To test it out, you can choose either the open-source package, or
 run {{site.ee_product_name}} in free mode and also try out Kong Manager.
+{% endif_version %}
 
 After installation, get started with the introductory [quickstart guide](/gateway/{{page.release}}/get-started/).
 
