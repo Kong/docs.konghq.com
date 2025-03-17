@@ -11,7 +11,7 @@ title: Create a service mesh using Kong Mesh, Terraform, and Konnect
 
 ## Introduction
 
-This guide explains how to create and manage Kong Mesh using Terraform and Konnect.
+This guide explains how to create and manage {{site.mesh_product_name}} using Terraform and Konnect.
 It covers:
 * setting up the Terraform environment,
 * configuring providers,
@@ -65,7 +65,7 @@ terraform {
 
 ### Usage in this guide
 
-In this guide we will use both the `konnect` and `konnect-beta` providers to demonstrate how to manage Kong Mesh resources using Terraform.
+In this guide we will use both the `konnect` and `konnect-beta` providers to demonstrate how to manage {{site.mesh_product_name}} resources using Terraform.
 
 ## Setup
 
@@ -257,7 +257,7 @@ Policies examples now contain an additional tab called "Terraform" showing a ter
 
 Let's take an example from [MeshTrafficPermission page](/mesh/{{page.release}}/policies/meshtrafficpermission/#allow-all)
 
-We need to adjust it to our setup by adding the provider, the control plane id, mesh name, depends_on and labels:
+We need to adjust it to our setup by adding the `provider`, `cp_id`, `mesh`, `depends_on` and `labels`:
 
 ```hcl
 provider = konnect-beta
@@ -560,7 +560,7 @@ If you execute `terraform apply` immediate after you'll see:
 No changes. Your infrastructure matches the configuration.
 ```
 
-Buf if you run it after a minute you will see zone system account token recreated and kubernetes secret updated:
+But, if you run it after a minute you will see zone system account token recreated and Kubernetes secret updated:
 
 ```
   # konnect_system_account_access_token.zone_system_account_token must be replaced
