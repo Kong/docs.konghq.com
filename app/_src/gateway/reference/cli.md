@@ -319,10 +319,8 @@ Options:
 
  -p,--prefix      (optional string)   Override prefix directory.
 
-{% if_version lte:3.9.x %}
  --v              verbose
  --vv             debug
-{% endif_version %}
 
 ```
 
