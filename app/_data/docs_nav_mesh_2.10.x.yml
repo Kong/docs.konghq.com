@@ -126,7 +126,7 @@ inherit:
     - path: [ Policies ]
       action: insert
       index: -2
-      text: MeshOPA 
+      text: MeshOPA
       url: /features/meshopa
       generate: false
     - path: [ Policies ]
@@ -201,3 +201,8 @@ inherit:
       src: null
       absolute_url: true
       url: https://kuma.io/community
+    - path: [ Guides ]
+      text: Import existing Konnect Kong Mesh deployment to Terraform
+      url: /guides/import-existing-konnect-kong-mesh-deployment-to-terraform
+      action: insert
+      index: -1
