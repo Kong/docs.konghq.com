@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* Fixed an issue where the runtime failed due to `sync_rate` not being set if the `strategy` was `local`.
+
 ### {{site.base_gateway}} 3.9.x
 * Added the new configuration field `lock_dictionary_name` to support specifying an independent shared memory for storing locks.
 * Added support for authentication from {{site.base_gateway}} to Envoy Proxy.

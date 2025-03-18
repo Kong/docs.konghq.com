@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* Fixed an issue where the plugin failed to upsert JWKS if the JWKS contained extra custom fields.
+
 ### {{site.base_gateway}} 3.9.x
 * The `/jwt-signer/jwks` endpoint is now supported in DB-less mode.
 
