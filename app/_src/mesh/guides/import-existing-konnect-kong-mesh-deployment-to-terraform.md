@@ -1,19 +1,19 @@
 ---
-title: Import existing Konnect Kong Mesh deployment to Terraform
+title: Import existing Konnect {{site.mesh_product_name}} deployment to Terraform
 ---
 
 ## Introduction
 
-This guide explains how to import an existing Konnect Kong Mesh deployment into Terraform.
+This guide explains how to import an existing Konnect {{site.mesh_product_name}} deployment into Terraform.
 It covers setup, importing resources, running Terraform commands, and automating the import process using a provided script.
 
 ## Setup
 
-Make sure you completed "Setup" from [Deploy Kong Mesh using Terraform and Konnect](/mesh/{{page.release}}/guides/deploy-kong-mesh-using-terraform-and-konnect).
+Make sure you completed "Setup" from [Deploy {{site.mesh_product_name}} using Terraform and Konnect](/mesh/{{page.release}}/guides/deploy-kong-mesh-using-terraform-and-konnect).
 
-## Import existing Konnect Kong Mesh deployment to Terraform
+## Import existing Konnect {{site.mesh_product_name}} deployment to Terraform
 
-In order to import an existing Konnect Kong Mesh deployment to Terraform, you need to add each resource name and ID to the Terraform configuration file.
+In order to import an existing Konnect {{site.mesh_product_name}} deployment to Terraform, you need to add each resource name and ID to the Terraform configuration file.
 
 Below is an example of how to import:
 - Mesh Control Plane
@@ -62,7 +62,7 @@ After that you can run `terraform apply` to import the resources.
 
 ## Automating the import process
 
-Kong Mesh API provides an endpoint to list all resources of a certain type in a specific Mesh Control Plane.
+{{site.mesh_product_name}} API provides an endpoint to list all resources of a certain type in a specific Mesh Control Plane.
 You can use this endpoint to automate the import process.
 Below is an example of how to list all `HostnameGenerators` in a Mesh called `another-name` for a Control Plane with id `c9fd8f76-6460-45fb-9a64-a981d8a512d7`:
 
@@ -218,4 +218,4 @@ done
 
 ## Next steps
 
-Explore all policies that are available in the [Kong Mesh Policy Catalog](/mesh/{{page.release}}/policies/introduction).
+Explore all policies that are available in the [{{site.mesh_product_name}} Policy Catalog](/mesh/{{page.release}}/policies/introduction).
