@@ -108,6 +108,12 @@ The plugin respects cache control headers to determine if requests and responses
 * `private`: Ensures the response is not cached by shared caches
 * `max-age` and `s-maxage`: Sets the maximum age of the cached response. This causes the vector database to drop and delete the cached response message after expiration, so it’s never seen again. 
 
+{:.note}
+
+As most AI services always send `no-cache` in the response headers, setting `cache_control` to true will
+always result in a cache bypass. Thus only consider setting `no-cache` if you are using self-hosted services
+and have control of the response Cache Control headers.
+
 ## Get started with the AI Semantic Caching plugin
 
 * [Configuration reference](/hub/kong-inc/ai-semantic-cache/configuration/)
