@@ -5,6 +5,210 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.5.0
+
+**Release date**: 2025-03-12
+
+### Breaking Changes
+
+- Added check of whether using `Secret` in another namespace in `AIGateway`'s
+  `spec.cloudProviderCredentials` is allowed. If the `AIGateway` and the `Secret`
+  referenced in `spec.cloudProviderCredentials` are not in the same namespace,
+  there MUST be a `ReferenceGrant` in the namespace of the `Secret` that allows
+  the `AIGateway`s to reference the `Secret`.
+  This may break usage of `AIGateway`s that is already using `Secret` in
+  other namespaces as AI cloud provider credentials.
+  [#1161](https://github.com/Kong/gateway-operator/pull/1161)
+- Migrate KGO CRDs to the kubernetes-configuration repo.
+  With this migration process, we have removed the `api` and `pkg/clientset` from the KGO repo.
+  This is a breaking change which requires manual action for projects that use operator's Go APIs.
+  In order to migrate please use the import paths from the [kong/kubernetes-configuration][kubernetes-configuration] repo instead.
+  For example:
+  `github.com/kong/gateway-operator/api/v1beta1` becomes
+  `github.com/kong/kubernetes-configuration/api/gateway-operator/v1beta1`.
+  [#1148](https://github.com/Kong/gateway-operator/pull/1148)
+- Support for the `konnect-extension.gateway-operator.konghq.com` CRD has been interrupted. The new
+  API `konnect-extension.konnect.konghq.com` must be used instead.
+  [#1183](https://github.com/Kong/gateway-operator/pull/1183)
+- Migrate KGO CRDs conditions to the kubernetes-configuration repo.
+  With this migration process, we have moved all conditions from the KGO repo to [kubernetes-configuration][kubernetes-configuration].
+  This is a breaking change which requires manual action for projects that use operator's Go conditions types.
+  In order to migrate please use the import paths from the [kong/kubernetes-configuration][kubernetes-configuration] repo instead.
+  [#1281](https://github.com/Kong/gateway-operator/pull/1281)
+  [#1305](https://github.com/Kong/gateway-operator/pull/1305)
+  [#1306](https://github.com/Kong/gateway-operator/pull/1306)
+  [#1318](https://github.com/Kong/gateway-operator/pull/1318)
+
+[kubernetes-configuration]: https://github.com/Kong/kubernetes-configuration
+
+### Added
+
+- Added `Name` field in `ServiceOptions` to allow specifying name of the
+  owning service. Currently specifying ingress service of `DataPlane` is
+  supported.
+  [#966](https://github.com/Kong/gateway-operator/pull/966)
+- Added support for global plugins with `KongPluginBinding`'s `scope` field.
+  The default value is `OnlyTargets` which means that the plugin will be
+  applied only to the targets specified in the `targets` field. The new
+  alternative is `GlobalInControlPlane` that will make the plugin apply
+  globally in a control plane.
+  [#1052](https://github.com/Kong/gateway-operator/pull/1052)
+- Added `-cluster-ca-key-type` and `-cluster-ca-key-size` CLI flags to allow
+  configuring cluster CA private key type and size. Currently allowed values:
+  `rsa` and `ecdsa` (default).
+  [#1081](https://github.com/Kong/gateway-operator/pull/1081)
+- The `GatewayClass` Accepted Condition is set to `False` with reason `InvalidParameters`
+  in case the `.spec.parametersRef` field is not a valid reference to an existing
+  `GatewayConfiguration` object.
+  [#1021](https://github.com/Kong/gateway-operator/pull/1021)
+- The `SupportedFeatures` field is properly set in the `GatewayClass` status.
+  It requires the experimental version of Gateway API (as of v1.2.x) installed in
+  your cluster, and the flag `--enable-gateway-api-experimental` set.
+  [#1010](https://github.com/Kong/gateway-operator/pull/1010)
+- Added support for `KongConsumer` `credentials` in Konnect entities support.
+  Users can now specify credentials for `KongConsumer`s in `Secret`s and reference
+  them in `KongConsumer`s' `credentials` field.
+  - `basic-auth` [#1120](https://github.com/Kong/gateway-operator/pull/1120)
+  - `key-auth` [#1168](https://github.com/Kong/gateway-operator/pull/1168)
+  - `acl` [#1187](https://github.com/Kong/gateway-operator/pull/1187)
+  - `jwt` [#1208](https://github.com/Kong/gateway-operator/pull/1208)
+  - `hmac` [#1222](https://github.com/Kong/gateway-operator/pull/1222)
+- Added prometheus metrics for Konnect entity operations in the metrics server:
+  - `gateway_operator_konnect_entity_operation_count` for number of operations.
+  - `gateway_operator_konnect_entity_operation_duration_milliseconds` for duration of operations.
+  [#953](https://github.com/Kong/gateway-operator/pull/953)
+- Added support for `KonnectCloudGatewayNetwork` CRD which can manage Konnect
+  Cloud Gateway Network entities.
+  [#1136](https://github.com/Kong/gateway-operator/pull/1136)
+- Reconcile affected `KonnectExtension`s when the `Secret` used as Dataplane
+  certificate is modified. A secret must have the `konghq.com/konnect-dp-cert`
+  label to trigger the reconciliation.
+  [#1250](https://github.com/Kong/gateway-operator/pull/1250)
+- When the `DataPlane` is configured in Konnect, the `/status/ready` endpoint
+  is set as the readiness probe.
+  [#1235](https://github.com/Kong/gateway-operator/pull/1253)
+- Added support for `KonnectDataPlaneGroupConfiguration` CRD which can manage Konnect
+  Cloud Gateway DataPlane Group configurations entities.
+  [#1186](https://github.com/Kong/gateway-operator/pull/1186)
+- Supported `KonnectExtension` to attach to Konnect control planes by setting
+  namespace and name of `KonnectGatewayControlPlane` in `spec.konnectControlPlane`.
+  [#1254](https://github.com/Kong/gateway-operator/pull/1254)
+- Added support for `KonnectExtension`s on `ControlPlane`s.
+  [#1262](https://github.com/Kong/gateway-operator/pull/1262)
+- Added support for `KonnectExtension`'s `status` `controlPlaneRefs` and `dataPlaneRefs`
+  fields.
+  [#1297](https://github.com/Kong/gateway-operator/pull/1297)
+- Added support for `KonnectExtension`s on `Gateway`s via `GatewayConfiguration`
+  extensibility.
+  [#1292](https://github.com/Kong/gateway-operator/pull/1292)
+- Added `-enforce-config` flag to enforce the configuration of the `ControlPlane`
+  and `DataPlane` `Deployment`s.
+  [#1307](https://github.com/Kong/gateway-operator/pull/1307)
+- Added Automatic secret provisioning for `KonnectExtension` certificates.
+  [#1304](https://github.com/Kong/gateway-operator/pull/1304)
+
+### Changed
+
+- `KonnectExtension` does not require `spec.serverHostname` to be set by a user
+  anymore - default is set to `konghq.com`.
+  [#947](https://github.com/Kong/gateway-operator/pull/947)
+- Support KIC 3.4
+  [#972](https://github.com/Kong/gateway-operator/pull/972)
+- Allow more than 1 replica for `ControlPlane`'s `Deployment` to support HA deployments of KIC.
+  [#978](https://github.com/Kong/gateway-operator/pull/978)
+- Removed support for the migration of legacy labels so upgrading the operator from 1.3 (or older) to 1.5.0,
+  should be done through 1.4.1
+  [#976](https://github.com/Kong/gateway-operator/pull/976)
+- Move `ControlPlane` `image` validation to CRD CEL rules.
+  [#984](https://github.com/Kong/gateway-operator/pull/984)
+- Remove usage of `kube-rbac-proxy`.
+  Its functionality of can be now achieved by using the new flag `--metrics-access-filter`
+  (or a corresponding `GATEWAY_OPERATOR_METRICS_ACCESS_FILTER` env).
+  The default value for the flag is `off` which doesn't restrict the access to the metrics
+  endpoint. The flag can be set to `rbac` which will configure KGO to verify the token
+  sent with the request.
+  For more information on this migration please consult
+  [kubernetes-sigs/kubebuilder#3907][kubebuilder_3907].
+  [#956](https://github.com/Kong/gateway-operator/pull/956)
+- Move `DataPlane` ports validation to `ValidationAdmissionPolicy` and `ValidationAdmissionPolicyBinding`.
+  [#1007](https://github.com/Kong/gateway-operator/pull/1007)
+- Move `DataPlane` db mode validation to CRD CEL validation expressions.
+  With this change only the `KONG_DATABASE` environment variable directly set in
+  the `podTemplateSpec` is validated. `EnvFrom` is not evaluated anymore for this validation.
+  [#1049](https://github.com/Kong/gateway-operator/pull/1049)
+- Move `DataPlane` promotion in progress validation to CRD CEL validation expressions.
+  This is relevant for `DataPlane`s with BlueGreen rollouts enabled only.
+  [#1054](https://github.com/Kong/gateway-operator/pull/1054)
+- Move `DataPlane`'s rollout strategy validation of disallowed `AutomaticPromotion`
+  to CRD CEL validation expressions.
+  This is relevant for `DataPlane`s with BlueGreen rollouts enabled only.
+  [#1056](https://github.com/Kong/gateway-operator/pull/1056)
+- Move `DataPlane`'s rollout resource strategy validation of disallowed `DeleteOnPromotionRecreateOnRollout`
+  to CRD CEL validation expressions.
+  This is relevant for `DataPlane`s with BlueGreen rollouts enabled only.
+  [#1065](https://github.com/Kong/gateway-operator/pull/1065)
+- The `GatewayClass` Accepted Condition is set to `False` with reason `InvalidParameters`
+  in case the `.spec.parametersRef` field is not a valid reference to an existing
+  `GatewayConfiguration` object.
+  [#1021](https://github.com/Kong/gateway-operator/pull/1021)
+- Validating webhook is now disabled by default. At this point webhook doesn't
+  perform any validations.
+  These were all moved either to CRD CEL validation expressions or to the
+  `ValidationAdmissionPolicy`.
+  Flag remains in place to not cause a breaking change for users that rely on it.
+  [#1066](https://github.com/Kong/gateway-operator/pull/1066)
+- Remove `ValidatingAdmissionWebhook` from the operator.
+  As of now, all the validations have been moved to CRD CEL validation expressions
+  or to the `ValidationAdmissionPolicy`.
+  All the flags that were configuring the webhook are now deprecated and do not
+  have any effect.
+  They will be removed in next major release.
+  [#1100](https://github.com/Kong/gateway-operator/pull/1100)
+- Konnect entities that are attached to a Konnect CP through a `ControlPlaneRef`
+  do not get an owner relationship set to the `ControlPlane` anymore hence
+  they are not deleted when the `ControlPlane` is deleted.
+  [#1099](https://github.com/Kong/gateway-operator/pull/1099)
+- Remove the owner relationship between `KongService` and `KongRoute`.
+  [#1178](https://github.com/Kong/gateway-operator/pull/1178)
+- Remove the owner relationship between `KongTarget` and `KongUpstream`.
+  [#1279](https://github.com/Kong/gateway-operator/pull/1279)
+- Remove the owner relationship between `KongCertificate` and `KongSNI`.
+  [#1285](https://github.com/Kong/gateway-operator/pull/1285)
+- Remove the owner relationship between `KongKey`s and `KongKeysSet`s and `KonnectGatewayControlPlane`s.
+  [#1291](https://github.com/Kong/gateway-operator/pull/1291)
+- Check whether an error from calling Konnect API is a validation error by
+  HTTP status code in Konnect entity controller. If the HTTP status code is
+  `400`, we consider the error as a validation error and do not try to requeue
+  the Konnect entity.
+  [#1226](https://github.com/Kong/gateway-operator/pull/1226)
+- Credential resources used as Konnect entities that are attached to a `KongConsumer`
+  resource do not get an owner relationship set to the `KongConsumer` anymore hence
+  they are not deleted when the `KongConsumer` is deleted.
+  [#1259](https://github.com/Kong/gateway-operator/pull/1259)
+
+[kubebuilder_3907]: https://github.com/kubernetes-sigs/kubebuilder/discussions/3907
+
+### Fixes
+
+- Fix `DataPlane`s with `KonnectExtension` and `BlueGreen` settings. Both the Live
+  and preview deployments are now customized with Konnect-related settings.
+  [#910](https://github.com/Kong/gateway-operator/pull/910)
+- Remove `RunAsUser` specification in jobs to create webhook certificates
+  because Openshift does not specifying `RunAsUser` by default.
+  [#964](https://github.com/Kong/gateway-operator/pull/964)
+- Fix watch predicates for types shared between KGO and KIC.
+  [#948](https://github.com/Kong/gateway-operator/pull/948)
+- Fix unexpected error logs caused by passing an odd number of arguments to the logger
+  in the `KongConsumer` reconciler.
+  [#983](https://github.com/Kong/gateway-operator/pull/983)
+- Fix checking status when using a `KonnectGatewayControlPlane` with KIC CP type
+  as a `ControlPlaneRef`.
+  [#1115](https://github.com/Kong/gateway-operator/pull/1115)
+- Fix setting `DataPlane`'s readiness probe using `GatewayConfiguration`.
+  [#1118](https://github.com/Kong/gateway-operator/pull/1118)
+- Fix handling Konnect API conflicts.
+  [#1176](https://github.com/Kong/gateway-operator/pull/1176)
+
 ## 1.4.2
 
 **Release date**: 2025-01-23
