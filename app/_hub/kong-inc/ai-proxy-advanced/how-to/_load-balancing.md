@@ -241,6 +241,10 @@ plugins:
 The lowest-usage algorithm distributes requests to the model with the lowest usage volume. By default, the usage is calculated based on the total number of tokens in the prompt and in the response. However, you can customize this using the [`config.balancer.tokens_count_strategy`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-balancer-tokens_count_strategy) parameter. You can use:
 * `prompt-tokens` to count only the tokens in the prompt
 * `completion-tokens` to count only the tokens in the response
+* `total-tokens` to count both tokens in the prompt and in the response
+{% if_version gte:3.10.x %}
+* `cost` to count the cost of the tokens. The `cost` parameter must set in each model configuration to use this strategy and `log_statistics` should be turned on.
+{% endif_version %}
 
 For example:
 ```yaml
@@ -279,4 +283,62 @@ plugins:
       auth: 
         header_name: Authorization
         header_value: Bearer <token>
+```
+
+## Priority
+
+In priority algorithm, targets that have same `weight` are identified as a group. By default, all models have the same priority. However, this can be configured with the [`config.targets[].weight`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-weight) parameter.
+
+The balancer always chooses one of the targets of the group in the highest priority first. If all targets in the highest priority are down, the balancer chooses one of the targets in the next highest priority.
+
+
+For example:
+```yaml
+_format_version: "3.0"
+services:
+- name: openai-chat-service
+  url: https://httpbin.konghq.com/
+  routes:
+  - name: openai-chat-route
+    paths:
+    - /chat
+plugins:
+- name: ai-proxy-advanced
+  config:
+    balancer:
+      algorithm: round-robin
+    targets:
+    - model:
+        name: gpt-4
+        provider: openai
+        options:
+          max_tokens: 512
+          temperature: 1.0
+      route_type: llm/v1/chat
+      auth: 
+        header_name: Authorization
+        header_value: Bearer <token>
+      weight: 70
+    - model:
+        name: gpt-4o-mini
+        provider: openai
+        options:
+          max_tokens: 512
+          temperature: 1.0
+      route_type: llm/v1/chat
+      auth: 
+        header_name: Authorization
+        header_value: Bearer <token>
+      weight: 70
+    - model:
+        name: gpt-3
+        provider: openai
+        options:
+          max_tokens: 512
+          temperature: 1.0
+      route_type: llm/v1/chat
+      auth: 
+        header_name: Authorization
+        header_value: Bearer <token>
+      weight: 25
 ```
