@@ -4,7 +4,7 @@
   <strong>Prerequisites:</strong> Install {{site.kgo_product_name}} and create a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
 </summary>
 
-## Prerequisites
+## Install {{site.kgo_product_name}} and create a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
 {% endunless %}
 
 {% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release kconfCRDs=true konnectEntities=true %}
@@ -104,6 +104,7 @@ metadata:
   namespace: default
 spec:
   name: gateway-control-plane # Name used to identify the Gateway Control Plane in Konnect
+  cluster_type: {% if include.is-kic-cp == true %}CLUSTER_TYPE_K8S_INGRESS_CONTROLLER{% else %}CLUSTER_TYPE_CONTROL_PLANE{% endif %}
   konnect:
     authRef:
       name: konnect-api-auth # Reference to the KonnectAPIAuthConfiguration object
