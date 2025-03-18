@@ -57,6 +57,7 @@ terraform plan -generate-config-out="generated_resources.tf"
 ```
 
 Next review the "generated_resources.tf" file and make sure the resources are imported correctly.
+Add all the necessary references like `cp_id`, `depends_on`.
 After that you can run `terraform apply` to import the resources.
 
 ## Automating the import process
