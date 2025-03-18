@@ -116,7 +116,7 @@ You can use this setting to [strengthen security in Kong Manager](/gateway/3.10.
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Removed issuer discovery from schema to improve performance upon plugin initialization or updating. 
-  The issuer discovery will only be triggerd by client requests.
+  The issuer discovery will only be triggered by client requests.
 
 * [**Confluent**](/hub/kong-inc/confluent/) (`confluent`): 
   * Added support for message manipulation with the new configuration field `message_by_lua_functions`.

@@ -2,7 +2,7 @@
 
 ### {{site.base_gateway}} 3.10.x
 * Removed issuer discovery from schema to improve performance upon plugin initialization or updating. 
-The issuer discovery will only be triggerd by client requests.
+The issuer discovery will only be triggered by client requests.
 * Fixed an issue where forbidden requests were redirected to `unauthorized_redirect_uri` if configured. After the fix, forbidden requests will be redirected to `forbidden_redirect_uri` if configured.
 
 ### {{site.base_gateway}} 3.9.x

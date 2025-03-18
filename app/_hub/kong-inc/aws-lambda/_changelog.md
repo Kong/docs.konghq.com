@@ -1,7 +1,7 @@
 ## Changelog
 
 ### {{site.base_gateway}} 3.10.x
-* Fixed an issue that occurred when `is_proxy_integration` was enabled, where Kong Gateway's response could behave incorrectly when the response was changed after the execution of the AWS Lambda plugin. 
+* Fixed an issue that occurred when `is_proxy_integration` was enabled, where {{site.base_gateway}}'s response could behave incorrectly when the response was changed after the execution of the AWS Lambda plugin. 
   The `Content-Length` header in the lambda function response is now ignored by the AWS Lambda plugin.
 
 ### {{site.base_gateway}} 3.9.x
