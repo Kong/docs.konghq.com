@@ -12,7 +12,7 @@ Unless otherwise noted, Kong supports the last 2 versions any third party tool, 
 
 {% navtabs %}
   {% if_version gte: 3.10.x %}
-  {% navtab 3.10 %}
+  {% navtab 3.10 LTS %}
     {% include_cached gateway-support-third-party.html data=site.data.tables.support.gateway.versions.310 %}
   {% endnavtab %}
   {% endif_version %}
