@@ -11,6 +11,277 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.10.0.0
+**Release Date** TBA
+
+### Breaking changes and deprecations
+
+**AI plugins**:
+* Changed the serialized log key of AI metrics from `ai.ai-proxy` to `ai.proxy` to avoid conflicts with metrics generated from plugins other than AI Proxy and AI Proxy Advanced. If you are using logging plugins (for example, File Log, HTTP Log, etc.), you will have to update metrics pipeline configurations to reflect this change.
+* Deprecated `config.model.options.upstream_path` in favor of `config.model.options.upstream_url`.
+* Deprecated `preserve` mode in `config.route_type`. Use `config.llm_format` instead. The `preserve` mode setting will be removed in a future release.
+* **AI Rate Limiting Advanced**: `window_size` and `limit` now require an array of numbers instead of a single number. If you configured the plugin before 3.10 and use `kong migrations` to upgrade to 3.10, it will be automatically migrated to use the array.
+
+**PDK**:
+* `kong.service.request.clear_query_arg`: Changed the encoding of spaces in query arguments from `+`
+to `%20` as a short-term solution to an issue that some users are reporting. While the `+` character is the correct
+encoding of space in querystrings, Kong uses `%20` in many other APIs (inherited from Nginx / OpenResty).
+
+**OpenID Connect**:
+* Fixed an issue where forbidden requests were redirected to `unauthorized_redirect_uri` if configured. After the fix, forbidden requests will be redirected to `forbidden_redirect_uri` if configured.
+
+**Free mode**:
+* Free mode is no longer available. Running Kong Gateway without a license will now behave the same as running it with an expired license.
+
+### Performance
+
+* Reduced the LMDB storage space by optimizing the key format.
+* Improved performance of trace ID size lookup.
+* Refined PDK usage for better performance.
+
+### Features
+
+#### Admin API
+* Added the new field `x5t` to the entity `keys`, letting you use a X.509 Certificate Thumbprint to identify the key.
+* Updated the `/license/report` endpoint to include counts for Kafka consumption, Confluent Kafka consumption, and Confluent production.
+
+#### Clustering
+* Added support for [incremental config sync](/gateway/3.10.x/production/deployment-topologies/hybrid-mode/incremental-config-sync/) for hybrid mode deployments. 
+Instead of sending the entire entity config to data planes on each config update, incremental config sync lets you send only the changed configuration to data planes.
+* Added a feature to store the last sync time on the Data Plane side.
+
+#### Core
+* Added the new configuration parameter `admin_gui_csp_header` to Gateway, which controls the Content-Security-Policy (CSP) header served with Kong Manager. This defaults to `off`, and you can opt in by setting it to `on`. 
+You can use this setting to [strengthen security in Kong Manager](/gateway/3.10.x/kong-manager/strengthen-security/).
+* The upstream URI variable is now refreshed when the proxy pass balancer is recreated.
+* Added centralized consumer support for Konnect.
+* Added a new core entity to Kong Gateway: [partials](/gateway/3.10.x/kong-enterprise/partials/). Partials enable users to define shared configuration for Redis.
+
+#### Kong Manager
+* Added a new feature to invalidate the admin's or the developer's related session while changing the password.
+* Add Redis shared configuration support in Plugins.
+* Kong Manager now shows the scope option in gray when it can't be changed.
+* Kong Manager now returns to the previous page upon canceling plugin editing.
+
+#### PDK
+* Backported the `balancer.set_upstream_tls` feature from the OpenResty upstream, letting you dynamically control upstream TLS when `kong.service.request.set_scheme` is called.
+* JWE now supports the following encryption algorithms: A128GCM, A192GCM, A128CBC-HS256, A192CBC-HS384, A256CBC-HS512.
+
+#### Plugins
+
+**New plugins**:
+
+* [**AI RAG Injector**](/hub/kong-inc/ai-rag-injector/) (`ai-rag-injector`) Added the AI Rag Injector plugin, which allows automatically injecting documents to simplify building RAG pipelines.
+* [**AI Sanitizer**](/hub/kong-inc/ai-sanitizer/) (`ai-sanitizer`) Added the AI Sanitizer plugin, which can sanitize the PII information in requests before the requests are proxied by the AI Proxy or AI Proxy Advanced plugins.
+* [**Confluent Consume**](/hub/kong-inc/confluent-consume/) (`confluent-consume`): Introduced the Confluent Consume plugin, which adds Confluent Cloud consumption capabilities to Kong Gateway.
+* [**Kafka Consume**](/hub/kong-inc/kafka-consume/) (`kafka-consume`): Introduced the Kafka Consume plugin, which adds Kafka consumption capabilities to Kong Gateway.
+* [**Request Callout**](/hub/kong-inc/request-callout/) (`request-callout`): Added the `request-callout` plugin, which provides complex request augmentation and internal authentication.
+
+**Existing plugins**:
+
+* [**All AI plugins**](/hub/?category=ai):
+  * Added support for the `pgvector` database.
+  * Added support for the new Ollama streaming content type in the AI driver.
+  * Added support for boto3 SDKs for Bedrock provider, and for Google GenAI SDKs for Gemini provider.
+  * Allow authentication to Bedrock services with assume roles in AWS.
+  * Added the `huggingface`, `azure`, `vertex`, and `bedrock` providers to embeddings. They can be used by the AI Proxy Advanced, AI Semantic Cache, AI Semantic Prompt Guard, and AI RAG Injector plugins.
+
+* [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
+  * Added the new `priority` balancer algorithm, which allows setting a priority group for each upstream model.
+  * Added the `failover_criteria` configuration option, which allows retrying requests to the next upstream server in case of failure.
+  * Added cost to `tokens_count_strategy` when using the lowest-usage load balancing strategy.
+  * Added the ability to set a catch-all target in semantic routing.
+
+* [**AI Rate Limiting Advanced**](/hub/kong-inc/ai-rate-limiting-advanced/) (`ai-rate-limiting-advanced`)  
+  * Added support for allowing multiple rate limits for the same providers.
+
+* [**Prometheus**](/hub/kong-inc/prometheus/) (`prometheus`) 
+  * Added gauge to expose connectivity state to the control plane.
+  * Added the capability to enable or disable exporting of Proxy-Wasm metrics.
+
+* [**CORS**](/hub/kong-inc/cors/) (`cors`)
+  * Added an option to skip returning the `Access-Control-Allow-Origin` response header when requests don't have the `Origin` header.
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * This plugin now supports variable resource attributes.
+  * This plugin now supports instana headers in propagation.
+
+* [**Session**](/hub/kong-inc/session/) (`session`) 
+  * Added two boolean configuration fields, `hash_subject` (default `false`) and `store_metadata` (default `false`), to store the session's metadata in the database.
+
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
+  * Improved performance on OpenAPI 3.0.
+  * Added support for the `discriminator` keyword in OpenAPI specs.
+  * Added support for the `oneOf`, `anyOf`, `allOf`, and `not` keywords.
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Removed issuer discovery from schema to improve performance upon plugin initialization or updating. 
+  The issuer discovery will only be triggerd by client requests.
+
+* [**Confluent**](/hub/kong-inc/confluent/) (`confluent`): 
+  * Added support for message manipulation with the new configuration field `message_by_lua_functions`.
+  * Added support for sending messages to multiple topics with `topics_query_arg`, and enabled topic allowlisting with `allowed_topics`.
+
+* [**Kafka Upstream**](/hub/kong-inc/kafka-upstream/) (`kafka-upstream`)
+  * Added support for sending messages to multiple topics with `topics_query_arg`, and enabled topic allowlisting with `allowed_topics`.
+  * Added support for message manipulation with the new configuration field `message_by_lua_functions`.
+
+* [**JSON Threat Protection**](/hub/kong-inc/json-threat-protection/) (`json-threat-protection`)
+  * Added the schema field `allow_duplicate_object_entry_name` to allow or disallow duplicate object keys in JSON payloads. 
+  When set to `false`, the plugin will reject JSON payloads with duplicate object keys. 
+  The default value is `true`, which is same as the previous behavior.
+
+### Fixes
+
+#### Admin API
+* Fixed an issue where a GET request to the Admin API root `/` path would return a 500 server error.
+* Fixed an issue where a false error log was generated when a DELETE request with `Content-Type: application/json` and no body was made.
+* Fixed an issue where `POST /config?flatten_errors=1` could not return a proper response if the input contained duplicate consumer credentials.
+* Fixed an issue where `POST /config?flatten_errors=1` could return a JSON object instead of an empty array.
+* Fixed an issue where targets couldn't be removed from the DNS query if they were deleted or updated via the Admin API.
+* Fixed error caused by duplicate `Content-Type`.
+* Fixed an issue where Admin API Enterprise-only entities were not writable when a license expired but was still in the grace period.
+
+#### Configuration
+
+* Fixed an issue where the `db_resurrect_ttl` configuration didn't take effect.
+
+#### Core
+
+* Added an optional configuration parameter `admin_gui_csp_header_value` to Gateway, which controls the value of the Content-Security-Policy (CSP) header served with Admin GUI (Kong Manager).
+* Fixed an issue where a certificate entity configured with a vault reference occasionally didn't get refreshed on time when initialized with an invalid string.
+* Fixed an issue where a mismatch between If-Match headers in requests and ETag in responses would result in a bad case in the response phase.
+* Fixed an issue where DNS answers with `TTL=0` were incorrectly cached indefinitely in the new DNS client.
+* Fixed an issue where Kong Gateway could have connection leaks when failing to connect to an upstream by websocket.
+* Fixed an issue where a newly spawned worker couldn't use RDS IAM authentication when an old worker was decommissioned.
+* **Analytics**:
+  * Fixed an issue where `trace_id` did not honor the value extracted during tracing headers propagation.
+  * Fixed an issue where Konnect analytics were missing for Kong AI Gateway.
+* Updated the AWS Vault supported regions list to the latest available.
+* Fixed an issue where event hooks sometimes ignored events, caused by the normalized table not including values of type number or boolean.
+* Fixed an issue where the PEM-formatted private keys in the keys entity were not encrypted when keyring was enabled.
+* Added a patch for `kong.resty.set_next_upstream()` to control the next upstream retry logic on the Lua side.
+* Fixed an issue where consistent hashing did not correctly handle hyphenated-Pascal-case headers, leading to uneven distribution of requests across upstream targets.
+* Fixed an issue where a valid declarative config with certificate or SNI entities couldn't be loaded in DB-less mode.
+* Fixed an issue where an error wasn't thrown when parsing the certificate from a vault failed.
+* Fixed an issue where the new DNS client did not correctly handle the timeout option in `resolv.conf`.
+* Fixed an issue where the schema library would error with a nil reference if an entity checker referred to a nonexistent field.
+* Fixed potential connection leaks which could occur when the data plane failed to connect to the control plane.
+* Fixed an issue where `socket_path` permissions were not correctly set to `755` when the umask setting did not give enough permissions.
+* Fixed an issue where the `tls_verify`, `tls_verify_depth`, and `ca_certificates` properties of a service were not included in the upstream keepalive pool name.
+* Created connection pools for each `host`, `port`, `username`, `ssl` combination to fix the following issues:
+  * Fixed a 401 error where multiple plugins (for example, Rate Limiting Advanced and OpenID Connect) were configured to use different Redis databases.
+  * Prevented malicious clients from gaining access to shared authenticated connections, thus protecting Redis servers.
+  * Restricted clients with limited ACL control to their granted scope.
+
+#### Kong Manager
+
+* Fixed an issue where the lists in the UI would flicker under some circumstances.
+* Fixed an issue where the license expiration date was calculated incorrectly.
+
+#### PDK
+
+* You can now use a backslash to escape dots in logging plugins' `custom_fields_by_lua`  key strings, preventing dots from creating nested tables.
+
+#### Plugins
+
+* [**All AI plugins**](/hub/?category=ai):
+  * Fixed an issue where AI upstream URL trailing would be empty.
+  * Fixed an issue where templates weren't being resolved correctly.
+  * The plugins now support nested fields.
+
+* [**All authentication plugins**](/hub/?category=authentication):
+  * Improved the error message which occurred when an anonymous consumer was configured but didn't exist.
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed a bug in the Azure provider where `model.options.upstream_path` overrides would always return a 404 response.
+  * Fixed a bug where Azure streaming responses would be missing individual tokens.
+  * Fixed a bug where response streaming in Gemini and Bedrock providers was returning whole chat responses in one chunk.
+  * Fixed a bug with the Gemini provider, where multimodal requests (in OpenAI format) would not transform properly.
+  * Fixed an issue where Gemini streaming responses were getting truncated and/or missing tokens.
+  * Fixed an incorrect error thrown when trying to log streaming responses.
+  * Fixed `preserve` mode.
+
+* [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
+  * Fixed an issue where the plugin failed to fail over between providers of different formats.
+  * Fixed an issue where the plugin's identity running failed in retry scenarios.
+
+* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`)  
+  * Fixed an issue where the Refresh header wasn't properly sent to the client.
+  * Fixed an issue where the SSE body could have extra trailing characters.
+
+* [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-prompt-guard/) (`ai-semantic-prompt-guard`)
+  * Fixed an issue where Kong Gateway was not able to reconfigure the plugin when using DB-less mode.
+
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`)
+  * Fixed an issue that occurred when `is_proxy_integration` was enabled, where Kong Gateway's response could behave incorrectly when the response was changed after the execution of the AWS Lambda plugin. 
+  The `Content-Length` header in the lambda function response is now ignored by the AWS Lambda plugin.
+
+* [**gRPC-Web**](/hub/kong-inc/grpc-web/) (`grpc-web`) and [**gRPC-Gateway**](/hub/kong-inc/grpc-gateway/) (`grpc-gateway`)
+  * Fixed a bug where the `TE` (transfer-encoding) header would not be sent to the upstream gRPC servers when `grpc-web` or `grpc-gateway` were in use.
+
+* [**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
+  * Fixed an issue where usage headers that were supposed to be sent to the upstream were lost instead.
+
+* [**File Log**](/hub/kong-inc/file-log/) (`file-log`) 
+  * Fixed an issue where an error would occur when there were spaces at the beginning or end of a path.
+ 
+* [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
+  * Fixed a segmentation fault caused by a missing destructor call on process exit.
+
+* [**Forward Proxy**](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
+  * Fixed an issue where the `upstream_status` field was empty in logs when using the `forward-proxy` plugin.
+
+* [**jq**](/hub/kong-inc/jq/) (`jq`)
+  * Fixed an issue where jq did not work properly with the Proxy Cache Advanced plugin.
+
+* [**JWT Signer**](/hub/kong-inc/jwt-signer/) (`jwt-signer`)
+  * Fixed an issue where the plugin failed to upsert JWKS if the JWKS contained extra custom fields.
+
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed an issue where binary string was truncated at the first null character.
+
+* [**Mocking**](/hub/kong-inc/mocking/) (`mocking`)  
+  * Fixed an issue where random delays were out of range.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where the runtime failed due to `sync_rate` not being set if the `strategy` was `local`.
+
+* [**Service Protection**](/hub/kong-inc/service-protection/) (`service-protection`)
+  * Fixed an issue where the runtime failed due to `sync_rate` not being set if the `strategy` was `local`.
+  * Enhanced robustness for user misconfigurations. The following use cases are now handled:
+    * Rate Limiting Advanced and Service Protection are configured on the same service.
+    * There is no service but the Service Protection plugin is enabled with global scope.
+
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
+  * Fixed an issue where query params without values caused an assertion failure.
+
+* [**Pre-function**](/hub/kong-inc/pre-function/) (`pre-function`)
+  * Fixed an issue where a duplicate `protocols` field was accidentally added to the `pre-function` schema.
+
+* [**JSON Threat Protection**](/hub/kong-inc/json-threat-protection/) (`json-threat-protection`)
+  * This plugin now accurately supports proxying for non-`POST/PUT/PATCH` requests.
+
+### Dependencies
+#### Core
+
+* Bumped `atc-router` from v1.6.2 to v1.7.1. 
+This release contains upgraded dependencies and a new interface for validating expressions.
+* Bumped Kong Nginx Module from 0.15.0 to 0.15.1.
+* Bumped `libexpat` from 2.6.2 to 2.6.4 to fix a crash in the `XML_ResumeParser` function caused by `XML_StopParser` stopping an uninitialized parser.
+* Bumped `lua-kong-nginx-module` from 0.13.0 to 0.14.0.
+* Bumped `lua-resty-simdjson` from 1.1.0 to 1.2.0.
+* Bumped OpenResty from 1.25.3.2 to 1.27.1.1.
+* Bumped PCRE2 from 10.44 to 10.45.
+* Bumped Snappy Library from 1.2.0 to 1.2.1.
+* Bumped OpenSSL to 3.4.1 in core dependencies.
+* Bumped `ngx_wasm_module` to `a376e67ce02c916304cc9b9ef25a540865ee6740`.
+* Updated bundled debug tools: 
+  * Bumped `curl` to 8.12.1
+  * Bumped Mozilla CA Certificate Store to 2025-02-25
+  * Bumped `nghttp2` to 1.65.0.
+* Bumped `libxml2` from 2.12.9 to 2.12.10.
+
 ## 3.9.1.1
 **Release Date** 2025/03/20
 

@@ -1,5 +1,9 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* This plugin now supports variable resource attributes.
+* This plugin now supports instana headers in propagation.
+
 ### {{site.base_gateway}} 3.8.x
 * Added support for OpenTelemetry-formatted logs.
 [#13291](https://github.com/Kong/kong/issues/13291)

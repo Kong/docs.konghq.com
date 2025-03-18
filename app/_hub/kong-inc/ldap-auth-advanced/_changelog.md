@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* Fixed an issue where binary string was truncated at the first null character.
+
 ### {{site.base_gateway}} 3.8.x
 * This plugin now supports decoding an empty sequence or set represented in long form length.
 * Added WWW-Authenticate headers to all 401 responses.
