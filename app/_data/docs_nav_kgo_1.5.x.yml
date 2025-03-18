@@ -149,7 +149,6 @@ items:
             url: /guides/konnect-dataplanes/gateway/
           - text: Migrate Konnect DataPlanes from KGO v1.4.x to v1.5.x
             url: /guides/konnect-dataplanes/migrate-from-1.4-to-1.5/
-
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
