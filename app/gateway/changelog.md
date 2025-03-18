@@ -16,21 +16,23 @@ For product versions that have reached the end of sunset support, see the [chang
 
 ### Breaking changes and deprecations
 
-**AI plugins**:
-* Changed the serialized log key of AI metrics from `ai.ai-proxy` to `ai.proxy` to avoid conflicts with metrics generated from plugins other than AI Proxy and AI Proxy Advanced. If you are using logging plugins (for example, File Log, HTTP Log, etc.), you will have to update metrics pipeline configurations to reflect this change.
+#### AI plugins
+* Changed the serialized log key of AI metrics from `ai.ai-proxy` to `ai.proxy` to avoid conflicts with metrics generated from plugins other than AI Proxy and AI Proxy Advanced.
+  If you are using logging plugins (for example, File Log, HTTP Log, etc.), you will have to update metrics pipeline configurations to reflect this change.
 * Deprecated `config.model.options.upstream_path` in favor of `config.model.options.upstream_url`.
 * Deprecated `preserve` mode in `config.route_type`. Use `config.llm_format` instead. The `preserve` mode setting will be removed in a future release.
-* **AI Rate Limiting Advanced**: `window_size` and `limit` now require an array of numbers instead of a single number. If you configured the plugin before 3.10 and use `kong migrations` to upgrade to 3.10, it will be automatically migrated to use the array.
+* **AI Rate Limiting Advanced**: `window_size` and `limit` now require an array of numbers instead of a single number.
+  If you configured the plugin before 3.10 and use `kong migrations` to upgrade to 3.10, it will be automatically migrated to use the array.
 
-**PDK**:
+#### PDK
 * `kong.service.request.clear_query_arg`: Changed the encoding of spaces in query arguments from `+`
 to `%20` as a short-term solution to an issue that some users are reporting. While the `+` character is the correct
 encoding of space in querystrings, Kong uses `%20` in many other APIs (inherited from Nginx / OpenResty).
 
-**OpenID Connect**:
+#### OpenID Connect
 * Fixed an issue where forbidden requests were redirected to `unauthorized_redirect_uri` if configured. After the fix, forbidden requests will be redirected to `forbidden_redirect_uri` if configured.
 
-**Free mode**:
+#### Free mode
 * Free mode is no longer available. Running Kong Gateway without a license will now behave the same as running it with an expired license.
 
 ### Performance
