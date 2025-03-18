@@ -136,6 +136,14 @@ The following upstream URL patterns are used:
 > While only the **Llama2** and **Mistral** models are classed as self-hosted, the target URL can be overridden for any of the supported providers.
 > For example, a self-hosted or otherwise OpenAI-compatible endpoint can be called by setting the same [`config.model.options.upstream_url`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings-model-options-upstream_url) plugin option.
 
+{% if_version gte:3.10.x %}
+Furthermore, if you are using each provider's native SDK, Kong allows to transparently proxy pass the
+request without any transformation and return the response unmodified. This can be done by setting
+[`config.llm_format`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-llm_format) to a value other than `"openai"`, such as `"gemini"` or `"bedrock"`.
+
+In this mode, Kong will still provider useful analytics, logging and cost calculation.
+{% endif_version %}
+
 ### Input formats
 
 Kong will mediate the request and response format based on the selected [`config.targets[].provider`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings-model-provider) and [`config.targets[].route_type`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-route_type), as outlined in the table above.
