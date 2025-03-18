@@ -48,7 +48,7 @@ curl -i -X POST http://localhost:8001/services/example-service/plugins \
   --data 'config.llm_providers[1].name=openai' \
   --data 'config.llm_providers[1].limit[]=100' \
   --data 'config.llm_providers[1].limit[]=10000' \
-  --data 'config.llm_providers[1].window_size[]=60 \
+  --data 'config.llm_providers[1].window_size[]=60' \
   --data 'config.llm_providers[1].window_size[]=3600'
 ```
 {% endif_version %}
