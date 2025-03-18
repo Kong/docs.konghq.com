@@ -11,6 +11,32 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.9.1.1
+**Release Date** 2025/03/19
+
+### Fixes
+#### Core
+
+* Fixed an issue where modifying the X-Forwarded header before the access phase didn't take effect.
+* Fixed an issue where DNS answers with `ttl=0` were incorrectly cached indefinitely in the new DNS client.
+* Fixed an issue where Konnect analytics were missing for Kong AI Gateway.
+
+#### Plugins
+
+* [**AI Plugins**](/hub/?category=ai): 
+  * Fixed an issue where templates weren't being resolved correctly.
+  * Added nested field support.
+
+* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`)  
+  * Fixed an issue where the SSE body could have extra trailing, in some cases.
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed preserve mode.
+  * Fixed an issue where the SSE body could have extra trailing, in some cases.
+
+* [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
+  * Fixed segmentation fault caused by missing destructor call on process exit.
+
 ## 3.9.1.0
 **Release Date** 2025/03/11
 
