@@ -3,7 +3,7 @@ title: Deploy Kong Mesh using Terraform and Konnect
 ---
 
 {% assign KM_VERSION = "2.9.3" %}
-{% assign TF_BETA_VERSION = "0.1.0" %}
+{% assign TF_BETA_VERSION = "0.1.1" %}
 {% assign TF_VERSION = "2.4.1" %}
 {% assign TF_TIME_VERSION = "0.13.0" %}
 {% assign TF_KUBERNETES_VERSION = "2.35.1" %}
@@ -376,13 +376,23 @@ terraform {
 }
 ```
 
-Add a variable pointing to the Kubeconfig file: 
+Add a variable pointing to the Kubeconfig file and configure Helm and Kubernetes providers:
 
 ```hcl
 variable "k8s_cluster_config_path" {
   type        = string
   description = "The location where this cluster's kubeconfig will be saved to."
   default     = "~/.config/k3d/kubeconfig-tfmink.yaml"
+}
+
+provider "helm" {
+    kubernetes {
+        config_path = pathexpand(var.k8s_cluster_config_path)
+    }
+}
+
+provider "kubernetes" {
+    config_path = pathexpand(var.k8s_cluster_config_path)
 }
 ```
 
@@ -412,7 +422,7 @@ resource "time_offset" "one_year_from_now" {
 }
 
 resource "konnect_system_account_access_token" "zone_system_account_token" {
-  depends_on = [konnect_system_account.zone_system_account, time_rotating.rotate, time_offset.one_year_from_now]
+  depends_on = [konnect_system_account.zone_system_account, time_offset.one_year_from_now]
   account_id = konnect_system_account.zone_system_account.id
   expires_at = time_offset.one_year_from_now.rfc3339
   name       = konnect_system_account.zone_system_account.name
@@ -532,7 +542,7 @@ kong-mesh-system   allow-all-wd5xx76vc44b498c
 Instead of using `time_offset` resource you can use `time_rotating` resource to rotate the token every minute:
 
 ```hcl
-resource "time_rotating" "example" {
+resource "time_rotating" "rotate" {
   rotation_minutes = 1
 }
 ```
@@ -542,7 +552,7 @@ We're adding a 15 minutes offset to the rotation time to ensure the token is rot
 
 ```hcl
 resource "konnect_system_account_access_token" "zone_system_account_token" {
-  depends_on = [konnect_system_account.zone_system_account, time_rotating.rotate, time_rotating.rotate]
+  depends_on = [konnect_system_account.zone_system_account, time_rotating.rotate]
   account_id = konnect_system_account.zone_system_account.id
   expires_at = timeadd(time_rotating.rotate.rotation_rfc3339, "15m")
   name       = konnect_system_account.zone_system_account.name
