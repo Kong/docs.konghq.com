@@ -50,7 +50,6 @@ See the following links for individual entity documentation:
 | [Filter Chains](/gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains){:target="_blank"} | [Licenses](/gateway/api/admin-ee/latest/#/licenses/get-licenses){:target="_blank"} | [Workspaces](/gateway/api/admin-ee/latest/#/Workspaces/list-workspace){:target="_blank"} |
 | [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users){:target="_blank"} | [Admins](/gateway/api/admin-ee/latest/#/admins/get-admins){:target="_blank"} | [Consumer Groups](/gateway/api/admin-ee/latest/#/consumer_groups/){:target="_blank"} |
 | [Event Hooks](/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks){:target="_blank"} | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/Keyring/get-keyring){:target="_blank"} | [Audit Logs](/gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests){:target="_blank"} |
-| [Partials](/gateway/api/admin-ee/latest/#/partials){:target="_blank"}  | | |
 {% endnavtab %}
 {% navtab OSS endpoints %}
 | [Information Routes](/gateway/api/admin-oss/latest/#/Information/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-oss/latest/#/Information/get-status){:target="_blank"} | [Tags](/gateway/api/admin-oss/latest/#/tags/get-tags){:target="_blank"} |
