@@ -7,7 +7,7 @@ badge: enterprise
 allows cluster administrators to keep detailed track of changes made to the
 cluster configuration throughout its lifetime, aiding in compliance efforts and
 providing valuable data points during forensic investigations. Generated audit
-log trails are [Workspace](/gateway/api/admin-ee/latest/#/Workspaces) and [RBAC](/gateway/api/admin-ee/latest/#/rbac)-aware,
+log trails are [Workspace](/gateway/api/admin-ee/latest/#/operations/gateway/api/admin-ee/latest/#/rbac)-aware,
 providing Kong operators a deep and wide look into changes happening within
 the cluster.
 

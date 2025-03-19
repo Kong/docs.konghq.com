@@ -129,8 +129,8 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [azure-create-app]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 [azure-manifest]: https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-app-manifest#configure-the-app-manifest
 [azure-tenant]: https://docs.microsoft.com/en-us/azure/active-directory/develop/single-and-multi-tenant-apps
-[add-certificate]: /gateway/api/admin-ee/latest/#/Certificates/create-certificate
-[add-service]: /gateway/api/admin-ee/latest/#/Services/create-service
+[add-certificate]: /gateway/api/admin-ee/latest/#/operations/create-certificate
+[add-service]: /gateway/api/admin-ee/latest/#/operations/create-service
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [credential-claim]: /hub/kong-inc/openid-connect/configuration/#configcredential_claim
-[enable-plugin]: /gateway/api/admin-ee/latest/#/Plugins/create-plugin-for-consumer
+[enable-plugin]: /gateway/api/admin-ee/latest/#/operations/create-plugin-for-consumer
