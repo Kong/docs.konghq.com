@@ -15,8 +15,8 @@
           url: /private-connections/aws-privatelink/
     - text: Geographic Regions
       url: /geo/
-    - text: Regional Consumers
-      url: /regional-consumers/
+    - text: Centralized consumer management
+      url: /centralized-consumer-management/
     - text: Compatibility
       url: /compatibility/
     - text: Stages of Software Availability

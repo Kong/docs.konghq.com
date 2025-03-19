@@ -1,9 +1,9 @@
 ---
-nav_title: Configure realms for regional Consumers
-title: Configure realms for regional Consumers in {{site.konnect_short_name}}
+nav_title: Configure realms for consumers
+title: Configure realms for consumers in {{site.konnect_short_name}}
 ---
 
-Starting in {{site.base_gateway]] 3.10.x, credentials that are stored centrally in {{site.konnect_short_name}} that are shared across multiple {{site.base_gateway}} can be validated by configuring `identity_realms` field in the Key Auth plugin. You can use these realms when you create [regional Consumers](/konnect/regional-consumers/).
+Starting in {{site.base_gateway]] 3.10.x, credentials that are stored centrally in {{site.konnect_short_name}} that are shared across multiple {{site.base_gateway}} can be validated by configuring `identity_realms` field in the Key Auth plugin. You can use these realms when you create [centrally managed consumers](/konnect/centralized-consumer-management/). A data plane can only reach out to realms in the same region as they are deployed.
 
 Add the `identity_realms` field as shown below:
 
@@ -37,7 +37,7 @@ Be sure to replace the following with your own values:
    * $REALM_ID: The ID of the realm you created previously. 
    * $REGION: Region for your {{site.konnect_short_name}} instance.
 
-The order in which you configure the `identity_realms` dictates the priority in which the data plane attempts to authenticate the provided API keys:
+`identity_realms` are scoped to the control plane by default (`scope: cp`). The order in which you configure the `identity_realms` dictates the priority in which the data plane attempts to authenticate the provided API keys:
 
 * **Realm is listed first:** The data plane will first reach out to the realm. If the API key is not found in the realm, the data plane will look for the API key in the control plane config. 
 * **Control plane scope listed first:** The data plane will initially check the control plane configuration (LMDB) for the API key before looking up the API Key in the realm.
