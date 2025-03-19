@@ -47,25 +47,25 @@ The following steps assume that {{site.base_gateway}} is installed.
 
    ```bash
    curl -X POST http://localhost:8001/routes \
-      --data "name=kafka-consumer" \
-      --data "hosts[]=kafka-consumer.test"
+      --data "name=kafka-consume" \
+      --data "hosts[]=kafka-consume.test"
    ```
 
 3. Add the `kafka-consume` plugin to the Route:
 
    ```bash
-   curl -X POST http://localhost:8001/routes/kafka-consumer/plugins \
+   curl -X POST http://localhost:8001/routes/kafka-consume/plugins \
       --data "name=kafka-consume" \
       --data "config.bootstrap_servers[1].host=localhost" \
       --data "config.bootstrap_servers[1].port=9092" \
       --data "config.topics[1].name=kong-test"
    ```
 
-3. Consume messages using HTTP GET:
- 
+4. Consume messages using HTTP GET:
+
    ```bash
    curl http://localhost:8000/messages \
-      --header 'Host: kafka-consumer.test'
+      --header 'Host: kafka-consume.test'
    ```
 
 ## Server-Sent Events quickstart
@@ -74,13 +74,13 @@ The following steps assume that {{site.base_gateway}} is installed.
 
    ```bash
    curl -X POST http://localhost:8001/routes \
-      --data "name=kafka-sse-consumer" \
+      --data "name=kafka-sse-consume" \
       --data "hosts[]=kafka-sse.test"
    ```
 
 2. Add the `kafka-consume` plugin in SSE mode:
    ```bash
-   curl -X POST http://localhost:8001/routes/kafka-sse-consumer/plugins \
+   curl -X POST http://localhost:8001/routes/kafka-sse-consume/plugins \
       --data "name=kafka-consume" \
       --data "config.bootstrap_servers[1].host=localhost" \
       --data "config.bootstrap_servers[1].port=9092" \
@@ -88,7 +88,7 @@ The following steps assume that {{site.base_gateway}} is installed.
       --data "config.mode=server-sent-events"
    ```
 
-2. Stream messages using Server-Sent Events:
+3. Stream messages using Server-Sent Events:
 
    ```bash
    curl http://localhost:8000/stream \
@@ -100,4 +100,3 @@ The following steps assume that {{site.base_gateway}} is installed.
 
 * [Configuration reference](/hub/kong-inc/kafka-consume/configuration/)
 * [Basic configuration example](/hub/kong-inc/kafka-consume/how-to/basic-example/)
-
