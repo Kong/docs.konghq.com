@@ -18,62 +18,51 @@ It covers:
 * deploying a Global Control Plane with a Mesh in Konnect,
 * and deploying a zone.
 
-## Requirements
+## Prerequisites
 
-- [Personal Access Token](/konnect/org-management/access-tokens/)
-- [terraform](https://www.terraform.io/) (tested on `1.5.5`)
+### Requirements
+
+- [Konnect Personal Access Token](/konnect/org-management/access-tokens/)
+- [terraform](https://www.terraform.io/) (tested on `1.11.2`)
 - [k3d](https://k3d.io/stable/#installation) (tested on k3d `v5.8.1`, k3s `v1.31.4-k3s1`)
 
-## Versions of the provider
 
-### konnect
+### Terraform variables
+
+This guide allows you to customise the access token and region used by your manifests.
+
+Create a `variables.tf` file with the following contents:
+
+```hcl
+variable "konnect_personal_access_token" {
+    type    = string
+}
+
+variable "region" {
+    type    = string
+}
+```
+
+These variables can be provided at runtime, or set using environment variables. Set the following environment variables, replacing `kpat_...` with your {{ site.konnect_short_name }} access token:
+
+```bash
+export TF_VAR_konnect_personal_access_token="kpat_..." # or "spat_..."
+export TF_VAR_region="us"
+```
+
+### Provider Configuration
+
+This guide uses the `konnect` and `konnect-beta` Terraform providers.
 
 The `konnect` provider is the [General Availability](/mesh/{{page.release}}/availability-stages/#general-availability) version.
 Features initially available in the beta version (`konnect-beta`) will move to the GA version (`konnect`) once they are stable and fully tested.
 
-Below is an example of how to use the `konnect` provider in your Terraform configuration:
-
-```hcl
-terraform {
-    required_providers {
-        konnect = {
-            source = "kong/konnect"
-            version = "{{ TF_VERSION }}"
-        }
-    }
-}
-```
-
-### konnect-beta
-
 There is a [beta version](/availability-stages/#beta) of the provider called `konnect-beta` that has the latest features.
 
-Currently, Mesh resources are available only in the beta provider, but they will be available in the `konnect` provider shortly.
+Mesh resources are available only in the beta provider, but they will be available in the `konnect` provider shortly.
 
-Below is an example of how to use the `konnect-beta` provider in your Terraform configuration:
+Create a `providers.tf` file with the following contents:
 
-```hcl
-terraform {
-  required_providers {
-    konnect-beta = {
-      source  = "kong/konnect-beta"
-      version = "{{ TF_BETA_VERSION }}"
-    }
-  }
-}
-```
-
-### Usage in this guide
-
-In this guide we will use both the `konnect` and `konnect-beta` providers to demonstrate how to manage {{site.mesh_product_name}} resources using Terraform.
-
-## Setup
-
-In this step we will set up the Terraform configuration to use the `konnect` and `konnect-beta` providers and initialize it with your Personal Access Token.
-
-Create a new directory and add a file called `main.tf`.
-
-Put in `main.tf`:
 ```hcl
 terraform {
   required_providers {
@@ -88,15 +77,6 @@ terraform {
   }
 }
 
-variable "konnect_personal_access_token" {
-    type    = string
-}
-
-variable "region" {
-    type    = string
-    default = "us"
-}
-
 provider "konnect" {
     personal_access_token = var.konnect_personal_access_token
     server_url            = "https://${var.region}.api.konghq.com"
@@ -108,47 +88,25 @@ provider "konnect-beta" {
 }
 ```
 
-To use the Personal Access Token, export it as an environment variable:
-
-```bash
-export TF_VAR_konnect_personal_access_token="kpat_..." # or "spat_..."
-```
-
-You can also set the region using "region" variable.
-The default value is "us".
-You can override it by setting the environment variable `TF_VAR_region`:
-
-```bash
-export TF_VAR_region="eu"
-```
-
-Run init to download the providers:
+Download the providers using `terraform init`:
 
 ```bash
 terraform init
 ```
 
-You should see a green text:
+You will see the following message in green text:
 
 ```
 Terraform has been successfully initialized!
 ```
 
-If you run:
+## Mesh Resources
 
-```bash
-terraform apply
-```
+At this point you have installed and configured the providers successfully. It's time to create some resources using the {{ site.konnect_short_name }} API.
 
-You should see a message that no resources are defined:
+### Mesh Control Plane
 
-```
-No changes. Your infrastructure matches the configuration.
-```
-
-## Creating a Global Control Plane in Konnect
-
-Below is an example of how to create a Global Control Plane in Konnect using Terraform:
+Create a file named `main.tf` and add the following to create a Global Control Plane in {{ site.konnect_short_name }}:
 
 ```hcl
 resource "konnect_mesh_control_plane" "my_meshcontrolplane" {
@@ -161,9 +119,7 @@ resource "konnect_mesh_control_plane" "my_meshcontrolplane" {
 }
 ```
 
-```bash
-terraform apply
-```
+After saving the file, run `terraform apply -auto-approve` to create the resource.
 
 You should see:
 
@@ -182,36 +138,38 @@ You should see:
     }
 ```
 
-## Creating a Mesh
+### Creating a Mesh
+
+Now that there is a Control Plane, we can create a new Mesh.
+
+Notice that the `cp_id` property is set to the ID of the control plane created in the previous step.
+
+The `skip_creating_initial_policies` property is set to `["*"]` to skip creating the default policies so that all resources in the Mesh are tracked by Terraform.
+
+Add the following to `main.tf`:
 
 ```hcl
-resource "konnect_mesh" "mesh1" {
+resource "konnect_mesh" "my_mesh" {
   provider = konnect-beta
-  type     = "Mesh"
-  cp_id    = konnect_mesh_control_plane.my_meshcontrolplane.id
+
   name     = "my-mesh"
-  depends_on = [konnect_mesh_control_plane.my_meshcontrolplane]
+  type     = "Mesh"
   skip_creating_initial_policies = [ "*" ]
+
+  cp_id    = konnect_mesh_control_plane.my_meshcontrolplane.id
 }
 ```
 
-Notice `cp_id` is set to the id of the control plane created in the previous step,
-and `depends_on` is set to the control plane resource to ensure the control plane is created first,
-also `skip_creating_initial_policies` is set to `["*"]` to skip creating the default policies so that everything is tracked by terraform.
+Run `terraform apply -auto-approve` and watch as Terraform creates a new Mesh in your Control Plane.
 
-```bash
-terraform apply
-```
-
-Let's now add `mTLS` to that mesh:
+Let's add `mTLS` to the mesh. Replace the `konnect_mesh` resource you added in `main.tf` with the following definition:
 
 ```hcl
-resource "konnect_mesh" "mesh1" {
+resource "konnect_mesh" "my_mesh" {
   provider = konnect-beta
-  type     = "Mesh"
-  cp_id    = konnect_mesh_control_plane.my_meshcontrolplane.id
+
   name     = "my-mesh"
-  depends_on = [konnect_mesh_control_plane.my_meshcontrolplane]
+  type     = "Mesh"
   skip_creating_initial_policies = [ "*" ]
 
   mtls = {
@@ -224,18 +182,16 @@ resource "konnect_mesh" "mesh1" {
     "mode"           = "permissive"
     "enabledBackend" = "ca-1"
   }
+
+  cp_id    = konnect_mesh_control_plane.my_meshcontrolplane.id
 }
 ```
 
-```bash
-terraform apply
-```
-
-you should see mesh being updated in place:
+Run `terraform apply -auto-approve` and you will see the Mesh being updated in place:
 
 ```
-  # konnect_mesh.mesh1 will be updated in-place
-  ~ resource "konnect_mesh" "mesh1" {
+  # konnect_mesh.my_mesh will be updated in-place
+  ~ resource "konnect_mesh" "my_mesh" {
       + mtls                           = {
           + backends = [
               + {
@@ -251,76 +207,69 @@ you should see mesh being updated in place:
 
 For full schema of the Mesh resource, see the [konnect-beta provider documentation](https://github.com/Kong/terraform-provider-konnect-beta/blob/v{{ TF_BETA_VERSION }}/docs/resources/mesh.md).
 
-## Adding an example policy
+### Adding an example policy
 
-Policies examples now contain an additional tab called "Terraform" showing a terraform representation of a policy.
+The Kong Mesh documentation policy examples now contain an additional "Terraform" tab showing a Terraform representation of a policy.
 
 Let's take an example from [MeshTrafficPermission page](/mesh/{{page.release}}/policies/meshtrafficpermission/#allow-all)
-
-We need to adjust it to our setup by adding the `provider`, `cp_id`, `mesh`, `depends_on` and `labels`:
-
-```hcl
-provider = konnect-beta
-cp_id    = konnect_mesh_control_plane.my_meshcontrolplane.id
-mesh     = konnect_mesh.mesh1.name
-depends_on = [konnect_mesh.mesh1]
-labels = {
-    "kuma.io/mesh" = konnect_mesh.mesh1.name
-}
-```
 
 {% warning %}
 Autogenerated labels like "kuma.io/mesh", "kuma.io/origin" etc. have to be manually added to the resources.
 This limitation will be removed in the GA release.
 {% endwarning %}
 
-The resulting resource looks like this:
+Add the following policy to `main.tf`:
 
 ```hcl
 resource "konnect_mesh_traffic_permission" "allow_all" {
-    provider = konnect-beta
-    cp_id    = konnect_mesh_control_plane.my_meshcontrolplane.id
-    mesh     = konnect_mesh.mesh1.name
-    depends_on = [konnect_mesh.mesh1]
-    labels = {
-        "kuma.io/mesh" = konnect_mesh.mesh1.name
-    }
-    type = "MeshTrafficPermission"
-    name = "allow-all"
-    spec = {
-        from = [
-            {
-                target_ref = {
-                    kind = "Mesh"
-                }
-                default = {
-                    action = "Allow"
-                }
-            }
-        ]
-    }
+ provider = konnect-beta
+
+ type = "MeshTrafficPermission"
+ name = "allow-all"
+ spec = {
+   from = [
+     {
+       target_ref = {
+         kind = "Mesh"
+       }
+       default = {
+         action = "Allow"
+       }
+     }
+   ]
+ }
+ labels   = {
+   "kuma.io/mesh" = konnect_mesh.my_mesh.name
+ }
+
+ cp_id    = konnect_mesh_control_plane.my_meshcontrolplane.id
+ mesh     = konnect_mesh.my_mesh.name
 }
+
+
 ```
 
-## Impact of Renaming Resources
+Run `terraform apply -auto-approve` to create the policy.
+
+### Impact of Renaming Resources
 
 Certain properties (like Mesh name, policy name, etc.) are used as identifiers and changing them will result in a new resource being created and all dependant resources being recreated.
 
 So changing mesh name to `another-name`
 
 ```hcl
-resource "konnect_mesh" "mesh1" {
+resource "konnect_mesh" "my_mesh" {
   # ...
   name = "another-name"
   # ...
 }
 ```
 
-Will result in forced replacement of both `mesh` and `mesh_access_log` resources:
+Will result in forced replacement of both `mesh` and `konnect_mesh_traffic_permission` resources:
 
 ```
-    # konnect_mesh.mesh1 must be replaced
--/+ resource "konnect_mesh" "mesh1" {
+    # konnect_mesh.my_mesh must be replaced
+-/+ resource "konnect_mesh" "my_mesh" {
       ~ name                           = "mesh1" -> "another-name" # forces replacement
         # (4 unchanged attributes hidden)
     }
@@ -338,17 +287,43 @@ Will result in forced replacement of both `mesh` and `mesh_access_log` resources
 
 To deploy a Kubernetes zone you can use any Kubernetes services, in this guide we will use `k3d` to create a local Kubernetes cluster.
 
+### Create a cluster
+
 Create a new k3d cluster:
+
 ```bash
 k3d cluster create tfmink
 ```
 
-Write `tfmink` cluster configuration:
+Store the `tfmink` cluster configuration in `$KUBECONFIG`:
+
 ```bash
 export KUBECONFIG=$(k3d kubeconfig write tfmink)
 ```
 
-Update the `main.tf` file to include the time, kubernetes and helm provider:
+In `variables.tf` add a variable pointing to the Kubeconfig file and configure Helm and Kubernetes providers, and a variable for the zone name:
+
+```hcl
+variable "k8s_cluster_config_path" {
+  type        = string
+  description = "The location where this cluster's kubeconfig will be saved to."
+}
+
+variable "zone_name" {
+    type    = string
+    default = "tfzone1"
+}
+```
+
+Then set `TF_VAR_k8s_cluster_config_path` to your `kubeconfig` value:
+
+```bash
+export TF_VAR_k8s_cluster_config_path=$KUBECONFIG
+```
+
+### Configure the Kubernetes and Helm providers
+
+Update the `providers.tf` with the following contents to include the time, kubernetes and helm providers:
 
 ```hcl
 terraform {
@@ -376,15 +351,9 @@ terraform {
 }
 ```
 
-Add a variable pointing to the Kubeconfig file and configure Helm and Kubernetes providers:
+Then add some provider configuration blocks to the bottom of `providers.tf`:
 
 ```hcl
-variable "k8s_cluster_config_path" {
-  type        = string
-  description = "The location where this cluster's kubeconfig will be saved to."
-  default     = "~/.config/k3d/kubeconfig-tfmink.yaml"
-}
-
 provider "helm" {
     kubernetes {
         config_path = pathexpand(var.k8s_cluster_config_path)
@@ -396,20 +365,24 @@ provider "kubernetes" {
 }
 ```
 
-You can override that variable by setting the environment variable `TF_VAR_k8s_cluster_config_path`.
+Run `init -upgrade` to download the new providers:
 
-We need to create a system account and a token to authenticate the zone:
+```bash
+terraform init -upgrade
+```
+
+### Create a system account
+
+Create a new file named `system-account.tf` with the following contents to create a system account and a token to authenticate the zone:
 
 ```hcl
 resource "konnect_system_account" "zone_system_account" {
-  depends_on = [konnect_mesh_control_plane.my_meshcontrolplane]
   name            = "mesh_${konnect_mesh_control_plane.my_meshcontrolplane.id}_${var.zone_name}"
   description     = "Terraform generated system account for authentication zone ${var.zone_name} in ${konnect_mesh_control_plane.my_meshcontrolplane.id} control plane."
   konnect_managed = false
 }
 
 resource "konnect_system_account_role" "zone_system_account_role" {
-  depends_on = [konnect_system_account.zone_system_account]
   account_id       = konnect_system_account.zone_system_account.id
   entity_id        = konnect_mesh_control_plane.my_meshcontrolplane.id
   entity_region    = var.region
@@ -422,14 +395,13 @@ resource "time_offset" "one_year_from_now" {
 }
 
 resource "konnect_system_account_access_token" "zone_system_account_token" {
-  depends_on = [konnect_system_account.zone_system_account, time_offset.one_year_from_now]
   account_id = konnect_system_account.zone_system_account.id
   expires_at = time_offset.one_year_from_now.rfc3339
   name       = konnect_system_account.zone_system_account.name
 }
 ```
 
-We need to create a namespace and a secret to hold the Zone token:
+Store this token in Kubernetes by creating `k8s.tf` with the following contents:
 
 ```hcl
 resource "kubernetes_namespace" "kong_mesh_system" {
@@ -452,12 +424,12 @@ resource "kubernetes_secret" "mesh_cp_token" {
   }
 
   type = "opaque"
-
-  depends_on = [kubernetes_namespace.kong_mesh_system]
 }
 ```
 
-And create a values file called `values.tftpl` with templated values for zone, address and control plane id:
+### Create a Zone deployment
+
+Create a values file called `values.tftpl` with templated values for zone, address and control plane id:
 
 ```yaml
 kuma:
@@ -477,15 +449,9 @@ kuma:
     enabled: true
 ```
 
-And finally we can create a zone deployment using `helm_release`:
+Create a `zone.tf` file containing the following to create a zone:
 
 ```hcl
-variable "zone_name" {
-  type        = string
-  description = "The name of the cluster."
-  default     = "zone1"
-}
-
 resource "helm_release" "kong_mesh" {
   name       = "kong-mesh"
   repository = "https://kong.github.io/kong-mesh-charts"
@@ -500,21 +466,13 @@ resource "helm_release" "kong_mesh" {
     region    = var.region,
     cp_id     = konnect_mesh_control_plane.my_meshcontrolplane.id
   })]
-
-  depends_on = [konnect_mesh_control_plane.my_meshcontrolplane, kubernetes_secret.mesh_cp_token]
 }
-```
-
-After that run `init -upgrade` to download the new providers:
-
-```bash
-terraform init -upgrade
 ```
 
 And finally apply the changes:
 
 ```bash
-terraform apply
+terraform apply -auto-approve
 ```
 
 You should see 7 resources created and `helm_release` can take some time to create.
@@ -537,80 +495,12 @@ NAMESPACE          NAME
 kong-mesh-system   allow-all-wd5xx76vc44b498c
 ```
 
-## Rotating the token
-
-Instead of using `time_offset` resource you can use `time_rotating` resource to rotate the token every minute:
-
-```hcl
-resource "time_rotating" "rotate" {
-  rotation_minutes = 1
-}
-```
-
-Then, zone system account token needs updating to use that resource.
-We're adding a 15 minutes offset to the rotation time to ensure the token is rotated before it expires:
-
-```hcl
-resource "konnect_system_account_access_token" "zone_system_account_token" {
-  depends_on = [konnect_system_account.zone_system_account, time_rotating.rotate]
-  account_id = konnect_system_account.zone_system_account.id
-  expires_at = timeadd(time_rotating.rotate.rotation_rfc3339, "15m")
-  name       = konnect_system_account.zone_system_account.name
-}
-```
-
-{% tip %}
-In production environment you should tune the rotation and offset time to your needs.
-{% endtip %}
-
-That will cause the token to be rotated if, a minute passes `terraform apply`.
-If you execute `terraform apply` immediate after you'll see:
-
-```
-No changes. Your infrastructure matches the configuration.
-```
-
-But, if you run it after a minute you will see zone system account token recreated and Kubernetes secret updated:
-
-```
-  # konnect_system_account_access_token.zone_system_account_token must be replaced
--/+ resource "konnect_system_account_access_token" "zone_system_account_token" {
-      ~ created_at   = "2025-03-13T11:49:42Z" -> (known after apply)
-      ~ expires_at   = "2025-03-13T12:05:41Z" # forces replacement -> (known after apply) # forces replacement
-      ~ id           = "354b4bee-dfbc-4a10-b1e1-9dcaf4382c72" -> (known after apply)
-      + last_used_at = (known after apply)
-        name         = "mesh_fe75caba-be28-4ff8-850b-4f573f836160_zone1"
-      ~ token        = "spat_Qwb8wBAYJdhTn0m1CaHoP7uXtprbN0xpu3TAG5wbAYAgrHh8g" -> (known after apply)
-      ~ updated_at   = "2025-03-13T11:49:42Z" -> (known after apply)
-        # (1 unchanged attribute hidden)
-    }
-
-  # kubernetes_secret.mesh_cp_token will be updated in-place
-  ~ resource "kubernetes_secret" "mesh_cp_token" {
-      ~ data                           = (sensitive value)
-        id                             = "kong-mesh-system/cp-token"
-        # (3 unchanged attributes hidden)
-
-        # (1 unchanged block hidden)
-    }
-```
-
-{% warning %}
-Currently the control-plane will not pick up the new token automatically. You need to manually restart the control-plane to pick up the new token:
-
-```bash
-kubectl rollout restart -n kong-mesh-system deployment kong-mesh-control-plane
-```
-
-This limitation will be lifted in the next release.
-{% endwarning %}
-
 ## Cleaning up
 
-Simply run:
+Congratulations! You just deployed a Mesh Control Plane, Mesh, policies and a Zone to Kubernetes.
+
+To clean up all resources created by this guide, run the following command:
 
 ```bash
 terraform destroy
 ```
-
-This will clean up all the resources that you created.
