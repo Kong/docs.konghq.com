@@ -8,6 +8,8 @@ You can establish a private connection to ensure that the data transmitted betwe
 - eu-central-1
 - us-east-2
 - eu-west-1
+- eu-west-2
+- ap-southeast-2
 
 If you want to create a connection with a different AWS region, contact [Kong Support](https://support.konghq.com/support/s/).
 
@@ -53,6 +55,24 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 | EU | com.amazonaws.vpce.eu-west-1.vpce-svc-037bd988d9a9d4e3a | eu.svc.konghq.com |
 | ME | com.amazonaws.vpce.eu-west-1.vpce-svc-0978fbaf50bfc67d9 | me.svc.konghq.com |
 | US | com.amazonaws.vpce.eu-west-1.vpce-svc-01070d7c2137e0ee1 | us.svc.konghq.com |
+{% endnavtab %}
+
+{% navtab eu-west-2 %}
+| {{site.konnect_short_name}} Geographical Region | PrivateLink service name | Private DNS name |
+| ------ | ------------ |
+| AP | com.amazonaws.vpce.eu-west-2.vpce-svc-0500cb14757738225 | ap.svc.konghq.com |
+| EU | com.amazonaws.vpce.eu-west-2.vpce-svc-0b2d5879e15254e35 | eu.svc.konghq.com |
+| ME | com.amazonaws.vpce.eu-west-2.vpce-svc-0ab99eeae8121c7d8 | me.svc.konghq.com |
+| US | com.amazonaws.vpce.eu-west-2.vpce-svc-0c23345bb2ef7b298 | us.svc.konghq.com |
+{% endnavtab %}
+
+{% navtab ap-southeast-2 %}
+| {{site.konnect_short_name}} Geographical Region | PrivateLink service name | Private DNS name |
+| ------ | ------------ |
+| AP | com.amazonaws.vpce.ap-southeast-2.vpce-svc-055ba6ff5a3f551c9 | ap.svc.konghq.com |
+| EU | com.amazonaws.vpce.ap-southeast-2.vpce-svc-02a339e8dc8ec72c6 | eu.svc.konghq.com |
+| ME | com.amazonaws.vpce.ap-southeast-2.vpce-svc-008f231c7501e72c2 | me.svc.konghq.com |
+| US | com.amazonaws.vpce.ap-southeast-2.vpce-svc-0600dd84f39e7b12a | us.svc.konghq.com |
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
