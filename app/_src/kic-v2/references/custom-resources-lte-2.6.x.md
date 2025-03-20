@@ -288,7 +288,7 @@ Please follow the
 [Using the KongIngress resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongingress-resource)
 guide for details on how to use this resource.
 
-For reference, the following is a complete spec for KongIngress (for property documentation, see [Upstream](/gateway/api/admin-ee/latest/#/operations/list-upstream/), [Service](/gateway/api/admin-ee/latest/#/Services/list-service/) and [Route](/gateway/api/admin-ee/latest/#/Routes/list-route/) entities.
+For reference, the following is a complete spec for KongIngress (for property documentation, see [Upstream](/gateway/api/admin-ee/latest/#/operations/list-upstream/), [Service](/gateway/api/admin-ee/latest/#/operations/list-service/) and [Route](/gateway/api/admin-ee/latest/#/operations/list-route/) entities.
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
