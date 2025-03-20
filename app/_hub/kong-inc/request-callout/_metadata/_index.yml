@@ -11,4 +11,4 @@ notes: --
 categories:
   - transformations
 publisher: Kong Inc.
-desc: ''
+desc: 'Call out to third-party APIs as part of request processing'
