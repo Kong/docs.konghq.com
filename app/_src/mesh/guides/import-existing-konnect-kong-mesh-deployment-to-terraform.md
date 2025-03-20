@@ -9,7 +9,7 @@ It covers setup, importing resources, running Terraform commands, and automating
 
 ## Setup
 
-Make sure you completed "Setup" from [Deploy {{site.mesh_product_name}} using Terraform and Konnect](/mesh/{{page.release}}/guides/deploy-kong-mesh-using-terraform-and-konnect).
+Make sure you completed "Provider Configuration" from [Deploy {{site.mesh_product_name}} using Terraform and Konnect](/mesh/{{page.release}}/guides/deploy-kong-mesh-using-terraform-and-konnect#provider-configuration).
 
 ## Import existing Konnect {{site.mesh_product_name}} deployment to Terraform
 
