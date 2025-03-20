@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* Fixed a segmentation fault caused by a missing destructor call on process exit.
+
 ### {{site.base_gateway}} 3.9.x
 
 * Fixed an issue where the `snapshot` of the fields `upstream`, `service`, `route`, and `consumer` was missing in the AppDynamics plugin.

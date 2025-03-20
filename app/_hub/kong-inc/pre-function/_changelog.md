@@ -1,12 +1,16 @@
 ## Changelog
 
-**{{site.base_gateway}} 3.0**
+### {{site.base_gateway}} 3.10.x
+
+* Fixed an issue where a duplicate `protocols` field was accidentally added to the `pre-function` schema.
+
+### {{site.base_gateway}} 3.0.x
 
 * The deprecated `config.functions` parameter has been removed from the plugin.
 Use `config.access` instead.
 * The pre-function plugin changed priority from `+inf` to `1000000`.
 
-**{{site.base_gateway}} 2.3**
+### {{site.base_gateway}} 2.3.x
 
 * Introduced sandboxing, which is enabled by default.
 Only the Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are allowed.

@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* Fixed an issue where the `upstream_status` field was empty in logs when using the `forward-proxy` plugin.
+
 ### {{site.base_gateway}} 3.6.x
 * The plugin now falls back to the non-streaming proxy when the request body was already read.
 * Fixed an issue where request payload was discarded when the payload exceeded the `client_body_buffer_size`.

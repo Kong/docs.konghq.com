@@ -1,5 +1,9 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.0.0
+* Deprecated `config.model.options.upstream_path` in favor of `config.model.options.upstream_url`.
+* Deprecated `preserve` mode in `config.route_type`. Use `config.llm_format` instead. The `preserve` mode setting will be removed in a future release.
+
 ### {{site.base_gateway}} 3.9.0.0
 * Fixed an issue where Azure Managed Identity did not work for the AI Transformer plugins.
 * Fixed an issue where AI Transformer plugins always returned a 404 error when using Google One Gemini subscriptions.

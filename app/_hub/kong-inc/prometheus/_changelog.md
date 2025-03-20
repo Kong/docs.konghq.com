@@ -1,5 +1,9 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* Added gauge to expose connectivity state to the control plane.
+* Added the capability to enable or disable exporting of Proxy-Wasm metrics.
+
 ### {{site.base_gateway}} 3.9.x
 * Increased the upper limit of `KONG_LATENCY_BUCKETS` to 6000 to enhance latency tracking precision.
   [#13588](https://github.com/Kong/kong/issues/13588)
