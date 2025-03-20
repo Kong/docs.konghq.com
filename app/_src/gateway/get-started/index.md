@@ -35,6 +35,9 @@ can be performed to complete the tutorial:
 * [jq](https://stedolan.github.io/jq/) is used to process JSON responses on the command line. While useful, this tool is 
 not necessary to complete the tasks of this tutorial. If you wish to proceed without `jq`, modify the commands to
 remove `jq` processing.
+{% if_version gte:3.10.x -%}
+* You need a {{site.base_gateway}} Enterprise license to run the quickstart.
+{% endif_version %}
 
 ### Get Kong
 
@@ -42,7 +45,7 @@ For the purposes of this tutorial, a `quickstart` script is provided to quickly 
 This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://www.postgresql.org/) database as the backing database.
 
 1. Run {{site.base_gateway}} with the `quickstart` script:
-
+{% if_version lte:3.9.x %}
    ```sh
    curl -Ls https://get.konghq.com/quickstart | bash
    ```
@@ -54,6 +57,12 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    > ```sh
    > curl -Ls https://get.konghq.com/quickstart | bash -s -- -h
    > ```
+{% endif_version %}
+{% if_version gte:3.10.x %}
+   ```sh
+   curl -Ls https://get.konghq.com/quickstart | bash -s -- -e KONG_LICENSE_DATA
+   ```
+{% endif_version %}
 
    This script runs Docker containers for {{site.base_gateway}} and the supporting PostgreSQL database.
    The script also creates a Docker network for those containers to communicate over. Finally, the database is 
@@ -103,7 +112,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    
     While the rest of this guide demonstrates configuring {{site.base_gateway}} using the Admin API, you can also use Kong Manager to manage your Services, Routes, Plugins, and more. To access Kong Manager, go to the following URL: [http://localhost:8002](http://localhost:8002)
 
-    {% if_version gte:3.4.x %}
+    {% if_version gte:3.4.x lte:3.9.x %}
     {:.note}
     > **Note:** If you install {{site.ce_product_name}}, you will use [Kong Manager Open Source](/gateway/{{page.release}}/kong-manager-oss/). All other {{site.base_gateway}} installations use [Kong Manager Enterprise](/gateway/{{page.release}}/kong-manager/).
     {% endif_version %}
