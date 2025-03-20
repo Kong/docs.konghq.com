@@ -11,8 +11,20 @@ For more information, see [Key and Key Set Management in {{site.base_gateway}}](
 
 ## Supported Content Encryption Algorithms
 
-Currently, A256GCM is supported. More encryption algorithms will be supported in future releases.
+{% if_version lte:3.9.x %}
+This plugin supports the following encryption algorithm:
+* A256GCM 
+{% endif_version %}
 
+{% if_version gte:3.10.x %}
+This plugin supports the following encryption algorithms:
+* A128GCM
+* A192GCM
+* A256GCM
+* A128CBC-HS256
+* A192CBC-HS384
+* A256CBC-HS512
+{% endif_version %}
 
 ## Failure modes
 

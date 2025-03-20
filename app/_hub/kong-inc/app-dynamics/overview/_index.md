@@ -124,6 +124,9 @@ This location can be changed by setting the `KONG_APPD_LOGGING_LOG_DIR` environm
 If problems occur with the AppDynamics integration, inspect the AppDynamics agent's log files in addition to the Kong
 Gateway logs.
 
+{:.important}
+> **Important:** ARM isn't supported when using the AppDynamics agent. The agent only supports x86 architecture.
+
 ## AppDynamics node name considerations
 
 The AppDynamics plugin defaults the `KONG_APPD_NODE_NAME` to the local
