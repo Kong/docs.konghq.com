@@ -209,7 +209,7 @@ For full schema of the Mesh resource, see the [konnect-beta provider documentati
 
 ### Adding an example policy
 
-The Kong Mesh documentation policy examples now contain an additional "Terraform" tab showing a Terraform representation of a policy.
+The {{site.mesh_product_name}} documentation policy examples now contain an additional "Terraform" tab showing a Terraform representation of a policy.
 
 Let's take an example from [MeshTrafficPermission page](/mesh/{{page.release}}/policies/meshtrafficpermission/#allow-all)
 
