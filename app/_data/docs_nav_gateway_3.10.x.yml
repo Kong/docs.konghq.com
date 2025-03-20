@@ -725,7 +725,7 @@ items:
           generate: false
           target_blank: true
         - text: Consumer Groups
-          url: /gateway/api/admin-ee/latest/#/operations/
+          url: /gateway/api/admin-ee/latest/#/operations/get-consumer_groups
           absolute_url: true
           generate: false
           target_blank: true
