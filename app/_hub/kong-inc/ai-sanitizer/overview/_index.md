@@ -2,7 +2,7 @@
 nav_title: Overview
 ---
 
-The Data Sanitization plugin for {{site.base_gateway}} helps protect sensitive information in client request bodies before they reach upstream services.
+The AI Sanitizer plugin for {{site.base_gateway}} helps protect sensitive information in client request bodies before they reach upstream services.
 By integrating with an external PII service, the plugin ensures compliance with data privacy regulations while preserving the usability of request data.
 It supports multiple sanitization modes, including replacing sensitive information with fixed placeholders or generating synthetic replacements that retain category-specific characteristics.
 
