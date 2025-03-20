@@ -41,14 +41,14 @@ You can manage consumers centrally using the {{site.konnect_short_name}} API. On
    Save the ID of the realm.
 
    Be sure to replace the following with your own values:
-   * `{region}`: Region for your {{site.konnect_short_name}} instance.
+   * `{region}`: Region for your {{site.konnect_short_name}} instance. Data planes can only reach out to realms in the same region as the data plane.
    * `$KONNECT_TOKEN`: Replace with your {{site.konnect_short_name}} personal access token.
    * `$CONTROL_PLANE_UUID`: (Optional) Replace with your control plane UUID.
    * `ttl`: (Optional) 'ttl' is the time-to-live (TTL) in minutes of the consumer for this realm in the {{site.base_gateway}} cache.
    * `negative_ttl`: (Optional) Represents the TTL of a bad login cache entry.
    * `$CONSUMER_GROUP`: (Optional) Replace with the name of the consumer groups you want to associate with the realm.
 1. Use the `/realms/{realmId}/consumers` endpoint to create a centrally managed consumer and optionally assign it to a consumer group:
-   ```
+   ```sh
    curl -X POST \
    https://{region}.api.konghq.com/v1/realms/{realmId}/consumers \
    -H "Content-Type: application/json" \
@@ -58,12 +58,30 @@ You can manage consumers centrally using the {{site.konnect_short_name}} API. On
          "consumer_groups": ["$CONSUMER_GROUP"]
        }'
    ```
+   Save the ID of the consumer.
+
    Be sure to replace the following with your own values:
-   * `{region}`: Region for your {{site.konnect_short_name}} instance.
+   * `{region}`: Region for your {{site.konnect_short_name}} instance. Data planes can only reach out to realms in the same region as the data plane.
    * `$KONNECT_TOKEN`: Replace with your {{site.konnect_short_name}} personal access token.
    * `{realmId}`: The ID of the realm you created previously. 
    * `$CONSUMER_NAME`: Replace with the name of the consumer.
    * `$CONSUMER_GROUP`: (Optional) Replace with the name of the consumer groups you want to associate with the consumer. Consumer groups set here are additive. This means that if you configure the realm with consumer groups A and B, and then configure the consumer with consumer group C, the authenticated consumer will be assigned to consumer groups A, B, and C.
+1. Configure authentication keys for consumers:
+   ```sh
+   curl -X POST \
+   https://{region}.api.konghq.com/v1/realms/{realmId}/consumers/{consumerId}/keys \
+   -H "Content-Type: application/json" \
+   -H "Authorization: Bearer TOKEN" \
+   -d '{
+        "type": "new"
+       }'
+   ```
+   Be sure to replace the following with your own values:
+   * `{region}`: Region for your {{site.konnect_short_name}} instance. Data planes can only reach out to realms in the same region as the data plane.
+   * `$KONNECT_TOKEN`: Replace with your {{site.konnect_short_name}} personal access token.
+   * `{realmId}`: The ID of the realm you created previously.
+   * `{consumerId}`: The ID of the consumer you created previously.
+
 1. Consumers require authentication. Configure authentication using the [Key Auth plugin](/hub/kong-inc/key-auth/how-to/).
 
    `identity_realms` are scoped to the control plane by default (`scope: cp`). The order in which you configure the `identity_realms` dictates the priority in which the data plane attempts to authenticate the provided API keys:
@@ -75,4 +93,5 @@ You can manage consumers centrally using the {{site.konnect_short_name}} API. On
 
 {:.note}
 > **Note:** If you are using KIC to manage your data plane nodes in {{site.konnect_short_name}}, ensure that you configure the `telemetry_endpoint` in the data plane. You can find the `telemetry_endpoint` in the {{site.konnect_short_name}} UI in [Gateway Manager](https://cloud.konghq.com/gateway-manager/) in the data plane node instructions.
+
 
