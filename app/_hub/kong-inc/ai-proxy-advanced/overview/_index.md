@@ -54,7 +54,7 @@ This plugin supports several load-balancing algorithms, similar to those used fo
 * **Semantic**: The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.
 * [Round-robin (weighted)](/gateway/latest/how-kong-works/load-balancing/#round-robin)
 * [Consistent-hashing (sticky-session on given header value)](/gateway/latest/how-kong-works/load-balancing/#consistent-hashing)
-{% if_version gte:3.10.x %}
+{% if_version gte:3.10.x -%}
 * [Priority Group](/gateway/latest/how-kong-works/load-balancing/#priority)
 {% endif_version %}
 
@@ -75,8 +75,9 @@ This plugin does not support fallback over targets with different formats. You c
 
 {:.note}
 {% if_version gte:3.10.x %}
-To configure failover in addition to network errors, set `config.balancer.failover_criteria` to include additional HTTP error codes, like `"http_429"` or `"http_502"`. Note that `"non_idenpotent"` should be set as well as most AI services accepts
-POST requests.
+> To configure failover in addition to network errors, set [`config.balancer.failover_criteria`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-balancer-failover_criteria) to include:
+* Additional HTTP error codes, like `http_429` or `http_502`
+* The `non_idempotent` setting, as most AI services accept POST requests
 {% else %}
 > Some errors, such as client errors, result in a failure and don't failover to another target.
 {% endif_version %}
@@ -137,19 +138,23 @@ The following upstream URL patterns are used:
 > For example, a self-hosted or otherwise OpenAI-compatible endpoint can be called by setting the same [`config.model.options.upstream_url`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings-model-options-upstream_url) plugin option.
 
 {% if_version gte:3.10.x %}
-Furthermore, if you are using each provider's native SDK, Kong allows to transparently proxy pass the
+If you are using each provider's native SDK, {{site.base_gateway}} allows you to transparently proxy the
 request without any transformation and return the response unmodified. This can be done by setting
-[`config.llm_format`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-llm_format) to a value other than `"openai"`, such as `"gemini"` or `"bedrock"`.
+[`config.llm_format`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-llm_format) to a value other than `openai`, such as `gemini` or `bedrock`.
 
-In this mode, Kong will still provider useful analytics, logging and cost calculation.
+In this mode, {{site.base_gateway}} will still provide useful analytics, logging, and cost calculation.
 {% endif_version %}
 
 ### Input formats
 
-Kong will mediate the request and response format based on the selected [`config.targets[].provider`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings-model-provider) and [`config.targets[].route_type`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-route_type), as outlined in the table above.
+{% if_version lte:3.9.x %}
+Kong will mediate the request and response format based on the selected [`config.provider`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings-model-provider) and [`config.route_type`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-route_type), as outlined in the table above.
+{% endif_version %}
 
 {% if_version gte:3.10.x %}
-By default, Kong uses OpenAI format and can be changed using [`config.targets[].llm_format`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-llm_format). When `llm_format` is not set to `openai`, this plugin will not transform the request when sending to upstream and keep as is.
+Kong will mediate the request and response format based on the selected [`config.targets[].provider`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings-model-provider) and [`config.targets[].route_type`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-route_type), as outlined in the table above.
+
+By default, Kong uses OpenAI format and can be changed using [`config.targets[].llm_format`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-llm_format). When `llm_format` is not set to `openai`, this plugin will not transform the request when sending to upstream and will keep it as-is.
 {% endif_version %}
 The Kong AI Proxy accepts the following inputs formats, standardized across all providers; the `config.route_type` must be configured respective to the required request and response format examples:
 

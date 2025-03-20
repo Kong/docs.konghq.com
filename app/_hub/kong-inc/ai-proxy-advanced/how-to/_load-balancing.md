@@ -242,7 +242,7 @@ The lowest-usage algorithm distributes requests to the model with the lowest usa
 * `prompt-tokens` to count only the tokens in the prompt
 * `completion-tokens` to count only the tokens in the response
 * `total-tokens` to count both tokens in the prompt and in the response
-{% if_version gte:3.10.x %}
+{% if_version gte:3.10.x -%}
 * `cost` to count the cost of the tokens. The `cost` parameter must set in each model configuration to use this strategy and `log_statistics` should be turned on.
 {% endif_version %}
 
@@ -287,9 +287,9 @@ plugins:
 
 ## Priority
 
-In priority algorithm, targets that have same `weight` are identified as a group. By default, all models have the same priority. However, this can be configured with the [`config.targets[].weight`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-weight) parameter.
+In the priority algorithm, targets that have same `weight` are identified as a group. By default, all models have the same priority. However, this can be configured with the [`config.targets[].weight`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-weight) parameter.
 
-The balancer always chooses one of the targets of the group in the highest priority first. If all targets in the highest priority are down, the balancer chooses one of the targets in the next highest priority.
+The balancer always chooses one of the targets of the group with the highest priority first. If all targets in the highest priority group are down, the balancer chooses one of the targets in the next highest priority.
 
 
 For example:
