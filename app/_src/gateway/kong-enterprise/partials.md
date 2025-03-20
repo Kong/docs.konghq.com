@@ -115,4 +115,4 @@ curl -i -X DELETE http://localhost:8001/partials/{PARTIAL-ID}
 
 ## Detailed API
 
-For more information about Partial configurations and usage, see #TODO
+For more information about Partial configurations and usage, see the [API spec](/gateway/api/admin-ee/latest/#/partials/listPartials).
