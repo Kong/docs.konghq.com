@@ -5,9 +5,9 @@ title: Centralized consumer management
 A [consumer](/gateway/latest/key-concepts/consumers/) is a {{site.base_gateway}} entity that consumes or uses the APIs managed by {{site.base_gateway}}. These can be things like applications, services, or users who interact with your APIs. Consumers can be scoped to a {{site.konnect_short_name}} region and managed centrally, or be scoped to a control plane in Gateway Manager.
 
 Centralized consumer management provides the following benefits:
-* The consumer identity can be set up centrally instead of being defined across multiple control planes.
+* Set up consumer identity centrally instead of defining it in multiple control planes.
 * Share consumers across multiple control planes. Users don't need to replicate changes to consumer identity in multiple control planes and consumer configuration doesn't conflict.
-* Reduces configuration sync issues between the control plane and the data planes. Consumers that are managed centrally aren't part of the configuration that is pushed down from the control plane to the data planes, so it reduces config size and latency. 
+* Reduce configuration sync issues between the control plane and the data planes. Consumers that are managed centrally aren't part of the configuration that is pushed down from the control plane to the data planes, so it reduces config size and latency. 
 
 ## How centralized consumer management works
 
@@ -15,7 +15,7 @@ When you create a consumer centrally, you must assign it to a realm. A realm gro
 
 ## Create consumers and realms 
 
-You can manage consumers centrally using the {{site.konnect_short_name}} API. Only Org Admins have CRUD permissions for these consumers. 
+You can manage consumers centrally using the {{site.konnect_short_name}} API. Only Org Admins and Control Plane Admins have CRUD permissions for these consumers. 
 
 {:.important}
 > Centralized consumer management is only available for {{site.base_gateway}} 3.10 data planes. Make sure your control plane uses 3.10 data planes at minimum when configuring these consumers.
