@@ -35,4 +35,4 @@ the configuration parameters `error_code` and `error_message`.
 
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer/
+[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer

@@ -397,7 +397,7 @@ You can also view the configuration for your services in the Kong Manager UI by 
    }
    ```
 
-The [Admin API documentation](/gateway/api/admin-ee/latest/#/operations/list-route/) has the 
+The [Admin API documentation](/gateway/api/admin-ee/latest/#/operations/list-route) has the 
 full specification for managing route objects.
 
 You can also view the configuration for your routes in the Kong Manager UI by navigating to the following URL in your browser: [http://localhost:8002/default/routes](http://localhost:8002/default/routes)

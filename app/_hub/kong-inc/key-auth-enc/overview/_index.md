@@ -321,5 +321,5 @@ associated consumer.
 
 [db-encryption]: /gateway/latest/plan-and-deploy/security/db-encryption
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer/
+[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer
 [acl-associating]: /plugins/acl/#associating-consumers

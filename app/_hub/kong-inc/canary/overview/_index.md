@@ -90,7 +90,7 @@ instantly switch all traffic to _Service A_.
 ### Upstream Healthchecks
 
 The configuration item `upstream_fallback` uses
-[**Upstream Healthchecks**](/gateway/api/admin-ee/latest/#/operations/list-upstream/)
+[**Upstream Healthchecks**](/gateway/api/admin-ee/latest/#/operations/list-upstream)
 to skip applying the Canary upstream if it does not have at least one healthy
 target. For this configuration to take effect, the following conditions must be met:
 

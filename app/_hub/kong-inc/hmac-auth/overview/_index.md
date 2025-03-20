@@ -396,7 +396,7 @@ for which to get the associated [Consumer][consumer-object].
 Note that `username` accepted here is **not** the `username` property of a
 Consumer.
 
-[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer/
+[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer
 [clock-skew]: https://tools.ietf.org/html/draft-cavage-http-signatures-00#section-3.4
 
 ---

@@ -164,9 +164,9 @@ then execute that plugin on every consumer in the consumer group.
 
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway/api/admin-ee/latest/#/operations/list-consumer/
-[kong-plugin]: /gateway/api/admin-ee/latest/#/operations/list-service/
-[kong-upstream]: /gateway/api/admin-ee/latest/#/operations/list-service/
-[kong-service]: /gateway/api/admin-ee/latest/#/operations/list-service/
-[kong-route]: /gateway/api/admin-ee/latest/#/operations/list-service/
+[kong-consumer]: /gateway/api/admin-ee/latest/#/operations/list-consumer
+[kong-plugin]: /gateway/api/admin-ee/latest/#/operations/list-service
+[kong-upstream]: /gateway/api/admin-ee/latest/#/operations/list-service
+[kong-service]: /gateway/api/admin-ee/latest/#/operations/list-service
+[kong-route]: /gateway/api/admin-ee/latest/#/operations/list-service
 [kong-consumer-group]: /gateway/latest/kong-enterprise/consumer-groups/

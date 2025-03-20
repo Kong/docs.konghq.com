@@ -327,7 +327,7 @@ schema value must be `false`. If set to `true`, deck returns a schema
 violation error.
 
 For documentation on all available properties, see the
-[Route object](/gateway/api/admin-ee/latest/#/operations/list-route/) documentation.
+[Route object](/gateway/api/admin-ee/latest/#/operations/list-route) documentation.
 
 {% endnavtab %}
 {% navtab Service %}
@@ -440,7 +440,7 @@ _info:
 ```
 
 For documentation on all available properties, see the
-[Upstream object](/gateway/api/admin-ee/latest/#/operations/list-upstream/) documentation.
+[Upstream object](/gateway/api/admin-ee/latest/#/operations/list-upstream) documentation.
 
 {% endnavtab %}
 {% navtab Target %}
@@ -461,7 +461,7 @@ _info:
       weight: 100
 ```
 For all available properties, see the
-[Target object](/gateway/api/admin-ee/latest/#/operations/list-target-with-upstream/) documentation.
+[Target object](/gateway/api/admin-ee/latest/#/operations/list-target-with-upstream) documentation.
 
 {% endnavtab %}
 {% navtab Plugins %}

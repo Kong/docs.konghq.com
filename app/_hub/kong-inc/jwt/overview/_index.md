@@ -552,4 +552,4 @@ associated [Consumer][consumer-object].
 
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer/
+[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer

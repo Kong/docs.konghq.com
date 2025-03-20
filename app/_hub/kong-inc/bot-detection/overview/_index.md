@@ -17,4 +17,4 @@ The plugin already includes a basic list of rules that will be checked on every 
 
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer/
+[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer

@@ -99,7 +99,7 @@ Attribute | Description
 
 ## Define roles with permissions
 
-Define roles with permissions in {{site.base_gateway}}, using the Admin API's [RBAC endpoints](/gateway/api/admin-ee/latest/#/operations/put-rbac-roles-name_or_id) or using Kong Manager's [Teams page](/gateway/{{page.release}}/kong-manager/auth/rbac/add-user/). You must manually define which Kong roles correspond to each of the service directory's groups using either of the following:
+Define roles with permissions in {{site.base_gateway}}, using the Admin API's [RBAC endpoints](/gateway/api/admin-ee/latest/#/operations/put-rbac-roles-name_or_id) or using Kong Manager's [Teams page](/gateway/{{page.release}}/kong-manager/auth/rbac/add-user). You must manually define which Kong roles correspond to each of the service directory's groups using either of the following:
 
 * In Kong Manager's directory mapping section. Find it under **Teams** > **Groups** tab.
 * With the Admin API's directory mapping endpoints.

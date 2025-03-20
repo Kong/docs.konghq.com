@@ -72,7 +72,7 @@ X-RateLimit-Remaining-Images: 0
 ```
 
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer/
+[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer
 
 ---
 
