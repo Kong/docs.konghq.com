@@ -4,6 +4,7 @@ categories:
     slug: ai
     desc: Govern, secure, and control AI traffic with multi-LLM AI Gateway plugins
     icon: /assets/images/nav/hub/ai.svg
+    additional_cost: Enterprise AI capabilities require additional licensing
   - name: Authentication
     slug: authentication
     desc: Protect your services with an authentication layer
