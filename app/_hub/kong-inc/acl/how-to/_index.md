@@ -23,7 +23,7 @@ so that the plugin can identify the client consumer making the request.
 {% navtab With a database %}
 
 After you have added an authentication plugin to a Service or a Route, and you have
-created your [consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/), you can now
+created your [consumers](/gateway/api/admin-ee/latest/#/operations/list-consumer), you can now
 associate a group to a consumer using the following request:
 
 ```bash

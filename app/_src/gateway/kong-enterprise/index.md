@@ -26,7 +26,7 @@ It offers exclusive versions of OSS plugins like the [Rate Limiting Advanced plu
 * [API product tiers](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
 {% endif_version -%}
 {% if_version gte:3.4.x -%}
-* [API product tiers](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups)
+* [API product tiers](/gateway/api/admin-ee/latest/#/operations/get-consumer_groups)
 {% endif_version %}
 [Get started with plugins &rarr;](/hub/)
 
@@ -82,7 +82,7 @@ This provides encryption-at-rest security controls in a {{site.base_gateway}} cl
 {{site.base_gateway}} provides granular logging of the Admin API. You can keep detailed track of changes made to the
 cluster configuration throughout its lifetime, for compliance efforts and for
 providing valuable data points during forensic investigations. Generated audit
-log trails are [workspace](/gateway/api/admin-ee/latest/#/Workspaces) and [RBAC](/gateway/api/admin-ee/latest/)-aware,
+log trails are [workspace](/gateway/api/admin-ee/latest/#/operations/gateway/api/admin-ee/latest)-aware,
 providing {{site.base_gateway}} operators a deep and wide look into changes happening within
 the cluster.
 
@@ -122,7 +122,7 @@ In {{site.base_gateway}}, these callbacks can be defined using one of the follow
 
 You can configure event hooks through the Admin API.
 
-[Learn more about event hooks &rarr;](/gateway/api/admin-ee/latest/#/Event-hooks/)
+[Learn more about event hooks &rarr;](/gateway/api/admin-ee/latest/#/operations/)
 
 ## Consumer groups
 
@@ -139,7 +139,7 @@ individually.
 * [Consumer groups API reference &rarr;](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
 {% endif_version %}
 {% if_version gte:3.4.x %}
-* [Consumer groups API documentation &rarr;](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups)
+* [Consumer groups API documentation &rarr;](/gateway/api/admin-ee/latest/#/operations/get-consumer_groups)
 * [Plugins with consumer groups support &rarr;](/hub/plugins/compatibility/#scopes)
 {% endif_version %}
 

@@ -2762,7 +2762,7 @@ event. Event hook configurations differ depending on the handler. The events
 that are triggered send associated data.
 
 See:
-https://docs.konghq.com/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks
+https://docs.konghq.com/gateway/api/admin-ee/latest/#/operations/get-event-hooks
 
 **Default:** `on`
 
