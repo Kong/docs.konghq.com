@@ -14,7 +14,7 @@ The command below can be used to configure a `DataPlane` in an hybrid `ControlPl
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release with-control-plane=true is-kic-cp=include.is-kic-cp %}
 
-```yaml
+```bash
 echo '
 kind: KonnectExtension
 apiVersion: konnect.konghq.com/v1alpha1
@@ -31,11 +31,11 @@ spec:{% if include.manual-secret-provisioning %}
     certificateSecret:
       provisioning: Automatic{% endif %}
   konnect:
-    controlPlane
+    controlPlane:
       ref:
         type: konnectNamespacedRef
           konnectNamespacedRef:
-          name: my-controlplane | kubectl apply -f -
+          name: my-controlplane ' | kubectl apply -f -
 ```
 
 {% endnavtab %}
@@ -43,7 +43,7 @@ spec:{% if include.manual-secret-provisioning %}
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release with-control-plane=false %}
 
-```yaml
+```bash
 echo '
 kind: KonnectExtension
 apiVersion: konnect.konghq.com/v1alpha1
@@ -63,7 +63,7 @@ spec:{% if include.manual-secret-provisioning %}
     controlPlane:
       ref:
         type: konnectID
-        konnectID: a6554c4c-79a6-4db7-b7a4-201c0cf746ba' | kubectl apply -f -
+        konnectID: 11111111-1111-1111-1111-111111111111' | kubectl apply -f -
 ```
 
 {% endnavtab %}

@@ -1,8 +1,8 @@
 ---
-title: Deploying a DataPlane to konnect
+title: Deploying a DataPlane to Konnect
 ---
 
-The Kong `DataPlane` can be configured with half-managed `Hybrid` or `KIC` [`ControlPlane`s](/konnect/gateway-manager/#control-planes). This means that the `ControlPlane` entity referenced (via KonnectID or NamespacedRef) by the `KonnectExtension` object must belong to one of these two categories. It is important to notice, though, that in case the Konnect `ControlPlane` is of type KIC, the Kong `DataPlane` needs a Kubernetes `ControlPlane` (a.k.a. KIC) running in the cluster to be properly configured. In that scenario, the use of a [`Gateway`](/gateway-operator/{{page.release}}/guides/konnect-dataplanes/gateway) is highly recommended.
+The Kong `DataPlane` can be configured with half-managed `Hybrid` or `KIC` [`ControlPlane`s](/konnect/gateway-manager/#control-planes). This means that the `controlPlane` entity referenced (via KonnectID or NamespacedRef) by the `KonnectExtension` object must belong to one of these two categories. It is important to notice, though, that in case the Konnect `ControlPlane` is of type KIC, the Kong `DataPlane` needs a Kubernetes `ControlPlane` (a.k.a. KIC) running in the cluster to be properly configured. In that scenario, the use of a [`Gateway`](/gateway-operator/{{page.release}}/guides/konnect-dataplanes/gateway) is highly recommended.
 
 ## Create the KonnectExtension
 
@@ -10,19 +10,24 @@ The Kong `DataPlane` can be configured with half-managed `Hybrid` or `KIC` [`Con
 
 ## Create the DataPlane
 
-Configure a Kong `DataPlane` by using the `KonnectExtension` created in the step above.
+Configure a Kong `DataPlane` by using your `KonnectExtension` reference.
 
-```sh
+```bash
 echo '
 apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
-  name: my-dataplane
-  labels:
-    nickname: lovely-dataplane
+  name: dataplane-example
 spec:
   extensions:
   - kind: KonnectExtension
     name: my-konnect-config
     group: konnect.konghq.com
+  deployment:
+    podTemplateSpec:
+      spec:
+        containers:
+        - name: proxy
+          image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+' | kubectl apply -f -
 ```
