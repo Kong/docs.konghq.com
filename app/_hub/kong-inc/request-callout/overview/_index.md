@@ -209,9 +209,10 @@ Callout request and response context is stored in
 `kong.ctx.shared.callouts.<name>`. 
 
 The request context contains:
-- `.<name>.params`: The full configuration for the callout request, including `url`, 
+- `.<name>.request.params`: The full configuration for the callout request, including `url`, 
   `method`, `query`, `headers`, `body`, `decode`, `ssl_verify`, `proxy`, 
   `timeouts`, and others (as specified in the plugin schema).
+  The `headers` key is case sensitive.
 - `.<name>.retries`: The list of request retries, if `error` is set to `retry`. 
   Contains `reason`, which can be `error`, for TCP errors, or `code`, if the 
   retry was caused by an HTTP status code, `err`, with the specific error, and 
@@ -227,7 +228,7 @@ The response context contains:
 - `headers`
 - `body`
 
-Haders and body storage can be disabled via the 
+Headers and body storage can be disabled via the 
 [`config.callouts.response.headers.store`](/hub/kong-inc/request-callout/configuration/#config-callouts-response-headers-store)
 and [`config.callouts.response.body.store`](/hub/kong-inc/request-callout/configuration/#config-callouts-response-body-store)
 parameters.
