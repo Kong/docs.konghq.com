@@ -165,6 +165,14 @@ Kong produces build provenance for docker container images, which can be verifie
 
 {% endif_version %}
 
+{% if_version gte:3.10.x %}
+
+## Partials
+
+{{site.base_gateway}} allows you to extract Redis configuration in Plugins into a separate entity called Partials. Thanks to that multiple Plugins can be linked to a single Partial and the Partial update will be reflected in all of the linked Plugins making it easier to update configuration. To learn more about partials please refer to [Partials](/gateway/{{ page.release }}/kong-enterprise/partials) or the [API spec](/gateway/api/admin-ee/latest/#/partials/listPartials).
+
+{% endif_version %}
+
 ## More information
 
 See [Plugin Compatibility](/hub/plugins/compatibility/) for more information about Enterprise-only plugins.
