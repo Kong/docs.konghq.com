@@ -27,7 +27,7 @@ This document helps to migrate from `gateway-operator.konghq.com` to `konnect.ko
 
 1. Create:
 
-    1. `KonnectAPIAuthConfiguration` with your Konnect API token, for example:
+    1. `KonnectAPIAuthConfiguration` with your Konnect API token ( [create one here][tokens]), for example:
 
         ```yaml
         kind: KonnectAPIAuthConfiguration
@@ -85,6 +85,8 @@ This document helps to migrate from `gateway-operator.konghq.com` to `konnect.ko
               secretRef:
                 name: konnect-client-tls
         ```
+
+[tokens]: https://cloud.konghq.com/global/account/tokens
 
 1. Ensure that your `DataPlane`, `ControlPlane` and `GatewayConfiguration` objects use the new extension: by verifying the `extensions` field in the spec:
 
