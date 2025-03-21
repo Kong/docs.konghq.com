@@ -38,7 +38,7 @@ items:
           - text: Install Gateway Operator
             url: /get-started/konnect/install/
           - text: Deploy a Data Plane
-            url: /get-started/konnect/deploy-data-plane/
+            url: /get-started/konnect/deploy-data-plane-with-konnectextension/
           - text: Create a Route
             url: /get-started/konnect/create-route/
       - text: Kong Ingress Controller
@@ -143,8 +143,6 @@ items:
         items:
           - text: Overview
             url: /guides/konnect-dataplanes/overview/
-          - text: Deploying a Dataplane to Konnect
-            url: /guides/konnect-dataplanes/dataplane/
           - text: Deploying a Gateway to Konnect
             url: /guides/konnect-dataplanes/gateway/
           - text: Migrate Konnect DataPlanes from KGO v1.4.x to v1.5.x
