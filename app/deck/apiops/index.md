@@ -2,7 +2,7 @@
 title: APIOps
 ---
 
-APIOps is the practice of managing your API management configuration declaratively. It follows gitops principles such as X, Y and Z and applies them to APIm.
+APIOps is the practice of managing your API management configuration declaratively. It follows GitOps principles such as version control, CI/CD, and pull request reviews, and applies them to APIm.
 
 {{ site.base_gateway }} is 100% APIOps compatible thanks to decK, which enables APIOps by providing a tool with varied commands that can be coordinated to build API delivery automations.
 

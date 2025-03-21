@@ -252,6 +252,14 @@ components:
       description: |
         After filter could be used to request audit log data that was recorded after certain time (inclusive).
         It can either be a timestamp as Unix Epoch or a string following RFC3339 Schema (without fractions of a second) - ex: '2024-04-25T15:03:24Z'
+    PartialId:
+      name: PartialId
+      in: path
+      required: true
+      description: ID of the Partial
+      schema:
+        type: string
+        example: 2747d1e5-8246-4f65-a939-b392f1ee17f8
   schemas:
     Admin:
       type: object
@@ -483,6 +491,7 @@ components:
         id: d958f66b-8e99-44d2-b0b4-edd5bbf24658
         jwk: '{"alg":"RSA",  "kid": "42",  ...}'
         kid: '42'
+        x5t: 'a3f1c6b8d9e5...'
         name: a-key
         pem:
           private_key: '-----BEGIN'
@@ -490,44 +499,49 @@ components:
         set:
           id: b86b331c-dcd0-4b3e-97ce-47c5a9543031
       properties:
-        created_at:
-          description: Unix epoch when the resource was created.
-          type: integer
         id:
           type: string
-        jwk:
-          description: A JSON Web Key represented as a string.
-          type: string
-        kid:
-          description: A unique identifier for a key.
-          type: string
+          format: uuid
+          description: Unique identifier for the key.
+        set:
+          type: object
+          description: The ID of the key-set with which to associate the key.
+          properties:
+            id:
+              type: string
+              format: uuid
         name:
-          description: The name to associate with the given keys.
           type: string
+          description: The name to associate with the given keys.
+        kid:
+          type: string
+          description: A unique identifier for a key.
+        x5t:
+          type: string
+          description: X.509 certificate SHA-1 thumbprint.
+        jwk:
+          type: string
+          description: A JSON Web Key represented as a string.
         pem:
-          description: A keypair in PEM format.
+          type: object
+          description: PEM representation of the key.
           properties:
             private_key:
               type: string
             public_key:
               type: string
-          type: object
-        set:
-          additionalProperties: false
-          description: The id (an UUID) of the Key Set with which to associate the key.
-          properties:
-            id:
-              type: string
-          type: object
         tags:
-          description: An optional set of strings associated with the Key for grouping and filtering.
+          type: array
           items:
             type: string
-          type: array
-        updated_at:
-          description: Unix epoch when the resource was last updated.
+        created_at:
           type: integer
-      type: object
+          format: int64
+          description: Timestamp (seconds) of when the key was created.
+        updated_at:
+          type: integer
+          format: int64
+          description: Timestamp (seconds) of when the key was last updated.
     Key-set:
       example:
         id: b58c7d9d-e54f-444c-b24d-cdfc4159f61e
@@ -635,6 +649,23 @@ components:
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
+        partials:
+          description: List of partials linked to that plugin
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: ce44eef5-41ed-47f6-baab-f725cecf98c7
+                format: uuid
+              name:
+                type: string
+                example: my-partial-1
+              path:
+                type: string
+                description: The path at which the Partial configuration will be applied.
+                example: config.redis
       type: object
     Route:
       description: Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.
@@ -1416,6 +1447,44 @@ components:
         - type: string
           pattern: '^(\d+|\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)$'
         - type: integer
+    Partial:
+      type: object
+      required: 
+        - type
+      properties:
+        id:
+          type: string
+          example: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          format: uuid
+        name:
+          type: string
+          example: my-partial-1
+        type:
+          type: string
+          enum: [redis-ce, redis-ee]
+        config:
+          type: object
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: number
+        updated_at:
+          description: Unix epoch when the resource was updated.
+          type: number
+        tags:
+          type: array
+          description: |
+            The name to associate with the given Key Set.
+          items:
+            type: string
+    PluginLink:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          format: uuid
+        name:
+          type: string
   responses:
     HTTP401Error:
       content:
@@ -5394,6 +5463,8 @@ components:
                 ordering:
                   before:
                     - plugin-name
+                partials:
+                  - id: ce44eef5-41ed-47f6-baab-f725cecf98c7
             properties:
               name:
                 type: string
@@ -5466,6 +5537,15 @@ components:
                     type: array
                     items:
                       type: string
+              partials:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                description: If provided, the Plugin will be linked to given Partial
+                nullable: true
           examples:
             request example:
               value:
@@ -11729,7 +11809,7 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-license-report
       description: |
-        Generate a report on the Kong Gateway instance to gather monthly usage data.
+            Generate a report on the Kong Gateway instance to gather monthly usage data.
   /keyring:
     get:
       summary: Fetch cluster Keyring
@@ -16390,6 +16470,81 @@ paths:
       tags:
       - cache
 
+  /partials:
+    get:
+      summary: List all Partials
+      tags:
+        - Partials
+      operationId: listPartials
+      description: Retrieve a list of all Partials.
+      responses:
+        '200':
+          description: A list of all Partials.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Partial'
+                  next:
+                    type: string
+                    nullable: true
+    post:
+      summary: Create a new Partial
+      tags:
+        - Partials
+      operationId: createPartial
+      description: Create a new Partial.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Partial'
+      responses:
+        '201':
+          description: Partial successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
+
+  '/partials/{PartialId}':
+    parameters:
+      - $ref: '#/components/parameters/PartialId'
+    get:
+      summary: Get a specific Partial
+      tags:
+        - Partials
+      operationId: getPartial
+      description: Retrieve details of a specific Partial.
+      responses:
+        '200':
+          description: Details of the specified Partial.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
+    put:
+      summary: Update / Upsert a specific Partial
+      tags:
+        - Partials
+      operationId: upsertPartial
+      description: Update or create a specific Partial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Partial'
+      responses:
+        '201':
+          description: Partial successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'

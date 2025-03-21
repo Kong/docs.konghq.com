@@ -22,7 +22,7 @@ The plugin supports two modes of operation:
 
 When running multiple data plane nodes, there is no thread-safe behavior between nodes. In high-load scenarios, you may observe the same message being delivered multiple times across different data plane nodes
 
-To minimize duplicate message delivery in a multi-node setup, consider: 
+To minimize duplicate message delivery in a multi-node setup, consider:
 * Using a single data plane node for consuming messages from specific topics
 * Implementing idempotency handling in your consuming application
 * Monitoring consumer group offsets across your data plane nodes
@@ -41,13 +41,13 @@ The following steps assume that {{site.base_gateway}} is installed.
 
    ```bash
    curl -X POST http://localhost:8001/routes \
-      --data "name=confluent-consumer" \
-      --data "hosts[]=confluent-consumer.test"
+      --data "name=confluent-consume" \
+      --data "hosts[]=confluent-consume.test"
    ```
 2. Add the `confluent-consume` plugin to the Route:
-   
+
 	 ```bash
-   curl -X POST http://localhost:8001/routes/confluent-consumer/plugins \
+   curl -X POST http://localhost:8001/routes/confluent-consume/plugins \
       --data "name=confluent-consume" \
       --data "config.bootstrap_servers[1].host=<YOUR_BOOTSTRAP_SERVER>" \
       --data "config.bootstrap_servers[1].port=9092" \
@@ -62,7 +62,7 @@ The following steps assume that {{site.base_gateway}} is installed.
 
    ```bash
    curl http://localhost:8000/messages \
-      --header 'Host: confluent-consumer.test'
+      --header 'Host: confluent-consume.test'
    ```
 
 ## Server-Sent Events quickstart
@@ -71,13 +71,13 @@ The following steps assume that {{site.base_gateway}} is installed.
 
    ```bash
    curl -X POST http://localhost:8001/routes \
-      --data "name=confluent-sse-consumer" \
+      --data "name=confluent-sse-consume" \
       --data "hosts[]=confluent-sse.test"
    ```
 2. Add the `confluent-consume` plugin in SSE mode:
 
    ```bash
-   curl -X POST http://localhost:8001/routes/confluent-sse-consumer/plugins \
+   curl -X POST http://localhost:8001/routes/confluent-sse-consume/plugins \
       --data "name=confluent-consume" \
       --data "config.bootstrap_servers[1].host=<YOUR_BOOTSTRAP_SERVER>" \
       --data "config.bootstrap_servers[1].port=9092" \
@@ -101,4 +101,3 @@ The following steps assume that {{site.base_gateway}} is installed.
 
 * [Configuration reference](/hub/kong-inc/confluent-consume/configuration/)
 * [Basic configuration example](/hub/kong-inc/confluent-consume/how-to/basic-example/)
-

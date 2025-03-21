@@ -107,7 +107,7 @@
   lua_doc: true
   endOfLifeDate: 2025-09-30
 - release: "3.9.x"
-  ee-version: "3.9.1.0"
+  ee-version: "3.9.1.1"
   ce-version: "3.9.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -267,13 +267,15 @@
 - edition: mesh
   version: 2.9.4
   release: 2.9.x
-  latest: true
   releaseDate: "2024-10-22"
   endOfLifeDate: "2025-10-22"
   branch: release-2.9
 - edition: mesh
   version: 2.10.0
   release: 2.10.x
+  latest: true
+  releaseDate: "2025-03-20"
+  endOfLifeDate: "2026-03-20"
   branch: release-2.10
 - edition: mesh
   version: preview

@@ -136,8 +136,7 @@ The granularity of these logs is adjusted by the `log_level` property.
 
 
 ### debug_access_log
-{:.badge .enterprise}
-
+ 
 Path for Debug API request access logs. The default value `off` implies that
 logging for this API is disabled by default.
 
@@ -148,7 +147,6 @@ location.
 
 
 ### debug_error_log
-{:.badge .enterprise}
 
 Path for Debug API request error logs. The granularity of these logs is
 adjusted using the `log_level` property.
@@ -519,6 +517,25 @@ This field is ignored if `cluster_mtls` is not set to `pki_check_cn`.
 **Default:** none
 
 
+### incremental_sync
+
+The setting to enable or disable the incremental synchronization of
+configuration changes.
+
+Instead of sending the entire entity config to data planes on each config
+update, incremental config sync lets you send only the changed configuration to
+data planes for hybrid mode deployments.
+
+The valid values are `on` and `off`.
+
+To enable, set this value to `on`.
+
+In hybrid mode, this setting must be configured on both control plane and data
+plane nodes.
+
+**Default:** `off`
+
+
 ---
 
 ## Hybrid Mode Data Plane section
@@ -546,7 +563,6 @@ which configuration updates will be fetched, in `host:port` format.
 
 
 ### cluster_telemetry_endpoint
-{:.badge .enterprise}
 
 To be used by data plane nodes only: telemetry address of the control plane
 node to which telemetry updates will be posted in `host:port` format.
@@ -555,7 +571,6 @@ node to which telemetry updates will be posted in `host:port` format.
 
 
 ### cluster_telemetry_server_name
-{:.badge .enterprise}
 
 The SNI (Server Name Indication extension) to use for Vitals telemetry data.
 
@@ -607,7 +622,6 @@ See `admin_access_log` config description for more information.
 
 
 ### cluster_telemetry_listen
-{:.badge .enterprise}
 
 Comma-separated list of addresses and ports on which the cluster control plane
 server should listen for data plane telemetry connections.
@@ -797,7 +811,7 @@ Some suffixes can be specified for each pair:
 - `ipv6only=on|off` specifies whether an IPv6 socket listening on a wildcard
   address [::] will accept only IPv6 connections or both IPv6 and IPv4
   connections
-- `so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]` configures the "TCP
+- so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt] configures the "TCP
   keepalive" behavior for the listening socket. If this parameter is omitted
   then the operating system’s settings will be in effect for the socket. If it
   is set to the value "on", the SO_KEEPALIVE option is turned on for the socket.
@@ -915,7 +929,6 @@ Example: `status_listen = 0.0.0.0:8100 ssl http2`
 
 
 ### debug_listen
-{:.badge .enterprise}
 
 Comma-separated list of addresses and ports on which the Debug API should
 listen.
@@ -935,7 +948,6 @@ Example: `debug_listen = 0.0.0.0:8200 ssl http2`
 
 
 ### debug_listen_local
-{:.badge .enterprise}
 
 Expose `debug_listen` functionalities via a Unix domain socket under the Kong
 prefix.
@@ -992,6 +1004,19 @@ total memory Kong uses to cache entities might be double this value.
 
 The created zones are shared by all worker processes and do not become larger
 when more workers are used.
+
+**Default:** `128m`
+
+
+### consumers_mem_cache_size
+
+Size of the shared memory cache for consumers and credentials.
+
+The accepted units are `k` and `m`, with a minimum recommended value of a few
+MBs.
+
+**Note**: This is only used when the "externalized consumers" feature is
+active.
 
 **Default:** `128m`
 
@@ -1223,7 +1248,6 @@ See docs for `ssl_cert_key` for detailed usage.
 
 
 ### debug_ssl_cert
-{:.badge .enterprise}
 
 Comma-separated list of certificates for `debug_listen` values with TLS
 enabled.
@@ -1234,7 +1258,6 @@ See docs for `ssl_cert` for detailed usage.
 
 
 ### debug_ssl_cert_key
-{:.badge .enterprise}
 
 Comma-separated list of keys for `debug_listen` values with TLS enabled.
 
@@ -1672,7 +1695,7 @@ name   | description  | default
 **pg_iam_auth** | Determines whether the AWS IAM database Authentication will be used. When switch to `on`, the username defined in `pg_user` will be used as the database account, and the database connection will be forced to using TLS. `pg_password` will not be used when the switch is `on`. Note that the corresponding IAM policy must be correct, otherwise connecting will fail. | `off`
 **pg_iam_auth_assume_role_arn** | The target AWS IAM role ARN that will be assumed when using AWS IAM database authentication. Typically this is used for operating between multiple roles or cross-accounts. If you are not using assume role you should not specify this value. | none
 **pg_iam_auth_role_session_name** | The role session name used for role assuming in AWS IAM Database Authentication. The default value is `KongPostgres`. | `KongPostgres`
-**pg_iam_auth_sts_endpoint_url** | The custom STS endpoint URL used for role assuming in AWS IAM Database Authentication. Note that this value will override the default STS endpoint URL (which should be `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if you have `AWS_STS_REGIONAL_ENDPOINTS` set to `regional`). If you are not using private VPC endpoint for STS service, you should not specify this value. | none
+**pg_iam_auth_sts_endpoint_url** | The custom STS endpoint URL used for role assuming in AWS IAM Database Authentication. Note that this value will override the default STS endpoint URL(which should be `https://sts.amazonaws.com`, or `https://sts.<region>.amazonaws.com` if you have `AWS_STS_REGIONAL_ENDPOINTS` set to `regional`). If you are not using private VPC endpoint for STS service, you should not specify this value. | none
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
@@ -1692,7 +1715,7 @@ name   | description  | default
 **pg_ro_user** | Same as `pg_user`, but for the read-only connection. | `<pg_user>`
 **pg_ro_password** | Same as `pg_password`, but for the read-only connection. | `<pg_password>`
 **pg_ro_iam_auth** | Same as `pg_iam_auth`, but for the read-only connection. | `<pg_iam_auth>`
-**pg_ro_iam_auth_assume_role_arn** | Same as `pg_iam_auth_assume_role_arn`, but for the read-only connection. | none
+**pg_ro_iam_auth_assume_role_arn** | Same as `pg_iam_auth_assume_role_arn', but for the read-only connection. | none
 **pg_ro_iam_auth_role_session_name** | Same as `pg_iam_auth_role_session_name`, but for the read-only connection. | `KongPostgres`
 **pg_ro_iam_auth_sts_endpoint_url** | Same as `pg_iam_auth_sts_endpoint_url`, but for the read-only connection. | none
 **pg_ro_database** | Same as `pg_database`, but for the read-only connection. | `<pg_database>`
@@ -1876,6 +1899,12 @@ For the duration of the `ttl`, the internal DNS resolver will load balance each
 request it gets over the entries in the DNS record. For `SRV` records, the
 `weight` fields will be honored, but it will only use the lowest `priority`
 field entries in the record.
+
+For DNS records returned with a TTL value of 0, Kong will default to caching
+these records for 1 second. Strict adherence to the requirement of not caching
+TTL 0 records could generate excessive query frequency to upstream DNS servers,
+leading to unsustainable load and potential service degradation. As a result,
+most DNS resolver implementations deviate from this requirement in practice.
 
 
 ### dns_resolver
@@ -2119,7 +2148,6 @@ references.
 
 
 ### vault_aws_region
-{:.badge .enterprise}
 
 The AWS region your vault is located in.
 
@@ -2127,7 +2155,6 @@ The AWS region your vault is located in.
 
 
 ### vault_aws_endpoint_url
-{:.badge .enterprise}
 
 The AWS SecretsManager service endpoint url.
 
@@ -2141,7 +2168,6 @@ connect to.
 
 
 ### vault_aws_assume_role_arn
-{:.badge .enterprise}
 
 The target AWS IAM role ARN that will be assumed. Typically this is used for
 operating between multiple roles or cross-accounts.
@@ -2152,7 +2178,6 @@ If you are not using assume role you should not specify this value.
 
 
 ### vault_aws_role_session_name
-{:.badge .enterprise}
 
 The role session name used for role assuming. The default value is `KongVault`.
 
@@ -2160,7 +2185,6 @@ The role session name used for role assuming. The default value is `KongVault`.
 
 
 ### vault_aws_sts_endpoint_url
-{:.badge .enterprise}
 
 The custom STS endpoint URL used for role assuming in AWS Vault.
 
@@ -2175,7 +2199,6 @@ specify this value.
 
 
 ### vault_aws_ttl
-{:.badge .enterprise}
 
 Time-to-live (in seconds) of a secret from the AWS vault when cached by this
 node.
@@ -2189,7 +2212,6 @@ If set to 0 (default), such cached secrets or misses never expire.
 
 
 ### vault_aws_neg_ttl
-{:.badge .enterprise}
 
 Time-to-live (in seconds) of a AWS vault miss (no secret).
 
@@ -2201,7 +2223,6 @@ If set to 0, misses will never expire.
 
 
 ### vault_aws_resurrect_ttl
-{:.badge .enterprise}
 
 Time (in seconds) for which stale secrets from the AWS vault should be
 resurrected for when they cannot be refreshed (e.g., the AWS vault is
@@ -2212,7 +2233,6 @@ will be made.
 
 
 ### vault_gcp_project_id
-{:.badge .enterprise}
 
 The project ID from your Google API Console.
 
@@ -2220,7 +2240,6 @@ The project ID from your Google API Console.
 
 
 ### vault_gcp_ttl
-{:.badge .enterprise}
 
 Time-to-live (in seconds) of a secret from the GCP vault when cached by this
 node.
@@ -2234,7 +2253,6 @@ If set to 0 (default), such cached secrets or misses never expire.
 
 
 ### vault_gcp_neg_ttl
-{:.badge .enterprise}
 
 Time-to-live (in seconds) of a AWS vault miss (no secret).
 
@@ -2246,7 +2264,6 @@ If set to 0, misses will never expire.
 
 
 ### vault_gcp_resurrect_ttl
-{:.badge .enterprise}
 
 Time (in seconds) for which stale secrets from the GCP vault should be
 resurrected for when they cannot be refreshed (e.g., the GCP vault is
@@ -2257,7 +2274,6 @@ will be made.
 
 
 ### vault_hcv_protocol
-{:.badge .enterprise}
 
 The protocol to connect with. Accepts one of `http` or `https`.
 
@@ -2265,7 +2281,6 @@ The protocol to connect with. Accepts one of `http` or `https`.
 
 
 ### vault_hcv_host
-{:.badge .enterprise}
 
 The hostname of your HashiCorp vault.
 
@@ -2273,7 +2288,6 @@ The hostname of your HashiCorp vault.
 
 
 ### vault_hcv_port
-{:.badge .enterprise}
 
 The port number of your HashiCorp vault.
 
@@ -2281,7 +2295,6 @@ The port number of your HashiCorp vault.
 
 
 ### vault_hcv_namespace
-{:.badge .enterprise}
 
 Namespace for the HashiCorp Vault. Vault Enterprise requires a namespace to
 successfully connect to it.
@@ -2290,7 +2303,6 @@ successfully connect to it.
 
 
 ### vault_hcv_mount
-{:.badge .enterprise}
 
 The mount point.
 
@@ -2298,7 +2310,6 @@ The mount point.
 
 
 ### vault_hcv_kv
-{:.badge .enterprise}
 
 The secrets engine version. Accepts `v1` or `v2`.
 
@@ -2306,7 +2317,6 @@ The secrets engine version. Accepts `v1` or `v2`.
 
 
 ### vault_hcv_token
-{:.badge .enterprise}
 
 A token string.
 
@@ -2314,7 +2324,6 @@ A token string.
 
 
 ### vault_hcv_auth_method
-{:.badge .enterprise}
 
 Defines the authentication mechanism when connecting to the Hashicorp Vault
 service.
@@ -2325,7 +2334,6 @@ Accepted values are: `token`, `kubernetes` or `approle`.
 
 
 ### vault_hcv_kube_role
-{:.badge .enterprise}
 
 Defines the HashiCorp Vault role for the Kubernetes service account of the
 running pod. `vault_hcv_auth_method` must be set to `kubernetes` for this to
@@ -2335,7 +2343,6 @@ activate.
 
 
 ### vault_hcv_kube_auth_path
-{:.badge .enterprise}
 
 Place where the Kubernetes auth method will be accessible:
 `/v1/auth/<vault_hcv_kube_auth_path>`
@@ -2344,7 +2351,6 @@ Place where the Kubernetes auth method will be accessible:
 
 
 ### vault_hcv_kube_api_token_file
-{:.badge .enterprise}
 
 Defines where the Kubernetes service account token should be read from the
 pod's filesystem, if using a non-standard container platform setup.
@@ -2353,7 +2359,6 @@ pod's filesystem, if using a non-standard container platform setup.
 
 
 ### vault_hcv_approle_auth_path
-{:.badge .enterprise}
 
 Place where the Approle auth method will be accessible:
 `/v1/auth/<vault_hcv_approle_auth_path>`
@@ -2362,7 +2367,6 @@ Place where the Approle auth method will be accessible:
 
 
 ### vault_hcv_approle_role_id
-{:.badge .enterprise}
 
 The Role ID of the Approle in HashiCorp Vault.
 
@@ -2370,7 +2374,6 @@ The Role ID of the Approle in HashiCorp Vault.
 
 
 ### vault_hcv_approle_secret_id
-{:.badge .enterprise}
 
 The Secret ID of the Approle in HashiCorp Vault.
 
@@ -2378,7 +2381,6 @@ The Secret ID of the Approle in HashiCorp Vault.
 
 
 ### vault_hcv_approle_secret_id_file
-{:.badge .enterprise}
 
 Defines where the Secret ID should be read from the pod's filesystem. This is
 usually used with HashiCorp Vault's response wrapping.
@@ -2387,7 +2389,6 @@ usually used with HashiCorp Vault's response wrapping.
 
 
 ### vault_hcv_approle_response_wrapping
-{:.badge .enterprise}
 
 Defines whether the Secret ID read from configuration or file is actually a
 response-wrapping token instead of a real Secret ID.
@@ -2396,7 +2397,6 @@ response-wrapping token instead of a real Secret ID.
 
 
 ### vault_hcv_ttl
-{:.badge .enterprise}
 
 Time-to-live (in seconds) of a secret from the HashiCorp vault when cached by
 this node.
@@ -2410,7 +2410,6 @@ If set to 0 (default), such cached secrets or misses never expire.
 
 
 ### vault_hcv_neg_ttl
-{:.badge .enterprise}
 
 Time-to-live (in seconds) of a HashiCorp vault miss (no secret).
 
@@ -2422,7 +2421,6 @@ If set to 0, misses will never expire.
 
 
 ### vault_hcv_resurrect_ttl
-{:.badge .enterprise}
 
 Time (in seconds) for which stale secrets from the HashiCorp vault should be
 resurrected for when they cannot be refreshed (e.g., the HashiCorp vault is
@@ -2433,7 +2431,6 @@ will be made.
 
 
 ### vault_azure_vault_uri
-{:.badge .enterprise}
 
 The URI the vault is reachable from.
 
@@ -2441,7 +2438,6 @@ The URI the vault is reachable from.
 
 
 ### vault_azure_client_id
-{:.badge .enterprise}
 
 The client ID from your registered Application. Visit your Azure Dashboard and
 select *App Registrations* to check your client ID.
@@ -2450,7 +2446,6 @@ select *App Registrations* to check your client ID.
 
 
 ### vault_azure_tenant_id
-{:.badge .enterprise}
 
 The DirectoryId and TenantId both equate to the GUID representing the
 ActiveDirectory Tenant. Depending on context, either term may be used by
@@ -2461,7 +2456,6 @@ the "Tenant ID" IS the "Directory ID"
 
 
 ### vault_azure_type
-{:.badge .enterprise}
 
 Azure Key Vault enables Microsoft Azure applications and users to store and use
 several types of secret/key data: keys, secrets, and certificates. Kong
@@ -2471,7 +2465,6 @@ currently only supports the `Secrets`
 
 
 ### vault_azure_ttl
-{:.badge .enterprise}
 
 Time-to-live (in seconds) of a secret from the Azure Key Vault when cached by
 this node.
@@ -2485,7 +2478,6 @@ If set to 0 (default), such cached secrets or misses never expire.
 
 
 ### vault_azure_neg_ttl
-{:.badge .enterprise}
 
 Time-to-live (in seconds) of a Azure Key Vault miss (no secret).
 
@@ -2497,7 +2489,6 @@ If set to 0, misses will never expire.
 
 
 ### vault_azure_resurrect_ttl
-{:.badge .enterprise}
 
 Time (in seconds) for which stale secrets from the Azure Key Vault should be
 resurrected for when they cannot be refreshed (e.g., the the vault is
@@ -2735,7 +2726,6 @@ See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
 
 
 ### enforce_rbac
-{:.badge .enterprise}
 
 Specifies whether Admin API RBAC is enforced.
 
@@ -2755,7 +2745,6 @@ resource.
 
 
 ### rbac_auth_header
-{:.badge .enterprise}
 
 Defines the name of the HTTP request header from which the Admin API will
 attempt to authenticate the RBAC user.
@@ -2764,7 +2753,6 @@ attempt to authenticate the RBAC user.
 
 
 ### event_hooks_enabled
-{:.badge .enterprise}
 
 When enabled, event hook entities represent a relationship between an event
 (source and event) and an action (handler). Similar to web hooks, event hooks
@@ -2857,7 +2845,6 @@ Examples:
 
 
 ### admin_gui_api_url
-{:.badge .free}
 
 Hierarchical part of a URI which is composed optionally of a host, port, and
 path at which the Admin API accepts HTTP or HTTPS traffic. When this config is
@@ -2867,8 +2854,38 @@ resolved admin_listen HTTP/HTTPS port.
 **Default:** none
 
 
+### admin_gui_csp_header
+
+Enable or disable the `Content-Security-Policy` (CSP) header for Kong Manager
+
+This configuration controls the presence of the CSP header when serving Kong
+Manager. The default CSP header value will be used unless customized.
+
+To modify the value of the served CSP header, refer to the
+`admin_gui_csp_header_value` configuration.
+
+Set this configuration to `on` to enable the CSP header.
+
+**Default:** `off`
+
+
+### admin_gui_csp_header_value
+
+The value of the `Content-Security-Policy` (CSP) header for Kong Manager.
+
+This configuration controls the value of the CSP header when serving Kong
+Manager. If omitted or left empty, the default CSP header value will be used.
+
+This is an advanced configuration intended for cases where the default CSP
+header value does not meet your requirements. Use with caution.
+
+For more information on the CSP header, see:
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+
+**Default:** none
+
+
 ### admin_gui_ssl_protocols
-{:.badge .free}
 
 Defines the TLS versions supported for Kong Manager
 
@@ -2902,7 +2919,6 @@ values:
 
 
 ### admin_gui_flags
-{:.badge .free}
 
 Alters the layout Admin GUI (JSON) to enable Kong Immunity in the Admin GUI.
 
@@ -2936,7 +2952,6 @@ Granularity can be adjusted through the `log_level` directive.
 
 
 ### admin_gui_auth
-{:.badge .enterprise}
 
 Kong Manager Authentication Plugin Name
 
@@ -2952,7 +2967,6 @@ Supported Plugins:
 
 
 ### admin_gui_auth_conf
-{:.badge .enterprise}
 
 Kong Manager Authentication Plugin Config (JSON)
 
@@ -2970,7 +2984,6 @@ Example for `basic-auth`:
 
 
 ### admin_gui_auth_password_complexity
-{:.badge .enterprise}
 
 Kong Manager Authentication Password Complexity (JSON)
 
@@ -3011,7 +3024,6 @@ Example:
 
 
 ### admin_gui_session_conf
-{:.badge .enterprise}
 
 Kong Manager Session Config (JSON)
 
@@ -3031,7 +3043,6 @@ admin_gui_session_conf = { "cookie_name": "kookie", \
 
 
 ### admin_gui_auth_header
-{:.badge .enterprise}
 
 Defines the name of the HTTP request header from which the Admin API will
 attempt to identify the Kong Admin user.
@@ -3040,7 +3051,6 @@ attempt to identify the Kong Admin user.
 
 
 ### admin_gui_auth_login_attempts
-{:.badge .enterprise}
 
 Number of times a user can attempt to login to Kong Manager. 0 means infinite
 attempts allowed.
@@ -3049,7 +3059,6 @@ attempts allowed.
 
 
 ### admin_gui_auth_login_attempts_ttl
-{:.badge .enterprise}
 
 Length, in seconds, of the TTL for changing login attempts records. Records in
 the database older than their TTL are automatically purged.
@@ -3062,7 +3071,6 @@ Example, 7 days: `7 * 24 * 60 * 60 = 604800.`
 
 
 ### admin_gui_auth_change_password_attempts
-{:.badge .enterprise}
 
 Number of times a user can attempt to change password.
 
@@ -3072,7 +3080,6 @@ Number of times a user can attempt to change password.
 
 
 ### admin_gui_auth_change_password_ttl
-{:.badge .enterprise}
 
 Length, in seconds, of the TTL for changing password attempts records. Records
 in the database older than their TTL are automatically purged.
@@ -3083,7 +3090,6 @@ Example, 1 days: `1 * 24 * 60 * 60 = 86400.`
 
 
 ### admin_gui_header_txt
-{:.badge .free}
 
 Sets the text for the Kong Manager header banner.
 
@@ -3093,7 +3099,6 @@ Header banner is not shown if this config is empty.
 
 
 ### admin_gui_header_bg_color
-{:.badge .free}
 
 Sets the background color for the Kong Manager header banner.
 
@@ -3104,7 +3109,6 @@ ignored by Manager.
 
 
 ### admin_gui_header_txt_color
-{:.badge .free}
 
 Sets the text color for the Kong Manager header banner.
 
@@ -3115,7 +3119,6 @@ ignored by Kong Manager.
 
 
 ### admin_gui_footer_txt
-{:.badge .free}
 
 Sets the text for the Kong Manager footer banner. Footer banner is not shown if
 this config is empty.
@@ -3124,7 +3127,6 @@ this config is empty.
 
 
 ### admin_gui_footer_bg_color
-{:.badge .free}
 
 Sets the background color for the Kong Manager footer banner.
 
@@ -3135,7 +3137,6 @@ ignored by manager.
 
 
 ### admin_gui_footer_txt_color
-{:.badge .free}
 
 Sets the text color for the Kong Manager footer banner.
 
@@ -3146,7 +3147,6 @@ ignored by Kong Manager.
 
 
 ### admin_gui_login_banner_title
-{:.badge .free}
 
 Sets the title text for the Kong Manager login banner.
 
@@ -3157,7 +3157,6 @@ Login banner is not shown if both `admin_gui_login_banner_title` and
 
 
 ### admin_gui_login_banner_body
-{:.badge .free}
 
 Sets the body text for the Kong Manager login banner.
 
@@ -3215,7 +3214,6 @@ Outputs analytics payload to Kong logs.
 ## Admin Smtp Configuration section
 
 ### admin_emails_from
-{:.badge .enterprise}
 
 The email address for the `From` header for admin emails.
 
@@ -3223,7 +3221,6 @@ The email address for the `From` header for admin emails.
 
 
 ### admin_emails_reply_to
-{:.badge .enterprise}
 
 Email address for the `Reply-To` header for admin emails.
 
@@ -3231,7 +3228,6 @@ Email address for the `Reply-To` header for admin emails.
 
 
 ### admin_invitation_expiry
-{:.badge .enterprise}
 
 Expiration time for the admin invitation link (in seconds). 0 means no
 expiration.
@@ -3246,7 +3242,6 @@ Example, 72 hours: `72 * 60 * 60 = 259200`
 ## General Smtp Configuration section
 
 ### smtp_mock
-{:.badge .enterprise}
 
 This flag will mock the sending of emails. This can be used for testing before
 the SMTP client is fully configured.
@@ -3255,7 +3250,6 @@ the SMTP client is fully configured.
 
 
 ### smtp_host
-{:.badge .enterprise}
 
 The hostname of the SMTP server to connect to.
 
@@ -3263,7 +3257,6 @@ The hostname of the SMTP server to connect to.
 
 
 ### smtp_port
-{:.badge .enterprise}
 
 The port number on the SMTP server to connect to.
 
@@ -3271,7 +3264,6 @@ The port number on the SMTP server to connect to.
 
 
 ### smtp_starttls
-{:.badge .enterprise}
 
 When set to `on`, STARTTLS is used to encrypt communication with the SMTP
 server. This is normally used in conjunction with port 587.
@@ -3280,7 +3272,6 @@ server. This is normally used in conjunction with port 587.
 
 
 ### smtp_username
-{:.badge .enterprise}
 
 Username used for authentication with SMTP server
 
@@ -3288,7 +3279,6 @@ Username used for authentication with SMTP server
 
 
 ### smtp_password
-{:.badge .enterprise}
 
 Password used for authentication with SMTP server
 
@@ -3296,7 +3286,6 @@ Password used for authentication with SMTP server
 
 
 ### smtp_ssl
-{:.badge .enterprise}
 
 When set to `on`, SMTPS is used to encrypt communication with the SMTP server.
 This is normally used in conjunction with port 465.
@@ -3305,7 +3294,6 @@ This is normally used in conjunction with port 465.
 
 
 ### smtp_auth_type
-{:.badge .enterprise}
 
 The method used to authenticate with the SMTP server Valid options are `plain`,
 `login`, or `nil`
@@ -3314,7 +3302,6 @@ The method used to authenticate with the SMTP server Valid options are `plain`,
 
 
 ### smtp_domain
-{:.badge .enterprise}
 
 The domain used in the `EHLO` connection and part of the `Message-ID` header
 
@@ -3322,7 +3309,6 @@ The domain used in the `EHLO` connection and part of the `Message-ID` header
 
 
 ### smtp_timeout_connect
-{:.badge .enterprise}
 
 The timeout (in milliseconds) for connecting to the SMTP server.
 
@@ -3330,7 +3316,6 @@ The timeout (in milliseconds) for connecting to the SMTP server.
 
 
 ### smtp_timeout_send
-{:.badge .enterprise}
 
 The timeout (in milliseconds) for sending data to the SMTP server.
 
@@ -3338,7 +3323,6 @@ The timeout (in milliseconds) for sending data to the SMTP server.
 
 
 ### smtp_timeout_read
-{:.badge .enterprise}
 
 The timeout (in milliseconds) for reading data from the SMTP server.
 
@@ -3346,7 +3330,6 @@ The timeout (in milliseconds) for reading data from the SMTP server.
 
 
 ### smtp_admin_emails
-{:.badge .enterprise}
 
 Comma separated list of admin emails to receive notifications.
 
@@ -3432,7 +3415,6 @@ future. If this value is undefined, no signature will be generated.
 ## Route Collision Detection/Prevention section
 
 ### route_validation_strategy
-{:.badge .enterprise}
 
 The strategy used to validate routes when creating or updating them.
 
@@ -3456,7 +3438,6 @@ filter.
 
 
 ### enforce_route_path_pattern
-{:.badge .enterprise}
 
 Specifies the Lua pattern which will be enforced on the `paths` attribute of a
 route object. You can also add a placeholder for the workspace in the pattern,
@@ -3496,7 +3477,6 @@ note that mismanagement of keyring data may result in irrecoverable data loss.
 
 
 ### keyring_enabled
-{:.badge .enterprise}
 
 When enabled, Kong will encrypt sensitive field values before writing them to
 the database, and subsequently decrypt them when retrieving data for the Admin
@@ -3507,7 +3487,6 @@ managed based on the strategy defined below.
 
 
 ### keyring_strategy
-{:.badge .enterprise}
 
 Defines the strategy implementation by which Kong nodes will manage symmetric
 encryption keys. Please see the Kong Enterprise documentation for a detailed
@@ -3518,7 +3497,6 @@ and `vault`.
 
 
 ### keyring_public_key
-{:.badge .enterprise}
 
 Defines the public key of an RSA keypair.
 
@@ -3535,7 +3513,6 @@ Values:
 
 
 ### keyring_private_key
-{:.badge .enterprise}
 
 Defines the private key of an RSA keypair.
 
@@ -3552,7 +3529,6 @@ Values:
 
 
 ### keyring_recovery_public_key
-{:.badge .enterprise}
 
 Defines the public key to optionally encrypt all keyring materials and back
 them up in the database.
@@ -3567,7 +3543,6 @@ Values:
 
 
 ### keyring_blob_path
-{:.badge .enterprise}
 
 Defines the filesystem path at which Kong will back up the initial keyring
 material.
@@ -3578,7 +3553,6 @@ This option is useful largely for development purposes.
 
 
 ### keyring_vault_host
-{:.badge .enterprise}
 
 Defines the Vault host at which Kong will fetch the encryption material. This
 value should be defined in the format:
@@ -3589,7 +3563,6 @@ value should be defined in the format:
 
 
 ### keyring_vault_mount
-{:.badge .enterprise}
 
 Defines the name of the Vault v2 KV secrets engine at which symmetric keys are
 found.
@@ -3598,7 +3571,6 @@ found.
 
 
 ### keyring_vault_path
-{:.badge .enterprise}
 
 Defines the name of the Vault v2 KV path at which symmetric keys are found.
 
@@ -3606,7 +3578,6 @@ Defines the name of the Vault v2 KV path at which symmetric keys are found.
 
 
 ### keyring_vault_auth_method
-{:.badge .enterprise}
 
 Defines the authentication mechanism when connecting to the Hashicorp Vault
 service.
@@ -3624,7 +3595,6 @@ Accepted values are: `token`, or `kubernetes`:
 
 
 ### keyring_vault_token
-{:.badge .enterprise}
 
 Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 
@@ -3632,7 +3602,6 @@ Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 
 
 ### keyring_vault_kube_role
-{:.badge .enterprise}
 
 Defines the Hashicorp Vault role that will be assumed using the Kubernetes
 service account of the running pod.
@@ -3643,7 +3612,6 @@ service account of the running pod.
 
 
 ### keyring_vault_kube_api_token_file
-{:.badge .enterprise}
 
 Defines where the Kubernetes service account token should be read from the
 pod's filesystem, if using a non-standard container platform setup.
@@ -3652,7 +3620,6 @@ pod's filesystem, if using a non-standard container platform setup.
 
 
 ### keyring_encrypt_license
-{:.badge .enterprise}
 
 Enables keyring encryption for license payloads stored in the database.
 
@@ -3683,8 +3650,8 @@ Accepted values are: `off`, `sandbox`, or `on`:
 
 - `sandbox`: Allow loading of Lua functions, but use a sandbox when executing
   them. The sandboxed function has restricted access to the global environment
-  and only has access to standard Lua functions that will generally not cause
-  harm to the Kong Gateway node.
+  and only has access to Kong PDK, OpenResty, and standard Lua functions that
+  will generally not cause harm to the Kong Gateway node.
 
 - `on`: Functions have unrestricted access to the global environment and can
   load any Lua modules. This is similar to the behavior in Kong Gateway prior to
@@ -3700,9 +3667,6 @@ Examples of `untrusted_lua = sandbox` behavior:
   `kong.configuration.pg_password`
 - You can run harmless Lua: `local foo = 1 + 1`. However, OS level functions
   are not allowed, like: `os.execute(`rm -rf /*`)`.
-
-For a full allowed/disallowed list, see:
-https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua
 
 To customize the sandbox environment, use the `untrusted_lua_sandbox_requires`
 and `untrusted_lua_sandbox_environment` parameters below.
@@ -3772,7 +3736,6 @@ and valid UUID. When empty, node ID is automatically generated.
 ## Cluster Fallback Configuration section
 
 ### cluster_fallback_config_import
-{:.badge .enterprise}
 
 Enable fallback configuration imports.
 
@@ -3782,7 +3745,6 @@ This should only be enabled for data planes.
 
 
 ### cluster_fallback_config_storage
-{:.badge .enterprise}
 
 Storage definition used by `cluster_fallback_config_import` and
 `cluster_fallback_config_export`.
@@ -3808,7 +3770,6 @@ The credentials for GCP are provided via the environment variable
 
 
 ### cluster_fallback_export_s3_config
-{:.badge .enterprise}
 
 Fallback config export S3 configuration.
 
@@ -3830,7 +3791,6 @@ the S3 putObject request, you can set the config table to:
 
 
 ### cluster_fallback_config_export
-{:.badge .enterprise}
 
 Enable fallback configuration exports.
 
@@ -3838,7 +3798,6 @@ Enable fallback configuration exports.
 
 
 ### cluster_fallback_config_export_delay
-{:.badge .enterprise}
 
 The fallback configuration export interval.
 
@@ -4041,9 +4000,11 @@ The following filters are supported for `X-Kong-Request-Debug`:
   `false`.
 
 - `X-Kong-Request-Debug-Token`: Token for authenticating the client making the
-  debug request to prevent abuse. **Note: Debug requests originating from
-  loopback addresses do not require this header. Deploying Kong behind other
-  proxies may result in exposing the debug interface to the public.**
+  debug request to prevent abuse. 
+
+    **Note: Debug requests originating from
+    loopback addresses do not require this header. Deploying Kong behind other
+    proxies may result in exposing the debug interface to the public.**
 
 **Default:** `on`
 
@@ -4064,11 +4025,10 @@ You can locate the generated debug token in two locations:
   `[request-debug]` prefix to aid searching.
 - Filesystem: Debug token will also be stored in a file located at
   `{prefix}/.request_debug_token` and updated when Kong starts, restarts, or
-  reloads.
+  reloads. identity_service = # Overrides the default identity service URL for
+  external consumers.
 
 **Default:** `<random>`
-
-
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html

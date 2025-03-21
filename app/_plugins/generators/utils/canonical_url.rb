@@ -5,6 +5,7 @@ module Utils
     def self.generate(url)
       return url if url.end_with?('/')
       return url if url.end_with?('.html') || url.end_with?('.xml')
+      return url if url.include?('/#')
 
       # call dup here because #concat
       # modifies the string

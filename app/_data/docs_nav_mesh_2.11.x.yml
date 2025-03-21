@@ -1,10 +1,10 @@
 generate: true
 assume_generated: true
-release: 2.10.x
+release: 2.11.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
-  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.10.x.yml
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.11.x.yml
   patches:
     - path: [ Introduction ]
       action: modify
@@ -126,7 +126,7 @@ inherit:
     - path: [ Policies ]
       action: insert
       index: -2
-      text: MeshOPA
+      text: MeshOPA 
       url: /features/meshopa
       generate: false
     - path: [ Policies ]
@@ -201,8 +201,3 @@ inherit:
       src: null
       absolute_url: true
       url: https://kuma.io/community
-    - path: [ Guides ]
-      text: Deploy Kong Mesh using Terraform and Konnect
-      url: /guides/deploy-kong-mesh-using-terraform-and-konnect
-      action: insert
-      index: -1
