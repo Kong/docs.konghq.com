@@ -11810,11 +11810,6 @@ paths:
       operationId: get-license-report
       description: |
             Generate a report on the Kong Gateway instance to gather monthly usage data.
-            
-            The report now includes:
-            - Kafka consumption counts
-            - Confluent Kafka consumption counts
-            - Confluent production counts
   /keyring:
     get:
       summary: Fetch cluster Keyring
