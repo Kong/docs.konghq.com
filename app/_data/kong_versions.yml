@@ -120,11 +120,9 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  latest: true
   endOfLifeDate: 2025-12-30
 - release: "3.10.x"
   ee-version: "3.10.0.0"
-  ce-version: "3.10.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -136,7 +134,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  label: unreleased
+  latest: true
 - edition: "deck"
 - edition: "dev-portal"
 - edition: "konnect"
