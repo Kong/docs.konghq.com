@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Check if manual review has been performed
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
         id: labels
         with:
           script: |
@@ -31,9 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: Wait for Pages changed to be neutral
-        uses: fountainhead/action-wait-for-check@v1.2.0
+        uses: fountainhead/action-wait-for-check@5a908a24814494009c4bb27c242ea38c93c593be # v1.2.0
         id: waitForCheck
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
@@ -41,7 +41,7 @@ jobs:
           checkName: "Pages changed - kongdocs"
       - name: Wait for Netlify site to be ready
         if: steps.waitForCheck.outputs.conclusion == 'neutral'
-        uses: jakepartusch/wait-for-netlify-action@v1.4
+        uses: jakepartusch/wait-for-netlify-action@f1e137043864b9ab9034ae3a5adc1c108e3f1a48 # v1.4
         id: waitForNetlify
         with:
           site_name: "kongdocs"

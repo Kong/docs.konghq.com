@@ -11,6 +11,54 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.9.1.1
+**Release Date** 2025/03/20
+
+### Fixes
+#### Core
+
+* Fixed an issue where modifying the X-Forwarded header before the access phase didn't take effect.
+* Fixed an issue where DNS answers with `ttl=0` were incorrectly cached indefinitely in the new DNS client.
+* Fixed an issue where Konnect analytics were missing for Kong AI Gateway.
+
+#### Plugins
+
+* [**AI Plugins**](/hub/?category=ai): 
+  * Fixed an issue where templates weren't being resolved correctly.
+  * Added nested field support.
+
+* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`)  
+  * Fixed an issue where the SSE body could have extra trailing, in some cases.
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed preserve mode.
+  * Fixed an issue where the SSE body could have extra trailing, in some cases.
+
+* [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
+  * Fixed segmentation fault caused by missing destructor call on process exit.
+
+## 3.9.1.0
+**Release Date** 2025/03/11
+
+### Fixes
+#### Core
+
+* Fixed an issue where a mismatch between If-Match in the request and ETag in the response would result in a bad case in the response phase.
+* Updated the AWS Vault supported regions list to the latest available.
+* Added support for the new Ollama streaming content type in the AI driver.
+
+#### Plugins
+
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`)
+  * Fixed an issue with Gemini streaming responses getting truncated and/or missing tokens.
+  * Fixed an incorrect error thrown when trying to log streaming responses.
+  * Fixed an issue where tool calls weren't working in streaming mode for Bedrock and Gemini providers.
+
+* [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-prompt-guard/) (`ai-semantic-prompt-guard`)
+  *  Fixed an issue where Kong Gateway couldn't reconfigure the plugin when using DB-less mode.
+
+* [**Session**](/hub/kong-inc/session/) (`session`) 
+  * Fixed an issue where two boolean configuration fields `hash_subject` (default `false`) and `store_metadata` (default `false`) stored the session's metadata in the database.
 
 ## 3.9.0.1
 **Release Date** 2025/01/28
@@ -140,7 +188,7 @@ Implemented a new plugin to protect services using request rate limiting.
   * Added the `ignore_tool` configuration option to discard tool role prompts from the input text.
   * This plugin can now be enabled on consumer groups.
 
-* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`), [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`), [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
+* [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`), [**AI Semantic Prompt Guard**](/hub/kong-inc/ai-semantic-prompt-guard/) (`ai-semantic-prompt-guard`), [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
   * Made the `embeddings.model.name` config field a free text entry, enabling use of a
 self-hosted (or otherwise compatible) model.
 
@@ -2803,7 +2851,7 @@ config table to the Kong exporter config S3 `putObject` request.
 * Added troubleshooting tools to container images.
 * `workspaces.get_workspace()` now tries to get the workspace from the cache 
 instead of querying the database directly. 
-* Introduced the new endpoint [`/schemas/vaults/:name`](/gateway/api/admin-ee/latest/#/Information/get-schemas-vaults-vault_name) for retrieving the schema of a vault. 
+* Introduced the new endpoint [`/schemas/vaults/:name`](/gateway/api/admin-ee/latest/#/operations/get-schemas-vaults-vault_name) for retrieving the schema of a vault. 
 [#11727](https://github.com/Kong/kong/pull/11727)
 * Renamed `privileged_agent` to [`dedicated_config_processing`](/gateway/3.5.x/reference/configuration/#dedicated_config_processing) and enabled `dedicated_config_processing` by default.
 [#11784](https://github.com/Kong/kong/pull/11784)
@@ -3383,7 +3431,7 @@ choose not to use `AK-SK` environment variables to grant IAM role permissions.
 * OSS features will now continue working with an expired license, and configured Kong Enterprise features will continue operating in read-only mode. Kong Gateway now logs a daily critical message when a license is expired and within the 30 days grace period.
 * You can now use an RBAC token to authenticate while using 
 [group mapping with Kong Manager](/gateway/3.4.x/kong-manager/auth/oidc/mapping/) (for example, with OIDC or LDAP).
-* Introduced the new endpoint [`/schemas/vaults/:name`](/gateway/api/admin-ee/latest/#/Information/get-schemas-vaults-vault_name) for retrieving the schema of a vault. 
+* Introduced the new endpoint [`/schemas/vaults/:name`](/gateway/api/admin-ee/latest/#/operations/get-schemas-vaults-vault_name) for retrieving the schema of a vault. 
 
 #### Plugins
 

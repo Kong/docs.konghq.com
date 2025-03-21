@@ -14,6 +14,7 @@
     pcre: "8.45"
   lua_doc: true
   lts: true
+  endOfLifeDate: 2025-03-31
 - release: "3.3.x"
   ee-version: "3.3.1.1"
   ce-version: "3.3.1"
@@ -28,6 +29,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+  endOfLifeDate: 2024-05-19
 - release: "3.4.x"
   ee-version: "3.4.3.16"
   ce-version: "3.4.2"
@@ -43,6 +45,7 @@
     pcre: 8.45
   lua_doc: true
   lts: true
+  endOfLifeDate: 2026-08-31
 - release: "3.5.x"
   ee-version: "3.5.0.7"
   ce-version: "3.5.0"
@@ -57,6 +60,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+  endOfLifeDate: 2024-11-08
 - release: "3.6.x"
   ee-version: "3.6.1.8"
   ce-version: "3.6.1"
@@ -71,6 +75,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+  endOfLifeDate: 2025-02-12
 - release: "3.7.x"
   ee-version: "3.7.1.4"
   ce-version: "3.7.1"
@@ -85,6 +90,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+  endOfLifeDate: 2025-05-31
 - release: "3.8.x"
   ee-version: "3.8.1.0"
   ce-version: "3.8.1"
@@ -99,8 +105,9 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+  endOfLifeDate: 2025-09-30
 - release: "3.9.x"
-  ee-version: "3.9.0.1"
+  ee-version: "3.9.1.1"
   ce-version: "3.9.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -114,6 +121,7 @@
     pcre: 8.45
   lua_doc: true
   latest: true
+  endOfLifeDate: 2025-12-30
 - release: "3.10.x"
   ee-version: "3.10.0.0"
   ce-version: "3.10.0"
@@ -259,12 +267,18 @@
 - edition: mesh
   version: 2.9.4
   release: 2.9.x
-  latest: true
   releaseDate: "2024-10-22"
   endOfLifeDate: "2025-10-22"
   branch: release-2.9
 - edition: mesh
-  version: preview
+  version: 2.10.0
   release: 2.10.x
+  latest: true
+  releaseDate: "2025-03-20"
+  endOfLifeDate: "2026-03-20"
+  branch: release-2.10
+- edition: mesh
+  version: preview
+  release: 2.11.x
   branch: master
   label: dev

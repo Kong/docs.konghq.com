@@ -39,7 +39,7 @@ depending on preference.
 ## Create a Workspace
 
 This guide describes how to create workspaces in Kong
-Manager. You can also use the Admin API [`/workspaces/` route](/gateway/api/admin-ee/latest/#/Workspaces/create-workspace) to create a workspace.
+Manager. You can also use the Admin API [`/workspaces/` route](/gateway/api/admin-ee/latest/#/operations/create-workspace) to create a workspace.
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace**
 button to see the **Create Workspace** form. Name and choose a
@@ -143,7 +143,7 @@ from the workspace:
 {% endif_version %}
 
 {% if_version gte:3.4.x %}
-Delete the workspace and [all entities associated with the workspace](/gateway/api/admin-ee/latest/#/Workspaces/delete-workspace):
+Delete the workspace and [all entities associated with the workspace](/gateway/api/admin-ee/latest/#/operations/delete-workspace):
 
 ```bash
 curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true
@@ -200,7 +200,7 @@ This will automatically delete all entities (teams, roles, services, and routes,
 
 {% endnavtab %}
 {% navtab Admin API %}
-Delete the workspace and [all entities associated with the workspace](/gateway/api/admin-ee/latest/#/Workspaces/delete-workspace):
+Delete the workspace and [all entities associated with the workspace](/gateway/api/admin-ee/latest/#/operations/delete-workspace):
 
 ```bash
 curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true

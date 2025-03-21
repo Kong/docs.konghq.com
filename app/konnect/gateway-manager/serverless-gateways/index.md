@@ -40,6 +40,13 @@ Serverless gateways are designed to be fast to provision and lightweight, theref
 
 Serverless gateways only supports public networking. There are currently no capabilities for private networking between your data centers and hosted Kong data planes. For use cases where private networking is required, [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways) with [AWS Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/) may be a better choice.
 
+## Other Limits
+In addition to networking considerations, Serverless Gateways have the following limits:
+* Request Rate Limit: Serverless Gateways support up to 100 requests per second (RPS) per gateway.
+* Maximum Request Size: Incoming requests are limited to a maximum payload size of 10MB.
+
+For workloads that exceed these limits, consider using [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways) for higher throughput and larger request sizes.
+
 ## Plugin considerations for serverless gateways
 There are some limitations for plugins with serverless gateways:
 

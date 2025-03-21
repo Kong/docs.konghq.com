@@ -99,9 +99,35 @@ paths:
           $ref: '#/components/responses/MeshControlPlaneNotFoundError'
       tags:
         - Mesh
+    put:
+      operationId: update-cp
+      summary: Update a whole control plane
+      description: Update a whole control plane
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutMeshControlPlaneRequest'
+            examples:
+              Example Request Body:
+                $ref: '#/components/examples/PutMeshControlPlaneRequestExample'
+      responses:
+        '200':
+          $ref: '#/components/responses/PutMeshControlPlaneResponse'
+        '400':
+          $ref: '#/components/responses/PutMeshControlPlaneValidationError'
+        '401':
+          $ref: '#/components/responses/MeshControlPlaneUnauthorizedError'
+        '403':
+          $ref: '#/components/responses/MeshControlPlaneForbiddenError'
+        '404':
+          $ref: '#/components/responses/MeshControlPlaneNotFoundError'
+      tags:
+        - Mesh
     patch:
-      operationId: update-mesh-control-plane
-      summary: Update control plane
+      operationId: patch-mesh-control-plane
+      summary: Patch parts of control plane
       description: Update an individual control plane.
       requestBody:
         required: true
@@ -192,6 +218,19 @@ components:
       maxProperties: 10
       nullable: true
       title: Labels
+    MeshControlPlaneNonNullableLabels:
+      description: Labels to facilitate tagged search on control planes. Keys must be of length 1-63 characters.
+      type: object
+      example:
+        test: 'true'
+      additionalProperties:
+        type: string
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z\-\.\_]*[a-z0-9A-Z]+)?$'
+        minLength: 1
+        maxLength: 63
+      maxProperties: 10
+      nullable: true
+      title: Labels
     MeshControlPlane:
       description: a control plane
       type: object
@@ -203,15 +242,9 @@ components:
           example: d32d905a-ed33-46a3-a093-d8f536af9a8a
           readOnly: true
         name:
-          description: The name of the control plane.
-          type: string
-          example: Test control plane
-          maxLength: 100
-          pattern: '^[a-z0-9A-Z]{1}.*$'
+          $ref: '#/components/schemas/MeshControlPlaneName'
         description:
-          type: string
-          example: A control plane to handle traffic on development environment.
-          maxLength: 250
+          $ref: '#/components/schemas/MeshControlPlaneDescription'
         labels:
           $ref: '#/components/schemas/MeshControlPlaneLabels'
         features:
@@ -237,16 +270,9 @@ components:
       type: object
       properties:
         name:
-          description: The name of the control plane.
-          type: string
-          example: Test control plane
-          maxLength: 100
-          minLength: 1
-          pattern: '^[a-z0-9A-Z]{1}.*$'
+          $ref: '#/components/schemas/MeshControlPlaneName'
         description:
-          type: string
-          example: A control plane to handle traffic on development environment.
-          maxLength: 250
+          $ref: '#/components/schemas/MeshControlPlaneDescription'
         features:
           $ref: '#/components/schemas/MeshControlPlaneFeatures'
         labels:
@@ -256,15 +282,11 @@ components:
         - name
       title: CreateMeshControlPlaneRequest
     UpdateMeshControlPlaneRequest:
-      description: a payload to update the control plane
+      description: a payload to update parts of the control plane
       type: object
       properties:
         name:
-          description: The name of the control plane.
-          type: string
-          example: Test control plane
-          maxLength: 100
-          pattern: '^[a-z0-9A-Z]{1}.*$'
+          $ref: '#/components/schemas/MeshControlPlaneName'
         description:
           type: string
           example: A control plane to handle traffic on development environment.
@@ -272,6 +294,30 @@ components:
         labels:
           $ref: '#/components/schemas/MeshControlPlaneLabels'
       title: UpdateMeshControlPlaneRequest
+    PutMeshControlPlaneRequest:
+      description: a payload to update the whole control plane
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/MeshControlPlaneName'
+        description:
+          $ref: '#/components/schemas/MeshControlPlaneDescription'
+        labels:
+          $ref: '#/components/schemas/MeshControlPlaneNonNullableLabels'
+      required:
+        - name
+      title: PutMeshControlPlaneRequest
+    MeshControlPlaneName:
+      description: The name of the control plane.
+      type: string
+      example: Test control plane
+      maxLength: 100
+      minLength: 1
+      pattern: '^[a-z0-9A-Z]{1}.*$'
+    MeshControlPlaneDescription:
+      type: string
+      example: A control plane to handle traffic on development environment.
+      maxLength: 250
     PageMeta:
       description: Contains pagination query parameters and the total number of objects returned.
       type: object
@@ -599,12 +645,29 @@ components:
           test: 'true'
         created_at: '2022-11-04T20:10:06.927Z'
         updated_at: '2022-11-04T20:10:06.927Z'
+    PutMeshControlPlaneRequestExample:
+      value:
+        name: Test Control Plane
+        description: A test control plane for exploration.
+        labels:
+          test: 'true'
     CreateMeshControlPlaneRequestExample:
       value:
         name: Test Control Plane
         description: A test control plane for exploration.
         labels:
           test: 'true'
+    EmptyFieldExample:
+      value:
+        status: 400
+        title: Bad Request
+        type: 'https://kongapi.info/konnect/bad-request'
+        instance: 'konnect:trace:6480643114111646299'
+        detail: ''
+        invalid_parameters:
+          - field: name
+            reason: Value is not nullable
+            source: ''
     UpdateMeshControlPlaneRequestExample:
       value:
         name: Test Control Plane
@@ -649,16 +712,16 @@ components:
                     reason: property "name" is missing
                     source: ''
             Empty Field:
-              value:
-                status: 400
-                type: 'https://kongapi.info/konnect/bad-request'
-                title: Bad Request
-                instance: 'konnect:trace:6480643114111646299'
-                detail: ''
-                invalid_parameters:
-                  - field: name
-                    reason: Value is not nullable
-                    source: ''
+              $ref: '#/components/examples/EmptyFieldExample'
+    PutMeshControlPlaneValidationError:
+      description: Validation Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+          examples:
+            Empty Field:
+              $ref: '#/components/examples/EmptyFieldExample'
     UpdateMeshControlPlaneValidationError:
       description: Validation Error
       content:
@@ -719,6 +782,15 @@ components:
                 title: Not Found
                 instance: 'konnect:trace:369660938739689085'
                 detail: The requested requested entity was not found was not found
+    PutMeshControlPlaneResponse:
+      description: A response to updating a control plane.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MeshControlPlane'
+          examples:
+            Update Control Plane Response:
+              $ref: '#/components/examples/ControlPlaneExample'
     UpdateMeshControlPlaneResponse:
       description: A response to updating a control plane.
       content:

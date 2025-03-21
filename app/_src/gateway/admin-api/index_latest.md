@@ -42,6 +42,7 @@ See the following links for individual entity documentation:
 {% navtabs %}
 {% navtab Enterprise endpoints %}
 
+
 | [Information Routes](/gateway/api/admin-ee/latest/#/Information/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-ee/latest/#/Information/get-status){:target="_blank"} | [Tags](/gateway/api/admin-ee/latest/#/tags/get-tags){:target="_blank"} |
 | [Debug Routes](/gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level){:target="_blank"} | [Services](/gateway/api/admin-ee/latest/#/Services/list-service){:target="_blank"} | [Routes](/gateway/api/admin-ee/latest/#/Routes/list-route){:target="_blank"} |
 | [Consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-ee/latest/#/Plugins/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-ee/latest/#/Certificates/list-certificate){:target="_blank"} |

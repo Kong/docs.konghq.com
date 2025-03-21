@@ -109,15 +109,15 @@ TODO: document how to generate and use zone token on universal.-->
 ## TargetRef support matrix
 
 {% if_version gte:2.7.x %}
-{% tabs targetRef useUrlFragment=false %}
-{% tab targetRef Sidecar %}
+{% tabs %}
+{% tab Sidecar %}
 | `targetRef`             | Allowed kinds                         |
 | ----------------------- | ------------------------------------- |
 | `targetRef.kind`        | `Mesh`, `MeshSubset`, `MeshService`   |
 | `from[].targetRef.kind` | `Mesh`                                |
 {% endtab %}
 
-{% tab targetRef Builtin Gateway %}
+{% tab Builtin Gateway %}
 | `targetRef`             | Allowed kinds                                             |
 | ----------------------- | --------------------------------------------------------- |
 | `targetRef.kind`        | `Mesh`, `MeshGateway`                                     |

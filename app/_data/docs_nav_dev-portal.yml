@@ -55,7 +55,6 @@
     - text: Overview
       url: /app-reg/
     - text: Auth Strategies
-      url: /app-reg/auth-strategies/
       items:
         - text: Key Auth
           url: /app-reg/auth-strategies/key-auth/

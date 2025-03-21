@@ -92,6 +92,7 @@ Nginx
 Nginx's
 Node.js
 Noname
+Nuxt
 OAuth
 Okta
 Okta's
@@ -293,10 +294,13 @@ healthchecks
 hostname
 hostnames
 href
+HTML
 http
 httpbin
 HTTPie
 https
+idempotent
+idempotency
 IdPs
 If-Match
 impactful

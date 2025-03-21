@@ -238,7 +238,11 @@ kong.response.set_status(404)
 ```
 
 
+{% if_version gte:3.10.x %}
+## kong.response.set_header(name, of)
+{% else %}
 ## kong.response.set_header(name, value)
+{% endif_version %}
 
 Sets a response header with the given value.  This function overrides any
  existing header with the same name.
@@ -268,6 +272,9 @@ Sets a response header with the given value.  This function overrides any
 {% endif_version -%}
 {% if_version gte:3.6.x -%}
 * **value** (`array of strings|string|number|boolean`): The new value for the header.
+{% endif_version %}
+{% if_version gte:3.10.x -%}
+* **of** (`array of strings|string|number|boolean`): The new value for the header.
 {% endif_version %}
 **Returns**
 

@@ -150,7 +150,7 @@ with added functionality.
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals)
     {% endif_version -%}
-    * [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users)
+    * [RBAC](/gateway/api/admin-ee/latest/#/operations/get-rbac-users)
     * [Enterprise plugins](/hub/)
 
 You can manage {{site.ee_product_name}} in Free or Enterprise mode with Kong's

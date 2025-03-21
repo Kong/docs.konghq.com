@@ -32,7 +32,7 @@ If you're looking for plugin deployment topology compatibility, supported networ
   <thead>
       <th style="text-align: left">Plugin</th>
       <th style="text-align: center; width:20%">Free</th>
-      <th style="text-align: center; width:20%">Enterprise</th>
+      <th style="text-align: center; width:20%">Enterprise{% if category.additional_cost %}<sup>*</sup>{% endif %}</th>
   </thead>
   <tbody>
     {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.categories contains category.slug" %}
@@ -59,5 +59,9 @@ If you're looking for plugin deployment topology compatibility, supported networ
     {% endfor %}
   </tbody>
 </table>
+
+{% if category.additional_cost %}
+<small>* {{ category.additional_cost }}</small>
+{% endif %}
 
 {% endfor %}

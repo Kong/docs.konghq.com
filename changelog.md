@@ -2,6 +2,127 @@
 
 <!--vale off-->
 
+## Week 10
+
+### [docs(portal): reserved paths](https://github.com/Kong/docs.konghq.com/pull/8527) (2025-03-07)
+
+Document the new Dev Portal reserved paths.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/customization/custom-pages
+
+
+### [Rename title in transit-gateways.md](https://github.com/Kong/docs.konghq.com/pull/8524) (2025-03-07)
+
+Issue reported at [https://github.com/Kong/docs.konghq.com/issues/8296](https://github.com/Kong/docs.konghq.com/issues/8296)
+
+Change title from "How to configure Transit Gateway" to "How to configure AWS Transit Gateway", so it clearly states this is an AWS product.
+
+In the "Configure AWS Transit Gateway" section, replace "Create Transit Gateway" with "Create transit gateway", in lowercase, as this is the term appearing in AWS.
+
+
+### Description
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways
+
+
+### [Update index.md](https://github.com/Kong/docs.konghq.com/pull/8522) (2025-03-07)
+
+Added Other limits for Serverless
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/
+
+
+### [fix(deck): docker on Windows](https://github.com/Kong/docs.konghq.com/pull/8500) (2025-03-05)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/deck/install/docker
+
+
+### [Add link to Vacuum to deck file lint](https://github.com/Kong/docs.konghq.com/pull/8499) (2025-03-04)
+
+Link to all available `deck file lint` rules
+
+#### Modified
+
+- https://docs.konghq.com/deck/file/lint
+
+
+### [Add v3 API Builder API, insomnia fixes for other portal v3 APIs](https://github.com/Kong/docs.konghq.com/pull/8497) (2025-03-04)
+
+Added required files for docs portal to list new API Builder v3, and added YAML versions of specs to potentially fix Insomnia links.
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/
+
+
+### [Dev Portal v3 docs](https://github.com/Kong/docs.konghq.com/pull/8401) (2025-03-03)
+
+Preview app for the internal teams. Do not merge.
+
+#### Added
+
+- https://docs.konghq.com/assets/images/products/konnect/dev-portal-v3/azure-group-claim.png
+- https://docs.konghq.com/assets/images/products/konnect/dev-portal-v3/create-portal.png
+- https://docs.konghq.com/assets/images/products/konnect/dev-portal-v3/dcr-bearer-tokens.png
+- https://docs.konghq.com/assets/images/products/konnect/dev-portal-v3/kongair-example.png
+- https://docs.konghq.com/assets/images/products/konnect/dev-portal-v3/visibility-access-combinations.png
+- https://docs.konghq.com/dev-portal/access-and-approvals/developers
+- https://docs.konghq.com/dev-portal/access-and-approvals/
+- https://docs.konghq.com/dev-portal/access-and-approvals/sso
+- https://docs.konghq.com/dev-portal/access-and-approvals/teams
+- https://docs.konghq.com/dev-portal/apis/docs
+- https://docs.konghq.com/dev-portal/apis/gateway-service-link
+- https://docs.konghq.com/dev-portal/apis/
+- https://docs.konghq.com/dev-portal/apis/versioning
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/key-auth/
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/auth0
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/azure
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/curity
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/custom
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/okta
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/
+- https://docs.konghq.com/dev-portal/app-reg/
+- https://docs.konghq.com/dev-portal/
+- https://docs.konghq.com/dev-portal/portals/audit-logs/
+- https://docs.konghq.com/dev-portal/portals/audit-logs/replay-job
+- https://docs.konghq.com/dev-portal/portals/audit-logs/webhook
+- https://docs.konghq.com/dev-portal/portals/customization/appearance
+- https://docs.konghq.com/dev-portal/portals/customization/custom-pages
+- https://docs.konghq.com/dev-portal/portals/customization/customization
+- https://docs.konghq.com/dev-portal/portals/customization/portal-editor
+- https://docs.konghq.com/dev-portal/portals/
+- https://docs.konghq.com/dev-portal/portals/publishing
+- https://docs.konghq.com/dev-portal/portals/settings/custom-domains
+- https://docs.konghq.com/dev-portal/portals/settings/general
+- https://docs.konghq.com/dev-portal/portals/settings/security
+- https://docs.konghq.com/dev-portal/portals/settings/team-mapping
+
 ## Week 9
 
 ### [Fix Konnect cluster and telemetry hostnames](https://github.com/Kong/docs.konghq.com/pull/8478) (2025-02-27)

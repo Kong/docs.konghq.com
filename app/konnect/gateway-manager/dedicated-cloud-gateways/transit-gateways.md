@@ -1,5 +1,5 @@
 ---
-title: How to configure Transit Gateway
+title: How to configure AWS Transit Gateway
 ---
 
 
@@ -25,8 +25,8 @@ To establish private connectivity between the {{site.konnect_short_name}} networ
 ## Configure AWS Transit Gateway
 
 1. While logged in to AWS, select the same region as your cloud gateways network. 
-1. Select **VPC** > **Transit Gateways**, then click **Create Transit Gateway**.
-1. Name the transit gateway and then click **Create Transit Gateway**. 
+1. Select **VPC** > **Transit Gateways**, then click **Create transit gateway**.
+1. Name the transit gateway and then click **Create transit gateway**. 
 
 This will display a **Transit Gateway ID**, save this. 
 
