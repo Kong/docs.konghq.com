@@ -19,7 +19,7 @@ openssl req -new -x509 -nodes -newkey rsa:2048 -subj "/CN=kongdp/C=US" -keyout .
 1. Create a Kubernetes secret that contains the previously created certificate:
 
 ```sh
-kubectl create secret tls konnect-client-tls -n kong --cert=./tls.crt --key=./tls.key
+kubectl create secret tls konnect-client-tls --cert=./tls.crt --key=./tls.key
 ```
 
 1. Label the secret to tell KGO to reconcile it:

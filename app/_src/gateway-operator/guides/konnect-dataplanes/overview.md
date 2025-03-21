@@ -2,11 +2,13 @@
 title: Overview
 ---
 
-Kong Dataplane instances can be configured in Konnect by means of the `KonnectExtension` resource. This resource can be used to provision isolated `DataPlane`s or pairs of `ControlPlane`s  and `DataPlane`s. The `KonnectExtension` resource can be referenced by `ControlPlane`s, `DataPlane`s, or `GatewayConfiguration`s from the extension point in their spec. Dedicated guides will guide you to through these kinds of setup.
+Kong Dataplane instances can be configured in Konnect by means of the [`KonnectExtension`][konnect_extension_crd] resource. This resource can be used to provision isolated `DataPlane`s or pairs of `ControlPlane`s  and `DataPlane`s. The `KonnectExtension` resource can be referenced by `ControlPlane`s, `DataPlane`s, or `GatewayConfiguration`s from the extension point in their spec. Dedicated guides will guide you to through these kinds of setup.
+
+[konnect_extension_crd]: /gateway-operator/{{page.release}}/reference/custom-resources/#konnectextension-1
 
 ## Konnect ControlPlane reference
 
-the `KonnectExtension` point can be attached to Konnect `ControlPlane`s of type Hybrid or KIC. This reference can be performed in two different ways:
+`KonnectExtension` can be attached to Konnect `ControlPlane`s of type Hybrid or KIC. This reference can be performed in two different ways: via Konnect ID or via Kubernetes object reference to an in cluster `KonnectGatewayControlPlane`.
 
 ### Reference by Konnect ID
 
@@ -24,7 +26,9 @@ spec:
         name: konnect-api-auth # Reference to the KonnectAPIAuthConfiguration object
 ```
 
-The `authRef.name` fields refers to an object of type `KonnectAPIAuthConfiguration` that needs to exist in the same namespace as the `KonnectExtension`. Such objects contains all the data (server, token, etc.) to interact with konnect.
+The `authRef.name` fields refers to an object of type [`KonnectAPIAuthConfiguration`][konnect_api_auth_crdref] that needs to exist in the same namespace as the `KonnectExtension`. Such objects contains all the data (server, token, etc.) to interact with konnect.
+
+[konnect_api_auth_crdref]: /gateway-operator/{{page.release}}/reference/custom-resources/#konnectapiauthconfiguration
 
 ### Reference By Kubernetes object
 
@@ -46,25 +50,25 @@ The `DataPlane`, in order to be configured in Konnect, needs a client certificat
 
 ### Manual certificate provisioning
 
-In order to manually create and set up a certificate to be used for Konnect `DataPlane`s, you can follow the [guide]() you can perform type the following commands:
+In order to manually create and set up a certificate to be used for Konnect `DataPlane`s, you can perform type the following commands:
 
 1. Generate a new certificate and key:
 
-```sh
-openssl req -new -x509 -nodes -newkey rsa:2048 -subj "/CN=kongdp/C=US" -keyout ./tls.key -out ./tls.crt
-```
+    ```bash
+    openssl req -new -x509 -nodes -newkey rsa:2048 -subj "/CN=kongdp/C=US" -keyout ./tls.key -out ./tls.crt
+    ```
 
 1. Create a Kubernetes secret that contains the previously created certificate:
 
-```sh
-kubectl create secret tls konnect-client-tls -n kong --cert=./tls.crt --key=./tls.key
-```
+    ```bash
+    kubectl create secret tls konnect-client-tls --cert=./tls.crt --key=./tls.key
+    ```
 
 1. Label the secret to tell KGO to reconcile it:
 
-```sh
-kubectl label secret konnect-client-tls konghq.com/konnect-dp-cert=true
-```
+    ```bash
+    kubectl label secret konnect-client-tls konghq.com/konnect-dp-cert=true
+    ```
 
 Once the secret containing your certificate has been created in the cluster, you can set up your `KonnectExtension` as follows:
 
@@ -74,12 +78,12 @@ spec:
     certificateSecret:
       provisioning: Manual
         secretRef:
-          name: konnect-client-tls # The name of the secret containing your certificate 
+          name: konnect-client-tls # The name of the secret containing your certificate
 ```
 
 ### Automatic certificate provisioning
 
-Alternatively, you can leave the certificate provisioning and management to KGO, which will take care of creating a new certificate, write it into a Kubernetes secret and manage the secret's lifecycle on behalf of you. To do so, you can configure a `KonnectExtension` as follows:
+Alternatively, you can leave the certificate provisioning and management to KGO, which will take care of creating a new certificate, write it into a Kubernetes `Secret` and manage the `Secret`'s lifecycle on behalf of you. To do so, you can configure a `KonnectExtension` as follows:
 
 ```yaml
 spec:

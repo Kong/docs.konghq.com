@@ -1,8 +1,8 @@
 ---
-title: Deploying a Gateway to konnect
+title: Deploying a Gateway to Konnect
 ---
 
-Gateways must be configured with `KIC` [`ControlPlane`s](/konnect/gateway-manager/#control-planes). This means that the `ControlPlane` entity referenced (via KonnectID or NamespacedRef) by the `KonnectExtension` object must belong to that category.
+Gateways must be configured with `KIC` [`ControlPlane`s](/konnect/gateway-manager/#control-planes). This means that the `controlPlane` entity referenced (via KonnectID or NamespacedRef) by the `KonnectExtension` object must belong to that category.
 
 ## Create the KonnectExtension
 
@@ -10,9 +10,10 @@ Gateways must be configured with `KIC` [`ControlPlane`s](/konnect/gateway-manage
 
 ## Create the GatewayConfiguration
 
-TODO: add description
+In order to specify the `KonnectExtension` in `Gateway`'s configuration you need to create a `GatewayConfiguration` object which will hold the `KonnectExtension` reference.
 
-```yaml
+```bash
+echo '
 kind: GatewayConfiguration
 apiVersion: gateway-operator.konghq.com/v1beta1
 metadata:
@@ -22,14 +23,15 @@ spec:
   extensions:
   - kind: KonnectExtension
     name: my-konnect-config
-    group: konnect.konghq.com
+    group: konnect.konghq.com ' | kubectl apply -f -
 ```
 
 ## Create the GatewayClass
 
-TODO: add description
+Now you need to create a `GatewayClass` object that references the `GatewayConfiguration` object created in the previous step:
 
-```yaml
+```bash
+echo '
 apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
 metadata:
@@ -40,14 +42,15 @@ spec:
     group: gateway-operator.konghq.com
     kind: GatewayConfiguration
     name: kong
-    namespace: default
+    namespace: default ' | kubectl apply -f -
 ```
 
 ## Create the Gateway
 
-TODO: add description
+Finally you can create the `Gateway` object that references the `GatewayClass`:
 
-```yaml
+```bash
+echo '
 kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1
 metadata:
@@ -58,5 +61,7 @@ spec:
   listeners:
   - name: http
     protocol: HTTP
-    port: 80
+    port: 80 ' | kubectl apply -f -
 ```
+
+To verify, you can visit your Gateway Manager in {{ site.konnect_short_name }} and check if the dataplanes have been created successfully.
