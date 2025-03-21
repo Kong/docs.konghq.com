@@ -664,7 +664,7 @@ components:
                 example: my-partial-1
               path:
                 type: string
-                description: The path at which the Partial configuration will be applied at.
+                description: The path at which the Partial configuration will be applied.
                 example: config.redis
       type: object
     Route:
@@ -5544,7 +5544,7 @@ components:
                   properties:
                     id:
                       type: string
-                description: If provided the Plugin will be linked to given Partial
+                description: If provided, the Plugin will be linked to given Partial
                 nullable: true
           examples:
             request example:
