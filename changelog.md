@@ -2,6 +2,222 @@
 
 <!--vale off-->
 
+## Week 12
+
+### [Add AI pricing disclaimer](https://github.com/Kong/docs.konghq.com/pull/8597) (2025-03-20)
+
+Add a note that AI plugins require additional licensing
+
+#### Modified
+
+- https://docs.konghq.com/hub/plugins/license-tiers
+
+
+### [CSRE-3763 Added documentation for 2 new edge gateway regions](https://github.com/Kong/docs.konghq.com/pull/8595) (2025-03-20)
+
+<!-- What did you change and why? -->
+
+Added new AWS Private Link regions
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+https://konghq.atlassian.net/browse/CSRE-3763
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [Fix links to api reference operations](https://github.com/Kong/docs.konghq.com/pull/8594) (2025-03-20)
+
+Regexp used: \/gateway\/api\/admin-ee\/latest\/#(\/(?!operations)([^\/]+)\/)(.*)/?
+Replaced with: /gateway/api/admin-ee/latest/#/operations/$3
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acl/how-to/
+- https://docs.konghq.com/hub/kong-inc/basic-auth/overview/
+- https://docs.konghq.com/hub/kong-inc/bot-detection/overview/
+- https://docs.konghq.com/hub/kong-inc/canary/overview/
+- https://docs.konghq.com/hub/kong-inc/hmac-auth/overview/
+- https://docs.konghq.com/hub/kong-inc/jwt/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-log/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-upstream/overview/
+- https://docs.konghq.com/hub/kong-inc/key-auth-enc/overview/
+- https://docs.konghq.com/hub/kong-inc/key-auth/overview/
+- https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/ldap-auth/overview/
+- https://docs.konghq.com/hub/kong-inc/oauth2/overview/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/prometheus/overview/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/
+- https://docs.konghq.com/hub/kong-inc/response-ratelimiting/overview/
+- https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/response-transformer/overview/
+- https://docs.konghq.com/hub/kong-inc/statsd/overview/
+- https://docs.konghq.com/hub/kong-inc/vault-auth/
+- https://docs.konghq.com/gateway/3.10.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.6.x/
+- https://docs.konghq.com/gateway/3.7.x/
+- https://docs.konghq.com/gateway/3.8.x/
+- https://docs.konghq.com/gateway/3.9.x/
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/consumer-groups
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/consumer-groups
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/consumer-groups
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/consumer-groups
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/consumer-groups
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/consumer-groups
+- https://docs.konghq.com/gateway/3.8.x/kong-enterprise/consumer-groups
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/consumer-groups
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/event-hooks
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/event-hooks
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/event-hooks
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/event-hooks
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/event-hooks
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/event-hooks
+- https://docs.konghq.com/gateway/3.8.x/kong-enterprise/event-hooks
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/event-hooks
+- https://docs.konghq.com/gateway/unreleased/kong-enterprise/
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.8.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/
+- https://docs.konghq.com/deck/gateway/defaults
+- https://docs.konghq.com/gateway/changelog
+
+
+### [fix: s/consumer/consume/g](https://github.com/Kong/docs.konghq.com/pull/8593) (2025-03-19)
+
+Followup of https://github.com/Kong/docs.konghq.com/pull/8506
+
+Mainly fixes to plugin naming and some enumeration corrections
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/confluent-consume/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-consume/overview/
+
+
+### [Release: Gateway 3.9.1.1](https://github.com/Kong/docs.konghq.com/pull/8591) (2025-03-21)
+
+Changelog and version bump for 3.9.1.1
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix APIOps introduction](https://github.com/Kong/docs.konghq.com/pull/8590) (2025-03-19)
+
+"X, Y and Z" was a placeholder that snuck through
+
+#### Modified
+
+- https://docs.konghq.com/deck/apiops/
+
+
+### [docs(ai-semantic-cache): add note on cache control behaviour](https://github.com/Kong/docs.konghq.com/pull/8584) (2025-03-18)
+
+Add clarification of the cache_control config and explain the behaviour if being set with common AI services.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-semantic-cache/overview/
+
+
+### [docs(ai-proxy-advanced): add new feature description for ai-proxy-advanced in 3.10](https://github.com/Kong/docs.konghq.com/pull/8583) (2025-03-20)
+
+Add following features:
+
+- ai-proxy-advanced: new priority algorithm
+- ai-proxy-advanced: failover creteria
+- ai-proxy-advanced: cost as tokens_count_strategy (mention log_statistics must be on)
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Fixes:
+https://konghq.atlassian.net/browse/DOCU-4194
+https://konghq.atlassian.net/browse/DOCU-4193
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/overview/
+
+
+### [JWE: Update supported algorithms](https://github.com/Kong/docs.konghq.com/pull/8581) (2025-03-18)
+
+The JWE plugin now supports more algorithms: https://github.com/Kong/kong-ee/pull/11074
+
+Found in changelog.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/jwe-decrypt/overview/
+
+
+### [fix(konnect): update Azure SAML claim attributes](https://github.com/Kong/docs.konghq.com/pull/8580) (2025-03-17)
+
+I'm modifying the referenced email claim for Azure SAML applications, updating from `user.email` to. `user.mail`.
+
+I'm also including a note in the Azure navtab that states "ensure the `Namespace` value is empty".
+
+Screenshots are attached for additional Azure/SAML context and verification.
+
+
+* Default claims: ![Screenshot 2025-03-17 at 15 14 31](https://github.com/user-attachments/assets/e9025332-70c9-4f58-b27d-b2d0a279e3da)
+* Claim edit window (showing `Namespace`): 
+![Screenshot 2025-03-17 at 15 15 29](https://github.com/user-attachments/assets/a134fca7-e787-4df0-86f5-34cb8783d47a)
+
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/saml-idp-mappings
+
+
+### [fix: Dynatrace deployment options](https://github.com/Kong/docs.konghq.com/pull/8579) (2025-03-20)
+
+Setting `network_config_opts: All` as a temp solution to avoid the incorrect entries in this table: https://docs.konghq.com/hub/plugins/compatibility/#analytics-monitoring
+
+Issue came up on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/dynatrace/_metadata/_index.yml
+
+
+### [feat: AppDynamics agent ARM support](https://github.com/Kong/docs.konghq.com/pull/8555) (2025-03-18)
+
+<!-- What did you change and why? -->
+ 
+KAG-4034
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
+
+### [AI RLA: Support for multiple limits and window sizes](https://github.com/Kong/docs.konghq.com/pull/8530) (2025-03-18)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/how-to/
+
 ## Week 10
 
 ### [docs(portal): reserved paths](https://github.com/Kong/docs.konghq.com/pull/8527) (2025-03-07)
