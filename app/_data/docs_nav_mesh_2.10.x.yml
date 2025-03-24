@@ -206,3 +206,8 @@ inherit:
       url: /guides/deploy-kong-mesh-using-terraform-and-konnect
       action: insert
       index: -1
+    - path: [ Guides ]
+      text: Import existing Konnect Kong Mesh deployment to Terraform
+      url: /guides/import-existing-konnect-kong-mesh-deployment-to-terraform
+      action: insert
+      index: -1
