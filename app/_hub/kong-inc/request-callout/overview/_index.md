@@ -119,7 +119,10 @@ list of supported configurations.
 ### Callout that caches the result
 
 The following example will result in the callout response being cached for 360 seconds. 
-Each callout object may also contain a `cache` component.
+Each callout object may also contain a `cache` component. The storage strategy 
+in use is `memory`, meaning that data is stored in the local Kong shared 
+dictionary storage, but Redis is also supported, similarly to plugins such as 
+Proxy Cache Advanced.
 
 The [schema reference](/hub/kong-inc/request-callout/configuration/) contains the full 
 list of supported configurations.
@@ -210,65 +213,16 @@ the second, and building a full response:
 }
 ```
 
+### Callout that dynamically customizes the cache key via Lua code
 
-## The callout context
+In this callout, note both the `cache` top-level object and the `by_lua` field in 
+`callout.response.by_lua`. The former defines global caching behavior, while the 
+latter runs Lua code modifyin the callout cache key. 
 
-Callout request and response context is stored in 
-`kong.ctx.shared.callouts.<name>`. 
-
-The request context contains:
-- `.<name>.request.params`: The full configuration for the callout request, including `url`, 
-  `method`, `query`, `headers`, `body`, `decode`, `ssl_verify`, `proxy`, 
-  `timeouts`, and others (as specified in the plugin schema).
-  The `headers` key is case sensitive.
-- `.<name>.request.retries`: The list of request retries, if `error` is set to `retry`. 
-  Contains `reason`, which can be `error`, for TCP errors, or `code`, if the 
-  retry was caused by an HTTP status code, `err`, with the specific error, and 
-  `http_code`.
-- `.<name>.request.n_retries`: the total number of retries.
-- `.<name>.caching`: List of cache-related configurations, as specified in the plugin's 
-  schema. If a `cache_key` field is set, it overrides the cache 
-  key for the current callout (this is useful in dynamic customizations of cache 
-  key, via `by_lua` Lua code).
-
-The response context contains:
-- `status`
-- `headers`
-- `body`
-
-Headers and body storage can be disabled via the 
-[`config.callouts.response.headers.store`](/hub/kong-inc/request-callout/configuration/#config-callouts-response-headers-store)
-and [`config.callouts.response.body.store`](/hub/kong-inc/request-callout/configuration/#config-callouts-response-body-store)
-parameters.
-
-## Lua code
-
-All `custom` fields support Lua expressions in the value portion, and any PDK method 
-or Lua function available within the Kong sandbox can be used. The syntax is the 
-same as the [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/)
-uses for Lua expressions. In  `custom` values, callouts can be referenced via the shorthand `callouts.<name>`
-table, which is a syntax sugar for `kong.ngx.shared.callouts.<name>`. 
-Lua expressions do not carry side effects.
-
-`by_lua` fields work in a similar fashion, but do not support 
-Request Transformer-style shortcuts, neither the `callouts` syntax sugar.
-However, `by_lua` code can produce side effects and modify callout and upstream 
-requests.
-
-Both request and response callout objects may contain a `by_lua` field:
-* `request.by_lua` runs before the callout request is performed and is useful to 
-further customize aspects of the request
-* `response.by_lua` runs after a response is obtained, and is useful to
-customize aspects of the response such as caching.
-
-The upstream object may also contain a `by_lua` field for Lua code 
-that runs before the upstream request runs. This is useful to further customize 
-the upstream request, or even to bypass it completely, short-circuiting the 
-request and responding from {{site.base_gateway}}.
-
-Lua code may contain references and modify values in the callout context. 
-Here's an example of customizing the cache key used to store a callout:
-
+This example is crafted to  execute Lua code in the response `by_lua`. 
+A similar use case could customize the `url` field of the callout request by 
+running Lua code setting `kong.ctx.shared.callouts.<name>` in the request `by_lua` field.
+ 
 ```json
 {
 	"name": "request-callout",
@@ -314,9 +268,108 @@ Here's an example of customizing the cache key used to store a callout:
 	}
 }
 ```
-Note both the `cache` top-level object and the `by_lua` field in 
-`callout.response.by_lua`. The former defines global caching behavior, while the 
-latter runs Lua code modifying the callout cache key. 
-This example is crafted to  execute Lua code in the response `by_lua`. 
-A similar use case could customize the `url` field of the callout request by 
-running Lua code setting `kong.ctx.shared.callouts.<name>` in the request `by_lua` field.
+
+### Callout that dynamically customizes URL via Lua code
+
+Similarly to the previous example, the following callout uses Lua code to 
+customize the request. Now, instead of running after the response is received, 
+the Lua code executes before the request is made.
+
+```json
+{
+	"name": "request-callout",
+		"config": {
+			"callouts": [
+			{
+				"name": "c1",
+				"request": {
+					"url": "http://httpbin.org/status/400",
+					"method": "GET",
+					"query": {
+						"forward": true
+					},
+					"by_lua": "kong.ctx.shared.callouts.c1.request.params.url = 'http://httpbin.org/status/200'"
+				},
+				"response": {
+					"body": {
+						"store": true,
+						"decode": false
+					}
+				}
+			}
+			],
+			"upstream": {
+				"headers": {
+					"custom": {
+						"Status-Code": "$(callouts.c1.response.status)"
+					}
+				}
+			}
+		}
+}
+```
+
+
+## The callout context
+
+Callout request and response context is stored in 
+`kong.ctx.shared.callouts.<name>`. 
+
+The request context contains:
+- `.<name>.request.params`: The full configuration for the callout request, including `url`, 
+  `method`, `query`, `headers`, `body`, `decode`, `ssl_verify`, `proxy`, 
+  `timeouts`, and others (as specified in the HTTP options plugin schema).
+  The `headers` key is case sensitive.
+- `.<name>.request.retries`: The list of request retries, if `error` is set to `retry`. 
+  Contains `reason`, which can be `error`, for TCP errors, or `code`, if the 
+  retry was caused by an HTTP status code, `err`, with the specific error, and 
+  `http_code`, with the specific HTTP status code that caused the retry.
+- `.<name>.request.n_retries`: the total number of retries.
+- `.<name>.caching`: List of cache-related configurations, as specified in the plugin's 
+  schema. If a `cache_key` field is set, it overrides the cache 
+  key for the current callout (this is useful in dynamic customizations of cache 
+  key, via `by_lua` Lua code).
+
+The response context contains:
+- `status`
+- `headers`
+- `body`
+
+Headers and body storage can be disabled via the 
+[`config.callouts.response.headers.store`](/hub/kong-inc/request-callout/configuration/#config-callouts-response-headers-store)
+and [`config.callouts.response.body.store`](/hub/kong-inc/request-callout/configuration/#config-callouts-response-body-store)
+parameters.
+
+## Lua code
+
+All `custom` fields support Lua expressions in the value portion, and any PDK method 
+or Lua function available within the Kong sandbox can be used. The syntax is the 
+same as the [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/)
+uses for Lua expressions. In  `custom` values, callouts can be referenced via the shorthand `callouts.<name>`
+table, which is a syntax sugar for `kong.ngx.shared.callouts.<name>`. 
+Lua expressions do not carry side effects.
+
+`by_lua` fields work in a similar fashion, but do not support 
+Request Transformer-style shortcuts, neither the `callouts` syntax sugar.
+However, `by_lua` code can produce side effects and modify callout and upstream 
+requests.
+
+Both request and response callout objects may contain a `by_lua` field:
+* `request.by_lua` runs before the callout request is performed and is useful to 
+further customize aspects of the request
+* `response.by_lua` runs after a response is obtained, and is useful to
+customize aspects of the response such as caching.
+
+The upstream object may also contain a `by_lua` field for Lua code 
+that runs before the upstream request runs. This is useful to further customize 
+the upstream request, or even to bypass it completely, short-circuiting the 
+request and responding from {{site.base_gateway}}.
+
+As seen in previous examples, Lua code may contain references and modify values 
+in the callout context. 
+
+{:.warning}
+> Syntax issues are detected as part of schema validation. Other errors, such as 
+> nil references, happen at runtime and lead to an `Internal Server Error`. Lua 
+> code must be thouroughly tested to ensure correctness and that it meets 
+> performance requirements.
