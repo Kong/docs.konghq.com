@@ -100,9 +100,6 @@ title: Kong custom plugin distribution with KongPluginInstallation
              containers:
                - name: proxy
                  image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
-                 readinessProbe:
-                   initialDelaySeconds: 1
-                   periodSeconds: 1
        pluginsToInstall:
          - name: custom-plugin-myheader
      controlPlaneOptions:
@@ -112,9 +109,6 @@ title: Kong custom plugin distribution with KongPluginInstallation
              containers:
                - name: controller
                  image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
-                 readinessProbe:
-                   initialDelaySeconds: 1
-                   periodSeconds: 1
    ---
    apiVersion: gateway.networking.k8s.io/v1
    kind: GatewayClass
