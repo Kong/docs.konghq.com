@@ -28,7 +28,11 @@ module Jekyll
         end
 
         def name
-          @name ||= @version['name']
+          @name ||= if Gem::Version.correct? @version['name']
+                      ::Utils::Version.to_release(@version['name'])
+                    else
+                      @version['name']
+                    end
         end
       end
     end
