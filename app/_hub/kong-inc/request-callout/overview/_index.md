@@ -221,12 +221,12 @@ The request context contains:
   `method`, `query`, `headers`, `body`, `decode`, `ssl_verify`, `proxy`, 
   `timeouts`, and others (as specified in the plugin schema).
   The `headers` key is case sensitive.
-- `.<name>.retries`: The list of request retries, if `error` is set to `retry`. 
+- `.<name>.request.retries`: The list of request retries, if `error` is set to `retry`. 
   Contains `reason`, which can be `error`, for TCP errors, or `code`, if the 
   retry was caused by an HTTP status code, `err`, with the specific error, and 
   `http_code`.
-- `.<name>.n_retries`: the total number of retries.
-- `caching`: List of cache-related configurations, as specified in the plugin's 
+- `.<name>.request.n_retries`: the total number of retries.
+- `.<name>.caching`: List of cache-related configurations, as specified in the plugin's 
   schema. If a `cache_key` field is set, it overrides the cache 
   key for the current callout (this is useful in dynamic customizations of cache 
   key, via `by_lua` Lua code).
