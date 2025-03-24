@@ -15,6 +15,8 @@ Partials address this issue by allowing you to extract shared configurations int
 - **`redis-ce`**: Stores common Redis configurations for plugins available in {{site.ce_product_name}}.
 - **`redis-ee`**: Stores common Redis configurations for plugins available only in {{site.ee_product_name}}.
 
+{:.note}
+> An easy way to determine the required Redis configuration is by examining the fields in use. Redis CE has a shorter and simpler configuration, whereas Redis EE provides options for configuring Redis Sentinel or Redis Cluster for connection.
 
 ## Creating a Partial
 
@@ -112,6 +114,45 @@ Before deleting a Partial, ensure all linked plugins are unlinked. Then, delete 
 ```sh
 curl -i -X DELETE http://localhost:8001/partials/{PARTIAL-ID}
 ```
+
+## Custom Plugins
+
+Users can leverage the Partials feature in their custom plugins by adjusting the plugin schema.
+To make custom plugins compatible with Partials, add the `supported_partials` key to the schema and specify
+the appropriate Partial type. If the Redis configuration in use is of the {{site.ce_product_name}} type,
+use `redis-ce`; otherwise, use `redis-ee`.
+
+Below is an example schema for a custom plugin utilizing a Partial:
+
+```lua
+{
+  name = "custom-plugin-with-redis",
+  supported_partials = {
+    ["redis-ee"] = { "config.redis" },
+  },
+  fields = {
+    {
+      config = {
+        type = "record",
+        fields = {
+          { some_other_config_key = { type = "string", required = true }},
+          { redis = redis.config_schema }
+        },
+      },
+    },
+  },
+}
+```
+
+{:.important} > **Using DAO in custom plugins**
+> Be aware that when using a Partial, the configuration belonging to the Partial is no longer stored alongside
+> the plugin. If your code relies on Kong's dao and expects entities to contain Redis information,
+> this data will not be retrieved when using `kong.db.plugins:select(plugin_id)`.
+> Such a call will only fetch data stored in the plugin itself.
+>
+> To include the Partial's data within the plugin configuration, pass a special option parameter,
+> such as: `kong.db.plugins:select(plugin_id, { expand_partials = true })`.
+
 
 ## Detailed API
 
