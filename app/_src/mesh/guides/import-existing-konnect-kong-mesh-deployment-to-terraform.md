@@ -1,5 +1,5 @@
 ---
-title: Import existing Konnect {{site.mesh_product_name}} deployment to Terraform
+title: Import existing Konnect Kong Mesh deployment to Terraform
 ---
 
 ## Introduction
@@ -56,34 +56,24 @@ Next run:
 terraform plan -generate-config-out="generated_resources.tf"
 ```
 
-Next review the "generated_resources.tf" file and make sure the resources are imported correctly.
-Add all the necessary references like `cp_id`, `depends_on`.
+Next review the `generated_resources.tf` file and make sure the resources are imported correctly.
 After that you can run `terraform apply` to import the resources.
 
 ## Automating the import process
 
-{{site.mesh_product_name}} API provides an endpoint to list all resources of a certain type in a specific Mesh Control Plane.
-You can use this endpoint to automate the import process.
-Below is an example of how to list all `HostnameGenerators` in a Mesh called `another-name` for a Control Plane with id `c9fd8f76-6460-45fb-9a64-a981d8a512d7`:
+Building a list of resources to import by hand is time consuming. You can generate a list of imports using the Konnect API.
 
-```bash
-curl -s https://us.api.konghq.com/v1/mesh/control-planes/c9fd8f76-6460-45fb-9a64-a981d8a512d7/api/meshes/another-name/hostnamegenerators
-```
+### Using import.sh
 
 Below is a script that automates the import process for all resources in a Mesh Control Plane.
-It takes the Control Plane ID and region as arguments and uses the [KPAT](/konnect/org-management/access-tokens/) environment variable to authenticate with the Konnect API.
+
+It takes the Control Plane ID and region as arguments and uses the [KONNECT_TOKEN](/konnect/org-management/access-tokens/) environment variable to authenticate with the Konnect API.
 The script is provided as best effort and may need to be adjusted.
 
-Example invocation:
+<details markdown=1>
+  <summary>Expand to see import.sh</summary>
 
 ```bash
-./import.sh c9fd8f76-6460-45fb-9a64-a981d8a512d7 us
-```
-
-<details>
-  <summary>import.sh</summary>
-
-  ```bash
 #!/bin/bash
 
 set -euo pipefail  # Exit on error, undefined variables, and failed pipes
@@ -98,15 +88,15 @@ fi
 CP_ID="$1"
 REGION="$2"
 
-# Ensure KPAT is set
-if [ -z "${KPAT:-}" ]; then
-  echo "Error: KPAT environment variable is not set." >&2
+# Ensure KONNECT_TOKEN is set
+if [ -z "${KONNECT_TOKEN:-}" ]; then
+  echo "Error: KONNECT_TOKEN environment variable is not set." >&2
   exit 1
 fi
 
 # Define API base URL with dynamic cp_id
 BASE_URL="https://${REGION}.api.konghq.com/v1/mesh/control-planes/${CP_ID}/api"
-AUTH_HEADER="Authorization: Bearer ${KPAT}"
+AUTH_HEADER="Authorization: Bearer ${KONNECT_TOKEN}"
 
 # Resources that are not mesh-scoped
 RESOURCE_TYPES=(
@@ -140,7 +130,7 @@ MESH_RESOURCE_TYPES=(
 cat <<EOF
 
 import {
-  provider = "konnect-beta"
+  provider = konnect-beta
   to = konnect_mesh_control_plane.my_meshcontrolplane
   id = "${CP_ID}"
 }
@@ -168,7 +158,7 @@ for RESOURCE in "${RESOURCE_TYPES[@]}"; do
     cat <<EOF
 
 import {
-  provider = "konnect-beta"
+  provider = konnect-beta
   to = konnect_mesh_${TYPE_SNAKE}.${NAME}
   id = "{ \"cp_id\": \"${CP_ID}\", \"name\": \"$NAME\" }"
 }
@@ -183,7 +173,7 @@ for MESH in $MESHES; do
   cat <<EOF
 
 import {
-  provider = "konnect-beta"
+  provider = konnect-beta
   to = konnect_mesh.${MESH}
   id = "{ \"cp_id\": \"${CP_ID}\", \"name\": \"$MESH\"}"
 }
@@ -203,7 +193,7 @@ EOF
       cat <<EOF
 
 import {
-  provider = "konnect-beta"
+  provider = konnect-beta
   to = konnect_${TYPE_SNAKE}.${NAME}
   id = "{ \"cp_id\": \"${CP_ID}\", \"mesh\": \"$MESH\", \"name\": \"$NAME\" }"
 }
@@ -212,9 +202,32 @@ EOF
     done
   done
 done
-  ```
-
+```
 </details>
+
+Example invocation:
+
+```bash
+# Usage: import.sh <Mesh Control Plane ID> <Region>
+bash import.sh c9fd8f76-6460-45fb-9a64-a981d8a512d7 us > imports.tf
+```
+
+You can now generate Terraform manifests from `imports.tf`:
+
+```bash
+terraform plan -generate-config-out="generated_resources.tf"
+```
+
+Review the imported resources in `generated_resources.tf` before running `terraform apply`.
+
+### Build your own importer
+
+If you prefer to build your own automation, the {{site.mesh_product_name}} API provides an endpoint to list all resources of a certain type in a specific Mesh Control Plane. You can use this endpoint to automate the import process. Below is an example of how to list all `HostnameGenerators` in a Mesh called `another-name` for a Control Plane with id `c9fd8f76-6460-45fb-9a64-a981d8a512d7`:
+
+```bash
+curl -H "Authorization: Bearer $KONNECT_TOKEN" -s https://us.api.konghq.com/v1/mesh/control-planes/c9fd8f76-6460-45fb-9a64-a981d8a512d7/api/meshes/another-name/hostnamegenerators
+```
+
 
 ## Next steps
 
