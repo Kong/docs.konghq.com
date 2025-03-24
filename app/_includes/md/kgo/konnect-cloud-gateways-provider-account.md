@@ -18,7 +18,7 @@ curl -s -H 'Content-Type: application/json' -H "Authorization: Bearer ${KONNECT_
 This should return a list of provider accounts.
 You can use the returned `id` and name (`provider` response field) create and managed a Cloud Gateway {{ entity }}s.
 
-```
+```json
 {
   "data": [
     {
