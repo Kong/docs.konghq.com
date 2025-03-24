@@ -4,6 +4,12 @@ title: Migrate Konnect DataPlanes from KGO 1.4 to 1.5
 
 This document helps to migrate from `gateway-operator.konghq.com` to `konnect.konghq.com` `KonnectExtension`.
 
+1. Label the certificate `Secret`:
+
+  ```bash
+  `kubectl label secret -n kong konnect-client-tls konghq.com/konnect-dp-cert=true`
+  ```
+
 1. Install new kubernetes-configuration CRDs:
 
     ```bash
@@ -21,24 +27,23 @@ This document helps to migrate from `gateway-operator.konghq.com` to `konnect.ko
 
     [version_compat]: https://docs.konghq.com/gateway-operator/1.5.x/reference/version-compatibility/#kubernetes-configuration-crds
 
-1. Label cert `Secret`: `kubectl label secret konnect-client-tls konghq.com/konnect-dp-cert=true`
-
 1. Upgrade to new controller version (e.g. set the `image.tag` in `values.yaml` to `v1.5.0`)
 
 1. Create:
 
     1. `KonnectAPIAuthConfiguration` with your Konnect API token ([create one here][tokens]), for example:
 
-        ```yaml
+        ```bash
+        echo '
         kind: KonnectAPIAuthConfiguration
         apiVersion: konnect.konghq.com/v1alpha1
         metadata:
           name: konnect-api-auth
-          namespace: default
+          namespace: kong
         spec:
           type: token
           token: kpat_XXXXXXXXX
-          serverURL: us.api.konghq.com
+          serverURL: us.api.konghq.com' | kubectl apply -f -
         ```
 
     1. New `KonnectExtension` using the `konnect.kongh.com` API group and reference the Konnect CP by KonnectID.
