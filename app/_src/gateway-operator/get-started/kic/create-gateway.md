@@ -97,9 +97,6 @@ To get the endpoint and the authentication details of the data plane.
               containers:
               - name: proxy
                 image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
-                readinessProbe:
-                  initialDelaySeconds: 1
-                  periodSeconds: 1
                 env:
                   - name: KONG_DATABASE
                     value: "off"
@@ -157,9 +154,6 @@ spec:
           containers:
           - name: proxy
             image: kong:{{ site.data.kong_latest_gateway.ce-version }}
-            readinessProbe:
-              initialDelaySeconds: 1
-              periodSeconds: 1
   controlPlaneOptions:
     deployment:
       podTemplateSpec:

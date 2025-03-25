@@ -28,9 +28,6 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
               env:
               - name: KONG_LOG_LEVEL
                 value: debug
-              readinessProbe:
-                initialDelaySeconds: 1
-                periodSeconds: 1
     ```
 
     > **NOTE**: Currently only `BreakBeforePromotion` is available as promotion strategy.
