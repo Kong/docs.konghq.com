@@ -15,7 +15,7 @@ Partials address this issue by allowing you to extract shared configurations int
 - **`redis-ce`**: Stores common Redis configurations for plugins available in {{site.ce_product_name}}.
 - **`redis-ee`**: Stores common Redis configurations for plugins available only in {{site.ee_product_name}}.
 
-An easy way to determine the required Redis configuration is by examining the fields in use. `redis-ce` has a shorter and simpler configuration, whereas `redis-ee` provides options for configuring Redis Sentinel or Redis Cluster for connection.
+An easy way to determine the required Redis configuration is by examining the fields in use. `redis-ce` has a shorter and simpler configuration, whereas `redis-ee` provides options for configuring Redis Sentinel or Redis Cluster connections.
 
 ## Creating a Partial
 
