@@ -368,7 +368,7 @@ request and responding from {{site.base_gateway}}.
 As seen in the examples on this page, Lua code may contain references and modify values 
 in the callout context. 
 
-{:.warning}
+{:.important}
 > Schema validation will detect syntax issues. Other errors, such as 
 > nil references, happen at runtime and lead to an `Internal Server Error`. 
 > Lua code must be thoroughly tested to ensure correctness and that it meets 
