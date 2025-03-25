@@ -15,12 +15,8 @@ Add a note that AI plugins require additional licensing
 
 ### [CSRE-3763 Added documentation for 2 new edge gateway regions](https://github.com/Kong/docs.konghq.com/pull/8595) (2025-03-20)
 
-<!-- What did you change and why? -->
-
 Added new AWS Private Link regions
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 https://konghq.atlassian.net/browse/CSRE-3763
 
 #### Modified
@@ -130,8 +126,6 @@ Changelog and version bump for 3.9.1.1
 
 Add clarification of the cache_control config and explain the behaviour if being set with common AI services.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/ai-semantic-cache/overview/
@@ -144,8 +138,7 @@ Add following features:
 - ai-proxy-advanced: new priority algorithm
 - ai-proxy-advanced: failover creteria
 - ai-proxy-advanced: cost as tokens_count_strategy (mention log_statistics must be on)
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 Fixes:
 https://konghq.atlassian.net/browse/DOCU-4194
 https://konghq.atlassian.net/browse/DOCU-4193
@@ -180,8 +173,6 @@ Screenshots are attached for additional Azure/SAML context and verification.
 * Claim edit window (showing `Namespace`): 
 ![Screenshot 2025-03-17 at 15 15 29](https://github.com/user-attachments/assets/a134fca7-e787-4df0-86f5-34cb8783d47a)
 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -200,8 +191,6 @@ Issue came up on Slack.
 
 
 ### [feat: AppDynamics agent ARM support](https://github.com/Kong/docs.konghq.com/pull/8555) (2025-03-18)
-
-<!-- What did you change and why? -->
  
 KAG-4034
 
@@ -224,8 +213,6 @@ KAG-4034
 
 Document the new Dev Portal reserved paths.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/dev-portal/portals/customization/custom-pages
@@ -238,13 +225,6 @@ Issue reported at [https://github.com/Kong/docs.konghq.com/issues/8296](https://
 Change title from "How to configure Transit Gateway" to "How to configure AWS Transit Gateway", so it clearly states this is an AWS product.
 
 In the "Configure AWS Transit Gateway" section, replace "Create Transit Gateway" with "Create transit gateway", in lowercase, as this is the term appearing in AWS.
-
-
-### Description
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
