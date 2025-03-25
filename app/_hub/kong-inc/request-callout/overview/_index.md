@@ -118,14 +118,14 @@ list of supported configurations.
 
 ### Callout that caches the result
 
-The following example will result in the callout response being cached for 360 seconds. 
-Each callout object may also contain a `cache` component. The storage strategy 
-in use is `memory`, meaning that data is stored in the local Kong shared 
-dictionary storage, but Redis is also supported, similarly to plugins such as 
-Proxy Cache Advanced.
+Each callout object may also contain a `cache` component. In the following example, 
+the storage strategy in use is `memory`, meaning that data is stored in
+{{site.base_gateway}}'s local shared dictionary storage. Redis storage is also supported.
 
 The [schema reference](/hub/kong-inc/request-callout/configuration/) contains the full 
 list of supported configurations.
+
+The following example will result in the callout response being cached for 360 seconds:
 
 ```json
 {
@@ -215,11 +215,11 @@ the second, and building a full response:
 
 ### Callout that dynamically customizes the cache key via Lua code
 
-In this callout, note both the `cache` top-level object and the `by_lua` field in 
-`callout.response.by_lua`. The former defines global caching behavior, while the 
-latter runs Lua code modifyin the callout cache key. 
+In this callout example:
+* The `cache` top-level object defines global caching behavior
+* The `by_lua` field in `callout.response.by_lua` runs Lua code modifying the callout cache key
 
-This example is crafted to  execute Lua code in the response `by_lua`. 
+This example is crafted to execute Lua code in the response `by_lua`. 
 A similar use case could customize the `url` field of the callout request by 
 running Lua code setting `kong.ctx.shared.callouts.<name>` in the request `by_lua` field.
  
@@ -271,7 +271,7 @@ running Lua code setting `kong.ctx.shared.callouts.<name>` in the request `by_lu
 
 ### Callout that dynamically customizes URL via Lua code
 
-Similarly to the previous example, the following callout uses Lua code to 
+Similar to the previous example, the following callout uses Lua code to 
 customize the request. Now, instead of running after the response is received, 
 the Lua code executes before the request is made.
 
@@ -365,11 +365,11 @@ that runs before the upstream request runs. This is useful to further customize
 the upstream request, or even to bypass it completely, short-circuiting the 
 request and responding from {{site.base_gateway}}.
 
-As seen in previous examples, Lua code may contain references and modify values 
+As seen in the examples on this page, Lua code may contain references and modify values 
 in the callout context. 
 
 {:.warning}
-> Syntax issues are detected as part of schema validation. Other errors, such as 
-> nil references, happen at runtime and lead to an `Internal Server Error`. Lua 
-> code must be thouroughly tested to ensure correctness and that it meets 
+> Schema validation will detect syntax issues. Other errors, such as 
+> nil references, happen at runtime and lead to an `Internal Server Error`. 
+> Lua code must be thoroughly tested to ensure correctness and that it meets 
 > performance requirements.
