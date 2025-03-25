@@ -295,8 +295,8 @@ This release contains upgraded dependencies and a new interface for validating e
   * Kong Gateway allows you to configure the Kafka Consume plugin without authentication settings, 
   but authentication must be configured for the plugin to work. 
   
-  If authentication is not configured, or if the authentication strategy is missing, 
-  the plugin will fail with a generic authentication error.
+    If authentication is not configured, or if the authentication strategy is missing, 
+    the plugin will fail with a generic authentication error.
 * **AI Proxy plugin:**
   * Some active tracing latency values are incorrectly reported as having zero length when using the AI Proxy plugin.
 
