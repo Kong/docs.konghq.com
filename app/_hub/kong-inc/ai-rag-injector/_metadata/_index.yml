@@ -17,5 +17,5 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: Integrate RAG (retrieval-augmented generation) capabilities into your LLM applications requests.
+desc: Integrate RAG (retrieval-augmented generation) capabilities into your LLM applications requests
 type: plugin
