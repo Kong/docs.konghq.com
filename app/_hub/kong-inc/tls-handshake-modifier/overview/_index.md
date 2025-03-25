@@ -37,4 +37,4 @@ for client certificates to specific requests.
 
 {:.important}
 > When using the plugin with [expressions routes](/gateway/latest/reference/expressions-language/), 
-the client certificate will always be requested, even if the routes are configured with an SNI. 
+the client certificate will always be requested, even if the routes are configured with SNIs. 
