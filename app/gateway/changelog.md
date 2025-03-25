@@ -291,8 +291,8 @@ This release contains upgraded dependencies and a new interface for validating e
   This means that deleted secrets will remain in the cache, and can still be accessed by the plugin.
 * **Confluent Consume and Kafka Consume plugins:**
   * An error message appears in the logs about a missing cluster name, even when the name is specified.
-* **Confluent Consume plugin:**
-  * Kong Gateway allows you to configure the Confluent Consume plugin without authentication settings, 
+* **Kafka Consume plugin:**
+  * Kong Gateway allows you to configure the Kafka Consume plugin without authentication settings, 
   but authentication must be configured for the plugin to work. 
   
   If authentication is not configured, or if the authentication strategy is missing, 
