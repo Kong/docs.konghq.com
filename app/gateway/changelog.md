@@ -297,6 +297,8 @@ This release contains upgraded dependencies and a new interface for validating e
   
   If authentication is not configured, or if the authentication strategy is missing, 
   the plugin will fail with a generic authentication error.
+* **AI Proxy plugin:**
+  * Some active tracing latency values are incorrectly reported as having zero length when using the AI Proxy plugin.
 
 ## 3.9.1.1
 **Release Date** 2025/03/20
