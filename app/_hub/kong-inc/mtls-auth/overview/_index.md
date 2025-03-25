@@ -45,6 +45,10 @@ the client certificate during every TLS handshake:
 
 SNIs must be set for all routes that mutual TLS authentication uses.
 
+{:.important}
+> When using the plugin with [expressions routes](/gateway/latest/reference/expressions-language/), 
+the client certificate will always be requested, even if the routes are configured with an SNI. 
+
 {% if_version gte:3.1.x %}
 ### Sending the CA DNs during TLS handshake
 
@@ -79,6 +83,7 @@ the SNI is found in the in-memory map of SNIs, then the corresponding CA DN list
 
 If the client doesn't send SNIs in the ClientHello message or the SNI sent is
 unknown to {{site.base_gateway}}, then the CA DN list associated with `\*` is sent only when the client certificate is requested.
+
 {% endif_version %}
 
 
