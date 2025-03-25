@@ -12,7 +12,7 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.10.0.0
-**Release Date** TBA
+**Release Date** 2025/03/25
 
 ### Breaking changes and deprecations
 
@@ -283,6 +283,20 @@ This release contains upgraded dependencies and a new interface for validating e
   * Bumped Mozilla CA Certificate Store to 2025-02-25
   * Bumped `nghttp2` to 1.65.0.
 * Bumped `libxml2` from 2.12.9 to 2.12.10.
+
+### Known issues
+
+* **Vault Auth plugin:** 
+  * The Vault Auth plugin doesn't clear its cache when incremental sync is turned on. 
+  This means that deleted secrets will remain in the cache, and can still be accessed by the plugin.
+* **Confluent Consume and Kafka Consume plugins:**
+  * An error message appears in the logs about a missing cluster name, even when the name is specified.
+* **Confluent Consume plugin:**
+  * Kong Gateway allows you to configure the Confluent Consume plugin without authentication settings, 
+  but authentication must be configured for the plugin to work. 
+  
+  If authentication is not configured, or if the authentication strategy is missing, 
+  the plugin will fail with a generic authentication error.
 
 ## 3.9.1.1
 **Release Date** 2025/03/20
