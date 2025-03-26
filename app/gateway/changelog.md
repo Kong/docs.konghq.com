@@ -3046,7 +3046,7 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 ## 3.4.3.17
-**Release Date** 2025/03/13
+**Release Date** 2025/03/26
 
 ### Fixes
 #### Core
