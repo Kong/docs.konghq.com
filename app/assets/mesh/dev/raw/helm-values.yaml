@@ -61,7 +61,7 @@ ratelimit:
     # -- Ratelimit Service image repository
     repository: "ratelimit"
     # -- Ratelimit Service image tag
-    tag: "542a6047"
+    tag: "542a6047@sha256:84a90618cfe3aa95179359606d75cade0d380734c9490dcf9d84c4400854b107"
   # -- Log level of ratelimit service. Available values are: "INFO", "DEBUG"
   logLevel: INFO
   # -- Whether debug port should be exposed
