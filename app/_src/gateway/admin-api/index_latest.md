@@ -38,7 +38,7 @@ The Kong Admin API is documented in OpenAPI format:
 {% endif_version %}
 
 See the following links for individual entity documentation:
-sss
+
 {% navtabs %}
 {% navtab Enterprise endpoints %}
 
