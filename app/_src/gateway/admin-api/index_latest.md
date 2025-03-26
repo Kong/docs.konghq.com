@@ -38,7 +38,7 @@ The Kong Admin API is documented in OpenAPI format:
 {% endif_version %}
 
 See the following links for individual entity documentation:
-
+sss
 {% navtabs %}
 {% navtab Enterprise endpoints %}
 
@@ -51,7 +51,12 @@ See the following links for individual entity documentation:
 | [Filter Chains]( /gateway/api/admin-ee/latest/#/operations/get-filter-chains){:target="_blank"} | [Licenses](/gateway/api/admin-ee/latest/#/operations/get-licenses){:target="_blank"} | [Workspaces](/gateway/api/admin-ee/latest/#/operations/list-workspace){:target="_blank"} |
 | [RBAC]( /gateway/api/admin-ee/latest/#/operations/get-rbac-users){:target="_blank"} | [Admins](/gateway/api/admin-ee/latest/#/operations/get-admins){:target="_blank"} | [Consumer Groups](/gateway/api/admin-ee/latest/#/operations/get-consumer_groups){:target="_blank"} |
 | [Event Hooks]( /gateway/api/admin-ee/latest/#/operations/get-event-hooks){:target="_blank"} | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/operations/get-keyring){:target="_blank"} | [Audit Logs](/gateway/api/admin-ee/latest/#/operations/get-audit-requests){:target="_blank"} |
-| [Partials](/gateway/api/admin-ee/latest/#/partials){:target="_blank"}  | | |
+
+{% if_version gte:3.10.x %}
+| [Partials](/gateway/api/admin-ee/latest/#/partials){:target="_blank"} | | |
+{% endif_version %}
+
+
 {% endnavtab %}
 {% navtab OSS endpoints %}
 | [Information Routes](/gateway/api/admin-oss/latest/#/operations/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-oss/latest/#/operations/get-status){:target="_blank"} | [Tags](/gateway/api/admin-oss/latest/#/operations/get-tags){:target="_blank"} |
