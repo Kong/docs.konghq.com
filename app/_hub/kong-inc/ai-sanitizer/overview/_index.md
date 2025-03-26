@@ -13,7 +13,7 @@ Additionally, it offers an optional restoration feature, allowing the original d
 Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
 
 {:.note}
-> The AI Sanitizer plugin was relying on the [AI Pii Services](https://github.com/Kong/ai-pii-service) service for its AI capabilities, which can be deployed as a standalone service or docker container. Check out the [AI Sanitizer plugin](/hub/kong-inc/ai-sanitizer) for more information on how to config the plugin with the AI Pii Services.
+> The AI Sanitizer plugin is relying on the [AI PII Services](https://github.com/Kong/ai-pii-service) service for identifying and sanitizing sensitive information, which can be deployed as a standalone service or docker container. Check out the [AI Sanitizer plugin](/hub/kong-inc/ai-sanitizer) for more information on how to config the plugin with the AI PII Services.
 
 ## How it works
 
