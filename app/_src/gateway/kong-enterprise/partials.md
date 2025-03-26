@@ -157,4 +157,4 @@ Here is an example schema for a custom plugin using a Partial:
 
 ## Detailed API
 
-For more information about Partial configurations and usage, see the [API spec](/gateway/api/admin-ee/latest/#/partials/listPartials).
+For more information about Partial configurations and usage, see the [API spec]( /gateway/api/admin-ee/latest/#/operations/listPartials).
