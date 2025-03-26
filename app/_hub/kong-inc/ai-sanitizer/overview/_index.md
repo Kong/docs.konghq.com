@@ -12,7 +12,7 @@ Additionally, it offers an optional restoration feature, allowing the original d
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/) or the [AI Proxy Advanced](/hub/kong-inc/ai-proxy-advanced/) plugin, and requires an AI proxy to be configured first. 
 Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
 
-The AI Sanitizer plugin relies on the AI PII Anonymizer Service for identifying and sanitizing sensitive information, which can be deployed as a standalone service or Docker container. Check out the [AI Sanitizer plugin's configuration options](/hub/kong-inc/ai-sanitizer) for more information on how to configure the plugin with the AI PII Anonymizer Service.
+The AI Sanitizer plugin relies on the AI PII Anonymizer Service for identifying and sanitizing sensitive information, which can be deployed as a Docker container. Check out the [AI Sanitizer plugin's configuration options](/hub/kong-inc/ai-sanitizer) for more information on how to configure the plugin with the AI PII Anonymizer Service.
 
 ## How it works
 
