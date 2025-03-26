@@ -9,6 +9,13 @@ This plugin provides the following benefits:
 * Lets you lock down sensitive vector databases, so that developers don't have direct access. AI Gateway becomes the client, instead of the developer applications.
 * Enables building RAG pipelines in more places, even in places where connectivity to the vector database was originally not possible.
 
+## How it works
+
+1. The customer set up the RAG content to the vector database which we configure in the plugin config by Kong Admin API.
+2. When a request reaches the AI Gateway, the plugin generates embeddings for request prompts, and then queries the vector database for the top-k most similar embeddings.
+3. The plugin injects the retrieved content from vector search result into the request body, and forwards the request to the upstream service.
+
+
 ## Get started with the AI RAG Injector plugin
 
 * [AI Gateway quickstart: Set up AI Proxy](/gateway/latest/get-started/ai-gateway/)
