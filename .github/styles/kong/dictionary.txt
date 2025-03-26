@@ -2,6 +2,7 @@ acl
 ACLs
 addons
 admin's
+Aadhaar
 Alertmanager
 allowlist
 Amal
@@ -48,6 +49,7 @@ Github
 Gluu
 Goroutine
 Grafana
+Gunicorn
 Hasura
 HTTPie
 istioctl
@@ -137,6 +139,9 @@ admin's
 allowlist
 anonymized
 anonymizer
+anonymization
+anonymizing
+anonymizes
 api
 APIOps
 apis
@@ -197,6 +202,7 @@ conntrack
 cors
 crds
 created_at
+cryptocurrency
 Curity
 DAO
 DAOs
