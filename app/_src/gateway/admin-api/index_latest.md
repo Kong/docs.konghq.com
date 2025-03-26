@@ -43,23 +43,23 @@ See the following links for individual entity documentation:
 {% navtab Enterprise endpoints %}
 
 
-| [Information Routes](/gateway/api/admin-ee/latest/#/Information/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-ee/latest/#/Information/get-status){:target="_blank"} | [Tags](/gateway/api/admin-ee/latest/#/tags/get-tags){:target="_blank"} |
-| [Debug Routes](/gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level){:target="_blank"} | [Services](/gateway/api/admin-ee/latest/#/Services/list-service){:target="_blank"} | [Routes](/gateway/api/admin-ee/latest/#/Routes/list-route){:target="_blank"} |
-| [Consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-ee/latest/#/Plugins/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-ee/latest/#/Certificates/list-certificate){:target="_blank"} |
-| [CA Certificates](/gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream){:target="_blank"} |
-| [Targets](/gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-ee/latest/#/Vaults/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-ee/latest/#/Keys/list-key){:target="_blank"} |
-| [Filter Chains](/gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains){:target="_blank"} | [Licenses](/gateway/api/admin-ee/latest/#/licenses/get-licenses){:target="_blank"} | [Workspaces](/gateway/api/admin-ee/latest/#/Workspaces/list-workspace){:target="_blank"} |
-| [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users){:target="_blank"} | [Admins](/gateway/api/admin-ee/latest/#/admins/get-admins){:target="_blank"} | [Consumer Groups](/gateway/api/admin-ee/latest/#/consumer_groups/){:target="_blank"} |
-| [Event Hooks](/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks){:target="_blank"} | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/Keyring/get-keyring){:target="_blank"} | [Audit Logs](/gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests){:target="_blank"} |
+| [Information Routes]( /gateway/api/admin-ee/latest/#/operations/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-ee/latest/#/operations/get-status){:target="_blank"} | [Tags](/gateway/api/admin-ee/latest/#/operations/get-tags){:target="_blank"} |
+| [Debug Routes]( /gateway/api/admin-ee/latest/#/operations/put-debug-cluster-control-planes-nodes-log-level-log_level){:target="_blank"} | [Services](/gateway/api/admin-ee/latest/#/operations/list-service){:target="_blank"} | [Routes](/gateway/api/admin-ee/latest/#/operations/list-route){:target="_blank"} |
+| [Consumers]( /gateway/api/admin-ee/latest/#/operations/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-ee/latest/#/operations/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-ee/latest/#/operations/list-certificate){:target="_blank"} |
+| [CA Certificates]( /gateway/api/admin-ee/latest/#/operations/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-ee/latest/#/operations/list-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-ee/latest/#/operations/list-upstream){:target="_blank"} |
+| [Targets]( /gateway/api/admin-ee/latest/#/operations/list-target-with-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-ee/latest/#/operations/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-ee/latest/#/operations/list-key){:target="_blank"} |
+| [Filter Chains]( /gateway/api/admin-ee/latest/#/operations/get-filter-chains){:target="_blank"} | [Licenses](/gateway/api/admin-ee/latest/#/operations/get-licenses){:target="_blank"} | [Workspaces](/gateway/api/admin-ee/latest/#/operations/list-workspace){:target="_blank"} |
+| [RBAC]( /gateway/api/admin-ee/latest/#/operations/get-rbac-users){:target="_blank"} | [Admins](/gateway/api/admin-ee/latest/#/operations/get-admins){:target="_blank"} | [Consumer Groups](/gateway/api/admin-ee/latest/#/operations/get-consumer_groups){:target="_blank"} |
+| [Event Hooks]( /gateway/api/admin-ee/latest/#/operations/get-event-hooks){:target="_blank"} | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/operations/get-keyring){:target="_blank"} | [Audit Logs](/gateway/api/admin-ee/latest/#/operations/get-audit-requests){:target="_blank"} |
 | [Partials](/gateway/api/admin-ee/latest/#/partials){:target="_blank"}  | | |
 {% endnavtab %}
 {% navtab OSS endpoints %}
-| [Information Routes](/gateway/api/admin-oss/latest/#/Information/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-oss/latest/#/Information/get-status){:target="_blank"} | [Tags](/gateway/api/admin-oss/latest/#/tags/get-tags){:target="_blank"} |
-| [Debug Routes](/gateway/api/admin-oss/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level){:target="_blank"} | [Services](/gateway/api/admin-oss/latest/#/Services/list-service){:target="_blank"} | [Routes](/gateway/api/admin-oss/latest/#/Routes/list-route){:target="_blank"} |
-| [Consumers](/gateway/api/admin-oss/latest/#/Consumers/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-oss/latest/#/Plugins/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-oss/latest/#/Certificates/list-certificate){:target="_blank"} |
-| [CA Certificates](/gateway/api/admin-oss/latest/#/CA%20Certificates/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-oss/latest/#/SNIs/list-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-oss/latest/#/Upstreams/list-upstream){:target="_blank"} |
-| [Targets](/gateway/api/admin-oss/latest/#/Targets/list-target-with-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-oss/latest/#/Vaults/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-oss/latest/#/Keys/list-key){:target="_blank"} |
-| [Filter Chains](/gateway/api/admin-oss/latest/#/filter-chains/get-filter-chains){:target="_blank"} | | |
+| [Information Routes](/gateway/api/admin-oss/latest/#/operations/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-oss/latest/#/operations/get-status){:target="_blank"} | [Tags](/gateway/api/admin-oss/latest/#/operations/get-tags){:target="_blank"} |
+| [Debug Routes](/gateway/api/admin-oss/latest/#/operations/put-debug-cluster-control-planes-nodes-log-level-log_level){:target="_blank"} | [Services](/gateway/api/admin-oss/latest/#/operations/list-service){:target="_blank"} | [Routes](/gateway/api/admin-oss/latest/#/operations/list-route){:target="_blank"} |
+| [Consumers](/gateway/api/admin-oss/latest/#/operations/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-oss/latest/#/operations/list-plugins-for-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-oss/latest/#/operations/list-certificate){:target="_blank"} |
+| [CA Certificates](/gateway/api/admin-oss/latest/#/operations/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-oss/latest/#/operations/get-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-oss/latest/#/operations/list-upstream){:target="_blank"} |
+| [Targets](/gateway/api/admin-oss/latest/#/operations/list-targets-for-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-oss/latest/#/operations/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-oss/latest/#/operations/list-key){:target="_blank"} |
+| [Filter Chains](/gateway/api/admin-oss/latest/#/operations/get-filter-chains){:target="_blank"} | | |
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -72,8 +72,8 @@ This is the case because there is no database coordination between Kong nodes.
 Therefore, the Admin API is mostly read-only. 
 
 When running {{site.base_gateway}} in DB-less mode, the Admin API can only perform tasks related to handling the declarative config:
-* [Validating configurations against schemas](/gateway/api/admin-oss/latest/#/Information/post-schemas-entity-validate)
-* [Validating plugin configurations against schemas](/gateway/api/admin-oss/latest/#/Information/post-schemas-plugins-validate)
+* [Validating configurations against schemas](/gateway/api/admin-oss/latest/#/operations/post-schemas-entity-validate)
+* [Validating plugin configurations against schemas](/gateway/api/admin-oss/latest/#/operations/post-schemas-plugins-validate)
 * [Reloading the declarative configuration](/gateway/{{page.release}}/admin-api/declarative-configuration/)
 
 ## Supported content types
