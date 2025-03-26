@@ -41,8 +41,8 @@ plugins:
 - name: ai-rag-injector
   config:
     inject_template: |
-      Only use the following information surrounded by <context></context>to and your existing knowledge to provide the best possible answer to the user.
-      <context><RAG RESPONSE></context>
+      Only use the following information surrounded by <CONTEXT></CONTEXT>to and your existing knowledge to provide the best possible answer to the user.
+      <CONTEXT><RAG RESPONSE></CONTEXT>
       User's question: <PROMPT>
     embeddings:
       auth:
