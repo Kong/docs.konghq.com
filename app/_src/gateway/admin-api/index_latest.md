@@ -53,7 +53,7 @@ See the following links for individual entity documentation:
 | [Event Hooks]( /gateway/api/admin-ee/latest/#/operations/get-event-hooks){:target="_blank"} | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/operations/get-keyring){:target="_blank"} | [Audit Logs](/gateway/api/admin-ee/latest/#/operations/get-audit-requests){:target="_blank"} |
 
 {% if_version gte:3.10.x %}
-| [Partials](/gateway/api/admin-ee/latest/#/partials){:target="_blank"} | | |
+| [Partials](/gateway/api/admin-ee/latest/#/operations/partials){:target="_blank"} | | |
 {% endif_version %}
 
 
