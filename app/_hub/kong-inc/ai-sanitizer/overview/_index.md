@@ -12,6 +12,9 @@ Additionally, it offers an optional restoration feature, allowing the original d
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/) or the [AI Proxy Advanced](/hub/kong-inc/ai-proxy-advanced/) plugin, and requires an AI proxy to be configured first. 
 Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
 
+{:.note}
+> The AI Sanitizer plugin was relying on the [AI Pii Services](https://github.com/Kong/ai-pii-service) service for its AI capabilities, which can be deployed as a standalone service or docker container. Check out the [AI Sanitizer plugin](/hub/kong-inc/ai-sanitizer) for more information on how to config the plugin with the AI Pii Services.
+
 ## How it works
 
 1. When a request reaches {{site.base_gateway}}, the plugin intercepts the request body and forwards it to the external PII service.
