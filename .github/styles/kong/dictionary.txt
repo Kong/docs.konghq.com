@@ -136,6 +136,7 @@ acl
 admin's
 allowlist
 anonymized
+anonymizer
 api
 APIOps
 apis
