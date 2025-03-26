@@ -2,9 +2,6 @@
 nav_title: Using the AI RAG Injector plugin
 title: Using the AI RA Injector plugin
 ---
-<!-- how-to/tutorial goes here -->
-
-
 ## Prerequisites
 
 - Create a service and a route
@@ -14,10 +11,10 @@ You can now create the AI RAG Injector plugin at the global, service, or route l
 
 ## Examples
 
-The following examples show how to configure, and the expected behavior when making requests.
+The following examples show how to configure the AI RAG Injector plugin, and the expected behavior when making requests.
 
 ### 1. Configure the AI RAG Injector plugin
-The following example shows how to configure the AI RAG Injector plugin with the AI Proxy Advanced plugin.
+Configure the AI RAG Injector plugin with the AI Proxy Advanced plugin:
 ```yaml
 _format_version: '3.0'
 services:
@@ -63,14 +60,15 @@ plugins:
       dimensions: 768
 ```
 
-### 2. Ingest content to the vector database for building the knowledge base.
+### 2. Ingest content to the vector database for building the knowledge base
+
 The following example shows how to ingest content to the vector database for building the knowledge base. The AI RAG Injector plugin uses the OpenAI `text-embedding-3-large` model to generate embeddings for the content and stores them in Redis.
 
 
-### 3. Make a AI request to the AI Proxy Advanced plugin.
+### 3. Make a AI request to the AI Proxy Advanced plugin
 
 ```bash
-curl  --http1.1 127.0.0.1:8000/chat \
+curl  --http1.1 localhost:8000/chat \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
