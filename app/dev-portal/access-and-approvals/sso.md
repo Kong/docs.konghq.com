@@ -34,12 +34,12 @@ include_cached /md/konnect/generic-sso.md desc='Dev Portal' %}
 
 ## Konnect Portal Editor considerations
 
-To seamlessly use the Konnect Portal Editor preview experience, you might need to configure your IdP with additional settings to ensure the login flow and preview environment function properly.
+To seamlessly use the Konnect Portal Editor preview experience, you may need to configure your IdP with additional settings to ensure the login flow and preview environment function properly.
 
-* The Sign On URL (SSO URL) must always be set to the path on your Portal's custom domain, if applicable: `https://example.com/login/sso`.
+* The Sign On URL (SSO URL) must be set to the path on your Portal's custom domain, if applicable: `https://example.com/login/sso`.
 * Specifically for SAML, the primary Reply URL (Assertion Consumer Service URL) must be set to the path on your Portal's custom domain, if applicable: `https://example.com/api/v2/developer/authenticate/saml/acs`.
   * To support the Konnect Portal Editor, you must also set an additional Reply URL (other callable SSO URLs) to the Kong-managed Portal domain: `https://{subdomain}.edge.{region}.portal.konghq.com/api/v2/developer/authenticate/saml/acs`.
-* Your IdP must be configured to allow embedding its Sign in screen within an iframe. As an example from Okta, you can configure [Trusted Origins](https://help.okta.com/en-us/content/topics/api/trusted-origins-iframe.htm) with your IdP. You should add `https://cloud.konghq.com` as a Trusted Origin for iframe embedding. This will allow your users to use the IdP login flow within the Konnect Portal Editor preview environment.
+* Your IdP must be configured to allow embedding its sign in screen within an iframe. As an example from Okta, you can configure [Trusted Origins](https://help.okta.com/en-us/content/topics/api/trusted-origins-iframe.htm) with your IdP. You should add `https://cloud.konghq.com` as a Trusted Origin for iframe embedding. This will allow your users to use the IdP login flow within the Konnect Portal Editor preview environment.
 
 ## Related links
 
