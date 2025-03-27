@@ -60,12 +60,12 @@ plugins:
       dimensions: 768
 ```
 
-### 2. Ingest content to the vector database for building the knowledge base
+### 2. Make a AI request to the AI Proxy Advanced plugin
 
-The following example shows how to ingest content to the vector database for building the knowledge base. The AI RAG Injector plugin uses the OpenAI `text-embedding-3-large` model to generate embeddings for the content and stores them in Redis.
+The AI RAG Injector plugin uses the OpenAI `text-embedding-3-large` model to generate embeddings for the content and stores them in Redis. 
 
-
-### 3. Make a AI request to the AI Proxy Advanced plugin
+Once vector database has ingested data and built a knowledge base, you can make requests to it. 
+For example:
 
 ```bash
 curl  --http1.1 localhost:8000/chat \
