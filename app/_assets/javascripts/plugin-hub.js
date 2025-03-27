@@ -51,14 +51,12 @@ $(document).ready(function () {
   }
 
   function filterPluginCards() {
-    var selectedTiers = getSelectedValuesForFilter($tierFilter);
     var selectedSupport = getSelectedValuesForFilter($supportFilter);
     var selectedCompatibility = getSelectedValuesForFilter($compatibilityFilter);
     var searchQuery = $searchInput[0].value.toLowerCase();
 
     $(".plugin-card").each(function(_index, card) {
       var showCard = true;
-      showCard = showCard && passesFilters(card, selectedTiers);
       showCard = showCard && passesFilters(card, selectedSupport);
       showCard = showCard && passesFilters(card, selectedCompatibility);
 
@@ -134,7 +132,6 @@ $(document).ready(function () {
   if ($(".page.page-hub").length !== 0) {
     var categoryIds = $.map($(".page-hub--category"), function(c) { return c.id; });
     var $categoryFilter = $(".page-hub--filters__filter-categories");
-    var $tierFilter = $(".page-hub--filters__filter-tiers");
     var $supportFilter = $(".page-hub--filters__filter-support");
     var $compatibilityFilter = $(".page-hub--filters__filter-compatibility");
     var $searchInput = $("#filter-plugins");
@@ -149,9 +146,7 @@ $(document).ready(function () {
           if (value === "ee-compat") {
             value = "enterprise";
           }
-          var $dropdownItem = $tierFilter.find(`.dropdown-item[data-value='${value}']`);
-          handleDropdownChange($tierFilter, $dropdownItem);
-          }
+        }
       }
     }
 
@@ -168,9 +163,6 @@ $(document).ready(function () {
         if (queryParams.has("category")) {
           populateFilter($categoryFilter, "category");
           filterByCategories($categoryFilter);
-        }
-        if (queryParams.has("tier")) {
-          populateFilter($tierFilter, "tier");
         }
         if (queryParams.has("support")) {
           populateFilter($supportFilter, "support");
@@ -207,12 +199,10 @@ $(document).ready(function () {
 
     function updateQueryParams() {
       var $categoryFilter = $(".page-hub--filters__filter-categories");
-      var $tierFilter = $(".page-hub--filters__filter-tiers");
       var $supportFilter = $(".page-hub--filters__filter-support");
       var $compatibilityFilter = $(".page-hub--filters__filter-compatibility");
 
       updateQueryParamWithFilter("category", $categoryFilter);
-      updateQueryParamWithFilter("tier", $tierFilter);
       updateQueryParamWithFilter("support", $supportFilter);
       updateQueryParamWithFilter("compatibility", $compatibilityFilter);
       updateQueryParamWithInputValue();
@@ -229,10 +219,6 @@ $(document).ready(function () {
     $(".page-hub--filters").on("click", ".clear-search", function(e) {
       $searchInput.val("");
       $searchInput.trigger("page-hub:filter");
-    });
-
-    $tierFilter.on("click", ".dropdown-item", function(e) {
-      handleDropdownChange($tierFilter, $(e.target));
     });
 
     $supportFilter.on("click", ".dropdown-item", function(e) {
