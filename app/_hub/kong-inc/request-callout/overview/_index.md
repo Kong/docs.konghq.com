@@ -373,3 +373,12 @@ in the callout context.
 > nil references, happen at runtime and lead to an `Internal Server Error`. 
 > Lua code must be thoroughly tested to ensure correctness and that it meets 
 > performance requirements.
+
+## `forward` flag
+
+Callout request and upstream request configuration blocks contain a `forward` 
+flag that controls whether specific request components are used to build the 
+callout or upstream request. If `config.upstream.headers.forward` is set to `false`, 
+this effectively clears all incoming request headers, including essential 
+headers such as `Content-Type`, `Host`, and others. 
+These headers can be reinserted via the `config.upstream.headers.custom` configuration parameter.
