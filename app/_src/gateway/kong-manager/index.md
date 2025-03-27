@@ -4,9 +4,11 @@ title: Kong Manager
 
 Kong Manager is the graphical user interface (GUI) for {{site.base_gateway}}.
 It uses the Kong Admin API under the hood to administer and control {{site.base_gateway}}.
+
+{% if_version lte:3.9.x %}
 It comes in two options, depending on the edition of {{site.base_gateway}} that you're running: open-source or enterprise.
 
-Here's a comparison of some of the capabilities you get access to between the Kong Manager Enterprise (or Free mode) edition, and the OSS edition:
+Here's a comparison of some of the capabilities you get access to between the Kong Manager Enterprise edition, and the OSS edition:
 
 | Capability | Kong Manager Enterprise | Kong Manager OSS |
 |--|---------------------------------------|------------------|
@@ -28,6 +30,8 @@ Here's a comparison of some of the capabilities you get access to between the Ko
 | Centrally store and easily access key sets and keys | ✅ | ✅ |
 {% endif_version %}
 | Manage vaults | ✅ | ✅ |
+
+{% endif_version %}
 
 {:.note}
 > **Note**: If you are running Kong in [traditional mode](/gateway/{{page.release}}/production/deployment-topologies/traditional/), increased traffic could lead to potential performance issues for the Kong proxy.
@@ -123,6 +127,7 @@ Number | Item | Description
 {% endif_version %}
 {% endif_version %}
 
+{% if_version lte:3.9.x %}
 ## Kong Manager OSS interface
 
 Kong Manager Open Source (OSS) is the graphical user interface (GUI) for {{site.ce_product_name}}. 
@@ -149,3 +154,5 @@ It uses the Kong Admin API under the hood to administer and control {{site.ce_pr
 **Vaults** | Manage the security of {{site.ce_product_name}} with centralized secrets.
 **Keys** | Manage your asymmetric keys by adding a key object.
 **Key Sets** | Manage your asymmetric key collections by adding a key set object.
+
+{% endif_version %}

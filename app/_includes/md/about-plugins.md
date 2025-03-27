@@ -7,8 +7,7 @@ use of the {{site.base_gateway}}, allowing you to add more features to your impl
 
 Kong provides a set of
 [standard Lua plugins](/hub/?support=kong-inc) that get bundled with {{site.base_gateway}} and
-{{site.konnect_short_name}}. The set of plugins you
-have access to depends on your [license tier](/hub/plugins/license-tiers/).
+{{site.konnect_short_name}}.
 
 You can also [develop custom plugins](#developing-custom-plugins), adding your own custom functionality to {{site.base_gateway}}.
 
@@ -107,12 +106,6 @@ If you would like to have your plugin featured on the Kong Plugin Hub, we encour
 ## See also
 
 * [Kong Plugin Hub](/hub/): All Kong bundled plugins and partner plugins
-
-References:
 * [Supported scopes for each plugin](/hub/plugins/compatibility/#scopes)
 * [Supported topologies for each plugin](/hub/plugins/compatibility/)
 * [Supported protocols for each plugin](/hub/plugins/compatibility/#protocols)
-
-License or pricing tiers for plugins:
-* [Self-managed {{site.base_gateway}} license tiers](/hub/plugins/license-tiers/)
-* [{{site.konnect_short_name}} pricing tiers](/konnect/compatibility/#plugin-compatibility)

@@ -133,6 +133,12 @@ configuration, and are forwarded to upstream services._
 
 ### Self-managed
 
+{% if_version gte:3.10.x %}
+You can manage {{site.base_gateway}} with Kong's
+[Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
+{% endif_version %}
+
+{% if_version lte:3.9.x %}
 {{site.base_gateway}} is available in two different packages: Open Source (OSS) and Enterprise.
 
 **{{site.ce_product_name}}**: An open-source package containing the basic API gateway
@@ -155,6 +161,7 @@ with added functionality.
 
 You can manage {{site.ee_product_name}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
+{% endif_version %}
 
 ![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/kong-gateway-features.png)
 > _Figure 2: Diagram of {{site.base_gateway}} key features. {{site.ce_product_name}} provides basic functionality, 
@@ -166,7 +173,11 @@ configuration, and forwarded to upstream services._
 
 ## Features
 
+{% if_version lte:3.9.x %}
+
 {% include_cached feature-table.html config=site.data.tables.features.gateway %}
+
+{% endif_version %}
 
 ### Kong Admin API
 
@@ -176,7 +187,6 @@ routes, plugins, consumers, and more. All of the tasks you can perform against t
 Gateway can be automated using the Kong Admin API.
 
 ### Kong Manager
-{:.badge .free}
 
 {:.note}
 > **Note**: If you are running Kong in traditional mode, increased traffic could
@@ -237,8 +247,11 @@ the Kong Admin API.
 ## Get started with {{site.base_gateway}}
 
 [Download and install {{site.base_gateway}}](/gateway/{{page.release}}/install/).
+
+{% if_version lte:3.9.x %}
 To test it out, you can choose either the open-source package, or
 run {{site.ee_product_name}} in free mode and also try out Kong Manager.
+{% endif_version %}
 
 After installation, get started with the introductory [quickstart guide](/gateway/{{page.release}}/get-started/).
 
@@ -248,7 +261,7 @@ After installation, get started with the introductory [quickstart guide](/gatewa
 instances. With this setup, Kong hosts the control plane and you host your
 own data planes.
 
-There are a few ways to test out the Gateway's Enterprise features:
+There are a few ways to test out the Gateway:
 
 * Sign up for [{{site.konnect_product_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-overview).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
