@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* Fixed an issue where random delays were out of range.
+
 ### {{site.base_gateway}} 3.7.x
 * Added the [`custom_base_path`](/hub/kong-inc/mocking/configuration/#config-custom_base_path) field to specify a custom base path.
 Use it with the [`deck file namespace`](/deck/latest/reference/deck_file_namespace/) command.

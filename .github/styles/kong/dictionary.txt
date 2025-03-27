@@ -137,6 +137,8 @@ _prod
 acl
 admin's
 allowlist
+allowlisting
+allowlisted
 anonymized
 anonymizer
 anonymization
@@ -317,6 +319,7 @@ inbounds
 ini
 init_worker
 inso
+instana
 instrumentations
 invalidation
 invalidations
@@ -406,6 +409,7 @@ misconfigurations
 misconfigured
 Moesif
 MongoDB
+multimodal
 mutex
 nameserver
 nameservers

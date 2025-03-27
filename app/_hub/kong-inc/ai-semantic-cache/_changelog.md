@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.0.0
+* Fixed an issue where the SSE body could have extra trailing characters.
+
 ### {{site.base_gateway}} 3.9.0.0
 * Added the `ignore_tool` configuration option to discard tool role prompts from the input text.
 * This plugin can now be enabled on consumer groups.
