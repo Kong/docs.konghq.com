@@ -378,7 +378,7 @@ in the callout context.
 
 Callout request and upstream request configuration blocks contain a `forward` 
 flag that controls whether specific request components are used to build the 
-callout or upstream request. If `upstream.headers.forward` is set to `false`, 
+callout or upstream request. If `config.upstream.headers.forward` is set to `false`, 
 this effectively clears all incoming request headers, including essential 
-headers such as `Content-Type`, `Host`, and others; these can be reinserted 
-via the `upstream.headers.custom`.
+headers such as `Content-Type`, `Host`, and others. 
+These headers can be reinserted via the `config.upstream.headers.custom` configuration parameter.
