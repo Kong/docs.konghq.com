@@ -6,20 +6,20 @@ The AI Sanitizer plugin for {{site.base_gateway}} helps protect sensitive inform
 By integrating with an external PII service, the plugin ensures compliance with data privacy regulations while preserving the usability of request data.
 It supports multiple sanitization modes, including replacing sensitive information with fixed placeholders or generating synthetic replacements that retain category-specific characteristics.
 
-Additionally, it offers an optional restoration feature, allowing the original data to be reinstated in responses when needed.
+Additionally, AI Sanitizer offers an optional restoration feature, allowing the original data to be reinstated in responses when needed.
 
 {:.note}
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/) or the [AI Proxy Advanced](/hub/kong-inc/ai-proxy-advanced/) plugin, and requires an AI proxy to be configured first. 
-Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
+Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes.
 
-The AI Sanitizer plugin relies on the AI PII Anonymizer Service for identifying and sanitizing sensitive information, which can be deployed as a Docker container. See the [tutorial on configuring the AI Sanitizer plugin](/hub/kong-inc/ai-sanitizer/how-to/) for more information on how to configure the plugin with the AI PII Anonymizer Service.
+The AI Sanitizer plugin uses the AI PII Anonymizer Service, which can run in a Docker container, to detect and sanitize sensitive data.  See the [tutorial on configuring the AI Sanitizer plugin](/hub/kong-inc/ai-sanitizer/how-to/) for more information on how to configure the plugin with the AI PII Anonymizer Service.
 
 ## How it works
 
-1. When a request reaches {{site.base_gateway}}, the plugin intercepts the request body and forwards it to the external PII service.
-2. The PII service analyzes the content, identifies sensitive information, and applies the selected sanitization method (fixed placeholders or category-based synthetic replacements).
-3. The sanitized request body is then forwarded to the upstream service through the AI Proxy or AI Proxy Advanced plugin.
-4. If the restoration feature is enabled, the plugin can restore the original data in responses before returning them to the client, ensuring a seamless user experience.
+1. The plugin intercepts the request body and sends it to the external PII service.
+1. The PII service detects sensitive data and applies the chosen sanitization method (placeholders or synthetic replacements).
+1. The sanitized request is forwarded upstream with the AI Proxy or AI Proxy Advanced plugin.
+1. If restoration is enabled, the plugin restores original data in responses before returning them to the client.
 
 ## AI PII Anonymizer service
 
@@ -41,7 +41,7 @@ This service takes the following optional environment variables at startup:
 
 You can anonymize data in requests using the following redact modes:
 
-* `placeholder`: Redact the sensitive data with a fixed placeholder pattern, `PLACEHOLDER{i}`, where `i` is a sequence number and the same original text share the same number. 
+* `placeholder`: Replaces sensitive data with a fixed placeholder pattern, `PLACEHOLDER{i}`, where `i` is a sequence number. Identical original values receive the same placeholder.
    
    For example, the location `New York City` might be replaced with `LOCATION`.
    
@@ -49,13 +49,13 @@ You can anonymize data in requests using the following redact modes:
    
    For example, the name `John` might be replaced with `Amir`.
 
-  * Custom patterns will be replaced with `CUSTOM{i}`.
-  * For credentials, the string `#` with the same length as the original string will be used as a replacement.
+  * Custom patterns are replaced with `CUSTOM{i}`.
+   * Credentials are replaced with a string of `#` characters matching the original length.
 
 ### Custom patterns
 
-You can introduce an array of custom patterns on a per-request basis. 
-Today we support regex patterns, and all fields are required (`name`, `regex`, and `score`).
+You can define an array of custom patterns on a per-request basis.  
+Currently, only regex patterns are supported, and all fields are required: `name`, `regex`, and `score`.
 
 The `name` must be unique for each pattern.
 
