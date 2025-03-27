@@ -183,7 +183,7 @@ You can use this setting to [strengthen security in Kong Manager](/gateway/3.10.
 
 #### PDK
 
-* You can now use a backslash to escape dots in logging plugins' `custom_fields_by_lua`  key strings, preventing dots from creating nested tables.
+* You can now use a backslash to escape dots in logging plugins' `custom_fields_by_lua` key strings, preventing dots from creating nested tables.
 
 #### Plugins
 
