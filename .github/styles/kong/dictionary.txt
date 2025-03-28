@@ -445,6 +445,7 @@ onboarding
 onwards
 opa
 openresty
+Openshift
 OpenSSL
 openid
 Openwhisk
@@ -504,6 +505,7 @@ remediation
 remediations
 repo
 requery
+requeue
 Requeue
 Resty
 retryOn
