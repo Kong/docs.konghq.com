@@ -41,7 +41,7 @@ spec:
       ref:
         type: konnectNamespacedRef
         konnectNamespacedRef:
-          name: my-controlplane # The KonnectGatewayControlPlane resource name
+          name: gateway-control-plane # The KonnectGatewayControlPlane resource name
 ```
 
 ## DataPlane authentication

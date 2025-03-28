@@ -7,7 +7,7 @@
 ## Create a KonnectExtension in your cluster
 {% endunless %}
 
-The command below can be used to configure a `DataPlane` in an hybrid `ControlPlane` referenced via `NamespacedRef`, with automatic secret provisioning and one `DataPlane` label. You can find all the `KonnectExtension` available options and knobs in the [overview page](/gateway-operator/{{page.release}}/guides/konnect-dataplanes/overview).
+The command below can be used to configure a `KonnectExtension`, which is used to attach a `Gateway` or a `DataPlane` to Konnect. You can find all the available `KonnectExtension` available options in the [overview page](/gateway-operator/{{page.release}}/guides/konnect-dataplanes/overview).
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release with-control-plane=true is-kic-cp=include.is-kic-cp skip_install=include.skip_install api_auth_mode="secret" %}
 

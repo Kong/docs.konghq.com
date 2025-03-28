@@ -50,6 +50,7 @@ items:
             url: /get-started/kic/install/
           - text: Create a Gateway
             url: /get-started/kic/create-gateway/
+            src: get-started/kic/create-gateway-konnect-crds
           - text: Create a Route
             url: /get-started/kic/create-route/
   - title: Production Deployment
