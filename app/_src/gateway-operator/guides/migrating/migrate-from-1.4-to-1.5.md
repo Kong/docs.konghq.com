@@ -7,7 +7,7 @@ This document helps to migrate from `gateway-operator.konghq.com` to `konnect.ko
 1. Label the certificate `Secret`:
 
     ```bash
-    kubectl label secret -n kong konnect-client-tls konghq.com/konnect-dp-cert=trueI
+    kubectl label secret -n kong konnect-client-tls konghq.com/konnect-dp-cert=true
     ```
 
 1. Install new kubernetes-configuration CRDs:
