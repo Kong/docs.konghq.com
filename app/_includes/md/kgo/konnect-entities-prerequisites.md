@@ -86,7 +86,7 @@ The output should look like this:
 
 ```console
 NAME               VALID   ORGID                                  SERVERURL
-konnect-api-auth   True    <your-konnect-org-id>                  https://us.api.konghq.tech
+konnect-api-auth   True    <your-konnect-org-id>                  https://us.api.konghq.com
 ```
 
 {% if include.with-control-plane %}
