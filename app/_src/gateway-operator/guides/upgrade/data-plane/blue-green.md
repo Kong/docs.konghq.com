@@ -171,10 +171,10 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
     Connection: keep-alive
     Content-Length: 52
     X-Kong-Response-Latency: 0
-    Server: kong/{{ site.data.kong_latest_gateway.ce-version }}
+    Server: kong/{{site.latest_gateway_oss_version}}
     ```
 
-    As you can see the live `Service` is still serving traffic using `{{ site.data.kong_latest_gateway.ce-version }}`
+    As you can see, the live `Service` is still serving traffic using `{{site.latest_gateway_oss_version}}`.
 
 1. Now you can perform additional validation steps by inspecting the deployed resources.
 
