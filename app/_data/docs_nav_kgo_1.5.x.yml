@@ -37,6 +37,8 @@ items:
         items:
           - text: Install Gateway Operator
             url: /get-started/konnect/install/
+          - text: Create a KonnectExtension
+            url: /get-started/konnect/create-konnectextension/
           - text: Deploy a Data Plane
             url: /get-started/konnect/deploy-data-plane-with-konnectextension/
           - text: Create a Route

@@ -6,9 +6,9 @@ This document helps to migrate from `gateway-operator.konghq.com` to `konnect.ko
 
 1. Label the certificate `Secret`:
 
-  ```bash
-  `kubectl label secret -n kong konnect-client-tls konghq.com/konnect-dp-cert=true`
-  ```
+    ```bash
+    kubectl label secret -n kong konnect-client-tls konghq.com/konnect-dp-cert=trueI
+    ```
 
 1. Install new kubernetes-configuration CRDs:
 
@@ -104,7 +104,7 @@ This document helps to migrate from `gateway-operator.konghq.com` to `konnect.ko
 1. Remove the finalizer from the old extension:
 
     ```bash
-    kubectl patch konnectextensions.gateway-operator.konghq.com example-konnect-config -n kong -p '{"metadata":{"finalizers":null}}' --type=merge`
+    kubectl patch konnectextensions.gateway-operator.konghq.com example-konnect-config -n kong -p '{"metadata":{"finalizers":null}}' --type=merge
     ```
 
 1. Delete the old `gateway-operator.konghq.com` `KonnectExtension`.

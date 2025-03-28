@@ -1,13 +1,15 @@
 {% unless include.disable_accordian %}
 <details markdown="1">
 <summary>
-  <strong>Prerequisites:</strong> Install {{site.kgo_product_name}} and create a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
+  <strong>Prerequisites:</strong> {% unless include.skip_install %}Install {{site.kgo_product_name}} and c{% else %}C{% endunless %}reate a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
 </summary>
 
-## Install {{site.kgo_product_name}} and create a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
 {% endunless %}
 
+{% unless include.skip_install %}
+## Install {{site.kgo_product_name}} and create a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
 {% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release kconfCRDs=true konnectEntities=true %}
+{% endunless %}
 
 ### Create an access token in Konnect
 
@@ -23,7 +25,8 @@ directly in its spec or as a reference to a Kubernetes Secret. The `serverURL` f
 URL in a region where your {{site.konnect_product_name}} account is located. Please refer to the [list of available API URLs](/konnect/network/)
 for more information.
 
-{% navtabs token %}
+{% navtabs token collapse %}
+{% if include.api_auth_mode == "both" or include.api_auth_mode == "direct" %}
 {% navtab Directly in specification %}
 ```yaml
 echo '
@@ -39,6 +42,8 @@ spec:
 ' | kubectl apply -f -
 ```
 {% endnavtab %}
+{% endif %}
+{% if include.api_auth_mode == "both" or include.api_auth_mode == "secret" %}
 {% navtab Stored in a Secret %}
 Please note that the Secret must have the `konghq.com/credential: konnect` label to make the {{site.kgo_product_name}}
 reconcile it.
@@ -68,6 +73,7 @@ stringData:
 ' | kubectl apply -f -
 ```
 {% endnavtab %}
+{% endif %}
 {% endnavtabs %}
 
 You can verify the `KonnectAPIAuthConfiguration` object was reconciled successfully by checking its status.

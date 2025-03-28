@@ -4,9 +4,7 @@ title: Deploying a Gateway to Konnect
 
 Gateways must be configured with `KIC` [`ControlPlane`s](/konnect/gateway-manager/#control-planes). This means that the `controlPlane` entity referenced (via KonnectID or NamespacedRef) by the `KonnectExtension` object must belong to that category.
 
-## Create the KonnectExtension
-
-{% include md/kgo/secret-provisioning-prerequisites.md disable_accordian=false version=page.version release=page.release is-kic-cp=true %}
+{% include md/kgo/konnect-dataplanes-prerequisites.md disable_accordian=true version=page.version release=page.release is-kic-cp=true manual-secret-provisioning=false skip_install=true %}
 
 ## Create the GatewayConfiguration
 

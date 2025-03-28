@@ -12,7 +12,7 @@ The command below can be used to configure a `DataPlane` in an hybrid `ControlPl
 {% navtabs %}
 {% navtab NamespacedRef CP reference %}
 
-{% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release with-control-plane=true is-kic-cp=include.is-kic-cp %}
+{% include md/kgo/konnect-entities-prerequisites.md disable_accordian=true version=page.version release=page.release with-control-plane=true is-kic-cp=include.is-kic-cp skip_install=include.skip_install api_auth_mode="secret" %}
 
 ```bash
 echo '
@@ -41,7 +41,7 @@ spec:{% if include.manual-secret-provisioning %}
 {% endnavtab %}
 {% navtab KonnectID CP reference %}
 
-{% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release with-control-plane=false %}
+{% include md/kgo/konnect-entities-prerequisites.md disable_accordian=true version=page.version release=page.release with-control-plane=false skip_install=true api_auth_mode="secret" %}
 
 ```bash
 echo '

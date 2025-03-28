@@ -2,7 +2,7 @@
 title: Deploy a Data Plane
 content-type: tutorial
 book: kgo-konnect-get-started
-chapter: 2
+chapter: 4
 ---
 
 To attach a {{ site.kgo_product_name }} data plane to {{ site.konnect_short_name }} the data plane needs to know which endpoint to connect to, and how to authenticate the requests.
