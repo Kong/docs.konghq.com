@@ -24,6 +24,120 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
 
 ## Examples
 
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=true %}
+
+## Expose additional ports
+
+{{site.base_gateway}} does not include any TCP listen configuration by default. To expose TCP listens, update the Deployment's environment variables and port configuration.
+
+1. Update the Deployment.
+    ```bash
+    kubectl patch deploy -n kong kong-gateway --patch '{
+      "spec": {
+        "template": {
+          "spec": {
+            "containers": [
+              {
+                "name": "proxy",
+                "env": [
+                  {
+                    "name": "KONG_STREAM_LISTEN",
+                    "value": "0.0.0.0:9000, 0.0.0.0:9443 ssl"
+                  }
+                ],
+                "ports": [
+                  {
+                    "containerPort": 9000,
+                    "name": "stream9000",
+                    "protocol": "TCP"
+                  },
+                  {
+                    "containerPort": 9443,
+                    "name": "stream9443",
+                    "protocol": "TCP"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }'
+    ```
+    The results should look like this:
+    ```text
+    deployment.apps/kong-gateway patched
+    ```
+
+    The `ssl` parameter after the 9443 listen instructs {{site.base_gateway}} to expect TLS-encrypted TCP traffic on that port. The 9000 listen has no parameters, and expects plain TCP traffic.
+
+1.  Update the proxy Service to indicate the new ports.
+
+    ```bash
+    kubectl patch service -n kong kong-gateway-proxy --patch '{
+      "spec": {
+        "ports": [
+          {
+            "name": "stream9000",
+            "port": 9000,
+            "protocol": "TCP",
+            "targetPort": 9000
+          },
+          {
+            "name": "stream9443",
+            "port": 9443,
+            "protocol": "TCP",
+            "targetPort": 9443
+          }
+        ]
+      }
+    }'
+    ```
+    The results should look like this:
+    ```text
+    service/kong-gateway-proxy patched
+    ```
+1.  Configure TCPRoute (Gateway API Only)
+
+    {:.note}
+    > If you are using the Gateway APIs (TCPRoute), your Gateway needs additional configuration under `listeners`. 
+
+    ```bash
+    kubectl patch --type=json gateway kong -p='[
+        {
+            "op":"add",
+            "path":"/spec/listeners/-",
+            "value":{
+                "name":"stream9000",
+                "port":9000,
+                "protocol":"TCP"
+            }
+        },
+        {
+            "op":"add",
+            "path":"/spec/listeners/-",
+            "value":{
+                "name":"stream9443",
+                "port":9443,
+                "protocol":"TLS",
+                "hostname":"tls9443.kong.example",
+                "tls": {
+                    "certificateRefs":[{
+                        "group":"",
+                        "kind":"Secret",
+                        "name":"tls9443.kong.example"
+                     }]
+                }
+            }
+        }
+    ]'
+    ```
+    The results should look like this:
+    ```text
+    gateway.gateway.networking.k8s.io/kong patched
+    ```
+
+{% include /md/kic/test-service-echo.md release=page.release %}
 
 ### TLS Termination
 {% assign gwapi_version = "v1" %}
@@ -45,7 +159,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
       gatewayClassName: kong 
       listeners:
       - name: https
-        port: 443
+        port: 8899
         protocol: HTTPS
         hostname: "demo.example.com"
         tls:
@@ -132,7 +246,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
       gatewayClassName: kong 
       listeners:
       - name: https
-        port: 443
+        port: 8899
         protocol: TLS
         hostname: "demo.example.com"
         tls:
