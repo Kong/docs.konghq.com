@@ -40,7 +40,8 @@ can access via the Konnect UI or the custom plugins API. This means that {{site.
 only sees a custom plugin's configuration options, and does not see any other data.
 
 {:.note}
-> **Note**: Custom plugins are not supported in Dedicated Cloud Gateways.
+> **Note**: For adding custom plugins to a Dedicated Cloud Gateway, see 
+[Custom plugins in Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/custom-plugins/).
 
 To run in {{site.konnect_short_name}}, every custom plugin must meet the following requirements:
 
@@ -87,6 +88,7 @@ for the full list, as well as a breakdown of the pricing tiers that each plugin 
 ### Custom plugins
 * [Add a custom plugin in {{site.konnect_short_name}}](/konnect/gateway-manager/plugins/add-custom-plugin/)
 * [Edit or delete custom plugins in {{site.konnect_short_name}}](/konnect/gateway-manager/plugins/update-custom-plugin/)
+* [Custom plugins in Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/custom-plugins/)
 * [Custom plugin schema endpoints (Control Plane Config API)](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas)
 * [Custom plugin template](https://github.com/Kong/kong-plugin)
 * [Plugin development guide](/gateway/latest/plugin-development/)
