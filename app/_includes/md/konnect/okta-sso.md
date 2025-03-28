@@ -60,7 +60,7 @@ in the **Application->Sign On** section of the Okta configuration, setting the f
     {% endif %}
     {% if include.desc == "Dev Portal" %}
     Using the portal URL from the Dev Portal Overview page, provide the following configuration details:
-    * **Single Sign-On URL**: `https://<portal-url>/v2/authenticate/saml/acs`
+    * **Single Sign-On URL**: `https://<portal-url>/api/v2/developer/authenticate/saml/acs`
     {% endif %}
     * **Audience URI (SP Entity ID)**: `https://cloud.konghq.com/sp/SP_ID`
 
