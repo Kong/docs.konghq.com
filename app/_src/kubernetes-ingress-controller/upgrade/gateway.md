@@ -53,7 +53,7 @@ To see the available {{ site.base_gateway }} images, refer to Docker Hub:
     ```yaml
     gateway:
       image:
-        tag: {{ site.data.kong_latest_gateway.ce-version }}
+        tag: {{site.latest_gateway_oss_version}}
     ```
 
 1. Run `helm upgrade` with the `--values` flag.
@@ -85,7 +85,7 @@ To see the available {{ site.base_gateway }} images, refer to Docker Hub:
     You should see the new version of {{ site.base_gateway }}:
 
     ```bash
-    kong:{{ site.data.kong_latest_gateway.ce-version }}
+    kong:{{site.latest_gateway_oss_version}}
     ```
 
 [Deployment methods]: /kubernetes-ingress-controller/{{ page.release}}/production/deployment-topologies/

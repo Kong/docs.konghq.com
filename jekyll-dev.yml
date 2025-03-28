@@ -194,3 +194,6 @@ jekyll-generator-single-source:
   docs_nav_folder: '_data'
 
 locale: en-US
+
+# Gateway OSS
+latest_gateway_oss_version: 3.9.0

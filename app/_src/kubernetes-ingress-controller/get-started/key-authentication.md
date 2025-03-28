@@ -64,7 +64,7 @@ For more information, see [What is API Gateway Authentication?](https://konghq.c
     WWW-Authenticate: Key realm="kong"
     Content-Length: 45
     X-Kong-Response-Latency: 1
-    Server: kong/{{ site.data.kong_latest_gateway.ce-version }}
+    Server: kong/{{site.latest_gateway_oss_version}}
 
     {
       "message":"No API key found in request"

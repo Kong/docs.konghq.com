@@ -185,3 +185,6 @@ locale: en-US
 gtm_id: 'GTM-NL48VKT'
 vwo_account_id: '125292'
 segment_key: 'X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ'
+
+# Gateway OSS
+latest_gateway_oss_version: 3.9.0

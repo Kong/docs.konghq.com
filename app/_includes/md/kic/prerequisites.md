@@ -122,7 +122,7 @@ helm install kong kong/ingress -n kong --create-namespace
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-helm install kong kong/ingress -n kong --create-namespace --set gateway.image.repository=kong --set gateway.image.tag="{{ site.data.kong_latest_gateway.ce-version }}"
+helm install kong kong/ingress -n kong --create-namespace --set gateway.image.repository=kong --set gateway.image.tag="{{site.latest_gateway_oss_version}}"
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}

@@ -153,7 +153,7 @@ spec:
         spec:
           containers:
           - name: proxy
-            image: kong:{{ site.data.kong_latest_gateway.ce-version }}
+            image: kong:{{site.latest_gateway_oss_version}}
   controlPlaneOptions:
     deployment:
       podTemplateSpec:
