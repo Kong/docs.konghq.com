@@ -46,7 +46,7 @@ This document helps to migrate from `gateway-operator.konghq.com` to `konnect.ko
           serverURL: us.api.konghq.com' | kubectl apply -f -
         ```
 
-    1. New `KonnectExtension` using the `konnect.kongh.com` API group and reference the Konnect CP by KonnectID.
+    1. New `KonnectExtension` using the `konnect.konghq.com` API group and reference the Konnect CP by KonnectID.
 
         For example, the following `KonnectExtension` from 1.4 (using the `gateway-operator.konghq.com` API group):
 
