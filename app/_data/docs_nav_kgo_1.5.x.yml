@@ -43,6 +43,7 @@ items:
             url: /get-started/konnect/deploy-data-plane-with-konnectextension/
           - text: Create a Route
             url: /get-started/konnect/create-route/
+            src: get-started/konnect/create-route-konnect-crds
       - text: Kong Ingress Controller
         items:
           - text: Install Gateway Operator
