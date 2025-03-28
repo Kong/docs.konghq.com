@@ -525,5 +525,26 @@
         "registration_configs": []
       }
     ]
+  },
+  {
+    "id": "3e4e6f67-73d2-49e3-b91f-34cd256192f9",
+    "title": "Regional Consumers",
+    "latestVersion": {
+      "name": "v1",
+      "id": "baf42702-39d4-46cb-a8b5-c5c84e098fc2"
+    },
+    "description": "Konnect Regional Consumers API",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "baf42702-39d4-46cb-a8b5-c5c84e098fc2",
+        "created_at": "2025-03-25T13:32:18.311Z",
+        "updated_at": "2025-03-25T13:36:47.403Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
   }
 ]
