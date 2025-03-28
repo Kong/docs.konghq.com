@@ -9,9 +9,7 @@ In this guide you'll learn how to use the `{{ crd }}` custom resource to
 manage {{site.konnect_product_name}} Dedicated Cloud Gateways {{ entity }}s natively from your Kubernetes cluster.
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release
-with-control-plane=true %}
-
-{% include md/kgo/konnect-cloud-gateways-provider-account.md entity='Data Plane Group Configuration' %}
+with-control-plane=true control_plane_type="dcgw" create_network=true %}
 
 ## Create a Cloud Gateway {{ entity }}
 
@@ -33,7 +31,7 @@ spec:
   version: "3.9"
   dataplane_groups:
     - provider: aws
-      region: eu-central-1
+      region: eu-west-1
       networkRef:
         type: konnectID
         konnectID: "111111111111111111111111111111111111"
@@ -45,20 +43,10 @@ spec:
       environment:
         - name: KONG_LOG_LEVEL
           value: debug
-    - provider: aws
-      region: ap-northeast-1
-      networkRef:
-        type: konnectID
-        konnectID: "111111111111111111111111111111111111"
-      autoscale:
-        type: static
-        static:
-          instance_type: small
-          requested_instances: 2
   controlPlaneRef:
     type: konnectNamespacedRef
     konnectNamespacedRef:
-     name: konnect-api-auth
+     name: gateway-control-plane
 ' | kubectl apply -f -
 ```
 
@@ -99,7 +87,7 @@ state: initializing
 Since creating a {{entity}} can take some time, you can monitor its status by checking the `dataplane_groups` field:
 
 ```bash
-kubectl get konnectcloudgatewaydataplanegroupconfigurations.konnect.konghq.com eu-central-1 -o=jsonpath='{.status.dataplane_groups}'  | jq
+kubectl get konnectcloudgatewaydataplanegroupconfigurations.konnect.konghq.com eu-west-1 -o=jsonpath='{.status.dataplane_groups}'  | jq
 ```
 
 Which should return the status of the provisioned {{ entity}}s:
@@ -115,7 +103,7 @@ Which should return the status of the provisioned {{ entity}}s:
     ],
     "id": "a94bb897-1111-1111-1111-111111111111",
     "provider": "aws",
-    "region": "eu-central-1",
+    "region": "eu-west-1",
     "state": "ready"
   }
 ]
