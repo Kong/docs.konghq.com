@@ -143,14 +143,10 @@ items:
             url: /guides/konnect-entities/cloud-gateways-network/
           - text: FAQ
             url: /guides/konnect-entities/faq/
-      - text: Deploying DataPlanes to Konnect
+      - text: Migration
         items:
-          - text: Overview
-            url: /guides/konnect-dataplanes/overview/
-          - text: Deploying a Gateway to Konnect
-            url: /guides/konnect-dataplanes/gateway/
           - text: Migrate Konnect DataPlanes from KGO v1.4.x to v1.5.x
-            url: /guides/konnect-dataplanes/migrate-from-1.4-to-1.5/
+            url: /guides/migrating/migrate-from-1.4-to-1.5/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
@@ -171,6 +167,8 @@ items:
           - text: KongPluginInstallation
             url: /reference/custom-resources/#kongplugininstallation
             generate: false
+      - text: Understanding KonnectExtension
+        url: /reference/konnectextension/
       - text: Configuration Options
         url: /reference/cli-arguments/
         src: reference/cli-arguments/1.4.x
