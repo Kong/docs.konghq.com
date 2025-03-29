@@ -17,6 +17,8 @@ servers:
     description: Middle-East Production region
   - url: 'https://in.api.konghq.com/v1'
     description: India Production region
+  - url: 'https://global.api.konghq.com/v1'
+    description: Global Production
 paths:
   /search:
     get:
@@ -28,7 +30,8 @@ paths:
         - $ref: '#/components/parameters/PageAfter'
         - name: q
           in: query
-          description: The query that defines the search criteria.
+          description: |
+            The query that defines the search criteria. Supports Lucene-like syntax for filtering results. Learn more about search query syntax [here](https://docs.konghq.com/konnect/reference/search).
           required: true
           schema:
             type: string
