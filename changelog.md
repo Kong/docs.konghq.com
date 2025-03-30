@@ -2,6 +2,145 @@
 
 <!--vale off-->
 
+## Week 13
+
+### [Fix: title AI RAG INJECTOR](https://github.com/Kong/docs.konghq.com/pull/8629) (2025-03-28)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+
+
+### [docs(plugins/request-callout): warn about `forward` behavior](https://github.com/Kong/docs.konghq.com/pull/8625) (2025-03-27)
+
+Warn about request-callout `forward` behavior.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-callout/overview/
+
+
+### [docs(portal): additional idp configuration](https://github.com/Kong/docs.konghq.com/pull/8624) (2025-03-27)
+
+Provide additional IdP configuration information specifically related to the new Dev Portal and Konnect Portal Editor experience.
+
+Based on this internal doc: https://docs.google.com/document/d/1_h2rsg4x77EnedPaILYKV1ce93IHHTPcqIVALCFw9lU/edit?tab=t.0
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/access-and-approvals/sso
+
+
+### [Chore: Move Gateway 2.8 into sunset support](https://github.com/Kong/docs.konghq.com/pull/8616) (2025-03-26)
+
+Gateway 2.8 moves into sunset support tomorrow (march 26). Can merge then.
+
+We hadn't updated the 2.8 non-single-sourced support policy for a while (oversight), so making the tables match the latest version.
+
+Also removing all version tags except 3.10, since we don't want 3.10 showing on prod yet.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.8.x/kong-enterprise/
+- https://docs.konghq.com/gateway/3.9.x/kong-enterprise/
+- https://docs.konghq.com/gateway/2.8.x/support-policy
+
+
+### [Fix: Expressions route limitation on mTLS and TLS Handshake Modifier](https://github.com/Kong/docs.konghq.com/pull/8611) (2025-03-27)
+
+Add note about limitation on expressions routes to the mTLS and TLS handshake modifier plugins.
+
+https://konghq.atlassian.net/browse/FTI-6227
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/overview/
+- https://docs.konghq.com/hub/kong-inc/tls-handshake-modifier/overview/
+
+
+### [feat: add ai-rag-injector plugin](https://github.com/Kong/docs.konghq.com/pull/8607) (2025-03-27)
+
+Fixes https://konghq.atlassian.net/browse/DOCU-4196
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/overview/
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/versions.yml
+- https://docs.konghq.com/assets/images/icons/hub/kong-inc_ai-rag-injector.png
+
+
+### [Chore: remove tiers](https://github.com/Kong/docs.konghq.com/pull/8542) (2025-03-27)
+
+https://konghq.atlassian.net/browse/DOCU-4189
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.10.x/get-started/
+- https://docs.konghq.com/gateway/3.3.x/get-started/
+- https://docs.konghq.com/gateway/3.4.x/get-started/
+- https://docs.konghq.com/gateway/3.5.x/get-started/
+- https://docs.konghq.com/gateway/3.6.x/get-started/
+- https://docs.konghq.com/gateway/3.7.x/get-started/
+- https://docs.konghq.com/gateway/3.8.x/get-started/
+- https://docs.konghq.com/gateway/3.9.x/get-started/
+- https://docs.konghq.com/gateway/3.10.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.6.x/
+- https://docs.konghq.com/gateway/3.7.x/
+- https://docs.konghq.com/gateway/3.8.x/
+- https://docs.konghq.com/gateway/3.9.x/
+- https://docs.konghq.com/gateway/3.10.x/install/
+- https://docs.konghq.com/gateway/3.3.x/install/
+- https://docs.konghq.com/gateway/3.4.x/install/
+- https://docs.konghq.com/gateway/3.5.x/install/
+- https://docs.konghq.com/gateway/3.6.x/install/
+- https://docs.konghq.com/gateway/3.7.x/install/
+- https://docs.konghq.com/gateway/3.8.x/install/
+- https://docs.konghq.com/gateway/3.9.x/install/
+- https://docs.konghq.com/gateway/3.10.x/kong-manager/
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/
+- https://docs.konghq.com/gateway/3.7.x/kong-manager/
+- https://docs.konghq.com/gateway/3.8.x/kong-manager/
+- https://docs.konghq.com/gateway/3.9.x/kong-manager/
+- https://docs.konghq.com/gateway/3.10.x/licenses/
+- https://docs.konghq.com/gateway/3.3.x/licenses/
+- https://docs.konghq.com/gateway/3.4.x/licenses/
+- https://docs.konghq.com/gateway/3.5.x/licenses/
+- https://docs.konghq.com/gateway/3.6.x/licenses/
+- https://docs.konghq.com/gateway/3.7.x/licenses/
+- https://docs.konghq.com/gateway/3.8.x/licenses/
+- https://docs.konghq.com/gateway/3.9.x/licenses/
+- https://docs.konghq.com/gateway/changelog
+- https://docs.konghq.com/hub/index.html
+- https://docs.konghq.com/hub/plugins/compatibility/
+- https://docs.konghq.com/konnect/gateway-manager/plugins/
+
+
+### [Release: Gateway 3.4.3.17](https://github.com/Kong/docs.konghq.com/pull/8541) (2025-03-26)
+
+Changelog and version bump for 3.4.3.17
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
 ## Week 12
 
 ### [Add AI pricing disclaimer](https://github.com/Kong/docs.konghq.com/pull/8597) (2025-03-20)
