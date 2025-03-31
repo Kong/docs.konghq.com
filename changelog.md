@@ -6,10 +6,6 @@
 
 ### [Fix: title AI RAG INJECTOR](https://github.com/Kong/docs.konghq.com/pull/8629) (2025-03-28)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
@@ -37,11 +33,9 @@ Based on this internal doc: https://docs.google.com/document/d/1_h2rsg4x77EnedPa
 
 ### [Chore: Move Gateway 2.8 into sunset support](https://github.com/Kong/docs.konghq.com/pull/8616) (2025-03-26)
 
-Gateway 2.8 moves into sunset support tomorrow (march 26). Can merge then.
+Gateway 2.8 moves into sunset support tomorrow (march 26).
 
 We hadn't updated the 2.8 non-single-sourced support policy for a while (oversight), so making the tables match the latest version.
-
-Also removing all version tags except 3.10, since we don't want 3.10 showing on prod yet.
 
 #### Modified
 
@@ -375,12 +369,6 @@ In the "Configure AWS Transit Gateway" section, replace "Create Transit Gateway"
 Added Other limits for Serverless
 
 
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/gateway-manager/serverless-gateways/
@@ -388,9 +376,6 @@ Added Other limits for Serverless
 
 ### [fix(deck): docker on Windows](https://github.com/Kong/docs.konghq.com/pull/8500) (2025-03-05)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
