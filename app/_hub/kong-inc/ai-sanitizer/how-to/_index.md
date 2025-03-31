@@ -8,6 +8,9 @@ title: Using the AI Sanitizer plugin
 You have an AI PII service. 
 We'll use Kong's [AI PII Anonymizer service](https://hub.docker.com/r/kong/ai-pii-service) in these examples.
 
+{:.note}
+> This Docker image is private, contact [Kong Support](https://support.konghq.com/support/s/) to get access to it.
+
 ## Set up the Kong AI PII Anonymizer service
 
 Run the AI PII service. Substitute your own platform and port number in the following command:

@@ -23,7 +23,10 @@ The AI Sanitizer plugin uses the AI PII Anonymizer Service, which can run in a D
 
 ## AI PII Anonymizer service
 
-Kong provides an [AI PII Anonymizer service](https://hub.docker.com/r/kong/ai-pii-service) Docker image. 
+Kong provides an [AI PII Anonymizer service](https://hub.docker.com/r/kong/ai-pii-service) Docker image.
+
+{:.note}
+> This Docker image is private, contact [Kong Support](https://support.konghq.com/support/s/) to get access to it.
 
 ### Image configuration options
 
