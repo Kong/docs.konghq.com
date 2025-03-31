@@ -5,8 +5,9 @@ title: Using the AI RAG Injector plugin
 ## Prerequisites
 
 - Create a service and a route.
-- Start a [Redis-Stack](https://redis.io/docs/latest/) instance in your environment. Redis-compatible
-databases like MemoryDB or others are not supported. PgVector is also supported.
+- Start a [Redis-Stack](https://redis.io/docs/latest/) instance in your environment. 
+   - Redis-compatible databases (for example, MemoryDB) are not supported
+   - PgVector is supported
 
 You can now create the AI RAG Injector plugin at the global, service, or route level, using the following examples.
 
@@ -65,7 +66,7 @@ plugins:
 
 ### 2. Make a AI request to the AI Proxy Advanced plugin
 
-User will need to split the document into chunks by their own, typically use tools like`langchain_text_splitters`, and feed the splitted chunk using Admin API. 
+Before feeding data to AI Gateway, split your input data into chunks using a tool like `langchain_text_splitters`. Then, you can feed the split chunks into AI Gateway using the Kong Admin API. 
 	
 The following example shows how to ingest content to the vector database for building the knowledge base. The AI RAG Injector plugin uses the OpenAI `text-embedding-3-large` model to generate embeddings for the content and stores them in Redis.
 
@@ -92,9 +93,9 @@ curl  --http1.1 localhost:8000/chat \
    }' | jq
 ```
 
-### 4. Debug the retrival of the knowledge base
+### 4. Debug the retrieval of the knowledge base
 
-For evaluate what documents are retrieved for a specific prompt, you can use the following command:
+To evaluate which documents are retrieved for a specific prompt, use the following command:
 
 ```bash
 curl localhost:8001/ai-rag-injector/3194f12e-60c9-4cb6-9cbc-c8fd7a00cff1/lookup_chunks \
@@ -105,4 +106,4 @@ curl localhost:8001/ai-rag-injector/3194f12e-60c9-4cb6-9cbc-c8fd7a00cff1/lookup_
   }'
 ```
 
-To omit the chunk content but only return the chunk id, set `exclude_contents` to true.
+To omit the chunk content and only return the chunk ID, set `exclude_contents` to true.
