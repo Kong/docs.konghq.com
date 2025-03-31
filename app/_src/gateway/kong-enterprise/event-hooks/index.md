@@ -247,7 +247,7 @@ To create a lambda event hook:
       -d source=crud \
       -d event=consumers \
       -d handler=lambda \
-      -F config.functions='return function (data, event, source, pid) local user = data.entity.username error("Event hook on consumer " .. user .. "")end'
+      -d config.functions='return function (data, event, source, pid) local user = data.entity.username error("Event hook on consumer " .. user .. "")end'
     ```
 
 3. In Kong Manager or Kong Admin API, add a consumer to any workspace.
