@@ -1715,7 +1715,7 @@ name   | description  | default
 **pg_ro_user** | Same as `pg_user`, but for the read-only connection. | `<pg_user>`
 **pg_ro_password** | Same as `pg_password`, but for the read-only connection. | `<pg_password>`
 **pg_ro_iam_auth** | Same as `pg_iam_auth`, but for the read-only connection. | `<pg_iam_auth>`
-**pg_ro_iam_auth_assume_role_arn** | Same as `pg_iam_auth_assume_role_arn', but for the read-only connection. | none
+**pg_ro_iam_auth_assume_role_arn** | Same as `pg_iam_auth_assume_role_arn`, but for the read-only connection. | none
 **pg_ro_iam_auth_role_session_name** | Same as `pg_iam_auth_role_session_name`, but for the read-only connection. | `KongPostgres`
 **pg_ro_iam_auth_sts_endpoint_url** | Same as `pg_iam_auth_sts_endpoint_url`, but for the read-only connection. | none
 **pg_ro_database** | Same as `pg_database`, but for the read-only connection. | `<pg_database>`
