@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Konnect regional consumers admin api
+  title: Konnect Consumers Admin API
   version: 0.0.1
 servers:
   - url: https://us.api.konghq.com/v1
