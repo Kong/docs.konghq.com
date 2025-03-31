@@ -25,11 +25,26 @@ To restrict usage to certain authenticated users, also add the
 [ACL](/plugins/acl/) plugin (not covered here) and create allowed or
 denied groups of users.
 
+## Upstream Headers
+
+{% include_cached /md/plugins-hub/upstream-headers.md %}
+
+### Request behavior matrix
+
+The following table describes how {{site.base_gateway}} behaves in various authentication scenarios:
+
+Description | Proxied to upstream service? | Response status code
+--------|-----------------------------|---------------------
+The request has a valid API key. | Yes | 200
+No API key is provided. | No | 401
+The API key is not known to {{site.base_gateway}} | No | 401
+A runtime error occurred. | No | 500
+
 ## Usage
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object.
+You need to associate a credential to an existing [Consumer](/gateway/latest/key-concepts/consumers/) object.
 A Consumer can have many credentials.
 
 {% navtabs %}
@@ -69,17 +84,14 @@ service, you must add the new Consumer to the allowed group. See
 
 For more information about how to configure anonymous access, see [Anonymous Access](/gateway/latest/kong-plugins/authentication/reference/#anonymous-access).
 
-
-### Multiple Authentication
+### Create a Key
 
 {{site.base_gateway}} supports multiple authentication plugins for a given service, allowing different clients to use different authentication methods to access a given service or route. For more information, see [Multiple Authentication](/gateway/latest/kong-plugins/authentication/reference/#multiple-authentication).
 
-### Create a Key
-
 {:.important}
-> **Note**: We recommend letting the API gateway autogenerate the key. Only specify it 
-yourself if you are migrating an existing system to {{site.base_gateway}}. 
-You must reuse your keys to make the migration to {{site.base_gateway}} transparent 
+> **Note**: We recommend letting the API gateway autogenerate the key. Only specify it
+yourself if you are migrating an existing system to {{site.base_gateway}}.
+You must reuse your keys to make the migration to {{site.base_gateway}} transparent
 to your consumers.
 
 {% navtabs %}
@@ -167,7 +179,7 @@ gRPC clients are supported too:
 grpcurl -H 'apikey: {some_key}' ...
 ```
 
-### About API Key Locations in a Request
+### API Key Locations in a Request
 
 {% include /md/plugins-hub/api-key-locations.md %}
 
@@ -199,11 +211,7 @@ HTTP/1.1 204 No Content
 * `USERNAME_OR_ID`: The `id` or `username` property of the [Consumer][consumer-object] entity to associate the credentials to.
 * `ID`: The `id` attribute of the key credential object.
 
-### Upstream Headers
-
-{% include_cached /md/plugins-hub/upstream-headers.md %}
-
-### Paginate through keys
+### Pagination 
 
 Paginate through the API keys for all Consumers by making the following
 request:
@@ -292,14 +300,4 @@ Response:
 [acl-associating]: /plugins/acl/#associating-consumers
 
 
-### Request behavior matrix
-
-The following table describes how {{site.base_gateway}} behaves in various scenarios:
-
-Description | Proxied to upstream service? | Response status code
---------|-----------------------------|---------------------
-The request has a valid API key. | Yes | 200
-No API key is provided. | No | 401
-The API key is not known to {{site.base_gateway}} | No | 401
-A runtime error occurred. | No | 500
 
