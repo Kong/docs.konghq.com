@@ -610,6 +610,16 @@ items:
             url: /kong-enterprise/plugin-ordering/get-started
       - text: Redis Partials
         url: /kong-enterprise/partials
+      - text: Datakit
+        items:
+          - text: Overview
+            url: /kong-enterprise/datakit/
+          - text: Get Started with Datakit
+            url: /kong-enterprise/datakit/get-started/
+          - text: Datakit Configuration Reference
+            url: /kong-enterprise/datakit/configuration/
+          - text: Datakit Examples Reference
+            url: /kong-enterprise/datakit/examples/
 
   - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
