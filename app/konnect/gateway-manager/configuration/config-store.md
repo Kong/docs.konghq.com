@@ -48,7 +48,9 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
 {% endnavtab %}
 {% navtab decK %}
 
-Create a config store entity in {{site.konnect_short_name}} and save the `config_store_id` from the response body:
+decK doesn't support creating a {{site.konnect_short_name}} config store, but you can reference secrets stored in a config store with decK.
+
+Using the Control Plane Config API, create a config store entity in {{site.konnect_short_name}} and save the `config_store_id` from the response body:
 
 ```sh 
 curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/config-stores \
