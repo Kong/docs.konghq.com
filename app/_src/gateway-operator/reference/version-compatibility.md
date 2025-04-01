@@ -62,7 +62,7 @@ Below table contains a compatibility matrix for `kubernetes-configuration` CRDs 
 
 | {{site.kgo_product_name}}      |            1.4.x            |            1.5.x            |
 |:-------------------------------|:---------------------------:|:---------------------------:|
-| kubernetes-configuration 1.2.x | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
+| kubernetes-configuration 1.3.x | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 
 [kcfg]: https://github.com/Kong/kubernetes-configuration
 [kcfg_changelog]: https://github.com/Kong/kubernetes-configuration/blob/main/CHANGELOG.md

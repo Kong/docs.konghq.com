@@ -5,6 +5,24 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.5.1
+
+**Release date**: 2025-04-01
+
+### Added
+
+- Add `namespacedRef` support for referencing networks in `KonnectCloudGatewayDataPlaneGroupConfiguration`
+  [#1425](https://github.com/Kong/gateway-operator/pull/1425)
+- Set `ControlPlaneRefValid` condition to false when reference to `KonnectGatewayControlPlane` is invalid
+  [#1421](https://github.com/Kong/gateway-operator/pull/1421)
+
+### Changes
+
+- Deduce `KonnectCloudGatewayDataPlaneGroupConfiguration` region based on the attached
+  `KonnectAPIAuthConfiguration` instead of using a hardcoded `eu` value.
+  [#1417](https://github.com/Kong/gateway-operator/pull/1417)
+- Bump `kong/kubernetes-configuration` dependency to v1.3.
+
 ## 1.5.0
 
 **Release date**: 2025-03-12
