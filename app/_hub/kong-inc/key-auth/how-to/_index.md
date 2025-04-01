@@ -3,7 +3,7 @@ nav_title: Configure realms for consumers
 title: Configure realms for consumers in {{site.konnect_short_name}}
 ---
 
-Starting in {{site.base_gateway]] 3.10.x, credentials that are stored centrally in {{site.konnect_short_name}} that are shared across multiple {{site.base_gateway}} can be validated by configuring `identity_realms` field in the Key Auth plugin. You can use these realms when you create [centrally managed consumers](/konnect/centralized-consumer-management/). A data plane can only reach out to realms in the same region as they are deployed.
+Starting in {{site.base_gateway}} 3.10.x, you can authenticate [consumers that are managed centrally](/konnect/centralized-consumer-management/) in {{site.konnect_short_name}} by configuring the `identity_realms` field in the Key Auth plugin. A data plane can only reach out to realms in the same region as they are deployed.
 
 Add the `identity_realms` field as shown below:
 
