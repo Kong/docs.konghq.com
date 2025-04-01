@@ -48,13 +48,40 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
 {% endnavtab %}
 {% navtab decK %}
 
+Create a config store entity in {{site.konnect_short_name}} and save the `config_store_id` from the response body.
+
+```sh 
+curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/config-stores \
+  --header 'Authorization: Bearer {kpat_token}' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"name": "my-config-store"
+}'
+```
+
 Using the `config_store_id` create a `POST` request to associate the config store with the vault.
+    
+```sh
+curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/core-entities/vaults/  \
+  --header 'Authorization: Bearer {kpat_token}' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"config":{
+		"config_store_id": "{my-config-store-id}"
+	},
+	"description": "Description of your vault",
+	"name": "konnect",
+	"prefix": "mysecretvault"
+}'
+```
+
+Link the decK YAML file with the {{site.konnect_short_name}} Config Store.
 
 ```yaml
 _format_version: "3.0"
 vaults:
 - config:
-    config_store_id: ee62068e-1843-49f8-ac22-40293b0a949d
+    config_store_id: {my-config-store-id}
   description: Storing secrets in Konnect
   name: konnect
   prefix: mysecretvault
