@@ -48,7 +48,7 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
 {% endnavtab %}
 {% navtab decK %}
 
-Create a config store entity in {{site.konnect_short_name}} and save the `config_store_id` from the response body.
+Create a config store entity in {{site.konnect_short_name}} and save the `config_store_id` from the response body:
 
 ```sh 
 curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/config-stores \
@@ -59,7 +59,7 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
 }'
 ```
 
-Using the `config_store_id` create a `POST` request to associate the config store with the vault.
+Using the generated `config_store_id`, send a `POST` request to associate the config store with the vault:
     
 ```sh
 curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane-id}/core-entities/vaults/  \
@@ -75,7 +75,7 @@ curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{control-plane
 }'
 ```
 
-Link the decK YAML file with the {{site.konnect_short_name}} Config Store.
+Reference the {{site.konnect_short_name}} config store in your decK file:
 
 ```yaml
 _format_version: "3.0"
