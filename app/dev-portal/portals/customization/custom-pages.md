@@ -35,7 +35,7 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 > *`home` is a special page representing the `/` path. If this page is deleted, you'll need to create it from the Pages API.*
 
 {:.important}
-> *Custom pages are limited to 1 000 000 characters*
+> Custom pages are limited to 1 000 000 characters.
 
 #### Reserved paths
 
