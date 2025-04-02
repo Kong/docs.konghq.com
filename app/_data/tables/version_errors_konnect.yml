@@ -1,3 +1,4 @@
+---
 messages:
   - ID: D120
     Severity: error
@@ -351,17 +352,17 @@ messages:
       For the `openid-connect` plugin, one or more `config` fields are set but Kong
       Gateway versions < 3.2.0.0 do not support these fields. The plugin configuration
       has been updated and these fields have been mapped to their old names:
-      `session_rolling_timeout` => `session_cookie_lifetime`,
+      `authorization_cookie_same_site` => `authorization_cookie_samesite`,
       `session_idling_timeout` => `session_cookie_idletime`,
-      `session_cookie_same_site` => `session_cookie_samesite`,
+      `session_redis_cluster_max_redirections` => `session_redis_cluster_maxredirections`,
       `session_cookie_http_only` => `session_cookie_httponly`,
       `session_memcached_prefix` => `session_memcache_prefix`,
-      `authorization_rolling_timeout` => `authorization_cookie_lifetime`,
-      `authorization_cookie_same_site` => `authorization_cookie_samesite`,
-      `authorization_cookie_http_only` => `authorization_cookie_httponly`,
-      `session_redis_cluster_max_redirections` => `session_redis_cluster_maxredirections`,
       `session_memcached_socket` => `session_memcache_socket`,
       `session_memcached_host` => `session_memcache_host`,
+      `authorization_rolling_timeout` => `authorization_cookie_lifetime`,
+      `authorization_cookie_http_only` => `authorization_cookie_httponly`,
+      `session_rolling_timeout` => `session_cookie_lifetime`,
+      `session_cookie_same_site` => `session_cookie_samesite`,
       `session_memcached_port` => `session_memcache_port`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
@@ -426,15 +427,15 @@ messages:
       For the `saml` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
       been updated and these fields have been mapped to their old names:
-      `session_cookie_same_site` => `session_cookie_samesite`,
       `session_cookie_http_only` => `session_cookie_httponly`,
       `session_memcached_host` => `session_memcache_host`,
-      `session_redis_cluster_max_redirections` => `session_redis_cluster_maxredirections`,
-      `session_rolling_timeout` => `session_cookie_lifetime`,
-      `session_memcached_prefix` => `session_memcache_prefix`,
+      `session_idling_timeout` => `session_cookie_idletime`,
+      `session_cookie_same_site` => `session_cookie_samesite`,
       `session_memcached_socket` => `session_memcache_socket`,
       `session_memcached_port` => `session_memcache_port`,
-      `session_idling_timeout` => `session_cookie_idletime`
+      `session_redis_cluster_max_redirections` => `session_redis_cluster_maxredirections`,
+      `session_rolling_timeout` => `session_cookie_lifetime`,
+      `session_memcached_prefix` => `session_memcache_prefix`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -1728,7 +1729,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.9.0.0` or above.
     DocumentationURL: |
-
+      N/A
   - ID: D286
     Severity: warning
     Description: |
@@ -1737,7 +1738,7 @@ messages:
     Resolution: |
       Remove the unsupported plugins
     DocumentationURL: |
-
+      [Compatibility plugin](/hub/kong-inc/compatibility/)
   - ID: D290
     Severity: error
     Description: |
@@ -1762,7 +1763,7 @@ messages:
       3.9.1.0 or above for the 3.9.x series or newer than `3.10.0.0`, or use a
       supported AWS region.
     DocumentationURL: |
-
+      [Vaults entity](/gateway/api/admin-ee/latest/#/Vaults)
   - ID: D292
     Severity: error
     Description: |
@@ -2074,7 +2075,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.10.0.0` or above.
     DocumentationURL: |
-
+      N/A
   - ID: D330
     Severity: error
     Description: |
@@ -2235,7 +2236,8 @@ messages:
       Dec 1, 2024, data plane connections for this version will no longer receive
       configurations from Konnect.
     Resolution: |
-      To ensure continued Konnect support, please upgrade to the latest 3.9 version.
+      To ensure continued Konnect support, please upgrade to the latest Gateway
+      version.
     DocumentationURL: |
       [Compatibility](/konnect/compatibility)
   - ID: P001
@@ -2671,11 +2673,11 @@ messages:
       For the `session` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
       been updated and these fields have been mapped to their old names:
+      `cookie_http_only` => `cookie_httponly`,
+      `rolling_timeout` => `cookie_lifetime`,
       `idling_timeout` => `cookie_idletime`,
       `stale_ttl` => `cookie_discard`,
-      `cookie_same_site` => `cookie_samesite`,
-      `cookie_http_only` => `cookie_httponly`,
-      `rolling_timeout` => `cookie_lifetime`
+      `cookie_same_site` => `cookie_samesite`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -3349,7 +3351,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.5.0.0` or above.
     DocumentationURL: |
-      [Filter Chain entity](/gateway/api/admin-ee/latest/#/filter-chains)
+
   - ID: P217
     Severity: error
     Description: |
@@ -3541,10 +3543,10 @@ messages:
       For the `acme` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.6.0.0 do not support these fields. The plugin configuration has
       been updated and these fields have been mapped to their old names:
+      `storage_config.redis.server_name` => `storage_config.redis.ssl_server_name`,
       `storage_config.redis.extra_options.namespace` => `storage_config.redis.namespace`,
       `storage_config.redis.extra_options.scan_count` => `storage_config.redis.scan_count`,
-      `storage_config.redis.password` => `storage_config.redis.auth`,
-      `storage_config.redis.server_name` => `storage_config.redis.ssl_server_name`
+      `storage_config.redis.password` => `storage_config.redis.auth`
     Resolution: |
       Please upgrade Kong Gateway to version `3.6.0.0` or above.
     DocumentationURL: |
@@ -3555,14 +3557,14 @@ messages:
       For the `rate-limiting` plugin, one or more `config` fields are set but Kong
       Gateway versions < 3.6.0.0 do not support these fields. The plugin configuration
       has been updated and these fields have been mapped to their old names:
+      `redis.database` => `redis_database`,
+      `redis.port` => `redis_port`,
+      `redis.password` => `redis_password`,
       `redis.server_name` => `redis_server_name`,
       `redis.timeout` => `redis_timeout`,
-      `redis.database` => `redis_database`,
       `redis.host` => `redis_host`,
-      `redis.password` => `redis_password`,
       `redis.username` => `redis_username`,
       `redis.ssl` => `redis_ssl`,
-      `redis.port` => `redis_port`,
       `redis.ssl_verify` => `redis_ssl_verify`
     Resolution: |
       Please upgrade Kong Gateway to version `3.6.0.0` or above.
@@ -3575,14 +3577,14 @@ messages:
       Kong Gateway versions < 3.6.0.0 do not support these fields. The plugin
       configuration has been updated and these fields have been mapped to their old
       names:
-      `redis.username` => `redis_username`,
+      `redis.host` => `redis_host`,
       `redis.ssl` => `redis_ssl`,
       `redis.ssl_verify` => `redis_ssl_verify`,
       `redis.timeout` => `redis_timeout`,
-      `redis.host` => `redis_host`,
-      `redis.port` => `redis_port`,
       `redis.database` => `redis_database`,
+      `redis.port` => `redis_port`,
       `redis.password` => `redis_password`,
+      `redis.username` => `redis_username`,
       `redis.server_name` => `redis_server_name`
     Resolution: |
       Please upgrade Kong Gateway to version `3.6.0.0` or above.
@@ -4270,7 +4272,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.9.0.0` or above.
     DocumentationURL: |
-
+      [Streaming custom plugins](/gateway-manager/dedicated-cloud-gateways/custom-plugins)
   - ID: P309
     Severity: error
     Description: |
@@ -4281,7 +4283,7 @@ messages:
       Enable streaming custom plugin support on the data plane node or remove
       custom-plugin entities from the config.
     DocumentationURL: |
-      [Custom_plugin plugin](/hub/kong-inc/custom_plugin/)
+      [Streaming custom plugins](/gateway-manager/dedicated-cloud-gateways/custom-plugins)
   - ID: P310
     Severity: error
     Description: |
@@ -4404,7 +4406,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.10.0.0` or above.
     DocumentationURL: |
-
+      N/A
   - ID: P381
     Severity: error
     Description: |
@@ -4422,7 +4424,7 @@ messages:
   - ID: P999
     Severity: warning
     Description: |
-      For one ore more of the following plugins `acme`, rate-limiting`, and
+      For one or more of the following plugins `acme`, rate-limiting`, and
       `response-ratelimiting`, instance(s) have been configured with both redis-ce
       partial(s) and old redis fields. These two sets of redis fields have conflicting
       values. The old redis fields have been updated with values from the partials in
@@ -4431,4 +4433,3 @@ messages:
       The old redis fields will be deprecated in Kong 4.0. Please update the
       configuration to use the new fields.
     DocumentationURL: |
-
