@@ -1,13 +1,15 @@
 {% unless include.disable_accordian %}
 <details markdown="1">
 <summary>
-  <strong>Prerequisites:</strong> Install {{site.kgo_product_name}} and create a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
+  <strong>Prerequisites:</strong> {% unless include.skip_install %}Install {{site.kgo_product_name}} and c{% else %}C{% endunless %}reate a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
 </summary>
 
-## Prerequisites
 {% endunless %}
 
+{% unless include.skip_install %}
+## Install {{site.kgo_product_name}} and create a valid KonnectAPIAuthConfiguration {% if include.with-control-plane %} and KonnectGatewayControlPlane{% endif %} in your cluster.
 {% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release kconfCRDs=true konnectEntities=true %}
+{% endunless %}
 
 ### Create an access token in Konnect
 
@@ -23,7 +25,8 @@ directly in its spec or as a reference to a Kubernetes Secret. The `serverURL` f
 URL in a region where your {{site.konnect_product_name}} account is located. Please refer to the [list of available API URLs](/konnect/network/)
 for more information.
 
-{% navtabs token %}
+{% navtabs token collapse %}
+{% if include.api_auth_mode == "both" or include.api_auth_mode == "direct" %}
 {% navtab Directly in specification %}
 ```yaml
 echo '
@@ -39,6 +42,8 @@ spec:
 ' | kubectl apply -f -
 ```
 {% endnavtab %}
+{% endif %}
+{% if include.api_auth_mode == "both" or include.api_auth_mode == "secret" %}
 {% navtab Stored in a Secret %}
 Please note that the Secret must have the `konghq.com/credential: konnect` label to make the {{site.kgo_product_name}}
 reconcile it.
@@ -68,6 +73,7 @@ stringData:
 ' | kubectl apply -f -
 ```
 {% endnavtab %}
+{% endif %}
 {% endnavtabs %}
 
 You can verify the `KonnectAPIAuthConfiguration` object was reconciled successfully by checking its status.
@@ -80,7 +86,7 @@ The output should look like this:
 
 ```console
 NAME               VALID   ORGID                                  SERVERURL
-konnect-api-auth   True    <your-konnect-org-id>                  https://us.api.konghq.tech
+konnect-api-auth   True    <your-konnect-org-id>                  https://us.api.konghq.com
 ```
 
 {% if include.with-control-plane %}
@@ -104,6 +110,7 @@ metadata:
   namespace: default
 spec:
   name: gateway-control-plane # Name used to identify the Gateway Control Plane in Konnect
+  cluster_type: {% if include.is-kic-cp == true %}CLUSTER_TYPE_K8S_INGRESS_CONTROLLER{% else %}CLUSTER_TYPE_CONTROL_PLANE{% endif %}
   konnect:
     authRef:
       name: konnect-api-auth # Reference to the KonnectAPIAuthConfiguration object
