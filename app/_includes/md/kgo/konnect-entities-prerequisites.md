@@ -109,8 +109,9 @@ metadata:
   name: gateway-control-plane
   namespace: default
 spec:
-  name: gateway-control-plane # Name used to identify the Gateway Control Plane in Konnect
-  cluster_type: {% if include.is-kic-cp == true %}CLUSTER_TYPE_K8S_INGRESS_CONTROLLER{% else %}CLUSTER_TYPE_CONTROL_PLANE{% endif %}
+  name: gateway-control-plane # Name used to identify the Gateway Control Plane in Konnect{% if include.control_plane_type == "dcgw" %}
+  cloud_gateway: true{% endif %}{% if include.is-kic-cp == true %}
+  cluster_type: CLUSTER_TYPE_K8S_INGRESS_CONTROLLER{% endif %}
   konnect:
     authRef:
       name: konnect-api-auth # Reference to the KonnectAPIAuthConfiguration object
@@ -131,6 +132,14 @@ gateway-control-plane   True         <konnect-control-plane-id>             <you
 ```
 
 Having that in place, you will be able to reference the `gateway-control-plane` in your {{site.konnect_product_name}} entities as their parent.
+{% endif %}
+
+{% if include.create_network %}
+### Create a Network
+
+To use this CRD, you will need a `Network`. For detailed instructions, see the [Create Cloud Gateways Network](/gateway-operator/latest/guides/konnect-entities/cloud-gateways-network/) document.
+
+If you have already created a network, you can refer to it by name later in this guide.
 {% endif %}
 
 {% unless include.disable_accordian %}

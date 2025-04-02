@@ -141,6 +141,8 @@ items:
             url: /guides/konnect-entities/konnect-plugin-binding/
           - text: Cloud Gateways - Networks
             url: /guides/konnect-entities/cloud-gateways-network/
+          - text: Cloud Gateways - Data Plane Group Configuration
+            url: /guides/konnect-entities/cloud-gateways-data-plane-group-configuration/
           - text: FAQ
             url: /guides/konnect-entities/faq/
       - text: Migration
