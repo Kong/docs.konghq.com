@@ -306,7 +306,7 @@ plugins:
 - name: ai-proxy-advanced
   config:
     balancer:
-      algorithm: round-robin
+      algorithm: priority
     targets:
     - model:
         name: gpt-4
