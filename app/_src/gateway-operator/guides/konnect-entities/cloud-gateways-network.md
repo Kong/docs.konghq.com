@@ -27,20 +27,20 @@ echo '
 kind: {{ crd }}
 apiVersion: konnect.konghq.com/v1alpha1
 metadata:
- name: konnect-network-1
- namespace: default
+  name: konnect-network-1
+  namespace: default
 spec:
- name: network1
- cloud_gateway_provider_account_id: "001111111111"
- availability_zones:
- - euw1-az1
- - euw1-az2
- - euw1-az3
- cidr_block: "192.168.0.0/16"
- region: eu-west-1
- konnect:
-   authRef:
-     name: konnect-api-auth
+  name: network1
+  cloud_gateway_provider_account_id: "001111111111"
+  availability_zones:
+    - euw1-az1
+    - euw1-az2
+    - euw1-az3
+  cidr_block: "192.168.0.0/16"
+  region: eu-west-1
+  konnect:
+    authRef:
+      name: konnect-api-auth
 ' | kubectl apply -f -
 ```
 

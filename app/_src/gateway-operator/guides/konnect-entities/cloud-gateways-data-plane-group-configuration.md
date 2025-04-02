@@ -28,13 +28,14 @@ metadata:
   name: konnect-cg-dpconf
 spec:
   api_access: private+public
-  version: "3.9"
+  version: "{{ site.data.kong_latest_gateway.ee-version | split: "." | slice: 0,2 | join: "." }}"
   dataplane_groups:
     - provider: aws
       region: eu-west-1
       networkRef:
-        type: konnectID
-        konnectID: "111111111111111111111111111111111111"
+        type: namespacedRef
+        namespacedRef:
+         name: konnect-network-1
       autoscale:
         type: static
         static:

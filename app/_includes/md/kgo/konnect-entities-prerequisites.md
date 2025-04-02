@@ -139,11 +139,7 @@ Having that in place, you will be able to reference the `gateway-control-plane` 
 
 To use this CRD, you will need a `Network`. For detailed instructions, see the [Create Cloud Gateways Network](/gateway-operator/latest/guides/konnect-entities/cloud-gateways-network/) document.
 
-If you have already created a network, fetch its ID with the following command:
-
-```bash
-kubectl get konnectcloudgatewaynetworks.konnect.konghq.com konnect-network-1 -o=jsonpath='{.status.id}'
-```
+If you have already created a network, you can refer to it by name later in this guide.
 {% endif %}
 
 {% unless include.disable_accordian %}
