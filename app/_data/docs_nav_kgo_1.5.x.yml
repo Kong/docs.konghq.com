@@ -7,7 +7,7 @@ items:
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Overview
-        url: /gateway-operator/1.4.x/
+        url: /gateway-operator/1.5.x/
         absolute_url: true
       - text: Deployment Topologies
         items:
@@ -173,7 +173,7 @@ items:
         url: /reference/konnectextension/
       - text: Configuration Options
         url: /reference/cli-arguments/
-        src: reference/cli-arguments/1.4.x
+        src: reference/cli-arguments/1.5.x
       - text: License
         url: /reference/license
       - text: Version Compatibility
