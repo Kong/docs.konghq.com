@@ -212,12 +212,12 @@
   release: 1.4.x
   releaseDate: "2024-11-28"
   endOfLifeDate: "2025-11-28"
-  latest: true
 - edition: gateway-operator
   version: 1.5.1
   release: 1.5.x
   releaseDate: "2025-04-01"
   endOfLifeDate: "2026-04-01"
+  latest: true
 - edition: gateway-operator
   version: 1.6.0
   release: 1.6.x
