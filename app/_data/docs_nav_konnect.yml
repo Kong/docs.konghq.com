@@ -156,24 +156,24 @@
   items:
     - text: Overview
       url: /service-catalog/
-    - text: Scorecards
-      url: /service-catalog/scorecards/
     - text: Integrations
       items:
         - text: Overview
           url: /service-catalog/integrations/
+        - text: Datadog
+          url: /service-catalog/integrations/datadog/
         - text: GitHub
           url: /service-catalog/integrations/github/
+        - text: GitLab
+          url: /service-catalog/integrations/gitlab/
         - text: PagerDuty
           url: /service-catalog/integrations/pagerduty/
         - text: SwaggerHub
           url: /service-catalog/integrations/swaggerhub/
         - text: Traceable
           url: /service-catalog/integrations/traceable/
-        - text: Datadog
-          url: /service-catalog/integrations/datadog/
-        - text: GitLab
-          url: /service-catalog/integrations/gitlab/
+    - text: Scorecards
+      url: /service-catalog/scorecards/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
