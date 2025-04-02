@@ -44,7 +44,7 @@ Using the `control-plane-id` for the data plane group you want to upgrade, you c
     --url https://us.api.konghq.com/v2/cloud-gateways/networks \
     --header 'Authorization: Bearer kpat_iIGUb6bPml2G6WUSPnZMLdty6pwgUf8GIJbSlBlasg6w4y1cS'
   ```
-1. From the response body save the `cloud_gaetway_network_id`, `control_plane_id`. 
+1. From the response body save the `cloud_gateway_network_id`, `control_plane_id`. 
 1. Construct and send a POST request to `/cloud-gateways/configurations`, using both the `control_plane_id`, `cloud_gateway_network_id`, and the desired [`version`](/konnect/compatibility/):
 
     ```bash
