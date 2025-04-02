@@ -19,4 +19,4 @@ When enabled, an integration gives you and your teams the ability to:
 
 ## Events
 
-Eventing allows you to view key events associated with your {{site.service_catalog_name}} integrations directly from the **Events** tab in the {{site.konnect_short_name}} UI. From here you can search or filter through events by keywords in the event title and filter by time frame.
+Events within a Service allow you to view key events associated with your {{site.service_catalog_name}} integrations directly from the **Events** tab of an individual Service details page in the {{site.konnect_short_name}} UI. From here you can search or filter through events by keywords in the event title and filter by time frame.
