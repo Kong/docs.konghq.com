@@ -1,6 +1,7 @@
 ---
 nav_title: Configure realms for consumers
 title: Configure realms for consumers in {{site.konnect_short_name}}
+minimum_version: 3.10.x
 ---
 
 Starting in {{site.base_gateway}} 3.10.x, you can authenticate [consumers that are managed centrally](/konnect/centralized-consumer-management/) in {{site.konnect_short_name}} by configuring the `identity_realms` field in the Key Auth plugin. A data plane can only reach out to realms in the same region as they are deployed.
