@@ -47,7 +47,7 @@ spec:
 After creating the network object you can check the status of the network by running:
 
 ```bash
-kubectl get konnectcloudgatewaynetworks.konnect.konghq.com konnect-network-1 -o=jsonpath='{.status}' | yq -p json
+kubectl get {{ crd | downcase }}s.konnect.konghq.com konnect-network-1 -o=jsonpath='{.status}' | yq -p json
 ```
 
 Which should return the status of the network:
