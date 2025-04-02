@@ -110,8 +110,8 @@ metadata:
   namespace: default
 spec:
   name: gateway-control-plane # Name used to identify the Gateway Control Plane in Konnect{% if include.control_plane_type == "dcgw" %}
-  cluster_type: {% if include.is-kic-cp == true %}CLUSTER_TYPE_K8S_INGRESS_CONTROLLER{% else %}CLUSTER_TYPE_CONTROL_PLANE{% endif %}
-  cloud_gateway: true{% endif %}
+  cloud_gateway: true{% endif %}{% if include.is-kic-cp == true %}
+  cluster_type: CLUSTER_TYPE_K8S_INGRESS_CONTROLLER{% endif %}
   konnect:
     authRef:
       name: konnect-api-auth # Reference to the KonnectAPIAuthConfiguration object
