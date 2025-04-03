@@ -5,7 +5,7 @@ purpose: |
   How to proxy TCP requests
 ---
 
-Create TCP routing configuration for {{site.base_gateway}} in Kubernetes using either the `TCPIngress` custom resource or `TCPRoute` and `TLSRoute` Gateway APIs resource.
+Create TCP routing configuration for {{site.base_gateway}} in Kubernetes using either the `TCPIngress` custom resource or Gateway APIs resources (`TCPRoute` for plain TCP and `TLSRoute` for TLS-encrypted TCP with SNI-based routing).
 TCP-based Ingress means that {{site.base_gateway}} forwards the TCP stream to a Pod of a Service that's running inside Kubernetes. {{site.base_gateway}} does not perform any sort of transformations.
 
 There are two modes available:
@@ -88,7 +88,7 @@ There are two modes available:
 1.  Configure TCPRoute (Gateway API Only)
 
     {:.note}
-    > If you are using the Gateway APIs (TCPRoute), your Gateway needs additional configuration under `listeners`. 
+    > If you are using the Gateway APIs (TCPRoute), your Gateway needs additional configuration under `listeners`.
 
     ```bash
     kubectl patch --type=json gateway kong -p='[
@@ -186,11 +186,13 @@ receives on port 9000 to `echo` service on port 1025.
 
 ### Test the configuration
 
-1. Check if the Service is ready on the route.
+1. Check if the Service is ready on the route. Note that it may take a few moments for the Kong controller to process the route.
     {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab Gateway API %}
 ```bash
+# Wait a few seconds for the controller to process the route
+sleep 5
 kubectl get tcproute echo-plaintext -ojsonpath='{.status.parents[0].conditions[?(@.reason=="Accepted")]}'
 ```
 {% endnavtab %}
@@ -224,12 +226,13 @@ echo-plaintext   192.0.2.3   3m18s
 {% endcapture %}
 {{ the_code | indent }}
 
-1. Connect to this service using `telnet`.
+1. Get the proxy IP address and connect to this service using `telnet`.
     ```shell
+    $ PROXY_IP=$(kubectl get svc -n kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     $ telnet $PROXY_IP 9000
     ```
 
-    After you  connect, type some text that you want as a response from the echo Service. 
+    After you  connect, type some text that you want as a response from the echo Service.
     ```
     Trying 192.0.2.3...
     Connected to 192.0.2.3.
@@ -249,9 +252,12 @@ echo-plaintext   192.0.2.3   3m18s
 
 ## Route based on SNI
 
+{:.note}
+> For Gateway API, we use TLSRoute for SNI-based routing because it's specifically designed to handle TLS traffic with SNI information, while still proxying the underlying TCP stream. This is still considered TCP proxying, just with the added capability of routing based on the SNI in the TLS handshake.
+
 {% include /md/kic/add-certificate.md hostname='tls9443.kong.example' release=page.release %}
 
-1. Create the TCPIngress resource to route TLS-encrypted traffic to the `echo` service.
+1. Create the TLSRoute (for Gateway API) or TCPIngress (for Ingress) resource to route TLS-encrypted traffic to the `echo` service.
   {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab Gateway API %}
@@ -305,7 +311,7 @@ spec:
 {% navtabs codeblock %}
 {% navtab Gateway API %}
 ```text
-tcproute.gateway.networking.k8s.io/echo-tls created
+tlsroute.gateway.networking.k8s.io/echo-tls created
 ```
 {% endnavtab %}
 {% navtab Ingress %}
@@ -325,6 +331,9 @@ You can now access the `echo` service on port 9443 with SNI `tls9443.kong.exampl
 In real-world usage, you would create a DNS record for `tls9443.kong.example`pointing to your proxy Service's public IP address, which causes TLS clients to add SNI automatically. For this demo, add it manually using the OpenSSL CLI.
 
 ```bash
+# If you haven't set the PROXY_IP variable yet
+PROXY_IP=$(kubectl get svc -n kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+
 echo "hello" | openssl s_client -connect $PROXY_IP:9443 -servername tls9443.kong.example -quiet 2>/dev/null
 ```
 Press Ctrl+C to exit.
