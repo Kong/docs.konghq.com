@@ -62,7 +62,9 @@ The complete order of precedence for plugins configured to multiple entities is:
 1. **Service**: Specific to given service.
 1. **Globally configured plugins**: Lowest precedence, applies to all requests across all services and routes regardless of consumer status.
 
-The very first matched instance is selected, and all other instances of the same plugin are ignored for the current request context. For example, if you configure the `rate-limiting-advanced` plugin for both the service *foo* and the route *bar* of that service, the instance associated with the route *bar* is executed due to the order of precedence. To work around this limitation, you can create two routes for the service *foo* and bind a separate `rate-limiting-advanced` plugin to each route. If you need to run the plugin twice, you can point the service *foo* to another route (*baz*) within the same {{site.base_gateway}}.
+Only the first matched instance is selected, and all other instances of the same plugin are ignored for the current request context. For example, if you configure the `rate-limiting-advanced` plugin for both the service *foo* and the route *bar* of that service, the instance associated with the route *bar* is executed due to the order of precedence. 
+
+To work around this limitation, you can create two routes for the service *foo* and bind a separate `rate-limiting-advanced` plugin to each route. If you need to run the plugin twice, you can point the service *foo* to another route (*baz*) within the same {{site.base_gateway}}.
 
 {:.note}
 > **Note on precedence for consumer groups**:
