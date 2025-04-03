@@ -2,7 +2,7 @@
 title: TLS Termination / Passthrough
 type: how-to
 purpose: |
-  How to do TLS Termination and TLS Passthrough with KIC and Kong Gateway
+  How to do TLS Termination and TLS Passthrough with KIC and {{site.base_gateway}}
 ---
 
 
