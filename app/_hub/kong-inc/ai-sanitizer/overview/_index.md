@@ -27,6 +27,8 @@ Kong provides an [AI PII Anonymizer service](https://hub.docker.com/r/kong/ai-pi
 
 {:.note}
 > This Docker image is private, contact [Kong Support](https://support.konghq.com/support/s/) to get access to it.
+>
+> The PII Anonymizer service loads NLP models, with one model loaded by default. Ensure that you have at least 500MB of free memory to run the image.
 
 ### Image configuration options
 
