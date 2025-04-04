@@ -57,7 +57,7 @@ Enable TLS by setting `config.security.ssl` to `true`.
 Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`.
 
 Note that this option needs `config.security.ssl` set to true.
-See [Certificate Object](/gateway/api/admin-ee/latest/#/Certificates/list-certificate/)
+See [Certificate Object](/gateway/api/admin-ee/latest/#/operations/list-certificate)
 in the Admin API documentation for information on how to set up Certificates.
 
 ## SASL Authentication
@@ -99,7 +99,9 @@ This plugin supports the following authentication mechanisms:
 Known limitations:
 
 1. Message compression is not supported.
+{% if_version lte: 3.9.x %}
 2. The message format is not customizable.
+{% endif_version %}
 
 ## Quickstart
 

@@ -15,6 +15,10 @@ servers:
     description: Australia Production region
   - url: 'https://me.api.konghq.com/v1'
     description: Middle-East Production region
+  - url: 'https://in.api.konghq.com/v1'
+    description: India Production region
+  - url: 'https://global.api.konghq.com/v1'
+    description: Global Production
 paths:
   /search:
     get:
@@ -26,7 +30,8 @@ paths:
         - $ref: '#/components/parameters/PageAfter'
         - name: q
           in: query
-          description: The query that defines the search criteria.
+          description: |
+            The query that defines the search criteria. Supports Lucene-like syntax for filtering results. Learn more about search query syntax [here](https://docs.konghq.com/konnect/reference/search).
           required: true
           schema:
             type: string
@@ -582,7 +587,7 @@ components:
       bearerFormat: Token
       description: |
         The personal access token is meant to be used as an alternative to basic-auth when accessing Konnect via APIs.
-        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/tokens/) in the Konnect dashboard.
+        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/account/tokens/) in the Konnect dashboard.
         The PAT token must be passed in the header of a request, for example:
         `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT...'`
     konnectAccessToken:

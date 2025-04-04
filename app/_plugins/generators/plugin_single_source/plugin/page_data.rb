@@ -70,6 +70,7 @@ module PluginSingleSource
 
         ::Jekyll::Drops::Plugins::HubExamples.new(
           schema: @release.schema,
+          metadata: metadata,
           example: @release.schema.example,
           targets: ::Jekyll::InlinePluginExample::Config::TARGETS,
           formats: %i[curl konnect yaml kubernetes terraform]
@@ -102,7 +103,7 @@ module PluginSingleSource
         @extn_latest ||= gateway_releases
                          .select { |r| @release.ext_data.fetch('releases', []).include?(r.value) }
                          .select { |r| r.label.nil? }
-                         .max_by(&:value)
+                         .max_by { |r| Gem::Version.new(r.value) }
                          .to_liquid
       end
 

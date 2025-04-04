@@ -41,6 +41,7 @@ kubectl create namespace kong
 
 Next, create a {{site.ee_product_name}} license secret:
 
+{% if_version lte:3.9.x %}
 {% navtabs %}
 {% navtab Kong Gateway Enterprise Free Mode%}
 
@@ -55,6 +56,13 @@ Next, create a {{site.ee_product_name}} license secret:
 
 {% endnavtab %}
 {% endnavtabs %}
+{% endif_version %}
+{% if_version gte:3.10.x %}
+
+   > Ensure you are in the directory that contains a `license.json` file before running this command. 
+
+    kubectl create secret generic kong-enterprise-license --from-file=license=license.json -n kong
+{% endif_version %}
 
 ### Clustering Certificates
 

@@ -18,8 +18,4 @@ You can configure your `GatewayClass` and `Gateway` objects in a vendor independ
 
 This means that CRDs for both the Gateway API and {{ site.kic_product_name }} have to be installed.
 
-```bash
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml
-```
-
-{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release %}
+{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release install_crds=true konnectEntities=true %}

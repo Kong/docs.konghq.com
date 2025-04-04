@@ -2,7 +2,7 @@
 title: Deploy a Data Plane
 content-type: tutorial
 book: kgo-konnect-get-started
-chapter: 2
+chapter: 4
 ---
 
 To attach a {{ site.kgo_product_name }} data plane to {{ site.konnect_short_name }} the data plane needs to know which endpoint to connect to, and how to authenticate the requests.
@@ -19,10 +19,11 @@ To get the endpoint and the authentication details of the data plane:
    ```bash
    kubectl create namespace kong
    ```
+
 1. Create a Kubernetes secret containing the cluster certificate:
 
     ```bash
-    kubectl create secret tls konnect-client-tls -n kong --cert=./tls.crt --key=./tls.key
+    kubectl create secret tls -n kong konnect-client-tls --cert=./tls.crt --key=./tls.key
     ```
 
 {% if_version lte:1.3.x %}

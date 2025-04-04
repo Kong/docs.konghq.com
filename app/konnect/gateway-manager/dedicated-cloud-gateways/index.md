@@ -57,6 +57,7 @@ This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-
 
 * [Networking and Peering information](/konnect/network-resiliency/#how-does-network-peering-work-with-dedicated-cloud-gateway-nodes)
 * [Supported regions](/konnect/geo/#dedicated-cloud-gateways)
+* [Data Plane logs](/konnect/gateway-manager/dedicated-cloud-gateways/)
 * [Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/)
 * [How to upgrade data planes](/konnect/gateway-manager/data-plane-nodes/upgrade/)
 * [Custom Domains](/konnect/gateway-manager/dedicated-cloud-gateways/custom-dns/)

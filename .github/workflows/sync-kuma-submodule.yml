@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Check-out current repo'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           submodules: true
           ref: main
@@ -62,7 +62,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
       - name: 'Create pull request'
         # https://github.com/peter-evans/create-pull-request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7
         id: newPR
         with:
           base: main

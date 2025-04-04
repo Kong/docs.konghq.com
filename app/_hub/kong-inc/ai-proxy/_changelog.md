@@ -1,5 +1,17 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+* Changed the serialized log key of AI metrics from `ai.ai-proxy` to `ai.proxy` to avoid conflicts with metrics generated from plugins other than AI Proxy and AI Proxy Advanced. If you are using logging plugins (for example, File Log, HTTP Log, etc.), you will have to update metrics pipeline configurations to reflect this change.
+* Deprecated `config.model.options.upstream_path` in favor of `config.model.options.upstream_url`.
+* Deprecated `preserve` mode in `config.route_type`. Use `config.llm_format` instead. The `preserve` mode setting will be removed in a future release.
+* Fixed a bug in the Azure provider where `model.options.upstream_path` overrides would always return a 404 response.
+* Fixed a bug where Azure streaming responses would be missing individual tokens.
+* Fixed a bug where response streaming in Gemini and Bedrock providers was returning whole chat responses in one chunk.
+* Fixed a bug with the Gemini provider, where multimodal requests (in OpenAI format) would not transform properly.
+* Fixed an issue where Gemini streaming responses were getting truncated and/or missing tokens.
+* Fixed an incorrect error thrown when trying to log streaming responses.
+* Fixed `preserve` mode.
+
 ### {{site.base_gateway}} 3.9.x
 * Disabled the HTTP/2 ALPN handshake for connections on routes configured with AI Proxy.
 [#13735](https://github.com/Kong/kong/issues/13735)

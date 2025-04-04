@@ -37,9 +37,10 @@ module Jekyll
       def initialize(tag_name, markup, tokens)
         super
         @class = markup.strip
+        @collapse = true if @class.include?('collapse')
       end
 
-      def render(context) # rubocop:disable Metrics/MethodLength
+      def render(context) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         navtabs_id = SecureRandom.uuid
         environment = context.environments.first
         environment["navtabs-#{navtabs_id}"] = {}
@@ -47,16 +48,34 @@ module Jekyll
 
         environment['navtabs-stack'].push(navtabs_id)
         super
-        environment['navtabs-stack'].pop
+        stack = environment['navtabs-stack'].pop
 
         environment['additional_classes'] = ''
         environment['additional_classes'] = 'external-trigger' if @tag_name == 'navtabs_ee'
 
-        template = ERB.new html
+        template = ERB.new html(environment, stack)
         template.result(binding)
       end
 
-      def html
+      def html(environment, stack)
+        is_one_tab = environment["navtabs-#{stack}"].size == 1
+        return html_content(false) if @collapse && is_one_tab
+
+        html_with_tabs
+      end
+
+      def html_content(add_navtab_selector)
+        <<~NAVTABS
+          <% environment['navtabs-' + stack].each_with_index do |(title, value), index| %>
+            <% slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\\w-]/, '') %>
+            <div #{add_navtab_selector ? 'data-panel="<%= slug %>" data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content" role="tabpanel" id="navtab-id-<%= index %>" tabindex="0" aria-labelledby="navtab-id-<%= index %>"' : ''}>
+              <%= value %>
+            </div>
+          <% end %>
+        NAVTABS
+      end
+
+      def html_with_tabs
         <<~NAVTABS
           <div class="navtabs <%= @class %> <%= environment['additional_classes'] %>">
             <div class="navtab-titles" role="tablist">
@@ -68,12 +87,7 @@ module Jekyll
             <% end %>
             </div>
             <div class="navtab-contents">
-            <% environment['navtabs-' + navtabs_id].each_with_index do |(title, value), index| %>
-              <% slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\\w-]/, '') %>
-              <div data-panel="<%= slug %>" data-navtab-content="navtab-<%= navtabs_id %>-<%= index %>" class="navtab-content" role="tabpanel" id="navtab-id-<%= index %>" tabindex="0" aria-labelledby="navtab-id-<%= index %>" >
-                <%= value %>
-              </div>
-            <% end %>
+            #{html_content(true)}
             </div>
           </div>
         NAVTABS

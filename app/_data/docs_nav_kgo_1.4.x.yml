@@ -74,6 +74,10 @@ items:
                 url: /production/monitoring/status/gateway/
       - text: Upgrade Gateway Operator
         url: /production/upgrade/gateway-operator/
+      - text: Certificates
+        items:
+          - text: Using custom CA for signing operator certificates
+            url: /production/certificates/custom_ca
   - title: Guides
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:

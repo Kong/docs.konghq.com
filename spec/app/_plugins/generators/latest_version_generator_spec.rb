@@ -81,12 +81,6 @@ RSpec.describe LatestVersion::Generator do
           it_behaves_like 'creates a latest page'
         end
 
-        context 'deck' do
-          let(:page) { find_page_by_url('/deck/1.16.x/') }
-
-          it_behaves_like 'creates a latest page'
-        end
-
         context 'pages that do not belong to products with latest versions' do
           ['/404.html', '/contributing/'].each do |p|
             let(:page) { find_page_by_url(p) }

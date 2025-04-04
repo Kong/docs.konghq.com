@@ -92,6 +92,10 @@ inherit:
       text: Deploy Kong Mesh on Kubernetes
       action: modify
       items: []
+    - path: [ Quickstart, Deploy Kuma on Universal ]
+      text: Deploy Kong Mesh on Universal
+      action: modify
+      items: []
     - path: [ Using Kuma ]
       title: Using Kong Mesh
       action: modify
@@ -122,7 +126,7 @@ inherit:
     - path: [ Policies ]
       action: insert
       index: -2
-      text: MeshOPA 
+      text: MeshOPA
       url: /features/meshopa
       generate: false
     - path: [ Policies ]
@@ -197,3 +201,13 @@ inherit:
       src: null
       absolute_url: true
       url: https://kuma.io/community
+    - path: [ Guides ]
+      text: Deploy Kong Mesh using Terraform and Konnect
+      url: /guides/deploy-kong-mesh-using-terraform-and-konnect
+      action: insert
+      index: -1
+    - path: [ Guides ]
+      text: Import existing Konnect Kong Mesh deployment to Terraform
+      url: /guides/import-existing-konnect-kong-mesh-deployment-to-terraform
+      action: insert
+      index: -1

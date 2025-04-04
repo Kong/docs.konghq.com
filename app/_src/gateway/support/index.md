@@ -85,31 +85,22 @@ After the product hits the end of the support period, Kong will provide limited 
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
-  {% if_version gte: 3.9.x %}
+  {% if_version gte: 3.10.x %}
+  {% navtab 3.10 LTS %}
+    {% include_cached gateway-support.html version="3.10" data=site.data.tables.support.gateway.versions.310 eol="March 2028" %}
+  {% endnavtab %}
+  {% endif_version %}
   {% navtab 3.9 %}
     {% include_cached gateway-support.html version="3.9" data=site.data.tables.support.gateway.versions.39 eol="Dec 2025" %}
   {% endnavtab %}
-  {% endif_version %}
-  {% if_version gte: 3.8.x %}
   {% navtab 3.8 %}
     {% include_cached gateway-support.html version="3.8" data=site.data.tables.support.gateway.versions.38 eol="Sept 2025" %}
   {% endnavtab %}
-  {% endif_version %}
-  {% if_version gte: 3.7.x %}
   {% navtab 3.7 %}
     {% include_cached gateway-support.html version="3.7" data=site.data.tables.support.gateway.versions.37 eol="May 2025" %}
   {% endnavtab %}
-  {% endif_version %}
-  {% if_version gte: 3.6.x %}
-  {% navtab 3.6 %}
-    {% include_cached gateway-support.html version="3.6" data=site.data.tables.support.gateway.versions.36 eol="Feb 2025" %}
-  {% endnavtab %}
-  {% endif_version %}
   {% navtab 3.4 LTS %}
     {% include_cached gateway-support.html version="3.4" data=site.data.tables.support.gateway.versions.34 eol="August 2026" %}
-  {% endnavtab %}
-  {% navtab 2.8 LTS %}
-    {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.28  eol="March 2025" %}
   {% endnavtab %}
 {% endnavtabs %}
 
@@ -144,11 +135,13 @@ These versions have reached the end of full support.
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
+|  3.6.x.x |  2024-02-12   |     2025-02-12      |      2026-02-12       |
 |  3.5.x.x |  2023-11-08   |     2024-11-08      |      2025-11-08       |
 |  3.3.x.x |  2023-05-19   |     2024-05-19      |      2025-05-19       |
 |  3.2.x.x |  2023-02-28   |     2024-02-28      |      2025-02-28       |
 |  3.1.x.x |  2022-12-06   |     2023-12-06      |      2024-12-06       |
 |  3.0.x.x |  2022-09-09   |     2023-09-09      |      2024-09-09       |
+|  2.8.x.x |  2022-03-02   |     2025-03-26      |      2026-03-26       |
 |  2.7.x.x |  2021-12-16   |     2023-02-24      |      2024-08-24       |
 |  2.6.x.x |  2021-10-14   |     2023-02-24      |      2024-08-24       |
 |  2.5.x.x |  2021-08-03   |     2022-08-24      |      2023-08-24       |

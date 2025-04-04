@@ -8,7 +8,8 @@ purpose: |
 Install a custom plugin in Kong without using a Docker build.
 
 {:.note}
-> The recommended way to install custom plugins is with {{ site.kgo_product_name }}. See [Kong custom plugin distribution with KongPluginInstallation](/gateway-operator/{{page.release}}/guides/plugin-distribution/) for more information.
+> The recommended way to install custom plugins is with {{ site.kgo_product_name }}.
+> See [Kong custom plugin distribution with KongPluginInstallation](/gateway-operator/latest/guides/plugin-distribution/) for more information.
 
 {% include md/custom-plugin.md %}
 
@@ -51,6 +52,64 @@ secret/kong-plugin-myheader created
 {% endcapture %}
 {{ the_code | indent }}
 
+### Creating Plugin with Custom Entities and Migration Scripts
+
+If your custom plugin includes definition of your own entities, you need to create a `daos.lua` in your directory, and a `migration` sub-directory containing the scripts to create database tables and migrate data between different versions (if your schema of your entities changed between different versions). In the case, the directory should like this:
+
+```bash
+tree myheader
+```
+
+```bash
+  myheader
+  ├── daos.lua
+  ├── handler.lua
+  ├── migrations
+  │   ├── 000_base_my_header.lua
+  │   ├── 001_100_to_110.lua
+  │   └── init.lua
+  └── schema.lua
+
+  1 directories, 6 files
+```
+
+Since `ConfigMap` or `Secret` volumes does not support nested directories, you need to create another `ConfigMap` or `Secret` for the `migrations` directory:
+
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab ConfigMap %}
+```bash
+$ kubectl create configmap kong-plugin-myheader-migrations --from-file=myheader/migrations -n kong
+```
+{% endnavtab %}
+
+{% navtab Secret %}
+```bash
+$ kubectl create secret generic -n kong kong-plugin-myheader-migrations --from-file=myheader/migrations
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+    The results should look like this:
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab ConfigMap %}
+```text
+configmap/kong-plugin-myheader-migrations created
+```
+{% endnavtab %}
+
+{% navtab Secret %}
+```text
+secret/kong-plugin-myheader-migrations created
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
 ## Deploying custom plugins
 
 ### Helm
@@ -83,6 +142,51 @@ gateway:
 {% endnavtabs %}
 {% endcapture %}
 {{ the_code | indent }}
+
+
+If you need to include the migration scripts to the plugin, you need to configure `userDefinedVolumes` and `userDefinedVolumeMounts` in `values.yaml` to mount the migration scripts to the {{site.base_gateway}} pod:
+
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab ConfigMap %}
+```yaml
+gateway:
+  plugins:
+    configMaps:
+    - name: kong-plugin-myheader
+      pluginName: myheader
+  deployment:
+    userDefinedVolumes:
+    - name: "kong-plugin-myheader-migrations"
+      configMap:
+        name: "kong-plugin-myheader-migrations"
+    userDefinedVolumeMounts:
+    - name: "kong-plugin-myheader-migrations"
+      mountPath: "/opt/kong/plugins/myheader/migrations" # Should be the path /opt/kong/plugins/<plugin-name>/migrations
+```
+{% endnavtab %}
+
+{% navtab Secret %}
+```yaml
+gateway:
+  plugins:
+    secrets:
+    - name: kong-plugin-myheader
+      pluginName: myheader
+  deployment:
+    userDefinedVolumes:
+    - name: "kong-plugin-myheader-migrations"
+      secret:
+        name: "kong-plugin-myheader-migrations"
+    userDefinedVolumeMounts:
+    - name: "kong-plugin-myheader-migrations"
+      mountPath: "/opt/kong/plugins/myheader/migrations" # Should be the path /opt/kong/plugins/<plugin-name>/migrations
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
 
 2. Install {{site.kic_product_name}}.
     ```
@@ -128,10 +232,15 @@ spec:
         volumeMounts:
         - name: kong-plugin-myheader
           mountPath: /opt/kong/plugins/myheader
+        - name: kong-plugin-myheader-migrations # Required when you have migration scripts in your plugin
+          mountPath: /opt/kong/plugins/myheader/migrations
       volumes:
       - name: kong-plugin-myheader
         configMap:
           name: kong-plugin-myheader
+      - name: kong-plugin-myheader-migrations # Required when you have migration scripts in your plugin
+        configMap:
+          name: kong-plugin-myheader-migrations
 ```
 
 ## Using custom plugins

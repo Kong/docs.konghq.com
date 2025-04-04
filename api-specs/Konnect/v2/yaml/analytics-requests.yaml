@@ -15,6 +15,8 @@ servers:
     description: Australia Production region
   - url: 'https://me.api.konghq.com/v2'
     description: Middle-East Production region
+  - url: 'https://in.api.konghq.com/v2'
+    description: India Production region
 paths:
   /api-requests:
     post:
@@ -167,1048 +169,6 @@ components:
       description: Number of requests to be skipped when returning results.
       type: integer
       default: 0
-    RequestsFilterType:
-      description: 'The type of filter to apply.  `in` filters will limit results to only the specified values, while `not_in` filters will exclude the specified values.'
-      type: string
-      enum:
-        - in
-        - not_in
-    RequestsFilterTypeEquals:
-      description: The type of filter to apply.
-      type: string
-      enum:
-        - '='
-        - '!='
-    RequestsFilterTypeEmpty:
-      description: The type of filter to apply.
-      type: string
-      enum:
-        - empty
-        - not_empty
-    RequestsFilterTypeWildcard:
-      description: The type of filter to apply. `starts_with` filters will limit the results to those that start with the specified value. `ends_with` will limit the results to those that end with the specified value.
-      type: string
-      enum:
-        - starts_with
-        - ends_with
-    RequestsFilterTypeNumeric:
-      description: The type of filter to apply.
-      type: string
-      enum:
-        - '='
-        - '!='
-        - <
-        - '>'
-        - <=
-        - '>='
-    UnscopedUuid:
-      type: string
-      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-    ScopedUuid:
-      type: string
-      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-    FilterEmpty:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeEmpty'
-      required:
-        - operator
-      title: Empty filters
-    FilterWildcard:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeWildcard'
-        value:
-          description: |
-            The value to include in the results
-          type: string
-      required:
-        - operator
-        - value
-      title: Wildcard filters
-    FilterMultiValueUUID:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterType'
-        value:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/UnscopedUuid'
-      required:
-        - operator
-        - value
-      title: Multiselect filters
-    FilterSingleValueUUID:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeEquals'
-        value:
-          description: |
-            The ID to include in the results.
-          type: string
-          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      required:
-        - operator
-        - value
-      title: Single select filters
-    FilterMultiValueScopedUUID:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterType'
-        value:
-          description: |
-            The IDs to include in the results. Because gateway IDs are only unique within a given control plane, the filter values must be of the form `control_plane_id:field_id` or `control_plane_group_id:field_id` for data plane nodes within a control plane group.
-          type: array
-          items:
-            $ref: '#/components/schemas/ScopedUuid'
-      required:
-        - operator
-        - value
-      title: Multiselect filters
-    FilterSingleValueScopedUUID:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeEquals'
-        value:
-          description: |
-            The ID to include in the results. Because gateway IDs are only unique within a given control plane, the filter values must be of the form `control_plane_id:field_id` or `control_plane_group_id:field_id` for data plane nodes within a control plane group.
-          type: string
-          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-      required:
-        - operator
-        - value
-      title: Single select filters
-    FilterMultiValueStatusCode:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterType'
-        value:
-          description: |
-            The codes to include in the results.
-          type: array
-          items:
-            type: integer
-            minimum: 0
-            maximum: 999
-      required:
-        - operator
-        - value
-      title: Multiselect filters
-    FilterSingleValueStatusCode:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeEquals'
-        value:
-          description: |
-            The code to include in the results.
-          type: integer
-          maximum: 999
-          minimum: 0
-      required:
-        - operator
-        - value
-      title: Single select filters
-    FilterMultiValueStatusCodeGrouped:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterType'
-        value:
-          description: |
-            The code groups to include in the results.
-          type: array
-          items:
-            type: string
-            pattern: '^\d[xX][xX]$'
-      required:
-        - operator
-        - value
-      title: Multiselect filters
-    FilterSingleValueStatusCodeGrouped:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeEquals'
-        value:
-          description: |
-            The code group to include in the results.
-          type: string
-          pattern: '^\d[xX][xX]$'
-      required:
-        - operator
-        - value
-      title: Single select filters
-    FilterMultiValueString:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterType'
-        value:
-          description: |
-            The values to include in the results.
-          type: array
-          items:
-            type: string
-      required:
-        - operator
-        - value
-      title: Multiselect filters
-    FilterSingleValueString:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeEquals'
-        value:
-          description: |
-            The value to include in the results
-          type: string
-      required:
-        - operator
-        - value
-      title: Single select filters
-    FilterSingleValueNumericMilliseconds:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeNumeric'
-        value:
-          description: |
-            The value to include in the results. The value should be in milliseconds.
-          type: integer
-      required:
-        - operator
-        - value
-      title: Numeric filters
-    FilterMultiValueNumericMilliseconds:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterType'
-        value:
-          description: |
-            The values to include in the results. The values should be in milliseconds.
-          type: array
-          items:
-            type: integer
-      required:
-        - operator
-        - value
-      title: Multiselect filters
-    FilterSingleValueNumericBytes:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterTypeNumeric'
-        value:
-          description: |
-            The value to include in the results. The value should be in bytes.
-          type: integer
-      required:
-        - operator
-        - value
-      title: Numeric filters
-    FilterMultiValueNumericBytes:
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/RequestsFilterType'
-        value:
-          description: |
-            The values to include in the results. The values should be in bytes.
-          type: array
-          items:
-            type: integer
-      required:
-        - operator
-        - value
-      title: Multiselect filters
-    ApplicationFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - application
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueUUID'
-            - $ref: '#/components/schemas/FilterSingleValueUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by application
-    ApplicationFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - application
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/UnscopedUuid'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by application
-    ApiProductFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - api_product
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueUUID'
-            - $ref: '#/components/schemas/FilterSingleValueUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by api_product
-    ApiProductFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - api_product
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/UnscopedUuid'
-      additionalProperties: false
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by api_product
-    ApiProductVersionFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - api_product_version
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueUUID'
-            - $ref: '#/components/schemas/FilterSingleValueUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by api_product_version
-    ApiProductVersionFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - api_product_version
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/UnscopedUuid'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by api_product_version
-    AuthTypeFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - auth_type
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by auth_type
-    ClientIpFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - client_ip
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by client_ip
-    ConsumerFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - consumer
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
-            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by consumer
-    ConsumerFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - consumer
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/ScopedUuid'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by consumer
-    ControlPlaneFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - control_plane
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueUUID'
-            - $ref: '#/components/schemas/FilterSingleValueUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by control_plane
-    ControlPlaneFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - control_plane
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/UnscopedUuid'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by control_plane
-    ControlPlaneGroupFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - control_plane_group
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueUUID'
-            - $ref: '#/components/schemas/FilterSingleValueUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by control_plane_group
-    ControlPlaneGroupFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - control_plane_group
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/UnscopedUuid'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by control_plane_group
-    DataPlaneNodeFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - data_plane_node
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
-            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by data_plane_node
-    DataPlaneNodeFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - data_plane_node
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/ScopedUuid'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by data_plane_node
-    DataPlaneNodeVersionFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - data_plane_node_version
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by data_plane_node_version
-    GatewayServiceFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - gateway_service
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
-            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by gateway_service
-    GatewayServiceFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - gateway_service
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/ScopedUuid'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by gateway_service
-    HeaderUserAgentFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - header_user_agent
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by header_user_agent
-    HeaderHostFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - header_user_host
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by header_user_host
-    HttpMethodFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - http_method
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by http_method
-    LatenciesKongGatewayMsFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - latencies_kong_gateway_ms
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
-            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by latencies_kong_gateway_ms
-    LatenciesResponseMsFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - latencies_response_ms
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
-            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by latencies_response_ms
-    LatenciesUpstreamMsFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - latencies_upstream_ms
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
-            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by latencies_upstream_ms
-    RequestBodySizeFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - request_body_size
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
-            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by request_body_size
-    RequestIdFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - request_id
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by request_id
-    RequestUriFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - request_uri
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by request_uri
-    ResponseBodySizeFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - response_body_size
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
-            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by response_body_size
-    ResponseHeaderContentLengthFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - response_body_size
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
-            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by response_header_content_length
-    ResponseHeaderContentTypeFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - response_header_content_type
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by response_header_content_type
-    ResponseSourceFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - response_source
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by response_source
-    RouteFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - route
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
-            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by route
-    RouteFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - route
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The IDs to include in the results.
-          type: array
-          items:
-            $ref: '#/components/schemas/ScopedUuid'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by route
-    ServicePortFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - service_port
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by service_port
-    ServiceProtocolFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - service_protocol
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by service_protocol
-    StatusCodeFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - status_code
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueStatusCode'
-            - $ref: '#/components/schemas/FilterSingleValueStatusCode'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by status_code
-    StatusCodeFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - status_code
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The codes to include in the results.
-          type: array
-          items:
-            type: integer
-            minimum: 0
-            maximum: 999
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by status_code
-    StatusCodeGroupedFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - status_code_grouped
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueStatusCodeGrouped'
-            - $ref: '#/components/schemas/FilterSingleValueStatusCodeGrouped'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by status_code_grouped
-    StatusCodeGroupedFilterByDimension:
-      type: object
-      properties:
-        dimension:
-          description: The dimension to filter.  This will be deprecated in favor of `field`.
-          type: string
-          enum:
-            - status_code_grouped
-        type:
-          $ref: '#/components/schemas/RequestsFilterType'
-        values:
-          description: |
-            The codes to include in the results.
-          type: array
-          items:
-            type: string
-            pattern: '^\d[xX][xX]$'
-      required:
-        - dimension
-        - type
-        - values
-      title: Filter by status_code_grouped
-    TraceIdFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - trace_id
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by trace_id
-    UpstreamStatusCodeFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - upstream_status_code
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueStatusCode'
-            - $ref: '#/components/schemas/FilterSingleValueStatusCode'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by upstream_status_code
-    UpstreamStatusCodeGroupedFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - upstream_status_code_grouped
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueStatusCodeGrouped'
-            - $ref: '#/components/schemas/FilterSingleValueStatusCodeGrouped'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by upstream_status_code_grouped
-    UpstreamUriFilterByField:
-      allOf:
-        - type: object
-          properties:
-            field:
-              description: The field to filter.
-              type: string
-              enum:
-                - upstream_uri
-          required:
-            - field
-        - oneOf:
-            - $ref: '#/components/schemas/FilterMultiValueString'
-            - $ref: '#/components/schemas/FilterSingleValueString'
-            - $ref: '#/components/schemas/FilterWildcard'
-            - $ref: '#/components/schemas/FilterEmpty'
-      title: Filter by upstream_uri
     RequestsRelativeTimeRange:
       type: object
       properties:
@@ -1520,6 +480,1048 @@ components:
             description: Upstream URI associated with the request.
             type: string
             nullable: true
+    RequestsFilterType:
+      description: 'The type of filter to apply.  `in` filters will limit results to only the specified values, while `not_in` filters will exclude the specified values.'
+      type: string
+      enum:
+        - in
+        - not_in
+    UnscopedUuid:
+      type: string
+      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    FilterMultiValueUUID:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/UnscopedUuid'
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    RequestsFilterTypeEquals:
+      description: The type of filter to apply.
+      type: string
+      enum:
+        - '='
+        - '!='
+    FilterSingleValueUUID:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
+          description: |
+            The ID to include in the results.
+          type: string
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+      required:
+        - operator
+        - value
+      title: Single select filters
+    RequestsFilterTypeEmpty:
+      description: The type of filter to apply.
+      type: string
+      enum:
+        - empty
+        - not_empty
+    FilterEmpty:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEmpty'
+      required:
+        - operator
+      title: Empty filters
+    ApiProductFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - api_product
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by api_product
+    ApiProductVersionFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - api_product_version
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by api_product_version
+    ApplicationFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - application
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by application
+    FilterMultiValueString:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The values to include in the results.
+          type: array
+          items:
+            type: string
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueString:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
+          description: |
+            The value to include in the results
+          type: string
+      required:
+        - operator
+        - value
+      title: Single select filters
+    RequestsFilterTypeWildcard:
+      description: The type of filter to apply. `starts_with` filters will limit the results to those that start with the specified value. `ends_with` will limit the results to those that end with the specified value.
+      type: string
+      enum:
+        - starts_with
+        - ends_with
+    FilterWildcard:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeWildcard'
+        value:
+          description: |
+            The value to include in the results
+          type: string
+      required:
+        - operator
+        - value
+      title: Wildcard filters
+    AuthTypeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - auth_type
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by auth_type
+    ClientIpFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - client_ip
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by client_ip
+    ScopedUuid:
+      type: string
+      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+    FilterMultiValueScopedUUID:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The IDs to include in the results. Because gateway IDs are only unique within a given control plane, the filter values must be of the form `control_plane_id:field_id` or `control_plane_group_id:field_id` for data plane nodes within a control plane group.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopedUuid'
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueScopedUUID:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
+          description: |
+            The ID to include in the results. Because gateway IDs are only unique within a given control plane, the filter values must be of the form `control_plane_id:field_id` or `control_plane_group_id:field_id` for data plane nodes within a control plane group.
+          type: string
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+      required:
+        - operator
+        - value
+      title: Single select filters
+    ConsumerFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - consumer
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
+            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by consumer
+    ControlPlaneFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - control_plane
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by control_plane
+    ControlPlaneGroupFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - control_plane_group
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by control_plane_group
+    DataPlaneNodeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - data_plane_node
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
+            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by data_plane_node
+    DataPlaneNodeVersionFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - data_plane_node_version
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by data_plane_node_version
+    GatewayServiceFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - gateway_service
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
+            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by gateway_service
+    HeaderHostFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - header_user_host
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by header_user_host
+    HeaderUserAgentFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - header_user_agent
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by header_user_agent
+    HttpMethodFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - http_method
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by http_method
+    FilterMultiValueNumericMilliseconds:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The values to include in the results. The values should be in milliseconds.
+          type: array
+          items:
+            type: integer
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    RequestsFilterTypeNumeric:
+      description: The type of filter to apply.
+      type: string
+      enum:
+        - '='
+        - '!='
+        - <
+        - '>'
+        - <=
+        - '>='
+    FilterSingleValueNumericMilliseconds:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeNumeric'
+        value:
+          description: |
+            The value to include in the results. The value should be in milliseconds.
+          type: integer
+      required:
+        - operator
+        - value
+      title: Numeric filters
+    LatenciesKongGatewayMsFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - latencies_kong_gateway_ms
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by latencies_kong_gateway_ms
+    LatenciesResponseMsFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - latencies_response_ms
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by latencies_response_ms
+    LatenciesUpstreamMsFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - latencies_upstream_ms
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by latencies_upstream_ms
+    FilterMultiValueNumericBytes:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The values to include in the results. The values should be in bytes.
+          type: array
+          items:
+            type: integer
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueNumericBytes:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeNumeric'
+        value:
+          description: |
+            The value to include in the results. The value should be in bytes.
+          type: integer
+      required:
+        - operator
+        - value
+      title: Numeric filters
+    ResponseBodySizeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - response_body_size
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
+            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by response_body_size
+    ResponseHeaderContentLengthFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - response_body_size
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
+            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by response_header_content_length
+    ResponseSourceFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - response_source
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by response_source
+    RequestBodySizeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - request_body_size
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueNumericBytes'
+            - $ref: '#/components/schemas/FilterSingleValueNumericBytes'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by request_body_size
+    RequestIdFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - request_id
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by request_id
+    RequestUriFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - request_uri
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by request_uri
+    ResponseHeaderContentTypeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - response_header_content_type
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by response_header_content_type
+    RouteFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - route
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueScopedUUID'
+            - $ref: '#/components/schemas/FilterSingleValueScopedUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by route
+    ServicePortFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - service_port
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by service_port
+    ServiceProtocolFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - service_protocol
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by service_protocol
+    FilterMultiValueStatusCode:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The codes to include in the results.
+          type: array
+          items:
+            type: integer
+            minimum: 0
+            maximum: 999
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueStatusCode:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
+          description: |
+            The code to include in the results.
+          type: integer
+          maximum: 999
+          minimum: 0
+      required:
+        - operator
+        - value
+      title: Single select filters
+    StatusCodeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - status_code
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueStatusCode'
+            - $ref: '#/components/schemas/FilterSingleValueStatusCode'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by status_code
+    FilterMultiValueStatusCodeGrouped:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterType'
+        value:
+          description: |
+            The code groups to include in the results.
+          type: array
+          items:
+            type: string
+            pattern: '^\d[xX][xX]$'
+      required:
+        - operator
+        - value
+      title: Multiselect filters
+    FilterSingleValueStatusCodeGrouped:
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/RequestsFilterTypeEquals'
+        value:
+          description: |
+            The code group to include in the results.
+          type: string
+          pattern: '^\d[xX][xX]$'
+      required:
+        - operator
+        - value
+      title: Single select filters
+    StatusCodeGroupedFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - status_code_grouped
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueStatusCodeGrouped'
+            - $ref: '#/components/schemas/FilterSingleValueStatusCodeGrouped'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by status_code_grouped
+    TraceIdFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - trace_id
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by trace_id
+    UpstreamStatusCodeFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - upstream_status_code
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueStatusCode'
+            - $ref: '#/components/schemas/FilterSingleValueStatusCode'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by upstream_status_code
+    UpstreamStatusCodeGroupedFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - upstream_status_code_grouped
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueStatusCodeGrouped'
+            - $ref: '#/components/schemas/FilterSingleValueStatusCodeGrouped'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by upstream_status_code_grouped
+    UpstreamUriFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - upstream_uri
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueString'
+            - $ref: '#/components/schemas/FilterSingleValueString'
+            - $ref: '#/components/schemas/FilterWildcard'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by upstream_uri
+    ApiProductFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - api_product
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/UnscopedUuid'
+      additionalProperties: false
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by api_product
+    ApiProductVersionFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - api_product_version
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/UnscopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by api_product_version
+    ApplicationFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - application
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/UnscopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by application
+    ConsumerFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - consumer
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by consumer
+    ControlPlaneFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - control_plane
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/UnscopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by control_plane
+    ControlPlaneGroupFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - control_plane_group
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/UnscopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by control_plane_group
+    DataPlaneNodeFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - data_plane_node
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by data_plane_node
+    GatewayServiceFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - gateway_service
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by gateway_service
+    RouteFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - route
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The IDs to include in the results.
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopedUuid'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by route
+    StatusCodeFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - status_code
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The codes to include in the results.
+          type: array
+          items:
+            type: integer
+            minimum: 0
+            maximum: 999
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by status_code
+    StatusCodeGroupedFilterByDimension:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.  This will be deprecated in favor of `field`.
+          type: string
+          enum:
+            - status_code_grouped
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: |
+            The codes to include in the results.
+          type: array
+          items:
+            type: string
+            pattern: '^\d[xX][xX]$'
+      required:
+        - dimension
+        - type
+        - values
+      title: Filter by status_code_grouped
     BaseError:
       description: standard error
       type: object
@@ -1879,7 +1881,7 @@ components:
       bearerFormat: Token
       description: |
         The personal access token is meant to be used as an alternative to basic-auth when accessing Konnect via APIs.
-        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/tokens/) in the Konnect dashboard.
+        You can generate a Personal Access Token (PAT) from the [personal access token page](https://cloud.konghq.com/global/account/tokens/) in the Konnect dashboard.
         The PAT token must be passed in the header of a request, for example:
         `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT...'`
 tags:

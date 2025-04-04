@@ -37,3 +37,16 @@ title: Custom Domains for Dedicated Cloud Gateways
 1. In {{site.konnect_short_name}}, open {% konnect_icon runtimes %} **Gateway Manager**, choose a control plane to open the **Overview** dashboard, then click **Custom Domains**.
 
 2. Click the action menu on the end of the row you want to delete and click **Delete**.
+
+## Custom domain attachment and CAA record troubleshooting
+
+If your custom domain attachment fails, check if your domain has a Certificate Authority Authorization (CAA) record restricting certificate issuance. Dedicated Cloud Gateways uses a Google Cloud Public CA to provision SSL/TLS certificates. If your CAA record doesn't include the required CA, certificate issuance will fail.
+
+You can resolve this issue by doing the following: 
+
+1. Check existing CAA records by running `dig CAA yourdomain.com +short`. 
+  If a CAA record exists but doesn't allow GCP Public CA (`pki.goog`), update it.   
+2. Update the CAA record, if needed. For example: `yourdomain.com.    CAA    0 issue "pki.goog"`
+3. Wait for DNS propagation and retry attaching your domain.
+
+If no CAA record exists, no changes are needed. For more information, see the [Let's Encrypt CAA Guide](https://letsencrypt.org/docs/caa/).

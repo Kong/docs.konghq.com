@@ -80,7 +80,7 @@ curl -i -X POST http://{HOSTNAME}:8001/consumers \
 Custom webhook event hooks are fully customizable requests. Custom webhooks are useful for building direct
 integration with a service. Because custom webhooks are fully configurable, they have more complex configurations.
 Custom webhooks support Lua templating on a configurable body, form payload, and headers. For a list of
-possible fields for templating, see the [sources](/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks-sources) endpoint.
+possible fields for templating, see the [sources](/gateway/api/admin-ee/latest/#/operations/get-event-hooks-sources) endpoint.
 
 The following example sends a message to Slack any time a new administrator is invited to {{site.base_gateway}}.
 Slack allows for [incoming webhooks](https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack#set-up-incoming-webhooks)
@@ -247,7 +247,7 @@ To create a lambda event hook:
       -d source=crud \
       -d event=consumers \
       -d handler=lambda \
-      -F config.functions='return function (data, event, source, pid) local user = data.entity.username error("Event hook on consumer " .. user .. "")end'
+      -d config.functions='return function (data, event, source, pid) local user = data.entity.username error("Event hook on consumer " .. user .. "")end'
     ```
 
 3. In Kong Manager or Kong Admin API, add a consumer to any workspace.

@@ -12,7 +12,7 @@
   url: /mesh/latest/
 - name: decK
   desc: Helps manage Kong’s configuration in a declarative fashion
-  url: /deck/latest/
+  url: /deck/
 - name: Kong Ingress Controller
   desc: Works inside a Kubernetes cluster and configures Kong to proxy traffic
   url: /kubernetes-ingress-controller/latest/

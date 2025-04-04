@@ -126,18 +126,12 @@ spec:
           containers:
           - name: proxy
             image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
-            readinessProbe:
-              initialDelaySeconds: 1
-              periodSeconds: 1
   controlPlaneOptions:
     deployment:
       podTemplateSpec:
         spec:
           containers:
           - name: controller
-            readinessProbe:
-              initialDelaySeconds: 1
-              periodSeconds: 1
     extensions:
     - kind: DataPlaneMetricsExtension
       group: gateway-operator.konghq.com

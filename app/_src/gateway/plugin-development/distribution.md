@@ -410,7 +410,7 @@ pull:
 
     The command should pull the artifact and save it to the working directory.
 
-8. Unpackage the plugin. The download `.tar.gz` file will container a manifest file and 
+8. Unpackage the plugin. The downloaded `.tar.gz` file will contain a manifest file and 
 another nested `.tar.gz`. This nested archive contains the plugin directory.
 
     ```bash

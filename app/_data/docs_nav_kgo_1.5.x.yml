@@ -7,7 +7,7 @@ items:
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Overview
-        url: /gateway-operator/1.4.x/
+        url: /gateway-operator/1.5.x/
         absolute_url: true
       - text: Deployment Topologies
         items:
@@ -37,16 +37,20 @@ items:
         items:
           - text: Install Gateway Operator
             url: /get-started/konnect/install/
+          - text: Create a KonnectExtension
+            url: /get-started/konnect/create-konnectextension/
           - text: Deploy a Data Plane
-            url: /get-started/konnect/deploy-data-plane/
+            url: /get-started/konnect/deploy-data-plane-with-konnectextension/
           - text: Create a Route
             url: /get-started/konnect/create-route/
+            src: get-started/konnect/create-route-konnect-crds
       - text: Kong Ingress Controller
         items:
           - text: Install Gateway Operator
             url: /get-started/kic/install/
           - text: Create a Gateway
             url: /get-started/kic/create-gateway/
+            src: get-started/kic/create-gateway-konnect-crds
           - text: Create a Route
             url: /get-started/kic/create-route/
   - title: Production Deployment
@@ -74,6 +78,10 @@ items:
                 url: /production/monitoring/status/gateway/
       - text: Upgrade Gateway Operator
         url: /production/upgrade/gateway-operator/
+      - text: Certificates
+        items:
+          - text: Using custom CA for signing operator certificates
+            url: /production/certificates/custom_ca
   - title: Guides
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:
@@ -131,8 +139,16 @@ items:
             url: /guides/konnect-entities/tagging-and-labeling/
           - text: Managing Plugin Bindings by CRD
             url: /guides/konnect-entities/konnect-plugin-binding/
+          - text: Cloud Gateways - Networks
+            url: /guides/konnect-entities/cloud-gateways-network/
+          - text: Cloud Gateways - Data Plane Group Configuration
+            url: /guides/konnect-entities/cloud-gateways-data-plane-group-configuration/
           - text: FAQ
             url: /guides/konnect-entities/faq/
+      - text: Migration
+        items:
+          - text: Migrate Konnect DataPlanes from KGO v1.4.x to v1.5.x
+            url: /guides/migrating/migrate-from-1.4-to-1.5/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
@@ -140,7 +156,7 @@ items:
         items:
           - text: Overview
             url: /reference/custom-resources/
-            src: reference/custom-resources/1.4.x
+            src: reference/custom-resources/1.5.x
           - text: GatewayConfiguration
             url: /reference/custom-resources/#gatewayconfiguration
             generate: false
@@ -153,9 +169,11 @@ items:
           - text: KongPluginInstallation
             url: /reference/custom-resources/#kongplugininstallation
             generate: false
+      - text: Understanding KonnectExtension
+        url: /reference/konnectextension/
       - text: Configuration Options
         url: /reference/cli-arguments/
-        src: reference/cli-arguments/1.4.x
+        src: reference/cli-arguments/1.5.x
       - text: License
         url: /reference/license
       - text: Version Compatibility

@@ -21,7 +21,7 @@ It is global-scoped, which means it is not bound to a mesh.
 {% navtab "targetRef" selectors %}
 For policies using the `targetRef` selector. You can specify which `targetRef` kinds users should have access to.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -96,7 +96,7 @@ For example, the `when` element with a specific `from` section allows the user t
 If the policy contains multiple `to` elements, you must specify an RBAC qualifier for every single `to` element.
 {% endnavtab %}
 {% navtab Source and Destination selectors %}
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -154,12 +154,14 @@ rules:
 {% endnavtab %}
 {% endnavtabs %}
 
+{:.important}
+> **Important:** Granting access actions without binding them to specific resource types provides full access, including to Secrets and GlobalSecrets, posing security risks. For example, an AccessRole with `access: ["CREATE", "UPDATE", "DELETE"]` and no defined `types` allows modifying any resource, including secrets. Even without `GENERATE_DATAPLANE_TOKEN`, `GENERATE_USER_TOKEN`, `GENERATE_ZONE_CP_TOKEN`, or `GENERATE_ZONE_TOKEN`, the user can retrieve secrets and use them to generate tokens manually. To prevent this, always bind access actions to specific resource types. Instead of unrestricted access, explicitly define allowed types, such as `types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshTrace"]`, to ensure the role can only manage those resources and not secrets or other sensitive data.
+
 ### AccessRoleBinding
 
-`AccessRoleBinding` assigns a set of `AccessRoles` to a set of subjects (users and groups).
-It is global-scoped, which means it is not bound to a mesh.
+`AccessRoleBinding` assigns a set of `AccessRoles` to a list of subjects (users or groups). Because these bindings are global in scope, they apply across all meshes, allowing centralized management of permissions.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -167,12 +169,12 @@ kind: AccessRoleBinding
 metadata:
   name: binding-1
 spec:
-  subjects: # a list of subjects that will be assigned roles
-  - type: User # type of the subject. Available values: ("User", "Group")
-    name: john.doe@example.com # name of the subject.
+  subjects:
+  - type: User
+    name: john.doe@example.com
   - type: Group
     name: team-a
-  roles: # a list of roles that will be assigned to the list of subjects.
+  roles:
   - role-1
 ```
 {% endnavtab %}
@@ -180,13 +182,52 @@ spec:
 ```yaml
 type: AccessRoleBinding
 name: binding-1
-subjects: # a list of subjects that will be assigned roles
-- type: User # type of the subject. Available values: ("User", "Group")
-  name: john.doe@example.com # name of the subject.
+subjects:
+- type: User
+  name: john.doe@example.com
 - type: Group
   name: team-a
-roles: # a list of roles that will be assigned to the list of subjects.
+roles:
 - role-1
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+#### Restricting the default AccessRoleBinding
+
+{:.important}
+> **Important:** [By default](/mesh/{{page.release}}/features/rbac/#default), {{site.mesh_product_name}} assigns the `admin` role to everyone in the `mesh-system:authenticated` and `mesh-system:unauthenticated` groups. This means every user automatically gets admin rights, even if you create a custom binding for them, they will also inherit the default admin role.
+
+To limit admin privileges to a specific group, update the default binding. For example, to grant admin rights only to members of the `mesh-system:admin` group, replace the default binding with the following:
+
+{% navtabs codeblock %}
+{% navtab Kubernetes %}
+```yaml
+apiVersion: kuma.io/v1alpha1
+kind: AccessRoleBinding
+metadata:
+  name: default
+spec:
+  subjects:
+  - type: Group
+    name: mesh-system:admin
+  # The `system:serviceaccounts:kube-system` group is required by Kubernetes controllers to manage {{site.mesh_product_name}} 
+  # resources, for example, cleaning up data plane objects when a namespace is removed.
+  - type: Group
+    name: system:serviceaccounts:kube-system
+  roles:
+  - admin
+```
+{% endnavtab %}
+{% navtab Universal %}
+```yaml
+type: AccessRoleBinding
+name: default
+subjects:
+- type: Group
+  name: mesh-system:admin
+roles:
+- admin
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -199,7 +240,7 @@ Let's go through example roles in the organization that can be created using {{s
 
 Mesh operator is a part of infrastructure team responsible for {{site.mesh_product_name}} deployment.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -230,7 +271,7 @@ This way {{site.mesh_product_name}} operators can execute any action.
 
 Service owner is a part of team responsible for given service. Let's take a `backend` service as an example.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 [//]: # (MeshTCPRoute was added in `2.3.0`)
 {% if_version eq:2.2.x %}
@@ -414,7 +455,7 @@ rules:
 We may also have an infrastructure team which is responsible for the logging/metrics/tracing systems in the organization.
 Currently, those features are configured on `Mesh`, `MeshAccessLog`, and `MeshTrace` objects.
 
-{% navtabs %}
+{% navtabs codeblock%}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -453,7 +494,7 @@ This way an observability operator can:
 {{site.mesh_product_name}} lets us segment the deployment into many logical service meshes configured by Mesh object.
 We may want to give access to one specific Mesh and all objects connected with this Mesh.
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -504,12 +545,17 @@ The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and g
 
 {{site.mesh_product_name}} creates an `admin` `AccessRole` that allows every action.
 
+{% if_version lte:2.5.x %}
 In a standalone deployment, the `default` `AccessRoleBinding` assigns this role to every authenticated and unauthenticated user.
 
 In a multi-zone deployment, the `default` `AccessRoleBinding` on the global control plane assigns this role to every authenticated and unauthenticated user.
 However, on the zone control plane, the `default` `AccessRoleBinding` is restricted to the `admin` `AccessRole` only.
+{% endif_version %}
+{% if_version gte:2.6.x %}
+The `default` `AccessRoleBinding` assigns this role to every authenticated and unauthenticated user.
+{% endif_version %}
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -560,7 +606,7 @@ roles:
 
 To restrict access to `admin` only, change the default `AccessRole` policy:
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -573,12 +619,13 @@ spec:
     name: mesh-system:admin
   - type: Group
     name: system:masters
+  # The `system:serviceaccounts:kube-system` group is required by Kubernetes controllers to manage {{site.mesh_product_name}} 
+  # resources, for example, cleaning up data plane objects when a namespace is removed.
   - type: Group
     name: system:serviceaccounts:kube-system
   roles:
   - admin
 ```
-`system:serviceaccounts:kube-system` is required for Kubernetes controllers to manage {{site.mesh_product_name}} resources -- for example, to remove data plane objects when a namespace is removed.
 {% endnavtab %}
 {% navtab Universal %}
 ```yaml
@@ -1154,7 +1201,7 @@ You can perform partial tag value matching using `*` wildcards.
 
 For example, the following role:
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1
@@ -1196,7 +1243,7 @@ rules:
 
 would allow a subject to create the following resource:
 
-{% navtabs %}
+{% navtabs codeblock %}
 {% navtab Kubernetes %}
 ```yaml
 apiVersion: kuma.io/v1alpha1

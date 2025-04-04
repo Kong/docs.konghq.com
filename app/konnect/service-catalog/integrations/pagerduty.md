@@ -18,7 +18,7 @@ For each linked PagerDuty service, a summary will be provided on the Service Cat
 2. Select **PagerDuty**, then **Install PagerDuty**.
 3. Select **Authorize**. 
 
-PagerDuty will ask you to grant consent to {{site.konnect_product_name}}. Both Read and Write scopes are required.
+PagerDuty will ask you to grant consent to {{site.konnect_product_name}}. **Both Read and Write scopes are required**.
 
 ## Resources
 

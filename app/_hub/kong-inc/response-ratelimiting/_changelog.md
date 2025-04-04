@@ -1,5 +1,8 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.10.x
+Fixed an issue where usage headers that were supposed to be sent to the upstream were lost instead.
+
 ### {{site.base_gateway}} 3.8.x
 * Fixed an issue where the DP would report that deprecated config fields were used when configuration was pushed from the CP.
    [#13069](https://github.com/Kong/kong/issues/13069)

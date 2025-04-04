@@ -2,11 +2,13 @@ acl
 ACLs
 addons
 admin's
+Aadhaar
 Alertmanager
 allowlist
 Amal
 Amberflo
 apiVersion
+APIm
 Arya
 auditability
 Autonegotiation
@@ -17,6 +19,7 @@ backfilled
 Backfilling
 backfilling
 APIOps
+gitops
 Bagdi
 Bintray
 Bitnami
@@ -46,6 +49,7 @@ Github
 Gluu
 Goroutine
 Grafana
+Gunicorn
 Hasura
 HTTPie
 istioctl
@@ -61,6 +65,7 @@ JSONObjects
 JSONObject
 ketama
 Keycloak
+Kibana
 knative
 Knative
 Knative's
@@ -73,6 +78,7 @@ Kuma
 kustomizations
 kustomize
 Kustomize
+LangChain
 Librato
 Loggly
 Lua's
@@ -88,6 +94,7 @@ Nginx
 Nginx's
 Node.js
 Noname
+Nuxt
 OAuth
 Okta
 Okta's
@@ -130,7 +137,13 @@ _prod
 acl
 admin's
 allowlist
+allowlisting
+allowlisted
 anonymized
+anonymizer
+anonymization
+anonymizing
+anonymizes
 api
 APIOps
 apis
@@ -169,6 +182,7 @@ brotli
 burstable
 CAs
 callout
+callouts
 certificate_admin
 charset
 chatbot
@@ -179,6 +193,7 @@ clipanion
 CLIs
 CloudFormation
 Cloudformation
+cmd
 cncf
 cncf's
 Cognito
@@ -190,6 +205,7 @@ conntrack
 cors
 crds
 created_at
+cryptocurrency
 Curity
 DAO
 DAOs
@@ -288,10 +304,13 @@ healthchecks
 hostname
 hostnames
 href
+HTML
 http
 httpbin
 HTTPie
 https
+idempotent
+idempotency
 IdPs
 If-Match
 impactful
@@ -300,6 +319,7 @@ inbounds
 ini
 init_worker
 inso
+instana
 instrumentations
 invalidation
 invalidations
@@ -389,6 +409,7 @@ misconfigurations
 misconfigured
 Moesif
 MongoDB
+multimodal
 mutex
 nameserver
 nameservers
@@ -424,6 +445,7 @@ onboarding
 onwards
 opa
 openresty
+Openshift
 OpenSSL
 openid
 Openwhisk
@@ -483,6 +505,7 @@ remediation
 remediations
 repo
 requery
+requeue
 Requeue
 Resty
 retryOn
@@ -658,3 +681,4 @@ yq
 Zipkin
 zipkin
 zsh
+Rulesets

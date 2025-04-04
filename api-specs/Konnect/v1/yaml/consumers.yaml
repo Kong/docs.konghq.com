@@ -1,0 +1,1031 @@
+openapi: 3.0.3
+info:
+  title: Konnect Consumers Admin API
+  version: 0.0.1
+servers:
+  - url: https://us.api.konghq.com/v1
+    description: United-States Production region
+  - url: https://eu.api.konghq.com/v1
+    description: Europe Production region
+  - url: https://au.api.konghq.com/v1
+    description: Australia Production region
+  - url: https://me.api.konghq.com/v1
+    description: Middle-East Production region
+  - url: https://in.api.konghq.com/v1
+    description: India Production region
+paths:
+  /realms:
+    get:
+      operationId: list-realms
+      summary: List realms
+      description: list realms
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRealms'
+      tags:
+        - realms
+    post:
+      operationId: create-realm
+      summary: Create a realm
+      description: create realm
+      requestBody:
+        $ref: '#/components/requestBodies/CreateConsumerRealm'
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateConsumerRealmResponse'
+      tags:
+        - realms
+  /realms/{realmId}:
+    parameters:
+      - $ref: '#/components/parameters/realmId'
+    get:
+      operationId: get-realm
+      summary: Get a realm
+      description: get realm
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerRealm'
+      tags:
+        - realms
+    patch:
+      operationId: update-realm
+      summary: Update a realm
+      description: update realm
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateConsumerRealm'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerRealm'
+      tags:
+        - realms
+    delete:
+      operationId: delete-realm
+      summary: Delete a realm
+      description: delete realm
+      parameters:
+        - name: force
+          in: query
+          description: If true, delete specified realm and all underlying entities (consumers/apiKeys). If false, do not allow deletion if there are underlying entities.
+          schema:
+            type: string
+            default: 'false'
+            enum:
+              - 'true'
+              - 'false'
+      responses:
+        '204':
+          description: success
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - realms
+  /realms/{realmId}/consumers:
+    parameters:
+      - $ref: '#/components/parameters/realmId'
+    get:
+      operationId: list-consumers-per-realm
+      summary: List consumers
+      description: list consumers
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
+        - $ref: '#/components/parameters/ConsumerFilters'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListConsumers'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - consumers
+    post:
+      operationId: create-consumer
+      summary: Create a consumer
+      description: create consumer
+      requestBody:
+        $ref: '#/components/requestBodies/CreateConsumer'
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateConsumerResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - consumers
+  /realms/{realmId}/consumers/{consumerId}:
+    parameters:
+      - $ref: '#/components/parameters/realmId'
+      - $ref: '#/components/parameters/consumerId'
+    get:
+      operationId: get-consumer
+      summary: Get a consumer
+      description: get consumer
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - consumers
+    patch:
+      operationId: update-consumer
+      summary: Update a consumer
+      description: update consumer
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateConsumer'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - consumers
+    delete:
+      operationId: delete-consumer
+      summary: Delete a consumer
+      description: delete consumer
+      responses:
+        '204':
+          description: success
+        '404':
+          description: not found
+      tags:
+        - consumers
+  /realms/{realmId}/consumers/{consumerId}/move:
+    parameters:
+      - $ref: '#/components/parameters/realmId'
+      - $ref: '#/components/parameters/consumerId'
+    post:
+      operationId: move-consumer
+      summary: Change the realm of a consumer
+      description: move consumer
+      requestBody:
+        $ref: '#/components/requestBodies/MoveConsumer'
+      responses:
+        '201':
+          $ref: '#/components/responses/MoveConsumerResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - consumers
+  /realms/{realmId}/consumers/{consumerId}/keys:
+    parameters:
+      - $ref: '#/components/parameters/realmId'
+      - $ref: '#/components/parameters/consumerId'
+    get:
+      operationId: list-consumer-keys
+      summary: List keys
+      description: list keys
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListKeys'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - keys
+    post:
+      operationId: create-consumer-key
+      summary: Create a key
+      description: create key
+      requestBody:
+        $ref: '#/components/requestBodies/CreateApiKey'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateApiKeyResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - keys
+  /realms/{realmId}/consumers/{consumerId}/keys/{keyId}:
+    parameters:
+      - $ref: '#/components/parameters/realmId'
+      - $ref: '#/components/parameters/consumerId'
+      - $ref: '#/components/parameters/keyId'
+    get:
+      operationId: get-consumer-key
+      summary: Get a key
+      description: get key
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - keys
+    delete:
+      operationId: delete-consumer-key
+      summary: Delete a key
+      description: delete key
+      responses:
+        '204':
+          description: success
+        '404':
+          description: not found
+      tags:
+        - keys
+components:
+  parameters:
+    ConsumerFilters:
+      name: filter
+      description: Filters Consumers in the response.
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/ConsumerFilterParameters'
+      style: deepObject
+    PageAfter:
+      name: page[after]
+      description: Request the next page of data, starting with the item after this parameter.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: string
+        example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
+    PageBefore:
+      name: page[before]
+      description: Request the next page of data, starting with the item before this parameter.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: string
+        example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
+    PageSize:
+      name: page[size]
+      description: The maximum number of items to include per page. The last page of a collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    consumerId:
+      name: consumerId
+      in: path
+      required: true
+      description: Id of the of the consumer
+      schema:
+        type: string
+    keyId:
+      name: keyId
+      in: path
+      required: true
+      description: Id of the key
+      schema:
+        type: string
+    realmId:
+      name: realmId
+      in: path
+      required: true
+      description: Id of the realm
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    ConsumerFilterParameters:
+      type: object
+      properties:
+        custom_id:
+          oneOf:
+            - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        username:
+          oneOf:
+            - $ref: '#/components/schemas/StringFieldEqualsFilter'
+    CreateApiKeyPayload:
+      oneOf:
+        - $ref: '#/components/schemas/CreateApiKeyPayloadNew'
+        - $ref: '#/components/schemas/CreateApiKeyPayloadLegacy'
+    CreateApiKeyPayloadNew:
+      type: object
+      properties:
+        type:
+          type: string
+          default: new
+          enum:
+            - new
+        tags:
+          $ref: '#/components/schemas/Tags'
+      additionalProperties: false
+    CreateApiKeyPayloadLegacy:
+      type: object
+      properties:
+        type:
+          type: string
+          default: legacy
+          enum:
+            - legacy
+        tags:
+          $ref: '#/components/schemas/Tags'
+        secret:
+          description: secret to be created. Must be unique within the realm. If not specified a secret will be automatically generated.
+          type: string
+      additionalProperties: false
+      required:
+        - type
+        - secret
+    CreateApiKeyResult:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/KeyTypeEnum'
+        secret:
+          type: string
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        tags:
+          $ref: '#/components/schemas/Tags'
+      required:
+        - id
+        - type
+        - secret
+        - created_at
+        - updated_at
+        - tags
+    KeyTypeEnum:
+      type: string
+      enum:
+        - legacy
+        - new
+    ApiKey:
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        tags:
+          $ref: '#/components/schemas/Tags'
+        type:
+          $ref: '#/components/schemas/KeyTypeEnum'
+      required:
+        - id
+        - created_at
+        - type
+        - tags
+    CursorMetaPage:
+      type: object
+      properties:
+        next:
+          description: URI to the next page
+          type: string
+          format: path
+          nullable: true
+        previous:
+          description: URI to the previous page
+          type: string
+          format: path
+          nullable: true
+        size:
+          description: Requested page size
+          type: number
+          example: 10
+      required:
+        - size
+        - next
+        - previous
+    ListRealms:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsumerRealm'
+        meta:
+          $ref: '#/components/schemas/CursorMetaPage'
+      required:
+        - data
+        - meta
+    ListConsumers:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Consumer'
+        meta:
+          $ref: '#/components/schemas/CursorMetaPage'
+      required:
+        - data
+        - meta
+    ListKeys:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+        meta:
+          $ref: '#/components/schemas/CursorMetaPage'
+      required:
+        - data
+        - meta
+    ConsumerRealm:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        ttl:
+          type: integer
+        negative_ttl:
+          type: integer
+        consumer_groups:
+          $ref: '#/components/schemas/ConsumerGroups'
+        allowed_control_planes:
+          $ref: '#/components/schemas/AllowedControlPlanes'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+      required:
+        - id
+        - name
+        - allowed_control_planes
+        - ttl
+        - negative_ttl
+        - consumer_groups
+        - created_at
+        - updated_at
+    RealmReference:
+      type: object
+      properties:
+        realm_id:
+          type: string
+      required:
+        - realm_id
+    MoveConsumerRequest:
+      type: object
+      properties:
+        target_realm_id:
+          type: string
+      required:
+        - target_realm_id
+    ConsumerRealmCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        allowed_control_planes:
+          $ref: '#/components/schemas/AllowedControlPlanes'
+        ttl:
+          description: |
+            Time to Live in minutes of the consumer for this realm in the gateway cache.
+          type: integer
+          default: 10
+          minimum: 5
+        negative_ttl:
+          description: |
+            Time to Live in minutes of the negative consumer for this realm in the gateway cache.
+          type: integer
+          default: 10
+          minimum: 5
+        consumer_groups:
+          $ref: '#/components/schemas/ConsumerGroups'
+      additionalProperties: false
+      required:
+        - name
+    UpdateConsumerPayload:
+      type: object
+      properties:
+        custom_id:
+          type: string
+        username:
+          type: string
+        type:
+          type: string
+        tags:
+          $ref: '#/components/schemas/Tags'
+        consumer_groups:
+          $ref: '#/components/schemas/ConsumerGroups'
+      additionalProperties: false
+    ConsumerRealmUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        allowed_control_planes:
+          type: array
+          items:
+            type: string
+            format: uuid
+            uniqueItems: true
+        consumer_groups:
+          $ref: '#/components/schemas/ConsumerGroups'
+        ttl:
+          description: |
+            Time to Live in minutes of the consumer for this realm in the gateway cache.
+          type: integer
+          minimum: 5
+        negative_ttl:
+          description: |
+            Time to Live in minutes of the negative consumer for this realm in the gateway cache
+          type: integer
+          minimum: 5
+      additionalProperties: false
+    ConsumerCreateRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        consumer_groups:
+          $ref: '#/components/schemas/ConsumerGroups'
+        custom_id:
+          type: string
+        type:
+          type: string
+        tags:
+          $ref: '#/components/schemas/Tags'
+      additionalProperties: false
+      required:
+        - username
+    AllowedControlPlanes:
+      description: |
+        List of control plane ids that are allowed to use the realm. An entry with '*' makes all control planes able
+        to use the given realm.
+      type: array
+      items:
+        type: string
+        uniqueItems: true
+    ConsumerGroups:
+      type: array
+      items:
+        type: string
+        uniqueItems: true
+    CreatedAt:
+      description: An ISO-8601 timestamp representation of entity creation date.
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      readOnly: true
+    UpdatedAt:
+      description: An ISO-8601 timestamp representation of entity update date.
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      readOnly: true
+    BaseError:
+      description: standard error
+      type: object
+      properties:
+        status:
+          description: |
+            The HTTP status code of the error. Useful when passing the response
+            body to child properties in a frontend UI. Must be returned as an integer.
+          type: integer
+          readOnly: true
+        title:
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          type: string
+          readOnly: true
+        type:
+          description: The error type.
+          type: string
+          readOnly: true
+        instance:
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          type: string
+          readOnly: true
+        detail:
+          description: |
+            A human readable explanation specific to this occurence of the problem.
+            This field may contain request/entity data to help the user understand
+            what went wrong. Enclose variable values in square brackets. Should be
+            provided as "Sentence case" for direct use in the UI.
+          type: string
+          readOnly: true
+      required:
+        - status
+        - title
+        - instance
+        - detail
+      title: Error
+    InvalidRules:
+      description: invalid parameters rules
+      type: string
+      enum:
+        - required
+        - is_array
+        - is_base64
+        - is_boolean
+        - is_date_time
+        - is_integer
+        - is_null
+        - is_number
+        - is_object
+        - is_string
+        - is_uuid
+        - is_fqdn
+        - is_arn
+        - unknown_property
+        - missing_reference
+        - is_label
+        - matches_regex
+        - invalid
+        - is_supported_network_availability_zone_list
+        - is_supported_network_cidr_block
+        - is_supported_provider_region
+      nullable: true
+      readOnly: true
+    InvalidParameterStandard:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          $ref: '#/components/schemas/InvalidRules'
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      additionalProperties: false
+      required:
+        - field
+        - reason
+    InvalidParameterMinimumLength:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          enum:
+            - min_length
+            - min_digits
+            - min_lowercase
+            - min_uppercase
+            - min_symbols
+            - min_items
+            - min
+          nullable: false
+          readOnly: true
+        minimum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: must have at least 8 characters
+          readOnly: true
+      additionalProperties: false
+      required:
+        - field
+        - reason
+        - rule
+        - minimum
+    InvalidParameterMaximumLength:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          enum:
+            - max_length
+            - max_items
+            - max
+          nullable: false
+          readOnly: true
+        maximum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: must not have more than 8 characters
+          readOnly: true
+      additionalProperties: false
+      required:
+        - field
+        - reason
+        - rule
+        - maximum
+    InvalidParameterChoiceItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          enum:
+            - enum
+          nullable: false
+          readOnly: true
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        choices:
+          type: array
+          items: {}
+          minItems: 1
+          nullable: false
+          readOnly: true
+          uniqueItems: true
+        source:
+          type: string
+          example: body
+      additionalProperties: false
+      required:
+        - field
+        - reason
+        - rule
+        - choices
+    InvalidParameterDependentItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          enum:
+            - dependent_fields
+          nullable: true
+          readOnly: true
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        dependents:
+          type: array
+          items: {}
+          nullable: true
+          readOnly: true
+          uniqueItems: true
+        source:
+          type: string
+          example: body
+      additionalProperties: false
+      required:
+        - field
+        - rule
+        - reason
+        - dependents
+    InvalidParameters:
+      description: invalid parameters
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/InvalidParameterStandard'
+          - $ref: '#/components/schemas/InvalidParameterMinimumLength'
+          - $ref: '#/components/schemas/InvalidParameterMaximumLength'
+          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
+          - $ref: '#/components/schemas/InvalidParameterDependentItem'
+      minItems: 1
+      nullable: false
+      uniqueItems: true
+    BadRequestError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
+    NotFoundError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 404
+            title:
+              example: Not Found
+            type:
+              example: https://httpstatuses.com/404
+            instance:
+              example: kong:trace:1234567890
+            detail:
+              example: Not found
+    StringFieldEqualsFilter:
+      description: Filters on the given string field value by exact match.
+      oneOf:
+        - type: string
+        - type: object
+          title: StringFieldEqualsComparison
+          additionalProperties: false
+          properties:
+            eq:
+              type: string
+          required:
+            - eq
+      title: StringFieldEqualsFilter
+      x-examples:
+        example-1: equals-some-value
+        example-2:
+          eq: some-value
+    Tags:
+      type: array
+      items:
+        type: string
+      uniqueItems: true
+    Consumer:
+      type: object
+      properties:
+        id:
+          description: The Consumer ID.
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          readOnly: true
+        username:
+          type: string
+        custom_id:
+          type: string
+        type:
+          type: string
+        tags:
+          $ref: '#/components/schemas/Tags'
+        consumer_groups:
+          $ref: '#/components/schemas/ConsumerGroups'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+      required:
+        - id
+        - username
+        - custom_id
+        - type
+        - tags
+        - consumer_groups
+        - created_at
+        - updated_at
+  examples:
+    NotFoundExample:
+      value:
+        status: 404
+        title: Not Found
+        instance: kong:trace:6816496025408232265
+        detail: Not Found
+  requestBodies:
+    UpdateConsumer:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateConsumerPayload'
+    CreateApiKey:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateApiKeyPayload'
+    UpdateConsumerRealm:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConsumerRealmUpdateRequest'
+    CreateConsumerRealm:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConsumerRealmCreateRequest'
+    CreateConsumer:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConsumerCreateRequest'
+    MoveConsumer:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MoveConsumerRequest'
+  responses:
+    CreateConsumerResponse:
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Consumer'
+    CreateConsumerRealmResponse:
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConsumerRealm'
+    MoveConsumerResponse:
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RealmReference'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+    NotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            NotFoundExample:
+              $ref: '#/components/examples/NotFoundExample'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+tags:
+  - name: realms
+    description: realms
+  - name: consumers
+    description: consumers
+  - name: keys
+    description: keys
+security:
+  - bearerAuth: []

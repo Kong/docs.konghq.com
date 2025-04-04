@@ -17,7 +17,7 @@ Attribute mapping for Azure configuration:
 | Identifier (Entity ID)                      | `sp_entity_id`           |
 | Reply URL (Assertion Consumer Service URL)  | `callback_url`           |
 | App Federation Metadata Url                 | `idp_metadata_url`       |
-| `user.email`                                | `email`                  |
+| `user.mail`                                 | `email`                  |
 | `user.givenname`                            | `firstname`              |
 | `user.surname`                              | `lastname`               |
 | `user.groups`                               | `groups`                 |

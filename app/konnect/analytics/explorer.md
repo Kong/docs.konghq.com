@@ -14,19 +14,22 @@ To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} se
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 
-* **None**                                                         
-* **API Product**                                                   
-* **API Product Version**                                          
-* **Route**                                                         
-* **Application**                                                  
-* **Status Code**                                                   
-* **Status Code Group**                                            
-* **Control Plane**                                              
-* **Control Plane Group**                                          
-* **Data Plane Node**                                            
-* **Gateway Services**                                            
-* **Consumer**                                                     
-
+* **API Product**
+* **API Product Version**
+* **Application**
+* **Consumer**
+* **Control Plane**
+* **Control Plane Group**
+* **Data Plane Node**
+* **Data Plane Node Version**
+* **Gateway Services**
+* **None**
+* **Response Source**
+* **Route**
+* **Status Code**
+* **Status Code Group**
+* **Upstream Status Code**
+* **Upstream Status Code Group**
 
 {% endnavtab %}
 {% navtab Metrics %}
@@ -41,8 +44,8 @@ Requests per Minute | Rate | Number of API calls per minute within the selected 
 Response Latency | Latency | The amount of time, in milliseconds, that it takes to process an API request. Users can select between average (avg) or different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from request received until response returned. 
 Upstream Latency | Latency | The amount of time, in milliseconds, that {{site.base_gateway}} was waiting for the first byte of the upstream service response. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from sending the request to the upstream service until the response returned.
 Kong latency | Latency | The amount of time, in milliseconds, that {{site.base_gateway}} was waiting for the first byte of the upstream service response. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from the time the {{site.base_gateway}} received the request up to when it sends it back to the upstream service.
-Request Size | Size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
-Response Size | Size | The size of the response payload returned to the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
+Request Size | Size | The size of the request payload received from the client, in bytes. Users can select between the total sum or different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
+Response Size | Size | The size of the response payload returned to the client, in bytes. Users can select between the total sum or different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
 
 {% endnavtab %}
 {% navtab Time intervals %}
@@ -78,6 +81,16 @@ Previous month | Data is aggregated in daily increments. Logs any traffic in the
 {% endnavtab %}
 {% endnavtabs %}
 
+## System defined groups
+
+* **Empty** - Empty is a system-defined group that indicates that API calls do not have an entity like consumers or routes, selected for grouping. Empty allows you to group API calls that don't match specific groupings so you can gain more comprehensive insights. 
+
+Empty can be used in cases like this: 
+* Identify the number of API calls that don't match a route.
+* Identify API calls without an associated consumer to keep track of any security holes.
+
+**Empty** is displayed in italics in Konnect, and it is not mandatory, using `Is Empty` or `Is Not Empty`, you can filter results in Explorer. 
+
 ## LLM usage reporting
 
 Advanced Analytics allows you to monitor and optimize your LLM usage by providing detailed insights into objects such as token consumption, costs, and latency. 
@@ -97,18 +110,17 @@ To use this feature, navigate to the [Explorer dashboard](https://cloud.konghq.c
 {% navtab Grouping and Filtering %}
 
 
-* **Provider**                                                         
-* **Request Model**                                                   
-* **Response Model**                                          
-* **Cache Status**                                                         
-* **Embeddings Provider**                                                  
-* **Embeddings Model**                                                   
-* **Control Plane**                                                                                      
-* **Control Plane Group**                                          
-* **Route**                                            
-* **Consumer**                                            
-* **Application**                                                     
-
+* **Application**
+* **Cache Status**
+* **Consumer**
+* **Control Plane**
+* **Control Plane Group**
+* **Embeddings Model**
+* **Embeddings Provider**
+* **Provider**
+* **Request Model**
+* **Response Model**
+* **Route**
 
 {% endnavtab %}
 {% navtab Metrics %}
@@ -121,7 +133,7 @@ Traffic metrics provide insight into which of your services are being used and h
 | Completion Tokens     | Count         | Completion tokens are any tokens that the model generates in response to an input.       |
 | Prompt Tokens         | Count         | Prompt tokens are the tokens input into the model.            |
 | Total Tokens          | Count         | Sum of all tokens used in a single request to the model. It includes both the tokens in the input (prompt) and the tokens generated by the model (completion).  |
-| Time per Tokens       | Number  | Average time in milliseconds to generate a token. Calculated as LLM latency divided by the of tokens.                                                       |
+| Time per Tokens       | Number  | Average time in milliseconds to generate a token. Calculated as LLM latency divided by the number of tokens.                                                       |
 | Costs                 | Cost  | Represents the resulting costs for a request. Final costs = (total number of prompt tokens × input cost per token) + (total number of completion tokens × output cost per token) + (total number of prompt tokens × embedding cost per token). |
 | Response Model        | String        | Represents which AI model was used to process the prompt by the AI provider.   |
 | Request Model         | String        | Represents which AI model was used to process the prompt. |
@@ -193,14 +205,14 @@ One way you can build custom reports is by navigating to {% konnect_icon analyti
 * **With**: Kong Latency (p95), Upstream Latency (p95)
 * **Per**: Minute
 
-Then, you can add a filter to filter by the control plane:
+Then, you can add a filter for the control plane:
 
 * **Filter By**: Control Plane
 * **Choose Operator**: In
 * **Filter Value**: prod
 
 ![Production - Kong vs Upstream Latency (last hour)](/assets/images/products/konnect/analytics/custom-reports/kong-vs-upstream-latency.png){:.image-border}
-> _**Figure 1:** Line chart showing average upstream and Kong latency over the last hour. ._
+> _**Figure 1:** Line chart showing average upstream and Kong latency over the last hour._
 
 ## More information
 

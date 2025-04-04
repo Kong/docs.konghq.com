@@ -233,5 +233,5 @@ curl -X POST http://localhost:8001/routes/{route}/plugins \
 ```
 
 [api-object]: /gateway/latest/admin-api/#api-object
-[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+[consumer-object]: /gateway/api/admin-ee/latest/#/operations/list-consumer
 [configuration]: /gateway/latest/reference/configuration

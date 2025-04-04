@@ -63,13 +63,13 @@ features:
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /deck/latest/
+            url: /deck/
           - text: Get Started
             icon: /assets/images/icons/icn-doc.svg
-            url: /deck/latest/guides/getting-started/
+            url: /deck/get-started/
           - text: APIOps with decK
             icon: /assets/images/icons/icn-doc.svg
-            url: /deck/latest/guides/apiops/
+            url: /deck/apiops/
 
       - name: Kong Gateway Operator
         description: Manage your Kong Ingress Controller, Kong Gateway Data Planes, or both together when running on Kubernetes.

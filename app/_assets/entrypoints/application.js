@@ -13,7 +13,13 @@ import "~/javascripts/feedback-widget.js";
 import "~/javascripts/copy-code-snippet-support.js";
 import "~/javascripts/content-header.js"
 import "~/javascripts/sidebar.js"
+import Tabs from "~/javascripts/tabs.js"
 
 // uncomment the path to promo-banner.js when adding a new promo banner
 // also uncomment the promo banner sections in app/_assets/stylesheets/header.less and /app/_includes/nav-v2.html -->
 // import "~/javascripts/promo-banner.js"
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  new Tabs();
+})

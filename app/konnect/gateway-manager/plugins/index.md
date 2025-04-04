@@ -83,7 +83,6 @@ for the full list, as well as a breakdown of the pricing tiers that each plugin 
 
 ### Kong bundled plugins
 * [Kong plugins in {{site.konnect_short_name}}](/hub/?compatibility=konnect&support=kong-inc)
-* [Kong plugin availability by tier](/hub/plugins/license-tiers/)
 
 ### Custom plugins
 * [Add a custom plugin in {{site.konnect_short_name}}](/konnect/gateway-manager/plugins/add-custom-plugin/)

@@ -68,6 +68,7 @@ defaults:
       path: "deck"
     values:
       layout: "docs-v2"
+      no_version: true
 
   - scope:
       path: "mesh"
@@ -78,6 +79,12 @@ defaults:
       path: "kubernetes-ingress-controller"
     values:
       layout: "docs-v2"
+
+  - scope:
+      path: "dev-portal"
+    values:
+      layout: "docs-v2"
+      no_version: true
 
   - scope:
       path: "konnect"
@@ -155,6 +162,9 @@ mesh_ignored_links_regex:
 mesh_raw_generated_paths:
   - app/assets/mesh
   - app/_src/.repos/kuma/app/assets
+mesh_product_name_path: kong-mesh
+mesh_cp_zone_sync_name_prefix: kong-mesh-
+mesh_docker_org: kong
 # Helm commands
 set_flag_values_prefix: kuma.
 mesh_helm_repo_url: https://kong.github.io/kong-mesh-charts
@@ -175,3 +185,6 @@ locale: en-US
 gtm_id: 'GTM-NL48VKT'
 vwo_account_id: '125292'
 segment_key: 'X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ'
+
+# Gateway OSS
+latest_gateway_oss_version: 3.9.0

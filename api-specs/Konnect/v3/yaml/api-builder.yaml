@@ -1,0 +1,2987 @@
+openapi: 3.0.3
+info:
+  title: Konnect API Builder
+  version: 3.0.0
+  description: The management API for building APIs for Konnect Dev Portals.
+  contact:
+    name: Kong
+    url: 'https://cloud.konghq.com'
+servers:
+  - url: 'https://us.api.konghq.com/v3'
+    description: United-States Production region
+  - url: 'https://eu.api.konghq.com/v3'
+    description: Europe Production region
+  - url: 'https://au.api.konghq.com/v3'
+    description: Australia Production region
+  - url: 'https://me.api.konghq.com/v3'
+    description: Middle-East Production region
+  - url: 'https://in.api.konghq.com/v3'
+    description: India Production region
+security:
+  - konnectAccessToken: []
+  - personalAccessToken: []
+  - systemAccountAccessToken: []
+tags:
+  - name: API
+  - name: API Documentation
+  - name: API Specification
+  - name: API Publication
+  - name: API Implementation
+paths:
+  /apis:
+    post:
+      summary: Create API
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Creates an API.
+      operationId: create-api
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ApiNameBadRequestExample:
+                  $ref: '#/components/examples/ApiNameBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+      tags:
+        - API
+      requestBody:
+        $ref: '#/components/requestBodies/CreateApiRequest'
+    get:
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/ApiFilters'
+        - $ref: '#/components/parameters/ApiSort'
+      summary: List APIs
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Returns a collection of all APIs.
+      operationId: list-apis
+      responses:
+        '200':
+          $ref: '#/components/responses/ListApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                InvalidApiSortQueryBadRequestExample:
+                  $ref: >-
+                    #/components/examples/InvalidApiSortQueryNameBadRequestExample
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API
+  '/apis/{apiId}':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+    get:
+      summary: Fetch API
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Fetches an API.
+      operationId: fetch-api
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API
+    patch:
+      summary: Update API
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Updates an API.
+      operationId: update-api
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ApiNameBadRequestExample:
+                  $ref: '#/components/examples/ApiNameBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+      tags:
+        - API
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateApiRequest'
+    delete:
+      summary: Delete API
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Deletes an API.
+      operationId: delete-api
+      responses:
+        '204':
+          description: API was deleted successfully.
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API
+  '/apis/{apiId}/documents':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+    post:
+      summary: Create API Document
+      description: >-
+        **Pre-release Endpoint**
+
+        This endpoint is currently in beta and is subject to change.
+
+
+        Publish a new document attached to an API.
+
+
+        All configuration options may be provided in the frontmatter section of
+        `content`. If you set values in both the `POST` request _and_ in the
+        frontmatter, the values in the `POST` request will take precedence.
+      operationId: create-api-document
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiDocumentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ApiNameBadRequestExample:
+                  $ref: '#/components/examples/ApiDocumentBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+        '409':
+          $ref: '#/components/responses/ApiSlugConflict'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+      requestBody:
+        $ref: '#/components/requestBodies/CreateApiDocumentRequest'
+      tags:
+        - API Documentation
+    get:
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/ApiDocumentFilters'
+      summary: List API Documents
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Returns a collection of all documents for an API.
+      operationId: list-api-documents
+      responses:
+        '200':
+          $ref: '#/components/responses/ListApiDocumentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                InvalidApiSortQueryBadRequestExample:
+                  $ref: '#/components/examples/InvalidApiSortQueryBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Documentation
+  '/apis/{apiId}/documents/{documentId}':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+      - $ref: '#/components/parameters/DocumentId'
+    get:
+      summary: Fetch API Document
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Returns a document for the API.
+      operationId: fetch-api-document
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiDocumentResponse'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Documentation
+    patch:
+      summary: Update API Document
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Updates a document for an API.
+      operationId: update-api-document
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiDocumentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ApiNameBadRequestExample:
+                  $ref: '#/components/examples/ApiDocumentBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+        '409':
+          $ref: '#/components/responses/ApiSlugConflict'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+      tags:
+        - API Documentation
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateApiDocumentRequest'
+    delete:
+      summary: Delete API Documentation
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Removes a document from an API.
+      operationId: delete-api-document
+      responses:
+        '204':
+          description: Document for the API was deleted successfully.
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Documentation
+  '/apis/{apiId}/documents/{documentId}/move':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+      - $ref: '#/components/parameters/DocumentId'
+    put:
+      summary: Move API Documentation
+      description: >-
+        **Pre-release Endpoint**
+
+        This endpoint is currently in beta and is subject to change.
+
+
+        This api allows the user to move a document within the document tree
+        using the parameters parent_document_id and index. If parent_document_id
+        is not provided, the document will be placed at the top level of the
+        document tree. index represents a zero-indexed document order relative
+        to its siblings under the same parent. For example, if we want to put
+        the document at top level in first position we would send
+        parent_document_id: null and index: 0. This api also supports using a
+        negative index to count backwards from the end of the document list,
+        which means you can put the document in last position by using index:
+        -1.
+      operationId: move-api-document
+      requestBody:
+        $ref: '#/components/requestBodies/MoveDocumentRequest'
+      responses:
+        '204':
+          description: Document for the API was moved successfully.
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+      tags:
+        - API Documentation
+  '/apis/{apiId}/specifications':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+    post:
+      summary: Create API Specification
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Creates a specification for an API.
+        **Note:** You can only have one specification for an API.
+      operationId: create-api-spec
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiSpecResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ApiSpecContentBadRequestExample:
+                  $ref: '#/components/examples/ApiSpecContentBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+        '409':
+          $ref: '#/components/responses/ApiSpecConflict'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+      tags:
+        - API Specification
+      requestBody:
+        $ref: '#/components/requestBodies/CreateApiSpecRequest'
+    get:
+      summary: List API Specifications
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Returns a list of specifications for an API.
+        **Note:** You can only have one specification for an API.
+      operationId: list-api-specs
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/ApiSpecFilters'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListApiSpecResponse'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Specification
+  '/apis/{apiId}/specifications/{specId}':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+      - $ref: '#/components/parameters/SpecId'
+    get:
+      summary: Fetch API Specification
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Fetches the specification of an API.
+      operationId: fetch-api-spec
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiSpecResponse'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Specification
+    patch:
+      summary: Update API Specification
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Updates the specification of an API.
+      operationId: update-api-spec
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiSpecResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ApiSpecContentBadRequestExample:
+                  $ref: '#/components/examples/ApiSpecContentBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+        '409':
+          $ref: '#/components/responses/ApiSpecHiddenConflict'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+      tags:
+        - API Specification
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateApiSpecRequest'
+    delete:
+      summary: Delete API Specification
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Deletes the specification of an API.
+      operationId: delete-api-spec
+      responses:
+        '204':
+          description: API Specification was deleted successfully.
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Specification
+  '/apis/{apiId}/publications/{portalId}':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+      - $ref: '#/components/parameters/PortalId'
+    put:
+      summary: Publish API
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Publish an API to a portal.
+      operationId: publish-api-to-portal
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiPublicationResponse'
+        '400':
+          $ref: '#/components/responses/ApiPublicationBadRequest'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Publication
+      requestBody:
+        $ref: '#/components/requestBodies/PutApiPublicationRequest'
+    get:
+      summary: Fetch Publication
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Retrieve an API's publication in a portal.
+        If the API is not published to the portal, a 404 response is returned.
+      operationId: fetch-publication
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiPublicationResponse'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Publication
+    delete:
+      summary: Delete Publication
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Unpublish an API from a portal.
+      operationId: delete-publication
+      responses:
+        '204':
+          description: API was successfully unpublished from portal.
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Publication
+  /api-publications:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/ApiPublicationFilters'
+        - $ref: '#/components/parameters/ApiPublicationSort'
+      summary: List Publications
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Returns a collection of all API Publications.
+      operationId: list-api-publications
+      responses:
+        '200':
+          $ref: '#/components/responses/ListApiPublicationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Publication
+  '/apis/{apiId}/implementations':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+    post:
+      summary: Create API Implementation
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Creates an implementation for an API.
+        An API can be implemented by a single Gateway Service.
+      operationId: create-api-implementation
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiImplementationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ApiImplementationBadRequestExample:
+                  $ref: '#/components/examples/ApiImplementationBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+        '409':
+          $ref: '#/components/responses/ApiImplementationConflict'
+      tags:
+        - API Implementation
+      requestBody:
+        $ref: '#/components/requestBodies/CreateApiImplementationRequest'
+  '/apis/{apiId}/implementations/{implementationId}':
+    parameters:
+      - $ref: '#/components/parameters/ApiId'
+      - $ref: '#/components/parameters/ImplementationId'
+    get:
+      summary: Fetch API Implementation
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Retrieve a gateway implementation for this API
+      operationId: fetch-api-implementation
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiImplementationResponse'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Implementation
+    delete:
+      summary: Delete API Implementation
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Unlink a gateway implementation from this API
+      operationId: delete-api-implementation
+      responses:
+        '204':
+          description: API implementation was unlinked successfully.
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Implementation
+  /api-implementations:
+    get:
+      summary: List API Implementations
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        List gateway implementations for this API
+      operationId: list-api-implementations
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/ApiImplementationFilters'
+        - $ref: '#/components/parameters/ApiImplementationSort'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListApiImplementationsResponse'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '404':
+          $ref: '#/components/responses/ApiNotFound'
+      tags:
+        - API Implementation
+components:
+  parameters:
+    ApiId:
+      schema:
+        type: string
+        format: uuid
+        example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+      name: apiId
+      in: path
+      required: true
+      description: The UUID API identifier
+    DocumentId:
+      schema:
+        type: string
+        format: uuid
+        example: de5c9818-be5c-42e6-b514-e3d4bc30ddeb
+      name: documentId
+      description: The document identifier related to the API
+      in: path
+      required: true
+    SpecId:
+      schema:
+        type: string
+        format: uuid
+        example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+      name: specId
+      description: The API specification identifier
+      in: path
+      required: true
+    PortalId:
+      schema:
+        type: string
+        format: uuid
+        example: f32d905a-ed33-46a3-a093-d8f536af9a8a
+      name: portalId
+      in: path
+      required: true
+      description: The Portal identifier
+    ImplementationId:
+      schema:
+        type: string
+        format: uuid
+        example: 032d905a-ed33-46a3-a093-d8f536af9a8a
+      name: implementationId
+      in: path
+      required: true
+      description: The Portal identifier
+    ApiFilters:
+      name: filter
+      description: Filters APIs in the response.
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/ApiFilterParameters'
+      style: deepObject
+    ApiSort:
+      name: sort
+      description: |
+        Sorts a collection of APIs. Supported sort attributes are:
+          - name
+          - version
+          - created_at
+          - updated_at
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/SortQuery'
+    ApiDocumentFilters:
+      name: filter
+      description: Filters API Documents in the response.
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/ApiDocumentFilterParameters'
+      style: deepObject
+    ApiSpecFilters:
+      name: filter
+      description: Filters API Specs in the response.
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/ApiSpecFilterParameters'
+      style: deepObject
+    ApiPublicationFilters:
+      name: filter
+      description: Filters API Publications in the response.
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/ApiPublicationFilterParameters'
+      style: deepObject
+    ApiPublicationSort:
+      name: sort
+      description: |
+        Sorts a collection of API publications. Supported sort attributes are:
+          - portal_id
+          - portal_name
+          - api_id
+          - api_name
+          - created_at
+          - updated_at
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/SortQuery'
+    ApiImplementationFilters:
+      name: filter
+      description: Filters APIs in the response.
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/ApiImplementationFilterParameters'
+      style: deepObject
+    ApiImplementationSort:
+      name: sort
+      description: >
+        Sorts a collection of API implementations. Supported sort attributes
+        are:
+          - id
+          - api_id
+          - control_plane_id
+          - service_id
+          - created_at
+          - updated_at
+      required: false
+      in: query
+      schema:
+        $ref: '#/components/schemas/SortQuery'
+    PageSize:
+      name: 'page[size]'
+      description: >-
+        The maximum number of items to include per page. The last page of a
+        collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    PageNumber:
+      name: 'page[number]'
+      description: Determines which page of the entities to retrieve.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 1
+  requestBodies:
+    CreateApiRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            title: API
+            type: object
+            additionalProperties: false
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+                description: The API identifier.
+                readOnly: true
+              name:
+                type: string
+                maxLength: 255
+                minLength: 1
+                description: >
+                  The name of your API. The `name + version` combination must be
+                  unique for each API you publish.
+                example: MyAPI
+              description:
+                type: string
+                description: >-
+                  A description of your API. Will be visible on your live
+                  Portal.
+                nullable: true
+              version:
+                type: string
+                maxLength: 255
+                minLength: 1
+                description: >-
+                  An optional version for your API. Leave this empty if your API
+                  is unversioned.
+                nullable: true
+              deprecated:
+                type: boolean
+                default: false
+                description: Marks this API as deprecated.
+              slug:
+                type: string
+                pattern: '^[\w-]+$'
+                description: >
+                  The `slug` is used in generated URLs to provide human readable
+                  paths.
+
+
+                  Defaults to `slugify(name + version)`
+                example: my-api-v1
+                nullable: true
+              portals:
+                readOnly: true
+                type: array
+                nullable: false
+                uniqueItems: true
+                description: The list of portals which this API is published to.
+                items:
+                  type: object
+                  additionalProperties: false
+                  required:
+                    - id
+                    - name
+                    - display_name
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: 25a2624c-49fc-4764-99e1-224ed819f200
+                      description: The portal identifier.
+                    name:
+                      type: string
+                      example: My Portal
+                      description: >-
+                        The name of the portal, used to distinguish it from
+                        other portals.
+                    display_name:
+                      type: string
+                      example: My Portal
+                      description: >-
+                        The display name of the portal. This value will be the
+                        portal's `name` in Portal API.
+              labels:
+                $ref: '#/components/schemas/Labels'
+              public_labels:
+                $ref: '#/components/schemas/PublicLabels'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+            required:
+              - name
+          examples:
+            CreateApiMinimal:
+              $ref: '#/components/examples/CreateApiRequestMinimalExample'
+            CreateApiFull:
+              $ref: '#/components/examples/CreateApiRequestFullExample'
+    CreateApiSpecRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            title: API Specification
+            type: object
+            additionalProperties: false
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: 7710d5c4-d902-410b-992f-18b814155b53
+                description: The API specification identifier.
+                readOnly: true
+              content:
+                type: string
+                description: |
+                  The raw content of your API specification.
+                example: >-
+                  {"openapi":"3.0.3","info":{"title":"Example
+                  API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
+                  endpoint","responses":{"200":{"description":"Successful
+                  response"}}}}}}
+              type:
+                $ref: '#/components/schemas/ApiSpecType'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+            required:
+              - content
+          examples:
+            CreateApiSpecRequestExample:
+              $ref: '#/components/examples/CreateApiSpecRequestExample'
+    CreateApiDocumentRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            title: API Document
+            additionalProperties: false
+            properties:
+              id:
+                $ref: '#/components/schemas/ApiDocumentId'
+              content:
+                $ref: '#/components/schemas/ApiDocumentContent'
+              title:
+                $ref: '#/components/schemas/ApiDocumentTitle'
+              slug:
+                $ref: '#/components/schemas/ApiDocumentSlug'
+              status:
+                $ref: '#/components/schemas/ApiDocumentStatus'
+              parent_document_id:
+                $ref: '#/components/schemas/ApiDocumentParentDocumentId'
+              labels:
+                $ref: '#/components/schemas/Labels'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+            required:
+              - content
+          examples:
+            CreateApiDocumentRequestMinimalExample:
+              $ref: '#/components/examples/CreateApiDocumentRequestMinimalExample'
+            CreateApiDocumentRequestExample:
+              $ref: '#/components/examples/CreateApiDocumentRequestExample'
+    UpdateApiRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            title: API
+            type: object
+            additionalProperties: false
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+                description: The API identifier.
+                readOnly: true
+              name:
+                type: string
+                maxLength: 255
+                minLength: 1
+                description: >
+                  The name of your API. The `name + version` combination must be
+                  unique for each API you publish.
+                example: MyAPI
+              description:
+                type: string
+                description: >-
+                  A description of your API. Will be visible on your live
+                  Portal.
+                nullable: true
+              version:
+                type: string
+                maxLength: 255
+                minLength: 1
+                description: >-
+                  An optional version for your API. Leave this empty if your API
+                  is unversioned.
+                nullable: true
+              deprecated:
+                type: boolean
+                default: false
+                description: Marks this API as deprecated.
+              slug:
+                type: string
+                pattern: '^[\w-]+$'
+                description: >
+                  The `slug` is used in generated URLs to provide human readable
+                  paths.
+
+
+                  Defaults to `slugify(name + version)`
+                example: my-api-v1
+                nullable: true
+              portals:
+                readOnly: true
+                type: array
+                nullable: false
+                uniqueItems: true
+                description: The list of portals which this API is published to.
+                items:
+                  type: object
+                  additionalProperties: false
+                  required:
+                    - id
+                    - name
+                    - display_name
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: 25a2624c-49fc-4764-99e1-224ed819f200
+                      description: The portal identifier.
+                    name:
+                      type: string
+                      example: My Portal
+                      description: >-
+                        The name of the portal, used to distinguish it from
+                        other portals.
+                    display_name:
+                      type: string
+                      example: My Portal
+                      description: >-
+                        The display name of the portal. This value will be the
+                        portal's `name` in Portal API.
+              labels:
+                $ref: '#/components/schemas/LabelsUpdate'
+              public_labels:
+                $ref: '#/components/schemas/PublicLabelsUpdate'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+          examples:
+            UpdateApiName:
+              $ref: '#/components/examples/UpdateApiNameRequestExample'
+            UpdateApiVersion:
+              $ref: '#/components/examples/UpdateApiVersionRequestExample'
+    UpdateApiDocumentRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiDocument'
+          examples:
+            UpdateApiDocumentAttributes:
+              $ref: '#/components/examples/UpdateApiDocumentAttributesRequestExample'
+            UpdateApiDocumentContent:
+              $ref: '#/components/examples/UpdateApiDocumentContentRequestExample'
+            UpdateApiDocumentAttributesAndContent:
+              $ref: >-
+                #/components/examples/UpdateApiDocumentAttributesAndContentRequestExample
+    UpdateApiSpecRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiSpec'
+          examples:
+            UpdateApiSpecContentRequest:
+              $ref: '#/components/examples/UpdateApiSpecContentRequestExample'
+    PutApiPublicationRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiPublication'
+    CreateApiImplementationRequest:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiImplementation'
+          examples:
+            CreateApiImplementationRequest:
+              $ref: '#/components/examples/CreateApiImplementationRequestExample'
+    MoveDocumentRequest:
+      required: true
+      description: move document
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MoveDocumentRequestPayload'
+  responses:
+    ApiSlugConflict:
+      description: Conflict - `slug` property must be unique
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            required:
+              - status
+              - title
+              - instance
+            properties:
+              status:
+                type: number
+              title:
+                type: string
+              type:
+                type: string
+              instance:
+                type: string
+          examples:
+            ApiSlugConflictExample:
+              $ref: '#/components/examples/ApiSlugConflictExample'
+    ApiSpecConflict:
+      description: Conflict - An API may only have one specification
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            ApiSpecConflictExample:
+              $ref: '#/components/examples/ApiSpecConflictExample'
+    ApiSpecHiddenConflict:
+      description: Conflict - name attribute must be unique across specifications
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            ApiSpecConflictExample:
+              $ref: '#/components/examples/ApiSpecHiddenConflictExample'
+    ApiImplementationConflict:
+      description: Conflict - A gateway service can only be linked to a single API
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            ApiImplementationServiceConflictExample:
+              $ref: '#/components/examples/ApiImplementationServiceConflictExample'
+            ApiImplementationCountConflictExample:
+              $ref: '#/components/examples/ApiImplementationCountConflictExample'
+    ApiUnauthorized:
+      description: ApiUnauthorized
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+          examples:
+            ApiUnauthorizedExample:
+              $ref: '#/components/examples/ApiUnauthorizedExample'
+    ApiNotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            ApiNotFoundExample:
+              $ref: '#/components/examples/ApiNotFoundExample'
+    ApiForbidden:
+      description: ApiForbidden
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+          examples:
+            ApiForbiddenExample:
+              $ref: '#/components/examples/ApiForbiddenExample'
+    ApiPublicationBadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+    ApiResponse:
+      description: API
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponseSchema'
+          examples:
+            CreateApiResponse:
+              $ref: '#/components/examples/ApiExample'
+    ListApiResponse:
+      description: List of APIs
+      content:
+        application/json:
+          schema:
+            title: ListApiResponse
+            type: object
+            required:
+              - data
+              - meta
+            additionalProperties: false
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiResponseSchema'
+          examples:
+            ApiCollection:
+              value:
+                data:
+                  - id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+                    name: myAPI
+                    version: v1
+                    public_labels:
+                      group: accounts
+                    labels:
+                      env: test
+                    slug: my-api-v1
+                    portals:
+                      - id: 25a2624c-49fc-4764-99e1-224ed819f200
+                        name: My-Portal
+                        display_name: My Portal
+                    deprecated: false
+                    created_at: '2023-01-01T00:00:00.000Z'
+                    updated_at: '2023-01-01T00:00:00.000Z'
+                meta:
+                  page:
+                    number: 1
+                    size: 1
+                    total: 10
+    ApiDocumentResponse:
+      description: API document
+      content:
+        application/json:
+          schema:
+            type: object
+            title: API Document
+            additionalProperties: false
+            properties:
+              id:
+                $ref: '#/components/schemas/ApiDocumentId'
+              content:
+                $ref: '#/components/schemas/ApiDocumentContent'
+              title:
+                $ref: '#/components/schemas/ApiDocumentTitle'
+              slug:
+                $ref: '#/components/schemas/ApiDocumentSlug'
+              status:
+                $ref: '#/components/schemas/ApiDocumentStatus'
+              parent_document_id:
+                $ref: '#/components/schemas/ApiDocumentParentDocumentId'
+              labels:
+                $ref: '#/components/schemas/Labels'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+            required:
+              - id
+              - parent_document_id
+              - title
+              - slug
+              - status
+              - content
+              - labels
+              - updated_at
+              - created_at
+          examples:
+            CreateApiDocumentResponse:
+              $ref: '#/components/examples/ApiDocumentExample'
+    ListApiDocumentResponse:
+      description: List of API documents
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - data
+              - meta
+            additionalProperties: false
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiDocumentSummaryWithChildren'
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+    ApiSpecResponse:
+      description: API specification
+      content:
+        application/json:
+          schema:
+            title: API Specification
+            type: object
+            additionalProperties: false
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: 7710d5c4-d902-410b-992f-18b814155b53
+                description: The API specification identifier.
+                readOnly: true
+              content:
+                type: string
+                description: |
+                  The raw content of your API specification.
+                example: >-
+                  {"openapi":"3.0.3","info":{"title":"Example
+                  API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
+                  endpoint","responses":{"200":{"description":"Successful
+                  response"}}}}}}
+              type:
+                $ref: '#/components/schemas/ApiSpecType'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+            required:
+              - id
+              - content
+              - type
+              - created_at
+              - updated_at
+          examples:
+            ApiSpecResponse:
+              $ref: '#/components/examples/ApiSpecExample'
+    ListApiSpecResponse:
+      description: List of API specifications
+      content:
+        application/json:
+          schema:
+            title: ListApiSpecResponse
+            type: object
+            required:
+              - data
+              - meta
+            additionalProperties: false
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  title: API Specification Summary
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: 7710d5c4-d902-410b-992f-18b814155b53
+                      description: The API specification identifier.
+                      readOnly: true
+                    type:
+                      $ref: '#/components/schemas/ApiSpecType'
+                    created_at:
+                      $ref: '#/components/schemas/CreatedAt'
+                    updated_at:
+                      $ref: '#/components/schemas/UpdatedAt'
+                  required:
+                    - id
+                    - type
+                    - created_at
+                    - updated_at
+          examples:
+            ListApiSpecResponse:
+              $ref: '#/components/examples/ListApiSpecExample'
+    ApiPublicationResponse:
+      description: An API publication in a portal
+      content:
+        application/json:
+          schema:
+            title: API Publication
+            type: object
+            description: An API publication in a portal
+            additionalProperties: false
+            properties:
+              auto_approve_registrations:
+                $ref: '#/components/schemas/AutoApproveRegistrations'
+              auth_strategy_ids:
+                $ref: '#/components/schemas/ApiPublicationAuthStrategyIds'
+              visibility:
+                $ref: '#/components/schemas/ApiPublicationVisibility'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+            required:
+              - visibility
+              - created_at
+              - updated_at
+              - auth_strategy_ids
+    ListApiPublicationResponse:
+      description: Paginated list of API publications
+      content:
+        application/json:
+          schema:
+            title: ListApiPublications
+            type: object
+            required:
+              - data
+              - meta
+            additionalProperties: false
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiPublicationListItem'
+    ApiImplementationResponse:
+      description: An API implementation
+      content:
+        application/json:
+          schema:
+            title: API Implementation
+            type: object
+            description: An entity that implements an API
+            additionalProperties: false
+            required:
+              - service
+              - id
+              - created_at
+              - updated_at
+            properties:
+              id:
+                $ref: '#/components/schemas/UUID'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+              service:
+                $ref: '#/components/schemas/ApiImplementationService'
+    ListApiImplementationsResponse:
+      description: Paginated list of API implementations
+      content:
+        application/json:
+          schema:
+            title: ListApiImplementations
+            type: object
+            required:
+              - data
+              - meta
+            additionalProperties: false
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiImplementationListItem'
+    UnsupportedMediaType:
+      description: Unsupported Media Type
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnsupportedMediaTypeError'
+          examples:
+            UnsupportedMediaTypeExample:
+              $ref: '#/components/examples/UnsupportedMediaTypeExample'
+    Conflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+  schemas:
+    ApiResponseSchema:
+      title: API
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+          description: The API identifier.
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+          description: >
+            The name of your API. The `name + version` combination must be
+            unique for each API you publish.
+          example: MyAPI
+        description:
+          type: string
+          description: A description of your API. Will be visible on your live Portal.
+          nullable: true
+        version:
+          type: string
+          maxLength: 255
+          minLength: 1
+          description: >-
+            An optional version for your API. Leave this empty if your API is
+            unversioned.
+          nullable: true
+        deprecated:
+          type: boolean
+          default: false
+          description: Marks this API as deprecated.
+        slug:
+          type: string
+          pattern: '^[\w-]+$'
+          description: >
+            The `slug` is used in generated URLs to provide human readable
+            paths.
+
+
+            Defaults to `slugify(name + version)`
+          example: my-api-v1
+          nullable: true
+        portals:
+          readOnly: true
+          type: array
+          nullable: false
+          uniqueItems: true
+          description: The list of portals which this API is published to.
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - id
+              - name
+              - display_name
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: 25a2624c-49fc-4764-99e1-224ed819f200
+                description: The portal identifier.
+              name:
+                type: string
+                example: My Portal
+                description: >-
+                  The name of the portal, used to distinguish it from other
+                  portals.
+              display_name:
+                type: string
+                example: My Portal
+                description: >-
+                  The display name of the portal. This value will be the
+                  portal's `name` in Portal API.
+        labels:
+          $ref: '#/components/schemas/Labels'
+        public_labels:
+          $ref: '#/components/schemas/PublicLabels'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+      required:
+        - id
+        - name
+        - version
+        - labels
+        - public_labels
+        - deprecated
+        - created_at
+        - updated_at
+        - slug
+        - portals
+    ApiDocumentId:
+      title: API Document ID
+      type: string
+      format: uuid
+      example: de5c9818-be5c-42e6-b514-e3d4bc30ddeb
+      description: The API document identifier.
+      readOnly: true
+    ApiDocumentContent:
+      title: API Document Content
+      type: string
+      description: Raw markdown content to display in your Portal
+    ApiDocumentTitle:
+      title: API Document Title
+      type: string
+      description: >-
+        The title of the document. Used to populate the `<title>` tag for the
+        page
+      example: API Document
+    ApiDocumentStatus:
+      type: string
+      enum:
+        - published
+        - unpublished
+      description: If `status=published` the document will be visible in your live portal
+      default: unpublished
+    ApiDocumentParentDocumentId:
+      title: API Document Parent Document ID
+      type: string
+      format: uuid
+      nullable: true
+      description: >
+        API Documents may be rendered as a tree of files.
+
+
+        Specify the `id` of another API Document as the `parent_document_id` to
+        add some heirarchy do your documents.
+      example: null
+    ApiDocumentSlug:
+      title: API Document Slug
+      type: string
+      pattern: '^[\w-]+$'
+      description: |
+        The `slug` is used in generated URLs to provide human readable paths.
+
+        Defaults to `slugify(title)`
+      example: api-document
+    ApiDocumentSummaryWithChildren:
+      title: API Document Summary
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - title
+        - slug
+        - status
+        - parent_document_id
+        - labels
+        - created_at
+        - updated_at
+        - children
+      properties:
+        id:
+          $ref: '#/components/schemas/ApiDocumentId'
+        title:
+          $ref: '#/components/schemas/ApiDocumentTitle'
+        slug:
+          $ref: '#/components/schemas/ApiDocumentSlug'
+        status:
+          $ref: '#/components/schemas/ApiDocumentStatus'
+        parent_document_id:
+          $ref: '#/components/schemas/ApiDocumentParentDocumentId'
+        labels:
+          $ref: '#/components/schemas/Labels'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiDocumentSummaryWithChildren'
+    ApiDocument:
+      type: object
+      title: API Document
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/ApiDocumentId'
+        content:
+          $ref: '#/components/schemas/ApiDocumentContent'
+        title:
+          $ref: '#/components/schemas/ApiDocumentTitle'
+        slug:
+          $ref: '#/components/schemas/ApiDocumentSlug'
+        status:
+          $ref: '#/components/schemas/ApiDocumentStatus'
+        parent_document_id:
+          $ref: '#/components/schemas/ApiDocumentParentDocumentId'
+        labels:
+          $ref: '#/components/schemas/Labels'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    MoveDocumentRequestPayload:
+      type: object
+      title: Move document
+      description: move document request payload
+      properties:
+        parent_document_id:
+          type: string
+          format: uuid
+          description: parent document id
+          example: dd4e1b98-3629-4dd3-acc0-759a726ffee2
+        index:
+          type: integer
+          description: index of the document in the parent document's children
+          example: 1
+    ApiSpec:
+      title: API Specification
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7710d5c4-d902-410b-992f-18b814155b53
+          description: The API specification identifier.
+          readOnly: true
+        content:
+          type: string
+          description: |
+            The raw content of your API specification.
+          example: >-
+            {"openapi":"3.0.3","info":{"title":"Example
+            API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
+            endpoint","responses":{"200":{"description":"Successful
+            response"}}}}}}
+        type:
+          $ref: '#/components/schemas/ApiSpecType'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    ApiPublicationVisibility:
+      title: API Publication Visibility
+      type: string
+      enum:
+        - public
+        - private
+      default: private
+      description: >
+        The visibility of the API in the portal.
+
+        Public API publications do not require authentication to view and
+        retrieve information about them.
+
+        Private API publications require authentication to retrieve information
+        about them.
+    ApiPublicationAuthStrategyIds:
+      title: API Publication Auth Strategy IDs
+      type: array
+      nullable: true
+      description: >
+        The auth strategy the API enforces for applications in the portal.
+
+        Omitting this property means the portal's default application auth
+        strategy will be used.
+
+        Setting to null means the API will not require application
+        authentication.
+
+        DCR support for application registration is currently in development.
+      maxItems: 1
+      minItems: 1
+      items:
+        type: string
+        format: uuid
+    ApiPublicationListItem:
+      title: API Publication List Item
+      type: object
+      description: An API publication in a portal
+      additionalProperties: false
+      required:
+        - api_id
+        - portal_id
+        - visibility
+        - created_at
+        - updated_at
+        - auth_strategy_ids
+      properties:
+        api_id:
+          type: string
+          format: uuid
+          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+          description: The API identifier.
+          readOnly: true
+        portal_id:
+          type: string
+          format: uuid
+          example: 7710d5c4-d902-410b-992f-18b814155b53
+          description: The portal identifier.
+          readOnly: true
+        visibility:
+          $ref: '#/components/schemas/ApiPublicationVisibility'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/ApiPublicationAuthStrategyIds'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    AutoApproveRegistrations:
+      title: Auto Approve Registrations
+      description: >-
+        Whether the application registration auto approval on this portal for
+        the api is enabled. If set to false, fallbacks on portal's
+        auto_approve_applications value.
+      type: boolean
+    ApiPublication:
+      title: API Publication
+      type: object
+      description: An API publication in a portal
+      additionalProperties: false
+      properties:
+        auto_approve_registrations:
+          $ref: '#/components/schemas/AutoApproveRegistrations'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/ApiPublicationAuthStrategyIds'
+        visibility:
+          $ref: '#/components/schemas/ApiPublicationVisibility'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    ApiImplementationService:
+      title: API Implementation Service
+      type: object
+      description: A Gateway service that implements an API
+      additionalProperties: false
+      required:
+        - control_plane_id
+        - id
+      properties:
+        control_plane_id:
+          type: string
+          format: uuid
+          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+        id:
+          type: string
+          format: uuid
+          example: 7710d5c4-d902-410b-992f-18b814155b53
+    ApiImplementationListItem:
+      title: API Implementation List Item
+      type: object
+      description: An entity that implements an API
+      additionalProperties: false
+      required:
+        - id
+        - api_id
+        - created_at
+        - updated_at
+        - service
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        api_id:
+          type: string
+          format: uuid
+          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+          description: The API identifier.
+          readOnly: true
+        service:
+          $ref: '#/components/schemas/ApiImplementationService'
+    ApiImplementation:
+      title: API Implementation
+      type: object
+      description: An entity that implements an API
+      additionalProperties: false
+      required:
+        - service
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        service:
+          $ref: '#/components/schemas/ApiImplementationService'
+    ApiFilterParameters:
+      title: API Filter Parameters
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        name:
+          $ref: '#/components/schemas/StringFieldFilter'
+        version:
+          $ref: '#/components/schemas/StringFieldFilter'
+        labels:
+          $ref: '#/components/schemas/LabelsFieldFilter'
+        public_labels:
+          $ref: '#/components/schemas/PublicLabelsFieldFilter'
+        deprecated:
+          $ref: '#/components/schemas/BooleanFieldFilter'
+        created_at:
+          $ref: '#/components/schemas/DateTimeFieldFilter'
+        updated_at:
+          $ref: '#/components/schemas/DateTimeFieldFilter'
+    ApiDocumentFilterParameters:
+      title: API Document Filter Parameters
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/StringFieldFilter'
+    ApiSpecFilterParameters:
+      title: API Spec Filter Parameters
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/StringFieldFilter'
+    ApiPublicationFilterParameters:
+      title: API Publication Filter Parameters
+      type: object
+      properties:
+        portal_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        portal_name:
+          $ref: '#/components/schemas/StringFieldFilter'
+        api_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        api_name:
+          $ref: '#/components/schemas/StringFieldFilter'
+        auth_strategy_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+    ApiImplementationFilterParameters:
+      title: API Implementation Filter Parameters
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        api_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        service_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        control_plane_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        created_at:
+          $ref: '#/components/schemas/DateTimeFieldFilter'
+        updated_at:
+          $ref: '#/components/schemas/DateTimeFieldFilter'
+    StringFieldEqualsFilter:
+      title: StringFieldEqualsFilter
+      description: Filters on the given string field value by exact match.
+      oneOf:
+        - type: string
+        - type: object
+          title: StringFieldEqualsComparison
+          additionalProperties: false
+          properties:
+            eq:
+              type: string
+          required:
+            - eq
+      x-examples:
+        example-1: equals-some-value
+        example-2:
+          eq: some-value
+    StringFieldOEQFilter:
+      title: StringFieldOEQFilter
+      description: >-
+        Returns entities that exact match any of the comma-delimited phrases in
+        the filter string.
+      type: object
+      additionalProperties: false
+      properties:
+        oeq:
+          type: string
+      required:
+        - oeq
+      x-examples:
+        example-1:
+          oeq: 'some-value,some-other-value'
+    StringFieldNEQFilter:
+      title: StringFieldNEQFilter
+      description: Filters on the given string field value by exact match inequality.
+      type: object
+      additionalProperties: false
+      properties:
+        neq:
+          type: string
+      required:
+        - neq
+      x-examples:
+        example-1:
+          neq: not-this-value
+    UuidFieldFilter:
+      title: UuidFieldFilter
+      description: Filters on the given UUID field value by exact match.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      x-examples:
+        example-1: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-2:
+          eq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-3:
+          oeq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-4:
+          neq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+    StringFieldContainsFilter:
+      title: StringFieldContainsFilter
+      description: Filters on the given string field value by fuzzy match.
+      type: object
+      additionalProperties: false
+      properties:
+        contains:
+          type: string
+      required:
+        - contains
+      x-examples:
+        example-1:
+          contains: some-value
+    StringFieldOContainsFilter:
+      title: StringFieldOContainsFilter
+      description: >-
+        Returns entities that fuzzy-match any of the comma-delimited phrases in
+        the filter string.
+      type: object
+      additionalProperties: false
+      properties:
+        ocontains:
+          type: string
+      required:
+        - ocontains
+      x-examples:
+        example-1:
+          ocontains: 'this-value,or-that-value'
+    StringFieldFilter:
+      title: StringFieldFilter
+      description: Filters on the given string field value by either exact or fuzzy match.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldContainsFilter'
+        - $ref: '#/components/schemas/StringFieldOContainsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      x-examples:
+        example-1: equals-some-value
+        example-2:
+          eq: some-value
+        example-3:
+          contains: some-value
+        example-4:
+          ocontains: 'some-potential,value'
+        example-5:
+          oeq: 'some-potential,value'
+        example-6:
+          neq: not-this-value
+    LabelsFieldFilter:
+      allOf:
+        - title: LabelsFieldFilter
+          description: >
+            Filters on the resource's `labels` field. Filters must use
+            dot-notation to identify
+
+            the label key that will be used to filter the results. For example:
+              - `filter[labels.owner]`
+              - `filter[labels.owner][neq]=kong`
+              - `filter[labels.env]=dev`
+              - `filter[labels.env][ocontains]=dev,test`
+        - $ref: '#/components/schemas/StringFieldFilter'
+    PublicLabelsFieldFilter:
+      title: StringFieldFilter
+      description: Filters on the given string field value by either exact or fuzzy match.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldContainsFilter'
+        - $ref: '#/components/schemas/StringFieldOContainsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      x-examples:
+        example-1: equals-some-value
+        example-2:
+          eq: some-value
+        example-3:
+          contains: some-value
+        example-4:
+          ocontains: 'some-potential,value'
+        example-5:
+          oeq: 'some-potential,value'
+        example-6:
+          neq: not-this-value
+    BooleanFieldFilter:
+      title: BooleanFieldFilter
+      description: Filter by a boolean value (true/false).
+      type: boolean
+      x-examples:
+        example-1: true
+    DateTimeFieldFilter:
+      title: DateTimeFieldFilter
+      description: Filters on the given datetime (RFC-3339) field value.
+      oneOf:
+        - type: string
+          format: date-time
+          description: Value strictly equals given RFC-3339 formatted timestamp in UTC
+          example: '2022-03-30T07:20:50Z'
+        - type: object
+          title: DateTimeFieldEqualsFilter
+          additionalProperties: false
+          properties:
+            eq:
+              type: string
+              format: date-time
+              description: Value strictly equals given RFC-3339 formatted timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - eq
+        - type: object
+          title: DateTimeFieldLTFilter
+          additionalProperties: false
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Value is less than the given RFC-3339 formatted timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - lt
+        - type: object
+          title: DateTimeFieldLTEFilter
+          additionalProperties: false
+          properties:
+            lte:
+              type: string
+              format: date-time
+              description: >-
+                Value is less than or equal to the given RFC-3339 formatted
+                timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - lte
+        - type: object
+          title: DateTimeFieldGTFilter
+          additionalProperties: false
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: >-
+                Value is greater than the given RFC-3339 formatted timestamp in
+                UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - gt
+        - type: object
+          title: DateTimeFieldGTEFilter
+          additionalProperties: false
+          properties:
+            lte:
+              type: string
+              format: date-time
+              description: >-
+                Value is greater than or equal to the given RFC-3339 formatted
+                timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - gte
+      x-examples:
+        datetime_field_1: '2022-03-30T07:20:50Z'
+        datetime_field_2:
+          eq: '2022-03-30T07:20:50Z'
+        datetime_field_3:
+          lt: '2022-03-30T07:20:50Z'
+        datetime_field_4:
+          lte: '2022-03-30T07:20:50Z'
+        datetime_field_5:
+          gt: '2022-03-30T07:20:50Z'
+        datetime_field_6:
+          gte: '2022-03-30T07:20:50Z'
+    SortQuery:
+      title: SortQuery
+      type: string
+      example: 'name,created_at desc'
+      description: >
+        The `asc` suffix is optional as the default sort order is ascending.
+
+        The `desc` suffix is used to specify a descending order.
+
+        Multiple sort attributes may be provided via a comma separated list.
+
+        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar
+        desc').
+    PageMeta:
+      type: object
+      description: >-
+        Contains pagination query parameters and the total number of objects
+        returned.
+      required:
+        - number
+        - size
+        - total
+      properties:
+        number:
+          type: number
+          example: 1
+        size:
+          type: number
+          example: 10
+        total:
+          type: number
+          example: 100
+    PaginatedMeta:
+      type: object
+      title: PaginatedMeta
+      description: returns the pagination information
+      properties:
+        page:
+          $ref: '#/components/schemas/PageMeta'
+      required:
+        - page
+    Labels:
+      title: Labels
+      type: object
+      example:
+        env: test
+      maxProperties: 50
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      additionalProperties:
+        type: string
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        minLength: 1
+        maxLength: 63
+    PublicLabels:
+      title: PublicLabels
+      type: object
+      example:
+        category: finance
+      maxProperties: 50
+      description: >
+        Public labels store information about an entity that can be used for
+        filtering a list of objects.
+
+
+        Public labels are intended to store **PUBLIC** metadata. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      additionalProperties:
+        type: string
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        minLength: 1
+        maxLength: 63
+    CreatedAt:
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      description: An ISO-8601 timestamp representation of entity creation date.
+      readOnly: true
+    UpdatedAt:
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      description: An ISO-8601 timestamp representation of entity update date.
+      readOnly: true
+    BaseError:
+      type: object
+      title: Error
+      description: standard error
+      required:
+        - status
+        - title
+        - instance
+        - detail
+      properties:
+        status:
+          type: integer
+          description: >
+            The HTTP status code of the error. Useful when passing the response
+
+            body to child properties in a frontend UI. Must be returned as an
+            integer.
+          readOnly: true
+        title:
+          type: string
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+        type:
+          type: string
+          description: The error type.
+          readOnly: true
+        instance:
+          type: string
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          readOnly: true
+        detail:
+          type: string
+          description: >
+            A human readable explanation specific to this occurence of the
+            problem.
+
+            This field may contain request/entity data to help the user
+            understand
+
+            what went wrong. Enclose variable values in square brackets. Should
+            be
+
+            provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+    InvalidRules:
+      description: invalid parameters rules
+      type: string
+      readOnly: true
+      nullable: true
+      enum:
+        - required
+        - is_array
+        - is_base64
+        - is_boolean
+        - is_date_time
+        - is_integer
+        - is_null
+        - is_number
+        - is_object
+        - is_string
+        - is_uuid
+        - is_fqdn
+        - is_arn
+        - unknown_property
+        - missing_reference
+        - is_label
+        - matches_regex
+        - invalid
+        - is_supported_network_availability_zone_list
+        - is_supported_network_cidr_block
+        - is_supported_provider_region
+    InvalidParameterStandard:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          $ref: '#/components/schemas/InvalidRules'
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterMinimumLength:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - min_length
+            - min_digits
+            - min_lowercase
+            - min_uppercase
+            - min_symbols
+            - min_items
+            - min
+        minimum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: must have at least 8 characters
+          readOnly: true
+      required:
+        - field
+        - reason
+        - rule
+        - minimum
+    InvalidParameterMaximumLength:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - max_length
+            - max_items
+            - max
+        maximum:
+          type: integer
+          example: 8
+        source:
+          type: string
+          example: body
+        reason:
+          type: string
+          example: must not have more than 8 characters
+          readOnly: true
+      required:
+        - field
+        - reason
+        - rule
+        - maximum
+    InvalidParameterChoiceItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: false
+          enum:
+            - enum
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        choices:
+          type: array
+          uniqueItems: true
+          readOnly: true
+          nullable: false
+          minItems: 1
+          items: {}
+        source:
+          type: string
+          example: body
+      required:
+        - field
+        - reason
+        - rule
+        - choices
+    InvalidParameterDependentItem:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: true
+          enum:
+            - dependent_fields
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        dependents:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+        source:
+          type: string
+          example: body
+      required:
+        - field
+        - rule
+        - reason
+        - dependents
+    InvalidParameters:
+      type: array
+      nullable: false
+      uniqueItems: true
+      minItems: 1
+      description: invalid parameters
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/InvalidParameterStandard'
+          - $ref: '#/components/schemas/InvalidParameterMinimumLength'
+          - $ref: '#/components/schemas/InvalidParameterMaximumLength'
+          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
+          - $ref: '#/components/schemas/InvalidParameterDependentItem'
+    BadRequestError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          required:
+            - invalid_parameters
+          properties:
+            invalid_parameters:
+              $ref: '#/components/schemas/InvalidParameters'
+    UnauthorizedError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 401
+            title:
+              example: Unauthorized
+            type:
+              example: 'https://httpstatuses.com/401'
+            instance:
+              example: 'kong:trace:1234567890'
+            detail:
+              example: Invalid credentials
+    ForbiddenError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 403
+            title:
+              example: Forbidden
+            type:
+              example: 'https://httpstatuses.com/403'
+            instance:
+              example: 'kong:trace:1234567890'
+            detail:
+              example: Forbidden
+    NotFoundError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 404
+            title:
+              example: Not Found
+            type:
+              example: 'https://httpstatuses.com/404'
+            instance:
+              example: 'kong:trace:1234567890'
+            detail:
+              example: Not found
+    UnsupportedMediaTypeError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 415
+            title:
+              example: UnsupportedMediaType
+            type:
+              example: 'https://httpstatuses.com/415'
+            instance:
+              example: 'kong:trace:1234567890'
+            detail:
+              example: UnsupportedMediaType
+    LabelsUpdate:
+      type: object
+      nullable: true
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Labels are intended to store **INTERNAL** metadata.
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      example:
+        env: test
+      maxProperties: 50
+      additionalProperties:
+        type: string
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        minLength: 1
+        maxLength: 63
+        nullable: true
+      writeOnly: true
+    PublicLabelsUpdate:
+      title: PublicLabelsUpdate
+      type: object
+      example:
+        category: finance
+      maxProperties: 50
+      description: >
+        Public labels store information about an entity that can be used for
+        filtering a list of objects.
+
+
+        Public labels are intended to store **PUBLIC** metadata.
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      additionalProperties:
+        type: string
+        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        minLength: 1
+        maxLength: 63
+        nullable: true
+      writeOnly: true
+    ConflictError:
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+        - type: object
+          properties:
+            status:
+              example: 409
+            title:
+              example: Conflict
+            type:
+              example: 'https://httpstatuses.com/409'
+            instance:
+              example: 'kong:trace:1234567890'
+            detail:
+              example: Conflict
+    ApiSpecType:
+      title: API Spec Type
+      type: string
+      example: oas3
+      description: >
+        The type of specification being stored. This allows us to render the
+        specification correctly.
+
+
+        If this field is not set, it will be autodetected from `content`
+      enum:
+        - oas3
+        - asyncapi
+    UUID:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier used for this resource.
+      readOnly: true
+  securitySchemes:
+    konnectAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >
+        The Konnect access token is meant to be used by the Konnect dashboard
+        and the decK CLI authenticate with.
+    personalAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The personal access token is meant to be used as an alternative to
+        basic-auth when accessing Konnect via APIs.
+
+        You can generate a Personal Access Token (PAT) from the [personal access
+        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
+        dashboard.
+
+        The PAT token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer kpat_xgfT...'`
+    systemAccountAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The system account access token is meant for automations and
+        integrations that are not directly associated with a human identity.
+
+        You can generate a system account Access Token by creating a system
+        account and then obtaining a system account access token for that
+        account.
+
+        The access token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer spat_i2Ej...'`
+  examples:
+    ApiExample:
+      value:
+        id: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+        name: myAPI
+        version: v1
+        labels:
+          env: test
+        public_labels: {}
+        description: My API
+        deprecated: false
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+        slug: my-api-v1
+        portals:
+          - id: 25a2624c-49fc-4764-99e1-224ed819f200
+            name: My-Portal
+            display_name: My Portal
+    ApiSpecExample:
+      value:
+        id: 7710d5c4-d902-410b-992f-18b814155b53
+        content: >-
+          {"openapi":"3.0.3","info":{"title":"Example
+          API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
+          endpoint","responses":{"200":{"description":"Successful
+          response"}}}}}}
+        type: oas3
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    ListApiSpecExample:
+      value:
+        data:
+          - id: 7710d5c4-d902-410b-992f-18b814155b53
+            type: oas3
+            created_at: '2023-01-01T00:00:00.000Z'
+            updated_at: '2023-01-01T00:00:00.000Z'
+        meta:
+          page:
+            number: 1
+            size: 1
+            total: 1
+    CreateApiRequestMinimalExample:
+      summary: Create API Request (Minimal)
+      value:
+        name: myAPI
+    CreateApiRequestFullExample:
+      summary: Create API Request (Full)
+      value:
+        name: myAPI
+        version: v1
+        slug: my-api-v1
+        labels:
+          env: test
+    CreateApiSpecRequestExample:
+      summary: Create API Specification Request
+      value:
+        content: >-
+          {"openapi":"3.0.3","info":{"title":"Example
+          API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
+          endpoint","responses":{"200":{"description":"Successful
+          response"}}}}}}
+        type: oas3
+    UpdateApiNameRequestExample:
+      summary: Update API Name
+      value:
+        name: new API name
+    UpdateApiVersionRequestExample:
+      summary: Update API Version
+      value:
+        version: v2
+    UpdateApiSpecContentRequestExample:
+      summary: Update API Spec Content
+      value:
+        content: >-
+          {"openapi":"3.0.3","info":{"title":"Example
+          API","version":"1.0.1"},"paths":{"/example":{"get":{"summary":"Example
+          endpoint","responses":{"200":{"description":"Successful
+          response"}}}}}}
+    ApiDocumentExample:
+      value:
+        id: de5c9818-be5c-42e6-b514-e3d4bc30ddeb
+        parent_document_id: null
+        title: API Document
+        slug: api-document
+        status: published
+        content: '# API Document Header'
+        labels:
+          type: tutorial
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    CreateApiDocumentRequestExample:
+      summary: Create API Document Request
+      value:
+        slug: api-document
+        status: published
+        title: API Document
+        content: '# API Document Header'
+        parent_document_id: 417a2aed-9a75-4eca-a943-fa7d88ed6a73
+    CreateApiDocumentRequestMinimalExample:
+      summary: Create API Document Request (Minimal)
+      value:
+        slug: api-document
+        status: published
+        title: API Document
+        content: '# API Document Header'
+    UpdateApiDocumentAttributesRequestExample:
+      summary: Update API Document Attributes Request
+      value:
+        parent_document_id: dd4e1b98-3629-4dd3-acc0-759a726ffee2
+        slug: api-document
+        status: published
+        title: API Document
+    UpdateApiDocumentContentRequestExample:
+      summary: Update API Document Content Request
+      value:
+        content: '# Updated API Document Header'
+    UpdateApiDocumentAttributesAndContentRequestExample:
+      summary: Update API Document Attributes and Content Request
+      value:
+        parent_document_id: dd4e1b98-3629-4dd3-acc0-759a726ffee2
+        slug: api-document
+        status: published
+        title: API Document
+        content: '# Updated API Document Header'
+    CreateApiImplementationRequestExample:
+      value:
+        service:
+          control_plane_id: fd4e1b98-3629-4dd3-acc0-759a726ffee2
+          id: dd4e1b98-3629-4dd3-acc0-759a726ffee2
+    ApiNameBadRequestExample:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: 'kong:trace:8405749052424858251'
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: name
+            rule: min_length
+            minimum: 1
+            reason: name must be longer than or equal to 1 characters
+    ApiDocumentBadRequestExample:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: 'kong:trace:5832302153563197721'
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: slug
+            rule: matches_regex
+            reason: 'slug must match /^[\w-]+$/ regular expression'
+    ApiSpecContentBadRequestExample:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: 'kong:trace:1433447772874964729'
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: content
+            rule: min_length
+            minimum: 1
+            reason: content must be longer than or equal to 1 characters
+    ApiImplementationBadRequestExample:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: 'kong:trace:1433447772874964729'
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: service.id
+            rule: missing_reference
+            reason: Service not found
+    ApiUnauthorizedExample:
+      value:
+        status: 401
+        title: ApiUnauthorized
+        instance: 'kong:trace:8347343766220159418'
+        detail: ApiUnauthorized
+    ApiNotFoundExample:
+      value:
+        status: 404
+        title: Not Found
+        instance: 'kong:trace:6816496025408232265'
+        detail: Not Found
+    ApiForbiddenExample:
+      value:
+        status: 403
+        title: ApiForbidden
+        instance: 'kong:trace:2723154947768991354'
+        detail: You do not have permission to perform this action
+    ApiSlugConflictExample:
+      value:
+        status: 409
+        title: Conflict
+        instance: 'kong:trace:3169213858331814220'
+    ApiSpecConflictExample:
+      value:
+        status: 409
+        title: Conflict
+        instance: 'kong:trace:3169213858331814220'
+        detail: >-
+          Specification for API '9f5061ce-78f6-4452-9108-ad7c02821fd5' already
+          exists
+    ApiSpecHiddenConflictExample:
+      value:
+        status: 409
+        title: Conflict
+        instance: 'kong:trace:9039922446017540182'
+        detail: >-
+          Key (api_id, path)=(23380be0-c15e-4ca8-bcf7-43aadddc91b1, hidden.yaml)
+          already exists.
+    ApiImplementationServiceConflictExample:
+      value:
+        status: 409
+        title: Conflict
+        instance: 'kong:trace:3169213858331814220'
+        detail: This gateway service is already linked to another API
+    ApiImplementationCountConflictExample:
+      value:
+        status: 409
+        title: Conflict
+        instance: 'kong:trace:3169213858331814220'
+        detail: An implementation already exists for this API
+    InvalidApiSortQueryBadRequestExample:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: 'kong:trace:4725061142075238974'
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: sort
+            rule: enum
+            choices:
+              - name
+            reason: '"sort" field must contain any of: [name]'
+    InvalidApiSortQueryNameBadRequestExample:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: 'kong:trace:4725061142075238974'
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: sort
+            rule: enum
+            choices:
+              - name
+            reason: '"sort" field must contain any of: [name]'
+    UnsupportedMediaTypeExample:
+      value:
+        status: 415
+        title: Unsupported Media Type
+        instance: 'kong:trace:8347343766220159418'
+        detail: 'This API only supports requests with `Content-Type: application/json`'

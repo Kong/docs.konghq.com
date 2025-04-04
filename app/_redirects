@@ -141,36 +141,36 @@
 
 # API markdown doc deprecation
 
-/gateway/latest/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
-/gateway/latest/admin-api/workspaces/reference/   /gateway/api/admin-ee/latest/#/Workspaces/list-workspace/
-/gateway/latest/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
-/gateway/latest/admin-api/event-hooks/reference/ /gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks/
-/gateway/latest/admin-api/db-encryption/     /gateway/api/admin-ee/latest/#/Keyring/get-keyring/
-/gateway/latest/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests/
-/gateway/latest/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
+/gateway/latest/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/operations/get-licenses
+/gateway/latest/admin-api/workspaces/reference/   /gateway/api/admin-ee/latest/#/operations/list-workspace
+/gateway/latest/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/operations/get-rbac-users
+/gateway/latest/admin-api/event-hooks/reference/ /gateway/api/admin-ee/latest/#/operations/get-event-hooks
+/gateway/latest/admin-api/db-encryption/     /gateway/api/admin-ee/latest/#/operations/get-keyring
+/gateway/latest/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/operations/get-audit-requests
+/gateway/latest/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/operations/get-admins
 /gateway/latest/admin-api/*                   /gateway/api/admin-ee/latest/
-/gateway/3.5.x/admin-api/#health-routes    /gateway/api/admin-ee/latest/#/Information/get-status/
-/gateway/3.5.x/admin-api/#tags        /gateway/api/admin-ee/latest/#/tags/get-tags/
-/gateway/3.5.x/admin-api/#debug-routes /gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level/
-/gateway/3.5.x/admin-api/#service-object   /gateway/api/admin-ee/latest/#/Services/list-service/
-/gateway/3.5.x/admin-api/#route-object /gateway/api/admin-ee/latest/#/Routes/list-route/
-/gateway/3.5.x/admin-api/#consumer-object  /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
-/gateway/3.5.x/admin-api/#plugin-object    /gateway/api/admin-ee/latest/#/Plugins/list-plugin
-/gateway/3.5.x/admin-api/#certificate-object   /gateway/api/admin-ee/latest/#/Certificates/list-certificate/
-/gateway/3.5.x/admin-api/#ca-certificate-object    /gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate/
-/gateway/3.5.x/admin-api/#sni-object   /gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate/
-/gateway/3.5.x/admin-api/#upstream-object  /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/
-/gateway/3.5.x/admin-api/#target-object    /gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream/
-/gateway/3.5.x/admin-api/#vaults-object    /gateway/api/admin-ee/latest/#/Vaults/list-vault/
-/gateway/3.5.x/admin-api/#keys-object      /gateway/api/admin-ee/latest/#/Keys/list-key/
-/gateway/3.5.x/admin-api/#filter-chains    /gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains/
-/gateway/3.5.x/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
-/gateway/3.5.x/admin-api/workspaces/reference/   /gateway/api/admin-ee/latest/#/Workspaces/list-workspace/
-/gateway/3.5.x/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
-/gateway/3.5.x/admin-api/event-hooks/reference/ /gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks/
-/gateway/3.5.x/admin-api/db-encryption/     /gateway/api/admin-ee/latest/#/Keyring/get-keyring/
-/gateway/3.5.x/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests/
-/gateway/3.5.x/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
+/gateway/3.5.x/admin-api/#health-routes    /gateway/api/admin-ee/latest/#/operations/get-status
+/gateway/3.5.x/admin-api/#tags        /gateway/api/admin-ee/latest/#/operations/get-tags
+/gateway/3.5.x/admin-api/#debug-routes /gateway/api/admin-ee/latest/#/operations/put-debug-cluster-control-planes-nodes-log-level-log_level
+/gateway/3.5.x/admin-api/#service-object   /gateway/api/admin-ee/latest/#/operations/list-service
+/gateway/3.5.x/admin-api/#route-object /gateway/api/admin-ee/latest/#/operations/list-route
+/gateway/3.5.x/admin-api/#consumer-object  /gateway/api/admin-ee/latest/#/operations/list-consumer
+/gateway/3.5.x/admin-api/#plugin-object    /gateway/api/admin-ee/latest/#/operations/list-plugin
+/gateway/3.5.x/admin-api/#certificate-object   /gateway/api/admin-ee/latest/#/operations/list-certificate
+/gateway/3.5.x/admin-api/#ca-certificate-object    /gateway/api/admin-ee/latest/#/operations/list-ca_certificate
+/gateway/3.5.x/admin-api/#sni-object   /gateway/api/admin-ee/latest/#/operations/list-sni-with-certificate
+/gateway/3.5.x/admin-api/#upstream-object  /gateway/api/admin-ee/latest/#/operations/list-upstream
+/gateway/3.5.x/admin-api/#target-object    /gateway/api/admin-ee/latest/#/operations/list-target-with-upstream
+/gateway/3.5.x/admin-api/#vaults-object    /gateway/api/admin-ee/latest/#/operations/list-vault
+/gateway/3.5.x/admin-api/#keys-object      /gateway/api/admin-ee/latest/#/operations/list-key
+/gateway/3.5.x/admin-api/#filter-chains    /gateway/api/admin-ee/latest/#/operations/get-filter-chains
+/gateway/3.5.x/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/operations/get-licenses
+/gateway/3.5.x/admin-api/workspaces/reference/   /gateway/api/admin-ee/latest/#/operations/list-workspace
+/gateway/3.5.x/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/operations/get-rbac-users
+/gateway/3.5.x/admin-api/event-hooks/reference/ /gateway/api/admin-ee/latest/#/operations/get-event-hooks
+/gateway/3.5.x/admin-api/db-encryption/     /gateway/api/admin-ee/latest/#/operations/get-keyring
+/gateway/3.5.x/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/operations/get-audit-requests
+/gateway/3.5.x/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/operations/get-admins
 /gateway/3.5.x/admin-api/*                   /gateway/api/admin-ee/latest/
 
 # 3.6
@@ -188,9 +188,10 @@
 
 # 3.4
 
-/gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process
+/gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process/
+/gateway/:version/production/security-update-process /gateway/:version/support/vulnerability-patching-process/
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
-/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups
+/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/latest/#/operations/get-consumer_groups
 /konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
 
 # 3.3
@@ -199,10 +200,10 @@
 
 # 3.2
 
-/gateway/latest/admin-api/index/#keys-entity    /gateway/api/admin-ee/latest/#/Keys/list-key/
-/gateway/latest/admin-api/index/#vaults-entity  /gateway/api/admin-ee/latest/#/Vaults/list-vault/
-/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/api/admin-ee/latest/#/Keys/list-key/
-/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/api/admin-ee/latest/#/Vaults/list-vault/
+/gateway/latest/admin-api/index/#keys-entity    /gateway/api/admin-ee/latest/#/operations/list-key
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/api/admin-ee/latest/#/operations/list-vault
+/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/api/admin-ee/latest/#/operations/list-key
+/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/api/admin-ee/latest/#/operations/list-vault
 /gateway/latest/os-support/                     /gateway/latest/support-policy/
 /gateway/latest/install-support/                /gateway/latest/support-policy/
 /gateway/3.2.x/os-support/                     /gateway/latest/support-policy/
@@ -222,7 +223,7 @@
 /gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
 /gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
 /gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
-/gateway/2.8.x/admin-api/rbac/examples/                              /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
+/gateway/2.8.x/admin-api/rbac/examples/                              /gateway/api/admin-ee/latest/#/operations/get-rbac-users
 
 #3.x
 /gateway/:version/kong-plugins/request-transformer/add-body-value/  /hub/kong-inc/request-transformer/how-to/add-body-value/
@@ -264,6 +265,64 @@
 /deck/installation/                   /deck/latest/installation/
 /deck/terminology/                    /deck/latest/terminology/
 
+# Deck Single version doc redirects
+/deck/:version/                                          /deck/
+/deck/:version/terminology/                              /deck/
+/deck/:version/design-architecture/                      /deck/
+/deck/:version/use-case/                                 /deck/apiops/
+/deck/:version/compatibility-promise/                    /deck/support/
+/deck/:version/installation/                             /deck/install/
+/deck/:version/guides/getting-started/                   /deck/get-started/
+/deck/:version/guides/backup-restore/                    /deck/gateway/dump/
+/deck/:version/3.0-upgrade/                              /deck/reference/3.0-upgrade/
+/deck/:version/guides/ci-driven-configuration/            /deck/apiops/continuous-integration/
+/deck/:version/guides/apiops/                            /deck/file/openapi2kong/
+/deck/:version/guides/distributed-configuration/          /deck/apiops/federated-configuration/
+/deck/:version/guides/best-practices/                    /deck/reference/faq/#can-i-run-multiple-deck-processes-at-the-same-time
+/deck/:version/guides/kong-enterprise/                   /deck/gateway/rbac/
+/deck/:version/guides/konnect/                           /deck/gateway/konnect-configuration/
+/deck/:version/guides/run-with-docker/                   /deck/install/docker/
+/deck/:version/guides/multi-file-state/                   /deck/gateway/tags/
+/deck/:version/guides/deduplicate-plugin-configuration/   /deck/gateway/deduplicate/
+/deck/:version/guides/defaults/                          /deck/gateway/defaults/
+/deck/:version/guides/security/                          /deck/gateway/sensitive-data/
+/deck/:version/guides/vaults/                            /deck/gateway/sensitive-data/#configuring-kong-vaults
+/deck/:version/guides/environment-variables/             /deck/gateway/sensitive-data/#using-deck-environment-variables
+/deck/:version/reference/entities/                       /deck/reference/entities/
+/deck/:version/reference/deck/                           /deck/gateway/
+/deck/:version/reference/deck_completion/                /deck/
+/deck/:version/reference/deck_file/                       /deck/file/
+/deck/:version/reference/deck_file_add-plugins/           /deck/file/manipulation/plugins/#add-a-new-plugin
+/deck/:version/reference/deck_file_add-tags/              /deck/file/manipulation/tags/#add-tags
+/deck/:version/reference/deck_file_convert/               /deck/file/convert/
+/deck/:version/reference/deck_file_kong2kic/              /deck/file/kong2kic/
+/deck/:version/reference/deck_file_kong2tf/               /deck/file/kong2tf/
+/deck/:version/reference/deck_file_lint/                  /deck/file/lint/
+/deck/:version/reference/deck_file_list-tags/             /deck/file/manipulation/tags/#list-tags
+/deck/:version/reference/deck_file_merge/                 /deck/file/merge/
+/deck/:version/reference/deck_file_namespace/             /deck/file/manipulation/namespace/
+/deck/:version/reference/deck_file_openapi2kong/          /deck/file/openapi2kong/
+/deck/:version/reference/deck_file_patch/                 /deck/file/manipulation/patch/
+/deck/:version/reference/deck_file_remove-tags/           /deck/file/manipulation/tags/#remove-tags
+/deck/:version/reference/deck_file_render/                /deck/file/render/
+/deck/:version/reference/deck_file_validate/              /deck/file/validate/
+/deck/:version/reference/deck_gateway/                   /deck/gateway/
+/deck/:version/reference/deck_gateway_diff/              /deck/gateway/diff/
+/deck/:version/reference/deck_gateway_dump/              /deck/gateway/dump/
+/deck/:version/reference/deck_gateway_ping/              /deck/gateway/ping/
+/deck/:version/reference/deck_gateway_reset/             /deck/gateway/reset/
+/deck/:version/reference/deck_gateway_sync/              /deck/gateway/sync/
+/deck/:version/reference/deck_gateway_validate/          /deck/gateway/validate/
+/deck/:version/reference/deck_version/                   /deck/
+/deck/:version/faqs/                                     /deck/reference/faq/
+
+# Deck Pages that don't exist, but people might guess
+/deck/file/add-tags/                                    /deck/file/manipulation/tags/#add-tags
+/deck/file/remove-tags/                                 /deck/file/manipulation/tags/#remove-tags
+/deck/file/list-tags/                                   /deck/file/manipulation/tags/#list-tags
+/deck/file/patch/                                       /deck/file/manipulation/patch/
+/deck/file/namespace/                                   /deck/file/manipulation/namespace/
+/deck/file/add-plugins/                                 /deck/file/manipulation/plugins/#add-a-new-plugin
 
 # KUBERNETES
 /gateway-oss/2.6.x/kong-for-kubernetes/changelog    https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
@@ -467,8 +526,11 @@
 /hub/smartparkingtechnology/*                      /hub/
 /hub/bitnami/*                                     /gateway/latest/install/
 /hub/kong-inc/kong-terraform-aws/                  https://github.com/kong/kong-terraform-aws
-/hub/:vendor/:plugin/3.0.x/*                                   https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
-/hub/dynatrace/dynatrace/*                                   /hub/kong-inc/dynatrace/:splat
+/hub/dynatrace/dynatrace/*                         /hub/kong-inc/dynatrace/:splat
+/hub/:vendor/:plugin/3.0.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.0.x/:splat
+/hub/:vendor/:plugin/3.1.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.1.x/:splat
+/hub/:vendor/:plugin/3.2.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.2.x/:splat
+/hub/plugins/license-tiers/                        /hub/
 
 # KONNECT
 
@@ -566,7 +628,7 @@
 /gateway/2.7.x/developer-portal/files-api/                 /gateway/2.7.x/developer-portal/portal-api/
 
 # GATEWAY REFERENCES
-/vaults/                               /gateway/api/admin-ee/latest/#/Vaults/list-vault
+/vaults/                               /gateway/api/admin-ee/latest/#/operations/list-vault
 /admin-api/                            /gateway/api/admin-ee/latest/
 /admin-api/*                           /gateway/api/admin-ee/latest/
 /2.6.x/admin-api/                      /gateway/api/admin-ee/latest/
@@ -592,9 +654,9 @@
 /enterprise/*/organization-management/managing-admins  /gateway/latest/configuration/auth/rbac/add-admin
 /enterprise/*/plugins/rbac-api/        /gateway/latest/configure/auth/rbac
 /enterprise/*/organization-management/rbac-and-perms/  /gateway/latest/configuration/auth/rbac
-/admin-api/workspaces   /gateway/api/admin-ee/latest/#/Workspaces/list-workspace
+/admin-api/workspaces   /gateway/api/admin-ee/latest/#/operations/list-workspace
 
-/enterprise/latest/setting-up-admin-api-rbac  /gateway/api/admin-ee/latest/#/rbac/get-rbac-users
+/enterprise/latest/setting-up-admin-api-rbac  /gateway/api/admin-ee/latest/#/operations/get-rbac-users
 /enterprise/2.6.x/property-reference/   /gateway/2.6.x/reference/configuration
 /enterprise/2.7.x/property-reference/   /gateway/2.7.x/reference/configuration
 /enterprise/latest/reference/configuration/  /gateway/latest/reference/configuration
@@ -1083,6 +1145,8 @@
 
 # GATEWAY DOC ARCHIVES
 /gateway/3.0.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.0.x/:splat
+/gateway/3.1.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.1.x/:splat
+/gateway/3.2.x/*                            https://legacy-gateway--kongdocs.netlify.app/gateway/3.2.x/:splat
 
 
 # COMMUNITY DOC REBRANDING

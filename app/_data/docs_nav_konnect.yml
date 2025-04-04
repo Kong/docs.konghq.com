@@ -15,6 +15,8 @@
           url: /private-connections/aws-privatelink/
     - text: Geographic Regions
       url: /geo/
+    - text: Centralized consumer management
+      url: /centralized-consumer-management/
     - text: Compatibility
       url: /compatibility/
     - text: Stages of Software Availability
@@ -58,6 +60,8 @@
         url: /gateway-manager/dedicated-cloud-gateways/azure-peering
       - text: Custom Domains
         url: /gateway-manager/dedicated-cloud-gateways/custom-dns/
+      - text: Data plane logs
+        url: /gateway-manager/dedicated-cloud-gateways/data-plane-logs
     - text: Serverless Gateways
       items: 
         - text: Overview
@@ -121,6 +125,10 @@
               url: /gateway-manager/configuration/vaults/how-to/
         - text: Manage Control Plane Configuration with decK
           url: /gateway-manager/declarative-config/
+    - text: Active Tracing
+      items:
+         - text: Overview
+           url: /gateway-manager/active-tracing
     - text: KIC Association
       url: /gateway-manager/kic/
     - text: Backup and Restore
@@ -152,20 +160,22 @@
       items:
         - text: Overview
           url: /service-catalog/integrations/
+        - text: Datadog
+          url: /service-catalog/integrations/datadog/
         - text: GitHub
           url: /service-catalog/integrations/github/
+        - text: GitLab
+          url: /service-catalog/integrations/gitlab/
         - text: PagerDuty
           url: /service-catalog/integrations/pagerduty/
         - text: SwaggerHub
           url: /service-catalog/integrations/swaggerhub/
         - text: Traceable
           url: /service-catalog/integrations/traceable/
-        - text: Datadog
-          url: /service-catalog/integrations/datadog/
         - text: Slack
           url: /service-catalog/integrations/slack/
-        - text: GitLab
-          url: /service-catalog/integrations/gitlab/
+    - text: Scorecards
+      url: /service-catalog/scorecards/
 
 - title: API Products
   icon: /assets/images/icons/konnect/icn-api-product.svg
