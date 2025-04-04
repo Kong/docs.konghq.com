@@ -43,16 +43,16 @@ You can manage consumers centrally using the {{site.konnect_short_name}} API. On
    Be sure to replace the following with your own values:
    * `{region}`: Region for your {{site.konnect_short_name}} instance. Data planes can only reach out to realms in the same region as the data plane.
    * `$KONNECT_TOKEN`: Replace with your {{site.konnect_short_name}} personal access token.
-   * `$CONTROL_PLANE_ID`: (Optional) Replace with your control plane ID. If you don't specify a control plane, this means that no control plane can access the consumers in the realm. Although this value is optional, we **strongly** recommend setting a control plane on a realm in production. This value is used later when we configure consumer authentication.
+   * `$CONTROL_PLANE_ID`: (Optional) Replace with your control plane ID. If you don't specify a control plane, this means that no control plane can access the consumers in the realm. This value is used later when we configure consumer authentication. You can always add one later using the [Update a realm](/konnect/api/consumers/latest/#/operations/update-realm) endpoint.
    * `ttl`: (Optional) 'ttl' is the time-to-live (TTL) in minutes of the consumer for this realm in the {{site.base_gateway}} cache.
    * `negative_ttl`: (Optional) Represents the TTL of a bad login cache entry.
    * `$CONSUMER_GROUP_NAME`: (Optional) Replace with the name of the consumer groups you want to associate with the realm. When you assign consumers to the realm, this will also associate them with the consumer groups you list here. Consumer groups set here are additive. This means that if you configure the realm with consumer groups A and B, and then configure the consumer with consumer group C, the authenticated consumer will be assigned to consumer groups A, B, and C.
-1. Use the [`/realms/{realmId}/consumers` endpoint](/konnect/api/consumers/latest/#/operations/create-consumer) to create a centrally managed consumer and optionally assign it to a consumer group:
+1. Use the [create a consumer](/konnect/api/consumers/latest/#/operations/create-consumer) endpoint to create a centrally managed consumer and optionally assign it to a consumer group:
    ```sh
    curl -X POST \
    https://{region}.api.konghq.com/v1/realms/{realmId}/consumers \
    -H "Content-Type: application/json" \
-   -H "Authorization: Bearer KONNECT_TOKEN" \
+   -H "Authorization: Bearer $KONNECT_TOKEN" \
    -d '{
          "username": "$CONSUMER_NAME",
          "consumer_groups": ["$CONSUMER_GROUP_NAME"]
@@ -62,11 +62,11 @@ You can manage consumers centrally using the {{site.konnect_short_name}} API. On
 
    Be sure to replace the following with your own values:
    * `{region}`: Region for your {{site.konnect_short_name}} instance. Data planes can only reach out to realms in the same region as the data plane.
-   * `KONNECT_TOKEN`: Replace with your {{site.konnect_short_name}} personal access token.
+   * `$KONNECT_TOKEN`: Replace with your {{site.konnect_short_name}} personal access token.
    * `{realmId}`: The ID of the realm you created previously. 
    * `$CONSUMER_NAME`: Replace with the name of the consumer.
    * `$CONSUMER_GROUP_NAME`: (Optional) Replace with the name of the consumer groups you want to associate with the consumer. Consumer groups set here are additive. This means that if you configure the realm with consumer groups A and B, and then configure the consumer with consumer group C, the authenticated consumer will be assigned to consumer groups A, B, and C.
-1. Configure authentication keys for consumers using the [`/realms/{realmId}/consumers/{consumerId}/keys` endpoint](/konnect/api/consumers/latest/#/operations/create-consumer-key):
+1. Configure authentication keys for consumers using the [Create a key](/konnect/api/consumers/latest/#/operations/create-consumer-key) endpoint:
    ```sh
    curl -X POST \
    https://{region}.api.konghq.com/v1/realms/{realmId}/consumers/{consumerId}/keys \
