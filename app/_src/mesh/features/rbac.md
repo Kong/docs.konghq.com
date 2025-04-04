@@ -545,10 +545,15 @@ The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and g
 
 {{site.mesh_product_name}} creates an `admin` `AccessRole` that allows every action.
 
+{% if_version lte:2.5.x %}
 In a standalone deployment, the `default` `AccessRoleBinding` assigns this role to every authenticated and unauthenticated user.
 
 In a multi-zone deployment, the `default` `AccessRoleBinding` on the global control plane assigns this role to every authenticated and unauthenticated user.
 However, on the zone control plane, the `default` `AccessRoleBinding` is restricted to the `admin` `AccessRole` only.
+{% endif_version %}
+{% if_version gte:2.6.x %}
+The `default` `AccessRoleBinding` assigns this role to every authenticated and unauthenticated user.
+{% endif_version %}
 
 {% navtabs codeblock %}
 {% navtab Kubernetes %}
