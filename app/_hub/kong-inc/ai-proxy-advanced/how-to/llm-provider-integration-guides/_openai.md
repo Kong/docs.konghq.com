@@ -55,6 +55,7 @@ formats:
 {% endplugin_example %}
 <!--vale on-->
 
+
 ### Test the configuration
 
 Make an `llm/v1/chat` type request to test your new endpoint:
@@ -64,3 +65,4 @@ curl -X POST http://localhost:8000/openai-chat \
   -H 'Content-Type: application/json' \
   --data-raw '{ "messages": [ { "role": "system", "content": "You are a mathematician" }, { "role": "user", "content": "What is 1+1?"} ] }'
 ```
+{% include_cached /md/plugins-hub/ai-custom-model-advanced.md %}
