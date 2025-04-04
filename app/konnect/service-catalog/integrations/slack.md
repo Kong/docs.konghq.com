@@ -17,6 +17,7 @@ The Slack integration allows you to see communication channels (via [Slack chann
 1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
 2. Select **Slack**, then **Install Slack**.
 3. Select **Authorize**. 
+   Only Slack admins can authorize the integration.
 
 Slack will ask you to grant consent to {{site.konnect_product_name}}. Both read and write scopes are required.
 
@@ -24,7 +25,7 @@ Slack will ask you to grant consent to {{site.konnect_product_name}}. Both read 
 
 Entity | Description
 -------|------------
-Slack Channel | A Slack channel relating to the Service Catalog service                                              
+Slack Channel | A Slack channel that indicates who owns the Service Catalog service. Ideally, this helps users identify who they can contact if they have questions about a service.                                              
 
 ## Discovery information
 
