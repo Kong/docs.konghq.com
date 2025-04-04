@@ -88,7 +88,7 @@ There are two modes available:
 1.  Configure TCPRoute (Gateway API Only)
 
     {:.note}
-    > If you are using the Gateway APIs (TCPRoute), your Gateway needs additional configuration under `listeners`.
+    > If you are using the Gateway APIs (`TCPRoute`), your Gateway needs additional configuration under `listeners`.
 
     ```bash
     kubectl patch --type=json gateway kong -p='[
