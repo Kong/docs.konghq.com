@@ -1,9 +1,16 @@
 ---
 nav_title: Configure realms for consumers
 title: Configure realms for consumers in {{site.konnect_short_name}}
+minimum_version: 3.10.x
 ---
 
-Starting in {{site.base_gateway]] 3.10.x, credentials that are stored centrally in {{site.konnect_short_name}} that are shared across multiple {{site.base_gateway}} can be validated by configuring `identity_realms` field in the Key Auth plugin. You can use these realms when you create [centrally managed consumers](/konnect/centralized-consumer-management/). A data plane can only reach out to realms in the same region as they are deployed.
+Starting in {{site.base_gateway}} 3.10.x, you can authenticate [consumers that are managed centrally](/konnect/centralized-consumer-management/) in {{site.konnect_short_name}} by configuring the `identity_realms` field in the Key Auth plugin. A data plane can only reach out to realms in the same region as they are deployed.
+
+## Prerequisites
+
+A realm configured with an associated control plane. You can do this with the [`/realms` endpoint](/konnect/api/consumers/latest/#/operations/create-realm).
+
+## Enable authentication
 
 Add the `identity_realms` field as shown below:
 
@@ -12,7 +19,7 @@ curl -X POST \
 https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugins/ \
    --header "accept: application/json" \
    --header "Content-Type: application/json" \
-   --header "Authorization: Bearer TOKEN" \
+   --header "Authorization: Bearer KONNECT_TOKEN" \
    --data '{
       "name": "key-auth",
       "config": {
@@ -32,8 +39,8 @@ https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities
 ```
 Be sure to replace the following with your own values:
    * {region}: Region for your {{site.konnect_short_name}} instance.
-   * {controlPlaneId}: UUID of your control plane.
-   * $KONNECT_TOKEN: Replace with your {{site.konnect_short_name}} personal access token.
+   * {controlPlaneId}: ID of your control plane.
+   * KONNECT_TOKEN: Replace with your {{site.konnect_short_name}} personal access token.
    * $REALM_ID: The ID of the realm you created previously. 
    * $REGION: Region for your {{site.konnect_short_name}} instance.
 
