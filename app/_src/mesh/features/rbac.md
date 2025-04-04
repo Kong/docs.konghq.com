@@ -551,7 +551,7 @@ In a standalone deployment, the `default` `AccessRoleBinding` assigns this role 
 In a multi-zone deployment, the `default` `AccessRoleBinding` on the global control plane assigns this role to every authenticated and unauthenticated user.
 However, on the zone control plane, the `default` `AccessRoleBinding` is restricted to the `admin` `AccessRole` only.
 {% endif_version %}
-{% if_version lte:2.6.x %}
+{% if_version gte:2.6.x %}
 The `default` `AccessRoleBinding` assigns this role to every authenticated and unauthenticated user.
 {% endif_version %}
 
