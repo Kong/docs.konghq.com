@@ -191,9 +191,8 @@ receives on port 9000 to `echo` service on port 1025.
 {% navtabs codeblock %}
 {% navtab Gateway API %}
 ```bash
-# Wait a few seconds for the controller to process the route
-sleep 5
-kubectl get tcproute echo-plaintext -ojsonpath='{.status.parents[0].conditions[?(@.reason=="Accepted")]}'
+# Wait for the controller to process the route
+kubectl wait tcproute echo-plaintext --for='jsonpath={.status.parents[0].conditions[?(@.reason=="Accepted")]}=True'
 ```
 {% endnavtab %}
 {% navtab Ingress %}
@@ -253,11 +252,11 @@ echo-plaintext   192.0.2.3   3m18s
 ## Route based on SNI
 
 {:.note}
-> For Gateway API, we use TLSRoute for SNI-based routing because it's specifically designed to handle TLS traffic with SNI information, while still proxying the underlying TCP stream. This is still considered TCP proxying, just with the added capability of routing based on the SNI in the TLS handshake.
+> For Gateway API, we use `TLSRoute` for SNI-based routing because it's specifically designed to handle TLS traffic with SNI information, while still proxying the underlying TCP stream. This is still considered TCP proxying, just with the added capability of routing based on the SNI in the TLS handshake.
 
 {% include /md/kic/add-certificate.md hostname='tls9443.kong.example' release=page.release %}
 
-1. Create the TLSRoute (for Gateway API) or TCPIngress (for Ingress) resource to route TLS-encrypted traffic to the `echo` service.
+1. Create the `TLSRoute` (for Gateway API) or `TCPIngress` (for `Ingress`) resource to route TLS-encrypted traffic to the `echo` service.
   {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab Gateway API %}
