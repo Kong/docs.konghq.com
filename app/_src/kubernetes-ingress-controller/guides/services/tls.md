@@ -38,7 +38,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
 1. Create a `Gateway` resource.
 
     ```yaml
-    apiVersion: gateway.networking.k8s.io/v1
+    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
       name: example-gateway
@@ -59,7 +59,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
 2. Bind a `HTTPRoute` to the `Gateway`.
 
     ```yaml
-    apiVersion: gateway.networking.k8s.io/v1
+    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: HTTPRoute
     metadata:
       name: demo-example
@@ -125,7 +125,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
 1. Create a `Gateway` resource.
 
     ```yaml
-    apiVersion: gateway.networking.k8s.io/v1
+    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
       name: example-gateway-passthrough
