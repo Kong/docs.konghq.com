@@ -12,6 +12,10 @@ _Type: External_
 
 The Slack integration allows you to see communication channels (via [Slack channels](https://slack.com/help/articles/360017938993-What-is-a-channel)) that are relevant to a Service Catalog service.
 
+## Prerequisites
+
+* You need the Slack Admin privileges to authorize the integration.
+
 ## Authenticate the Slack integration
 
 1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
