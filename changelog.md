@@ -68,10 +68,8 @@ This was creating confusion for customers wanting to use decK with the Konnect C
 
 ### [fix: Centralized consumers parameter descriptions](https://github.com/Kong/docs.konghq.com/pull/8647) (2025-04-04)
 
-<!-- What did you change and why? -->
 Improved consumer group (and eventually allowed control plane) descriptions and added links to API endpoints.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 https://kongstrong.slack.com/archives/C074KG8NX1B/p1743518122340309
 
 #### Modified
@@ -82,10 +80,7 @@ https://kongstrong.slack.com/archives/C074KG8NX1B/p1743518122340309
 
 ### [chore(custom-pages): add notice about the 1000000 char limit](https://github.com/Kong/docs.konghq.com/pull/8646) (2025-04-01)
 
-<!-- What did you change and why? -->
 I added a notice about the limitations of custom pages. [Slack thread](https://kongstrong.slack.com/archives/C02D0BPQC85/p1743516809805849?thread_ts=1743446463.368109&cid=C02D0BPQC85)
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -106,20 +101,12 @@ https://kongstrong.slack.com/archives/C06GB3KM155/p1743148798458789
 
 ### [Add AI RAG Injector Admin api usage](https://github.com/Kong/docs.konghq.com/pull/8636) (2025-04-02)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
 
 
 ### [kgo: add KGO 1.5 docs](https://github.com/Kong/docs.konghq.com/pull/8588) (2025-04-02)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 Add [KGO 1.5](https://github.com/Kong/gateway-operator/releases/tag/v1.5.0) docs
 
