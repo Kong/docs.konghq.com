@@ -27,7 +27,7 @@ Therefore, when migrating, you will need at least two new groups: a control plan
     curl -i -X POST https://<region>.api.konghq.com/v2/control-planes \
         -H "Authorization: Bearer <your_KPAT>" \
         --data name=CPG \
-        --data cluster_type=CLUSTER_TYPE_COMPOSITE
+        --data cluster_type=CLUSTER_TYPE_CONTROL_PLANE_GROUP
     ```
 
 1. Create a new standard control plane:
