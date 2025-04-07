@@ -21,7 +21,6 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 
 ## Steps
 
-{% capture tabs %}
 {% navtabs %}
 {% navtab Control Plane <> Data Plane Communication %}
 
@@ -33,7 +32,6 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 
 1. Find the correct service name for your region in the tables below. Open the tab that matches your AWS region and use the PrivateLink service name for your {{site.konnect_short_name}} geo. For example, `com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db` for the us-east-2 AWS region and US {{site.konnect_short_name}} geo.
 
-{% capture tabs %}
 {% navtabs %}
 
 {% navtab us-east-2 %}
@@ -106,7 +104,6 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 | US | com.amazonaws.vpce.ap-southeast-2.vpce-svc-0600dd84f39e7b12a | us.svc.konghq.com |
 {% endnavtab %}
 {% endnavtabs %}
-{% endcapture %}
 {{ tabs | indent }}
 
 1. Verify the service. If the service name can't be verified, contact [Kong Support](https://support.konghq.com/support/s/).
@@ -135,7 +132,6 @@ cluster_telemetry_server_name = us.svc.konghq.com
 
 1. Find the correct service name for your region in the tables below. Open the tab that matches your AWS region and use the PrivateLink service name for your {{site.konnect_short_name}} geo. For example, `com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db` for the us-east-2 AWS region and US {{site.konnect_short_name}} geo.
 
-{% capture tabs %}
 {% navtabs %}
 
 {% navtab eu-central-1 %}
@@ -188,7 +184,6 @@ cluster_telemetry_server_name = us.svc.konghq.com
 | GLOBAL| com.amazonaws.vpce.ap-southeast-2.vpce-svc-0dddc28f5f8b68cbc | global.svc.konghq.com |
 {% endnavtab %}
 {% endnavtabs %}
-{% endcapture %}
 {{ tabs | indent }}
 
 1. Verify the service. If the service name can't be verified, contact [Kong Support](https://support.konghq.com/support/s/).
@@ -201,8 +196,7 @@ cluster_telemetry_server_name = us.svc.konghq.com
 
 1. Repeat steps 1-7 for `GLOBAL` Konnect geographical region to make Global API requests.
 
-1. Konnect Admin API requests or [decK](https://docs.konghq.com/deck/) commands from dataplane nodes should return the expected reponse correctly now.
+1. Konnect Admin API requests or [decK](/deck/) commands from dataplane nodes should return the expected response correctly now.
 
 {% endnavtab %}
 {% endnavtabs %}
-{% endcapture %}
