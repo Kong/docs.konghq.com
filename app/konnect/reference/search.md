@@ -120,7 +120,7 @@ The following table describes different example search queries:
 | Simple | `Dana` | This query searches for entities with the a searchable attribute containing the value "Dana". |
 | Simple | `name:Dana` | This query searches for entities with the name "Dana". |
 | Simple | `name:"Dana H"` | This query searches for entities with the name "Dana H". The quotes around "Dana H" indicate an exact match, including spaces. |
-| Logical | `type:team AND label.department:qa AND name:*_qa` | This query finds teams in the QA department. It combines multiple selectors: `type:team` limits the search to the "teams" entity type, `label.department:qa` exactly matches the "department" label, and `name:*_qa` filters for teams that have a `_qa` suffix. |
+| Logical | `type:team AND name:*_qa` | This query finds teams in the QA department. It combines multiple selectors: `type:team` limits the search to the "teams" entity type and `name:*_qa` filters for teams that have a `_qa` suffix. |
 | Logical | `name:*dev* OR name:*qa* OR name:*test` | This query finds any entities that contain `dev` or `qa` or `test` in its name. It combines multiple `name:` selectors to limit the results to entities that match one of these terms. |
 | Exclusion | `type:system_account AND NOT *temp*` | This query finds system accounts that don't contain `temp` in their name and description. The `NOT` logical operator is used to exclude entities. |
 | Exclusion | `type:team AND NOT name:team-blue AND NOT description:*blue*` | This query finds teams that are not named `team-blue` and don't contain "blue" in its description. The `NOT` logical operator is used to exclude entities. |
