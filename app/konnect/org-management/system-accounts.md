@@ -63,18 +63,21 @@ Create a system account token by sending a `POST` request containing the `accoun
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v3/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/access-tokens
+  --url 'https://global.api.konghq.com/v3/system-accounts/<account-id>/access-tokens'
+  --header 'Authorization: Bearer <personal-access-token> \
+  --header 'content-type: application/json' \
+  --data '{"name":"Sample Access Token","expires_at":"2025-05-07T14:44:48.645Z"}'
 ```
 You will receive a `201` response code, and a response body containing the access token for the system account:
 
 ```json
 {
-  "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+  "id": "80f0685e-c103-488b-a4de-4515e2a0d3e0",
   "name": "Sample Access Token",
-  "created_at": "2023-01-12:15:54Z",
-  "expires_at": "2023-11-15T00:00:00Z",
-  "updated_at": "2023-01-13T21:04:22Z",
-  "last_used_at": "2023-01-18T06:45:40Z",
+  "created_at": "2025-01-12:15:54Z",
+  "expires_at": "2025-05-07T14:44:48.645Z",
+  "updated_at": "2025-01-13T21:04:22Z",
+  "last_used_at": "2025-01-18T06:45:40Z",
   "token": "spat_12345678901234567890123456789012345678901234567890"
 }
 ```
