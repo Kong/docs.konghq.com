@@ -90,10 +90,47 @@ For more information about how to configure the key mappings and RBAC settings, 
 
 #### Role binding
 
-| {{site.mesh_product_name}} key      | Description  |
-|-----------------------------|--------------|
-| `type` | The resource type. For role binding, this should be `AccessRoleBinding`. |
-| `name` | Name for the role that you want to display in the {{site.konnect_short_name}} UI. |
-| `subjects.type` | The type of subject you want to bind the role to. This must be either `User` or `Group`. |
-| `subjects.name` | When `subjects.type` is `User`, this should be the {{site.konnect_short_name}} email address associated with them. When `subjects.type` is `Group`, this should be the name of the {{site.konnect_short_name}} team you want to bind the role to. |
-| `roles` | List of roles that you want to assign to the users or groups/teams. |
+{% if_version gte:2.11.x %}
+To obtain current user information you can use:
+
+```bash
+kumactl who-am-i
+```
+
+This will output:
+
+```
+User: {
+   "name": "your.name@example.com",
+   "groups": [
+      "organization-admin",
+      "team-a",
+      "mesh-system:authenticated"
+   ]
+}
+```
+
+for a [User Account Token](https://docs.konghq.com/konnect/org-management/access-tokens/) and
+
+```
+User: {
+   "name": "spat:97f08003-c893-4e42-88f1-e43088e51d1a",
+   "groups": [
+      "mesh-system:authenticated",
+      "team-b"
+   ]
+}
+```
+
+for a [System Account Token](https://docs.konghq.com/konnect/org-management/access-tokens/#main).
+
+You can use that information to bind the role to a user or group/team.
+{% endif_version %}
+
+| {{site.mesh_product_name}} key | Description                                                                                                                                                                                                                                                                                                                                                                  |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `type`                         | The resource type. For role binding, this should be `AccessRoleBinding`.                                                                                                                                                                                                                                                                                                     |
+| `name`                         | Name for the role that you want to display in the {{site.konnect_short_name}} UI.                                                                                                                                                                                                                                                                                            |
+| `subjects.type`                | The type of subject you want to bind the role to. This must be either `User` or `Group`.                                                                                                                                                                                                                                                                                     |
+| `subjects.name`                | When `subjects.type` is `User`, this should be the {{site.konnect_short_name}} email address associated with them (or a `spat:<uuid>` when using [System Account Token](https://docs.konghq.com/konnect/org-management/access-tokens/#main)). When `subjects.type` is `Group`, this should be the name of the {{site.konnect_short_name}} team you want to bind the role to. |
+| `roles`                        | List of roles that you want to assign to the users or groups/teams.                                                                                                                                                                                                                                                                                                          |
