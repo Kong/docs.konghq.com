@@ -2,6 +2,127 @@
 
 <!--vale off-->
 
+## Week 14
+
+### [Added the memory requirement for the PII service docker image](https://github.com/Kong/docs.konghq.com/pull/8660) (2025-04-03)
+
+The memory requirement is added to the ai-sanitizer plugin's document page as a note, so users can successfully run the image
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-sanitizer/overview/
+
+
+### [fix(docs): Add missing bracket in URL link](https://github.com/Kong/docs.konghq.com/pull/8659) (2025-04-03)
+
+- Fixed broken markdown link from `templates](/hub/...)` to `[templates](/hub/...)`
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-callout/overview/
+
+
+### [Service Catalog feedback](https://github.com/Kong/docs.konghq.com/pull/8657) (2025-04-02)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/service-catalog/
+- https://docs.konghq.com/konnect/service-catalog/integrations/datadog
+- https://docs.konghq.com/konnect/service-catalog/integrations/
+- https://docs.konghq.com/konnect/service-catalog/integrations/pagerduty
+- https://docs.konghq.com/konnect/service-catalog/integrations/swaggerhub
+- https://docs.konghq.com/konnect/service-catalog/integrations/traceable
+- https://docs.konghq.com/konnect/service-catalog/scorecards/
+
+
+### [Fix: Priority load balancing example](https://github.com/Kong/docs.konghq.com/pull/8656) (2025-04-02)
+
+Fix algorithm field in priority load balancing example for AI Proxy Advanced
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/how-to/
+
+
+### [Fix: spelling](https://github.com/Kong/docs.konghq.com/pull/8654) (2025-04-02)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/upgrade
+
+
+### [Fix: Update config-store.md for decK tab steps](https://github.com/Kong/docs.konghq.com/pull/8648) (2025-04-02)
+
+Added missing steps from the decK tab for creating and linking the config store to the vault before referencing it in the decK YAML config file.
+
+This was creating confusion for customers wanting to use decK with the Konnect Config Store.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/config-store
+
+
+### [fix: Centralized consumers parameter descriptions](https://github.com/Kong/docs.konghq.com/pull/8647) (2025-04-04)
+
+Improved consumer group (and eventually allowed control plane) descriptions and added links to API endpoints.
+
+https://kongstrong.slack.com/archives/C074KG8NX1B/p1743518122340309
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/key-auth/how-to/
+- https://docs.konghq.com/konnect/centralized-consumer-management
+
+
+### [chore(custom-pages): add notice about the 1000000 char limit](https://github.com/Kong/docs.konghq.com/pull/8646) (2025-04-01)
+
+I added a notice about the limitations of custom pages. [Slack thread](https://kongstrong.slack.com/archives/C02D0BPQC85/p1743516809805849?thread_ts=1743446463.368109&cid=C02D0BPQC85)
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/customization/custom-pages
+
+
+### [Fix: Add note about private Docker image](https://github.com/Kong/docs.konghq.com/pull/8639) (2025-03-31)
+
+Added note to tell users to reach out to support to get access to the private AI PII Service Docker image
+
+https://kongstrong.slack.com/archives/C06GB3KM155/p1743148798458789
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-sanitizer/how-to/
+- https://docs.konghq.com/hub/kong-inc/ai-sanitizer/overview/
+
+
+### [Add AI RAG Injector Admin api usage](https://github.com/Kong/docs.konghq.com/pull/8636) (2025-04-02)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+
+
+### [kgo: add KGO 1.5 docs](https://github.com/Kong/docs.konghq.com/pull/8588) (2025-04-02)
+
+Add [KGO 1.5](https://github.com/Kong/gateway-operator/releases/tag/v1.5.0) docs
+
+Depends on 
+- https://github.com/Kong/gateway-operator/issues/1231
+
+Related:
+- #8560
+- #8576
+
+Closes https://github.com/Kong/gateway-operator/issues/1202
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/changelog
+
 ## Week 13
 
 ### [Fix: title AI RAG INJECTOR](https://github.com/Kong/docs.konghq.com/pull/8629) (2025-03-28)
