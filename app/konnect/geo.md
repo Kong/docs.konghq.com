@@ -32,7 +32,8 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 * North America:
     * Ohio (`us-east-2`)
     * Oregon (`us-west-2`)
-    * California, USA (`us-west-1`)
+    * N. Virginia (`us-east-1`)
+    * N. California(`us-west-1`)
     * Montreal (`ca-central-1`)
 * Europe:
     * Frankfurt (`eu-central-1`)
@@ -47,7 +48,6 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
     * Mumbai (`ap-south-1`)
     * Hyderabad (`ap-south-2`)
     * Seoul (`ap-northeast-2`)
-    * Jakarta (`ap-southeast-3`)
 * Middle East, and Africa
     * United Arab Emirates (`me-central-1`)
 
@@ -60,7 +60,6 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
     * Washington (`westus2`)
 * Europe:
     * Frankfurt (`germanywestcentral`)
-    * Ireland (`northeurope`)
     * UK South (`uksouth`)
 
 {% endnavtab %}
