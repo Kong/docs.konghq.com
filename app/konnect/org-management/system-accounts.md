@@ -63,9 +63,9 @@ Create a system account token by sending a `POST` request containing the `accoun
 
 ```sh
 curl --request POST \
-  --header 'Authorization: Bearer pat_12345678901234567890123456789012345678901234567890' \
+  --url 'https://global.api.konghq.com/v3/system-accounts/<account-id>/access-tokens'
+  --header 'Authorization: Bearer <personal-access-token> \
   --header 'content-type: application/json' \
-  --url 'https://global.api.konghq.com/v3/system-accounts/497f6eca-6276-4993-bfeb-53cbbbba6f08/access-tokens'
   --data '{"name":"Sample Access Token","expires_at":"2025-05-07T14:44:48.645Z"}'
 ```
 You will receive a `201` response code, and a response body containing the access token for the system account:
