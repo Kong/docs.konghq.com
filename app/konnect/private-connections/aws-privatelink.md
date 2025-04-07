@@ -200,7 +200,7 @@ cluster_telemetry_server_name = us.svc.konghq.com
 
 1. Repeat steps 1-7 for `GLOBAL` Konnect geographical region to make Global API requests.
 
-1. Konnect Admin API requests or [decK](/deck/) commands from dataplane nodes should return the expected response correctly now.
+1. Konnect Admin API requests or [decK](/deck/) commands from dataplane nodes can be made now.
 
 {% endnavtab %}
 {% endnavtabs %}
