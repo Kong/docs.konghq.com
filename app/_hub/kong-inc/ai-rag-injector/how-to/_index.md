@@ -64,7 +64,7 @@ plugins:
       dimensions: 768
 ```
 
-### 2. Make a AI request to the AI Proxy Advanced plugin
+### 2. Ingest content to the vector database
 
 Before feeding data to AI Gateway, split your input data into chunks using a tool like `langchain_text_splitters`. Then, you can feed the split chunks into AI Gateway using the Kong Admin API. 
 	
