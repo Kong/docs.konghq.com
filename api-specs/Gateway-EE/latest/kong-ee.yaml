@@ -13903,6 +13903,11 @@ paths:
       description: |
         Change the log level of a node.
   /rbac/users:
+    
+    parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
     get:
       summary: List Users
       tags:
@@ -13931,7 +13936,11 @@ paths:
         $ref: '#/components/requestBodies/rbac-request'
       description: Add a User
   '/rbac/users/{name_or_id}':
+  
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
@@ -13975,6 +13984,11 @@ paths:
       tags:
         - RBAC
   /rbac/roles:
+  
+    parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
     get:
       summary: List Roles
       tags:
@@ -14102,6 +14116,9 @@ paths:
       description: Add a role.
   '/rbac/roles/{name_or_id}':
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
@@ -14265,6 +14282,9 @@ paths:
       description: Delete a role
   '/rbac/roles/{name_or_id}/endpoints':
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
@@ -14450,6 +14470,9 @@ paths:
                   description: A string describing the RBAC permission object.
   '/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}':
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
@@ -14632,6 +14655,9 @@ paths:
         - RBAC
   '/rbac/roles/{name_or_id}/entities':
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
@@ -14799,6 +14825,9 @@ paths:
           Request Body
   '/rbac/roles/{name_or_id}/entities/{entity_id}':
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
@@ -14958,6 +14987,9 @@ paths:
         - RBAC
   '/rbac/roles/{name_or_id}/permissions':
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
@@ -15048,6 +15080,9 @@ paths:
       description: List Role Permissions
   '/rbac/users/{name_or_id}/roles':
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
@@ -15231,6 +15266,9 @@ paths:
       description: Delete a Role from a User
   '/rbac/users/{name_or_id}/permissions':
     parameters:
+      - $ref: '#/components/parameters/pagination-size'
+      - $ref: '#/components/parameters/pagination-offset'
+      - $ref: '#/components/parameters/pagination-tags-filter'
       - schema:
           type: string
         name: name_or_id
