@@ -3,7 +3,7 @@ search_aliases:
   - kafka-consume
   - events
 dbless_compatible: 'yes'
-free: true
+free: false
 enterprise: true
 konnect: true
 network_config_opts: All

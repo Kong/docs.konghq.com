@@ -5,7 +5,7 @@ search_aliases:
   - confluent cloud
   - kafka
 dbless_compatible: 'yes'
-free: true
+free: false
 enterprise: true
 konnect: true
 network_config_opts: All
