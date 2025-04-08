@@ -1,6 +1,6 @@
 ---
 title: Create a private connection with AWS PrivateLink
-subtitle: Connect your data plane to your Konnect control plane or make Konnect Admin API calls with a private connection to stay compliant and save data transfer costs
+subtitle: Connect your data plane to your Konnect control plane or make Konnect API calls (including Admin API calls for control plane configuration) with a private connection to stay compliant and save data transfer costs
 content-type: reference
 ---
 
@@ -126,13 +126,13 @@ cluster_telemetry_server_name = us.svc.konghq.com
 {% endnavtab %}
 
 {% navtab Konnect Admin API %}
-1. In the AWS Console, connect to region from where Konnect Admin API calls would be made, open the Endpoints section of the VPC dashboard and [create a new endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws).
+1. In the AWS Console, connect to region from where Konnect API calls would be made, open the Endpoints section of the VPC dashboard and [create a new endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws).
 
-1. Enter a name tag for the endpoint that includes the {{site.konnect_short_name}} control plane geo that you want to connect to. For example: `konnect-us-geo`.
+1. Enter a name tag for the endpoint that includes the {{site.konnect_short_name}} control plane region that you want to connect to. For example: `konnect-us-region`.
 
 1. Select the **Endpoint services that use NLBs and GWLBs** service category.
 
-1. Find the correct service name for your region in the tables below. Open the tab that matches your AWS region and use the PrivateLink service name for your {{site.konnect_short_name}} geo. For example, `com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db` for the us-east-2 AWS region and US {{site.konnect_short_name}} geo.
+1. Find the correct service name for your region in the tables below. Open the tab that matches your AWS region and use the PrivateLink service name for your {{site.konnect_short_name}} geo. For example, `com.amazonaws.vpce.us-east-2.vpce-svc-096fe7ba54ebc32db` for the us-east-2 AWS region and US {{site.konnect_short_name}} region.
 
 {% capture tabs %}
 {% navtabs %}
@@ -200,7 +200,7 @@ cluster_telemetry_server_name = us.svc.konghq.com
 
 1. Repeat steps 1-7 for `GLOBAL` Konnect geographical region to make Global API requests.
 
-1. Konnect Admin API requests or [decK](/deck/) commands from dataplane nodes can be made now.
+1. Konnect Admin API requests or [decK](/deck/) commands from dataplane nodes can be made now. Konnect API requests for other regional entities such as Portal can also be made now.
 
 {% endnavtab %}
 {% endnavtabs %}
