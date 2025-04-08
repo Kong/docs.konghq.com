@@ -154,9 +154,13 @@ Verify the zone control plane is connected with authentication by looking at the
 
 By default, a connection from the zone control plane to the global control plane is secured with TLS. You should also configure the zone control plane to [verify the certificate authority (CA) of the global control plane][certs].
 
+{% if_version lte:2.9.x %}
+
 ## Legacy Control Plane Token
 
 You can still authenticate a control plane using the separate [Control Plane Token](/mesh/{{page.release}}/features/kds-auth/), but it is deprecated and will be removed in the future.
+
+{% endif_version %}
 
 <!-- links -->
 [zone-proxy]: /mesh/{{page.release}}/production/cp-deployment/zoneproxy-auth
