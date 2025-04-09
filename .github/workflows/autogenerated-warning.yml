@@ -17,6 +17,9 @@ jobs:
               issue_number: context.issue.number
             });
             return labels.map(l => l.name).includes('ci:manual-approve:generated-files')
+      - uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
+        with:
+          egress-policy: audit
     outputs:
       result: ${{ steps.labels.outputs.result }}
   add-comment:
