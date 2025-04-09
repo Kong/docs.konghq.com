@@ -24,6 +24,10 @@ jobs:
     outputs:
       number: ${{ steps.get-current-pr.outputs.number }}
     steps:
+      - uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
+        with:
+          egress-policy: audit
+          
       - name: 'Get current do-not-close PR'
         id: get-current-pr
         env:
@@ -39,6 +43,10 @@ jobs:
     if: ${{ ! needs.get-current-do-not-close-pr.outputs.number }} # Do not overwrite the PR if there's a do-not-close label
     runs-on: ubuntu-latest
     steps:
+      - uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
+        with:
+          egress-policy: audit
+          
       - name: 'Check-out current repo'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
