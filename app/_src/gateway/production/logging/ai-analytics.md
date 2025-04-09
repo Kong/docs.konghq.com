@@ -128,7 +128,7 @@ Each log entry includes the following details:
 {% if_version gte:3.8.x %}
 ### Caches logging
 
-If you're using the [AI Semantic Cache plugin](/hub/kong-inc/), logging will include some additional details about caching:
+If you're using the [AI Semantic Cache plugin](/hub/kong-inc/ai-semantic-cache/), logging will include some additional details about caching:
 
 ```json
 "ai": {
