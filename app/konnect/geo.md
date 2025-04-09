@@ -61,8 +61,23 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 * Europe:
     * Frankfurt (`germanywestcentral`)
     * UK South (`uksouth`)
+    * Ireland (`northeurope`)
 
 {% endnavtab %}
+
+{% navtab Google %}
+{{site.konnect_saas}} Dedicated Cloud Gateways support the following Google Cloud geos: 
+
+* North America:
+    * South Carolina (`us-east1`)
+    * Montreal (`northamerica-northeast1`)
+* Europe:
+    * Belgium (`europe-west1`)
+* Asia Pacific:
+    * Tokyo (`asia-northeast1`)
+    
+{% endnavtab %}
+
 {% endnavtabs %}
 ## Geo management
 
