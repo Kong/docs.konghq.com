@@ -18,6 +18,15 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-date">April<br>09</div>
 <div class="changelog-entry">
 <div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/slack-integration-in-service-catalog">Slack Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">You can now map Slack channels as a new Resource type in Service Catalog.  This integration enables discovery of all channels in a connected Slack workspace and allows those channels to be mapped to individual Services, making it easier for developers to find and contact Service or API owners.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
 <a href="https://app.getbeamer.com/kongreleases/en/custom-dashboards-tech-preview-now-available-by-default-to-all-users-yMwvg6XR">Custom Dashboards Tech Preview now available by default to all users</a>
 </div>
 <div class="changelog-description">Custom dashboards are off to a strong start!  In just three weeks of early access, we've seen great usage and received tons of helpful feedback—thank you!</div>
