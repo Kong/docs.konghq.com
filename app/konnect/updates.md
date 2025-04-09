@@ -18,6 +18,15 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-date">April<br>09</div>
 <div class="changelog-entry">
 <div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/slack-integration-in-service-catalog">Slack Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">You can now map Slack channels as a new Resource type in Service Catalog.  This integration enables discovery of all channels in a connected Slack workspace and allows those channels to be mapped to individual Services, making it easier for developers to find and contact Service or API owners.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>09</div>
+<div class="changelog-entry">
+<div class="changelog-title">
 <a href="https://app.getbeamer.com/kongreleases/en/custom-dashboards-tech-preview-now-available-by-default-to-all-users-yMwvg6XR">Custom Dashboards Tech Preview now available by default to all users</a>
 </div>
 <div class="changelog-description">Custom dashboards are off to a strong start!  In just three weeks of early access, we've seen great usage and received tons of helpful feedback—thank you!</div>
@@ -32,6 +41,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">We are pleased to announce that Konnect API calls, including the API calls made through decK and Terraform can now be made through AWS PrivateLink.  Users can leverage AWS PrivateLink for a secure connection to Konnect APIs (including decK and Terraform).</div>
 </div>
 </div>
+
+
 
 
 ## March 2025
@@ -74,6 +85,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">We’re proud to announce the Beta launch of our all-new Dev Portal!  This release provides a highly customizable API consumption experience to establish API producers’ brand and project a strong developer experience.</div>
 </div>
 </div>
+
 
 
 
@@ -136,6 +148,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">We are excited to announce the Notification Hub in Konnect.  You have the option to get notifications delivered in Konnect UI or to their registered emails.</div>
 </div>
 </div>
+
 
 
 ## December 2024
