@@ -5,6 +5,21 @@
 
 ### {{site.base_gateway}} 3.9.0.0
 * Added support for the Hugging Face provider to the AI Rate Limiting Advanced plugin.
+  To import the decK configuration files that are exported from earlier versions, use the following script to transform it so that the configuration file can be compatible with the latest version:
+
+  ```
+  yq -i '(
+  .plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[] | select(.name == "huggingface") | .name
+  ) |= "requestPrompt" |
+  (
+  .consumers[] | .plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[] | select(.name == "huggingface") | .name
+  ) |= "requestPrompt" |
+  (
+  .consumer_groups[] | .plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[] | select(.name == "huggingface") | .name
+  ) |= "requestPrompt"
+  ' config.yaml
+  ```
+
 * Updated the error message for exceeding the rate limit to include AI-related information.
 * Fixed an issue where the plugin yielded an error when incrementing the rate limit counters in non-yieldable phases.
 * Fixed an issue where the plugin could fail to authenticate to Redis correctly with vault-referenced Redis configuration.
