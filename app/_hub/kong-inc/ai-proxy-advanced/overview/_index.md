@@ -49,13 +49,13 @@ This plugin currently only supports REST-based full text responses.
 ## Load balancing
 
 This plugin supports several load-balancing algorithms, similar to those used for Kong upstreams, allowing efficient distribution of requests across different AI models. The supported algorithms include:
-* **Lowest-usage**: The lowest-usage algorithm in AI Proxy Advanced is based on the volume of usage for each model. It balances the load by distributing requests to models with the lowest usage, measured by factors such as prompt token counts, response token counts, {% if_version gte:3.10.x %} cost, {% endif_version %} or other resource metrics.
-* **Lowest-latency**: The lowest-latency algorithm is based on the response time for each model. It distributes requests to models with the lowest response time.
-* **Semantic**: The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.
-* [Round-robin (weighted)](/gateway/latest/how-kong-works/load-balancing/#round-robin)
-* [Consistent-hashing (sticky-session on given header value)](/gateway/latest/how-kong-works/load-balancing/#consistent-hashing)
+* [Lowest-usage](/hub/kong-inc/ai-proxy-advanced/how-to/load-balancing/#lowest-usage): The lowest-usage algorithm in AI Proxy Advanced is based on the volume of usage for each model. It balances the load by distributing requests to models with the lowest usage, measured by factors such as prompt token counts, response token counts, {% if_version gte:3.10.x %} cost, {% endif_version %} or other resource metrics.
+* [Lowest-latency](/hub/kong-inc/ai-proxy-advanced/how-to/load-balancing/#lowest-latency): The lowest-latency algorithm is based on the response time for each model. It distributes requests to models with the lowest response time.
+* [Semantic](/hub/kong-inc/ai-proxy-advanced/how-to/load-balancing/#semantic-routing): The semantic algorithm distributes requests to different models based on the similarity between the prompt in the request and the description provided in the model configuration. This allows Kong to automatically select the model that is best suited for the given domain or use case. This feature enhances the flexibility and efficiency of model selection, especially when dealing with a diverse range of AI providers and models.
+* [Round-robin (weighted)](/hub/kong-inc/ai-proxy-advanced/how-to/load-balancing/#weighted-round-robin)
+* [Consistent-hashing (sticky-session on given header value)](/hub/kong-inc/ai-proxy-advanced/how-to/load-balancing/#consistent-hashing)
 {% if_version gte:3.10.x -%}
-* [Priority Group](/gateway/latest/how-kong-works/load-balancing/#priority)
+* [Priority Group](/hub/kong-inc/ai-proxy-advanced/how-to/load-balancing/#priority)
 {% endif_version %}
 
 
