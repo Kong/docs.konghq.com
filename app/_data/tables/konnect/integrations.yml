@@ -21,6 +21,10 @@ integrations:
     slug: datadog
     events: true
     description: View the performance and health of your services by ingesting Datadog monitors and dashboards
+  - name: Slack
+    icon: slack.svg
+    slug: slack
+    description: Identify communication channels for your services by ingesting Slack channels
   - name: GitLab
     icon: gitlab.svg
     slug: gitlab

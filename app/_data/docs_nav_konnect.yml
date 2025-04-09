@@ -172,6 +172,8 @@
           url: /service-catalog/integrations/swaggerhub/
         - text: Traceable
           url: /service-catalog/integrations/traceable/
+        - text: Slack
+          url: /service-catalog/integrations/slack/
     - text: Scorecards
       url: /service-catalog/scorecards/
 
