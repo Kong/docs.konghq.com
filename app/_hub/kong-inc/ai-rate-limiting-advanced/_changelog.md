@@ -5,7 +5,7 @@
 
 ### {{site.base_gateway}} 3.9.0.0
 * Added support for the Hugging Face provider to the AI Rate Limiting Advanced plugin.
-  To import the deck configuration files that are exported from earlier versions, please use the following script to transform it so that the configuration file can be compatible with the latest version:
+  To import the decK configuration files that are exported from earlier versions, use the following script to transform it so that the configuration file can be compatible with the latest version:
 
   ```
   yq -i '(
