@@ -35,33 +35,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 
-<div class="changelog-entries">
-<div class="changelog-date">April<br>09</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/slack-integration-in-service-catalog">Slack Integration in Service Catalog</a>
-</div>
-<div class="changelog-description">You can now map Slack channels as a new Resource type in Service Catalog.  This integration enables discovery of all channels in a connected Slack workspace and allows those channels to be mapped to individual Services, making it easier for developers to find and contact Service or API owners.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">April<br>09</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/custom-dashboards-tech-preview-now-available-by-default-to-all-users-yMwvg6XR">Custom Dashboards Tech Preview now available by default to all users</a>
-</div>
-<div class="changelog-description">Custom dashboards are off to a strong start!  In just three weeks of early access, we've seen great usage and received tons of helpful feedback—thank you!</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">April<br>09</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/introducing-aws-privatelink-for-konnect-apis-rrPOFYYc">Introducing AWS PrivateLink for Konnect APIs!</a>
-</div>
-<div class="changelog-description">We are pleased to announce that Konnect API calls, including the API calls made through decK and Terraform can now be made through AWS PrivateLink.  Users can leverage AWS PrivateLink for a secure connection to Konnect APIs (including decK and Terraform).</div>
-</div>
-</div>
 
 ## March 2025
 
@@ -107,64 +80,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 
-<div class="changelog-entries">
-<div class="changelog-date">March<br>31</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/reduce-operational-burden-through-centralized-consumer-management-in-konnect-8W5Vyul3">Reduce operational burden through centralized consumer management in Konnect!</a>
-</div>
-<div class="changelog-description">Users can define consumers centrally in every region of Konnect and reference them in multiple control planes starting with Kong Gateway 3. 10.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">March<br>06</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/creating-personalized-dashboards-is-now-in-tech-preview-WmWAYVw0">Creating personalized dashboards is now in Tech Preview</a>
-</div>
-<div class="changelog-description">We’re excited to announce an early prototype release of custom dashboards in Konnect Labs (KLabs) as a Tech Preview.  Today, our built-in Summary dashboard provides a fixed set of key performance metrics, but we know that every organization has different priorities.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">March<br>06</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/new-api-metrics-endpoint-is-now-available-alknzOvS">New API metrics endpoint is now available </a>
-</div>
-<div class="changelog-description">Advanced Analytics customers can now benefit from a new endpoint that allows them to programmatically access the same API consumption and performance metrics previously available only through our Advanced Analytics UI.  This release empowers users to retrieve real-time data, create custom integrations, and build automated reporting directly from our analytics infrastructure.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">March<br>05</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/introducing-the-new-dev-portal-beta-8uOAADPV">Introducing the new Dev Portal beta! 💥 </a>
-</div>
-<div class="changelog-description">We’re proud to announce the Beta launch of our all-new Dev Portal!  This release provides a highly customizable API consumption experience to establish API producers’ brand and project a strong developer experience.</div>
-</div>
-</div>
-
 ## February 2025
-
-<div class="changelog-entries">
-<div class="changelog-date">February<br>28</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/scorecards-in-service-catalog-now-available-in-public-beta-7Cdescpb">Scorecards in Service Catalog now available in Public Beta</a>
-</div>
-<div class="changelog-description">Scorecards enable Platform Teams to easily pinpoint Services in their catalog which aren’t compliant with Kong-recommended and industry-defined maturity standards.  By identifying non-compliant Services and providing actionable next steps for each responsible Service Owner, this feature helps Platform Teams drive adherence across their organization.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">February<br>18</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/google-cloud-now-beta-on-cloud-gateways-kIhMa75h">Google Cloud now BETA on Cloud Gateways!</a>
-</div>
-<div class="changelog-description">We are excited to announce the BETA launch of Dedicated Cloud Gateways on Google Cloud.  This is a beta release available the following Google Cloud regions: US (South Carolina) Canada (Montreal)Europe (Belgium)Asia-pacific (Tokyo) This expansion enables greater flexibility for our customers, allowing you to deploy high-performance API gateways in the Google Cloud environment to meet your specific business and infrastructure needs.</div>
-</div>
-</div>
-
 
 <div class="changelog-entries">
 <div class="changelog-date">February<br>28</div>
@@ -225,16 +141,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 </div>
 
 
-
-<div class="changelog-entries">
-<div class="changelog-date">January<br>31</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/download-logs-for-dedicated-cloud-gateways">Download logs for Dedicated Cloud Gateways</a>
-</div>
-<div class="changelog-description">Dedicated Cloud Gateways now supports viewing and downloading Data Plane logs.  This new capability allows customers to better manage and troubleshoot their Cloud Gateways, providing greater visibility into their operations and faster issue resolution.</div>
-</div>
-</div>
 
 ## December 2024
 
