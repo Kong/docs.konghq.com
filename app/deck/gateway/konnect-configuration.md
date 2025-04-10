@@ -82,7 +82,7 @@ or use a flag when running any decK command.
 
 ### Making decK work with AWS PrivateLink
 
-You can make Admin API calls for control plane configuration using decK with a private connection through AWS PrivateLink to stay compliant and save data transfer costs. Once you set up AWS PrivateLink [https://docs.konghq.com/konnect/private-connections/aws-privatelink/] for your environment, you can make decK calls by using the domain {{region.svc.konghq.com/api/}}
+You can make Admin API calls for control plane configuration using decK with a private connection through AWS PrivateLink to stay compliant and save data transfer costs. Once you set up AWS PrivateLink [https://docs.konghq.com/konnect/private-connections/aws-privatelink/] for your environment, you can make decK calls by using the domain `region.svc.konghq.com/api/`.
 
 
 ## Troubleshooting
