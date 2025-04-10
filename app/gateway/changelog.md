@@ -1350,7 +1350,7 @@ To mitigate this issue, configure the JSON Threat Protection plugin with limits 
 #### Plugins
 
 * [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
-  * Fixed segmentation fault caused by missing destructor call on process exit.
+  * Fixed segmentation fault on Kong exit caused by missing destructor call.
 
 * [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
   * Fixed an issue where a binary string was truncated at the first null character.
