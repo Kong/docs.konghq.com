@@ -18,15 +18,15 @@ used by Kong to determine if a conflict occurs.
 * At Service or Route **creation or modification** time, Kong runs its internal
 router:
   - If no Services or Routes are found with matching routing rules, the creation
-  or modification proceeds
+  or modification proceeds.
   - If Services or Routes with matching routing rules are found **within the same
-  workspace**, the action will fail.
+  workspace**, the action proceeds.
   - If Services or Routes are found **in a different workspace**:
     * If the matching Service or Route **does not have an associated
       `host` value**—`409 Conflict`
     * If the matching Service or Route's `host` is a wildcard
       - If they are the same, the action fails with a `409 Conflict`
-      - If they are not equal, proceed
+      - If they are not equal, the action proceeds.
     * If the matching Service or Route's `host` is an absolute value, a
       conflict is reported—`409 Conflict`
 
