@@ -4911,6 +4911,10 @@ components:
           type: array
           items:
             type: string
+        ttl:
+          description: key-auth ttl in seconds
+          type: integer
+          nullable: true
       example:
         consumer:
           id: 84a73fb8-50fc-44a7-a4d5-aa17728ee83f
@@ -4942,6 +4946,10 @@ components:
           type: array
           items:
             type: string
+        ttl:
+          description: key-auth ttl in seconds
+          type: integer
+          nullable: true
       example:
         id: b2f34145-0343-41a4-9602-4c69dec2f269
         key: IL1deIyHyQA40WpeLeA1bIUXuvTwlGjo
