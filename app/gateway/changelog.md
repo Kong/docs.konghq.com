@@ -1337,6 +1337,27 @@ In some environments (such as ARM64-based environments), the default value is in
 The plugin can erroneously block valid requests if any of the parameters continue with the default values.
 To mitigate this issue, configure the JSON Threat Protection plugin with limits for all of the `max_*` parameters.
 
+
+## 3.7.1.5
+**Release Date** 2025/04/10
+
+### Fixes
+
+#### Core
+
+* Updated the AWS Vault supported regions list to the latest available.
+
+#### Plugins
+
+* [**AppDynamics**](/hub/kong-inc/app-dynamics/) (`app-dynamics`)
+  * Fixed segmentation fault on Kong exit caused by missing destructor call.
+
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed an issue where a binary string was truncated at the first null character.
+
+* [**Session**](/hub/kong-inc/session/) (`session`)
+  * Fixed an issue where boolean configuration fields `hash_subject` (default `false`) and `store_metadata` (default `false`) stored the session's metadata in the database. This also resolves an issue with Dev Portal, where adding these fields to `portal_session_conf` wasn't working as expected.
+
 ## 3.7.1.4
 **Release Date** 2025/02/25
 
