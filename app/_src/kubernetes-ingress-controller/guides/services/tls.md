@@ -2,7 +2,7 @@
 title: TLS Termination / Passthrough
 type: how-to
 purpose: |
-  How to do TLS Termination and TLS Passthrough with KIC and Kong Gateway
+  How to do TLS Termination and TLS Passthrough with KIC and {{site.base_gateway}}
 ---
 
 
@@ -20,10 +20,11 @@ For `HTTPRoute` or `GRPCRoute`, the route's `hostname` must match the listener h
 
 ## Ingress
 
-The Ingress API supports TLS termination using the `.spec.tls` field. To terminate TLS with the Ingress API, provide `.spec.tls.secretName` that contains a TLS certificate and a list of `.spec.tls.hosts` to match in your Ingress definition. 
+The Ingress API supports TLS termination using the `.spec.tls` field. To terminate TLS with the Ingress API, provide `.spec.tls.secretName` that contains a TLS certificate and a list of `.spec.tls.hosts` to match in your Ingress definition.
 
 ## Examples
 
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=true %}
 
 ### TLS Termination
 {% assign gwapi_version = "v1" %}
@@ -42,10 +43,10 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
     metadata:
       name: example-gateway
     spec:
-      gatewayClassName: kong 
+      gatewayClassName: kong
       listeners:
       - name: https
-        port: 443
+        port: 8899
         protocol: HTTPS
         hostname: "demo.example.com"
         tls:
@@ -61,7 +62,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
     apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: HTTPRoute
     metadata:
-      name: demo-example 
+      name: demo-example
     spec:
       parentRefs:
       - name: example-gateway
@@ -93,7 +94,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
     spec:
      ingressClassName: kong
      tls:
-     - secretName: demo-example-com
+     - secretName: demo-example-com-cert
        hosts:
        - demo.example.com
      rules:
@@ -106,13 +107,13 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
              service:
                name: echo
                port:
-                 number: 80
+                 number: 1027
     ```
-    
+
     The results will look like this:
-    
+
     ```text
-    ingress.extensions/demo-example-com configured
+    ingress.networking.k8s.io/demo-example-com created
     ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -127,12 +128,12 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
     apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
-      name: example-gateway
+      name: example-gateway-passthrough
     spec:
-      gatewayClassName: kong 
+      gatewayClassName: kong
       listeners:
       - name: https
-        port: 443
+        port: 8899
         protocol: TLS
         hostname: "demo.example.com"
         tls:
@@ -148,7 +149,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
       name: demo-example-passthrough
     spec:
       parentRefs:
-      - name: example-gateway
+      - name: example-gateway-passthrough
         sectionName: https
       hostnames:
       - demo.example.com
