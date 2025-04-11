@@ -7,8 +7,10 @@
       items:
         - text: Customization
           url: /portals/customization/customization/
-        - text: Custom Pages
+        - text: Pages
           url: /portals/customization/custom-pages/
+        - text: Snippets
+          url: /portals/customization/snippets
         - text: Appearance
           url: /portals/customization/appearance/
         - text: Portal Editor
