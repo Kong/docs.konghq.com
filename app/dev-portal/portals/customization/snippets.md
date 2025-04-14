@@ -25,7 +25,9 @@ To get started creating Snippets, navigate to your Dev Portal and click [**Porta
 
 ## Reference a Snippet in a Page
 
-In its simplest usage, use the `Snippet` component within a Page, and specify the `name` of the Snippet. These properties are auto-completed from the list of your previously created Snippets.
+You can reuse the Snippet component within a Page by specifying the name of the Snippet. These properties are auto-completed from the list of your previously created Snippets.
+
+For example:
 
 ```mdc
 ::snippet
