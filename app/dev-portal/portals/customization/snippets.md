@@ -4,7 +4,7 @@ title: Snippets
 
 Snippets enable reuse of content and MDC components across [Pages](/dev-portal/portals/customization/custom-pages). Visibility controls and Publishing status allow you to enable/disable Snippets, and/or restrict access to logged-in Developers.
 
-To get started creating Snippets, navigate to your Dev Portal and select [**Portal Editor**](/dev-portal/portals/customization/portal-editor/), then Snippets.
+To get started creating Snippets, navigate to your Dev Portal and click [**Portal editor**](/dev-portal/portals/customization/portal-editor/), then click **Snippets**.
 
 {:.note}
 > *Snippets are built using Markdown Components (MDC). Additional documentation on Snippet syntax and usage is available on a [dedicated MDC site](https://portaldocs.konghq.com/components/snippet).*
