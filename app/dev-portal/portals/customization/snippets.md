@@ -42,8 +42,7 @@ For more advanced usage, including passing data into Snippets, see our [dedicate
 
 Newly created Pages are in `Published` status by default for ease of use. With the Snippet selected on the left sidebar, click the "three dots" menu in the top right corner and select `Unpublish`. This can be useful for providing messaging across Pages that is only displayed for a period of time, e.g. system outages or special events.
 
-### Change Page visibility
-
-In the top right corner, click the menu with three dots. You can toggle from `Private` to `Public`, and vice versa.
+## Change Page visibility
+If you want to change the visibility of a Snippet, select the Snippet in the sidebar and click the menu in the top right corner and toggle **Private** and **Public** as needed.
 
 
