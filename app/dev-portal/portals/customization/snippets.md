@@ -17,16 +17,11 @@ To get started creating Snippets, navigate to your Dev Portal and click [**Porta
 * Edit the content of your Snippet in the middle panel using any Markdown or MDC, and you'll see a Live Preview in the right panel.
 
 {:.important}
-> *Preview may not always be able to display parameterized values. When the Page is being rendered in your Portal, parameters will be resolved. Depending on the type of syntax used, the Preview may not reflect parameterized values in Page or Snippet views.*
-
-{:.note}
-> *Snippets are `Published` by default for ease of use. Until the Snippet has been referred to in a Page, it will not be displayed in the rendered portal.*
-
-{:.note}
-> *Snippets will be created with the Default Page Visibility as set in your [Settings](/dev-portal/portals/settings/general)*
-
-{:.important}
-> Snippets are limited to 1,000,000 characters.
+> **Notes:**
+> * Preview may not always be able to display parameterized values. When the Page is rendered in your Portal, parameters will be resolved. Depending on the type of syntax used, the preview may not reflect parameterized values in Page or Snippet views.
+> * Snippets are published by default. The Snippet won't be displayed in your Portal until it's reused in a Page.
+> * Snippets are created with the default page visibility that is set in your [settings](/dev-portal/portals/settings/general).
+> * Snippets are limited to 1,000,000 characters.
 
 ### Reference a Snippet within a Page
 
