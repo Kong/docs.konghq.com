@@ -37,14 +37,6 @@ name: "get-api-keys"
 
 For more advanced usage, including passing data into Snippets, see our [dedicated MDC site](https://portaldocs.konghq.com/components/snippet).
 
-### Modify a Snippet
-
-In the middle panel, you can make changes to your MDC content, and instantly see the live Preview.
-
-Once you have completed your changes, be sure to click **Save**.
-
-{:.note}
-> *To rename a Snippet, click the 'three dots' menu, and click Rename*
 
 ### Publishing Snippets
 
