@@ -20,7 +20,7 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 > *Coming soon: auto-generated navigation MDC components for your Page structure*
 
 ### Create a new Page
-* Click to create a new Page at the top of the left sidebar.
+* In the Dev Portal editor, click **New page** in the sidebar.
 * Give the Page a "slug". This will be used in constructing the path. Hit Enter.
 * The page will be created, and display in Preview.
 * Edit the content of your Page in the middle panel, and you'll see a Live Preview in the right panel.
