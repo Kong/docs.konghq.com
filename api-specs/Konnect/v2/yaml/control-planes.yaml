@@ -800,7 +800,7 @@ components:
         Multiple sort attributes may be provided via a comma separated list.
         JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar desc').
       type: string
-      example: 'name,created_at desc'
+      example: created_at desc
       title: SortQuery
     PageMeta:
       description: Contains pagination query parameters and the total number of objects returned.
