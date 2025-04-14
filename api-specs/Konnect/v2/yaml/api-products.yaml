@@ -678,15 +678,6 @@ components:
         gateway_service_id:
           $ref: '#/components/schemas/UuidFieldFilter'
       title: APIProductVersionFilterParameters
-    SortQuery:
-      description: |
-        The `asc` suffix is optional as the default sort order is ascending.
-        The `desc` suffix is used to specify a descending order.
-        Multiple sort attributes may be provided via a comma separated list.
-        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar desc').
-      type: string
-      example: name desc
-      title: SortQuery
     APIProductPortals:
       description: The list of portals which this API product is published to
       type: array
@@ -1463,6 +1454,15 @@ components:
           oeq: 'some-potential,value'
         example-6:
           neq: not-this-value
+    SortQuery:
+      description: |
+        The `asc` suffix is optional as the default sort order is ascending.
+        The `desc` suffix is used to specify a descending order.
+        Multiple sort attributes may be provided via a comma separated list.
+        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar desc').
+      type: string
+      example: created_at desc
+      title: SortQuery
     PageMeta:
       description: Contains pagination query parameters and the total number of objects returned.
       type: object
