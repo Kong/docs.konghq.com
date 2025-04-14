@@ -7,7 +7,7 @@ Snippets allow you to reuse content and MDC components across [Pages](/dev-porta
 To get started creating Snippets, navigate to your Dev Portal and click [**Portal editor**](/dev-portal/portals/customization/portal-editor/), then click **Snippets**.
 
 {:.note}
-> *Snippets are built using Markdown Components (MDC). Additional documentation on Snippet syntax and usage is available on a [dedicated MDC site](https://portaldocs.konghq.com/components/snippet).*
+> Snippets are built using Markdown Components (MDC). See the [dedicated MDC site](https://portaldocs.konghq.com/components/snippet) for more information about Snippet syntax and usage.
 
 
 ### Create a new Snippet
