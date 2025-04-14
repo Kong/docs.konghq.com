@@ -23,7 +23,7 @@ To get started creating Snippets, navigate to your Dev Portal and click [**Porta
 > * Snippets are created with the default page visibility that is set in your [settings](/dev-portal/portals/settings/general).
 > * Snippets are limited to 1,000,000 characters.
 
-### Reference a Snippet within a Page
+## Reference a Snippet in a Page
 
 In its simplest usage, use the `Snippet` component within a Page, and specify the `name` of the Snippet. These properties are auto-completed from the list of your previously created Snippets.
 
