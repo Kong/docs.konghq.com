@@ -20,7 +20,7 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 > *Coming soon: auto-generated navigation MDC components for your Page structure*
 
 ### Create a new Page
-* Click `+` at the top
+* In the Dev Portal editor, click **New page** in the sidebar.
 * Give the Page a "slug". This will be used in constructing the path. Hit Enter.
 * The page will be created, and display in Preview.
 * Edit the content of your Page in the middle panel, and you'll see a Live Preview in the right panel.
@@ -35,7 +35,7 @@ Example: `about` has a child page, `contact`. The URL for the `contact` page wou
 > *`home` is a special page representing the `/` path. If this page is deleted, you'll need to create it from the Pages API.*
 
 {:.important}
-> Custom pages are limited to 1 000 000 characters.
+> Custom pages are limited to 1,000,000 characters.
 
 #### Reserved paths
 
