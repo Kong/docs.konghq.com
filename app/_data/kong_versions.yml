@@ -1,5 +1,5 @@
 - release: "2.8.x"
-  ee-version: "2.8.4.13"
+  ee-version: "2.8.4.14"
   ce-version: "2.8.5"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
