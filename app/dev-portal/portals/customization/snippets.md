@@ -2,7 +2,7 @@
 title: Snippets
 ---
 
-Snippets enable reuse of content and MDC components across [Pages](/dev-portal/portals/customization/custom-pages). Visibility controls and Publishing status allow you to enable/disable Snippets, and/or restrict access to logged-in Developers.
+Snippets allow you to reuse content and MDC components across [Pages](/dev-portal/portals/customization/custom-pages). You can enable or disable snippets with visibility controls and publishing status. You can also restrict access to logged in developers.
 
 To get started creating Snippets, navigate to your Dev Portal and click [**Portal editor**](/dev-portal/portals/customization/portal-editor/), then click **Snippets**.
 
