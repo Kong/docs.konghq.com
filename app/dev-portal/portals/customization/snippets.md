@@ -13,7 +13,7 @@ To get started creating Snippets, navigate to your Dev Portal and select [**Port
 ### Create a new Snippet
 * Click to create a new Snippet at the top of the left sidebar.
 * Give the Snippet a "name". This will be used to refer to your Snippet from Pages, and must be a unique lowercase, `kebab-case` string.
-* The Snippet will be created with the `title` in front matter set to the specified name. Snippet front matter is not used in generating Pages, but can be useful to keep track of what you're working on alongside other Editors.
+* The Snippet will be created with the `title` in front matter set to the specified name. Snippet front matter can be useful to keep track of what you're working on alongside other Editors as well as providing additional data to the Snippet.
 * Edit the content of your Snippet in the middle panel using any Markdown or MDC, and you'll see a Live Preview in the right panel.
 
 {:.important}
