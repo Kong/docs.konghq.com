@@ -26,13 +26,6 @@ Changelog and version bump for 3.7.1.5.
 
 Updated regions for Azure, added Google tab
 
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/geo
@@ -59,10 +52,6 @@ See also: https://kongstrong.slack.com/archives/C04RXLGNB6K/p1727707794692459
 
 
 ### [fix: fix ai-proxy-advanced balancer doc link typo](https://github.com/Kong/docs.konghq.com/pull/8686) (2025-04-09)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
