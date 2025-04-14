@@ -2,6 +2,124 @@
 
 <!--vale off-->
 
+## Week 15
+
+### [Release: Gateway 3.8.1.1](https://github.com/Kong/docs.konghq.com/pull/8698) (2025-04-11)
+
+Changelog and version bump for 3.8.1.1.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.7.1.5](https://github.com/Kong/docs.konghq.com/pull/8697) (2025-04-11)
+
+Changelog and version bump for 3.7.1.5.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update geo.md](https://github.com/Kong/docs.konghq.com/pull/8692) (2025-04-09)
+
+Updated regions for Azure, added Google tab
+
+#### Modified
+
+- https://docs.konghq.com/konnect/geo
+
+
+### [Added a note in changelog for ai-rate-limiting-advanced plugin](https://github.com/Kong/docs.konghq.com/pull/8689) (2025-04-09)
+
+A note is added to describe how to transform a deck yaml config that is exported from a previous version to the latest version where huggingface is supported as the llm_providers in ai-rate-limiting-advanced plugin
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/
+
+
+### [Update cluster_type](https://github.com/Kong/docs.konghq.com/pull/8688) (2025-04-09)
+
+In the Konnect API `CLUSTER_TYPE_HYBRID` was deprecated some time ago and no longer exists (see [Control Plane schema](https://docs.konghq.com/konnect/api/control-planes/latest/#/schemas/ControlPlane)). The Terraform provider only still supports `CLUSTER_TYPE_HYBRID` to prevent state recreation. Moving forward `CLUSTER_TYPE_CONTROL_PLANE` should be used.
+
+See also: https://kongstrong.slack.com/archives/C04RXLGNB6K/p1727707794692459
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/terraform
+
+
+### [fix: fix ai-proxy-advanced balancer doc link typo](https://github.com/Kong/docs.konghq.com/pull/8686) (2025-04-09)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/overview/
+
+
+### [Fix: Consume plugins tiers](https://github.com/Kong/docs.konghq.com/pull/8680) (2025-04-08)
+
+This is an enterprise plugin.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/confluent-consume/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/kafka-consume/_metadata/_index.yml
+
+
+### [Fix: Update geos list for DCGWs](https://github.com/Kong/docs.konghq.com/pull/8675) (2025-04-08)
+
+Updating the geos list to accurately reflect what's currently available.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/geo
+
+
+### [Fix: Remove `labels` from konnect search query for teams](https://github.com/Kong/docs.konghq.com/pull/8673) (2025-04-07)
+
+Teams don't support labels, so this sample query is invalid. Removing the `labels` portion leaves the example as a valid logical AND example.
+
+Issue reported on slack.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/search
+
+
+### [Fix: Missing Auth Headers & Request Body in Token Creation API Call](https://github.com/Kong/docs.konghq.com/pull/8671) (2025-04-07)
+
+Fix system account token creation process
+
+- Add required authentication header with bearer token
+- Include proper request body in the API call
+- Set correct content-type header
+
+ref: https://docs.konghq.com/konnect/api/identity-management/latest/#/operations/post-system-accounts-id-access-tokens
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/system-accounts
+
+
+### [Remove outdated Runtime groups parameter ](https://github.com/Kong/docs.konghq.com/pull/8669) (2025-04-07)
+
+CLUSTER_TYPE_COMPOSITE  -> CLUSTER_TYPE_CONTROL_PLANE_GROUP
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/control-plane-groups/migrate
+
+
+### [[AI RAG Injector] How to - Update title of step 2](https://github.com/Kong/docs.konghq.com/pull/8668) (2025-04-07)
+
+Fix misleading title for step 2
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+
 ## Week 14
 
 ### [Added the memory requirement for the PII service docker image](https://github.com/Kong/docs.konghq.com/pull/8660) (2025-04-03)
