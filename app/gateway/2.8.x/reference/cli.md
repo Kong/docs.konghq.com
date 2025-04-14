@@ -34,6 +34,8 @@ Check the validity of a given Kong configuration file.
 
 <conf> (default /etc/kong/kong.conf) configuration file
 
+The available commands are:
+  --lts-34-compatibility     Perform a conf check for upgrading to version 3.4.x.x.
 ```
 
 ---

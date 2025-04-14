@@ -6970,6 +6970,25 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.14
+**Release Date** 2025/04/14
+
+### Features
+
+#### CLI
+
+* Added a `--lts_34_compatibility` option to the `check` command to perform a configuration compatibility check for upgrading to version 3.4.x.x.
+
+### Fixes
+
+#### Core
+
+* Requests that contain both the Content-Length and Transfer-Encoding headers are now rejected for improved security.
+
+### Dependencies
+
+* Pinned LPEG to 1.1.0 to keep the version consistent across all active branches. 
+This is not a version bump, version 1.1.0 is already in use.
 
 ## 2.8.4.13
 **Release Date** 2024/09/20
