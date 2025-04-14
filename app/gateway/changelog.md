@@ -12,11 +12,11 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.10.0.1
-**Release Date** 2025/04/09
+**Release Date** 2025/04/15
 
 ### Fixes
 #### Core
-
+* **AI**: Fixed an issue where the password for the `pgvector` strategy wasn't being set correctly in the database.
 * Fixed an issue where the `ca_certificate` cache was not invalidated when incremental sync was enabled.
 * Fixed an issue where the schema library would fail with a nil reference if configurations were set using both deprecated and new names with diverging values.
 * Fixed an issue where validation required all of `timeout` fields (`connect_timeout`, `read_timeout`, `send_timeout`)
@@ -32,6 +32,8 @@ generating the `timeout` field in the response if it is missing in the request.
 
 #### Plugins
 
+* [**AI Proxy**](/hub/kong-inc/ai-proxy/) (`ai-proxy`) and [**AI Proxy Advanced**](/hub/kong-inc/ai-proxy-advanced/) (`ai-proxy-advanced`)
+  * Fixed an issue where AI Proxy and AI Proxy Advanced would use corrupted plugin config.
 * [**Prometheus**](/hub/kong-inc/prometheus/) (`prometheus`)
   * Fixed an issue where the metric `data_plane_config_hash` wouldn't work correctly for incremental sync.
 
