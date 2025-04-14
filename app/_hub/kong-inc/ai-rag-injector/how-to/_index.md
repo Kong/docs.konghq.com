@@ -108,10 +108,17 @@ curl localhost:8001/ai-rag-injector/3194f12e-60c9-4cb6-9cbc-c8fd7a00cff1/lookup_
 
 To omit the chunk content and only return the chunk ID, set `exclude_contents` to true.
 
-## Update ingest content
+## Update content for ingesting
 
-You can update ingest content by sending request `/ai-rag-injector/:plugin_id/ingest_chunk` endpoint if you are runing Kong in traditional mode. However, this won't work for hybrid mode or Konnect because control plane can not access to the backend storage of the plugin. For this case, you can use the following script:
-```
+If you are running {{site.base_gateway}} in traditional mode, you can update content for ingesting by sending a request to the `/ai-rag-injector/:plugin_id/ingest_chunk` endpoint. 
+
+However, this won't work in hybrid mode or {{site.konnect_short_name}} because the control plane can't access the plugin's backend storage.
+
+ To update content for ingesting in hybrid mode or {{site.konnect_short_name}}, you can use a script:
+ 
+ 1. Retrieve the ID of the AI RAG Injector plugin that you want to update.
+ 2. Copy and paste the following script to a local file, for example `ingest_update.lua`:
+```lua
 local embeddings = require("kong.llm.embeddings")
 local uuid = require("kong.tools.utils").uuid
 local vectordb = require("kong.llm.vectordb")
@@ -182,7 +189,8 @@ ngx.log(ngx.INFO, "Update completed")
 
 ```
 
-Copy paste the whole content of the script to your local file, for example `ingest_update.lua`. You should retrieve the plugin id of the ai-rag-injector Plugin you are going to update before runing the run the script:
-```
-kong runner ingest_api.lua <plugin_id> <content_to_update>
-```
+3. Run the script from your Kong instance:
+   
+   ```sh
+   kong runner ingest_api.lua <plugin_id> <content_to_update>
+   ```
