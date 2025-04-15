@@ -19,11 +19,31 @@ For each linked project, the UI can show a **Project Summary** with simple data 
 * Only [GitLab.com subscriptions](https://docs.gitlab.com/ee/subscriptions/gitlab_com/) are supported at this time
 
 ## Authorize the GitLab integration
-
+{% navtabs %}
+{% navtab Saas %}
 1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
-2. Select **GitLab**, then **Install GitLab**.
-3. Click **Authorize**. 
+1. Select **GitLab**, then **Install GitLab**.
+1. Click **Authorize**. 
 
+{% endnavtab %}
+{% navtab Self-hosted %}
+To use the GitLab integration in a self-hosted environment:
+
+1. [Create a group-owned application](https://docs.gitlab.com/integration/oauth_provider/) in your GitLab instance. This is required to enable OAuth access for your organization.
+   * Use your {{site.konnect_short_name}} instance’s  URL as the redirect URI in Gitlab.
+   * Make sure the application has the `api` scope.
+1. In the {{site.konnect_short_name}} UI, navigate to the [GitLab integration](https://cloud.konghq.com/us/service-catalog/integrations/gitlab/configuration)
+1. In the **GitLab API Base URL** field, enter the full URL to your GitLab API, ending in `/api/v4`.  
+   For example: `https://gitlab.example.com/api/v4`
+1. Fill out the authorization fields using the values from your GitLab OAuth application:
+   * **Client ID**: The Application ID from your GitLab app
+   * **Client Secret**: The secret associated with your GitLab app
+   * **Token Endpoint**: `https://{your-gitlab-host}/oauth/token`
+   * **Authorization Endpoint**: `https://{your-gitlab-host}/oauth/authorize`
+1. Click **Authorize** to complete the connection.
+{% endnavtab %}
+
+{% endnavtabs %}
 ## View GitLab specs in Service Catalog
 
 You can map specs to a Service Catalog service and view them in {{site.konnect_short_name}}.
