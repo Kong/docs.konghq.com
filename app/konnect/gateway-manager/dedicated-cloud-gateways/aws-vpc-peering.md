@@ -18,12 +18,13 @@ VPC Peering enables direct, private IP connectivity between your AWS VPC and the
 * An AWS account with administrative privileges to accept peering requests and update route tables
 
 ## Configure AWS VPC Peering
-
+{% navtabs %}
+{% navtab Konnect UI %}
 ### Initiate VPC Peering in {{site.konnect_short_name}}
 
 1. From {{site.konnect_short_name}}, navigate to the **Gateway Manager**.
 1. Within the **Networks** tab, select your Dedicated Cloud Gateway network.
-1. Open the **kebab menu** (⋮) and select **Configure private networking**.
+1. Open the **kebab menu** and select **Configure private networking**.
 1. On the **VPC Peering Connection** tab, fill in the form with the following:
     * **VPC Peering Name**: A unique, friendly name for the peering connection
     * **AWS Account ID**: Your 12-digit AWS account ID, for example:`123456789012`
@@ -32,6 +33,12 @@ VPC Peering enables direct, private IP connectivity between your AWS VPC and the
     * **VPC Region**: The AWS region where your VPC is deployed
 1. Click **Initiate Peering**.
 
+{% endnavtab %}
+{% navtab Konnect API %}
+API INSTRUCTIONS HERE
+
+{% endnavtab %}
+{% endnavtabs %}
 ### Accept the Peering Request in AWS
 
 1. Log in to the **AWS Console**.
