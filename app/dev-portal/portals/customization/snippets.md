@@ -46,7 +46,7 @@ Newly created Pages are published by default. If you want to unpublish a Snippet
 
 This can be useful for providing messaging across Pages that is only displayed for a period of time, for example, system outages or special events.
 
-## Change Page visibility
+## Change Snippet visibility
 If you want to change the visibility of a Snippet, select the Snippet in the sidebar and click the menu in the top right corner and toggle **Private** and **Public** as needed.
 
 
