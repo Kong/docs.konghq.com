@@ -309,6 +309,53 @@ the Lua code executes before the request is made.
 }
 ```
 
+### Send a request containing form data
+
+Configure the plugin to send a request in the `x-www-form-urlencoded` format.
+In this example, we’re sending a form containing credentials, including a client secret using a Vault reference.
+
+```json
+{
+	"name": "request-callout",
+	"config": {
+		"callouts": [
+			{
+				"name": "auth",
+				"request": {
+					"body": {
+						"custom": {}
+					},
+					"url": "https://test.com/bearer",
+					"by_lua": "kong.ctx.shared.callouts.auth.request.params.body = ngx.encode_args({grant_type=\"client_credentials\",client_id=\"myclientid\",scope=\"scope\",client_secret=kong.vault.get(\"{vault://env/TEST_SECRET}\")})"
+				}
+			}
+		]
+	}
+}
+```
+
+### Dynamically change the request URL
+
+Configure the plugin to send a request to a different URL based on a header value.
+In this example, we’re expecting the client to provide a `x-custom-header` header with a value to append to the specified URL.
+
+```json
+{
+	"name": "request-callout",
+	"config": {
+		"callouts": [
+			{
+				"name": "call",
+				"request": {
+					"url": "http://httpbin.org/",
+					"method": "GET",
+					"by_lua": "kong.ctx.shared.callouts.callout1.request.params.url = 'http://httpbin.org/' .. (kong.request.get_header('x-custom-header') or '')"
+				}
+			}
+		]
+	}
+}
+```
 
 ## The callout context
 
