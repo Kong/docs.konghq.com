@@ -13,6 +13,7 @@ title: Compatibility
 
 |                                | {{site.konnect_saas}} | Beginning with version | End of support |
 |--------------------------------|:---------------------:|-------------------------------|----------------|
+| {{site.ee_product_name}} 3.10.x (LTS) | <i class="fa fa-check"></i>    | 3.10.0.0 | March 2028
 | {{site.ee_product_name}} 3.9.x | <i class="fa fa-check"></i>    | 3.9.0.0 | Dec 2025
 | {{site.ee_product_name}} 3.8.x | <i class="fa fa-check"></i>    | 3.8.0.0 | Oct 2025
 | {{site.ee_product_name}} 3.7.x | <i class="fa fa-check"></i>    | 3.7.0.0 | Jun 2025
