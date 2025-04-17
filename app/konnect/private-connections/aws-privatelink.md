@@ -34,7 +34,6 @@ Create a VPC, subnets, and a security group in AWS. For more information, see th
 {% navtabs %}
 
 {% navtab us-east-2 %}
-{% navtab us-east-2 %}
 | {{site.konnect_short_name}} Geographical Region | PrivateLink service name | Private DNS name |
 | ------ | ------------ |
 | AP | com.amazonaws.vpce.us-east-2.vpce-svc-03da89378358921bc | ap.svc.konghq.com |
