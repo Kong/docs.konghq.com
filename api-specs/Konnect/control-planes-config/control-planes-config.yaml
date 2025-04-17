@@ -2310,6 +2310,58 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       tags:
         - CustomPlugins
+  '/control-planes/{controlPlaneId}/core-entities/degraphql_routes':
+    get:
+      operationId: list-degraphql_route
+      summary: List all Degraphql_routes
+      description: List all Degraphql_routes
+      parameters:
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+      responses:
+        '200':
+          description: A successful response listing Degraphql_routes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Degraphql_route'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - Degraphql_routes
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/degraphql_routes/{Degraphql_routeId}':
+    get:
+      operationId: get-degraphql_route
+      summary: Fetch a Degraphql_route
+      description: Get a Degraphql_route using ID or name.
+      responses:
+        '200':
+          description: Successfully fetched Degraphql_route
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Degraphql_route'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      tags:
+        - Degraphql_routes
+    parameters:
+      - $ref: '#/components/parameters/Degraphql_routeId'
+      - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/hmac-auths':
     get:
       operationId: list-hmac-auth
@@ -2844,6 +2896,149 @@ paths:
     parameters:
       - $ref: '#/components/parameters/MTLSAuthId'
       - $ref: '#/components/parameters/controlPlaneId'
+  '/control-planes/{controlPlaneId}/core-entities/partials':
+    get:
+      operationId: list-partial
+      summary: List all Partials
+      description: List all Partials
+      parameters:
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+      responses:
+        '200':
+          description: A successful response listing Partials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Partial'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - Partials
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+    post:
+      operationId: create-partial
+      summary: Create a new Partial
+      description: Create a new Partial
+      requestBody:
+        description: Description of the new Partial for creation
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Partial'
+      responses:
+        '201':
+          description: Successfully created Partial
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - Partials
+  '/control-planes/{controlPlaneId}/core-entities/partials/{PartialId}':
+    delete:
+      operationId: delete-partial
+      summary: Delete a Partial
+      description: Delete a Partial
+      parameters:
+        - $ref: '#/components/parameters/PartialId'
+      responses:
+        '204':
+          description: Successfully deleted Partial or the resource didn't exist
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - Partials
+    get:
+      operationId: get-partial
+      summary: Fetch a Partial
+      description: Get a Partial using ID.
+      responses:
+        '200':
+          description: Successfully fetched Partial
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+        '404':
+          description: Resource does not exist
+      tags:
+        - Partials
+    parameters:
+      - $ref: '#/components/parameters/PartialId'
+      - $ref: '#/components/parameters/controlPlaneId'
+    put:
+      operationId: upsert-partial
+      summary: Upsert a Partial
+      description: Create or Update Partial using ID.
+      requestBody:
+        description: Description of the Partial
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Partial'
+      responses:
+        '200':
+          description: Successfully upserted Partial
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partial'
+        '401':
+          $ref: '#/components/responses/HTTP401Error'
+      tags:
+        - Partials
+  '/control-planes/{controlPlaneId}/core-entities/partials/{PartialId}/links':
+    get:
+      operationId: list-partial-link
+      summary: List partial links
+      description: List all plugins linked to the partial
+      parameters:
+        - $ref: '#/components/parameters/PartialId'
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+      responses:
+        '200':
+          description: The plugins linked to the partial
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    description: The total number of plugins linked to the partial
+                    type: integer
+                    example: 10
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PartialLink'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+      tags:
+        - Partial Links
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
   '/control-planes/{controlPlaneId}/core-entities/plugins':
     get:
       operationId: list-plugin
@@ -3307,6 +3502,114 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       tags:
         - Services
+  '/control-planes/{controlPlaneId}/core-entities/services/{ServiceId}/degraphql/routes':
+    get:
+      operationId: list-degraphql_route-with-service
+      summary: List all Degraphql_routes associated with a Service
+      description: List all Degraphql_routes associated with a Service
+      parameters:
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+      responses:
+        '200':
+          description: A successful response listing Degraphql_routes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Degraphql_route'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+      tags:
+        - Degraphql_routes
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+    post:
+      operationId: create-degraphql_route-with-service
+      summary: Create a new Degraphql_route associated with a Service
+      description: Create a new Degraphql_route associated with a Service
+      parameters:
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        description: Description of new Degraphql_route for creation
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Degraphql_routeWithoutParents'
+      responses:
+        '201':
+          description: Successfully created Degraphql_route
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Degraphql_route'
+      tags:
+        - Degraphql_routes
+  '/control-planes/{controlPlaneId}/core-entities/services/{ServiceId}/degraphql/routes/{Degraphql_routeId}':
+    delete:
+      operationId: delete-degraphql_route-with-service
+      summary: Delete a a Degraphql_route associated with a Service
+      description: Delete a a Degraphql_route associated with a Service using ID or name.
+      parameters:
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/Degraphql_routeId'
+      responses:
+        '204':
+          description: Successfully deleted Degraphql_route or the resource didn't exist
+      tags:
+        - Degraphql_routes
+    get:
+      operationId: get-degraphql_route-with-service
+      summary: Fetch a Degraphql_route associated with a Service
+      description: Get a Degraphql_route associated with a Service using ID or name.
+      parameters:
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/Degraphql_routeId'
+      responses:
+        '200':
+          description: Successfully fetched Degraphql_route
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Degraphql_route'
+        '404':
+          description: Resource does not exist
+      tags:
+        - Degraphql_routes
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+    put:
+      operationId: upsert-degraphql_route-with-service
+      summary: Upsert a Degraphql_route associated with a Service
+      description: Create or Update a Degraphql_route associated with a Service using ID or name.
+      parameters:
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/Degraphql_routeId'
+      requestBody:
+        description: Description of the Degraphql_route
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Degraphql_routeWithoutParents'
+      responses:
+        '200':
+          description: Successfully upserted Degraphql_route
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Degraphql_route'
+      tags:
+        - Degraphql_routes
   '/control-planes/{controlPlaneId}/core-entities/services/{ServiceId}/plugins':
     get:
       operationId: list-plugin-with-service
@@ -4036,6 +4339,14 @@ components:
       schema:
         type: string
       required: true
+    Degraphql_routeId:
+      description: ID of the Degraphql_route to lookup
+      example: ''
+      in: path
+      name: Degraphql_routeId
+      required: true
+      schema:
+        type: string
     HMACAuthId:
       description: ID of the HMAC-auth credential to lookup
       example: 70e7b00b-72f2-471b-a5ce-9c4171775360
@@ -4124,6 +4435,14 @@ components:
       example: 'tag1,tag2'
       in: query
       name: tags
+      schema:
+        type: string
+    PartialId:
+      description: ID of the Partial to lookup
+      example: ''
+      in: path
+      name: PartialId
+      required: true
       schema:
         type: string
     PluginId:
@@ -4636,6 +4955,87 @@ components:
         - name
         - schema
         - handler
+    Degraphql_route:
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        methods:
+          type: array
+          items:
+            type: string
+          default:
+            - GET
+          nullable: true
+        query:
+          type: string
+        service:
+          type: object
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+          nullable: true
+        uri:
+          type: string
+      example:
+        id: 56c4566c-14cc-4132-9011-4139fcbbe50a
+        query: 'query{ user { email } }'
+        service:
+          id: bd380f99-659d-415e-b0e7-72ea05df3218
+        uri: /users
+      additionalProperties: false
+      required:
+        - service
+        - uri
+        - query
+    Degraphql_routeWithoutParents:
+      type: object
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        methods:
+          type: array
+          items:
+            type: string
+          default:
+            - GET
+          nullable: true
+        query:
+          type: string
+        service:
+          type: object
+          properties:
+            id:
+              type: string
+          x-foreign: true
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+          nullable: true
+        uri:
+          type: string
+      example:
+        id: 56c4566c-14cc-4132-9011-4139fcbbe50a
+        query: 'query{ user { email } }'
+        uri: /users
+      additionalProperties: false
+      required:
+        - uri
+        - query
     GatewayUnauthorizedError:
       type: object
       properties:
@@ -5129,6 +5529,51 @@ components:
     PaginationOffsetResponse:
       description: Offset is used to paginate through the API. Provide this value to the next list operation to fetch the next page
       type: string
+    Partial:
+      type: object
+      properties:
+        config:
+          type: object
+          additionalProperties: true
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+          nullable: true
+      additionalProperties: false
+      required:
+        - type
+        - config
+    PartialLink:
+      type: object
+      properties:
+        id:
+          description: The plugin's unique identifier
+          type: string
+        instance_name:
+          description: The instance name of the plugin
+          type: string
+        name:
+          description: The plugin's name
+          type: string
+      required:
+        - id
+        - name
     Plugin:
       description: 'A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionalities to Services that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/). When adding a Plugin Configuration to a Service, every request made by a client to that Service will run said Plugin. If a Plugin needs to be tuned to different values for some specific Consumers, you can do so by creating a separate plugin instance that specifies both the Service and the Consumer, through the `service` and `consumer` fields.'
       type: object
@@ -7307,6 +7752,7 @@ tags:
       - [Configure routes using expressions](https://docs.konghq.com/gateway/latest/key-concepts/routes/expressions)
       - [Router Expressions language reference](https://docs.konghq.com/gateway/latest/reference/router-expressions-language/)
     name: Routes
+  - name: Degraphql_routes
   - description: |
       A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.
       You can find more information about available plugins and which values each plugin accepts at the [Plugin Hub](https://docs.konghq.com/hub/).
@@ -7366,6 +7812,7 @@ tags:
   - name: HMAC-auth credentials
   - name: MTLS-auth credentials
   - name: ACLs
+  - name: Partials
 externalDocs:
   description: Documentation for Kong Gateway and its APIs
   url: 'https://docs.konghq.com'
