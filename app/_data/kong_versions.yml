@@ -162,7 +162,7 @@
   version: "2.11.1"
   edition: "kubernetes-ingress-controller"
 - release: "2.12.x"
-  version: "2.12.6"
+  version: "2.12.8"
   edition: "kubernetes-ingress-controller"
   lts: true
 - release: "3.0.x"
@@ -178,7 +178,7 @@
   version: "3.3.1"
   edition: "kubernetes-ingress-controller"
 - release: "3.4.x"
-  version: "3.4.3"
+  version: "3.4.4"
   edition: "kubernetes-ingress-controller"
   latest: true
   lts: true
