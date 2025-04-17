@@ -26,13 +26,13 @@ Available templated parameters:
 * `$(uri_captures.name)`
 * `$(query_params.name)`
 
-`name` is either the header name, URI named regular-expression capture (in the route path), or the query parameter name, respectively.
+`name` is either the header name, URI named regular expression capture (in the route path), or the query parameter name, respectively.
 
 ## Use case examples
 ### Use the Azure deployment relevant to a specific model name
 
 You could use a header capture to insert the requested model name directly into the
-plugin configuration for an Azure-OpenAI Kong AI gateway deployment, as a string
+plugin configuration for Kong AI Gateway deployment with Azure OpenAI, as a string
 substitution, using the following example:
 
 ```yaml
@@ -55,7 +55,7 @@ routes:
               azure_api_version: "2024-10-01"
 ```
 
-You can now target Azure Model deployment names `west-europe-gpt-4o` with the following sample request:
+You can now target an Azure model deployment named `west-europe-gpt-4o` with the following sample request:
 
 ```sh
 cat <<EOF > request.json
@@ -74,7 +74,10 @@ cat <<EOF > request.json
 }
 EOF
 
-curl -d @request.json -H "x-test: azure-chat-open-model-managed-identity" -H "x-model-name: gpt-4o" http://127.0.0.1:8000/1/chat/completions
+curl http://localhost:8000/1/chat/completions \
+  -H "x-test: azure-chat-open-model-managed-identity" \
+  -H "x-model-name: gpt-4o" \
+  -d @request.json
 ```
 
 ### Use OpenAI SDK with multiple models on the same provider
