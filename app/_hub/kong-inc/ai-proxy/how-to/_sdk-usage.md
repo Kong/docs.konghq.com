@@ -33,7 +33,7 @@ Available templated parameters:
 
 You could use a header capture to insert the requested model name directly into the
 plugin configuration for an Azure-OpenAI Kong AI gateway deployment, as a string
-substution, using the following example:
+substitution, using the following example:
 
 ```yaml
 routes:
