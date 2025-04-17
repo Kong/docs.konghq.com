@@ -16,8 +16,8 @@ You can use an OpenAI-compatible SDK with the AI Proxy plugin in multiple ways, 
 
 ## Templated model parameters
 
-The plugin enables you to substitute values in the `config.model.name` and any `config.model.options.*` field
-with specific placeholders, similar to those in the [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+The plugin enables you to substitute values in the `config.model.name` field, and anything nested under `config.model.options.**` fields, 
+with placeholders similar to those in the [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
 templating system.
 
 Available templated parameters:
@@ -26,9 +26,60 @@ Available templated parameters:
 * `$(uri_captures.name)`
 * `$(query_params.name)`
 
-`name` is either the header name, URI named capture (in the route path), or the query parameter name, respectively.
+`name` is either the header name, URI named regular expression capture (in the route path), or the query parameter name, respectively.
 
 ## Use case examples
+### Use the Azure deployment relevant to a specific model name
+
+You could use a header capture to insert the requested model name directly into the
+plugin configuration for Kong AI Gateway deployment with Azure OpenAI, as a string
+substitution, using the following example:
+
+```yaml
+routes:
+  - name: azure-chat-model-from-path
+    paths:
+      - "~/azure/.*"
+    plugins:
+      - name: ai-proxy
+        config:
+          route_type: "llm/v1/chat"
+          auth:
+            azure_use_managed_identity: true
+          model:
+            provider: "azure"
+            model: "$(headers.x-model-name)"
+            options:
+              azure_instance: "llm-deployment-v1"
+              azure_deployment_id: "west-europe-$(headers.x-model-name)"
+              azure_api_version: "2024-10-01"
+```
+
+You can now target an Azure model deployment named `west-europe-gpt-4o` with the following sample request:
+
+```sh
+cat <<EOF > request.json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "This is my question."
+        }
+      ]
+    }
+  ]
+}
+EOF
+
+curl http://localhost:8000/1/chat/completions \
+  -H "x-test: azure-chat-open-model-managed-identity" \
+  -H "x-model-name: gpt-4o" \
+  -d @request.json
+```
+
 ### Use OpenAI SDK with multiple models on the same provider
 
 To read the desired model from the user, rather than hard coding it into the plugin config for each route,
