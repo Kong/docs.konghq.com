@@ -23,12 +23,17 @@ The AI Sanitizer plugin uses the AI PII Anonymizer Service, which can run in a D
 
 ## AI PII Anonymizer service
 
-Kong provides an [AI PII Anonymizer service](https://hub.docker.com/r/kong/ai-pii-service) Docker image.
+Kong provides several [AI PII Anonymizer service](https://hub.docker.com/r/kong/ai-pii-service) Docker images, each of which has its own built-in NLP model and is tagged with the `version-lang_code` pattern. For example:
+* `ai-pii-service:v0.1.2-en` means the version of the image is 0.1.2 and its built-in NLP model is English
+* `ai-pii-service:v0.1.2-it` is for Italian and `ai-pii-service:v0.1.2-fr` is French
+and so on.
+
+The image tagged with `all` contains English, French, German, Italian, Japanese, Portuguese, and Spanish models. If you need to use other NLP models, customize `ai_pii_service/nlp_engine_conf.yml` with any of the available images.
 
 {:.note}
 > This Docker image is private, contact [Kong Support](https://support.konghq.com/support/s/) to get access to it.
 >
-> The PII Anonymizer service loads NLP models, with one model loaded by default. Ensure that you have at least 500MB of free memory to run the image.
+> The PII Anonymizer service loads NLP models, with one model loaded by default. Ensure that you have at least 600MB of free memory to run the image.
 
 ### Image configuration options
 
