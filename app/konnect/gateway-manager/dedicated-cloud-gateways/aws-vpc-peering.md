@@ -18,6 +18,7 @@ VPC Peering enables direct, private IP connectivity between your AWS VPC and the
 * An AWS account with administrative privileges to accept peering requests and update route tables
 
 ## Configure AWS VPC Peering
+AWS VPC Peering can be configured in the {{site.konnect_short_name}} UI and with the [Cloud Gateways API](/konnect/api/cloud-gateways/latest/).
 {% navtabs %}
 {% navtab Konnect UI %}
 ### Initiate VPC Peering in {{site.konnect_short_name}}
@@ -28,14 +29,47 @@ VPC Peering enables direct, private IP connectivity between your AWS VPC and the
 1. On the **VPC Peering Connection** tab, fill in the form with the following:
     * **VPC Peering Name**: A unique, friendly name for the peering connection
     * **AWS Account ID**: Your 12-digit AWS account ID, for example:`123456789012`
-    * **AWS VPC ID**: The VPC ID you want to peer with for example: vpc-0abc1234def567890`
+    * **AWS VPC ID**: The VPC ID you want to peer with for example: `vpc-0abc1234def567890`
     * **VPC CIDR**: The IP range of your AWS VPC for example: `10.0.0.0/16`
     * **VPC Region**: The AWS region where your VPC is deployed
 1. Click **Initiate Peering**.
 
 {% endnavtab %}
 {% navtab Konnect API %}
-API INSTRUCTIONS HERE
+
+
+
+```sh
+curl -X 'POST' \
+  'https://global.api.konghq.com/v2/cloud-gateways/networks/{NETWORKID}/transit-gateways' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "us-east-2 transit gateway",
+    "dns_config": [
+        {
+        "remote_dns_server_ip_addresses": [
+            "10.0.0.2"
+        ],
+        "domain_proxy_list": [
+            "foobar.com"
+        ]
+        }
+    ],
+    "cidr_blocks": [
+        "10.0.0.0/8",
+        "100.64.0.0/10",
+        "172.16.0.0/12"
+    ],
+    "transit_gateway_attachment_config": {
+      "kind": "aws-vpc-peering-attachment",
+      "peer_account_id": "123456789012",
+      "peer_vpc_id": "vpc-0f1e2d3c4b5a67890",
+      "peer_vpc_region": "us-east-2"
+    }
+}'
+
+```
 
 {% endnavtab %}
 {% endnavtabs %}
