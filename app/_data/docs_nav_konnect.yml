@@ -58,6 +58,8 @@
         url: /gateway-manager/dedicated-cloud-gateways/transit-gateways
       - text: Azure VNET Peering
         url: /gateway-manager/dedicated-cloud-gateways/azure-peering
+      - text: AWS VPC Peering
+        url: /gateway-manager/dedicated-cloud-gateways/aws-vpc-peering
       - text: Custom Domains
         url: /gateway-manager/dedicated-cloud-gateways/custom-dns/
       - text: Data plane logs
