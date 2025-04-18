@@ -17,7 +17,8 @@ See [Editing or deleting a custom plugin's schema](/konnect/gateway-manager/plug
 for more information.
 
 {:.note}
-> **Note**: Custom plugins are not supported in Dedicated Cloud Gateways.
+> **Note**: For adding custom plugins to a Dedicated Cloud Gateway, see 
+[Custom plugins in Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/custom-plugins/).
 
 ## Prerequisites
 
@@ -186,6 +187,7 @@ or {{site.base_gateway}} deployments.
 ## More information
 
 * [Edit or delete custom plugins in {{site.konnect_short_name}}](/konnect/gateway-manager/plugins/update-custom-plugin/)
+* [Custom plugins in Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/custom-plugins/)
 * [Custom plugin schema endpoints (Control Plane Config API)](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas)
 * [Custom plugin template](https://github.com/Kong/kong-plugin)
 * [Plugin development guide](/gateway/latest/plugin-development/)

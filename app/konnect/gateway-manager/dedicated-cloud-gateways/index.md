@@ -60,5 +60,6 @@ This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-
 * [Data Plane logs](/konnect/gateway-manager/dedicated-cloud-gateways/)
 * [Transit Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/)
 * [How to upgrade data planes](/konnect/gateway-manager/data-plane-nodes/upgrade/)
-* [Custom Domains](/konnect/gateway-manager/dedicated-cloud-gateways/custom-dns/)
+* [Custom domains](/konnect/gateway-manager/dedicated-cloud-gateways/custom-dns/)
+* [Custom plugins](/konnect/gateway-manager/dedicated-cloud-gateways/custom-plugins/)
 * [Cloud Gateways API](/konnect/api/cloud-gateways/latest/)
