@@ -45,28 +45,18 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-    "name": "us-east-2 transit gateway",
-    "dns_config": [
-        {
-        "remote_dns_server_ip_addresses": [
-            "10.0.0.2"
-        ],
-        "domain_proxy_list": [
-            "foobar.com"
-        ]
-        }
-    ],
-    "cidr_blocks": [
-        "10.0.0.0/8",
-        "100.64.0.0/10",
-        "172.16.0.0/12"
-    ],
-    "transit_gateway_attachment_config": {
-      "kind": "aws-vpc-peering-attachment",
-      "peer_account_id": "123456789012",
-      "peer_vpc_id": "vpc-0f1e2d3c4b5a67890",
-      "peer_vpc_region": "us-east-2"
-    }
+    {
+  "name": "us-east-2 vpc peering",  
+  "cidr_blocks": [
+    "10.0.0.0/16"    
+  ],
+  "transit_gateway_attachment_config": {
+    "kind": "aws-vpc-peering-attachment",
+    "peer_account_id": "123456789012",
+    "peer_vpc_id": "vpc-0f1e2d3c4b5a67890",
+    "peer_vpc_region": "us-east-2"
+  }
+  }
 }'
 
 ```
