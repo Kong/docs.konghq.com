@@ -2,6 +2,143 @@
 
 <!--vale off-->
 
+## Week 16
+
+### [Update aws-privatelink.md](https://github.com/Kong/docs.konghq.com/pull/8721) (2025-04-17)
+
+🤦  `eu-central-1` was listed twice
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [fix(ai): update options-param templating documentation](https://github.com/Kong/docs.konghq.com/pull/8720) (2025-04-17)
+
+Updated AI "templated options" example for a better sub-string sample configuration.
+
+### Checklist 
+
+- [x] Review label added <!-- (see below) -->
+- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/
+
+
+### [update ai-sanitizer doc](https://github.com/Kong/docs.konghq.com/pull/8718) (2025-04-17)
+
+update ai-sanitizer doc
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-sanitizer/overview/
+
+
+### [Update aws-privatelink.md](https://github.com/Kong/docs.konghq.com/pull/8716) (2025-04-17)
+
+* Added India endpoint to all regions
+* Added ap-southeast-1
+* Added us-west-2
+
+https://konghq.aha.io/features/PLAT-2
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [fix: Add 3.10 to Konnect compatibility table](https://github.com/Kong/docs.konghq.com/pull/8715) (2025-04-16)
+
+<!-- What did you change and why? -->
+Added 3.10 to Konnect compatibility table
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+https://kongstrong.slack.com/archives/CDSTDSG9J/p1744771182817609
+
+#### Modified
+
+- https://docs.konghq.com/konnect/compatibility
+
+
+### [Feat: New Request Callout examples](https://github.com/Kong/docs.konghq.com/pull/8713) (2025-04-16)
+
+Request Callout examples [requested on Slack](https://github.com/Kong/developer.konghq.com/issues/1020#issuecomment-2779506535)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-callout/overview/
+
+
+### [docs(portal): snippets page header](https://github.com/Kong/docs.konghq.com/pull/8708) (2025-04-15)
+
+Reference “Snippets” instead of “Pages” on the snippet page
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/customization/snippets
+
+
+### [Release: Gateway 2.8.4.14](https://github.com/Kong/docs.konghq.com/pull/8705) (2025-04-14)
+
+Changelog and version bump for gateway 2.8.4.14
+
+#### Modified
+
+- https://docs.konghq.com/gateway/2.8.x/reference/cli
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Updated ai-rag-injector docs](https://github.com/Kong/docs.konghq.com/pull/8703) (2025-04-14)
+
+An approach to update the content of ai-rag-injector plugin for Kong instances in hybrid mode or Konnect mode.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+
+
+### [Release: Gateway 3.10.0.1](https://github.com/Kong/docs.konghq.com/pull/8681) (2025-04-15)
+
+Changelog and version bump for 3.10.0.1
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [[TDX-5270] Snippets docs](https://github.com/Kong/docs.konghq.com/pull/8672) (2025-04-14)
+
+Added nav item & docs for Snippets, in preparation of releasing the feature
+ 
+- Aha: https://konghq.aha.io/epics/DEVP-E-3
+- Jira: https://konghq.atlassian.net/browse/TDX-5270
+
+#### Added
+
+- https://docs.konghq.com/dev-portal/portals/customization/snippets
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/customization/custom-pages
+
 ## Week 15
 
 ### [Release: Gateway 3.8.1.1](https://github.com/Kong/docs.konghq.com/pull/8698) (2025-04-11)
