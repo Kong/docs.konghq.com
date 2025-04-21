@@ -4,16 +4,6 @@
 
 ## Week 16
 
-### [Update aws-privatelink.md](https://github.com/Kong/docs.konghq.com/pull/8721) (2025-04-17)
-
-🤦  `eu-central-1` was listed twice
-
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
