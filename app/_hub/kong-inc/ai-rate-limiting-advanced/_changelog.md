@@ -8,16 +8,23 @@
   To import the decK configuration files that are exported from earlier versions, use the following script to transform it so that the configuration file can be compatible with the latest version:
 
   ```
-  yq -i '(
-  .plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[] | select(.name == "huggingface") | .name
-  ) |= "requestPrompt" |
+  yq -i '
+(.plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[]) |=
   (
-  .consumers[] | .plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[] | select(.name == "huggingface") | .name
-  ) |= "requestPrompt" |
+    .window_size = [ .window_size ] |
+    .limit = [ .limit ]
+  ) |
+(.consumers[] | .plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[]) |=
   (
-  .consumer_groups[] | .plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[] | select(.name == "huggingface") | .name
-  ) |= "requestPrompt"
-  ' config.yaml
+  	.window_size = [ .window_size ] |
+  	.limit = [ .limit ]
+  ) |
+(.consumer_groups[] | .plugins[] | select(.name == "ai-rate-limiting-advanced") | .config.llm_providers[]) |=
+  (
+  	.window_size = [ .window_size ] |
+  	.limit = [ .limit ]
+  )
+' config.yaml
   ```
 
 * Updated the error message for exceeding the rate limit to include AI-related information.
