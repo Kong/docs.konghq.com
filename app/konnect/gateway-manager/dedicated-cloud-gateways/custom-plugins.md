@@ -1,7 +1,6 @@
 ---
 title: Custom plugins in Dedicated Cloud Gateways
 content_type: reference
-beta: true
 ---
 
 With Dedicated Cloud Gateways, {{site.konnect_short_name}} can stream custom plugins from the control plane to the data plane.
