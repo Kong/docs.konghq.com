@@ -12,7 +12,6 @@ You can establish a private connection to ensure that the data transmitted betwe
 - eu-west-2
 - ap-southeast-1
 - ap-southeast-2
-- ap-southeast-1
 
 If you want to create a connection with a different AWS region, contact [Kong Support](https://support.konghq.com/support/s/).
 
