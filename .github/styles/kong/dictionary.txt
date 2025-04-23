@@ -187,6 +187,8 @@ certificate_admin
 charset
 chatbot
 cleartext
+cidr
+cidrs
 client_payload
 client_status
 clipanion
@@ -656,6 +658,7 @@ validator
 validators
 vararg
 vms
+vpcs
 vnet
 Vue
 Wallarm
