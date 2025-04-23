@@ -1,81 +1,83 @@
 ---
-title: How to configure AWS VPC Peering
+title: Set up an AWS VPC peering connection with Dedicated Cloud Gateways
 ---
 
-This guide walks you through setting up a VPC Peering connection between your {{site.konnect_short_name}}-managed Dedicated Cloud Gateways and an AWS VPC, enabling private communication between the two environments.
+This guide walks you through setting up a VPC peering connection between your {{site.konnect_short_name}}-managed Dedicated Cloud Gateways and an AWS VPC, enabling private communication between the two environments.
 
 {:.note}
 > You can configure up to 10 VPC peering connections per Dedicated Cloud Gateway. VPC Peering and Transit Gateway cannot be used simultaneously with the same Dedicated Cloud Gateway instance.
 
-## How does VPC Peering work?
+## How does VPC peering work?
 
-VPC Peering enables direct, private IP connectivity between your AWS VPC and the {{site.konnect_short_name}} network running Dedicated Cloud Gateways. Once the peering connection is established and routing is configured, traffic can flow privately and securely between both environments without traversing the public internet.
+VPC peering enables direct, private IP connectivity between your AWS VPC and the {{site.konnect_short_name}} network running Dedicated Cloud Gateways. Once the peering connection is established and routing is configured, traffic can flow privately and securely between both environments without traversing the public internet.
 
 ## Prerequisites
 
 * A {{site.konnect_short_name}} control plane
-* A Dedicated Cloud Gateway network
+* A [Dedicated Cloud Gateway](https://cloud.konghq.com/gateway-manager/create-control-plane) network
 * An AWS account with administrative privileges to accept peering requests and update route tables
 
-## Configure AWS VPC Peering
-AWS VPC Peering can be configured in the {{site.konnect_short_name}} UI and with the [Cloud Gateways API](/konnect/api/cloud-gateways/latest/).
+## Configure AWS VPC peering
+
+You can configure AWS VPC peering using the {{site.konnect_short_name}} UI or the [Cloud Gateways API](/konnect/api/cloud-gateways/latest/).
+
+### Initiate VPC peering in {{site.konnect_short_name}}
 {% navtabs %}
 {% navtab Konnect UI %}
-### Initiate VPC Peering in {{site.konnect_short_name}}
 
-1. From {{site.konnect_short_name}}, navigate to the **Gateway Manager**.
-1. Within the **Networks** tab, select your Dedicated Cloud Gateway network.
-1. Open the **kebab menu** and select **Configure private networking**.
-1. On the **VPC Peering Connection** tab, fill in the form with the following:
-    * **VPC Peering Name**: A unique, friendly name for the peering connection
+1. In {{site.konnect_short_name}}, navigate to [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/) and select your control plane.
+1. From the **Networks** tab, select your Dedicated Cloud Gateway network.
+1. From the menu, select **Configure private networking**.
+1. From the **VPC Peering Connection** tab, configure the following:
+    * **VPC Peering Name**: A unique, readable name for the peering connection
     * **AWS Account ID**: Your 12-digit AWS account ID, for example:`123456789012`
-    * **AWS VPC ID**: The VPC ID you want to peer with for example: `vpc-0abc1234def567890`
-    * **VPC CIDR**: The IP range of your AWS VPC for example: `10.0.0.0/16`
+    * **AWS VPC ID**: The VPC ID you want to peer with, for example: `vpc-0abc1234def567890`
+    * **VPC CIDR**: The IP range of your AWS VPC, for example: `10.0.0.0/16`
     * **VPC Region**: The AWS region where your VPC is deployed
 1. Click **Initiate Peering**.
 
 {% endnavtab %}
 {% navtab Konnect API %}
 
-
+To initiate peering, send a POST request to the `/transit-gateways` endpoint:
 
 ```sh
 curl -X 'POST' \
-  'https://global.api.konghq.com/v2/cloud-gateways/networks/{NETWORKID}/transit-gateways' \
+  'https://global.api.konghq.com/v2/cloud-gateways/networks/{networkId}/transit-gateways' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $KONNECT_TOKEN" \
   -d '{
-    {
-  "name": "us-east-2 vpc peering",  
-  "cidr_blocks": [
-    "10.0.0.0/16"    
-  ],
-  "transit_gateway_attachment_config": {
-    "kind": "aws-vpc-peering-attachment",
-    "peer_account_id": "123456789012",
-    "peer_vpc_id": "vpc-0f1e2d3c4b5a67890",
-    "peer_vpc_region": "us-east-2"
-  }
-  }
-}'
+    "name": "us-east-2 vpc peering",
+    "cidr_blocks": [
+      "10.0.0.0/16"
+    ],
+    "transit_gateway_attachment_config": {
+      "kind": "aws-vpc-peering-attachment",
+      "peer_account_id": "123456789012",
+      "peer_vpc_id": "vpc-0f1e2d3c4b5a67890",
+      "peer_vpc_region": "us-east-2"
+    }
+  }'
 
 ```
 
+Be sure to replace `{networkId}` with the UUID of your network in {{site.konnect_short_name}} and `KONNECT_TOKEN` with your [{{site.konnect_short_name}} personal access token (PAT)](/konnect/org-management/access-tokens/).
+
 {% endnavtab %}
 {% endnavtabs %}
-### Accept the Peering Request in AWS
+### Accept the peering request in AWS
 
-1. Log in to the **AWS Console**.
-1. Navigate to **VPC** > **Peering Connections** under **Virtual Private Cloud**.
+1. From the AWS Console, navigate to **VPC** > **Peering Connections** under **Virtual Private Cloud**.
 1. Locate the pending request from {{site.konnect_short_name}}.
 1. Select the request and click **Accept Request**.
 
-### Confirm Connection in {{site.konnect_short_name}}
+### Confirm connection in {{site.konnect_short_name}}
 
-1. Return to the {{site.konnect_short_name}} **Gateway Manager**.
-1. In the **VPC Peering** section for the network, confirm that the connection status updates to **Ready** once it is successfully established.
+1. In {{site.konnect_short_name}}, navigate to [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/) and select your control plane.
+1. In the **VPC Peering** section for the network, confirm that the connection status updates to `Ready` once it is successfully established.
 
-### Update Your AWS Route Table
+### Update your AWS route table
 
 1. In the AWS Console, go to **VPC** > **Route Tables**.
 1. Select the route table associated with the subnet in your VPC.
