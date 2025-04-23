@@ -69,7 +69,7 @@ After creating the resource share, copy the **RAM Share ARN**. You will need thi
 
 ### Configure AWS Transit Gateway and VPC Routing Tables
 
-To properly route traffic between your AWS VPCs and Kong Dedicated Cloud Gateways (DCGWs) via AWS Transit Gateway, additional routing steps are required:
+To properly route traffic between your AWS VPCs and Kong Dedicated Cloud Gateways (DCGW) via AWS Transit Gateway, additional routing steps are required:
 
 1. From your AWS Console, navigate to **VPC > Transit Gateways**.
 1. Select your transit gateway, then select **Transit Gateway Attachments**.
@@ -84,7 +84,7 @@ To properly route traffic between your AWS VPCs and Kong Dedicated Cloud Gateway
 1. Verify your AWS Security Groups and Network ACLs:
     * Allow necessary inbound/outbound traffic for ports and protocols used by your upstream applications and Kong DCGW.
     * Ensure Network ACLs permit traffic between AWS VPCs and Kong DCGW.
-1. Confirm connectivity by testing communication between your AWS VPC resources and Kong DCGW endpoints (e.g., using ping, telnet, or traceroute).    
+1. Confirm connectivity by testing communication between your AWS VPC resources and Kong DCGW endpoints with `ping`, `telnet`, or `traceroute`).    
 
 Once the transit gateway attachment is successful and you've configured routing in your AWS VPC, add a route where the upstream services are running, and configure the route to forward all traffic for the {{site.konnect_short_name}} managed VPC via the transit gateway. This ensures that traffic from the {{site.konnect_short_name}} data plane reaches the service and the response packets are routed back correctly.
 
