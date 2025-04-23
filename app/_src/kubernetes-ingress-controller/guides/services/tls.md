@@ -79,7 +79,7 @@ spec:
 
   ```
 
-For TLS termination, you need to configure a `Secret` for listener certificate on the `Gateway`. or for the certificate on `spec.tls` of the `Ingress`. This certificate will be used in setting up TLS connection between your client and {{site.base_gateway}}.
+For TLS termination, you need to configure a `Secret` for listener certificate on the `Gateway` or for the certificate on `spec.tls` of the `Ingress`. This certificate will be used in setting up TLS connection between your client and {{site.base_gateway}}.
 
 ```bash
 $ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --key=example.com-tls.key
@@ -180,12 +180,50 @@ $ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --k
 {% endnavtab %}
 {% endnavtabs %}
 
+#### Verification
+
+You can run the verification by using `curl`:
+
+```bash
+  export PROXY_IP=$(kubectl get svc -n kong kong-gateway-proxy -o jsonpath={.status.loadBalancer.ingress[0].ip})
+  curl  --cacert ./example.com-tls.crt -i -k -v -H"Host:demo.example.com"  https://{PROXY_IP}/echo
+```
+
+You should get the followign response:
+
+```
+  Running on Pod example-echo-server-abcdef1-xxxxx
+```
+
 ### TLS Passthrough
 
 For TLS passthrough, you also need to create a `Secret` for the TLS secret that is used for creating TLS connection between your client and the backend server.
 
 ```bash
 $ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --key=example.com-tls.key
+```
+
+Also, you need to configure {{ site.base_gateway }} to listen on a TLS port and enable `TLSRoute` in {{site.kic_product_name}}. You need to deploy them with
+
+```bash
+  helm upgrade -i kong kong/ingress -n kong --values values-tls-passthrough.yaml --create-namespace
+```
+
+where the content of `values-tls-passthrough.yaml` is 
+
+```yaml
+  gateway:
+    env:
+      stream_listen: "0.0.0.0:8899 ssl" # listen a TLS port
+    proxy:
+      stream:
+      - containerPort: 8899 # configure the service to forward traffic to the TLS port
+        servicePort: 8899
+
+  controller:
+    ingressController:
+      env:
+        feature_gates: "GatewayAlpha=true" # enable GatewayAlpha feature gate to turn on TLSRoute controller
 ```
 
 Then you can create a `Deployment` to run a server accepting TLS connections with the certificate created previously, and a `Service` to expose the server:
@@ -301,3 +339,24 @@ spec:
 > The Ingress API does not support TLS passthrough
 {% endnavtab %}
 {% endnavtabs %}
+
+#### Verification
+
+You need to let the domain `demo.example.com` resolving to the IP of the loadbalancer IP of {{ site.base_gateway }}'s proxy service by DNS or `/etc/hosts` file when verifying the connection. The IP can be fetched by: 
+
+```bash
+kubectl get svc -n kong kong-gateway-proxy -o jsonpath={.status.loadBalancer.ingress[0].ip}
+```
+
+Then, you can verify that the TLS passthrough is configured correctly (for example, by `openssl`'s TLS client):
+
+```bash
+ openssl s_client -connect demo.example.com:8899
+```
+
+You should receive the following content from the connection:
+
+```
+Running on Pod example-tlsroute-manifest.
+Through TLS connection.
+```
