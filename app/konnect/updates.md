@@ -115,25 +115,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 
-<div class="changelog-entries">
-<div class="changelog-date">March<br>31</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/reduce-operational-burden-through-centralized-consumer-management-in-konnect-8W5Vyul3">Reduce operational burden through centralized consumer management in Konnect!</a>
-</div>
-<div class="changelog-description">Users can define consumers centrally in every region of Konnect and reference them in multiple control planes starting with Kong Gateway 3. 10.</div>
-</div>
-</div>
-<div class="changelog-entries">
-<div class="changelog-date">March<br>06</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/creating-personalized-dashboards-is-now-in-tech-preview-WmWAYVw0">Creating personalized dashboards is now in Tech Preview</a>
-</div>
-<div class="changelog-description">We’re excited to announce an early prototype release of custom dashboards in Konnect Labs (KLabs) as a Tech Preview.  Today, our built-in Summary dashboard provides a fixed set of key performance metrics, but we know that every organization has different priorities.</div>
-</div>
-</div>
-
 ## February 2025
 
 <div class="changelog-entries">
