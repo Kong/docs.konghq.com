@@ -9,6 +9,7 @@ For more information, see the [Confluent Cloud documentation](https://docs.confl
 > **Note**: This plugin has the following known limitations:
 > * Message compression is not supported.
 > * The message format is not customizable.
+> * {{site.base_gateway}} does not support Kafka 4.0.
 
 Kong also provides a [plugin for publishing messages to Confluent Cloud](/hub/kong-inc/confluent/).
 
