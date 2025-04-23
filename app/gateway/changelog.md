@@ -339,7 +339,14 @@ This release contains upgraded dependencies and a new interface for validating e
 #### Plugins
 
 * [**AI Plugins**](/hub/?category=ai): 
-  * Fixed an issue where templates weren't being resolved correctly.
+  * Fixed an issue where templates weren't being resolved correctly, and resolution would fail with the following error:
+
+    ```
+    BadRequestError: Error code: 400 - {'error': {'message': 'cannot use own model - must be: <some-model-name>'}}
+    ```
+
+    This happened because templated model options were being cached between requests, causing subsequent requests to other models to use the wrong options.
+
   * Added nested field support.
 
 * [**AI Semantic Cache**](/hub/kong-inc/ai-semantic-cache/) (`ai-semantic-cache`)  
@@ -375,6 +382,16 @@ This release contains upgraded dependencies and a new interface for validating e
 * [**Session**](/hub/kong-inc/session/) (`session`) 
   * Fixed an issue where two boolean configuration fields `hash_subject` (default `false`) and `store_metadata` (default `false`) stored the session's metadata in the database.
 
+### Known issues
+
+* [**AI Plugins**](/hub/?category=ai): Templated model options are cached between requests, causing subsequent requests to other models to use the wrong options. 
+  You may see the following error:
+  
+  ```
+  BadRequestError: Error code: 400 - {'error': {'message': 'cannot use own model - must be: <some-model-name>'}}
+  ```
+  To fix this issue, upgrade to at least 3.9.1.1.
+  
 ## 3.9.0.1
 **Release Date** 2025/01/28
 
