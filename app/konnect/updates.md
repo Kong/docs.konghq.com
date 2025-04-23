@@ -15,6 +15,42 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## April 2025
 
 <div class="changelog-entries">
+<div class="changelog-date">April<br>23</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-custom-plugin-streaming-for-dedicated-cloud-gateways">Introducing Custom Plugin Streaming for Dedicated Cloud Gateways</a>
+</div>
+<div class="changelog-description">We are excited to announce support for Custom Plugin Streaming for Dedicated Cloud Gateways.  This new feature simplifies the process for customers to deploy and manage their custom plugins on Dedicated Cloud Gateways, providing enhanced flexibility and control over plugin deployments and management.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>23</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-aws-privatelink-for-konnect-apis-rrPOFYYc">Introducing AWS PrivateLink for Konnect APIs!</a>
+</div>
+<div class="changelog-description">We are pleased to announce that Konnect API calls, including the API calls made through decK and Terraform can now be made through AWS PrivateLink.  Users can leverage AWS PrivateLink for a secure connection to Konnect APIs (including decK and Terraform).</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>17</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/expanded-aws-privatelink-region-availability-2er30eYE">Expanded AWS PrivateLink region availability</a>
+</div>
+<div class="changelog-description">Today we're excited to introduce PrivateLink support for four additional AWS regions.  You can leverage AWS PrivateLink for an additional layer of security between the control plane in Konnect and your dataplanes in your environment.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>14</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://app.getbeamer.com/kongreleases/en/introducing-snippets-for-dev-portal-beta-7IZ0TxBa">🎉  Introducing Snippets for Dev Portal Beta 🎉 </a>
+</div>
+<div class="changelog-description">Following the successful launch of Dev Portal Beta, we're continuing to deliver new value incrementally as we march toward GA.  📃 Release notes Snippets allow for reusable content in portal Pages, making content more manageable, and adding modularity to your Dev Portal content strategy.</div>
+</div>
+</div>
+<div class="changelog-entries">
 <div class="changelog-date">April<br>09</div>
 <div class="changelog-entry">
 <div class="changelog-title">
@@ -32,17 +68,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">Custom dashboards are off to a strong start!  In just three weeks of early access, we've seen great usage and received tons of helpful feedback—thank you!</div>
 </div>
 </div>
-<div class="changelog-entries">
-<div class="changelog-date">April<br>09</div>
-<div class="changelog-entry">
-<div class="changelog-title">
-<a href="https://app.getbeamer.com/kongreleases/en/introducing-aws-privatelink-for-konnect-apis-rrPOFYYc">Introducing AWS PrivateLink for Konnect APIs!</a>
-</div>
-<div class="changelog-description">We are pleased to announce that Konnect API calls, including the API calls made through decK and Terraform can now be made through AWS PrivateLink.  Users can leverage AWS PrivateLink for a secure connection to Konnect APIs (including decK and Terraform).</div>
-</div>
-</div>
-
-
 
 
 ## March 2025
@@ -85,6 +110,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">We’re proud to announce the Beta launch of our all-new Dev Portal!  This release provides a highly customizable API consumption experience to establish API producers’ brand and project a strong developer experience.</div>
 </div>
 </div>
+
 
 
 
