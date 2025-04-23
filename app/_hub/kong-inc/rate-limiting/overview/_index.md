@@ -96,9 +96,10 @@ include [Redis Cluster](https://redis.io/docs/management/scaling/) or [Redis Sen
 
 In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need
 for Redis, and then choose either `cluster` or `redis`.
+You could start with the `cluster` policy, and move to `redis` if performance reduces drastically.
 
-You could start with the `cluster` policy, and move to `redis`
-if performance reduces drastically.
+If using a very high sync rate, use `redis`. Very high sync rates with `cluster` mode are **not scalable and not recommended**.
+You can calculate what is considered a very high sync rate in your environment based on your topology, number of plugins, their sync rates, and tolerance for loose rate limits.
 
 Do remember that you cannot port the existing usage metrics from the data store to Redis.
 This might not be a problem with short-lived metrics (for example, seconds or minutes)
