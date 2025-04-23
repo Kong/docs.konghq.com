@@ -60,6 +60,8 @@
         url: /gateway-manager/dedicated-cloud-gateways/azure-peering
       - text: Custom Domains
         url: /gateway-manager/dedicated-cloud-gateways/custom-dns/
+      - text: Custom Plugins
+        url: /gateway-manager/dedicated-cloud-gateways/custom-plugins/
       - text: Data plane logs
         url: /gateway-manager/dedicated-cloud-gateways/data-plane-logs
     - text: Serverless Gateways
