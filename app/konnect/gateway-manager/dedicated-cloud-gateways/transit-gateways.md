@@ -66,9 +66,27 @@ After creating the resource share, copy the **RAM Share ARN**. You will need thi
 1. From the **AWS Console**, go to  **VPC** > **Transit Gateway Attachments**.
 1. Wait for an attachment request coming from the AWS Account ID you used in {{site.konnect_short_name}}.
 1. Accept the attachment to complete the setup.
-1. **Important:** Make sure a Transit Gateway Attachment is set up for each AWS VPC that needs to send or receive traffic.   
 
-Once the transit gateway attachment is successful, add a route where the upstream services are running, and configure the route to forward all traffic for the {{site.konnect_short_name}} managed VPC via the transit gateway. This ensures that traffic from the {{site.konnect_short_name}} data plane reaches the service and the response packets are routed back correctly.
+### Configure AWS Transit Gateway and VPC Routing Tables
+
+To properly route traffic between your AWS VPCs and Kong Dedicated Cloud Gateways (DCGWs) via AWS Transit Gateway, additional routing steps are required:
+
+1. From your AWS Console, navigate to **VPC > Transit Gateways**.
+1. Select your transit gateway, then select **Transit Gateway Attachments**.
+1. Click **Create transit gateway attachment** and attach each AWS VPC that needs connectivity to your Kong DCGW.
+1. After attachments are created, navigate to **Transit Gateway Route Tables**.
+1. If the attachment is associated with (and propagating to) the route table, the VPC CIDRs appears automatically. 
+1. If not, select the relevant Transit Gateway route table, then click **Create route** to add routes to your Kong DCGW VPC CIDR range and AWS VPC CIDR ranges. Ensure these CIDR blocks do not overlap.
+1. Next, navigate to your AWS VPCs, select **Route Tables**, and update your route tables:
+    * Add a new route for the Kong DCGW VPC CIDR with the **Target** set to your **Transit Gateway ID**.
+    * For example:  
+      `Destination: 192.168.0.0/16` -> `Target: tgw-xxxxxxxx`
+1. Verify your AWS Security Groups and Network ACLs:
+    * Allow necessary inbound/outbound traffic for ports and protocols used by your upstream applications and Kong DCGW.
+    * Ensure Network ACLs permit traffic between AWS VPCs and Kong DCGW.
+1. Confirm connectivity by testing communication between your AWS VPC resources and Kong DCGW endpoints (e.g., using ping, telnet, or traceroute).    
+
+Once the transit gateway attachment is successful and you've configured routing in your AWS VPC, add a route where the upstream services are running, and configure the route to forward all traffic for the {{site.konnect_short_name}} managed VPC via the transit gateway. This ensures that traffic from the {{site.konnect_short_name}} data plane reaches the service and the response packets are routed back correctly.
 
 
 ## More information
