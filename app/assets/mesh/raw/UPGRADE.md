@@ -5,6 +5,12 @@ with `x.y.z` being the version you are planning to upgrade to.
 
 Make sure to also check the upgrade notes for the matching version of [Kuma](https://kuma.io/docs/latest/production/upgrades-tuning/upgrades).
 
+## Upgrade to `2.11.x`
+
+### Reduce the permissions of the `ClusterRole` by moving cert-manager permissions to a `Role`
+
+During installation, we create a `ClusterRole` with permissions for Kong Mesh resources and cert-manager. We’ve identified that cluster-scoped access to cert-manager is not necessary, so we’ve moved those permissions to a separate `Role`, bound by a `RoleBinding` in the system namespace only. This change should not affect your deployment.
+
 ## Upgrade to `2.10.x`
 
 ### CP tokens are removed
