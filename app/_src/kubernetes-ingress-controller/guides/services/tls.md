@@ -342,16 +342,11 @@ spec:
 
 #### Verification
 
-You need to let the domain `demo.example.com` resolving to the IP of the load balancer IP of {{ site.base_gateway }}'s proxy service by DNS or `/etc/hosts` file when verifying the connection. The IP can be fetched by: 
+To verify that the TLS passthrough is configured correctly (for example, by `openssl`'s TLS client) use the following commands:
 
 ```bash
-kubectl get svc -n kong kong-gateway-proxy -o jsonpath={.status.loadBalancer.ingress[0].ip}
-```
-
-Then, you can verify that the TLS passthrough is configured correctly (for example, by `openssl`'s TLS client):
-
-```bash
- openssl s_client -connect demo.example.com:8899
+export PROXY_IP=$(kubectl get svc -n kong kong-gateway-proxy -o jsonpath={.status.loadBalancer.ingress[0].ip})
+openssl s_client -connect ${PROXY_IP}:8899 -servername demo.example.com
 ```
 
 You should receive the following content from the connection:
