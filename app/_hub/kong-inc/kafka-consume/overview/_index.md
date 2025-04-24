@@ -9,6 +9,7 @@ For more information, see [Kafka topics](https://kafka.apache.org/documentation/
 > **Note**: This plugin has the following known limitations:
 > * Message compression is not supported.
 > * The message format is not customizable.
+> * {{site.base_gateway}} does not support Kafka 4.0.
 
 Kong also provides Kafka plugins for publishing messages:
 * See [Kafka Log](/hub/kong-inc/kafka-log/)

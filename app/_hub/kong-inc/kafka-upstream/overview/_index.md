@@ -9,6 +9,21 @@ in an [Apache Kafka](https://kafka.apache.org/) topic. For more information, see
 Kong also provides a Kafka Log plugin for publishing logs to a Kafka topic.
 See [Kafka Log](/hub/kong-inc/kafka-log/).
 
+{% if_version lte:3.8.x %}
+{:.note}
+> **Note**: This plugin has the following limitations:
+* Message compression is not supported.
+* The message format is not customizable.
+* {{site.base_gateway}} does not support Kafka 4.0.
+{% endif_version %}
+
+{% if_version gte:3.9.x %}
+{:.note}
+> **Note**: This plugin has the following limitations:
+> * This plugin does not support message compression.
+> * {{site.base_gateway}} does not support Kafka 4.0.
+{% endif_version %}
+
 ## Enable on a service-less route
 
 ```bash
@@ -94,14 +109,6 @@ This plugin supports the following authentication mechanisms:
 
   [Read more on how to create, renew, and revoke delegation tokens.](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_delegation.html#authentication-using-delegation-tokens)
 
-## Known issues and limitations
-
-Known limitations:
-
-1. Message compression is not supported.
-{% if_version lte: 3.9.x %}
-2. The message format is not customizable.
-{% endif_version %}
 
 ## Quickstart
 

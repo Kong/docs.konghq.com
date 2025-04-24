@@ -12,12 +12,14 @@ Kong also provides a Kafka plugin for request transformations. See [Kafka Upstre
 > **Note**: This plugin has the following limitations:
 * Message compression is not supported.
 * The message format is not customizable.
+* {{site.base_gateway}} does not support Kafka 4.0.
 {% endif_version %}
-
 
 {% if_version gte:3.4.x %}
 {:.note}
-> **Note**: This plugin does not support message compression.
+> **Note**: This plugin has the following limitations:
+> * This plugin does not support message compression.
+> * {{site.base_gateway}} does not support Kafka 4.0.
 {% endif_version %}
 
 ## Quickstart
