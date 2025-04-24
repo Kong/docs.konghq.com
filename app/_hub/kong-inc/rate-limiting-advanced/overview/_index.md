@@ -181,8 +181,27 @@ Two common use cases are:
 In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need
 for Redis, and then choose either `cluster` or `redis`.
 
-You could start with the `cluster` policy, and move to `redis`
-if performance reduces drastically.
+You could start with the `cluster` policy, and move to `redis` if performance reduces drastically.
+
+If using a very high sync frequency, use `redis`. Very high sync frequencies with `cluster` mode are **not scalable and not recommended**. 
+The sync frequency becomes higher when the `sync_rate` setting is a lower number - for example, a `sync_rate` of 0.1 is a much higher sync frequency (10 counter syncs per second) than a `sync_rate` of 1 (1 counter sync per second).
+
+You can calculate what is considered a very high sync rate in your environment based on your topology, number of plugins, their sync rates, and tolerance for loose rate limits.
+
+Together, the interaction between sync rate and window size affects how accurately the plugin can determine cluster-wide traffic.
+For example, the following table represents the worst-case scenario where a full sync interval's worth of data hasn't yet propagated across nodes:
+
+| Property | Formula or config location | Value |
+|----------|----------------------------|-------|
+| Window size in seconds | Value set in `config.window_size` | 5 |
+| Limit (in window)| Value set in `config.limit` | 1000 |
+| Sync rate (interval) | Value set in `config.sync_rate` |  0.5 |
+| Number of nodes (>1) | -- | 10 |
+| Estimated load balanced rps to a node | Limit / Window size / Number of nodes | 1000 / 5 / 10 = 20 |
+| Max potential lag in cluster count for a given node/sec | Estimated load balanced rps * Sync rate  | 20 * 0.5 = 10 | 
+| Cluster wide max potential overage/sec | Max potential lag * Number of nodes | 10 * 10 = 100 |
+| Cluster wide max potential overage/sec as a percentage | Cluster wide max potential overage / Limit | 100 / 1000 = 10% |
+| Effective worst case cluster wide requests allowed at window size | Limit * Cluster wide max potential overage | 1000 + 100 = 1100 |
 
 Do remember that you cannot port the existing usage metrics from the data store to Redis.
 This might not be a problem with short-lived metrics (for example, seconds or minutes)
