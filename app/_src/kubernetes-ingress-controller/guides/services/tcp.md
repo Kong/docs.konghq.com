@@ -192,7 +192,7 @@ receives on port 9000 to `echo` service on port 1025.
 {% navtab Gateway API %}
 ```bash
 # Wait for the controller to process the route
-kubectl wait tcproute echo-plaintext --for='jsonpath={.status.parents[0].conditions[?(@.reason=="Accepted")]}=True'
+kubectl wait tcproute echo-plaintext --for='jsonpath={.status.parents[0].conditions[?(@.type=="Accepted")].status}'=True
 ```
 {% endnavtab %}
 {% navtab Ingress %}
