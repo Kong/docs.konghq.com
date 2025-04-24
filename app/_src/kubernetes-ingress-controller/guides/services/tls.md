@@ -189,7 +189,7 @@ You can run the verification by using `curl`:
   curl  --cacert ./example.com-tls.crt -i -k -v -H"Host:demo.example.com"  https://{PROXY_IP}/echo
 ```
 
-You should get the followign response:
+You should get the following response:
 
 ```
   Running on Pod example-echo-server-abcdef1-xxxxx
@@ -342,7 +342,7 @@ spec:
 
 #### Verification
 
-You need to let the domain `demo.example.com` resolving to the IP of the loadbalancer IP of {{ site.base_gateway }}'s proxy service by DNS or `/etc/hosts` file when verifying the connection. The IP can be fetched by: 
+You need to let the domain `demo.example.com` resolving to the IP of the load balancer IP of {{ site.base_gateway }}'s proxy service by DNS or `/etc/hosts` file when verifying the connection. The IP can be fetched by: 
 
 ```bash
 kubectl get svc -n kong kong-gateway-proxy -o jsonpath={.status.loadBalancer.ingress[0].ip}
