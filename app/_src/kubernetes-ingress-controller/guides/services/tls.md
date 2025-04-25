@@ -182,11 +182,11 @@ $ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --k
 
 #### Verification
 
-You can run the verification by using `curl`:
+You can verify the configuration by using `curl`:
 
 ```bash
   export PROXY_IP=$(kubectl get svc -n kong kong-gateway-proxy -o jsonpath={.status.loadBalancer.ingress[0].ip})
-  curl  --cacert ./example.com-tls.crt -i -k -v -H"Host:demo.example.com"  https://{PROXY_IP}/echo
+  curl --cacert ./example.com-tls.crt -i -k -v -H"Host:demo.example.com"  https://${PROXY_IP}/echo
 ```
 
 You should get the following response:
@@ -248,7 +248,10 @@ spec:
       - name: tlsecho
         image: kong/go-echo:0.5.0
         ports:
+        # The `go-echo` image listens on port 1030 for TLS connections.
         - containerPort: 1030
+          name: tls
+          protocol: TCP
         env:
         - name: POD_NAME
           value: example-tlsroute-manifest
@@ -274,9 +277,9 @@ metadata:
   name: tlsecho
 spec:
   ports:
-  - port: 8899
+  - port: 1030
     protocol: TCP
-    targetPort: 1030
+    targetPort: 1030 # The `tlsecho` container listens on port 1030 for TLS connections.
   selector:
     app: tlsecho
   type: ClusterIP
@@ -327,7 +330,7 @@ spec:
       rules:
       - backendRefs:
         - name: tlsecho
-          port: 8899
+          port: 1030
     ```
 
     You cannot use any `matches` rules on a `TLSRoute` as the TLS traffic has not been decrypted.
