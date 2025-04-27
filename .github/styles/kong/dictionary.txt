@@ -412,6 +412,7 @@ misconfigured
 Moesif
 MongoDB
 multimodal
+multitenant
 mutex
 nameserver
 nameservers
@@ -663,6 +664,7 @@ vnet
 Vue
 Wallarm
 Wasm
+watchNamespaces
 WebAssembly
 webpages
 websocket
