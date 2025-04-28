@@ -2,6 +2,97 @@
 
 <!--vale off-->
 
+## Week 17
+
+### [private-link: fix regions list](https://github.com/Kong/docs.konghq.com/pull/8739) (2025-04-24)
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [privatelink: remove duplicate region](https://github.com/Kong/docs.konghq.com/pull/8734) (2025-04-23)
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [chore: Mention that we don't support kafka 4.0](https://github.com/Kong/docs.konghq.com/pull/8733) (2025-04-24)
+
+Kafka 4.0 was released last month and users are running into problems because we don't explicitly say that we don't support it.
+
+https://konghq.atlassian.net/browse/KAG-6911
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/confluent-consume/overview/
+- https://docs.konghq.com/hub/kong-inc/confluent/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-consume/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-log/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-upstream/overview/
+
+
+### [update: Warn users about very high sync rates in RLA](https://github.com/Kong/docs.konghq.com/pull/8732) (2025-04-24)
+
+Added a table and info about window size and sync rate interactions in RLA, and what strategy they should use.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
+
+
+### [Update transit-gateways.md](https://github.com/Kong/docs.konghq.com/pull/8730) (2025-04-23)
+
+Added more details on AWS routing tables setup
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways
+
+
+### [update script for ai-rag](https://github.com/Kong/docs.konghq.com/pull/8727) (2025-04-24)
+
+The script should be updated
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+
+
+### [update script for ai-rate-limiting plugin](https://github.com/Kong/docs.konghq.com/pull/8726) (2025-04-23)
+
+update script
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/
+
+
+### [Update konnect-configuration.md](https://github.com/Kong/docs.konghq.com/pull/8684) (2025-04-23)
+
+Updating the decK file to reflect PrivateLink updates
+
+
+#### Modified
+
+- https://docs.konghq.com/deck/gateway/konnect-configuration
+
+
+### [CSRE-4181 Private Link for Konnect Admin API documentation](https://github.com/Kong/docs.konghq.com/pull/8674) (2025-04-23)
+
+Added Section for making Konnect Admin API requests over PrivateLink
+
+1. https://konghq.atlassian.net/browse/CSRE-4181
+2. https://konghq.atlassian.net/browse/CSRE-3768
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
 ## Week 16
 
 
@@ -14,10 +105,6 @@
 
 Updated AI "templated options" example for a better sub-string sample configuration.
 
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
 
 #### Modified
 
@@ -28,7 +115,6 @@ Updated AI "templated options" example for a better sub-string sample configurat
 
 update ai-sanitizer doc
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -44,12 +130,6 @@ update ai-sanitizer doc
 https://konghq.aha.io/features/PLAT-2
 
 
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/private-connections/aws-privatelink
@@ -57,10 +137,8 @@ https://konghq.aha.io/features/PLAT-2
 
 ### [fix: Add 3.10 to Konnect compatibility table](https://github.com/Kong/docs.konghq.com/pull/8715) (2025-04-16)
 
-<!-- What did you change and why? -->
 Added 3.10 to Konnect compatibility table
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 https://kongstrong.slack.com/archives/CDSTDSG9J/p1744771182817609
 
 #### Modified
