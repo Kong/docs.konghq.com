@@ -62,7 +62,7 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
     * Frankfurt (`germanywestcentral`)
     * UK South (`uksouth`)
     * Ireland (`northeurope`)
-    * France ('francecentral')  
+    * France (`francecentral`)  
 
 {% endnavtab %}
 
