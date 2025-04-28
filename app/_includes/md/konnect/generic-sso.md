@@ -59,11 +59,7 @@ The {{site.konnect_short_name}} OIDC integration allows you to configure various
         * To manage user and team memberships in {{site.konnect_short_name}} from the Organization settings, select the **Konnect Mapping Enabled** checkbox.
         * To assign team memberships by the IdP during SSO login via group claims mapped to {{site.konnect_short_name}} teams, select the **IdP Mapping Enabled** checkbox and enter your IdP groups in the relevant fields.
 
-        Each {{site.konnect_short_name}} team can be mapped to **one** IdP group.
-
-        For example, if you have a `service_admin` group in your IdP, you might map it
-        to the `Service Admin` team in {{site.konnect_short_name}}. You can hover
-        over the info (`i`) icon beside each field to learn more about the team, or
+        You can hover over the info (`i`) icon beside each field to learn more about the team, or
         see the [teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
         for more information.
 
