@@ -44,7 +44,7 @@ If the Gateway control plane is successfully created, you should see the followi
 
 ```shell
 NAME                    PROGRAMMED   ID                                     ORGID
-gateway-control-plane   True         <konnect-control-plane-id>             <your-konnect-ord-id>
+gateway-control-plane   True         <konnect-control-plane-id>             <your-konnect-org-id>
 ```
 
 ## Create a control plane group
@@ -79,7 +79,7 @@ If the Control Plane Group is successfully created, you should see the following
 
 ```shell
 NAME                    PROGRAMMED   ID                                     ORGID
-control-plane-group     True         <konnect-control-plane-id>             <your-konnect-ord-id>
+control-plane-group     True         <konnect-control-plane-id>             <your-konnect-org-id>
 ```
 
 ### Add a gateway control plane to a control plane group
@@ -138,5 +138,50 @@ If the control plane is successfully created, you should see the following outpu
 
 ```shell
 NAME                    PROGRAMMED   ID                                     ORGID
-kic-control-plane       True         <konnect-control-plane-id>             <your-konnect-ord-id>
+kic-control-plane       True         <konnect-control-plane-id>             <your-konnect-org-id>
 ```
+
+{% if_version gte:1.6.x %}
+
+## Create a mirror gateway control plane
+
+Creating the `KonnectGatewayControlPlane` object with `Mirror` source in your Kubernetes cluster will mirror {{site.konnect_short_name}} Gateway
+control plane from your [Gateway Manager](/konnect/gateway-manager). You need to provide the konnect id of the 
+{{site.konnect_short_name}} Gateway control plane in the `mirror.konnect.id` field.
+
+> Note: the mirrored control planes are in read-only in Kubernetes, which means that no update or deletion
+  can be enforced on the remote Konnect entities through such resource.
+
+You can create one by applying the following YAML manifest:
+
+```yaml
+echo '
+kind: KonnectGatewayControlPlane
+apiVersion: konnect.konghq.com/v1alpha1
+metadata:
+  name: gateway-control-plane
+  namespace: default
+spec:
+  source: Mirror
+  mirror:
+    konnect:
+      id: <YOUR-KONNECT-ID>
+  konnect:
+    authRef:
+      name: konnect-api-auth # Reference to the KonnectAPIAuthConfiguration object
+  ' | kubectl apply -f -
+```
+
+You can see the status of the Gateway control plane by running:
+
+```shell
+kubectl get konnectgatewaycontrolplanes.konnect.konghq.com gateway-control-plane
+```
+
+If the Gateway control plane is successfully mirrored, you should see the following output:
+
+```shell
+NAME                    PROGRAMMED   ID                                     ORGID
+gateway-control-plane   True         <konnect-control-plane-id>             <your-konnect-org-id>
+```
+{% endif_version %}
