@@ -3447,6 +3447,36 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.18
+**Release Date** 2025/04/29
+
+### Features
+
+#### PDK
+
+* Added a new `kong.request.get_raw_forwarded_path()` function for returning a non-normalized `forwarded_path`.
+
+### Fixes
+
+#### Core
+
+* Fixed an issue where the detail page failed to render when a certificate or CA certificate was configured with a Vault reference.
+* **Clustering**: You can now configure Data Plane metadata labels for a self-managed Gateway Control Plane.
+
+#### Plugins
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue which caused IdPs to report invalid `redirect_uri` errors when `config.redirect_uri` was not configured and the URI path contained spaces.
+
+* [**Session**](/hub/kong-inc/session/) (`session`) 
+  * Fixed an issue where boolean configuration fields `hash_subject` (default `false`) and `store_metadata` (default `false`) stored the session's metadata in the database. 
+  This also resolves an issue with Dev Portal, where adding these fields to `portal_session_conf` wasn't working as expected.
+
+### Dependencies
+
+* Bumped `lua-resty-openssl` from 1.2.1 to 1.5.1 to fix the worker process crash caused by a segmentation fault.
+
+
 ## 3.4.3.17
 **Release Date** 2025/03/26
 

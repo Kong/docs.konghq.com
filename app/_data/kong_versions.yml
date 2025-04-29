@@ -31,7 +31,7 @@
   lua_doc: true
   endOfLifeDate: 2024-05-19
 - release: "3.4.x"
-  ee-version: "3.4.3.17"
+  ee-version: "3.4.3.18"
   ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
