@@ -16,12 +16,12 @@ The `spec.watchNamespaces.type` accepts 3 values to control this behavior:
 - `own`: makes the `ControlPlane` only watch resources in its own namespace
 - `list`: makes the `ControlPlane` watch resources in its own namespace and the provided list of namespaces
   Using "list" also adds ControlPlane's own namespace to the list of watched namespaces
-  because that's that KIC does.
+  because that's what KIC does.
   The reason for this is the publish service (`DataPlane`'s `Service` exposed by {{site.base_gateway}})
   by default would exist in the same namespace as `ControlPlane`.
 
 > Note: Please mark that this setting in `ControlPlane` will set the `CONTROLLER_WATCH_NAMESPACE`
-> environment variable in managed {{ site.kic_product_name }} so setting this via
+> environment variable in managed {{ site.kic_product_name }} so setting the watched namespaces in the environment variable via
 > `podTemplateSpec` will override this.
 
 ## Specify a list of namespaces to watch
