@@ -147,6 +147,8 @@ items:
             url: /guides/konnect-entities/cloud-gateways-network/
           - text: Cloud Gateways - Data Plane Group Configuration
             url: /guides/konnect-entities/cloud-gateways-data-plane-group-configuration/
+          - text: Cloud Gateways - Transit Gateways
+            url: /guides/konnect-entities/cloud-gateways-transit-gateway/
           - text: FAQ
             url: /guides/konnect-entities/faq/
       - text: Migration
@@ -181,4 +183,8 @@ items:
       - text: License
         url: /reference/license
       - text: Version Compatibility
+<<<<<<< HEAD
         url: /reference/version-compatibility
+=======
+        url: /reference/version-compatibility
+>>>>>>> 9e540020e2 (add nav page)
