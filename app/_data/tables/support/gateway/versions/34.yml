@@ -7,7 +7,7 @@ distributions:
     docker: true
     arm: true
     graviton: true
-    eol: June 2025
+    eol: June 2026
   - <<: *amazonlinux2023
     docker: true
     arm: true
