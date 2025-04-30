@@ -2,7 +2,7 @@
 title: TLS Termination / Passthrough
 type: how-to
 purpose: |
-  How to do TLS Termination and TLS Passthrough with KIC and Kong Gateway
+  How to do TLS Termination and TLS Passthrough with {{site.kic_product_name}} and {{site.base_gateway}}
 ---
 
 
@@ -20,10 +20,11 @@ For `HTTPRoute` or `GRPCRoute`, the route's `hostname` must match the listener h
 
 ## Ingress
 
-The Ingress API supports TLS termination using the `.spec.tls` field. To terminate TLS with the Ingress API, provide `.spec.tls.secretName` that contains a TLS certificate and a list of `.spec.tls.hosts` to match in your Ingress definition. 
+The Ingress API supports TLS termination using the `.spec.tls` field. To terminate TLS with the Ingress API, provide `.spec.tls.secretName` that contains a TLS certificate and a list of `.spec.tls.hosts` to match in your Ingress definition.
 
 ## Examples
 
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=true %}
 
 ### TLS Termination
 {% assign gwapi_version = "v1" %}
@@ -31,18 +32,29 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
 {% assign gwapi_version = "v1beta1" %}
 {% endif_version %}
 
+1. Deploy the `echo` service as a target for our HTTPRoutes
+
+    ```bash
+    kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
+    ```
+
+    For TLS termination, you need to configure a `Secret` for listener certificate on the `Gateway` or for the certificate on `spec.tls` of the `Ingress`. This certificate will be used in setting up TLS connection between your client and {{site.base_gateway}}.
+
+{% include_cached /md/kic/add-certificate.md hostname='demo.example.com' release=page.release cert_required=true %}
+
 {% navtabs %}
 {% navtab Gateway API %}
 
-1. Create a `Gateway` resource.
+1. Update the `Gateway` resource.
 
     ```yaml
+    echo '
     apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
-      name: example-gateway
+      name: kong
     spec:
-      gatewayClassName: kong 
+      gatewayClassName: kong
       listeners:
       - name: https
         port: 443
@@ -52,19 +64,20 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
           mode: Terminate
           certificateRefs:
             - kind: Secret
-              name: demo-example-com-cert
+              name: demo.example.com ' | kubectl apply -f -
     ```
 
-2. Bind a `HTTPRoute` to the `Gateway`.
+2. Bind an `HTTPRoute` to the `Gateway`.
 
     ```yaml
+    echo '
     apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: HTTPRoute
     metadata:
-      name: demo-example 
+      name: demo-example
     spec:
       parentRefs:
-      - name: example-gateway
+      - name: kong
         sectionName: https
       hostnames:
       - demo.example.com
@@ -75,7 +88,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
             value: /echo
         backendRefs:
         - name: echo
-          port: 1027
+          port: 1027' | kubectl apply -f -
     ```
 
     {{ site.base_gateway }} will terminate TLS traffic before sending the request upstream.
@@ -88,12 +101,10 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
     kind: Ingress
     metadata:
      name: demo-example-com
-     annotations:
-       cert-manager.io/cluster-issuer: letsencrypt-prod
     spec:
      ingressClassName: kong
      tls:
-     - secretName: demo-example-com
+     - secretName: demo.example.com
        hosts:
        - demo.example.com
      rules:
@@ -106,56 +117,111 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
              service:
                name: echo
                port:
-                 number: 80
+                 number: 1027
     ```
-    
+
     The results will look like this:
-    
+
     ```text
-    ingress.extensions/demo-example-com configured
+    ingress.networking.k8s.io/demo-example-com created
     ```
 {% endnavtab %}
 {% endnavtabs %}
 
+#### Verification
+
+You can verify the configuration by using `curl`:
+
+```bash
+  curl --cacert ./server.crt -i -k -v -H "Host:demo.example.com" https://${PROXY_IP}/echo
+```
+
+You should get the following response:
+
+```
+Running on Pod example-echo-server-abcdef1-xxxxx
+```
+
 ### TLS Passthrough
+
+For TLS passthrough, you also need to create a `Secret` for the TLS secret that is used for creating TLS connection between your client and the backend server.
+
+{% include_cached /md/kic/add-certificate.md hostname='demo.example.com' release=page.release cert_required=true %}
+
+1. Configure {{ site.base_gateway }} to listen on a TLS port and enable `TLSRoute` in {{site.kic_product_name}}:
+
+    Create `values-tls-passthrough.yaml`:
+
+    ```yaml
+    echo '
+      gateway:
+        env:
+          stream_listen: "0.0.0.0:8899 ssl" # listen a TLS port
+        proxy:
+          stream:
+          - containerPort: 8899 # configure the service to forward traffic to the TLS port
+            servicePort: 8899
+
+      controller:
+        ingressController:
+          env:
+            feature_gates: "GatewayAlpha=true" # enable GatewayAlpha feature gate to turn on TLSRoute controller
+    ' > values-tls-passthrough.yaml
+    ```
+
+1. Deploy {{ site.kic_product_name }} with:
+
+    ```bash
+    helm upgrade -i kong kong/ingress -n kong --values values-tls-passthrough.yaml --create-namespace
+    ```
+
+    Then you can create a `Deployment` to run a server accepting TLS connections with the certificate created previously, and a `Service` to expose the server:
+
+1. Deploy the `tlsecho` service as a target for our HTTPRoutes
+
+    ```bash
+    kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/tls-echo-service.yaml
+    ```
 
 {% navtabs %}
 {% navtab Gateway API %}
 1. Create a `Gateway` resource.
 
     ```yaml
+    echo '
     apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
-      name: example-gateway
+      name: example-gateway-passthrough
     spec:
-      gatewayClassName: kong 
+      gatewayClassName: kong
       listeners:
       - name: https
-        port: 443
+        port: 8899
         protocol: TLS
         hostname: "demo.example.com"
         tls:
-          mode: Passthrough
+          mode: Passthrough ' | kubectl apply -f -
     ```
 
 2. Bind a `TLSRoute` to the `Gateway`.
 
     ```yaml
+    echo '
     apiVersion: gateway.networking.k8s.io/v1alpha2
     kind: TLSRoute
     metadata:
       name: demo-example-passthrough
     spec:
       parentRefs:
-      - name: example-gateway
+      - name: example-gateway-passthrough
         sectionName: https
       hostnames:
       - demo.example.com
       rules:
       - backendRefs:
         - name: tlsecho
-          port: 1989
+          port: 1030' | kubectl apply -f -
     ```
 
     You cannot use any `matches` rules on a `TLSRoute` as the TLS traffic has not been decrypted.
@@ -167,3 +233,18 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
 > The Ingress API does not support TLS passthrough
 {% endnavtab %}
 {% endnavtabs %}
+
+#### Verification
+
+To verify that the TLS passthrough is configured correctly (for example, by `openssl`'s TLS client) use the following commands:
+
+```bash
+openssl s_client -connect ${PROXY_IP}:8899 -servername demo.example.com
+```
+
+You should receive the following content from the connection:
+
+```
+Running on Pod example-tlsroute-manifest.
+Through TLS connection.
+```

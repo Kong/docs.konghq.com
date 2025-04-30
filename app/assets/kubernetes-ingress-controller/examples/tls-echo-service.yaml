@@ -2,53 +2,38 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: echo
-  name: echo
+    app: tlsecho
+  name: tlsecho
 spec:
   ports:
-    - port: 1025
-      name: tcp
-      protocol: TCP
-      targetPort: 1025
-    - port: 1026
-      name: udp
-      protocol: TCP
-      targetPort: 1026
-    - port: 1027
-      name: http
-      protocol: TCP
-      targetPort: 1027
     - port: 1030
       name: tls
       protocol: TCP
       targetPort: 1030
   selector:
-    app: echo
+    app: tlsecho
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: echo
-  name: echo
+    app: tlsecho
+  name: tlsecho
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: echo
+      app: tlsecho
   strategy: {}
   template:
     metadata:
       labels:
-        app: echo
+        app: tlsecho
     spec:
       containers:
         - image: kong/go-echo:latest
-          name: echo
+          name: tlsecho
           ports:
-            - containerPort: 1025 # TCP
-            - containerPort: 1026 # UDP
-            - containerPort: 1027 # HTTP
             - containerPort: 1030 # TLS
           env:
             - name: NODE_NAME
@@ -67,4 +52,19 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+            - name: TLS_PORT
+              value: "1030"
+            - name: TLS_CERT_FILE
+              value: /var/run/certs/tls.crt
+            - name: TLS_KEY_FILE
+              value: /var/run/certs/tls.key
+          volumeMounts:
+            - mountPath: /var/run/certs
+              name: secret-test
+              readOnly: true
           resources: {}
+      volumes:
+        - name: secret-test
+          secret:
+            defaultMode: 420
+            secretName: demo.example.com
