@@ -32,78 +32,27 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
 {% assign gwapi_version = "v1beta1" %}
 {% endif_version %}
 
-You can create a `Deployment` running the go-echo server and a `Service` pointing to the pods, then use the `Service` as the backend:
+1. Deploy the `echo` service as a target for our HTTPRoutes
 
-  ```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: example-echo-server
-  labels:
-    app: echo
-spec:
-  selector:
-    matchLabels:
-      app: echo
-  template:
-    metadata:
-      labels:
-        app: echo
-    spec:
-      containers:
-      - name: echo
-        image: kong/go-echo:0.5.0
-        env:
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-        ports:
-          - containerPort: 1027
-            name: "echo-http"
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: echo
-  name: echo
-spec:
-  ports:
-  - port: 1027
-    protocol: TCP
-    targetPort: 1027
-  selector:
-    app: echo
-  type: ClusterIP
+    ```bash
+    kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
+    ```
 
-  ```
+    For TLS termination, you need to configure a `Secret` for listener certificate on the `Gateway` or for the certificate on `spec.tls` of the `Ingress`. This certificate will be used in setting up TLS connection between your client and {{site.base_gateway}}.
 
-For TLS termination, you need to configure a `Secret` for listener certificate on the `Gateway` or for the certificate on `spec.tls` of the `Ingress`. This certificate will be used in setting up TLS connection between your client and {{site.base_gateway}}.
-
-```bash
-$ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --key=example.com-tls.key
-```
+{% include_cached /md/kic/add-certificate.md hostname='demo.example.com' release=page.release cert_required=true %}
 
 {% navtabs %}
 {% navtab Gateway API %}
 
-1. Create a `Gateway` resource.
+1. Update the `Gateway` resource.
 
     ```yaml
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: GatewayClass
-    metadata:
-      name: kong
-      annotations:
-        konghq.com/gatewayclass-unmanaged: "true"
-    spec:
-      controllerName: konghq.com/kic-gateway-controller
-    ---
+    echo '
     apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
-      name: example-gateway
+      name: kong
     spec:
       gatewayClassName: kong
       listeners:
@@ -115,19 +64,20 @@ $ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --k
           mode: Terminate
           certificateRefs:
             - kind: Secret
-              name: demo-example-com-cert
+              name: demo.example.com ' | kubectl apply -f -
     ```
 
 2. Bind an `HTTPRoute` to the `Gateway`.
 
     ```yaml
+    echo '
     apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: HTTPRoute
     metadata:
       name: demo-example
     spec:
       parentRefs:
-      - name: example-gateway
+      - name: kong
         sectionName: https
       hostnames:
       - demo.example.com
@@ -138,7 +88,7 @@ $ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --k
             value: /echo
         backendRefs:
         - name: echo
-          port: 1027
+          port: 1027' | kubectl apply -f -
     ```
 
     {{ site.base_gateway }} will terminate TLS traffic before sending the request upstream.
@@ -151,12 +101,10 @@ $ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --k
     kind: Ingress
     metadata:
      name: demo-example-com
-     annotations:
-       cert-manager.io/cluster-issuer: letsencrypt-prod
     spec:
      ingressClassName: kong
      tls:
-     - secretName: demo-example-com-cert
+     - secretName: demo.example.com
        hosts:
        - demo.example.com
      rules:
@@ -185,120 +133,62 @@ $ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --k
 You can verify the configuration by using `curl`:
 
 ```bash
-  export PROXY_IP=$(kubectl get svc -n kong kong-gateway-proxy -o jsonpath={.status.loadBalancer.ingress[0].ip})
-  curl --cacert ./example.com-tls.crt -i -k -v -H"Host:demo.example.com"  https://${PROXY_IP}/echo
+  curl --cacert ./server.crt -i -k -v -H "Host:demo.example.com" https://${PROXY_IP}/echo
 ```
 
 You should get the following response:
 
 ```
-  Running on Pod example-echo-server-abcdef1-xxxxx
+Running on Pod example-echo-server-abcdef1-xxxxx
 ```
 
 ### TLS Passthrough
 
 For TLS passthrough, you also need to create a `Secret` for the TLS secret that is used for creating TLS connection between your client and the backend server.
 
-```bash
-$ kubectl create secret tls demo-example-com-cert --cert=example.com-tls.crt --key=example.com-tls.key
-```
+{% include_cached /md/kic/add-certificate.md hostname='demo.example.com' release=page.release cert_required=true %}
 
-Also, you need to configure {{ site.base_gateway }} to listen on a TLS port and enable `TLSRoute` in {{site.kic_product_name}}. You need to deploy them with
+1. Configure {{ site.base_gateway }} to listen on a TLS port and enable `TLSRoute` in {{site.kic_product_name}}:
 
-```bash
-  helm upgrade -i kong kong/ingress -n kong --values values-tls-passthrough.yaml --create-namespace
-```
+    Create `values-tls-passthrough.yaml`:
 
-where the content of `values-tls-passthrough.yaml` is 
-
-```yaml
-  gateway:
-    env:
-      stream_listen: "0.0.0.0:8899 ssl" # listen a TLS port
-    proxy:
-      stream:
-      - containerPort: 8899 # configure the service to forward traffic to the TLS port
-        servicePort: 8899
-
-  controller:
-    ingressController:
-      env:
-        feature_gates: "GatewayAlpha=true" # enable GatewayAlpha feature gate to turn on TLSRoute controller
-```
-
-Then you can create a `Deployment` to run a server accepting TLS connections with the certificate created previously, and a `Service` to expose the server:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: tlsecho
-  labels:
-    app: tlsecho
-spec:
-  selector:
-    matchLabels:
-      app: tlsecho
-  template:
-    metadata:
-      labels:
-        app: tlsecho
-    spec:
-      containers:
-      - name: tlsecho
-        image: kong/go-echo:0.5.0
-        ports:
-        # The `go-echo` image listens on port 1030 for TLS connections.
-        - containerPort: 1030
-          name: tls
-          protocol: TCP
+    ```yaml
+    echo '
+      gateway:
         env:
-        - name: POD_NAME
-          value: example-tlsroute-manifest
-        - name: TLS_PORT
-          value: "1030"
-        - name: TLS_CERT_FILE
-          value: /var/run/certs/tls.crt
-        - name: TLS_KEY_FILE
-          value: /var/run/certs/tls.key
-        volumeMounts:
-        - mountPath: /var/run/certs
-          name: secret-test
-          readOnly: true
-      volumes:
-      - name: secret-test
-        secret:
-          defaultMode: 420
-          secretName: demo-example-com-cert
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: tlsecho
-spec:
-  ports:
-  - port: 1030
-    protocol: TCP
-    targetPort: 1030 # The `tlsecho` container listens on port 1030 for TLS connections.
-  selector:
-    app: tlsecho
-  type: ClusterIP
-```
+          stream_listen: "0.0.0.0:8899 ssl" # listen a TLS port
+        proxy:
+          stream:
+          - containerPort: 8899 # configure the service to forward traffic to the TLS port
+            servicePort: 8899
+
+      controller:
+        ingressController:
+          env:
+            feature_gates: "GatewayAlpha=true" # enable GatewayAlpha feature gate to turn on TLSRoute controller
+    ' > values-tls-passthrough.yaml
+    ```
+
+1. Deploy {{ site.kic_product_name }} with:
+
+    ```bash
+    helm upgrade -i kong kong/ingress -n kong --values values-tls-passthrough.yaml --create-namespace
+    ```
+
+    Then you can create a `Deployment` to run a server accepting TLS connections with the certificate created previously, and a `Service` to expose the server:
+
+1. Deploy the `tlsecho` service as a target for our HTTPRoutes
+
+    ```bash
+    kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/tls-echo-service.yaml
+    ```
 
 {% navtabs %}
 {% navtab Gateway API %}
 1. Create a `Gateway` resource.
 
     ```yaml
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: GatewayClass
-    metadata:
-      name: kong
-      annotations:
-        konghq.com/gatewayclass-unmanaged: "true"
-    spec:
-      controllerName: konghq.com/kic-gateway-controller
-    ---
+    echo '
     apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
@@ -311,12 +201,13 @@ spec:
         protocol: TLS
         hostname: "demo.example.com"
         tls:
-          mode: Passthrough
+          mode: Passthrough ' | kubectl apply -f -
     ```
 
 2. Bind a `TLSRoute` to the `Gateway`.
 
     ```yaml
+    echo '
     apiVersion: gateway.networking.k8s.io/v1alpha2
     kind: TLSRoute
     metadata:
@@ -330,7 +221,7 @@ spec:
       rules:
       - backendRefs:
         - name: tlsecho
-          port: 1030
+          port: 1030' | kubectl apply -f -
     ```
 
     You cannot use any `matches` rules on a `TLSRoute` as the TLS traffic has not been decrypted.
@@ -348,7 +239,6 @@ spec:
 To verify that the TLS passthrough is configured correctly (for example, by `openssl`'s TLS client) use the following commands:
 
 ```bash
-export PROXY_IP=$(kubectl get svc -n kong kong-gateway-proxy -o jsonpath={.status.loadBalancer.ingress[0].ip})
 openssl s_client -connect ${PROXY_IP}:8899 -servername demo.example.com
 ```
 
