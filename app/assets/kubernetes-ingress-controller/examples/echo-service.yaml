@@ -18,6 +18,10 @@ spec:
       name: http
       protocol: TCP
       targetPort: 1027
+    - port: 1030
+      name: tls
+      protocol: TCP
+      targetPort: 1030
   selector:
     app: echo
 ---
@@ -42,9 +46,10 @@ spec:
         - image: kong/go-echo:latest
           name: echo
           ports:
-            - containerPort: 1025
-            - containerPort: 1026
-            - containerPort: 1027
+            - containerPort: 1025 # TCP
+            - containerPort: 1026 # UDP
+            - containerPort: 1027 # HTTP
+            - containerPort: 1030 # TLS
           env:
             - name: NODE_NAME
               valueFrom:
