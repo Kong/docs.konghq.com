@@ -64,4 +64,4 @@ This section will introduce you to the functionality portal APIs using Dynamic c
    - [Azure](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/azure/)
    - [Custom IdP](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/custom/)
 
-2. Apply the auth strategy to your API when [publishing](/dev-portal/portals/publishing) to the apprpriate Dev Portals.
+2. Apply the auth strategy to your API when [publishing](/dev-portal/portals/publishing) to the appropriate Dev Portals.

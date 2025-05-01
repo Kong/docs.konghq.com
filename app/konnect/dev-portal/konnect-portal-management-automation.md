@@ -13,7 +13,7 @@ This guide uses the {{site.konnect_short_name}} Portal Management API via cURL t
 ## Streamlining developer approval and assignment
 
 Imagine you are tasked with managing developers across several partner soccer teams. In this scenario, you need to ensure that those teams' developers are approved quickly and given the appropriate permissions. 
-Rather than manually approving developer signups using {{site.konnect_short_name}}, you can use the API to approve developer signups that come from trusted partner domains.
+Rather than manually approving developer sign ups using {{site.konnect_short_name}}, you can use the API to approve developer sign ups that come from trusted partner domains.
 
 To check the approval status of developers, you can use the [List Portal Developers](/konnect/api/portal-management/latest/#/Portal%20Developers/list-portal-developers) endpoint to return a list of all registered developers with the following cURL command:
 ```sh

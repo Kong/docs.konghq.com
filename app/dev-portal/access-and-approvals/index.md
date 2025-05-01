@@ -7,10 +7,9 @@ When Dev Portal [security settings](/dev-portal/portals/settings/security#auto-a
 {:.note}
 > *This is documentation for Konnect's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
 
-
 ## Developers
 
-A list of all Developers registered for the Dev Portal is listed by default. Email addresses for new signups are validated by the registered Developer.
+A list of all Developers registered for the Dev Portal is listed by default. Email addresses for new sign-ups are validated by the registered Developer.
 
 [Learn more](/dev-portal/access-and-approvals/developers) about the Developer registration process.
 
@@ -21,7 +20,7 @@ A list of all Developers registered for the Dev Portal is listed by default. Ema
 
 ### Developer approval
 
-In the list, click the three dots menu on the right side of an unapproved Developer, and select **Approve*. The Developer will now be permitted to login to the portal. 
+In the list, click the three dots menu on the right side of an unapproved Developer, and select **Approve*. The Developer will now be permitted to login to the portal.
 
 {:.note}
 > If [RBAC is enabled](/dev-portal/portals/settings/security.md#role-cased-access-control) for the portal, a Developer needs to be added to a [Team](/dev-portal/access-and-approvals/teams) in order to view specific APIs or register an API in their Applications.

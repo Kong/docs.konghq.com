@@ -25,17 +25,17 @@ In Azure, create the main application:
 
 4. Click **Register**.
 
-4. On the application view, go to **API permissions**, click **Add permissions > Microsoft Graph** and select the following:
+5. On the application view, go to **API permissions**, click **Add permissions > Microsoft Graph** and select the following:
    * **Application.Read.All**
    * **Application.ReadWrite.All**
    * **Application.ReadWrite.OwnedBy**
    * **User.Read**
 
-5. Once added, click **Grant admin consent**. An administrator with Global Admin rights is required for this step.
+6. Once added, click **Grant admin consent**. An administrator with Global Admin rights is required for this step.
 
-6. Select **Certificates & secrets** and then create a client secret and save it in a secure location. You can only view the secret once.
+7. Select **Certificates & secrets** and then create a client secret and save it in a secure location. You can only view the secret once.
 
-7. On the **Overview** view, note your Directory (tenant) ID and Application (client) ID.
+8. On the **Overview** view, note your Directory (tenant) ID and Application (client) ID.
 
 ## Configure the Dev Portal
 
@@ -91,22 +91,21 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for D
 
 You will receive a response that includes a `dcr_provider` object similar to the following:
 
-   ```sh
-   {
-      "created_at": "2024-02-29T23:38:00.861Z",
-      "updated_at": "2024-02-29T23:38:00.861Z",
-      "id": "93f8380e-7798-4566-99e3-2edf2b57d289",
-      "name": "Azure DCR Provider",
-      "provider_type": "Azure",
-      "issuer": "https://sts.windows.net/YOUR_TENANT_ID",
-      "dcr_config": {
-         "initial_client_id": "abc123",
-         "initial_client_audience": "https://my-custom-domain.com/api/v2/"
-      },
-      "active": false
-   }
-
-   ```
+```sh
+{
+   "created_at": "2024-02-29T23:38:00.861Z",
+   "updated_at": "2024-02-29T23:38:00.861Z",
+   "id": "93f8380e-7798-4566-99e3-2edf2b57d289",
+   "name": "Azure DCR Provider",
+   "provider_type": "Azure",
+   "issuer": "https://sts.windows.net/YOUR_TENANT_ID",
+   "dcr_config": {
+      "initial_client_id": "abc123",
+      "initial_client_audience": "https://my-custom-domain.com/api/v2/"
+   },
+   "active": false
+}
+```
 
 Save the `id` value for creating the authentication strategy.
 

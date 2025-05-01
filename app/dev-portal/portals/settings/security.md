@@ -63,7 +63,7 @@ Registration of Developer accounts and creation of Applications both require app
 ### Auto approve developers
 
 * Enabled: anyone can sign up for a Developer account without any further approval process.
-* Disabled: portal admins will have to approve any new signup in [Access and Approvals](/dev-portal/access-and-approvals).
+* Disabled: portal admins will have to approve any new sign-ups in [Access and Approvals](/dev-portal/access-and-approvals).
 
 ### Auto approve applications
 

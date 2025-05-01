@@ -4,7 +4,7 @@ breadcrumb: Key Auth
 content_type: how-to
 ---
 
-Key authentication is Konnect's built-in API Authetication Strategy. When Developers sign up and create an Application, they will be granted credentials.
+Key authentication is Konnect's built-in API Authentication Strategy. When Developers sign up and create an Application, they will be granted credentials.
 
 Your Dev Portal is automatically created with a "Key Auth" Authentication Strategy. If you selected **Private** when creating your Dev Portal, this will be the Default Authentication Strategy in Security Settings.
 
