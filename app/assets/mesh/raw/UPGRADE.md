@@ -7,6 +7,16 @@ Make sure to also check the upgrade notes for the matching version of [Kuma](htt
 
 ## Upgrade to `2.11.x`
 
+### Introduce an option to skip RBAC creation
+
+By default, we create all RBAC resources required for the mesh to function properly. Since `2.11.x`, it's possible to skip the creation of `ClusterRole`, `ClusterRoleBinding`, `Role`, and `RoleBinding`. We introduced two flags:
+
+* `kuma.skipRBAC`: Disables the creation of all RBAC resources (CNI and control plane).
+* `kuma.controlPlane.skipClusterRoleCreation`: Disables the creation of `ClusterRole` and `ClusterRoleBinding` resources for the control plane only.
+
+> [!WARNING]
+> Before disabling automatic creation, ensure that the necessary RBAC resources are already in place, as the mesh components will not work correctly without them.
+
 ### Reduce the permissions of the `ClusterRole` by moving cert-manager permissions to a `Role`
 
 During installation, we create a `ClusterRole` with permissions for Kong Mesh resources and cert-manager. We’ve identified that cluster-scoped access to cert-manager is not necessary, so we’ve moved those permissions to a separate `Role`, bound by a `RoleBinding` in the system namespace only. This change should not affect your deployment.
