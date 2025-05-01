@@ -92,7 +92,7 @@ In [**Settings/Security**](/dev-portal/portals/settings/security) for each porta
 
 2. Optional: Enable **Role-based access control (RBAC)** to allow granular control of viewing and consuming APIs in the Dev Portal by defining roles within Teams.
 
-3. Optional: Click the [**Auto Approve**](/dev-portal/portals/settings/security/) checkbox to enable new Developers registrations and/or Applications to be approved automatically by the system. If not set, portal admins will need to approve any new registrations and/or applications.
+3. Optional: Click the [**Auto Approve**](/dev-portal/portals/settings/security/#auto-approve-applications) checkbox to enable new Developers registrations and/or Applications to be approved automatically by the system. If not set, portal admins will need to approve any new registrations and/or applications.
 
 4. Optional: Select the preferred **Default Auth Strategy** (default is the built-in `key-auth` strategy). This will not retroactively change any published APIs, but will set the default on any new publications.
 

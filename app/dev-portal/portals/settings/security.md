@@ -47,11 +47,11 @@ authentication_enabled: true|false
 
 Identity Providers (IdP) manage authentication of Developers signing into the Dev Portal.
 
-Konnect’s Built-in authentication provider is used by default. This will generate API keys for Developers.
+Konnect's Built-in authentication provider is used by default. This will generate API keys for Developers.
 
 OIDC or SAML providers can be configured as an integrated IdP provider.
 
-Learn more about configuring IdPs in [Enable Self-Service Developer & Application Registration](/dev-portal/portals/app-reg)
+Learn more about configuring IdPs in [Enable Self-Service Developer & Application Registration](/dev-portal/app-reg/)
 
 ## Developer & Application Approvals
 

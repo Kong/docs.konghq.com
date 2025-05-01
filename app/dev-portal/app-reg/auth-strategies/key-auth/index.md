@@ -11,7 +11,7 @@ Your Dev Portal is automatically created with a "Key Auth" Authentication Strate
 ## Create a key auth strategy
 
 {:.note}
-> *Be sure to complete [Prerequisites](/dev-portal/auth-strategies#prerequisites)*
+> *Be sure to complete [Prerequisites](/dev-portal/app-reg/#prerequisites)*
 
 If you need to create an additional key auth strategy:
 
