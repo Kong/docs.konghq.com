@@ -6,6 +6,14 @@ content_type: explanation
 
 OpenID Connect (OIDC) is an open authentication protocol that lets users sign in to multiple sites using one set of credentials. Using the OIDC Authentication Strategy allows Developers visiting your Dev Portal to authenticate using OIDC.
 
+{:.note}
+> **New:** There are two ways to use OIDC with the Dev Portal:
+>
+> - [Linking Static Clients (Self-Managed OIDC)](./self-managed-oidc/): Developers bring their own pre-registered application from the IdP and manually link the client ID to their Portal application.
+> - [Dynamic Client Registration (DCR)](./dynamic-client-registration/): The Dev Portal automatically creates and manages applications in the IdP as developers need them.
+>
+> See [Linking Static Clients](./self-managed-oidc/) for details on the self-managed approach, and [Dynamic Client Registration](./dynamic-client-registration/) for automated workflows.
+
 ## Prerequisites
 
 - Set up your application, claims, and scopes in your OpenID identity provider

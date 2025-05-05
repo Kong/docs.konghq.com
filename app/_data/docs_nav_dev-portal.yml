@@ -62,6 +62,8 @@
           url: /app-reg/auth-strategies/key-auth/
         - text: OIDC
           items:
+            - text: Self-Managed OIDC
+              url: /app-reg/auth-strategies/oidc/self-managed-oidc/
             - text: Overview
               url: /app-reg/auth-strategies/oidc/
             - text: Dynamic Client Registration
