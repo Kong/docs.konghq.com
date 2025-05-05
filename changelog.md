@@ -2,6 +2,41 @@
 
 <!--vale off-->
 
+## Week 18
+
+### [fix: Incorrect links in azure content safety docs](https://github.com/Kong/docs.konghq.com/pull/8751) (2025-04-29)
+
+This PR fixes two incorrect links pointing to AI prompt decorator in the Azure content safety main doc.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/overview/
+
+
+### [Release: Gateway 3.4.3.18](https://github.com/Kong/docs.konghq.com/pull/8745) (2025-04-29)
+
+3.4.3.18 changelog and version bump.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update geo.md](https://github.com/Kong/docs.konghq.com/pull/8742) (2025-04-28)
+
+Added France Central to Azure regions
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/geo
+
 ## Week 17
 
 ### [private-link: fix regions list](https://github.com/Kong/docs.konghq.com/pull/8739) (2025-04-24)
