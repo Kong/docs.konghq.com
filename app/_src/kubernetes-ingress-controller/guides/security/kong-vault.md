@@ -67,7 +67,7 @@ To learn more about the available vaults, see the [{{ site.base_gateway }} docum
       hour: 10000
       policy: redis
       redis_host: <redis_host>
-      redis_password: "vault://env/secret-redis-password"
+      redis_password: '{vault://env/secret-redis-password}'
     ```
 
 ### HashiCorp Vault
@@ -233,6 +233,6 @@ config:
   hour: 10000
   policy: redis
   redis_host: <redis_host>
-  redis_password: "vault://aws-us-east/secret-redis-password"
+  redis_password: '{vault://aws-us-east/secret-redis-password}'
 ```
 {% endif_version %}
