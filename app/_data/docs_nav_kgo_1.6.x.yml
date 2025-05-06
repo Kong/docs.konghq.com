@@ -183,8 +183,4 @@ items:
       - text: License
         url: /reference/license
       - text: Version Compatibility
-<<<<<<< HEAD
         url: /reference/version-compatibility
-=======
-        url: /reference/version-compatibility
->>>>>>> 9e540020e2 (add nav page)
