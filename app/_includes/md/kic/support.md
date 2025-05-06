@@ -126,7 +126,7 @@
     <td>1.21</td>
     <td>4.8</td>
     <td>June 2022</td>
-  {%- if include. -%}
+  {%- if include.show_kic -%}
     <td>2.8 LTS</td>
     <td>2.5 LTS</td>
     <td>March 2025</td>
