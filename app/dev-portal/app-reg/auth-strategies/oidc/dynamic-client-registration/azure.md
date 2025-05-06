@@ -35,7 +35,7 @@ In Azure, create the main application:
 
 7. Select **Certificates & secrets** and then create a client secret and save it in a secure location. You can only view the secret once.
 
-8. On the **Overview** view, note your Directory (tenant) ID and Application (client) ID.
+8. In the **Overview** view, make a note of your Directory (tenant) ID and Application (client) ID.
 
 ## Configure the Dev Portal
 
@@ -51,17 +51,20 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for D
 
 4. Select **New DCR Provider** button to create an Azure configuration. Enter a name for internal reference in {{site.konnect_short_name}}. This name, along with the provider type, will remain internal and not be visible to developers on the Dev Portal.
 
-5. Provide the Issuer URL for your Azure tenant, using the format  `https://sts.windows.net/YOUR_TENANT_ID`.
+5. Provide the Issuer URL for your Azure tenant in the following format: `https://sts.windows.net/YOUR_TENANT_ID`.
 
 6. For **Provider Type**, select AzureAD.
 
-7. Enter your Application (Client) ID from Azure into the **Initial Client ID** field and the Azure admin application's client secret into the **Initial Client Secret** field. The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
+7. Enter your Application (Client) ID from Azure into the **Initial Client ID** field, and the client secret of the Azure admin application into the **Initial Client Secret** field.
+
+    {:.note}  
+    > **Note:** The Initial Client Secret will be stored in isolated, encrypted storage and will not be accessible through any Konnect API.
 
 8. After saving, your new DCR Provider will appear in the list.
 
 9. Click the **Auth Strategy** tab, then select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
 
-10. Name it for internal reference in {{site.konnect_short_name}} and provide a display name for visibility in the Portal. Select DCR as the **Auth Type** and choose your newly created DCR provider from the dropdown. The  **Issuer URL** entered earlier will be will be prepopulated.
+10. Enter a name for internal reference in {{site.konnect_short_name}} and a display name for visibility in the Portal. Select **DCR** as the **Auth Type**, and choose your newly created DCR provider from the dropdown. The **Issuer URL** you entered earlier will be prepopulated.
 
 11. In the **Credential Claims** field, enter `appid`.
 
@@ -164,7 +167,7 @@ Once your application is created, you will see it in Azure. From your Azure home
 
 ## Make a successful request
 
-In the previous steps, you obtained the **Client ID** and **Client Secret**. To authorize the request, you must attach this client secret pair in the header. You can do this by using any API product, such as [Insomnia](https://insomnia.rest/), or directly using the command line:
+In the previous steps, you obtained the **Client ID** and **Client Secret**. To authorize the request, include the client credentials in the header. You can do this using any API client, such as [Insomnia](https://insomnia.rest/), or directly from the command line:
 
 ```sh
 curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET"
@@ -172,8 +175,7 @@ curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECR
 
 Where `example.com` is the address of the data plane node.
 
-You can also request a bearer token from Azure using this command,
-using an OAuth2 v1 token endpoint:
+You can also request a bearer token from Azure using the following command, targeting the OAuth 2.0 v1 token endpoint:
 
 ```sh
 curl --request GET \

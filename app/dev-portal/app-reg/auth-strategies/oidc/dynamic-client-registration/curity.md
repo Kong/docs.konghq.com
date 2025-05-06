@@ -17,9 +17,9 @@ This feature requires Curity v7.x.
 
 ## Configure Curity
 
-To use dynamic client registration (DCR) with Curity as the identity provider (IdP), there are three important configurations to prepare in Curity. In the following sections, you will configure the token issuer, create a client, and enable dynamic client registration for the client.
+To use Dynamic Client Registration (DCR) with Curity as the identity provider (IdP), you need to prepare three key configurations in Curity: configuring the token issuer, creating a client, and enabling DCR for the client.
 
-To get started configuring Curity, log in to your Curity dashboard and complete the following:
+To begin configuring Curity, log in to your Curity dashboard and follow these steps:
 
 1. Select the **Profiles** tab on the dashboard.
 
@@ -48,28 +48,28 @@ To get started configuring Curity, log in to your Curity dashboard and complete 
 
 2. Click **New Client**.
 
-3. Give the client a unique and descriptive name, noting it for later use.
+3. Assign a unique and descriptive name to the client, and make a note of it for future reference.
 
-4. Click **Capabilities** in the overview diagram to add a capability to the **client**.
+4. In the overview diagram, click **Capabilities** to add a capability to the **client**.
 
-5. Select **Client Credentials** and click **next**.
+5. Select **Client Credentials**, then click **Next**.
 
-6. Set the **Authentication Method** to `secret` and generate a secret, copy it for later use, and click **next**.
+6. Set the **Authentication Method** to `secret`, generate a secret, copy it for later use, and click **Next**.
 
    {:.important}
-   > **Important:** Store the secret in a place you can reference, because it will not be visible after this step.
+   > **Important:** Store the secret in a secure location, as it will not be visible after this step.
 
 ### Enable Dynamic Client Registration
 
-1. Select **Token Service > General > Dynamic Registration** from the menu.
+1. From the menu, select **Token Service > General > Dynamic Registration**.
 
 2. Click **Enable Dynamic Client Registration**.
 
-3. Ensure **Non Templatized** and **Dynamic Client Management** are both enabled, and then click **next**.
+3. Make sure both **Non-Templatized** and **Dynamic Client Management** are enabled, then click **Next**.
 
-4. Select the desired client data source and click **next**.
+4. Choose the desired client data source, then click **Next**.
 
-5. Select `authenticate-client-by` for the **Authentication Method**, add the name of the Client that was created above, and then click **next**.
+5. Select `authenticate-client-by` as the **Authentication Method**, enter the name of the client created earlier, and click **Next**.
 
 6. Select the nodes you want to enable DCR on and click **next**.
 
@@ -88,11 +88,14 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 4. Select **New DCR Provider** button to create a Curity configuration. Provide a name for internal use within {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
 
-5. Input the **Issuer URL** of your Curity authorization server, formatted as `https://CURITY_INSTANCE_DOMAIN/oauth/v2/oauth-anonymous/.well-known/openid-configuration`
+5. Enter the **Issuer URL** of your Curity authorization server, formatted as `https://CURITY_INSTANCE_DOMAIN/oauth/v2/oauth-anonymous/.well-known/openid-configuration`.
 
 6. Select Curity as the **Provider Type**.
 
-7. Enter the Client ID of the admin client created in Curity above into the **Initial Client ID** field. Enter the value you saved for the Client secret into the **Initial Client Secret** field.  Note: The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
+7. Enter the **Client ID** of the admin client created in Curity above into the **Initial Client ID** field. Then, enter the saved **Client Secret** into the **Initial Client Secret** field.
+
+    {:.note}
+    > **Note:**The Initial Client Secret will be stored in isolated, encrypted storage and will not be accessible through any Konnect API.
 
 8. Save your DCR Provider. You should now see it in the list of DCR providers.
 
@@ -102,11 +105,11 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 11. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
 
-12. Select the relevant **Auth Methods** you need (`client_credentials`, `bearer`, `session`) and **Save**.
+12. Select the relevant **Auth Methods** you require (`client_credentials`, `bearer`, `session`) and **Save**.  
 
 {% endnavtab %}
 {% navtab API %}
-After configuring Curity, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Curity DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
+After configuring Curity, you can integrate it with the Dev Portal for Dynamic Client Registration (DCR). This process involves two steps: creating the DCR provider and configuring the authentication strategy. DCR providers are reusable configurations, meaning once you've set up the Curity DCR provider, it can be used across multiple authentication strategies without needing to be reconfigured.
 
 1. Start by creating the DCR provider. Send a `POST` request to the [`dcr-providers`](/konnect/api/application-auth-strategies/latest/#/DCR%20Providers/create-dcr-provider) endpoint with your DCR configuration details:
 
@@ -189,7 +192,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 ## Make a successful request
 
-In the previous steps, you obtained the **Client ID** and **Client Secret**. To authorize the request, you must attach this client secret pair in the header. You can do this by using any API product, such as [Insomnia](https://insomnia.rest/), or directly using the command line:
+In the previous steps, you obtained the **Client ID** and **Client Secret**. To authorize the request, include the client credentials in the header. You can do this using any API client, such as [Insomnia](https://insomnia.rest/), or directly from the command line:
 
 ```sh
 curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET"

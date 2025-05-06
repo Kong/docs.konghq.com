@@ -19,7 +19,7 @@ DCR support in {{site.konnect_short_name}} provides multiple methods by which ap
 Each method is available when using [Auth0](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/auth0), [Curity](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/curity), [Okta](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/okta), or [Azure](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/azure) as the DCR identity provider.
 
 {:.note}
-> **Note:** When using DCR, each application will automatically receive a client ID and secret. These can be used to authenticate with services directly if using the client credentials grant, or can be used to obtain an access token from the identity provider if using the bearer token authentication method.
+> **Note:** When using DCR, each application automatically receives a client ID and secret. These credentials can be used to authenticate directly with services using the client credentials grant, or to obtain an access token from the identity provider when using the bearer token authentication method.
 
 ### Authentication with bearer tokens
 
@@ -36,4 +36,4 @@ Token endpoints for IdPs are:
 
 ### Authentication with session cookie
 
-After successfully authenticating with either client Credentials or bearer access token, the session cookie authentication method can be used to authenticate subsequent requests without including the original credentials. To use this authentication method, ensure your identity provider is configured to send session cookie response headers.
+After successfully authenticating using either client credentials or a bearer access token, you can use session cookie authentication to authenticate subsequent requests without including the original credentials. To use this method, ensure that your identity provider is configured to send session cookie response headers.

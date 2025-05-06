@@ -21,7 +21,8 @@ In this model, each developer:
 
 The Dev Portal then uses this client ID to authenticate API requests via OIDC.
 
-**Note:** The Dev Portal does not create or manage IdP applications in this model. All application management is manual and handled by the developer or IdP admin.
+{:.note}
+> **Note:** The Dev Portal does not create or manage IdP applications in this model. All application management is manual and handled by the developer or IdP admin.
 
 ## When to Use Self-Managed OIDC
 
@@ -38,7 +39,7 @@ The Dev Portal then uses this client ID to authenticate API requests via OIDC.
 
 ## Comparison: Self-Managed OIDC vs. DCR
 
-| Feature                | Self-Managed OIDC (Static) | DCR OIDC (Dynamic)         |
+| Feature                | Self-managed OIDC (Static) | DCR OIDC (Dynamic)         |
 |------------------------|----------------------------|----------------------------|
 | App creation in IdP    | Manual by developer        | Automated by Dev Portal    |
 | Client ID management   | Manual                     | Automated                  |

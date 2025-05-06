@@ -28,17 +28,17 @@ To get started configuring Auth0, log in to your Auth0 dashboard and complete th
 
 {{site.konnect_short_name}} will use a client ID and secret from an Auth0 application that has been authorized to perform specific actions in the Auth0 Management API.
 
-1. From the sidebar, select **Applications > Applications**
+1. From the sidebar, select **Applications > Applications**.
 
-2. Click the **Create Application** button
+2. Click the **Create Application** button.
 
-3. Give the application a memorable name, like "{{site.konnect_short_name}} Portal DCR Admin"
+3. Give the application a memorable name, like "{{site.konnect_short_name}} Portal DCR Admin."
 
-4. Select the application type **Machine to Machine Applications** and click **create**
+4. Select the application type **Machine to Machine Applications** and click **create**.
 
-5. Authorize the application to access the **Auth0 Management API** by selecting it from the dropdown. It will have a URL of the pattern `https://AUTH0_TENANT_SUBDOMAIN.REGION.auth0.com/api/v2/`
+5. Authorize the application to access the Auth0 Management API by selecting it from the dropdown. Its URL will follow the pattern: `https://AUTH0_TENANT_SUBDOMAIN.REGION.auth0.com/api/v2/`.
 
-6. In the **Permissions** section, ensure you have selected the following permissions to be granted and click **authorize**:
+6. In the **Permissions** section, select the following permissions to grant access, then click **Authorize**.
    * `read:client_grants`
    * `create:client_grants`
    * `delete:client_grants`
@@ -52,7 +52,7 @@ To get started configuring Auth0, log in to your Auth0 dashboard and complete th
    {:.note}
    > **Note:** If you’re using Developer Managed Scopes, add `read:resource_servers` to the permissions for your initial client application.
 
-7. On the application's page, visit the **Settings** tab and note where you can view the values for **Client ID** and **Client Secret**, which you will use in a later step.
+7. On the application's **Settings** tab, locate the values for **Client ID** and **Client Secret** – you will need them in a later step.
 
 ### Configure the API audience
 
@@ -62,21 +62,23 @@ In most cases, it is a good idea to create a new API that is specific to your Ko
 
 To create a new API audience:
 
-1. From the sidebar, select **Applications > APIs**
+1. In the sidebar, navigate to **Applications > APIs**.
 
-2. Click the **Create API** button
+2. Click **Create API**.
 
-3. Give the API a **name**, like "{{site.konnect_short_name}} Portal Applications"
+3. Enter a **Name**, such as `{{site.konnect_short_name}} Portal Applications`.
 
-4. Set the **identifier** to a value that represents the audience the API is serving
+4. Set the **Identifier** to a value that represents the audience your API will serve.
 
-5. Click **create**
+5. Click **Create**.
 
-6. Note the **identifier** value used above, which is also known as the **audience**, as it will be used as the **Audience** value when configuring the auth strategy in {{site.konnect_short_name}}
+6. Make a note of the **Identifier** value (also known as the **Audience**); you will need it when configuring the authentication strategy in `{{site.konnect_short_name}}`.
 
 ## Configure the Dev Portal
 
-Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 for Dynamic Client Registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you’ve configured the Auth0 DCR provider, it can be utilized across multiple authentication strategies without needing to be set up again.
+Once you have configured Auth0, you can set up the Dev Portal to use Auth0 for Dynamic Client Registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy.
+
+DCR providers are reusable configurations, meaning that once you've set up the Auth0 DCR provider, you can use it across multiple authentication strategies without needing to configure it again.
 
 {% navtabs %}
 {% navtab Konnect UI %}
@@ -89,30 +91,30 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 
 4. Select **New DCR provider** to create an Auth0 configuration. Provide a name for internal use in {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
 
-5. Input the **Issuer URL** of your Auth0 tenant, formatted as: `https://AUTH0_TENANT_SUBDOMAIN.us.auth0.com`.  Do not include a forward slash at the end of the URL.
+5. Enter the **Issuer URL** of your Auth0 tenant, formatted as: `https://AUTH0_TENANT_SUBDOMAIN.us.auth0.com`. *Do not* include a trailing slash at the end of the URL.
 
    {:.note}
    > **Note:** You can find the value for your `AUTH0_TENANT_SUBDOMAIN` by checking the **Tenant Name** under **Settings** > **General**.
 
 6. Choose Auth0 as the **Provider Type**.
 
-7. Input the Client ID of the previously created admin application in Auth0 into the **Initial Client ID** field. input the Client Secret of the same Auth0 admin application into the Initial Client Secret field. **The Initial client secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.**
+7. Enter the **Client ID** of the previously created admin application in Auth0 into the **Initial Client ID** field. Then, enter the **Client Secret** of the same application into the **Initial Client Secret** field.
 
-8. If you are using a custom domain for Auth0, enter the audience of the initial client as the **Client Audience**. Otherwise, leave this field blank.
+8. If you're using a custom domain for Auth0, enter the audience of the initial client as the **Client Audience**. Otherwise, leave this field blank.
 
-9. **Optional**: If you are using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox.
+9. **Optional**: If you're using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox.
 
-10. Save the DCR provider. You should now see it in the list of DCR providers.
+10. Save the DCR provider. It will now appear in the list of DCR providers.
 
-11. Click the **Auth Strategy** tab to see all of the auth strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR provider you created.
+11. Click the **Auth Strategy** tab to view all available authentication strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR provider you created.
 
-12. Enter a name for internal use in {{site.konnect_short_name}} and a display name that will be displayed in Dev Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR provider** dropdown, select the name of the DCR provider config you created. Your **Issuer URL** will be prepopulated with the Issuer URL you added to the DCR provider.
+12. Enter a name for internal use in `{{site.konnect_short_name}}`, and a display name that will be shown in the Dev Portal. In the **Auth Type** dropdown, select **DCR**. In the **DCR Provider** dropdown, choose the name of the DCR provider configuration you created. The **Issuer URL** will be prepopulated with the URL you added to the DCR provider.
 
-13. Enter the mandatory `openid` scope into the **Scopes** field in addition to any other scopes your developers may need access to (for example, `openid, read:account_information, write:account_information`). If you’re using developer-managed scopes, these are the scopes your developers will be able to _choose_ from in Dev Portal.
+13. Enter the required `openid` scope in the **Scopes** field, along with any other scopes your developers may need (e.g., `openid, read:account_information, write:account_information`). If you are using developer-managed scopes, these will be the scopes your developers can select from in the Dev Portal.
 
-14. Enter `azp` into the **Credential Claims** field, which will match the client ID of each Auth0 application
+14. Enter `azp` in the **Credential Claims** field. This will match the client ID of each Auth0 application.
 
-15. Enter the value audience field of your associated Auth0 API in the **Audience** field. If you’re using developer managed scopes, scopes selected by the developer should be in this audience.
+15. Enter the **Audience** value from your associated Auth0 API in the **Audience** field. If you're using developer-managed scopes, the scopes selected by the developer should belong to this audience.
 
 16. Choose the required **Auth Methods** (`client_credentials`, `bearer`, `session`) and **save**.
 {% endnavtab %}
@@ -158,7 +160,7 @@ You will receive a response that includes a `dcr_provider` object similar to the
 
 Save the `id` value for creating the authentication strategy.
 
-2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-strategies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy:
+2. Using the `dcr_id` from the previous step, create an authentication strategy by sending a `POST` request to the [`create-auth-strategies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint, detailing the authentication strategy.
 
 ```sh
    curl --request POST \
@@ -194,7 +196,7 @@ Save the `id` value for creating the authentication strategy.
 
 ## Create an application with DCR
 
-From the **My Apps** page in the Dev Portal, follow these instructions:
+From the **My Apps** page in the Dev Portal, follow these steps:
 
 1. Click **New App**.
 
@@ -209,7 +211,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 ## Make a successful request
 
-In the previous steps, you obtained the **Client ID** and **Client Secret**. To authorize the request, you must attach this client secret pair in the header. You can do this by using any API product, such as [Insomnia](https://insomnia.rest/), or directly using the command line:
+In the previous steps, you obtained the **Client ID** and **Client Secret**. To authorize the request, include the client secret pair in the header. You can do this using any API client, such as [Insomnia](https://insomnia.rest/), or directly from the command line:
 
 ```sh
 curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET"
@@ -219,7 +221,7 @@ Where `example.com` is the address of the runtime instance you are running.
 
 ## Using Auth0 actions
 
-[Auth0 actions](https://auth0.com/docs/customize/actions) can be used to customize the application in Auth0. Using Auth0 actions, you can configure the application name in Auth0 to be something custom, instead of the default name set by the developer in the Dev Portal. Here's an example that sets the application name to be `konnect_portal_id+konnect_developer_id+konnect_application_id`. For some other actions it is possible to make changes directly via the api object passed to the `onExecuteCredentialsExchange`.
+[Auth0 actions](https://auth0.com/docs/customize/actions) allow you to customize your application in Auth0. With Auth0 actions, you can configure a custom application name in Auth0, rather than using the default name set by the developer in the Dev Portal. For example, you can set the application name to be a combination of `konnect_portal_id`, `konnect_developer_id`, and `konnect_application_id`. For certain other actions, changes can be made directly via the API object passed to `onExecuteCredentialsExchange`.
 
 1. Follow the [Auth0 documentation](https://auth0.com/docs/customize/actions/write-your-first-action#create-an-action) to create a custom action on the "Machine to Machine" flow.
 
@@ -300,4 +302,4 @@ Where `example.com` is the address of the runtime instance you are running.
    }
    ```
 
-3. Be sure to apply this action on "Machine to Machine" flow, it will then run each time a `client_credentials` request is made. After a request with is made you can see the updated application name in the Auth0 dashboard.
+3. Make sure to apply this action to the "Machine to Machine" flow. It will run each time a `client_credentials` request is made. After a request is made, you can view the updated application name in the Auth0 dashboard.

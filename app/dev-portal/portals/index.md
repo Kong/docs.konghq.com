@@ -70,7 +70,7 @@ Optionally, you can create and publish your first API by uploading an OpenAPI 3.
 
 ### Appearance
 
-After clicking Next, your Dev Portal will be created, and you'll be presented with basic options to customize the look and feel. You will immediately see the template preview change according to your choices.
+After clicking **Next**, your Dev Portal will be created, and you'll be presented with basic options to customize the look and feel. You will immediately see the template preview change according to your choices.
 
 Appearance settings can be changed later in Portal Editor in the [Appearance](/dev-portal/portals/customization/appearance/) tab.
 

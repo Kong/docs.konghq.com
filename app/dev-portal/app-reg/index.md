@@ -98,7 +98,7 @@ In [**Settings/Security**](/dev-portal/portals/settings/security) for each porta
 
 ### Get started
 
-1. [Key Auth](/dev-portal/app-reg/auth-strategies/key-auth)
-2. [OIDC](/dev-portal/app-reg/auth-strategies/oidc)
-   1. [Dynamic Client Registration](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration)
-   2. [Self-Managed OIDC](/dev-portal/app-reg/auth-strategies/oidc/self-managed-oidc)
+* [Key Auth](/dev-portal/app-reg/auth-strategies/key-auth)
+* [OIDC](/dev-portal/app-reg/auth-strategies/oidc)
+  * [Dynamic Client Registration](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration)
+  * [Self-Managed OIDC](/dev-portal/app-reg/auth-strategies/oidc/self-managed-oidc)

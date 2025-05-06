@@ -28,7 +28,7 @@ Using your Okta credentials, log in to the Okta portal and follow these steps:
 
 4. Enter a name for your token, and then copy the token value.
    {:.important}
-   > **Important:** Store the token in a place you can reference, because it will only be visible as a hash afterwards.
+   > **Important:** Store the token in a secure location you can reference later, as it will only be visible as a hashed value after this step.
 
 ### Add scopes
 
@@ -71,6 +71,9 @@ After configuring Okta, you can integrate it with the Dev Portal for Dynamic Cli
 
 5. Enter the **Issuer URL** of your authorization server and the **DCR Token** that you created in Okta. Select Okta as the **Provider Type**. The DCR token will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
+   {:.note}  
+   > **Note:** The Issuer URL will be stored in isolated, encrypted storage and will not be accessible through any Konnect API.  
+
 6. Save your DCR provider. You should now see it in the list of DCR providers.
 
 7. Navigate to the **Auth Strategy** tab, then select **New Auth Strategy** to create an auth strategy that uses the DCR provider.
@@ -86,7 +89,7 @@ After configuring Okta, you can integrate it with the Dev Portal for Dynamic Cli
 
 {% endnavtab %}
 {% navtab API %}
-After configuring Okta, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Okta DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
+After configuring Okta, you can integrate it with the Dev Portal to enable dynamic client registration (DCR). This process involves two steps: creating the DCR provider and setting up the authentication strategy. DCR providers are reusable configurations, meaning that once you've created the Okta DCR provider, you can use it across multiple authentication strategies without needing to configure it again.
 
 1. Start by creating the DCR provider. Send a `POST` request to the [`dcr-providers`](/konnect/api/application-auth-strategies/latest/#/DCR%20Providers/create-dcr-provider) endpoint with your DCR configuration details:
 
@@ -154,20 +157,19 @@ Save the `id` value for creating the authentication strategy.
 
 ## Create an application with DCR
 
-From the **My Apps** page in the Dev Portal, follow these instructions:
-
 1. Click the **New App** button.
 
-2. Fill out the **Create New Application** form with your application name, auth strategy, and description.
+2. Complete the **Create New Application** form with your application name, authentication strategy, and description.
 
-3. Click **Create** to save your application.
+3. Click **Create** to save the application.
 
-4. After your application has been created, you will see the **Client ID** and **Client Secret**.
-   Please store these values, they will only be shown once.
+4. After the application is created, the **Client ID** and **Client Secret** will be displayed.  
+   Make sure to store these values, as they will only be shown once.
 
    Click **Proceed** to continue to the application's details page.
 
-5. Once your application is created, you will see it in Okta. From your Okta organization select **Applications** from the menu. You will see your application that was created in the Dev Portal, and its corresponding Client ID.
+5. After the application is created, it will appear in Okta. From your Okta organization, select **Applications** from the menu. You will see the application created in the Dev Portal, along with its corresponding Client ID.
+   Click **Proceed** to continue to the application's details page.
 
 ## Make a successful request
 

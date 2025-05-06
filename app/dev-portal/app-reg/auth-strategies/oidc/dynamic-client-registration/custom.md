@@ -12,7 +12,7 @@ description: Learn how to configure your custom IdP for Dynamic Client Registrat
 * Curity
 * Okta
 
-If your third-party IdP is not on this list, you can still use your IdP with {{site.konnect_short_name}} by using a custom HTTP DCR bridge. This HTTP DCR bridge acts as a proxy and translation layer between your IdP and DCR applications in the Dev Portal. When a developer creates a DCR application in the Dev Portal, {{site.konnect_short_name}} calls your HTTP DCR bridge which can translate the application data into a suitable format for your third-party IdP. 
+If your third-party IdP is not on this list, you can still use your IdP with {{site.konnect_short_name}} by using a custom HTTP DCR bridge. This HTTP DCR bridge acts as a proxy and translation layer between your IdP and DCR applications in the Dev Portal. When a developer creates a DCR application in the Dev Portal, {{site.konnect_short_name}} calls your HTTP DCR bridge which can translate the application data into a suitable format for your third-party IdP.
 
 {% mermaid %}
 sequenceDiagram
@@ -28,10 +28,10 @@ sequenceDiagram
     Konnect Dev Portal->>Developer: Show credentials
 {% endmermaid %}
 
-> _**Figure 1:** This diagram shows how an HTTP DCR bridge creates an application in an IdP when a developer creates an application in the Dev Portal. First, a developer tries to create an application in {{site.konnect_short_name}} Dev Portal. This triggers Dev Portal to pass the information to the HTTP DCR Bridge, which then sends a `POST create application` request to the IdP. Once the IdP receives the request, it sends a `200` status code in return, if successful, as well as credentials for the developer's application. These credentials are then shown to the developer in the Dev Portal._
+> _**Figure 1:** This diagram illustrates how an HTTP DCR bridge creates an application in an IdP when a developer submits an application in the {{site.konnect_short_name}} Dev Portal. First, the developer creates an application in the Dev Portal, which triggers the portal to send the application details to the HTTP DCR bridge. The bridge then sends a `POST create application` request to the IdP. If the IdP successfully processes the request, it returns a `200` status code along with the credentials for the developer’s application. These credentials are then displayed to the developer in the Dev Portal._
 
 ## Configure custom DCR using the {{site.konnect_short_name}} Dev Portal DCR Handler
 
-To use an unsupported IdP with DCR, you must implement an API that conforms to the [{{site.konnect_short_name}} Dev Portal DCR Handler spec](https://github.com/Kong/konnect-portal-dcr-handler/blob/main/openapi/openapi.yaml). Kong provides an example reference implementation in the [{{site.konnect_short_name}} Dev Portal DCR Handler repository](https://github.com/Kong/konnect-portal-dcr-handler). This is an example HTTP DCR bridge implementation and is not meant to be deployed in production. We encourage you to use this implementation as a guide to create your own implementation. 
+To use an unsupported IdP with DCR, you must implement an API that conforms to the [{{site.konnect_short_name}} Dev Portal DCR Handler spec](https://github.com/Kong/konnect-portal-dcr-handler/blob/main/openapi/openapi.yaml). Kong provides an example reference implementation in the [{{site.konnect_short_name}} Dev Portal DCR Handler repository](https://github.com/Kong/konnect-portal-dcr-handler). This is an example HTTP DCR bridge implementation and is not meant to be deployed in production. We encourage you to use this implementation as a guide to create your own implementation.
 
-Any request that does not return a `2xx` status code is considered failing and won't continue the process of trying to create an application in your {{site.konnect_short_name}} Dev Portal.
+Any request that does not return a `2xx` status code is considered a failure and will halt the application creation process in your {{site.konnect_short_name}} Dev Portal.
