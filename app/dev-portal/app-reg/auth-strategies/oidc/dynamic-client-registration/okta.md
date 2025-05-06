@@ -72,7 +72,7 @@ After configuring Okta, you can integrate it with the Dev Portal for Dynamic Cli
 5. Enter the **Issuer URL** of your authorization server and the **DCR Token** that you created in Okta. Select Okta as the **Provider Type**. The DCR token will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
    {:.note}  
-   > **Note:** The Issuer URL will be stored in isolated, encrypted storage and will not be accessible through any Konnect API.  
+   > **Note:** The Issuer URL will be stored in isolated, encrypted storage and will not be accessible through any Konnect API.
 
 6. Save your DCR provider. You should now see it in the list of DCR providers.
 
