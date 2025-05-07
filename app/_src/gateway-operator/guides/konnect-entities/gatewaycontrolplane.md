@@ -143,10 +143,10 @@ kic-control-plane       True         <konnect-control-plane-id>             <you
 
 {% if_version gte:1.6.x %}
 
-## Create a mirror gateway control plane
+## Refer to existing Konnect gateway control plane
 
-Creating the `KonnectGatewayControlPlane` object with `Mirror` source in your Kubernetes cluster will mirror {{site.konnect_short_name}} Gateway
-control plane from your [Gateway Manager](/konnect/gateway-manager). You need to provide the konnect id of the 
+You can refer to an existing {{site.konnect_short_name}} Gateway control plane by creating the `KonnectGatewayControlPlane` object with `Mirror` source in your Kubernetes cluster. This operation will mirror the {{site.konnect_short_name}} Gateway
+control plane from your [Gateway Manager](/konnect/gateway-manager). You need to provide the {{site.konnect_short_name}} ID of the 
 {{site.konnect_short_name}} Gateway control plane in the `mirror.konnect.id` field.
 
 > Note: the mirrored control planes are in read-only in Kubernetes, which means that no update or deletion
