@@ -206,6 +206,8 @@ You can use this setting to [strengthen security in Kong Manager](/gateway/3.10.
 
 * Fixed an issue where the lists in the UI would flicker under some circumstances.
 * Fixed an issue where the license expiration date was calculated incorrectly.
+* Fixed an issue where creating a `jwt-credential` with the `PS256`, `PS384`, `PS512`, or `EdDSA` algorithms wouldn't populate the `rsa_public_key` in Kong Manager.
+* Fixed an issue where editing an upstream would not remove the values of some fields (`client certificate`, `tags`, `timeouts`, `host_header`, and others) in Kong Manager.
 
 #### PDK
 

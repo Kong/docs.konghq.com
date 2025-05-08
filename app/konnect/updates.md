@@ -12,6 +12,19 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 
+## May 2025
+
+<div class="changelog-entries">
+<div class="changelog-date">May<br>08</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/focus-on-your-one-key-metric-via-our-new-single-value-chart-type-LJ7U0Ogq">Focus on your one key metric via our new 'Single Value' chart type</a>
+</div>
+<div class="changelog-description">Many business and operational goals are defined by a single key metric such as error rate, request volume, or latency, making it essential to present that number clearly and without unnecessary visual clutter.  With the new Single Value chart type in Explorer, Konnect users can now highlight important metrics with a clean, focused display.</div>
+</div>
+</div>
+
+
 ## April 2025
 
 <div class="changelog-entries">
@@ -68,6 +81,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">Custom dashboards are off to a strong start!  In just three weeks of early access, we've seen great usage and received tons of helpful feedback—thank you!</div>
 </div>
 </div>
+
 
 
 ## March 2025
