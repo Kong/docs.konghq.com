@@ -1,0 +1,76 @@
+@enterprise-color: #e03c31;
+@cloud-color: #2c7a7b;
+@oss-color: #4a5568;
+
+@enterprise-bg: #fef2f2;
+@cloud-bg: #e6fffa;
+@oss-bg: #f7fafc;
+
+@badge-radius: 10px;
+
+.feature-flag {
+  position: relative;
+  border-left: 6px solid #2684ff;
+  background-color: #f0f8ff;
+  padding: 1.5em 2em;
+  margin: 2.5em 0;
+  border-radius: @badge-radius;
+  font-size: 1.8rem;
+  line-height: 1.9;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+//   &::before {
+//     content: '🚩';
+//     margin-right: 0.8em;
+//     font-size: 1.8em;
+//     display: inline-block;
+//     vertical-align: middle;
+//   }
+
+  &.inline {
+    display: inline-block;
+    padding: 0.4em 1em;
+    border: 2px solid #2684ff;
+    border-radius: @badge-radius;
+    font-size: 1.8rem;
+    background-color: #f0f8ff;
+    line-height: 1.6;
+    box-shadow: none;
+  }
+
+//     &::before {
+//       content: '⚠️';
+//       font-size: 1.8em;
+//     }
+//   }
+
+  &.availability-enterprise {
+    border-color: @enterprise-color;
+    background-color: @enterprise-bg;
+    color: darken(@enterprise-color, 8%);
+  }
+
+  &.availability-cloud {
+    border-color: @cloud-color;
+    background-color: @cloud-bg;
+    color: darken(@cloud-color, 8%);
+  }
+
+  &.availability-oss {
+    border-color: @oss-color;
+    background-color: @oss-bg;
+    color: darken(@oss-color, 5%);
+  }
+
+  .version {
+    font-weight: normal;
+    margin-left: 0.75em;
+    font-size: 1.8rem;
+    color: #4a5568;
+  }
+
+  &.inline:hover {
+    background-color: darken(@cloud-bg, 5%);
+  }
+}

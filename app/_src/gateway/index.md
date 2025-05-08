@@ -6,6 +6,21 @@ description: Kong Gateway is a lightweight, fast, and flexible cloud-native API 
 konnect_cta_card: true
 ---
 
+## Feature availability:
+{% featureflag availability="enterprise" version="3.5+" %}
+Only available in Kong Gateway Enterprise {version} and later.
+{% endfeatureflag %}
+
+{% featureflag availability="cloud" version="1.0+" %}
+Only available in Kong Konnect Cloud {version} and later.
+{% endfeatureflag %}
+
+{% featureflag availability="oss" version="3.3+" %}
+This feature was added to the OSS distribution in version {version}.
+{% endfeatureflag %}
+
+---
+
 <blockquote class="note">
   <p><strong>Set up your Gateway in under 5 minutes with {{ site.konnect_product_name }}:</strong></p>
   <p>
