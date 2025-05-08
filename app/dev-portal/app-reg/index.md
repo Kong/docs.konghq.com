@@ -3,9 +3,10 @@ title: Self-Service Developer & Application Registration
 content_type: concepts
 ---
 
-Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, Developers visiting a Dev Portal can sign up, create an Application, register it with an API, and retrieve API keys without any necessary intervention by Dev Portal administrators. Developer sign ups and Applications creation require admin approvals by default, which can be changed in Settings/Security.
+Konnect Dev Portal provides flexible options for controlling access to content and APIs. When combined with a Gateway Service, Developers visiting a Dev Portal can sign up, create an Application, register it with an API, and retrieve API keys without any necessary intervention by Dev Portal administrators. Developer signups and Applications creation require admin approvals by default, which can be changed in Settings/Security.
 
 Application registration can be provided by enabling User Authentication (and optionally Role-based Access Control), linking an API to a Gateway Service (version 3.6+) and then selecting an authentication strategy when publishing the API to a Dev Portal.
+
 
 ### Region specific applications
 
@@ -13,7 +14,7 @@ The Applications and API keys that enable self-service application registration 
 
 ### Konnect Application Auth plugin
 
-When an authentication strategy is selected during [publishing an API](/dev-portal/portals/publishing) to a Dev Portal, {{site.konnect_saas}} will automatically enable and configure the Konnect Application Auth (KAA) plugin on a linked Gateway Service.
+When an authentication strategy is selected during [publishing an API](/dev-portal/apis) to a Dev Portal, {{site.konnect_saas}} will automatically enable and configure the Konnect Application Auth (KAA) plugin on a linked Gateway Service.
 
 Konnect will configure the Konnect Application Auth (KAA) plugin on the linked Gateway Service to use the desired mode: key authentication, Open ID Connect (OIDC), or Dynamic Client Registration (DCR) (DCR coming soon to Beta). This Gateway Service Plugin will prevent unauthenticated usage of the API except by Applications created in the Dev Portal.
 
@@ -71,9 +72,9 @@ flowchart TB
 
 <!-- link to gw manager in the first bullet? -->
 
-1. A version 3.6+ Gateway Service configured in Konnect Gateway Manager,
-2. [API linked to Gateway Service](/dev-portal/apis/gateway-service-link), and
-3. [Published to a Dev Portal](/dev-portal/portals/publishing).
+- A version 3.6+ Gateway Service configured in Konnect Gateway Manager,
+- [API linked to Gateway Service](/dev-portal/apis/gateway-service-link), and
+- [Published to a Dev Portal](/dev-portal/portals/publishing).
 
 {:.note}
 > *An API must be linked to a Konnect Gateway Service (version 3.6+) to be able to restrict access to your API with Authentication Strategies.*
@@ -92,13 +93,11 @@ In [**Settings/Security**](/dev-portal/portals/settings/security) for each porta
 
 2. Optional: Enable **Role-based access control (RBAC)** to allow granular control of viewing and consuming APIs in the Dev Portal by defining roles within Teams.
 
-3. Optional: Click the [**Auto Approve**](/dev-portal/portals/settings/security/#auto-approve-applications) checkbox to enable new Developers registrations and/or Applications to be approved automatically by the system. If not set, portal admins will need to approve any new registrations and/or applications.
+3. Optional: Click the [**Auto Approve**](/dev-portal/settings/security/) checkbox to enable new Developers registrations and/or thier Applications to be approved automatically by the system. If not set, portal admins will need to approve any new registrations and/or applications.
 
 4. Optional: Select the preferred **Default Auth Strategy** (default is the built-in `key-auth` strategy). This will not retroactively change any published APIs, but will set the default on any new publications.
 
 ### Get started
-
 * [Key Auth](/dev-portal/app-reg/auth-strategies/key-auth)
 * [OIDC](/dev-portal/app-reg/auth-strategies/oidc)
-  * [Dynamic Client Registration](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration)
-  * [Self-Managed OIDC](/dev-portal/app-reg/auth-strategies/oidc/self-managed-oidc)
+* DCR: Coming soon!
