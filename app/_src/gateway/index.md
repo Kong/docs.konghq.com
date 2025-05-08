@@ -8,11 +8,12 @@ konnect_cta_card: true
 
 ## Feature availability:
 {% featureflag availability="enterprise" version="3.5+" %}
-Only available in Kong Gateway Enterprise {version} and later.
+Only available in {{site.ee_product_name}} {version} and later.
+...
 {% endfeatureflag %}
 
 {% featureflag availability="cloud" version="1.0+" %}
-Only available in Kong Konnect Cloud {version} and later.
+Only available in {{site.konnect_product_name}} {version} and later.
 {% endfeatureflag %}
 
 {% featureflag availability="oss" version="3.3+" %}
