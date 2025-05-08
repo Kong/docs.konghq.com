@@ -1,12 +1,16 @@
 {%- assign extn_publisher = extn.extn_publisher -%}
 {%- assign badges = extn.badges -%}
 {%- assign categories = extn.categories | join: ' ' -%}
-{%- assign css_classes = {{ extn.type | append: ' ' | append: categories -%}
+{%- assign css_classes = extn.type | append: ' ' | append: categories -%}
 {%- if badges.konnect? -%}
   {%- assign css_classes =  css_classes | append: " konnect" -%}
 {%- endif -%}
 {%- if badges.enterprise? -%}
-  {%- assign css_classes =  css_classes | append: " enterprise" -%}
+  {%- if categories == "ai" -%}
+    {%- assign css_classes =  css_classes | append: " ai-enterprise" -%}
+  {%- else -%}
+    {%- assign css_classes =  css_classes | append: " enterprise" -%}
+  {%- endif -%}
 {%- endif -%}
 {%- if badges.premiumpartner? -%}
   {%- assign css_classes =  css_classes | append: " premiumpartner" -%}
