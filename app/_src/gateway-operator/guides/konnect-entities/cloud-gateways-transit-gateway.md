@@ -13,7 +13,7 @@ with-control-plane=true control_plane_type="dcgw" create_network=true %}
 
 ## Create a Transit Gateway in Cloud Provider
 
-To use transit gateway, you need to create a transit gateway in your cloud provider. You should create the transit gateway in the same region of the same provider as the {{site.konnect_short_name}} network is in.
+To use transit gateway, you must create a transit gateway in your cloud provider. You should create the transit gateway in the same region of the same provider as the {{site.konnect_short_name}} network is in.
 For example, if you want to create a transit gateway in the {{site.konnect_short_name}} network in the EU southwest region of AWS, you should also create the transit gateway in the EU southwest region of AWS.
 Currently we support [AWS Transit Gateway](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways) and [Azure Virtual Network Gateway](/konnect/gateway-manager/dedicated-cloud-gateways/azure-peering).
 You can refer to the {{site.konnect_short_name}} documents above to see how to create transit gateways and how to save the configuration used to create `{{ crd }}`s.
@@ -59,7 +59,7 @@ You can fetch the status by:
 ```bash
 kubectl get {{ crd | downcase }}s.konnect.konghq.com konnect-aws-transit-gateway-1 -o=jsonpath='{.status}' | yq -p json
 ```
-Which should return the status of the transit gateway:
+Which should return the following status of the transit gateway:
 
 ```yaml
 conditions:
@@ -99,6 +99,6 @@ Since creating a transit gateway can take some time, you can monitor the status 
 
 For AWS transit gateways, there is one more step to let the transit gateways turn to `ready`. After the transit gateway created in {{site.konnect_short_name}},
 its `status.state` will become `pending-acceptance` in several minutes. This means {{site.konnect_short_name}} has sent the request to AWS asking acceptance of attaching the transit gateway.
-You need to accept the attaching in AWS following the guide of [AWS Transit Gateway#Accept Transit Gateway attachment request](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/#accept-transit-gateway-attachment-request).
+You must accept the attaching in AWS following the guide of [AWS Transit Gateway#Accept Transit Gateway attachment request](/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/#accept-transit-gateway-attachment-request).
 
 After you accept the attachment request, the `status.state` of the `{{crd}}` should become `ready` in some time.
