@@ -1,29 +1,20 @@
 ---
 title: OpenID Connect (OIDC)
-breadcrumb: OIDC
-content_type: explanation
+content_type: how-to
 ---
 
 OpenID Connect (OIDC) is an open authentication protocol that lets users sign in to multiple sites using one set of credentials. Using the OIDC Authentication Strategy allows Developers visiting your Dev Portal to authenticate using OIDC.
-
-{:.note}
-> **New:** There are two ways to use OIDC with the Dev Portal:
->
-> - [Linking Static Clients (Self-Managed OIDC)](./self-managed-oidc/): Developers bring their own pre-registered application from the IdP and manually link the client ID to their Portal application.
-> - [Dynamic Client Registration (DCR)](./dynamic-client-registration/): The Dev Portal automatically creates and manages applications in the IdP as developers need them.
->
-> See [Linking Static Clients](./self-managed-oidc/) for details on the self-managed approach, and [Dynamic Client Registration](./dynamic-client-registration/) for automated workflows.
 
 ## Prerequisites
 
 - Set up your application, claims, and scopes in your OpenID identity provider
 
 {:.note}
-> **Note:** Be sure to complete [Prerequisites for all OIDC Auth Strategies](/dev-portal/app-reg#prerequisites)
+> *Be sure to complete [Prerequisites for all Auth Strategies](/dev-portal/auth-strategies#prerequisites)*
 
 ### Create OIDC Auth Strategy
 
-If you do *not* already have an OIDC Auth Strategy created, we will first create an OIDC Auth strategy.
+If you do _not_ already have an OIDC Auth Strategy created, we will first create an OIDC Auth strategy.
 
 1. In the Dev Portal menu, navigate to the **Application Auth** tab. Click **New Auth Strategy** to create an auth strategy. Refer to the [configuration parameters section](#openid-config-parameters) for more information about each field.
 
@@ -41,35 +32,37 @@ If you do *not* already have an OIDC Auth Strategy created, we will first create
 
 8. Optional: In **Settings/Security**, set the preferred Default Auth Strategy to your new OIDC configuration instead of the default `key-auth`. This setting makes it easier to publish an API (in the next step) using the OIDC Auth Strategy, because this setting will be auto-selected for you. Changing this default will not retroactively change any previously published APIs.
 
-9. [Publish an API](/dev-portal/portals/publishing) with the OIDC Auth Strategy you just created.
+9. [/dev-portal/portals/publishing](Publish an API) with the OIDC Auth Strategy you just created.
 
 Now Developers can access the API using OIDC!
 
-### OpenID Connect configuration parameters {#openid-config-parameters}
+###  OpenID Connect configuration parameters {#openid-config-parameters}
 
 For more background information about OpenID Connect plugin parameters, see [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
 
    | Form Parameter | Description                                                                       |Required |
    |:---------------|:----------------------------------------------------------------------------------|--|
    | `Issuer` | The issuer URL from which the OpenID Connect configuration can be discovered. For example: `https://dev-1234567.okta.com/oauth2/default`.  |**True** |
-   | `Scopes` | The scopes to be requested from the OpenID Provider. Enter one or more scopes separated by spaces, for example: `open_id` `myscope1`.  | **False** |
-   | `Credential claims` |  Name of the claim that maps to the unique client id in the identity provider. | **True** |
-   | `Auth method` | The supported authentication method(s) you want to enable. This field should contain only the authentication methods that you need to use. Individual entries must be separated by commas. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. | **True** |
+   | `Scopes` | The scopes to be requested from the OpenID Provider. Enter one or more scopes separated by spaces, for example: `open_id` `myscope1`.  | **False**
+   | `Credential claims` |  Name of the claim that maps to the unique client id in the identity provider. | **True**
+   | `Auth method` | The supported authentication method(s) you want to enable. This field should contain only the authentication methods that you need to use. Individual entries must be separated by commas. Available options: `password`, `client_credentials`, `authorization_code`, `bearer`, `introspection`, `kong_oauth2`, `refresh_token`, `session`. | **True**
    | `Hide Credentials` |**Default: disabled**<br>  Hide the credential from the upstream service. If enabled, the plugin strips the credential from the request header, query string, or request body, before proxying it. | **False** |
-   | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application. | **False** |
+   | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application.| **False**
 
+
+<!-- TODO: DCR support before GA
 ## Enable app registration with multiple IdPs
 
-In {{site.konnect_short_name}}, you can configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
+In {{site.konnect_short_name}} can configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
 
 This section will introduce you to the functionality portal APIs using Dynamic client registration (DCR). Using the Application Registration, you can manage multiple APIs and configure a different DCR on a per API basis. DCR is one type of strategy for application auth, where {{site.konnect_short_name}} is integrated directly with the IdP to outsource, link, and automate the credential management using that IDP.
 
 1. Configure the auth strategies of your choice:
+  * [Okta](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/okta/)
+  * [Curity](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/curity/)
+  * [Auth0](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/auth0/)
+  * [Azure](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/azure/)
+  * [Custom IdP](/dev-portal/app-reg/auth-strategies/dynamic-client-registration/custom/)
 
-   - [Okta](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/okta/)
-   - [Curity](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/curity/)
-   - [Auth0](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/auth0/)
-   - [Azure](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/azure/)
-   - [Custom IdP](/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/custom/)
-
-2. Apply the auth strategy to your API when [publishing](/dev-portal/portals/publishing) to the appropriate Dev Portals.
+2. Apply the auth strategy to your API when [publishing](/konnect/dev-portals/portals/publishing) to the apprpriate Dev Portals.
+-->
