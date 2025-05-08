@@ -12,12 +12,12 @@ module Jekyll
 
       def initialize(tag_name, markup, tokens)
         super
-        if markup =~ SYNTAX
-          @availability = Regexp.last_match[:availability]
-          @version = Regexp.last_match[:version]
-        else
-          raise SyntaxError.new("Invalid syntax for featureflag. Usage: {% featureflag availability=\"enterprise\" version=\"3.5\" %}")
+        unless markup =~ SYNTAX
+          raise SyntaxError, "Invalid syntax for featureflag. Usage: {% featureflag availability=\"enterprise\" version=\"3.5\" %}"
         end
+      
+        @availability = Regexp.last_match[:availability]
+        @version = Regexp.last_match[:version]
       end
 
       def render(context)
