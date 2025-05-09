@@ -5,6 +5,71 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.6.0
+
+**Release date**: 2025-05-07
+
+### Added
+
+- In `KonnectGatewayControlPlane` fields `Status.Endpoints.ControlPlaneEndpoint`
+  and `Status.Endpoints.TelemetryEndpoint` are filled with respective values from Konnect.
+  [#1415](https://github.com/Kong/gateway-operator/pull/1415)
+- Add `namespacedRef` support for referencing networks in `KonnectCloudGatewayDataPlaneGroupConfiguration`
+  [#1423](https://github.com/Kong/gateway-operator/pull/1423)
+- Introduced new CLI flags:
+  - `--logging-mode` (or `GATEWAY_OPERATOR_LOGGING_MODE` env var) to set the logging mode (`development` can be set
+    for simplified logging).
+  - `--validate-images` (or `GATEWAY_OPERATOR_VALIDATE_IMAGES` env var) to enable ControlPlane and DataPlane image
+    validation (it's set by default to `true`).
+  [#1435](https://github.com/Kong/gateway-operator/pull/1435)
+- Add support for `-enforce-config` for `ControlPlane`'s `ValidatingWebhookConfiguration`.
+  This allows to use operator's `ControlPlane` resources in AKS clusters.
+  [#1512](https://github.com/Kong/gateway-operator/pull/1512)
+- `KongRoute` can be migrated from serviceless to service bound and vice versa.
+  [#1492](https://github.com/Kong/gateway-operator/pull/1492)
+- Add `KonnectCloudGatewayTransitGateway` controller to support managing Konnect
+  transit gateways.
+  [#1489](https://github.com/Kong/gateway-operator/pull/1489)
+- Added support for setting `PodDisruptionBudget` in `GatewayConfiguration`'s `DataPlane` options.
+  [#1526](https://github.com/Kong/gateway-operator/pull/1526)
+- Added `spec.watchNamespace` field to `ControlPlane` and `GatewayConfiguration` CRDs
+  to allow watching resources only in the specified namespace.
+  When `spec.watchNamespace.type=list` is used, each specified namespace requires
+  a `WatchNamespaceGrant` that allows the `ControlPlane` to watch resources in the specified namespace.
+  Aforementioned list is extended with `ControlPlane`'s own namespace which doesn't
+  require said `WatchNamespaceGrant`.
+  [#1388](https://github.com/Kong/gateway-operator/pull/1388)
+  [#1410](https://github.com/Kong/gateway-operator/pull/1410)
+  [#1555](https://github.com/Kong/gateway-operator/pull/1555)
+  For more information on this please see [this guide](/gateway-operator/latest/guides/hardening/control-plane-watch-namespaces/).
+- Implemented `Mirror` and `Origin` `KonnectGatewayControlPlane`s.
+  [#1496](https://github.com/Kong/gateway-operator/pull/1496)
+
+### Changes
+
+- Deduce `KonnectCloudGatewayDataPlaneGroupConfiguration` region based on the attached
+  `KonnectAPIAuthConfiguration` instead of using a hardcoded `eu` value.
+  [#1409](https://github.com/Kong/gateway-operator/pull/1409)
+- Support `NodePort` as ingress service type for `DataPlane`
+  [#1430](https://github.com/Kong/gateway-operator/pull/1430)
+- Allow setting `NodePort` port number for ingress service for `DataPlane`.
+  [#1516](https://github.com/Kong/gateway-operator/pull/1516)
+- Updated `kubernetes-configuration` dependency for adding `scale` subresource for `DataPlane` CRD.
+  [#1523](https://github.com/Kong/gateway-operator/pull/1523)
+- Bump `kong/kubernetes-configuration` dependency to v1.4.0
+  [#1574](https://github.com/Kong/gateway-operator/pull/1574)
+
+### Fixes
+
+- Fix setting the defaults for `GatewayConfiguration`'s `ReadinessProbe` when only
+  timeouts and/or delays are specified. Now the `HTTPGet` field is set to `/status/ready`
+  as expected with the `Gateway` scenario.
+  [#1395](https://github.com/Kong/gateway-operator/pull/1395)
+- Fix ingress service name not being applied when using `GatewayConfiguration`.
+  [#1515](https://github.com/Kong/gateway-operator/pull/1515)
+- Fix ingress service port name setting.
+  [#1524](https://github.com/Kong/gateway-operator/pull/1524)
+
 ## 1.5.1
 
 **Release date**: 2025-04-01
