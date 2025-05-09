@@ -217,10 +217,15 @@
   release: 1.5.x
   releaseDate: "2025-04-01"
   endOfLifeDate: "2026-04-01"
-  latest: true
 - edition: gateway-operator
   version: 1.6.0
   release: 1.6.x
+  releaseDate: "2025-05-08"
+  endOfLifeDate: "2026-05-08"
+  latest: true
+- edition: gateway-operator
+  version: 1.7.0
+  release: 1.7.x
   releaseDate: "TBA"
   endOfLifeDate: "TBA"
   label: unreleased
