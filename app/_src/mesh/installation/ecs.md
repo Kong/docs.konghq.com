@@ -18,6 +18,10 @@ On ECS, {{site.mesh_product_name}} runs in Universal mode. Every ECS task runs w
 
 The control plane itself also runs as an ECS service in the cluster.
 
+{% warning %}
+When using ECS Fargate it is impossible to use transparent proxy. This is because ECS tasks can't run with capabilities required to install transparent proxy.
+{% endwarning %}
+
 ### Data plane authentication
 
 As part of joining and synchronizing with the mesh, every sidecar needs to authenticate with
