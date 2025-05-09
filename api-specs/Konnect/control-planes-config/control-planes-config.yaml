@@ -7,7 +7,7 @@ info:
   description: |-
     OpenAPI 3.0 spec for Kong Gateway's Admin API.
 
-    You can lean more about Kong Gateway at [docs.konghq.com](https://docs.konghq.com)
+    You can lean more about Kong Gateway at [developer.konghq.com](https://developer.konghq.com)
     .Give Kong a star at [Kong/kong](https://github.com/kong/kong) repository.
   license:
     name: Apache 2.0
@@ -7815,7 +7815,7 @@ tags:
   - name: Partials
 externalDocs:
   description: Documentation for Kong Gateway and its APIs
-  url: 'https://docs.konghq.com'
+  url: 'https://developer.konghq.com'
 security:
   - konnectAccessToken: []
   - personalAccessToken: []
