@@ -2,6 +2,89 @@
 
 <!--vale off-->
 
+## Week 19
+
+### [Revert "feat(dcr): updates the dev portal docs to include dcr details [TDX-5574]"](https://github.com/Kong/docs.konghq.com/pull/8768) (2025-05-08)
+
+Reverts Kong/docs.konghq.com#8754
+
+#### Added
+
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/auth0
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/azure
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/curity
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/custom
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dcr/okta
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/access-and-approvals/developers
+- https://docs.konghq.com/dev-portal/access-and-approvals/
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/key-auth/
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/
+- https://docs.konghq.com/dev-portal/app-reg/
+- https://docs.konghq.com/dev-portal/portals/
+- https://docs.konghq.com/dev-portal/portals/publishing
+- https://docs.konghq.com/dev-portal/portals/settings/security
+- https://docs.konghq.com/konnect/dev-portal/konnect-portal-management-automation
+
+
+### [Fix: add missing Kong Manager changelog entries](https://github.com/Kong/docs.konghq.com/pull/8763) (2025-05-08)
+
+Issue raised on Slack. We're missing these changelog entries in 3.10.0.0: https://github.com/Kong/kong-ee/pull/11844/files
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [feat(dcr): updates the dev portal docs to include dcr details [TDX-5574]](https://github.com/Kong/docs.konghq.com/pull/8754) (2025-05-08)
+
+[TDX-5574](https://konghq.atlassian.net/browse/TDX-5574)
+
+
+
+
+This pull request introduces significant updates to the Developer Portal documentation, including renaming and restructuring navigation items, adding detailed guides for configuring Dynamic Client Registration (DCR) with various identity providers, and improving metadata for existing pages. Below is a summary of the most important changes grouped by theme:
+
+### Navigation Updates
+* Renamed "DCR" to "Dynamic Client Registration" in the navigation and updated URLs for consistency. Added new subitems for specific identity providers: Okta, Curity, Auth0, Azure AD, and Custom IdP. (`app/_data/docs_nav_dev-portal.yml`)
+
+### Documentation Enhancements for Dynamic Client Registration
+* Added a comprehensive guide for configuring Auth0 for DCR, including prerequisites, setup steps, and using Auth0 actions for customization. (`app/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/auth0.md`)
+* Added a detailed guide for configuring Azure AD for DCR, covering the creation of applications in Azure and integration with the Developer Portal. (`app/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/azure.md`)
+
+### Metadata and Structural Improvements
+* Added `breadcrumb` and `content_type` metadata to the Key Auth strategy documentation for better categorization and navigation. (`app/dev-portal/app-reg/auth-strategies/key-auth/index.md`)
+* Removed placeholder titles from individual DCR provider pages (Auth0, Azure, Curity, Custom IdP, Okta) to prepare for their respective detailed guides. (`app/dev-portal/app-reg/auth-strategies/oidc/dcr/*.md`) [[1]](diffhunk://#diff-b4063203efd79ff6178c79fa2481e9f53e24be14d7cc7791a1280543081c0142L1-L3) [[2]](diffhunk://#diff-273a7ac33f232fc17b9775cf240743029994203f7e12fc5858eb42159eec87f7L1-L3) [[3]](diffhunk://#diff-3876db14df9892e63932acfb746c40388043c96467bc4a375763709e6df3e9feL1-L3) [[4]](diffhunk://#diff-1953509de675281ee81a1ba65bc0abfc3ef63befa53258267c35582c54ca4095L1-L3) [[5]](diffhunk://#diff-97f3ad0bfe188e9cd14591d25616174cbf0033002c8ce10e718339cebff6d36cL1-L3)
+
+These changes enhance the clarity and usability of the Developer Portal documentation, making it easier for users to implement and manage authentication strategies.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/auth0
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/azure
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/curity
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/custom
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/dynamic-client-registration/okta
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/self-managed-oidc
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/access-and-approvals/developers
+- https://docs.konghq.com/dev-portal/access-and-approvals/
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/key-auth/
+- https://docs.konghq.com/dev-portal/app-reg/auth-strategies/oidc/
+- https://docs.konghq.com/dev-portal/app-reg/
+- https://docs.konghq.com/dev-portal/portals/
+- https://docs.konghq.com/dev-portal/portals/publishing
+- https://docs.konghq.com/dev-portal/portals/settings/security
+- https://docs.konghq.com/konnect/dev-portal/konnect-portal-management-automation
+
 ## Week 18
 
 ### [fix: Incorrect links in azure content safety docs](https://github.com/Kong/docs.konghq.com/pull/8751) (2025-04-29)
