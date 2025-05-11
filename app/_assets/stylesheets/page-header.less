@@ -8,7 +8,7 @@
   font-size: 14px;
   line-height: 24px;
   align-items: center;
-  margin-top: 35px;
+  margin-top: 95px;
 
   .breadcrumbs {
     display: flex;
@@ -236,7 +236,7 @@
   @media (max-width: 800px) {
     z-index: 90;
     position: fixed;
-    top: 60px;
+    top: 95px;
     margin: auto;
     padding: 0;
     width: 93%;
@@ -314,7 +314,7 @@
   width: 100%;
   height: 124px;
   left: 0;
-  top: 60px;
+  top: 85px;
   z-index: -1;
   background: linear-gradient(180deg, #121418 -5.13%, #062D73 54.03%, #073382 100%);
 
@@ -353,5 +353,10 @@
 .hub {
   .page-header {
     align-items: stretch;
+
+
+    @media (max-width: 800px) {
+      margin-top: unset;
+    }
   }
 }
