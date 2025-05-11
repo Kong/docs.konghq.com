@@ -21,6 +21,7 @@ name: Kong Docs
 title: Kong Docs
 description: "Documentation for Kong, the Cloud Connectivity Company for APIs and Microservices."
 links:
+  dev_site: https://developer.konghq.com
   web: https://docs.konghq.com
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
   download: https://cloudsmith.io/~kong/repos

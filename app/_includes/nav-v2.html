@@ -2,13 +2,15 @@
   <a class="skip-main" href="#main">{% t _includes.nav-v2.skip_main %}</a>
   <!-- uncomment the promo-banner div when adding a new promo banner-->
   <!--also uncomment the promo banner sections in app/assets/stylesheets/header.less and application.js-->
+  {% if site.locale == site.default_locale %}
   <div id="promo-banner">
     <div class="container">
       <strong>
-        <span>Kong Docs are moving soon!</span> Our docs are migrating to a new home. You'll be automatically redirected to the new site in the future. In the meantime, <a href="">check out the new site now!</a>.
+        <span>Kong Docs are moving soon!</span> Our docs are migrating to a new home. You'll be automatically redirected to the new site in the future. In the meantime, <a href="{{include.dev_site_link}}">check out the new site now!</a>.
       </strong>
     </div>
   </div>
+  {% endif %}
   <div class="navbar-content">
     <a href="https://konghq.com" class="navbar-brand col col-xl-auto" target="_blank" rel="noopener noreferrer" data-skip-external-links-hook=true>
       <img src="/assets/images/logos/konglogo-dark-theme.svg" alt="Kong Logo" id="kong-logo">
