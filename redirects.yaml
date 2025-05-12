@@ -3261,7 +3261,7 @@
   status: migrated
 - docs_url: "/mesh/latest/features/meshglobalratelimit/"
   source_file: _src/mesh/features/meshglobalratelimit.md
-  dev_site_url: ''
+  dev_site_url: '/mesh/policies/meshglobalratelimit/'
   status: migrated
 - docs_url: "/mesh/latest/features/signed-images/"
   source_file: _src/mesh/features/signed-images.md
