@@ -8,9 +8,13 @@ header.navbar-v2 {
   left: 0;
   top: 0;
   right: 0;
-  height: 60px;
+  height: 90px;
   background: #121418;
   z-index: 100;
+
+  @media (min-width: 768px) {
+    height: 60px;
+  }
 
   hr {
     width: 90%;
@@ -666,6 +670,14 @@ header.navbar-v2 {
           padding: 2px 16px;
           background:#666C70;
         }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .navbar-content {
+      > .navbar-items {
+        top: 135px;
       }
     }
   }
