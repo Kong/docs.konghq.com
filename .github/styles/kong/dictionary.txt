@@ -52,6 +52,7 @@ Grafana
 Gunicorn
 Hasura
 HTTPie
+HTTPGet
 istioctl
 Imperva
 Inigo
@@ -563,6 +564,7 @@ submodule
 submodule's
 subnet
 subnets
+subresource
 substring
 subtable
 subtables

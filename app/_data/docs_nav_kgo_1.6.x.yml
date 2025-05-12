@@ -162,7 +162,7 @@ items:
         items:
           - text: Overview
             url: /reference/custom-resources/
-            src: reference/custom-resources/1.5.x
+            src: reference/custom-resources/1.6.x
           - text: GatewayConfiguration
             url: /reference/custom-resources/#gatewayconfiguration
             generate: false
@@ -179,7 +179,7 @@ items:
         url: /reference/konnectextension/
       - text: Configuration Options
         url: /reference/cli-arguments/
-        src: reference/cli-arguments/1.5.x
+        src: reference/cli-arguments/1.6.x
       - text: License
         url: /reference/license
       - text: Version Compatibility
