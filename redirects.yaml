@@ -25,7 +25,7 @@
   status: won't do
 - docs_url: "/konnect/gateway-manager/active-tracing/"
   source_file: konnect/gateway-manager/active-tracing.md
-  dev_site_url: ''
+  dev_site_url: '/konnect-platform/active-tracing/'
   status: "?"
 - docs_url: "/gateway/latest/kong-manager/auth/rbac/add-admin/"
   source_file: _src/gateway/kong-manager/auth/rbac/add-admin.md
