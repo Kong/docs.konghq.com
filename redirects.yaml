@@ -2193,7 +2193,7 @@
   status: "?"
 - docs_url: "/gateway-operator/latest/topologies/dbless/"
   source_file: _src/gateway-operator/topologies/dbless.md
-  dev_site_url: ''
+  dev_site_url: '/operator/'
   status: "?"
 - docs_url: "/gateway-operator/latest/concepts/gateway-api/"
   source_file: _src/gateway-operator/concepts/gateway-api.md
