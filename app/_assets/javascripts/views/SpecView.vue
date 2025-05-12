@@ -168,14 +168,14 @@ const openSlideoutToc = async () => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 160px;
 }
 
 .sidebar {
   display: none;
   position: sticky;
   left: 0;
-  top: 100px;
+  top: 160px;
   flex-direction: column;
   gap: 12px;
   width: 256px;
@@ -190,7 +190,7 @@ const openSlideoutToc = async () => {
 .sidebar-mobile {
   display: flex;
   position: sticky;
-  top: 60px;
+  top: 105px;
 
   @media (min-width: 768px) {
     display: none;
