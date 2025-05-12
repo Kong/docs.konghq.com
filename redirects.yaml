@@ -1753,7 +1753,7 @@
   status: migrated
 - docs_url: "/gateway/latest/install/post-install/set-up-data-store/"
   source_file: _src/gateway/install/post-install/set-up-data-store.md
-  dev_site_url: ''
+  dev_site_url: '/how-to/configure-datastore/'
   status: migrated
 - docs_url: "/gateway/latest/production/deployment-topologies/"
   source_file: _src/gateway/production/deployment-topologies/index.md
@@ -2193,7 +2193,7 @@
   status: "?"
 - docs_url: "/gateway-operator/latest/topologies/dbless/"
   source_file: _src/gateway-operator/topologies/dbless.md
-  dev_site_url: '/operator/'
+  dev_site_url: '/operator/dataplanes/get-started/kic/install/'
   status: "?"
 - docs_url: "/gateway-operator/latest/concepts/gateway-api/"
   source_file: _src/gateway-operator/concepts/gateway-api.md
