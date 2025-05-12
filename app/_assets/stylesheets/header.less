@@ -25,7 +25,7 @@ body {
         display: flex;
         top: 0;
         width: 100vw;
-        height: 60px;
+        height: 90px;
         left: 0;
         z-index: 9;
         top: 0px;
@@ -33,6 +33,11 @@ body {
         background: @blue-500;
         align-items: center;
         justify-content: center;
+
+        @media (min-width: 768px) {
+          height: 60px;
+        }
+
         strong,
         label,
         a {
@@ -105,8 +110,12 @@ body {
       }
 
       header #promo-banner ~ .navbar-content {
-        margin-top: 60px;
+        margin-top: 90px;
         background: transparent;
+
+        @media (min-width: 768px) {
+          margin-top: 60px;
+        }
 
         .navbar-item-submenu {
           margin-top: 60px;
