@@ -153,7 +153,11 @@ body {
         margin-top: 75px;
 
         .page--header-background {
-          margin-top: 20px;
+          margin-top: 30px;
+
+          @media (max-width: 768px) {
+            margin-top: 75px;
+          }
         }
       }
       header:not(.closed) ~ .page-extension-profile, .page-hub {

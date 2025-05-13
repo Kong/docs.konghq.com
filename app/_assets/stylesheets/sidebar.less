@@ -51,7 +51,8 @@
     position: fixed;
     left: 0;
     padding: 0;
-    height: ~"calc(100% - 56px)";
+    top: 0;
+    height: ~"100%";
     box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.15);
     border: 0 none;
     background: #fff;
@@ -217,6 +218,10 @@
     top: 120px;
     height: ~"calc(100vh - 120px)";
 
+    @media (max-width: 768px) {
+      top: 0px;
+      height: ~"100vh";
+    }
     .sidebar-item.plugin-hub {
       img {
         background: gray;
