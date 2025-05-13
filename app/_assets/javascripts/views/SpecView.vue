@@ -190,7 +190,7 @@ const openSlideoutToc = async () => {
 .sidebar-mobile {
   display: flex;
   position: sticky;
-  top: 105px;
+  top: 135px;
 
   @media (min-width: 768px) {
     display: none;
