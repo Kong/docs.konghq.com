@@ -40,20 +40,26 @@ Common ways to get started in configuring appropriate access controls for Develo
 
 * [Access and approvals](/dev-portal/access-and-approvals/) - The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal, including Developer and Application registration. Additionally, Teams can be created to provide role-based access to  set of APIs to a set of Developers.
 
+## Analytics
 
-<!--
-TODO: Update analytics for Beta, add screenshots
-## Contextual developer application analytics 
+### Contextual developer application analytics
 
-You can view analytics for your applications from within the {{site.konnect_short_name}} Dev Portal. This helps you gain insight into your consumption of different API versions, routes, and methods.
+Developers can view analytics for authenticated traffic from their registered applications directly within the {{site.konnect_short_name}} Dev Portal. These insights help developers better understand the consumption of different API versions.
 
-TODO: Needs screenshot
+![Dev Portal Analytics](/assets/images/products/konnect/dev-portal-v3/dev-portal-analytics.png)
+> _**Figure 1:** An example dashboard for an application_
 
-Each application has its own dashboard, which provides a high-level summary of the **Number of Requests**, **Average Error Rate**, and **Latency**, and charts for the following data points: 
+Each application has its own dashboard, which provides a high-level summary of the **Number of Requests**, **Average Error Rate**, and **Latency**, and charts for the following data points:
 
-* Requests by version
-* Latency by version
-* Error code distribution 
+* Requests by API version
+* Latency by API version
+* Error code distribution
 
-All of these metrics can be viewed within a selected time frame of up to **30 days**, over a period of the last 90 days.
- -->
+All of these metrics can be viewed within a selected time frame of up to 90 days.
+
+### Konnect contextual analytics
+
+Konnect provides built-in contextual analytics throughout the Konnect Dev Portal section for Portals, APIs and Applications. These insights allow Portal admins to monitor overall usage and performance metrics. The Analytics section of Konnect also enables users to create custom reports, build dashboards, and view request data for a more comprehensive and flexible experience.
+
+![Konnect Portal Analytics](/assets/images/products/konnect/dev-portal-v3/konnect-portal-analytics.png)
+> _**Figure 1:** An example of Konnect contextual analytics for an API version_
