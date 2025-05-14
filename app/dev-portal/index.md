@@ -44,22 +44,28 @@ Common ways to get started in configuring appropriate access controls for Develo
 
 ### Contextual developer application analytics
 
-Developers can view analytics for authenticated traffic from their registered applications within the {{site.konnect_short_name}} Dev Portal. These metrics help developers monitor usage patterns and understand how different API versions are being consumed.
+Developers can view analytics for authenticated traffic from their registered applications within the {{site.konnect_short_name}} Dev Portal. These metrics help developers monitor usage patterns and understand how different API are being consumed.
 
 ![Dev Portal Analytics](/assets/images/products/konnect/dev-portal-v3/dev-portal-analytics.png)
 > _**Figure 1:** An example dashboard for an application_
 
 Each application has its own dashboard, which provides a high-level summary of the **Number of Requests**, **Average Error Rate**, and **Latency**, and charts for the following data points:
 
-* Requests by API version
-* Latency by API version
+* Requests by API
+* Latency by API
 * Error code distribution
 
 All of these metrics can be viewed within a selected time frame of up to 90 days.
 
 ### Konnect contextual analytics
 
-Konnect provides built-in contextual analytics throughout the Konnect Dev Portal section for portals, APIs and applications. The Analytics section of Konnect also enables users to create custom reports, build dashboards, and view request data for a more comprehensive and flexible experience.
+Konnect provides built-in contextual analytics across the Dev Portal, offering insights for portals, APIs, and applications. These platform-wide metrics help administrators monitor overall usage, performance, and traffic trends.
+
+The Analytics section of Konnect also enables users to:
+
+* Create custom reports
+* Build dashboards
+* View detailed request data for a more comprehensive and flexible experience
 
 ![Konnect Portal Analytics](/assets/images/products/konnect/dev-portal-v3/konnect-portal-analytics.png)
 > _**Figure 1:** An example of Konnect contextual analytics for an API version_
