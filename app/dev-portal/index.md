@@ -55,7 +55,7 @@ Each application has its own dashboard, which provides a high-level summary of t
 * Latency by API
 * Error code distribution
 
-All of these metrics can be viewed within a selected time frame of up to 90 days.
+> Note: All of these metrics can be viewed within a selected time frame of up to 90 days and are are available exclusively to customers with Advanced Analytics
 
 ### Konnect contextual analytics
 
@@ -65,3 +65,5 @@ The Konnect platform provides built-in contextual analytics across the Dev Porta
 > _**Figure 1:** An example of Konnect contextual analytics for an API version_
 
 In addition to these high-level insights, administrators can explore the Konnect Analytics section to create custom reports, build dashboards, and view detailed request data for a more comprehensive and flexible understanding of portal activity.
+
+> Note: Portal and API contextual analytics are available to all customers. Access to Konnect Analytics and application contextual analytics insights requires Advanced Analytics.
