@@ -44,7 +44,7 @@ Common ways to get started in configuring appropriate access controls for Develo
 
 ### Contextual developer application analytics
 
-Developers can view analytics for authenticated traffic from their registered applications within the {{site.konnect_short_name}} Dev Portal. These metrics help developers monitor usage patterns and understand how different API are being consumed.
+Developers can view analytics for authenticated traffic from their registered applications within the {{site.konnect_short_name}} Dev Portal. These metrics help developers monitor usage patterns and understand how different APIs are being consumed.
 
 ![Dev Portal Analytics](/assets/images/products/konnect/dev-portal-v3/dev-portal-analytics.png)
 > _**Figure 1:** An example dashboard for an application_
@@ -59,7 +59,7 @@ All of these metrics can be viewed within a selected time frame of up to 90 days
 
 ### Konnect contextual analytics
 
-Konnect provides built-in contextual analytics across the Dev Portal, offering insights for portals, APIs, and applications. These platform-wide metrics help administrators monitor overall usage, performance, and traffic trends.
+The Konnect platform provides built-in contextual analytics across the Dev Portal section, offering insights into portals, APIs, and applications. These platform-wide metrics help administrators monitor overall usage, performance, and traffic trends.
 
 ![Konnect Portal Analytics](/assets/images/products/konnect/dev-portal-v3/konnect-portal-analytics.png)
 > _**Figure 1:** An example of Konnect contextual analytics for an API version_
