@@ -61,11 +61,7 @@ All of these metrics can be viewed within a selected time frame of up to 90 days
 
 Konnect provides built-in contextual analytics across the Dev Portal, offering insights for portals, APIs, and applications. These platform-wide metrics help administrators monitor overall usage, performance, and traffic trends.
 
-The Analytics section of Konnect also enables users to:
-
-* Create custom reports
-* Build dashboards
-* View detailed request data for a more comprehensive and flexible experience
-
 ![Konnect Portal Analytics](/assets/images/products/konnect/dev-portal-v3/konnect-portal-analytics.png)
 > _**Figure 1:** An example of Konnect contextual analytics for an API version_
+
+In addition to these high-level insights, administrators can explore the Konnect Analytics section to create custom reports, build dashboards, and view detailed request data for a more comprehensive and flexible understanding of portal activity.
