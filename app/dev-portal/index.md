@@ -55,7 +55,7 @@ Each application has its own dashboard, which provides a high-level summary of t
 * Latency by API
 * Error code distribution
 
-> Note: All of these metrics can be viewed within a selected time frame of up to 90 days and are are available exclusively to customers with Advanced Analytics
+> Note: All of these metrics can be viewed within a selected time frame of up to 90 days and are available exclusively to customers with Advanced Analytics
 
 ### Konnect contextual analytics
 
