@@ -27,19 +27,30 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Certificate Admin            | Access to configure certificates for an existing control plane group. |
 | Cloud Gateway Cluster Admin  | Access to all read and write permissions related to cloud-gateways configurations and custom domains. |
 | Cloud Gateway Cluster Viewer | Access to read-only permissions to cloud-gateways configurations and custom domains. |
-| Consumer Admin               | Access to configure consumers for an existing control plane group. |
+| Consumer Admin               | Access to configure consumers for an existing control plane group. Can configure plugins and view plugin partials for consumers they have access to. Cannot create or modify global plugins or plugins outside their scope. |
 | Creator                      | Access to create a new control plane group in Gateway Manager. The creator becomes the owner and admin of the control plane group they create. <br><br>This role does not grant access to _existing_ control plane groups, data plane nodes, or their configurations. See the `Admin` or `Deployer` roles. |
 | Deployer                     | This role grants full write access to administer services, routes, and plugins necessary to deploy services in Service Catalog. Must also have the Deployer role for the service being deployed. |
-| Gateway Service Admin        | Access to configure Gateway services for an existing control plane group. |
+| Gateway Service Admin        | Access to configure Gateway services for an existing control plane group. Can configure plugins and view plugin partials for services they have access to. Cannot create or modify global plugins or plugins outside their scope. |
 | Key Admin                    | Access to configure keys for an existing control plane group. |
-| Plugin Admin                 | Access to configure plugins for an existing control plane group. |
-| Route Admin                  | Access to configure routes for an existing control plane group. |
+| Plugin Admin                 |  Can configure plugins at any scope (global, service, route, or consumer) within a control plane group. Also has write access to plugin partials. |
+| Route Admin | Can configure plugins and view plugin partials for routes they have access to. Cannot create or modify global plugins or plugins outside their scope. |
 | Serverless Cluster Admin     | Access to all read and write permissions related to serverless cloud-gateways configurations. | 
 | Serverless Cluster Viewer    | Access to read-only permissions to serverless cloud-gateways configurations. |
 | SNI Admin                    | Access to configure SNIs for an existing control plane group. |
 | Upstream Admin               | Access to configure upstreams for an existing control plane group. |
 | Vault Admin                  | Access to configure vaults for an existing control plane group. |
-| Viewer                       | Read-only access to all the configurations of a control plane group and corresponding data plane nodes. |
+| Viewer                       | Read-only access to all the configurations of a control plane group and corresponding data plane nodes. Includes read-only access to plugin partials within accessible scopes. |
+
+### Plugin Permissions and Partials Access
+
+- **PluginAdmin** and **Admin** roles can configure plugins at all scopes, including global. These roles also have **write access to plugin partials**.
+
+- **RouteAdmin**, **ServiceAdmin**, and **ConsumerAdmin** roles can configure plugins only within their respective scopes. These roles have **read-only access to plugin partials**.
+
+- **Viewer** roles have **read-only access** to plugin partials within their assigned scope.
+
+- If a user with a scoped role attempts to configure a plugin outside their scope, an error will be returned.
+
 
 ## Mesh control planes 
 
