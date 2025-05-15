@@ -2,12 +2,12 @@
 title: Dev Portal
 ---
 
-Konnect Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, try API operations, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
+{{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, try API operations, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
 
-Konnect Dev Portal's **APIs** allows you to publish APIs with OpenAPI specifications and/or Markdown documentation, to enable developers to locate, access, and consume API services. Highly customizable content can be also provided at the site-level, as well as API-level, to provide additional context to the APIs.
+{{site.konnect_short_name}} Dev Portal's **APIs** allows you to publish APIs with OpenAPI specifications and/or Markdown documentation, to enable developers to locate, access, and consume API services. Highly customizable content can be also provided at the site-level, as well as API-level, to provide additional context to the APIs.
 
 {:.note}
-> *This is documentation for Konnect's new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
+> *This is documentation for {{site.konnect_short_name}}'s new **Dev Portal BETA**. Be aware of potential instability compared to our [classic Dev Portal](/konnect/dev-portal)*
 
 ![KongAir Dev Portal](/assets/images/products/konnect/dev-portal-v3/kongair-example.png)
 
@@ -25,7 +25,7 @@ Konnect Dev Portal's **APIs** allows you to publish APIs with OpenAPI specificat
 
 ## APIs
 
-Konnect Dev Portal APIs are a repository of API specifications and documentation, optionally versioned, which can be published to one or more portals. This allows you to maintain a source of truth for all of your APIs, and publish those APIs to Dev Portals which address developer audiences with appropriate access controls.
+{{site.konnect_short_name}} Dev Portal APIs are a repository of API specifications and documentation, optionally versioned, which can be published to one or more portals. This allows you to maintain a source of truth for all of your APIs, and publish those APIs to Dev Portals which address developer audiences with appropriate access controls.
 
 [Get started](/dev-portal/apis) creating your APIs.
 
@@ -55,15 +55,20 @@ Each application has its own dashboard, which provides a high-level summary of t
 * Latency by API
 * Error code distribution
 
-> Note: All of these metrics can be viewed within a selected time frame of up to 90 days and are available exclusively to customers with Advanced Analytics
+{:.note}
 
-### Konnect contextual analytics
+> All of these metrics can be viewed within a selected time frame of up to 90 days and are available exclusively to customers with Advanced Analytics
 
-The Konnect platform provides built-in contextual analytics across the Dev Portal section, offering insights into portals, APIs, and applications. These platform-wide metrics help administrators monitor overall usage, performance, and traffic trends.
+### {{site.konnect_short_name}} contextual analytics
 
-![Konnect Portal Analytics](/assets/images/products/konnect/dev-portal-v3/konnect-portal-analytics.png)
-> _**Figure 1:** An example of Konnect contextual analytics for an API version_
+The {{site.konnect_short_name}} platform provides built-in contextual analytics across the Dev Portal section, offering insights into portals, APIs, and applications. These platform-wide metrics help administrators monitor overall usage, performance, and traffic trends.
 
-In addition to these high-level insights, administrators can explore the Konnect Analytics section to create custom reports, build dashboards, and view detailed request data for a more comprehensive and flexible understanding of portal activity.
+![{{site.konnect_short_name}} Portal Analytics](/assets/images/products/konnect/dev-portal-v3/konnect-portal-analytics.png)
+> _**Figure 1:** An example of {{site.konnect_short_name}} contextual analytics for an API version_
 
-> Note: Portal and API contextual analytics are available to all customers. Access to Konnect Analytics and application contextual analytics insights requires Advanced Analytics.
+{:.note}
+
+> In addition to these high-level insights, administrators can explore the {{site.konnect_short_name}} Analytics section to create custom reports, build dashboards, and view detailed request data for a more comprehensive and flexible understanding of portal activity.
+
+{:.note}
+> Portal and API contextual analytics are available to all customers. Access to {{site.konnect_short_name}} Analytics and application contextual analytics insights requires Advanced Analytics.
