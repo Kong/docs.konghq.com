@@ -14,6 +14,7 @@ To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} se
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 
+* **API**
 * **API Product**
 * **API Product Version**
 * **Application**
@@ -24,6 +25,7 @@ To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} se
 * **Data Plane Node Version**
 * **Gateway Services**
 * **None**
+* **Portal**
 * **Response Source**
 * **Route**
 * **Status Code**
