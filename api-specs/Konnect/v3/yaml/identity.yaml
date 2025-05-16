@@ -2259,6 +2259,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: ''
         instance: 'konnect:trace:3674017986744198214'
         invalid_parameters:
           - field: body
@@ -2267,6 +2268,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: ''
         instance: 'konnect:trace:6644808935508571943'
         invalid_parameters:
           - field: name
@@ -2275,6 +2277,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: ''
         instance: 'konnect:trace:8988732526256293040'
         invalid_parameters:
           - field: teamID
@@ -2283,6 +2286,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: ''
         instance: 'konnect:trace:7680390984800447837'
         invalid_parameters:
           - field: id
@@ -2318,6 +2322,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: ''
         instance: 'konnect:trace:1738820719742148545'
         invalid_parameters:
           - field: teamID
@@ -2339,6 +2344,7 @@ components:
       value:
         status: 400
         title: Bad Request
+        detail: ''
         instance: 'konnect:trace:6644808935508571943'
         invalid_parameters:
           - field: oidc_auth_enabled
@@ -3364,6 +3370,7 @@ components:
               value:
                 status: 400
                 title: Bad Request
+                detail: ''
                 instance: 'konnect:trace:3674017986744198214'
                 invalid_parameters:
                   - field: '[filter][actions][contains]'
@@ -4382,6 +4389,12 @@ components:
       bearerFormat: JWT
       description: |
         The Konnect access token is meant to be used by the Konnect dashboard and the decK CLI authenticate with.
+    serviceAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        The Service access token is meant to be used between internal services.
 tags:
   - name: Auth Settings
   - name: Invites
@@ -4400,3 +4413,4 @@ security:
   - personalAccessToken: []
   - systemAccountAccessToken: []
   - konnectAccessToken: []
+  - serviceAccessToken: []
