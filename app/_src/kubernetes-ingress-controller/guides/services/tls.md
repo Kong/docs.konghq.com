@@ -133,7 +133,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
 You can verify the configuration by using `curl`:
 
 ```bash
-  curl --cacert ./server.crt -i -k -v -H "Host:demo.example.com" https://${PROXY_IP}/echo
+  curl --cacert ./server.crt -i -k -v --resolve "demo.example.com:443:${PROXY_IP}" https://demo.example.com/echo
 ```
 
 You should get the following response:
