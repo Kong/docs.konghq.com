@@ -44,8 +44,8 @@ plugins:
   id: 3194f12e-60c9-4cb6-9cbc-c8fd7a00cff1
   config:
     inject_template: |
-      Only use the following information surrounded by <CONTEXT></CONTEXT>to and your existing knowledge to provide the best possible answer to the user.
-      <CONTEXT><RAG RESPONSE></CONTEXT>
+      Only use the following information surrounded by <RAG></RAG>to and your existing knowledge to provide the best possible answer to the user.
+      <RAG><CONTEXT></RAG>
       User's question: <PROMPT>
     fetch_chunks_count: 5
     embeddings:
@@ -63,6 +63,8 @@ plugins:
       distance_metric: cosine
       dimensions: 768
 ```
+
+`<CONTEXT>` and `<PROMPT>` are special placeholder to be replaced by the RAG response and user prompt, respectively.
 
 ### 2. Ingest content to the vector database
 
