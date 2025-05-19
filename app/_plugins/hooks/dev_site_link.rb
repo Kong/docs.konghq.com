@@ -10,7 +10,11 @@ def dev_site_url_for(page)
   entry = REDIRECTS.detect { |u| u['docs_url'] == page_url }
   url = (entry && entry['dev_site_url']) || '/'
 
-  "#{dev_site_url}#{url}"
+  if url.start_with?('http')
+    url
+  else
+    "#{dev_site_url}#{url}"
+  end
 end
 
 Jekyll::Hooks.register :site, :pre_render do |site|
