@@ -7,7 +7,7 @@ info:
   description: |-
     OpenAPI 3.0 spec for Kong Gateway's Admin API.
 
-    You can lean more about Kong Gateway at [docs.konghq.com](https://docs.konghq.com)
+    You can lean more about Kong Gateway at [developer.konghq.com](https://developer.konghq.com)
     .Give Kong a star at [Kong/kong](https://github.com/kong/kong) repository.
   license:
     name: Apache 2.0
@@ -1787,7 +1787,6 @@ paths:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
       requestBody:
         description: Description of new JWT for creation
-        required: true
         content:
           application/json:
             schema:
@@ -1843,7 +1842,6 @@ paths:
         - $ref: '#/components/parameters/JWTId'
       requestBody:
         description: Description of the JWT
-        required: true
         content:
           application/json:
             schema:
@@ -1895,7 +1893,6 @@ paths:
         - $ref: '#/components/parameters/ConsumerIdForNestedEntities'
       requestBody:
         description: Description of new API-key for creation
-        required: true
         content:
           application/json:
             schema:
@@ -1951,7 +1948,6 @@ paths:
         - $ref: '#/components/parameters/KeyAuthId'
       requestBody:
         description: Description of the API-key
-        required: true
         content:
           application/json:
             schema:
@@ -7815,7 +7811,7 @@ tags:
   - name: Partials
 externalDocs:
   description: Documentation for Kong Gateway and its APIs
-  url: 'https://docs.konghq.com'
+  url: 'https://developer.konghq.com'
 security:
   - konnectAccessToken: []
   - personalAccessToken: []
