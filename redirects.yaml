@@ -1777,11 +1777,11 @@
   status: migrated
 - docs_url: "/gateway/latest/production/networking/configure-postgres-tls/"
   source_file: _src/gateway/production/networking/configure-postgres-tls.md
-  dev_site_url: "/gateway/configuration/#datastore"
+  dev_site_url: "/gateway/configuration/#datastore-section"
   status: "?"
 - docs_url: "/gateway/latest/production/networking/troubleshoot-postgres-tls/"
   source_file: _src/gateway/production/networking/troubleshoot-postgres-tls.md
-  dev_site_url: "/gateway/configuration/#datastore"
+  dev_site_url: "/gateway/configuration/#datastore-section"
   status: "?"
 - docs_url: "/gateway/latest/production/kong-conf/"
   source_file: _src/gateway/production/kong-conf.md
