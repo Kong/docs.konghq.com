@@ -30,7 +30,7 @@ To ensure consistency and interoperability, tracing adheres to OpenTelemetry nam
 
 ## Logs
 
-When initiating a tracing session, administrators can choose to enable log capture, which collects detailed Kong Gateway logs for the duration of the session. These logs are then correalted with traces using *trace_id* and *span_id* providing a comprehensive and drill-down view of logs generated during specific trace or span. 
+When initiating a tracing session, administrators can choose to enable log capture, which collects detailed Kong Gateway logs for the duration of the session. These logs are then correlated with traces using *trace_id* and *span_id* providing a comprehensive and drill-down view of logs generated during specific trace or span. 
 
 ## Payload Capture 
 
