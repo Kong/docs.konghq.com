@@ -104,10 +104,103 @@ Services are bootstrapped with a `Dataplane` specification.
 
 Transparent proxy is not supported on ECS, so the `Dataplane` resource for a
 service must enumerate all other mesh services this service contacts and include them
-[in the `Dataplane` specification as `outbounds`][dpp-spec].
+[in the `Dataplane` specification as `outbounds`][dpp-spec]. {% if_version gte:2.11.x %}
+Since `2.11.x`, we have introduced a new feature that leverages Route53 to simplify migration to the mesh. Please see the [Dynamic Outbounds](#dynamic-outbounds) section for more details.
+{% endif_version %}
 
 See the example repository to learn
 [how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L31-L46).
+
+{% if_version gte:2.11.x %}
+#### Dynamic outbounds
+
+In `2.11.x`, we introduced an option to leverage Route53 to simplify migration to the mesh. This functionality create Route53 domains that resolve to local addresses by DNS, which can then be used by applications. The `Kong Mesh Control Plane` is responsible for generating domains and local addresses, and ensures their availability to the application. It removes the burden of manually maintaining outbounds and enables faster, more automated migration.
+
+##### How to deploy?
+
+**Create private HosteZone**
+
+As mentioned above, this functionality works with Route53 in AWS. You need to create a [private Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html) in the VPC used for the Mesh deployment, using the domain your application will use to communicate with Mesh services.
+
+**Control-plane configuration**
+
+Because the configuration relies on dynamic allocation of local addresses, you must set the Control Plane IPAM values within the localhost range:
+
+* `KUMA_DNS_SERVER_CIDR=127.1.0.0/16`
+* `KUMA_IPAM_MESH_MULTI_ZONE_SERVICE_CIDR=127.2.0.0/16`
+* `KUMA_IPAM_MESH_EXTERNAL_SERVICE_CIDR=127.3.0.0/16`
+* `KUMA_IPAM_MESH_SERVICE_CIDR=127.4.0.0/16`
+* `KUMA_DNS_SERVER_SERVICE_VIP_PORT=8080`  Must be >1024 for ECS Fargate compatibility
+
+>[!NOTE]
+> `KUMA_DNS_SERVER_SERVICE_VIP_PORT` must be greater than 1024 since applications cannot bind to privileged ports on ECS Fargate
+> `KUMA_DNS_SERVER_CIDR` and `KUMA_IPAM_MESH_*` needs to be in loopback range.
+
+In addition, configure the private Hosted Zone details:
+
+* `KUMA_DNS_SERVER_DOMAIN=<hosted-zone-domain>`
+* `KMESH_RUNTIME_AWS_ROUTE53_ENABLED=true` 
+* `KMESH_RUNTIME_AWS_ROUTE53_HOSTED_ZONE_ID=<hosted-zone-id>`
+
+
+**MeshService Integration**
+If you are using [MeshService](/mesh/{{page.release}}/networking/meshservice/), you must provide the Hosted Zone ID when creating a [HostnameGenerator](/mesh/{{page.release}}/networking/hostnamegenerator/):
+
+```
+type: HostnameGenerator
+name: hosted-zone-mesh-services
+spec:
+  selector:
+    meshService:
+      matchLabels:
+        kuma.io/origin: zone
+  template: "{{ .DisplayName }}.svc.mesh.local"
+  extension:
+    type: Route53
+    config:
+      hostedZoneId: <hosted-zone-id>
+```
+
+Replace `<hosted-zone-id>` with the ID of the Hosted Zone that matches the `.svc.mesh.local` domain.
+
+**Dataplane configuration**
+
+Previously, users had to define all outbounds before deployment. Since version `2.11.x`, manual configuration is no longer required. You can start the dataplane with the `--bind-outbounds` flag and provide a simplified Dataplane resource:
+
+```yaml
+type: Dataplane
+name: "{{ dpname }}"
+mesh: "{{ mesh }}"
+networking:
+  address: "{{ address }}"
+  inbound:
+  - port: {{ port }}
+    servicePort: {{ servicePort }}
+    tags:
+      kuma.io/service: "{{ service }}"
+      kuma.io/protocol: "{{ protocol }}"
+```
+
+**How does communication work?**
+
+The control plane creates DNS entries in the Hosted Zone, which can be resolved by your application to loopback addresses. These entries either point to:
+
+* a loopback address with a shared port (`KUMA_DNS_SERVER_SERVICE_VIP_PORT`), or
+* a loopback address and actual service port when using [`MeshService`](/mesh/{{page.release}}/networking/meshservice/).
+
+A local sidecar proxy exposes a listener on the loopback address and port. Traffic from your application to these addresses is intercepted and routed through the sidecar.
+
+Example:
+
+Let’s assume we have a `demo-app` that communicates with a `redis` service. The control plane is configured with:
+* `KUMA_DNS_SERVER_SERVICE_VIP_PORT=8080`
+* `KUMA_DNS_SERVER_DOMAIN=mesh.local`
+* `KUMA_DNS_SERVER_CIDR=127.1.0.0/16`
+* `KMESH_RUNTIME_AWS_ROUTE53_ENABLED=true` 
+* `KMESH_RUNTIME_AWS_ROUTE53_HOSTED_ZONE_ID=Z123...`
+
+Once I make a request to `demo-app.mesh.local:8080`, the traffic will be intercepted by the local sidecar.
+{% endif_version %}
 
 ### IAM role
 
