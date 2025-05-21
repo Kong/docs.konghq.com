@@ -71,11 +71,11 @@ A drill-down view of all the logs generated during specific trace are shown in t
 
 Use the logs view to quickly troubleshoot and pinpoint issues.
 
-## Data Security with {{site.konnect_product_name}} CMEK
+## Data Security with Customer-Managed Encryption Keys (CMEK)
 
 By default, {{site.konnect_product_name}} automatically encrypts data such as payload and logs when it is at rest using encryption keys that are owned and managed by {{site.konnect_product_name}}. However if you have a specific compliance and regulatory requirements related to the keys that protect your data, you can use the customer-managed encryption keys. The instructions to create and manage CMEK keys are explained in this section [link]
 
-{{site.konnect_product_name}} uses the provided CMEK to encrypt logs and payload capture. This ensures that that logs and payload capture is secured for each organization with their own key and nobody has access to that data, including {{site.konnect_product_name}}
+{{site.konnect_product_name}} uses the provided CMEK to encrypt logs and payload. This ensures that sensitive data are secured for each organization with their own key and nobody, including {{site.konnect_product_name}}, has access to that data.
 
 **_NOTE:_** The ability to capture Payload is an opt-in feature that may be enabled with a prior agreement to the Advanced Feature Addendum. Talk to your orgnaization admin to opt-in to enable this feature.
 
