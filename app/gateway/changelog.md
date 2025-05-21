@@ -11,6 +11,68 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.10.0.2
+**Release Date** 2025/05/20
+
+### Features
+#### Configuration
+
+* Added an optional configuration parameter, `admin_gui_hide_konnect_cta`, which controls the visibility of the Konnect call-to-action in Kong Manager.
+
+#### Core
+
+* Schema map values can now assume null values. This fixes an issue where values in custom schemas wouldn't accept explicit null values for the removal of fields.
+
+#### PDK
+
+* Added a new `kong.request.get_raw_forwarded_path()` function for returning the non-normalized `forwarded_path`.
+This fixes an issue with the OpenID Connect plugin, which was normalizing the path when it shouldn't.
+
+### Fixes
+#### Core
+
+* Applied a patch from upstream OpenResty to fix an issue where upstream connection pooling failed when pool names exceeded 32 characters.
+
+#### Performance
+
+* Fixed an issue where the rate limiting library could become deadlocked with Postgres.
+* Optimized the querying of the default workspace by directly accessing LMDB, improving performance.
+
+#### Core
+
+* Fixed an issue where the delta type was not being validated during incremental sync.
+* Fixed an issue where the error logs generated during router rebuilds could be excessively noisy.
+* Fixed an issue where log lines could be incorrectly logged.
+* Fixed an issue where a full configuration sync caused the data plane to stop proxying when incremental config sync was enabled.
+
+#### Plugins
+
+* [**Request Callout**](/hub/kong-inc/request-callout/) (`request-callout`)
+  * The plugin now logs the request URL, response code, and request latency (in milliseconds).
+  * Fixed an issue where a callout response wasn't available to response `by_lua` code.
+  * Fixed an issue where caching options modified via `by_lua` would apply to all subsequent callouts.
+  * Fixed an issue where callouts with the same name would be accepted.
+  * Query parameters specified via `callout.request.query` now correctly replace those in the callout URL.
+  * Fixed an issue where values in `custom` wouldn't accept explicit null values for removal of fields.
+  * Fixed an issue where callout and upstream request body customizations weren't performed when an empty request body was provided. Now, an empty JSON body is used and `Content-Type: application/json` is added to the request.
+  * Fixed an issue where the Request Callout plugin failed with a timeout when `callouts.request.body.custom` was null and `callouts.request.headers.forward` was set to `true`.
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue which caused an IdP to report invalid `redirect_uri` errors when `config.redirect_uri` was not configured and the URI path contained spaces.
+
+* [**Session**](/hub/kong-inc/session/) (`session`)
+  * Fixed an issue where boolean configuration fields `hash_subject` (default `false`) and `store_metadata` (default `false`) stored the session's metadata in the database. This also resolves an issue with Dev Portal, where adding these fields to `portal_session_conf` wasn't working as expected.
+
+#### Admin API
+
+* Fixed an issue where the data plane (DP) could report a healthy status before it was actually ready to accept traffic.
+
+#### Clustering
+
+* Fixed an issue where debug level logs for incremental sync were insufficient, making debugging more difficult.
+* Fixed an issue where some logs were missing when incremental sync was enabled on the data plane side.
+* Fixed an issue where the data plane could repeatedly trigger a full sync when incremental sync was enabled.
+
 ## 3.10.0.1
 **Release Date** 2025/04/15
 
