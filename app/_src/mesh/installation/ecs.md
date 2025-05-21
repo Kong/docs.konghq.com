@@ -1,5 +1,7 @@
 ---
+<!-- vale-disable kong.kongterms -->
 title: Kong Mesh on Amazon ECS
+<!-- vale-enable kong.kongterms -->
 ---
 
 This page describes running {{site.mesh_product_name}} on ECS and offers guidelines
