@@ -15,7 +15,7 @@ alpha: true
 
 Logs and Traces can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, this connected experience adds negligible latency. However, under heavy loads, it may affect the throughput of the data planes that are being actively traced.
 
-## Traces - n critical services malfunction, it is crucial to be able to identify and pinpoint failures.
+## Traces 
 
 Control plane administrators can initiate targeted **deep tracing** sessions in specific data plane nodes. During an active tracing session, the selected data plane generates detailed, OpenTelemetry-compatible traces for all requests matching the sampling criteria. The detailed spans are captured for the entire request/response lifecycle. These traces can be visualized with {{site.konnect_short_name}}'s built-in span viewer with no additional instrumentation or telemetry tools.
   - Traces can be generated for a service or per route
