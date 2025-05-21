@@ -13,9 +13,9 @@ alpha: true
 3. **Optimize Performance**
    - Use real-time insights to improve system reliability and efficiency. 
 
-Logs and Traces can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, this connected experience adds negligible latency. However, under heavy loads, it may affect the throughput.
+Logs and Traces can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, this connected experience adds negligible latency. However, under heavy loads, it may affect the throughput of the data planes that are being actively traced.
 
-## Traces
+## Traces - n critical services malfunction, it is crucial to be able to identify and pinpoint failures.
 
 Control plane administrators can initiate targeted **deep tracing** sessions in specific data plane nodes. During an active tracing session, the selected data plane generates detailed, OpenTelemetry-compatible traces for all requests matching the sampling criteria. The detailed spans are captured for the entire request/response lifecycle. These traces can be visualized with {{site.konnect_short_name}}'s built-in span viewer with no additional instrumentation or telemetry tools.
   - Traces can be generated for a service or per route
@@ -28,42 +28,32 @@ To ensure consistency and interoperability, tracing adheres to OpenTelemetry nam
 
 {{site.konnect_product_name}}'s active tracing capability offers exclusive, in-depth insights that cannot be replicated by third-party telemetry tools. The detailed traces generated during live active tracing session are unique to Kong and provide unparalleled visibility into system performance. 
 
-## Logs
+## Logs 
 
-When initiating a tracing session, administrators can choose to enable log capture, which collects detailed Kong Gateway logs for the duration of the session. These logs are then correlated with traces using *trace_id* and *span_id* providing a comprehensive and drill-down view of logs generated during specific trace or span. 
+For deeper insights, you can enhance tracing session with logs. When initiating a tracing session, administrators can choose to enable log capture, which collects detailed Kong Gateway logs for the duration of the session. These logs are then correlated with traces using *trace_id* and *span_id* providing a comprehensive and drill-down view of logs generated during specific trace or span. 
 
 ## Payload Capture 
 
-When critical services malfunction, it is crucial to be able to identify and pinpoint failures. This is where having access to API payload helps. In addition to traces, active tracing can capture request and response payloads. To protect sensitive data, the captured payloads are run through a **sanitizer**. 
+While troubleshooting it important to have access to all the information that Kong is acting on. This is where having access to request headers (and body) helps. In addition to traces, request and response headers (and body) can be captured for each trace. In some cases it can help pinpoint failures. 
 
-#### Payload Sanitizer
+#### Protecting Sensitive Data with Payload Sanitizer
 
-The sanitizer performs two key the functions : 
+Since the payload data is sensitive, {{site.base_gateway}} offers out-of-box protection to data.  The captured payloads (headers and body) are run through a **log sanitizer**. Log sanitizer uses [Luhn] (https://stripe.com/resources/more/how-to-use-the-luhn-algorithm-a-guide-in-applications-for-businesses) algorithm, a well-known algorithm to validate credit card numbers. The redaction is done by replacing the matched characters with *. The sanitizer performs two key the functions : 
 
 - **Authorization Header Redaction** : Redacts the authorization parameters (not the authorization scheme) from the Authorization header (HTTP reference doc)
 - **Sensitive Data Redaction** : Redacts valid credit card numbers (validated using Luhn check) that match the regex pattern:  (\\d[\\n -]*){11,18}\\d
-
-Log sanitizer uses Luhn algorithm, a well-known algorithm to validate credit card numbers, International Mobile Equipment Identity (IMEI) numbers, and other numerical data. The redaction is done by replacing the matched characters with * 
 	
 ```
 For example : A number such as 4242-4242-4242-4242 is redacted to *******************
 ```
 
-#### Customer-Managed Encryption Keys (CMEK)
-
-Konnect gives customer organizations complete control over the cryptographic keys used to protect their data. This capability ensures that payload data is secured for each organization with their own key and nobody can decrypt the payload, including Konnect.  
-
-Konnect integrates with **AWS Key Management Service (KMS)** to allow customers to centrally manage keys and define policies. Today, Konnect supports symmetric key encryption where the key can be used to encrypt and decrypt the data. The key can be in a single AWS region or replicated into other regions for disaster recovery.
-
-Note : Payload capture is an **opt-in** feature that may be enabled with a prior agreement to the Advanced Feature Addendum. Talk to your orgnaization admin to opt-in to enable this feature. 
-
 ## Reading traces and logs in {{site.konnect_short_name}} trace viewer
 
-Traces captured in an active tracing session can be visualized in {{site.konnect_short_name}}'s built-in trace viewer. The trace viewer displays a **Summary** view and a **Trace** view. You can gain instant insights with the summary view while the trace view will help you dive deeper.
+Traces captured in an active tracing session can be visualized in {{site.konnect_short_name}}'s built-in trace viewer. The trace viewer displays a **Summary** view, a **Span** view and a **Logs** view. You can gain instant insights with the summary view while the span and logs view help you to dive deeper.
 
 #### Summary view  
 
-Summary view helps you visualize the entire API request-response flow in a single glance. This view provides a concise overview of critical metrics and a transaction map. The transaction map includes the plugins executed by {{site.base_gateway}} on both the request and the response along with the times spent in each phase. Use the summary view to quickly understand the end-to-end API flow, identify performance bottlenecks, and optimize your API strategy. 
+Summary view helps you visualize the entire API request-response flow in a single glance. This view provides a concise overview of critical metrics and a transaction map. The lifecyle map includes the different phases of {{site.base_gateway}} and the plugins executed by {{site.base_gateway}} on both the request and the response along with the times spent in each phase. Use the summary view to quickly understand the end-to-end API flow, identify performance bottlenecks, and optimize your API strategy. 
 
 #### Span view
 
@@ -73,33 +63,42 @@ This detailed view breaks down into individual spans, providing a comprehensive 
 - Plugin execution and performance
 - Request and response handling
 
-Use the trace view to troubleshoot issues, optimize performance, and refine your configuration.
+Use the span view to troubleshoot issues, optimize performance, and refine your configuration.
 
 #### Logs
 
-A drill-down view of all the logs generated during specific trace are shown in the logs tab. All the spans in the trace are correalted using *trace_id* and *span_id*. The logs can be filtered on type, source or span. Logs are displayed in reverse chronological order
+A drill-down view of all the logs generated during specific trace are shown in the logs tab. All the spans in the trace are correalted using *trace_id* and *span_id*. The logs can be filtered on type, source or span. Logs are displayed in reverse chronological order. {{site.konnect_product_name}} encrypts all the logs that are ingested. You can further ensure complete privancy and control by using customer-managed encryption keys (CMEK). 
 
+Use the logs view to quickly troubleshoot and pinpoint issues.
 
-## Get started with tracing
+## Data Security with {{site.konnect_product_name}} Customer-Managed Encryption Keys (CMEK)
 
-Active Tracing requires the following **data plane version** :
+By default {{site.konnect_product_name}} automatically encrypts data when it is at rest using encryption keys that are owned and managed by {{site.konnect_product_name}}. However if you have a specific compliance and regulatory requirements related to the keys that protect your data, you can use the customer-managed encryption keys. The instructions to create and manage CMEK keys are explained in this section [link]
+
+{{site.konnect_product_name}} uses the provided CMEK to encrypt logs and payload capture. This ensures that that logs and payload capture is secured for each organization with their own key and nobody has access to that data, including {{site.konnect_product_name}}
+
+Note : Payload capture is an opt-in feature that may be enabled with a prior agreement to the Advanced Feature Addendum. Talk to your orgnaization admin to opt-in to enable this feature.
+
+## Get started with trace and logs
+
+For traces and logs the following **data plane version** are required:
 
 - **Traces:** 3.9.1 or above
 - **Logs:** 3.11.0 or above
 - **Payload Capture** 3.11.- or above
 
-### Start a trace session
+### Start a session
 
 1. Navigate to **Gateway Manager**.
 2. Select a **Control Plane** which has the data plane to be traced.
 3. Click on **Logs and Traces** in left navigation menu.
-4. Click **New session**, define the sampling criteria and, click **Start Session**.
+4. Click **New session**, define the sampling criteria, optionally selects logs and click **Start Session**.
 
-Once started, traces will begin to be captured. Click on a trace to visualize it in the trace viewer.
+Once started, traces and logs will begin to be captured. Click on a trace to visualize it in the trace viewer.
 
 The **default session duration** is **5 minutes** or **200 traces per session**. Note the sessions are retained for up to 7 days.
 
-### Sampling rules
+#### Sampling rules
 
 To capture only the relevant API traffic, use sampling rules. Sampling rules filter and refine the requests to be matched. The matching requests are then traced and captured in the session. There are two options. 
 * **Basic sampling rules**: Allow filtering on route and services.
@@ -107,29 +106,15 @@ To capture only the relevant API traffic, use sampling rules. Sampling rules fil
   ```
   http.response.status_code==503
   ```
-## Enhanced Tracing with Log capture
-
-1. Navigate to **Gateway Manager**.
-2. Select a **Control Plane** which has the data plane to be traced.
-3. Click on **Logs and Traces** in left navigation menu.
-4. Click **New session**, define the sampling criteria, select **Log Capture** and, click **Start Session**.
-
-Once started, traces will begin to be captured. Click on a trace to visualize it in the trace viewer. View the logs on logs tab.
-
-## Targeted deep tracing with Payload Capture 
-
-1. Navigate to **Gateway Manager**.
-2. Select a **Control Plane** which has the data plane to be traced.
-3. Click on **Logs and Traces** in left navigation menu.
-4. Click **New session**, define the sampling criteria, select **Capture Headers**, **Capture Payload** and, click **Start Session**.
-
-Once started, traces will begin to be captured. Click on a trace to visualize it in the trace viewer. Headers and payload are shown on the summary tab.
+#### Enhanced Tracing with Log capture
    
 ## Sample trace
 
 A sample trace is shown below. By inspecting the **spans**, it is clear that the **bulk of the latency** occurs in the **pre-function plugin** during the **access phase**.
 
 ![Active-Tracing Spans](/assets/images/products/gateway/active-tracing-spans.png)
+
+## Sample log
 
 ## Spans
 <!--vale off-->
