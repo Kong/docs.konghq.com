@@ -117,10 +117,10 @@ See the example repository to learn
 > [!WARNING]
 > IPv6 is not supported by this feature.
 
-In `2.11.x`, we introduced an option to leverage Route53 to simplify migration to the mesh. This functionality create Route53 domains that resolve to local addresses by DNS, which can then be used by applications. The `Kong Mesh Control Plane` is responsible for generating domains and local addresses, and ensures their availability to the application. It removes the burden of manually maintaining outbounds and enables faster, more automated migration.
+In `2.11.x`, we introduced an option to leverage Route53 to simplify migration to the mesh. This functionality create Route53 domains that resolve to local addresses by DNS, which can then be used by applications. The `{{site.mesh_product_name}} Control Plane` is responsible for generating domains and local addresses, and ensures their availability to the application. It removes the burden of manually maintaining outbounds and enables faster, more automated migration.
 
 > [!NOTE]
-> AWS enforces a [limit of 5 requests per second to the Route53 API per AWS profile](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#:~:text=For%20the%20Amazon%20Route%2053,a%20value%20of%20Rate%20exceeded%20.). Kong Mesh performs initial requests for each Hosted Zone on startup, and thereafter makes additional requests only if changes are needed, at intervals of 10 seconds by default (this can be adjusted using the `KMESH_RUNTIME_AWS_ROUTE53_REFRESH_INTERVAL` setting)
+> AWS enforces a [limit of 5 requests per second to the Route53 API per AWS profile](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#:~:text=For%20the%20Amazon%20Route%2053,a%20value%20of%20Rate%20exceeded%20.). {{site.mesh_product_name}} performs initial requests for each Hosted Zone on startup, and thereafter makes additional requests only if changes are needed, at intervals of 10 seconds by default (this can be adjusted using the `KMESH_RUNTIME_AWS_ROUTE53_REFRESH_INTERVAL` setting)
 
 ##### How to deploy?
 
