@@ -98,6 +98,21 @@ The following steps assume that {{site.base_gateway}} is installed.
       --header 'Accept: text/event-stream'
    ```
 
+## Schema Registry Support
+
+The Confluent Consume plugin supports integration with Schema Registry for AVRO and JSON schemas. Currently, only Confluent Schema Registry is supported.
+
+For more information about Schema Registry integration, see the [Schema Registry documentation](/hub/kong-inc/schema-registry/).
+
+## Configuration
+
+To configure Schema Registry with the Kafka Consume plugin, use the `schema_registry` parameter in your plugin configuration. See the [Schema Registry Configuration](/hub/kong-inc/schema-registry/configuration/) for specific Schema Registry options.
+
+## Related Resources
+
+- [Schema Registry](/hub/kong-inc/schema-registry/)
+- [Confluent Schema Registry Documentation](https://docs.confluent.io/platform/current/schema-registry/index.html)
+
 ## Learn more about the Confluent Consume plugin
 
 * [Configuration reference](/hub/kong-inc/confluent-consume/configuration/)

@@ -10,11 +10,12 @@ Kong also provides Kafka Log and Kafka Upstream plugins for publishing logs and 
 * See [Kafka Log](/hub/kong-inc/kafka-log/)
 * See [Kafka Upstream](/hub/kong-inc/kafka-upstream/)
 
-{:.note} 
+{:.note}
 > **Note**: This plugin has the following known limitations:
 > * Message compression is not supported.
 > * The message format is not customizable.
 > * {{site.base_gateway}} does not support Kafka 4.0.
+
 
 ## Quickstart
 
@@ -62,3 +63,18 @@ To check that the message has been added to the topic in the Confluent Cloud con
 1. From the navigation menu, select **Topics** to show the list of topics in your cluster.
 2. Select the topic you sent messages to.
 3. In the topic detail page, select the **Messages** tab to view the messages being produced to the topic.
+
+## Schema Registry Support
+
+The Confluent plugin supports integration with Schema Registry for AVRO and JSON schemas. Currently, only Confluent Schema Registry is supported.
+
+For more information about Schema Registry integration, see the [Schema Registry documentation](/hub/kong-inc/schema-registry/).
+
+## Configuration
+
+To configure Schema Registry with the Kafka Upstream plugin, use the `schema_registry` parameter in your plugin configuration. See the [Schema Registry Configuration](/hub/kong-inc/schema-registry/configuration/) for specific Schema Registry options.
+
+## Related Resources
+
+- [Schema Registry](/hub/kong-inc/schema-registry/)
+- [Confluent Schema Registry Documentation](https://docs.confluent.io/platform/current/schema-registry/index.html)
