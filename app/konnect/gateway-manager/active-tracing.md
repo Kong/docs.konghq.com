@@ -38,7 +38,7 @@ While troubleshooting it important to have access to all the information that Ko
 
 #### Protecting Sensitive Data with Payload Sanitizer
 
-Since the payload data is sensitive, {{site.base_gateway}} offers out-of-box protection to data.  The captured payloads (headers and body) are run through a **log sanitizer**. Log sanitizer uses [Luhn] (https://stripe.com/resources/more/how-to-use-the-luhn-algorithm-a-guide-in-applications-for-businesses) algorithm, a well-known algorithm to validate credit card numbers. The redaction is done by replacing the matched characters with *. The sanitizer performs two key the functions : 
+Customers may consider payload to be sensitive. Hence {{site.base_gateway}} offers out-of-box protection to such data.  The captured payloads (headers and body) are run through a **log sanitizer**. Log sanitizer uses [Luhn] (https://stripe.com/resources/more/how-to-use-the-luhn-algorithm-a-guide-in-applications-for-businesses) algorithm, a well-known algorithm to validate credit card numbers. The redaction is done by replacing the matched characters with *. The sanitizer performs two key the functions : 
 
 - **Authorization Header Redaction** : Redacts the authorization parameters (not the authorization scheme) from the Authorization header (HTTP reference doc)
 - **Sensitive Data Redaction** : Redacts valid credit card numbers (validated using Luhn check) that match the regex pattern:  (\\d[\\n -]*){11,18}\\d
@@ -71,13 +71,13 @@ A drill-down view of all the logs generated during specific trace are shown in t
 
 Use the logs view to quickly troubleshoot and pinpoint issues.
 
-## Data Security with {{site.konnect_product_name}} Customer-Managed Encryption Keys (CMEK)
+## Data Security with {{site.konnect_product_name}} CMEK
 
-By default {{site.konnect_product_name}} automatically encrypts data when it is at rest using encryption keys that are owned and managed by {{site.konnect_product_name}}. However if you have a specific compliance and regulatory requirements related to the keys that protect your data, you can use the customer-managed encryption keys. The instructions to create and manage CMEK keys are explained in this section [link]
+By default, {{site.konnect_product_name}} automatically encrypts data such as payload and logs when it is at rest using encryption keys that are owned and managed by {{site.konnect_product_name}}. However if you have a specific compliance and regulatory requirements related to the keys that protect your data, you can use the customer-managed encryption keys. The instructions to create and manage CMEK keys are explained in this section [link]
 
 {{site.konnect_product_name}} uses the provided CMEK to encrypt logs and payload capture. This ensures that that logs and payload capture is secured for each organization with their own key and nobody has access to that data, including {{site.konnect_product_name}}
 
-Note : Payload capture is an opt-in feature that may be enabled with a prior agreement to the Advanced Feature Addendum. Talk to your orgnaization admin to opt-in to enable this feature.
+**_NOTE:_** The ability to capture Payload is an opt-in feature that may be enabled with a prior agreement to the Advanced Feature Addendum. Talk to your orgnaization admin to opt-in to enable this feature.
 
 ## Get started with trace and logs
 
@@ -85,14 +85,14 @@ For traces and logs the following **data plane version** are required:
 
 - **Traces:** 3.9.1 or above
 - **Logs:** 3.11.0 or above
-- **Payload Capture** 3.11.- or above
+- **Payload Capture** 3.11.0 or above
 
 ### Start a session
 
-1. Navigate to **Gateway Manager**.
-2. Select a **Control Plane** which has the data plane to be traced.
+1. Navigate to **Gateway Manager**. 
+2. Select a **Control Plane** which has the data planes to be traced.
 3. Click on **Logs and Traces** in left navigation menu.
-4. Click **New session**, define the sampling criteria, optionally selects logs and click **Start Session**.
+4. Click **New session**, select one or more data planes, define the sampling criteria, selecoptionally selects logs and click **Start Session**.
 
 Once started, traces and logs will begin to be captured. Click on a trace to visualize it in the trace viewer.
 
@@ -106,8 +106,7 @@ To capture only the relevant API traffic, use sampling rules. Sampling rules fil
   ```
   http.response.status_code==503
   ```
-#### Enhanced Tracing with Log capture
-   
+
 ## Sample trace
 
 A sample trace is shown below. By inspecting the **spans**, it is clear that the **bulk of the latency** occurs in the **pre-function plugin** during the **access phase**.
