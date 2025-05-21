@@ -114,6 +114,9 @@ See the example repository to learn
 {% if_version gte:2.11.x %}
 #### Dynamic outbounds
 
+> [!WARNING]
+> IPv6 is not supported by this feature.
+
 In `2.11.x`, we introduced an option to leverage Route53 to simplify migration to the mesh. This functionality create Route53 domains that resolve to local addresses by DNS, which can then be used by applications. The `Kong Mesh Control Plane` is responsible for generating domains and local addresses, and ensures their availability to the application. It removes the burden of manually maintaining outbounds and enables faster, more automated migration.
 
 ##### How to deploy?
