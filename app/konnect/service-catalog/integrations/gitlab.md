@@ -16,14 +16,32 @@ For each linked project, the UI can show a **Project Summary** with simple data 
 ## Prerequisites
 
 * You need the [Owner GitLab role](https://docs.gitlab.com/ee/user/permissions.html) to authorize the integration. This is required for event ingestion.
-* Only [GitLab.com subscriptions](https://docs.gitlab.com/ee/subscriptions/gitlab_com/) are supported at this time
 
 ## Authorize the GitLab integration
+{% navtabs %}
+{% navtab Self-Managed %}
+To use the GitLab integration in a self-hosted environment:
 
+1. [Create a group-owned application](https://docs.gitlab.com/integration/oauth_provider/) in your GitLab instance. This is required to enable OAuth access for your organization.
+   * Set the redirect URI in GitLab to the {{site.konnect_short_name}} URL, for example: `https://cloud.konghq.com/$KONNECT_REGION/service-catalog/integration/gitlab`
+   * Make sure the application has the `api` scope.
+1. In the {{site.konnect_short_name}} UI, navigate to the [GitLab integration](https://cloud.konghq.com/service-catalog/integrations/gitlab/configuration)
+1. In the **GitLab API Base URL** field, enter the full URL to your GitLab API, ending in `/api/v4`.  
+   For example: `https://gitlab.example.com/api/v4`
+1. Fill out the authorization fields using the values from your GitLab OAuth application:
+   * **Application ID**: The Application ID from your GitLab app
+   * **Application Secret**: The secret associated with your GitLab app
+   * **Token Endpoint**: `https://{your-gitlab-host}/oauth/token`
+   * **Authorization Endpoint**: `https://{your-gitlab-host}/oauth/authorize`
+1. Click **Authorize** to complete the connection.
+{% endnavtab %}
+{% navtab SaaS %}
 1. From the **{% konnect_icon servicehub %} Service Catalog** in {{site.konnect_product_name}}, select **[Integrations](https://cloud.konghq.com/us/service-catalog/integrations)**. 
-2. Select **GitLab**, then **Install GitLab**.
-3. Click **Authorize**. 
+1. Select **GitLab**, then **Install GitLab**.
+1. Click **Authorize**. 
+{% endnavtab %}
 
+{% endnavtabs %}
 ## View GitLab specs in Service Catalog
 
 You can map specs to a Service Catalog service and view them in {{site.konnect_short_name}}.
