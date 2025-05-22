@@ -82,9 +82,38 @@ You can manage consumers centrally using the {{site.konnect_short_name}} API. On
    * `{realmId}`: The ID of the realm you created previously.
    * `{consumerId}`: The ID of the consumer you created previously.
 
-1. Consumers require authentication. Configure authentication using the [Key Auth plugin](/hub/kong-inc/key-auth/how-to/).
+1. Centralized consumers require a specific [Key Auth plugin](/hub/kong-inc/key-auth/how-to/) authentication configuration that includes the `realm id`:
+   ```bash
+    curl -X POST \
+    https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugins/ \
+    --header "accept: application/json" \
+    --header "Content-Type: application/json" \
+    --header "Authorization: Bearer KONNECT_TOKEN" \
+    --data '{
+        "name": "key-auth",
+        "config": {
+            "key_names": ["apikey"],
+            "identity_realms": [
+                {
+                "region": "$REGION",
+                "id": "$REALM_ID",
+                "scope": "realm"
+                },
+                {
+                "scope": "cp"
+                }
+            ]
+        }
+    }'
+    ```
+    Be sure to replace the following with your own values:
+    * {region}: Region for your {{site.konnect_short_name}} instance.
+    * {controlPlaneId}: ID of your control plane.
+    * KONNECT_TOKEN: Replace with your {{site.konnect_short_name}} personal access token.
+    * $REALM_ID: The ID of the realm you created previously. 
+    * $REGION: Region for your {{site.konnect_short_name}} instance.
 
-   `identity_realms` are scoped to the control plane by default (`scope: cp`). The order in which you configure the `identity_realms` dictates the priority in which the data plane attempts to authenticate the provided API keys:
+    `identity_realms` are scoped to the control plane by default (`scope: cp`). The order in which you configure the `identity_realms` dictates the priority in which the data plane attempts to authenticate the provided API keys:
 
     * **Realm is listed first:** The data plane will first reach out to the realm. If the API key is not found in the realm, the data plane will look for the API key in the control plane config. 
     * **Control plane scope listed first:** The data plane will initially check the control plane configuration (LMDB) for the API key before looking up the API Key in the realm.
