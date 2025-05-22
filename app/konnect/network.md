@@ -48,6 +48,8 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `PORTAL_ID.au.portal.konghq.com` | The URL for the Dev Portal in the AU geo. |
 | `CONTROL_PLANE_DNS_PREFIX.au.cp0.konghq.com` | Handles configuration for a control plane in the AU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
 | `CONTROL_PLANE_DNS_PREFIX.au.tp0.konghq.com` | Gathers telemetry data for a control plane in the AU geo. This hostname is unique to each organization and control plane. |
+| `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
+
 
 ### EU geo
 
@@ -59,6 +61,8 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `PORTAL_ID.eu.portal.konghq.com` | The URL for the Dev Portal in the EU geo. |
 | `CONTROL_PLANE_DNS_PREFIX.eu.cp0.konghq.com` | Handles configuration for a control plane in the EU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
 | `CONTROL_PLANE_DNS_PREFIX.eu.tp0.konghq.com` | Gathers telemetry data for a control plane in the EU geo. This hostname is unique to each organization and control plane. |
+| `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
+
 
 ### IN geo
 
@@ -70,6 +74,8 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `PORTAL_ID.in.portal.konghq.com` | The URL for the Dev Portal in the IN geo. |
 | `CONTROL_PLANE_DNS_PREFIX.in.cp0.konghq.com` | Handles configuration for a control plane in the IN geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
 | `CONTROL_PLANE_DNS_PREFIX.in.tp0.konghq.com` | Gathers telemetry data for a control plane in the IN geo. This hostname is unique to each organization and control plane. |
+| `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
+
 
 ### ME geo
 
@@ -81,6 +87,8 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `PORTAL_ID.me.portal.konghq.com` | The URL for the Dev Portal in the ME geo. |
 | `CONTROL_PLANE_DNS_PREFIX.me.cp0.konghq.com` | Handles configuration for a control plane in the ME geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
 | `CONTROL_PLANE_DNS_PREFIX.me.tp0.konghq.com` | Gathers telemetry data for a control plane in the ME geo. This hostname is unique to each organization and control plane. |
+| `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
+
 
 ### US geo
 
@@ -92,6 +100,8 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `PORTAL_ID.us.portal.konghq.com` | The URL for the Dev Portal in the US geo. |
 | `CONTROL_PLANE_DNS_PREFIX.us.cp0.konghq.com` | Handles configuration for a control plane in the US geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
 | `CONTROL_PLANE_DNS_PREFIX.us.tp0.konghq.com` | Gathers telemetry data for a control plane in the US geo. This hostname is unique to each organization and control plane. |
+| `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
+
 
 ### Find configuration and telemetry hostnames
 
@@ -265,7 +275,18 @@ You can find the control plane and telemetry hostnames through the Control Plane
 {% endnavtabs %}
 
 {:.note}
-> **Note**: Visit [https://ip-addresses.origin.konghq.com/ip-addresses.json](https://ip-addresses.origin.konghq.com/ip-addresses.json) for the list of IPs associated to regional hostnames. You can also subscribe to [https://ip-addresses.origin.konghq.com/rss](https://ip-addresses.origin.konghq.com/rss) for updates. 
+> **Note**: Visit [ip-addresses.origin.konghq.com/ip-addresses.json](https://ip-addresses.origin.konghq.com/ip-addresses.json) for a full list of regional and service ingress IPs, including a new `ingressIPs` section for consolidated allow-listing.
+>
+> **New:**  
+> The IP address listing now includes:
+>
+> - A flattened list of all ingress IPs per geography (`ingressIPs`)
+> - Consolidated IPs per service (API, TP0, CP0, Mesh) across both primary and secondary regions
+>
+> To avoid coupling firewall rules to specific services or DNS suffixes (such as `cp0`, `tp0`), we recommend allow-listing the values in the `ingressIPs` block for each region. This makes your setup more resilient to future infrastructure or DNS changes.
+>
+> You can also subscribe to RSS updates at [ip-addresses.origin.konghq.com/rss](https://ip-addresses.origin.konghq.com/rss) to track IP changes as they happen.
+
 
 ## Mesh Manager hostnames
 
