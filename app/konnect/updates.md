@@ -25,6 +25,44 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 </div>
 
 
+
+<div class="changelog-entries">
+<div class="changelog-date">May<br>22</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/improved-analytics-support-in-dev-portal-beta-AweLd3TB">📢 Improved analytics support in Dev Portal Beta</a>
+</div>
+<div class="changelog-description">Following the successful launch of Dev Portal Beta, we're continuing to deliver new value incrementally as we march toward GA.  As part of that ongoing work, we’ve introduced several improvements to Analytics in the Dev Portal Beta.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">May<br>21</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/gitlab-self_managed-integration-in-service-catalog-PR1erKAc">GitLab (Self-Managed) Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">We've expanded our GitLab integration to include self-managed GitLab environments.  With this enhancement, Service Catalog is now able to:Discover GitLab Projects from a self-hosted GitLab instanceIngest Merge Request (MR) Events whenever MRs are opened or merged for those ProjectsWith this release, Service Catalog now officially supports both GitLab.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">May<br>08</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/dcr-auth-strategies-for-dev-portal-beta-zGN2ezB4">🔐  DCR auth strategies for Dev Portal Beta 🔐 </a>
+</div>
+<div class="changelog-description">Dynamic Client Registration (DCR) is a simple identity layer on top of the OAuth 2. 0 protocol, which enables advanced Identity Provider (IdP) integration for Developers & Applications in Dev Portal.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">May<br>08</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/focus-on-your-one-key-metric-via-our-new-single-value-chart-type-LJ7U0Ogq">Focus on your one key metric via our new 'Single Value' chart type</a>
+</div>
+<div class="changelog-description">Many business and operational goals are defined by a single key metric such as error rate, request volume, or latency, making it essential to present that number clearly and without unnecessary visual clutter.  With the new Single Value chart type in Explorer, Konnect users can now highlight important metrics with a clean, focused display.</div>
+</div>
+</div>
+
 ## April 2025
 
 <div class="changelog-entries">
@@ -83,6 +121,62 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 </div>
 
 
+
+
+<div class="changelog-entries">
+<div class="changelog-date">April<br>28</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/introducing-ui-and-analytics-for-centrally-managed-consumers">Introducing UI and analytics for centrally managed Consumers!</a>
+</div>
+<div class="changelog-description">Users can now use the Konnect UI to define consumers centrally in every region of Konnect and reference them in multiple control planes starting with Kong Gateway 3. 10.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>24</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/new-page-navigation-in-dev-portal-beta">🎉  New Page Navigation in Dev Portal Beta 🎉 </a>
+</div>
+<div class="changelog-description">📃 Introducing Customizable Page Navigation in Konnect Dev Portal Beta: Following the successful launch of Dev Portal Beta, we're continuing to deliver new value incrementally as we march toward GA.  📋 Release notes: Pages now have new layout and navigation features for your Dev Portals that can better separate content from navigation, and scale to larger information architectures.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>23</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/introducing-custom-plugin-streaming-for-dedicated-cloud-gateways">Introducing Custom Plugin Streaming for Dedicated Cloud Gateways</a>
+</div>
+<div class="changelog-description">We are excited to announce support for Custom Plugin Streaming for Dedicated Cloud Gateways.  This new feature simplifies the process for customers to deploy and manage their custom plugins on Dedicated Cloud Gateways, providing enhanced flexibility and control over plugin deployments and management.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>23</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/introducing-aws-privatelink-for-konnect-apis-rrPOFYYc">Introducing AWS PrivateLink for Konnect APIs!</a>
+</div>
+<div class="changelog-description">We are pleased to announce that Konnect API calls, including the API calls made through decK and Terraform can now be made through AWS PrivateLink.  Users can leverage AWS PrivateLink for a secure connection to Konnect APIs (including decK and Terraform).</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>17</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/expanded-aws-privatelink-region-availability-2er30eYE">Expanded AWS PrivateLink region availability</a>
+</div>
+<div class="changelog-description">Today we're excited to introduce PrivateLink support for four additional AWS regions.  You can leverage AWS PrivateLink for an additional layer of security between the control plane in Konnect and your dataplanes in your environment.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">April<br>14</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/introducing-snippets-for-dev-portal-beta-7IZ0TxBa">🎉  Introducing Snippets for Dev Portal Beta 🎉 </a>
+</div>
+<div class="changelog-description">Following the successful launch of Dev Portal Beta, we're continuing to deliver new value incrementally as we march toward GA.  📃 Release notes Snippets allow for reusable content in portal Pages, making content more manageable, and adding modularity to your Dev Portal content strategy.</div>
+</div>
+</div>
 
 ## March 2025
 
