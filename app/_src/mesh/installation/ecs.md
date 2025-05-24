@@ -128,9 +128,9 @@ In `2.11.x`, we introduced an option to leverage Route53 to simplify migration t
 
 As mentioned above, this functionality works with Route53 in AWS. You need to create a [private Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html) in the VPC used for the Mesh deployment, using the domain your application will use to communicate with Mesh services.
 
-**Required permissions for Control-plane**
+**Required Permissions for the Control Plane**
 
-{{site.mesh_product_name}} Control Plane needs to communicate with AWS api, and to do this it requires some specific permissions which permit control-plane to manage route53.
+The {{site.mesh_product_name}} control plane needs to communicate with the AWS API. To do this, it requires specific permissions that allow it to manage Route53:
 
 ```yaml
         "route53:GetHostedZone",               // to fetch details of a specific zone
