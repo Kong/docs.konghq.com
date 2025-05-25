@@ -2,6 +2,37 @@
 
 <!--vale off-->
 
+## Week 21
+
+### [fix: Add key auth step directly in central consumers doc](https://github.com/Kong/docs.konghq.com/pull/8806) (2025-05-22)
+
+The central consumers doc had a link to the key auth config portion, but users thought a regular key auth setup would work. I added the key auth step directly in and made it clear that this is a specific setup that central consumers require.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+https://kongstrong.slack.com/archives/CA42V003B/p1747747053933969
+
+#### Modified
+
+- https://docs.konghq.com/konnect/centralized-consumer-management
+
+
+### [Release: Gateway 3.10.0.2](https://github.com/Kong/docs.konghq.com/pull/8799) (2025-05-21)
+
+Changelog and version bump for 3.10.0.2
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: Gitlab self-hosted](https://github.com/Kong/docs.konghq.com/pull/8711) (2025-05-21)
+
+https://deploy-preview-8711--kongdocs.netlify.app/konnect/service-catalog/integrations/gitlab/
+
+#### Modified
+
+- https://docs.konghq.com/konnect/service-catalog/integrations/gitlab
+
 ## Week 18
 
 ### [fix: Incorrect links in azure content safety docs](https://github.com/Kong/docs.konghq.com/pull/8751) (2025-04-29)
