@@ -15,6 +15,33 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## May 2025
 
 <div class="changelog-entries">
+<div class="changelog-date">May<br>22</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/improved-analytics-support-in-dev-portal-beta-AweLd3TB">📢 Improved analytics support in Dev Portal Beta</a>
+</div>
+<div class="changelog-description">Following the successful launch of Dev Portal Beta, we're continuing to deliver new value incrementally as we march toward GA.  As part of that ongoing work, we’ve introduced several improvements to Analytics in the Dev Portal Beta.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">May<br>21</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/gitlab-self_managed-integration-in-service-catalog-PR1erKAc">GitLab (Self-Managed) Integration in Service Catalog</a>
+</div>
+<div class="changelog-description">We've expanded our GitLab integration to include self-managed GitLab environments.  With this enhancement, Service Catalog is now able to:Discover GitLab Projects from a self-hosted GitLab instanceIngest Merge Request (MR) Events whenever MRs are opened or merged for those ProjectsWith this release, Service Catalog now officially supports both GitLab.</div>
+</div>
+</div>
+<div class="changelog-entries">
+<div class="changelog-date">May<br>08</div>
+<div class="changelog-entry">
+<div class="changelog-title">
+<a href="https://releases.konghq.com/en/dcr-auth-strategies-for-dev-portal-beta-zGN2ezB4">🔐  DCR auth strategies for Dev Portal Beta 🔐 </a>
+</div>
+<div class="changelog-description">Dynamic Client Registration (DCR) is a simple identity layer on top of the OAuth 2. 0 protocol, which enables advanced Identity Provider (IdP) integration for Developers & Applications in Dev Portal.</div>
+</div>
+</div>
+<div class="changelog-entries">
 <div class="changelog-date">May<br>08</div>
 <div class="changelog-entry">
 <div class="changelog-title">
@@ -23,7 +50,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">Many business and operational goals are defined by a single key metric such as error rate, request volume, or latency, making it essential to present that number clearly and without unnecessary visual clutter.  With the new Single Value chart type in Explorer, Konnect users can now highlight important metrics with a clean, focused display.</div>
 </div>
 </div>
-
 
 ## April 2025
 
@@ -81,6 +107,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 <div class="changelog-description">Custom dashboards are off to a strong start!  In just three weeks of early access, we've seen great usage and received tons of helpful feedback—thank you!</div>
 </div>
 </div>
+
 
 
 
