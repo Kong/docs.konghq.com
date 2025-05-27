@@ -1825,7 +1825,7 @@
   status: "?"
 - docs_url: "/gateway/latest/production/monitoring/healthcheck-probes/"
   source_file: _src/gateway/production/monitoring/healthcheck-probes.md
-  dev_site_url: "/gateway/traffic-control/health-checks-circuit-breakers/"
+  dev_site_url: "/gateway/traffic-control/health-check-probes/"
   status: "?"
 - docs_url: "/gateway/latest/production/monitoring/ai-metrics/"
   source_file: _src/gateway/production/monitoring/ai-metrics.md
