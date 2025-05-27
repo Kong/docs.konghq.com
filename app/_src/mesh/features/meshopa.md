@@ -20,7 +20,25 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 
 ## TargetRef support matrix
 
+{% if_version gte:2.11.x %}
+{% tabs %}
+{% tab Sidecar %}
+| `targetRef`           | Allowed kinds                                            |
+| --------------------- | -------------------------------------------------------- |
+| `targetRef.kind`      | `Mesh`, `Dataplane`, `MeshSubset(deprecated)` |
+{% endtab %}
+
+{% tab Builtin Gateway %}
+| `targetRef`             | Allowed kinds                                             |
+| ----------------------- | --------------------------------------------------------- |
+| `targetRef.kind`        | `Mesh`, `MeshGateway`                                     |
+{% endtab %}
+{% endtabs %}
+{% endif_version %}
+
+
 {% if_version gte:2.6.x %}
+{% if_version lte:2.10.x %}
 {% tabs %}
 {% tab Sidecar %}
 | `targetRef`           | Allowed kinds                                            |
@@ -36,6 +54,8 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 {% endtabs %}
 
 {% endif_version %}
+{% endif_version %}
+
 {% if_version lte:2.5.x %}
 
 | TargetRef type    | top level | to  | from |
@@ -351,7 +371,7 @@ spec:
   default:
     authConfig: # optional
       statusOnError: 413 # optional: defaults to 403.
-      onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny' defines the behavior when communication with the agent fails or the policy execution fails.
+      onAgentFailure: Allow # optional: one of 'Allow' or 'Deny', defaults to 'Deny' defines the behavior when communication with the agent fails or the policy execution fails.
       requestBody: # optional
           maxSize: 1024 # the max number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
           sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
@@ -371,7 +391,7 @@ spec:
   default:
     authConfig: # optional
       statusOnError: 413 # optional: defaults to 403. http statusCode to use when the connection to the agent failed.
-      onAgentFailure: allow # optional: one of 'allow' or 'deny', defaults to 'deny'. defines the behavior when communication with the agent fails or the policy execution fails.
+      onAgentFailure: Allow # optional: one of 'Allow' or 'Deny', defaults to 'deny'. defines the behavior when communication with the agent fails or the policy execution fails.
       requestBody: # optional
         maxSize: 1024 # the maximum number of bytes to send to the agent, if we exceed this, the request to the agent will have: `x-envoy-auth-partial-body: true`.
         sendRawBody: true # use when the body is not plaintext. The agent request will have `raw_body` instead of `body`
