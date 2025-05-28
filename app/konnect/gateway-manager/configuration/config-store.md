@@ -117,7 +117,7 @@ To make these secrets accessible to {{site.base_gateway}}, reference the vault u
 {vault://mysecretvault/secret-name/snip}
 ```
 
-** Important: ** The Konnect Config Store stores secrets at the Control Plane (CP) level, and secret references are replaced before sending the configuration to the Data Planes (DPs).
+> **Important:** The Konnect Config Store stores secrets at the Control Plane (CP) level, and secret references are replaced before sending the configuration to the Data Planes (DPs).
 Because of this behavior, it is currently not possible to use Konnect Config Store secrets directly in Lua code via the Kong PDK, for example.
 
 
