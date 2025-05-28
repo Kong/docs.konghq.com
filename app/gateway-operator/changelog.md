@@ -5,6 +5,15 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.6.1
+
+**Release date**: 2025-05-28
+
+### Changes
+
+- Allowed the `kubectl rollout restart` operation for Deployment resources created via DataPlane CRD.
+  [#1660](https://github.com/Kong/gateway-operator/pull/1660)
+
 ## 1.6.0
 
 **Release date**: 2025-05-07
