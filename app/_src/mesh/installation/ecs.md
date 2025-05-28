@@ -115,16 +115,16 @@ See the example repository to learn
 #### Dynamic outbounds
 
 > [!WARNING]
-> IPv6 is not supported by this feature.
+> This feature does not support IPv6.
 
-In `2.11.x`, we introduced an option to leverage Route53 to simplify migration to the mesh. This functionality create Route53 domains that resolve to local addresses by DNS, which can then be used by applications. The `{{site.mesh_product_name}} Control Plane` is responsible for generating domains and local addresses, and ensures their availability to the application. It removes the burden of manually maintaining outbounds and enables faster, more automated migration.
+In `2.11.x`, we introduced an option to leverage Route53 to simplify migration to the mesh. This functionality creates Route53 domains that resolve to local addresses by DNS, which can then be used by applications. The `{{site.mesh_product_name}} Control Plane` is responsible for generating domains and local addresses, and it ensures their availability to the application. It removes the burden of manually maintaining outbounds and enables faster, more automated migration.
 
 > [!NOTE]
 > AWS enforces a [limit of 5 requests per second to the Route53 API per AWS profile](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#:~:text=For%20the%20Amazon%20Route%2053,a%20value%20of%20Rate%20exceeded%20.). {{site.mesh_product_name}} performs initial requests for each Hosted Zone on startup, and thereafter makes additional requests only if changes are needed, at intervals of 10 seconds by default (this can be adjusted using the `KMESH_RUNTIME_AWS_ROUTE53_REFRESH_INTERVAL` setting)
 
-##### How to deploy?
+##### Deployment instructions
 
-**Create private HosteZone**
+**Create private hosted zone**
 
 As mentioned above, this functionality works with Route53 in AWS. You need to create a [private Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html) in the VPC used for the Mesh deployment, using the domain your application will use to communicate with Mesh services.
 
@@ -146,7 +146,7 @@ Because the configuration relies on dynamic allocation of local addresses, you m
 * `KUMA_IPAM_MESH_MULTI_ZONE_SERVICE_CIDR=127.2.0.0/16`
 * `KUMA_IPAM_MESH_EXTERNAL_SERVICE_CIDR=127.3.0.0/16`
 * `KUMA_IPAM_MESH_SERVICE_CIDR=127.4.0.0/16`
-* `KUMA_DNS_SERVER_SERVICE_VIP_PORT=8080`  Must be >1024 for ECS Fargate compatibility
+* `KUMA_DNS_SERVER_SERVICE_VIP_PORT=8080`
 
 >[!NOTE]
 > `KUMA_DNS_SERVER_SERVICE_VIP_PORT` must be greater than 1024 since applications cannot bind to privileged ports on ECS Fargate
