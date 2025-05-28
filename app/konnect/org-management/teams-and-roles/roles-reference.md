@@ -62,10 +62,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 
 | Role               | Description  |
 |--------------------|--------------|
-| Discovery Admin    | Access to all read and write permissions related to service discoveries. |
-| Discovery Viewer   | Access to read-only permissions related to service discoveries. |
 | Integration Admin  | Can view and edit all integrations (install/authorize). |
-| Integration Viewer | Access to read-only permissions to integrations. |
 | Service Admin      | Can view and edit a select list of services, map resources to those services, and manage all resources and discovery rules. | 
 | Service Creator    | Can create new services, becomes the service admin for any service they create, and can view, edit, and create all resources and discovery rules.
 | Service Viewer     | Can view a select list of services and all resources and discovery rules. |
