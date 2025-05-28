@@ -91,7 +91,7 @@ Cloudformation [sets them via environment variables](https://github.com/Kong/kon
 ```
 {% endif_version %}
 
-Every sidecar must have the [`--auth-type=aws` flag set as well](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L255).
+Every sidecar must have the [`--auth-type=aws` flag set as well](https://github.com/Kong/kong-mesh-ecs/blob/878b019793723b802af2bf05c84e80f88d336a98/deploy/counter-demo/demo-app.yaml#L255).
 
 ## Services
 
@@ -109,7 +109,7 @@ Since `2.11.x`, we have introduced a new feature that leverages Route53 to simpl
 {% endif_version %}
 
 See the example repository to learn
-[how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L31-L46).
+[how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/878b019793723b802af2bf05c84e80f88d336a98/deploy/counter-demo/demo-app.yaml#L31-L46).
 
 {% if_version gte:2.11.x %}
 #### Dynamic outbounds
@@ -118,6 +118,9 @@ See the example repository to learn
 > This feature does not support IPv6.
 
 In `2.11.x`, we introduced an option to leverage Route53 to simplify migration to the mesh. This functionality creates Route53 domains that resolve to local addresses by DNS, which can then be used by applications. The `{{site.mesh_product_name}} Control Plane` is responsible for generating domains and local addresses, and it ensures their availability to the application. It removes the burden of manually maintaining outbounds and enables faster, more automated migration.
+
+See the example repository to learn
+[how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L31-L42).
 
 > [!NOTE]
 > AWS enforces a [limit of 5 requests per second to the Route53 API per AWS profile](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#:~:text=For%20the%20Amazon%20Route%2053,a%20value%20of%20Rate%20exceeded%20.). {{site.mesh_product_name}} performs initial requests for each Hosted Zone on startup, and thereafter makes additional requests only if changes are needed, at intervals of 10 seconds by default (this can be adjusted using the `KMESH_RUNTIME_AWS_ROUTE53_REFRESH_INTERVAL` setting)
@@ -158,6 +161,7 @@ In addition, configure the private Hosted Zone details:
 * `KMESH_RUNTIME_AWS_ROUTE53_ENABLED=true` 
 * `KMESH_RUNTIME_AWS_ROUTE53_HOSTED_ZONE_ID=<hosted-zone-id>`
 
+The example Cloudformation [sets them via environment variables](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controlplane.yaml#L364-L382):
 
 **MeshService Integration**
 If you are using [MeshService](/mesh/{{page.release}}/networking/meshservice/), you must provide the Hosted Zone ID when creating a [HostnameGenerator](/mesh/{{page.release}}/networking/hostnamegenerator/):
@@ -181,7 +185,7 @@ Replace `<hosted-zone-id>` with the ID of the Hosted Zone that matches the `.svc
 
 **Dataplane configuration**
 
-Previously, users had to define all outbounds before deployment. Since version `2.11.x`, manual configuration is no longer required. You can start the dataplane with the `--bind-outbounds` flag and provide a simplified Dataplane resource:
+Previously, users had to define all outbounds before deployment. Since version `2.11.x`, manual configuration is no longer required. You can start the dataplane with the [`--bind-outbounds`](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#268) flag and provide a simplified Dataplane resource:
 
 ```yaml
 type: Dataplane
