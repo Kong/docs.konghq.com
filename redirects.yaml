@@ -3737,7 +3737,7 @@
   status: migrated
 - docs_url: "/hub/kong-inc/ai-rag-injector/how-to/"
   source_file: _hub/kong-inc/ai-rag-injector/how-to/_index.md
-  dev_site_url: "/hub/kong-inc/ai-rag-injector/examples/"
+  dev_site_url: "/plugins/ai-rag-injector/examples/"
   status: migrated
 - docs_url: "/hub/kong-inc/ai-rag-injector/changelog/"
   source_file: _hub/kong-inc/ai-rag-injector/_changelog.md
