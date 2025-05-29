@@ -63,6 +63,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Role               | Description  |
 |--------------------|--------------|
 | Integration Admin  | Can view and edit all integrations (install/authorize). |
+| Integration Viewer | Access to read-only permissions to integrations. |
 | Scorecard Viewer   | Can view scorecards. | 
 | Scorecard Admin    | Can view and edit Scorecards. |
 | Service Admin      | Can view and edit a select list of services, map resources to those services, and manage all resources and discovery rules. | 
