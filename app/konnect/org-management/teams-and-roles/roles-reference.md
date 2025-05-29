@@ -63,6 +63,8 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Role               | Description  |
 |--------------------|--------------|
 | Integration Admin  | Can view and edit all integrations (install/authorize). |
+| Scorecard Viewer   | Can view scorecards. | 
+| Scorecard Admin    | Can view and edit Scorecards. |
 | Service Admin      | Can view and edit a select list of services, map resources to those services, and manage all resources and discovery rules. | 
 | Service Creator    | Can create new services, becomes the service admin for any service they create, and can view, edit, and create all resources and discovery rules.
 | Service Viewer     | Can view a select list of services and all resources and discovery rules. |
