@@ -13,7 +13,13 @@
 {% assign gwapi_version = "0.8.1" %}
 {% endif_version %}
 {% if_version gte:1.1.x lte:1.3.x %}
-{% assign gwapi_version = "1.0.0" %}
+{% assign gwapi_version = "1.1.0" %}
+{% endif_version %}
+{% if_version gte:1.4.x lte:1.5.x %}
+{% assign gwapi_version = "1.2.1" %}
+{% endif_version %}
+{% if_version gte:1.6.x %}
+{% assign gwapi_version = "1.3.0" %}
 {% endif_version %}
 ### Install CRDs
 
