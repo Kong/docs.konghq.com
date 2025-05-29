@@ -218,10 +218,10 @@
   releaseDate: "2025-04-01"
   endOfLifeDate: "2026-04-01"
 - edition: gateway-operator
-  version: 1.6.0
+  version: 1.6.1
   release: 1.6.x
-  releaseDate: "2025-05-08"
-  endOfLifeDate: "2026-05-08"
+  releaseDate: "2025-05-28"
+  endOfLifeDate: "2026-05-28"
   latest: true
 - edition: gateway-operator
   version: 1.7.0
