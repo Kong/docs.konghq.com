@@ -144,3 +144,17 @@ This plugin supports the following authentication mechanisms:
 
 {% endif_version %}
 
+## Schema Registry Support
+
+The Kafka Log plugin supports integration with Schema Registry for AVRO and JSON schemas. Currently, only Confluent Schema Registry is supported.
+
+For more information about Schema Registry integration, see the [Schema Registry documentation](/hub/kong-inc/schema-registry/).
+
+## Configuration
+
+To configure Schema Registry with the Kafka Upstream plugin, use the `schema_registry` parameter in your plugin configuration. See the [Schema Registry Configuration](/hub/kong-inc/schema-registry/configuration/) for specific Schema Registry options.
+
+## Related Resources
+
+- [Schema Registry](/hub/kong-inc/schema-registry/)
+- [Confluent Schema Registry Documentation](https://docs.confluent.io/platform/current/schema-registry/index.html)
