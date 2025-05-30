@@ -18,4 +18,4 @@ config:
     options:
       max_tokens: 512
       temperature: 1.0
-      top_p: 256
+      top_p: 0.5
