@@ -67,7 +67,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Scorecard Viewer   | Access to read-only permissions to scorecards. | 
 | Scorecard Admin    | Can view and edit Scorecards. |
 | Service Admin      | Can view and edit a select list of services, map resources to those services, manage all resources, and has read-only access to all integrations and integration instances. | 
-| Service Creator    | Can create new services, becomes the Service Admin for any service they create, and can view and edit all resources. <br><br> Includes read-only access to all integrations and integration instances.<br><br>This role does not grant access to existing services or their configurations. See the Service Admin role. This role does not grant write access to integration instances. See the Integration Admin role.
+| Service Creator    | Can create new Service Catalog services, becomes the Service Admin for any service they create, and can view and edit all resources. Includes read-only access to all integrations and integration instances.<br><br>This role does not grant access to existing services or their configurations, see the Service Admin role. <br><br>This role does not grant write access to integration instances, see the Integration Admin role.
 | Service Viewer     | Can view a select list of services and all resources and discovery rules. |
 
 ## Portals
