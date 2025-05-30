@@ -210,6 +210,9 @@ components:
         attributes:
           description: Attributes for the entity.
           type: object
+        match:
+          description: The matched text from the record.
+          type: string
       required:
         - id
         - type

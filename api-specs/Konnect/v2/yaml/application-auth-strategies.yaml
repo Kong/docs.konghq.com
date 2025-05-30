@@ -1316,6 +1316,9 @@ components:
       type: object
       discriminator:
         propertyName: strategy_type
+        mapping:
+          key_auth: '#/components/schemas/AppAuthStrategyKeyAuthRequest'
+          openid_connect: '#/components/schemas/AppAuthStrategyOpenIDConnectRequest'
       oneOf:
         - $ref: '#/components/schemas/AppAuthStrategyKeyAuthRequest'
         - $ref: '#/components/schemas/AppAuthStrategyOpenIDConnectRequest'
@@ -1327,6 +1330,9 @@ components:
       type: object
       discriminator:
         propertyName: strategy_type
+        mapping:
+          key_auth: '#/components/schemas/AppAuthStrategyKeyAuthResponse'
+          openid_connect: '#/components/schemas/AppAuthStrategyOpenIDConnectResponse'
       oneOf:
         - $ref: '#/components/schemas/AppAuthStrategyKeyAuthResponse'
         - $ref: '#/components/schemas/AppAuthStrategyOpenIDConnectResponse'

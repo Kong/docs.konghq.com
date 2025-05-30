@@ -4918,6 +4918,7 @@ components:
       description: Filters on the given datetime (RFC-3339) field value.
       oneOf:
         - type: string
+          title: DateTimeFieldImplicitEqualsFilter
           format: date-time
           description: Value strictly equals given RFC-3339 formatted timestamp in UTC
           example: '2022-03-30T07:20:50Z'
