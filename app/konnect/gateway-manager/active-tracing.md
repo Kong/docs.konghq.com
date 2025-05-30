@@ -1,89 +1,119 @@
 ---
-title: Active Tracing in Konnect
+title: Logs & Traces
 content_type: reference
 alpha: true
 ---
 
-Active tracing enables control plane administrators to initiate targeted "deep tracing" sessions in specific data plane nodes. During an active tracing session, the selected data plane generates detailed, OpenTelemetry-compatible traces for all requests matching the sampling criteria. The detailed spans are captured for the entire request/response lifecycle. These traces can be visualized with {{site.konnect_short_name}}'s built-in span viewer with no additional instrumentation or telemetry tools.
+{{site.konnect_short_name}} platform provides a connected debugging experience and real-time visibility into API traffic. Logs provide a detailed record of events within the system and tracing allows for tracking the flow of requests through Kong. Together, **Logs & Traces** provide key pieces of data empowering you to : 
+
+1. **Monitor System Behavior**
+   - Understand how your system performs during live sessions.
+2. **Troubleshoot Issues**
+   - Quickly identify and resolve issues, whether deploying changes or responding to incidents.
+3. **Optimize Performance**
+   - Use real-time insights to improve system reliability and efficiency. 
+
+Logs and Traces can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. Under normal conditions, this connected experience adds negligible latency. However, under heavy loads, it may affect the throughput of the data planes that are being actively traced.
+
+## Traces 
+
+Control plane administrators can initiate targeted **deep tracing** sessions in specific data plane nodes. During an active tracing session, the selected data plane generates detailed, OpenTelemetry-compatible traces for all requests matching the sampling criteria. The detailed spans are captured for the entire request/response lifecycle. These traces can be visualized with {{site.konnect_short_name}}'s built-in span viewer with no additional instrumentation or telemetry tools.
+  - Traces can be generated for a service or per route
+  - Refined traces can be generated for all requests matching a sampling criteria
+  - Sampling criteria can be defined with simple expressions language, for example: `http.method == GET`
+  - Trace sessions are retained for up to 7 days
+  - Traces can be visualized in {{site.konnect_short_name}}'s built in trace viewer
+
+To ensure consistency and interoperability, tracing adheres to OpenTelemetry naming conventions for spans and attributes, wherever possible
 
 {{site.konnect_product_name}}'s active tracing capability offers exclusive, in-depth insights that cannot be replicated by third-party telemetry tools. The detailed traces generated during live active tracing session are unique to Kong and provide unparalleled visibility into system performance. 
 
-Active Tracing adheres to OpenTelemetry naming conventions for spans and attributes, wherever possible, ensuring consistency and interoperability.
+## Logs 
 
-## Key highlights
+For deeper insights, you can enhance tracing session with logs. When initiating a tracing session, administrators can choose to enable log capture, which collects detailed Kong Gateway logs for the duration of the session. These logs are then correlated with traces using *trace_id* and *span_id* providing a comprehensive and drill-down view of logs generated during specific trace or span. 
 
-- Traces can be generated for a service or per route
-- Refined traces can be generated for all requests matching a sampling criteria
-- Sampling criteria can be defined with simple expressions language, for example: `http.method == GET`
-- Trace sessions are retained for up to 7 days
-- Traces can be visualized in {{site.konnect_short_name}}'s built in trace viewer 
+## Payload Capture 
 
-Although active tracing is designed as a debug and troubleshooting tool, it can unlock in-depth insights into the API traffic and serve as a monitoring and observability tool. 
-Under normal conditions, active tracing adds negligible latency. However, under heavy loads, it may affect the throughput.
+While troubleshooting it important to have access to all the information that Kong is acting on. This is where having access to request headers (and body) helps. In addition to traces, request and response headers (and body) can be captured for each trace. In some cases it can help pinpoint failures. 
 
-## Reading traces in {{site.konnect_short_name}} trace viewer
+#### Protecting Sensitive Data with Payload Sanitizer
 
-Traces captured in an active tracing session can be visualized in {{site.konnect_short_name}}'s built-in trace viewer. The trace viewer displays a **Summary** view and a **Trace** view. You can gain instant insights with the summary view while the trace view will help you dive deeper.
+Customers may consider payload to be sensitive. Hence {{site.base_gateway}} offers out-of-box protection to such data.  The captured payloads (headers and body) are run through a **log sanitizer**. Log sanitizer uses [Luhn] (https://stripe.com/resources/more/how-to-use-the-luhn-algorithm-a-guide-in-applications-for-businesses) algorithm, a well-known algorithm to validate credit card numbers. The redaction is done by replacing the matched characters with *. The sanitizer performs two key the functions : 
 
-### Summary view  
+- **Authorization Header Redaction** : Redacts the authorization parameters (not the authorization scheme) from the Authorization header (HTTP reference doc)
+- **Sensitive Data Redaction** : Redacts valid credit card numbers (validated using Luhn check) that match the regex pattern:  (\\d[\\n -]*){11,18}\\d
+	
+```
+For example : A number such as 4242-4242-4242-4242 is redacted to *******************
+```
 
-Summary view helps you visualize the entire API request-response flow in a single glance. This view provides a concise overview of critical metrics and a transaction map. The transaction map includes the plugins executed by {{site.base_gateway}} on both the request and the response along with the times spent in each phase. Use the summary view to quickly understand the end-to-end API flow, identify performance bottlenecks, and optimize your API strategy. 
+## Reading traces and logs in {{site.konnect_short_name}} trace viewer
 
-### Trace view
+Traces captured in an active tracing session can be visualized in {{site.konnect_short_name}}'s built-in trace viewer. The trace viewer displays a **Summary** view, a **Span** view and a **Logs** view. You can gain instant insights with the summary view while the span and logs view help you to dive deeper.
 
-The trace view gives you unparalleled visibility into {{site.base_gateway}}'s internal workings. 
+#### Summary view  
+
+Summary view helps you visualize the entire API request-response flow in a single glance. This view provides a concise overview of critical metrics and a transaction map. The lifecyle map includes the different phases of {{site.base_gateway}} and the plugins executed by {{site.base_gateway}} on both the request and the response along with the times spent in each phase. Use the summary view to quickly understand the end-to-end API flow, identify performance bottlenecks, and optimize your API strategy. 
+
+#### Span view
+
+The span view gives you unparalleled visibility into {{site.base_gateway}}'s internal workings. 
 This detailed view breaks down into individual spans, providing a comprehensive understanding of:
 - {{site.base_gateway}}'s internal processes and phases
 - Plugin execution and performance
 - Request and response handling
 
-Use the trace view to troubleshoot issues, optimize performance, and refine your configuration.
+Use the span view to troubleshoot issues, optimize performance, and refine your configuration.
 
-## Get started with tracing
+#### Logs
 
-Active Tracing requires the following **data plane version** and **environment variables** in `kong.conf`:
+A drill-down view of all the logs generated during specific trace are shown in the logs tab. All the spans in the trace are correalted using *trace_id* and *span_id*. The logs can be filtered on type, source or span. Logs are displayed in reverse chronological order. {{site.konnect_product_name}} encrypts all the logs that are ingested. You can further ensure complete privancy and control by using customer-managed encryption keys (CMEK). 
 
-- **Version:** 3.9.1 or above
-- **Environment variables:**
-  - `KONG_CLUSTER_RPC=on`
-  - `KONG_ACTIVE_TRACING=on`
+Use the logs view to quickly troubleshoot and pinpoint issues.
 
-### Start a trace session
+## Data Security with Customer-Managed Encryption Keys (CMEK)
 
-1. Navigate to **Gateway Manager**.
-2. Select a **Control Plane** which has the data plane to be traced.
-3. Click on **Active Tracing** in left navigation menu.
-4. Click **New tracing session**, define the criteria and, click **Start Session**.
+By default, {{site.konnect_product_name}} automatically encrypts data such as payload and logs when it is at rest using encryption keys that are owned and managed by {{site.konnect_product_name}}. However if you have a specific compliance and regulatory requirements related to the keys that protect your data, you can use the customer-managed encryption keys. The instructions to create and manage CMEK keys are explained in this section [link]
 
-Once started, traces will begin to be captured. Click on a trace to visualize it in the trace viewer.
+{{site.konnect_product_name}} uses the provided CMEK to encrypt logs and payload. This ensures that sensitive data are secured for each organization with their own key and nobody, including {{site.konnect_product_name}}, has access to that data.
+
+**_NOTE:_** The ability to capture Payload is an opt-in feature that may be enabled with a prior agreement to the Advanced Feature Addendum. Talk to your orgnaization admin to opt-in to enable this feature.
+
+## Get started with trace and logs
+
+For traces and logs the following **data plane version** are required:
+
+- **Traces:** 3.9.1 or above
+- **Logs:** 3.11.0 or above
+- **Payload Capture** 3.11.0 or above
+
+### Start a session
+
+1. Navigate to **Gateway Manager**. 
+2. Select a **Control Plane** which has the data planes to be traced.
+3. Click on **Logs and Traces** in left navigation menu.
+4. Click **New session**, select one or more data planes, define the sampling criteria, selecoptionally selects logs and click **Start Session**.
+
+Once started, traces and logs will begin to be captured. Click on a trace to visualize it in the trace viewer.
 
 The **default session duration** is **5 minutes** or **200 traces per session**. Note the sessions are retained for up to 7 days.
 
-### Sampling rules
+#### Sampling rules
 
 To capture only the relevant API traffic, use sampling rules. Sampling rules filter and refine the requests to be matched. The matching requests are then traced and captured in the session. There are two options. 
 * **Basic sampling rules**: Allow filtering on route and services.
-* **Advanced sampling rules**: Specify the desired criteria using expressions. For example, to capture traces for all requests matching 503 response code, specify the following rule
+* **Advanced sampling rules**: Specify the desired criteria using expressions. For example, to capture traces for all requests matching 503 response code, specify the following rule.
   ```
   http.response.status_code==503
   ```
-
-### Known issues in tech preview
-
-Here is a list of known issues in the tech preview:
-
-- **Incorrect span orders**
-    - When spans have very short duration few spans may be displayed in wrong order.
-- **Incorrect handling of certain error conditions**
-  - Traces may be broken when there are certain error conditions. For example, when DNS name resolution fails.
-- **Missing spans during high traffic volumes**
-    - When no sampling rule is enabled during a high traffic volume scenario, some traces could be missing spans.
 
 ## Sample trace
 
 A sample trace is shown below. By inspecting the **spans**, it is clear that the **bulk of the latency** occurs in the **pre-function plugin** during the **access phase**.
 
 ![Active-Tracing Spans](/assets/images/products/gateway/active-tracing-spans.png)
+
+## Sample log
 
 ## Spans
 <!--vale off-->
