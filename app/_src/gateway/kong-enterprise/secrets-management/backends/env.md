@@ -119,5 +119,5 @@ Common options:
 Parameter | Field name | Description
 ----------|---------------|------------
 `vaults.description` <br> *optional* | **Description** | An optional description for your vault.
-`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `env` for the environment variable vault.
+`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, `hcv`, or `conjur`. Set `env` for the environment variable vault.
 `vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-env-vault/<some-secret>}`.

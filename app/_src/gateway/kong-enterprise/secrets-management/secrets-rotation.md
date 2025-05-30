@@ -45,6 +45,7 @@ The TTL based rotation works with most of the Kong supported vaults, including:
 * [AWS Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
 * [GCP Secret Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [HashiCorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+* [CyberArk Conjur Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/cyberark-conjur-vault/)
 
 When rotating with TTLs, it is usually useful to have two versions of the same secret valid at the same time.
 This means that following steps occur during secrets rotation:

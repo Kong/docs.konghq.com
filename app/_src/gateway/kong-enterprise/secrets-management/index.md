@@ -112,6 +112,7 @@ See each plugin's documentation for more information on each field:
 * GCP Secret Manager
 * Azure Key Vaults
 * HashiCorp Vault
+* CyberArk Conjur Vault
 
 See the [backends overview](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/)
 for more information about each option.
