@@ -3,7 +3,15 @@ title: Kong Gateway Licensing
 badge: enterprise
 ---
 
+{% if_version gte:3.10.x %}
 {{site.ee_product_name}} enforces the presence and validity of an Enterprise license file.
+{% endif_version %}
+
+{% if_version lte:3.9.x %}
+{{site.base_gateway}} can be used with or without a license. For Enterprise
+functionality, {{site.base_gateway}} enforces the presence and validity of a
+{{site.konnect_product_name}} license file.
+{% endif_version %}
 
 {% if_version lte:3.9.x %}
 
