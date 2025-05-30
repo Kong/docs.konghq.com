@@ -951,3 +951,23 @@ kmesh:
       policies: 0 # ENV: KMESH_LIMITS_DEFAULT_POLICIES
       # Maximum number of Zone control plane resources that a user can create. Set to 0 to disable the limit.
       zones: 0 # ENV: KMESH_LIMITS_DEFAULT_ZONES
+  runtime:
+    # AWS integrations configuration
+    aws:
+      # Route53 integration configuration
+      route53:
+        # Enabled indicates whether the component responsible for creating Route53 DNS entries is enabled.
+        enabled: false # ENV: KMESH_RUNTIME_AWS_ROUTE53_ENABLED
+        # HostedZoneId is the AWS Zone ID where `kuma.io/service` DNS entries are created.
+        # The hosted zone domain must match the configuration of `KUMA_DNS_SERVER_DOMAIN`.
+        hostedZoneId: "" # ENV: KMESH_RUNTIME_AWS_ROUTE53_HOSTED_ZONE_ID
+        # RefreshInterval defines how often the component should check for new VIPs and create them in AWS.
+        # Be cautious with the value, as AWS has a rate limit of 5 requests per second.
+        # Default: 10s
+        refreshInterval: 10s # ENV: KMESH_RUNTIME_AWS_ROUTE53_REFRESH_INTERVAL
+        # Base time for exponential backoff on an error.
+        retryBaseBackoff: 1s # ENV: KMESH_RUNTIME_AWS_ROUTE53_RETRY_BASE_BACKOFF
+        # Max retries on an error.
+        retryMaxTimes: 2 # ENV: KMESH_RUNTIME_AWS_ROUTE53_RETRY_MAX_TIMES
+        # Percentage of jitter. For example: if backoff is 20s, and this value 10, the backoff will be between 18s and 22s.
+        retryJitterPercent: 20 # ENV: KMESH_RUNTIME_AWS_ROUTE53_RETRY_JITTER_PERCENT
