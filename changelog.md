@@ -2,6 +2,54 @@
 
 <!--vale off-->
 
+## Week 22
+
+### [Fix hugging face example](https://github.com/Kong/docs.konghq.com/pull/8819) (2025-05-30)
+
+Issue reported on Slack:
+The type of top_k should be integer (it currently shows 0.5), while top_p should be a number between 0 to 1: https://github.com/Kong/kong/blob/36db98046b05cfe48b14d3ae00a3c5601bd105a8/kong/llm/schemas/init.lua#L147-L156
+
+The values in the example are flipped.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/
+- https://docs.konghq.com/assets/hub/kong-inc/ai-proxy/anthropic.yaml
+
+
+### [Update Service Catalog Roles](https://github.com/Kong/docs.konghq.com/pull/8815) (2025-05-30)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/roles-reference
+
+
+### [chore(kgo): KGO 1.6.1 update](https://github.com/Kong/docs.konghq.com/pull/8814) (2025-05-29)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/changelog
+
+
+### [Provide some details on the Konnect Config Store](https://github.com/Kong/docs.konghq.com/pull/8813) (2025-05-28)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/config-store
+
 ## Week 18
 
 ### [fix: Incorrect links in azure content safety docs](https://github.com/Kong/docs.konghq.com/pull/8751) (2025-04-29)
