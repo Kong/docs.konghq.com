@@ -41,8 +41,8 @@ curl -X POST http://localhost:8001/routes/huggingface-chat/plugins \
   --data "config.model.name=<huggingface_model>" \
   --data "config.model.options.max_tokens=512" \
   --data "config.model.options.temperature=1.0" \
-  --data "config.model.options.top_p=256" \
-  --data "config.model.options.top_k=0.5"
+  --data "config.model.options.top_p=0.5" \
+  --data "config.model.options.top_k=256"
 ```
 
 {% endnavtab %}
@@ -69,8 +69,8 @@ plugins:
         options:
           max_tokens: 512
           temperature: 1.0
-          top_p: 256
-          top_k: 0.5
+          top_p: 0.5
+          top_k: 256
 ```
 
 {% endnavtab %}

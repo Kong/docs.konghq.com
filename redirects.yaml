@@ -1825,7 +1825,7 @@
   status: "?"
 - docs_url: "/gateway/latest/production/monitoring/healthcheck-probes/"
   source_file: _src/gateway/production/monitoring/healthcheck-probes.md
-  dev_site_url: "/gateway/traffic-control/health-checks-circuit-breakers/"
+  dev_site_url: "/gateway/traffic-control/health-check-probes/"
   status: "?"
 - docs_url: "/gateway/latest/production/monitoring/ai-metrics/"
   source_file: _src/gateway/production/monitoring/ai-metrics.md
@@ -2133,7 +2133,7 @@
   status: "?"
 - docs_url: "/gateway/latest/reference/nginx-directives/"
   source_file: _src/gateway/reference/nginx-directives.md
-  dev_site_url: "/gateway/"
+  dev_site_url: "/gateway/nginx-directives/"
   status: "?"
 - docs_url: "/gateway/latest/reference/key-management/"
   source_file: _src/gateway/reference/key-management.md
@@ -3737,7 +3737,7 @@
   status: migrated
 - docs_url: "/hub/kong-inc/ai-rag-injector/how-to/"
   source_file: _hub/kong-inc/ai-rag-injector/how-to/_index.md
-  dev_site_url: "/hub/kong-inc/ai-rag-injector/examples/"
+  dev_site_url: "/plugins/ai-rag-injector/examples/"
   status: migrated
 - docs_url: "/hub/kong-inc/ai-rag-injector/changelog/"
   source_file: _hub/kong-inc/ai-rag-injector/_changelog.md

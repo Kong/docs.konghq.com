@@ -44,8 +44,8 @@ config:
       options:
         max_tokens: 512
         temperature: 1.0
-        top_p: 256
-        top_k: 0.5
+        top_p: 0.5
+        top_k: 256
 targets:
   - route
 formats:
