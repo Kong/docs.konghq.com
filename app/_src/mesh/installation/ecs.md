@@ -1,5 +1,5 @@
 ---
-title: {{site.mesh_product_name}} on Amazon ECS
+title: Kong Mesh on Amazon ECS
 ---
 
 This page describes running {{site.mesh_product_name}} on ECS and offers guidelines
