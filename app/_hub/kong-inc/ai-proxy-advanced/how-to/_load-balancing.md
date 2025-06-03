@@ -12,7 +12,7 @@ Semantic routing enables distribution of requests based on the similarity betwee
 
 To set up load balancing with the AI Proxy Advanced plugin, you need to configure the following parameters:
 * [`config.embeddings`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-embeddings) to define the model to use to match the model description and the prompts.
-* [`config.vectordb`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-vectordb) to define the vector database parameters. Only Redis is supported, so you need a Redis instance running in your environment.
+* [`config.vectordb`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-vectordb) to define the vector database parameters. You can use either [Redis](/hub/kong-inc/ai-proxy-advanced/configuration/#config-vectordb-redis) or [PGVector](/hub/kong-inc/ai-proxy-advanced/configuration/#config-vectordb-pgvector) database.
 * [`config.targets[].description`](/hub/kong-inc/ai-proxy-advanced/configuration/#config-targets-description) to define the description to be matched with the prompts.
 
 For example, the following configuration uses two OpenAI models: one for questions related to Kong, and another for questions related to Microsoft.
@@ -54,7 +54,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
       description: "What is Kong?"
@@ -65,7 +65,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
       description: "What is Microsoft?"
@@ -122,7 +122,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
       weight: 70
@@ -133,7 +133,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
       weight: 25
@@ -144,7 +144,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
       weight: 5
@@ -178,7 +178,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
     - model:
@@ -188,7 +188,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
 ```
@@ -221,7 +221,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
     - model:
@@ -231,7 +231,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
 ```
@@ -270,7 +270,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
     - model:
@@ -280,7 +280,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
 ```
@@ -315,7 +315,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
       weight: 70
@@ -326,7 +326,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
       weight: 70
@@ -337,7 +337,7 @@ plugins:
           max_tokens: 512
           temperature: 1.0
       route_type: llm/v1/chat
-      auth: 
+      auth:
         header_name: Authorization
         header_value: Bearer <token>
       weight: 25
