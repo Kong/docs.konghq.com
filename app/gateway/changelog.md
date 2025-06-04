@@ -3511,6 +3511,29 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.19
+**Release Date** 2025/06/05
+
+### Fixes
+
+#### Performance
+* Fixed an issue where the rate limiting library could become deadlocked with Postgres.
+
+#### Configuration
+* Fixed an issue where `debug_listen` incorrectly used the SSL-related configuration of `status_listen`.
+
+#### Core
+* Added a new configuration parameter, `route_match_calculation`, which includes bug fixes for the `traditional_compatible` router flavor. 
+The `route_match_calculation=strict `setting fixes matching calculation issues.
+* Fixed an issue where newly spawned workers used outdated router data because the init phase was skipped.
+* Fixed an issue where users encountered duplicate key violation errors on `rbac_role_entities_pkey` while using the `deck sync` command.
+
+#### Plugins
+
+* [**Mocking**](/hub/kong-inc/mocking/) (`mocking`)
+  *  Fixed an issue where an empty array set in the Mocking plugin returned an object type instead of an array type in the response body. 
+  Tests that depend on the old behavior might break. 
+
 ## 3.4.3.18
 **Release Date** 2025/04/29
 
