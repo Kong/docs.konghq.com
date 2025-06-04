@@ -37,11 +37,11 @@
   status: migrated
 - docs_url: "/konnect/gateway-manager/plugins/add-custom-plugin/"
   source_file: konnect/gateway-manager/plugins/add-custom-plugin.md
-  dev_site_url: "/custom-plugins/"
-  status: "?"
+  dev_site_url: "/custom-plugins/konnect-hybrid-mode/"
+  status: "migrated"
 - docs_url: "/gateway/latest/kong-manager/auth/rbac/add-role/"
   source_file: _src/gateway/kong-manager/auth/rbac/add-role.md
-  dev_site_url: "/gateway/entities/rbac/"
+  dev_site_url: "/how-to/configure-rbac-user-in-kong-gateway/"
   status: post-ga
 - docs_url: "/konnect/dev-portal/access-and-approval/add-teams/"
   source_file: konnect/dev-portal/access-and-approval/add-teams.md
@@ -49,7 +49,7 @@
   status: migrated
 - docs_url: "/gateway/latest/kong-manager/auth/rbac/add-user/"
   source_file: _src/gateway/kong-manager/auth/rbac/add-user.md
-  dev_site_url: "/gateway/entities/rbac/"
+  dev_site_url: "/how-to/configure-rbac-user-in-kong-gateway/"
   status: post-ga
 - docs_url: "/gateway/latest/get-started/key-authentication/"
   source_file: _src/gateway/get-started/key-authentication.md
@@ -229,7 +229,7 @@
   status: migrated
 - docs_url: "/contributing/conditional-rendering/"
   source_file: contributing/conditional-rendering.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/konnect/gateway-manager/configuration/config-store/"
   source_file: konnect/gateway-manager/configuration/config-store.md
@@ -273,7 +273,7 @@
   status: migrated
 - docs_url: "/contributing/contribution-templates/"
   source_file: contributing/contribution-templates.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/deck/file/convert/"
   source_file: deck/file/convert.md
@@ -401,7 +401,7 @@
   status: migrated
 - docs_url: "/contributing/diagrams/"
   source_file: contributing/diagrams.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/deck/gateway/diff/"
   source_file: deck/gateway/diff.md
@@ -621,7 +621,7 @@
   status: migrated
 - docs_url: "/contributing/includes/"
   source_file: contributing/includes.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/hub/"
   source_file: hub/index.html
@@ -705,12 +705,12 @@
   status: migrated
 - docs_url: "/konnect/gateway-manager/plugins/"
   source_file: konnect/gateway-manager/plugins/index.md
-  dev_site_url: "/gateway/entities/plugin/"
-  status: won't do
+  dev_site_url: "/custom-plugins/konnect-hybrid-mode/"
+  status: migrated
 - docs_url: "/contributing/"
   source_file: contributing/index.md
-  dev_site_url: "/"
-  status: won't do
+  dev_site_url: "/contributing/"
+  status: migrated
 - docs_url: "/konnect/gateway-manager/serverless-gateways/"
   source_file: konnect/gateway-manager/serverless-gateways/index.md
   dev_site_url: "/gateway/topology-hosting-options/"
@@ -877,7 +877,7 @@
   status: "?"
 - docs_url: "/contributing/kong-plugins/"
   source_file: contributing/kong-plugins.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/gateway/3.3.x/production/security-update-process/"
   source_file: _src/gateway/production/security-update-process.md
@@ -1041,7 +1041,7 @@
   status: "?"
 - docs_url: "/contributing/markdown-rules/"
   source_file: contributing/markdown-rules.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/deck/file/merge/"
   source_file: deck/file/merge.md
@@ -1097,7 +1097,7 @@
   status: "?"
 - docs_url: "/contributing/notices/"
   source_file: contributing/notices.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/gateway/2.8.x/configure/auth/oidc-auth0/"
   source_file: gateway/2.8.x/configure/auth/oidc-auth0.md
@@ -1177,7 +1177,7 @@
   status: won't do
 - docs_url: "/contributing/partner-plugins/"
   source_file: contributing/partner-plugins.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/deck/file/manipulation/patch/"
   source_file: deck/file/manipulation/patch.md
@@ -1397,11 +1397,11 @@
   status: "?"
 - docs_url: "/contributing/single-sourced-plugins/"
   source_file: contributing/single-sourced-plugins.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/contributing/single-sourced-versions/"
   source_file: contributing/single-sourced-versions.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/gateway/latest/production/sizing-guidelines/"
   source_file: _src/gateway/production/sizing-guidelines.md
@@ -1449,7 +1449,7 @@
   status: "?"
 - docs_url: "/contributing/style-guide/"
   source_file: contributing/style-guide.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/gateway/latest/kong-manager/auth/super-admin/"
   source_file: _src/gateway/kong-manager/auth/super-admin.md
@@ -1517,8 +1517,8 @@
   status: migrated
 - docs_url: "/konnect/gateway-manager/troubleshoot/"
   source_file: konnect/gateway-manager/troubleshoot.md
-  dev_site_url: "/gateway-manager/"
-  status: "?"
+  dev_site_url: "/gateway-manager/data-plane-reference/#troubleshoot-data-plane-nodes"
+  status: "migrated"
 - docs_url: "/konnect/org-management/troubleshoot/"
   source_file: konnect/org-management/troubleshoot.md
   dev_site_url: "/konnect-platform/sso/"
@@ -1529,8 +1529,8 @@
   status: migrated
 - docs_url: "/konnect/gateway-manager/plugins/update-custom-plugin/"
   source_file: konnect/gateway-manager/plugins/update-custom-plugin.md
-  dev_site_url: "/gateway-manager/"
-  status: "?"
+  dev_site_url: "/custom-plugins/konnect-hybrid-mode/"
+  status: "migrated"
 - docs_url: "/konnect/updates/"
   source_file: konnect/updates.md
   dev_site_url: https://releases.konghq.com/en
@@ -1553,7 +1553,7 @@
   status: won't do
 - docs_url: "/contributing/user-interfaces/"
   source_file: contributing/user-interfaces.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/konnect/org-management/users/"
   source_file: konnect/org-management/users.md
@@ -1573,7 +1573,7 @@
   status: migrated
 - docs_url: "/contributing/variables/"
   source_file: contributing/variables.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/konnect/gateway-manager/data-plane-nodes/verify-node/"
   source_file: konnect/gateway-manager/data-plane-nodes/verify-node.md
@@ -1625,7 +1625,7 @@
   status: "?"
 - docs_url: "/contributing/word-choice/"
   source_file: contributing/word-choice.md
-  dev_site_url: "/"
+  dev_site_url: "/contributing/"
   status: won't do
 - docs_url: "/gateway/3.4.x/kong-enterprise/dev-portal/working-with-templates/"
   source_file: _src/gateway/kong-enterprise/dev-portal/working-with-templates.md
@@ -1733,8 +1733,8 @@
   status: migrated
 - docs_url: "/gateway/latest/glossary/"
   source_file: _src/gateway/glossary.md
-  dev_site_url: "/gateway/"
-  status: "?"
+  dev_site_url: "/glossary/"
+  status: "migrated"
 - docs_url: "/gateway/latest/install/kubernetes/proxy/"
   source_file: _src/gateway/install/kubernetes/proxy.md
   dev_site_url: "/gateway/install/kubernetes/"
@@ -1857,12 +1857,12 @@
   status: migrated
 - docs_url: "/gateway/latest/production/performance/benchmark/"
   source_file: _src/gateway/production/performance/benchmark.md
-  dev_site_url: "/gateway/performance/benchmarks/"
-  status: "?"
+  dev_site_url: "/gateway/performance/establish-a-benchmark/"
+  status: "migrated"
 - docs_url: "/gateway/latest/production/performance/brotli/"
   source_file: _src/gateway/production/performance/brotli.md
-  dev_site_url: "/gateway/performance/benchmarks/"
-  status: "?"
+  dev_site_url: "/gateway/performance/optimize/"
+  status: "migrated"
 - docs_url: "/gateway/latest/production/logging/log-reference/"
   source_file: _src/gateway/production/logging/log-reference.md
   dev_site_url: "/gateway/logs/"
@@ -1929,8 +1929,8 @@
   status: won't do
 - docs_url: "/gateway/latest/migrate-to-new-dns-client/"
   source_file: _src/gateway/migrate-to-new-dns-client.md
-  dev_site_url: "/gateway/"
-  status: "?"
+  dev_site_url: "/gateway/network/dns-config-reference/#migrate-to-the-new-dns-client"
+  status: "migrated"
 - docs_url: "/gateway/latest/kong-enterprise/fips-support/"
   source_file: _src/gateway/kong-enterprise/fips-support/index.md
   dev_site_url: "/gateway/version-support-policy/"
@@ -2001,8 +2001,8 @@
   status: post-ga
 - docs_url: "/gateway/latest/kong-manager/auth/rbac/enable/"
   source_file: _src/gateway/kong-manager/auth/rbac/enable.md
-  dev_site_url: "/gateway/kong-manager/"
-  status: post-ga
+  dev_site_url: "/how-to/enable-rbac-with-admin-api/"
+  status: migrated
 - docs_url: "/gateway/latest/kong-manager/consumer-groups/"
   source_file: _src/gateway/kong-manager/consumer-groups.md
   dev_site_url: "/gateway/kong-manager/"
