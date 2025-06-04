@@ -85,19 +85,14 @@ After the product hits the end of the support period, Kong will provide limited 
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
-  {% if_version gte: 3.10.x %}
   {% navtab 3.10 LTS %}
     {% include_cached gateway-support.html version="3.10" data=site.data.tables.support.gateway.versions.310 eol="March 2028" %}
   {% endnavtab %}
-  {% endif_version %}
   {% navtab 3.9 %}
     {% include_cached gateway-support.html version="3.9" data=site.data.tables.support.gateway.versions.39 eol="Dec 2025" %}
   {% endnavtab %}
   {% navtab 3.8 %}
     {% include_cached gateway-support.html version="3.8" data=site.data.tables.support.gateway.versions.38 eol="Sept 2025" %}
-  {% endnavtab %}
-  {% navtab 3.7 %}
-    {% include_cached gateway-support.html version="3.7" data=site.data.tables.support.gateway.versions.37 eol="May 2025" %}
   {% endnavtab %}
   {% navtab 3.4 LTS %}
     {% include_cached gateway-support.html version="3.4" data=site.data.tables.support.gateway.versions.34 eol="August 2026" %}
@@ -135,6 +130,7 @@ These versions have reached the end of full support.
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
+|  3.7.x.x |  2024-05-28   |     2025-05-28      |      2026-05-28       |
 |  3.6.x.x |  2024-02-12   |     2025-02-12      |      2026-02-12       |
 |  3.5.x.x |  2023-11-08   |     2024-11-08      |      2025-11-08       |
 |  3.3.x.x |  2023-05-19   |     2024-05-19      |      2025-05-19       |
