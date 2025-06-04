@@ -108,7 +108,7 @@
   endOfLifeDate: 2025-09-30
 - release: "3.9.x"
   ee-version: "3.9.1.1"
-  ce-version: "3.9.0" # make sure to update latest OSS gateway version in jekyll.yml
+  ce-version: "3.9.1" # make sure to update latest OSS gateway version in jekyll.yml
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:

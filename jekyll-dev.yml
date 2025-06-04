@@ -197,4 +197,4 @@ jekyll-generator-single-source:
 locale: en-US
 
 # Gateway OSS
-latest_gateway_oss_version: 3.9.0
+latest_gateway_oss_version: 3.9.1
