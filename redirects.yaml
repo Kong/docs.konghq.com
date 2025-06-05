@@ -321,7 +321,7 @@
   status: migrated
 - docs_url: "/dev-portal/portals/customization/custom-pages/"
   source_file: dev-portal/portals/customization/custom-pages.md
-  dev_site_url: "/dev-portal/custom-pages/"
+  dev_site_url: "/dev-portal/pages-and-content/"
   status: migrated
 - docs_url: "/konnect/gateway-manager/dedicated-cloud-gateways/custom-plugins/"
   source_file: konnect/gateway-manager/dedicated-cloud-gateways/custom-plugins.md
@@ -1417,7 +1417,7 @@
   status: "?"
 - docs_url: "/dev-portal/portals/customization/snippets/"
   source_file: dev-portal/portals/customization/snippets.md
-  dev_site_url: "/dev-portal/snippets/"
+  dev_site_url: "/dev-portal/pages-and-content/"
   status: migrated
 - docs_url: "/konnect/org-management/social-identity-login/"
   source_file: konnect/org-management/social-identity-login.md
