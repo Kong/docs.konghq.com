@@ -2,7 +2,11 @@
   <a href="https://konghq.com/pricing" target="_blank" class="badge konnect" aria-label="available in Konnect"> </a>
 {% endif %}
 {% if include.badges.enterprise? %}
-  <a href="https://konghq.com/pricing" target="_blank" class="badge enterprise" aria-label="available with Kong Gateway Enterprise subscription"> </a>
+  {% if include.categories == "ai" %}
+    <a href="https://konghq.com/pricing" target="_blank" class="badge ai-enterprise" aria-label="available with Kong AI Gateway subscription"> </a>
+  {% else %}
+    <a href="https://konghq.com/pricing" target="_blank" class="badge enterprise" aria-label="available with Kong Gateway Enterprise subscription"> </a>
+  {% endif %}
 {% endif %}
 {% if include.badges.premiumpartner? %}
   <a href="https://konghq.com/partners" target="_blank" class="badge premiumpartner" aria-label="Verified Kong premium partner"> </a>
