@@ -91,6 +91,8 @@ paths:
       responses:
         '204':
           description: No Content
+        '400':
+          $ref: '#/components/responses/DeleteMeshControlPlaneValidationError'
         '401':
           $ref: '#/components/responses/MeshControlPlaneUnauthorizedError'
         '403':
@@ -668,6 +670,17 @@ components:
           - field: name
             reason: Value is not nullable
             source: ''
+    ZoneStillOnlineExample:
+      value:
+        status: 400
+        title: Bad Request
+        type: 'https://kongapi.info/konnect/bad-request'
+        instance: 'konnect:trace:2587793459331520595'
+        detail: 'Bad Request: cpID [invalid]: zone "zone1" is still online. Disconnect the zone first'
+        invalid_parameters:
+          - field: cpID
+            rule: invalid
+            reason: zone "zone1" is still online. Disconnect the zone first
     UpdateMeshControlPlaneRequestExample:
       value:
         name: Test Control Plane
@@ -722,6 +735,15 @@ components:
           examples:
             Empty Field:
               $ref: '#/components/examples/EmptyFieldExample'
+    DeleteMeshControlPlaneValidationError:
+      description: Validation Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+          examples:
+            Zone Still Online:
+              $ref: '#/components/examples/ZoneStillOnlineExample'
     UpdateMeshControlPlaneValidationError:
       description: Validation Error
       content:

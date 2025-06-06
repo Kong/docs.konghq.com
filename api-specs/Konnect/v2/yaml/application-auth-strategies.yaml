@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Konnect Application Auth Strategies
-  version: 2.0.0
+  version: 2.0.1
   description: The API for Kong Konnect Portal Application Configuration
   contact:
     name: Kong
@@ -1177,7 +1177,7 @@ components:
           required:
             - key-auth
         active:
-          description: At least one published product version is using this auth strategy.
+          description: At least one published entity is using this auth strategy.
           type: boolean
         dcr_provider:
           type: object
@@ -1273,7 +1273,7 @@ components:
           required:
             - openid-connect
         active:
-          description: At least one published product version is using this auth strategy.
+          description: At least one published entity is using this auth strategy.
           type: boolean
         dcr_provider:
           type: object
@@ -1316,6 +1316,9 @@ components:
       type: object
       discriminator:
         propertyName: strategy_type
+        mapping:
+          key_auth: '#/components/schemas/AppAuthStrategyKeyAuthRequest'
+          openid_connect: '#/components/schemas/AppAuthStrategyOpenIDConnectRequest'
       oneOf:
         - $ref: '#/components/schemas/AppAuthStrategyKeyAuthRequest'
         - $ref: '#/components/schemas/AppAuthStrategyOpenIDConnectRequest'
@@ -1327,6 +1330,9 @@ components:
       type: object
       discriminator:
         propertyName: strategy_type
+        mapping:
+          key_auth: '#/components/schemas/AppAuthStrategyKeyAuthResponse'
+          openid_connect: '#/components/schemas/AppAuthStrategyOpenIDConnectResponse'
       oneOf:
         - $ref: '#/components/schemas/AppAuthStrategyKeyAuthResponse'
         - $ref: '#/components/schemas/AppAuthStrategyOpenIDConnectResponse'

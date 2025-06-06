@@ -89,6 +89,7 @@ components:
                   - $ref: '#/components/schemas/LatenciesResponseMsFilterByField'
                   - $ref: '#/components/schemas/LatenciesUpstreamMsFilterByField'
                   - $ref: '#/components/schemas/PortalFilterByField'
+                  - $ref: '#/components/schemas/RealmFilterByField'
                   - $ref: '#/components/schemas/ResponseBodySizeFilterByField'
                   - $ref: '#/components/schemas/ResponseHeaderContentLengthFilterByField'
                   - $ref: '#/components/schemas/ResponseSourceFilterByField'
@@ -975,6 +976,22 @@ components:
             - $ref: '#/components/schemas/FilterSingleValueUUID'
             - $ref: '#/components/schemas/FilterEmpty'
       title: Filter by portal
+    RealmFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - realm
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by realm
     FilterMultiValueNumericBytes:
       type: object
       properties:
