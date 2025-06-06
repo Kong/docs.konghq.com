@@ -339,6 +339,10 @@ A span capturing the attempt to verify a specific upstream.
 Kong attempts to open a TCP connection (if not KeepAlive cache is found), do a TLS handshake and send down the HTTP headers. 
 If all of this succeeds, the upstream is healthy and Kong will finish sending the full request and wait for a response. 
 If any of the step fails, Kong will switch to the next target and try again.
+The last of these spans (or the only one, if the first attempt succeeds) ends as soon as the connection is established, ensuring that the total time captured by the parent `kong.upstream.selection` span always reflects only the time spent *connecting* to the selected upstream.
+
+Depending on how the [proxy_next_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive is configured, earlier (failed) tries may involve additional I/O. For example, if retries are triggered based on the upstream’s status code or header validity, those attempts will include sending the request and reading the response status line and headers; enough for Kong to determine whether to retry.
+
 
 This span has the following attributes:
 <!--vale off-->
@@ -373,12 +377,13 @@ This span has the following attributes:
 <!--vale on-->
 
 ### kong.send_request_to_upstream
-A span capturing the time taken to finish writing the http request to upstream.
+A span capturing the time taken to write the http request (headers and body) to upstream.
 This span can be used to identify network delays between Kong and an upstream.
 
 ### kong.read_headers_from_upstream
 A span capturing the time taken for the upstream to generate the response headers. 
 This span can be used to identify slowness in response generation from upstreams.
+If there is a delay after the request is sent but before the upstream starts responding, that *time to first byte* is also included in this span.
 
 ### kong.read_body_from_upstream
 A span capturing the time taken for the upstream to generate the response body. 
