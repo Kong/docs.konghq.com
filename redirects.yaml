@@ -1809,7 +1809,7 @@
   status: migrated
 - docs_url: "/gateway/latest/production/monitoring/"
   source_file: _src/gateway/production/monitoring/index.md
-  dev_site_url: "/gateway/logs/"
+  dev_site_url: "/gateway/monitoring/"
   status: won't do
 - docs_url: "/gateway/latest/production/monitoring/prometheus/"
   source_file: _src/gateway/production/monitoring/prometheus.md
@@ -1833,15 +1833,15 @@
   status: migrated
 - docs_url: "/gateway/latest/production/tracing/"
   source_file: _src/gateway/production/tracing/index.md
-  dev_site_url: "/gateway/"
+  dev_site_url: "/gateway/tracing/"
   status: "?"
 - docs_url: "/gateway/latest/production/tracing/write-custom-trace-exporter/"
   source_file: _src/gateway/production/tracing/write-custom-trace-exporter.md
-  dev_site_url: "/gateway/"
+  dev_site_url: "/gateway/tracing/"
   status: "?"
 - docs_url: "/gateway/latest/production/tracing/api/"
   source_file: _src/gateway/production/tracing/api.md
-  dev_site_url: "/gateway/"
+  dev_site_url: "/gateway/tracing/"
   status: "?"
 - docs_url: "/gateway/latest/production/blue-green/"
   source_file: _src/gateway/production/blue-green.md
