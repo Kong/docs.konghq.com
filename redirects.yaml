@@ -1817,8 +1817,8 @@
   status: "?"
 - docs_url: "/gateway/latest/production/monitoring/statsd/"
   source_file: _src/gateway/production/monitoring/statsd.md
-  dev_site_url: "/plugins/statsd/"
-  status: "?"
+  dev_site_url: "/how-to/collect-metrics-with-statsd/"
+  status: migrated
 - docs_url: "/gateway/latest/production/monitoring/datadog/"
   source_file: _src/gateway/production/monitoring/datadog.md
   dev_site_url: "/plugins/datadog/"
