@@ -5303,6 +5303,7 @@ components:
           nullable: true
         key:
           type: string
+          nullable: true
         tags:
           type: array
           items:
@@ -5317,8 +5318,6 @@ components:
         id: b2f34145-0343-41a4-9602-4c69dec2f269
         key: IL1deIyHyQA40WpeLeA1bIUXuvTwlGjo
       additionalProperties: false
-      required:
-        - key
     KeyAuthWithoutParents:
       type: object
       properties:
@@ -5338,6 +5337,7 @@ components:
           nullable: true
         key:
           type: string
+          nullable: true
         tags:
           type: array
           items:
@@ -5350,8 +5350,6 @@ components:
         id: b2f34145-0343-41a4-9602-4c69dec2f269
         key: IL1deIyHyQA40WpeLeA1bIUXuvTwlGjo
       additionalProperties: false
-      required:
-        - key
     KeySet:
       type: object
       properties:

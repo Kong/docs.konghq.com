@@ -2909,6 +2909,8 @@ components:
                   - Publisher
                   - Route Admin
                   - SNI Admin
+                  - Scorecard Admin
+                  - Scorecard Viewer
                   - Service Admin
                   - Service Creator
                   - Service Viewer
