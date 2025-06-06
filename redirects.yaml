@@ -1877,8 +1877,8 @@
   status: migrated
 - docs_url: "/gateway/latest/production/debug-request/"
   source_file: _src/gateway/production/debug-request.md
-  dev_site_url: "/gateway/"
-  status: "?"
+  dev_site_url: "/gateway/debug-requests/"
+  status: migrated
 - docs_url: "/gateway/latest/production/logging/ai-analytics/"
   source_file: _src/gateway/production/logging/ai-analytics.md
   dev_site_url: "/ai-gateway/ai-audit-log-reference/"
