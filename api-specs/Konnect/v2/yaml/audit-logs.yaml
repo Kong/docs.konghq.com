@@ -243,6 +243,13 @@ components:
         type: integer
         example: 10
   schemas:
+    LogFormat:
+      description: The output format of each log messages.
+      type: string
+      default: cef
+      enum:
+        - cef
+        - json
     ListAuditLogDestinations:
       type: object
       properties:
@@ -271,13 +278,7 @@ components:
           type: string
           example: 'https://example.com/audit-logs'
         log_format:
-          description: The output format of each log messages.
-          type: string
-          example: cef
-          default: cef
-          enum:
-            - cef
-            - json
+          $ref: '#/components/schemas/LogFormat'
         skip_ssl_verification:
           description: Indicates if the SSL certificate verification of the host endpoint should be skipped when delivering payloads.
           type: boolean
@@ -855,13 +856,7 @@ components:
                 example: true
                 default: false
               log_format:
-                description: The output format of each log message.
-                type: string
-                example: cef
-                default: cef
-                enum:
-                  - cef
-                  - json
+                $ref: '#/components/schemas/LogFormat'
               skip_ssl_verification:
                 description: |-
                   Indicates if the SSL certificate verification of the host endpoint should be skipped when delivering payloads.
@@ -898,13 +893,7 @@ components:
                 example: Bearer sometoken
                 writeOnly: true
               log_format:
-                description: The output format of each log message.
-                type: string
-                example: cef
-                default: cef
-                enum:
-                  - cef
-                  - json
+                $ref: '#/components/schemas/LogFormat'
               skip_ssl_verification:
                 description: |-
                   Indicates if the SSL certificate verification of the host endpoint should be skipped when delivering payloads.
@@ -941,13 +930,7 @@ components:
                 example: Bearer sometoken
                 writeOnly: true
               log_format:
-                description: The output format of each log message.
-                type: string
-                example: cef
-                default: cef
-                enum:
-                  - cef
-                  - json
+                $ref: '#/components/schemas/LogFormat'
               skip_ssl_verification:
                 description: |-
                   Indicates if the SSL certificate verification of the host endpoint should be skipped when delivering payloads.
@@ -1008,13 +991,7 @@ components:
                 type: boolean
                 example: true
               log_format:
-                description: The output format of each log messages.
-                type: string
-                example: cef
-                default: cef
-                enum:
-                  - cef
-                  - json
+                $ref: '#/components/schemas/LogFormat'
               skip_ssl_verification:
                 description: Indicates if the SSL certificate verification of the host endpoint should be skipped when delivering payloads.
                 type: boolean
