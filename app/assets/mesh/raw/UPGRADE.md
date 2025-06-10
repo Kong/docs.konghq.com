@@ -21,6 +21,10 @@ By default, we create all RBAC resources required for the mesh to function prope
 
 During installation, we create a `ClusterRole` with permissions for Kong Mesh resources and cert-manager. We’ve identified that cluster-scoped access to cert-manager is not necessary, so we’ve moved those permissions to a separate `Role`, bound by a `RoleBinding` in the system namespace only. This change should not affect your deployment.
 
+### Windows support is removed
+
+Running Kong Mesh on Windows is no longer supported. If you are using Windows, please migrate to a Linux-based environment.
+
 ## Upgrade to `2.10.x`
 
 ### CP tokens are removed
