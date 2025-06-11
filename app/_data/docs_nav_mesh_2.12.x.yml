@@ -4,7 +4,7 @@ release: 2.12.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
-  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.11.x.yml
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.12.x.yml
   patches:
     - path: [ Introduction ]
       action: modify
@@ -126,7 +126,7 @@ inherit:
     - path: [ Policies ]
       action: insert
       index: -2
-      text: MeshOPA 
+      text: MeshOPA
       url: /features/meshopa
       generate: false
     - path: [ Policies ]
