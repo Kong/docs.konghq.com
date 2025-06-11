@@ -1093,7 +1093,7 @@
   status: migrated
 - docs_url: "/gateway/latest/kong-manager/networking/"
   source_file: _src/gateway/kong-manager/networking.md
-  dev_site_url: "/gateway/kong-manager/"
+  dev_site_url: "/gateway/kong-manager/configuration/"
   status: "?"
 - docs_url: "/contributing/notices/"
   source_file: contributing/notices.md
@@ -1933,7 +1933,7 @@
   status: "migrated"
 - docs_url: "/gateway/latest/kong-enterprise/fips-support/"
   source_file: _src/gateway/kong-enterprise/fips-support/index.md
-  dev_site_url: "/gateway/version-support-policy/"
+  dev_site_url: "/gateway/fips-support/"
   status: migrated
 - docs_url: "/gateway/latest/kong-enterprise/fips-support/install/"
   source_file: _src/gateway/kong-enterprise/fips-support/install.md
