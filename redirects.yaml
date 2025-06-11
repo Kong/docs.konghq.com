@@ -1385,7 +1385,7 @@
   status: won't do
 - docs_url: "/gateway/latest/kong-manager/auth/sessions/"
   source_file: _src/gateway/kong-manager/auth/sessions.md
-  dev_site_url: "/gateway/kong-manager/"
+  dev_site_url: "/plugins/session/"
   status: post-ga
 - docs_url: "/gateway/3.4.x/kong-enterprise/dev-portal/authentication/sessions/"
   source_file: _src/gateway/kong-enterprise/dev-portal/authentication/sessions.md
