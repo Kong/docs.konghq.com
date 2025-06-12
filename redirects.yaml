@@ -1359,6 +1359,10 @@
   source_file: dev-portal/portals/settings/security.md
   dev_site_url: "/dev-portal/security-settings/"
   status: migrated
+- docs_url: "/dev-portal/portals/settings/security/#role-based-access-control"
+  source_file: dev-portal/portals/settings/security.md
+  dev_site_url: "/dev-portal/access-and-approval/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/customization/self-hosted-portal/"
   source_file: konnect/dev-portal/customization/self-hosted-portal.md
   dev_site_url: "/dev-portal/portal-customization/"
