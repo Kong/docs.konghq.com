@@ -173,7 +173,7 @@
   status: "?"
 - docs_url: "/gateway/latest/kong-manager/auth/basic/"
   source_file: _src/gateway/kong-manager/auth/basic.md
-  dev_site_url: "/gateway/kong-manager/"
+  dev_site_url: "/how-to/enable-basic-auth-on-kong-manager/"
   status: post-ga
 - docs_url: "/deck/install/binary/"
   source_file: deck/install/binary.md
