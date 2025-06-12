@@ -12,7 +12,7 @@ For Kong Gateway OSS, view the [OSS changelog on GitHub](https://github.com/Kong
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.10.0.2
-**Release Date** 2025/06/12
+**Release Date** 2025/05/20
 
 ### Features
 #### Configuration
@@ -3512,7 +3512,7 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 ## 3.4.3.19
-**Release Date** 2025/06/05
+**Release Date** 2025/06/12
 
 ### Fixes
 
