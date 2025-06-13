@@ -398,6 +398,16 @@ Generates a table with useful information for logging.
  The following fields are included in the returned table:
  * `client_ip` - client IP address in textual format.
  * `latencies` - request/proxy latencies.
+     - `kong` - Time spent processing inside Kong (in ms), excluding upstream and third-party I/O.
+     - `proxy` - Time spent waiting for upstream response (in ms).
+     - `request` - Complete end-to-end request processing time (in ms).
+     - `receive` - Time spent receiving/processing upstream server response data (in ms).
+     - `client` - Time that Kong waits to receive headers and body from the client, plus how long Kong waits for the client to read/receive the response from Kong (in ms).
+     - `third_party` - Total time spent on third-party I/O (in ms), such as Redis, DNS, HTTP calls, and socket calls.
+     - `dns` - Time spent on DNS resolution (in ms).
+     - `redis` - Time spent on Redis operations (in ms).
+     - `http_client` - Time spent on HTTP client calls (in ms).
+     - `socket` - Time spent on generic socket operations (in ms).
  * `request.headers` - request headers.
  * `request.method` - request method.
  * `request.querystring` - request query strings.
