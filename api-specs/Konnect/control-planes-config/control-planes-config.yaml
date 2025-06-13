@@ -6742,6 +6742,7 @@ components:
           description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
           additionalProperties: true
+          nullable: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
@@ -6782,7 +6783,6 @@ components:
       required:
         - name
         - prefix
-        - config
     BaseError:
       description: standard error
       type: object
