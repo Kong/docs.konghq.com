@@ -1953,8 +1953,8 @@
   status: migrated
 - docs_url: "/gateway/latest/kong-enterprise/provenance-verification/"
   source_file: _src/gateway/kong-enterprise/provenance-verification.md
-  dev_site_url: "/gateway/"
-  status: "?"
+  dev_site_url: "/how-to/verify-build-provenance-for-signed-images/"
+  status: "migrated"
 - docs_url: "/gateway/latest/ai-gateway/"
   source_file: _src/gateway/ai-gateway/index.md
   dev_site_url: "/ai-gateway/"
