@@ -5,12 +5,19 @@ title: Set up AI Proxy with Bedrock
 
 This guide walks you through setting up the AI Proxy plugin with [Amazon Bedrock](https://aws.amazon.com/bedrock/).
 
-## Prerequisites
-* [{{site.base_gateway}} is installed and running](/gateway/latest/get-started/)
-* An AWS account
-* An [AWS access key ID and AWS secret access key](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) 
+{{site.base_gateway}} can automatically fetch IAM role credentials based on your AWS environment, observing the following precedence order:
+- Fetch from credentials defined in environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+- Fetch from profile and credential file, defined by `AWS_PROFILE` and `AWS_SHARED_CREDENTIALS_FILE`.
+- Fetch from an ECS [container credential provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html).
+- Fetch from an EKS [IAM roles for service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
+- Fetch from EC2 IMDS metadata. Both v1 and v2 are supported
+
 
 ## Configure the AI Proxy plugin
+
+
+The following steps demonstrate how to set up the AI Proxy plugin using
+Access Key ID and Secret Access Key credentials.
 
 1. Create a service in {{site.base_gateway}} that will represent the Bedrock API:
 ```sh
