@@ -212,5 +212,5 @@ Common options:
 Parameter | Field name | Description
 ----------|---------------|------------
 `vaults.description` <br> *optional* | **Description** | An optional description for your vault.
-`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `aws` for AWS Secrets Manager.
+`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, `hcv`, or `conjur`. Set `aws` for AWS Secrets Manager.
 `vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://aws-sm-vault/<some-secret>}`.
