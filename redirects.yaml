@@ -1585,8 +1585,8 @@
   status: migrated
 - docs_url: "/konnect/reference/verify-signatures/"
   source_file: konnect/reference/verify-signatures.md
-  dev_site_url: "/konnect"
-  status: "?"
+  dev_site_url: "/konnect-platform/audit-logs/"
+  status: "migrated"
 - docs_url: "/konnect/gateway-manager/version-compatibility/"
   source_file: konnect/gateway-manager/version-compatibility.md
   dev_site_url: "/gateway-manager/version-compatibility/"
