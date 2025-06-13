@@ -9,8 +9,8 @@ In order to bind a Kong `DataPlane` to a Konnect `ControlPlane`, you can use the
 
 You can learn more about how to use the `KonnectExtension` object in [this guide][konnectextension_overview].
 
-[kext_crd]: /gateway-operator/{{page.release}}/reference/custom-resources/#konnectextension-1
-[konnectextension_overview]: /gateway-operator/{{page.release}}/guides/konnect-dataplanes/overview
+[kext_crd]:/gateway-operator/{{page.release}}/reference/custom-resources/#konnectextension-1
+[konnectextension_overview]: /gateway-operator/{{page.release}}/get-started/konnect/deploy-data-plane-with-konnectextension
 
 ## Binding the DataPlane to a Konnect ControlPlane
 

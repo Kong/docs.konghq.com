@@ -7,7 +7,7 @@
 ## Create a KonnectExtension in your cluster
 {% endunless %}
 
-The command below can be used to configure a `KonnectExtension`, which is used to attach a `Gateway` or a `DataPlane` to Konnect. You can find all the available `KonnectExtension` available options in the [overview page](/gateway-operator/{{page.release}}/guides/konnect-dataplanes/overview).
+The command below can be used to configure a `KonnectExtension`, which is used to attach a `Gateway` or a `DataPlane` to Konnect. You can find all the available `KonnectExtension` available options in the [overview page](/gateway-operator/{{page.release}}/reference/custom-resources/#konnectextension-1).
 
 {% include md/kgo/konnect-entities-prerequisites.md disable_accordian=false version=page.version release=page.release with-control-plane=true is-kic-cp=include.is-kic-cp skip_install=include.skip_install api_auth_mode="secret" %}
 
