@@ -1945,8 +1945,8 @@
   status: migrated
 - docs_url: "/gateway/latest/kong-enterprise/aws-iam-auth-to-rds-database/"
   source_file: _src/gateway/kong-enterprise/aws-iam-auth-to-rds-database.md
-  dev_site_url: "/gateway/"
-  status: "?"
+  dev_site_url: "/gateway/amazon-rds-authentication-with-aws-iam/"
+  status: "migrated"
 - docs_url: "/gateway/latest/kong-enterprise/signed-images/"
   source_file: _src/gateway/kong-enterprise/signed-images.md
   dev_site_url: "/how-to/verify-signatures-for-signed-images/"
