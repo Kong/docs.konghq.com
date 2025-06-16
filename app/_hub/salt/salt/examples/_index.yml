@@ -1,5 +1,0 @@
-name: salt-agent
-config:
-  salt_domain: "<salt_domain>"
-  salt_backend_port: "<salt_backend_port>"
-  salt_token: "<salt_token>"

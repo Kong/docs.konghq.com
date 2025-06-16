@@ -1,8 +1,0 @@
-```bash
-curl -X POST {{ include.example.url }} \
-    --header "accept: application/json" \
-    --header "Content-Type: application/json" \
-    --data '
-    {{ include.example.params | json_prettify }}
-    '
-```
