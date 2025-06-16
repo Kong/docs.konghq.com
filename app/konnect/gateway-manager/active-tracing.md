@@ -117,7 +117,8 @@ This span has the following attributes:
     <tr><td>http.request.size</td><td>request.body.size + request.headers.size in bytes</td></tr>
     <tr><td>http.response.body.size</td><td>response content-length or equivalent in bytes</td></tr>
     <tr><td>http.response.size</td><td>response.body.size + response.headers.size in bytes</td></tr>
-    <tr><td>kong.request.id</td><td>proxy.kong.request_id - unique id for each request</td></tr>
+    <tr><td>proxy.kong.request.id</td><td>proxy.kong.request_id - unique id for each request</td></tr>
+    <tr><td>proxy.kong.request.time</td><td>request time as measured by nginx ($request_time)</td></tr>
     <tr><td>url.scheme</td><td>Protocol identifier</td></tr>
     <tr><td>network.protocol.version</td><td>version of the http protocol used in establishing connection [1.2, 2.0]</td></tr>
     <tr><td>tls.client.server_name</td><td>SNI</td></tr>
@@ -127,7 +128,7 @@ This span has the following attributes:
     <tr><td>proxy.kong.upstream_status_code</td><td>status code returned by upstream</td></tr>
     <tr><td>http.response.status_code</td><td>status code sent back by Kong</td></tr>
     <tr><td>proxy.kong.latency.upstream</td><td>time between connect() to upstream and last byte of response ($upstream_response_time)</td></tr>
-    <tr><td>proxy.kong.latency.total</td><td>first byte into kong, last byte out of kong ($request_time)</td></tr>
+    <tr><td>proxy.kong.latency.total</td><td>first byte into kong, last byte out of kong</td></tr>
     <tr><td>proxy.kong.latency.internal</td><td>Time taken by Kong to process the request. Excludes client and upstream read/write times, and i/o times</td></tr>
     <tr><td>proxy.kong.latency.net_io_timings</td><td>array of (ip, connect_time, rw_time) - i/o outside of request context is not considered</td></tr>
     <tr><td>proxy.kong.client_KA</td><td>did downstream use a KeepAlive connection</td></tr>
@@ -139,11 +140,9 @@ This span has the following attributes:
 </table>
 <!--vale on-->
 ## kong.phase.certificate
-
 A span capturing the execution of the `certificate` phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.certificate.plugin.{plugin_name}
-
 A span capturing the execution of a plugin configured to run in the `certificate` phase. Multiple such spans can occur in a trace.
 
 This span has the following attributes:
@@ -160,7 +159,10 @@ This span has the following attributes:
   </tbody>
 </table>
 
-### kong.read_client_http_headers
+## kong.tls_handshake
+A span that captures the execution of the TLS handshake between the client and Kong. This span includes any I/O operations involved in the handshake, which may be prolonged due to slow client behavior.
+
+## kong.read_client_http_headers
 A span capturing the time taken to read HTTP headers from the client. 
 This span is useful for detecting clients that are coming over a slow network or a buggy CDN, or simply take too long to send in the HTTP headers.
 
@@ -182,10 +184,10 @@ This span has the following attributes:
   </tbody>
 </table>
 
-### kong.read_client_http_body
+## kong.read_client_http_body
 A span capturing the total time taken to read the full body sent by the client. This span can identify slow clients, a buggy CDN and very large body submissions.
 
-### kong.phase.rewrite
+## kong.phase.rewrite
 A span capturing the execution of the `rewrite` phase of request processing. Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.rewrite.plugin.{plugin_name}
@@ -205,7 +207,7 @@ This span has the following attributes:
   </tbody>
 </table>
 
-### kong.io.<func>
+## kong.io.<func>
 A span capturing network i/o timing that occurs during plugin execution or other request processing. 
 
 Can be one of:
@@ -241,8 +243,7 @@ This span has the following attributes:
 </table>
 
 
-### kong.router
-
+## kong.router
 A span capturing the execution of the Kong router.
 
 This span has the following attributes:
@@ -275,7 +276,7 @@ This span has the following attributes:
   </tbody>
 </table>
 
-### kong.phase.access
+## kong.phase.access
 A span capturing the execution of the `access` phase of request processing. 
 Any plugins configured for running in this phase will show up as individual child spans.
 
@@ -296,7 +297,7 @@ This span has the following attributes:
   </tbody>
 </table>
 
-### kong.dns
+## kong.dns
 A span capturing the time spent in looking up DNS.
 
 This span has the following attributes:
@@ -314,7 +315,7 @@ This span has the following attributes:
 </table>
 
 
-### kong.upstream.selection
+## kong.upstream.selection
 A span capturing the total time spent in finding a healthy upstream. 
 Depending on configuration, Kong will try to find a healthy upstream by trying various targets in order determined by the load balancing algorithm. 
 Child spans of this span capture the individual attempts.
@@ -376,21 +377,21 @@ This span has the following attributes:
 </table>
 <!--vale on-->
 
-### kong.send_request_to_upstream
+## kong.send_request_to_upstream
 A span capturing the time taken to write the http request (headers and body) to upstream.
 This span can be used to identify network delays between Kong and an upstream.
 
-### kong.read_headers_from_upstream
+## kong.read_headers_from_upstream
 A span capturing the time taken for the upstream to generate the response headers. 
 This span can be used to identify slowness in response generation from upstreams.
 If there is a delay after the request is sent but before the upstream starts responding, that *time to first byte* is also included in this span.
 
-### kong.read_body_from_upstream
+## kong.read_body_from_upstream
 A span capturing the time taken for the upstream to generate the response body. 
 This span can be used to identify slowness in response generation from upstreams.
 
 
-### kong.phase.response
+## kong.phase.response
 A span capturing the execution of the `response` phase. 
 Any plugins configured for running in this phase will show up as individual child spans. This phase will not run if response streaming is enabled.
 
@@ -412,7 +413,7 @@ This span has the following attributes:
 </table>
 
 
-### kong.phase.header_filter
+## kong.phase.header_filter
 A span capturing the execution of the header filter phase of response processing. Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.header_filter.plugin.{plugin_name}
@@ -432,7 +433,7 @@ This span has the following attributes:
   </tbody>
 </table>
 
-### kong.phase.body_filter
+## kong.phase.body_filter
 A span capturing the execution of the body filter phase of response processing. Any plugins configured for running in this phase will show up as individual child spans.
 
 ### kong.body_filter.plugin.{plugin_name}
@@ -452,3 +453,5 @@ This span has the following attributes:
   </tbody>
 </table>
 
+## kong.wait_for_client_read
+A span that measures the time Kong spends finishing the response write to the client. This duration may be extended for slow-reading clients, resulting in a longer span.
