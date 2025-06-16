@@ -9,49 +9,10 @@ id: landing-page
   <h1 id="main" tabindex="-1">{% t _layouts.landing-page.title %} <span>Kong Docs</span></h1>
   <h2 class="landing-page-subtitle">{% t _layouts.landing-page.subtitle %}</h2>
 
-  <section class="cloud-platform">
-    <section class="konnect-docs card">
-      <img class="banner-image" src="/assets/images/logos/kong-konnect-logo.svg" alt="Kong Konnect's logo" />
-      <div class="konnect-docs-card-content">
-        <div class="description">
-          {% t _layouts.landing-page.cards.konnect.description %}
-        </div>
-        <div class="platform-links">
-          <a href="/konnect/" class="name-link">
-            <div class="name-label">
-              <div class="link-text">
-                <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
-                {% t _layouts.landing-page.cards.konnect.links.overview %}
-              </div>
-            </div>
-          </a>
-
-          <a href="/konnect/getting-started/" class="name-link">
-            <div class="name-label">
-              <div class="link-text">
-                <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
-                {% t _layouts.landing-page.cards.konnect.links.get_started %}
-              </div>
-            </div>
-          </a>
-
-          <a href="/hub/?compatibility=konnect" class="name-link">
-            <div class="name-label">
-              <div class="link-text">
-                <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
-                {% t _layouts.landing-page.cards.konnect.links.plugins %}
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-  </section>
-
   <section class="docs">
     <section class="title-cards">
-      <div class="cards-container">
-        <div class="card">
+      <div class="cloud-platform">
+        <div class="konnect-docs card">
           <img class="banner-image" src="/assets/images/logos/kong-gateway-logo.svg" alt="Kong Gateway's logo" />
           <div class="description">
             {% t _layouts.landing-page.cards.gateway.description %}
@@ -91,68 +52,8 @@ id: landing-page
             </a>
           </div>
         </div>
-
-        <div class="card">
-          <img class="banner-image" src="/assets/images/logos/kong-mesh-logo.svg" alt="Kong Mesh's logo" >
-          <!-- <div class="title"><img src="/assets/images/logos/kong-gateway-logo.svg" alt=""></div> -->
-          <div class="description">
-            {% t _layouts.landing-page.cards.mesh.description %}
-          </div>
-          <div class="links-container">
-            <a href="/mesh/latest/" class="name-link">
-              <div class="name-label">
-                <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
-                  {% t _layouts.landing-page.cards.mesh.links.overview %}
-                </div>
-              </div>
-            </a>
-            <a href="/mesh/latest/quickstart/kubernetes-demo/" class="name-link">
-              <div class="name-label">
-                <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
-                  {% t _layouts.landing-page.cards.mesh.links.quickstart %}
-                </div>
-              </div>
-            </a>
-            <a href="https://kuma.io/docs/" class="name-link">
-              <div class="name-label">
-                <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
-                  {% t _layouts.landing-page.cards.mesh.links.kuma %}
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
     </section>
   </section>
-
-  {% for feature in site.data.landing_page.features %}
-  <h3 id="feature-title">{{ feature.title }}</h3>
-  <section class="features">
-    <div class="cards-container">
-      {% for item in feature.items %}
-      <div class="card default">
-        {% if item.icon %}
-          <img src="{{ item.icon }}" alt="" class="icon">
-        {% endif %}
-        <div class="title">{{ item.name }}</div>
-        <div class="description">{{ item.description }}</div>
-        <div class="links-container">
-          {% for link in item.links %}
-          <a href="{{ link.url }}" class="link-text">
-            <img class="icon" src="{{ link.icon }}" alt="">
-            {{ link.text }}
-          </a>
-          {% endfor %}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endfor %}
 
     {% include feedback-widget.html %}
 </div>

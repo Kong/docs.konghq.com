@@ -64,9 +64,6 @@
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
           {% t _includes.docs-sidebar.version %} {{ include.release }}
-          {% if include.release.latest? %}
-            <span>{% t _includes.docs-sidebar.latest %}</span>
-          {% endif %}
           {% if include.release.lts %}
             <span>(LTS)</span>
           {% endif %}
