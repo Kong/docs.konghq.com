@@ -1442,7 +1442,17 @@
 
 # Assets
 
-/assets/mesh/:version.x/*  https://developer.konghq.com/assets/mesh/:version/:splat  301
+/assets/mesh/2.11.x/*  https://developer.konghq.com/assets/mesh/2.11/:splat  301
+/assets/mesh/2.10.x/*  https://developer.konghq.com/assets/mesh/2.10/:splat  301
+/assets/mesh/2.9.x/*  https://developer.konghq.com/assets/mesh/2.9/:splat  301
+/assets/mesh/2.8.x/*  https://developer.konghq.com/assets/mesh/2.8/:splat  301
+/assets/mesh/2.7.x/*  https://developer.konghq.com/assets/mesh/2.7/:splat  301
+/assets/mesh/2.6.x/*  https://developer.konghq.com/assets/mesh/2.6/:splat  301
+/assets/mesh/2.5.x/*  https://developer.konghq.com/assets/mesh/2.5/:splat  301
+/assets/mesh/2.4.x/*  https://developer.konghq.com/assets/mesh/2.4/:splat  301
+/assets/mesh/2.3.x/*  https://developer.konghq.com/assets/mesh/2.3/:splat  301
+/assets/mesh/2.2.x/*  https://developer.konghq.com/assets/mesh/2.2/:splat  301
+/assets/mesh/dev/*  https://developer.konghq.com/assets/mesh/dev/:splat  301
 /assets/* https://developer.konghq.com/assets/:splat 301
 
 # Dev site redirects
