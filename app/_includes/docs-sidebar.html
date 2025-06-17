@@ -80,6 +80,11 @@
         {% endfor %}
         {% if include.edition == 'gateway' %}
         <li role="menuitem" tabindex="-1">
+          <a href="{{site.links.dev_site}}/gateway/">
+            Newer versions (3.y.x)
+          </a>
+        </li>
+        <li role="menuitem" tabindex="-1">
           <a href="{{site.links.archive}}/">
             {% t _includes.docs-sidebar.archive %}
           </a>
