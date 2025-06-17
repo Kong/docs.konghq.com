@@ -6,7 +6,7 @@ disable_image_expand: true
 <div class="docs-grid-install">
 
   <a href="/gateway/{{page.release}}/install-and-run/docker" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/third-party/docker.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/docker.svg" alt="" />
     <div class="install-text">Docker</div>
   </a>
 

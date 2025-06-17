@@ -12,10 +12,10 @@ features:
         ga: true
       - name: "Linux (Docker)"
         ga: true
-        icon: /assets/images/icons/third-party/docker.png
+        icon: /assets/images/icons/third-party/docker.svg
       - name: "Advanced Docker configuration"
         ga: true
-        icon: /assets/images/icons/third-party/docker.png
+        icon: /assets/images/icons/third-party/docker.svg
 
   - name: "Packages"
     items:
