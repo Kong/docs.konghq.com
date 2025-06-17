@@ -521,8 +521,8 @@
   status: migrated
 - docs_url: "/konnect/mesh-manager/federate-zone/"
   source_file: konnect/mesh-manager/federate-zone.md
-  dev_site_url: "/mesh/federate/"
-  status: "?"
+  dev_site_url: "/mesh-manager/federate-zone/"
+  status: "migrated"
 - docs_url: "/deck/apiops/federated-configuration/"
   source_file: deck/apiops/federated-configuration.md
   dev_site_url: "/deck/apiops/federated-configuration/"
@@ -1053,8 +1053,8 @@
   status: "?"
 - docs_url: "/konnect/mesh-manager/migrate-zone/"
   source_file: konnect/mesh-manager/migrate-zone.md
-  dev_site_url: "/mesh-manager/"
-  status: "?"
+  dev_site_url: "/mesh-manager/migrate-zone/"
+  status: "migrated"
 - docs_url: "/konnect/gateway-manager/control-plane-groups/migrate/"
   source_file: konnect/gateway-manager/control-plane-groups/migrate.md
   dev_site_url: "/gateway-manager/control-plane-groups/"
@@ -1381,8 +1381,8 @@
   status: won't do
 - docs_url: "/konnect/mesh-manager/service-mesh/"
   source_file: konnect/mesh-manager/service-mesh.md
-  dev_site_url: "/mesh-manager/"
-  status: "?"
+  dev_site_url: "/mesh-manager/service-mesh/"
+  status: "migrated"
 - docs_url: "/konnect/org-management/sessions-reference/"
   source_file: konnect/org-management/sessions-reference.md
   dev_site_url: "/index/konnect-platform/"
