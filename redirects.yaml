@@ -3965,7 +3965,7 @@
   status: migrated
 - docs_url: "/hub/kong-inc/bot-detection/changelog/"
   source_file: _hub/kong-inc/bot-detection/_changelog.md
-  dev_site_url: "/plugins/bot-detection/changelog/"
+  dev_site_url: "/plugins/bot-detection/"
   status: migrated
 - docs_url: "/hub/kong-inc/canary/"
   source_file: _hub/kong-inc/canary/overview/_index.md
@@ -5241,7 +5241,7 @@
   status: migrated
 - docs_url: "/hub/kong-inc/statsd-advanced/configuration/"
   source_file: _src/.repos/kong-plugins/schemas/statsd-advanced/2.8.x.json
-  dev_site_url: "/plugins/stasd/reference/"
+  dev_site_url: "/plugins/statsd/reference/"
   status: migrated
 - docs_url: "/hub/kong-inc/statsd-advanced/how-to/basic-example/"
   source_file: _src/.repos/kong-plugins/examples/statsd-advanced/_2.8.x.yaml
