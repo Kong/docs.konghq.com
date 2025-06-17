@@ -28,7 +28,6 @@
 /konnect/gateway-manager/data-plane-nodes/azure-peering/     /konnect/gateway-manager/dedicated-cloud-gateways/azure-peering/
 /konnect/gateway-manager/data-plane-nodes/transit-gateways/ /konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/
 /konnect/gateway-manager/provision-cloud-gateway/            /konnect/gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
-/konnect/gateway-manager/dedicated-cloud-gateways/   /konnect/gateway-manager/dedicated-cloud-gateways/
 /konnect/reference/custom-dns/      /konnect/dev-portal/customization/custom-dns/
 
 ## Saml SSO
@@ -128,8 +127,7 @@
 /konnect/dev-portal/access-and-approval/azure/    /konnect/dev-portal/access-and-approval/sso/
 /konnect/dev-portal/access-and-approval/manage-app-reg-requests/    /konnect/dev-portal/access-and-approval/manage-app-connections/
 /konnect/dev-portal/access-and-approval/auto-approve-devs-apps/ /konnect/dev-portal/create-dev-portal/
-/konnect/dev-portal/access-and-approval/manage-teams    /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
-/konnect/api/portal-auth/portal-rbac-guide/   /konnect/dev-portal/access-and-approval/manage-teams/#enable-portal-rbac
+/konnect/api/portal-auth/portal-rbac-guide/   /konnect/dev-portal/access-and-approval/manage-teams/#enable-rbac
 
 # Konnect Dev Portal audit logs
 /konnect/dev-portal/audit-logging/reference/    /konnect/reference/audit-logs/
@@ -185,6 +183,7 @@
 /gateway/3.5.x/reference/performance-testing-framework/ /gateway/3.4.x/reference/performance-testing-framework/
 /gateway/3.5.x/admin-api/developers/*   /gateway/3.4.x/admin-api/developers/reference/
 /gateway/latest/admin-api/developers/*   /gateway/3.4.x/admin-api/developers/reference/
+/gateway/3.5.x/production/benchmark/ /gateway/3.6.x/production/performance/benchmark/
 
 # 3.4
 
@@ -193,6 +192,8 @@
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
 /gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/latest/#/operations/get-consumer_groups
 /konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
+/gateway/3.4.x/admin-api/db-encryption/ /gateway/latest/kong-enterprise/db-encryption/
+/gateway/3.4.x/production/benchmark/ /gateway/3.6.x/production/performance/benchmark/
 
 # 3.3
 
@@ -220,7 +221,6 @@
 /gateway/latest/install/linux/os-support/         /gateway/latest/support-policy/
 /gateway/2.8.x/get-started/quickstart/            /gateway/latest/get-started/
 /gateway/2.8.x/get-started/quickstart/configuring-a-service/            /gateway/latest/get-started/services-and-routes/
-/gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
 /gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
 /gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
 /gateway/2.8.x/admin-api/rbac/examples/                              /gateway/api/admin-ee/latest/#/operations/get-rbac-users
@@ -1320,66 +1320,66 @@
 
 # KIC 3.0
 # No new page available
-/kubernetes-ingress-controller/latest/concepts/expression-based-router/	/kubernetes-ingress-controller/latest/
-/kubernetes-ingress-controller/latest/concepts/ingress-versions/	/kubernetes-ingress-controller/latest/
-/kubernetes-ingress-controller/latest/availability-stages/	/kubernetes-ingress-controller/latest/
-/kubernetes-ingress-controller/latest/deployment/overview/	/kubernetes-ingress-controller/latest/
-/kubernetes-ingress-controller/latest/guides/configuring-fallback-service/	/kubernetes-ingress-controller/latest/ 
-/kubernetes-ingress-controller/latest/guides/using-kong-with-knative/	/kubernetes-ingress-controller/latest/
-/kubernetes-ingress-controller/latest/guides/choose-gateway-image/	/kubernetes-ingress-controller/latest/
+/kubernetes-ingress-controller/:version/concepts/expression-based-router/	/kubernetes-ingress-controller/latest/
+/kubernetes-ingress-controller/:version/concepts/ingress-versions/	/kubernetes-ingress-controller/latest/
+/kubernetes-ingress-controller/:version/availability-stages/	/kubernetes-ingress-controller/latest/
+/kubernetes-ingress-controller/:version/deployment/overview/	/kubernetes-ingress-controller/latest/
+/kubernetes-ingress-controller/:version/guides/configuring-fallback-service/	/kubernetes-ingress-controller/latest/ 
+/kubernetes-ingress-controller/:version/guides/using-kong-with-knative/	/kubernetes-ingress-controller/latest/
+/kubernetes-ingress-controller/:version/guides/choose-gateway-image/	/kubernetes-ingress-controller/latest/
 
 # Redirected to new page
-/kubernetes-ingress-controller/latest/references/annotations/	/kubernetes-ingress-controller/latest/reference/annotations/
-/kubernetes-ingress-controller/latest/references/custom-resources/	/kubernetes-ingress-controller/latest/reference/custom-resources/
-/kubernetes-ingress-controller/latest/concepts/design/	/kubernetes-ingress-controller/latest/concepts/architecture/ 
-/kubernetes-ingress-controller/latest/concepts/k4k8s-with-kong-enterprise/	/kubernetes-ingress-controller/latest/license/
-/kubernetes-ingress-controller/latest/concepts/ha-and-scaling/	/kubernetes-ingress-controller/latest/guides/high-availability/kic/
-/kubernetes-ingress-controller/latest/concepts/ingress-classes/	/kubernetes-ingress-controller/latest/concepts/ingress/
-/kubernetes-ingress-controller/latest/concepts/deployment/	/kubernetes-ingress-controller/latest/production/deployment-topologies/
-/kubernetes-ingress-controller/latest/deployment/minikube/	/kubernetes-ingress-controller/latest/install/helm/
-/kubernetes-ingress-controller/latest/deployment/k4k8s/	/kubernetes-ingress-controller/latest/install/helm/
-/kubernetes-ingress-controller/latest/deployment/k4k8s-enterprise/	/kubernetes-ingress-controller/latest/install/helm/
-/kubernetes-ingress-controller/latest/deployment/kong-enterprise/	/kubernetes-ingress-controller/latest/install/helm/
-/kubernetes-ingress-controller/latest/deployment/aks/	/kubernetes-ingress-controller/latest/install/cloud/aks/
-/kubernetes-ingress-controller/latest/deployment/gke/	/kubernetes-ingress-controller/latest/install/cloud/gke/
-/kubernetes-ingress-controller/latest/deployment/eks/	/kubernetes-ingress-controller/latest/install/cloud/eks/
-/kubernetes-ingress-controller/latest/deployment/admission-webhook/	/kubernetes-ingress-controller/latest/concepts/admission-webhook/
-/kubernetes-ingress-controller/latest/deployment/install-gateway-apis/	/kubernetes-ingress-controller/latest/concepts/gateway-api/
-/kubernetes-ingress-controller/latest/guides/getting-started/	/kubernetes-ingress-controller/latest/get-started/
-/kubernetes-ingress-controller/latest/guides/upgrade/	/kubernetes-ingress-controller/latest/upgrade/kic/
-/kubernetes-ingress-controller/latest/guides/upgrade-kong-3x/	/kubernetes-ingress-controller/latest/upgrade/gateway/
-/kubernetes-ingress-controller/latest/guides/using-kongplugin-resource/	/kubernetes-ingress-controller/latest/concepts/custom-resources/
-/kubernetes-ingress-controller/latest/guides/using-kongingress-resource/	/kubernetes-ingress-controller/latest/guides/migrate/kongingress/
-/kubernetes-ingress-controller/latest/guides/using-consumer-credential-resource/	/kubernetes-ingress-controller/latest/concepts/custom-resources/
-/kubernetes-ingress-controller/latest/guides/using-tcpingress/	/kubernetes-ingress-controller/latest/guides/services/tcp/
-/kubernetes-ingress-controller/latest/guides/using-udpingress/	/kubernetes-ingress-controller/latest/guides/services/udp/
-/kubernetes-ingress-controller/latest/guides/configure-acl-plugin/	/kubernetes-ingress-controller/latest/plugins/acl/
-/kubernetes-ingress-controller/latest/guides/allowing-multiple-authentication-methods/	/kubernetes-ingress-controller/latest/plugins/authentication/
-/kubernetes-ingress-controller/latest/guides/using-external-service/	/kubernetes-ingress-controller/latest/guides/services/external/
-/kubernetes-ingress-controller/latest/guides/configuring-https-redirect/	/kubernetes-ingress-controller/latest/guides/services/https-redirect/
-/kubernetes-ingress-controller/latest/guides/redis-rate-limiting/	/kubernetes-ingress-controller/latest/plugins/rate-limiting/
-/kubernetes-ingress-controller/latest/guides/prometheus-grafana/	/kubernetes-ingress-controller/latest/production/observability/prometheus-grafana/
-/kubernetes-ingress-controller/latest/guides/configuring-health-checks/	/kubernetes-ingress-controller/latest/guides/high-availability/health-checks/
-/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/	/kubernetes-ingress-controller/latest/plugins/custom/
-/kubernetes-ingress-controller/latest/guides/using-ingress-with-grpc/	/kubernetes-ingress-controller/latest/guides/services/grpc/
-/kubernetes-ingress-controller/latest/guides/using-mtls-auth-plugin/	/kubernetes-ingress-controller/latest/plugins/mtls/
-/kubernetes-ingress-controller/latest/guides/using-oidc-plugin/	/kubernetes-ingress-controller/latest/plugins/oidc/
-/kubernetes-ingress-controller/latest/guides/using-rewrites/	/kubernetes-ingress-controller/latest/guides/requests/rewrite-host-and-paths/
-/kubernetes-ingress-controller/latest/guides/rewrite-host/	/kubernetes-ingress-controller/latest/guides/requests/rewrite-host-and-paths/
-/kubernetes-ingress-controller/latest/guides/preserve-client-ip/	/kubernetes-ingress-controller/latest/guides/security/client-ip/
-/kubernetes-ingress-controller/latest/guides/using-multiple-backends/	/kubernetes-ingress-controller/latest/guides/services/multiple-backends/
-/kubernetes-ingress-controller/latest/guides/using-gateway-discovery/	/kubernetes-ingress-controller/latest/production/deployment-topologies/gateway-discovery/
-/kubernetes-ingress-controller/latest/references/cli-arguments/	/kubernetes-ingress-controller/latest/reference/cli-arguments/
-/kubernetes-ingress-controller/latest/references/plugin-compatibility/	/hub/plugins/compatibility/
-/kubernetes-ingress-controller/latest/references/version-compatibility/	/kubernetes-ingress-controller/latest/reference/version-compatibility/
-/kubernetes-ingress-controller/latest/references/supported-router-flavors/	/kubernetes-ingress-controller/latest/reference/faq/router/
-/kubernetes-ingress-controller/latest/troubleshooting/	/kubernetes-ingress-controller/latest/reference/troubleshooting/
-/kubernetes-ingress-controller/latest/references/kubernetes-events/	/kubernetes-ingress-controller/latest/production/observability/events/
-/kubernetes-ingress-controller/latest/references/prometheus/	/kubernetes-ingress-controller/latest/production/observability/prometheus/
-/kubernetes-ingress-controller/latest/references/feature-gates/	/kubernetes-ingress-controller/latest/reference/feature-gates/
-/kubernetes-ingress-controller/latest/references/gateway-api-support/	/kubernetes-ingress-controller/latest/gateway-api/
-/kubernetes-ingress-controller/latest/concepts/security/	/kubernetes-ingress-controller/latest/guides/security/kong-vault/
-/kubernetes-ingress-controller/latest/faq/	/kubernetes-ingress-controller/latest/reference/faq/router/
+/kubernetes-ingress-controller/:version/references/annotations/	/kubernetes-ingress-controller/latest/reference/annotations/
+/kubernetes-ingress-controller/:version/references/custom-resources/	/kubernetes-ingress-controller/latest/reference/custom-resources/
+/kubernetes-ingress-controller/:version/concepts/design/	/kubernetes-ingress-controller/latest/concepts/architecture/ 
+/kubernetes-ingress-controller/:version/concepts/k4k8s-with-kong-enterprise/	/kubernetes-ingress-controller/latest/license/
+/kubernetes-ingress-controller/:version/concepts/ha-and-scaling/	/kubernetes-ingress-controller/latest/guides/high-availability/kic/
+/kubernetes-ingress-controller/:version/concepts/ingress-classes/	/kubernetes-ingress-controller/latest/concepts/ingress/
+/kubernetes-ingress-controller/:version/concepts/deployment/	/kubernetes-ingress-controller/latest/production/deployment-topologies/
+/kubernetes-ingress-controller/:version/deployment/minikube/	/kubernetes-ingress-controller/latest/install/helm/
+/kubernetes-ingress-controller/:version/deployment/k4k8s/	/kubernetes-ingress-controller/latest/install/helm/
+/kubernetes-ingress-controller/:version/deployment/k4k8s-enterprise/	/kubernetes-ingress-controller/latest/install/helm/
+/kubernetes-ingress-controller/:version/deployment/kong-enterprise/	/kubernetes-ingress-controller/latest/install/helm/
+/kubernetes-ingress-controller/:version/deployment/aks/	/kubernetes-ingress-controller/latest/install/cloud/aks/
+/kubernetes-ingress-controller/:version/deployment/gke/	/kubernetes-ingress-controller/latest/install/cloud/gke/
+/kubernetes-ingress-controller/:version/deployment/eks/	/kubernetes-ingress-controller/latest/install/cloud/eks/
+/kubernetes-ingress-controller/:version/deployment/admission-webhook/	/kubernetes-ingress-controller/latest/concepts/admission-webhook/
+/kubernetes-ingress-controller/:version/deployment/install-gateway-apis/	/kubernetes-ingress-controller/latest/concepts/gateway-api/
+/kubernetes-ingress-controller/:version/guides/getting-started/	/kubernetes-ingress-controller/latest/get-started/
+/kubernetes-ingress-controller/:version/guides/upgrade/	/kubernetes-ingress-controller/latest/upgrade/kic/
+/kubernetes-ingress-controller/:version/guides/upgrade-kong-3x/	/kubernetes-ingress-controller/latest/upgrade/gateway/
+/kubernetes-ingress-controller/:version/guides/using-kongplugin-resource/	/kubernetes-ingress-controller/latest/concepts/custom-resources/
+/kubernetes-ingress-controller/:version/guides/using-kongingress-resource/	/kubernetes-ingress-controller/latest/guides/migrate/kongingress/
+/kubernetes-ingress-controller/:version/guides/using-consumer-credential-resource/	/kubernetes-ingress-controller/latest/concepts/custom-resources/
+/kubernetes-ingress-controller/:version/guides/using-tcpingress/	/kubernetes-ingress-controller/latest/guides/services/tcp/
+/kubernetes-ingress-controller/:version/guides/using-udpingress/	/kubernetes-ingress-controller/latest/guides/services/udp/
+/kubernetes-ingress-controller/:version/guides/configure-acl-plugin/	/kubernetes-ingress-controller/latest/plugins/acl/
+/kubernetes-ingress-controller/:version/guides/allowing-multiple-authentication-methods/	/kubernetes-ingress-controller/latest/plugins/authentication/
+/kubernetes-ingress-controller/:version/guides/using-external-service/	/kubernetes-ingress-controller/latest/guides/services/external/
+/kubernetes-ingress-controller/:version/guides/configuring-https-redirect/	/kubernetes-ingress-controller/latest/guides/services/https-redirect/
+/kubernetes-ingress-controller/:version/guides/redis-rate-limiting/	/kubernetes-ingress-controller/latest/plugins/rate-limiting/
+/kubernetes-ingress-controller/:version/guides/prometheus-grafana/	/kubernetes-ingress-controller/latest/production/observability/prometheus-grafana/
+/kubernetes-ingress-controller/:version/guides/configuring-health-checks/	/kubernetes-ingress-controller/latest/guides/high-availability/health-checks/
+/kubernetes-ingress-controller/:version/guides/setting-up-custom-plugins/	/kubernetes-ingress-controller/latest/plugins/custom/
+/kubernetes-ingress-controller/:version/guides/using-ingress-with-grpc/	/kubernetes-ingress-controller/latest/guides/services/grpc/
+/kubernetes-ingress-controller/:version/guides/using-mtls-auth-plugin/	/kubernetes-ingress-controller/latest/plugins/mtls/
+/kubernetes-ingress-controller/:version/guides/using-oidc-plugin/	/kubernetes-ingress-controller/latest/plugins/oidc/
+/kubernetes-ingress-controller/:version/guides/using-rewrites/	/kubernetes-ingress-controller/latest/guides/requests/rewrite-host-and-paths/
+/kubernetes-ingress-controller/:version/guides/rewrite-host/	/kubernetes-ingress-controller/latest/guides/requests/rewrite-host-and-paths/
+/kubernetes-ingress-controller/:version/guides/preserve-client-ip/	/kubernetes-ingress-controller/latest/guides/security/client-ip/
+/kubernetes-ingress-controller/:version/guides/using-multiple-backends/	/kubernetes-ingress-controller/latest/guides/services/multiple-backends/
+/kubernetes-ingress-controller/:version/guides/using-gateway-discovery/	/kubernetes-ingress-controller/latest/production/deployment-topologies/gateway-discovery/
+/kubernetes-ingress-controller/:version/references/cli-arguments/	/kubernetes-ingress-controller/latest/reference/cli-arguments/
+/kubernetes-ingress-controller/:version/references/plugin-compatibility/	/hub/plugins/compatibility/
+/kubernetes-ingress-controller/:version/references/version-compatibility/	/kubernetes-ingress-controller/latest/reference/version-compatibility/
+/kubernetes-ingress-controller/:version/references/supported-router-flavors/	/kubernetes-ingress-controller/latest/reference/faq/router/
+/kubernetes-ingress-controller/:version/troubleshooting/	/kubernetes-ingress-controller/latest/reference/troubleshooting/
+/kubernetes-ingress-controller/:version/references/kubernetes-events/	/kubernetes-ingress-controller/latest/production/observability/events/
+/kubernetes-ingress-controller/:version/references/prometheus/	/kubernetes-ingress-controller/latest/production/observability/prometheus/
+/kubernetes-ingress-controller/:version/references/feature-gates/	/kubernetes-ingress-controller/latest/reference/feature-gates/
+/kubernetes-ingress-controller/:version/references/gateway-api-support/	/kubernetes-ingress-controller/latest/gateway-api/
+/kubernetes-ingress-controller/:version/concepts/security/	/kubernetes-ingress-controller/latest/guides/security/kong-vault/
+/kubernetes-ingress-controller/:version/faq/	/kubernetes-ingress-controller/latest/reference/faq/router/
 
 
 # Kuma redirects
@@ -1437,7 +1437,6 @@
 /mesh/:version/production/cp-deployment/stand-alone/ /mesh/:version/production/cp-deployment/single-zone/
 /mesh/:version/production/deployment/stand-alone/ /mesh/:version/production/deployment/single-zone/
 /mesh/:version/explore/gateway/ /mesh/:version/using-mesh/managing-ingress-traffic/overview/
-/mesh/:version/quickstart/universal-docker-demo/ /mesh/:version/quickstart/universal-demo/
 /mesh/:version/quickstart/universal-demo/ /mesh/:version/quickstart/universal-docker-demo/
 
 
@@ -1458,8 +1457,7 @@
 
 # Dev site redirects
 #
-/deck/reference/3.0-upgrade/  https://developer.konghq.com/deck/reference/3.0-upgrade/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/3rd-party-oauth/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/3rd-party-oauth/  https://developer.konghq.com/dev-portal/ 301
 /404.html  https://developer.konghq.com/404.html 301
 /gateway/latest/licenses/download/  https://developer.konghq.com/gateway/entities/license/ 301
 /gateway/latest/plugin-development/access-the-datastore/  https://developer.konghq.com/custom-plugins/data-store/ 301
@@ -1472,12 +1470,12 @@
 /konnect/dev-portal/access-and-approval/add-teams/  https://developer.konghq.com/konnect-platform/sso/ 301
 /gateway/latest/kong-manager/auth/rbac/add-user/  https://developer.konghq.com/how-to/configure-rbac-user-in-kong-gateway/ 301
 /gateway/latest/get-started/key-authentication/  https://developer.konghq.com/gateway/get-started/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/customize/adding-javascript-assets/  https://developer.konghq.com/dev-portal/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/adding-registration-fields/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/customize/adding-javascript-assets/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/adding-registration-fields/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/plugin-development/admin-api/  https://developer.konghq.com/custom-plugins/api.lua/ 301
 /gateway/latest/kong-enterprise/secrets-management/advanced-usage/  https://developer.konghq.com/gateway/entities/vault/ 301
 /gateway/latest/kong-plugins/authentication/allowing-multiple-authentication-methods/  https://developer.konghq.com/how-to/allow-multiple-authentication/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/customize/alternate-openapi-renderer/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/customize/alternate-openapi-renderer/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/install/linux/amazon-linux/  https://developer.konghq.com/gateway/install/ 301
 /konnect/analytics/api-requests/  https://developer.konghq.com/api/konnect/analytics-requests/ 301
 /konnect/getting-started/app-registration/  https://developer.konghq.com/dev-portal/ 301
@@ -1487,20 +1485,20 @@
 /konnect/architecture/  https://developer.konghq.com/konnect/ 301
 /gateway/latest/kong-enterprise/audit-log/  https://developer.konghq.com/gateway/audit-logs/ 301
 /konnect/reference/audit-logs/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/applications/auth-provider-strategy/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/applications/auth-provider-strategy/  https://developer.konghq.com/dev-portal/ 301
 /konnect/org-management/auth/  https://developer.konghq.com/konnect-platform/authentication/ 301
 /dev-portal/app-reg/auth-strategies/oidc/dcr/auth0/  https://developer.konghq.com/dev-portal/ 301
 /konnect/dev-portal/applications/dynamic-client-registration/auth0/  https://developer.konghq.com/dev-portal/auth-strategies/ 301
 /gateway/latest/stability/  https://developer.konghq.com/stages-of-software-availability/ 301
 /konnect/availability-stages/  https://developer.konghq.com/stages-of-software-availability/ 301
-/konnect/private-connections/aws-privatelink/  https://developer.konghq.com/dedicated-cloud-gateways/aws-private-link/ 301
+/konnect/private-connections/aws-privatelink/  https://developer.konghq.com/gateway-manager/aws-private-link/ 301
 /gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/  https://developer.konghq.com/how-to/configure-aws-secrets-manager-as-a-vault-backend-with-vault-entity/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/azure-oidc-config/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/azure-oidc-config/  https://developer.konghq.com/dev-portal/ 301
 /konnect/gateway-manager/dedicated-cloud-gateways/azure-peering/  https://developer.konghq.com/dedicated-cloud-gateways/azure-peering/ 301
 /dev-portal/app-reg/auth-strategies/oidc/dcr/azure/  https://developer.konghq.com/dev-portal/auth-strategies/ 301
 /konnect/dev-portal/applications/dynamic-client-registration/azure/  https://developer.konghq.com/dev-portal/auth-strategies/ 301
 /konnect/gateway-manager/backup-restore/  https://developer.konghq.com/gateway/upgrade/backup-and-restore/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/basic-auth/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/basic-auth/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/kong-manager/auth/basic/  https://developer.konghq.com/how-to/enable-basic-auth-on-kong-manager/ 301
 /deck/install/binary/  https://developer.konghq.com/deck/ 301
 /gateway/2.8.x/install-and-run/centos/  https://developer.konghq.com/gateway/install/ 301
@@ -1508,7 +1506,7 @@
 /mesh/changelog/  https://developer.konghq.com/mesh/changelog/ 301
 /gateway-operator/changelog/  https://developer.konghq.com/operator/changelog/ 301
 /gateway/changelog/  https://developer.konghq.com/gateway/changelog/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/cli/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/cli/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/reference/cli/  https://developer.konghq.com/gateway/cli/reference/ 301
 /gateway/latest/production/clustering/  https://developer.konghq.com/gateway/traditional-mode/ 301
 /contributing/community-expectations/  https://developer.konghq.com/ 301
@@ -1550,13 +1548,13 @@
 /gateway/latest/production/deployment-topologies/db-less-and-declarative-config/  https://developer.konghq.com/gateway/db-less-mode/ 301
 /konnect/org-management/deactivation/  https://developer.konghq.com/konnect-platform/account/ 301
 /gateway/latest/install/linux/debian/  https://developer.konghq.com/gateway/install/ 301
-/konnect/gateway-manager/declarative-config/  https://developer.konghq.com/konnect/gateway-manager/ 301
+/konnect/gateway-manager/declarative-config/  https://developer.konghq.com/gateway-manager/ 301
 /deck/gateway/deduplicate/  https://developer.konghq.com/deck/gateway/deduplicate/ 301
 /gateway/latest/production/networking/default-ports/  https://developer.konghq.com/gateway/network/ 301
 /deck/gateway/defaults/  https://developer.konghq.com/deck/gateway/defaults/ 301
 /gateway/latest/licenses/deploy/  https://developer.konghq.com/gateway/entities/license/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/publish-spec/  https://developer.konghq.com/dev-portal/publishing/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/developer-permissions/  https://developer.konghq.com/dev-portal/security-settings/ 301
+/gateway/:version/kong-enterprise/dev-portal/publish-spec/  https://developer.konghq.com/dev-portal/publishing/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/developer-permissions/  https://developer.konghq.com/dev-portal/security-settings/ 301
 /dev-portal/access-and-approvals/developers/  https://developer.konghq.com/dev-portal/developer-signup/ 301
 /contributing/diagrams/  https://developer.konghq.com/contributing/ 301
 /deck/gateway/diff/  https://developer.konghq.com/deck/gateway/diff/ 301
@@ -1566,13 +1564,13 @@
 /gateway/latest/install/docker/  https://developer.konghq.com/gateway/entities/license/ 301
 /dev-portal/apis/docs/  https://developer.konghq.com/dev-portal/apis/ 301
 /deck/gateway/dump/  https://developer.konghq.com/deck/gateway/dump/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/customize/theme-editing/  https://developer.konghq.com/dev-portal/portal-customization/ 301
+/gateway/:version/kong-enterprise/dev-portal/customize/theme-editing/  https://developer.konghq.com/dev-portal/portal-customization/ 301
 /gateway/latest/kong-manager/configuring-to-send-email/  https://developer.konghq.com/gateway/kong-manager/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/customize/emails/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/customize/emails/  https://developer.konghq.com/dev-portal/ 301
 /konnect/dev-portal/applications/enable-app-reg/  https://developer.konghq.com/dev-portal/application-registration/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/applications/enable-application-registration/  https://developer.konghq.com/dev-portal/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/enable/  https://developer.konghq.com/dev-portal/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/applications/enable-key-auth-plugin/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/applications/enable-application-registration/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/enable/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/applications/enable-key-auth-plugin/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/get-started/rate-limiting/  https://developer.konghq.com/gateway/get-started/ 301
 /gateway/latest/plugin-development/entities-cache/  https://developer.konghq.com/custom-plugins/daos.lua/ 301
 /deck/reference/entities/  https://developer.konghq.com/deck/reference/entities/ 301
@@ -1582,7 +1580,7 @@
 /gateway/latest/kong-enterprise/event-hooks/  https://developer.konghq.com/gateway/entities/event-hook/ 301
 /gateway/latest/production/access-control/enable-rbac/  https://developer.konghq.com/gateway/entities/rbac/ 301
 /gateway/latest/licenses/examples/  https://developer.konghq.com/gateway/entities/license/ 301
-/gateway/3.9.x/kong-enterprise/consumer-groups/  https://developer.konghq.com/gateway/entities/consumer-group/ 301
+/gateway/:version/kong-enterprise/consumer-groups/  https://developer.konghq.com/gateway/entities/consumer-group/ 301
 /gateway/latest/production/access-control/register-admin-api/  https://developer.konghq.com/how-to/enable-rbac-with-admin-api/ 301
 /gateway/latest/kong-enterprise/workspaces/  https://developer.konghq.com/gateway/entities/workspace/ 301
 /konnect/analytics/explorer/  https://developer.konghq.com/advanced-analytics/explorer/ 301
@@ -1629,7 +1627,7 @@
 /konnect/  https://developer.konghq.com/konnect/ 301
 /gateway/latest/install/  https://developer.konghq.com/gateway/install/ 301
 /konnect/analytics/  https://developer.konghq.com/advanced-analytics/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/  https://developer.konghq.com/dev-portal/ 301
 /konnect/gateway-manager/data-plane-nodes/  https://developer.konghq.com/gateway-manager/data-plane-reference/ 301
 /gateway/latest/plugin-development/  https://developer.konghq.com/custom-plugins/reference/ 301
 /gateway/latest/admin-api/  https://developer.konghq.com/admin-api/ 301
@@ -1660,7 +1658,7 @@
 /gateway/2.8.x/get-started/comprehensive/  https://developer.konghq.com/gateway/get-started/ 301
 /gateway/latest/kong-enterprise/secrets-management/  https://developer.konghq.com/gateway/secrets-management/ 301
 /konnect/dev-portal/customization/  https://developer.konghq.com/dev-portal/portal-customization/ 301
-/gateway/3.4.x/kong-enterprise/analytics/  https://developer.konghq.com/advanced-analytics/ 301
+/gateway/:version/kong-enterprise/analytics/  https://developer.konghq.com/advanced-analytics/ 301
 /konnect/dev-portal/applications/dynamic-client-registration/  https://developer.konghq.com/dev-portal/auth-strategies/ 301
 /dev-portal/app-reg/auth-strategies/oidc/dcr/  https://developer.konghq.com/dev-portal/auth-strategies/ 301
 /dev-portal/portals/  https://developer.konghq.com/dev-portal/ 301
@@ -1675,7 +1673,7 @@
 /konnect/getting-started/  https://developer.konghq.com/konnect/ 301
 /konnect/api/  https://developer.konghq.com/konnect-api/ 301
 /gateway/latest/licenses/  https://developer.konghq.com/gateway/entities/license/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/key-auth/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/key-auth/  https://developer.konghq.com/dev-portal/ 301
 /konnect/gateway-manager/kic/  https://developer.konghq.com/kubernetes-ingress-controller/ 301
 /contributing/kong-plugins/  https://developer.konghq.com/contributing/ 301
 /gateway/3.3.x/production/security-update-process/  https://developer.konghq.com/gateway/vulnerabilities/ 301
@@ -1709,21 +1707,21 @@
 /deck/file/lint/  https://developer.konghq.com/deck/file/lint/ 301
 /gateway/latest/get-started/load-balancing/  https://developer.konghq.com/gateway/get-started/ 301
 /gateway/latest/how-kong-works/load-balancing/  https://developer.konghq.com/gateway/traffic-control/load-balancing-reference/ 301
-/gateway/3.9.x/production/logging/  https://developer.konghq.com/gateway/logs/ 301
+/gateway/:version/production/logging/  https://developer.konghq.com/gateway/logs/ 301
 /konnect/dev-portal/access-and-approval/manage-app-connections/  https://developer.konghq.com/dev-portal/security-settings/ 301
 /konnect/dev-portal/access-and-approval/manage-devs/  https://developer.konghq.com/dev-portal/security-settings/ 301
 /konnect/dev-portal/access-and-approval/manage-teams/  https://developer.konghq.com/gateway/entities/rbac/ 301
 /gateway/latest/kong-manager/auth/workspaces-and-teams/  https://developer.konghq.com/gateway/entities/workspace/ 301
 /konnect/org-management/teams-and-roles/manage/  https://developer.konghq.com/konnect-platform/teams-and-roles/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/applications/managing-applications/  https://developer.konghq.com/dev-portal/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/managing-developers/  https://developer.konghq.com/dev-portal/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/customize/markdown-extended/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/applications/managing-applications/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/managing-developers/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/customize/markdown-extended/  https://developer.konghq.com/dev-portal/ 301
 /contributing/markdown-rules/  https://developer.konghq.com/contributing/ 301
 /deck/file/merge/  https://developer.konghq.com/deck/file/merge/ 301
 /gateway/latest/migrate-ce-to-ke/  https://developer.konghq.com/gateway/ 301
 /konnect/mesh-manager/migrate-zone/  https://developer.konghq.com/mesh-manager/ 301
 /konnect/gateway-manager/control-plane-groups/migrate/  https://developer.konghq.com/gateway-manager/control-plane-groups/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/customize/migrating-templates/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/customize/migrating-templates/  https://developer.konghq.com/dev-portal/ 301
 /konnect/getting-started/migration/  https://developer.konghq.com/gateway/self-managed-migration/ 301
 /moved_urls.yml  https://developer.konghq.com 301
 /deck/file/manipulation/namespace/  https://developer.konghq.com/deck/file/manipulation/namespace/ 301
@@ -1741,8 +1739,8 @@
 /gateway/latest/kong-manager/auth/oidc/mapping/  https://developer.konghq.com/gateway/kong-manager/ 301
 /gateway/2.8.x/configure/auth/oidc-okta/  https://developer.konghq.com/plugins/openid-connect/examples/okta/ 301
 /gateway/2.8.x/configure/auth/oidc-use-case/  https://developer.konghq.com/plugins/openid-connect/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/oidc/  https://developer.konghq.com/dev-portal/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/okta-config/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/oidc/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/okta-config/  https://developer.konghq.com/dev-portal/ 301
 /konnect/org-management/okta-idp/  https://developer.konghq.com/konnect-platform/sso/ 301
 /konnect/dev-portal/access-and-approval/okta-idp/  https://developer.konghq.com/dev-portal/auth-strategies/ 301
 /dev-portal/app-reg/auth-strategies/oidc/dcr/okta/  https://developer.konghq.com/dev-portal/auth-strategies/ 301
@@ -1754,7 +1752,7 @@
 /konnect/gateway-manager/data-plane-nodes/parameter-reference/  https://developer.konghq.com/gateway-manager/data-plane-reference/ 301
 /contributing/partner-plugins/  https://developer.konghq.com/contributing/ 301
 /deck/file/manipulation/patch/  https://developer.konghq.com/deck/file/manipulation/patch/ 301
-/gateway/3.4.x/reference/performance-testing-framework/  https://developer.konghq.com/gateway/performance/benchmarks/ 301
+/gateway/:version/reference/performance-testing-framework/  https://developer.konghq.com/gateway/performance/benchmarks/ 301
 /deck/gateway/ping/  https://developer.konghq.com/deck/gateway/ping/ 301
 /gateway/latest/plugin-development/configuration/  https://developer.konghq.com/custom-plugins/schema.lua/ 301
 /konnect/reference/plugins/  https://developer.konghq.com/gateway/entities/plugin/ 301
@@ -1784,7 +1782,7 @@
 /konnect/org-management/audit-logging/replay-job/  https://developer.konghq.com/dev-portal/ 301
 /dev-portal/portals/audit-logs/replay-job/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/licenses/report/  https://developer.konghq.com/gateway/entities/license/ 301
-/gateway/latest/kong-manager/auth/reset-password/  https://developer.konghq.com/kong-manager/ 301
+/gateway/latest/kong-manager/auth/reset-password/  https://developer.konghq.com/gateway/kong-manager/ 301
 /deck/gateway/reset/  https://developer.konghq.com/deck/gateway/reset/ 301
 /gateway/latest/install/linux/rhel/  https://developer.konghq.com/gateway/install/ 301
 /robots.txt  https://developer.konghq.com 301
@@ -1806,13 +1804,13 @@
 /konnect/mesh-manager/service-mesh/  https://developer.konghq.com/mesh-manager/ 301
 /konnect/org-management/sessions-reference/  https://developer.konghq.com/index/konnect-platform/ 301
 /gateway/latest/kong-manager/auth/sessions/  https://developer.konghq.com/plugins/session/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/authentication/sessions/  https://developer.konghq.com/dev-portal/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/customize/single-page-app/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/authentication/sessions/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/customize/single-page-app/  https://developer.konghq.com/dev-portal/ 301
 /contributing/single-sourced-plugins/  https://developer.konghq.com/contributing/ 301
 /contributing/single-sourced-versions/  https://developer.konghq.com/contributing/ 301
 /gateway/latest/production/sizing-guidelines/  https://developer.konghq.com/gateway/resource-sizing-guidelines/ 301
 /konnect/service-catalog/integrations/slack/  https://developer.konghq.com/service-catalog/integrations/slack 301
-/gateway/3.4.x/kong-enterprise/dev-portal/smtp/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/smtp/  https://developer.konghq.com/dev-portal/ 301
 /dev-portal/portals/customization/snippets/  https://developer.konghq.com/dev-portal/pages-and-content/ 301
 /konnect/org-management/social-identity-login/  https://developer.konghq.com/konnect-platform/authentication/ 301
 /dev-portal/access-and-approvals/sso/  https://developer.konghq.com/dev-portal/sso/ 301
@@ -1820,7 +1818,7 @@
 /konnect/dev-portal/access-and-approval/sso/  https://developer.konghq.com/konnect-platform/sso/ 301
 /konnect/api/identity-management/sso/  https://developer.konghq.com/konnect-platform/sso/ 301
 /gateway/latest/production/access-control/start-securely/  https://developer.konghq.com/gateway/entities/rbac/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/structure-and-file-types/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/structure-and-file-types/  https://developer.konghq.com/dev-portal/ 301
 /contributing/style-guide/  https://developer.konghq.com/contributing/ 301
 /gateway/latest/kong-manager/auth/super-admin/  https://developer.konghq.com/how-to/create-a-super-admin/ 301
 /gateway/latest/support-policy/  https://developer.konghq.com/gateway/version-support-policy/ 301
@@ -1842,14 +1840,14 @@
 /konnect/org-management/troubleshoot/  https://developer.konghq.com/konnect-platform/sso/ 301
 /gateway/latest/install/linux/ubuntu/  https://developer.konghq.com/gateway/install/ 301
 /konnect/gateway-manager/plugins/update-custom-plugin/  https://developer.konghq.com/custom-plugins/konnect-hybrid-mode/ 301
-/konnect/updates/  https://developer.konghq.comhttps://releases.konghq.com/en 301
+/konnect/updates/  https://developer.konghq.com 301
 /gateway/latest/upgrade/  https://developer.konghq.com/gateway/upgrade/ 301
 /konnect/upgrade-faq/  https://developer.konghq.com/konnect-platform/compatibility/ 301
 /konnect/gateway-manager/data-plane-nodes/upgrade/  https://developer.konghq.com/gateway-manager/data-plane-reference/ 301
 /konnect/analytics/use-cases/  https://developer.konghq.com/advanced-analytics/ 301
 /contributing/user-interfaces/  https://developer.konghq.com/contributing/ 301
 /konnect/org-management/users/  https://developer.konghq.com/index/konnect-platform/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/using-the-editor/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/using-the-editor/  https://developer.konghq.com/dev-portal/ 301
 /deck/gateway/validate/  https://developer.konghq.com/deck/gateway/validate/ 301
 /deck/file/validate/  https://developer.konghq.com/deck/file/validate/ 301
 /contributing/variables/  https://developer.konghq.com/contributing/ 301
@@ -1857,19 +1855,19 @@
 /konnect/reference/verify-signatures/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
 /konnect/gateway-manager/version-compatibility/  https://developer.konghq.com/gateway-manager/version-compatibility/ 301
 /dev-portal/apis/versioning/  https://developer.konghq.com/dev-portal/apis/ 301
-/gateway/3.4.x/kong-enterprise/analytics/estimates/  https://developer.konghq.com/advanced-analytics/ 301
-/gateway/3.4.x/kong-enterprise/analytics/influx-strategy/  https://developer.konghq.com/advanced-analytics/ 301
-/gateway/3.4.x/kong-enterprise/analytics/metrics/  https://developer.konghq.com/advanced-analytics/ 301
-/gateway/3.4.x/kong-enterprise/analytics/prometheus-strategy/  https://developer.konghq.com/advanced-analytics/ 301
+/gateway/:version/kong-enterprise/analytics/estimates/  https://developer.konghq.com/advanced-analytics/ 301
+/gateway/:version/kong-enterprise/analytics/influx-strategy/  https://developer.konghq.com/advanced-analytics/ 301
+/gateway/:version/kong-enterprise/analytics/metrics/  https://developer.konghq.com/advanced-analytics/ 301
+/gateway/:version/kong-enterprise/analytics/prometheus-strategy/  https://developer.konghq.com/advanced-analytics/ 301
 /gateway/2.8.x/vitals/vitals-reports/  https://developer.konghq.com/advanced-analytics/ 301
 /konnect/org-management/audit-logging/webhook/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
 /konnect/dev-portal/audit-logging/webhook/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
 /dev-portal/portals/audit-logs/webhook/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
 /contributing/word-choice/  https://developer.konghq.com/contributing/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/working-with-templates/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/working-with-templates/  https://developer.konghq.com/dev-portal/ 301
 /deck/gateway/workspaces/  https://developer.konghq.com/deck/gateway/workspaces/ 301
 /gateway/latest/kong-manager/workspaces/  https://developer.konghq.com/gateway/entities/workspace/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/workspaces/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/dev-portal/workspaces/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/support/third-party/  https://developer.konghq.com/gateway/third-party-support/ 301
 /gateway/latest/support/browser/  https://developer.konghq.com/gateway/third-party-support/ 301
 /gateway/latest/support/vulnerability-patching-process/  https://developer.konghq.com/gateway/vulnerabilities/ 301
@@ -2000,9 +1998,10 @@
 /gateway/latest/reference/wasm/  https://developer.konghq.com/gateway/configuration/ 301
 /gateway/latest/reference/faq/  https://developer.konghq.com/gateway/cp-dp-communication/ 301
 /gateway/3.4.x/how-kong-works/performance-testing/  https://developer.konghq.com/gateway/performance/benchmarks/ 301
+/gateway/3.3.x/how-kong-works/performance-testing/  https://developer.konghq.com/gateway/performance/benchmarks/ 301
 /gateway/3.3.x/install/kubernetes/portal/  https://developer.konghq.com/gateway/install/kubernetes/ 301
-/gateway/3.9.x/kong-enterprise/  https://developer.konghq.com/gateway/ 301
-/gateway/3.4.x/kong-enterprise/dev-portal/themes/  https://developer.konghq.com/dev-portal/ 301
+/gateway/:version/kong-enterprise/  https://developer.konghq.com/gateway/ 301
+/gateway/:version/kong-enterprise/dev-portal/themes/  https://developer.konghq.com/dev-portal/ 301
 /gateway/3.4.x/admin-api/audit-logs/  https://developer.konghq.com/api/gateway/admin-ee/ 301
 /gateway/3.9.x/reference/reserved-entity-names/  https://developer.konghq.com/gateway/reserved-entity-names/ 301
 /gateway-operator/latest/  https://developer.konghq.com/operator/ 301
@@ -2013,7 +2012,7 @@
 /gateway-operator/latest/support/  https://developer.konghq.com/operator/support-policy/ 301
 /gateway-operator/latest/faq/  https://developer.konghq.com/index/operator/ 301
 /gateway-operator/latest/get-started/konnect/install/  https://developer.konghq.com/operator/install/ 301
-/gateway-operator/1.4.x/get-started/konnect/deploy-data-plane/  https://developer.konghq.com/operator/dataplanes/get-started/hybrid/deploy-dataplane/ 301
+/gateway-operator/:version/get-started/konnect/deploy-data-plane/  https://developer.konghq.com/operator/dataplanes/get-started/hybrid/deploy-dataplane/ 301
 /gateway-operator/latest/get-started/konnect/create-route/  https://developer.konghq.com/operator/dataplanes/get-started/hybrid/create-route/ 301
 /gateway-operator/latest/get-started/kic/install/  https://developer.konghq.com/operator/dataplanes/get-started/kic/install/ 301
 /gateway-operator/latest/get-started/kic/create-gateway/  https://developer.konghq.com/operator/dataplanes/get-started/kic/create-gateway/ 301
@@ -2080,16 +2079,16 @@
 /kubernetes-ingress-controller/latest/install/cloud/eks/  https://developer.konghq.com/kubernetes-ingress-controller/install/ 301
 /kubernetes-ingress-controller/latest/install/cloud/gke/  https://developer.konghq.com/kubernetes-ingress-controller/install/ 301
 /kubernetes-ingress-controller/latest/concepts/admission-webhook/  https://developer.konghq.com/kubernetes-ingress-controller/admission-webhook/ 301
-/kubernetes-ingress-controller/2.12.x/guides/overview/  https://developer.konghq.com/how-to/?products=kic 301
+/kubernetes-ingress-controller/:version/guides/overview/  https://developer.konghq.com/how-to/?products=kic 301
 /kubernetes-ingress-controller/latest/get-started/  https://developer.konghq.com/kubernetes-ingress-controller/install/ 301
 /kubernetes-ingress-controller/latest/upgrade/kic/  https://developer.konghq.com/kubernetes-ingress-controller/faq/upgrading-ingress-controller/ 301
 /kubernetes-ingress-controller/latest/upgrade/gateway/  https://developer.konghq.com/kubernetes-ingress-controller/faq/upgrading-gateway/ 301
-/kubernetes-ingress-controller/2.12.x/guides/getting-started-istio/  https://developer.konghq.com/kubernetes-ingress-controller/ 301
+/kubernetes-ingress-controller/:version/guides/getting-started-istio/  https://developer.konghq.com/kubernetes-ingress-controller/ 301
 /kubernetes-ingress-controller/latest/guides/migrate/kongingress/  https://developer.konghq.com/kubernetes-ingress-controller/migrate/kongingress/ 301
 /kubernetes-ingress-controller/latest/guides/services/tcp/  https://developer.konghq.com/kubernetes-ingress-controller/routing/tcp-by-port/ 301
 /kubernetes-ingress-controller/latest/guides/services/udp/  https://developer.konghq.com/kubernetes-ingress-controller/routing/udp-by-port/ 301
 /kubernetes-ingress-controller/latest/plugins/acl/  https://developer.konghq.com/kubernetes-ingress-controller/acl/ 301
-/kubernetes-ingress-controller/2.12.x/guides/cert-manager/  https://developer.konghq.com/kubernetes-ingress-controller/ 301
+/kubernetes-ingress-controller/:version/guides/cert-manager/  https://developer.konghq.com/kubernetes-ingress-controller/ 301
 /kubernetes-ingress-controller/latest/plugins/authentication/  https://developer.konghq.com/kubernetes-ingress-controller/multiple-auth-methods/ 301
 /kubernetes-ingress-controller/latest/guides/services/external/  https://developer.konghq.com/kubernetes-ingress-controller/routing/external-service/ 301
 /kubernetes-ingress-controller/latest/guides/services/https-redirect/  https://developer.konghq.com/kubernetes-ingress-controller/routing/http-to-https/ 301
@@ -2097,7 +2096,7 @@
 /kubernetes-ingress-controller/latest/production/observability/prometheus-grafana/  https://developer.konghq.com/kubernetes-ingress-controller/observability/prometheus-grafana/ 301
 /kubernetes-ingress-controller/latest/guides/high-availability/health-checks/  https://developer.konghq.com/kubernetes-ingress-controller/service-health-checks/ 301
 /kubernetes-ingress-controller/latest/plugins/custom/  https://developer.konghq.com/kubernetes-ingress-controller/custom-plugins/ 301
-/kubernetes-ingress-controller/2.12.x/guides/upstream-mtls/  https://developer.konghq.com/kubernetes-ingress-controller/verify-upstream-tls/ 301
+/kubernetes-ingress-controller/:version/guides/upstream-mtls/  https://developer.konghq.com/kubernetes-ingress-controller/verify-upstream-tls/ 301
 /kubernetes-ingress-controller/latest/guides/services/grpc/  https://developer.konghq.com/kubernetes-ingress-controller/routing/grpc/ 301
 /kubernetes-ingress-controller/latest/plugins/mtls/  https://developer.konghq.com/kubernetes-ingress-controller/mtls/ 301
 /kubernetes-ingress-controller/latest/plugins/oidc/  https://developer.konghq.com/kubernetes-ingress-controller/oidc/ 301
@@ -2105,7 +2104,7 @@
 /kubernetes-ingress-controller/latest/guides/security/client-ip/  https://developer.konghq.com/kubernetes-ingress-controller/preserve-client-ip/ 301
 /kubernetes-ingress-controller/latest/guides/services/multiple-backends/  https://developer.konghq.com/kubernetes-ingress-controller/routing/weights/ 301
 /kubernetes-ingress-controller/latest/production/deployment-topologies/gateway-discovery/  https://developer.konghq.com/kubernetes-ingress-controller/deployment-topologies/gateway-discovery/ 301
-/kubernetes-ingress-controller/2.12.x/guides/routing-by-header/  https://developer.konghq.com/kubernetes-ingress-controller/ 301
+/kubernetes-ingress-controller/:version/guides/routing-by-header/  https://developer.konghq.com/kubernetes-ingress-controller/ 301
 /kubernetes-ingress-controller/latest/reference/annotations/  https://developer.konghq.com/kubernetes-ingress-controller/reference/annotations/ 301
 /kubernetes-ingress-controller/latest/reference/cli-arguments/  https://developer.konghq.com/kubernetes-ingress-controller/reference/configuration-options/ 301
 /kubernetes-ingress-controller/latest/reference/custom-resources/  https://developer.konghq.com/kubernetes-ingress-controller/reference/custom-resources/ 301
@@ -2143,7 +2142,7 @@
 /kubernetes-ingress-controller/latest/reference/required-permissions/  https://developer.konghq.com/kubernetes-ingress-controller/reference/required-permissions/ 301
 /kubernetes-ingress-controller/latest/guides/services/custom-entity/  https://developer.konghq.com/kubernetes-ingress-controller/degraphql/ 301
 /kubernetes-ingress-controller/latest/guides/high-availability/fallback-config/  https://developer.konghq.com/kubernetes-ingress-controller/fallback-configuration/ 301
-/kubernetes-ingress-controller/3.3.x/plugins/cross-namespace/  https://developer.konghq.com/kubernetes-ingress-controller/routing/cross-namespace/ 301
+/kubernetes-ingress-controller/:version/plugins/cross-namespace/  https://developer.konghq.com/kubernetes-ingress-controller/routing/cross-namespace/ 301
 /kubernetes-ingress-controller/latest/reference/failure-modes/  https://developer.konghq.com/kubernetes-ingress-controller/troubleshooting/failure-modes/ 301
 /kubernetes-ingress-controller/latest/guides/security/verify-upstream-tls/  https://developer.konghq.com/kubernetes-ingress-controller/verify-upstream-tls/ 301
 /kubernetes-ingress-controller/latest/reference/combined-services-from-different-httproutes/  https://developer.konghq.com/kubernetes-ingress-controller/faq/combining-httproutes/ 301
@@ -2159,7 +2158,7 @@
 /mesh/latest/vulnerability-patching-process/  https://developer.konghq.com/mesh/vulnerability-patching-process/ 301
 /mesh/latest/introduction/kuma-requirements/  https://developer.konghq.com/mesh/requirements/ 301
 /mesh/latest/quickstart/kubernetes-demo/  https://developer.konghq.com/mesh/kubernetes/ 301
-/mesh/latest/quickstart/universal-docker-demo/  https://developer.konghq.com/mesh/universal/ 301
+/mesh/:version/quickstart/universal-docker-demo/  https://developer.konghq.com/mesh/universal/ 301
 /mesh/latest/production/  https://developer.konghq.com/index/mesh/ 301
 /mesh/latest/production/deployment/  https://developer.konghq.com/mesh/#deployment-modes 301
 /mesh/latest/production/deployment/single-zone/  https://developer.konghq.com/mesh/single-zone/ 301
@@ -2283,14 +2282,14 @@
 /mesh/latest/reference/data-collection/  https://developer.konghq.com/mesh/data-collection/ 301
 /mesh/latest/reference/kuma-cp/  https://developer.konghq.com/mesh/reference/kuma-cp/ 301
 /mesh/latest/reference/proxy-template/  https://developer.konghq.com/mesh/ 301
-/mesh/2.5.x/gettingstarted/  https://developer.konghq.com/mesh/#get-started 301
+/mesh/:version/gettingstarted/  https://developer.konghq.com/mesh/#get-started 301
 /mesh/2.5.x/production/deployment/stand-alone/  https://developer.konghq.com/mesh/single-zone/ 301
-/mesh/2.8.x/production/install-kumactl/  https://developer.konghq.com/mesh/#install-kong-mesh 301
+/mesh/:version/production/install-kumactl/  https://developer.konghq.com/mesh/#install-kong-mesh 301
 /mesh/2.5.x/production/cp-deployment/stand-alone/  https://developer.konghq.com/mesh/single-zone/ 301
 /mesh/2.5.x/quickstart/kubernetes/  https://developer.konghq.com/mesh/kubernetes/ 301
-/mesh/2.5.x/quickstart/universal/  https://developer.konghq.com/mesh/universal/ 301
+/mesh/:version/quickstart/universal/  https://developer.konghq.com/mesh/universal/ 301
 /mesh/2.5.x/explore/gateway/  https://developer.konghq.com/mesh/ 301
-/mesh/2.5.x/explore/gateway-api/  https://developer.konghq.com/mesh/ 301
+/mesh/:version/explore/gateway-api/  https://developer.konghq.com/mesh/ 301
 /mesh/2.8.x/policies/applying-policies/  https://developer.konghq.com/mesh/policies/ 301
 /mesh/2.8.x/policies/targetref/  https://developer.konghq.com/mesh/ 301
 /mesh/2.5.x/policies/meshgateway/  https://developer.konghq.com/mesh/ 301
@@ -2431,6 +2430,8 @@
 /hub/kong-inc/app-dynamics/how-to/basic-example/  https://developer.konghq.com/plugins/app-dynamics/examples/ 301
 /hub/kong-inc/app-dynamics/changelog/  https://developer.konghq.com/plugins/app-dynamics/changelog/ 301
 /hub/kong-inc/application-registration/  https://developer.konghq.com/dev-portal/ 301
+/hub/kong-inc/application-registration/2.8.x/  https://developer.konghq.com/dev-portal/ 301
+/hub/kong-inc/application-registration/3.3.x/  https://developer.konghq.com/dev-portal/ 301
 /hub/kong-inc/application-registration/configuration/  https://developer.konghq.com/dev-portal/ 301
 /hub/kong-inc/application-registration/how-to/basic-example/  https://developer.konghq.com/dev-portal/ 301
 /hub/kong-inc/application-registration/how-to/  https://developer.konghq.com/dev-portal/ 301
@@ -2449,7 +2450,7 @@
 /hub/kong-inc/bot-detection/  https://developer.konghq.com/plugins/bot-detection/ 301
 /hub/kong-inc/bot-detection/configuration/  https://developer.konghq.com/plugins/bot-detection/reference/ 301
 /hub/kong-inc/bot-detection/how-to/basic-example/  https://developer.konghq.com/plugins/bot-detection/examples/ 301
-/hub/kong-inc/bot-detection/changelog/  https://developer.konghq.com/plugins/bot-detection/changelog/ 301
+/hub/kong-inc/bot-detection/changelog/  https://developer.konghq.com/plugins/bot-detection/ 301
 /hub/kong-inc/canary/  https://developer.konghq.com/plugins/canary/ 301
 /hub/kong-inc/canary/configuration/  https://developer.konghq.com/plugins/canary/reference/ 301
 /hub/kong-inc/canary/how-to/basic-example/  https://developer.konghq.com/plugins/canary/examples/ 301
@@ -2768,7 +2769,7 @@
 /hub/kong-inc/statsd/how-to/basic-example/  https://developer.konghq.com/plugins/statsd/examples/ 301
 /hub/kong-inc/statsd/changelog/  https://developer.konghq.com/plugins/statsd/changelog/ 301
 /hub/kong-inc/statsd-advanced/  https://developer.konghq.com/plugins/statsd/ 301
-/hub/kong-inc/statsd-advanced/configuration/  https://developer.konghq.com/plugins/stasd/reference/ 301
+/hub/kong-inc/statsd-advanced/configuration/  https://developer.konghq.com/plugins/statsd/reference/ 301
 /hub/kong-inc/statsd-advanced/how-to/basic-example/  https://developer.konghq.com/plugins/statsd/ 301
 /hub/kong-inc/syslog/  https://developer.konghq.com/plugins/syslog/ 301
 /hub/kong-inc/syslog/configuration/  https://developer.konghq.com/plugins/syslog/reference/ 301
@@ -2955,7 +2956,7 @@
 /gateway/:version/reference/rate-limiting/  https://developer.konghq.com/rate-limiting/ 301
 /gateway/:version/kong-enterprise/secrets-management/reference-format/  https://developer.konghq.com/gateway/entities/vault/ 301
 /gateway/:version/licenses/report/  https://developer.konghq.com/gateway/entities/license/ 301
-/gateway/:version/kong-manager/auth/reset-password/  https://developer.konghq.com/kong-manager/ 301
+/gateway/:version/kong-manager/auth/reset-password/  https://developer.konghq.com/gateway/kong-manager/ 301
 /gateway/:version/install/linux/rhel/  https://developer.konghq.com/gateway/install/ 301
 /gateway/:version/production/running-kong/secure-admin-api/  https://developer.konghq.com/gateway/secure-the-admin-api/ 301
 /gateway/:version/kong-manager/auth/ldap/service-directory-mapping/  https://developer.konghq.com/gateway/entities/group/ 301
@@ -3422,7 +3423,7 @@
 /hub/kong-inc/basic-auth/:version/how-to/*  https://developer.konghq.com/plugins/basic-auth/examples/ 301
 /hub/kong-inc/bot-detection/:version/configuration/  https://developer.konghq.com/plugins/bot-detection/reference/ 301
 /hub/kong-inc/bot-detection/:version/how-to/*  https://developer.konghq.com/plugins/bot-detection/examples/ 301
-/hub/kong-inc/bot-detection/:version/changelog/  https://developer.konghq.com/plugins/bot-detection/changelog/ 301
+/hub/kong-inc/bot-detection/:version/changelog/  https://developer.konghq.com/plugins/bot-detection/ 301
 /hub/kong-inc/canary/:version/configuration/  https://developer.konghq.com/plugins/canary/reference/ 301
 /hub/kong-inc/canary/:version/how-to/*  https://developer.konghq.com/plugins/canary/examples/ 301
 /hub/kong-inc/confluent/:version/configuration/  https://developer.konghq.com/plugins/confluent/reference/ 301
@@ -3601,7 +3602,7 @@
 /hub/kong-inc/statsd/:version/configuration/  https://developer.konghq.com/plugins/statsd/reference/ 301
 /hub/kong-inc/statsd/:version/how-to/*  https://developer.konghq.com/plugins/statsd/examples/ 301
 /hub/kong-inc/statsd-advanced/:version/  https://developer.konghq.com/plugins/statsd/ 301
-/hub/kong-inc/statsd-advanced/:version/configuration/  https://developer.konghq.com/plugins/stasd/reference/ 301
+/hub/kong-inc/statsd-advanced/:version/configuration/  https://developer.konghq.com/plugins/statsd/reference/ 301
 /hub/kong-inc/statsd-advanced/:version/how-to/*  https://developer.konghq.com/plugins/statsd/ 301
 /hub/kong-inc/syslog/:version/configuration/  https://developer.konghq.com/plugins/syslog/reference/ 301
 /hub/kong-inc/syslog/:version/how-to/*  https://developer.konghq.com/plugins/syslog/examples/ 301
@@ -3664,19 +3665,19 @@
 /konnect/api/portal-management/:version/  https://developer.konghq.com/api/konnect/portal-management/ 301
 /konnect/api/search/:version/  https://developer.konghq.com/api/konnect/ksearch/ 301
 /konnect-portal/api/:version/  https://developer.konghq.com/api/konnect/dev-portal/ 301
-
-
-
+/konnect-portal/api/:version/errors/  https://developer.konghq.com/api/konnect/dev-portal/:version/errors/ 301
+/konnect-portal/api/latest/errors/  https://developer.konghq.com/api/konnect/dev-portal/ 301
 # Other
 
 /deck/latest/guides/defaults-v2/ /deck/gateway/defaults/
-/gateway/2.8.x/*    https://gateway-2-8--kongdocs.netlify.app/:splat 301
+
+# XXX: until we have the final url
+/gateway/2.8.x/*    https://deploy-preview-8852--kongdocs.netlify.app/gateway/2.8.x/:splat 301
+
 /gateway/2.7.x/*    https://legacy-gateway--kongdocs.netlify.app/gateway/2.7.x/:splat 301
 /gateway/2.6.x/*    https://legacy-gateway--kongdocs.netlify.app/gateway/2.6.x/:splat 301
-/gateway/3.3.x/admin-api/*  https://legacy-gateway--kongdocs.netlify.app/api/gateway/admin-ee/ 301
+/gateway/3.3.x/admin-api/* https://developer.konghq.com/api/gateway/admin-ee/ 301
 /hub/kong-inc/:plugin/:version/* https://developer.konghq.com/plugins/:plugin/:splat 301
-
-
 /mesh/2.4.x/policies/meshgateway/  https://developer.konghq.com/mesh/ 301
 /mesh/2.3.x/policies/meshgateway/  https://developer.konghq.com/mesh/ 301
 /mesh/2.2.x/policies/meshgateway/  https://developer.konghq.com/mesh/ 301
@@ -3696,4 +3697,5 @@
 /mesh/2.4.x/policies/applying-policies/ https://developer.konghq.com/mesh/ 301
 /mesh/2.3.x/policies/applying-policies/ https://developer.konghq.com/mesh/ 301
 /mesh/2.2.x/policies/applying-policies/ https://developer.konghq.com/mesh/ 301
-
+/mesh/:version/production/secure-deployment/manage-control-plane-permissions-on-kubernetes/  https://developer.konghq.com/mesh/manage-control-plane-permissions-on-kubernetes/ 301
+/mesh/:version/guides/restrict-permissions-to-selected-namespaces-on-kubernetes/ https://developer.konghq.com/mesh/restrict-permissions-to-selected-namespaces-on-kubernetes/ 301
