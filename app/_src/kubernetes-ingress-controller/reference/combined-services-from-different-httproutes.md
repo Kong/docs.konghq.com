@@ -3,7 +3,6 @@ title: Combining Services From Different HTTPRoutes
 type: reference
 purpose: |
   Introduce the feature gate to consolidate {{site.base_gateway}} services by combining rules from different HTTPRoutes
-alpha: true
 ---
 
 Similar to the consolidation behavior implemented for `Ingress` resources, {{ site.kic_product_name }} now supports the consolidation of rules from different `HTTPRoute` resources. When multiple `HTTPRoute`s specify the same combination of backend services, they will be translated into a single {{ site.base_gateway }} service, effectively reducing the total number of {{ site.base_gateway }} services required.
