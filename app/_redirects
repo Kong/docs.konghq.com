@@ -28,7 +28,6 @@
 /konnect/gateway-manager/data-plane-nodes/azure-peering/     /konnect/gateway-manager/dedicated-cloud-gateways/azure-peering/
 /konnect/gateway-manager/data-plane-nodes/transit-gateways/ /konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways/
 /konnect/gateway-manager/provision-cloud-gateway/            /konnect/gateway-manager/dedicated-cloud-gateways/provision-cloud-gateway/
-/konnect/gateway-manager/dedicated-cloud-gateways/   /konnect/gateway-manager/dedicated-cloud-gateways/
 /konnect/reference/custom-dns/      /konnect/dev-portal/customization/custom-dns/
 
 ## Saml SSO
