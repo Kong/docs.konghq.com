@@ -30,7 +30,7 @@ The same definitions of `feature gates` and `feature stages` from upstream Kuber
 | KongCustomEntity           | `true`  | GA    | 3.4.0  | TBD   |
 {% endif_version %}
 {% if_version gte:3.4.x %}
-| CombinedServicesFromDifferentHTTPRoutes  | `false` | Alpha | 3.4.0  | TBD   |
+| CombinedServicesFromDifferentHTTPRoutes  | `false` | GA | 3.4.0  | TBD   |
 {% endif_version %}
 
 ## Using feature gates
