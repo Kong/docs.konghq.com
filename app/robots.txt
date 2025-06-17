@@ -1,9 +1,9 @@
 ---
 layout: null
 ---
-{% for sitemap in site.data['robots']['sitemaps'] %}
-Sitemap: {{ sitemap }}
-{% endfor %}
+
+Sitemap:  https://legacy-gateway-2-8--kongdocs.netlify.app/
+
 
 User-agent: *
 Disallow: /
