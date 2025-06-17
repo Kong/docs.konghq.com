@@ -1907,7 +1907,7 @@
 /gateway/latest/production/environment-variables/  https://developer.konghq.com/gateway/manage-kong-conf/#environment-variables 301
 /gateway/latest/production/website-api-serving/  https://developer.konghq.com/gateway/ 301
 /gateway/latest/kong-enterprise/secrets-management/secrets-rotation/  https://developer.konghq.com/gateway/secrets-management/ 301
-/gateway/latest/kong-enterprise/secrets-management/backends/azure-key-vaults/  https://developer.konghq.com/how-to/configure-azure-key-vaults-as-a-vault-backend-with-vault-entity/ 301
+/gateway/latest/kong-enterprise/secrets-management/backends/azure-key-vaults/  https://developer.konghq.com/gateway/entities/vault/#supported-vault-backends 301
 /gateway/latest/kong-enterprise/secrets-management/how-to/aws-secrets-manager/  https://developer.konghq.com/how-to/store-the-gateway-database-credentials-with-aws-secrets-manager/ 301
 /gateway/latest/production/monitoring/  https://developer.konghq.com/gateway/monitoring/ 301
 /gateway/latest/production/monitoring/prometheus/  https://developer.konghq.com/plugins/prometheus/ 301
@@ -2007,7 +2007,7 @@
 /gateway-operator/latest/  https://developer.konghq.com/operator/ 301
 /gateway-operator/latest/topologies/hybrid/  https://developer.konghq.com/operator/dataplanes/get-started/hybrid/install/ 301
 /gateway-operator/latest/topologies/dbless/  https://developer.konghq.com/operator/dataplanes/get-started/kic/install/ 301
-/gateway-operator/latest/concepts/gateway-api/  https://developer.konghq.com/operator/konnect/reference/crds/ 301
+/gateway-operator/latest/concepts/gateway-api/  https://developer.konghq.com/index/operator/#konnect--konnect-crds-control-planes301
 /gateway-operator/latest/concepts/gateway-configuration/  https://developer.konghq.com/operator/dataplanes/gateway-configuration/ 301
 /gateway-operator/latest/support/  https://developer.konghq.com/operator/support-policy/ 301
 /gateway-operator/latest/faq/  https://developer.konghq.com/index/operator/ 301
@@ -2044,7 +2044,7 @@
 /gateway-operator/latest/production/certificates/custom_ca/  https://developer.konghq.com/operator/konnect/crd/gateway/certificate-ca-cert/ 301
 /gateway-operator/latest/customization/pod-disruption-budget/  https://developer.konghq.com/operator/dataplanes/reference/poddisruptionbudget/ 301
 /gateway-operator/latest/guides/plugin-distribution/  https://developer.konghq.com/operator/dataplanes/how-to/deploy-custom-plugins/ 301
-/gateway-operator/latest/guides/konnect-entities/architecture/  https://developer.konghq.com/operator/konnect/reference/crds/ 301
+/gateway-operator/latest/guides/konnect-entities/architecture/  https://developer.konghq.com/index/operator/#konnect--konnect-crds-control-planes301
 /gateway-operator/latest/guides/konnect-entities/gatewaycontrolplane/  https://developer.konghq.com/operator/konnect/crd/control-planes/control-plane-group/ 301
 /gateway-operator/latest/guides/konnect-entities/service-and-route/  https://developer.konghq.com/operator/konnect/crd/gateway/service-and-route/ 301
 /gateway-operator/latest/guides/konnect-entities/consumer-and-consumergroup/  https://developer.konghq.com/operator/konnect/crd/gateway/consumer/ 301
@@ -3009,7 +3009,7 @@
 /gateway/:version/production/environment-variables/  https://developer.konghq.com/gateway/manage-kong-conf/#environment-variables 301
 /gateway/:version/production/website-api-serving/  https://developer.konghq.com/gateway/ 301
 /gateway/:version/kong-enterprise/secrets-management/secrets-rotation/  https://developer.konghq.com/gateway/secrets-management/ 301
-/gateway/:version/kong-enterprise/secrets-management/backends/azure-key-vaults/  https://developer.konghq.com/how-to/configure-azure-key-vaults-as-a-vault-backend-with-vault-entity/ 301
+/gateway/:version/kong-enterprise/secrets-management/backends/azure-key-vaults/  https://developer.konghq.com/gateway/entities/vault/#supported-vault-backends 301
 /gateway/:version/kong-enterprise/secrets-management/how-to/aws-secrets-manager/  https://developer.konghq.com/how-to/store-the-gateway-database-credentials-with-aws-secrets-manager/ 301
 /gateway/:version/production/monitoring/  https://developer.konghq.com/gateway/monitoring/ 301
 /gateway/:version/production/monitoring/prometheus/  https://developer.konghq.com/plugins/prometheus/ 301
@@ -3102,7 +3102,7 @@
 /gateway-operator/:version/  https://developer.konghq.com/operator/ 301
 /gateway-operator/:version/topologies/hybrid/  https://developer.konghq.com/operator/dataplanes/get-started/hybrid/install/ 301
 /gateway-operator/:version/topologies/dbless/  https://developer.konghq.com/operator/dataplanes/get-started/kic/install/ 301
-/gateway-operator/:version/concepts/gateway-api/  https://developer.konghq.com/operator/konnect/reference/crds/ 301
+/gateway-operator/:version/concepts/gateway-api/  https://developer.konghq.com/index/operator/#konnect--konnect-crds-control-planes301
 /gateway-operator/:version/concepts/gateway-configuration/  https://developer.konghq.com/operator/dataplanes/gateway-configuration/ 301
 /gateway-operator/:version/support/  https://developer.konghq.com/operator/support-policy/ 301
 /gateway-operator/:version/faq/  https://developer.konghq.com/index/operator/ 301
@@ -3138,7 +3138,7 @@
 /gateway-operator/:version/production/certificates/custom_ca/  https://developer.konghq.com/operator/konnect/crd/gateway/certificate-ca-cert/ 301
 /gateway-operator/:version/customization/pod-disruption-budget/  https://developer.konghq.com/operator/dataplanes/reference/poddisruptionbudget/ 301
 /gateway-operator/:version/guides/plugin-distribution/  https://developer.konghq.com/operator/dataplanes/how-to/deploy-custom-plugins/ 301
-/gateway-operator/:version/guides/konnect-entities/architecture/  https://developer.konghq.com/operator/konnect/reference/crds/ 301
+/gateway-operator/:version/guides/konnect-entities/architecture/  https://developer.konghq.com/index/operator/#konnect--konnect-crds-control-planes301
 /gateway-operator/:version/guides/konnect-entities/gatewaycontrolplane/  https://developer.konghq.com/operator/konnect/crd/control-planes/control-plane-group/ 301
 /gateway-operator/:version/guides/konnect-entities/service-and-route/  https://developer.konghq.com/operator/konnect/crd/gateway/service-and-route/ 301
 /gateway-operator/:version/guides/konnect-entities/consumer-and-consumergroup/  https://developer.konghq.com/operator/konnect/crd/gateway/consumer/ 301
