@@ -4,6 +4,9 @@
 
 ######################################################################
 
+# XXX: until we have the final url
+/gateway/2.8.x/*    https://legacy-gateway-2-8--kongdocs.netlify.app/gateway/2.8.x/:splat 301
+
 # Evergreen redirects for nav files; do not delete unless you're removing the nav entry
 /konnect/support/data-plane-nodes/  /konnect/gateway-manager/data-plane-nodes/
 /gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
@@ -3670,9 +3673,6 @@
 # Other
 
 /deck/latest/guides/defaults-v2/ /deck/gateway/defaults/
-
-# XXX: until we have the final url
-/gateway/2.8.x/*    https://deploy-preview-8852--kongdocs.netlify.app/gateway/2.8.x/:splat 301
 
 /gateway/2.7.x/*    https://legacy-gateway--kongdocs.netlify.app/gateway/2.7.x/:splat 301
 /gateway/2.6.x/*    https://legacy-gateway--kongdocs.netlify.app/gateway/2.6.x/:splat 301
