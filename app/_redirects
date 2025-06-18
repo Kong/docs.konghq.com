@@ -1914,7 +1914,7 @@
 /gateway/latest/kong-enterprise/secrets-management/how-to/aws-secrets-manager/  https://developer.konghq.com/how-to/store-the-gateway-database-credentials-with-aws-secrets-manager/ 301
 /gateway/latest/production/monitoring/  https://developer.konghq.com/gateway/monitoring/ 301
 /gateway/latest/production/monitoring/prometheus/  https://developer.konghq.com/plugins/prometheus/ 301
-/gateway/latest/production/monitoring/statsd/  https://developer.konghq.com/plugins/statsd/ 301
+/gateway/latest/production/monitoring/statsd/  https://developer.konghq.com/how-to/collect-metrics-with-statsd/ 301
 /gateway/latest/production/monitoring/datadog/  https://developer.konghq.com/plugins/datadog/ 301
 /gateway/latest/production/monitoring/healthcheck-probes/  https://developer.konghq.com/gateway/traffic-control/health-check-probes/ 301
 /gateway/latest/production/monitoring/ai-metrics/  https://developer.konghq.com/ai-gateway/monitor-ai-llm-metrics/ 301
