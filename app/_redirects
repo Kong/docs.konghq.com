@@ -2558,3 +2558,9 @@
 /gateway/latest/support/  https://developer.konghq.com/gateway/version-support-policy/ 301
 
 /gateway/reference/db-less-and-declarative-config/ https://developer.konghq.com/gateway/db-less-mode/ 301
+
+/api/   https://developer.konghq.com/api/ 301
+/gateway/api/admin-ee/:version/*/   https://developer.konghq.com/api/gateway/admin-ee/:splat/ 301
+/gateway/api/admin-oss/:version/*/  https://developer.konghq.com/api/gateway/admin-ee/:splat/ 301
+/gateway/api/status/:version/*/      https://developer.konghq.com/api/gateway/status/:splat/ 301
+/dev-portal/api/*/  https://developer.konghq.com/api/gateway/dev-portal/:splat/ 301
