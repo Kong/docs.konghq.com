@@ -1863,7 +1863,7 @@
 /gateway/:version/kong-enterprise/analytics/metrics/  https://developer.konghq.com/advanced-analytics/ 301
 /gateway/:version/kong-enterprise/analytics/prometheus-strategy/  https://developer.konghq.com/advanced-analytics/ 301
 /gateway/2.8.x/vitals/vitals-reports/  https://developer.konghq.com/advanced-analytics/ 301
-/konnect/org-management/audit-logging/webhook/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
+/konnect/org-management/audit-logging/webhook/  https://developer.konghq.com/how-to/collect-audit-logs-with-sumologic/ 301
 /konnect/dev-portal/audit-logging/webhook/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
 /dev-portal/portals/audit-logs/webhook/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
 /contributing/word-choice/  https://developer.konghq.com/contributing/ 301
@@ -1915,7 +1915,7 @@
 /gateway/latest/production/monitoring/  https://developer.konghq.com/gateway/monitoring/ 301
 /gateway/latest/production/monitoring/prometheus/  https://developer.konghq.com/plugins/prometheus/ 301
 /gateway/latest/production/monitoring/statsd/  https://developer.konghq.com/how-to/collect-metrics-with-statsd/ 301
-/gateway/latest/production/monitoring/datadog/  https://developer.konghq.com/plugins/datadog/ 301
+/gateway/latest/production/monitoring/datadog/  https://developer.konghq.com/how-to/collect-metrics-with-datadog-and-prometheus-plugin/ 301
 /gateway/latest/production/monitoring/healthcheck-probes/  https://developer.konghq.com/gateway/traffic-control/health-check-probes/ 301
 /gateway/latest/production/monitoring/ai-metrics/  https://developer.konghq.com/ai-gateway/monitor-ai-llm-metrics/ 301
 /gateway/latest/production/tracing/  https://developer.konghq.com/gateway/tracing/ 301
