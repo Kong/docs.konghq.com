@@ -1617,8 +1617,8 @@
   status: "?"
 - docs_url: "/konnect/org-management/audit-logging/webhook/"
   source_file: konnect/org-management/audit-logging/webhook.md
-  dev_site_url: "/konnect-platform/audit-logs/"
-  status: "?"
+  dev_site_url: "/how-to/collect-audit-logs-with-sumologic/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/audit-logging/webhook/"
   source_file: konnect/dev-portal/audit-logging/webhook.md
   dev_site_url: "/konnect-platform/audit-logs/"
@@ -1825,8 +1825,8 @@
   status: migrated
 - docs_url: "/gateway/latest/production/monitoring/datadog/"
   source_file: _src/gateway/production/monitoring/datadog.md
-  dev_site_url: "/plugins/datadog/"
-  status: "?"
+  dev_site_url: "/how-to/collect-metrics-with-datadog-and-prometheus-plugin/"
+  status: migrated
 - docs_url: "/gateway/latest/production/monitoring/healthcheck-probes/"
   source_file: _src/gateway/production/monitoring/healthcheck-probes.md
   dev_site_url: "/gateway/traffic-control/health-check-probes/"
