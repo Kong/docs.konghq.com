@@ -495,12 +495,12 @@ This allow you to define two routes with two paths: `/service` and
 
 #### Using Regex in paths
 
-For a path to be considered a regular expression, it must be prefixed with a `~`: 
+For a path to be considered a regular expression, it must be prefixed with a `~`:
 
 ```
 paths: ["~/foo/bar$"]
 ```
-Any path that isn't prefixed with a `~` will be considered plain text: 
+Any path that isn't prefixed with a `~` will be considered plain text:
 
 ```
 "paths": ["/users/\d+/profile", "/following"]
@@ -541,8 +541,8 @@ defined URIs, in this order:
 3. `/version/any/`
 4. `/version`
 
-Routers with a large number of regexes can consume traffic intended for other rules. Regular expressions are much more expensive to build and execute and can't be optimized easily. 
-You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language/). 
+Routers with a large number of regexes can consume traffic intended for other rules. Regular expressions are much more expensive to build and execute and can't be optimized easily.
+You can avoid creating complex regular expressions using the [Router Expressions language](/gateway/latest/reference/router-expressions-language/).
 
 {% if_version lte:3.1.x %}
 If you see unexpected behavior, sending `Kong-Debug: 1` in your
@@ -979,7 +979,7 @@ There are two configurable elements here:
    means an error or timeout occurring while establishing a connection with the
    server, passing a request to it, or reading the response headers.
 
-The second option is based on Nginx's 
+The second option is based on Nginx's
 [`proxy_next_upstream`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive. This option is not
 directly configurable through {{site.base_gateway}}, but can be added using a custom Nginx
 configuration. See the [configuration reference][configuration-reference] for
@@ -992,17 +992,24 @@ downstream client in a streaming fashion. At this point, {{site.base_gateway}} e
 subsequent plugins added to the route and/or service that implement a hook in
 the `header_filter` phase.
 
-Once the `header_filter` phase of all registered plugins has been executed, the
+Once the `header_filter` phase of all registered plugins has been executed, if the `latency_token` option is enabled, the
 following headers are added by {{site.base_gateway}} and the full set of headers be sent to
 the client:
 
 - `Via: kong/x.x.x`, where `x.x.x` is the {{site.base_gateway}} version in use
 - `X-Kong-Proxy-Latency: <latency>`, where `latency` is the time in milliseconds
   between {{site.base_gateway}} receiving the request from the client and sending the request to
-  your upstream service.
+  your upstream service. This value represents the pure Kong internal processing time, excluding
+  external factors such as upstream latency and third-party I/O latencies (e.g., Redis, DNS, HTTP calls, socket calls).
 - `X-Kong-Upstream-Latency: <latency>`, where `latency` is the time in
   milliseconds that {{site.base_gateway}} was waiting for the first byte of the upstream service
   response.
+
+{:.important}
+> **Important:** These latency headers are reported during the `header_filter` phase, which may occur before the full response body has been processed.
+<br><br>
+> In scenarios where body processing takes significant time, the latency values in these headers might not reflect the complete duration of the request lifecycle. For more accurate and comprehensive latency data, consider using Active Tracing in Konnect, the Analytics feature in Konnect, a metrics plugin (e.g., Prometheus), or a logging plugin
+(e.g., http-log)
 
 Once the headers are sent to the client, {{site.base_gateway}} starts executing
 registered plugins for the route and/or service that implement the
@@ -1011,6 +1018,8 @@ streaming nature of Nginx. Each chunk of the upstream response that is
 successfully processed by such `body_filter` hooks is sent back to the client.
 You can find more information about the `body_filter` hook in the [Plugin
 development guide][plugin-development-guide].
+
+{{site.base_gateway}} also supports `advanced_latency_tokens` to expose more detailed timing headers such as total latency, third-party latency, and client latency. For details, see the [configuration-reference].
 
 ## Configuring a fallback route
 
