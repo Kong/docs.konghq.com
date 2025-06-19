@@ -99,6 +99,9 @@ generating the `timeout` field in the response if it is missing in the request.
 * [**Prometheus**](/hub/kong-inc/prometheus/) (`prometheus`)
   * Fixed an issue where the metric `data_plane_config_hash` wouldn't work correctly for incremental sync.
 
+### Known issues
+A bug originating from the underlying OpenResty platform affects connection pooling in certain circumstances. This issue impacts transaction handling and negatively impacts performance, resulting in reduced request rates and increased latencies. Versions 3.10.0.0 and 3.10.0.1 are both affected. To resolve this regression, please upgrade to Kong Gateway 3.10.0.2 or later.
+
 ## 3.10.0.0
 **Release Date** 2025/03/27
 
@@ -375,7 +378,11 @@ This release contains upgraded dependencies and a new interface for validating e
 * Bumped `libxml2` from 2.12.9 to 2.12.10.
 
 ### Known issues
-
+* **Connection pooling:**
+  * A bug originating from the underlying OpenResty platform affects connection pooling in certain
+  circumstances. This issue impacts transaction handling and negatively impacts performance, resulting
+  in reduced request rates and increased latencies. Versions 3.10.0.0 and 3.10.0.1 are both affected.
+  To resolve this regression, please upgrade to Kong Gateway 3.10.0.2 or later.
 * **Vault Auth plugin:** 
   * The Vault Auth plugin doesn't clear its cache when incremental sync is turned on. 
   This means that deleted secrets will remain in the cache, and can still be accessed by the plugin.
