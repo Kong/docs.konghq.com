@@ -1,21 +1,21 @@
 openapi: 3.0.3
 info:
   title: Konnect API Builder
-  version: 3.0.0
+  version: 3.0.2
   description: The management API for building APIs for Konnect Dev Portals.
   contact:
     name: Kong
-    url: 'https://cloud.konghq.com'
+    url: https://cloud.konghq.com
 servers:
-  - url: 'https://us.api.konghq.com/v3'
+  - url: https://us.api.konghq.com/v3
     description: United-States Production region
-  - url: 'https://eu.api.konghq.com/v3'
+  - url: https://eu.api.konghq.com/v3
     description: Europe Production region
-  - url: 'https://au.api.konghq.com/v3'
+  - url: https://au.api.konghq.com/v3
     description: Australia Production region
-  - url: 'https://me.api.konghq.com/v3'
+  - url: https://me.api.konghq.com/v3
     description: Middle-East Production region
-  - url: 'https://in.api.konghq.com/v3'
+  - url: https://in.api.konghq.com/v3
     description: India Production region
 security:
   - konnectAccessToken: []
@@ -30,6 +30,8 @@ tags:
 paths:
   /apis:
     post:
+      x-speakeasy-entity-operation: Api#create
+      x-unstable: true
       summary: Create API
       description: |-
         **Pre-release Endpoint**
@@ -62,6 +64,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/CreateApiRequest'
     get:
+      x-unstable: true
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
@@ -95,10 +98,56 @@ paths:
           $ref: '#/components/responses/ApiNotFound'
       tags:
         - API
-  '/apis/{apiId}':
+  /apis/validate-specification:
+    post:
+      x-unstable: true
+      x-internal: true
+      x-speakeasy-entity-operation: ApiSpecification#validate
+      summary: Validate API Specification
+      description: >-
+        Validates the content and type of a potential API specification without
+        associating it with a specific API.
+      operationId: validate-specification
+      requestBody:
+        $ref: '#/components/requestBodies/ValidateApiSpecRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/ValidateApiSpecSuccessResponse'
+        '400':
+          description: >-
+            Bad Request - Either the request format is invalid or the
+            specification content failed validation.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ApiSpecContentBadRequestExample:
+                  $ref: '#/components/examples/ApiSpecContentBadRequestExample'
+                ApiSpecValidationFailedBadRequestExample:
+                  $ref: '#/components/examples/ValidateApiSpecBadRequestExample'
+        '401':
+          $ref: '#/components/responses/ApiUnauthorized'
+        '403':
+          $ref: '#/components/responses/ApiForbidden'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+      tags:
+        - API Specification
+  /apis/{apiId}:
     parameters:
-      - $ref: '#/components/parameters/ApiId'
+      - schema:
+          type: string
+          format: uuid
+          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+        name: apiId
+        in: path
+        required: true
+        description: The UUID API identifier
+        x-speakeasy-match: id
     get:
+      x-speakeasy-entity-operation: Api#read
+      x-unstable: true
       summary: Fetch API
       description: |-
         **Pre-release Endpoint**
@@ -118,6 +167,8 @@ paths:
       tags:
         - API
     patch:
+      x-speakeasy-entity-operation: Api#update
+      x-unstable: true
       summary: Update API
       description: |-
         **Pre-release Endpoint**
@@ -150,6 +201,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/UpdateApiRequest'
     delete:
+      x-speakeasy-entity-operation: Api#delete
+      x-unstable: true
       summary: Delete API
       description: |-
         **Pre-release Endpoint**
@@ -168,10 +221,12 @@ paths:
           $ref: '#/components/responses/ApiNotFound'
       tags:
         - API
-  '/apis/{apiId}/documents':
+  /apis/{apiId}/documents:
     parameters:
       - $ref: '#/components/parameters/ApiId'
     post:
+      x-speakeasy-entity-operation: ApiDocument#create
+      x-unstable: true
       summary: Create API Document
       description: >-
         **Pre-release Endpoint**
@@ -213,6 +268,7 @@ paths:
       tags:
         - API Documentation
     get:
+      x-unstable: true
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
@@ -244,11 +300,13 @@ paths:
           $ref: '#/components/responses/ApiNotFound'
       tags:
         - API Documentation
-  '/apis/{apiId}/documents/{documentId}':
+  /apis/{apiId}/documents/{documentId}:
     parameters:
       - $ref: '#/components/parameters/ApiId'
       - $ref: '#/components/parameters/DocumentId'
     get:
+      x-speakeasy-entity-operation: ApiDocument#read
+      x-unstable: true
       summary: Fetch API Document
       description: |-
         **Pre-release Endpoint**
@@ -268,6 +326,8 @@ paths:
       tags:
         - API Documentation
     patch:
+      x-speakeasy-entity-operation: ApiDocument#update
+      x-unstable: true
       summary: Update API Document
       description: |-
         **Pre-release Endpoint**
@@ -302,6 +362,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/UpdateApiDocumentRequest'
     delete:
+      x-speakeasy-entity-operation: ApiDocument#delete
+      x-unstable: true
       summary: Delete API Documentation
       description: |-
         **Pre-release Endpoint**
@@ -320,11 +382,12 @@ paths:
           $ref: '#/components/responses/ApiNotFound'
       tags:
         - API Documentation
-  '/apis/{apiId}/documents/{documentId}/move':
+  /apis/{apiId}/documents/{documentId}/move:
     parameters:
       - $ref: '#/components/parameters/ApiId'
       - $ref: '#/components/parameters/DocumentId'
     put:
+      x-unstable: true
       summary: Move API Documentation
       description: >-
         **Pre-release Endpoint**
@@ -358,10 +421,12 @@ paths:
           $ref: '#/components/responses/Conflict'
       tags:
         - API Documentation
-  '/apis/{apiId}/specifications':
+  /apis/{apiId}/specifications:
     parameters:
       - $ref: '#/components/parameters/ApiId'
     post:
+      x-speakeasy-entity-operation: ApiSpecification#create
+      x-unstable: true
       summary: Create API Specification
       description: |-
         **Pre-release Endpoint**
@@ -397,6 +462,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/CreateApiSpecRequest'
     get:
+      x-unstable: true
       summary: List API Specifications
       description: |-
         **Pre-release Endpoint**
@@ -420,11 +486,13 @@ paths:
           $ref: '#/components/responses/ApiNotFound'
       tags:
         - API Specification
-  '/apis/{apiId}/specifications/{specId}':
+  /apis/{apiId}/specifications/{specId}:
     parameters:
       - $ref: '#/components/parameters/ApiId'
       - $ref: '#/components/parameters/SpecId'
     get:
+      x-speakeasy-entity-operation: ApiSpecification#read
+      x-unstable: true
       summary: Fetch API Specification
       description: |-
         **Pre-release Endpoint**
@@ -444,6 +512,8 @@ paths:
       tags:
         - API Specification
     patch:
+      x-speakeasy-entity-operation: ApiSpecification#update
+      x-unstable: true
       summary: Update API Specification
       description: |-
         **Pre-release Endpoint**
@@ -478,6 +548,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/UpdateApiSpecRequest'
     delete:
+      x-speakeasy-entity-operation: ApiSpecification#delete
+      x-unstable: true
       summary: Delete API Specification
       description: |-
         **Pre-release Endpoint**
@@ -496,11 +568,13 @@ paths:
           $ref: '#/components/responses/ApiNotFound'
       tags:
         - API Specification
-  '/apis/{apiId}/publications/{portalId}':
+  /apis/{apiId}/publications/{portalId}:
     parameters:
       - $ref: '#/components/parameters/ApiId'
       - $ref: '#/components/parameters/PortalId'
     put:
+      x-speakeasy-entity-operation: ApiPublication#create,update
+      x-unstable: true
       summary: Publish API
       description: |-
         **Pre-release Endpoint**
@@ -524,6 +598,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/PutApiPublicationRequest'
     get:
+      x-speakeasy-entity-operation: ApiPublication#read
+      x-unstable: true
       summary: Fetch Publication
       description: |-
         **Pre-release Endpoint**
@@ -544,6 +620,8 @@ paths:
       tags:
         - API Publication
     delete:
+      x-speakeasy-entity-operation: ApiPublication#delete
+      x-unstable: true
       summary: Delete Publication
       description: |-
         **Pre-release Endpoint**
@@ -564,6 +642,7 @@ paths:
         - API Publication
   /api-publications:
     get:
+      x-unstable: true
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
@@ -593,10 +672,12 @@ paths:
           $ref: '#/components/responses/ApiNotFound'
       tags:
         - API Publication
-  '/apis/{apiId}/implementations':
+  /apis/{apiId}/implementations:
     parameters:
       - $ref: '#/components/parameters/ApiId'
     post:
+      x-speakeasy-entity-operation: ApiImplementation#create
+      x-unstable: true
       summary: Create API Implementation
       description: |-
         **Pre-release Endpoint**
@@ -629,11 +710,13 @@ paths:
         - API Implementation
       requestBody:
         $ref: '#/components/requestBodies/CreateApiImplementationRequest'
-  '/apis/{apiId}/implementations/{implementationId}':
+  /apis/{apiId}/implementations/{implementationId}:
     parameters:
       - $ref: '#/components/parameters/ApiId'
       - $ref: '#/components/parameters/ImplementationId'
     get:
+      x-speakeasy-entity-operation: ApiImplementation#read
+      x-unstable: true
       summary: Fetch API Implementation
       description: |-
         **Pre-release Endpoint**
@@ -653,6 +736,8 @@ paths:
       tags:
         - API Implementation
     delete:
+      x-speakeasy-entity-operation: ApiImplementation#delete
+      x-unstable: true
       summary: Delete API Implementation
       description: |-
         **Pre-release Endpoint**
@@ -673,6 +758,7 @@ paths:
         - API Implementation
   /api-implementations:
     get:
+      x-unstable: true
       summary: List API Implementations
       description: |-
         **Pre-release Endpoint**
@@ -716,6 +802,7 @@ components:
       description: The document identifier related to the API
       in: path
       required: true
+      x-speakeasy-match: id
     SpecId:
       schema:
         type: string
@@ -725,6 +812,7 @@ components:
       description: The API specification identifier
       in: path
       required: true
+      x-speakeasy-match: id
     PortalId:
       schema:
         type: string
@@ -743,6 +831,7 @@ components:
       in: path
       required: true
       description: The Portal identifier
+      x-speakeasy-match: id
     ApiFilters:
       name: filter
       description: Filters APIs in the response.
@@ -825,7 +914,7 @@ components:
       schema:
         $ref: '#/components/schemas/SortQuery'
     PageSize:
-      name: 'page[size]'
+      name: page[size]
       description: >-
         The maximum number of items to include per page. The last page of a
         collection may include fewer items.
@@ -836,7 +925,7 @@ components:
         type: integer
         example: 10
     PageNumber:
-      name: 'page[number]'
+      name: page[number]
       description: Determines which page of the entities to retrieve.
       required: false
       in: query
@@ -888,7 +977,7 @@ components:
                 description: Marks this API as deprecated.
               slug:
                 type: string
-                pattern: '^[\w-]+$'
+                pattern: ^[\w-]+$
                 description: >
                   The `slug` is used in generated URLs to provide human readable
                   paths.
@@ -897,6 +986,28 @@ components:
                   Defaults to `slugify(name + version)`
                 example: my-api-v1
                 nullable: true
+              auth_strategy_sync_error:
+                readOnly: true
+                allOf:
+                  - $ref: '#/components/schemas/AuthStrategyApiSyncError'
+              spec_content:
+                type: string
+                writeOnly: true
+                description: >-
+                  The content of the API specification. This is the raw content
+                  of the API specification, in json or yaml. By including this
+                  field, you can update or add a API specification without
+                  having to make a separate call to update the API
+                  specification.
+              api_spec_ids:
+                type: array
+                readOnly: true
+                description: >-
+                  The list of API specification IDs for this API. Note only one
+                  API specification is supported per API.
+                items:
+                  type: string
+                  format: uuid
               portals:
                 readOnly: true
                 type: array
@@ -961,12 +1072,24 @@ components:
               content:
                 type: string
                 description: |
-                  The raw content of your API specification.
+                  The raw content of your API specification, in json or yaml.
                 example: >-
                   {"openapi":"3.0.3","info":{"title":"Example
                   API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
                   endpoint","responses":{"200":{"description":"Successful
                   response"}}}}}}
+              validation_messages:
+                type: array
+                description: The errors that occurred while parsing the API specification.
+                readOnly: true
+                items:
+                  type: object
+                  additionalProperties: false
+                  required:
+                    - message
+                  properties:
+                    message:
+                      type: string
               type:
                 $ref: '#/components/schemas/ApiSpecType'
               created_at:
@@ -976,8 +1099,10 @@ components:
             required:
               - content
           examples:
-            CreateApiSpecRequestExample:
-              $ref: '#/components/examples/CreateApiSpecRequestExample'
+            CreateApiSpecRequestExampleJson:
+              $ref: '#/components/examples/CreateApiSpecRequestExampleJson'
+            CreateApiSpecRequestExampleYaml:
+              $ref: '#/components/examples/CreateApiSpecRequestExampleYaml'
     CreateApiDocumentRequest:
       required: true
       content:
@@ -1055,7 +1180,7 @@ components:
                 description: Marks this API as deprecated.
               slug:
                 type: string
-                pattern: '^[\w-]+$'
+                pattern: ^[\w-]+$
                 description: >
                   The `slug` is used in generated URLs to provide human readable
                   paths.
@@ -1064,6 +1189,28 @@ components:
                   Defaults to `slugify(name + version)`
                 example: my-api-v1
                 nullable: true
+              auth_strategy_sync_error:
+                readOnly: true
+                allOf:
+                  - $ref: '#/components/schemas/AuthStrategyApiSyncError'
+              spec_content:
+                type: string
+                writeOnly: true
+                description: >-
+                  The content of the API specification. This is the raw content
+                  of the API specification, in json or yaml. By including this
+                  field, you can update or add a API specification without
+                  having to make a separate call to update the API
+                  specification.
+              api_spec_ids:
+                type: array
+                readOnly: true
+                description: >-
+                  The list of API specification IDs for this API. Note only one
+                  API specification is supported per API.
+                items:
+                  type: string
+                  format: uuid
               portals:
                 readOnly: true
                 type: array
@@ -1153,6 +1300,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/MoveDocumentRequestPayload'
+    ValidateApiSpecRequest:
+      required: true
+      description: Specification content and type for validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidateApiSpecRequestPayload'
+          examples:
+            ValidateApiSpecRequestExampleJson:
+              $ref: '#/components/examples/ValidateApiSpecRequestExampleJson'
+            ValidateApiSpecRequestExampleYaml:
+              $ref: '#/components/examples/ValidateApiSpecRequestExampleYaml'
   responses:
     ApiSlugConflict:
       description: Conflict - `slug` property must be unique
@@ -1281,6 +1440,8 @@ components:
                       - id: 25a2624c-49fc-4764-99e1-224ed819f200
                         name: My-Portal
                         display_name: My Portal
+                    api_spec_ids:
+                      - 7710d5c4-d902-410b-992f-18b814155b53
                     deprecated: false
                     created_at: '2023-01-01T00:00:00.000Z'
                     updated_at: '2023-01-01T00:00:00.000Z'
@@ -1364,12 +1525,24 @@ components:
               content:
                 type: string
                 description: |
-                  The raw content of your API specification.
+                  The raw content of your API specification, in json or yaml.
                 example: >-
                   {"openapi":"3.0.3","info":{"title":"Example
                   API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
                   endpoint","responses":{"200":{"description":"Successful
                   response"}}}}}}
+              validation_messages:
+                type: array
+                description: The errors that occurred while parsing the API specification.
+                readOnly: true
+                items:
+                  type: object
+                  additionalProperties: false
+                  required:
+                    - message
+                  properties:
+                    message:
+                      type: string
               type:
                 $ref: '#/components/schemas/ApiSpecType'
               created_at:
@@ -1382,6 +1555,7 @@ components:
               - type
               - created_at
               - updated_at
+              - validation_messages
           examples:
             ApiSpecResponse:
               $ref: '#/components/examples/ApiSpecExample'
@@ -1510,6 +1684,18 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/ApiImplementationListItem'
+    ValidateApiSpecSuccessResponse:
+      description: API specification validation successful
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidateApiSpecSuccessResponse'
+          examples:
+            ValidateApiSpecSuccessResponseExample:
+              $ref: '#/components/examples/ValidateApiSpecSuccessResponseExample'
+            ValidateApiSpecSuccessResponseWithWarningExample:
+              $ref: >-
+                #/components/examples/ValidateApiSpecSuccessResponseWithWarningExample
     UnsupportedMediaType:
       description: Unsupported Media Type
       content:
@@ -1526,6 +1712,112 @@ components:
           schema:
             $ref: '#/components/schemas/ConflictError'
   schemas:
+    Api:
+      title: API
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 9f5061ce-78f6-4452-9108-ad7c02821fd5
+          description: The API identifier.
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+          description: >
+            The name of your API. The `name + version` combination must be
+            unique for each API you publish.
+          example: MyAPI
+        description:
+          type: string
+          description: A description of your API. Will be visible on your live Portal.
+          nullable: true
+        version:
+          type: string
+          maxLength: 255
+          minLength: 1
+          description: >-
+            An optional version for your API. Leave this empty if your API is
+            unversioned.
+          nullable: true
+        deprecated:
+          type: boolean
+          default: false
+          description: Marks this API as deprecated.
+        slug:
+          type: string
+          pattern: ^[\w-]+$
+          description: >
+            The `slug` is used in generated URLs to provide human readable
+            paths.
+
+
+            Defaults to `slugify(name + version)`
+          example: my-api-v1
+          nullable: true
+        auth_strategy_sync_error:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/AuthStrategyApiSyncError'
+        spec_content:
+          type: string
+          writeOnly: true
+          description: >-
+            The content of the API specification. This is the raw content of the
+            API specification, in json or yaml. By including this field, you can
+            update or add a API specification without having to make a separate
+            call to update the API specification.
+        api_spec_ids:
+          type: array
+          readOnly: true
+          description: >-
+            The list of API specification IDs for this API. Note only one API
+            specification is supported per API.
+          items:
+            type: string
+            format: uuid
+        portals:
+          readOnly: true
+          type: array
+          nullable: false
+          uniqueItems: true
+          description: The list of portals which this API is published to.
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - id
+              - name
+              - display_name
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: 25a2624c-49fc-4764-99e1-224ed819f200
+                description: The portal identifier.
+              name:
+                type: string
+                example: My Portal
+                description: >-
+                  The name of the portal, used to distinguish it from other
+                  portals.
+              display_name:
+                type: string
+                example: My Portal
+                description: >-
+                  The display name of the portal. This value will be the
+                  portal's `name` in Portal API.
+        labels:
+          $ref: '#/components/schemas/Labels'
+        public_labels:
+          $ref: '#/components/schemas/PublicLabels'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
     ApiResponseSchema:
       title: API
       type: object
@@ -1563,7 +1855,7 @@ components:
           description: Marks this API as deprecated.
         slug:
           type: string
-          pattern: '^[\w-]+$'
+          pattern: ^[\w-]+$
           description: >
             The `slug` is used in generated URLs to provide human readable
             paths.
@@ -1572,6 +1864,27 @@ components:
             Defaults to `slugify(name + version)`
           example: my-api-v1
           nullable: true
+        auth_strategy_sync_error:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/AuthStrategyApiSyncError'
+        spec_content:
+          type: string
+          writeOnly: true
+          description: >-
+            The content of the API specification. This is the raw content of the
+            API specification, in json or yaml. By including this field, you can
+            update or add a API specification without having to make a separate
+            call to update the API specification.
+        api_spec_ids:
+          type: array
+          readOnly: true
+          description: >-
+            The list of API specification IDs for this API. Note only one API
+            specification is supported per API.
+          items:
+            type: string
+            format: uuid
         portals:
           readOnly: true
           type: array
@@ -1622,6 +1935,46 @@ components:
         - updated_at
         - slug
         - portals
+        - api_spec_ids
+    AuthStrategyApiSyncError:
+      type: object
+      additionalProperties: false
+      nullable: true
+      required:
+        - message
+      properties:
+        control_plane_error:
+          type: string
+          enum:
+            - control_plane_error_no_response
+            - control_plane_error_invalid_response
+            - control_plane_error_unavailable
+            - control_plane_error_internal_error
+            - control_plane_error_bad_request
+            - control_plane_error_plugin_conflict
+            - control_plane_error_data_constraint_error
+            - control_plane_error_implementation_not_found
+        message:
+          type: string
+        info:
+          type: object
+          additionalProperties: true
+          properties:
+            details:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: array
+                    items:
+                      type: string
+      example:
+        control_plane_error: control_plane_error_unavailable
+        message: Unable to connect to the control plane to update plugin
     ApiDocumentId:
       title: API Document ID
       type: string
@@ -1662,12 +2015,42 @@ components:
     ApiDocumentSlug:
       title: API Document Slug
       type: string
-      pattern: '^[\w-]+$'
+      pattern: ^[\w-]+$
       description: |
         The `slug` is used in generated URLs to provide human readable paths.
 
         Defaults to `slugify(title)`
       example: api-document
+    ApiDocumentSummary:
+      title: API Document Summary
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - title
+        - slug
+        - status
+        - parent_document_id
+        - labels
+        - created_at
+        - updated_at
+      properties:
+        id:
+          $ref: '#/components/schemas/ApiDocumentId'
+        title:
+          $ref: '#/components/schemas/ApiDocumentTitle'
+        slug:
+          $ref: '#/components/schemas/ApiDocumentSlug'
+        status:
+          $ref: '#/components/schemas/ApiDocumentStatus'
+        parent_document_id:
+          $ref: '#/components/schemas/ApiDocumentParentDocumentId'
+        labels:
+          $ref: '#/components/schemas/Labels'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
     ApiDocumentSummaryWithChildren:
       title: API Document Summary
       type: object
@@ -1754,18 +2137,79 @@ components:
         content:
           type: string
           description: |
-            The raw content of your API specification.
+            The raw content of your API specification, in json or yaml.
           example: >-
             {"openapi":"3.0.3","info":{"title":"Example
             API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
             endpoint","responses":{"200":{"description":"Successful
             response"}}}}}}
+        validation_messages:
+          type: array
+          description: The errors that occurred while parsing the API specification.
+          readOnly: true
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - message
+            properties:
+              message:
+                type: string
         type:
           $ref: '#/components/schemas/ApiSpecType'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+    ApiSpecSummary:
+      title: API Specification Summary
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7710d5c4-d902-410b-992f-18b814155b53
+          description: The API specification identifier.
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/ApiSpecType'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    ValidateApiSpecRequestPayload:
+      title: API Specification Validation Request Payload
+      type: object
+      additionalProperties: false
+      required:
+        - content
+      properties:
+        content:
+          type: string
+          description: >
+            The raw content of your API specification, in json or yaml, to be
+            validated.
+    ValidateApiSpecSuccessResponse:
+      title: API Specification Validation Success Response
+      type: object
+      additionalProperties: false
+      required:
+        - validation_messages
+      properties:
+        validation_messages:
+          type: array
+          description: >-
+            Any informational messages or warnings generated during validation.
+            Empty if none.
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - message
+            properties:
+              message:
+                type: string
     ApiPublicationVisibility:
       title: API Publication Visibility
       type: string
@@ -2008,7 +2452,7 @@ components:
         - oeq
       x-examples:
         example-1:
-          oeq: 'some-value,some-other-value'
+          oeq: some-value,some-other-value
     StringFieldNEQFilter:
       title: StringFieldNEQFilter
       description: Filters on the given string field value by exact match inequality.
@@ -2064,7 +2508,7 @@ components:
         - ocontains
       x-examples:
         example-1:
-          ocontains: 'this-value,or-that-value'
+          ocontains: this-value,or-that-value
     StringFieldFilter:
       title: StringFieldFilter
       description: Filters on the given string field value by either exact or fuzzy match.
@@ -2081,9 +2525,9 @@ components:
         example-3:
           contains: some-value
         example-4:
-          ocontains: 'some-potential,value'
+          ocontains: some-potential,value
         example-5:
-          oeq: 'some-potential,value'
+          oeq: some-potential,value
         example-6:
           neq: not-this-value
     LabelsFieldFilter:
@@ -2115,9 +2559,9 @@ components:
         example-3:
           contains: some-value
         example-4:
-          ocontains: 'some-potential,value'
+          ocontains: some-potential,value
         example-5:
-          oeq: 'some-potential,value'
+          oeq: some-potential,value
         example-6:
           neq: not-this-value
     BooleanFieldFilter:
@@ -2210,7 +2654,7 @@ components:
     SortQuery:
       title: SortQuery
       type: string
-      example: 'name,created_at desc'
+      example: created_at desc
       description: >
         The `asc` suffix is optional as the default sort order is ascending.
 
@@ -2263,7 +2707,7 @@ components:
         "konnect", "mesh", "kic", or "_".
       additionalProperties:
         type: string
-        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
         minLength: 1
         maxLength: 63
     PublicLabels:
@@ -2284,7 +2728,7 @@ components:
         "konnect", "mesh", "kic", or "_".
       additionalProperties:
         type: string
-        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
         minLength: 1
         maxLength: 63
     CreatedAt:
@@ -2563,9 +3007,9 @@ components:
             title:
               example: Unauthorized
             type:
-              example: 'https://httpstatuses.com/401'
+              example: https://httpstatuses.com/401
             instance:
-              example: 'kong:trace:1234567890'
+              example: kong:trace:1234567890
             detail:
               example: Invalid credentials
     ForbiddenError:
@@ -2578,9 +3022,9 @@ components:
             title:
               example: Forbidden
             type:
-              example: 'https://httpstatuses.com/403'
+              example: https://httpstatuses.com/403
             instance:
-              example: 'kong:trace:1234567890'
+              example: kong:trace:1234567890
             detail:
               example: Forbidden
     NotFoundError:
@@ -2593,9 +3037,9 @@ components:
             title:
               example: Not Found
             type:
-              example: 'https://httpstatuses.com/404'
+              example: https://httpstatuses.com/404
             instance:
-              example: 'kong:trace:1234567890'
+              example: kong:trace:1234567890
             detail:
               example: Not found
     UnsupportedMediaTypeError:
@@ -2608,9 +3052,9 @@ components:
             title:
               example: UnsupportedMediaType
             type:
-              example: 'https://httpstatuses.com/415'
+              example: https://httpstatuses.com/415
             instance:
-              example: 'kong:trace:1234567890'
+              example: kong:trace:1234567890
             detail:
               example: UnsupportedMediaType
     LabelsUpdate:
@@ -2631,7 +3075,7 @@ components:
       maxProperties: 50
       additionalProperties:
         type: string
-        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
         minLength: 1
         maxLength: 63
         nullable: true
@@ -2654,11 +3098,16 @@ components:
         "konnect", "mesh", "kic", or "_".
       additionalProperties:
         type: string
-        pattern: '^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$'
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
         minLength: 1
         maxLength: 63
         nullable: true
       writeOnly: true
+    PublishStatus:
+      type: string
+      enum:
+        - published
+        - unpublished
     ConflictError:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -2669,9 +3118,9 @@ components:
             title:
               example: Conflict
             type:
-              example: 'https://httpstatuses.com/409'
+              example: https://httpstatuses.com/409
             instance:
-              example: 'kong:trace:1234567890'
+              example: kong:trace:1234567890
             detail:
               example: Conflict
     ApiSpecType:
@@ -2685,6 +3134,7 @@ components:
 
         If this field is not set, it will be autodetected from `content`
       enum:
+        - oas2
         - oas3
         - asyncapi
     UUID:
@@ -2710,8 +3160,8 @@ components:
         basic-auth when accessing Konnect via APIs.
 
         You can generate a Personal Access Token (PAT) from the [personal access
-        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
-        dashboard.
+        token page](https://cloud.konghq.com/global/account/tokens/) in the
+        Konnect dashboard.
 
         The PAT token must be passed in the header of a request, for example:
 
@@ -2747,6 +3197,8 @@ components:
         created_at: '2023-01-01T00:00:00.000Z'
         updated_at: '2023-01-01T00:00:00.000Z'
         slug: my-api-v1
+        api_spec_ids:
+          - 7710d5c4-d902-410b-992f-18b814155b53
         portals:
           - id: 25a2624c-49fc-4764-99e1-224ed819f200
             name: My-Portal
@@ -2760,6 +3212,8 @@ components:
           endpoint","responses":{"200":{"description":"Successful
           response"}}}}}}
         type: oas3
+        validation_messages:
+          - message: '''#/components/schemas/shouldExist'' does not exist'
         created_at: '2023-01-01T00:00:00.000Z'
         updated_at: '2023-01-01T00:00:00.000Z'
     ListApiSpecExample:
@@ -2786,7 +3240,12 @@ components:
         slug: my-api-v1
         labels:
           env: test
-    CreateApiSpecRequestExample:
+        spec_content: >-
+          {"openapi":"3.0.3","info":{"title":"Example
+          API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
+          endpoint","responses":{"200":{"description":"Successful
+          response"}}}}}}
+    CreateApiSpecRequestExampleJson:
       summary: Create API Specification Request
       value:
         content: >-
@@ -2794,6 +3253,15 @@ components:
           API","version":"1.0.0"},"paths":{"/example":{"get":{"summary":"Example
           endpoint","responses":{"200":{"description":"Successful
           response"}}}}}}
+        type: oas3
+    CreateApiSpecRequestExampleYaml:
+      summary: Create API Specification Request
+      value:
+        content: >-
+          openapi: 3.0.3\ninfo:\n  title: Example API\n  version:
+          1.0.0\npaths:\n  /example:\n    get:\n      summary: Example
+          endpoint\n      responses:\n        \"200\":\n          description:
+          Successful response
         type: oas3
     UpdateApiNameRequestExample:
       summary: Update API Name
@@ -2866,7 +3334,7 @@ components:
       value:
         status: 400
         title: Invalid Request
-        instance: 'kong:trace:8405749052424858251'
+        instance: kong:trace:8405749052424858251
         detail: Invalid Parameters
         invalid_parameters:
           - field: name
@@ -2877,17 +3345,17 @@ components:
       value:
         status: 400
         title: Invalid Request
-        instance: 'kong:trace:5832302153563197721'
+        instance: kong:trace:5832302153563197721
         detail: Invalid Parameters
         invalid_parameters:
           - field: slug
             rule: matches_regex
-            reason: 'slug must match /^[\w-]+$/ regular expression'
+            reason: slug must match /^[\w-]+$/ regular expression
     ApiSpecContentBadRequestExample:
       value:
         status: 400
         title: Invalid Request
-        instance: 'kong:trace:1433447772874964729'
+        instance: kong:trace:1433447772874964729
         detail: Invalid Parameters
         invalid_parameters:
           - field: content
@@ -2898,7 +3366,7 @@ components:
       value:
         status: 400
         title: Invalid Request
-        instance: 'kong:trace:1433447772874964729'
+        instance: kong:trace:1433447772874964729
         detail: Invalid Parameters
         invalid_parameters:
           - field: service.id
@@ -2908,30 +3376,30 @@ components:
       value:
         status: 401
         title: ApiUnauthorized
-        instance: 'kong:trace:8347343766220159418'
+        instance: kong:trace:8347343766220159418
         detail: ApiUnauthorized
     ApiNotFoundExample:
       value:
         status: 404
         title: Not Found
-        instance: 'kong:trace:6816496025408232265'
+        instance: kong:trace:6816496025408232265
         detail: Not Found
     ApiForbiddenExample:
       value:
         status: 403
         title: ApiForbidden
-        instance: 'kong:trace:2723154947768991354'
+        instance: kong:trace:2723154947768991354
         detail: You do not have permission to perform this action
     ApiSlugConflictExample:
       value:
         status: 409
         title: Conflict
-        instance: 'kong:trace:3169213858331814220'
+        instance: kong:trace:3169213858331814220
     ApiSpecConflictExample:
       value:
         status: 409
         title: Conflict
-        instance: 'kong:trace:3169213858331814220'
+        instance: kong:trace:3169213858331814220
         detail: >-
           Specification for API '9f5061ce-78f6-4452-9108-ad7c02821fd5' already
           exists
@@ -2939,7 +3407,7 @@ components:
       value:
         status: 409
         title: Conflict
-        instance: 'kong:trace:9039922446017540182'
+        instance: kong:trace:9039922446017540182
         detail: >-
           Key (api_id, path)=(23380be0-c15e-4ca8-bcf7-43aadddc91b1, hidden.yaml)
           already exists.
@@ -2947,19 +3415,19 @@ components:
       value:
         status: 409
         title: Conflict
-        instance: 'kong:trace:3169213858331814220'
+        instance: kong:trace:3169213858331814220
         detail: This gateway service is already linked to another API
     ApiImplementationCountConflictExample:
       value:
         status: 409
         title: Conflict
-        instance: 'kong:trace:3169213858331814220'
+        instance: kong:trace:3169213858331814220
         detail: An implementation already exists for this API
     InvalidApiSortQueryBadRequestExample:
       value:
         status: 400
         title: Invalid Request
-        instance: 'kong:trace:4725061142075238974'
+        instance: kong:trace:4725061142075238974
         detail: Invalid Parameters
         invalid_parameters:
           - field: sort
@@ -2971,7 +3439,7 @@ components:
       value:
         status: 400
         title: Invalid Request
-        instance: 'kong:trace:4725061142075238974'
+        instance: kong:trace:4725061142075238974
         detail: Invalid Parameters
         invalid_parameters:
           - field: sort
@@ -2979,9 +3447,48 @@ components:
             choices:
               - name
             reason: '"sort" field must contain any of: [name]'
+    ValidateApiSpecRequestExampleJson:
+      summary: Validate API Specification Request (JSON)
+      value:
+        content: >-
+          {"openapi":"3.0.3","info":{"title":"Valid
+          API","version":"1.0.0"},"paths":{"/health":{"get":{"summary":"Health
+          check","responses":{"200":{"description":"OK"}}}}}}
+    ValidateApiSpecRequestExampleYaml:
+      summary: Validate API Specification Request (YAML)
+      value:
+        content: >-
+          openapi: 3.0.3\ninfo:\n  title: Valid API\n  version: 1.0.0\npaths:\n 
+          /health:\n    get:\n      summary: Health check\n     
+          responses:\n        '200':\n          description: OK
+    ValidateApiSpecSuccessResponseExample:
+      summary: Validate API Specification Success Response (No Warnings)
+      value:
+        validation_messages: []
+    ValidateApiSpecSuccessResponseWithWarningExample:
+      summary: Validate API Specification Success Response (With Warnings)
+      value:
+        validation_messages:
+          - message: '''#/components/schemas/shouldExist'' does not exist'
+    ValidateApiSpecBadRequestExample:
+      summary: Validate API Specification Bad Request (Validation Failure)
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1234567890123456789
+        detail: Invalid Parameters
+        validation_errors:
+          - path: '#/info/title'
+            message: Field 'title' is required.
+          - path: '#/paths/~1users/get/responses/200'
+            message: Response '200' requires a 'description'.
+        invalid_parameters:
+          - field: content
+            rule: invalid
+            reason: The provided specification content could not be parsed
     UnsupportedMediaTypeExample:
       value:
         status: 415
         title: Unsupported Media Type
-        instance: 'kong:trace:8347343766220159418'
+        instance: kong:trace:8347343766220159418
         detail: 'This API only supports requests with `Content-Type: application/json`'

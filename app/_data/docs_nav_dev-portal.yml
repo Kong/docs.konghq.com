@@ -62,9 +62,21 @@
           url: /app-reg/auth-strategies/key-auth/
         - text: OIDC
           items:
+            - text: Self-Managed OIDC
+              url: /app-reg/auth-strategies/oidc/self-managed-oidc/
             - text: Overview
               url: /app-reg/auth-strategies/oidc/
-            - text: DCR
+            - text: Dynamic Client Registration
               items:
                 - text: Overview
-                  url: /app-reg/auth-strategies/oidc/dcr/
+                  url: /app-reg/auth-strategies/oidc/dynamic-client-registration/
+                - text: Okta
+                  url: /app-reg/auth-strategies/oidc/dynamic-client-registration/okta/
+                - text: Curity
+                  url: /app-reg/auth-strategies/oidc/dynamic-client-registration/curity/
+                - text: Auth0
+                  url: /app-reg/auth-strategies/oidc/dynamic-client-registration/auth0/
+                - text: Azure AD
+                  url: /app-reg/auth-strategies/oidc/dynamic-client-registration/azure/
+                - text: Custom IdP
+                  url: /app-reg/auth-strategies/oidc/dynamic-client-registration/custom/
