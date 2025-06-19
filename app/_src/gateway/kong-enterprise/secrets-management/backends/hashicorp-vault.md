@@ -297,7 +297,7 @@ Configuration options for a HashiCorp vault in {{site.base_gateway}}:
 {% endif_version %}
 
 {% if_version gte:3.4.x %}
-| `vaults.config.kube_auth_path` | `kube-auth-path` | Defines the path that activates the Kubernetes authentication method. If not specified, the default path kubernetes is used. Any single leading or trailing slash in the value will be automatically trimmed. |
+| `vaults.config.kube_auth_path` | `kube-auth-path` | Defines the path that activates the Kubernetes authentication method. If not specified, the default path kubernetes is used. Any single leading or trailing slash in the value will be automatically trimmed. 
 | `vaults.config.approle_auth_path` | `approle_auth_path` | Specifies the path that activates the AppRole authentication method. If not provided, the default path AppRole will be used. Any single leading or trailing slash in the value will be automatically trimmed. |
 | `vaults.config.approle_role_id` | `approle_role_id` |  Specifies the role ID of the AppRole in HashiCorp Vault.|
 | `vaults.config.approle_secret_id` | `approle_secret_id` | Defines the secret ID of the AppRole in HashiCorp Vault. |
@@ -311,5 +311,5 @@ Common options:
 Parameter | Field name | Description
 ----------|------------|------------
 `vaults.description` <br> *optional* | **Description** | An optional description for your vault.
-`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `hcv` for HashiCorp Vault.
+`vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, `hcv`, or `conjur`. Set `hcv` for HashiCorp Vault.
 `vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://hcv-vault/<some-secret>}`.
