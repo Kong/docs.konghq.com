@@ -1,5 +1,5 @@
 ---
-title: Kong Mesh on Amazon ECS
+title: {{site.mesh_product_name}} on Amazon ECS
 ---
 
 This page describes running {{site.mesh_product_name}} on ECS and offers guidelines
@@ -17,6 +17,10 @@ On ECS, {{site.mesh_product_name}} runs in Universal mode. Every ECS task runs w
 - EC2
 
 The control plane itself also runs as an ECS service in the cluster.
+
+{% warning %}
+When using ECS Fargate it is impossible to use transparent proxy. This is because ECS tasks can't run with capabilities required to install transparent proxy.
+{% endwarning %}
 
 ### Data plane authentication
 
