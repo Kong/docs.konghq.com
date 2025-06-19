@@ -68,22 +68,57 @@ the Admin GUI in Kong Manager.
 
 Licenses expire at 00:00 on the date of expiration, relative to the time zone the machine is running in.
 
-Kong Manager displays a banner with a license expiration warning starting at 15 days before expiration.
-Expiration warnings also appear in [{{site.base_gateway}} logs](#license-expiration-logs).
+### Before Expiration
 
-After the license expires, {{site.base_gateway}} behaves as follows:
+- Kong Manager displays a banner with a license expiration warning starting 15 days before expiration
+- Expiration warnings also appear in [{{site.base_gateway}} logs](#license-expiration-logs)
 
-* Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.release}}/kong-enterprise/) become read-only.
-* The Admin API allows OSS features to continue working and configured {{site.ee_product_name}} features to continue operating in read-only mode.
-* Proxy traffic, including traffic using Enterprise plugins, continues to be processed as if the license had not expired.
-* Other Enterprise features are not accessible.
-* There may be some Enterprise features that are still writable, but they may also change later, so do not rely on this behavior.
+### After Expiration (30 day grace period)
 
-The behavior of the different deployment modes is as follows:
+- Kong Manager displays a banner with a license expiration warning for a 30 day grace period
+- Critical expiration events appear in [{{site.base_gateway}} logs](#license-expiration-logs) 
+- Kong Manager, its configuration and OSS features are accessible and may be changed
+- [Enterprise-specific features](/gateway/{{page.release}}/kong-enterprise/) become read-only
+  - [Enterprise-specific features](/gateway/{{page.release}}/kong-enterprise/) may be modified using the Admin API
+
+### After Grace Period
+
+- Kong Manager displays a banner with a license expiration warning
+- Critical expiration events appear in [{{site.base_gateway}} logs](#license-expiration-logs) 
+- Kong Manager, its configuration and OSS features are accessible and may be changed
+- [Enterprise-specific features](/gateway/{{page.release}}/kong-enterprise/) become read-only in both {{site.base_gateway}} and the Admin API[^1]
+
+[^1]: There may be some Enterprise features that are still writable, but they may also change later, so do not rely on this behavior.
+
+```mermaid
+timeline
+  title License Expiration Timeline
+  section Before Expiration
+    -90 days : `WARN` log entry once a day
+    -30 days :  `ERR` log entry once a day
+    -15 days :  `ERR` log entry once a day
+             :  Kong Manager displays a license expiration warning
+  section License Expires (Grace Period begins)
+    0 days  : `CRIT` log entry once a day
+            : {{site.base_gateway}}, it's configuration and OSS features remain accessible
+            : Data plane traffic (including traffic using Enterprise plugins) will continue to processed as before
+            : Enterprise-specific features will become read-only in {{site.base_gateway}}
+            : Enterprise-specific features can be modified using the Admin API
+  section Grace Period Expires
+    +30 days : `CRIT` log entry once a day
+              : {{site.base_gateway}}, it's configuration and OSS features remain accessible
+            : Data plane traffic (including traffic using Enterprise plugins) will continue to processed as before
+             : Enterprise-specific features will become read-only in {{site.base_gateway}} and the Admin API
+```
+
+### Data Plane Nodes
+The behaviour of Data Plane nodes at license expiry depnd on the deployment mode:
 
 - **Traditional:** Nodes will be able to restart/scale as needed.
 - **Hybrid:** Existing data planes or new data planes **can accept** config from a control plane with an expired license.
 - **DB-less and KIC:** New nodes **cannot** come up, restarts will break.
+
+### Deploying a new license
 
 To upload a new license, see [Deploy an Enterprise License](/gateway/{{page.release}}/licenses/deploy/).
 
