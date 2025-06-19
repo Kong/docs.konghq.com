@@ -6,7 +6,9 @@
   <div id="promo-banner">
     <div class="container">
       <strong>
-        <span>Kong Docs are moving soon!</span> Our docs are migrating to a new home. You'll be automatically redirected to the new site in the future. In the meantime, <a href="{{include.dev_site_link}}" data-skip-external-links-hook=true>view this page on the new site!</a>
+        You are browsing the Kong Gateway documentation archive for version 2.8.
+        This documentation is no longer actively maintained.
+         <a href="{{include.dev_site_link}}" data-skip-external-links-hook=true>Please see the latest Kong Gateway documentation.</a>
       </strong>
     </div>
   </div>
@@ -28,122 +30,6 @@
 
     <div class="navbar-items" role="navigation" aria-label="Main menu">
       <ul class="navbar-items" role="menubar">
-        <li id="top-module-list" aria-haspopup="true" role="menuitem" aria-expanded="false"
-          class="navbar-item main-menu-item with-submenu {% if include.layout != 'landing-page' %} active{% endif %}"
-        >
-          <span tabindex="0" id="docs-link" class="main-menu-item-title">{% t _includes.nav-v2.navbar.docs %}</span>
-          <span class="caret"></span>
-          <ul class="navbar-item-submenu" role="menu">
-            <div class="submenu-section">
-              <li role="menuitem" class="docs-dropdown-li">
-                <a href="/api/" class="docs-dropdown-li__link" tabindex="-1">
-                  <div class="docs-dropdown-li__card">
-                    <span class="heading">{% t _includes.nav-v2.explore_the_api_specs %}</span>
-                    <div class="docs-dropdown-li__card-link">
-                      <img src="/assets/images/landing-page/view-all-api-specs.png" alt="View all API Specs">
-                      <span class="docs-dropdown-li__card-image">
-                        {% t _includes.nav-v2.view_all_api_specs %}
-                        <img src="/assets/images/landing-page/arrow-right.svg" alt="View all API Specs arrow image">
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <div class="docs-dropdown-li__section">
-                  <div class="docs-dropdown-li__section-title">
-                    <span class="heading">{% t _includes.nav-v2.documentation %}</span>
-                  </div>
-
-                  <div class="docs-dropdown-li__section-items">
-                    <a class="item item-all" href="/api/" tabindex="-1">
-                      <div class="item__description">
-                        <div class="item__description-title">API Specs</div>
-                      </div>
-                    </a>
-
-                    {% for doc_menu_item in site.data.docs_top_nav %}
-                      <a class="item" href="{{ doc_menu_item.url }}" tabindex="-1">
-                        {% if doc_menu_item.icon %}
-                        <div>
-                          <img src="{{ doc_menu_item.icon }}" alt="{{ doc_menu_item.name }}'s icon">
-                        </div>
-                        {% endif %}
-                        <div class="item__description">
-                          <div class="item__description-title">{{ doc_menu_item.name }}</div>
-                          <div class="item__description-desc">{{ doc_menu_item.desc }}</div>
-                        </div>
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
-              </li>
-
-            </div>
-          </ul>
-        </li>
-
-        <li
-          role="menuitem"
-          aria-haspopup="true"
-          aria-expanded="false"
-          class="navbar-item main-menu-item with-submenu navbar-item-hub"
-        >
-          <span id="plugin-link" class="main-menu-item-title" tabindex="0">{% t _includes.nav-v2.navbar.plugin_hub %}</span>
-          <span class="caret"></span>
-          <ul class="navbar-item-submenu" role="menu">
-            <div class="submenu-section">
-              <li role="menuitem" class="docs-dropdown-li">
-                <a href="/hub/" class="docs-dropdown-li__link" tabindex="-1">
-                  <div class="docs-dropdown-li__card">
-                    <span class="heading">{% t _includes.nav-v2.explore_the_plugin_hub %}</span>
-                    <div class="docs-dropdown-li__card-link">
-                      <img src="/assets/images/landing-page/view-all-plugins.svg" alt="View all plugins">
-                      <span class="docs-dropdown-li__card-image">
-                        {% t _includes.nav-v2.view_all_plugins %}
-                        <img src="/assets/images/landing-page/arrow-right.svg" alt="View all plugins arrow image">
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-
-              <li role="menuitem" class="docs-dropdown-li">
-                <div class="docs-dropdown-li__section">
-                  <div class="docs-dropdown-li__section-title">
-                    <span class="heading">{% t _includes.nav-v2.functionality %}</span>
-                    <a href="/hub/" class="view-all" tabindex="-1">
-                      {% t _includes.nav-v2.view_all %}
-                      <img src="/assets/images/landing-page/arrow-right.svg" alt="View all arrow image">
-                    </a>
-                  </div>
-
-                  <div class="docs-dropdown-li__section-items">
-                    <a class="item item-all" href="/hub/" tabindex="-1">
-                      <div class="item__description">
-                        <div class="item__description-title">{% t _includes.nav-v2.view_all_plugins %}</div>
-                      </div>
-                    </a>
-
-                    {% for category in site.data.extensions.categories %}
-                      <a class="item" href="/hub/?category={{ category.slug }}" tabindex="-1">
-                        <div>
-                          <img src="{{ category.icon }}" alt="{{ category.name }}'s icon">
-                        </div>
-                        <div class="item__description">
-                          <div class="item__description-title">{{ category.name }}</div>
-                          <div class="item__description-desc">{{ category.desc }}</div>
-                        </div>
-                      </a>
-                    {% endfor %}
-
-                  </div>
-                </div>
-              </li>
-            </div>
-          </ul>
-        </li>
         <li role="menuitem" class="main-menu-item">
           <a href="https://support.konghq.com/" class="navbar-item">{% t _includes.nav-v2.navbar.support %}</a>
         </li>
