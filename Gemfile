@@ -7,7 +7,6 @@ gem 'liquid-c'
 gem 'rouge', '4.5.1'
 gem 'activesupport'
 gem 'nokogiri'
-gem 'jekyll-vite'
 gem 'i18n'
 
 group :jekyll_plugins do

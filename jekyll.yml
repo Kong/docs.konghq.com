@@ -52,7 +52,6 @@ plugins:
   - jekyll-redirect-from
   - jekyll-include-cache
   - jekyll-generator-single-source
-  - jekyll/vite
 
 defaults:
   - scope:

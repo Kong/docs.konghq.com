@@ -1,6 +1,0 @@
-Plugin | Description | Service | Route | Consumer | Consumer Group
--------|-------------|---------|-------|----------|----------------
-[Service Protection](/hub/kong-inc/service-protection/) | Apply absolute rate limits to services. | <i class="fa fa-check"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i>
-[Rate Limiting](/hub/kong-inc/rate-limiting/) | Rate limit services, consumers, and routes or apply global rate limits. | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i> 
-[Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) | Rate limit services, consumers, and routes or apply global rate limits. The Rate Limiting Advanced plugin extends the functionality of the Rate Limiting plugin by providing advanced tuning settings and the ability to apply multiple limits in sliding or fixed windows. | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i> 
-[AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced/) | Apply rate limits to traffic from LLMs. This plugin extends Rate Limiting Advanced with AI functionality. | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i>  | <i class="fa fa-check"></i> 

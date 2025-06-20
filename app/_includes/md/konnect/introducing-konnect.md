@@ -1,5 +1,0 @@
-<!-- used in Overview of Konnect and Konnect Getting Started overview-->
-{{site.konnect_short_name}} is an API lifecycle
-management platform designed from the ground up for the cloud native era
-and delivered as a service. This platform lets you build modern applications
-better, faster, and more securely. To accommodate diverse infrastructure needs, {{site.konnect_short_name}} can be utilized through a fully managed SaaS offering with [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways) or in hybrid mode. In hybrid mode, the control plane is hosted in the cloud by Kong, while you manage the data plane within your preferred network environment. Whether through Dedicated Cloud Gateways or hybrid mode, all functionalities are powered by {{site.base_gateway}}—Kong's lightweight, fast, and flexible API gateway.

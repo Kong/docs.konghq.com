@@ -1,9 +1,0 @@
-description: |
-  A fixed limit of 500 requests per hour resetting sharply on the hour, ensuring no user can exceed this limit.
-
-config:
-  limit: 
-    - 500
-  window_size: 
-    - 3600
-  window_type: fixed

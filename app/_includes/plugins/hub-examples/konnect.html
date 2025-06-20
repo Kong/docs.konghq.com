@@ -1,8 +1,0 @@
-```bash
-curl -X POST \
-{{ include.example.url }} \
-    --header "accept: application/json" \
-    --header "Content-Type: application/json" \
-    --header "Authorization: Bearer TOKEN" \
-    --data '{{ include.example.params | jsonify }}'
-```

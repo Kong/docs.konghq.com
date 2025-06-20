@@ -1,9 +1,0 @@
-description: |
-  A strict limit of 5000 requests per day resetting promptly at midnight, preventing any burst traffic or inconsistent user experiences.
-
-config:
-  limit: 
-    - 500
-  window_size: 
-    - 86400
-  window_type: fixed

@@ -1,5 +1,0 @@
-name: traceable
-config:
-  ext_cap_endpoint: "localhost:5442"
-  service_name: "kong"
-  allow_on_failure: "false"
