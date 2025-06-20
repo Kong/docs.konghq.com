@@ -1592,7 +1592,7 @@
 /konnect/analytics/explorer/  https://developer.konghq.com/advanced-analytics/explorer/ 301
 /gateway/latest/plugin-development/pluginserver/go/  https://developer.konghq.com/custom-plugins/ 301
 /deck/reference/faq/  https://developer.konghq.com/deck/ 301
-/konnect/mesh-manager/federate-zone/  https://developer.konghq.com/mesh/federate/ 301
+/konnect/mesh-manager/federate-zone/  https://developer.konghq.com/mesh-manager/federate-zone/ 301
 /deck/apiops/federated-configuration/  https://developer.konghq.com/deck/apiops/federated-configuration/ 301
 /gateway/latest/plugin-development/file-structure/  https://developer.konghq.com/custom-plugins/reference/ 301
 /konnect/api/filtering/  https://developer.konghq.com/konnect-api/ 301
@@ -1724,7 +1724,7 @@
 /contributing/markdown-rules/  https://developer.konghq.com/contributing/ 301
 /deck/file/merge/  https://developer.konghq.com/deck/file/merge/ 301
 /gateway/latest/migrate-ce-to-ke/  https://developer.konghq.com/gateway/ 301
-/konnect/mesh-manager/migrate-zone/  https://developer.konghq.com/mesh-manager/ 301
+/konnect/mesh-manager/migrate-zone/  https://developer.konghq.com/mesh-manager/migrate-zone/ 301
 /konnect/gateway-manager/control-plane-groups/migrate/  https://developer.konghq.com/gateway-manager/control-plane-groups/ 301
 /gateway/:version/kong-enterprise/dev-portal/customize/migrating-templates/  https://developer.konghq.com/dev-portal/ 301
 /konnect/getting-started/migration/  https://developer.konghq.com/gateway/self-managed-migration/ 301
@@ -1806,7 +1806,7 @@
 /deck/gateway/sensitive-data/  https://developer.konghq.com/deck/gateway/sensitive-data/ 301
 /gateway/latest/kong-manager/auth/ldap/service-directory-mapping/  https://developer.konghq.com/gateway/entities/group/ 301
 /konnect/api-products/service-documentation/  https://developer.konghq.com/dev-portal/ 301
-/konnect/mesh-manager/service-mesh/  https://developer.konghq.com/mesh-manager/ 301
+/konnect/mesh-manager/service-mesh/  https://developer.konghq.com/mesh-manager/service-mesh/ 301
 /konnect/org-management/sessions-reference/  https://developer.konghq.com/index/konnect-platform/ 301
 /gateway/latest/kong-manager/auth/sessions/  https://developer.konghq.com/plugins/session/ 301
 /gateway/:version/kong-enterprise/dev-portal/authentication/sessions/  https://developer.konghq.com/dev-portal/ 301
