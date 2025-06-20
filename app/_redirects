@@ -3706,7 +3706,7 @@
 /konnect/mesh-manager/migrate-zone/     https://developer.konghq.com/mesh-manager/migrate-zone/ 301
 /konnect/mesh-manager/service-mesh/     https://developer.konghq.com/mesh-manager/service-mesh/ 301
 
-/mesh/ https://developer.konghq.com/mesh/
-/gateway/ https://developer.konghq.com/gateway/
-/gateway-operator/ https://developer.konghq.com/operator/
-/kubernetes-ingress-controller/ https://developer.konghq.com/kubernetes-ingress-controller/
+/mesh/ https://developer.konghq.com/mesh/ 301
+/gateway/ https://developer.konghq.com/gateway/ 301
+/gateway-operator/ https://developer.konghq.com/operator/ 301
+/kubernetes-ingress-controller/ https://developer.konghq.com/kubernetes-ingress-controller/ 301
