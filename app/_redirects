@@ -4,6 +4,9 @@
 
 ######################################################################
 
+
+/mesh/latest_version/    /.netlify/functions/mesh_latest_version  200
+
 # XXX: until we have the final url
 /gateway/2.8.x/*    https://legacy-gateway-2-8--kongdocs.netlify.app/gateway/2.8.x/:splat 301
 
@@ -1705,7 +1708,6 @@
 /gateway/2.8.x/install-and-run/kubernetes/  https://developer.konghq.com/gateway/install/kubernetes/ 301
 /konnect/reference/labels/  https://developer.konghq.com/gateway-manager/konnect-labels/ 301
 /konnect/analytics/use-cases/latency/  https://developer.konghq.com/advanced-analytics/ 301
-/mesh/latest_version/  https://developer.konghq.com/mesh/latest_version/ 301
 /gateway/latest/kong-manager/auth/ldap/configure/  https://developer.konghq.com/gateway/kong-manager/ 301
 /deck/file/lint/  https://developer.konghq.com/deck/file/lint/ 301
 /gateway/latest/get-started/load-balancing/  https://developer.konghq.com/gateway/get-started/ 301
