@@ -1794,7 +1794,7 @@
 /konnect/org-management/teams-and-roles/roles-reference/  https://developer.konghq.com/konnect-platform/teams-and-roles/ 301
 /konnect/reference/saml-idp-mappings/  https://developer.konghq.com/konnect-platform/saml-idp-mapping/ 301
 /search/  https://developer.konghq.com/search/ 301
-/konnect/reference/search/  https://developer.konghq.com/api/konnect/ksearch/ 301
+/konnect/reference/search/  https://developer.konghq.com/api/konnect-platform/search/ 301
 /gateway/latest/production/running-kong/secure-admin-api/  https://developer.konghq.com/gateway/secure-the-admin-api/ 301
 /konnect/gateway-manager/data-plane-nodes/secure-communications/  https://developer.konghq.com/gateway/cp-dp-communication/ 301
 /konnect/gateway-manager/dedicated-cloud-gateways/securing-backend-traffic/  https://developer.konghq.com/dedicated-cloud-gateways/reference/ 301
