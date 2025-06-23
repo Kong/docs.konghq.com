@@ -2263,8 +2263,6 @@
 /mesh/latest/guides/consumer-producer-policies/  https://developer.konghq.com/mesh/consumer-producer-policies/ 301
 /mesh/latest/guides/rules/  https://developer.konghq.com/mesh/ 301
 /mesh/latest/guides/upgrading-transparent-proxy/  https://developer.konghq.com/mesh/transparent-proxying/ 301
-/mesh/latest/guides/deploy-kong-mesh-using-terraform-and-konnect/  https://developer.konghq.com/terraform/ 301
-/mesh/latest/guides/import-existing-konnect-kong-mesh-deployment-to-terraform/  https://developer.konghq.com/terraform/ 301
 /mesh/latest/features/  https://developer.konghq.com/mesh/enterprise/ 301
 /mesh/latest/features/vault/  https://developer.konghq.com/mesh/vault/ 301
 /mesh/latest/features/acmpca/  https://developer.konghq.com/mesh/acm-private-ca-policy/ 301
@@ -3349,8 +3347,6 @@
 /mesh/:version/guides/consumer-producer-policies/  https://developer.konghq.com/mesh/consumer-producer-policies/ 301
 /mesh/:version/guides/rules/  https://developer.konghq.com/mesh/ 301
 /mesh/:version/guides/upgrading-transparent-proxy/  https://developer.konghq.com/mesh/transparent-proxying/ 301
-/mesh/:version/guides/deploy-kong-mesh-using-terraform-and-konnect/  https://developer.konghq.com/terraform/ 301
-/mesh/:version/guides/import-existing-konnect-kong-mesh-deployment-to-terraform/  https://developer.konghq.com/terraform/ 301
 /mesh/:version/features/  https://developer.konghq.com/mesh/enterprise/ 301
 /mesh/:version/features/vault/  https://developer.konghq.com/mesh/vault/ 301
 /mesh/:version/features/acmpca/  https://developer.konghq.com/mesh/acm-private-ca-policy/ 301
@@ -3703,6 +3699,7 @@
 /mesh/:version/guides/restrict-permissions-to-selected-namespaces-on-kubernetes/ https://developer.konghq.com/mesh/restrict-permissions-to-selected-namespaces-on-kubernetes/ 301
 /mesh/:version/guides/targeting-meshhttproutes-in-supported-policies/ https://developer.konghq.com/mesh/targeting-meshhttproutes-in-supported-policies/ 301
 /mesh/:version/guides/deploy-kong-mesh-using-terraform-and-konnect/ https://developer.konghq.com/mesh/deploy-with-terraform-konnect/ 301
+/mesh/:version/guides/import-existing-konnect-kong-mesh-deployment-to-terraform/  https://developer.konghq.com/mesh/import-konnect-deployment-to-terraform/ 301
 
 /konnect/mesh-manager/federate-zone/    https://developer.konghq.com/mesh-manager/federate-zone/ 301
 /konnect/mesh-manager/migrate-zone/     https://developer.konghq.com/mesh-manager/migrate-zone/ 301
