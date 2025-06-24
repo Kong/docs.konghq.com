@@ -1426,6 +1426,39 @@
 /mesh/:version/policies/TrafficTrace/ /mesh/:version/policies/traffic-trace/ 301
 /mesh/:version/policies/virtualoutbound/ /mesh/:version/policies/virtual-outbound/ 301
 /mesh/:version/policies/VirtualOutbound/ /mesh/:version/policies/virtual-outbound/ 301
+/mesh/:version/policies/MeshAccessLog/  /mesh/:version/policies/meshaccesslog/ 301
+/mesh/:version/policies/MeshMetric/  /mesh/:version/policies/meshmetric/ 301
+/mesh/:version/policies/MeshHealthCheck/  /mesh/:version/policies/meshhealthcheck/ 301
+/mesh/:version/policies/MeshCircuitBreaker/  /mesh/:version/policies/meshcircuitbreaker/ 301
+/mesh/:version/policies/MeshFaultInjection/  /mesh/:version/policies/meshfaultinjection/ 301
+/mesh/:version/policies/MeshHttpRoute/  /mesh/:version/policies/meshhttproute/ 301
+/mesh/:version/policies/MeshLoadBalancingStrategy/  /mesh/:version/policies/meshloadbalancingstrategy/ 301
+/mesh/:version/policies/MeshPassthrough/  /mesh/:version/policies/meshpassthrough/ 301
+/mesh/:version/policies/MeshProxyPatch/  /mesh/:version/policies/meshproxypatch/ 301
+/mesh/:version/policies/MeshRateLimit/  /mesh/:version/policies/meshratelimit/ 301
+/mesh/:version/policies/MeshRetry/  /mesh/:version/policies/meshretry/ 301
+/mesh/:version/policies/MeshTCPRoute/  /mesh/:version/policies/meshtcproute/ 301
+/mesh/:version/policies/MeshTimeout/  /mesh/:version/policies/meshtimeout/ 301
+/mesh/:version/policies/MeshTLS/  /mesh/:version/policies/meshtls/ 301
+/mesh/:version/policies/MeshTrace/  /mesh/:version/policies/meshtrace/ 301
+/mesh/:version/policies/MeshTrafficPermission/  /mesh/:version/policies/meshtrafficpermission/ 301
+/mesh/:version/policies/MeshGatewayRoute/ /mesh/:version/policies/meshgatewayroute/ 301
+/mesh/:version/policies/Virtual-Outbound/ /mesh/:version/policies/virtual-outbound/ 301
+/mesh/:version/policies/Rate-Limit/ /mesh/:version/policies/rate-limit/ 301
+/mesh/:version/policies/Timeout/ /mesh/:version/policies/timeout/ 301
+/mesh/:version/policies/Retry/ /mesh/:version/policies/retry/ 301
+/mesh/:version/policies/Circuit-Breaker/ /mesh/:version/policies/circuit-breaker/ 301
+/mesh/:version/policies/Fault-Injection/ /mesh/:version/policies/fault-injection/ 301
+/mesh/:version/policies/Traffic-Log/ /mesh/:version/policies/traffic-log/ 301
+/mesh/:version/policies/Traffic-Trace/ /mesh/:version/policies/traffic-trace/ 301
+/mesh/:version/policies/Traffic-Metrics/ /mesh/:version/policies/traffic-metrics/ 301
+/mesh/:version/policies/Traffic-Route/ /mesh/:version/policies/traffic-route/ 301
+/mesh/:version/policies/Traffic-Permissions/ /mesh/:version/policies/traffic-permissions/ 301
+/mesh/:version/features/MeshOPA/  /mesh/:version/features/meshopa/ 301
+/mesh/:version/features/MeshGlobalRateLimit/  /mesh/:version/features/meshglobalratelimit/ 301
+/mesh/:version/features/OPA/  /mesh/:version/features/opa/ 301
+
+
 
 # Docs
 /mesh/:version/documentation/gateway /mesh/:version/explore/gateway 301
