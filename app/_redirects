@@ -1830,7 +1830,7 @@
 /deck/support/  https://developer.konghq.com/deck/support/ 301
 /konnect/service-catalog/integrations/swaggerhub/  https://developer.konghq.com/service-catalog/integrations/swaggerhub/ 301
 /deck/gateway/sync/  https://developer.konghq.com/deck/gateway/sync/ 301
-/konnect/org-management/system-accounts/  https://developer.konghq.com/index/konnect-platform/ 301
+/konnect/org-management/system-accounts/  https://developer.konghq.com/konnect-api/#konnect-api-authentication 301
 /gateway/latest/production/running-kong/systemd/  https://developer.konghq.com/gateway/ 301
 /deck/file/manipulation/tags/  https://developer.konghq.com/deck/file/manipulation/tags/ 301
 /deck/gateway/tags/  https://developer.konghq.com/deck/gateway/tags/ 301
