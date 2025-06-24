@@ -5250,6 +5250,8 @@ components:
       description: The identity provider that contains configuration data for creating an authentication integration.
       type: object
       properties:
+        enabled:
+          $ref: '#/components/schemas/IdentityProviderEnabled'
         type:
           $ref: '#/components/schemas/IdentityProviderType'
         config:
