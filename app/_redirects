@@ -3709,3 +3709,5 @@
 /gateway/ https://developer.konghq.com/gateway/ 301
 /gateway-operator/ https://developer.konghq.com/operator/ 301
 /kubernetes-ingress-controller/ https://developer.konghq.com/kubernetes-ingress-controller/ 301
+/_api/gateway-versions.json  https://developer.konghq.com/_api/gateway-versions.json 301
+
