@@ -1886,7 +1886,7 @@
 /konnect/gateway-manager/data-plane-nodes/upgrade/  https://developer.konghq.com/gateway-manager/data-plane-reference/ 301
 /konnect/analytics/use-cases/  https://developer.konghq.com/advanced-analytics/ 301
 /contributing/user-interfaces/  https://developer.konghq.com/contributing/ 301
-/konnect/org-management/users/  https://developer.konghq.com/index/konnect-platform/ 301
+/konnect/org-management/users/  https://developer.konghq.com/konnect-platform/teams-and-roles/ 301
 /gateway/:version/kong-enterprise/dev-portal/using-the-editor/  https://developer.konghq.com/dev-portal/ 301
 /deck/gateway/validate/  https://developer.konghq.com/deck/gateway/validate/ 301
 /deck/file/validate/  https://developer.konghq.com/deck/file/validate/ 301
