@@ -1787,7 +1787,7 @@
 /konnect/dev-portal/applications/dynamic-client-registration/okta/  https://developer.konghq.com/how-to/okta-dcr/ 301
 /deck/file/openapi2kong/  https://developer.konghq.com/deck/file/openapi2kong/ 301
 /gateway/2.8.x/install-and-run/openshift/  https://developer.konghq.com/gateway/install/ 301
-/konnect/org-management/org-switcher/  https://developer.konghq.com/konnect/ 301
+/konnect/org-management/org-switcher/  https://developer.konghq.com/konnect-platform/account/#org-switcher 301
 /konnect/service-catalog/integrations/pagerduty/  https://developer.konghq.com/service-catalog/integrations/pagerduty/ 301
 /konnect/gateway-manager/data-plane-nodes/parameter-reference/  https://developer.konghq.com/gateway-manager/data-plane-reference/ 301
 /contributing/partner-plugins/  https://developer.konghq.com/contributing/ 301
