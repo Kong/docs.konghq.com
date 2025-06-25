@@ -125,11 +125,11 @@
   status: migrated
 - docs_url: "/dev-portal/app-reg/auth-strategies/oidc/dcr/auth0/"
   source_file: dev-portal/app-reg/auth-strategies/oidc/dcr/auth0.md
-  dev_site_url: "/dev-portal/"
-  status: "?"
+  dev_site_url: "/how-to/auth0-dcr/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/applications/dynamic-client-registration/auth0/"
   source_file: konnect/dev-portal/applications/dynamic-client-registration/auth0.md
-  dev_site_url: "/dev-portal/auth-strategies/"
+  dev_site_url: "/how-to/auth0-dcr/"
   status: migrated
 - docs_url: "/gateway/latest/stability/"
   source_file: _src/gateway/stability.md
@@ -157,11 +157,11 @@
   status: migrated
 - docs_url: "/dev-portal/app-reg/auth-strategies/oidc/dcr/azure/"
   source_file: dev-portal/app-reg/auth-strategies/oidc/dcr/azure.md
-  dev_site_url: "/dev-portal/auth-strategies/"
-  status: "?"
+  dev_site_url: "/how-to/azure-ad-dcr/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/applications/dynamic-client-registration/azure/"
   source_file: konnect/dev-portal/applications/dynamic-client-registration/azure.md
-  dev_site_url: "/dev-portal/auth-strategies/"
+  dev_site_url: "/how-to/azure-ad-dcr/"
   status: migrated
 - docs_url: "/konnect/gateway-manager/backup-restore/"
   source_file: konnect/gateway-manager/backup-restore.md
@@ -285,12 +285,12 @@
   status: migrated
 - docs_url: "/konnect/dev-portal/applications/dynamic-client-registration/curity/"
   source_file: konnect/dev-portal/applications/dynamic-client-registration/curity.md
-  dev_site_url: "/dev-portal/auth-strategies/"
+  dev_site_url: "/how-to/curity-dcr/"
   status: migrated
 - docs_url: "/dev-portal/app-reg/auth-strategies/oidc/dcr/curity/"
   source_file: dev-portal/app-reg/auth-strategies/oidc/dcr/curity.md
-  dev_site_url: "/dev-portal/auth-strategies/"
-  status: "?"
+  dev_site_url: "/how-to/curity-dcr/"
+  status: migrated
 - docs_url: "/konnect/gateway-manager/dedicated-cloud-gateways/custom-dns/"
   source_file: konnect/gateway-manager/dedicated-cloud-gateways/custom-dns.md
   dev_site_url: "/dedicated-cloud-gateways/reference/"
@@ -1149,11 +1149,11 @@
   status: migrated
 - docs_url: "/dev-portal/app-reg/auth-strategies/oidc/dcr/okta/"
   source_file: dev-portal/app-reg/auth-strategies/oidc/dcr/okta.md
-  dev_site_url: "/dev-portal/auth-strategies/"
-  status: "?"
+  dev_site_url: "/how-to/okta-dcr/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/applications/dynamic-client-registration/okta/"
   source_file: konnect/dev-portal/applications/dynamic-client-registration/okta.md
-  dev_site_url: "/dev-portal/auth-strategies/"
+  dev_site_url: "/how-to/okta-dcr/"
   status: migrated
 - docs_url: "/deck/file/openapi2kong/"
   source_file: deck/file/openapi2kong.md
