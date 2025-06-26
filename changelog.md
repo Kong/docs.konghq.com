@@ -2,6 +2,28 @@
 
 <!--vale off-->
 
+## Week 24
+
+### [fix: Add KM basic auth redirect, fix the changelog dates](https://github.com/Kong/docs.konghq.com/pull/8846) (2025-06-12)
+
+<!-- What did you change and why? -->
+Added a redirect for the KM basic auth how to I just migrated, fixed the release dates for 3.10.0.2 and 3.4.3.19 since I mixed those up in #8829 
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.4.3.19](https://github.com/Kong/docs.konghq.com/pull/8829) (2025-06-12)
+
+Changelog and version bump for Gateway 3.4.3.19.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
 ## Week 18
 
 ### [fix: Incorrect links in azure content safety docs](https://github.com/Kong/docs.konghq.com/pull/8751) (2025-04-29)
