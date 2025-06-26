@@ -169,13 +169,13 @@ paths:
         '201':
           $ref: '#/components/responses/plugin-schemas'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: '#/components/responses/KonnectCPLegacyBadRequest'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: '#/components/responses/KonnectCPLegacyUnauthorized'
         '403':
-          $ref: '#/components/responses/Forbidden'
+          $ref: '#/components/responses/KonnectCPLegacyForbidden'
         '409':
-          $ref: '#/components/responses/Conflict'
+          $ref: '#/components/responses/KonnectCPLegacyConflict'
       tags:
         - Custom Plugin Schemas
   '/control-planes/{controlPlaneId}/core-entities/plugin-schemas/{name}':
@@ -196,11 +196,11 @@ paths:
         '200':
           $ref: '#/components/responses/plugin-schemas'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: '#/components/responses/KonnectCPLegacyUnauthorized'
         '403':
-          $ref: '#/components/responses/Forbidden'
+          $ref: '#/components/responses/KonnectCPLegacyForbidden'
         '404':
-          $ref: '#/components/responses/NotFound'
+          $ref: '#/components/responses/KonnectCPLegacyNotFound'
       tags:
         - Custom Plugin Schemas
     delete:
@@ -211,11 +211,11 @@ paths:
         '204':
           description: No Content
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: '#/components/responses/KonnectCPLegacyUnauthorized'
         '403':
-          $ref: '#/components/responses/Forbidden'
+          $ref: '#/components/responses/KonnectCPLegacyForbidden'
         '404':
-          $ref: '#/components/responses/NotFound'
+          $ref: '#/components/responses/KonnectCPLegacyNotFound'
       tags:
         - Custom Plugin Schemas
     put:
@@ -228,11 +228,11 @@ paths:
         '200':
           $ref: '#/components/responses/plugin-schemas'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: '#/components/responses/KonnectCPLegacyUnauthorized'
         '403':
-          $ref: '#/components/responses/Forbidden'
+          $ref: '#/components/responses/KonnectCPLegacyForbidden'
         '404':
-          $ref: '#/components/responses/NotFound'
+          $ref: '#/components/responses/KonnectCPLegacyNotFound'
       tags:
         - Custom Plugin Schemas
   '/control-planes/{controlPlaneId}/config-stores':
@@ -6742,6 +6742,7 @@ components:
           description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
           additionalProperties: true
+          nullable: true
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
@@ -6782,7 +6783,6 @@ components:
       required:
         - name
         - prefix
-        - config
     BaseError:
       description: standard error
       type: object
@@ -7074,21 +7074,51 @@ components:
               example: 'kong:trace:1234567890'
             detail:
               example: Not found
-    ConflictError:
+    KonnectCPLegacyBaseError:
+      description: standard error
+      type: object
+      properties:
+        message:
+          description: |
+            A short summary of the problem.
+          type: string
+          readOnly: true
+      title: Error
+    KonnectCPLegacyBadRequestError:
       allOf:
-        - $ref: '#/components/schemas/BaseError'
+        - $ref: '#/components/schemas/KonnectCPLegacyBaseError'
         - type: object
           properties:
-            status:
-              example: 409
-            title:
+            message:
+              example: Bad Request
+    KonnectCPLegacyUnauthorizedError:
+      allOf:
+        - $ref: '#/components/schemas/KonnectCPLegacyBaseError'
+        - type: object
+          properties:
+            message:
+              example: Unauthorized
+    KonnectCPLegacyForbiddenError:
+      allOf:
+        - $ref: '#/components/schemas/KonnectCPLegacyBaseError'
+        - type: object
+          properties:
+            message:
+              example: Forbidden
+    KonnectCPLegacyConflictError:
+      allOf:
+        - $ref: '#/components/schemas/KonnectCPLegacyBaseError'
+        - type: object
+          properties:
+            message:
               example: Conflict
-            type:
-              example: 'https://httpstatuses.com/409'
-            instance:
-              example: 'kong:trace:1234567890'
-            detail:
-              example: Conflict
+    KonnectCPLegacyNotFoundError:
+      allOf:
+        - $ref: '#/components/schemas/KonnectCPLegacyBaseError'
+        - type: object
+          properties:
+            message:
+              example: Not Found
     CursorMetaPage:
       type: object
       properties:
@@ -7234,6 +7264,21 @@ components:
         title: Not Found
         instance: 'kong:trace:6816496025408232265'
         detail: Not Found
+    KonnectCPLegacyBadRequestExample:
+      value:
+        message: Bad Request
+    KonnectCPLegacyUnauthorizedExample:
+      value:
+        message: Unauthorized
+    KonnectCPLegacyForbiddenExample:
+      value:
+        message: Forbidden
+    KonnectCPLegacyConflictExample:
+      value:
+        message: Conflict
+    KonnectCPLegacyNotFoundExample:
+      value:
+        message: Not Found
     UnsupportedMediaTypeExample:
       value:
         status: 415
@@ -7267,7 +7312,7 @@ components:
                 description: |
                   The custom plugin schema; `jq -Rs '.' schema.lua`.
                 type: string
-                example: 'return { name = \"myplugin\", fields = { { config = { type = \"record\", fields = { } } } } }'
+                example: 'return { name = "myplugin", fields = { { config = { type = "record", fields = { } } } } }'
             required:
               - lua_schema
             x-examples:
@@ -7668,21 +7713,51 @@ components:
           examples:
             UnauthorizedExample:
               $ref: '#/components/examples/ForbiddenExample'
-    NotFound:
-      description: Not Found
+    KonnectCPLegacyBadRequest:
+      description: Forbidden
       content:
-        application/problem+json:
+        application/json:
           schema:
-            $ref: '#/components/schemas/NotFoundError'
+            $ref: '#/components/schemas/KonnectCPLegacyBadRequestError'
           examples:
-            NotFoundExample:
-              $ref: '#/components/examples/NotFoundExample'
-    Conflict:
-      description: Conflict
+            UnauthorizedExample:
+              $ref: '#/components/examples/KonnectCPLegacyBadRequestExample'
+    KonnectCPLegacyUnauthorized:
+      description: Unauthorized
       content:
-        application/problem+json:
+        application/json:
           schema:
-            $ref: '#/components/schemas/ConflictError'
+            $ref: '#/components/schemas/KonnectCPLegacyUnauthorizedError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/KonnectCPLegacyUnauthorizedExample'
+    KonnectCPLegacyForbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KonnectCPLegacyForbiddenError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/KonnectCPLegacyForbiddenExample'
+    KonnectCPLegacyConflict:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KonnectCPLegacyConflictError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/KonnectCPLegacyConflictExample'
+    KonnectCPLegacyNotFound:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KonnectCPLegacyNotFoundError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/KonnectCPLegacyNotFoundExample'
     UnsupportedMediaType:
       description: Unsupported Media Type
       content:

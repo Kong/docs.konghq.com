@@ -250,6 +250,7 @@ components:
       enum:
         - cef
         - json
+        - cps
     ListAuditLogDestinations:
       type: object
       properties:
