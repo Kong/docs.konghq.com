@@ -1776,7 +1776,7 @@
 /gateway/2.8.x/configure/auth/oidc-cognito/  https://developer.konghq.com/plugins/openid-connect/examples/amazon-cognito/ 301
 /gateway/2.8.x/configure/auth/oidc-curity/  https://developer.konghq.com/plugins/openid-connect/examples/curity/ 301
 /gateway/2.8.x/configure/auth/oidc-google/  https://developer.konghq.com/plugins/openid-connect/examples/google/ 301
-/gateway/latest/kong-manager/auth/oidc/mapping/  https://developer.konghq.com/gateway/kong-manager/ 301
+/gateway/latest/kong-manager/auth/oidc/mapping/  https://developer.konghq.com/gateway/kong-manager/openid-connect/#oidc-authenticated-group-mapping 301
 /gateway/2.8.x/configure/auth/oidc-okta/  https://developer.konghq.com/plugins/openid-connect/examples/okta/ 301
 /gateway/2.8.x/configure/auth/oidc-use-case/  https://developer.konghq.com/plugins/openid-connect/ 301
 /gateway/:version/kong-enterprise/dev-portal/authentication/oidc/  https://developer.konghq.com/dev-portal/ 301
@@ -1995,8 +1995,8 @@
 /gateway/latest/kong-manager/get-started/proxy-caching/  https://developer.konghq.com/gateway/kong-manager/ 301
 /gateway/latest/kong-manager/get-started/consumers/  https://developer.konghq.com/gateway/kong-manager/ 301
 /gateway/latest/kong-manager/get-started/load-balancing/  https://developer.konghq.com/gateway/kong-manager/ 301
-/gateway/latest/kong-manager/auth/oidc/configure/  https://developer.konghq.com/gateway/kong-manager/ 301
-/gateway/latest/kong-manager/auth/oidc/migrate/  https://developer.konghq.com/gateway/kong-manager/ 301
+/gateway/latest/kong-manager/auth/oidc/configure/  https://developer.konghq.com/gateway/kong-manager/openid-connect/ 301
+/gateway/latest/kong-manager/auth/oidc/migrate/  https://developer.konghq.com/gateway/kong-manager/openid-connect/#migrate-oidc-configuration-from-older-versions 301
 /gateway/latest/kong-manager/auth/rbac/enable/  https://developer.konghq.com/how-to/enable-rbac-with-admin-api/ 301
 /gateway/latest/kong-manager/consumer-groups/  https://developer.konghq.com/gateway/kong-manager/ 301
 /gateway/latest/kong-manager/troubleshoot/  https://developer.konghq.com/gateway/kong-manager/configuration/ 301
@@ -2988,7 +2988,7 @@
 /gateway/:version/migrate-ce-to-ke/  https://developer.konghq.com/gateway/ 301
 /gateway/:version/production/networking/firewall/  https://developer.konghq.com/gateway/network/ 301
 /gateway/:version/kong-manager/networking/  https://developer.konghq.com/gateway/kong-manager/configuration/ 301
-/gateway/:version/kong-manager/auth/oidc/mapping/  https://developer.konghq.com/gateway/kong-manager/ 301
+/gateway/:version/kong-manager/auth/oidc/mapping/  https://developer.konghq.com/gateway/kong-manager/openid-connect/#oidc-authenticated-group-mapping 301
 /gateway/:version/plugin-development/configuration/  https://developer.konghq.com/custom-plugins/schema.lua/ 301
 /gateway/:version/how-kong-works/routing-traffic/  https://developer.konghq.com/gateway/entities/route/ 301
 /gateway/:version/reference/rate-limiting/  https://developer.konghq.com/rate-limiting/ 301
