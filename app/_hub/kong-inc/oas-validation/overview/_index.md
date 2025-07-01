@@ -18,7 +18,7 @@ The plugin supports both Swagger (v2) and OpenAPI (3.0.x and 3.1.0) specificatio
 
 {% if_version gte:3.2.x %}
 {:.important .no-icon}
-> In {{site.base_gateway}} versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default. Upgrade to 3.1.1.2, or manually [enable the plugin](/hub/kong-inc/oas-validation/3.1.x/#enable-the-plugin).
+> In {{site.base_gateway}} versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default. Upgrade to 3.1.1.2, or manually enable the plugin.
 {% endif_version %}
 
 {% if_version eq:3.1.x %}
