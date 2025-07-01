@@ -531,6 +531,9 @@
 /hub/:vendor/:plugin/3.2.x/*                       https://legacy-gateway--kongdocs.netlify.app/hub/:vendor/:plugin/3.2.x/:splat
 /hub/plugins/license-tiers/                        /hub/
 
+/hub/kong-inc/key-auth/:version/how-to/ /hub/kong-inc/key-auth/:version/how-to/basic-example/ 301
+/hub/kong-inc/rate-limiting-advanced/:version/how-to/ /hub/kong-inc/rate-limiting-advanced/:version/how-to/basic-example/ 301
+
 # KONNECT
 
 /konnect/api/audit-logs/webhook/                    /konnect/org-management/audit-logging/webhook/
