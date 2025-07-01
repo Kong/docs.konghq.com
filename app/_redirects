@@ -8,6 +8,7 @@
 /mesh/installer.sh  https://developer.konghq.com/mesh/installer.sh 301
 /mesh/installer.ps1  https://developer.konghq.com/mesh/installer.ps1 301
 /mesh/latest_version/    /.netlify/functions/mesh_latest_version  200
+/latest/configuration/  https://developer.konghq.com/gateway/configuration/ 301
 
 # XXX: until we have the final url
 /gateway/2.8.x/*    https://legacy-gateway-2-8--kongdocs.netlify.app/gateway/2.8.x/:splat 301
