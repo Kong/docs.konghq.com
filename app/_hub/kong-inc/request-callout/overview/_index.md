@@ -68,7 +68,7 @@ codes considered errors and the number of retries to make. `error_response_code`
 and `error_response_msg` determine the status code and message to response with 
 in case of failures, both if the error policy is `retry` or `fail`. 
 `error_response_msg` supports Lua expressions, with the same syntax and 
-semantics as Request Transformer Advanced plugin [templates](/hub/kong-inc/request-transformer-advanced/templates).
+semantics as Request Transformer Advanced plugin [templates](/hub/kong-inc/request-transformer-advanced/how-to/templates).
 
 
 The [schema reference](/hub/kong-inc/request-callout/configuration/) contains the full 
