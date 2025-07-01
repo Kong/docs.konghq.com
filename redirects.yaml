@@ -3609,7 +3609,7 @@
   status: migrated
 - docs_url: "/hub/kong-inc/ai-proxy/how-to/cloud-provider-authentication/"
   source_file: _hub/kong-inc/ai-proxy/how-to/_cloud-provider-authentication.md
-  dev_site_url: "/plugins/ai-proxy/examples/azure-ai-with-managed-identity/"
+  dev_site_url: "/plugins/ai-proxy/#can-i-authenticate-to-azure-ai-with-azure-identity"
   status: migrated
 - docs_url: "/hub/kong-inc/ai-proxy/how-to/sdk-usage/"
   source_file: _hub/kong-inc/ai-proxy/how-to/_sdk-usage.md
@@ -3673,7 +3673,7 @@
   status: migrated
 - docs_url: "/hub/kong-inc/ai-proxy-advanced/how-to/cloud-provider-authentication/"
   source_file: _hub/kong-inc/ai-proxy-advanced/how-to/_cloud-provider-authentication.md
-  dev_site_url: "/plugins/ai-proxy/examples/azure-ai-with-managed-identity/"
+  dev_site_url: "/plugins/ai-proxy-advanced/#can-i-authenticate-to-azure-ai-with-azure-identity"
   status: migrated
 - docs_url: "/hub/kong-inc/ai-proxy-advanced/how-to/load-balancing/"
   source_file: _hub/kong-inc/ai-proxy-advanced/how-to/_load-balancing.md
