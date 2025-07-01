@@ -14,5 +14,35 @@
     pcre: "8.45"
   lua_doc: true
   lts: true
-  latest: true
   endOfLifeDate: 2025-03-31
+- release: "3.4.x"
+  ee-version: "3.4.3.19"
+  ce-version: "3.4.2"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+  lts: true
+  endOfLifeDate: 2026-08-31
+- release: "3.10.x"
+  ee-version: "3.10.0.2"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+  lts: true
+  latest: true
