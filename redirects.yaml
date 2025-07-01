@@ -125,11 +125,11 @@
   status: migrated
 - docs_url: "/dev-portal/app-reg/auth-strategies/oidc/dcr/auth0/"
   source_file: dev-portal/app-reg/auth-strategies/oidc/dcr/auth0.md
-  dev_site_url: "/dev-portal/"
-  status: "?"
+  dev_site_url: "/how-to/auth0-dcr/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/applications/dynamic-client-registration/auth0/"
   source_file: konnect/dev-portal/applications/dynamic-client-registration/auth0.md
-  dev_site_url: "/dev-portal/auth-strategies/"
+  dev_site_url: "/how-to/auth0-dcr/"
   status: migrated
 - docs_url: "/gateway/latest/stability/"
   source_file: _src/gateway/stability.md
@@ -157,11 +157,11 @@
   status: migrated
 - docs_url: "/dev-portal/app-reg/auth-strategies/oidc/dcr/azure/"
   source_file: dev-portal/app-reg/auth-strategies/oidc/dcr/azure.md
-  dev_site_url: "/dev-portal/auth-strategies/"
-  status: "?"
+  dev_site_url: "/how-to/azure-ad-dcr/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/applications/dynamic-client-registration/azure/"
   source_file: konnect/dev-portal/applications/dynamic-client-registration/azure.md
-  dev_site_url: "/dev-portal/auth-strategies/"
+  dev_site_url: "/how-to/azure-ad-dcr/"
   status: migrated
 - docs_url: "/konnect/gateway-manager/backup-restore/"
   source_file: konnect/gateway-manager/backup-restore.md
@@ -285,12 +285,12 @@
   status: migrated
 - docs_url: "/konnect/dev-portal/applications/dynamic-client-registration/curity/"
   source_file: konnect/dev-portal/applications/dynamic-client-registration/curity.md
-  dev_site_url: "/dev-portal/auth-strategies/"
+  dev_site_url: "/how-to/curity-dcr/"
   status: migrated
 - docs_url: "/dev-portal/app-reg/auth-strategies/oidc/dcr/curity/"
   source_file: dev-portal/app-reg/auth-strategies/oidc/dcr/curity.md
-  dev_site_url: "/dev-portal/auth-strategies/"
-  status: "?"
+  dev_site_url: "/how-to/curity-dcr/"
+  status: migrated
 - docs_url: "/konnect/gateway-manager/dedicated-cloud-gateways/custom-dns/"
   source_file: konnect/gateway-manager/dedicated-cloud-gateways/custom-dns.md
   dev_site_url: "/dedicated-cloud-gateways/reference/"
@@ -521,8 +521,8 @@
   status: migrated
 - docs_url: "/konnect/mesh-manager/federate-zone/"
   source_file: konnect/mesh-manager/federate-zone.md
-  dev_site_url: "/mesh/federate/"
-  status: "?"
+  dev_site_url: "/mesh-manager/federate-zone/"
+  status: "migrated"
 - docs_url: "/deck/apiops/federated-configuration/"
   source_file: deck/apiops/federated-configuration.md
   dev_site_url: "/deck/apiops/federated-configuration/"
@@ -1053,8 +1053,8 @@
   status: "?"
 - docs_url: "/konnect/mesh-manager/migrate-zone/"
   source_file: konnect/mesh-manager/migrate-zone.md
-  dev_site_url: "/mesh-manager/"
-  status: "?"
+  dev_site_url: "/mesh-manager/migrate-zone/"
+  status: "migrated"
 - docs_url: "/konnect/gateway-manager/control-plane-groups/migrate/"
   source_file: konnect/gateway-manager/control-plane-groups/migrate.md
   dev_site_url: "/gateway-manager/control-plane-groups/"
@@ -1149,11 +1149,11 @@
   status: migrated
 - docs_url: "/dev-portal/app-reg/auth-strategies/oidc/dcr/okta/"
   source_file: dev-portal/app-reg/auth-strategies/oidc/dcr/okta.md
-  dev_site_url: "/dev-portal/auth-strategies/"
-  status: "?"
+  dev_site_url: "/how-to/okta-dcr/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/applications/dynamic-client-registration/okta/"
   source_file: konnect/dev-portal/applications/dynamic-client-registration/okta.md
-  dev_site_url: "/dev-portal/auth-strategies/"
+  dev_site_url: "/how-to/okta-dcr/"
   status: migrated
 - docs_url: "/deck/file/openapi2kong/"
   source_file: deck/file/openapi2kong.md
@@ -1381,8 +1381,8 @@
   status: won't do
 - docs_url: "/konnect/mesh-manager/service-mesh/"
   source_file: konnect/mesh-manager/service-mesh.md
-  dev_site_url: "/mesh-manager/"
-  status: "?"
+  dev_site_url: "/mesh-manager/service-mesh/"
+  status: "migrated"
 - docs_url: "/konnect/org-management/sessions-reference/"
   source_file: konnect/org-management/sessions-reference.md
   dev_site_url: "/index/konnect-platform/"
@@ -1617,8 +1617,8 @@
   status: "?"
 - docs_url: "/konnect/org-management/audit-logging/webhook/"
   source_file: konnect/org-management/audit-logging/webhook.md
-  dev_site_url: "/konnect-platform/audit-logs/"
-  status: "?"
+  dev_site_url: "/how-to/collect-audit-logs-with-sumologic/"
+  status: migrated
 - docs_url: "/konnect/dev-portal/audit-logging/webhook/"
   source_file: konnect/dev-portal/audit-logging/webhook.md
   dev_site_url: "/konnect-platform/audit-logs/"
@@ -1821,12 +1821,12 @@
   status: "?"
 - docs_url: "/gateway/latest/production/monitoring/statsd/"
   source_file: _src/gateway/production/monitoring/statsd.md
-  dev_site_url: "/plugins/statsd/"
-  status: "?"
+  dev_site_url: "/how-to/collect-metrics-with-statsd/"
+  status: migrated
 - docs_url: "/gateway/latest/production/monitoring/datadog/"
   source_file: _src/gateway/production/monitoring/datadog.md
-  dev_site_url: "/plugins/datadog/"
-  status: "?"
+  dev_site_url: "/how-to/collect-metrics-with-datadog-and-prometheus-plugin/"
+  status: migrated
 - docs_url: "/gateway/latest/production/monitoring/healthcheck-probes/"
   source_file: _src/gateway/production/monitoring/healthcheck-probes.md
   dev_site_url: "/gateway/traffic-control/health-check-probes/"
@@ -3965,7 +3965,7 @@
   status: migrated
 - docs_url: "/hub/kong-inc/bot-detection/changelog/"
   source_file: _hub/kong-inc/bot-detection/_changelog.md
-  dev_site_url: "/plugins/bot-detection/"
+  dev_site_url: "/plugins/bot-detection/changelog/"
   status: migrated
 - docs_url: "/hub/kong-inc/canary/"
   source_file: _hub/kong-inc/canary/overview/_index.md
@@ -5241,7 +5241,7 @@
   status: migrated
 - docs_url: "/hub/kong-inc/statsd-advanced/configuration/"
   source_file: _src/.repos/kong-plugins/schemas/statsd-advanced/2.8.x.json
-  dev_site_url: "/plugins/statsd/reference/"
+  dev_site_url: "/plugins/stasd/reference/"
   status: migrated
 - docs_url: "/hub/kong-inc/statsd-advanced/how-to/basic-example/"
   source_file: _src/.repos/kong-plugins/examples/statsd-advanced/_2.8.x.yaml
