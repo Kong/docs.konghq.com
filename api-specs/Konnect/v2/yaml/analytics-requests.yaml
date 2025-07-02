@@ -70,6 +70,7 @@ components:
               type: array
               items:
                 oneOf:
+                  - $ref: '#/components/schemas/ApiFilterByField'
                   - $ref: '#/components/schemas/ApiProductFilterByField'
                   - $ref: '#/components/schemas/ApiProductVersionFilterByField'
                   - $ref: '#/components/schemas/ApplicationFilterByField'
@@ -87,6 +88,8 @@ components:
                   - $ref: '#/components/schemas/LatenciesKongGatewayMsFilterByField'
                   - $ref: '#/components/schemas/LatenciesResponseMsFilterByField'
                   - $ref: '#/components/schemas/LatenciesUpstreamMsFilterByField'
+                  - $ref: '#/components/schemas/PortalFilterByField'
+                  - $ref: '#/components/schemas/RealmFilterByField'
                   - $ref: '#/components/schemas/ResponseBodySizeFilterByField'
                   - $ref: '#/components/schemas/ResponseHeaderContentLengthFilterByField'
                   - $ref: '#/components/schemas/ResponseSourceFilterByField'
@@ -282,8 +285,8 @@ components:
           request_start:
             description: The time the gateway started processing the request.
             type: string
-          application:
-            description: Application ID associated with the request.
+          api:
+            description: API ID associated with the request.
             type: string
             nullable: true
           api_product:
@@ -292,6 +295,10 @@ components:
             nullable: true
           api_product_version:
             description: API Product Version ID associated with the request.
+            type: string
+            nullable: true
+          application:
+            description: Application ID associated with the request.
             type: string
             nullable: true
           auth_type:
@@ -347,6 +354,10 @@ components:
           latencies_upstream_ms:
             description: Upstream latency of the request in milliseconds.
             type: integer
+            nullable: true
+          portal:
+            description: Portal ID associated with the request.
+            type: string
             nullable: true
           ratelimit_enabled:
             description: 'True if rate limiting is enabled for at least one of the intervals second, minute, hour, day, year.'
@@ -538,6 +549,22 @@ components:
       required:
         - operator
       title: Empty filters
+    ApiFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - api
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by api
     ApiProductFilterByField:
       allOf:
         - type: object
@@ -933,6 +960,38 @@ components:
             - $ref: '#/components/schemas/FilterSingleValueNumericMilliseconds'
             - $ref: '#/components/schemas/FilterEmpty'
       title: Filter by latencies_upstream_ms
+    PortalFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - portal
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by portal
+    RealmFilterByField:
+      allOf:
+        - type: object
+          properties:
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - realm
+          required:
+            - field
+        - oneOf:
+            - $ref: '#/components/schemas/FilterMultiValueUUID'
+            - $ref: '#/components/schemas/FilterSingleValueUUID'
+            - $ref: '#/components/schemas/FilterEmpty'
+      title: Filter by realm
     FilterMultiValueNumericBytes:
       type: object
       properties:
@@ -1712,6 +1771,7 @@ components:
       value:
         results:
           - request_start: '2020-02-02T01:00:00.000Z'
+            api: null
             api_product: 523468b1-2e74-4b58-b30e-6f904e99e4d0
             api_product_version: d40a6dd7-37e8-4937-8dfd-9fa988c7fc3e
             application: bc2587ae-a35e-4a34-b6b2-f4ca5ae06dc9
@@ -1729,6 +1789,7 @@ components:
             latencies_kong_gateway_ms: 2
             latencies_response_ms: 117
             latencies_upstream_ms: 115
+            portal: 20076d8c-2d1b-4249-b323-4baa63796f8a
             ratelimit_enabled: 1
             ratelimit_enabled_day: 0
             ratelimit_enabled_hour: 0
@@ -1765,6 +1826,7 @@ components:
             upstream_status: null
             upstream_uri: /graphql
           - request_start: '2020-02-02T01:00:01.050Z'
+            api: null
             api_product: b866c867-60e6-4258-adb3-e136cc26388b
             api_product_version: 3807c200-3d10-445d-85b2-7afe07ca3932
             application: null
@@ -1782,6 +1844,7 @@ components:
             latencies_kong_gateway_ms: 2
             latencies_response_ms: 12
             latencies_upstream_ms: 10
+            portal: null
             ratelimit_enabled: 1
             ratelimit_enabled_day: 0
             ratelimit_enabled_hour: 1

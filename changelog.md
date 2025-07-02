@@ -2,6 +2,364 @@
 
 <!--vale off-->
 
+## Week 18
+
+### [fix: Incorrect links in azure content safety docs](https://github.com/Kong/docs.konghq.com/pull/8751) (2025-04-29)
+
+This PR fixes two incorrect links pointing to AI prompt decorator in the Azure content safety main doc.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-azure-content-safety/overview/
+
+
+### [Release: Gateway 3.4.3.18](https://github.com/Kong/docs.konghq.com/pull/8745) (2025-04-29)
+
+3.4.3.18 changelog and version bump.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update geo.md](https://github.com/Kong/docs.konghq.com/pull/8742) (2025-04-28)
+
+Added France Central to Azure regions
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/geo
+
+## Week 17
+
+### [private-link: fix regions list](https://github.com/Kong/docs.konghq.com/pull/8739) (2025-04-24)
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [privatelink: remove duplicate region](https://github.com/Kong/docs.konghq.com/pull/8734) (2025-04-23)
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [chore: Mention that we don't support kafka 4.0](https://github.com/Kong/docs.konghq.com/pull/8733) (2025-04-24)
+
+Kafka 4.0 was released last month and users are running into problems because we don't explicitly say that we don't support it.
+
+https://konghq.atlassian.net/browse/KAG-6911
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/confluent-consume/overview/
+- https://docs.konghq.com/hub/kong-inc/confluent/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-consume/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-log/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-upstream/overview/
+
+
+### [update: Warn users about very high sync rates in RLA](https://github.com/Kong/docs.konghq.com/pull/8732) (2025-04-24)
+
+Added a table and info about window size and sync rate interactions in RLA, and what strategy they should use.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
+
+
+### [Update transit-gateways.md](https://github.com/Kong/docs.konghq.com/pull/8730) (2025-04-23)
+
+Added more details on AWS routing tables setup
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/dedicated-cloud-gateways/transit-gateways
+
+
+### [update script for ai-rag](https://github.com/Kong/docs.konghq.com/pull/8727) (2025-04-24)
+
+The script should be updated
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+
+
+### [update script for ai-rate-limiting plugin](https://github.com/Kong/docs.konghq.com/pull/8726) (2025-04-23)
+
+update script
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/
+
+
+### [Update konnect-configuration.md](https://github.com/Kong/docs.konghq.com/pull/8684) (2025-04-23)
+
+Updating the decK file to reflect PrivateLink updates
+
+
+#### Modified
+
+- https://docs.konghq.com/deck/gateway/konnect-configuration
+
+
+### [CSRE-4181 Private Link for Konnect Admin API documentation](https://github.com/Kong/docs.konghq.com/pull/8674) (2025-04-23)
+
+Added Section for making Konnect Admin API requests over PrivateLink
+
+1. https://konghq.atlassian.net/browse/CSRE-4181
+2. https://konghq.atlassian.net/browse/CSRE-3768
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+## Week 16
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [fix(ai): update options-param templating documentation](https://github.com/Kong/docs.konghq.com/pull/8720) (2025-04-17)
+
+Updated AI "templated options" example for a better sub-string sample configuration.
+
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/
+
+
+### [update ai-sanitizer doc](https://github.com/Kong/docs.konghq.com/pull/8718) (2025-04-17)
+
+update ai-sanitizer doc
+ 
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-sanitizer/overview/
+
+
+### [Update aws-privatelink.md](https://github.com/Kong/docs.konghq.com/pull/8716) (2025-04-17)
+
+* Added India endpoint to all regions
+* Added ap-southeast-1
+* Added us-west-2
+
+https://konghq.aha.io/features/PLAT-2
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/private-connections/aws-privatelink
+
+
+### [fix: Add 3.10 to Konnect compatibility table](https://github.com/Kong/docs.konghq.com/pull/8715) (2025-04-16)
+
+Added 3.10 to Konnect compatibility table
+ 
+https://kongstrong.slack.com/archives/CDSTDSG9J/p1744771182817609
+
+#### Modified
+
+- https://docs.konghq.com/konnect/compatibility
+
+
+### [Feat: New Request Callout examples](https://github.com/Kong/docs.konghq.com/pull/8713) (2025-04-16)
+
+Request Callout examples [requested on Slack](https://github.com/Kong/developer.konghq.com/issues/1020#issuecomment-2779506535)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-callout/overview/
+
+
+### [docs(portal): snippets page header](https://github.com/Kong/docs.konghq.com/pull/8708) (2025-04-15)
+
+Reference “Snippets” instead of “Pages” on the snippet page
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/customization/snippets
+
+
+### [Release: Gateway 2.8.4.14](https://github.com/Kong/docs.konghq.com/pull/8705) (2025-04-14)
+
+Changelog and version bump for gateway 2.8.4.14
+
+#### Modified
+
+- https://docs.konghq.com/gateway/2.8.x/reference/cli
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Updated ai-rag-injector docs](https://github.com/Kong/docs.konghq.com/pull/8703) (2025-04-14)
+
+An approach to update the content of ai-rag-injector plugin for Kong instances in hybrid mode or Konnect mode.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+
+
+### [Release: Gateway 3.10.0.1](https://github.com/Kong/docs.konghq.com/pull/8681) (2025-04-15)
+
+Changelog and version bump for 3.10.0.1
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [[TDX-5270] Snippets docs](https://github.com/Kong/docs.konghq.com/pull/8672) (2025-04-14)
+
+Added nav item & docs for Snippets, in preparation of releasing the feature
+ 
+- Aha: https://konghq.aha.io/epics/DEVP-E-3
+- Jira: https://konghq.atlassian.net/browse/TDX-5270
+
+#### Added
+
+- https://docs.konghq.com/dev-portal/portals/customization/snippets
+
+#### Modified
+
+- https://docs.konghq.com/dev-portal/portals/customization/custom-pages
+
+## Week 15
+
+### [Release: Gateway 3.8.1.1](https://github.com/Kong/docs.konghq.com/pull/8698) (2025-04-11)
+
+Changelog and version bump for 3.8.1.1.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 3.7.1.5](https://github.com/Kong/docs.konghq.com/pull/8697) (2025-04-11)
+
+Changelog and version bump for 3.7.1.5.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update geo.md](https://github.com/Kong/docs.konghq.com/pull/8692) (2025-04-09)
+
+Updated regions for Azure, added Google tab
+
+#### Modified
+
+- https://docs.konghq.com/konnect/geo
+
+
+### [Added a note in changelog for ai-rate-limiting-advanced plugin](https://github.com/Kong/docs.konghq.com/pull/8689) (2025-04-09)
+
+A note is added to describe how to transform a deck yaml config that is exported from a previous version to the latest version where huggingface is supported as the llm_providers in ai-rate-limiting-advanced plugin
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rate-limiting-advanced/
+
+
+### [Update cluster_type](https://github.com/Kong/docs.konghq.com/pull/8688) (2025-04-09)
+
+In the Konnect API `CLUSTER_TYPE_HYBRID` was deprecated some time ago and no longer exists (see [Control Plane schema](https://docs.konghq.com/konnect/api/control-planes/latest/#/schemas/ControlPlane)). The Terraform provider only still supports `CLUSTER_TYPE_HYBRID` to prevent state recreation. Moving forward `CLUSTER_TYPE_CONTROL_PLANE` should be used.
+
+See also: https://kongstrong.slack.com/archives/C04RXLGNB6K/p1727707794692459
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/terraform
+
+
+### [fix: fix ai-proxy-advanced balancer doc link typo](https://github.com/Kong/docs.konghq.com/pull/8686) (2025-04-09)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy-advanced/overview/
+
+
+### [Fix: Consume plugins tiers](https://github.com/Kong/docs.konghq.com/pull/8680) (2025-04-08)
+
+This is an enterprise plugin.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/confluent-consume/_metadata/_index.yml
+- https://docs.konghq.com/hub/kong-inc/kafka-consume/_metadata/_index.yml
+
+
+### [Fix: Update geos list for DCGWs](https://github.com/Kong/docs.konghq.com/pull/8675) (2025-04-08)
+
+Updating the geos list to accurately reflect what's currently available.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/geo
+
+
+### [Fix: Remove `labels` from konnect search query for teams](https://github.com/Kong/docs.konghq.com/pull/8673) (2025-04-07)
+
+Teams don't support labels, so this sample query is invalid. Removing the `labels` portion leaves the example as a valid logical AND example.
+
+Issue reported on slack.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/reference/search
+
+
+### [Fix: Missing Auth Headers & Request Body in Token Creation API Call](https://github.com/Kong/docs.konghq.com/pull/8671) (2025-04-07)
+
+Fix system account token creation process
+
+- Add required authentication header with bearer token
+- Include proper request body in the API call
+- Set correct content-type header
+
+ref: https://docs.konghq.com/konnect/api/identity-management/latest/#/operations/post-system-accounts-id-access-tokens
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/system-accounts
+
+
+### [Remove outdated Runtime groups parameter ](https://github.com/Kong/docs.konghq.com/pull/8669) (2025-04-07)
+
+CLUSTER_TYPE_COMPOSITE  -> CLUSTER_TYPE_CONTROL_PLANE_GROUP
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/control-plane-groups/migrate
+
+
+### [[AI RAG Injector] How to - Update title of step 2](https://github.com/Kong/docs.konghq.com/pull/8668) (2025-04-07)
+
+Fix misleading title for step 2
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-rag-injector/how-to/
+
 ## Week 14
 
 ### [Added the memory requirement for the PII service docker image](https://github.com/Kong/docs.konghq.com/pull/8660) (2025-04-03)

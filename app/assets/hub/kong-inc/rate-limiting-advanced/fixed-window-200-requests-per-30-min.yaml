@@ -1,9 +1,0 @@
-description: |
-  Users are allowed 200 requests per 30 minutes, resetting exactly on the 30 minute mark with no carryover of unused limits.
-
-config:
-  limit: 
-    - 200
-  window_size: 
-    - 1800
-  window_type: fixed

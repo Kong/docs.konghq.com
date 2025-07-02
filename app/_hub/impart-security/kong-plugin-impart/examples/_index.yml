@@ -1,3 +1,0 @@
-name: kong-plugin-impart
-config:
- inspector_rpc_addr: "/tmp/impart.sock"

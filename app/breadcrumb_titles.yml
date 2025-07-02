@@ -1,6 +1,0 @@
-/gateway/VERSION/production/: Production Deployment
-/gateway/VERSION/kong-manager/auth/: Authentication and Authorization
-/gateway/VERSION/kong-manager/auth/oidc/: OpenID Connect
-/gateway/VERSION/kong-enterprise/analytics/: Vitals
-
-/gateway-operator/VERSION/get-started/kic/: Kong Ingress Controller

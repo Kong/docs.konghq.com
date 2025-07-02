@@ -1,3 +1,0 @@
-name: kong-spec-expose
-config:
-  spec_url: https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v2.0/json/petstore.json

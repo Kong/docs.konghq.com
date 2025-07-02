@@ -21,6 +21,7 @@ name: Kong Docs
 title: Kong Docs
 description: "Documentation for Kong, the Cloud Connectivity Company for APIs and Microservices."
 links:
+  dev_site: https://developer.konghq.com
   web: https://docs.konghq.com
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
   download: https://cloudsmith.io/~kong/repos
@@ -51,7 +52,6 @@ plugins:
   - jekyll-redirect-from
   - jekyll-include-cache
   - jekyll-generator-single-source
-  - jekyll/vite
 
 defaults:
   - scope:
@@ -187,4 +187,4 @@ vwo_account_id: '125292'
 segment_key: 'X7EZTdbdUKQ8M6x42SHHPWiEhjsfs1EQ'
 
 # Gateway OSS
-latest_gateway_oss_version: 3.9.0
+latest_gateway_oss_version: 3.9.1

@@ -123,6 +123,7 @@ jobs:
             app/gateway/2.6.x/**
             app/assets/mesh/raw/CHANGELOG.md
             app/assets/mesh/raw/UPGRADE.md
+            app/_src/gateway-operator/reference/custom-resources/**
           json: true
           quotepath: false
           escape_json: false

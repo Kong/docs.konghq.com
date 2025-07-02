@@ -678,15 +678,6 @@ components:
         gateway_service_id:
           $ref: '#/components/schemas/UuidFieldFilter'
       title: APIProductVersionFilterParameters
-    SortQuery:
-      description: |
-        The `asc` suffix is optional as the default sort order is ascending.
-        The `desc` suffix is used to specify a descending order.
-        Multiple sort attributes may be provided via a comma separated list.
-        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar desc').
-      type: string
-      example: name desc
-      title: SortQuery
     APIProductPortals:
       description: The list of portals which this API product is published to
       type: array
@@ -1011,7 +1002,7 @@ components:
             - id
             - control_plane_id
         publish_status:
-          description: 'This field is published if the API product version is published to at least one portal. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          description: 'This field is published if the API product version is published to at least one portal. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/v2/#/operations/create-portal-product-version) instead.'
           type: string
           example: unpublished
           enum:
@@ -1019,7 +1010,7 @@ components:
             - published
           deprecated: true
         deprecated:
-          description: 'Whether this API product version is deprecated in at least one portal. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead'
+          description: 'Whether this API product version is deprecated in at least one portal. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/v2/#/operations/create-portal-product-version) instead'
           type: boolean
           example: false
           deprecated: true
@@ -1143,7 +1134,7 @@ components:
     CreateAPIProductVersionDTO:
       description: |
         The request schema to create a version of an API product.
-        Note that the `publish_status` and `deprecated` fields are deprecated:  Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.
+        Note that the `publish_status` and `deprecated` fields are deprecated:  Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/v2/#/operations/create-portal-product-version) instead.
       type: object
       properties:
         name:
@@ -1153,7 +1144,7 @@ components:
           minLength: 1
           nullable: false
         publish_status:
-          description: 'The publish status of the API product version. Applies publish status to all related portal product versions. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          description: 'The publish status of the API product version. Applies publish status to all related portal product versions. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/v2/#/operations/create-portal-product-version) instead.'
           type: string
           example: unpublished
           default: unpublished
@@ -1163,7 +1154,7 @@ components:
           deprecated: true
           nullable: false
         deprecated:
-          description: 'Indicates if the version of the API product is deprecated. Applies deprecation or removes deprecation from all related portal product versions. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          description: 'Indicates if the version of the API product is deprecated. Applies deprecation or removes deprecation from all related portal product versions. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/v2/#/operations/create-portal-product-version) instead.'
           type: boolean
           example: false
           default: false
@@ -1278,7 +1269,7 @@ components:
     UpdateAPIProductVersionDTO:
       description: |
         The request schema for updating a version of an API product.
-        Note that the `publish_status` and `deprecated` fields are deprecated:  Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.
+        Note that the `publish_status` and `deprecated` fields are deprecated:  Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/v2/#/operations/create-portal-product-version) instead.
       type: object
       properties:
         name:
@@ -1287,7 +1278,7 @@ components:
           example: v1
           minLength: 1
         publish_status:
-          description: 'The publish status of the API product version. Applies publish status to all related portal product versions. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          description: 'The publish status of the API product version. Applies publish status to all related portal product versions. This field is deprecated: Use [PortalProductVersion.publish_status](https://docs.konghq.com/konnect/api/portal-management/v2/#/operations/create-portal-product-version) instead.'
           type: string
           example: unpublished
           enum:
@@ -1295,7 +1286,7 @@ components:
             - published
           deprecated: true
         deprecated:
-          description: 'Indicates if the version of the API product is deprecated. Applies deprecation or removes deprecation from all related portal product versions. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Product%20Versions/create-portal-product-version) instead.'
+          description: 'Indicates if the version of the API product is deprecated. Applies deprecation or removes deprecation from all related portal product versions. This field is deprecated: Use [PortalProductVersion.deprecated](https://docs.konghq.com/konnect/api/portal-management/v2/#/operations/create-portal-product-version) instead.'
           type: boolean
           example: false
           deprecated: true
@@ -1463,6 +1454,15 @@ components:
           oeq: 'some-potential,value'
         example-6:
           neq: not-this-value
+    SortQuery:
+      description: |
+        The `asc` suffix is optional as the default sort order is ascending.
+        The `desc` suffix is used to specify a descending order.
+        Multiple sort attributes may be provided via a comma separated list.
+        JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar desc').
+      type: string
+      example: created_at desc
+      title: SortQuery
     PageMeta:
       description: Contains pagination query parameters and the total number of objects returned.
       type: object

@@ -52,6 +52,7 @@ Grafana
 Gunicorn
 Hasura
 HTTPie
+HTTPGet
 istioctl
 Imperva
 Inigo
@@ -187,6 +188,8 @@ certificate_admin
 charset
 chatbot
 cleartext
+cidr
+cidrs
 client_payload
 client_status
 clipanion
@@ -410,6 +413,7 @@ misconfigured
 Moesif
 MongoDB
 multimodal
+multitenant
 mutex
 nameserver
 nameservers
@@ -560,6 +564,7 @@ submodule
 submodule's
 subnet
 subnets
+subresource
 substring
 subtable
 subtables
@@ -656,10 +661,12 @@ validator
 validators
 vararg
 vms
+vpcs
 vnet
 Vue
 Wallarm
 Wasm
+watchNamespaces
 WebAssembly
 webpages
 websocket

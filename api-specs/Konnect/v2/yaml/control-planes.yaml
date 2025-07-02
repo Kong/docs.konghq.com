@@ -422,6 +422,7 @@ components:
             - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
             - CLUSTER_TYPE_CONTROL_PLANE_GROUP
             - CLUSTER_TYPE_SERVERLESS
+            - CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY
         auth_type:
           description: The auth type value of the cluster associated with the Runtime Group.
           type: string
@@ -512,6 +513,7 @@ components:
                 - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
                 - CLUSTER_TYPE_CONTROL_PLANE_GROUP
                 - CLUSTER_TYPE_SERVERLESS
+                - CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY
               readOnly: true
             auth_type:
               description: The auth type value of the cluster associated with the Runtime Group.
@@ -800,7 +802,7 @@ components:
         Multiple sort attributes may be provided via a comma separated list.
         JSONPath notation may be used to specify a sub-attribute (eg: 'foo.bar desc').
       type: string
-      example: 'name,created_at desc'
+      example: created_at desc
       title: SortQuery
     PageMeta:
       description: Contains pagination query parameters and the total number of objects returned.
