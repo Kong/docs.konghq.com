@@ -11,7 +11,7 @@ module Jekyll
       def value
         return label unless @release.latest?
 
-        "#{label} <em>(latest)</em>"
+        "#{label}"
       end
 
       def active?

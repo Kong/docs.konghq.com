@@ -32,7 +32,7 @@ module Jekyll
           return @release unless @latest
 
           if @release == @latest
-            "#{@release} <em>(latest)</em>"
+            "#{@release}"
           else
             @release
           end
