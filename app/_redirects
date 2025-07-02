@@ -1706,7 +1706,7 @@
 /dev-portal/portals/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/kong-manager/auth/rbac/  https://developer.konghq.com/gateway/entities/rbac/ 301
 /konnect/api-products/  https://developer.konghq.com/dev-portal/ 301
-/konnect/dev-portal/audit-logging/  https://developer.konghq.com/dev-portal/ 301
+/konnect/dev-portal/audit-logging/  https://developer.konghq.com/how-to/collect-dev-portal-audit-logs-with-sumologic/ 301
 /gateway/latest/kong-enterprise/secrets-management/backends/  https://developer.konghq.com/gateway/entities/vault/#supported-vault-backends 301
 /konnect/dev-portal/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/kong-manager/auth/  https://developer.konghq.com/gateway/kong-manager/ 301
@@ -1819,7 +1819,7 @@
 /konnect/dev-portal/register-and-create-app/  https://developer.konghq.com/dev-portal/application-registration/ 301
 /deck/file/render/  https://developer.konghq.com/deck/file/render/ 301
 /konnect/gateway-manager/data-plane-nodes/renew-certificates/  https://developer.konghq.com/gateway/cp-dp-communication/ 301
-/konnect/dev-portal/audit-logging/replay-job/  https://developer.konghq.com/dev-portal/ 301
+/konnect/dev-portal/audit-logging/replay-job/  https://developer.konghq.com/how-to/collect-dev-portal-audit-logs-with-sumologic/ 301
 /konnect/org-management/audit-logging/replay-job/  https://developer.konghq.com/dev-portal/ 301
 /dev-portal/portals/audit-logs/replay-job/  https://developer.konghq.com/dev-portal/ 301
 /gateway/latest/licenses/report/  https://developer.konghq.com/gateway/entities/license/ 301
@@ -1902,7 +1902,7 @@
 /gateway/:version/kong-enterprise/analytics/prometheus-strategy/  https://developer.konghq.com/advanced-analytics/ 301
 /gateway/2.8.x/vitals/vitals-reports/  https://developer.konghq.com/advanced-analytics/ 301
 /konnect/org-management/audit-logging/webhook/  https://developer.konghq.com/how-to/collect-audit-logs-with-sumologic/ 301
-/konnect/dev-portal/audit-logging/webhook/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
+/konnect/dev-portal/audit-logging/webhook/  https://developer.konghq.com/how-to/collect-dev-portal-audit-logs-with-sumologic/ 301
 /dev-portal/portals/audit-logs/webhook/  https://developer.konghq.com/konnect-platform/audit-logs/ 301
 /contributing/word-choice/  https://developer.konghq.com/contributing/ 301
 /gateway/:version/kong-enterprise/dev-portal/working-with-templates/  https://developer.konghq.com/dev-portal/ 301
