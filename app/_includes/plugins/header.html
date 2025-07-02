@@ -49,7 +49,7 @@
                 Gateway
                 {% endif %}
 
-                Version {{ include.release }}{% if include.extn_latest and include.release == include.extn_latest %}&nbsp;<em>(latest)</em>{% endif %}
+                Version {{ include.release }}
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown">
@@ -57,7 +57,7 @@
                 {% for version in versions_dropdown.versions %}
                 <li class="{{ version.css_class }}">
                   <a href="{{ version.url }}">
-                    {{ version.text }}
+                    {{ version.text }} {% if include.release.lts %}<span>(LTS)</span>{% endif %}
                   </a>
                 </li>
                 {% endfor %}
