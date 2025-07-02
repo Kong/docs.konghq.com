@@ -2398,7 +2398,7 @@
 /hub/kong-inc/ai-proxy/  https://developer.konghq.com/plugins/ai-proxy/ 301
 /hub/kong-inc/ai-proxy/configuration/  https://developer.konghq.com/plugins/ai-proxy/reference/ 301
 /hub/kong-inc/ai-proxy/how-to/basic-example/  https://developer.konghq.com/plugins/ai-proxy/examples/ 301
-/hub/kong-inc/ai-proxy/how-to/cloud-provider-authentication/  https://developer.konghq.com/plugins/ai-proxy/examples/azure-ai-with-managed-identity/ 301
+/hub/kong-inc/ai-proxy/how-to/cloud-provider-authentication/  https://developer.konghq.com/plugins/ai-proxy//#can-i-authenticate-to-azure-ai-with-azure-identity 301
 /hub/kong-inc/ai-proxy/how-to/sdk-usage/  https://developer.konghq.com/plugins/ai-proxy/#templating 301
 /hub/kong-inc/ai-proxy/how-to/streaming/  https://developer.konghq.com/ai-gateway/streaming/ 301
 /hub/kong-inc/ai-proxy/how-to/llm-provider-integration-guides/anthropic/  https://developer.konghq.com/how-to/set-up-ai-proxy-with-anthropic/ 301
@@ -2414,7 +2414,7 @@
 /hub/kong-inc/ai-proxy-advanced/  https://developer.konghq.com/plugins/ai-proxy-advanced/ 301
 /hub/kong-inc/ai-proxy-advanced/configuration/  https://developer.konghq.com/plugins/ai-proxy-advanced/reference/ 301
 /hub/kong-inc/ai-proxy-advanced/how-to/basic-example/  https://developer.konghq.com/plugins/ai-proxy-advanced/examples/ 301
-/hub/kong-inc/ai-proxy-advanced/how-to/cloud-provider-authentication/  https://developer.konghq.com/plugins/ai-proxy/examples/azure-ai-with-managed-identity/ 301
+/hub/kong-inc/ai-proxy-advanced/how-to/cloud-provider-authentication/  https://developer.konghq.com/plugins/ai-proxy-advanced/#can-i-authenticate-to-azure-ai-with-azure-identity 301
 /hub/kong-inc/ai-proxy-advanced/how-to/load-balancing/  https://developer.konghq.com/plugins/ai-proxy-advanced/examples/ 301
 /hub/kong-inc/ai-proxy-advanced/how-to/sdk-usage/  https://developer.konghq.com/plugins/ai-proxy-advanced/#templating 301
 /hub/kong-inc/ai-proxy-advanced/how-to/streaming/  https://developer.konghq.com/ai-gateway/streaming/ 301
