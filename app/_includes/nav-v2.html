@@ -30,6 +30,66 @@
 
     <div class="navbar-items" role="navigation" aria-label="Main menu">
       <ul class="navbar-items" role="menubar">
+        <li
+          role="menuitem"
+          aria-haspopup="true"
+          aria-expanded="false"
+          class="navbar-item main-menu-item with-submenu navbar-item-hub"
+        >
+          <span id="plugin-link" class="main-menu-item-title" tabindex="0">{% t _includes.nav-v2.navbar.plugin_hub %}</span>
+          <span class="caret"></span>
+          <ul class="navbar-item-submenu" role="menu">
+            <div class="submenu-section">
+              <li role="menuitem" class="docs-dropdown-li">
+                <a href="/hub/" class="docs-dropdown-li__link" tabindex="-1">
+                  <div class="docs-dropdown-li__card">
+                    <span class="heading">{% t _includes.nav-v2.explore_the_plugin_hub %}</span>
+                    <div class="docs-dropdown-li__card-link">
+                      <img src="/assets/images/landing-page/view-all-plugins.svg" alt="View all plugins">
+                      <span class="docs-dropdown-li__card-image">
+                        {% t _includes.nav-v2.view_all_plugins %}
+                        <img src="/assets/images/landing-page/arrow-right.svg" alt="View all plugins arrow image">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+
+              <li role="menuitem" class="docs-dropdown-li">
+                <div class="docs-dropdown-li__section">
+                  <div class="docs-dropdown-li__section-title">
+                    <span class="heading">{% t _includes.nav-v2.functionality %}</span>
+                    <a href="/hub/" class="view-all" tabindex="-1">
+                      {% t _includes.nav-v2.view_all %}
+                      <img src="/assets/images/landing-page/arrow-right.svg" alt="View all arrow image">
+                    </a>
+                  </div>
+
+                  <div class="docs-dropdown-li__section-items">
+                    <a class="item item-all" href="/hub/" tabindex="-1">
+                      <div class="item__description">
+                        <div class="item__description-title">{% t _includes.nav-v2.view_all_plugins %}</div>
+                      </div>
+                    </a>
+
+                    {% for category in site.data.extensions.categories %}
+                      <a class="item" href="/hub/?category={{ category.slug }}" tabindex="-1">
+                        <div>
+                          <img src="{{ category.icon }}" alt="{{ category.name }}'s icon">
+                        </div>
+                        <div class="item__description">
+                          <div class="item__description-title">{{ category.name }}</div>
+                          <div class="item__description-desc">{{ category.desc }}</div>
+                        </div>
+                      </a>
+                    {% endfor %}
+
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ul>
+        </li>
         <li role="menuitem" class="main-menu-item">
           <a href="https://support.konghq.com/" class="navbar-item">{% t _includes.nav-v2.navbar.support %}</a>
         </li>
