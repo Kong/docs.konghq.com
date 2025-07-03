@@ -7,6 +7,10 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
+      - uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
+        with:
+          egress-policy: audit
+          
       - uses: mheap/github-action-required-labels@388fd6af37b34cdfe5a23b37060e763217e58b03 # v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
