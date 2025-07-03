@@ -1687,7 +1687,7 @@
 /deck/install/  https://developer.konghq.com/deck/ 301
 /konnect/service-catalog/integrations/  https://developer.konghq.com/service-catalog/integrations/ 301
 /hub/plugins/overview/  https://developer.konghq.com/gateway/entities/plugin/ 301
-/hub/plugins/compatibility/  https://developer.konghq.com/gateway/entities/plugin/ 301
+/hub/plugins/compatibility/  https://developer.konghq.com/plugins/compatibility/ 301
 /gateway/latest/get-started/  https://developer.konghq.com/gateway/get-started/ 301
 /deck/gateway/  https://developer.konghq.com/deck/gateway/ 301
 /gateway/latest/production/deployment-topologies/hybrid-mode/  https://developer.konghq.com/gateway/hybrid-mode/ 301
