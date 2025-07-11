@@ -1114,8 +1114,6 @@ components:
             type: string
             maxLength: 64
           maxItems: 10
-        labels:
-          $ref: '#/components/schemas/Labels'
       additionalProperties: true
       required:
         - issuer
