@@ -1607,7 +1607,7 @@
 /dev-portal/apis/docs/  https://developer.konghq.com/dev-portal/apis/ 301
 /deck/gateway/dump/  https://developer.konghq.com/deck/gateway/dump/ 301
 /gateway/:version/kong-enterprise/dev-portal/customize/theme-editing/  https://developer.konghq.com/dev-portal/portal-customization/ 301
-/gateway/latest/kong-manager/configuring-to-send-email/  https://developer.konghq.com/gateway/gateway/kong-manager/configuration/#configure-kong-manager-to-send-email 301
+/gateway/latest/kong-manager/configuring-to-send-email/  https://developer.konghq.com/gateway/kong-manager/configuration/#configure-kong-manager-to-send-email 301
 /gateway/:version/kong-enterprise/dev-portal/customize/emails/  https://developer.konghq.com/dev-portal/ 301
 /konnect/dev-portal/applications/enable-app-reg/  https://developer.konghq.com/dev-portal/application-registration/ 301
 /gateway/:version/kong-enterprise/dev-portal/applications/enable-application-registration/  https://developer.konghq.com/dev-portal/ 301
