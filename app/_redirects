@@ -1,4 +1,4 @@
-# Redirects are evaluated in order of appearance.
+`# Redirects are evaluated in order of appearance.
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
@@ -1607,7 +1607,7 @@
 /dev-portal/apis/docs/  https://developer.konghq.com/dev-portal/apis/ 301
 /deck/gateway/dump/  https://developer.konghq.com/deck/gateway/dump/ 301
 /gateway/:version/kong-enterprise/dev-portal/customize/theme-editing/  https://developer.konghq.com/dev-portal/portal-customization/ 301
-/gateway/latest/kong-manager/configuring-to-send-email/  https://developer.konghq.com/gateway/kong-manager/ 301
+/gateway/latest/kong-manager/configuring-to-send-email/  https://developer.konghq.com/gateway/gateway/kong-manager/configuration/#configure-kong-manager-to-send-email 301
 /gateway/:version/kong-enterprise/dev-portal/customize/emails/  https://developer.konghq.com/dev-portal/ 301
 /konnect/dev-portal/applications/enable-app-reg/  https://developer.konghq.com/dev-portal/application-registration/ 301
 /gateway/:version/kong-enterprise/dev-portal/applications/enable-application-registration/  https://developer.konghq.com/dev-portal/ 301
@@ -1744,7 +1744,7 @@
 /gateway/2.8.x/install-and-run/kubernetes/  https://developer.konghq.com/gateway/install/kubernetes/ 301
 /konnect/reference/labels/  https://developer.konghq.com/gateway-manager/konnect-labels/ 301
 /konnect/analytics/use-cases/latency/  https://developer.konghq.com/advanced-analytics/ 301
-/gateway/latest/kong-manager/auth/ldap/configure/  https://developer.konghq.com/gateway/kong-manager/ 301
+/gateway/latest/kong-manager/auth/ldap/configure/  https://developer.konghq.com/gateway/kong-manager/ldap/ 301
 /deck/file/lint/  https://developer.konghq.com/deck/file/lint/ 301
 /gateway/latest/get-started/load-balancing/  https://developer.konghq.com/gateway/get-started/ 301
 /gateway/latest/how-kong-works/load-balancing/  https://developer.konghq.com/gateway/traffic-control/load-balancing-reference/ 301
@@ -1840,7 +1840,7 @@
 /dev-portal/portals/settings/security/#role-based-access-control  https://developer.konghq.com/dev-portal/access-and-approval/ 301
 /konnect/dev-portal/customization/self-hosted-portal/  https://developer.konghq.com/dev-portal/portal-customization/ 301
 /deck/gateway/sensitive-data/  https://developer.konghq.com/deck/gateway/sensitive-data/ 301
-/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/  https://developer.konghq.com/gateway/entities/group/ 301
+/gateway/latest/kong-manager/auth/ldap/service-directory-mapping/  https://developer.konghq.com/gateway/kong-manager/ldap/#ldap-authenticated-group-mapping 301
 /konnect/api-products/service-documentation/  https://developer.konghq.com/dev-portal/ 301
 /konnect/mesh-manager/service-mesh/  https://developer.konghq.com/mesh-manager/service-mesh/ 301
 /konnect/org-management/sessions-reference/  https://developer.konghq.com/index/konnect-platform/ 301
@@ -2934,7 +2934,7 @@
 /gateway/:version/plugin-development/distribution/  https://developer.konghq.com/custom-plugins/installation-and-distribution/ 301
 /gateway/:version/production/networking/dns-considerations/  https://developer.konghq.com/gateway/network/dns-config-reference/ 301
 /gateway/:version/install/docker/  https://developer.konghq.com/gateway/entities/license/ 301
-/gateway/:version/kong-manager/configuring-to-send-email/  https://developer.konghq.com/gateway/kong-manager/ 301
+/gateway/:version/kong-manager/configuring-to-send-email/  https://developer.konghq.com/gateway/kong-manager/configuration/#configure-kong-manager-to-send-email 301
 /gateway/:version/get-started/rate-limiting/  https://developer.konghq.com/gateway/get-started/ 301
 /gateway/:version/plugin-development/entities-cache/  https://developer.konghq.com/custom-plugins/daos.lua/ 301
 /gateway/:version/kong-enterprise/secrets-management/backends/env/  https://developer.konghq.com/gateway/entities/vault/ 301
@@ -2982,7 +2982,7 @@
 /gateway/:version/plugin-development/pdk/kong.table/  https://developer.konghq.com/gateway/pdk/reference/kong.table/ 301
 /gateway/:version/plugin-development/pdk/kong.vault/  https://developer.konghq.com/gateway/pdk/reference/kong.vault/ 301
 /gateway/:version/install/kubernetes/  https://developer.konghq.com/gateway/install/kubernetes/ 301
-/gateway/:version/kong-manager/auth/ldap/configure/  https://developer.konghq.com/gateway/kong-manager/ 301
+/gateway/:version/kong-manager/auth/ldap/configure/  https://developer.konghq.com/gateway/kong-manager/ldap/ 301
 /gateway/:version/get-started/load-balancing/  https://developer.konghq.com/gateway/get-started/ 301
 /gateway/:version/how-kong-works/load-balancing/  https://developer.konghq.com/gateway/traffic-control/load-balancing-reference/ 301
 /gateway/:version/kong-manager/auth/workspaces-and-teams/  https://developer.konghq.com/gateway/entities/workspace/ 301
@@ -2998,7 +2998,7 @@
 /gateway/:version/kong-manager/auth/reset-password/  https://developer.konghq.com/gateway/kong-manager/ 301
 /gateway/:version/install/linux/rhel/  https://developer.konghq.com/gateway/install/ 301
 /gateway/:version/production/running-kong/secure-admin-api/  https://developer.konghq.com/gateway/secure-the-admin-api/ 301
-/gateway/:version/kong-manager/auth/ldap/service-directory-mapping/  https://developer.konghq.com/gateway/entities/group/ 301
+/gateway/:version/kong-manager/auth/ldap/service-directory-mapping/  https://developer.konghq.com/gateway/kong-manager/ldap/#ldap-authenticated-group-mapping 301
 /gateway/:version/kong-manager/auth/sessions/  https://developer.konghq.com/plugins/session/ 301
 /gateway/:version/production/sizing-guidelines/  https://developer.konghq.com/gateway/resource-sizing-guidelines/ 301
 /gateway/:version/production/access-control/start-securely/  https://developer.konghq.com/gateway/entities/rbac/ 301
