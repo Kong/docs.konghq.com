@@ -1759,7 +1759,8 @@
 /gateway/:version/kong-enterprise/dev-portal/customize/markdown-extended/  https://developer.konghq.com/dev-portal/ 301
 /contributing/markdown-rules/  https://developer.konghq.com/contributing/ 301
 /deck/file/merge/  https://developer.konghq.com/deck/file/merge/ 301
-/gateway/latest/migrate-ce-to-ke/  https://developer.konghq.com/gateway/install/#faqs 301
+/gateway/latest/migrate-ce-to-ke/  https://developer.konghq.com/gateway/install/#how-do-i-migrate-from-kong-gateway-open-source-oss-to-kong-gateway-enterprise 301
+/gateway/:version/migrate-ce-to-ke/  https://developer.konghq.com/gateway/install/#how-do-i-migrate-from-kong-gateway-open-source-oss-to-kong-gateway-enterprise 301
 /konnect/mesh-manager/migrate-zone/  https://developer.konghq.com/mesh-manager/migrate-zone/ 301
 /konnect/gateway-manager/control-plane-groups/migrate/  https://developer.konghq.com/gateway-manager/control-plane-groups/ 301
 /gateway/:version/kong-enterprise/dev-portal/customize/migrating-templates/  https://developer.konghq.com/dev-portal/ 301
