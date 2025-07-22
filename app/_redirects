@@ -2692,7 +2692,7 @@
 /hub/kong-inc/openid-connect/how-to/third-party/cognito/  https://developer.konghq.com/plugins/openid-connect/examples/amazon-cognito/ 301
 /hub/kong-inc/openid-connect/how-to/third-party/curity/  https://developer.konghq.com/plugins/openid-connect/examples/curity/ 301
 /hub/kong-inc/openid-connect/how-to/third-party/google/  https://developer.konghq.com/plugins/openid-connect/examples/google/ 301
-/hub/kong-inc/openid-connect/how-to/third-party/okta/  https://developer.konghq.com/plugins/openid-connect/examples/okta/ 301
+/hub/kong-inc/openid-connect/how-to/third-party/okta/  https://developer.konghq.com/how-to/configure-oidc-with-auth-code-flow-and-okta/ 301
 /hub/kong-inc/openid-connect/changelog/  https://developer.konghq.com/plugins/openid-connect/changelog/ 301
 /hub/kong-inc/openid-connect/api/  https://developer.konghq.com/plugins/openid-connect/api/ 301
 /hub/kong-inc/opentelemetry/  https://developer.konghq.com/plugins/opentelemetry/ 301
