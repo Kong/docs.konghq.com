@@ -46,8 +46,10 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
 | `au.api.konghq.com` | The {{site.konnect_short_name}} API for the AU geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
 | `PORTAL_ID.au.portal.konghq.com` | The URL for the Dev Portal in the AU geo. |
-| `CONTROL_PLANE_DNS_PREFIX.au.cp0.konghq.com` | Handles configuration for a control plane in the AU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
-| `CONTROL_PLANE_DNS_PREFIX.au.tp0.konghq.com` | Gathers telemetry data for a control plane in the AU geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.au.cp.konghq.com` | Handles configuration for a control plane in the AU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.au.tp.konghq.com` | Gathers telemetry data for a control plane in the AU geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.au.cp0.konghq.com` | [Deprecated] Handles configuration for a control plane in the AU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.au.tp0.konghq.com` | [Deprecated] Gathers telemetry data for a control plane in the AU geo. This hostname is unique to each organization and control plane. |
 | `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
 
 
@@ -59,8 +61,10 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
 | `eu.api.konghq.com` | The {{site.konnect_short_name}} API for the EU geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
 | `PORTAL_ID.eu.portal.konghq.com` | The URL for the Dev Portal in the EU geo. |
-| `CONTROL_PLANE_DNS_PREFIX.eu.cp0.konghq.com` | Handles configuration for a control plane in the EU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
-| `CONTROL_PLANE_DNS_PREFIX.eu.tp0.konghq.com` | Gathers telemetry data for a control plane in the EU geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.eu.cp.konghq.com` | Handles configuration for a control plane in the EU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.eu.tp.konghq.com` | Gathers telemetry data for a control plane in the EU geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.eu.cp0.konghq.com` | [Deprecated] Handles configuration for a control plane in the EU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.eu.tp0.konghq.com` | [Deprecated] Gathers telemetry data for a control plane in the EU geo. This hostname is unique to each organization and control plane. |
 | `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
 
 
@@ -72,8 +76,10 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
 | `in.api.konghq.com` | The {{site.konnect_short_name}} API for the IN geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
 | `PORTAL_ID.in.portal.konghq.com` | The URL for the Dev Portal in the IN geo. |
-| `CONTROL_PLANE_DNS_PREFIX.in.cp0.konghq.com` | Handles configuration for a control plane in the IN geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
-| `CONTROL_PLANE_DNS_PREFIX.in.tp0.konghq.com` | Gathers telemetry data for a control plane in the IN geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.in.cp.konghq.com` | Handles configuration for a control plane in the IN geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.in.tp.konghq.com` | Gathers telemetry data for a control plane in the IN geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.in.cp0.konghq.com` | [Deprecated] Handles configuration for a control plane in the IN geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.in.tp0.konghq.com` | [Deprecated] Gathers telemetry data for a control plane in the IN geo. This hostname is unique to each organization and control plane. |
 | `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
 
 
@@ -85,8 +91,10 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
 | `me.api.konghq.com` | The {{site.konnect_short_name}} API for the ME geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
 | `PORTAL_ID.me.portal.konghq.com` | The URL for the Dev Portal in the ME geo. |
-| `CONTROL_PLANE_DNS_PREFIX.me.cp0.konghq.com` | Handles configuration for a control plane in the ME geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
-| `CONTROL_PLANE_DNS_PREFIX.me.tp0.konghq.com` | Gathers telemetry data for a control plane in the ME geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.me.cp.konghq.com` | Handles configuration for a control plane in the ME geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.me.tp.konghq.com` | Gathers telemetry data for a control plane in the ME geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.me.cp0.konghq.com` | [Deprecated] Handles configuration for a control plane in the ME geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.me.tp0.konghq.com` | [Deprecated] Gathers telemetry data for a control plane in the ME geo. This hostname is unique to each organization and control plane. |
 | `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
 
 
@@ -98,8 +106,10 @@ add the following hostnames to the firewall allowlist (depending on the [geograp
 | `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
 | `us.api.konghq.com` | The {{site.konnect_short_name}} API for the US geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
 | `PORTAL_ID.us.portal.konghq.com` | The URL for the Dev Portal in the US geo. |
-| `CONTROL_PLANE_DNS_PREFIX.us.cp0.konghq.com` | Handles configuration for a control plane in the US geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
-| `CONTROL_PLANE_DNS_PREFIX.us.tp0.konghq.com` | Gathers telemetry data for a control plane in the US geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.us.cp.konghq.com` | Handles configuration for a control plane in the US geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.us.tp.konghq.com` | Gathers telemetry data for a control plane in the US geo. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.us.cp0.konghq.com` | [Deprecated] Handles configuration for a control plane in the US geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_DNS_PREFIX.us.tp0.konghq.com` | [Deprecated] Gathers telemetry data for a control plane in the US geo. This hostname is unique to each organization and control plane. |
 | `See ingressIPs in ip-addresses.origin.konghq.com` | Recommended for firewall allow-listing. Includes all regional ingress IPs across services. |
 
 
