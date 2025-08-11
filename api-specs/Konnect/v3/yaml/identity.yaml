@@ -2932,6 +2932,7 @@ components:
                   - Application Auth Strategies
                   - Audit Logs
                   - Control Planes
+                  - Dashboards
                   - DCR Providers
                   - Identity
                   - Mesh Control Planes
@@ -4027,6 +4028,36 @@ components:
                             example: This role grants access to read-only permissions to Mesh control planes.
                             enum:
                               - This role grants access to read-only permissions to Mesh control planes.
+                        required:
+                          - name
+                          - description
+                required:
+                  - name
+                  - roles
+              dashboards:
+                type: object
+                additionalProperties: false
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - Dashboards
+                  roles:
+                    type: object
+                    properties:
+                      viewer:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Viewer
+                          description:
+                            type: string
+                            example: Allows users to view any Dashboards content in Konnect Analytics.
+                            enum:
+                              - Allows users to view any Dashboards content in Konnect Analytics.
                         required:
                           - name
                           - description
