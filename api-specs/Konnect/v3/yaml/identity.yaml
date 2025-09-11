@@ -134,6 +134,8 @@ paths:
           $ref: '#/components/responses/IdentityUnauthenticated'
         '403':
           $ref: '#/components/responses/CreateIdentityProviderPermissionDenied'
+        '409':
+          $ref: '#/components/responses/Conflict'
       tags:
         - Auth Settings
   '/identity-providers/{id}':
@@ -184,6 +186,8 @@ paths:
           $ref: '#/components/responses/IdentityPermissionDenied'
         '404':
           $ref: '#/components/responses/IdentityNotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
       tags:
         - Auth Settings
     delete:
@@ -1337,7 +1341,7 @@ components:
   schemas:
     IdentityProviderEnabled:
       description: |
-        Indicates whether the identity provider is enabled. 
+        Indicates whether the identity provider is enabled.
         Only one identity provider can be active at a time, such as SAML or OIDC.
       type: boolean
       example: true
@@ -1383,7 +1387,7 @@ components:
       title: OIDC Identity Provider Scopes Property
     OIDCIdentityProviderClaimMappings:
       description: |
-        Defines the mappings between OpenID Connect (OIDC) claims and local claims used by your application for 
+        Defines the mappings between OpenID Connect (OIDC) claims and local claims used by your application for
         authentication.
       type: object
       properties:
@@ -1427,6 +1431,8 @@ components:
           $ref: '#/components/schemas/IdentityProviderType'
         login_path:
           $ref: '#/components/schemas/IdentityProviderLoginPath'
+        enabled:
+          $ref: '#/components/schemas/schemas-IdentityProviderEnabled'
         config:
           type: object
           oneOf:
@@ -1438,7 +1444,7 @@ components:
       type: object
       properties:
         enabled:
-          $ref: '#/components/schemas/IdentityProviderEnabled'
+          $ref: '#/components/schemas/schemas-IdentityProviderEnabled'
         login_path:
           $ref: '#/components/schemas/IdentityProviderLoginPath'
         config:
@@ -2205,6 +2211,14 @@ components:
               example: 'kong:trace:1234567890'
             detail:
               example: Forbidden
+    schemas-IdentityProviderEnabled:
+      description: |
+        Indicates whether the identity provider is enabled. 
+        Only one identity provider can be active at a time, such as SAML or OIDC.
+      type: boolean
+      example: true
+      default: false
+      title: Identity Provider Enabled Property
     StringFieldContainsFilter:
       description: Filter a string value field by partial contains.
       type: object
@@ -2654,6 +2668,7 @@ components:
       value:
         type: oidc
         login_path: the-oidc-konnect-org
+        enabled: true
         config:
           issuer_url: 'https://konghq.okta.com/oauth2/default'
           client_id: 0oaqhb43ckTZ02j1F357
@@ -4366,6 +4381,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/IdP'
+    Conflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
   securitySchemes:
     systemAccountAccessToken:
       type: http
