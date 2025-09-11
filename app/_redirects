@@ -1882,7 +1882,7 @@
 /konnect/org-management/troubleshoot/  https://developer.konghq.com/konnect-platform/sso/ 301
 /gateway/latest/install/linux/ubuntu/  https://developer.konghq.com/gateway/install/ 301
 /konnect/gateway-manager/plugins/update-custom-plugin/  https://developer.konghq.com/custom-plugins/konnect-hybrid-mode/ 301
-/konnect/updates/  https://developer.konghq.com 301
+/konnect/updates/  https://releases.konghq.com 301
 /gateway/latest/upgrade/  https://developer.konghq.com/gateway/upgrade/ 301
 /konnect/upgrade-faq/  https://developer.konghq.com/konnect-platform/compatibility/ 301
 /konnect/gateway-manager/data-plane-nodes/upgrade/  https://developer.konghq.com/gateway-manager/data-plane-reference/ 301
