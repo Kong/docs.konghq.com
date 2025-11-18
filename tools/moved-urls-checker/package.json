@@ -13,6 +13,6 @@
     "cheerio": "^1.0.0-rc.12",
     "js-yaml": "^4.1.0",
     "minimist": "^1.2.6",
-    "node-fetch": "^2"
+    "node-fetch": "^3.0.0"
   }
 }
