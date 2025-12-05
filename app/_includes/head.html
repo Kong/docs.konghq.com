@@ -99,11 +99,7 @@
   <link rel="alternate" hreflang="x-default" href="{{ site.links.locales['en'] }}">
   <link rel="alternate" hreflang="ja" href="{{ site.links.locales['ja'] }}">
 
-  {% if include.seo_noindex %}
-    <meta name="robots" content="follow,noindex" />
-  {% else %}
-    <meta name="robots" content="follow,index" />
-  {% endif %}
+  <meta name="robots" content="follow,noindex" />
 
   <!-- FontAwesome icon font -->
   <script
