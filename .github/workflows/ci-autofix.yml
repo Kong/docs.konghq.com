@@ -20,7 +20,7 @@ jobs:
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: Kong/changed-files@4edd678ac3f81e2dc578756871e4d00c19191daf
+        uses: Kong/changed-files@cd69b79ca4e2a1198064c5e6564cce68920df311
         with:
           sha: ${{  github.event.pull_request.head.sha }}
           files: |
