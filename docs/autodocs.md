@@ -29,9 +29,7 @@ cd /path/to/kong
 scripts/autodoc ../docs.konghq.com 2.4.x
 ```
 
-This example assumes that the `Kong/docs.konghq.com` repo is cloned into the
-same directory as the `Kong/kong` repo, and that you want to generate the docs
-for version `3.7.x`. Adjust the paths and version as needed.
+This example assumes that the `Kong/docs.konghq.com` repo is cloned into the same directory as the `Kong/kong` repo, and that you want to generate the docs for version `2.4.x`. Adjust the paths and version as needed.
 
 After everything is generated, review, open a branch with the changes, send a
 pull request, and review the changes.
