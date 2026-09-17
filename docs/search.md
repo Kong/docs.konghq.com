@@ -186,7 +186,7 @@ The list of [searchable attributes](https://www.algolia.com/doc/api-reference/ap
 
 We use the default attribute list defined by DocSearch, i.e., `content` and `headings lvl0 - lvl5`, but we modified their priority order  so that the `content` has the highest priority and then the `lvl5` to `lvl0`.
 
-We found this priority to work best for us, mainly because of the types of queries we get and how our headings and content is written. We want records with paragraphs containing the query terms to rank higher than records that include  them just in the headings.
+We found this priority to work best for us, mainly because of the types of queries we get and how our headings and content are written. We want records with paragraphs containing the query terms to rank higher than records that include  them just in the headings.
 
 
 ### Synonyms
@@ -195,7 +195,7 @@ We defined a [list](https://dashboard.algolia.com/apps/05Y6TLHNFZ/explorer/confi
 
 ### Rules
 
-We defined a specific set of  [rules](https://dashboard.algolia.com/apps/05Y6TLHNFZ/rules/konghq) that changes the search results based on different conditions.
+We defined a specific set of [rules](https://dashboard.algolia.com/apps/05Y6TLHNFZ/rules/konghq) that changes the search results based on different conditions.
  
 Two rules pin specific records (API Reference pages) to the top of the results whenever the query contains `<product> API`.  The terms `<product API>` are mentioned in several places, so we wanted to increase the API reference pages discoverability.
 
