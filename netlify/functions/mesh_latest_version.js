@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 exports.handler = async (event) => {
   try {
     // Netlify function to pul the latest version from the developer site
-    // The allow-control headers weren't set in the 301 reponse
+    // The allow-control headers weren't set in the 301 response
     // Adding the headers back and including the response here from the dev site here
     // fixes the CORS issue
     const targetUrl = "https://developer.konghq.com/mesh/latest_version/";

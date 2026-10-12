@@ -42,7 +42,7 @@
 //
 // \| Enterprise plugins \|  \|  \|
 //
-// The following function is an attempt at removing the escaping from table cells delimeters.
+// The following function is an attempt at removing the escaping from table cells delimiters.
 function processTables(fileContent) {
   // Regex to match a line that resembles a markdown table row with escaped pipes
   const tableRowRegex = /^\\\|([^\n]+\\\|)+$/gm;
